@@ -1,0 +1,20 @@
+This is the course "Ski Jump" for Tuxracer.
+
+The idea behind this course was to design a course similar to a real ski-jump
+where you can see the distance your penguin has flown. After the take off you can see
+lines in the snow, which each line being 10 metres away from the others. For a better
+overview the distance is written in the snow every 50 metres.
+By pressing the "e" on your keyboard you can use the ergonometer on the ski-jump-table.
+This plus flapping the wings in the air, will enable the penguin to fly up to 200 m. ;-)
+
+
+INSTALL:
+Just copy the subdirectory into the contrib-directory of your Tuxracer-dir.
+(Probably one of /usr/share/tuxracer/courses/contrib
+or /usr/local/share/tuxracer/courses/contrib if you have Linux )
+
+If you want to install the complete cup "Tux the winter sportsman" please
+follow the instructions of the README for this cup on http://tuxracer.cjb.net.
+
+If you don't have Tuxracer installed, go to www.tuxracer.com and download a
+copy of it.

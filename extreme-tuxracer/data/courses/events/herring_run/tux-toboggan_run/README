@@ -1,0 +1,18 @@
+This is the course "Tux-Toboggan run" for Tuxracer.
+It's derived from "Penguins Can't Fly", but it's more diversified and 
+is about 4 minutes long.
+It has various paths with many high and low speed passages. 
+So find out, which path is the best to go.
+
+
+INSTALL:
+Just copy the subdirectory into the contrib-directory of your Tuxracer-dir.
+(Probably one of /usr/share/tuxracer/courses/contrib
+or /usr/local/share/tuxracer/courses/contrib if you have Linux )
+
+If you want to install the complete cup "Tux the winter sportsman" please
+follow the instructions of the README for this cup on http://tuxracer.cjb.net.
+
+If you don't have Tuxracer installed, go to www.tuxracer.com and download a 
+copy of it.
+
