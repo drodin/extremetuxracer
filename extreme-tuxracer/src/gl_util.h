@@ -22,7 +22,7 @@
 #ifndef _GL_UTIL_H_
 #define _GL_UTIL_H_
 
-#include "ppracer.h"
+#include "etracer.h"
 
 /* Hack to fix compiling problem with old gl.h's, reported by Steve
    Baker <sjbaker1@airmail.net>.  Some old gl.h's don't include glext.h, but

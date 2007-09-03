@@ -22,7 +22,7 @@
 #ifndef _FOG_H_
 #define _FOG_H_
 
-#include "ppracer.h"
+#include "etracer.h"
 
 class FogPlane {
 	

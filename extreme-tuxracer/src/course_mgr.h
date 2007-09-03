@@ -22,7 +22,7 @@
 #ifndef _COURSE_MGR_H
 #define _COURSE_MGR_H
 
-#include "ppracer.h"
+#include "etracer.h"
 #include "pp_types.h"
 
 #include <list>

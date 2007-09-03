@@ -20,7 +20,7 @@
 
 #include "frame.h"
 #include "ui_theme.h"
-#include "ppracer.h"
+#include "etracer.h"
 #include "render_util.h"
 
 namespace pp{

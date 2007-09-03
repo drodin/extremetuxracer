@@ -22,7 +22,7 @@
 #ifndef _DEBUG_H_
 #define _DEBUG_H_
 
-#include "ppracer.h"
+#include "etracer.h"
 
 typedef enum {
     DEBUG_ODE,

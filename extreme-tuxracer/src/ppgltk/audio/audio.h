@@ -22,7 +22,7 @@
 #ifndef AUDIO_H
 #define AUDIO_H
 
-#include "../../ppracer.h"
+#include "../../etracer.h"
 
 void init_audio();
 

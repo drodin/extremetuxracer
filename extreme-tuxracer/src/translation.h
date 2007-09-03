@@ -20,7 +20,7 @@
 #ifndef _TRANSLATION_H_
 #define _TRANSLATION_H_
 
-#include "ppracer.h"
+#include "etracer.h"
 
 #include <string>
 #include <map>

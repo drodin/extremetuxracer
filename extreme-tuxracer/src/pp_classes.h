@@ -21,7 +21,7 @@
 #define _PP_CLASSES_H_
 
 #include "pp_types.h"
-#include "ppracer.h"
+#include "etracer.h"
 
 #include "ppgltk/model.h"
 

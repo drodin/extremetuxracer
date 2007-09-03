@@ -22,7 +22,7 @@
 #ifndef _TCL_UTIL_H_
 #define _TCL_UTIL_H_
 
-#include "ppracer.h"
+#include "etracer.h"
 
 #include "ppgltk/ppgltk.h"
 

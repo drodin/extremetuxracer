@@ -22,7 +22,7 @@
 #ifndef _PP_TYPES_H_
 #define _PP_TYPES_H_
 
-#include "ppracer.h"
+#include "etracer.h"
 
 #include "ppgltk/alg/color.h"
 #include "ppgltk/alg/vec2d.h"

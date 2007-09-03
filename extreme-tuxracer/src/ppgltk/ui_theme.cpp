@@ -49,7 +49,7 @@ Theme::drawMenuDecorations()
 	ppGL::draw::rect("menu_bottom_right",pp::Vec2d(width-256,0), size);
 	ppGL::draw::rect("menu_top_left",pp::Vec2d(0,height-256), size);
 	ppGL::draw::rect("menu_top_right",pp::Vec2d(width-256,height-256), size);
-	ppGL::draw::rect("menu_title",pp::Vec2d(width/2-256, height-128),pp::Vec2d(512,128));
+	ppGL::draw::rect("menu_title",pp::Vec2d(width/2-256, height-256),pp::Vec2d(512,256));
 }
 
 } //namespace pp

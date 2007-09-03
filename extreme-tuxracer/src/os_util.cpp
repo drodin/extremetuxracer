@@ -19,7 +19,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-#include "ppracer.h"
+#include "etracer.h"
 
 #if defined( COMPILER_IS_UNIX_COMPATIBLE )
 #   include <sys/utsname.h>

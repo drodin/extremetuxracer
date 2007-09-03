@@ -19,7 +19,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-#include "ppracer.h"
+#include "etracer.h"
 #include "nmrcl.h"
 
 const double ode23_time_step_mat[] = { 0., 1./2., 3./4., 1. };

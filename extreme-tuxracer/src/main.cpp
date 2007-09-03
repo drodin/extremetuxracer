@@ -56,7 +56,7 @@
 /// instance of tcl interpreter
 Tcl_Interp *tclInterp;
 
-#define WINDOW_TITLE "PlanetPenguin Racer " VERSION
+#define WINDOW_TITLE "Extreme Tux Racer - " VERSION
 
 #define GAME_INIT_SCRIPT "ppracer_init.tcl"
 
@@ -130,14 +130,14 @@ void read_game_init_script()
 	handle_system_error( 
 	    1, "Can't find the PPRacer data "
 	    "directory.  Please check the\nvalue of `data_dir' in "
-	    "~/.ppracer/options and set it to the location where you\n"
+	    "~/.etracer/options and set it to the location where you\n"
 	    "installed the PPRacer-data files.\n\n"
 	    "Couldn't chdir to %s", getparam_data_dir() );
     } 
 
     if ( Tcl_EvalFile( tclInterp, GAME_INIT_SCRIPT) == TCL_ERROR ) {
         handle_error( 1, "error evalating %s/%s: %s\n"
-		      "Please check the value of `data_dir' in ~/.ppracer/options "
+		      "Please check the value of `data_dir' in ~/.etracer/options "
 		      "and make sure it\npoints to the location of the "
 		      "latest version of the PPRacer-data files.", 
 		      getparam_data_dir(), GAME_INIT_SCRIPT, 
@@ -157,8 +157,9 @@ void read_game_init_script()
 int main( int argc, char *argv[] ) 
 {
     /* Print copyright notice */
-    fprintf( stderr, "PPRacer " VERSION " --  http://racer.planetpenguin.de "
-	     "\n(c) 2004-2005 The PPRacer team\n"
+    fprintf( stderr, "Extreme TuxRacer " VERSION " --  http://www.extremetuxracer.com \n"
+	     "(c) 2007 The ETRacer team\n"
+	     "(c) 2004-2005 The PPRacer team\n"
 	     "(c) 1999-2001 Jasmin F. Patry"
 	     "<jfpatry@sunspirestudios.com>\n"
 	     "PPRacer comes with ABSOLUTELY NO WARRANTY. "
@@ -186,7 +187,7 @@ int main( int argc, char *argv[] )
 		handle_error( 1, "cannot create Tcl interpreter" ); 
     }
 
-    /* Setup the configuration variables and read the ~/.ppracer/options file */
+    /* Setup the configuration variables and read the ~/.etracer/options file */
     
 	getopts(argc,argv);
 	

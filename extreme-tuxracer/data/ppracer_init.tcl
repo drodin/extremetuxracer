@@ -22,8 +22,8 @@ proc tux_theme_init {theme} {
 
     set cwd [pwd]
 
-    if [file exists "$env(HOME)/.ppracer/themes/$theme/courseinit.tcl"] {
-	cd "$env(HOME)/.ppracer/themes/$theme/"
+    if [file exists "$env(HOME)/.etracer/themes/$theme/courseinit.tcl"] {
+	cd "$env(HOME)/.etracer/themes/$theme/"
 	source courseinit.tcl
     } else {
         cd "$tux_data_dir/courses/themes/"

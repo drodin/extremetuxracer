@@ -131,7 +131,7 @@
 #include "debug.h"
 #include "error_util.h"
 
-#define PROG_NAME "ppracer"
+#define PROG_NAME "etracer"
 
 #if defined( HAVE_FINITE )
 #   define FINITE(x) (finite(x))

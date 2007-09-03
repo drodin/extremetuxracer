@@ -19,7 +19,7 @@
 
 #include "translation.h"
 
-#include "ppracer.h"
+#include "etracer.h"
 #include "game_config.h"
 
 

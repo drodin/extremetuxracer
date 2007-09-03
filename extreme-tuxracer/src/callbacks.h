@@ -19,7 +19,7 @@
 #ifndef _CALLBACKS_H
 #define _CALLBACKS_H
 
-#include "ppracer.h"
+#include "etracer.h"
 
 void register_common_callbacks( Tcl_Interp *ip );
 

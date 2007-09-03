@@ -29,13 +29,14 @@
  
 SplashScreen::SplashScreen()
 {		
-	pp::Vec2d pos(getparam_x_resolution()/2,getparam_y_resolution()/2);
+	pp::Vec2d pos(getparam_x_resolution()/2, 100); //Coordinates are from bottom-left corner of the screen
 	
 	mp_anykeyLbl = new pp::Label(pos,"event_and_cup_label",_("PRESS ANY KEY TO START"));
-	mp_anykeyLbl->alignment.center();
-	mp_anykeyLbl->alignment.top();
+
+	mp_anykeyLbl->alignment.center();  //use the horizontal center of the text as the placement point
+	mp_anykeyLbl->alignment.top(); //use the top of the text as the placement point
 	
-    play_music( "splash_screen" );
+  play_music( "splash_screen" );
 }
 
 SplashScreen::~SplashScreen()
@@ -52,22 +53,22 @@ SplashScreen::loop(float timeStep)
 {
 	update_audio();
 
-    clear_rendering_context();
-    set_gl_options( GUI );
-    UIMgr.setupDisplay();
+  clear_rendering_context();
+  set_gl_options( GUI );
+  UIMgr.setupDisplay();
 
 	drawSnow(timeStep);
 
-	{
-		pp::Vec2d pos(getparam_x_resolution()/2 -256,getparam_y_resolution()/2);
-		pp::Vec2d size(512, 256);
+	{//should this be created in the splash screen constructor?
+		pp::Vec2d pos(getparam_x_resolution()/2 - 256, getparam_y_resolution()/2 - 256); //centered
+		pp::Vec2d size(512, 512);
 		ppGL::draw::rect("splash_screen", pos, size);
 	}	
 
-    UIMgr.draw();
+  UIMgr.draw();
 
-    reshape( getparam_x_resolution(), getparam_y_resolution() );
-    winsys_swap_buffers();	
+  reshape( getparam_x_resolution(), getparam_y_resolution() );
+  winsys_swap_buffers();	
 }
 
 

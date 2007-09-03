@@ -1,9 +1,9 @@
 dnl Process this file with autoconf to produce a configure script.
-AC_INIT(src/ppracer.h)
+AC_INIT(src/etracer.h)
 
 dnl Check system type
 AC_CANONICAL_TARGET
-AM_INIT_AUTOMAKE(ppracer, "0.3.1")
+AM_INIT_AUTOMAKE(etracer, "SVN Development")
 AM_CONFIG_HEADER(config.h)
 AM_MAINTAINER_MODE
 
@@ -492,7 +492,7 @@ dnl Other options
 dnl --------------------------------------------------------------------------
 
 dnl Specify data directory
-ppdatadir="$datadir/ppracer"
+ppdatadir="$datadir/etracer"
 
 AC_ARG_WITH(data-dir,[  --with-data-dir=PATH    Default ppracer data directory], ppdatadir=$withval)
 
@@ -511,7 +511,7 @@ LIBS="$LIBS $TR_LIBS $TCL_LIBS $PNG_LIBS $FT2_LIBS"
 AC_OUTPUT(Makefile src/Makefile data/Makefile)
 
 echo 
-echo PlanetPenguin Racer $VERSION
+echo Extreme Tux Racer $VERSION
 echo
 echo libpng12 ........... $PNG_VERSION
 

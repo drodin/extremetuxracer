@@ -37,13 +37,15 @@ typedef struct {
 
 static credit_line_t credit_lines[] = 
 {
-	{ NULL, "credits_h1", "PlanetPenguin Racer" },
+	{ NULL, "credits_h1", "Extreme TuxRacer" },
+    { NULL, "credits_text", "http://www.extremetuxracer.com" },
+	{ NULL, "credits_text", "Extreme TuxRacer is based on PlanetPenguin Racer" },
     { NULL, "credits_text", "http://racer.planetpenguin.de" },
 	{ NULL, "credits_text", "PlanetPenguin Racer is based on Tux Racer" },
     { NULL, "credits_text", "Tux Racer is a Sunspire Studios Production" },
     { NULL, "credits_text", "www.sunspirestudios.com" },
     { NULL, "credits_text", "" },
-    { NULL, "credits_h2", "Development Team" },
+    { NULL, "credits_h2", "PPRacer Development Team" },
     { NULL, "credits_text", "Volker Ströbel" },
     { NULL, "credits_text", "" },
 	{ NULL, "credits_h2", "Translators" },
@@ -85,9 +87,10 @@ static credit_line_t credit_lines[] =
     { NULL, "credits_text", "Alan Levy" },
     { NULL, "credits_text", "University of Waterloo Computer Graphics Lab" },
     { NULL, "credits_text", "" },
-    { NULL, "credits_text_small", "Tux Racer is a trademark of Jasmin F. Patry" },
+  { NULL, "credits_text_small", "Tux Racer is a trademark of Jasmin F. Patry" },
+	{ NULL, "credits_text_small", "Extreme TuxRacer is copyright 2007 The PPRacer team" },
 	{ NULL, "credits_text_small", "PlanetPenguin Racer is copyright 2004, 2005 The PPRacer team" },
-    { NULL, "credits_text_small", "Tux Racer is copyright 1999, 2000, 2001 Jasmin F. Patry" },
+  { NULL, "credits_text_small", "Tux Racer is copyright 1999, 2000, 2001 Jasmin F. Patry" },
 };
 
 Credits::Credits()
@@ -97,7 +100,7 @@ Credits::Credits()
 		credit_lines[i].font = pp::Font::get(credit_lines[i].binding);		
 	}
 	
-    play_music( "credits_screen" );
+  play_music( "credits_screen" );
 }
 
 
@@ -109,28 +112,29 @@ void
 Credits::loop(float timeStep)
 {
 	int width, height;
-    width = getparam_x_resolution();
-    height = getparam_y_resolution();
 
-    update_audio();
+  width = getparam_x_resolution();
+  height = getparam_y_resolution();
 
-    clear_rendering_context();
+  update_audio();
 
-    set_gl_options( GUI );
+  clear_rendering_context();
 
-    UIMgr.setupDisplay();
+  set_gl_options( GUI );
 
-    drawText( timeStep );
+  UIMgr.setupDisplay();
+
+  drawText( timeStep );
 
 	drawSnow(timeStep);
 
 	theme.drawMenuDecorations();
 
-    UIMgr.draw();
+  UIMgr.draw();
 
-    reshape( width, height );
+  reshape( width, height );
 
-    winsys_swap_buffers();
+  winsys_swap_buffers();
 }
 
 

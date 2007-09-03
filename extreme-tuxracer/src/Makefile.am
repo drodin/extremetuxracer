@@ -1,9 +1,9 @@
 
 AM_CPPFLAGS = -DPP_DATADIR=\"$(ppdatadir)\"
 
-bin_PROGRAMS = ppracer
+bin_PROGRAMS = etracer
 
-ppracer_SOURCES =				\
+etracer_SOURCES =				\
 	ppgltk/ppgltk.h				\
 	ppgltk/listbox.h			\
 	ppgltk/ssbutton.cpp			\

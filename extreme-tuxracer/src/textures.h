@@ -22,7 +22,7 @@
 #ifndef _TEXTURES_H_
 #define _TEXTURES_H_
 
-#include "ppracer.h"
+#include "etracer.h"
 
 #define TEX_SCALE 6
 

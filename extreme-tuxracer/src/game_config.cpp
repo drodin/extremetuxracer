@@ -69,16 +69,16 @@
 
 
 #if defined( WIN32 )
-#  define OLD_CONFIG_FILE "ppracer.cfg"
+#  define OLD_CONFIG_FILE "etracer.cfg"
 #else
-#  define OLD_CONFIG_FILE ".ppracer"
+#  define OLD_CONFIG_FILE ".etracer"
 #endif /* defined( WIN32 ) */
 
 #if defined( WIN32 )
 #  define CONFIG_DIR "config"
 #  define CONFIG_FILE "options.txt"
 #else
-#  define CONFIG_DIR ".ppracer"
+#  define CONFIG_DIR ".etracer"
 #  define CONFIG_FILE "options"
 #endif /* defined( WIN32 ) */
 

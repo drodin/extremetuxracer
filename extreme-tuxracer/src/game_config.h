@@ -22,7 +22,7 @@
 #ifndef _GAME_CONFIG_H
 #define _GAME_CONFIG_H
 
-#include "ppracer.h"
+#include "etracer.h"
 
 #include <string>
 

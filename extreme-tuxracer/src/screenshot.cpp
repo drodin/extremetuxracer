@@ -20,7 +20,7 @@
  */
 
 
-#include "ppracer.h"
+#include "etracer.h"
 #include "screenshot.h"
 #include "ppgltk/images/image.h"
 
