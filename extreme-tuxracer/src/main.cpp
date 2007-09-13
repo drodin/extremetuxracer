@@ -53,6 +53,8 @@
 
 #include "tcl_util.h"
 
+#include "highscore.h"
+
 /// instance of tcl interpreter
 Tcl_Interp *tclInterp;
 
@@ -168,6 +170,7 @@ int main( int argc, char *argv[] )
 	     "See http://www.gnu.org/copyleft/gpl.html for details.\n\n" );
 
 	gameMgr = new GameMgr();
+	Highscore = new highscore();
 	
     /* Seed the random number generator */
     srand( time(NULL) );
@@ -266,11 +269,17 @@ int main( int argc, char *argv[] )
 	/* Read the ppracer_init.tcl file */
     read_game_init_script();
 
-    /* Placeholder name until we give players way to enter name */
-    players[0].name = "tux";
+     /* Temporary name until user enters another name*/
+     players[0].name = "tux";
 	players[0].loadData();
 
-    GameMode::mode = NO_MODE;
+	/* Init highscore */
+	
+	Highscore->loadData();
+	/*debug highscore:*/
+	//Highscore->printlist();
+
+     GameMode::mode = NO_MODE;
 	
 	if(Benchmark::getMode()==Benchmark::NONE){
 		set_game_mode( SPLASH );

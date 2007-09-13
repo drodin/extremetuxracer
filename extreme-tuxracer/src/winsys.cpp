@@ -23,6 +23,8 @@
 #include "game_config.h"
 #include "loop.h"
 #include "render_util.h"
+#include "highscore.h"
+#include "player.h"
 
 #include "ppgltk/audio/audio.h"
 
@@ -323,6 +325,8 @@ extern void cleanup(void);
 
 void winsys_exit( int code )
 {
+    players[0].saveData();
+    Highscore->saveData();
     cleanup();
     
     exit( code );

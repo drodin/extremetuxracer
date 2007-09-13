@@ -59,7 +59,8 @@ typedef enum {
 	CONFIG_JOYSTICK,
 	QUIT,
 	BENCHMARK,
-    NUM_GAME_MODES
+    NUM_GAME_MODES,
+    HIGHSCORE
 } game_mode_t;
 
 void set_game_mode( game_mode_t mode );

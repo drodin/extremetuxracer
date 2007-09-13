@@ -42,6 +42,7 @@
 #include "event_select.h"
 #include "event_race_select.h"
 #include "bench.h"
+#include "highscore.h"
 
 #include "configuration.h"
 #include "graphicsconfig.h"
@@ -155,6 +156,8 @@ void main_loop()
 				break;
 			case BENCHMARK:
 				GameMode::currentMode = new Benchmark();
+			case HIGHSCORE:
+				GameMode::currentMode = new HighscoreShow();
 				break;
 			default:{}
 				//todo: add fallback			

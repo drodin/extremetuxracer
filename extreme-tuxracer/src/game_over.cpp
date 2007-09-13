@@ -43,6 +43,7 @@
 
 #include "stuff.h"
 #include "game_mgr.h"
+#include "highscore.h"
 
 #include "bench.h"
 
@@ -133,7 +134,17 @@ GameOver::GameOver()
 		pos.y-=30;
 		mp_flyingLbl = new pp::Label(pos,"race_stats",buff);
 		mp_flyingLbl->alignment.center();
-	
+		
+		char buff2[50];
+		snprintf(buff2, 50, "");
+		if(highscore::useHighscore) {
+			int pos = Highscore->addScore(gameMgr->getCurrentRace().name,players[0].name,players[0].score);
+			if(pos != -1)
+				snprintf(buff2, 50, _("You made it to the %s place in the highscore!"),highscore::posToStr(pos).c_str());
+		}
+		pos.y-=30;
+		mp_highscoreLbl = new pp::Label(pos,"race_stats",buff2);
+		mp_highscoreLbl->alignment.center();
 	
 		const char *string="";
 	
@@ -168,6 +179,7 @@ GameOver::~GameOver()
 		delete mp_maxspeedLbl;
 		delete mp_flyingLbl;
 		delete mp_resultsLbl;
+		delete mp_highscoreLbl;
 	}
 }
 

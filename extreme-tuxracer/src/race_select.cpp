@@ -84,6 +84,11 @@ RaceSelect::RaceSelect()
     mp_startBtn->setDisabledFontBinding( "button_label_disabled" );
 	mp_startBtn->signalClicked.Connect(pp::CreateSlot(this,&RaceSelect::start));
 
+    
+     mp_nameLbl = new pp::Label( pos,"button_label_hilit",_("Player name:"));
+	mp_nameEnt = new pp::Entry(pos,pp::Vec2d(176,32),"button_label_hilit",players[0].name.c_str());
+	mp_nameEnt->setMaxChars(20);
+
   
 	mp_raceListbox = new pp::Listbox<CourseData>(pos,
 				   pp::Vec2d(460, 44),
@@ -98,6 +103,9 @@ RaceSelect::RaceSelect()
 			       "race_description",
 			       "" );
 	mp_descTa->setText( (*curElem).description.c_str() );
+	
+	
+
     // Create state buttons - only if practicing or if cup_complete
     
 	// mirror 
@@ -190,6 +198,8 @@ RaceSelect::~RaceSelect()
 	delete mp_mirrorSSBtn;
     delete mp_descTa;	
 	delete mp_titleLbl;
+	delete mp_nameLbl;
+	delete mp_nameEnt;
 }
 
 void
@@ -242,6 +252,11 @@ RaceSelect::setWidgetPositionsAndDrawDecorations()
 
     mp_startBtn->setPosition(pp::Vec2d( x_org + 343 - mp_startBtn->getWidth()/2.0,
 		      42 ) );
+
+	mp_nameLbl->setPosition(pp::Vec2d( x_org,
+		      y_org) );
+	mp_nameEnt->setPosition(pp::Vec2d( x_org+180,
+		      y_org-8) );
 
 	mp_raceListbox->setPosition(pp::Vec2d( x_org,y_org + 221 ) );
 
@@ -321,6 +336,7 @@ RaceSelect::setWidgetPositionsAndDrawDecorations()
 void
 RaceSelect::updateRaceData()
 {
+	players[0].name = mp_nameEnt->getContent();
   	gameMgr->getCurrentRace().course = (*curElem).course;
 	gameMgr->getCurrentRace().name = (*curElem).name;
 	gameMgr->getCurrentRace().description = (*curElem).description;

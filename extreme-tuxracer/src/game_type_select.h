@@ -31,6 +31,7 @@ class GameTypeSelect : public GameMode
 	pp::Button* mp_configureBtn;
 	pp::Button* mp_creditsBtn;
 	pp::Button* mp_quitBtn;
+	pp::Button* mp_highscoreBtn;
 	
 	void setWidgetPositions();
 	
@@ -44,6 +45,7 @@ public:
 	void eventSelect();
 	void credits();
 	void practice();
+	void highscore();
 	void configuration();
 	void quit();
 };

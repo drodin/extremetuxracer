@@ -37,6 +37,7 @@ class GameOver : public GameMode
 	pp::Label *mp_scoreLbl;
 	pp::Label *mp_maxspeedLbl;
 	pp::Label *mp_flyingLbl;
+	pp::Label *mp_highscoreLbl;
 	
 	pp::Label *mp_resultsLbl;
 	

@@ -28,6 +28,7 @@
 #include "ppgltk/listbox.h"
 #include "ppgltk/textarea.h"
 #include "ppgltk/label.h"
+#include "ppgltk/entry.h"
 
 class RaceSelect : public GameMode
 {
@@ -40,6 +41,8 @@ class RaceSelect : public GameMode
 	pp::SSButton* mp_windSSBtn;
 	pp::SSButton* mp_mirrorSSBtn;
 	pp::Label *mp_titleLbl;
+	pp::Label* mp_nameLbl;
+	pp::Entry* mp_nameEnt;
 	
 	void setWidgetPositionsAndDrawDecorations();	
 	void updateRaceData();

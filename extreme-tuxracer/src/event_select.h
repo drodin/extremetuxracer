@@ -27,7 +27,7 @@
 #include "ppgltk/button.h"
 #include "ppgltk/listbox.h"
 #include "ppgltk/label.h"
-
+#include "ppgltk/entry.h"
 
 class EventSelect : public GameMode
 {
@@ -47,6 +47,9 @@ class EventSelect : public GameMode
 	pp::Label *mp_eventLbl;
 	pp::Label *mp_cupLbl;
 	pp::Label *mp_statusLbl;
+	pp::Label *mp_nameLbl;
+	
+	pp::Entry *mp_nameEnt; 
 	
 	void updateCupStates();
 	void updateButtonEnabledStates();

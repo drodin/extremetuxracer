@@ -25,7 +25,6 @@
 
 Player players[1];
 
-
 PlayerCourseData::PlayerCourseData()
  : won(false), time(0.0), herring(0), score(0)
 {	
@@ -333,15 +332,18 @@ Player::saveData()
 	std::string filename(buff);
 	
 	filename+="/";
-	filename+=name;
+	//filename+=name;
+	/*Load from same config for all different nicks, but save last used nick in file*/
+	filename+="player";
 	filename+=".sav";
 	
 	std::ofstream sfile(filename.c_str());
 	
-	sfile << "PPRacer SAVE " << 1 << std::endl;
+	sfile << "ETRacer SAVE " << 1 << std::endl;
 	sfile << "tux" << std::endl;
 	sfile << "easy" << std::endl;
 	sfile << 1 << std::endl;
+	sfile << name <<std::endl;
 	sfile << courses.size() << std::endl;
 	
 	std::map<std::string,PlayerCourseData>::iterator it;
@@ -377,9 +379,11 @@ Player::loadData()
     }
 	
 	std::string filename(buff);
-	
+		
 	filename+="/";
-	filename+=name;
+	//filename+=name;
+	/*Load from same config for all different nicks, but save last used nick in file*/
+	filename+="player";
 	filename+=".sav";
 	
 	std::ifstream sfile(filename.c_str());
@@ -395,6 +399,7 @@ Player::loadData()
 	sfile >> notused; //character
 	sfile >> notused; //difficulty
 	sfile >> notused; //num difficulties
+	sfile >> name;
 	sfile >> numcourses;
 	
 	for (int i=0; i<numcourses ;i++){

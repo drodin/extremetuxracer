@@ -44,6 +44,13 @@ GameTypeSelect::GameTypeSelect()
     mp_practiceBtn->setHilitFontBinding( "button_label_hilit" );
     mp_practiceBtn->signalClicked.Connect(pp::CreateSlot(this,&GameTypeSelect::practice));
 
+    mp_highscoreBtn = new pp::Button(pos,
+				  pp::Vec2d(300, 40),
+				  "button_label",
+				  _("Highscore")	);
+    mp_highscoreBtn->setHilitFontBinding( "button_label_hilit" );
+    mp_highscoreBtn->signalClicked.Connect(pp::CreateSlot(this,&GameTypeSelect::highscore));
+
 	mp_configureBtn = new pp::Button(pos,
 				  pp::Vec2d(300, 40),
 				  "button_label",
@@ -73,6 +80,7 @@ GameTypeSelect::~GameTypeSelect()
 {
 	delete mp_enterEventBtn;
 	delete mp_practiceBtn;
+	delete mp_highscoreBtn;
 	delete mp_configureBtn;
 	delete mp_creditsBtn;
 	delete mp_quitBtn;	
@@ -108,6 +116,7 @@ GameTypeSelect::setWidgetPositions()
 {
     pp::Button* button_list[] = { mp_enterEventBtn,
 				  mp_practiceBtn,
+				  mp_highscoreBtn,
 				  mp_configureBtn,
 				  mp_creditsBtn,
 				  mp_quitBtn };
@@ -198,6 +207,13 @@ GameTypeSelect::practice()
 	gameMgr->reset(GameMgr::PRACTICING);
 
 	set_game_mode( RACE_SELECT );
+	UIMgr.setDirty();
+}
+
+void
+GameTypeSelect::highscore()
+{
+	set_game_mode( HIGHSCORE );
 	UIMgr.setDirty();
 }
 

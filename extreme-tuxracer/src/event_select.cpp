@@ -78,7 +78,14 @@ EventSelect::EventSelect()
 								  "cup_status","");
 	mp_statusLbl->alignment.center();
 
-    pos.y-=120;
+     pos.y-=45;
+     pp::Vec2d size(176,32);
+     pp::Vec2d pos2(pos.x+150,pos.y-10);
+     mp_nameLbl = new pp::Label( pos,"event_and_cup_label",_("Player name:"));
+	mp_nameEnt = new pp::Entry(pos2,size,"event_and_cup_label",players[0].name.c_str());
+	mp_nameEnt->setMaxChars(20);
+
+     pos.y-=65;
 	pos.x-=50;	
 	mp_backBtn = new pp::Button( pos,
 			      pp::Vec2d(150, 40), 
@@ -111,6 +118,9 @@ EventSelect::~EventSelect()
 	delete mp_eventLbl;
 	delete mp_cupLbl;	
 	delete mp_statusLbl;
+	delete mp_nameLbl;
+	
+	delete mp_nameEnt;
 }
 
 void
@@ -188,8 +198,10 @@ EventSelect::back()
 void
 EventSelect::apply()
 {
-    m_curEvent = mp_eventListbox->getCurrentItem();
+	players[0].name = mp_nameEnt->getContent();
+     m_curEvent = mp_eventListbox->getCurrentItem();
 	m_curCup = mp_cupListbox->getCurrentItem();
+
 
 	gameMgr->setupEventAndCup(	m_curEvent,
 								m_curCup );

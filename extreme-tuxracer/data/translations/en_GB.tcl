@@ -111,6 +111,21 @@
 #pp_translate_string "You advanced to the next race!" ""
 #pp_translate_string "You didn't advance." ""
 
+#highscore
+#pp_translate_string "Highscore" ""
+#pp_translate_string "You made it to the %s place in the highscore!" ""
+#pp_translate_string "Player name:" ""
+#pp_translate_string "1:st" ""
+#pp_translate_string "2:nd" ""
+#pp_translate_string "3:rd" ""
+#pp_translate_string "4:th" ""
+#pp_translate_string "5:th" ""
+#pp_translate_string "6:th" ""
+#pp_translate_string "7:th" ""
+#pp_translate_string "8:th" ""
+#pp_translate_string "9:th" ""
+#pp_translate_string "10:th" ""
+
 #HUD
 #Strings are prefixed to prevent collisions with the UI
 pp_translate_string "H|FPS: %.1f" "FPS: %.1f"

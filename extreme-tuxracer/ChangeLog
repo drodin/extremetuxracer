@@ -1,7 +1,17 @@
 == etracer ==
+2007-9-13 Andreas Tarandi <torandi@gmail.com>
+   * src/race_select.h  src/event_select.cpp src/loop.cpp
+     src/game_over.h src/game_type_select.cpp src/Makefile.in
+     src/winsys.cpp src/game_over.cpp src/race_select.cpp src/loop.h
+     src/player.cpp src/game_type_select.h
+     src/main.cpp src/event_select.h
+     data/translations/en_GB.tcl
+     new files: src/highscore.cpp src/highscore.h
+     Added highscore, plus a way for user to enter username.
+	Some translation is needed. (See #highscore in data/translations/en_GB.tcl)
+	
 2007-9-1  Steven Bell <botsnlinux@gmail.com>
-  * AUTHORS
-    
+  * AUTHORS    
 
 === ppracer 0.3.1 ===
 

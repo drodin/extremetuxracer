@@ -84,7 +84,7 @@ am_etracer_OBJECTS = ssbutton.$(OBJEXT) checkbox.$(OBJEXT) \
 	FTFace.$(OBJEXT) FTFont.$(OBJEXT) FTGLTextureFont.$(OBJEXT) \
 	FTGlyph.$(OBJEXT) FTGlyphContainer.$(OBJEXT) \
 	FTLibrary.$(OBJEXT) FTPoint.$(OBJEXT) FTSize.$(OBJEXT) \
-	FTTextureGlyph.$(OBJEXT)
+	FTTextureGlyph.$(OBJEXT) highscore.$(OBJEXT)
 etracer_OBJECTS = $(am_etracer_OBJECTS)
 etracer_LDADD = $(LDADD)
 DEFAULT_INCLUDES = -I. -I$(top_builddir)@am__isrc@
@@ -313,6 +313,8 @@ etracer_SOURCES = \
 	hier_cb.h				\
 	hier_util.cpp				\
 	hier_util.h				\
+	highscore.cpp				\
+	highscore.h				\
 	hud.cpp					\
 	hud.h					\
 	intro.cpp				\
