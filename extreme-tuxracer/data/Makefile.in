@@ -446,6 +446,7 @@ nobase_dist_ppdata_DATA = \
 		translations/nn_NO.tcl \
 		translations/pt_PT.tcl \
 		translations/ru_RU.tcl \
+		translations/sv_SE.tcl \
 		tux.tcl \
 		sounds/tux_hit_tree1.wav \
 		sounds/tux_on_snow1.wav \

@@ -1,5 +1,11 @@
 == etracer ==
-2007-9-13 Andreas Tarandi <torandi@gmail.com>
+2007-09-13 Andreas Tarandi <torandi@gmail.com>
+   * data/translations/languages.tcl
+   	data/translations/sv_SE.tcl
+   	data/Makefile.in
+   	Added swedish translation
+   	
+2007-09-13 Andreas Tarandi <torandi@gmail.com>
    * src/race_select.h  src/event_select.cpp src/loop.cpp
      src/game_over.h src/game_type_select.cpp src/Makefile.in
      src/winsys.cpp src/game_over.cpp src/race_select.cpp src/loop.h

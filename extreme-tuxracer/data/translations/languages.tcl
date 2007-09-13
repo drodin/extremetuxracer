@@ -17,4 +17,5 @@ pp_translate_language "nl_NL" "Nederlands"
 pp_translate_language "nb_NO" "Norsk (bokmål)"
 pp_translate_language "nn_NO" "Norsk (nynorsk)"
 pp_translate_language "pt_PT" "Português"
-pp_translate_language "ru_RU" "Русский"
+pp_translate_language "sv_SE" "Svenska"
+pp_translate_language "ru_RU" "Русский"  #Placed it last since it just appears as an emty post, the font cant take russian.
