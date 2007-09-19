@@ -1,5 +1,7 @@
 /* 
- * PPRacer 
+ * Extreme Tux Racer (Not Copyrighted)
+ * 
+ * based on Planet Penguin Racer and Tux Racer: 
  * Copyright (C) 2004-2005 Volker Stroebel <volker@planetpenguin.de>
  *
  * Copyright (C) 1999-2001 Jasmin F. Patry
@@ -43,12 +45,20 @@ static credit_line_t credit_lines[] =
     { NULL, "credits_text", "http://racer.planetpenguin.de" },
 	{ NULL, "credits_text", "PlanetPenguin Racer is based on Tux Racer" },
     { NULL, "credits_text", "Tux Racer is a Sunspire Studios Production" },
-    { NULL, "credits_text", "www.sunspirestudios.com" },
     { NULL, "credits_text", "" },
-    { NULL, "credits_h2", "PPRacer Development Team" },
+    { NULL, "credits_h2", "Development" },
     { NULL, "credits_text", "Volker Ströbel" },
+    { NULL, "credits_text", "StevenB" },
+    { NULL, "credits_text", "Torandi" },
     { NULL, "credits_text", "" },
-	{ NULL, "credits_h2", "Translators" },
+	{ NULL, "credits_h2", "Translators for ET Racer" },
+	{ NULL, "credits_text", "Nicosmos (French)" },
+	{ NULL, "credits_text", "teksturi (Finnish)" },
+	{ NULL, "credits_text", "spacedwarv and JoyFM (German)" },
+	{ NULL, "credits_text", "spectrum (Italian)" },
+	{ NULL, "credits_text", "Torandi (Swedish)" },
+	{ NULL, "credits_text", "" },
+	{ NULL, "credits_h2", "Translators for PP Racer" },
 	{ NULL, "credits_text", "Alexander Aksenov" },	
 	{ NULL, "credits_text", "Eric Alvarez Llimos" },	
 	{ NULL, "credits_text", "Helder Correia" },	
@@ -59,6 +69,11 @@ static credit_line_t credit_lines[] =
 	{ NULL, "credits_text", "Spiral" },	
 	{ NULL, "credits_text", "Theo Snelleman" },	
 	{ NULL, "credits_text", "Trygve B. Wiig" },
+    { NULL, "credits_text", "" },
+    { NULL, "credits_h2", "Graphics" },
+    { NULL, "credits_text", "Nicosmos (Logo)" },
+    { NULL, "credits_text", "Christian Picon (Objects)" },
+    { NULL, "credits_text", "Daniel Peoira and Christian Picon (Font)" },
     { NULL, "credits_text", "" },
 	{ NULL, "credits_h2", "Contributors" },
 	{ NULL, "credits_text", "Peter Reichel" },
@@ -76,9 +91,15 @@ static credit_line_t credit_lines[] =
     { NULL, "credits_text", "" },
     { NULL, "credits_h2", "Music" },
     { NULL, "credits_text", "Joseph Toscano" },
+    { NULL, "credits_text", "Marek M." },
     { NULL, "credits_text", "" },
     { NULL, "credits_h2", "Thanks To:" },
-    { NULL, "credits_text_small", "(In No Particular Order)" },
+    { NULL, "credits_text_small", "(for Exteme Tux Racer)" },
+    { NULL, "credits_text", "StevenB (for the idea)" },
+    { NULL, "credits_text", "Ranger (for hosting the website)" },
+    { NULL, "credits_text", "Slythfox (for making the website)" },
+    { NULL, "credits_text", "All the people on the forum." },
+    { NULL, "credits_text_small", "(for PP Racer and Tux Racer)" },
     { NULL, "credits_text", "Larry Ewing" },
     { NULL, "credits_text", "Thatcher Ulrich" },
     { NULL, "credits_text", "Steve Baker" },
@@ -88,9 +109,11 @@ static credit_line_t credit_lines[] =
     { NULL, "credits_text", "University of Waterloo Computer Graphics Lab" },
     { NULL, "credits_text", "" },
   { NULL, "credits_text_small", "Tux Racer is a trademark of Jasmin F. Patry" },
-	{ NULL, "credits_text_small", "Extreme TuxRacer is copyright 2007 The PPRacer team" },
-	{ NULL, "credits_text_small", "PlanetPenguin Racer is copyright 2004, 2005 The PPRacer team" },
-  { NULL, "credits_text_small", "Tux Racer is copyright 1999, 2000, 2001 Jasmin F. Patry" },
+	{ NULL, "credits_text_small", "Extreme Tux Racer is licenced under the GPL." },
+	{ NULL, "credits_text_small", "We grant use of the name 'Extreme Tux Racer' to any forks or continuations. " },
+	{ NULL, "credits_text_small", "" },
+	{ NULL, "credits_text_small", "PlanetPenguin Racer is Copyright © 2005 The PPRacer team" },
+  { NULL, "credits_text_small", "Tux Racer and the Tux Racer Name is Copyright © 2001 Jasmin F. Patry" },
 };
 
 Credits::Credits()

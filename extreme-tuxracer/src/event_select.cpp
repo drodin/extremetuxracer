@@ -198,22 +198,24 @@ EventSelect::back()
 void
 EventSelect::apply()
 {
-	players[0].name = mp_nameEnt->getContent();
-     m_curEvent = mp_eventListbox->getCurrentItem();
-	m_curCup = mp_cupListbox->getCurrentItem();
+	if(mp_continueBtn->getSensitive()) {
+		players[0].name = mp_nameEnt->getContent();
+	     m_curEvent = mp_eventListbox->getCurrentItem();
+		m_curCup = mp_cupListbox->getCurrentItem();
 
 
-	gameMgr->setupEventAndCup(	m_curEvent,
-								m_curCup );
+		gameMgr->setupEventAndCup(	m_curEvent,
+									m_curCup );
 
-	if(!getparam_always_save_event_race_data()){	
-		if(!players[0].isCupComplete((*m_curEvent).name, (*m_curCup).name )){
-			players[0].clearCupData((*m_curEvent).name, (*m_curCup).name);
+		if(!getparam_always_save_event_race_data()){	
+			if(!players[0].isCupComplete((*m_curEvent).name, (*m_curCup).name )){
+				players[0].clearCupData((*m_curEvent).name, (*m_curCup).name);
+			}
 		}
-	}
-	players[0].resetLives();
-    set_game_mode( EVENT_RACE_SELECT );
-    UIMgr.setDirty();
+		players[0].resetLives();
+	    set_game_mode( EVENT_RACE_SELECT );
+	    UIMgr.setDirty();
+    }
 }
 
 bool

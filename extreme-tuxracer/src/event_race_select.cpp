@@ -354,6 +354,7 @@ EventRaceSelect::drawStatusMsg( int x_org, int y_org, int box_width, int box_hei
 void
 EventRaceSelect::updateStates()
 {
+	//mp_startBtn->setSensitive( true );
 	if ( players[0].getLives() <= 0 ) {
 		state=DEAD;
 		mp_startBtn->setSensitive( false );
@@ -410,11 +411,13 @@ EventRaceSelect::back()
 void
 EventRaceSelect::start()
 {
-    mp_startBtn->setHighlight( true );
-    loop( 0 );
-	gameMgr->setCurrentRace(curElem);
+    if(mp_startBtn->getSensitive()) {
+	    mp_startBtn->setHighlight( true );
+	    loop( 0 );
+		gameMgr->setCurrentRace(curElem);
 
-    set_game_mode( LOADING );
+	    set_game_mode( LOADING );
+    }
 }
 
 

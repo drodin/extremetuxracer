@@ -114,7 +114,7 @@ pp_translate_string "You didn't advance." "Du avancerade inte."
 
 #highscore
 pp_translate_string "Highscore" "Highscore"
-pp_translate_string "You made it to the %s place in the highscore!" "Du är nu %s på highscoren"
+pp_translate_string "You made it to the %s place in the highscore!" "Du slog dig in på %s platsen på highscoren"
 pp_translate_string "Player name:" "Namn:"
 pp_translate_string "1:st" "1:a"
 pp_translate_string "2:nd" "2:a"

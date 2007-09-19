@@ -1,4 +1,17 @@
 == etracer ==
+2007-09-19 Andreas Tarandi <torandi@gmail.com>
+   * src/ppoglk/widget.h
+     Added the function bool getSensitive() (returns set value from setSensitive())
+   * src/event_select.cpp, src/event_race_select.cpp
+     Fixed the bug that made it possible to play a locked level by pressing enter
+   * src/credits.cpp (edit by cpicon92)
+     Added the Extreme Tux Racer team to the credits
+   *	data/translations/sv_SE.tcl
+   	Minor fixes
+   * data/textures/*, /home/torandi/builds/etracer/data/courses/themes/items/herrings/herring_dead.png
+     Updated some graphics (new graphic by Nicosmos and cpicon92s)
+    	
+   	
 2007-09-13 Andreas Tarandi <torandi@gmail.com>
    * data/translations/languages.tcl
    	data/translations/sv_SE.tcl

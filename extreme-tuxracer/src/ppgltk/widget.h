@@ -60,6 +60,7 @@ public:
 	virtual ~Widget();
 
 	void setSensitive(bool sensitive);
+	bool getSensitive() { return m_sensitive; };
 	void setVisible(bool visible);
 	void setActive(bool active);
 	void setPosition(pp::Vec2d pos){m_position = pos;};
