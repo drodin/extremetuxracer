@@ -32,7 +32,7 @@
 #include "phys_sim.h"
 #include "view.h"
 #include "course_render.h"
-#include "tux.h"
+#include "model_hndl.h"
 #include "tux_shadow.h"
 #include "loop.h"
 #include "fog.h"
@@ -230,7 +230,7 @@ GameOver::loop(float timeStep)
 		draw_particles( players[0] );
     }
 
-    draw_tux();
+    ModelHndl->draw_tux();
     draw_tux_shadow();
     set_gl_options( GUI );
 

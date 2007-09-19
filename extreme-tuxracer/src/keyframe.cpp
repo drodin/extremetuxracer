@@ -19,7 +19,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-#include "tux.h"
+#include "model_hndl.h"
 #include "phys_sim.h"
 #include "hier.h"
 #include "loop.h"
@@ -48,8 +48,8 @@ void init_key_frame()
 {
     keyTime = frames[0].time;
 
-    reset_scene_node( get_tux_head() );
-    reset_scene_node( get_tux_neck() );
+    reset_scene_node( ModelHndl->get_tux_head() );
+    reset_scene_node( ModelHndl->get_tux_neck() );
 } 
 
 double interp( double frac, double v1, double v2 ) 
@@ -78,18 +78,18 @@ void update_key_frame( Player& plyr, double dt )
     char *neck;
     char *tail;
 
-    root = get_tux_root_node();
-    lsh  = get_tux_left_shoulder_joint();
-    rsh  = get_tux_right_shoulder_joint();
-    lhp  = get_tux_left_hip_joint();
-    rhp  = get_tux_right_hip_joint();
-    lkn  = get_tux_left_knee_joint();
-    rkn  = get_tux_right_knee_joint();
-    lank = get_tux_left_ankle_joint();
-    rank = get_tux_right_ankle_joint();
-    head = get_tux_head();
-    neck = get_tux_neck();
-    tail = get_tux_tail_joint();
+    root = ModelHndl->get_tux_root_node();
+    lsh  = ModelHndl->get_tux_left_shoulder_joint();
+    rsh  = ModelHndl->get_tux_right_shoulder_joint();
+    lhp  = ModelHndl->get_tux_left_hip_joint();
+    rhp  = ModelHndl->get_tux_right_hip_joint();
+    lkn  = ModelHndl->get_tux_left_knee_joint();
+    rkn  = ModelHndl->get_tux_right_knee_joint();
+    lank = ModelHndl->get_tux_left_ankle_joint();
+    rank = ModelHndl->get_tux_right_ankle_joint();
+    head = ModelHndl->get_tux_head();
+    neck = ModelHndl->get_tux_neck();
+    tail = ModelHndl->get_tux_tail_joint();
 
     keyTime += dt;
 

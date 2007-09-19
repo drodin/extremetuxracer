@@ -33,6 +33,7 @@
 #pp_translate_string "Draw Fog:" ""
 #pp_translate_string "Reflections:" ""
 #pp_translate_string "Shadows:" ""
+#pp_translate_string "Model:" ""
 
 #video configuration
 #pp_translate_string "Video Configuration" ""

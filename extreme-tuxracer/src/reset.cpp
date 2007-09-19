@@ -32,7 +32,7 @@
 #include "phys_sim.h"
 #include "view.h"
 #include "course_render.h"
-#include "tux.h"
+#include "model_hndl.h"
 #include "tux_shadow.h"
 #include "loop.h"
 #include "fog.h"
@@ -159,7 +159,7 @@ Reset::loop(float timeStep)
     }
 
     if (tux_visible) { 
-	draw_tux();
+	ModelHndl->draw_tux();
 	draw_tux_shadow();
     } 
     if (++tux_visible_count > 3) {

@@ -31,7 +31,7 @@
 #include "loop.h"
 #include "render_util.h"
 #include "view.h"
-#include "tux.h"
+#include "model_hndl.h"
 #include "tux_shadow.h"
 #include "phys_sim.h"
 #include "part_sys.h"
@@ -393,7 +393,7 @@ Racing::loop(float timeStep)
 	draw_particles( players[0] );
     }
 
-    draw_tux();
+    ModelHndl->draw_tux();
     draw_tux_shadow();
 
     HUD1.draw(players[0]);

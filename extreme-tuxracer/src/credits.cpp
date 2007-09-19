@@ -57,6 +57,7 @@ static credit_line_t credit_lines[] =
 	{ NULL, "credits_text", "spacedwarv and JoyFM (German)" },
 	{ NULL, "credits_text", "spectrum (Italian)" },
 	{ NULL, "credits_text", "Torandi (Swedish)" },
+     { NULL, "credits_text", "Asciimonster (Nederlands)" },
 	{ NULL, "credits_text", "" },
 	{ NULL, "credits_h2", "Translators for PP Racer" },
 	{ NULL, "credits_text", "Alexander Aksenov" },	

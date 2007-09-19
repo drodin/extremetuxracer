@@ -18,6 +18,7 @@
  */
 
 #include "player.h"
+#include "model_hndl.h"
 #include "game_config.h"
 #include "course_load.h"
 
@@ -339,11 +340,16 @@ Player::saveData()
 	
 	std::ofstream sfile(filename.c_str());
 	
-	sfile << "ETRacer SAVE " << 1 << std::endl;
+	if(name.compare("") == 0) {
+		name="tux"; //Make sure the name isn't empty, since it causes errors in the loading.
+	}
+	
+	sfile << "ETRacer SAVE " << FILE_VERSION << std::endl;
 	sfile << "tux" << std::endl;
 	sfile << "easy" << std::endl;
 	sfile << 1 << std::endl;
-	sfile << name <<std::endl;
+	sfile << name << std::endl;
+	sfile << ModelHndl->cur_model <<std::endl;
 	sfile << courses.size() << std::endl;
 	
 	std::map<std::string,PlayerCourseData>::iterator it;
@@ -392,38 +398,44 @@ Player::loadData()
 	
 	int version;
 	int numcourses;
+	int model;
 	
 	std::string notused;
 			
 	sfile >> buff >> buff >> version;
-	sfile >> notused; //character
-	sfile >> notused; //difficulty
-	sfile >> notused; //num difficulties
-	sfile >> name;
-	sfile >> numcourses;
-	
-	for (int i=0; i<numcourses ;i++){
-		double time;
-		int herring;
-		int score;
-		sfile.get();	
-		sfile.getline(buff,256);
-		sfile >> time >> herring >> score;
-		PlayerCourseData& data = courses[buff];
-		data.time=time;
-		data.herring=herring;
-		data.score=score;		
+	if(version==FILE_VERSION) {
+		sfile >> notused; //character
+		sfile >> notused; //difficulty
+		sfile >> notused; //num difficulties
+		sfile >> name;
+		sfile >> model;
+		sfile >> numcourses;
+		
+		for (int i=0; i<numcourses ;i++){
+			double time;
+			int herring;
+			int score;
+			sfile.get();	
+			sfile.getline(buff,256);
+			sfile >> time >> herring >> score;
+			PlayerCourseData& data = courses[buff];
+			data.time=time;
+			data.herring=herring;
+			data.score=score;		
+		}
+		
+		int numevents;
+		
+		sfile >> numevents;
+		for(int i=0; i<numevents; i++){	
+			sfile.get();
+			sfile.getline(buff,256);
+			events[buff].loadData(sfile);
+		}
+	} else {
+		std::cout<<"Fileversions missmatch, sorry, saved data deleted"<<std::endl;
 	}
-	
-	int numevents;
-	
-	sfile >> numevents;
-	for(int i=0; i<numevents; i++){	
-		sfile.get();
-		sfile.getline(buff,256);
-		events[buff].loadData(sfile);
-	}
-	
+	ModelHndl->load_model(model);
 	return true;
 }
 

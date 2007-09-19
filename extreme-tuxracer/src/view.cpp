@@ -21,7 +21,7 @@
 
 #include "view.h"
 #include "phys_sim.h"
-#include "tux.h"
+#include "model_hndl.h"
 #include "hier.h"
 #include "stuff.h"
 
@@ -113,7 +113,7 @@ pp::Vec3d get_tux_view_pt( Player& plyr )
 
     trans.makeIdentity();
 
-    tux_root_node_name = get_tux_root_node();
+    tux_root_node_name = ModelHndl->get_tux_root_node();
 
     if ( get_scene_node( tux_root_node_name, &tux_root_node ) != TCL_OK ) {
 	check_assertion(0, "couldn't load tux's root node" );

@@ -72,7 +72,7 @@ am_etracer_OBJECTS = ssbutton.$(OBJEXT) checkbox.$(OBJEXT) \
 	screenshot.$(OBJEXT) snow.$(OBJEXT) splash_screen.$(OBJEXT) \
 	string_util.$(OBJEXT) tcl_util.$(OBJEXT) \
 	tex_font_metrics.$(OBJEXT) textures.$(OBJEXT) \
-	track_marks.$(OBJEXT) tux.$(OBJEXT) tux_shadow.$(OBJEXT) \
+	track_marks.$(OBJEXT) model_hndl.$(OBJEXT) tux_shadow.$(OBJEXT) \
 	view.$(OBJEXT) viewfrustum.$(OBJEXT) winsys.$(OBJEXT) \
 	videoconfig.$(OBJEXT) audioconfig.$(OBJEXT) \
 	configmode.$(OBJEXT) configuration.$(OBJEXT) \
@@ -373,8 +373,8 @@ etracer_SOURCES = \
 	textures.h				\
         track_marks.cpp				\
         track_marks.h				\
-	tux.cpp					\
-	tux.h					\
+	model_hndl.cpp					\
+	model_hndl.h					\
         tux_shadow.cpp				\
         tux_shadow.h				\
 	pp_types.h				\

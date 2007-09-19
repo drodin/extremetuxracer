@@ -1,4 +1,45 @@
 == etracer ==
+2007-09-20 Andreas Tarandi <torandi@gmail.com>
+Changes:
+M      src/track_marks.cpp
+M      src/reset.cpp
+M      src/player.h
+M      src/keyframe.cpp
+A      src/model_hndl.cpp
+M      src/Makefile.am
+M      src/phys_sim.cpp
+M      src/Makefile.in
+M      src/tux_shadow.cpp
+D      src/tux.h
+M      src/graphicsconfig.cpp
+M      src/intro.cpp
+M      src/credits.cpp
+M      src/game_over.cpp
+M      src/paused.cpp
+M      src/etracer.h
+M      src/graphicsconfig.h
+M      src/player.cpp
+M      src/racing.cpp
+M      src/view.cpp
+A      src/model_hndl.h
+M      src/main.cpp
+D      src/tux.cpp
+A      data/tux_snowboard.tcl
+M      data/ppracer_init.tcl
+M      data/translations/fr_FR.tcl
+M      data/translations/sv_SE.tcl
+M      data/translations/nl_NL.tcl
+M      data/translations/languages.tcl
+M      data/translations/en_GB.tcl
+A      data/translations/fi_FI.tcl
+M      data/Makefile.in
+A      data/models.tcl
+A      data/fonts/PaperCuts20.ttf
+M      data/Makefile.am
+
+* Added multimodel support (add model in data/models.tcl)
+* Updated some translations.
+
 2007-09-19 Andreas Tarandi <torandi@gmail.com>
    * src/ppoglk/widget.h
      Added the function bool getSensitive() (returns set value from setSensitive())

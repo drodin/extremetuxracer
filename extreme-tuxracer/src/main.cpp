@@ -22,7 +22,7 @@
 #include "course_load.h"
 #include "course_render.h"
 #include "textures.h"
-#include "tux.h"
+#include "model_hndl.h"
 #include "phys_sim.h"
 #include "part_sys.h"
 #include "keyframe.h"
@@ -171,6 +171,7 @@ int main( int argc, char *argv[] )
 
 	gameMgr = new GameMgr();
 	Highscore = new highscore();
+	ModelHndl = new model_hndl();
 	
     /* Seed the random number generator */
     srand( time(NULL) );
@@ -257,13 +258,16 @@ int main( int argc, char *argv[] )
 	translation.getLanguages();
 	translation.load( getparam_ui_language() );
 	
-    load_tux();
+    //Load model
+    ModelHndl->init_models();
+   // ModelHndl->load_model(0); Loaded in players[0]::loadData()
+    
     init_textures();
     init_audio_data();
     init_audio();
-
+    
 	init_course_manager();
-    init_joystick();
+     init_joystick();
 	init_ui_snow();
 
 	/* Read the ppracer_init.tcl file */

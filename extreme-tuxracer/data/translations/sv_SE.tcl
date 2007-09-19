@@ -34,6 +34,7 @@ pp_translate_string "Display Progress Bar:" "Visa Progress Bar:"
 pp_translate_string "Draw Fog:" "Rita dimma:"
 pp_translate_string "Reflections:" "Reflektioner:"
 pp_translate_string "Shadows:" "Skuggor:"
+pp_translate_string "Model:" "Modell:"
 
 #video configuration
 pp_translate_string "Video Configuration" "Videoinställningar"

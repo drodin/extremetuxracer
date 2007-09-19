@@ -1,5 +1,5 @@
 /* 
- * PPRacer 
+ * ETRacer 
  * Copyright (C) 2004-2005 Volker Stroebel <volker@planetpenguin.de>
  *
  * Copyright (C) 1999-2001 Jasmin F. Patry
@@ -19,6 +19,8 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
+#include "model_hndl.h"
+
 #include "lights.h"
 #include "hier_cb.h"
 #include "hier.h"
@@ -36,23 +38,25 @@
 #define MAX_EXT_PADDLING_ANGLE 30.0
 #define MAX_KICK_PADDLING_ANGLE 20.0
 
-static void register_tux_callbacks( Tcl_Interp *ip );
+bool		model_hndl::tuxLoaded = false;
+char*     model_hndl::tuxRootNode;
+char*     model_hndl::tuxLeftShoulderJoint;
+char*     model_hndl::tuxRightShoulderJoint;
+char*     model_hndl::tuxLeftHipJoint;
+char*     model_hndl::tuxRightHipJoint;
+char*     model_hndl::tuxLeftKneeJoint;
+char*     model_hndl::tuxRightKneeJoint;
+char*     model_hndl::tuxLeftAnkleJoint;
+char*     model_hndl::tuxRightAnkleJoint;
+char*     model_hndl::tuxTailJoint;
+char*     model_hndl::tuxNeck;
+char*     model_hndl::tuxHead;
 
-static bool    tuxLoaded = false;
-static char*     tuxRootNode;
-static char*     tuxLeftShoulderJoint;
-static char*     tuxRightShoulderJoint;
-static char*     tuxLeftHipJoint;
-static char*     tuxRightHipJoint;
-static char*     tuxLeftKneeJoint;
-static char*     tuxRightKneeJoint;
-static char*     tuxLeftAnkleJoint;
-static char*     tuxRightAnkleJoint;
-static char*     tuxTailJoint;
-static char*     tuxNeck;
-static char*     tuxHead;
 
-void adjust_tux_joints( double turnFact, bool isBraking, 
+model_hndl* ModelHndl=NULL;
+
+void
+model_hndl::adjust_tux_joints( double turnFact, bool isBraking, 
 			double paddling_factor, double speed,
 			pp::Vec3d net_force, double flap_factor )
 {
@@ -138,7 +142,8 @@ void adjust_tux_joints( double turnFact, bool isBraking,
 
 }
 
-void draw_tux()
+void
+model_hndl::draw_tux()
 {
     GLfloat dummyColor[]  = { 0.0, 0.0, 0.0, 1.0 };
 
@@ -156,46 +161,88 @@ void draw_tux()
     draw_scene_graph( tuxRootNode );
 } 
 
-void load_tux()
+model_hndl::model_hndl() {
+	cur_model=0;
+	num_models=0;
+}
+
+void model_hndl::init_models() {
+	//Load modellist from data/models.tcl
+	char buff[BUFF_LEN];
+     
+	sprintf(buff, "%s/models.tcl", getparam_data_dir());
+			
+	registerHierCallbacks( tclInterp );
+     register_tux_callbacks( tclInterp );
+     
+	if ( Tcl_EvalFile( tclInterp , buff ) != TCL_OK) {
+		std::cerr << " error evalating model list file " << buff
+				<< " : " << Tcl_GetStringResult (tclInterp ) << std::endl;
+	}
+	
+	/*
+	*Debug stuff:
+	for(std::list<model_t>::iterator it=l_models.begin();it!=l_models.end();++it) {
+		std::cout<<(*it).name<<": "<<(*it).filename<<std::endl;
+	}
+	*/
+}
+
+void
+model_hndl::load_model() 
 {
+	tuxLoaded=false;
+	load_model(cur_model);
+}
+
+void
+model_hndl::load_model(int model=0)
+{	
+    //Loads a model.
     char cwd[BUFF_LEN];
+    char buff[BUFF_LEN];
 
-    if ( tuxLoaded == true ) 
+
+    std::list<model_t>::iterator c_model=l_models.begin();
+    if(model!=0) {
+    	for(int i=0;i<model;i++) {
+    		c_model++;
+    	}
+    }
+
+
+    if ( tuxLoaded == true && cur_model==model) 
         return;
-
+    cur_model=model;
     tuxLoaded = true;
-
-    registerHierCallbacks( tclInterp );
-    register_tux_callbacks( tclInterp );
-
     initialize_scene_graph();
 
     if ( getcwd( cwd, BUFF_LEN ) == NULL ) {
 	handle_system_error( 1, "getcwd failed" );
     }
-
     if ( chdir( getparam_data_dir() ) != 0 ) {
 	/* Print a more informative warning since this is a common error */
 	handle_system_error( 
-	    1, "Can't find the ppracer data "
+	    1, "Can't find the etracer data "
 	    "directory.  Please check the\nvalue of `data_dir' in "
-	    "~/.ppracer/options and set it to the location where you\n"
-	    "installed the ppracer-data files.\n\n"
+	    "~/.etracer/options and set it to the location where you\n"
+	    "installed the etracer-data files.\n\n"
 	    "Couldn't chdir to %s", getparam_data_dir() );
 	/*
         handle_system_error( 1, "couldn't chdir to %s", getparam_data_dir() );
 	*/
     } 
-
-    if ( Tcl_EvalFile( tclInterp, "tux.tcl") == TCL_ERROR ) {
-        handle_error( 1, "error evalating %s/tux.tcl: %s\n"
-		      "Please check the value of `data_dir' in ~/.ppracer/options "
+    
+    
+    //std::cout<<"Loading model "<< (*c_model).name<<std::endl;
+    if ( Tcl_EvalFile( tclInterp, (*c_model).filename.c_str()) == TCL_ERROR ) {
+        handle_error( 1, "error evalating %s/%s: %s\n"
+		      "Please check the value of `data_dir' in ~/.etracer/options "
 		      "and make sure it\npoints to the location of the "
-		      "latest version of the ppracer-data files.", 
-		      getparam_data_dir(), 
+		      "latest version of the etracer-data files.", 
+		      getparam_data_dir(),(*c_model).filename.c_str(),
 		      Tcl_GetStringResult( tclInterp ) );
     } 
-
     check_assertion( !Tcl_InterpDeleted( tclInterp ),
 		     "Tcl interpreter deleted" );
 
@@ -204,20 +251,8 @@ void load_tux()
     } 
 } 
 
-char* get_tux_root_node() { return tuxRootNode; } 
-char* get_tux_left_shoulder_joint() { return tuxLeftShoulderJoint; } 
-char* get_tux_right_shoulder_joint() { return tuxRightShoulderJoint; } 
-char* get_tux_left_hip_joint() { return tuxLeftHipJoint; } 
-char* get_tux_right_hip_joint() { return tuxRightHipJoint; } 
-char* get_tux_left_knee_joint() { return tuxLeftKneeJoint; } 
-char* get_tux_right_knee_joint() { return tuxRightKneeJoint; } 
-char* get_tux_left_ankle_joint() { return tuxLeftAnkleJoint; } 
-char* get_tux_right_ankle_joint() { return tuxRightAnkleJoint; } 
-char* get_tux_tail_joint() { return tuxTailJoint; } 
-char* get_tux_neck() { return tuxNeck; } 
-char* get_tux_head() { return tuxHead; } 
-
-static int head_cb ( ClientData cd, Tcl_Interp *ip, int argc, CONST84 char *argv[]) 
+static int
+head_cb ( ClientData cd, Tcl_Interp *ip, int argc, CONST84 char *argv[]) 
 {
     if ( argc != 2 ) {
         Tcl_AppendResult(ip, argv[0], ": invalid number of arguments\n", 
@@ -226,12 +261,13 @@ static int head_cb ( ClientData cd, Tcl_Interp *ip, int argc, CONST84 char *argv
         return TCL_ERROR;
     } 
 
-    tuxHead = string_copy( argv[1] );
+    ModelHndl->tuxHead = string_copy( argv[1] );
 
     return TCL_OK;
 } 
 
-static int neck_cb ( ClientData cd, Tcl_Interp *ip, 
+static int
+neck_cb ( ClientData cd, Tcl_Interp *ip, 
 		     int argc, CONST84 char *argv[]) 
 {
 
@@ -242,12 +278,13 @@ static int neck_cb ( ClientData cd, Tcl_Interp *ip,
         return TCL_ERROR;
     } 
 
-    tuxNeck = string_copy( argv[1] );
+    ModelHndl->tuxNeck = string_copy( argv[1] );
 
     return TCL_OK;
 } 
 
-static int root_node_cb ( ClientData cd, Tcl_Interp *ip, 
+static int
+root_node_cb ( ClientData cd, Tcl_Interp *ip, 
 			  int argc, CONST84 char *argv[]) 
 {
     if ( argc != 2 ) {
@@ -257,12 +294,13 @@ static int root_node_cb ( ClientData cd, Tcl_Interp *ip,
         return TCL_ERROR;
     } 
 
-    tuxRootNode = string_copy( argv[1] );
+    ModelHndl->tuxRootNode = string_copy( argv[1] );
 
     return TCL_OK;
 } 
 
-static int left_shoulder_cb ( ClientData cd, Tcl_Interp *ip, 
+static int
+left_shoulder_cb ( ClientData cd, Tcl_Interp *ip, 
 			      int argc, CONST84 char *argv[]) 
 {
 
@@ -273,12 +311,13 @@ static int left_shoulder_cb ( ClientData cd, Tcl_Interp *ip,
         return TCL_ERROR;
     } 
 
-    tuxLeftShoulderJoint = string_copy( argv[1] );
+    ModelHndl->tuxLeftShoulderJoint = string_copy( argv[1] );
 
     return TCL_OK;
 } 
 
-static int right_shoulder_cb ( ClientData cd, Tcl_Interp *ip, 
+static int
+right_shoulder_cb ( ClientData cd, Tcl_Interp *ip, 
 			       int argc, CONST84 char *argv[]) 
 {
 
@@ -289,12 +328,13 @@ static int right_shoulder_cb ( ClientData cd, Tcl_Interp *ip,
         return TCL_ERROR;
     } 
 
-    tuxRightShoulderJoint = string_copy( argv[1] );
+    ModelHndl->tuxRightShoulderJoint = string_copy( argv[1] );
 
     return TCL_OK;
 } 
 
-static int left_hip_cb ( ClientData cd, Tcl_Interp *ip, 
+static int
+left_hip_cb ( ClientData cd, Tcl_Interp *ip, 
 			 int argc, CONST84 char *argv[]) 
 {
 
@@ -305,12 +345,13 @@ static int left_hip_cb ( ClientData cd, Tcl_Interp *ip,
         return TCL_ERROR;
     } 
 
-    tuxLeftHipJoint = string_copy( argv[1] );
+    ModelHndl->tuxLeftHipJoint = string_copy( argv[1] );
 
     return TCL_OK;
 } 
 
-static int right_hip_cb ( ClientData cd, Tcl_Interp *ip, 
+static int
+right_hip_cb ( ClientData cd, Tcl_Interp *ip, 
 			  int argc, CONST84 char *argv[]) 
 {
 
@@ -321,12 +362,13 @@ static int right_hip_cb ( ClientData cd, Tcl_Interp *ip,
         return TCL_ERROR;
     } 
 
-    tuxRightHipJoint = string_copy( argv[1] );
+    ModelHndl->tuxRightHipJoint = string_copy( argv[1] );
 
     return TCL_OK;
 } 
 
-static int left_knee_cb ( ClientData cd, Tcl_Interp *ip, 
+static int
+left_knee_cb ( ClientData cd, Tcl_Interp *ip, 
 			  int argc, CONST84 char *argv[]) 
 {
 
@@ -337,12 +379,13 @@ static int left_knee_cb ( ClientData cd, Tcl_Interp *ip,
         return TCL_ERROR;
     } 
 
-    tuxLeftKneeJoint = string_copy( argv[1] );
+    ModelHndl->tuxLeftKneeJoint = string_copy( argv[1] );
 
     return TCL_OK;
 } 
 
-static int right_knee_cb ( ClientData cd, Tcl_Interp *ip, 
+static int
+right_knee_cb ( ClientData cd, Tcl_Interp *ip, 
 			   int argc, CONST84 char *argv[]) 
 {
 
@@ -353,12 +396,13 @@ static int right_knee_cb ( ClientData cd, Tcl_Interp *ip,
         return TCL_ERROR;
     } 
 
-    tuxRightKneeJoint = string_copy( argv[1] );
+    ModelHndl->tuxRightKneeJoint = string_copy( argv[1] );
 
     return TCL_OK;
 } 
 
-static int left_ankle_cb ( ClientData cd, Tcl_Interp *ip, 
+static int
+left_ankle_cb ( ClientData cd, Tcl_Interp *ip, 
 			   int argc, CONST84 char *argv[]) 
 {
 
@@ -369,12 +413,13 @@ static int left_ankle_cb ( ClientData cd, Tcl_Interp *ip,
         return TCL_ERROR;
     } 
 
-    tuxLeftAnkleJoint = string_copy( argv[1] );
+    ModelHndl->tuxLeftAnkleJoint = string_copy( argv[1] );
 
     return TCL_OK;
 } 
 
-static int right_ankle_cb ( ClientData cd, Tcl_Interp *ip, 
+static int
+right_ankle_cb ( ClientData cd, Tcl_Interp *ip, 
 			    int argc, CONST84 char *argv[]) 
 {
 
@@ -385,12 +430,13 @@ static int right_ankle_cb ( ClientData cd, Tcl_Interp *ip,
         return TCL_ERROR;
     } 
 
-    tuxRightAnkleJoint = string_copy( argv[1] );
+    ModelHndl->tuxRightAnkleJoint = string_copy( argv[1] );
 
     return TCL_OK;
 } 
 
-static int tail_cb ( ClientData cd, Tcl_Interp *ip, 
+static int
+tail_cb ( ClientData cd, Tcl_Interp *ip, 
 		     int argc, CONST84 char *argv[]) 
 {
 
@@ -401,10 +447,30 @@ static int tail_cb ( ClientData cd, Tcl_Interp *ip,
         return TCL_ERROR;
     } 
 
-    tuxTailJoint = string_copy( argv[1] );
+    ModelHndl->tuxTailJoint = string_copy( argv[1] );
 
     return TCL_OK;
 } 
+
+static int
+tux_add_model_cb ( ClientData cd, Tcl_Interp *ip, 
+		     int argc, CONST84 char *argv[]) 
+{
+    if ( argc != 3 ) {
+        Tcl_AppendResult(ip, argv[0], ": invalid number of arguments\n", 
+			 "Usage: ", argv[0], " <model file> <model name>",
+			 (char *)0 );
+        return TCL_ERROR;
+    }
+ 
+    model_t tmp_model;
+    tmp_model.name = string_copy( argv[2] );
+    tmp_model.filename = string_copy( argv[1] );
+    tmp_model.id = ModelHndl->num_models++;
+    ModelHndl->l_models.push_back(tmp_model);
+ 
+    return TCL_OK;
+}
 
 
 static void register_tux_callbacks( Tcl_Interp *ip )
@@ -421,6 +487,7 @@ static void register_tux_callbacks( Tcl_Interp *ip )
     Tcl_CreateCommand (ip, "tux_neck",  neck_cb,   0,0);
     Tcl_CreateCommand (ip, "tux_head", head_cb,  0,0);
     Tcl_CreateCommand (ip, "tux_tail", tail_cb,  0,0);
+    Tcl_CreateCommand (ip, "tux_add_model", tux_add_model_cb,  0,0);
 }
 
 /*

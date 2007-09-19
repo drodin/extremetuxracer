@@ -1,7 +1,9 @@
+#Translation maintained by Asciimonster
+#Please e-mail Comments & Corrections to asciimonster@gmx.net
 
 #common strings
 pp_translate_string "Back" "Terug"
-#pp_translate_string "PRESS ANY KEY TO START" "DRUK EEN TOETS OM TE STARTEN"
+pp_translate_string "PRESS ANY KEY TO START" "DRUK EEN TOETS OM TE STARTEN"
 
 #game_type_select
 pp_translate_string "Enter an event" "Start een toernooi"
@@ -15,7 +17,7 @@ pp_translate_string "Graphics" "Beeld"
 pp_translate_string "Video" "Video"
 pp_translate_string "Audio" "Geluid"
 pp_translate_string "Keyboard" "Toetsenbord"
-#pp_translate_string "Joystick" "Joystick"
+pp_translate_string "Joystick" "Joystick"
 
 #config mode
 pp_translate_string "Cancel" "Annuleren"
@@ -23,9 +25,9 @@ pp_translate_string "Ok" "Ok"
 
 #graphics configuration
 pp_translate_string "Graphics Configuration" "Visuele instellingen"
-#pp_translate_string "Language:" "Taal:"
+pp_translate_string "Language:" "Taal:"
 pp_translate_string "Show UI Snow:" "Toon sneeuw in menu's:"
-pp_translate_string "Display FPS:" "ververssnelheid monitor weergeven:"
+pp_translate_string "Display FPS:" "Ververssnelheid monitor weergeven:"
 pp_translate_string "Display Progress Bar:" "Voortgangsbalk weergeven:"
 pp_translate_string "Draw Fog:" "Toon mist:"
 pp_translate_string "Reflections:" "Reflecties:"
@@ -37,17 +39,17 @@ pp_translate_string "Resolution:" "Resolutie:"
 pp_translate_string "Bits Per Pixel:" "Bits per pixel:"
 pp_translate_string "Fullscreen:" "Volledig scherm:"
 pp_translate_string "Experimental (needs restart)" "Experimenteel (herstart noodzakelijk)"
-pp_translate_string "Enable FSAA:" "FSAA Activeren:"
+pp_translate_string "Enable FSAA:" "FSAA activeren:"
 
 #audio configuration
 pp_translate_string "Audio Configuration" "Geluid instellen"
 pp_translate_string "Sound Effects:" "Geluidseffecten:"
-#pp_translate_string "Music:" "Muziek:"
+pp_translate_string "Music:" "Muziek:"
 pp_translate_string "(needs restart)" "(herstart noodzakelijk)"
 pp_translate_string "Disable Audio:" "Geluid uit:"
 pp_translate_string "Stereo:" "Stereo:"
-pp_translate_string "Bits Per Sample:" "Bits Per Sample:"
-pp_translate_string "Samples Per Second:" "Samples Per Seconde:"
+pp_translate_string "Bits Per Sample:" "Bits per sample:"
+pp_translate_string "Samples Per Second:" "Samples per seconde:"
 
 #keyboard configuration
 pp_translate_string "Keyboard Configuration" "Toetsenbord instellen"
@@ -60,8 +62,8 @@ pp_translate_string "Trick:" "Kunstje:"
 pp_translate_string "Reset:" "Herstellen:"
 
 #joystick configuration
-#pp_translate_string "Joystick Configuration" "Joystick instellen"
-#pp_translate_string "Enable Joystick" "Joystick activeren"
+pp_translate_string "Joystick Configuration" "Joystick instellen"
+pp_translate_string "Enable Joystick" "Joystick activeren"
 
 #race select
 pp_translate_string "Race!" "Start!"
@@ -108,6 +110,21 @@ pp_translate_string "Congratulations! You won the cup!" "Gefeliciteerd! Je hebt 
 pp_translate_string "You advanced to the next race!" "Je mag meedoen aan de volgende wedstrijd!"
 pp_translate_string "You didn't advance." "Je hebt het niet gehaald"
 
+#highscore
+pp_translate_string "Highscore" "Scorebord"
+pp_translate_string "You made it to the %s place in the highscore!" "Je hebt de %s plaats behaald!"
+pp_translate_string "Player name:" "Naam van speler:"
+pp_translate_string "1:st" "1:ste"
+pp_translate_string "2:nd" "2:de"
+pp_translate_string "3:rd" "3:de"
+pp_translate_string "4:th" "4:de"
+pp_translate_string "5:th" "5:de"
+pp_translate_string "6:th" "6:de"
+pp_translate_string "7:th" "7:de"
+pp_translate_string "8:th" "8:de"
+pp_translate_string "9:th" "9:de"
+pp_translate_string "10:th" "10:de"
+
 #HUD
 #Strings are prefixed to prevent collisions with the UI
 pp_translate_string "H|FPS: %.1f" "FPS: %.1f"
@@ -118,4 +135,4 @@ pp_translate_string "H|%03d" "%03d"
 #time counter
 pp_translate_string "H|%02d:%02d:%02d" "%02d:%02d:%02d"
 #speed counter
-pp_translate_string "H|%.0f" "%.0f"
+pp_translate_string "H|%.0f" "%.0f" 

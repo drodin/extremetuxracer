@@ -23,7 +23,7 @@
 #include "course_render.h"
 #include "hier.h"
 #include "hier_util.h"
-#include "tux.h"
+#include "model_hndl.h"
 #include "part_sys.h"
 #include "phys_sim.h"
 #include "nmrcl.h"
@@ -623,7 +623,7 @@ void set_tux_pos( Player& plyr, pp::Vec3d new_pos )
 
     disp_y = new_pos.y + TUX_Y_CORRECTION_ON_STOMACH; 
 
-    tuxRoot = get_tux_root_node();
+    tuxRoot = ModelHndl->get_tux_root_node();
     reset_scene_node( tuxRoot );
     translate_scene_node( tuxRoot, 
 			  pp::Vec3d( new_pos.x, disp_y, new_pos.z ) );
@@ -711,7 +711,7 @@ bool check_tree_collisions( Player& plyr, pp::Vec3d pos,
         mat.makeTranslation( loc.x, loc.y, loc.z );
         trans_polyhedron( mat, ph2 );
 
-	tux_root = get_tux_root_node();
+	tux_root = ModelHndl->get_tux_root_node();
 	reset_scene_node( tux_root );
 	translate_scene_node( tux_root, 
 			      pp::Vec3d( pos.x, pos.y, pos.z ) );
@@ -1045,7 +1045,7 @@ void adjust_orientation( Player& plyr, float dtime,
 
     inv_cob_mat.transpose(cob_mat);
 
-    tux_root = get_tux_root_node();
+    tux_root = ModelHndl->get_tux_root_node();
     transform_scene_node( tux_root, cob_mat, inv_cob_mat ); 
 }
 
@@ -1774,7 +1774,7 @@ void update_player_pos( Player& plyr, float dtime )
 	    JUMP_FORCE_DURATION;
     } 
 
-    adjust_tux_joints( plyr.control.turn_animation, plyr.control.is_braking,
+    ModelHndl->adjust_tux_joints( plyr.control.turn_animation, plyr.control.is_braking,
 		       paddling_factor, speed, local_force, flap_factor );
 }
 

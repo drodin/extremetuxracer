@@ -31,6 +31,9 @@ GraphicsConfig::GraphicsConfig()
 	
 	pp::Vec2d pos(0,0);
 
+	m_modelList = ModelHndl->l_models;
+	std::list<model_t>::iterator modelit=m_modelList.begin();
+
 	m_langList=translation.LanguageList();
 	std::list<language_t>::iterator langit,iter;
 	
@@ -44,6 +47,13 @@ GraphicsConfig::GraphicsConfig()
 	}
 		
 	if(!found) langit = m_langList.begin();
+     
+     for(int i=0;i<ModelHndl->cur_model;i++) {
+     	modelit++;
+     }
+     
+ 	mp_modelListBox = new pp::Listbox<model_t>( pos, pp::Vec2d(240, 32), "listbox_item", m_modelList);
+ 	mp_modelListBox->setCurrentItem( modelit );
  
 	mp_langListBox = new pp::Listbox<language_t>( pos, pp::Vec2d(240, 32), "listbox_item", m_langList);
 	mp_langListBox->setCurrentItem( langit );
@@ -70,6 +80,7 @@ GraphicsConfig::GraphicsConfig()
 
 GraphicsConfig::~GraphicsConfig()
 {
+	delete mp_modelListBox;
 	delete mp_langListBox;
 	delete mp_uiSnowBox;
 	delete mp_fpsBox;
@@ -89,6 +100,11 @@ GraphicsConfig::setWidgetPositions()
 				  getparam_y_resolution()/2 + height/2);
 	
 	pp::Font* font = pp::Font::get("button_label");
+
+	font->draw(_("Model:"),pos);
+	mp_modelListBox->setPosition(pp::Vec2d(pos.x+width-204,pos.y));
+
+	pos.y-=40;	
 
 	font->draw(_("Language:"),pos);
 	mp_langListBox->setPosition(pp::Vec2d(pos.x+width-204,pos.y));
@@ -123,6 +139,8 @@ GraphicsConfig::apply()
 {
 	std::list<language_t>::iterator langit = mp_langListBox->getCurrentItem();
 	translation.load((*langit).language.c_str());	
+	std::list<model_t>::iterator modelit = mp_modelListBox->getCurrentItem();
+	ModelHndl->load_model((*modelit).id);	
 	setparam_ui_language((char*)(*langit).language.c_str());
 	setparam_ui_snow(bool( mp_uiSnowBox->getState() ));
 	setparam_display_fps(bool( mp_fpsBox->getState() ));

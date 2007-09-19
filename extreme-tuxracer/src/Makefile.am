@@ -151,8 +151,8 @@ etracer_SOURCES =				\
 	textures.h				\
         track_marks.cpp				\
         track_marks.h				\
-	tux.cpp					\
-	tux.h					\
+	model_hndl.cpp					\
+	model_hndl.h					\
         tux_shadow.cpp				\
         tux_shadow.h				\
 	pp_types.h				\

@@ -148,7 +148,7 @@ tux_bind_texture snow_particle snow_particle
 # Load truetype fonts
 # button label
 pp_load_font -binding button_label \
-             -font fonts/FreeSansBoldOblique.ttf \
+             -font fonts/PaperCuts20.ttf \
              -size 30
 
 pp_bind_font -binding button_label_hilit \
@@ -169,7 +169,7 @@ pp_bind_font -binding menu_label \
 
 # listbox
 pp_load_font -binding listbox_item \
-             -font fonts/FreeSansBoldOblique.ttf \
+             -font fonts/PaperCuts20.ttf \
              -size 22 \
              -color { 1.00 0.89 0.01 1.0 }
 
@@ -179,7 +179,7 @@ pp_bind_font -binding listbox_item_insensitive \
 
 # race requirements
 pp_load_font -binding race_requirements \
-             -font fonts/FreeSansBoldOblique.ttf \
+             -font fonts/PaperCuts20.ttf \
              -size 13
 
 pp_bind_font -binding race_requirements_label \
@@ -188,7 +188,7 @@ pp_bind_font -binding race_requirements_label \
 
 # heading
 pp_load_font -binding heading \
-             -font fonts/FreeSansBoldOblique.ttf \
+             -font fonts/PaperCuts20.ttf \
              -size 40 \
              -color { 1.00 0.89 0.01 1.0 }
 
@@ -201,7 +201,7 @@ pp_bind_font -binding race_over \
 
 # several stuff
 pp_load_font -binding race_description \
-             -font fonts/FreeSansBoldOblique.ttf \
+             -font fonts/PaperCuts20.ttf \
              -size 16
 
 pp_bind_font -binding cup_status \
@@ -209,31 +209,31 @@ pp_bind_font -binding cup_status \
              -color { 1.00 0.89 0.01 1.0 }
 
 pp_load_font -binding race_stats \
-             -font fonts/FreeSansBoldOblique.ttf \
+             -font fonts/PaperCuts20.ttf \
              -size 25 \
              -color {1.00 0.89 0.01 1.0}
 
 pp_load_font -binding event_and_cup_label \
-             -font fonts/FreeSansBoldOblique.ttf \
+             -font fonts/PaperCuts20.ttf \
              -size 22
 
 # credits
-pp_load_font -binding credits_text -font fonts/FreeSansBoldOblique.ttf -size 20
-pp_load_font -binding credits_text_small -font fonts/FreeSansBoldOblique.ttf -size 14
+pp_load_font -binding credits_text -font fonts/PaperCuts20.ttf -size 20
+pp_load_font -binding credits_text_small -font fonts/PaperCuts20.ttf -size 14
 pp_bind_font -binding credits_h1 -font button_label_hilit
 pp_bind_font -binding credits_h2 -font credits_text -color {1.00 0.89 0.01 1.0}
 
 
 #we don't be this because hud fonts need to be fast
-pp_load_font -binding time_label -font fonts/FreeSansBoldOblique.ttf -size 20 -color {0.8 0.7 0.01 1.0}
-pp_load_font -binding herring_count -font fonts/FreeSansBoldOblique.ttf -size 30 -color {0.8 0.7 0.01 1.0}
-pp_load_font -binding fps -font fonts/FreeSansBoldOblique.ttf -size 20 -color {0.8 0.7 0.01 1.0}
-pp_load_font -binding time_value -font fonts/FreeSansBoldOblique.ttf -size 30 -color {0.8 0.7 0.01 1.0}
-pp_load_font -binding speed_digits -font fonts/FreeSansBoldOblique.ttf -size 35 -color {1.00 0.89 0.01 1.0}
-pp_load_font -binding speed_units -font fonts/FreeSansBoldOblique.ttf -size 20 -color {1.00 0.89 0.01 1.0}
+pp_load_font -binding time_label -font fonts/PaperCuts20.ttf -size 20 -color {0.8 0.7 0.01 1.0}
+pp_load_font -binding herring_count -font fonts/PaperCuts20.ttf -size 30 -color {0.8 0.7 0.01 1.0}
+pp_load_font -binding fps -font fonts/PaperCuts20.ttf -size 20 -color {0.8 0.7 0.01 1.0}
+pp_load_font -binding time_value -font fonts/PaperCuts20.ttf -size 30 -color {0.8 0.7 0.01 1.0}
+pp_load_font -binding speed_digits -font fonts/PaperCuts20.ttf -size 35 -color {1.00 0.89 0.01 1.0}
+pp_load_font -binding speed_units -font fonts/PaperCuts20.ttf -size 20 -color {1.00 0.89 0.01 1.0}
 
 # not used
-#pp_load_font -binding time_hundredths -font fonts/FreeSansBoldOblique.ttf -size 20 -color {1.00 0.89 0.01 1.0}
+#pp_load_font -binding time_hundredths -font fonts/PaperCuts20.ttf -size 20 -color {1.00 0.89 0.01 1.0}
 
 
 # HUD

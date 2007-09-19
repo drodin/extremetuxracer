@@ -31,7 +31,7 @@
 #include "loop.h"
 #include "render_util.h"
 #include "view.h"
-#include "tux.h"
+#include "model_hndl.h"
 #include "tux_shadow.h"
 #include "fog.h"
 #include "hud.h"
@@ -150,7 +150,7 @@ Intro::loop(float timeStep)
     render_course( );
     draw_trees();
 
-    draw_tux();
+    ModelHndl->draw_tux();
     draw_tux_shadow();
 
     HUD1.draw(players[0]);

@@ -228,7 +228,7 @@ nobase_dist_ppdata_DATA = \
 		courses/themes/ppracer.tcl \
 		courses/themes/common.tcl \
 		courses/course_idx.tcl \
-		fonts/FreeSansBoldOblique.ttf \
+		fonts/PaperCuts20.ttf \
 		music/race1-jt.it \
 		music/wonrace1-jt.it \
 		music/race2-jt.it \
@@ -267,12 +267,15 @@ nobase_dist_ppdata_DATA = \
 		translations/es_ES.tcl \
 		translations/eu_ES.tcl \
 		translations/fr_FR.tcl \
+		translations/fi_FI.tcl \
+		translations/sv_SE.tcl \
 		translations/languages.tcl \
 		translations/nb_NO.tcl \
 		translations/nn_NO.tcl \
 		translations/pt_PT.tcl \
 		translations/ru_RU.tcl \
 		tux.tcl \
+		tux_snowboard.tcl \
 		sounds/tux_hit_tree1.wav \
 		sounds/tux_on_snow1.wav \
 		sounds/tux_on_rock1.wav \
@@ -282,4 +285,5 @@ nobase_dist_ppdata_DATA = \
 		sounds/fish_pickup3.wav \
 		terrains.png \
 		ppracer_init.tcl \
-		tux_walk.tcl
+		tux_walk.tcl \
+		models.tcl

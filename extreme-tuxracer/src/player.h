@@ -104,6 +104,8 @@ public:
 	Player();
 	~Player();
 
+	static const int FILE_VERSION=2;
+
 	bool isCupComplete(std::string event,
 						std::string cup);
 	bool isFirstIncompleteCup( std::list<EventData>::iterator event,

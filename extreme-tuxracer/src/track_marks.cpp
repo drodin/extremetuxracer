@@ -1,5 +1,5 @@
 /* 
- * PPRacer 
+ * ETRacer 
  * Copyright (C) 2004-2005 Volker Stroebel <volker@planetpenguin.de>
  *
  * Copyright (C) 1999-2001 Jasmin F. Patry
@@ -21,7 +21,7 @@
 
 #include "track_marks.h"
 #include "gl_util.h"
-#include "tux.h"
+#include "model_hndl.h"
 #include "hier.h"
 #include "phys_sim.h"
 #include "textures.h"
