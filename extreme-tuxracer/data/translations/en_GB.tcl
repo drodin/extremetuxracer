@@ -42,6 +42,8 @@
 #pp_translate_string "Fullscreen:" ""
 #pp_translate_string "Experimental (needs restart)" ""
 #pp_translate_string "Enable FSAA:" ""
+#pp_translate_string "To change the resolution, or switch into fullscreen mode" ""
+#pp_translate_string "use options.txt, located in the config folder." ""
 
 #audio configuration
 #pp_translate_string "Audio Configuration" ""

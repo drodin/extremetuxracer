@@ -450,7 +450,7 @@ void init_game_configuration()
 {
     INIT_PARAM_STRING( 
 	data_dir, DATA_DIR, 
-	"# The location of the PP Racer data files" );
+	"# The location of the ET Racer data files" );
 
 	INIT_PARAM_BOOL( 
 	stencil_buffer, false, 

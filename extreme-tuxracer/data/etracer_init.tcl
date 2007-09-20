@@ -136,6 +136,9 @@ if { [tux_load_sound ice_sound sounds/tux_on_ice1.wav] } {
 tux_load_texture splash_screen textures/splash.png 0
 tux_bind_texture splash_screen splash_screen
 
+tux_load_texture splash_screen_small textures/splash_small.png 0
+tux_bind_texture splash_screen_small splash_screen_small
+
 # UI Snow Particle
 tux_load_texture ui_snow_particle textures/snowparticles.png 0
 tux_bind_texture ui_snow_particle ui_snow_particle
@@ -297,6 +300,9 @@ tux_bind_texture menu_top_right menu_top_right
 
 tux_load_texture menu_title textures/menu_title.png 0
 tux_bind_texture menu_title menu_title
+
+tux_load_texture menu_title_small textures/menu_title_small.png 0
+tux_bind_texture menu_title_small menu_title_small
 
 # Tux life icon
 tux_load_texture tux_life textures/tuxlife.png 0

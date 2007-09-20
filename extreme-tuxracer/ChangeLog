@@ -1,6 +1,26 @@
 == etracer ==
 2007-09-20 Andreas Tarandi <torandi@gmail.com>
 Changes:
+M      src/game_config.cpp
+M      src/event_select.cpp
+M      src/os_util.cpp
+M      src/ppgltk/ui_theme.cpp
+M      src/splash_screen.cpp
+M      src/main.cpp
+M      src/highscore.cpp
+M      src/videoconfig.cpp
+M      data/Makefile.in
+A      data/textures/menu_title_small.png
+A      data/textures/splash_small.png
+A      data/etracer_init.tcl
+D      data/ppracer_init.tcl
+M      data/Makefile.am
+
+* Added some new graphics for small resolutions, and removed some video alteratives for windows (request from cpicon)
+* The edits in other files are just changes from PPRacer -> ETRacer that I made.
+
+2007-09-20 Andreas Tarandi <torandi@gmail.com>
+Changes:
 M      src/track_marks.cpp
 M      src/reset.cpp
 M      src/player.h
@@ -39,6 +59,7 @@ M      data/Makefile.am
 
 * Added multimodel support (add model in data/models.tcl)
 * Updated some translations.
+* Also added the updated font
 
 2007-09-19 Andreas Tarandi <torandi@gmail.com>
    * src/ppoglk/widget.h

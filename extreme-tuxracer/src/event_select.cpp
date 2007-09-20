@@ -1,5 +1,5 @@
 /* 
- * PPRacer 
+ * ETRacer 
  * Copyright (C) 2004-2005 Volker Stroebel <volker@planetpenguin.de>
  * 
  * This program is free software; you can redistribute it and/or
@@ -44,14 +44,14 @@ EventSelect::EventSelect()
 	}
 		
 	pp::Vec2d pos( getparam_x_resolution()/2,
-				   getparam_y_resolution()/2+150);
+				   getparam_y_resolution()/2+90);
 	
 	mp_titleLbl = new pp::Label(pos,"menu_label",_("Select event and cup"));
 	mp_titleLbl->alignment.center();
 	
 	
 	pos.x-=200;
-	pos.y-=60;
+	pos.y-=40;
 	mp_eventLbl = new pp::Label(pos,"event_and_cup_label",_("Event:"));	
 	
 	pos.y-=50;

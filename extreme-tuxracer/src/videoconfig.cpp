@@ -1,5 +1,5 @@
 /* 
- * PPRacer 
+ * ETRacer 
  * Copyright (C) 2004-2005 Volker Stroebel <volker@planetpenguin.de>
  * 
  * This program is free software; you can redistribute it and/or
@@ -29,6 +29,8 @@
  * There is no test whether the hardware supports this and
  * the list of available multisamples is static. 
  */
+
+
  
 #include "videoconfig.h"
 
@@ -61,8 +63,13 @@ VideoConfig::VideoConfig()
 	
 	// resolution listbox 
 	
-	std::list<resolution_t>::iterator resit;
 	bool found=false;
+	#ifdef _WIN32
+		//Skip the resolutionbox
+	#else
+	
+	std::list<resolution_t>::iterator resit;
+
 	
 	initVideoModes();
 	
@@ -74,7 +81,7 @@ VideoConfig::VideoConfig()
 		if ( (*resit).x==getparam_x_resolution() && (*resit).y==getparam_y_resolution())
 			break;			 
 	}
-		
+
 	if (resit == m_resolutionList.end()){
 		// current resolution not in list
 		// therefore we simply add this
@@ -88,11 +95,12 @@ VideoConfig::VideoConfig()
 		resit = m_resolutionList.begin();
 	}
 	
+
 	mp_resolutionListbox = new pp::Listbox<resolution_t>( pos,
 				   pp::Vec2d(190, 32),
 				   "listbox_item",
 				   m_resolutionList);
-    mp_resolutionListbox->setCurrentItem( resit );
+     mp_resolutionListbox->setCurrentItem( resit );
 	
   	//bpp listbox
 	std::list<bpp_t>::iterator bppit;
@@ -110,7 +118,7 @@ VideoConfig::VideoConfig()
 	
 	mp_fullscreenBox = new pp::CheckBox(pos, pp::Vec2d(32, 32) );
 	mp_fullscreenBox->setState( getparam_fullscreen() );
-
+#endif
 	
 	mp_stencilBox = new pp::CheckBox(pos, pp::Vec2d(32, 32) );
 	mp_stencilBox->setState( getparam_stencil_buffer() );
@@ -138,10 +146,14 @@ VideoConfig::VideoConfig()
 
 VideoConfig::~VideoConfig()
 {
-	delete mp_resolutionListbox;
-	delete mp_bppListbox;
+	#ifdef _WIN32
+	#else
+		delete mp_resolutionListbox;
+		delete mp_bppListbox;
+		delete mp_fullscreenBox;
+	#endif
+	
 	delete mp_multisampleListbox;
-	delete mp_fullscreenBox;
 	delete mp_stencilBox;
 	delete mp_fsaaBox;
 }
@@ -157,17 +169,22 @@ VideoConfig::setWidgetPositions()
 	
 	pp::Font *font = pp::Font::get("button_label");
 	
-	font->draw(_("Resolution:"),pos);
-	mp_resolutionListbox->setPosition(pp::Vec2d(pos.x+width-190,pos.y));	
+	#ifdef _WIN32
+		font->draw(_("To change the resolution, or switch into fullscreen mode"),pos);
+		pos.y-=30;
+		font->draw(_("use options.txt, located in the config folder."),pos);
+	#else
+		font->draw(_("Resolution:"),pos);
+		mp_resolutionListbox->setPosition(pp::Vec2d(pos.x+width-190,pos.y));	
 	
-	pos.y-=40;
-	font->draw(_("Bits Per Pixel:"),pos);
-	mp_bppListbox->setPosition(pp::Vec2d(pos.x+width-190,pos.y));
-	
-	pos.y-=40;
-	font->draw(_("Fullscreen:"),pos);
-	mp_fullscreenBox->setPosition(pp::Vec2d(pos.x+width-32,pos.y));
-	
+		pos.y-=40;
+		font->draw(_("Bits Per Pixel:"),pos);
+		mp_bppListbox->setPosition(pp::Vec2d(pos.x+width-190,pos.y));
+		
+		pos.y-=40;
+		font->draw(_("Fullscreen:"),pos);
+		mp_fullscreenBox->setPosition(pp::Vec2d(pos.x+width-32,pos.y));
+	#endif
 	pos.y-=80;
 	font->draw(_("Experimental (needs restart)"),pos);
 	
@@ -190,25 +207,32 @@ VideoConfig::apply()
 {
 	bool updatevideo = false;
 	
-	std::list<resolution_t>::iterator resit = mp_resolutionListbox->getCurrentItem();
-	std::list<bpp_t>::iterator bppit = mp_bppListbox->getCurrentItem();
 	std::list<multisample_t>::iterator multiit = mp_multisampleListbox->getCurrentItem();
 	
-	if ( (*resit).x != getparam_x_resolution() ){
-		setparam_x_resolution((*resit).x);
-		setparam_y_resolution((*resit).y);
-		updatevideo=true;	
-	}
+	#ifdef _WIN32
+		//Skip the resolutionbox
+	#else
+		std::list<resolution_t>::iterator resit = mp_resolutionListbox->getCurrentItem();
+		std::list<bpp_t>::iterator bppit = mp_bppListbox->getCurrentItem();
 	
-	if ( (*bppit).data != getparam_bpp_mode() ){
-		setparam_bpp_mode((*bppit).data);
-		updatevideo=true;	
-	}
+
+		if ( (*resit).x != getparam_x_resolution() ){
+			setparam_x_resolution((*resit).x);
+			setparam_y_resolution((*resit).y);
+			updatevideo=true;	
+		}
 	
-	if (mp_fullscreenBox->getState() != getparam_fullscreen() ){
-		setparam_fullscreen(bool( mp_fullscreenBox->getState() ));
-		updatevideo=true;
-	}
+	
+		if ( (*bppit).data != getparam_bpp_mode() ){
+			setparam_bpp_mode((*bppit).data);
+			updatevideo=true;	
+		}
+		
+		if (mp_fullscreenBox->getState() != getparam_fullscreen() ){
+			setparam_fullscreen(bool( mp_fullscreenBox->getState() ));
+			updatevideo=true;
+		}
+	#endif
 	
 	if (mp_stencilBox->getState() != getparam_stencil_buffer() ){
 		setparam_stencil_buffer(bool( mp_stencilBox->getState() ));
@@ -225,11 +249,14 @@ VideoConfig::apply()
 		updatevideo=true;	
 	}
 	
-	
+	#ifdef _WIN32
+		//Skip video update
+	#else
  	if (updatevideo==true){
 		printf("Set new videomode:%dx%d bpp:%d \n", (*resit).x, (*resit).y,(*bppit).data);
 		setup_sdl_video_mode();
-	}	
+	}
+	#endif
 	
 	write_config_file();
 	

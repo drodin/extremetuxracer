@@ -240,6 +240,7 @@ nobase_dist_ppdata_DATA = \
 		textures/snowparticles.png \
 		textures/gaugespeedmask.png \
 		textures/splash.png \
+		textures/splash_small.png \
 		textures/herringicon.png \
 		textures/menu_bottom_left.png \
 		textures/menu_top_right.png \
@@ -260,6 +261,7 @@ nobase_dist_ppdata_DATA = \
 		textures/mouse_cursor.png \
 		textures/tuxlife.png \
 		textures/menu_title.png \
+		textures/menu_title_small.png \
 		translations/en_GB.tcl \
 		translations/it_IT.tcl \
 		translations/de_DE.tcl \
@@ -284,6 +286,6 @@ nobase_dist_ppdata_DATA = \
 		sounds/fish_pickup2.wav \
 		sounds/fish_pickup3.wav \
 		terrains.png \
-		ppracer_init.tcl \
+		etracer_init.tcl \
 		tux_walk.tcl \
 		models.tcl

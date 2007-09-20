@@ -1,5 +1,5 @@
 /* 
- * PPRacer 
+ * ETRacer 
  * Copyright (C) 2004-2005 Volker Stroebel <volker@planetpenguin.de>
  * 
  * Copyright (C) 1999-2001 Jasmin F. Patry
@@ -21,7 +21,7 @@
 
 #include "etracer.h"
 
-#if defined( COMPILER_IS_UNIX_COMPATIBLE )
+#if defined( COMPILER_IS_UNIX_COMPATIBLE ) && !defined( __MINGW32__ ) 
 #   include <sys/utsname.h>
 #endif
 

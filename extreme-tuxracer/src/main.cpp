@@ -1,5 +1,5 @@
 /* 
- * PPRacer 
+ * ETRacer 
  * Copyright (C) 2004-2005 Volker Stroebel <volker@planetpenguin.de>
  *
  * Copyright (C) 1999-2001 Jasmin F. Patry
@@ -60,7 +60,7 @@ Tcl_Interp *tclInterp;
 
 #define WINDOW_TITLE "Extreme Tux Racer - " VERSION
 
-#define GAME_INIT_SCRIPT "ppracer_init.tcl"
+#define GAME_INIT_SCRIPT "etracer_init.tcl"
 
 std::string cfile;
 
@@ -130,10 +130,10 @@ void read_game_init_script()
     if ( chdir( getparam_data_dir() ) != 0 ) {
 	/* Print a more informative warning since this is a common error */
 	handle_system_error( 
-	    1, "Can't find the PPRacer data "
+	    1, "Can't find the ETRacer data "
 	    "directory.  Please check the\nvalue of `data_dir' in "
 	    "~/.etracer/options and set it to the location where you\n"
-	    "installed the PPRacer-data files.\n\n"
+	    "installed the ETRacer-data files.\n\n"
 	    "Couldn't chdir to %s", getparam_data_dir() );
     } 
 
@@ -141,7 +141,7 @@ void read_game_init_script()
         handle_error( 1, "error evalating %s/%s: %s\n"
 		      "Please check the value of `data_dir' in ~/.etracer/options "
 		      "and make sure it\npoints to the location of the "
-		      "latest version of the PPRacer-data files.", 
+		      "latest version of the ETRacer-data files.", 
 		      getparam_data_dir(), GAME_INIT_SCRIPT, 
 		      Tcl_GetStringResult( tclInterp ) );
     } 
@@ -164,7 +164,7 @@ int main( int argc, char *argv[] )
 	     "(c) 2004-2005 The PPRacer team\n"
 	     "(c) 1999-2001 Jasmin F. Patry"
 	     "<jfpatry@sunspirestudios.com>\n"
-	     "PPRacer comes with ABSOLUTELY NO WARRANTY. "
+	     "ETRacer comes with ABSOLUTELY NO WARRANTY. "
 	     "This is free software,\nand you are welcome to redistribute "
 	     "it under certain conditions.\n"
 	     "See http://www.gnu.org/copyleft/gpl.html for details.\n\n" );
@@ -258,7 +258,7 @@ int main( int argc, char *argv[] )
 	translation.getLanguages();
 	translation.load( getparam_ui_language() );
 	
-    //Load model
+    // Load model
     ModelHndl->init_models();
    // ModelHndl->load_model(0); Loaded in players[0]::loadData()
     

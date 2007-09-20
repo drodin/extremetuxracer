@@ -43,6 +43,8 @@ pp_translate_string "Bits Per Pixel:" "Bitar per pixel:"
 pp_translate_string "Fullscreen:" "Fullskärm:"
 pp_translate_string "Experimental (needs restart)" "Experimentel (kräver omstart)"
 pp_translate_string "Enable FSAA:" "Aktivera FSAA:"
+pp_translate_string "To change the resolution, or switch into fullscreen mode" "För att byta upplösning, eller för att byta"
+pp_translate_string "use options.txt, located in the config folder." "till fullskärm, använd options.txt i konfigureringsmappen."
 
 #audio configuration
 pp_translate_string "Audio Configuration" "Ljudinställningar"

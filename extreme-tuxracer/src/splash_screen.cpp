@@ -42,7 +42,11 @@ SplashScreen::SplashScreen()
 SplashScreen::~SplashScreen()
 {
 	// there is no need to keep the logo in memory
-	unbind_texture( "splash_screen" );
+	if(getparam_y_resolution()>800) {
+		unbind_texture( "splash_screen" );
+	} else {
+		unbind_texture( "splash_screen" );
+	}
 	flush_textures();
 	
 	delete mp_anykeyLbl;
@@ -60,9 +64,16 @@ SplashScreen::loop(float timeStep)
 	drawSnow(timeStep);
 
 	{//should this be created in the splash screen constructor?
-		pp::Vec2d pos(getparam_x_resolution()/2 - 256, getparam_y_resolution()/2 - 256); //centered
-		pp::Vec2d size(512, 512);
-		ppGL::draw::rect("splash_screen", pos, size);
+		
+		if(getparam_y_resolution()>800) {
+			pp::Vec2d pos(getparam_x_resolution()/2 - 256, getparam_y_resolution()/2 - 256); //centered
+			pp::Vec2d size(512, 512);
+			ppGL::draw::rect("splash_screen", pos, size);
+		} else {
+			pp::Vec2d pos(getparam_x_resolution()/2 - 256, getparam_y_resolution()/2 - 256/2); //centered
+			pp::Vec2d size(512, 256);
+			ppGL::draw::rect("splash_screen_small", pos, size);
+		}
 	}	
 
   UIMgr.draw();
