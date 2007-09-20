@@ -304,10 +304,17 @@ highscore::getCourseList() {
 std::list<HighscoreData>
 highscore::getCourseList_hd() {
 	std::list<HighscoreData> tmp;
-	for(int i=0;i<level_hs_length;i++) {
+	if(level_hs_length>0) {
+		for(int i=0;i<level_hs_length;i++) {
+			HighscoreData tmp2;
+			tmp2.name = level_hs[i].level;
+			tmp2.highscore = level_hs[i].level;
+			tmp.push_back(tmp2);
+		}
+	} else {
 		HighscoreData tmp2;
-		tmp2.name = level_hs[i].level;
-		tmp2.highscore = level_hs[i].level;
+		tmp2.name = _("No records");
+		tmp2.highscore = "";
 		tmp.push_back(tmp2);
 	}
 	return tmp;
@@ -342,39 +349,61 @@ HighscoreShow::HighscoreShow()
 	mp_titleLbl = new pp::Label(pos,"heading",_("Highscore"));
 	mp_titleLbl->alignment.center();
 	
- 	
-	std::list<std::string> courses=Highscore->getCourseList();
-	
-	m_raceList = Highscore->getCourseList_hd();
-	
-	pos.y-=60;
-	
-	mp_raceListBox = new pp::Listbox<HighscoreData>(pp::Vec2d(pos.x-200,pos.y),
-				   pp::Vec2d(450,36),
-				   "listbox_item",
-				   m_raceList);
-	
-	mp_raceListBox->alignment.center();
-	mp_raceListBox->signalChange.Connect(pp::CreateSlot(this,&HighscoreShow::updateStatus));
-	
-	
- 	curCourse=Highscore->posFromString((*courses.begin()));
- 	
- 	
- 	//curCourse=0;
-	pos.y-=20;
-	
+	if(Highscore->level_hs_length>0) {
+		std::list<std::string> courses=Highscore->getCourseList();
+		m_raceList = Highscore->getCourseList_hd();
+		
+		pos.y-=60;
+		
+		mp_raceListBox = new pp::Listbox<HighscoreData>(pp::Vec2d(pos.x-200,pos.y),
+					   pp::Vec2d(450,36),
+					   "listbox_item",
+					   m_raceList);
+		
+		mp_raceListBox->alignment.center();
+		mp_raceListBox->signalChange.Connect(pp::CreateSlot(this,&HighscoreShow::updateStatus));
+		
+	 	curCourse=Highscore->posFromString((*courses.begin()));
+	 	
+	 	
+	 	//curCourse=0;
+		pos.y-=20;
+		
 
-    
-     
-     for(int i=0;i<10;i++) {
-          pos.y-=30;
-          char buff[50];
-          sprintf(buff, "%s - %s",highscore::posToStr(i+1).c_str(),Highscore->level_hs[curCourse].post[i].toString().c_str());
-      	mp_post[i] = new pp::Label(pos,"menu_label",buff);
-		mp_post[i]->alignment.center();
+	    
+	     for(int i=0;i<10;i++) {
+	          pos.y-=30;
+	          char buff[50];
+	          sprintf(buff, "%s - %s",highscore::posToStr(i+1).c_str(),Highscore->level_hs[curCourse].post[i].toString().c_str());
+	      	mp_post[i] = new pp::Label(pos,"menu_label",buff);
+			mp_post[i]->alignment.center();
+	     }
+     } else {
+     	//No records stored
+		pos.y-=60;
+		m_raceList = Highscore->getCourseList_hd();
+		mp_raceListBox = new pp::Listbox<HighscoreData>(pp::Vec2d(pos.x-200,pos.y),
+					   pp::Vec2d(450,36),
+					   "listbox_item",
+					   m_raceList);
+		
+		mp_raceListBox->alignment.center();
+		
+	 	
+	 	
+	 	//curCourse=0;
+		pos.y-=20;
+		
+
+	    
+	     for(int i=0;i<10;i++) {
+	          pos.y-=30;
+	          char buff[50];
+	          sprintf(buff, "");
+	      	mp_post[i] = new pp::Label(pos,"menu_label",buff);
+			mp_post[i]->alignment.center();
+	     }
      }
-     
      pos.y-=50;
      
      mp_backBtn = new pp::Button( pp::Vec2d(pos.x-50,pos.y),

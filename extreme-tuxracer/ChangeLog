@@ -1,5 +1,8 @@
 == etracer ==
 2007-09-20 Andreas Tarandi <torandi@gmail.com>
+	* src/highscore.cpp:
+	Shouldn't crash on empty highscore now. I think
+2007-09-20 Andreas Tarandi <torandi@gmail.com>
 Changes:
 M      src/game_config.cpp
 M      src/event_select.cpp
