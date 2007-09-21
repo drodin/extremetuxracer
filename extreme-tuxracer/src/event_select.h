@@ -33,6 +33,8 @@ class EventSelect : public GameMode
 {
 	pp::Listbox<EventData>* mp_eventListbox;
 	pp::Listbox<CupData>* mp_cupListbox;
+	pp::Vec2d mp_cupListbox_pos;
+	pp::Vec2d mp_cupListbox_size;
 	
 	std::list<EventData>::iterator m_curEvent;
 	std::list<CupData>::iterator m_curCup;

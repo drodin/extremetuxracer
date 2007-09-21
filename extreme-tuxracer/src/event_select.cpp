@@ -42,6 +42,7 @@ EventSelect::EventSelect()
 		m_curEvent = eventList.begin();
 		m_curCup = (*m_curEvent).cupList.begin();
 	}
+	
 		
 	pp::Vec2d pos( getparam_x_resolution()/2,
 				   getparam_y_resolution()/2+90);
@@ -66,8 +67,10 @@ EventSelect::EventSelect()
 	mp_cupLbl = new pp::Label(pos,"event_and_cup_label",_("Cup:"));
 		
 	pos.y-=50;
-	mp_cupListbox = new pp::Listbox<CupData>( pos,
-				   pp::Vec2d(400, 40),
+	mp_cupListbox_size = pp::Vec2d(400, 40);
+	mp_cupListbox_pos = pos;
+	mp_cupListbox = new pp::Listbox<CupData>( mp_cupListbox_pos,
+				   mp_cupListbox_size,
 				   "listbox_item",
 				   (*m_curEvent).cupList );
 	mp_cupListbox->setCurrentItem( m_curCup );	
@@ -184,6 +187,12 @@ EventSelect::eventChanged()
 {
 	m_curEvent = mp_eventListbox->getCurrentItem();
 	m_curCup = (*m_curEvent).cupList.begin();
+	delete mp_cupListbox;
+	mp_cupListbox = new pp::Listbox<CupData>( mp_cupListbox_pos,
+				   mp_cupListbox_size,
+				   "listbox_item",
+				   (*m_curEvent).cupList );
+	mp_cupListbox->setCurrentItem( m_curCup );	
 	updateCupStates();
 	updateButtonEnabledStates();
 }

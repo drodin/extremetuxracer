@@ -1,4 +1,6 @@
 == etracer ==
+2007-09-21 Andreas Tarandi <torandi@gmail.com>
+	Bug-fixes and translation update.
 2007-09-20 Andreas Tarandi <torandi@gmail.com>
 	* src/highscore.cpp:
 	Shouldn't crash on empty highscore now. I think

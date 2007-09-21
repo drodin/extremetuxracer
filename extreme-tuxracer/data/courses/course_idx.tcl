@@ -170,8 +170,8 @@ foreach event [glob -nocomplain *] {
     cd ..
 }
 
-if [file exists "$env(HOME)/.ppracer/events/"] {
-    cd "$env(HOME)/.ppracer/events/"
+if [file exists "$env(HOME)/.etracer/events/"] {
+    cd "$env(HOME)/.etracer/events/"
     foreach event [glob -nocomplain *] {
     
         cd $event
