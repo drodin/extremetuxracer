@@ -274,7 +274,7 @@ int main( int argc, char *argv[] )
     read_game_init_script();
 
      /* Temporary name until user enters another name*/
-     players[0].name = "tux";
+     players[0].name = "Tux";
 	players[0].loadData();
 	
 	//Ugly hax to prevent from segfault, fix to later version

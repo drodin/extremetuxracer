@@ -7,7 +7,7 @@
 #pp_translate_string "PRESS ANY KEY TO START" ""
 
 #game_type_select
-#pp_translate_string "Enter an event" ""
+pp_translate_string "Enter an event" "Enter a campaign"
 #pp_translate_string "Practice" ""
 #pp_translate_string "Configuration" ""
 #pp_translate_string "Credits" ""
@@ -80,8 +80,8 @@
 
 #event select
 #pp_translate_string "Continue" ""
-#pp_translate_string "Select event and cup" ""
-#pp_translate_string "Event:" ""
+pp_translate_string "Select event and cup" "Select campaign and cup"
+pp_translate_string "Event:" "Campaign:"
 #pp_translate_string "Cup:" ""
 #pp_translate_string "You've won this cup!" ""
 #pp_translate_string "You must complete this cup next" ""
@@ -109,7 +109,7 @@
 #pp_translate_string "Was flying: %.01f %% of time" ""
 #pp_translate_string "Race aborted" ""
 #pp_translate_string "You beat your best score!" ""
-#pp_translate_string "Congratulations! You won the event!" ""
+pp_translate_string "Congratulations! You won the event!" "Congratulations! You won the campaign!"
 #pp_translate_string "Congratulations! You won the cup!" ""
 #pp_translate_string "You advanced to the next race!" ""
 #pp_translate_string "You didn't advance." ""
