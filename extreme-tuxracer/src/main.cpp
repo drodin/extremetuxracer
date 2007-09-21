@@ -276,11 +276,17 @@ int main( int argc, char *argv[] )
      /* Temporary name until user enters another name*/
      players[0].name = "tux";
 	players[0].loadData();
-
+	
+	//Ugly hax to prevent from segfault, fix to later version
+	players[0].saveData();
+	players[0].loadData();
+	
+	
 	/* Init highscore */
 	
 	Highscore->loadData();
 	/*debug highscore:*/
+	//Highscore->debug();
 	//Highscore->printlist();
 
      GameMode::mode = NO_MODE;

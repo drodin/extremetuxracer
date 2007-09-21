@@ -129,6 +129,7 @@ pp_translate_string "7:th" "7:e"
 pp_translate_string "8:th" "8:e"
 pp_translate_string "9:th" "9:e"
 pp_translate_string "10:th" "10:e"
+pp_translate_string "No records" "Inga rekord"
 
 #HUD
 #Strings are prefixed to prevent collisions with the UI

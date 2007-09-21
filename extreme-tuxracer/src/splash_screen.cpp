@@ -1,5 +1,5 @@
 /* 
- * PPRacer 
+ * ETRacer 
  * Copyright (C) 2004-2005 Volker Stroebel <volker@planetpenguin.de>
  *
  * Copyright (C) 1999-2001 Jasmin F. Patry
@@ -65,7 +65,7 @@ SplashScreen::loop(float timeStep)
 
 	{//should this be created in the splash screen constructor?
 		
-		if(getparam_y_resolution()>800) {
+		if(getparam_y_resolution()>768) {
 			pp::Vec2d pos(getparam_x_resolution()/2 - 256, getparam_y_resolution()/2 - 256); //centered
 			pp::Vec2d size(512, 512);
 			ppGL::draw::rect("splash_screen", pos, size);
