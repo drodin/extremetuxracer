@@ -193,6 +193,7 @@ EventSelect::eventChanged()
 				   "listbox_item",
 				   (*m_curEvent).cupList );
 	mp_cupListbox->setCurrentItem( m_curCup );	
+	mp_cupListbox->signalChange.Connect(pp::CreateSlot(this,&EventSelect::cupChanged));
 	updateCupStates();
 	updateButtonEnabledStates();
 }
