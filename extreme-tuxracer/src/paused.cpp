@@ -158,10 +158,14 @@ Paused::loop(float timeStep)
 bool
 Paused::keyPressEvent(SDLKey key)
 {
-	if(Benchmark::getMode() == Benchmark::PAUSED){
-		set_game_mode( GAME_OVER );
-	}else{
-		set_game_mode( RACING );
+	if(key=='q') {
+		Paused::quit();
+	 } else {
+		if(Benchmark::getMode() == Benchmark::PAUSED){
+			set_game_mode( GAME_OVER );
+		}else{
+			set_game_mode( RACING );
+		}
 	}
 	winsys_post_redisplay();
 	return true;
