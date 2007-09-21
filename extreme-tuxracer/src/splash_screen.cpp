@@ -65,7 +65,7 @@ SplashScreen::loop(float timeStep)
 
 	{//should this be created in the splash screen constructor?
 		
-		if(getparam_y_resolution()>768) {
+		if(getparam_y_resolution()>760) {
 			pp::Vec2d pos(getparam_x_resolution()/2 - 256, getparam_y_resolution()/2 - 256); //centered
 			pp::Vec2d size(512, 512);
 			ppGL::draw::rect("splash_screen", pos, size);

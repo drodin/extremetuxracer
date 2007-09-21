@@ -458,9 +458,11 @@ Racing::keyPressEvent(SDLKey key)
 {
 	switch(key){
 		case 'q':
-		case SDLK_ESCAPE: 
 			gameMgr->abortRace();
-    		set_game_mode( GAME_OVER );
+	    		set_game_mode( GAME_OVER );
+	    		return true;
+		case SDLK_ESCAPE: 
+			set_game_mode( PAUSED );
 			return true;	
 		case '1':
     		set_view_mode( players[0], ABOVE );
