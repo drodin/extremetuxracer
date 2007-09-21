@@ -86,7 +86,7 @@ EventSelect::EventSelect()
      pp::Vec2d pos2(pos.x+150,pos.y-10);
      mp_nameLbl = new pp::Label( pos,"event_and_cup_label",_("Player name:"));
 	mp_nameEnt = new pp::Entry(pos2,size,"event_and_cup_label",players[0].name.c_str());
-	mp_nameEnt->setMaxChars(20);
+	mp_nameEnt->setMaxChars(13);
 
      pos.y-=65;
 	pos.x-=50;	

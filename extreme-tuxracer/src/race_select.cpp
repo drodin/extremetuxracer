@@ -85,9 +85,9 @@ RaceSelect::RaceSelect()
 	mp_startBtn->signalClicked.Connect(pp::CreateSlot(this,&RaceSelect::start));
 
     
-     mp_nameLbl = new pp::Label( pos,"button_label_hilit",_("Player name:"));
-	mp_nameEnt = new pp::Entry(pos,pp::Vec2d(176,32),"button_label_hilit",players[0].name.c_str());
-	mp_nameEnt->setMaxChars(20);
+     mp_nameLbl = new pp::Label( pos,"event_and_cup_label",_("Player name:"));
+	mp_nameEnt = new pp::Entry(pos,pp::Vec2d(176,32),"event_and_cup_label",players[0].name.c_str());
+	mp_nameEnt->setMaxChars(13);
 
   
 	mp_raceListbox = new pp::Listbox<CourseData>(pos,
@@ -458,6 +458,7 @@ RaceSelect::keyPressEvent(SDLKey key)
 	    	mp_backBtn->simulateMouseClick();
 			UIMgr.setDirty();
 			return true;
+/* We cant use only letters since that makes them imposible to type in the name input
 		case 'c': 
 	    	mp_conditionsSSBtn->simulateMouseClick();
 	    	return true;
@@ -467,6 +468,7 @@ RaceSelect::keyPressEvent(SDLKey key)
 		case 'm':
 	    	mp_mirrorSSBtn->simulateMouseClick();
 	    	return true;
+	    */
 		default:
 			return false;
 	}	
