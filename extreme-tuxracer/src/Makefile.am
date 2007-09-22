@@ -158,7 +158,6 @@ etracer_SOURCES =				\
         tux_shadow.cpp				\
         tux_shadow.h				\
 	pp_types.h				\
-	ppracer.h				\
 	view.cpp				\
 	view.h					\
 	viewfrustum.cpp				\
