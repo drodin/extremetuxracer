@@ -299,6 +299,54 @@ nobase_dist_ppdata_DATA = \
 		courses/events/herring_run/the_narrow_way/preview.png \
 		courses/events/herring_run/the_narrow_way/trees.png \
 		courses/events/herring_run/the_narrow_way/course.tcl \
+		courses/events/mountain_mania/event.tcl \
+    courses/events/mountain_mania/bobsled_ride/terrain.png \
+    courses/events/mountain_mania/bobsled_ride/elev.png \
+		courses/events/mountain_mania/bobsled_ride/preview.png \
+    courses/events/mountain_mania/bobsled_ride/trees.png \
+    courses/events/mountain_mania/bobsled_ride/course.tcl \
+    courses/events/mountain_mania/candy_lane/terrain.png \
+    courses/events/mountain_mania/candy_lane/elev.png \
+    courses/events/mountain_mania/candy_lane/preview.png \
+    courses/events/mountain_mania/candy_lane/trees.png \
+    courses/events/mountain_mania/candy_lane/course.tcl \
+    courses/events/mountain_mania/chinese_wall/terrain.png \
+    courses/events/mountain_mania/chinese_wall/elev.png \
+		courses/events/mountain_mania/chinese_wall/preview.png \
+    courses/events/mountain_mania/chinese_wall/trees.png \
+    courses/events/mountain_mania/chinese_wall/course.tcl \
+    courses/events/mountain_mania/explore_mountains/terrain.png \
+    courses/events/mountain_mania/explore_mountains/elev.png \
+    courses/events/mountain_mania/explore_mountains/preview.png \
+    courses/events/mountain_mania/explore_mountains/trees.png \
+    courses/events/mountain_mania/explore_mountains/course.tcl \
+    courses/events/mountain_mania/frozen_lakes/terrain.png \
+    courses/events/mountain_mania/frozen_lakes/elev.png \
+		courses/events/mountain_mania/frozen_lakes/preview.png \
+    courses/events/mountain_mania/frozen_lakes/trees.png \
+    courses/events/mountain_mania/frozen_lakes/course.tcl \
+    courses/events/mountain_mania/merry_go_round/terrain.png \
+    courses/events/mountain_mania/merry_go_round/elev.png \
+    courses/events/mountain_mania/merry_go_round/preview.png \
+    courses/events/mountain_mania/merry_go_round/trees.png \
+    courses/events/mountain_mania/merry_go_round/course.tcl \
+    courses/events/mountain_mania/nature_stroll/terrain.png \
+    courses/events/mountain_mania/nature_stroll/elev.png \
+		courses/events/mountain_mania/nature_stroll/preview.png \
+    courses/events/mountain_mania/nature_stroll/trees.png \
+    courses/events/mountain_mania/nature_stroll/course.tcl \
+    courses/events/mountain_mania/slippy_slidey/terrain.png \
+    courses/events/mountain_mania/slippy_slidey/elev.png \
+    courses/events/mountain_mania/slippy_slidey/preview.png \
+    courses/events/mountain_mania/slippy_slidey/trees.png \
+    courses/events/mountain_mania/slippy_slidey/course.tcl \
+    courses/events/mountain_mania/volcanoes/terrain.png \
+    courses/events/mountain_mania/volcanoes/elev.png \
+    courses/events/mountain_mania/volcanoes/preview.png \
+    courses/events/mountain_mania/volcanoes/trees.png \
+    courses/events/mountain_mania/volcanoes/course.tcl \
+		courses/events/mountain_mania/herringrunicon.png \
+		courses/events/mountain_mania/cupicon.png \
 		courses/themes/huds/common/huds.tcl \
 		courses/themes/items/herrings/herring_dead.png \
 		courses/themes/items/herrings/herring_red.png \
@@ -444,12 +492,12 @@ nobase_dist_ppdata_DATA = \
 		translations/eu_ES.tcl \
 		translations/fr_FR.tcl \
 		translations/fi_FI.tcl \
+		translations/sv_SE.tcl \
 		translations/languages.tcl \
 		translations/nb_NO.tcl \
 		translations/nn_NO.tcl \
 		translations/pt_PT.tcl \
 		translations/ru_RU.tcl \
-		translations/sv_SE.tcl \
 		tux.tcl \
 		tux_snowboard.tcl \
 		sounds/tux_hit_tree1.wav \

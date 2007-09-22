@@ -61,20 +61,20 @@ am_etracer_OBJECTS = ssbutton.$(OBJEXT) checkbox.$(OBJEXT) \
 	file_util.$(OBJEXT) fog.$(OBJEXT) fps.$(OBJEXT) \
 	game_config.$(OBJEXT) game_type_select.$(OBJEXT) \
 	game_over.$(OBJEXT) gl_util.$(OBJEXT) hier.$(OBJEXT) \
-	hier_cb.$(OBJEXT) hier_util.$(OBJEXT) hud.$(OBJEXT) \
-	intro.$(OBJEXT) joystick.$(OBJEXT) keyframe.$(OBJEXT) \
-	lights.$(OBJEXT) loading.$(OBJEXT) loop.$(OBJEXT) \
-	main.$(OBJEXT) mirror_course.$(OBJEXT) player.$(OBJEXT) \
-	nmrcl.$(OBJEXT) os_util.$(OBJEXT) part_sys.$(OBJEXT) \
-	paused.$(OBJEXT) phys_sim.$(OBJEXT) quadtree.$(OBJEXT) \
-	race_select.$(OBJEXT) event_race_select.$(OBJEXT) \
-	racing.$(OBJEXT) render_util.$(OBJEXT) reset.$(OBJEXT) \
-	screenshot.$(OBJEXT) snow.$(OBJEXT) splash_screen.$(OBJEXT) \
-	string_util.$(OBJEXT) tcl_util.$(OBJEXT) \
-	tex_font_metrics.$(OBJEXT) textures.$(OBJEXT) \
-	track_marks.$(OBJEXT) model_hndl.$(OBJEXT) tux_shadow.$(OBJEXT) \
-	view.$(OBJEXT) viewfrustum.$(OBJEXT) winsys.$(OBJEXT) \
-	videoconfig.$(OBJEXT) audioconfig.$(OBJEXT) \
+	hier_cb.$(OBJEXT) hier_util.$(OBJEXT) highscore.$(OBJEXT) \
+	hud.$(OBJEXT) intro.$(OBJEXT) joystick.$(OBJEXT) \
+	keyframe.$(OBJEXT) lights.$(OBJEXT) loading.$(OBJEXT) \
+	loop.$(OBJEXT) main.$(OBJEXT) mirror_course.$(OBJEXT) \
+	player.$(OBJEXT) nmrcl.$(OBJEXT) os_util.$(OBJEXT) \
+	part_sys.$(OBJEXT) paused.$(OBJEXT) phys_sim.$(OBJEXT) \
+	quadtree.$(OBJEXT) race_select.$(OBJEXT) \
+	event_race_select.$(OBJEXT) racing.$(OBJEXT) \
+	render_util.$(OBJEXT) reset.$(OBJEXT) screenshot.$(OBJEXT) \
+	snow.$(OBJEXT) splash_screen.$(OBJEXT) string_util.$(OBJEXT) \
+	tcl_util.$(OBJEXT) tex_font_metrics.$(OBJEXT) \
+	textures.$(OBJEXT) track_marks.$(OBJEXT) model_hndl.$(OBJEXT) \
+	tux_shadow.$(OBJEXT) view.$(OBJEXT) viewfrustum.$(OBJEXT) \
+	winsys.$(OBJEXT) videoconfig.$(OBJEXT) audioconfig.$(OBJEXT) \
 	configmode.$(OBJEXT) configuration.$(OBJEXT) \
 	graphicsconfig.$(OBJEXT) joystickconfig.$(OBJEXT) \
 	keyboardconfig.$(OBJEXT) stuff.$(OBJEXT) game_mgr.$(OBJEXT) \
@@ -84,7 +84,7 @@ am_etracer_OBJECTS = ssbutton.$(OBJEXT) checkbox.$(OBJEXT) \
 	FTFace.$(OBJEXT) FTFont.$(OBJEXT) FTGLTextureFont.$(OBJEXT) \
 	FTGlyph.$(OBJEXT) FTGlyphContainer.$(OBJEXT) \
 	FTLibrary.$(OBJEXT) FTPoint.$(OBJEXT) FTSize.$(OBJEXT) \
-	FTTextureGlyph.$(OBJEXT) highscore.$(OBJEXT)
+	FTTextureGlyph.$(OBJEXT)
 etracer_OBJECTS = $(am_etracer_OBJECTS)
 etracer_LDADD = $(LDADD)
 DEFAULT_INCLUDES = -I. -I$(top_builddir)@am__isrc@
@@ -313,8 +313,8 @@ etracer_SOURCES = \
 	hier_cb.h				\
 	hier_util.cpp				\
 	hier_util.h				\
-	highscore.cpp				\
-	highscore.h				\
+  highscore.cpp   \
+  highscore.h   \
 	hud.cpp					\
 	hud.h					\
 	intro.cpp				\
@@ -565,6 +565,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/hier.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/hier_cb.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/hier_util.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/highscore.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/hud.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/image.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/intro.Po@am__quote@
@@ -581,6 +582,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/mirror_course.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/model.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/model_ac.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/model_hndl.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/nmrcl.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/os_util.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/part_sys.Po@am__quote@
@@ -610,7 +612,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/textures.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/track_marks.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/translation.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/tux.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/tux_shadow.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ui_mgr.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ui_snow.Po@am__quote@

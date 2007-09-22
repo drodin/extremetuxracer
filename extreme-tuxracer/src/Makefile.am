@@ -93,6 +93,8 @@ etracer_SOURCES =				\
 	hier_cb.h				\
 	hier_util.cpp				\
 	hier_util.h				\
+  highscore.cpp   \
+  highscore.h   \
 	hud.cpp					\
 	hud.h					\
 	intro.cpp				\
