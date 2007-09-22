@@ -49,6 +49,7 @@ static credit_line_t credit_lines[] =
     { NULL, "credits_h2", "Development" },
     { NULL, "credits_text", "Volker Ströbel" },
     { NULL, "credits_text", "Steven Bell" },
+    { NULL, "credits_text", "Hamish Morrison" },
     { NULL, "credits_text", "Torandi" },
     { NULL, "credits_text", "" },
 	{ NULL, "credits_h2", "Translators for ET Racer" },
