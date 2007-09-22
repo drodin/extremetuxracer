@@ -7,6 +7,15 @@ set tux_data_dir [pwd]
 
 set tux_terrain_file "none"
 
+#
+# Create a settings directory
+# Solves segfault bug
+#
+
+if {![file isdir "$env(HOME)/.etracer/"]} {
+    file mkdir $env(HOME)/.etracer
+}
+
 
 #
 # Useful subroutines
