@@ -186,6 +186,10 @@ HUD::image(const int i)
 {
 	if(!m_element[i].texture) return;
 
+	if ( !getparam_display_course_percentage() && m_element[i].texture == 47) {
+		return;
+	}
+
     glColor3f( 1.0, 1.0, 1.0 );
 
     glBindTexture( GL_TEXTURE_2D, m_element[i].texture );
