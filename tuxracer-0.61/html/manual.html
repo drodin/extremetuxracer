@@ -1,0 +1,583 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<TITLE>Manual</TITLE>
+<style type="text/css">
+<!--
+A { text-decoration: none; color: #2c4a70 }
+BODY {font-family: Arial, Helvetica, sans-serif; color: #FFFFFF}
+OL {font-family: Arial, Helvetica, sans-serif; color: #FFFFFF}
+UL {font-family: Arial, Helvetica, sans-serif; color: #FFFFFF}
+LI {font-family: Arial, Helvetica, sans-serif; color: #FFFFFF}
+TABLE {font-family: Arial, Helvetica, sans-serif; color: #FFFFFF}
+.bodytext {font-family: Arial, Helvetica, sans-serif; color: #FFFFFF}
+.small {  font-family: Arial, Helvetica, sans-serif; font-size: 10pt; color: #FFFFFF}
+.code {  font-family: Courier, fixed-width; color: #FFFFFF; margin-left: 0.5in}
+.heading1 {  font-family: Arial, Helvetica, sans-serif; font-size: 24pt; color: #FFFFFF; text-align: center; font-style: normal; font-weight: bold}
+.heading2 {  font-family: Arial, Helvetica, sans-serif; font-size: 18pt; color: #FFFFFF; font-weight: bold}
+.heading3 {  font-family: Arial, Helvetica, sans-serif; font-size:
+14pt; color: #ffe254; font-weight: bold}
+.heading4 {  font-family: Arial, Helvetica, sans-serif; font-style: italic; color: #EEEEEE; font-weight: bold}
+.imageoutline {  border: #FFFFFF; border-style: solid; border-top-width: medium; border-right-width: medium; border-bottom-width: medium; border-left-width: medium}
+-->
+</style>
+</HEAD>
+<BODY TEXT="white" BGCOLOR="#8ca6d7"marginwidth="0" marginheight="0" leftmargin="0"topmargin="0" vlink="#330066" alink="#FF3366" class="bodytext">
+<table border="0" cellspacing="0" cellpadding="0" width="800">
+  <tr>
+    <td valign="top" width="167"><IMG BORDER=0 SRC="./images/menu_top_left.jpg" usemap="#topleftmap" ALT="" WIDTH="167" HEIGHT="100"></td>
+    <td valign="top" width="633"
+    nowrap><IMG BORDER=0 SRC="./images/menu_top.jpg" usemap="#topmap" ALT="" WIDTH="633" HEIGHT="100"></td>
+  </tr>
+  <tr>
+    <td valign="top"
+    width="167"><IMG BORDER=0 SRC="./images/menu_side.jpg" usemap="#sidemenumap" ALT="" WIDTH="167" HEIGHT="500"><BR>
+<p class="bodytext">&nbsp;&nbsp;Hosted by:<BR>&nbsp;<A href="http://sourceforge.net"> 
+<IMG align="absmiddle"
+    src="http://sourceforge.net/sflogo.php?group_id=2944&amp;type=1"
+    width="88" height="31" border="0"
+    ALT="SourceForge"></A><BR>&nbsp;</p></td>
+    <td valign="top" width="633"
+    ><table border="0" cellpadding="3" cellspacing="0" width="550"><tr><td
+      ><p class="heading1">Manual</p><IMG BORDER=0 SRC="./images/snow_line.gif" ALT="" WIDTH="551" HEIGHT="31"><BR><p class="bodytext"> Welcome to Tux Racer! On these pages you will find a description 
+    of in-game controls as well as an explanation of how to use the Tux Racer 
+    interface. For any questions you have that are not answered in this section 
+    feel free to check out our <A HREF="./faq.html" >FAQ (Frequently Asked 
+    Questions)</A> section or email us at <a href="mailto:support@sunspirestudios.com">support@sunspirestudios.com</a>.</p>
+  <p class="bodytext">The main goal in Tux Racer is to have fun! Race down mountainous 
+    terrain as quickly as possible, while collecting herring to increase your 
+    score! </p>
+  <p class="heading2">Table of Contents</p>
+<p class="bodytext">
+  <ol>
+    <li>Installing Tux Racer 
+      <ol>
+        <li><a href="#installlinux">Linux</a></li>
+        <li><a href="#installwin">Windows 95/98/ME/NT/2000</a></li>
+      </ol>
+    </li>
+    <li>Starting Tux Racer 
+      <ol>
+        <li><a href="#startlinux">Linux</a></li>
+        <li><a href="#startwin">Windows 95/98/ME/NT/2000</a></li>
+      </ol>
+    </li>
+    <li>The Main Menu 
+      <ol>
+        <li><a href="#navmenu">Navigating Menus</a></li>
+        <li><a href="#mainoptions">Main Menu Options</a></li>
+      </ol>
+    </li>
+    <li>Controls 
+      <ol>
+        <li><a href="#turning">Turning</a></li>
+        <li><a href="#paddling">Paddling/Flapping</a></li>
+        <li><a href="#braking">Braking</a></li>
+        <li><a href="#jumping">Jumping</a></li>
+        <li><a href="#hardturning">Hard Turning</a></li>
+        <li><a href="#reset">Reset</a></li>
+        <li><a href="#quit">Quit</a></li>
+      </ol>
+    </li>
+    <li>Racing Screen 
+      <ol>
+        <li><a href="#speedometer">Speedometer</a></li>
+        <li><a href="#energometer">Energometer</a></li>
+        <li><a href="#time">Time Elapsed</a></li>
+        <li><a href="#herring">Herring Collected</a></li>
+      </ol>
+    </li>
+    <li>Cup Racing 
+      <ol>
+        <li><a href="#cupmenu">Cup Selection Menu</a></li>
+        <li><a href="#cupracemenu">Cup Race Selection Menu</a> 
+          <ol>
+            <li><a href="#required">Required Time/Herring/Score</a></li>
+            <li><a href="#tries">Lives</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li>Practice Racing 
+      <ol>
+        <li><a href="#practicemenu">Practice Menu</a></li>
+        <li><a href="#raceoptions">Race Options</a> 
+          <ol>
+            <li><a href="#lighting">Lighting Conditions</a></li>
+            <li><a href="#wind">Wind</a></li>
+            <li><a href="#snow">Snow</a></li>
+            <li><a href="#mirror">Mirror</a></li>
+          </ol>
+        </li>
+        <li><a href="#scoring">Scoring</a></li>
+      </ol>
+    </li>
+    <li>Game Options 
+      <ol>
+        <li><a href="#optionfile">Options File</a></li>
+      </ol>
+    </li>
+    <li><a href="#credits">Credits</a> 
+  </ol>
+  </p>
+  <IMG BORDER=0 SRC="./images/snow_line.gif" ALT="" WIDTH="551" HEIGHT="31"><BR><p class="heading2">1. Installing Tux Racer</p>
+  <p class="heading3"><a name="installlinux"></a>1.1 Linux</p>
+  
+  
+<p class="bodytext">
+<p class="heading4">From Source</p>
+<OL>
+  <LI><p class="bodytext">Make sure you have (and have correctly installed) the following libraries:
+      <UL>
+	<LI>An implementation of the <A HREF="http://www.opengl.org" >OpenGL</A> API version 1.1 or greater 
+	    (Mesa versions &gt;= 3.2 work; see <A HREF="http://mesa3d.sourceforge.net" >http://mesa3d.sourceforge.net</A>).
+	    Note that you will need a hardware-accelerated
+	    implementation of OpenGL in order for Tux Racer to be
+	    playable.
+	<LI>The <A HREF="http://reality.sgi.com/opengl/glut3/glut3.html" >GLUT</A> library, version 3.7 beta or greater.  This is
+	    distributed in the MesaDemos package, so if you have installed
+	    <A HREF="http://mesa3d.sourceforge.net" >Mesa</A> you probably also have GLUT.  Otherwise, see
+	    <A HREF="http://www.opengl.org" >http://www.opengl.org</A>. 
+	<LI><A HREF="http://www.scriptics.com/" >Tcl</A> Version 8.0 or greater.
+	<LI>(Optional) <A HREF="http://www.libsdl.org" >Simple DirectMedia Layer (SDL)</A> Version 1.1.1 or greater.  This is
+	    required for joystick support.
+	<LI>(Optional) <A HREF="http://www.libsdl.org/projects/SDL_mixer/index.html" >SDL_mixer</A> Version 1.0 or greater.  This
+	    is required for sound and music support.
+      </UL>
+      </p>
+
+  <LI><p class="bodytext">Obtain the <tt>tuxracer-&lt;version&gt;.tar.gz</tt> and
+      <tt>tuxracer-data-&lt;version&gt;.tar.gz</tt> files from the
+      <A HREF="./download.html" >Downloads</A> page.</p>
+  <LI><p class="bodytext">Unpack the code tarball:
+      <div align="center">
+<table border="0" cellpadding="2" cellspacing="8" width="80%">
+  <tr><td bgcolor="#c0cddd"><font face="Courier, fixed-width" color="#303030" size="2"><B>shell$</B> tar xvfz tuxracer-&lt;version&gt;.tar.gz<BR>
+<B>shell$</B> cd tuxracer-&lt;version&gt;<BR></font></td></tr>
+</table>
+</div>
+</p>
+  <LI><p class="bodytext">Configure for your system:
+      <div align="center">
+<table border="0" cellpadding="2" cellspacing="8" width="80%">
+  <tr><td bgcolor="#c0cddd"><font face="Courier, fixed-width" color="#303030" size="2"><B>shell$</B> ./configure &lt;configure options&gt;<BR></font></td></tr>
+</table>
+</div>
+</p>
+      <p class="bodytext"> Many people will be able to run configure without passing any
+      options. The more commonly-used configure options are:
+      <UL>
+	<LI><TT>--prefix=DIR</TT>: Specify where to install
+	    <TT>tuxracer</TT>.  (The <TT>tuxracer</TT> binary will be
+	    placed in <tt>DIR/bin</tt>)
+	<LI><tt>--with-tcl-libs=DIR</tt>: Specify Tcl library location
+	<LI><tt>--with-tcl-inc=DIR</tt>: Specify Tcl header file location
+	<LI><tt>--with-tcl-lib-name=NAME</tt>: Specify Tcl library base name
+	<LI><tt>--with-gl-libs=DIR</tt>: Specify OpenGL library location
+	<LI><tt>--with-gl-inc=DIR</tt>: Specify OpenGL header file location
+	<LI><tt>--with-glut-libs=DIR</tt>: Specify GLUT library location
+	<LI><tt>--with-glut-inc=DIR</tt>: Specify GLUT header file location
+	<LI><tt>--enable-stencil-buffer</tt>: Use if your hardware has a stencil buffer
+	<LI><tt>--with-data-dir=PATH</tt>: Location of tuxracer data directory
+	    (can be also configured in options file later)
+      </UL>
+      <p class="bodytext">
+      Run <tt>./configure --help</tt> for a complete list of options.
+      </p>
+      </p>
+  <LI><p class="bodytext">Compile:
+      <div align="center">
+<table border="0" cellpadding="2" cellspacing="8" width="80%">
+  <tr><td bgcolor="#c0cddd"><font face="Courier, fixed-width" color="#303030" size="2"><B>shell$</B> make<BR></font></td></tr>
+</table>
+</div>
+
+      </p>
+      <p class="bodytext">
+      Tux Racer should compile cleanly, with few (if any)
+      warnings. Please see the <A HREF="./faq.html" >FAQ</A> or our <A HREF="./support.html" >Support</A> page
+      if Tux Racer fails to compile.
+      </p>
+  <LI><p class="bodytext">Install the <tt>tuxracer</tt> binary:
+      <div align="center">
+<table border="0" cellpadding="2" cellspacing="8" width="80%">
+  <tr><td bgcolor="#c0cddd"><font face="Courier, fixed-width" color="#303030" size="2"><B>shell$</B> make install<BR></font></td></tr>
+</table>
+</div>
+
+      </p>
+      <p class="bodytext">
+      Unless you specified the <tt>--prefix</tt> option when you ran
+      configure, this command will install the <tt>tuxracer</tt> binary in
+      <tt>/usr/local/bin</tt>
+      </p>
+  <LI><p class="bodytext">
+      Install the data files:
+      <div align="center">
+<table border="0" cellpadding="2" cellspacing="8" width="80%">
+  <tr><td bgcolor="#c0cddd"><font face="Courier, fixed-width" color="#303030" size="2"><B>shell$</B> cd /usr/local/share<BR>
+<B>shell$</B> tar xvfz /path/to/tuxracer-data-&lt;version&gt;.tar.gz<BR>
+<B>shell$</B> mv tuxracer-data-&lt;version&gt; tuxracer<BR></font></td></tr>
+</table>
+</div>
+
+      </p>
+      <p class="bodytext">
+      You may install the data files anywhere you wish, but
+      <tt>tuxracer</tt> looks in <tt>/usr/local/share/tuxracer</tt> by default.
+      </p>
+  <LI><p class="bodytext">You're done!</p>
+</OL>
+</p>
+
+<p class="heading4">From RPMs</p>
+<OL>
+  <li><p class="bodytext">Obtain <tt>tuxracer-&lt;version&gt;.rpm</tt> and
+      <tt>tuxracer-data-&lt;version&gt;.rpm</tt> from your distribution vendor 
+      (Sunspire Studios is not providing RPMs at this time).</p>
+  <LI><p class="bodytext">As root, run:
+      <div align="center">
+<table border="0" cellpadding="2" cellspacing="8" width="80%">
+  <tr><td bgcolor="#c0cddd"><font face="Courier, fixed-width" color="#303030" size="2"><B>shell$</B> rpm -Uvh tuxracer-data-&lt;version&gt;.rpm<BR>
+<B>shell$</B> rpm -Uvh tuxracer-&lt;version&gt;.rpm<BR></font></td></tr>
+</table>
+</div>
+
+      </p>
+  <LI><p class="bodytext">You're done!</p>
+</OL>
+  <p class="heading3"><a name="installwin"></a>1.2 Windows 95/98/ME/NT/2000</p>
+<p class="bodytext">
+<OL>
+  <li><p class="bodytext">Obtain the <tt>tuxracer-win32-&lt;version&gt;.zip</tt> file from the
+      <A HREF="./download.html" >Downloads</A> page.</p>
+  <LI><p class="bodytext">Unzip this file to your hard drive.  You will need a program
+      like Winzip to do this.</p>
+  <LI><p class="bodytext">You're done!</p>
+</OL>
+</p>
+  <IMG BORDER=0 SRC="./images/snow_line.gif" ALT="" WIDTH="551" HEIGHT="31"><BR><p class="heading2">2. Starting Tux Racer</p>
+  <p class="heading3"><a name="startlinux"></a>2.1 Linux</p>
+<p class="bodytext">Assuming you installed the <tt>tuxracer</tt> binary to somewhere that is
+in your PATH, Tux Racer can be started as follows:
+<div align="center">
+<table border="0" cellpadding="2" cellspacing="8" width="80%">
+  <tr><td bgcolor="#c0cddd"><font face="Courier, fixed-width" color="#303030" size="2"><B>shell$</B> tuxracer<BR>
+</font></td></tr>
+</table>
+</div>
+
+</p>
+<p class="bodytext">
+If you get a message like this:
+<PRE><FONT SIZE="2" Face="Courier, fixed-width">*** tuxracer error: Can't find the tuxracer data directory.  Please check the
+value of `data_dir' in ~/.tuxracer/options and set it to the location where you
+installed the tuxracer-data files.</FONT></PRE>
+<p class="bodytext">
+then you need to follow the instructions in this message.
+</p>
+</p>
+
+</OL>
+  <p class="heading3"><a name="startwin"></a>2.2 Windows 95/98/ME/NT/2000</p>
+<p class="bodytext">
+
+To run Tux Racer, simply open the tuxracer-win32-&lt;version&gt; folder
+that was created when you installed the game, and double-click on
+<tt>tuxracer.exe</tt>.
+
+</p>
+    <IMG BORDER=0 SRC="./images/snow_line.gif" ALT="" WIDTH="551" HEIGHT="31"><BR><p><span class="heading2">3. The Main Menu</span></p>
+  <p><span class="heading3"><a name="navmenu"></a>3.1 Navigating Menus</span></p>
+  <p class="bodytext" align="left">Below are some descriptions of the various 
+    menus you will use to navigate through Tux Racer.</p>
+  <div align="center">
+<table bgcolor="white" border="0" cellpadding="4" cellspacing="0">
+  <tr><td><img src="./images/manual/welcome.jpg" width="200" height="150"></td></tr>
+</table>
+<p class="heading4">Start Screen</p></div>
+  <p class="bodytext" align="left">This is the first screen you see once Tux Racer 
+    is started. You can hit any key or click the mouse to move on to the Main 
+    Menu.</p>
+  <p class="heading3"><a name="mainoptions"></a>3.2 Main Menu Options</p>
+  <div align="center">
+<table bgcolor="white" border="0" cellpadding="4" cellspacing="0">
+  <tr><td><img src="./images/manual/main_menu.jpg" width="400" height="299"></td></tr>
+</table>
+<p class="heading4">Main Menu</p></div>
+  <p class="bodytext" align="left">This is the Main Menu in Tux Racer. Note that 
+    if you hit the Esc key while in this window it will exit the game.</p>
+  <p class="bodytext" align="left"><img src="./images/manual/1.gif" width="34" height="30" align="absmiddle">- 
+    Clicking on this will take you to the <a href="#cupmenu">Cup Selection Menu</a>. 
+    You can also press the Enter or E keys.<br>
+    <img src="./images/manual/2.gif" width="34" height="30" align="absmiddle"> - Clicking on this 
+    will take you to the <a href="#practicemenu">Practice Selection Menu</a>. 
+    You can also press the P key.<br>
+    <img src="./images/manual/3.gif" width="30" height="30" align="absmiddle"> - Clicking on this 
+    will show you the <a href="#credits">Credits</a>. You can also press the C 
+    key. <br>
+    <img src="./images/manual/4.gif" width="31" height="31" align="absmiddle">- Clicking on this 
+    will exit Tux Racer. You can also press the Esc key.</p>
+<IMG BORDER=0 SRC="./images/snow_line.gif" ALT="" WIDTH="551" HEIGHT="31"><BR><p class="heading2">4. Controls</p>
+  <p class="bodytext">Tux Racer has been designed to make controlling Tux easy 
+    and fun. The menus can be navigated with mouse and keyboard, and Tux is controlled 
+    using the keyboard.</p>
+  <p class="bodytext">Please note: instead of using the Arrow keys for movement 
+    controls, you can also use I, J, K, L. These alternate mappings have been 
+    provided for your convenience.</p>
+  <p class="heading3"><a name="turning"></a>4.1 Turning</p>
+  <p class="bodytext">Use the Left Arrow and Right Arrow keys to turn. The longer 
+    you hold down the key, the farther Tux will turn in that direction.</p>
+  <p class="heading3"><a name="paddling"></a>4.2 Paddling/Flapping</p>
+  <p class="bodytext">Use the Up Arrow key to make Tux paddle when on the ground 
+    and make Tux flap his wings when in the air. This will help you gain speed, 
+    especially at the start of the race. Once Tux's speed is in the yellow area 
+    of the <a href="#speedometer">Speedometer</a>, paddling will no longer increase 
+    his speed, but instead start to slow him down. </p>
+  <p class="bodytext">When Tux becomes airborne, flapping his wings will help 
+    him stay in the air longer. Use the turn keys while flapping to adjust Tux's 
+    direction while in the air.</p>
+  <p class="heading3"><a name="braking"></a>4.3 Braking</p>
+  <p class="bodytext">Use the Down Key to make Tux brake. This will slow him down, 
+    which is useful in getting through some tricky spots on the courses. Remember 
+    that Tux can turn tighter when raveling at slower speeds.</p>
+  <p class="heading3"><a name="jumping"></a>4.4 Jumping</p>
+  <p class="bodytext">Use the E key for jumping. To jump, you must first press 
+    and hold the E key to first charge energy. This will cause the <a href="#energometer">Energometer</a> 
+    level to increase. The fuller the Energometer, the bigger the jump. Releasing 
+    the E key will use the charged energy to make Tux jump.</p>
+  <p class="bodytext">Tux can start charging for the next jump (by pressing E) 
+    while still in the air.</p>
+  <p class="heading3"><a name="hardturning"></a>4.5 Hard Turning</p>
+  <p class="bodytext">To do a hard turn, hold down the brake key (Down Arrow) 
+    and then press one of the turn keys (Left Arrow or Right Arrow). This will 
+    cause Tux to do a sharp turn, but will also slow him down.</p>
+  <p class="heading3"><a name="reset"></a>4.6 Reset</p>
+  <p class="bodytext">The Backspace key is used to reset Tux's position. If you 
+    get stuck on a course, press this key.<br>
+    <br>
+    <a name="quit"></a><span class="heading3">4.7 Quit</span></p>
+  <p class="bodytext"> Pressing the Q key while racing will end the current board. 
+  </p>
+  <p class="bodytext">&nbsp;</p>
+  <IMG BORDER=0 SRC="./images/snow_line.gif" ALT="" WIDTH="551" HEIGHT="31"><BR><p class="heading2" align="left">5. Racing Screen</p>
+  <p class="bodytext" align="left">Once you are racing, you will have a number 
+    of displays. This section describes what each of these are.</p>
+  <div align="center">
+<table bgcolor="white" border="0" cellpadding="4" cellspacing="0">
+  <tr><td><img src="./images/manual/racing.jpg" width="400"
+height="300"></td></tr>
+</table>
+</div>
+  <p class="bodytext" align="left"><img src="./images/manual/1.gif" width="34" height="30" align="absmiddle"> 
+    - <a href="#speedometer">Speedometer</a> tells you how fast you are going.</p>
+  <p class="bodytext" align="left"><img src="./images/manual/2.gif" width="34" height="30" align="absmiddle"> 
+    - <a href="#energometer">Energometer</a> tells you how much energy you have 
+    charged.</p>
+  <p class="bodytext" align="left"><img src="./images/manual/3.gif" width="30" height="30" align="absmiddle"> 
+    - <a href="#time">Elapsed Time</a> tells you how long you have been racing 
+    in the race.</p>
+  <p class="bodytext" align="left"><img src="./images/manual/4.gif" width="31" height="31" align="absmiddle"> 
+    - <a href="#herring">Herring Collected</a> tells you how many herring you 
+    have collected so far in the race.</p>
+  <p class="heading3" align="left"><a name="speedometer"></a>5.1 Speedometer</p>
+  <p class="bodytext" align="left">The Speedometer shows the current speed of 
+    Tux. The speed is displayed in graphic form around the outside of the Energometer, 
+    and also in numeric form over the Energometer. As Tux's speed increases, the 
+    colour of the Speedometer changes from green to yellow and then to red. When 
+    in the yellow, paddling will no longer increase Tux's speed, but instead will 
+    beginning to slow him down. Once in the red zone you will find steering difficult.</p>
+  <p class="heading3" align="left"><a name="energometer"></a>5.2 Energometer</p>
+  <p class="bodytext" align="left">The Energometer displays Tux's current energy 
+    level. As the circle fills with blue, Tux's energy increases until the circle 
+    is full. The Energometer decides how far and high Tux can jump. See the <a href="#jumping">Jumping</a> 
+    section for more information.</p>
+  <p class="heading3" align="left"><a name="time"></a>5.3 Elapsed Time</p>
+  <p class="bodytext" align="left">The number in the top left of the screen shows 
+    the elapsed time for the current race.</p>
+  <p class="heading3" align="left"><a name="herring"></a>5.4 Herring Collected</p>
+  <p class="bodytext" align="left">The number in the top right of the screen shows 
+    how many herring Tux has collected in the current race.</p>
+  <IMG BORDER=0 SRC="./images/snow_line.gif" ALT="" WIDTH="551" HEIGHT="31"><BR><p class="heading2" align="left">6. Cup Racing</p>
+  <p class="bodytext" align="left">The races in Tux Racer are grouped into events. 
+    Currently, there is only one Event in Tux Racer, the Herring Run, in which 
+    you must collect a certain number of herring within a specified time.</p>
+  <p class="heading3" align="left"><a name="cupmenu"></a>6.1 Cup Selection Menu</p>
+  <p class="bodytext" align="left">The races in each event are grouped into cups 
+    - each cup consists of a series of races that you must complete, in sequence, 
+    before you may advance to the next cup. You are given four lives to complete 
+    each cup and lose one for each time you fail to win a race. Once you run out 
+    of lives, you must restart the cup from the beginning.</p>
+  <p class="bodytext" align="left">In the Cup Racing Menu you can select the event 
+    and cup in which you will compete. This section describes the menus that are 
+    used on the Cup Selection Menu.</p>
+  <p class="bodytext" align="left"></p>
+  <div align="center">
+<table bgcolor="white" border="0" cellpadding="4" cellspacing="0">
+  <tr><td><img src="./images/manual/cup_menu.jpg" width="400" height="299"></td></tr>
+</table>
+</div>
+  <p class="heading4" align="center">Cup Selection Menu</p>
+  <p class="bodytext" align="left"><img src="./images/manual/1.gif" width="34" height="30" align="absmiddle">- 
+    The name of the currently selected cup class. You can cycle through the classes 
+    by clicking on the arrow buttons. You can also use the Left Arrow and Right 
+    Arrow keys to cycle through the events.<br>
+    <img src="./images/manual/2.gif" width="34" height="30" align="absmiddle"> - The name of the 
+    cup inside the currently selected cup class. You can select the cups by clicking 
+    on the arrow buttons. You can also use the Up Arrow and Down Arrow keys to 
+    cycle through the cups.<br>
+    <img src="./images/manual/3.gif" width="30" height="30" align="absmiddle"> - Display message 
+    informing you whether or not you are eligible to play this cup<br>
+    <img src="./images/manual/4.gif" width="31" height="31" align="absmiddle">- Back to the Main 
+    Menu <br>
+    <img src="./images/manual/5.gif" width="29" height="28" align="absmiddle"> - Go to the Cup 
+    Race Selection Menu.</p>
+  <p class="bodytext" align="left"><a name="cupracemenu"></a><span class="heading3">6.2 
+    Cup Race Selection Menu</span></p>
+  <p class="bodytext" align="left">When competing in a cup that you have not yet 
+    completed, this menu guides you through the races in the cup. You must complete 
+    the races in order. For example, you must win the first race in a cup before 
+    you can enter the second race. You are given four lives in which to complete 
+    all of the races in a cup. If you run out of lives, you will have to reenter 
+    the cup and start over from the first race.</p>
+  <p class="bodytext" align="left">This section describes the menus that are used 
+    on the Cup Race Selection Menu.</p>
+  <div align="center">
+<table bgcolor="white" border="0" cellpadding="4" cellspacing="0">
+  <tr><td><img src="./images/manual/cup_screen.jpg" width="400" height="310"></td></tr>
+</table>
+</div>
+  <p class="heading4" align="center">Cup Race Menu</p>
+  <p class="bodytext" align="left"><img src="./images/manual/1.gif" width="34" height="30" align="absmiddle">- 
+    The name of the currently selected course. You can cycle through the course 
+    by clicking the arrow buttons. You can also use the Up Arrow and Down Arrow 
+    keys to cycle through the courses.<br>
+    <img src="./images/manual/2.gif" width="34" height="30" align="absmiddle"> - The required 
+    criteria for completing the course. You must beat each of the 3 possible criteria 
+    in order to move onto the next course in the cup.<br>
+    <img src="./images/manual/3.gif" width="30" height="30" align="absmiddle"> - A description 
+    of the course<br>
+    <img src="./images/manual/4.gif" width="31" height="31" align="absmiddle">- Number of lives 
+    remaining.<br>
+    <img src="./images/manual/5.gif" width="29" height="28" align="absmiddle"> - A preview of 
+    the course.<br>
+    <img src="./images/manual/6.gif" width="31" height="24" align="absmiddle">- Back to the Cup 
+    Selection Menu .<br>
+    <img src="./images/manual/7.gif" width="30" height="24" align="absmiddle"> - Start the race.</p>
+  <p class="bodytext" align="left">Once you have completed a cup, this menu can 
+    be used to replay any of the races in a cup so that you can life to improve 
+    your score.</p>
+  <p class="bodytext" align="left"><a name="required"></a><span class="heading3">6.2.1 
+    Required Time/Herring/Score</span></p>
+  <p class="bodytext" align="left">Below the name of the course is a listing of 
+    the requirements to beat it. The course may have requirements for maximum 
+    time, herring collected, overall score, or any combination of these. To progress 
+    to the next course you must beat these requirements. The time listed is the 
+    time to beat, the herring listed is the minimum number of herring you must 
+    collect, and the score is the minimum score you need to get. </p>
+  <p class="bodytext" align="left">If any of the requirements are listed as 0, 
+    then there is no requirement in that category.</p>
+  <p class="bodytext" align="left"><a name="tries"></a><span class="heading3">6.2.2 
+    Lives</span></p>
+  <p class="bodytext" align="left">To complete each cup, you only have a set number 
+    of lives to beat all of the courses. If you beat a course, you don't lose 
+    any lives, and proceed to the next course. If you do not beat the course, 
+    then you use up on of your lives (one Tux will disappear from the row) and 
+    you can life the same course again. When all your lives are exhausted (no 
+    more Tux's in the row) then you can not continue the cup, and must reenter 
+    the cup and start over from the first race.</p>
+  <p class="bodytext" align="left">If you quit a course during a race (by pressing 
+    Esc) then you lose one life.</p>
+  <IMG BORDER=0 SRC="./images/snow_line.gif" ALT="" WIDTH="551" HEIGHT="31"><BR><p class="heading2" align="left">7. Practice Racing</p>
+  <p class="bodytext" align="left">Tux Racer has a Practice mode in which you 
+    can hone your racing skills. In Practice mode there is no lives counter, so 
+    you can play any course as often as you like. You can also customize the race 
+    options for more challenge.</p>
+  <p class="heading3" align="left"><a name="practicemenu"></a>7.1 Practice Menu</p>
+  <p class="bodytext" align="left">The Practice Menu lets you choose a course 
+    on which to race, and allows you to customize the race options.</p>
+  <div align="center">
+<table bgcolor="white" border="0" cellpadding="4" cellspacing="0">
+  <tr><td><img src="./images/manual/practice_screen.jpg" width="400" height="299"></td></tr>
+</table>
+</div>
+  <p class="heading4" align="center">Practice Menu</p>
+  <p class="bodytext" align="left">&nbsp;</p>
+  <p class="bodytext" align="left"><img src="./images/manual/1.gif" width="34" height="30" align="absmiddle">- 
+    The name of the currently selected course. You can cycle through the course 
+    by clicking the arrow buttons. You can also use the Up Arrow and Down Arrow 
+    keys to cycle through the courses.<br>
+    <img src="./images/manual/2.gif" width="34" height="30" align="absmiddle"> - The best score 
+    achieved on this course. If this area is blank it means you have not tried 
+    the course yet.<br>
+    <img src="./images/manual/3.gif" width="30" height="30" align="absmiddle"> - A description 
+    of the course.<br>
+    <img src="./images/manual/4.gif" width="31" height="31" align="absmiddle">- Options of the 
+    race. See <a href="#raceoptions">Race Options</a> below.<br>
+    <img src="./images/manual/5.gif" width="29" height="28" align="absmiddle"> - A preview of 
+    the course.<br>
+    <img src="./images/manual/6.gif" width="31" height="24" align="absmiddle">- Back to the Main 
+    Menu.<br>
+    <img src="./images/manual/7.gif" width="30" height="24" align="absmiddle"> - Start the race.</p>
+  <p class="bodytext" align="left">Note: All user-created or downloaded courses 
+    are only available through the Practice Menu.</p>
+  <p class="heading3" align="left"><a name="raceoptions"></a>7.2 Race Options</p>
+  <p class="bodytext" align="left">A number of options can be set for the current 
+    race on the Practice Menu.</p>
+  <p class="heading3" align="left"><a name="lighting"></a>7.2.1 Lighting Conditions</p>
+  <p class="bodytext" align="left">Clicking on the Lighting Conditions button 
+    will change the time/weather on the course. The options are Sunny, Foggy, 
+    and Night. </p>
+  <p class="heading3" align="left"><a name="wind"></a>7.2.2 Wind</p>
+  <p class="bodytext" align="left">Clicking on the Wind button will toggle wind 
+    on or off. Wind gusts across the course and makes things more challenging 
+    for Tux when he is in the air.</p>
+  <p class="heading3" align="left"><a name="snow"></a>7.2.3 Snow</p>
+  <p class="bodytext" align="left">Snow is currently not implemented.</p>
+  <p class="heading3" align="left"><a name="mirror"></a>7.2.4 Mirror</p>
+  <p class="bodytext" align="left">Clicking on the Mirror button will flip the 
+    course so the left is right and right is left.</p>
+  <p class="heading3" align="left"><a name="scoring"></a>7.3 Scoring</p>
+  <p class="bodytext" align="left">Points can be obtained in two ways, by beating 
+    the Par Time for the course, and by collecting herring. Move quickly and grab 
+    as many herring as possible to get the highest score. Each herring collected 
+    will give you the same number of points as beating the par time by two seconds.</p>
+  <IMG BORDER=0 SRC="./images/snow_line.gif" ALT="" WIDTH="551" HEIGHT="31"><BR><p class="heading2">8. Game Options</p>
+  <p class="heading3"><a name="optionfile"></a>8.1 Options File</p>
+  <p class="bodytext" align="left">Under Linux the options file is located in 
+    the ~/.tuxracer directory. Under Windows the options file is located in the 
+    config directory, which can be found in the directory in which you installed 
+    Tux Racer. This file is plain text, and is editable with any text editor, 
+    such as vi or Notepad.</p>
+  <IMG BORDER=0 SRC="./images/snow_line.gif" ALT="" WIDTH="551" HEIGHT="31"><BR><p class="heading2"><a name="credits"></a>9. Credits</p>
+  <p class="heading3">Director/Lead Programmer</p>
+  <p class="bodytext">Jasmin Patry</p>
+  <p class="heading3">Programming Team</p>
+  <p class="bodytext">Patrick Gilhuly</p>
+  <p class="bodytext">Eric Hall</p>
+  <p class="bodytext">Vincent Ma</p>
+  <p class="heading3">Art Team</p>
+  <p class="bodytext">Richard Knowles</p>
+  <p class="bodytext">Mark Riddell</p>
+  <p class="bodytext" align="left">&nbsp;</p>
+</td></tr></table></td>
+  </tr>
+</table>
+<map name="sidemenumap"> 
+<area shape="rect" coords="7,22,100,65" href="./index.html"> 
+<area shape="rect" coords="7,66,140,114" href="./screenshots.html"> 
+<area shape="rect" coords="7,115,125,161" href="./game_info.html"> 
+<area shape="rect" coords="7,162,115,206" href="./manual.html"> 
+<area shape="rect" coords="7,207,138,256" href="./download.html"> 
+<area shape="rect" coords="7,257,127,304" href="./purchase.html"> 
+<area shape="rect" coords="7,305,108,354" href="./faq.html"> 
+<area shape="rect" coords="7,355,109,404" href="./support.html"> 
+</map>
+<map name="topleftmap"> 
+<area shape="rect" coords="4,5,150,82" href="./index.html"> 
+</map>
+<map name="topmap"> 
+<area shape="rect" coords="421,6,589,37" href="http://www.sunspirestudios.com/"> 
+</map>
+</BODY>
+</HTML>

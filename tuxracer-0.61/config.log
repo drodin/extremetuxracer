@@ -1,0 +1,120 @@
+This file contains any messages produced by compilers while
+running configure, to aid debugging if configure makes a mistake.
+
+configure:596: checking for a BSD compatible install
+configure:649: checking whether build environment is sane
+configure:706: checking whether make sets ${MAKE}
+configure:752: checking for working aclocal
+configure:765: checking for working autoconf
+configure:778: checking for working automake
+configure:791: checking for working autoheader
+configure:804: checking for working makeinfo
+configure:828: checking host system type
+configure:856: checking for gcc
+configure:969: checking whether the C compiler (gcc  ) works
+configure:985: gcc -o conftest    conftest.c  1>&5
+configure:1011: checking whether the C compiler (gcc  ) is a cross-compiler
+configure:1016: checking whether we are using GNU C
+configure:1044: checking whether gcc accepts -g
+configure:1085: checking for c++
+configure:1117: checking whether the C++ compiler (c++  ) works
+configure:1133: c++ -o conftest    conftest.C  1>&5
+configure:1159: checking whether the C++ compiler (c++  ) is a cross-compiler
+configure:1164: checking whether we are using GNU C++
+configure:1192: checking whether c++ accepts -g
+configure:1227: checking for ranlib
+configure:1256: checking how to run the C preprocessor
+configure:1336: checking for ANSI C header files
+configure:1443: checking for sys/time.h
+configure:1443: checking for unistd.h
+configure:1481: checking for working const
+configure:1556: checking whether time.h and sys/time.h may both be included
+configure:1594: checking for getcwd
+configure:1594: checking for gettimeofday
+configure:1594: checking for strdup
+configure:1650: checking for finite
+configure:1650: checking for isnan
+configure:1705: checking for _finite
+configure:1705: checking for _isnan
+configure:1761: checking for ieeefp.h
+configure:1834: checking for Win32 platform
+configure:1866: checking for X
+configure:2180: checking for dnet_ntoa in -ldnet
+configure:2221: checking for dnet_ntoa in -ldnet_stub
+configure:2269: checking for gethostbyname
+configure:2367: checking for connect
+configure:2459: checking for remove
+configure:2551: checking for shmat
+configure:2652: checking for IceConnectionNumber in -lICE
+configure:2701: checking for main in -ldl
+configure:2737: checking for main in -lm
+configure:2805: checking for tcl8.3 library
+configure:2815: gcc -o conftest    conftest.c   -lSM -lICE  -lX11 -lXi -lXext -lXmu -lXt   -ldl -lm  -ltcl8.3 1>&5
+configure:2923: checking for tcl.h
+configure:2930: gcc -E   -DTUXRACER_NO_ASSERT=1  conftest.c >/dev/null 2>conftest.out
+configure:2926:19: error: tcl.h: No such file or directory
+configure: failed program was:
+#line 2925 "configure"
+#include "confdefs.h"
+ #include <tcl.h> 
+configure:2962: checking for tcl8.3.h
+configure:2969: gcc -E   -DTUXRACER_NO_ASSERT=1  conftest.c >/dev/null 2>conftest.out
+configure:2965:22: error: tcl8.3.h: No such file or directory
+configure: failed program was:
+#line 2964 "configure"
+#include "confdefs.h"
+ #include <tcl8.3.h> 
+configure:2962: checking for tcl83.h
+configure:2969: gcc -E   -DTUXRACER_NO_ASSERT=1  conftest.c >/dev/null 2>conftest.out
+configure:2965:21: error: tcl83.h: No such file or directory
+configure: failed program was:
+#line 2964 "configure"
+#include "confdefs.h"
+ #include <tcl83.h> 
+configure:2962: checking for tcl8.2.h
+configure:2969: gcc -E   -DTUXRACER_NO_ASSERT=1  conftest.c >/dev/null 2>conftest.out
+configure:2965:22: error: tcl8.2.h: No such file or directory
+configure: failed program was:
+#line 2964 "configure"
+#include "confdefs.h"
+ #include <tcl8.2.h> 
+configure:2962: checking for tcl82.h
+configure:2969: gcc -E   -DTUXRACER_NO_ASSERT=1  conftest.c >/dev/null 2>conftest.out
+configure:2965:21: error: tcl82.h: No such file or directory
+configure: failed program was:
+#line 2964 "configure"
+#include "confdefs.h"
+ #include <tcl82.h> 
+configure:2962: checking for tcl8.0.h
+configure:2969: gcc -E   -DTUXRACER_NO_ASSERT=1  conftest.c >/dev/null 2>conftest.out
+configure:2965:22: error: tcl8.0.h: No such file or directory
+configure: failed program was:
+#line 2964 "configure"
+#include "confdefs.h"
+ #include <tcl8.0.h> 
+configure:2962: checking for tcl80.h
+configure:2969: gcc -E   -DTUXRACER_NO_ASSERT=1  conftest.c >/dev/null 2>conftest.out
+configure:2965:21: error: tcl80.h: No such file or directory
+configure: failed program was:
+#line 2964 "configure"
+#include "confdefs.h"
+ #include <tcl80.h> 
+configure:3011: checking for tcl.h
+configure:3018: gcc -E   -DTUXRACER_NO_ASSERT=1 -I/usr/include/tcl8.3 conftest.c >/dev/null 2>conftest.out
+configure:3145: checking for sdl-config
+configure:3180: checking for SDL - version >= 1.0.1
+configure:3265: gcc -o conftest  -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   conftest.c  -L/usr/lib -lSDL 1>&5
+configure:3355: checking for SDL_JoystickOpen
+configure:3415: checking for Mix_OpenAudio in -lSDL_mixer
+configure:3505: checking for GL library
+configure:3515: gcc -o conftest    conftest.c   -lSM -lICE  -lX11 -lXi -lXext -lXmu -lXt   -ldl -lm  -ltcl8.3 -L/usr/lib -lSDL -lSDL_mixer  -lGL 1>&5
+configure:3787: checking for glXGetProcAddressARB
+configure:3863: checking for GLU library
+configure:3873: gcc -o conftest    conftest.c   -lSM -lICE  -lX11 -lXi -lXext -lXmu -lXt   -ldl -lm  -ltcl8.3 -L/usr/lib -lSDL -lSDL_mixer  -lGL -lGLU 1>&5
+configure:3956: checking for GL/gl.h
+configure:3963: gcc -E  -I/usr/share/doc/nvidia-glx-new-dev/include  -DTUXRACER_NO_ASSERT=1 -I/usr/include/tcl8.3 -DTCL_HEADER=\<tcl.h\> -DHAVE_SDL=1 -DHAVE_SDL_MIXER=1 conftest.c >/dev/null 2>conftest.out
+configure:4022: checking for GL/glx.h
+configure:4065: checking whether glx.h defines glXGetProcAddressARB
+configure:4074: gcc -c   -I/usr/share/doc/nvidia-glx-new-dev/include  -DTUXRACER_NO_ASSERT=1 -I/usr/include/tcl8.3 -DTCL_HEADER=\<tcl.h\> -DHAVE_SDL=1 -DHAVE_SDL_MIXER=1 conftest.c 1>&5
+configure:4095: checking for GL/glext.h
+configure:4144: checking whether glext.h is recent enough

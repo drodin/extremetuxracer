@@ -1,0 +1,683 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<TITLE>Tux Racer FAQ</TITLE>
+<style type="text/css">
+<!--
+A { text-decoration: none; color: #2c4a70 }
+BODY {font-family: Arial, Helvetica, sans-serif; color: #FFFFFF}
+OL {font-family: Arial, Helvetica, sans-serif; color: #FFFFFF}
+UL {font-family: Arial, Helvetica, sans-serif; color: #FFFFFF}
+LI {font-family: Arial, Helvetica, sans-serif; color: #FFFFFF}
+TABLE {font-family: Arial, Helvetica, sans-serif; color: #FFFFFF}
+.bodytext {font-family: Arial, Helvetica, sans-serif; color: #FFFFFF}
+.small {  font-family: Arial, Helvetica, sans-serif; font-size: 10pt; color: #FFFFFF}
+.code {  font-family: Courier, fixed-width; color: #FFFFFF; margin-left: 0.5in}
+.heading1 {  font-family: Arial, Helvetica, sans-serif; font-size: 24pt; color: #FFFFFF; text-align: center; font-style: normal; font-weight: bold}
+.heading2 {  font-family: Arial, Helvetica, sans-serif; font-size: 18pt; color: #FFFFFF; font-weight: bold}
+.heading3 {  font-family: Arial, Helvetica, sans-serif; font-size:
+14pt; color: #ffe254; font-weight: bold}
+.heading4 {  font-family: Arial, Helvetica, sans-serif; font-style: italic; color: #EEEEEE; font-weight: bold}
+.imageoutline {  border: #FFFFFF; border-style: solid; border-top-width: medium; border-right-width: medium; border-bottom-width: medium; border-left-width: medium}
+-->
+</style>
+</HEAD>
+<BODY TEXT="white" BGCOLOR="#8ca6d7"marginwidth="0" marginheight="0" leftmargin="0"topmargin="0" vlink="#330066" alink="#FF3366" class="bodytext">
+<table border="0" cellspacing="0" cellpadding="0" width="800">
+  <tr>
+    <td valign="top" width="167"><IMG BORDER=0 SRC="./images/menu_top_left.jpg" usemap="#topleftmap" ALT="" WIDTH="167" HEIGHT="100"></td>
+    <td valign="top" width="633"
+    nowrap><IMG BORDER=0 SRC="./images/menu_top.jpg" usemap="#topmap" ALT="" WIDTH="633" HEIGHT="100"></td>
+  </tr>
+  <tr>
+    <td valign="top"
+    width="167"><IMG BORDER=0 SRC="./images/menu_side.jpg" usemap="#sidemenumap" ALT="" WIDTH="167" HEIGHT="500"><BR>
+<p class="bodytext">&nbsp;&nbsp;Hosted by:<BR>&nbsp;<A href="http://sourceforge.net"> 
+<IMG align="absmiddle"
+    src="http://sourceforge.net/sflogo.php?group_id=2944&amp;type=1"
+    width="88" height="31" border="0"
+    ALT="SourceForge"></A><BR>&nbsp;</p></td>
+    <td valign="top" width="633"
+    ><table border="0" cellpadding="3" cellspacing="0" width="550"><tr><td
+      ><p class="heading1">Tux Racer FAQ</p><A NAME="toc"></A><OL>
+  <LI><A HREF="#graph">What graphics cards will work with Tux Racer?</A>
+  <LI><A HREF="#fps">How do I display my frames per second (FPS)?</A>
+  <LI><A HREF="#slow">Tux Racer runs slowly on my machine; how do I speed it up?</A>
+  <LI><A HREF="#options">Where is the Tux Racer Options file?</A>
+  <LI><A HREF="#controls">How do I change the Tux Racer controls?</A>
+  <LI><A HREF="#shift">Can I map the SHIFT, CTRL, or ALT keys to an action?</A>
+  <LI><A HREF="#joystick">Can I use a joystick with Tux Racer?</A>
+  <LI><A HREF="#joy_buttons">Can I remap the joystick buttons?</A>
+  <LI><A HREF="#joy_analog">Does Tux Racer work with analog joysticks?</A>
+  <LI><A HREF="#stuck_controls">The controls seem stuck -- Tux always turns to the
+right.  How do I fix this?</A>
+  <LI><A HREF="#ui_snow">Can I turn off the falling snow in the menus?</A>
+  <LI><A HREF="#newcourses">Can I create new courses?</A>
+  <LI><A HREF="#linux_opengl_problems">When compiling under Linux, I get some OpenGL errors.  What's going on?</A>
+  <LI><A HREF="#linux_rock_crash">When I run Tux Racer under Linux, the program crashes
+when I slide over rock.  Is there a fix for this?</A>
+  <LI><A HREF="#sdl_glide_conflict">I have a 3dfx video card and am running Linux.  
+                 If I compile the game with SDL, I get no hardware 
+                 acceleration.</A>
+  <LI><A HREF="#rage128_fog">When I play the game, the screen is nearly all white.</A>
+</OL>
+<IMG BORDER=0 SRC="./images/snow_line.gif" ALT="" WIDTH="551" HEIGHT="31"><BR><table cellpadding="0" cellspacing="4" border="0" width="100%">
+  <tr>
+    <td valign="top"><p class="heading3">Q:</p></td>
+    <td valign="top"><A NAME="graph"></A><p class="heading3">What graphics cards will work with Tux Racer?</p></td>
+  </tr>
+  <tr>
+    <td valign="top"><p class="heading3">A:</p></td>
+    <td valign="top"><p class="bodytext">
+Tux Racer should run on any graphics card which supports 
+OpenGL. Tux Racer has currently been tested and works on:
+<ul>
+  <li>ATI Rage 128</li>
+  <li>nVidia TNT, TNT2, GeForce256, GeForce2 GTS</li>
+  <li>3dfx Voodoo3</li>
+</ul>
+</p>
+<p class="bodytext">
+
+Some people have reported problems with 3dfx Voodoo2 cards.  We are
+working on obtaining a Voodoo2 test system so that we can improve
+support for this card.
+
+</p>
+</td>
+  </tr>
+<!--
+  <tr>
+    <td valign="top"></td>
+    <td valign="top"><br><p align="right" class="small"><A HREF="#toc">[back to Contents]</A></p></td>
+  </tr>
+-->
+<BR>
+</table>
+<table cellpadding="0" cellspacing="4" border="0" width="100%">
+  <tr>
+    <td valign="top"><p class="heading3">Q:</p></td>
+    <td valign="top"><A NAME="fps"></A><p class="heading3">How do I display my frames per second (FPS)?</p></td>
+  </tr>
+  <tr>
+    <td valign="top"><p class="heading3">A:</p></td>
+    <td valign="top"><p class="bodytext">Edit the options file in any text editor and find the line:</p>
+<p class="code">set display_fps false</p>
+<p class="bodytext">Change false to true and you will have a display of 
+your FPS in-game.</p>
+<p class="bodytext">See also the FAQ, <A HREF="#options">Where is the
+Tux Racer Options file?</A></p>
+</td>
+  </tr>
+<!--
+  <tr>
+    <td valign="top"></td>
+    <td valign="top"><br><p align="right" class="small"><A HREF="#toc">[back to Contents]</A></p></td>
+  </tr>
+-->
+<BR>
+</table>
+<table cellpadding="0" cellspacing="4" border="0" width="100%">
+  <tr>
+    <td valign="top"><p class="heading3">Q:</p></td>
+    <td valign="top"><A NAME="slow"></A><p class="heading3">Tux Racer runs slowly on my machine; how do I speed it up?</p></td>
+  </tr>
+  <tr>
+    <td valign="top"><p class="heading3">A:</p></td>
+    <td valign="top"><p class="bodytext">
+  Tux Racer requires a video card with hardware 3D acceleration. 
+    You must also have OpenGL drivers that use your video card's hardware acceleration. 
+    Under Linux, this can be tricky to set up. <a
+href="http://www.lokigames.com">Loki Games</a> has created some pages to help 
+    users set up OpenGL under Linux: </p>
+  <ul>
+    <li><a href="http://faqs.lokigames.com/faq.php3?view=index&product=GL336">Setting 
+      up and troubleshooting OpenGL on XFree86 3.3.x FAQ</a> 
+    <li><A HREF="http://www.lokigames.com/support/gldrivers/">Loki's
+	OpenGL drivers page</A>
+  </ul>
+  <p class="bodytext">
+
+  Under Windows, you should visit your video card vendor's web site
+  and make sure you have the latest drivers installed.  You can also
+  use <A HREF="http://www.glsetup.com" >GLSetup</A> to install the latest OpenGL drivers for your
+  card.  (See also the FAQ <a href="?">What graphics cards do you
+  support?</a>.)
+
+</p>
+
+  <p class="bodytext">
+  If you've done all of this and would like to get 
+  as many frames per second out of Tux Racer as possible, then you need to tweak 
+  some settings in the options file. (See the FAQ, <a href="#options">Where is the Tux 
+  Racer options file?</a> if you can't find the options file.) The following settings 
+  have a significant impact on the rendering speed of Tux Racer: 
+  </p>
+  <ul>
+    <li>x_resolution, y_resolution: Try making the Tux Racer window smaller -- 
+      this will increase performance on many graphics cards. 
+    <li>forward_clip_distance: This controls how much terrain will be visible. 
+      Try reducing this value to improve performance. 
+    <li>course_detail_level: This controls how many triangles are used to draw 
+      the course terrain. Try reducing this value to improve performance. 
+    <li>terrain_blending, perfect_terrain_blending: This controls whether the 
+      different terrain textures will be blended together. Set both of these parameters 
+      to false to improve performance. 
+    <li>terrain_envmap: This controls whether the ice is rendered with an environment 
+      map (this makes the ice look shiny). Set this to false to improve performance. 
+    <li>draw_particles: This controls whether snow particles will be drawn when 
+      the player turns or brakes. Set this to false to improve performance. 
+    <li>draw_track_marks: This controls whether players will leave track marks 
+      in the snow. Set this to false to improve performance. 
+  </ul>
+</td>
+  </tr>
+<!--
+  <tr>
+    <td valign="top"></td>
+    <td valign="top"><br><p align="right" class="small"><A HREF="#toc">[back to Contents]</A></p></td>
+  </tr>
+-->
+<BR>
+</table>
+<table cellpadding="0" cellspacing="4" border="0" width="100%">
+  <tr>
+    <td valign="top"><p class="heading3">Q:</p></td>
+    <td valign="top"><A NAME="options"></A><p class="heading3">Where is the Tux Racer Options file?</p></td>
+  </tr>
+  <tr>
+    <td valign="top"><p class="heading3">A:</p></td>
+    <td valign="top"><p class="bodytext">
+
+    Under Linux, the options file can be found in the ~/.tuxracer
+    directory.  Under Windows, the options file can be found in the
+    config subdirectory of the Tux Racer installation directory.  Note
+    that on both operating systems, you must run Tux Racer at least
+    once before the options file is created.
+
+</p>
+<p class="bodytext">
+
+    <B>Update:</B> At least one user running Windows ME has reported
+    that the config directory is not being created when Tux Racer is
+    first run.  If you have run Tux Racer but there is still no config
+    directory, then try creating it manually and then run Tux Racer
+    again.  The options file should be created when Tux Racer exits.
+
+</p>
+</td>
+  </tr>
+<!--
+  <tr>
+    <td valign="top"></td>
+    <td valign="top"><br><p align="right" class="small"><A HREF="#toc">[back to Contents]</A></p></td>
+  </tr>
+-->
+<BR>
+</table>
+<table cellpadding="0" cellspacing="4" border="0" width="100%">
+  <tr>
+    <td valign="top"><p class="heading3">Q:</p></td>
+    <td valign="top"><A NAME="controls"></A><p class="heading3">How do I change the Tux Racer controls?</p></td>
+  </tr>
+  <tr>
+    <td valign="top"><p class="heading3">A:</p></td>
+    <td valign="top"><p class="bodytext">
+   You can change the key bindings by editing the Tux Racer options file. 
+    (See the FAQ <a href="#options">Where is the Tux Racer options file?</a>.) Edit this 
+    file with any text editor, and look for settings that contain the
+  word "key". </p>
+  <p class="bodytext">
+    You can map more than one key to each action; for example, the default keybinding 
+    for the right turn key looks like this: 
+  <p class="code">set turn_right_key "l right"</p>
+  <p class="bodytext">which 
+    binds the L and Right Arrow keys to the right turn action. Key bindings are 
+    case-insensitive. 
+  <p class="bodytext">The following names are recognized for "special" keys: f1-f12, 
+    left, up, right, down, page_up, page_down, home, end, insert, tab, space, 
+    backspace, enter, delete, escape. 
+</p>
+</td>
+  </tr>
+<!--
+  <tr>
+    <td valign="top"></td>
+    <td valign="top"><br><p align="right" class="small"><A HREF="#toc">[back to Contents]</A></p></td>
+  </tr>
+-->
+<BR>
+</table>
+<table cellpadding="0" cellspacing="4" border="0" width="100%">
+  <tr>
+    <td valign="top"><p class="heading3">Q:</p></td>
+    <td valign="top"><A NAME="shift"></A><p class="heading3">Can I map the SHIFT, CTRL, or ALT keys to an action?</p></td>
+  </tr>
+  <tr>
+    <td valign="top"><p class="heading3">A:</p></td>
+    <td valign="top"><p class="bodytext">
+    No. This is a limitation of the GLUT library that Tux Racer uses. We may 
+    switch to a different library in the future to eliminate this
+    restriction.
+</p>
+</td>
+  </tr>
+<!--
+  <tr>
+    <td valign="top"></td>
+    <td valign="top"><br><p align="right" class="small"><A HREF="#toc">[back to Contents]</A></p></td>
+  </tr>
+-->
+<BR>
+</table>
+<table cellpadding="0" cellspacing="4" border="0" width="100%">
+  <tr>
+    <td valign="top"><p class="heading3">Q:</p></td>
+    <td valign="top"><A NAME="joystick"></A><p class="heading3">Can I use a joystick with Tux Racer?</p></td>
+  </tr>
+  <tr>
+    <td valign="top"><p class="heading3">A:</p></td>
+    <td valign="top"><p class="bodytext">
+    Version 0.60 has experimental joystick support. If you are
+    compiling Tux Racer from source then you need to have a version of
+    the SDL library with joystick support installed. (We are using SDL
+    version 1.1.4 for Tux Racer development.)
+</p>
+<p class="bodytext">
+    Tux Racer will use the first joystick on the system. 
+    (Under Linux this is <tt>/dev/js0</tt>.)
+</p>
+</td>
+  </tr>
+<!--
+  <tr>
+    <td valign="top"></td>
+    <td valign="top"><br><p align="right" class="small"><A HREF="#toc">[back to Contents]</A></p></td>
+  </tr>
+-->
+<BR>
+</table>
+<table cellpadding="0" cellspacing="4" border="0" width="100%">
+  <tr>
+    <td valign="top"><p class="heading3">Q:</p></td>
+    <td valign="top"><A NAME="joy_buttons"></A><p class="heading3">Can I remap the joystick buttons?</p></td>
+  </tr>
+  <tr>
+    <td valign="top"><p class="heading3">A:</p></td>
+    <td valign="top"><p class="bodytext">
+    Yes. This is done in the options file; look for options containing the
+    word "joystick". Note that button numbering starts at 0.
+</p>
+</td>
+  </tr>
+<!--
+  <tr>
+    <td valign="top"></td>
+    <td valign="top"><br><p align="right" class="small"><A HREF="#toc">[back to Contents]</A></p></td>
+  </tr>
+-->
+<BR>
+</table>
+<table cellpadding="0" cellspacing="4" border="0" width="100%">
+  <tr>
+    <td valign="top"><p class="heading3">Q:</p></td>
+    <td valign="top"><A NAME="joy_analog"></A><p class="heading3">Does Tux Racer work with analog joysticks?</p></td>
+  </tr>
+  <tr>
+    <td valign="top"><p class="heading3">A:</p></td>
+    <td valign="top"><p class="bodytext">
+    Yes, as long as it is supported by your operating system.
+    With an analog joystick or gamepad, Tux will turn in proportion to how
+    far you move the controller left or right.
+</p>
+</td>
+  </tr>
+<!--
+  <tr>
+    <td valign="top"></td>
+    <td valign="top"><br><p align="right" class="small"><A HREF="#toc">[back to Contents]</A></p></td>
+  </tr>
+-->
+<BR>
+</table>
+<table cellpadding="0" cellspacing="4" border="0" width="100%">
+  <tr>
+    <td valign="top"><p class="heading3">Q:</p></td>
+    <td valign="top"><A NAME="stuck_controls"></A><p class="heading3">The controls seem stuck -- Tux always turns to the
+right.  How do I fix this?</p></td>
+  </tr>
+  <tr>
+    <td valign="top"><p class="heading3">A:</p></td>
+    <td valign="top"><p class="bodytext">
+
+If you have a game controller connected to your computer, make sure it
+is properly calibrated.
+
+</p>
+<p class="bodytext">
+
+If you don't have a game controller connected to your computer, make
+sure that your operating system doesn't <b>think</b> you have one
+connected.
+
+</p>
+</td>
+  </tr>
+<!--
+  <tr>
+    <td valign="top"></td>
+    <td valign="top"><br><p align="right" class="small"><A HREF="#toc">[back to Contents]</A></p></td>
+  </tr>
+-->
+<BR>
+</table>
+<table cellpadding="0" cellspacing="4" border="0" width="100%">
+  <tr>
+    <td valign="top"><p class="heading3">Q:</p></td>
+    <td valign="top"><A NAME="ui_snow"></A><p class="heading3">Can I turn off the falling snow in the menus?</p></td>
+  </tr>
+  <tr>
+    <td valign="top"><p class="heading3">A:</p></td>
+    <td valign="top"><p class="bodytext">
+    Yes. The snow can be turned on and off with the Tab key.
+</p>
+</td>
+  </tr>
+<!--
+  <tr>
+    <td valign="top"></td>
+    <td valign="top"><br><p align="right" class="small"><A HREF="#toc">[back to Contents]</A></p></td>
+  </tr>
+-->
+<BR>
+</table>
+<table cellpadding="0" cellspacing="4" border="0" width="100%">
+  <tr>
+    <td valign="top"><p class="heading3">Q:</p></td>
+    <td valign="top"><A NAME="newcourses"></A><p class="heading3">Can I create new courses?</p></td>
+  </tr>
+  <tr>
+    <td valign="top"><p class="heading3">A:</p></td>
+    <td valign="top"><p class="bodytext">
+
+    Yes. It's actually quite easy to create new courses.  All you need
+is a paint program (<A HREF="http://www.gimp.org" >The GIMP</A> does nicely) -- no 3D modelling
+required.  The best way to learn is by example -- have a look in
+the &lt;tuxracer-data&gt;/courses directory.  
+</p>
+
+<p class="bodytext">
+
+Each course has its own directory, in which there is a <tt>course.tcl</tt>
+file (this is a Tcl script that loads the course).  To create your own
+course, it's probably easiest to copy an existing course in the
+&lt;tuxracer-data&gt;/courses/contrib directory.  Your course should also
+go in the contrib directory (that way it will be automatically added
+to the list of races in Practice mode).
+
+</p>
+
+<p class="bodytext">
+
+To create your course you will need to modify the course.tcl,
+elev.rgb, terrain.rgb, and trees.rgb files.  Here are some pointers:
+
+<UL>
+  <LI>The course elevation data is specified as a heightfield using a
+      greyscale bitmap (usually called elev.rgb).  White is high, black is low.
+
+  <LI> The terrain type is specified using another greyscale bitmap 
+      (usually called terrain.rgb).
+      White corresponds to snow, 50% grey corresponds to rock, and
+      black corresponds to ice.  You don't have to be exact here; the
+      closest match is used.  NOTE: this bitmap must have the same
+      dimensions as the elevation bitmap.
+
+  <LI>Trees and other objects on the course are specified using (yet
+      another) bitmap (usually called trees.rgb).  This bitmap can
+      have arbitrary size.  Different colours correspond to different objects;
+      we use a <A HREF="./images/palette.png">fixed palette</A> to design 
+      courses.
+
+  <LI> All bitmaps are in the SGI RGB format (which can be read and
+      created by The GIMP), and can be compressed or uncompressed.
+
+  <LI> Textures must have dimensions that are a power of 2.
+</UL>
+
+</p>
+</td>
+  </tr>
+<!--
+  <tr>
+    <td valign="top"></td>
+    <td valign="top"><br><p align="right" class="small"><A HREF="#toc">[back to Contents]</A></p></td>
+  </tr>
+-->
+<BR>
+</table>
+<table cellpadding="0" cellspacing="4" border="0" width="100%">
+  <tr>
+    <td valign="top"><p class="heading3">Q:</p></td>
+    <td valign="top"><A NAME="linux_opengl_problems"></A><p class="heading3">When compiling under Linux, I get some OpenGL errors.  What's going on?</p></td>
+  </tr>
+  <tr>
+    <td valign="top"><p class="heading3">A:</p></td>
+    <td valign="top"><p class="bodytext">
+
+This could be due to several factors.  
+
+<OL>
+  <LI><p class="bodytext">
+      Make sure you're using a version of the tuxracer package &gt;
+      0.60.  That version had problems with some older gl.h header
+      files; later versions implement a workaround to this problem.
+      </p>
+
+  <LI><p class="bodytext">
+
+	Your OpenGL is too old. If you're using Mesa, make sure you
+	upgrade to version 3.2 or later (version 3.3 is the most
+	up-to-date, and seems very stable despite being a development
+	version).  Also make sure you install the libraries and header files
+	in the locations described in the next item.
+      
+      </p>
+      <p class="bodytext">
+      
+	If you get a warning about <tt>glXGetProcAddressARB</tt> being
+	undeclared, then you need a more up-to-date version of the
+        glx.h header file.  This may indiciate that your entire OpenGL
+	is out of date, but it's possible that all you need is a more 
+        recent version of glx.h.  You can get a copy from the latest 
+        release of <A HREF="http://mesa3d.sourceforge.net" >Mesa</A> -- it's in the include/GL directory.
+
+      </p>
+
+  <LI><p class="bodytext">
+
+      You have old copies of the OpenGL libraries on your system, and
+      those are being used instead of your up-to-date copies.  There
+      is an official standard for where to put the OpenGL libraries and
+      header files, agreed upon by all OpenGL providers for
+      Linux (<A HREF="http://oss.sgi.com/projects/ogl-sample/ABI/" >OpenGL Application Binary Interface for Linux</A>):
+
+      <UL>
+	<LI>OpenGL libraries should go in <tt>/usr/lib</tt>.  This
+	    includes libGL, libGLU, and libglut.
+	<LI>OpenGL headers should go in <tt>/usr/include/GL</tt>.  This
+	    includes gl.h, glu.h, glx.h, glut.h, glext.h, and possibly
+	    other files used by your OpenGL implementation.
+      </UL>
+      </p>
+      <p class="bodytext">
+
+      Tux Racer will look for OpenGL headers and libraries in those
+      locations by default.  Getting Tux Racer to compile and run with
+      OpenGL files installed elsewhere is possible, but requires more
+      work (you'll need to use the --with-gl* configure options). 
+
+      </p>
+      <p class="bodytext">
+
+      (Note that there is a bug in the configure script for versions
+      &lt;= 0.60.1 which puts <tt>-I/usr/include</tt> <i>before</i> the path
+      specified with --with-gl-inc, so if you have old OpenGL headers in
+      /usr/include/GL but wish to use other headers to compile Tux
+      Racer, you will have to fix the configure.in script yourself or
+      modify the Makefile manually.)
+
+      </p>
+
+  <LI><p class="bodytext">
+
+      You have an old copy of the glext.h header file.  You can get
+      the latest version from
+      <A HREF="http://oss.sgi.com/projects/ogl-sample/ABI/glext.h" >http://oss.sgi.com/projects/ogl-sample/ABI/glext.h</A>.  It should go
+      in <tt>/usr/include/GL</tt>.
+
+      </p>
+      <p class="bodytext">
+
+      Note that there was a documentation bug in version 0.60 that instructed
+      users to download glxext.h instead of glext.h.  This has been
+      corrected in version 0.60.1.
+
+      </p>
+
+</OL>
+
+</p>
+</td>
+  </tr>
+<!--
+  <tr>
+    <td valign="top"></td>
+    <td valign="top"><br><p align="right" class="small"><A HREF="#toc">[back to Contents]</A></p></td>
+  </tr>
+-->
+<BR>
+</table>
+<table cellpadding="0" cellspacing="4" border="0" width="100%">
+  <tr>
+    <td valign="top"><p class="heading3">Q:</p></td>
+    <td valign="top"><A NAME="linux_rock_crash"></A><p class="heading3">When I run Tux Racer under Linux, the program crashes
+when I slide over rock.  Is there a fix for this?</p></td>
+  </tr>
+  <tr>
+    <td valign="top"><p class="heading3">A:</p></td>
+    <td valign="top"><p class="bodytext">
+
+We believe that this is due to a bug in egcs-2.91.66, an
+"experimental" version of the gcc compiler (you can check which
+version you have by typing "gcc --version" at the shell prompt).
+There are two possible solutions:
+
+<UL>
+  <LI><p class="bodytext">Upgrade gcc to version 2.95.x.  (Note that the 2.96 and 2.97
+      releases are development versions and are not recommended.)</p>
+      <p class="bodytext">OR</p>
+  <LI>Rebuild tuxracer with debugging turned on.  This seems to make
+      the problem go away.
+      <div align="center">
+<table border="0" cellpadding="2" cellspacing="8" width="80%">
+  <tr><td bgcolor="#c0cddd"><font face="Courier, fixed-width" color="#303030" size="2"><B>shell$</B> make distclean<BR>
+<B>shell$</B> ./configure --enable-debug<BR>
+<B>shell$</B> make<BR>
+<B>shell$</B> make install<BR></font></td></tr>
+</table>
+</div>
+
+</UL>
+</p>
+
+</td>
+  </tr>
+<!--
+  <tr>
+    <td valign="top"></td>
+    <td valign="top"><br><p align="right" class="small"><A HREF="#toc">[back to Contents]</A></p></td>
+  </tr>
+-->
+<BR>
+</table>
+<table cellpadding="0" cellspacing="4" border="0" width="100%">
+  <tr>
+    <td valign="top"><p class="heading3">Q:</p></td>
+    <td valign="top"><A NAME="sdl_glide_conflict"></A><p class="heading3">I have a 3dfx video card and am running Linux.  
+                 If I compile the game with SDL, I get no hardware 
+                 acceleration.</p></td>
+  </tr>
+  <tr>
+    <td valign="top"><p class="heading3">A:</p></td>
+    <td valign="top"><p class="bodytext">
+
+According to Sam Lantinga, author of SDL:
+
+<blockquote>
+This is caused by a conflict between the version of XVidMode that SDL is
+linked with and the one compiled into Glide.  The latest SDL binaries
+(SDL 1.1.7 released today) have a hacked workaround for this problem.
+</blockquote>
+
+Therefore you should either upgrade to SDL &ge; 1.1.7, or disable the use of SDL
+altogether by passing the <tt>--disable-sdl</tt> flag to configure.
+</p>
+</td>
+  </tr>
+<!--
+  <tr>
+    <td valign="top"></td>
+    <td valign="top"><br><p align="right" class="small"><A HREF="#toc">[back to Contents]</A></p></td>
+  </tr>
+-->
+<BR>
+</table>
+<table cellpadding="0" cellspacing="4" border="0" width="100%">
+  <tr>
+    <td valign="top"><p class="heading3">Q:</p></td>
+    <td valign="top"><A NAME="rage128_fog"></A><p class="heading3">When I play the game, the screen is nearly all white.</p></td>
+  </tr>
+  <tr>
+    <td valign="top"><p class="heading3">A:</p></td>
+    <td valign="top"><p class="bodytext">
+
+This appears to be a problem with some drivers for the ATI Rage128 family of 
+video cards.  Make sure you are running the latest drivers for your card.  
+If upgrading the drivers doesn't work or isn't possible, then you can make 
+the game playable
+by disabling fog: set the <tt>disable_fog</tt> variable in the options file to 
+<tt>true</tt>.
+
+</p>
+</td>
+  </tr>
+<!--
+  <tr>
+    <td valign="top"></td>
+    <td valign="top"><br><p align="right" class="small"><A HREF="#toc">[back to Contents]</A></p></td>
+  </tr>
+-->
+<BR>
+</table>
+</td></tr></table></td>
+  </tr>
+</table>
+<map name="sidemenumap"> 
+<area shape="rect" coords="7,22,100,65" href="./index.html"> 
+<area shape="rect" coords="7,66,140,114" href="./screenshots.html"> 
+<area shape="rect" coords="7,115,125,161" href="./game_info.html"> 
+<area shape="rect" coords="7,162,115,206" href="./manual.html"> 
+<area shape="rect" coords="7,207,138,256" href="./download.html"> 
+<area shape="rect" coords="7,257,127,304" href="./purchase.html"> 
+<area shape="rect" coords="7,305,108,354" href="./faq.html"> 
+<area shape="rect" coords="7,355,109,404" href="./support.html"> 
+</map>
+<map name="topleftmap"> 
+<area shape="rect" coords="4,5,150,82" href="./index.html"> 
+</map>
+<map name="topmap"> 
+<area shape="rect" coords="421,6,589,37" href="http://www.sunspirestudios.com/"> 
+</map>
+</BODY>
+</HTML>
