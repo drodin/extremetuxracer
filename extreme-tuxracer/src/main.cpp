@@ -58,7 +58,7 @@
 /// instance of tcl interpreter
 Tcl_Interp *tclInterp;
 
-#define WINDOW_TITLE "Extreme Tux Racer - " VERSION
+#define WINDOW_TITLE "Extreme Tux Racer"
 
 #define GAME_INIT_SCRIPT "etracer_init.tcl"
 
