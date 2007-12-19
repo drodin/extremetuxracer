@@ -15,11 +15,11 @@ tux_hud -hud1 -type text \
 	-string "H|Time:"
 
 tux_hud -hud 1 -type image \
-	-position {-80 -16} \
-	-texture herring_icon \
-	-width 48 \
-	-height 30 \
-	-size 64
+   -position {-60 -3} \
+   -texture herring_icon \
+   -width 50 \
+   -height 50 \
+   -size 50
 
 tux_hud -hud 1 -type time \
 	-position {24 -36} \
