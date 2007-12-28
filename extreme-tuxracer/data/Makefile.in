@@ -451,6 +451,7 @@ nobase_dist_ppdata_DATA = \
 		courses/themes/common.tcl \
 		courses/course_idx.tcl \
 		fonts/PaperCuts20.ttf \
+		fonts/PaperCuts_outline.ttf \
 		music/race1-jt.it \
 		music/wonrace1-jt.it \
 		music/race2-jt.it \
@@ -464,6 +465,7 @@ nobase_dist_ppdata_DATA = \
 		textures/splash.png \
 		textures/splash_small.png \
 		textures/herringicon.png \
+		textures/timeicon.png \
 		textures/menu_bottom_left.png \
 		textures/menu_top_right.png \
 		textures/nopreview.png \
@@ -489,6 +491,7 @@ nobase_dist_ppdata_DATA = \
 		translations/de_DE.tcl \
 		translations/nl_NL.tcl \
 		translations/es_ES.tcl \
+		translations/pl_PL.tcl \
 		translations/eu_ES.tcl \
 		translations/fr_FR.tcl \
 		translations/fi_FI.tcl \
@@ -508,6 +511,7 @@ nobase_dist_ppdata_DATA = \
 		sounds/fish_pickup2.wav \
 		sounds/fish_pickup3.wav \
 		terrains.png \
+		objects.png \
 		etracer_init.tcl \
 		tux_walk.tcl \
 		models.tcl

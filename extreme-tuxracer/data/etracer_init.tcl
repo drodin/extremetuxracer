@@ -237,12 +237,15 @@ pp_bind_font -binding credits_h2 -font credits_text -color {1.00 0.89 0.01 1.0}
 
 
 #we don't be this because hud fonts need to be fast
-pp_load_font -binding time_label -font fonts/PaperCuts20.ttf -size 20 -color {0.8 0.7 0.01 1.0}
-pp_load_font -binding herring_count -font fonts/PaperCuts20.ttf -size 30 -color {0.8 0.7 0.01 1.0}
+pp_load_font -binding herring_count -font fonts/PaperCuts20.ttf -size 40 -color {1.00 0.89 0.01 1.0}
+pp_load_font -binding herring_count_outline -font fonts/PaperCuts_outline.ttf -size 40 -color {0 0 0 1.0}
 pp_load_font -binding fps -font fonts/PaperCuts20.ttf -size 20 -color {0.8 0.7 0.01 1.0}
-pp_load_font -binding time_value -font fonts/PaperCuts20.ttf -size 30 -color {0.8 0.7 0.01 1.0}
-pp_load_font -binding speed_digits -font fonts/PaperCuts20.ttf -size 35 -color {1.00 0.89 0.01 1.0}
-pp_load_font -binding speed_units -font fonts/PaperCuts20.ttf -size 20 -color {1.00 0.89 0.01 1.0}
+pp_load_font -binding time_value -font fonts/PaperCuts20.ttf -size 40 -color {1.00 0.89 0.01 1.0}
+pp_load_font -binding speed_digits -font fonts/PaperCuts20.ttf -size 40 -color {1.00 0.89 0.01 1.0}
+pp_load_font -binding speed_units -font fonts/PaperCuts20.ttf -size 25 -color {1.00 0.89 0.01 1.0}
+
+pp_load_font -binding speed_digits_outline -font fonts/PaperCuts_outline.ttf -size 40 -color {0 0 0 1.0}
+pp_load_font -binding speed_units_outline -font fonts/PaperCuts_outline.ttf -size 25 -color {0 0 0 1.0}
 
 # not used
 #pp_load_font -binding time_hundredths -font fonts/PaperCuts20.ttf -size 20 -color {1.00 0.89 0.01 1.0}
@@ -251,6 +254,9 @@ pp_load_font -binding speed_units -font fonts/PaperCuts20.ttf -size 20 -color {1
 # HUD
 tux_load_texture herring_icon textures/herringicon.png 0
 tux_bind_texture herring_icon herring_icon
+
+tux_load_texture time_icon textures/timeicon.png 0
+tux_bind_texture time_icon time_icon
 
 tux_load_texture gauge_outline textures/gaugeoutline.png 0
 tux_bind_texture gauge_outline gauge_outline
