@@ -115,7 +115,7 @@
 
 /* Tcl -- name of header is system-dependent :( */
 //#include TCL_HEADER
-#include <tcl8.4/tcl.h>
+#include <tcl.h>
 
 
 #ifndef M_PI
