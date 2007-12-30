@@ -66,6 +66,7 @@
 #include "string_util.h"
 #include "course_mgr.h"
 #include "winsys.h"
+#include "ppgltk/audio/audio.h"
 
 
 #if defined( WIN32 )
@@ -89,6 +90,8 @@
 #    define DATA_DIR PP_DATADIR
 #  endif /* defined( WIN32 ) */
 #endif
+
+
 
 
 static const char* sp_config_file=NULL;
@@ -1269,3 +1272,4 @@ void register_game_config_callbacks( Tcl_Interp *ip )
     Tcl_CreateCommand (ip, "tux_get_param", get_param_cb,   0,0);
     Tcl_CreateCommand (ip, "tux_set_param", set_param_cb,   0,0);
 }
+

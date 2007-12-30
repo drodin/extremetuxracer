@@ -1,7 +1,7 @@
 /* 
  * Extreme Tux Racer (Not Copyrighted)
  * 
- * based on Planet Penguin Racer and Tux Racer: 
+ * based on Planet Penguin Racer, Open Racer, and Tux Racer: 
  * Copyright (C) 2004-2005 Volker Stroebel <volker@planetpenguin.de>
  *
  * Copyright (C) 1999-2001 Jasmin F. Patry
@@ -40,10 +40,11 @@ typedef struct {
 static credit_line_t credit_lines[] = 
 {
 	{ NULL, "credits_h1", "Extreme Tux Racer" },
+    { NULL, "credits_text", "Version 0.4" },
     { NULL, "credits_text", "on the web at: www.extremetuxracer.com" },
     { NULL, "credits_text", "" },	
 	{ NULL, "credits_text", "This version of Extreme Tux Racer was developed" },	
-	{ NULL, "credits_text", "by the 'Media' team organized by Christian Picon" },	
+	{ NULL, "credits_text", "by the 'Media' team, organized by Christian Picon" },	
 	{ NULL, "credits_text", "and includes very few code changes. " },	
 	{ NULL, "credits_text", "" },		
 	{ NULL, "credits_text", "Extreme Tux Racer is based on:" },
@@ -67,26 +68,17 @@ static credit_line_t credit_lines[] =
 	{ NULL, "credits_h2", "Translators" },
 	{ NULL, "credits_text", "Nicosmos (French)" },
 	{ NULL, "credits_text", "teksturi (Finnish)" },
-	{ NULL, "credits_text", "spacedwarv and JoyFM (German)" },
+	{ NULL, "credits_text", "arith, spacedwarv, and JoyFM (German)" },
 	{ NULL, "credits_text", "spectrum (Italian)" },
 	{ NULL, "credits_text", "Torandi (Swedish)" },
-    { NULL, "credits_text", "Asciimonster (Dutch)" },
-    { NULL, "credits_text_small", "for Planet Penguin Racer:" },
-	{ NULL, "credits_text", "Alexander Aksenov" },	
-	{ NULL, "credits_text", "Eric Alvarez Llimos" },	
-	{ NULL, "credits_text", "Helder Correia" },	
-	{ NULL, "credits_text", "Karl Ove Hufthammer" },	
-	{ NULL, "credits_text", "Marco Antonio Blanco" },	
-	{ NULL, "credits_text", "Massimo Spazian" },	
-	{ NULL, "credits_text", "Mikel Olasagasti" },	
-	{ NULL, "credits_text", "Spiral" },	
-	{ NULL, "credits_text", "Theo Snelleman" },	
-	{ NULL, "credits_text", "Trygve B. Wiig" },
+    	{ NULL, "credits_text", "Asciimonster (Dutch)" },
+    	{ NULL, "credits_text", "woody (Polish)" },
+    	{ NULL, "credits_text_small", "other (incomplete) translations are from the PPRacer Project" },
     { NULL, "credits_text", "" },
     { NULL, "credits_h2", "Graphics" },
-    { NULL, "credits_text", "Nicosmos (Logo)" },
+    { NULL, "credits_text", "Nicosmos (Logo, Hud Graphics)" },
     { NULL, "credits_text", "Christian Picon (Objects)" },
-    { NULL, "credits_text", "Daniel Peoira and Christian Picon (Font)" },
+    { NULL, "credits_text", "Daniel Poeira and Christian Picon (Font)" },
     { NULL, "credits_text", "" },
 	{ NULL, "credits_h2", "Contributors" },
 	{ NULL, "credits_text", "Peter Reichel" },
@@ -101,15 +93,15 @@ static credit_line_t credit_lines[] =
     { NULL, "credits_text", "Ranger (for hosting the website)" },
     { NULL, "credits_text", "Slythfox (for making the website)" },
     { NULL, "credits_text", "The OpenRacer project" },
+    { NULL, "credits_text", "Erin (for helping with code modification" },
     { NULL, "credits_text", "All the people on the forum." },
+    { NULL, "credits_text", "Larry Ewing (creator of Tux)" },
     { NULL, "credits_text_small", "(for PP Racer and Tux Racer)" },
-    { NULL, "credits_text", "Larry Ewing" },
     { NULL, "credits_text", "Thatcher Ulrich" },
     { NULL, "credits_text", "Steve Baker" },
     { NULL, "credits_text", "Ingo Ruhnke" },
     { NULL, "credits_text", "James Barnard" },
     { NULL, "credits_text", "Alan Levy" },
-    { NULL, "credits_text", "University of Waterloo Computer Graphics Lab" },
     { NULL, "credits_text", "" },
   { NULL, "credits_text_small", "Tux Racer is a trademark of Jasmin F. Patry" },
 	{ NULL, "credits_text_small", "Extreme Tux Racer is licenced under the GPL." },

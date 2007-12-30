@@ -88,9 +88,14 @@ if { [tux_load_music start_screen music/start1-jt.it] } {
     tux_bind_music start_screen start_screen -1
 }
 
+# Credits screen
+if { [tux_load_music credits_screen music/credits1-jt.it] } {
+    tux_bind_music credits_screen credits_screen -1
+}
+
 # Options screen
 if { [tux_load_music options_screen music/options1-jt.it] } {
-    tux_bind_music credits_screen options_screen -1
+    tux_bind_music options_screen options_screen -1
 }
 
 # Music played during race

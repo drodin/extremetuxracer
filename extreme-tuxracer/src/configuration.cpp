@@ -28,6 +28,7 @@ static game_mode_t preConfigMode = NO_MODE;
 
 Configuration::Configuration()
 {
+  play_music( "options_screen" );
 	if(GameMode::prevmode==GAME_TYPE_SELECT || GameMode::prevmode == PAUSED){
 		preConfigMode = GameMode::prevmode;
 	}
