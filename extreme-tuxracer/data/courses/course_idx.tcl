@@ -97,8 +97,8 @@ tux_load_texture noicon textures/noicon.png
 
 cd courses
 
-tux_load_texture herring_run_icon events/herring_run/herringrunicon.png 0
-tux_load_texture cup_icon events/herring_run/cupicon.png 0
+tux_load_texture herring_run_icon events/b-herring_run/herringrunicon.png 0
+tux_load_texture cup_icon events/b-herring_run/cupicon.png 0
 
 tux_load_texture no_preview ../textures/nopreview.png
 tux_bind_texture no_preview no_preview
