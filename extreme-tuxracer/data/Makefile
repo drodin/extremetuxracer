@@ -55,11 +55,11 @@ am__installdirs = "$(DESTDIR)$(ppdatadir)"
 nobase_dist_ppdataDATA_INSTALL = $(install_sh_DATA)
 DATA = $(nobase_dist_ppdata_DATA)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
-ACLOCAL = ${SHELL} /home/christian/Desktop/extremetuxracer/missing --run aclocal-1.10
-AMTAR = ${SHELL} /home/christian/Desktop/extremetuxracer/missing --run tar
-AUTOCONF = ${SHELL} /home/christian/Desktop/extremetuxracer/missing --run autoconf
-AUTOHEADER = ${SHELL} /home/christian/Desktop/extremetuxracer/missing --run autoheader
-AUTOMAKE = ${SHELL} /home/christian/Desktop/extremetuxracer/missing --run automake-1.10
+ACLOCAL = ${SHELL} /home/christian/Desktop/extremetuxracer-0.4beta2/missing --run aclocal-1.10
+AMTAR = ${SHELL} /home/christian/Desktop/extremetuxracer-0.4beta2/missing --run tar
+AUTOCONF = ${SHELL} /home/christian/Desktop/extremetuxracer-0.4beta2/missing --run autoconf
+AUTOHEADER = ${SHELL} /home/christian/Desktop/extremetuxracer-0.4beta2/missing --run autoheader
+AUTOMAKE = ${SHELL} /home/christian/Desktop/extremetuxracer-0.4beta2/missing --run automake-1.10
 AWK = mawk
 CC = gcc
 CCDEPMODE = depmode=gcc3
@@ -91,7 +91,7 @@ LIBOBJS =
 LIBS =   -lSM -lICE  -lX11 -lXi -lXext -lXmu -lXt   -ldl -lm -L/usr/lib -lSDL -lSDL_mixer  -lGL -lGLU -L/usr/lib -ltcl8.4${TCL_DBGX} -ldl  -lpthread -lieee -lm -lpng12   -lfreetype -lz
 LTLIBOBJS = 
 MAINT = #
-MAKEINFO = ${SHELL} /home/christian/Desktop/extremetuxracer/missing --run makeinfo
+MAKEINFO = ${SHELL} /home/christian/Desktop/extremetuxracer-0.4beta2/missing --run makeinfo
 MKDIR_P = /bin/mkdir -p
 OBJEXT = o
 PACKAGE = etracer
@@ -118,10 +118,10 @@ X_CFLAGS =
 X_EXTRA_LIBS = 
 X_LIBS = 
 X_PRE_LIBS =  -lSM -lICE
-abs_builddir = /home/christian/Desktop/extremetuxracer/data
-abs_srcdir = /home/christian/Desktop/extremetuxracer/data
-abs_top_builddir = /home/christian/Desktop/extremetuxracer
-abs_top_srcdir = /home/christian/Desktop/extremetuxracer
+abs_builddir = /home/christian/Desktop/extremetuxracer-0.4beta2/data
+abs_srcdir = /home/christian/Desktop/extremetuxracer-0.4beta2/data
+abs_top_builddir = /home/christian/Desktop/extremetuxracer-0.4beta2
+abs_top_srcdir = /home/christian/Desktop/extremetuxracer-0.4beta2
 ac_ct_CC = gcc
 ac_ct_CXX = g++
 am__include = include
@@ -149,7 +149,7 @@ host_vendor = unknown
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = $(SHELL) /home/christian/Desktop/extremetuxracer/install-sh
+install_sh = $(SHELL) /home/christian/Desktop/extremetuxracer-0.4beta2/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -549,6 +549,7 @@ courses/events/a-tux_racer/path_of_daggers/elev.png \
 		translations/nb_NO.tcl \
 		translations/nn_NO.tcl \
 		translations/pt_PT.tcl \
+		translations/ro_RO.tcl \
 		translations/ru_RU.tcl \
 		tux.tcl \
 		tux_snowboard.tcl \
@@ -564,6 +565,7 @@ courses/events/a-tux_racer/path_of_daggers/elev.png \
 		etracer_init.tcl \
 		tux_walk.tcl \
 		models.tcl
+
 all: all-am
 
 .SUFFIXES:
