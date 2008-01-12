@@ -503,7 +503,7 @@ courses/events/a-tux_racer/path_of_daggers/elev.png \
 		fonts/PaperCuts_outline.ttf \
 		music/race1-jt.it \
 		music/wonrace1-jt.it \
-		music/credits1-jt.it \
+		music/credits1-cp.it \
 		music/options1-jt.it \
 		music/start1-jt.it \
 		music/readme \
@@ -551,6 +551,7 @@ courses/events/a-tux_racer/path_of_daggers/elev.png \
 		translations/pt_PT.tcl \
 		translations/ro_RO.tcl \		
 		translations/ru_RU.tcl \
+		translations/sk_SK.tcl \
 		tux.tcl \
 		tux_snowboard.tcl \
 		sounds/tux_hit_tree1.wav \

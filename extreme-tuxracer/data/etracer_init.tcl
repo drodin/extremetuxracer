@@ -89,7 +89,7 @@ if { [tux_load_music start_screen music/start1-jt.it] } {
 }
 
 # Credits screen
-if { [tux_load_music credits_screen music/credits1-jt.it] } {
+if { [tux_load_music credits_screen music/credits1-cp.it] } {
     tux_bind_music credits_screen credits_screen -1
 }
 
