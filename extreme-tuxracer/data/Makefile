@@ -55,11 +55,11 @@ am__installdirs = "$(DESTDIR)$(ppdatadir)"
 nobase_dist_ppdataDATA_INSTALL = $(install_sh_DATA)
 DATA = $(nobase_dist_ppdata_DATA)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
-ACLOCAL = ${SHELL} /home/christian/Desktop/extremetuxracer-0.4beta2/missing --run aclocal-1.10
-AMTAR = ${SHELL} /home/christian/Desktop/extremetuxracer-0.4beta2/missing --run tar
-AUTOCONF = ${SHELL} /home/christian/Desktop/extremetuxracer-0.4beta2/missing --run autoconf
-AUTOHEADER = ${SHELL} /home/christian/Desktop/extremetuxracer-0.4beta2/missing --run autoheader
-AUTOMAKE = ${SHELL} /home/christian/Desktop/extremetuxracer-0.4beta2/missing --run automake-1.10
+ACLOCAL = ${SHELL} /home/christian/Desktop/extremetuxracer/missing --run aclocal-1.10
+AMTAR = ${SHELL} /home/christian/Desktop/extremetuxracer/missing --run tar
+AUTOCONF = ${SHELL} /home/christian/Desktop/extremetuxracer/missing --run autoconf
+AUTOHEADER = ${SHELL} /home/christian/Desktop/extremetuxracer/missing --run autoheader
+AUTOMAKE = ${SHELL} /home/christian/Desktop/extremetuxracer/missing --run automake-1.10
 AWK = mawk
 CC = gcc
 CCDEPMODE = depmode=gcc3
@@ -68,7 +68,7 @@ CPP = gcc -E
 CPPFLAGS =   -DTUXRACER_NO_ASSERT=1 -DHAVE_SDL_MIXER=1 
 CXX = g++
 CXXDEPMODE = depmode=gcc3
-CXXFLAGS = -g -O2  -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT -I -I/usr/include/tcl8.4 -DPNG_NO_MMX_CODE -I/usr/include/libpng12   -I/usr/include/freetype2
+CXXFLAGS = -g -O2  -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT -I/usr/include/tcl8.4 -DPNG_NO_MMX_CODE -I/usr/include/libpng12   -I/usr/include/freetype2
 CYGPATH_W = echo
 DEFS = -DHAVE_CONFIG_H
 DEPDIR = .deps
@@ -91,7 +91,7 @@ LIBOBJS =
 LIBS =   -lSM -lICE  -lX11 -lXi -lXext -lXmu -lXt   -ldl -lm -L/usr/lib -lSDL -lSDL_mixer  -lGL -lGLU -L/usr/lib -ltcl8.4${TCL_DBGX} -ldl  -lpthread -lieee -lm -lpng12   -lfreetype -lz
 LTLIBOBJS = 
 MAINT = #
-MAKEINFO = ${SHELL} /home/christian/Desktop/extremetuxracer-0.4beta2/missing --run makeinfo
+MAKEINFO = ${SHELL} /home/christian/Desktop/extremetuxracer/missing --run makeinfo
 MKDIR_P = /bin/mkdir -p
 OBJEXT = o
 PACKAGE = etracer
@@ -118,10 +118,10 @@ X_CFLAGS =
 X_EXTRA_LIBS = 
 X_LIBS = 
 X_PRE_LIBS =  -lSM -lICE
-abs_builddir = /home/christian/Desktop/extremetuxracer-0.4beta2/data
-abs_srcdir = /home/christian/Desktop/extremetuxracer-0.4beta2/data
-abs_top_builddir = /home/christian/Desktop/extremetuxracer-0.4beta2
-abs_top_srcdir = /home/christian/Desktop/extremetuxracer-0.4beta2
+abs_builddir = /home/christian/Desktop/extremetuxracer/data
+abs_srcdir = /home/christian/Desktop/extremetuxracer/data
+abs_top_builddir = /home/christian/Desktop/extremetuxracer
+abs_top_srcdir = /home/christian/Desktop/extremetuxracer
 ac_ct_CC = gcc
 ac_ct_CXX = g++
 am__include = include
@@ -149,7 +149,7 @@ host_vendor = unknown
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = $(SHELL) /home/christian/Desktop/extremetuxracer-0.4beta2/install-sh
+install_sh = $(SHELL) /home/christian/Desktop/extremetuxracer/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -566,7 +566,6 @@ courses/events/a-tux_racer/path_of_daggers/elev.png \
 		etracer_init.tcl \
 		tux_walk.tcl \
 		models.tcl
-
 all: all-am
 
 .SUFFIXES:
