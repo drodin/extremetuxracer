@@ -14,16 +14,16 @@ tux_fog -on -mode linear -start -10 -end $fog_dist -color { 0.58 0.59 0.65 1.0 }
 tux_particle_color { 0.36 0.41 0.49 1.0 }
   
     
-tux_load_texture envmap envmap.pgn 0
+tux_load_texture envmap envmap.png 0
 tux_bind_texture terrain_envmap envmap
 
 
-tux_load_texture alpine1-front cloudyfront.pgn 0
-tux_load_texture alpine1-right cloudyright.pgn 0
-tux_load_texture alpine1-left cloudyleft.pgn 0
-tux_load_texture alpine1-back cloudyback.pgn 0
-tux_load_texture alpine1-top cloudytop.pgn 0
-tux_load_texture alpine1-bottom cloudybottom.pgn 0
+tux_load_texture alpine1-front cloudyfront.png 0
+tux_load_texture alpine1-right cloudyright.png 0
+tux_load_texture alpine1-left cloudyleft.png 0
+tux_load_texture alpine1-back cloudyback.png 0
+tux_load_texture alpine1-top cloudytop.png 0
+tux_load_texture alpine1-bottom cloudybottom.png 0
 
 tux_bind_texture sky_front alpine1-front
 tux_bind_texture sky_right alpine1-right
