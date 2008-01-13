@@ -2,10 +2,11 @@
 #
 #Changelog:
 #2007-09-13 - Initial Translation
+#2008-01-12 - Corrected two typos
 
 #common strings
 pp_translate_string "Back" "Tillbaka"
-pp_translate_string "PRESS ANY KEY TO START" "TRYCK PÅ VALFRIKNAPP FÖR ATT BÖRJA"
+pp_translate_string "PRESS ANY KEY TO START" "TRYCK PÅ VALFRI KNAPP FÖR ATT BÖRJA"
 
 #game_type_select
 pp_translate_string "Enter an event" "Turnering"
@@ -72,7 +73,7 @@ pp_translate_string "Enable Joystick" "Aktivera Joystick:"
 
 #race select
 pp_translate_string "Race!" "Kör!"
-pp_translate_string "Select a race" "Välj en lopp"
+pp_translate_string "Select a race" "Välj ett lopp"
 pp_translate_string "Contributed by:" "Skapad av:"
 pp_translate_string "Unknown" "Okänd"
 pp_translate_string "Time:" "Tid:"

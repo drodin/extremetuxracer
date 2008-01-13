@@ -510,7 +510,7 @@ void init_game_configuration()
 	"# Set this to true to display the current framerate in Hz." );
 
     INIT_PARAM_BOOL( 
-	display_course_percentage, false,
+	display_course_percentage, true,
 	"# Set this to true to display a progressbar of \n"
 	"# the course percentage." );
 
@@ -676,7 +676,7 @@ void init_game_configuration()
 	warning_level, 100 ,
 	"# [EXPERT] Controls the Tux Racer warning messages" );
     INIT_PARAM_INT( 
-	forward_clip_distance, 75 ,
+	forward_clip_distance, 100 ,
 	"# Controls how far ahead of the camera the course\n"
 	"# is rendered.  Larger values mean that more of the course is\n"
 	"# rendered, resulting in slower performance. Decreasing this \n"
@@ -738,10 +738,10 @@ void init_game_configuration()
 	music_enabled, true ,
 	"# Use this to turn music on and off." );
     INIT_PARAM_INT( 
-	sound_volume, 127 ,
+	sound_volume, 64 ,
 	"# This controls the sound volume (valid range is 0-127)." );
     INIT_PARAM_INT( 
-	music_volume, 64 ,
+	music_volume, 127 ,
 	"# This controls the music volume (valid range is 0-127)." );
     INIT_PARAM_INT( 
 	audio_freq_mode, 1 ,
