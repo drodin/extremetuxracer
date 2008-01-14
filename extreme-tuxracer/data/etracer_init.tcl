@@ -236,15 +236,17 @@ pp_load_font -binding event_and_cup_label \
 
 # credits
 pp_load_font -binding credits_text -font fonts/PaperCuts20.ttf -size 20
+pp_load_font -binding credits_text_big -font fonts/PaperCuts20.ttf -size 40
 pp_load_font -binding credits_text_small -font fonts/PaperCuts20.ttf -size 14
 pp_bind_font -binding credits_h1 -font button_label_hilit
 pp_bind_font -binding credits_h2 -font credits_text -color {1.00 0.89 0.01 1.0}
+pp_bind_font -binding credits_text_big -font credits_text_big -color {1.00 0.89 0.01 1.0}
 
 
 #we don't be this because hud fonts need to be fast
 pp_load_font -binding herring_count -font fonts/PaperCuts20.ttf -size 40 -color {1.00 0.89 0.01 1.0}
 pp_load_font -binding herring_count_outline -font fonts/PaperCuts_outline.ttf -size 40 -color {0 0 0 1.0}
-pp_load_font -binding fps -font fonts/PaperCuts20.ttf -size 20 -color {0.8 0.7 0.01 1.0}
+pp_load_font -binding fps -font fonts/PaperCuts20.ttf -size 20 -color {1.00 0.89 0.01 1.0}
 pp_load_font -binding time_value -font fonts/PaperCuts20.ttf -size 40 -color {1.00 0.89 0.01 1.0}
 pp_load_font -binding speed_digits -font fonts/PaperCuts20.ttf -size 40 -color {1.00 0.89 0.01 1.0}
 pp_load_font -binding speed_units -font fonts/PaperCuts20.ttf -size 25 -color {1.00 0.89 0.01 1.0}

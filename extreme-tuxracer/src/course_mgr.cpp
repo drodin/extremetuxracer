@@ -293,6 +293,17 @@ CourseData* create_race_data ( Tcl_Interp *ip, CONST84 char *string, char **err_
 	    }
 
 	    race_data->description = *argv; //string_copy( *argv );
+		            race_data->description = *argv; //string_copy( *argv );
+
+      } else if ( strcmp( *argv, "-contributed" ) == 0 ) {
+           NEXT_ARG;
+
+          if ( *argv == NULL ) {
+              *err_msg = "No data supplied for -contributed in race data";
+              goto bail_race_data;
+           }
+
+           race_data->contributed = *argv; //string_copy( *argv );
 	} else if ( strcmp( *argv, "-herring" ) == 0 ) {
 	    NEXT_ARG;
 
