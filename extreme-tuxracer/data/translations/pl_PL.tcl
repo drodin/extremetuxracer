@@ -43,6 +43,8 @@ pp_translate_string "Bits Per Pixel:" "Głębia koloru:"
 pp_translate_string "Fullscreen:" "Pełny ekran:"
 pp_translate_string "Experimental (needs restart)" "Ust. eksperymentalne (wymagają restartu)"
 pp_translate_string "Enable FSAA:" "Włącz FSAA:"
+pp_translate_string "FSAA Multisamples:" "Próbkowanie FSAA:"
+pp_translate_string "Stencil Buffer:" "Bufor szablonowy:"
 pp_translate_string "To change the resolution, or switch into fullscreen mode" "Aby zmienić rozdzielczość lub przełączyć na pełny ekran"
 pp_translate_string "use options.txt, located in the config folder." "użyj pliku options.txt, który znajduje się w folderze config."
 
@@ -129,7 +131,7 @@ pp_translate_string "7:th" "7."
 pp_translate_string "8:th" "8."
 pp_translate_string "9:th" "9."
 pp_translate_string "10:th" "10."
-pp_translate_string " (%4d points)" " (%4d pkt)"
+pp_translate_string " (%d points)" " (%d pkt)"
 pp_translate_string "No records" "Brak rekordów"
 
 

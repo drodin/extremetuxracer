@@ -323,7 +323,7 @@ highscore::getCourseList_hd() {
 std::string
 highscore::scorepost::toString() {
 	char buff[40];
-	snprintf(buff, 40, (nick+" (%d points)").c_str(), score );
+	snprintf(buff, 40, ( nick + _(" (%d points)") ).c_str(), score );
 	return std::string(buff);
 }
 

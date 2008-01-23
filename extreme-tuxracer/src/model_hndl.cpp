@@ -464,7 +464,7 @@ tux_add_model_cb ( ClientData cd, Tcl_Interp *ip,
     }
  
     model_t tmp_model;
-    tmp_model.name = string_copy( argv[2] );
+    tmp_model.name = _(string_copy( argv[2] ));
     tmp_model.filename = string_copy( argv[1] );
     tmp_model.id = ModelHndl->num_models++;
     ModelHndl->l_models.push_back(tmp_model);

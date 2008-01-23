@@ -34,6 +34,7 @@ pp_translate_string "Enter an event" "Enter a campaign"
 #pp_translate_string "Reflections:" ""
 #pp_translate_string "Shadows:" ""
 #pp_translate_string "Model:" ""
+#pp_translate_string "Tux on Snowboard" ""
 
 #video configuration
 #pp_translate_string "Video Configuration" ""
@@ -42,6 +43,8 @@ pp_translate_string "Enter an event" "Enter a campaign"
 #pp_translate_string "Fullscreen:" ""
 #pp_translate_string "Experimental (needs restart)" ""
 #pp_translate_string "Enable FSAA:" ""
+#pp_translate_string "FSAA Multisamples:" ""
+#pp_translate_string "Stencil Buffer:" "" 
 #pp_translate_string "To change the resolution, or switch into fullscreen mode" ""
 #pp_translate_string "use options.txt, located in the config folder." ""
 
@@ -128,6 +131,8 @@ pp_translate_string "Congratulations! You won the event!" "Congratulations! You 
 #pp_translate_string "8:th" ""
 #pp_translate_string "9:th" ""
 #pp_translate_string "10:th" ""
+#pp_translate_string " (%d points)" ""
+#pp_translate_string "No records" "" 
 
 #HUD
 #Strings are prefixed to prevent collisions with the UI

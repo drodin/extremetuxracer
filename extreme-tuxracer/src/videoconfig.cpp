@@ -189,7 +189,7 @@ VideoConfig::setWidgetPositions()
 	font->draw(_("Experimental (needs restart)"),pos);
 	
 	pos.y-=40;
-	font->draw("Stencil Buffer:",pos);
+	font->draw(_("Stencil Buffer:"),pos);
 	mp_stencilBox->setPosition(pp::Vec2d(pos.x+width-32,pos.y));
 	
 	pos.y-=40;
@@ -197,7 +197,7 @@ VideoConfig::setWidgetPositions()
 	mp_fsaaBox->setPosition(pp::Vec2d(pos.x+width-32,pos.y));
 	
 	pos.y-=40;
-	font->draw("FSAA Multisamples:",pos);
+	font->draw(_("FSAA Multisamples:"),pos);
 	mp_multisampleListbox->setPosition(pp::Vec2d(pos.x+width-150,pos.y));
 
 }

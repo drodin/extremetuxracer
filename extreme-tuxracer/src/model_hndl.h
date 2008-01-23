@@ -24,6 +24,7 @@
 
 #include "etracer.h"
 #include "ppgltk/ppgltk.h"
+#include "translation.h"
 #include <list>
 #include <string>
 
