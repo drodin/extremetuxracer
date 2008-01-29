@@ -576,7 +576,7 @@ PACKAGE_VERSION=
 PACKAGE_STRING=
 PACKAGE_BUGREPORT=
 
-ac_unique_file="src/ppracer.h"
+ac_unique_file="src/etracer.h"
 # Factoring default headers for most tests.
 ac_includes_default="\
 #include <stdio.h>
@@ -2255,7 +2255,7 @@ fi
 
 # Define the identity of the package.
  PACKAGE=etracer
- VERSION="0.3.1"
+ VERSION="SVN Development"
 
 
 cat >>confdefs.h <<_ACEOF
@@ -7643,6 +7643,8 @@ echo "$as_me: error: SDL not found - use the --with-sdl-* options" >&2;}
 fi
 
 
+if test "x`uname -s`" != "xDarwin"; then
+            
 # Check whether --with-gl-libs was given.
 if test "${with_gl_libs+set}" = set; then
   withval=$with_gl_libs; 
@@ -8315,7 +8317,13 @@ fi
 LIBS="$saved_LIBS"
 TR_LIBS="$TR_LIBS -l$GLU_LIB_NAME"
 
-
+else
+       
+    LIBS="$LIBS -framework OpenGL"
+    TR_LIBS="$TR_LIBS -framework OpenGL"
+    GL_LIB_NAME="-framework OpenGL"
+    GLU_LIB_NAME="-framework OpenGL"
+fi 
 
 
 # Check whether --with-gl-inc was given.
@@ -10769,7 +10777,7 @@ fi
 
 
 echo 
-echo PlanetPenguin Racer $VERSION
+echo Extreme Tux Racer $VERSION
 echo
 echo libpng12 ........... $PNG_VERSION
 
