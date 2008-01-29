@@ -210,6 +210,11 @@ fi
 dnl --------------------------------------------------------------------------
 dnl Check for GL library
 dnl --------------------------------------------------------------------------
+
+if test "x`uname -s`" != "xDarwin"; then
+    dnl On mac OS X OpenGL is not installed Unix-style
+    dnl so all the tests below make no sense on that platform.
+    dnl Plus, it's installed by default and there's no way it could not be there 
 AC_ARG_WITH(gl-libs,      [  --with-gl-libs=DIR      GL/MesaGL library location])
 AC_ARG_WITH(gl-lib-name,  [  --with-gl-lib-name=NAME GL library name])
 
@@ -338,7 +343,14 @@ fi
 LIBS="$saved_LIBS"
 TR_LIBS="$TR_LIBS -l$GLU_LIB_NAME"
 
-
+else
+    dnl OpenGL on mac OS X
+   
+    LIBS="$LIBS -framework OpenGL"
+    TR_LIBS="$TR_LIBS -framework OpenGL"
+    GL_LIB_NAME="-framework OpenGL"
+    GLU_LIB_NAME="-framework OpenGL"
+fi 
 dnl --------------------------------------------------------------------------
 dnl Check for OpenGL headers
 dnl --------------------------------------------------------------------------
