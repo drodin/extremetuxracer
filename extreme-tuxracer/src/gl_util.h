@@ -52,8 +52,18 @@
 #   error "*** You need a more recent copy of glext.h.  You can get one at http://oss.sgi.com/projects/ogl-sample/ABI/glext.h ; it goes in /usr/include/GL. ***"
 #endif
 
+// support for systems where there is no need to retrieve pointers to these functions (e.g. mac OS X)
+#if defined(__APPLE__) && !defined(GL_GLEXT_FUNCTION_POINTERS)
+#define NO_FUNCTION_POINTERS
+#endif
+
+#ifndef NO_FUNCTION_POINTERS
 extern PFNGLLOCKARRAYSEXTPROC glLockArraysEXT_p;
 extern PFNGLUNLOCKARRAYSEXTPROC glUnlockArraysEXT_p;
+#else
+#define glLockArraysEXT_p glLockArraysEXT
+#define glUnlockArraysEXT_p glUnlockArraysEXT
+#endif
 
 typedef enum {
     GUI,
