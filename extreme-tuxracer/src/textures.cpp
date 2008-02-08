@@ -119,7 +119,7 @@ bool load_texture( const char *texname, const char *filename, int repeatable )
                      get_min_filter() );
 		
     /* Check if we need to scale image */
-    glGetIntegerv( GL_MAX_TEXTURE_SIZE, &max_texture_size );
+    glGetIntegerv( GL_MAX_TEXTURE_SIZE, (GLint*) &max_texture_size );
     if ( texImage->width > max_texture_size ||
 	 texImage->height > max_texture_size ) 
     {
@@ -232,8 +232,8 @@ bool unbind_texture( const char *binding )
 
 void get_current_texture_dimensions( int *width, int *height )
 {
-    glGetTexLevelParameteriv( GL_TEXTURE_2D, 0, GL_TEXTURE_WIDTH, width );
-    glGetTexLevelParameteriv( GL_TEXTURE_2D, 0, GL_TEXTURE_HEIGHT, height );
+    glGetTexLevelParameteriv( GL_TEXTURE_2D, 0, GL_TEXTURE_WIDTH, (GLint*) width );
+    glGetTexLevelParameteriv( GL_TEXTURE_2D, 0, GL_TEXTURE_HEIGHT, (GLint*) height );
 }
 
 bool flush_textures(void)

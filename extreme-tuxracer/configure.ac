@@ -90,7 +90,7 @@ dnl --------------------------------------------------------------------------
 dnl Check for X  
 dnl Note that we only need libs (so that glut links properly on all systems).
 dnl --------------------------------------------------------------------------
-if test "x$is_win32" = "xno" ; then
+if test "x$is_win32" = "xno" && test "x`uname -s`" != "xDarwin"; then
     AC_PATH_XTRA
     if test "x$no_x" = "x" ; then
 	TR_LIBS="$X_PRE_LIBS $X_LIBS -lX11 -lXi -lXext -lXmu -lXt $X_EXTRA_LIBS $TR_LIBS"

@@ -38,7 +38,7 @@ void screenshot()
 bool take_screenshot ( char* fileName ) {
 
 	int viewport[4];
-	glGetIntegerv( GL_VIEWPORT, viewport );
+	glGetIntegerv( GL_VIEWPORT, (GLint*)viewport );
 	glReadBuffer( GL_FRONT );
 	
 	pp::Image image(viewport[2],viewport[3],3);
