@@ -68,6 +68,9 @@
 #include "winsys.h"
 #include "ppgltk/audio/audio.h"
 
+#ifdef __APPLE__
+#  include <CoreFoundation/CoreFoundation.h>
+#endif
 
 #if defined( WIN32 )
 #  define OLD_CONFIG_FILE "etracer.cfg"
@@ -449,12 +452,39 @@ static struct params Params;
  * Initialize parameter data
  */
 
+#ifdef __APPLE__
+static char osx_path[1024];
+#endif
+
 void init_game_configuration()
 {
+#if defined(__APPLE__)
+    // on OS X we can't hard-code paths, it needs to be determined at runtime
+    char path[1024];
+    CFBundleRef mainBundle = CFBundleGetMainBundle(); assert(mainBundle);
+    CFURLRef mainBundleURL = CFBundleCopyBundleURL(mainBundle); assert(mainBundleURL);
+    CFStringRef cfStringRef = CFURLCopyFileSystemPath( mainBundleURL, kCFURLPOSIXPathStyle); assert(cfStringRef);
+    CFStringGetCString(cfStringRef, path, 1024, kCFStringEncodingASCII);
+    CFRelease(mainBundleURL); CFRelease(cfStringRef);
+    
+    std::string contents = std::string(osx_path);
+    if(contents.find(".app") != std::string::npos){
+        INIT_PARAM_STRING( 
+        data_dir, (char*)(&osx_path[0]), 
+        "# The location of the ET Racer data files" );
+    }
+    else {
+        // not in a bundle, i.e. installed unix way, keep defaults
+        INIT_PARAM_STRING( 
+        data_dir, DATA_DIR, 
+        "# The location of the ET Racer data files" );
+    }
+#else
+    
     INIT_PARAM_STRING( 
 	data_dir, DATA_DIR, 
 	"# The location of the ET Racer data files" );
-
+#endif
 	INIT_PARAM_BOOL( 
 	stencil_buffer, false, 
 	"# Set this to true to activate the stencil buffer" );
