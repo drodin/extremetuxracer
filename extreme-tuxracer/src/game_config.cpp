@@ -70,6 +70,32 @@
 
 #ifdef __APPLE__
 #  include <CoreFoundation/CoreFoundation.h>
+static char osx_path[1024];
+static char* osx_path_ptr = NULL;
+
+static char* getMacPath()
+{
+    if(!osx_path_ptr) {
+        // on OS X we can't hard-code paths, it needs to be determined at runtime
+        char path[1024];
+        CFBundleRef mainBundle = CFBundleGetMainBundle(); assert(mainBundle);
+        CFURLRef mainBundleURL = CFBundleCopyBundleURL(mainBundle); assert(mainBundleURL);
+        CFStringRef cfStringRef = CFURLCopyFileSystemPath( mainBundleURL, kCFURLPOSIXPathStyle); assert(cfStringRef);
+        CFStringGetCString(cfStringRef, path, 1024, kCFStringEncodingASCII);
+        CFRelease(mainBundleURL); CFRelease(cfStringRef);
+        
+        sprintf(osx_path,"%s%s",path,"/Contents/Resources");
+        std::string contents = std::string(osx_path);
+        if(contents.find(".app") != std::string::npos){
+            osx_path_ptr = &osx_path[0];
+        }
+        else {
+            sprintf(osx_path,"%s",PP_DATADIR);
+            osx_path_ptr = &osx_path[0];
+        }
+    }
+        return osx_path_ptr;
+}
 #endif
 
 #if defined( WIN32 )
@@ -89,9 +115,11 @@
 #ifndef DATA_DIR
 #  if defined( WIN32 )
 #    define DATA_DIR "."
+#  elif defined(__APPLE__)
+#    define DATA_DIR getMacPath()
 #  else
 #    define DATA_DIR PP_DATADIR
-#  endif /* defined( WIN32 ) */
+#  endif
 #endif
 
 
@@ -452,39 +480,12 @@ static struct params Params;
  * Initialize parameter data
  */
 
-#ifdef __APPLE__
-static char osx_path[1024];
-#endif
-
 void init_game_configuration()
 {
-#if defined(__APPLE__)
-    // on OS X we can't hard-code paths, it needs to be determined at runtime
-    char path[1024];
-    CFBundleRef mainBundle = CFBundleGetMainBundle(); assert(mainBundle);
-    CFURLRef mainBundleURL = CFBundleCopyBundleURL(mainBundle); assert(mainBundleURL);
-    CFStringRef cfStringRef = CFURLCopyFileSystemPath( mainBundleURL, kCFURLPOSIXPathStyle); assert(cfStringRef);
-    CFStringGetCString(cfStringRef, path, 1024, kCFStringEncodingASCII);
-    CFRelease(mainBundleURL); CFRelease(cfStringRef);
-    
-    std::string contents = std::string(osx_path);
-    if(contents.find(".app") != std::string::npos){
-        INIT_PARAM_STRING( 
-        data_dir, (char*)(&osx_path[0]), 
-        "# The location of the ET Racer data files" );
-    }
-    else {
-        // not in a bundle, i.e. installed unix way, keep defaults
-        INIT_PARAM_STRING( 
-        data_dir, DATA_DIR, 
-        "# The location of the ET Racer data files" );
-    }
-#else
-    
     INIT_PARAM_STRING( 
 	data_dir, DATA_DIR, 
 	"# The location of the ET Racer data files" );
-#endif
+
 	INIT_PARAM_BOOL( 
 	stencil_buffer, false, 
 	"# Set this to true to activate the stencil buffer" );
@@ -1118,6 +1119,10 @@ void write_config_file()
     for (i=0; i<sizeof(Params)/sizeof(struct param); i++) {
 	parm = (struct param*)&Params + i;
 	if ( parm->comment != NULL ) {
+#ifdef __APPLE__
+        // on mac, do not save data path, it's to be determined dynamically at runtime
+        if( strcmp(parm->name, "data_dir") == 0) continue;
+#endif
 	    fprintf( config_stream, "\n# %s\n#\n%s\n#\n", 
 		     parm->name, parm->comment );
 	}
