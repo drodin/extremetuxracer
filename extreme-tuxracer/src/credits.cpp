@@ -82,6 +82,7 @@ static credit_line_t credit_lines[] =
     	{ NULL, "credits_text", "woody (Polish)" },
     	{ NULL, "credits_text", "ttsmj (Slovak)" },		
 	{ NULL, "credits_text", "Jonan (Spanish)" },	
+	{ NULL, "credits_text", "EFU (Russian)" },		
     	{ NULL, "credits_text_small", "other (incomplete) translations are from the PPRacer Project" },
     { NULL, "credits_text", "" },
     { NULL, "credits_h2", "Graphics" },
