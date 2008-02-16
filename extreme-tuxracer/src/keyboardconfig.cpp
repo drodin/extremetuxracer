@@ -25,7 +25,7 @@
 	
 struct KeyMap{
 	SDLKey key;
-	char string[10];
+	char string[12];
 };
 
 static KeyMap keymap[] = {
@@ -46,9 +46,29 @@ static KeyMap keymap[] = {
 	{SDLK_KP_PERIOD,"keypad ."},
 	{SDLK_KP_DIVIDE,"keypad /"},
 	{SDLK_KP_MULTIPLY,"keypad *"},
-	{SDLK_KP_MINUS,"keypad m"},
+	{SDLK_KP_MINUS,"keypad -"},
 	{SDLK_KP_PLUS,"keypad +"},
-	{SDLK_KP_EQUALS,"keypad ="}	
+	{SDLK_KP_EQUALS,"keypad ="},
+	{SDLK_KP_EQUALS,"keypad ="},
+    {SDLK_PERIOD,"."},
+    {SDLK_COMMA,","},
+    {SDLK_MINUS,"-"},
+    {SDLK_SLASH,"/"},
+    {SDLK_SPACE,"space"},
+    {SDLK_TAB,"tab"},
+    {SDLK_LSHIFT,"left shift"},
+    {SDLK_RSHIFT,"right shift"},
+    {SDLK_LCTRL,"left ctrl"},
+    {SDLK_RCTRL,"right ctrl"},
+    {SDLK_LALT,"left alt"},
+    {SDLK_RALT,"right alt"},
+    {SDLK_PAUSE,"pause"},
+    {SDLK_HOME,"home"},
+    {SDLK_END,"end"},
+    {SDLK_DELETE,"delete"},
+    {SDLK_INSERT,"insert"},
+    {SDLK_PAGEUP,"page up"},
+    {SDLK_PAGEDOWN,"page down"}
 };
 
 	
