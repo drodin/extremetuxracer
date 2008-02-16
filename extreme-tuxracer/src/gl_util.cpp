@@ -389,7 +389,7 @@ void init_glfloat_array( int num, GLfloat arr[], ... )
 }
 
 /* Extension func ptrs *must* be initialized to NULL */
-#ifdef GL_GLEXT_FUNCTION_POINTERS
+#ifndef NO_FUNCTION_POINTERS 
 PFNGLLOCKARRAYSEXTPROC glLockArraysEXT_p = NULL;
 PFNGLUNLOCKARRAYSEXTPROC glUnlockArraysEXT_p = NULL;
 #endif
@@ -402,7 +402,7 @@ void init_opengl_extensions()
 
     get_gl_proc = (get_gl_proc_fptr_t) SDL_GL_GetProcAddress;
 
-    #ifdef GL_GLEXT_FUNCTION_POINTERS
+    #ifndef NO_FUNCTION_POINTERS
     if ( get_gl_proc ) {
 	glLockArraysEXT_p = (PFNGLLOCKARRAYSEXTPROC) 
 	    (*get_gl_proc)( (GLubyte*) "glLockArraysEXT" );
