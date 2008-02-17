@@ -1,8 +1,6 @@
 #
 # Course configuration
 #
-tux_course_name "Ski Jump"
-tux_course_author "Karsten Eiser <k.eiser@web.de>"
 tux_course_dim 40 500 30 499       ;# width, length of course in m
 tux_start_pt 19.5 3.0           ;# start position, measured from left rear corner
 tux_angle  37.5                 ;# angle of course

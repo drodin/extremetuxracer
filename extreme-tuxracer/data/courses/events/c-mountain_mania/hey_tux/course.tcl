@@ -1,8 +1,6 @@
 #
 # Course configuration (original course.tcl by Julien Canet <jools@free.fr>: "Jool's Big Mountain")
 #
-tux_course_name "Hey, Tux"
-tux_course_author "Klaus Krechan <klaus@krechan.de>"
 tux_course_dim 60 1200        ;# width, length of course in m
 tux_start_pt 30 3.5           ;# start position, measured from left rear corner
 tux_angle 24                   ;# angle of course

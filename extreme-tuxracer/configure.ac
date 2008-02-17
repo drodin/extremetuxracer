@@ -144,7 +144,7 @@ else
                     TCL_CFLAGS="-I$with_tcl_inc"
                     AC_MSG_NOTICE(["Using custom TCL headers directory: $with_tcl_inc"])
                 else
-                    TCL_CFLAGS="-I$TCL_INC_DIR $TCL_INCLUDE_SPEC"
+                    TCL_CFLAGS="$TCL_INC_DIR $TCL_INCLUDE_SPEC"
                 fi
 
     			AC_MSG_RESULT($try/tclConfig.sh)

@@ -1,7 +1,4 @@
-## Course configuration#
-tux_course_name "Merry-Go-Round"
-tux_course_author "Ascii Monster <asciimonster@myrealbox.com>"
-tux_course_dim 150 650 120 600        ;# width, length of course in m
+## Course configuration#tux_course_dim 150 650 120 600        ;# width, length of course in m
 tux_start_pt 75 3.5           ;# start position, measured from left rear corner
 tux_angle 24                   ;# angle of course
 tux_elev_scale 7.0             ;# amount by which to scale elevation data

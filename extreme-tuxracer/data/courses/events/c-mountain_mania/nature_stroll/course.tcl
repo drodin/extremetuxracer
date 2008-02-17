@@ -1,6 +1,4 @@
 ## Course configuration
-#tux_course_name "Nature Stroll"
-tux_course_author "Ascii Monster <asciimonster@myrealbox.com>"
 tux_course_dim 100 1900 60 1800        ;# width, length of course in m
 tux_start_pt 45 3.5           ;# start position, measured from left rear corner
 tux_angle 25                   ;# angle of course (was 23)

@@ -1,8 +1,6 @@
 #
 # Course configuration
 #
-tux_course_name "Snow Valley"
-tux_course_author "George Veeder - mjmann420@yahoo.com"
 tux_course_dim 250 500        ;# width, length of course in m
 tux_start_pt 136 1           ;# start position, measured from left rear corner
 tux_angle 25 ;# angle of course

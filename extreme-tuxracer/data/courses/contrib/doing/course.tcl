@@ -1,7 +1,3 @@
-
-
-tux_course_name "Doing"
-
 tux_course_dim 100 800 60 785
 tux_start_pt 38 3.5
 tux_angle 25

@@ -5613,7 +5613,7 @@ if test "x$is_win32" = "xyes" ; then
     TR_LIBS="$TR_LIBS -luser32 -lgdi32"
 fi
 
-if test "x$is_win32" = "xno" ; then
+if test "x$is_win32" = "xno" && test "x`uname -s`" != "xDarwin"; then
     { echo "$as_me:$LINENO: checking for X" >&5
 echo $ECHO_N "checking for X... $ECHO_C" >&6; }
 
@@ -7115,7 +7115,7 @@ echo "$as_me: \"Using custom TCL Library: $with_tcl_lib_name\"" >&6;}
                     { echo "$as_me:$LINENO: \"Using custom TCL headers directory: $with_tcl_inc\"" >&5
 echo "$as_me: \"Using custom TCL headers directory: $with_tcl_inc\"" >&6;}
                 else
-                    TCL_CFLAGS="-I$TCL_INC_DIR $TCL_INCLUDE_SPEC"
+                    TCL_CFLAGS="$TCL_INC_DIR $TCL_INCLUDE_SPEC"
                 fi
 
     			{ echo "$as_me:$LINENO: result: $try/tclConfig.sh" >&5
@@ -9314,14 +9314,14 @@ echo "$as_me: WARNING:
   The FreeType test program failed to run.  If your system uses
   shared libraries and they are installed outside the normal
   system library path, make sure the variable LD_LIBRARY_PATH
-  (or whatever is appropiate for your system) is correctly set.
+  (or whatever is appropriate for your system) is correctly set.
          " >&5
 echo "$as_me: WARNING:
 
   The FreeType test program failed to run.  If your system uses
   shared libraries and they are installed outside the normal
   system library path, make sure the variable LD_LIBRARY_PATH
-  (or whatever is appropiate for your system) is correctly set.
+  (or whatever is appropriate for your system) is correctly set.
          " >&2;}
        fi
      fi

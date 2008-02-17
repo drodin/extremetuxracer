@@ -1,8 +1,6 @@
 #
 # Course configuration
 #
-tux_course_name "The Narrow Way"
-tux_course_author "George Veeder - mjmann420@yahoo.com"
 tux_course_dim 200 1000       ;# width, length of course in m
 tux_start_pt 94 1           ;# start position, measured from left rear corner
 tux_angle 24 ;# angle of course

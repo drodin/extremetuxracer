@@ -576,7 +576,7 @@ PACKAGE_VERSION=
 PACKAGE_STRING=
 PACKAGE_BUGREPORT=
 
-ac_unique_file="src/ppracer.h"
+ac_unique_file="src/etracer.h"
 # Factoring default headers for most tests.
 ac_includes_default="\
 #include <stdio.h>
@@ -2255,7 +2255,7 @@ fi
 
 # Define the identity of the package.
  PACKAGE=etracer
- VERSION="0.3.1"
+ VERSION="SVN Development"
 
 
 cat >>confdefs.h <<_ACEOF
@@ -5613,7 +5613,7 @@ if test "x$is_win32" = "xyes" ; then
     TR_LIBS="$TR_LIBS -luser32 -lgdi32"
 fi
 
-if test "x$is_win32" = "xno" ; then
+if test "x$is_win32" = "xno" && test "x`uname -s`" != "xDarwin"; then
     { echo "$as_me:$LINENO: checking for X" >&5
 echo $ECHO_N "checking for X... $ECHO_C" >&6; }
 
@@ -7115,7 +7115,7 @@ echo "$as_me: \"Using custom TCL Library: $with_tcl_lib_name\"" >&6;}
                     { echo "$as_me:$LINENO: \"Using custom TCL headers directory: $with_tcl_inc\"" >&5
 echo "$as_me: \"Using custom TCL headers directory: $with_tcl_inc\"" >&6;}
                 else
-                    TCL_CFLAGS="-I$TCL_INC_DIR $TCL_INCLUDE_SPEC"
+                    TCL_CFLAGS="$TCL_INC_DIR $TCL_INCLUDE_SPEC"
                 fi
 
     			{ echo "$as_me:$LINENO: result: $try/tclConfig.sh" >&5
@@ -7643,6 +7643,8 @@ echo "$as_me: error: SDL not found - use the --with-sdl-* options" >&2;}
 fi
 
 
+if test "x`uname -s`" != "xDarwin"; then
+            
 # Check whether --with-gl-libs was given.
 if test "${with_gl_libs+set}" = set; then
   withval=$with_gl_libs; 
@@ -8315,7 +8317,13 @@ fi
 LIBS="$saved_LIBS"
 TR_LIBS="$TR_LIBS -l$GLU_LIB_NAME"
 
-
+else
+       
+    LIBS="$LIBS -framework OpenGL"
+    TR_LIBS="$TR_LIBS -framework OpenGL"
+    GL_LIB_NAME="-framework OpenGL"
+    GLU_LIB_NAME="-framework OpenGL"
+fi 
 
 
 # Check whether --with-gl-inc was given.
@@ -9306,14 +9314,14 @@ echo "$as_me: WARNING:
   The FreeType test program failed to run.  If your system uses
   shared libraries and they are installed outside the normal
   system library path, make sure the variable LD_LIBRARY_PATH
-  (or whatever is appropiate for your system) is correctly set.
+  (or whatever is appropriate for your system) is correctly set.
          " >&5
 echo "$as_me: WARNING: 
 
   The FreeType test program failed to run.  If your system uses
   shared libraries and they are installed outside the normal
   system library path, make sure the variable LD_LIBRARY_PATH
-  (or whatever is appropiate for your system) is correctly set.
+  (or whatever is appropriate for your system) is correctly set.
          " >&2;}
        fi
      fi
@@ -10769,7 +10777,7 @@ fi
 
 
 echo 
-echo PlanetPenguin Racer $VERSION
+echo Extreme Tux Racer $VERSION
 echo
 echo libpng12 ........... $PNG_VERSION
 

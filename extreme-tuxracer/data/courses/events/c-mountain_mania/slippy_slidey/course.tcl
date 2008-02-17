@@ -1,9 +1,6 @@
 #
 # Course configuration
 #
-tux_course_name "Slippy-Slidey"
-
-tux_course_author "Modified from 'Bronzeset' by S.ET."
 
 tux_course_dim 100 3200 100 3097   ;# width, length of course in m
 

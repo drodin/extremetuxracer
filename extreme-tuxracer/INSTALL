@@ -20,6 +20,25 @@ You may also need:
     * libfreetype6-dev
     * xlibs-dev
 
+Fedora
+    * libXi-devel
+    * libXmu-devel
+    * mesa-libGL-devel
+    * SDL-devel
+    * SDL_mixer-devel
+    * gcc-c++
+    * libpng-devel
+    * tcl-devel
+    * freetype-devel    
+
+OpenSuSE
+    * Mesa-devel
+    * SDL-devel
+    * SDL_mixer-devel
+    * gcc-c++
+    * libpng-devel
+    * tcl-devel
+
 Other systems
     You will need the packages equivalent to the above for your system.  If
     you can tell us what they are and how to install them on your system,
@@ -31,7 +50,7 @@ Other systems
      this directory) and type `./configure' to configure the package for
      your system.
 
-     Running `configure' takes awhile.  While running, it prints some
+     Running `configure' takes a while.  While running, it prints some
      messages telling which features it is checking for.
 
   2. If 'configure' ends saying "configure complete, now type 'make' and

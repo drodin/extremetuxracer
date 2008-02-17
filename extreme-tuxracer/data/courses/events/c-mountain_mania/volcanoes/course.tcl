@@ -1,6 +1,3 @@
-tux_course_name "Volcanoes"
-tux_course_author "Nicosmos & Marion"
-
 tux_course_dim 400 650 400 605;
 tux_start_pt 200 30 ;
 tux_angle  20 ;

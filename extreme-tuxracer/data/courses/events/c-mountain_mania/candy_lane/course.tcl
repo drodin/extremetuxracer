@@ -1,5 +1,3 @@
-tux_course_name "Candy Lane"
-tux_course_author "Soren Schimkat <www.schimkat.dk>"
 tux_course_dim 100 3600
 tux_start_pt 50 16
 tux_angle 35

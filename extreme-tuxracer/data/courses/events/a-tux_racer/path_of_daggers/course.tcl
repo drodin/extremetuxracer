@@ -1,5 +1,3 @@
-tux_course_name "Path of Daggers"
-tux_course_author "Jasmin Patry <jfpatry@cgl.uwaterloo.ca>"
 tux_course_dim 54 800 48 795
 tux_start_pt 45 3.0  ;# start
 #tux_start_pt 4 60    ;# 1st entrance

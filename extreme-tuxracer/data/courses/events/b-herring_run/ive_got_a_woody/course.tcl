@@ -1,8 +1,6 @@
 #
 # Course configuration
 #
-tux_course_name "I've got a Woody !!"
-tux_course_author "<Mark D'voo of Line72> Have fun winding through the woods.  Look out for a huge shortcut!!"
 tux_course_dim 350 1000        ;# width, length of course in m
 tux_start_pt 170 1             ;# start position, measured from left rear corner
 tux_angle 27                   ;# angle of course
