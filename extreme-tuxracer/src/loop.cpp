@@ -156,6 +156,7 @@ void main_loop()
 				break;
 			case BENCHMARK:
 				GameMode::currentMode = new Benchmark();
+				break;
 			case HIGHSCORE:
 				GameMode::currentMode = new HighscoreShow();
 				break;

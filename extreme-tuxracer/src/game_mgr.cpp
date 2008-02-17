@@ -83,7 +83,8 @@ GameMgr::updateCurrentRaceData()
 	
 	if(	time <= (*mi_currentRace).time_req[difficulty] &&
 	 	players[0].herring >= (*mi_currentRace).herring_req[difficulty] &&
-	 	players[0].score >= (*mi_currentRace).score_req[difficulty] ) 
+	 	players[0].score >= (*mi_currentRace).score_req[difficulty] &&
+		!wasRaceAborted() ) 
     {
 		m_raceWon=true;		
 	} else {
