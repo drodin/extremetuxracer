@@ -127,12 +127,12 @@ pp_translate_string "10:th" "10."
 
 #HUD
 #Strings are prefixed to prevent collisions with the UI
-pp_translate_string "H|FPS: %.1f" "H|FPS: %.1f"
-pp_translate_string "H|Time:" "H|Tiempo:"
-pp_translate_string "H|km/h" "H|km/h"
+pp_translate_string "H|FPS: %.1f" "FPS: %.1f"
+pp_translate_string "H|Time:" "Tiempo:"
+pp_translate_string "H|km/h" "km/h"
 #herring counter
-pp_translate_string "H|%03d" "H|%03d"
+pp_translate_string "H|%03d" "%03d"
 #time counter
-pp_translate_string "H|%02d:%02d:%02d" "H|%02d:%02d:%02d"
+pp_translate_string "H|%02d:%02d:%02d" "%02d:%02d:%02d"
 #speed counter
-pp_translate_string "H|%.0f" "H|%.0f"
+pp_translate_string "H|%.0f" "%.0f"
