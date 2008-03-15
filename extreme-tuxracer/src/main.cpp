@@ -1,5 +1,7 @@
 /* 
  * ETRacer 
+ * Copyright (C) 2007-2008 The ETRacer Team <www.extremetuxracer.com>
+ *
  * Copyright (C) 2004-2005 Volker Stroebel <volker@planetpenguin.de>
  *
  * Copyright (C) 1999-2001 Jasmin F. Patry
@@ -55,35 +57,47 @@
 
 #include "highscore.h"
 
-/// instance of tcl interpreter
+// Pointer to an instance of the tcl interpreter
 Tcl_Interp *tclInterp;
 
 #define WINDOW_TITLE "Extreme Tux Racer"
 
 #define GAME_INIT_SCRIPT "etracer_init.tcl"
 
-std::string cfile;
+std::string configurationFile;
 
-static void
-getopts( int argc, char *argv[] )
+/* Summary of command-line arguments:
+ * -c  Sets the configuration file
+ * -f  Sets the course in benchmark mode
+ * -m  Maximum number of frames in benchmark mode
+ * -a  Benchmark mode auto
+ * -p  Sets the position in benchmark mode
+ * -t  Sets timestamping in benchmark mode
+ * -rc  Sets the race conditions in benchmark mode
+ */
+static void handleCommandLineOptions( int argc, char *argv[] )
 {
 	for(int i=0; i<argc; i++){
 		if( !strcmp(argv[i],"-c") ){
 			i++;
-			cfile = argv[i];
-		}else if( !strcmp( argv[i],"-f") ){
+			configurationFile = argv[i]; //do a null check?
+		}
+    else if( !strcmp( argv[i],"-f") ){
 			i++;
-			if(argv[i] != NULL){			
+			if(argv[i] != NULL){ //if the user specified a course, set it
 				Benchmark::setCourse(argv[i]);
 			}
-		}else if( !strcmp( argv[i],"-m") ){
+		}
+    else if( !strcmp( argv[i],"-m") ){
 			i++;
-			if(argv[i] != NULL){
+			if(argv[i] != NULL){ //if the user specified a maximum frame number, set it
 				Benchmark::setMaxFrames(atoi(argv[i]));
 			}
-		}else if( !strcmp( argv[i],"-a") ){
+		}
+    else if( !strcmp( argv[i],"-a") ){
 			Benchmark::setMode(Benchmark::AUTO);
-		}else if( !strcmp( argv[i],"-p") ){
+		}
+    else if( !strcmp( argv[i],"-p") ){ //Benchmark position - read the x and y next
 			i++;
 			pp::Vec2d pos;
 			if(argv[i] != NULL){
@@ -95,19 +109,32 @@ getopts( int argc, char *argv[] )
 					Benchmark::setMode(Benchmark::PAUSED);
 				}			
 			}		
-		}else if( !strcmp( argv[i],"-t") ){
+		}
+    else if( !strcmp( argv[i],"-t") ){
 			i++;
-			if(argv[i] != NULL){
+			if(argv[i] != NULL){ //if the user specified a benchmark time stamp, set it
 				Benchmark::setTimeStep(atof(argv[i]));
 			}
-		}else if( !strcmp( argv[i],"-rc") ){
+		}
+    else if( !strcmp( argv[i],"-rc") ){
 			i++;
-			if(argv[i] != NULL){
+			if(argv[i] != NULL){ //if the user specified a race condition, set it
 				Benchmark::setRaceCondition(atoi(argv[i]));
 			}
 		}
-	}	
-}
+    else if( !strcmp(argv[i], "-h" ) ){ //print help message
+      fprintf(stdout, "Usage: etracer [arguments] \n"
+               " -c [file]  Sets the configuration file\n"
+               " -f [course]  Sets the course in benchmark mode\n"
+               " -m [frames]  Maximum number of frames in benchmark mode\n"
+               " -a  Benchmark mode auto\n"
+               " -p [x y] Sets the position in benchmark mode\n"
+               " -t [timestamp]  Sets timestamping in benchmark mode\n"
+               " -rc [condition]  Sets the race conditions in benchmark mode\n");
+    }
+
+	}// END iterating through parameters
+}//END handleCommandLineOptions()
 
 
 /* This function is called on exit */
@@ -124,21 +151,20 @@ void read_game_init_script()
 {
     char cwd[BUFF_LEN];
     if ( getcwd( cwd, BUFF_LEN ) == NULL ) {
-	handle_system_error( 1, "getcwd failed" );
+	    handle_system_error( 1, "getcwd failed" );
     }
 
     if ( chdir( getparam_data_dir() ) != 0 ) {
-	/* Print a more informative warning since this is a common error */
-	handle_system_error( 
-	    1, "Can't find the ETRacer data "
-	    "directory.  Please check the\nvalue of `data_dir' in "
-	    "~/.etracer/options and set it to the location where you\n"
-	    "installed the ETRacer-data files.\n\n"
-	    "Couldn't chdir to %s", getparam_data_dir() );
+	    /* Print a more informative warning since this is a common error */
+	    handle_system_error( 
+	        1, "Can't find the ETRacer data directory.  Please check the\n"
+          "value of `data_dir' in ~/.etracer/options and set it to the location where you\n"
+	        "installed the ETRacer-data files.\n\n"
+	        "Couldn't chdir to %s", getparam_data_dir() );
     } 
 
     if ( Tcl_EvalFile( tclInterp, GAME_INIT_SCRIPT) == TCL_ERROR ) {
-        handle_error( 1, "error evalating %s/%s: %s\n"
+        handle_error( 1, "error running %s/%s: %s\n"
 		      "Please check the value of `data_dir' in ~/.etracer/options "
 		      "and make sure it\npoints to the location of the "
 		      "latest version of the ETRacer-data files.", 
@@ -150,7 +176,7 @@ void read_game_init_script()
 		     "Tcl interpreter deleted" );
 
     if ( chdir( cwd ) != 0 ) {
-	handle_system_error( 1, "couldn't chdir to %s", cwd );
+	    handle_system_error( 1, "couldn't chdir to %s", cwd );
     } 
 }
 
@@ -158,98 +184,98 @@ void read_game_init_script()
 
 int main( int argc, char *argv[] ) 
 {
-    /* Print copyright notice */
-    fprintf( stderr, "Extreme TuxRacer " VERSION " --  http://www.extremetuxracer.com \n"
-	     "(c) 2007 The ETRacer team\n"
-	     "(c) 2004-2005 The PPRacer team\n"
-	     "(c) 1999-2001 Jasmin F. Patry"
-	     "<jfpatry@sunspirestudios.com>\n"
-	     "ETRacer comes with ABSOLUTELY NO WARRANTY. "
-	     "This is free software,\nand you are welcome to redistribute "
-	     "it under certain conditions.\n"
-	     "See http://www.gnu.org/copyleft/gpl.html for details.\n\n" );
+  /* Print copyright notice */
+  fprintf( stderr, "Extreme TuxRacer " VERSION " --  http://www.extremetuxracer.com \n"
+     "(c) 2007 The ETRacer team\n"
+     "(c) 2004-2005 The PPRacer team\n"
+     "(c) 1999-2001 Jasmin F. Patry"
+     "<jfpatry@sunspirestudios.com>\n"
+     "ETRacer comes with ABSOLUTELY NO WARRANTY. "
+     "This is free software,\nand you are welcome to redistribute "
+     "it under certain conditions.\n"
+     "See http://www.gnu.org/copyleft/gpl.html for details.\n\n" );
 
 	gameMgr = new GameMgr();
 	Highscore = new highscore();
 	ModelHndl = new model_hndl();
 	
-    /* Seed the random number generator */
-    srand( time(NULL) );
+  /* Seed the random number generator */
+  srand( time(NULL) );
 
 
-    /*
-     * Set up the game configuration
-     */
+  /*
+   * Set up the game configuration
+   */
 
-    /* Don't support multiplayer, yet... */
-    gameMgr->numPlayers = 1;
+  /* Don't support multiplayer, yet... */
+  gameMgr->numPlayers = 1;
 
-    /* Create a Tcl interpreter */
-    tclInterp = Tcl_CreateInterp();
+  /* Create a Tcl interpreter */
+  tclInterp = Tcl_CreateInterp();
 
-    if ( tclInterp == NULL ) {
-		handle_error( 1, "cannot create Tcl interpreter" ); 
-    }
+  if ( tclInterp == NULL ) {
+	handle_error( 1, "cannot create Tcl interpreter" ); 
+  }
 
-    /* Setup the configuration variables and read the ~/.etracer/options file */
+  /* Setup the configuration variables and read the ~/.etracer/options file */
     
-	getopts(argc,argv);
+	handleCommandLineOptions(argc,argv);
 	
 	init_game_configuration();
-    read_config_file(cfile);
+  read_config_file(configurationFile);
 
-    /* Set up the debugging modes */
-    init_debug();
+  /* Set up the debugging modes */
+  init_debug();
 
-    /* Setup diagnostic log if requested */
-    if ( getparam_write_diagnostic_log() ) {
-		setup_diagnostic_log();
-    }
+  /* Setup diagnostic log if requested */
+  if ( getparam_write_diagnostic_log() ) {
+	setup_diagnostic_log();
+  }
 
-    /*
-     * Setup Tcl stdout and stderr channels to point to C stdout and stderr 
-     * streams
-     */
-    setup_tcl_std_channels();
-	
-    /* 
-     * Initialize rendering context, create window
-     */
-    winsys_init( &argc, argv, WINDOW_TITLE, WINDOW_TITLE );
+  /*
+   * Setup Tcl stdout and stderr channels to point to C stdout and stderr 
+   * streams
+   */
+  setup_tcl_std_channels();
+
+  /* 
+   * Initialize rendering context, create window
+   */
+  winsys_init( &argc, argv, WINDOW_TITLE, WINDOW_TITLE );
 
 
-    /* Ingore key-repeat messages */
-    winsys_enable_key_repeat(false);
+  /* Ingore key-repeat messages */
+  winsys_enable_key_repeat(false);
 
-    /* 
-     * Initial OpenGL settings 
-     */
-    glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
+  /* 
+   * Initial OpenGL settings 
+   */
+  glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
 
-    init_opengl_extensions();
+  init_opengl_extensions();
 
-    /* Print OpenGL debugging information if requested */
-    if ( debug_mode_is_active( DEBUG_GL_INFO ) ) {
-		print_debug( DEBUG_GL_INFO, 
-		     "OpenGL information:" );
-		print_gl_info();
-    }
+  /* Print OpenGL debugging information if requested */
+  if ( debug_mode_is_active( DEBUG_GL_INFO ) ) {
+	print_debug( DEBUG_GL_INFO, 
+	     "OpenGL information:" );
+	print_gl_info();
+  }
 
-    /* 
-     * Load the game data and initialize game state
-     */
-    register_game_config_callbacks( tclInterp );
-    register_course_load_tcl_callbacks( tclInterp );
-    register_key_frame_callbacks( tclInterp );
+  /* 
+   * Load the game data and initialize game state
+   */
+  register_game_config_callbacks( tclInterp );
+  register_course_load_tcl_callbacks( tclInterp );
+  register_key_frame_callbacks( tclInterp );
 
 	FogPlane::registerCallbacks( tclInterp );
     
 	register_course_light_callbacks( tclInterp );
-    register_particle_callbacks( tclInterp );
-    register_texture_callbacks( tclInterp );
-    register_sound_tcl_callbacks( tclInterp );
-    register_sound_data_tcl_callbacks( tclInterp );
-    register_course_manager_callbacks( tclInterp );
+  register_particle_callbacks( tclInterp );
+  register_texture_callbacks( tclInterp );
+  register_sound_tcl_callbacks( tclInterp );
+  register_sound_data_tcl_callbacks( tclInterp );
+  register_course_manager_callbacks( tclInterp );
 	register_translation_callbacks( tclInterp );
 	register_common_callbacks( tclInterp );
 	
@@ -258,23 +284,23 @@ int main( int argc, char *argv[] )
 	translation.getLanguages();
 	translation.load( getparam_ui_language() );
 	
-    // Load model
-    ModelHndl->init_models();
-   // ModelHndl->load_model(0); Loaded in players[0]::loadData()
-    
-    init_textures();
-    init_audio_data();
-    init_audio();
+  // Load model
+  ModelHndl->init_models();
+  // ModelHndl->load_model(0); Loaded in players[0]::loadData()
+  
+  init_textures();
+  init_audio_data();
+  init_audio();
     
 	init_course_manager();
-     init_joystick();
+  init_joystick();
 	init_ui_snow();
 
-	/* Read the ppracer_init.tcl file */
-    read_game_init_script();
+	// Read the etracer_init.tcl file
+  read_game_init_script();
 
-     /* Temporary name until user enters another name*/
-     players[0].name = "Tux";
+  // Set a temporary name until user enters another name
+  players[0].name = "Tux";
 	players[0].loadData();
 	
 	//Ugly hax to prevent from segfault, fix to later version
@@ -283,13 +309,13 @@ int main( int argc, char *argv[] )
 	
 	
 	/* Init highscore */
-	
 	Highscore->loadData();
+
 	/*debug highscore:*/
 	//Highscore->debug();
 	//Highscore->printlist();
 
-     GameMode::mode = NO_MODE;
+  GameMode::mode = NO_MODE;
 	
 	if(Benchmark::getMode()==Benchmark::NONE){
 		set_game_mode( SPLASH );
@@ -297,14 +323,14 @@ int main( int argc, char *argv[] )
 		set_game_mode( BENCHMARK );
 	}
 	
-    gameMgr->difficulty = DIFFICULTY_LEVEL_NORMAL;
+  gameMgr->difficulty = DIFFICULTY_LEVEL_NORMAL;
 	
 	winsys_show_cursor( false );
 
 	/* 
-     * ...and off we go!
-     */
-    winsys_process_events();
+   * ...and off we go!
+   */
+  winsys_process_events();
 
-    return 0;
+  return 0;
 }
