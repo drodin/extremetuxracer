@@ -214,7 +214,7 @@ std::string KeyboardConfig::getKey(SDLKey key)
 	}else{
 		for(unsigned int i=0;i<sizeof(keymap)/sizeof(KeyMap);i++){
 			if(key==keymap[i].key){
-				content=keymap[i].string;
+				content=_(keymap[i].string);
 				break;
 			}
 		}
