@@ -2,19 +2,19 @@
 tux_hud -hud 1 -type fsb \
 	-position {12 12} \
 	-font fps \
-	-string "H|FPS: %.1f"
+	-string "FPS: %.1f"
 
 
 
 tux_hud -hud 1 -type herring \
 	-position {-12 -21} \
 	-font herring_count \
-	-string "H|%03d"
+	-string "%03d"
 
 tux_hud -hud 1 -type herring \
 	-position {-12 -20} \
 	-font herring_count_outline \
-	-string "H|%03d"
+	-string "%03d"
 
 tux_hud -hud 1 -type image \
    -position {12 -12} \
@@ -33,12 +33,12 @@ tux_hud -hud 1 -type image \
 tux_hud -hud 1 -type time \
 	-position {60 -21} \
 	-font time_value \
-	-string "H|%02d:%02d:%02d"
+	-string "%02d:%02d:%02d"
 
 tux_hud -hud 1 -type time \
 	-position {60 -20} \
 	-font herring_count_outline \
-	-string "H|%02d:%02d:%02d"
+	-string "%02d:%02d:%02d"
 
 tux_hud -hud1 -type gauge \
 	-position {-256 12} \
@@ -49,22 +49,22 @@ tux_hud -hud1 -type gauge \
 tux_hud -hud 1 -type text \
 	-position {-32 30} \
 	-font speed_units \
-	-string "H|km/h"
+	-string "km/h"
 
 tux_hud -hud 1 -type speed \
 	-position {-36 52} \
 	-font speed_digits \
-	-string "H|%.0f"
+	-string "%.0f"
 
 tux_hud -hud 1 -type text \
 	-position {-32 29} \
 	-font speed_units_outline \
-	-string "H|km/h"
+	-string "km/h"
 
 tux_hud -hud 1 -type speed \
 	-position {-36 51} \
 	-font speed_digits_outline \
-	-string "H|%.0f"
+	-string "%.0f"
 
 tux_hud -hud 1 -type image \
 	-position {-12 150} \
