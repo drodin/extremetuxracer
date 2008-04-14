@@ -1,4 +1,14 @@
 == etracer ==
+2008-04-14  Paweł 'woody' Drewniak <czajernia@gmail.com>
+	* First try to add Gettext support.
+	* Rewritten keyboard config to avoid problems with displaying characters
+
+2008-04-14  gettextize  <bug-gnu-gettext@gnu.org>
+	* Makefile.am (SUBDIRS): Add po.
+	(ACLOCAL_AMFLAGS): New variable.
+	(EXTRA_DIST): Add config.rpath, m4/ChangeLog.
+	* configure.ac (AC_OUTPUT): Add po/Makefile.in.
+
 2007-09-21 Andreas Tarandi <torandi@gmail.com>
 	Bug-fixes and translation update.
 2007-09-20 Andreas Tarandi <torandi@gmail.com>

@@ -1,4 +1,7 @@
 /*  
+ * ETRacer
+ * Copyright (C) 2007-2008 The ETRacer Team <www.extremetuxracer.com>
+ *
  * PPRacer 
  * Copyright (C) 2004-2005 Volker Stroebel <volker@planetpenguin.de>
  *
@@ -24,15 +27,29 @@
 
 #include "ppgltk/entry.h"
 
+// KeyEntry declaration
+
+class KeyEntry : public pp::Entry
+{
+	SDLKey keysym;
+public:
+	KeyEntry(pp::Vec2d pos, pp::Vec2d size, const char *binding, const char *content="");
+	~KeyEntry();
+	void setKeySym(SDLKey keysym);	
+	SDLKey getKeySym();
+};
+
+// KeyboardConfig declaration
+
 class KeyboardConfig : public ConfigMode
 {
-	pp::Entry* mp_leftEntry;
-	pp::Entry* mp_rightEntry;
-	pp::Entry* mp_paddleEntry;
-	pp::Entry* mp_brakeEntry;
-	pp::Entry* mp_jumpEntry;
-	pp::Entry* mp_trickEntry;
-	pp::Entry* mp_resetEntry;
+	KeyEntry* mp_left;
+	KeyEntry* mp_right;
+	KeyEntry* mp_paddle;
+	KeyEntry* mp_brake;
+	KeyEntry* mp_jump;
+	KeyEntry* mp_trick;
+	KeyEntry* mp_reset;
 	
 public:
 	KeyboardConfig();
@@ -41,10 +58,7 @@ public:
 	void setWidgetPositions();
 	void apply();
 
-	std::string getKey(SDLKey key);
-	SDLKey getKey(std::string& string);
-
-	void setKey(pp::Entry* widget, SDLKey key);
+	void setKey(KeyEntry* widget, SDLKey key);
 };
 
 #endif // KEYBOARD_CONFIG_H

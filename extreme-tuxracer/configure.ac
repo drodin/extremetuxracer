@@ -26,6 +26,9 @@ AC_HEADER_TIME
 dnl Checks for library functions.
 AC_CHECK_FUNCS(getcwd gettimeofday strdup)
 
+dnl Checks for l10n
+AM_GNU_GETTEXT([external])
+
 dnl Check for non-standard floating point functions and headers
 AC_CHECK_FUNCS(finite isnan)
 AC_CHECK_FUNCS(_finite _isnan)
@@ -520,7 +523,7 @@ CFLAGS="$CFLAGS $TR_CFLAGS"
 CXXFLAGS="$CXXFLAGS $TR_CXXFLAGS $TCL_CFLAGS $PNG_CXXFLAGS $FT2_CFLAGS"
 LIBS="$LIBS $TR_LIBS $TCL_LIBS $PNG_LIBS $FT2_LIBS"
 
-AC_OUTPUT(Makefile src/Makefile data/Makefile)
+AC_OUTPUT(Makefile src/Makefile data/Makefile po/Makefile.in)
 
 echo 
 echo Extreme Tux Racer $VERSION

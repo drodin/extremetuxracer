@@ -1,5 +1,6 @@
-
-AM_CPPFLAGS = -DPP_DATADIR=\"$(ppdatadir)\"
+AM_CPPFLAGS = -DPP_DATADIR=\"$(ppdatadir)\" -DLOCALEDIR=\"$(localedir)\"
+localedir = $(datadir)/locale
+LDADD = @LIBINTL@
 
 bin_PROGRAMS = etracer
 

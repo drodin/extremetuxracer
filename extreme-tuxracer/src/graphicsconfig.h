@@ -35,10 +35,10 @@ class GraphicsConfig : public ConfigMode
 	pp::CheckBox* mp_reflectionsBox;
 	pp::CheckBox* mp_shadowsBox;
 	
-	pp::Listbox<language_t>* mp_langListBox;
+//	pp::Listbox<language_t>* mp_langListBox;
 	pp::Listbox<model_t>* mp_modelListBox;
 	
-	std::list<language_t> m_langList;
+//	std::list<language_t> m_langList;
 	std::list<model_t> m_modelList;
 public:
 	GraphicsConfig();

@@ -186,7 +186,7 @@ int main( int argc, char *argv[] )
 {
   /* Print copyright notice */
   fprintf( stderr, "Extreme TuxRacer " VERSION " --  http://www.extremetuxracer.com \n"
-     "(c) 2007 The ETRacer team\n"
+     "(c) 2007-2008 The ETRacer team\n"
      "(c) 2004-2005 The PPRacer team\n"
      "(c) 1999-2001 Jasmin F. Patry"
      "<jfpatry@sunspirestudios.com>\n"
@@ -276,13 +276,16 @@ int main( int argc, char *argv[] )
   register_sound_tcl_callbacks( tclInterp );
   register_sound_data_tcl_callbacks( tclInterp );
   register_course_manager_callbacks( tclInterp );
-	register_translation_callbacks( tclInterp );
 	register_common_callbacks( tclInterp );
 	
 	
 	// Setup class for translation
-	translation.getLanguages();
-	translation.load( getparam_ui_language() );
+	//translation.getLanguages();
+	//translation.load( getparam_ui_language() );
+	setlocale (LC_MESSAGES, "");
+        setlocale (LC_CTYPE, "");
+	bindtextdomain (PACKAGE, LOCALEDIR);
+        textdomain (PACKAGE);
 	
   // Load model
   ModelHndl->init_models();

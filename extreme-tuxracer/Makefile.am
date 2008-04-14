@@ -1,3 +1,4 @@
-SUBDIRS = src data
+SUBDIRS = po src data
 
-EXTRA_DIST = contrib doc
+EXTRA_DIST = config.rpath m4/ChangeLog  contrib doc
+ACLOCAL_AMFLAGS = -I m4

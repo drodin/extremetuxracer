@@ -1,4 +1,7 @@
 /* 
+ * ETRacer
+ * Copyright (C) 2007-2008 The ETRacer Team <www.extremetuxracer.com>
+ *
  * PPRacer 
  * Copyright (C) 2004-2005 Volker Stroebel <volker@planetpenguin.de>
  *
@@ -20,44 +23,9 @@
 #ifndef _TRANSLATION_H_
 #define _TRANSLATION_H_
 
-#include "etracer.h"
+#include <libintl.h>
 
-#include <string>
-#include <map>
-#include <list>
-
-
-typedef struct{
-	std::string language; 
-	std::string name;
-}language_t;
-
-/// Class for handling translations
-class Translation
-{
-	
-	/// the map for storing the translation strings
-	std::map<std::string, std::string> m_translations;	
-	std::list<language_t> m_languages;
-	
-public:
-	Translation();
-	
-	void load(const char* language);
-	const char* getTranslation(const char* string);
-	void setTranslation(const char* language, const char* name);
-	void addLanguage(const char* language, const char* name);
-	void getLanguages();
-	std::list<language_t> LanguageList() {return m_languages;}
-
-
-};
-
-extern Translation translation;
-
-///a gettext like macro that returns the translated string
-#define _(string) translation.getTranslation(string)
-
-void register_translation_callbacks( Tcl_Interp *ip );
+#define _(String) gettext(String)
+#define N_(String) (String)
 
 #endif // _TRANSLATION_H_

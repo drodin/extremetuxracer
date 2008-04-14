@@ -1,4 +1,7 @@
 /* 
+ * ETRacer
+ * Copyright (C) 2007-2008 The ETRacer Team <www.extremetuxracer.com>
+ *
  * PPRacer 
  * Copyright (C) 2004-2005 Volker Stroebel <volker@planetpenguin.de>
  *
@@ -19,6 +22,7 @@
 
 #include "translation.h"
 
+/* THIS REQUIRES TO BE GETTEXT COMPATIBLE
 #include "etracer.h"
 #include "game_config.h"
 
@@ -124,3 +128,4 @@ void register_translation_callbacks( Tcl_Interp *ip )
     Tcl_CreateCommand (ip, "pp_translate_string", pp_translate_string_cb,   0,0);
     Tcl_CreateCommand (ip, "pp_translate_language", pp_translate_language_cb,   0,0);
 }
+*/
