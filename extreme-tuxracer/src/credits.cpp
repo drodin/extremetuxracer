@@ -77,6 +77,8 @@ static credit_line_t credit_lines[] =
 	{ NULL, "credits_text", "teksturi (Finnish)" },
 	{ NULL, "credits_text", "arith, spacedwarv, and JoyFM (German)" },
 	{ NULL, "credits_text", "spectrum (Italian)" },
+	{ NULL, "credits_text", "Trygve B. Wiig (Norwegian Bokmål)" },
+	{ NULL, "credits_text", "Karl Ove Hufthammer (Norwegian Nynorsk)" },
 	{ NULL, "credits_text", "Andreas Tarandi and pingvin (Swedish)" },
     	{ NULL, "credits_text", "Asciimonster (Dutch)" },
     	{ NULL, "credits_text", "woody (Polish)" },
