@@ -1,0 +1,331 @@
+# Translation of Extreme Tux Racer to Norwegian Nynorsk
+# Karl Ove Hufthammer <karl@huftis.org>, 2005, 2008.
+msgid ""
+msgstr ""
+"Project-Id-Version: Extreme Tux Racer\n"
+"PO-Revision-Date: 2008-03-23 19:48+0100\n"
+"Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
+"Language-Team: Norwegian Nynorsk <i18n-nn@lister.ping.uio.no>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+msgid "Back"
+msgstr "Tilbake"
+
+msgid "PRESS ANY KEY TO START"
+msgstr "TRYKK EIN TAST FOR Å STARTA"
+
+msgid "Enter an event"
+msgstr "Køyr renn"
+
+msgid "Practice"
+msgstr "Øving"
+
+msgid "Configuration"
+msgstr "Oppsett"
+
+msgid "Credits"
+msgstr "Bidragsytarar"
+
+msgid "Quit"
+msgstr "Avslutt"
+
+msgid "Graphics"
+msgstr "Grafikk"
+
+msgid "Video"
+msgstr "Skjerm"
+
+msgid "Audio"
+msgstr "Lyd"
+
+msgid "Keyboard"
+msgstr "Tastatur"
+
+msgid "Joystick"
+msgstr "Styrespak"
+
+msgid "Cancel"
+msgstr "Avbryt"
+
+msgid "Ok"
+msgstr "OK"
+
+msgid "Graphics Configuration"
+msgstr "Grafikkoppsett"
+
+msgid "Language:"
+msgstr "Språk:"
+
+msgid "Show UI Snow:"
+msgstr "Snø:"
+
+msgid "Display FPS:"
+msgstr "Biletrate:"
+
+msgid "Display Progress Bar:"
+msgstr "Framgangsstolpe:"
+
+msgid "Draw Fog:"
+msgstr "Tåke:"
+
+msgid "Reflections:"
+msgstr "Refleksjonar:"
+
+msgid "Shadows:"
+msgstr "Skuggar:"
+
+msgid "Model:"
+msgstr "Modell:"
+
+msgid "Tux on Snowboard"
+msgstr "Tux på snøbrett"
+
+msgid "Video Configuration"
+msgstr "Skjermoppsett"
+
+msgid "Resolution:"
+msgstr "Oppløysing:"
+
+msgid "Bits Per Pixel:"
+msgstr "Fargedjupn:"
+
+msgid "Fullscreen:"
+msgstr "Fullskjerm:"
+
+msgid "Experimental (needs restart)"
+msgstr "Eksperimentell (treng omstart)"
+
+msgid "Enable FSAA:"
+msgstr "Bruk kantutjamning:"
+
+msgid "FSAA Multisamples:"
+msgstr "FSAA-fleirprøvar:"
+
+msgid "Stencil Buffer:"
+msgstr "Stensilbuffer:"
+
+msgid "To change the resolution, or switch into fullscreen mode"
+msgstr "For å byta oppløysing, eller for å byta til fullskjermsvising,"
+
+msgid "use options.txt, located in the config folder."
+msgstr "bruk fila «options.txt», som ligg i oppsettmappa."
+
+msgid "Audio Configuration"
+msgstr "Lydoppsett"
+
+msgid "Sound Effects:"
+msgstr "Lydeffektar:"
+
+msgid "Music:"
+msgstr "Musikk:"
+
+msgid "(needs restart)"
+msgstr "(treng omstart)"
+
+msgid "Disable Audio:"
+msgstr "Slå av lyd:"
+
+msgid "Stereo:"
+msgstr "Stereo:"
+
+msgid "Bits Per Sample:"
+msgstr "Bit per prøve:"
+
+msgid "Samples Per Second:"
+msgstr "Prøvar per sekund:"
+
+msgid "Keyboard Configuration"
+msgstr "Tasteoppsett"
+
+msgid "Turn left:"
+msgstr "Sving til venstre:"
+
+msgid "Turn right:"
+msgstr "Sving til høgre:"
+
+msgid "Paddle:"
+msgstr "Gje fart:"
+
+msgid "Brake:"
+msgstr "Brems:"
+
+msgid "Jump:"
+msgstr "Hopp:"
+
+msgid "Trick:"
+msgstr "Triks:"
+
+msgid "Reset:"
+msgstr "Nullstill:"
+
+msgid "Joystick Configuration"
+msgstr "Styrespakoppsett"
+
+msgid "Enable Joystick"
+msgstr "Bruk styrespak"
+
+msgid "Race!"
+msgstr "Køyr!"
+
+msgid "Select a race"
+msgstr "Vel renn"
+
+msgid "Contributed by:"
+msgstr "Laga av:"
+
+msgid "Unknown"
+msgstr "Ukjend"
+
+msgid "Time:"
+msgstr "Tid:"
+
+msgid "Herring:"
+msgstr "Sild:"
+
+msgid "Score:"
+msgstr "Poeng:"
+
+msgid "Continue"
+msgstr "Hald fram"
+
+msgid "Select event and cup"
+msgstr "Vel renn og turnering"
+
+msgid "Event:"
+msgstr "Renn:"
+
+msgid "Cup:"
+msgstr "Turnering:"
+
+msgid "You've won this cup!"
+msgstr "Du vann denne turneringa!"
+
+msgid "You must complete this cup next"
+msgstr "Du må no vinna denne turneringa"
+
+msgid "You cannot enter this cup yet"
+msgstr "Du kan ikkje spela denne turneringa enno"
+
+msgid "You don't have any lives left."
+msgstr "Du har ikkje fleire liv igjen."
+
+msgid "Race won! Your result:"
+msgstr "Du vann! Resultat:"
+
+msgid "Needed to advance:"
+msgstr "For å gå vidare:"
+
+msgid "You can't enter this race yet."
+msgstr "Du kan ikkje spela dette rennet enno"
+
+msgid "Loading, Please Wait..."
+msgstr "Lastar. Vent litt …"
+
+msgid "Resume"
+msgstr "Hald fram"
+
+msgid "Paused"
+msgstr "Pause"
+
+msgid "Race Over"
+msgstr "Rennet er ferdig"
+
+msgid "Time: %02d:%02d.%02d"
+msgstr "Tid: %02d.%02d,%02d"
+
+msgid "Herring: %3d"
+msgstr "Sild: %3d"
+
+msgid "Score: %6d"
+msgstr "Poeng: %6d"
+
+msgid "Max speed: %3d km/h"
+msgstr "Maksfart: %3d km/t"
+
+msgid "Was flying: %.01f %% of time"
+msgstr "Fauk %.01f %% av tida"
+
+msgid "Race aborted"
+msgstr "Avbraut rennet"
+
+msgid "You beat your best score!"
+msgstr "Du slo rekorden din!"
+
+msgid "Congratulations! You won the event!"
+msgstr "Gratulerer! Du vann rennet!"
+
+msgid "Congratulations! You won the cup!"
+msgstr "Gratulerer! Du vann turneringa!"
+
+msgid "You advanced to the next race!"
+msgstr "Du kom vidare til neste renn!"
+
+msgid "You didn't advance."
+msgstr "Du kom ikkje vidare."
+
+msgid "Highscore"
+msgstr "Rekordar"
+
+msgid "You made it to the %s place in the highscore!"
+msgstr "Du kom inn på %s plass på rekordlista!"
+
+msgid "Player name:"
+msgstr "Spelarnamn:"
+
+msgid "1:st"
+msgstr "1."
+
+msgid "2:nd"
+msgstr "2."
+
+msgid "3:rd"
+msgstr "3."
+
+msgid "4:th"
+msgstr "4."
+
+msgid "5:th"
+msgstr "5."
+
+msgid "6:th"
+msgstr "6."
+
+msgid "7:th"
+msgstr "7."
+
+msgid "8:th"
+msgstr "8."
+
+msgid "9:th"
+msgstr "9."
+
+msgid "10:th"
+msgstr "10."
+
+msgid " (%d points)"
+msgstr " (%d poeng)"
+
+msgid "No records"
+msgstr "Ingen rekordar"
+
+msgid "H|FPS: %.1f"
+msgstr "B/s: %.1f"
+
+msgid "H|Time:"
+msgstr "Tid:"
+
+msgid "H|km/h"
+msgstr "km/t"
+
+msgid "H|%03d"
+msgstr "%03d"
+
+msgid "H|%02d:%02d:%02d"
+msgstr "%02d.%02d,%02d"
+
+msgid "H|%.0f"
+msgstr "%.0f"
