@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Extreme Tux Racer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-15 18:47+0200\n"
+"POT-Creation-Date: 2008-04-15 20:42+0200\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -56,7 +56,7 @@ msgstr "OK"
 msgid "Configuration"
 msgstr "Nastavenia"
 
-#: src/configuration.cpp:45
+#: src/configuration.cpp:45 src/credits.cpp:89
 msgid "Graphics"
 msgstr "Grafika"
 
@@ -80,6 +80,177 @@ msgstr "Joystick"
 #: src/event_race_select.cpp:53 src/highscore.cpp:412
 msgid "Back"
 msgstr "Späť"
+
+#: src/credits.cpp:43
+msgid "Version 0.4"
+msgstr ""
+
+#: src/credits.cpp:46
+msgid "Extreme Tux Racer is in the process of being"
+msgstr ""
+
+#: src/credits.cpp:47
+msgid "completely rewritten. All versions after 0.35,"
+msgstr ""
+
+#: src/credits.cpp:48
+msgid "including this one, won't have major code changes"
+msgstr ""
+
+#: src/credits.cpp:49
+msgid "because the programmers are busy making a new,"
+msgstr ""
+
+#: src/credits.cpp:50
+msgid "improved game."
+msgstr ""
+
+#: src/credits.cpp:52
+msgid "Extreme Tux Racer is based on"
+msgstr ""
+
+#: src/credits.cpp:53
+msgid "PlanetPenguin Racer, Open Racer and Tux Racer."
+msgstr ""
+
+#: src/credits.cpp:55
+msgid "Some courses may have been modified from their"
+msgstr ""
+
+#: src/credits.cpp:56
+msgid "original versions to fit the requirements of the game."
+msgstr ""
+
+#: src/credits.cpp:58
+msgid "Development"
+msgstr ""
+
+#: src/credits.cpp:63
+msgid "from Sunspire Studios:"
+msgstr ""
+
+#: src/credits.cpp:71
+msgid "Non-Rewrite Version Organization"
+msgstr ""
+
+#: src/credits.cpp:74
+msgid "Translators"
+msgstr ""
+
+#: src/credits.cpp:87
+msgid "Other (incomplete) translations are from the PPRacer Project."
+msgstr ""
+
+#: src/credits.cpp:90
+msgid "Nicosmos (Logo, Hud Graphics)"
+msgstr ""
+
+#: src/credits.cpp:91
+msgid "Christian Picon (Objects, Skyboxes)"
+msgstr ""
+
+#: src/credits.cpp:92
+msgid "Reinhard Niehoff (Trees)"
+msgstr ""
+
+#: src/credits.cpp:93
+msgid "Daniel Poeira and Christian Picon (Font)"
+msgstr ""
+
+#: src/credits.cpp:95
+#, fuzzy
+msgid "Music"
+msgstr "Hudba:"
+
+#: src/credits.cpp:97
+#, fuzzy
+msgid "'Race 1'"
+msgstr "Závodiť!"
+
+#: src/credits.cpp:98
+msgid "'Menu'"
+msgstr ""
+
+#: src/credits.cpp:99
+msgid "'Options'"
+msgstr ""
+
+#: src/credits.cpp:100
+msgid "'Won Race'"
+msgstr ""
+
+#: src/credits.cpp:103
+#, fuzzy
+msgid "'Credits Ballad'"
+msgstr "Autori"
+
+#: src/credits.cpp:105
+msgid "Misc. PPRacer Contributors"
+msgstr ""
+
+#: src/credits.cpp:110
+msgid "Thanks To"
+msgstr ""
+
+#: src/credits.cpp:111
+msgid "(for Exteme Tux Racer)"
+msgstr ""
+
+#: src/credits.cpp:112
+msgid "Ranger (for hosting the website)"
+msgstr ""
+
+#: src/credits.cpp:113
+msgid "Slythfox (for making the website)"
+msgstr ""
+
+#: src/credits.cpp:114
+msgid "The Course Creators"
+msgstr ""
+
+#: src/credits.cpp:115
+msgid "The OpenRacer project"
+msgstr ""
+
+#: src/credits.cpp:116
+msgid "Reinhard Niehoff (for helping with code modification)"
+msgstr ""
+
+#: src/credits.cpp:117
+msgid "All the people on the forum"
+msgstr ""
+
+#: src/credits.cpp:118
+msgid "Larry Ewing (creator of Tux)"
+msgstr ""
+
+#: src/credits.cpp:119
+msgid "(for Tux Racer)"
+msgstr ""
+
+#: src/credits.cpp:126
+msgid "Tux Racer is a trademark of Jasmin F. Patry"
+msgstr ""
+
+#: src/credits.cpp:127
+msgid "Extreme Tux Racer is licenced under the GPL."
+msgstr ""
+
+#: src/credits.cpp:128
+msgid "We grant use of the name 'Extreme Tux Racer'"
+msgstr ""
+
+#: src/credits.cpp:129
+msgid "to any forks or continuations."
+msgstr ""
+
+#: src/credits.cpp:131
+msgid "PlanetPenguin Racer is Copyright © 2005 Volker Stroebel"
+msgstr ""
+
+#: src/credits.cpp:132
+msgid "Tux Racer and the Tux Racer Name are Copyright © 2001 Jasmin F. Patry"
+msgstr ""
 
 #: src/event_select.cpp:50
 msgid "Select event and cup"

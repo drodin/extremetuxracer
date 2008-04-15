@@ -2,6 +2,7 @@
 src/audioconfig.cpp
 src/configmode.cpp
 src/configuration.cpp
+src/credits.cpp
 src/event_select.cpp
 src/event_race_select.cpp
 src/event_select.cpp

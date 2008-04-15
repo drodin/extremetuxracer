@@ -1,19 +1,19 @@
-# ETRacer translation template.
-# Copyright (C) 2008 ETRacer Team
-# This file is distributed under the same license as the etracer package.
-# ETRacer Team <www.extremetuxracer.com>, 2008.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR ETRacer Team
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-14 12:18+0200\n"
+"POT-Creation-Date: 2008-04-15 20:42+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: src/audioconfig.cpp:36
@@ -60,7 +60,7 @@ msgstr ""
 msgid "Configuration"
 msgstr ""
 
-#: src/configuration.cpp:45
+#: src/configuration.cpp:45 src/credits.cpp:89
 msgid "Graphics"
 msgstr ""
 
@@ -80,16 +80,216 @@ msgstr ""
 msgid "Joystick"
 msgstr ""
 
-#: src/configuration.cpp:81 src/event_race_select.cpp:53
-#: src/event_select.cpp:96 src/highscore.cpp:412 src/race_select.cpp:74
+#: src/configuration.cpp:81 src/event_select.cpp:96
+#: src/event_race_select.cpp:53 src/highscore.cpp:412
 msgid "Back"
 msgstr ""
 
-#: src/event_race_select.cpp:45 src/race_select.cpp:67
+#: src/credits.cpp:43
+msgid "Version 0.4"
+msgstr ""
+
+#: src/credits.cpp:46
+msgid "Extreme Tux Racer is in the process of being"
+msgstr ""
+
+#: src/credits.cpp:47
+msgid "completely rewritten. All versions after 0.35,"
+msgstr ""
+
+#: src/credits.cpp:48
+msgid "including this one, won't have major code changes"
+msgstr ""
+
+#: src/credits.cpp:49
+msgid "because the programmers are busy making a new,"
+msgstr ""
+
+#: src/credits.cpp:50
+msgid "improved game."
+msgstr ""
+
+#: src/credits.cpp:52
+msgid "Extreme Tux Racer is based on"
+msgstr ""
+
+#: src/credits.cpp:53
+msgid "PlanetPenguin Racer, Open Racer and Tux Racer."
+msgstr ""
+
+#: src/credits.cpp:55
+msgid "Some courses may have been modified from their"
+msgstr ""
+
+#: src/credits.cpp:56
+msgid "original versions to fit the requirements of the game."
+msgstr ""
+
+#: src/credits.cpp:58
+msgid "Development"
+msgstr ""
+
+#: src/credits.cpp:63
+msgid "from Sunspire Studios:"
+msgstr ""
+
+#: src/credits.cpp:71
+msgid "Non-Rewrite Version Organization"
+msgstr ""
+
+#: src/credits.cpp:74
+msgid "Translators"
+msgstr ""
+
+#: src/credits.cpp:87
+msgid "Other (incomplete) translations are from the PPRacer Project."
+msgstr ""
+
+#: src/credits.cpp:90
+msgid "Nicosmos (Logo, Hud Graphics)"
+msgstr ""
+
+#: src/credits.cpp:91
+msgid "Christian Picon (Objects, Skyboxes)"
+msgstr ""
+
+#: src/credits.cpp:92
+msgid "Reinhard Niehoff (Trees)"
+msgstr ""
+
+#: src/credits.cpp:93
+msgid "Daniel Poeira and Christian Picon (Font)"
+msgstr ""
+
+#: src/credits.cpp:95
+msgid "Music"
+msgstr ""
+
+#: src/credits.cpp:97
+msgid "'Race 1'"
+msgstr ""
+
+#: src/credits.cpp:98
+msgid "'Menu'"
+msgstr ""
+
+#: src/credits.cpp:99
+msgid "'Options'"
+msgstr ""
+
+#: src/credits.cpp:100
+msgid "'Won Race'"
+msgstr ""
+
+#: src/credits.cpp:103
+msgid "'Credits Ballad'"
+msgstr ""
+
+#: src/credits.cpp:105
+msgid "Misc. PPRacer Contributors"
+msgstr ""
+
+#: src/credits.cpp:110
+msgid "Thanks To"
+msgstr ""
+
+#: src/credits.cpp:111
+msgid "(for Exteme Tux Racer)"
+msgstr ""
+
+#: src/credits.cpp:112
+msgid "Ranger (for hosting the website)"
+msgstr ""
+
+#: src/credits.cpp:113
+msgid "Slythfox (for making the website)"
+msgstr ""
+
+#: src/credits.cpp:114
+msgid "The Course Creators"
+msgstr ""
+
+#: src/credits.cpp:115
+msgid "The OpenRacer project"
+msgstr ""
+
+#: src/credits.cpp:116
+msgid "Reinhard Niehoff (for helping with code modification)"
+msgstr ""
+
+#: src/credits.cpp:117
+msgid "All the people on the forum"
+msgstr ""
+
+#: src/credits.cpp:118
+msgid "Larry Ewing (creator of Tux)"
+msgstr ""
+
+#: src/credits.cpp:119
+msgid "(for Tux Racer)"
+msgstr ""
+
+#: src/credits.cpp:126
+msgid "Tux Racer is a trademark of Jasmin F. Patry"
+msgstr ""
+
+#: src/credits.cpp:127
+msgid "Extreme Tux Racer is licenced under the GPL."
+msgstr ""
+
+#: src/credits.cpp:128
+msgid "We grant use of the name 'Extreme Tux Racer'"
+msgstr ""
+
+#: src/credits.cpp:129
+msgid "to any forks or continuations."
+msgstr ""
+
+#: src/credits.cpp:131
+msgid "PlanetPenguin Racer is Copyright © 2005 Volker Stroebel"
+msgstr ""
+
+#: src/credits.cpp:132
+msgid "Tux Racer and the Tux Racer Name are Copyright © 2001 Jasmin F. Patry"
+msgstr ""
+
+#: src/event_select.cpp:50
+msgid "Select event and cup"
+msgstr ""
+
+#: src/event_select.cpp:56
+msgid "Event:"
+msgstr ""
+
+#: src/event_select.cpp:67
+msgid "Cup:"
+msgstr ""
+
+#: src/event_select.cpp:87
+msgid "Player name:"
+msgstr ""
+
+#: src/event_select.cpp:104
+msgid "Continue"
+msgstr ""
+
+#: src/event_select.cpp:158
+msgid "You've won this cup!"
+msgstr ""
+
+#: src/event_select.cpp:160
+msgid "You must complete this cup next"
+msgstr ""
+
+#: src/event_select.cpp:162
+msgid "You cannot enter this cup yet"
+msgstr ""
+
+#: src/event_race_select.cpp:45
 msgid "Select a race"
 msgstr ""
 
-#: src/event_race_select.cpp:60 src/race_select.cpp:82
+#: src/event_race_select.cpp:60
 msgid "Race!"
 msgstr ""
 
@@ -109,56 +309,24 @@ msgstr ""
 msgid "You can't enter this race yet."
 msgstr ""
 
-#: src/event_race_select.cpp:316 src/race_select.cpp:369
+#: src/event_race_select.cpp:316
 msgid "Time:"
 msgstr ""
 
-#: src/event_race_select.cpp:324 src/race_select.cpp:377
+#: src/event_race_select.cpp:324
 msgid "Herring:"
 msgstr ""
 
-#: src/event_race_select.cpp:332 src/race_select.cpp:385
+#: src/event_race_select.cpp:332
 msgid "Score:"
 msgstr ""
 
-#: src/event_race_select.cpp:341 src/race_select.cpp:393
+#: src/event_race_select.cpp:341
 msgid "Contributed by:"
 msgstr ""
 
-#: src/event_race_select.cpp:349 src/race_select.cpp:402
+#: src/event_race_select.cpp:349
 msgid "Unknown"
-msgstr ""
-
-#: src/event_select.cpp:50
-msgid "Select event and cup"
-msgstr ""
-
-#: src/event_select.cpp:56
-msgid "Event:"
-msgstr ""
-
-#: src/event_select.cpp:67
-msgid "Cup:"
-msgstr ""
-
-#: src/event_select.cpp:87 src/race_select.cpp:88
-msgid "Player name:"
-msgstr ""
-
-#: src/event_select.cpp:104
-msgid "Continue"
-msgstr ""
-
-#: src/event_select.cpp:158
-msgid "You've won this cup!"
-msgstr ""
-
-#: src/event_select.cpp:160
-msgid "You must complete this cup next"
-msgstr ""
-
-#: src/event_select.cpp:162
-msgid "You cannot enter this cup yet"
 msgstr ""
 
 #: src/game_over.cpp:101
@@ -414,8 +582,4 @@ msgstr ""
 
 #: src/videoconfig.cpp:200
 msgid "FSAA Multisamples:"
-msgstr ""
-
-#: Sadly, added by hand.
-msgid "Tux on Snowboard"
 msgstr ""

@@ -1,4 +1,4 @@
-# Translation of Extreme Tux Racer to Norwegian Nynorsk
+# Translation of nn to Norwegian Nynorsk
 #
 # Copyright (C) 2008 The Extreme Tux Racer team
 # This file is distributed under the same license as the etracer package.
@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Extreme Tux Racer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-15 18:47+0200\n"
-"PO-Revision-Date: 2008-03-23 19:48+0100\n"
+"POT-Creation-Date: 2008-04-15 20:42+0200\n"
+"PO-Revision-Date: 2008-04-15 20:42+0200\n"
 "Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
 "Language-Team: Norwegian Nynorsk <i18n-nn@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
@@ -62,7 +62,7 @@ msgstr "OK"
 msgid "Configuration"
 msgstr "Oppsett"
 
-#: src/configuration.cpp:45
+#: src/configuration.cpp:45 src/credits.cpp:89
 msgid "Graphics"
 msgstr "Grafikk"
 
@@ -86,6 +86,174 @@ msgstr "Styrespak"
 #: src/event_race_select.cpp:53 src/highscore.cpp:412
 msgid "Back"
 msgstr "Tilbake"
+
+#: src/credits.cpp:43
+msgid "Version 0.4"
+msgstr "Versjon 0.4"
+
+#: src/credits.cpp:46
+msgid "Extreme Tux Racer is in the process of being"
+msgstr "Extreme Tux Racer held på å verta"
+
+#: src/credits.cpp:47
+msgid "completely rewritten. All versions after 0.35,"
+msgstr "skriven frå grunnen av. Versjonar etter 0.35,"
+
+#: src/credits.cpp:48
+msgid "including this one, won't have major code changes"
+msgstr "inkludert denne, vil ikkje ha store endringar,"
+
+#: src/credits.cpp:49
+msgid "because the programmers are busy making a new,"
+msgstr "fordi programmerarane er opptekne med å"
+
+#: src/credits.cpp:50
+msgid "improved game."
+msgstr "laga eit nytt, forbetra spel."
+
+#: src/credits.cpp:52
+msgid "Extreme Tux Racer is based on"
+msgstr "Extreme Tux Racer er basert på"
+
+#: src/credits.cpp:53
+msgid "PlanetPenguin Racer, Open Racer and Tux Racer."
+msgstr "PlanetPenguin Racer, Open Racer og Tux Racer."
+
+#: src/credits.cpp:55
+msgid "Some courses may have been modified from their"
+msgstr "Nokre renn er endra frå dei opphavlege"
+
+#: src/credits.cpp:56
+msgid "original versions to fit the requirements of the game."
+msgstr "versjonane for å passa betre til dette spelet."
+
+#: src/credits.cpp:58
+msgid "Development"
+msgstr "Utvikling"
+
+#: src/credits.cpp:63
+msgid "from Sunspire Studios:"
+msgstr "frå Sunspire Studios:"
+
+#: src/credits.cpp:71
+msgid "Non-Rewrite Version Organization"
+msgstr "Versjonsorganisering for ikkjenyskriving"
+
+#: src/credits.cpp:74
+msgid "Translators"
+msgstr "Omsetjarar"
+
+#: src/credits.cpp:87
+msgid "Other (incomplete) translations are from the PPRacer Project."
+msgstr "Andre (ufullstendige) omsettingar er tekne frå PPRacer-prosjektet."
+
+#: src/credits.cpp:90
+msgid "Nicosmos (Logo, Hud Graphics)"
+msgstr "Nicosmos (logo og Hud-bilete)"
+
+#: src/credits.cpp:91
+msgid "Christian Picon (Objects, Skyboxes)"
+msgstr "Christian Picon (objekt og skyboksar)"
+
+#: src/credits.cpp:92
+msgid "Reinhard Niehoff (Trees)"
+msgstr "Reinhard Niehoff (tre)"
+
+#: src/credits.cpp:93
+msgid "Daniel Poeira and Christian Picon (Font)"
+msgstr "Daniel Poeira and Christian Picon (skrift)"
+
+#: src/credits.cpp:95
+msgid "Music"
+msgstr "Musikk"
+
+#: src/credits.cpp:97
+msgid "'Race 1'"
+msgstr "'Renn 1'"
+
+#: src/credits.cpp:98
+msgid "'Menu'"
+msgstr "'Meny'"
+
+#: src/credits.cpp:99
+msgid "'Options'"
+msgstr "'Oppsett'"
+
+#: src/credits.cpp:100
+msgid "'Won Race'"
+msgstr "'Vann rennet'"
+
+#: src/credits.cpp:103
+msgid "'Credits Ballad'"
+msgstr "Bidragsytarskjerm"
+
+#: src/credits.cpp:105
+msgid "Misc. PPRacer Contributors"
+msgstr "Ymse PPRacer-bidragsytarar"
+
+#: src/credits.cpp:110
+msgid "Thanks To"
+msgstr "Takk til"
+
+#: src/credits.cpp:111
+msgid "(for Exteme Tux Racer)"
+msgstr "(for Exteme Tux Racer)"
+
+#: src/credits.cpp:112
+msgid "Ranger (for hosting the website)"
+msgstr "Ranger (for nettstadplass)"
+
+#: src/credits.cpp:113
+msgid "Slythfox (for making the website)"
+msgstr "Slythfox (for å laga nettstaden)"
+
+#: src/credits.cpp:114
+msgid "The Course Creators"
+msgstr "Rennutviklarane"
+
+#: src/credits.cpp:115
+msgid "The OpenRacer project"
+msgstr "OpenRacer-prosjektet"
+
+#: src/credits.cpp:116
+msgid "Reinhard Niehoff (for helping with code modification)"
+msgstr "Reinhard Niehoff (for hjelp til kodeendringar)"
+
+#: src/credits.cpp:117
+msgid "All the people on the forum"
+msgstr "Alle folka på forumet"
+
+#: src/credits.cpp:118
+msgid "Larry Ewing (creator of Tux)"
+msgstr "Larry Ewing (som laga Tux)"
+
+#: src/credits.cpp:119
+msgid "(for Tux Racer)"
+msgstr "(for Tux Racer)"
+
+#: src/credits.cpp:126
+msgid "Tux Racer is a trademark of Jasmin F. Patry"
+msgstr "Tux Racer er eit varemerke som tilhøyrer Jasmin F. Patry"
+
+#: src/credits.cpp:127
+msgid "Extreme Tux Racer is licenced under the GPL."
+msgstr "Extreme Tux Racer er lisensiert under GPL."
+
+#: src/credits.cpp:128
+msgid "We grant use of the name 'Extreme Tux Racer'"
+msgstr "Me gjev alle løyve til å bruka namnet «Extreme Tux Racer»"
+
+#: src/credits.cpp:129
+msgid "to any forks or continuations."
+msgstr "til variantar og vidareutviklingar av spelet."
+
+#: src/credits.cpp:131
+msgid "PlanetPenguin Racer is Copyright © 2005 Volker Stroebel"
+msgstr "PlanetPenguin Racer er Copyright © 2005 Volker Stroebel"
+
+#: src/credits.cpp:132
+msgid "Tux Racer and the Tux Racer Name are Copyright © 2001 Jasmin F. Patry"
+msgstr "Tux Racer og namnet «Tux Racer» er Copyright © 2001 Jasmin F. Patry"
 
 #: src/event_select.cpp:50
 msgid "Select event and cup"
@@ -418,11 +586,17 @@ msgstr "Bruk kantutjamning:"
 msgid "FSAA Multisamples:"
 msgstr "FSAA-fleirprøvar:"
 
-#~ msgid "Language:"
-#~ msgstr "Språk:"
+#~ msgid "on the web at"
+#~ msgstr "på nettet på"
 
 #~ msgid "Tux on Snowboard"
 #~ msgstr "Tux på snøbrett"
+
+#~ msgid "on the web at: www.extremetuxracer.com"
+#~ msgstr "finn du på nettet!!!"
+
+#~ msgid "Language:"
+#~ msgstr "Språk:"
 
 #~ msgid "FPS: %.1f"
 #~ msgstr "B/s: %.1f"
@@ -438,3 +612,4 @@ msgstr "FSAA-fleirprøvar:"
 
 #~ msgid "%.0f"
 #~ msgstr "%.0f"
+
