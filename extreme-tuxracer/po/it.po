@@ -1,43 +1,37 @@
-# Translation of Extreme Tux Racer to Norwegian Nynorsk
+# Translation of Extreme Tux Racer to Italian
 #
 # Copyright (C) 2008 The Extreme Tux Racer team
 # This file is distributed under the same license as the etracer package.
 #
-# ETRacer Team <www.extremetuxracer.com>, 2008.
-#
+# Massimo Spazian <q-continuum@iol.it>.
 msgid ""
 msgstr ""
-"Project-Id-Version: etracer\n"
+"Project-Id-Version: Extreme Tux Racer\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-04-15 18:47+0200\n"
-"PO-Revision-Date: 2008-04-14 13:16+0100\n"
-"Last-Translator: Paweł Drewniak <czajernia@gmail.com>\n"
-"Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
-"|| n%100>=20) ? 1 : 2);\n"
 
 #: src/audioconfig.cpp:36
 msgid "Audio Configuration"
-msgstr "Ustawienia dźwięku"
+msgstr "Configurazione dell'Audio"
 
 #: src/audioconfig.cpp:112
 msgid "Sound Effects:"
-msgstr "Efekty dźwiękowe:"
+msgstr "Effetti sonori:"
 
 #: src/audioconfig.cpp:116
 msgid "Music:"
-msgstr "Muzyka:"
+msgstr "Musica:"
 
 #: src/audioconfig.cpp:120
 msgid "(needs restart)"
-msgstr "(wymagają restartu)"
+msgstr "(necessita riavvio)"
 
 #: src/audioconfig.cpp:122
 msgid "Disable Audio:"
-msgstr "Wyłącz dźwięk:"
+msgstr "Disabilita Audio:"
 
 #: src/audioconfig.cpp:126
 msgid "Stereo:"
@@ -45,15 +39,15 @@ msgstr "Stereo:"
 
 #: src/audioconfig.cpp:130
 msgid "Bits Per Sample:"
-msgstr "Częstotliwość próbkowania:"
+msgstr "Bit Per Sample:"
 
 #: src/audioconfig.cpp:134
 msgid "Samples Per Second:"
-msgstr "Próbek na sekundę:"
+msgstr "Sample Per Secondo:"
 
 #: src/configmode.cpp:36
 msgid "Cancel"
-msgstr "Anuluj"
+msgstr "Annulla"
 
 #: src/configmode.cpp:43
 msgid "Ok"
@@ -61,23 +55,23 @@ msgstr "Ok"
 
 #: src/configuration.cpp:38 src/game_type_select.cpp:57 src/paused.cpp:62
 msgid "Configuration"
-msgstr "Ustawienia"
+msgstr "Configurazione"
 
 #: src/configuration.cpp:45
 msgid "Graphics"
-msgstr "Grafika"
+msgstr "Grafica"
 
 #: src/configuration.cpp:52
 msgid "Video"
-msgstr "Ekran"
+msgstr "Video"
 
 #: src/configuration.cpp:59
 msgid "Audio"
-msgstr "Dźwięk"
+msgstr "Audio"
 
 #: src/configuration.cpp:66
 msgid "Keyboard"
-msgstr "Klawiatura"
+msgstr "Tastiera"
 
 #: src/configuration.cpp:73
 msgid "Joystick"
@@ -86,338 +80,353 @@ msgstr "Joystick"
 #: src/configuration.cpp:81 src/event_select.cpp:96
 #: src/event_race_select.cpp:53 src/highscore.cpp:412
 msgid "Back"
-msgstr "Wstecz"
+msgstr "Indietro"
 
 #: src/event_select.cpp:50
 msgid "Select event and cup"
-msgstr "Wybierz rozgrywki i puchar"
+msgstr "Seleziona evento e coppa"
 
 #: src/event_select.cpp:56
 msgid "Event:"
-msgstr "Rozgrywki:"
+msgstr "Evento:"
 
 #: src/event_select.cpp:67
 msgid "Cup:"
-msgstr "Puchar"
+msgstr "Coppa:"
 
 #: src/event_select.cpp:87
 msgid "Player name:"
-msgstr "Imię:"
+msgstr ""
 
 #: src/event_select.cpp:104
 msgid "Continue"
-msgstr "Kontynuuj"
+msgstr "Continua"
 
 #: src/event_select.cpp:158
 msgid "You've won this cup!"
-msgstr "Wygrałeś ten puchar!"
+msgstr "Hai vinto questa coppa!"
 
 #: src/event_select.cpp:160
 msgid "You must complete this cup next"
-msgstr "Musisz teraz ukończyć ten puchar"
+msgstr "Devi completare questa coppa"
 
 #: src/event_select.cpp:162
 msgid "You cannot enter this cup yet"
-msgstr "Jeszcze nie możesz wystartować w tym pucharze"
+msgstr "Non puoi ancora entrare in questa coppa"
 
 #: src/event_race_select.cpp:45
 msgid "Select a race"
-msgstr "Wybierz tasę"
+msgstr "Seleziona una pista"
 
 #: src/event_race_select.cpp:60
 msgid "Race!"
-msgstr "Start!"
+msgstr "Gara!"
 
 #: src/event_race_select.cpp:280
 msgid "You don't have any lives left."
-msgstr "Nie masz już możliwych szans."
+msgstr "Non ti � rimasta alcuna vita."
 
 #: src/event_race_select.cpp:285
 msgid "Race won! Your result:"
-msgstr "Wygrałeś wyścig! Wyniki:"
+msgstr "Gara vinta! Il tuo risultato:"
 
 #: src/event_race_select.cpp:289
 msgid "Needed to advance:"
-msgstr "Awans od:"
+msgstr "Necessario per proseguire:"
 
 #: src/event_race_select.cpp:293
 msgid "You can't enter this race yet."
-msgstr "Jeszcze nie możesz startować na tej trasie."
+msgstr "Non puoi ancora partecipare a questa pista."
 
 #: src/event_race_select.cpp:316
 msgid "Time:"
-msgstr ""
+msgstr "Tempo:"
 
 #: src/event_race_select.cpp:324
 msgid "Herring:"
-msgstr "Śledzie:"
+msgstr "Pesci:"
 
 #: src/event_race_select.cpp:332
 msgid "Score:"
-msgstr "Wynik:"
+msgstr "Punteggio:"
 
 #: src/event_race_select.cpp:341
 msgid "Contributed by:"
-msgstr "Stworzona przez:"
+msgstr "Contributi di:"
 
 #: src/event_race_select.cpp:349
 msgid "Unknown"
-msgstr "autor nieznany"
+msgstr "Sconosciuto"
 
 #: src/game_over.cpp:101
 msgid "Race aborted"
-msgstr "Wyścig przerwany"
+msgstr "Gara annullata"
 
 #: src/game_over.cpp:104
 msgid "Race Over"
-msgstr "Koniec Wyścigu"
+msgstr "Gara terminata"
 
 #: src/game_over.cpp:111
 #, c-format
 msgid "Time: %02d:%02d.%02d"
-msgstr "Czas: %02d:%02d.%02d"
+msgstr "Tempo: %02d:%02d.%02d"
 
 #: src/game_over.cpp:116
 #, c-format
 msgid "Herring: %3d"
-msgstr "Śledzie: %3d"
+msgstr "Pesci: %3d"
 
 #: src/game_over.cpp:121
 #, c-format
 msgid "Score: %6d"
-msgstr "Wynik: %6d"
+msgstr "Punteggio: %6d"
 
 #: src/game_over.cpp:127
 #, c-format
 msgid "Max speed: %3d km/h"
-msgstr "Maks. szybkość: %3d km/h"
+msgstr "Velocit� massima: %3d km/h"
 
 #: src/game_over.cpp:133
 #, c-format
 msgid "Was flying: %.01f %% of time"
-msgstr "W powietrzu: %.01f %% czasu"
+msgstr "In volo: %.01f %% del tempo"
 
 #: src/game_over.cpp:143
 #, c-format
 msgid "You made it to the %s place in the highscore!"
-msgstr "Zdobyłeś %s miejsce na liście rekordów!"
+msgstr ""
 
 #: src/game_over.cpp:153
 msgid "You beat your best score!"
-msgstr "Pobiłeś swój rekord!"
+msgstr "Hai ottenuto il tuo miglior punteggio"
 
 #: src/game_over.cpp:156
 msgid "Congratulations! You won the event!"
-msgstr "Gratulacje! Wygrałeś rozgrywki!"
+msgstr "Congratulazioni! Hai vinto l'evento!"
 
 #: src/game_over.cpp:158
 msgid "Congratulations! You won the cup!"
-msgstr "Gratulacje! Wygrałeś puchar!"
+msgstr "Congratulazioni! Hai vinto la coppa!"
 
 #: src/game_over.cpp:160
 msgid "You advanced to the next race!"
-msgstr "Awansowałeś do następnego wyścigu!"
+msgstr "Sei passato alla gara successiva!"
 
 #: src/game_over.cpp:162
 msgid "You didn't advance."
-msgstr "Niestety, nie przeszedłeś dalej."
+msgstr "Non sei passato."
 
 #: src/game_type_select.cpp:36
 msgid "Enter an event"
-msgstr "Rozpocznij grę"
+msgstr "Inizia un evento"
 
 #: src/game_type_select.cpp:43
 msgid "Practice"
-msgstr "Ćwiczenia"
+msgstr "Pratica"
 
 #: src/game_type_select.cpp:50 src/highscore.cpp:349
 msgid "Highscore"
-msgstr "Rekordy"
+msgstr ""
 
 #: src/game_type_select.cpp:64
 msgid "Credits"
-msgstr "O autorach"
+msgstr "Credits"
 
 #: src/game_type_select.cpp:71 src/paused.cpp:78
 msgid "Quit"
-msgstr "Wyjście"
+msgstr "Esci"
 
 #: src/graphicsconfig.cpp:30
 msgid "Graphics Configuration"
-msgstr "Ustawienia grafiki"
+msgstr "Configurazione della Grafica"
 
 #: src/graphicsconfig.cpp:104
 msgid "Model:"
-msgstr "Postać:"
+msgstr ""
 
 #: src/graphicsconfig.cpp:113
 msgid "Show UI Snow:"
-msgstr "Śnieg w menu:"
+msgstr "Mostra Neve sul Menu:"
 
 #: src/graphicsconfig.cpp:117
 msgid "Display FPS:"
-msgstr "Licznik FPS:"
+msgstr "Visualizza FPS:"
 
 #: src/graphicsconfig.cpp:121
 msgid "Display Progress Bar:"
-msgstr "Pasek postępu:"
+msgstr "Visualizza Avanzamento:"
 
 #: src/graphicsconfig.cpp:125
 msgid "Draw Fog:"
-msgstr "Mgła:"
+msgstr "Visualizza Nebbia:"
 
 #: src/graphicsconfig.cpp:129
 msgid "Reflections:"
-msgstr "Refleksy:"
+msgstr "Riflessi:"
 
 #: src/graphicsconfig.cpp:133
 msgid "Shadows:"
-msgstr "Cienie:"
+msgstr "Ombre:"
 
 #: src/highscore.cpp:87
 msgid "1:st"
-msgstr "1."
+msgstr ""
 
 #: src/highscore.cpp:89
 msgid "2:nd"
-msgstr "2."
+msgstr ""
 
 #: src/highscore.cpp:91
 msgid "3:rd"
-msgstr "3."
+msgstr ""
 
 #: src/highscore.cpp:93
 msgid "4:th"
-msgstr "4."
+msgstr ""
 
 #: src/highscore.cpp:95
 msgid "5:th"
-msgstr "5."
+msgstr ""
 
 #: src/highscore.cpp:97
 msgid "6:th"
-msgstr "6."
+msgstr ""
 
 #: src/highscore.cpp:99
 msgid "7:th"
-msgstr "7."
+msgstr ""
 
 #: src/highscore.cpp:101
 msgid "8:th"
-msgstr "8."
+msgstr ""
 
 #: src/highscore.cpp:103
 msgid "9:th"
-msgstr "9."
+msgstr ""
 
 #: src/highscore.cpp:105
 msgid "10:th"
-msgstr "10."
+msgstr ""
 
 #: src/highscore.cpp:316
 msgid "No records"
-msgstr "Brak rekordów"
+msgstr ""
 
 #: src/highscore.cpp:326
 #, c-format
 msgid " (%d points)"
-msgstr " (%d pkt)"
+msgstr ""
 
 #: src/joystickconfig.cpp:29
 msgid "Joystick Configuration"
-msgstr "Ustawienia joysticka"
+msgstr "Configurazione del Joystick"
 
 #: src/joystickconfig.cpp:33
 msgid "Enable Joystick"
-msgstr "Włącz joystick"
+msgstr "Abilita Joystick"
 
 #: src/joystickconfig.cpp:41 src/keyboardconfig.cpp:132
 msgid "Paddle:"
-msgstr "Rozpędzanie:"
+msgstr "Spinta:"
 
 #: src/joystickconfig.cpp:54 src/keyboardconfig.cpp:136
 msgid "Brake:"
-msgstr "Hamowanie:"
+msgstr "Freno:"
 
 #: src/joystickconfig.cpp:67 src/keyboardconfig.cpp:140
 msgid "Jump:"
-msgstr "Skok:"
+msgstr "Salta:"
 
 #: src/joystickconfig.cpp:80 src/keyboardconfig.cpp:144
 msgid "Trick:"
-msgstr "Trik:"
+msgstr "Trucchi:"
 
 #: src/keyboardconfig.cpp:55
 msgid "Keyboard Configuration"
-msgstr "Ustawienia klawiatury"
+msgstr "Configurazione della Tastiera"
 
 #: src/keyboardconfig.cpp:124
 msgid "Turn left:"
-msgstr "Skręt w lewo:"
+msgstr "Gira a sinistra:"
 
 #: src/keyboardconfig.cpp:128
 msgid "Turn right:"
-msgstr "Skręt w prawo:"
+msgstr "Gira a destra:"
 
 #: src/keyboardconfig.cpp:148
 msgid "Reset:"
-msgstr "Reset:"
+msgstr "Resetta:"
 
 #: src/loading.cpp:53
 msgid "Loading, Please Wait..."
-msgstr "Ładowanie, Proszę Czekać..."
+msgstr "Sto caricando, attendere prego..."
 
 #: src/paused.cpp:54
 msgid "Paused"
-msgstr "Pauza"
+msgstr "Pausa"
 
 #: src/paused.cpp:70
 msgid "Resume"
-msgstr "Wznów"
+msgstr "Riprendi"
 
 #: src/splash_screen.cpp:34
 msgid "PRESS ANY KEY TO START"
-msgstr "NACIŚNIJ DOWOLNY KLAWISZ"
+msgstr "PREMI UN TASTO PER INIZIARE"
 
 #: src/videoconfig.cpp:60
 msgid "Video Configuration"
-msgstr "Ustawienia ekranu"
+msgstr "Configurazione del Video"
 
 #: src/videoconfig.cpp:173
 msgid "To change the resolution, or switch into fullscreen mode"
-msgstr "Aby zmienić rozdzielczość lub przełączyć na pełny ekran"
+msgstr ""
 
 #: src/videoconfig.cpp:175
 msgid "use options.txt, located in the config folder."
-msgstr "użyj pliku options.txt, który znajduje się w folderze config."
+msgstr ""
 
 #: src/videoconfig.cpp:177
 msgid "Resolution:"
-msgstr "Rozdzielczość:"
+msgstr "Risoluzione:"
 
 #: src/videoconfig.cpp:181
 msgid "Bits Per Pixel:"
-msgstr "Głębia koloru:"
+msgstr "Bit Per Pixel:"
 
 #: src/videoconfig.cpp:185
 msgid "Fullscreen:"
-msgstr "Pełny ekran:"
+msgstr "A tutto schermo:"
 
 #: src/videoconfig.cpp:189
 msgid "Experimental (needs restart)"
-msgstr "Ustawienia eksperymentalne (wymagają restartu)"
+msgstr "Sperimentale (necessita riavvio)"
 
 #: src/videoconfig.cpp:192
 msgid "Stencil Buffer:"
-msgstr "Bufor szablonowy:"
+msgstr ""
 
 #: src/videoconfig.cpp:196
 msgid "Enable FSAA:"
-msgstr "FSAA:"
+msgstr "Abilita FSAA:"
 
 #: src/videoconfig.cpp:200
 msgid "FSAA Multisamples:"
-msgstr "Próbkowanie FSAA:"
+msgstr ""
 
-#~ msgid "Tux on Snowboard"
-#~ msgstr "Tux na Snowboardzie"
+#~ msgid "Language:"
+#~ msgstr "Lingua:"
+
+#~ msgid "FPS: %.1f"
+#~ msgstr "FPS: %.1f"
+
+#~ msgid "km/h"
+#~ msgstr "km/h"
+
+#~ msgid "%03d"
+#~ msgstr "%03d"
+
+#~ msgid "%02d:%02d:%02d"
+#~ msgstr "%02d:%02d:%02d"
+
+#~ msgid "%.0f"
+#~ msgstr "%.0f"

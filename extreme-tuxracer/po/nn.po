@@ -1,8 +1,14 @@
 # Translation of Extreme Tux Racer to Norwegian Nynorsk
+#
+# Copyright (C) 2008 The Extreme Tux Racer team
+# This file is distributed under the same license as the etracer package.
+#
 # Karl Ove Hufthammer <karl@huftis.org>, 2005, 2008.
 msgid ""
 msgstr ""
 "Project-Id-Version: Extreme Tux Racer\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-04-15 18:47+0200\n"
 "PO-Revision-Date: 2008-03-23 19:48+0100\n"
 "Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
 "Language-Team: Norwegian Nynorsk <i18n-nn@lister.ping.uio.no>\n"
@@ -12,320 +18,423 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-msgid "Back"
-msgstr "Tilbake"
-
-msgid "PRESS ANY KEY TO START"
-msgstr "TRYKK EIN TAST FOR Å STARTA"
-
-msgid "Enter an event"
-msgstr "Køyr renn"
-
-msgid "Practice"
-msgstr "Øving"
-
-msgid "Configuration"
-msgstr "Oppsett"
-
-msgid "Credits"
-msgstr "Bidragsytarar"
-
-msgid "Quit"
-msgstr "Avslutt"
-
-msgid "Graphics"
-msgstr "Grafikk"
-
-msgid "Video"
-msgstr "Skjerm"
-
-msgid "Audio"
-msgstr "Lyd"
-
-msgid "Keyboard"
-msgstr "Tastatur"
-
-msgid "Joystick"
-msgstr "Styrespak"
-
-msgid "Cancel"
-msgstr "Avbryt"
-
-msgid "Ok"
-msgstr "OK"
-
-msgid "Graphics Configuration"
-msgstr "Grafikkoppsett"
-
-msgid "Language:"
-msgstr "Språk:"
-
-msgid "Show UI Snow:"
-msgstr "Snø:"
-
-msgid "Display FPS:"
-msgstr "Biletrate:"
-
-msgid "Display Progress Bar:"
-msgstr "Framgangsstolpe:"
-
-msgid "Draw Fog:"
-msgstr "Tåke:"
-
-msgid "Reflections:"
-msgstr "Refleksjonar:"
-
-msgid "Shadows:"
-msgstr "Skuggar:"
-
-msgid "Model:"
-msgstr "Modell:"
-
-msgid "Tux on Snowboard"
-msgstr "Tux på snøbrett"
-
-msgid "Video Configuration"
-msgstr "Skjermoppsett"
-
-msgid "Resolution:"
-msgstr "Oppløysing:"
-
-msgid "Bits Per Pixel:"
-msgstr "Fargedjupn:"
-
-msgid "Fullscreen:"
-msgstr "Fullskjerm:"
-
-msgid "Experimental (needs restart)"
-msgstr "Eksperimentell (treng omstart)"
-
-msgid "Enable FSAA:"
-msgstr "Bruk kantutjamning:"
-
-msgid "FSAA Multisamples:"
-msgstr "FSAA-fleirprøvar:"
-
-msgid "Stencil Buffer:"
-msgstr "Stensilbuffer:"
-
-msgid "To change the resolution, or switch into fullscreen mode"
-msgstr "For å byta oppløysing, eller for å byta til fullskjermsvising,"
-
-msgid "use options.txt, located in the config folder."
-msgstr "bruk fila «options.txt», som ligg i oppsettmappa."
-
+#: src/audioconfig.cpp:36
 msgid "Audio Configuration"
 msgstr "Lydoppsett"
 
+#: src/audioconfig.cpp:112
 msgid "Sound Effects:"
 msgstr "Lydeffektar:"
 
+#: src/audioconfig.cpp:116
 msgid "Music:"
 msgstr "Musikk:"
 
+#: src/audioconfig.cpp:120
 msgid "(needs restart)"
 msgstr "(treng omstart)"
 
+#: src/audioconfig.cpp:122
 msgid "Disable Audio:"
 msgstr "Slå av lyd:"
 
+#: src/audioconfig.cpp:126
 msgid "Stereo:"
 msgstr "Stereo:"
 
+#: src/audioconfig.cpp:130
 msgid "Bits Per Sample:"
 msgstr "Bit per prøve:"
 
+#: src/audioconfig.cpp:134
 msgid "Samples Per Second:"
 msgstr "Prøvar per sekund:"
 
-msgid "Keyboard Configuration"
-msgstr "Tasteoppsett"
+#: src/configmode.cpp:36
+msgid "Cancel"
+msgstr "Avbryt"
 
-msgid "Turn left:"
-msgstr "Sving til venstre:"
+#: src/configmode.cpp:43
+msgid "Ok"
+msgstr "OK"
 
-msgid "Turn right:"
-msgstr "Sving til høgre:"
+#: src/configuration.cpp:38 src/game_type_select.cpp:57 src/paused.cpp:62
+msgid "Configuration"
+msgstr "Oppsett"
 
-msgid "Paddle:"
-msgstr "Gje fart:"
+#: src/configuration.cpp:45
+msgid "Graphics"
+msgstr "Grafikk"
 
-msgid "Brake:"
-msgstr "Brems:"
+#: src/configuration.cpp:52
+msgid "Video"
+msgstr "Skjerm"
 
-msgid "Jump:"
-msgstr "Hopp:"
+#: src/configuration.cpp:59
+msgid "Audio"
+msgstr "Lyd"
 
-msgid "Trick:"
-msgstr "Triks:"
+#: src/configuration.cpp:66
+msgid "Keyboard"
+msgstr "Tastatur"
 
-msgid "Reset:"
-msgstr "Nullstill:"
+#: src/configuration.cpp:73
+msgid "Joystick"
+msgstr "Styrespak"
 
-msgid "Joystick Configuration"
-msgstr "Styrespakoppsett"
+#: src/configuration.cpp:81 src/event_select.cpp:96
+#: src/event_race_select.cpp:53 src/highscore.cpp:412
+msgid "Back"
+msgstr "Tilbake"
 
-msgid "Enable Joystick"
-msgstr "Bruk styrespak"
-
-msgid "Race!"
-msgstr "Køyr!"
-
-msgid "Select a race"
-msgstr "Vel renn"
-
-msgid "Contributed by:"
-msgstr "Laga av:"
-
-msgid "Unknown"
-msgstr "Ukjend"
-
-msgid "Time:"
-msgstr "Tid:"
-
-msgid "Herring:"
-msgstr "Sild:"
-
-msgid "Score:"
-msgstr "Poeng:"
-
-msgid "Continue"
-msgstr "Hald fram"
-
+#: src/event_select.cpp:50
 msgid "Select event and cup"
 msgstr "Vel renn og turnering"
 
+#: src/event_select.cpp:56
 msgid "Event:"
 msgstr "Renn:"
 
+#: src/event_select.cpp:67
 msgid "Cup:"
 msgstr "Turnering:"
 
-msgid "You've won this cup!"
-msgstr "Du vann denne turneringa!"
-
-msgid "You must complete this cup next"
-msgstr "Du må no vinna denne turneringa"
-
-msgid "You cannot enter this cup yet"
-msgstr "Du kan ikkje spela denne turneringa enno"
-
-msgid "You don't have any lives left."
-msgstr "Du har ikkje fleire liv igjen."
-
-msgid "Race won! Your result:"
-msgstr "Du vann! Resultat:"
-
-msgid "Needed to advance:"
-msgstr "For å gå vidare:"
-
-msgid "You can't enter this race yet."
-msgstr "Du kan ikkje spela dette rennet enno"
-
-msgid "Loading, Please Wait..."
-msgstr "Lastar. Vent litt …"
-
-msgid "Resume"
-msgstr "Hald fram"
-
-msgid "Paused"
-msgstr "Pause"
-
-msgid "Race Over"
-msgstr "Rennet er ferdig"
-
-msgid "Time: %02d:%02d.%02d"
-msgstr "Tid: %02d.%02d,%02d"
-
-msgid "Herring: %3d"
-msgstr "Sild: %3d"
-
-msgid "Score: %6d"
-msgstr "Poeng: %6d"
-
-msgid "Max speed: %3d km/h"
-msgstr "Maksfart: %3d km/t"
-
-msgid "Was flying: %.01f %% of time"
-msgstr "Fauk %.01f %% av tida"
-
-msgid "Race aborted"
-msgstr "Avbraut rennet"
-
-msgid "You beat your best score!"
-msgstr "Du slo rekorden din!"
-
-msgid "Congratulations! You won the event!"
-msgstr "Gratulerer! Du vann rennet!"
-
-msgid "Congratulations! You won the cup!"
-msgstr "Gratulerer! Du vann turneringa!"
-
-msgid "You advanced to the next race!"
-msgstr "Du kom vidare til neste renn!"
-
-msgid "You didn't advance."
-msgstr "Du kom ikkje vidare."
-
-msgid "Highscore"
-msgstr "Rekordar"
-
-msgid "You made it to the %s place in the highscore!"
-msgstr "Du kom inn på %s plass på rekordlista!"
-
+#: src/event_select.cpp:87
 msgid "Player name:"
 msgstr "Spelarnamn:"
 
+#: src/event_select.cpp:104
+msgid "Continue"
+msgstr "Hald fram"
+
+#: src/event_select.cpp:158
+msgid "You've won this cup!"
+msgstr "Du vann denne turneringa!"
+
+#: src/event_select.cpp:160
+msgid "You must complete this cup next"
+msgstr "Du må no vinna denne turneringa"
+
+#: src/event_select.cpp:162
+msgid "You cannot enter this cup yet"
+msgstr "Du kan ikkje spela denne turneringa enno"
+
+#: src/event_race_select.cpp:45
+msgid "Select a race"
+msgstr "Vel renn"
+
+#: src/event_race_select.cpp:60
+msgid "Race!"
+msgstr "Køyr!"
+
+#: src/event_race_select.cpp:280
+msgid "You don't have any lives left."
+msgstr "Du har ikkje fleire liv igjen."
+
+#: src/event_race_select.cpp:285
+msgid "Race won! Your result:"
+msgstr "Du vann! Resultat:"
+
+#: src/event_race_select.cpp:289
+msgid "Needed to advance:"
+msgstr "For å gå vidare:"
+
+#: src/event_race_select.cpp:293
+msgid "You can't enter this race yet."
+msgstr "Du kan ikkje spela dette rennet enno"
+
+#: src/event_race_select.cpp:316
+msgid "Time:"
+msgstr "Tid:"
+
+#: src/event_race_select.cpp:324
+msgid "Herring:"
+msgstr "Sild:"
+
+#: src/event_race_select.cpp:332
+msgid "Score:"
+msgstr "Poeng:"
+
+#: src/event_race_select.cpp:341
+msgid "Contributed by:"
+msgstr "Laga av:"
+
+#: src/event_race_select.cpp:349
+msgid "Unknown"
+msgstr "Ukjend"
+
+#: src/game_over.cpp:101
+msgid "Race aborted"
+msgstr "Avbraut rennet"
+
+#: src/game_over.cpp:104
+msgid "Race Over"
+msgstr "Rennet er ferdig"
+
+#: src/game_over.cpp:111
+#, c-format
+msgid "Time: %02d:%02d.%02d"
+msgstr "Tid: %02d.%02d,%02d"
+
+#: src/game_over.cpp:116
+#, c-format
+msgid "Herring: %3d"
+msgstr "Sild: %3d"
+
+#: src/game_over.cpp:121
+#, c-format
+msgid "Score: %6d"
+msgstr "Poeng: %6d"
+
+#: src/game_over.cpp:127
+#, c-format
+msgid "Max speed: %3d km/h"
+msgstr "Maksfart: %3d km/t"
+
+#: src/game_over.cpp:133
+#, c-format
+msgid "Was flying: %.01f %% of time"
+msgstr "Fauk %.01f %% av tida"
+
+#: src/game_over.cpp:143
+#, c-format
+msgid "You made it to the %s place in the highscore!"
+msgstr "Du kom inn på %s plass på rekordlista!"
+
+#: src/game_over.cpp:153
+msgid "You beat your best score!"
+msgstr "Du slo rekorden din!"
+
+#: src/game_over.cpp:156
+msgid "Congratulations! You won the event!"
+msgstr "Gratulerer! Du vann rennet!"
+
+#: src/game_over.cpp:158
+msgid "Congratulations! You won the cup!"
+msgstr "Gratulerer! Du vann turneringa!"
+
+#: src/game_over.cpp:160
+msgid "You advanced to the next race!"
+msgstr "Du kom vidare til neste renn!"
+
+#: src/game_over.cpp:162
+msgid "You didn't advance."
+msgstr "Du kom ikkje vidare."
+
+#: src/game_type_select.cpp:36
+msgid "Enter an event"
+msgstr "Køyr renn"
+
+#: src/game_type_select.cpp:43
+msgid "Practice"
+msgstr "Øving"
+
+#: src/game_type_select.cpp:50 src/highscore.cpp:349
+msgid "Highscore"
+msgstr "Rekordar"
+
+#: src/game_type_select.cpp:64
+msgid "Credits"
+msgstr "Bidragsytarar"
+
+#: src/game_type_select.cpp:71 src/paused.cpp:78
+msgid "Quit"
+msgstr "Avslutt"
+
+#: src/graphicsconfig.cpp:30
+msgid "Graphics Configuration"
+msgstr "Grafikkoppsett"
+
+#: src/graphicsconfig.cpp:104
+msgid "Model:"
+msgstr "Modell:"
+
+#: src/graphicsconfig.cpp:113
+msgid "Show UI Snow:"
+msgstr "Snø:"
+
+#: src/graphicsconfig.cpp:117
+msgid "Display FPS:"
+msgstr "Biletrate:"
+
+#: src/graphicsconfig.cpp:121
+msgid "Display Progress Bar:"
+msgstr "Framgangsstolpe:"
+
+#: src/graphicsconfig.cpp:125
+msgid "Draw Fog:"
+msgstr "Tåke:"
+
+#: src/graphicsconfig.cpp:129
+msgid "Reflections:"
+msgstr "Refleksjonar:"
+
+#: src/graphicsconfig.cpp:133
+msgid "Shadows:"
+msgstr "Skuggar:"
+
+#: src/highscore.cpp:87
 msgid "1:st"
 msgstr "1."
 
+#: src/highscore.cpp:89
 msgid "2:nd"
 msgstr "2."
 
+#: src/highscore.cpp:91
 msgid "3:rd"
 msgstr "3."
 
+#: src/highscore.cpp:93
 msgid "4:th"
 msgstr "4."
 
+#: src/highscore.cpp:95
 msgid "5:th"
 msgstr "5."
 
+#: src/highscore.cpp:97
 msgid "6:th"
 msgstr "6."
 
+#: src/highscore.cpp:99
 msgid "7:th"
 msgstr "7."
 
+#: src/highscore.cpp:101
 msgid "8:th"
 msgstr "8."
 
+#: src/highscore.cpp:103
 msgid "9:th"
 msgstr "9."
 
+#: src/highscore.cpp:105
 msgid "10:th"
 msgstr "10."
 
-msgid " (%d points)"
-msgstr " (%d poeng)"
-
+#: src/highscore.cpp:316
 msgid "No records"
 msgstr "Ingen rekordar"
 
-msgid "H|FPS: %.1f"
-msgstr "B/s: %.1f"
+#: src/highscore.cpp:326
+#, c-format
+msgid " (%d points)"
+msgstr " (%d poeng)"
 
-msgid "H|Time:"
-msgstr "Tid:"
+#: src/joystickconfig.cpp:29
+msgid "Joystick Configuration"
+msgstr "Styrespakoppsett"
 
-msgid "H|km/h"
-msgstr "km/t"
+#: src/joystickconfig.cpp:33
+msgid "Enable Joystick"
+msgstr "Bruk styrespak"
 
-msgid "H|%03d"
-msgstr "%03d"
+#: src/joystickconfig.cpp:41 src/keyboardconfig.cpp:132
+msgid "Paddle:"
+msgstr "Gje fart:"
 
-msgid "H|%02d:%02d:%02d"
-msgstr "%02d.%02d,%02d"
+#: src/joystickconfig.cpp:54 src/keyboardconfig.cpp:136
+msgid "Brake:"
+msgstr "Brems:"
 
-msgid "H|%.0f"
-msgstr "%.0f"
+#: src/joystickconfig.cpp:67 src/keyboardconfig.cpp:140
+msgid "Jump:"
+msgstr "Hopp:"
+
+#: src/joystickconfig.cpp:80 src/keyboardconfig.cpp:144
+msgid "Trick:"
+msgstr "Triks:"
+
+#: src/keyboardconfig.cpp:55
+msgid "Keyboard Configuration"
+msgstr "Tasteoppsett"
+
+#: src/keyboardconfig.cpp:124
+msgid "Turn left:"
+msgstr "Sving til venstre:"
+
+#: src/keyboardconfig.cpp:128
+msgid "Turn right:"
+msgstr "Sving til høgre:"
+
+#: src/keyboardconfig.cpp:148
+msgid "Reset:"
+msgstr "Nullstill:"
+
+#: src/loading.cpp:53
+msgid "Loading, Please Wait..."
+msgstr "Lastar. Vent litt …"
+
+#: src/paused.cpp:54
+msgid "Paused"
+msgstr "Pause"
+
+#: src/paused.cpp:70
+msgid "Resume"
+msgstr "Hald fram"
+
+#: src/splash_screen.cpp:34
+msgid "PRESS ANY KEY TO START"
+msgstr "TRYKK EIN TAST FOR Å STARTA"
+
+#: src/videoconfig.cpp:60
+msgid "Video Configuration"
+msgstr "Skjermoppsett"
+
+#: src/videoconfig.cpp:173
+msgid "To change the resolution, or switch into fullscreen mode"
+msgstr "For å byta oppløysing, eller for å byta til fullskjermsvising,"
+
+#: src/videoconfig.cpp:175
+msgid "use options.txt, located in the config folder."
+msgstr "bruk fila «options.txt», som ligg i oppsettmappa."
+
+#: src/videoconfig.cpp:177
+msgid "Resolution:"
+msgstr "Oppløysing:"
+
+#: src/videoconfig.cpp:181
+msgid "Bits Per Pixel:"
+msgstr "Fargedjupn:"
+
+#: src/videoconfig.cpp:185
+msgid "Fullscreen:"
+msgstr "Fullskjerm:"
+
+#: src/videoconfig.cpp:189
+msgid "Experimental (needs restart)"
+msgstr "Eksperimentell (treng omstart)"
+
+#: src/videoconfig.cpp:192
+msgid "Stencil Buffer:"
+msgstr "Stensilbuffer:"
+
+#: src/videoconfig.cpp:196
+msgid "Enable FSAA:"
+msgstr "Bruk kantutjamning:"
+
+#: src/videoconfig.cpp:200
+msgid "FSAA Multisamples:"
+msgstr "FSAA-fleirprøvar:"
+
+#~ msgid "Language:"
+#~ msgstr "Språk:"
+
+#~ msgid "Tux on Snowboard"
+#~ msgstr "Tux på snøbrett"
+
+#~ msgid "FPS: %.1f"
+#~ msgstr "B/s: %.1f"
+
+#~ msgid "km/h"
+#~ msgstr "km/t"
+
+#~ msgid "%03d"
+#~ msgstr "%03d"
+
+#~ msgid "%02d:%02d:%02d"
+#~ msgstr "%02d.%02d,%02d"
+
+#~ msgid "%.0f"
+#~ msgstr "%.0f"
