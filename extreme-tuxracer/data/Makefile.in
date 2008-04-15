@@ -571,23 +571,6 @@ courses/events/a-tux_racer/path_of_daggers/elev.png \
 		textures/tuxlife.png \
 		textures/menu_title.png \
 		textures/menu_title_small.png \
-		translations/en_GB.tcl \
-		translations/it_IT.tcl \
-		translations/de_DE.tcl \
-		translations/nl_NL.tcl \
-		translations/es_ES.tcl \
-		translations/pl_PL.tcl \
-		translations/eu_ES.tcl \
-		translations/fr_FR.tcl \
-		translations/fi_FI.tcl \
-		translations/sv_SE.tcl \
-		translations/languages.tcl \
-		translations/nb_NO.tcl \
-		translations/nn_NO.tcl \
-		translations/pt_PT.tcl \
-		translations/ro_RO.tcl \
-		translations/ru_RU.tcl \
-		translations/sk_SK.tcl \
 		tux.tcl \
 		tux_snowboard.tcl \
 		sounds/tux_hit_tree1.wav \
