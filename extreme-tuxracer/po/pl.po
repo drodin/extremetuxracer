@@ -1,23 +1,20 @@
-# Translation of Extreme Tux Racer to Norwegian Nynorsk
-#
-# Copyright (C) 2008 The Extreme Tux Racer team
+# ETRacer Polish translation.
+# Copyright (C) 2008 ETRacer Team
 # This file is distributed under the same license as the etracer package.
-#
 # ETRacer Team <www.extremetuxracer.com>, 2008.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: etracer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-15 18:47+0200\n"
+"POT-Creation-Date: 2008-04-14 12:18+0200\n"
 "PO-Revision-Date: 2008-04-14 13:16+0100\n"
 "Last-Translator: Paweł Drewniak <czajernia@gmail.com>\n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
-"|| n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: src/audioconfig.cpp:36
 msgid "Audio Configuration"
@@ -59,7 +56,9 @@ msgstr "Anuluj"
 msgid "Ok"
 msgstr "Ok"
 
-#: src/configuration.cpp:38 src/game_type_select.cpp:57 src/paused.cpp:62
+#: src/configuration.cpp:38
+#: src/game_type_select.cpp:57
+#: src/paused.cpp:62
 msgid "Configuration"
 msgstr "Ustawienia"
 
@@ -83,48 +82,21 @@ msgstr "Klawiatura"
 msgid "Joystick"
 msgstr "Joystick"
 
-#: src/configuration.cpp:81 src/event_select.cpp:96
-#: src/event_race_select.cpp:53 src/highscore.cpp:412
+#: src/configuration.cpp:81
+#: src/event_race_select.cpp:53
+#: src/event_select.cpp:96
+#: src/highscore.cpp:412
+#: src/race_select.cpp:74
 msgid "Back"
 msgstr "Wstecz"
 
-#: src/event_select.cpp:50
-msgid "Select event and cup"
-msgstr "Wybierz rozgrywki i puchar"
-
-#: src/event_select.cpp:56
-msgid "Event:"
-msgstr "Rozgrywki:"
-
-#: src/event_select.cpp:67
-msgid "Cup:"
-msgstr "Puchar"
-
-#: src/event_select.cpp:87
-msgid "Player name:"
-msgstr "Imię:"
-
-#: src/event_select.cpp:104
-msgid "Continue"
-msgstr "Kontynuuj"
-
-#: src/event_select.cpp:158
-msgid "You've won this cup!"
-msgstr "Wygrałeś ten puchar!"
-
-#: src/event_select.cpp:160
-msgid "You must complete this cup next"
-msgstr "Musisz teraz ukończyć ten puchar"
-
-#: src/event_select.cpp:162
-msgid "You cannot enter this cup yet"
-msgstr "Jeszcze nie możesz wystartować w tym pucharze"
-
 #: src/event_race_select.cpp:45
+#: src/race_select.cpp:67
 msgid "Select a race"
 msgstr "Wybierz tasę"
 
 #: src/event_race_select.cpp:60
+#: src/race_select.cpp:82
 msgid "Race!"
 msgstr "Start!"
 
@@ -145,24 +117,62 @@ msgid "You can't enter this race yet."
 msgstr "Jeszcze nie możesz startować na tej trasie."
 
 #: src/event_race_select.cpp:316
+#: src/race_select.cpp:369
 msgid "Time:"
-msgstr ""
+msgstr "Czas:"
 
 #: src/event_race_select.cpp:324
+#: src/race_select.cpp:377
 msgid "Herring:"
 msgstr "Śledzie:"
 
 #: src/event_race_select.cpp:332
+#: src/race_select.cpp:385
 msgid "Score:"
 msgstr "Wynik:"
 
 #: src/event_race_select.cpp:341
+#: src/race_select.cpp:393
 msgid "Contributed by:"
 msgstr "Stworzona przez:"
 
 #: src/event_race_select.cpp:349
+#: src/race_select.cpp:402
 msgid "Unknown"
 msgstr "autor nieznany"
+
+#: src/event_select.cpp:50
+msgid "Select event and cup"
+msgstr "Wybierz rozgrywki i puchar"
+
+#: src/event_select.cpp:56
+msgid "Event:"
+msgstr "Rozgrywki:"
+
+#: src/event_select.cpp:67
+msgid "Cup:"
+msgstr "Puchar"
+
+#: src/event_select.cpp:87
+#: src/race_select.cpp:88
+msgid "Player name:"
+msgstr "Imię:"
+
+#: src/event_select.cpp:104
+msgid "Continue"
+msgstr "Kontynuuj"
+
+#: src/event_select.cpp:158
+msgid "You've won this cup!"
+msgstr "Wygrałeś ten puchar!"
+
+#: src/event_select.cpp:160
+msgid "You must complete this cup next"
+msgstr "Musisz teraz ukończyć ten puchar"
+
+#: src/event_select.cpp:162
+msgid "You cannot enter this cup yet"
+msgstr "Jeszcze nie możesz wystartować w tym pucharze"
 
 #: src/game_over.cpp:101
 msgid "Race aborted"
@@ -230,7 +240,8 @@ msgstr "Rozpocznij grę"
 msgid "Practice"
 msgstr "Ćwiczenia"
 
-#: src/game_type_select.cpp:50 src/highscore.cpp:349
+#: src/game_type_select.cpp:50
+#: src/highscore.cpp:349
 msgid "Highscore"
 msgstr "Rekordy"
 
@@ -238,7 +249,8 @@ msgstr "Rekordy"
 msgid "Credits"
 msgstr "O autorach"
 
-#: src/game_type_select.cpp:71 src/paused.cpp:78
+#: src/game_type_select.cpp:71
+#: src/paused.cpp:78
 msgid "Quit"
 msgstr "Wyjście"
 
@@ -331,19 +343,23 @@ msgstr "Ustawienia joysticka"
 msgid "Enable Joystick"
 msgstr "Włącz joystick"
 
-#: src/joystickconfig.cpp:41 src/keyboardconfig.cpp:132
+#: src/joystickconfig.cpp:41
+#: src/keyboardconfig.cpp:132
 msgid "Paddle:"
 msgstr "Rozpędzanie:"
 
-#: src/joystickconfig.cpp:54 src/keyboardconfig.cpp:136
+#: src/joystickconfig.cpp:54
+#: src/keyboardconfig.cpp:136
 msgid "Brake:"
 msgstr "Hamowanie:"
 
-#: src/joystickconfig.cpp:67 src/keyboardconfig.cpp:140
+#: src/joystickconfig.cpp:67
+#: src/keyboardconfig.cpp:140
 msgid "Jump:"
 msgstr "Skok:"
 
-#: src/joystickconfig.cpp:80 src/keyboardconfig.cpp:144
+#: src/joystickconfig.cpp:80
+#: src/keyboardconfig.cpp:144
 msgid "Trick:"
 msgstr "Trik:"
 
@@ -419,5 +435,7 @@ msgstr "FSAA:"
 msgid "FSAA Multisamples:"
 msgstr "Próbkowanie FSAA:"
 
-#~ msgid "Tux on Snowboard"
-#~ msgstr "Tux na Snowboardzie"
+#: Sadly, added by hand.
+msgid "Tux on Snowboard"
+msgstr "Tux na Snowboardzie"
+

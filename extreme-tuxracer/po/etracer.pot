@@ -1,14 +1,14 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR ETRacer Team
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# ETRacer translation template.
+# Copyright (C) 2008 ETRacer Team
+# This file is distributed under the same license as the etracer package.
+# ETRacer Team <www.extremetuxracer.com>, 2008.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-15 18:47+0200\n"
+"POT-Creation-Date: 2008-04-14 12:18+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -80,48 +80,16 @@ msgstr ""
 msgid "Joystick"
 msgstr ""
 
-#: src/configuration.cpp:81 src/event_select.cpp:96
-#: src/event_race_select.cpp:53 src/highscore.cpp:412
+#: src/configuration.cpp:81 src/event_race_select.cpp:53
+#: src/event_select.cpp:96 src/highscore.cpp:412 src/race_select.cpp:74
 msgid "Back"
 msgstr ""
 
-#: src/event_select.cpp:50
-msgid "Select event and cup"
-msgstr ""
-
-#: src/event_select.cpp:56
-msgid "Event:"
-msgstr ""
-
-#: src/event_select.cpp:67
-msgid "Cup:"
-msgstr ""
-
-#: src/event_select.cpp:87
-msgid "Player name:"
-msgstr ""
-
-#: src/event_select.cpp:104
-msgid "Continue"
-msgstr ""
-
-#: src/event_select.cpp:158
-msgid "You've won this cup!"
-msgstr ""
-
-#: src/event_select.cpp:160
-msgid "You must complete this cup next"
-msgstr ""
-
-#: src/event_select.cpp:162
-msgid "You cannot enter this cup yet"
-msgstr ""
-
-#: src/event_race_select.cpp:45
+#: src/event_race_select.cpp:45 src/race_select.cpp:67
 msgid "Select a race"
 msgstr ""
 
-#: src/event_race_select.cpp:60
+#: src/event_race_select.cpp:60 src/race_select.cpp:82
 msgid "Race!"
 msgstr ""
 
@@ -141,24 +109,56 @@ msgstr ""
 msgid "You can't enter this race yet."
 msgstr ""
 
-#: src/event_race_select.cpp:316
+#: src/event_race_select.cpp:316 src/race_select.cpp:369
 msgid "Time:"
 msgstr ""
 
-#: src/event_race_select.cpp:324
+#: src/event_race_select.cpp:324 src/race_select.cpp:377
 msgid "Herring:"
 msgstr ""
 
-#: src/event_race_select.cpp:332
+#: src/event_race_select.cpp:332 src/race_select.cpp:385
 msgid "Score:"
 msgstr ""
 
-#: src/event_race_select.cpp:341
+#: src/event_race_select.cpp:341 src/race_select.cpp:393
 msgid "Contributed by:"
 msgstr ""
 
-#: src/event_race_select.cpp:349
+#: src/event_race_select.cpp:349 src/race_select.cpp:402
 msgid "Unknown"
+msgstr ""
+
+#: src/event_select.cpp:50
+msgid "Select event and cup"
+msgstr ""
+
+#: src/event_select.cpp:56
+msgid "Event:"
+msgstr ""
+
+#: src/event_select.cpp:67
+msgid "Cup:"
+msgstr ""
+
+#: src/event_select.cpp:87 src/race_select.cpp:88
+msgid "Player name:"
+msgstr ""
+
+#: src/event_select.cpp:104
+msgid "Continue"
+msgstr ""
+
+#: src/event_select.cpp:158
+msgid "You've won this cup!"
+msgstr ""
+
+#: src/event_select.cpp:160
+msgid "You must complete this cup next"
+msgstr ""
+
+#: src/event_select.cpp:162
+msgid "You cannot enter this cup yet"
 msgstr ""
 
 #: src/game_over.cpp:101
@@ -414,4 +414,8 @@ msgstr ""
 
 #: src/videoconfig.cpp:200
 msgid "FSAA Multisamples:"
+msgstr ""
+
+#: Sadly, added by hand.
+msgid "Tux on Snowboard"
 msgstr ""
