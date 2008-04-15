@@ -40,28 +40,27 @@ typedef struct {
 static credit_line_t credit_lines[] = 
 {
 	{ NULL, "credits_text_big", "Extreme Tux Racer" },
-    { NULL, "credits_text", "Version 0.4" },
-    { NULL, "credits_text", "on the web at: www.extremetuxracer.com" },
+    { NULL, "credits_text", N_("Version 0.4") },
+    { NULL, "credits_text", "www.extremetuxracer.com" },
     { NULL, "credits_text", "" },	
-	{ NULL, "credits_text", "Extreme Tux Racer is in the process of being" },	
-	{ NULL, "credits_text", "completely rewritten. All versions after 0.35," },	
-	{ NULL, "credits_text", "including this one, won't have major code changes" },	
-	{ NULL, "credits_text", "because the programmers are busy making a new, improved game." },		
+	{ NULL, "credits_text", N_("Extreme Tux Racer is in the process of being") },	
+	{ NULL, "credits_text", N_("completely rewritten. All versions after 0.35,") },	
+	{ NULL, "credits_text", N_("including this one, won't have major code changes") },	
+	{ NULL, "credits_text", N_("because the programmers are busy making a new,") },
+    { NULL, "credits_text", N_("improved game.") },
 	{ NULL, "credits_text", "" },		
-	{ NULL, "credits_text", "Extreme Tux Racer is based on:" },
-	{ NULL, "credits_text", "PlanetPenguin Racer," },
-	{ NULL, "credits_text", "Open Racer," },
-	{ NULL, "credits_text", "and Tux Racer" },
+	{ NULL, "credits_text", N_("Extreme Tux Racer is based on") },
+	{ NULL, "credits_text", N_("PlanetPenguin Racer, Open Racer and Tux Racer.") },
 	    { NULL, "credits_text", "" },
-		{ NULL, "credits_text", "Some courses may have been modified from their" },
-		{ NULL, "credits_text", "original versions to fit the requirements of the game." },		
+		{ NULL, "credits_text", N_("Some courses may have been modified from their") },
+		{ NULL, "credits_text", N_("original versions to fit the requirements of the game.") },		
     { NULL, "credits_text", "" },
-    { NULL, "credits_h2", "Development" },
+    { NULL, "credits_h2", N_("Development") },
     { NULL, "credits_text", "Volker Ströbel" },
     { NULL, "credits_text", "Steven Bell" },
     { NULL, "credits_text", "Hamish Morrison" },
     { NULL, "credits_text", "Andreas Tarandi" },
-	{ NULL, "credits_text_small", "from Sunspire Studios:" },
+	{ NULL, "credits_text_small", N_("from Sunspire Studios:") },
     { NULL, "credits_text", "Patrick \"Pog\" Gilhuly" },
     { NULL, "credits_text", "Eric \"Monster\" Hall" },
     { NULL, "credits_text", "Rick Knowles" },
@@ -69,10 +68,10 @@ static credit_line_t credit_lines[] =
     { NULL, "credits_text", "Jasmin Patry" },
     { NULL, "credits_text", "Mark Riddell" },
 		{ NULL, "credits_text", "" },
-		{ NULL, "credits_h2", "Non-Rewrite Version Organization" },
+		{ NULL, "credits_h2", N_("Non-Rewrite Version Organization") },
 		{ NULL, "credits_text", "Christian Picon" },	
 		{ NULL, "credits_text", "" },
-	{ NULL, "credits_h2", "Translators" },
+	{ NULL, "credits_h2", N_("Translators") },
 	{ NULL, "credits_text", "Nicosmos (French)" },
 	{ NULL, "credits_text", "teksturi (Finnish)" },
 	{ NULL, "credits_text", "arith, spacedwarv, and JoyFM (German)" },
@@ -85,51 +84,52 @@ static credit_line_t credit_lines[] =
     	{ NULL, "credits_text", "ttsmj (Slovak)" },		
 	{ NULL, "credits_text", "Jonan (Spanish)" },	
 	{ NULL, "credits_text", "EFU (Russian)" },		
-    	{ NULL, "credits_text_small", "other (incomplete) translations are from the PPRacer Project" },
+    	{ NULL, "credits_text_small", N_("Other (incomplete) translations are from the PPRacer Project.") },
     { NULL, "credits_text", "" },
-    { NULL, "credits_h2", "Graphics" },
-    { NULL, "credits_text", "Nicosmos (Logo, Hud Graphics)" },
-    { NULL, "credits_text", "Christian Picon (Objects, Skyboxes)" },
-    { NULL, "credits_text", "Reinhard Niehoff (Trees)" },	
-    { NULL, "credits_text", "Daniel Poeira and Christian Picon (Font)" },
+    { NULL, "credits_h2", N_("Graphics") },
+    { NULL, "credits_text", N_("Nicosmos (Logo, Hud Graphics)") },
+    { NULL, "credits_text", N_("Christian Picon (Objects, Skyboxes)") },
+    { NULL, "credits_text", N_("Reinhard Niehoff (Trees)") },	
+    { NULL, "credits_text", N_("Daniel Poeira and Christian Picon (Font)") },
     { NULL, "credits_text", "" },
-    { NULL, "credits_h2", "Music" },
+    { NULL, "credits_h2", N_("Music") },
     { NULL, "credits_text", "Joseph Toscano" },
-	    { NULL, "credits_text_small", "'Race 1'" },
-		{ NULL, "credits_text_small", "'Menu'" },
-	    { NULL, "credits_text_small", "'Options'" },	
-	    { NULL, "credits_text_small", "'Won Race'" },
+	    { NULL, "credits_text_small", N_("'Race 1'") },
+		{ NULL, "credits_text_small", N_("'Menu'") },
+	    { NULL, "credits_text_small", N_("'Options'") },	
+	    { NULL, "credits_text_small", N_("'Won Race'") },
 	    { NULL, "credits_text_small", "" },		
     { NULL, "credits_text", "Christian Picon" },
-	    { NULL, "credits_text_small", "'Credits Ballad'" },	
+	    { NULL, "credits_text_small", N_("'Credits Ballad'") },	
 		    { NULL, "credits_text", "" },
-	{ NULL, "credits_h2", "Misc. PPRacer Contributors" },
+	{ NULL, "credits_h2", N_("Misc. PPRacer Contributors") },
 	{ NULL, "credits_text", "Peter Reichel" },
 	{ NULL, "credits_text", "Teemu Vesala" },
 	{ NULL, "credits_text", "Theo Snelleman" },
     { NULL, "credits_text", "" },
-    { NULL, "credits_h2", "Thanks To" },
-    { NULL, "credits_text_small", "(for Exteme Tux Racer)" },
-    { NULL, "credits_text", "Ranger (for hosting the website)" },
-    { NULL, "credits_text", "Slythfox (for making the website)" },
-    { NULL, "credits_text", "The Course Creators" },	
-    { NULL, "credits_text", "The OpenRacer project" },
-    { NULL, "credits_text", "Reinhard Niehoff (for helping with code modification)" },
-    { NULL, "credits_text", "All the people on the forum." },
-    { NULL, "credits_text", "Larry Ewing (creator of Tux)" },
-    { NULL, "credits_text_small", "(for Tux Racer)" },
+    { NULL, "credits_h2", N_("Thanks To") },
+    { NULL, "credits_text_small", N_("(for Exteme Tux Racer)") },
+    { NULL, "credits_text", N_("Ranger (for hosting the website)") },
+    { NULL, "credits_text", N_("Slythfox (for making the website)") },
+    { NULL, "credits_text", N_("The Course Creators") },	
+    { NULL, "credits_text", N_("The OpenRacer project") },
+    { NULL, "credits_text", N_("Reinhard Niehoff (for helping with code modification)") },
+    { NULL, "credits_text", N_("All the people on the forum") },
+    { NULL, "credits_text", N_("Larry Ewing (creator of Tux)") },
+    { NULL, "credits_text_small", N_("(for Tux Racer)") },
     { NULL, "credits_text", "Thatcher Ulrich" },
     { NULL, "credits_text", "Steve Baker" },
     { NULL, "credits_text", "Ingo Ruhnke" },
     { NULL, "credits_text", "James Barnard" },
     { NULL, "credits_text", "Alan Levy" },
     { NULL, "credits_text", "" },
-  { NULL, "credits_text_small", "Tux Racer is a trademark of Jasmin F. Patry" },
-	{ NULL, "credits_text_small", "Extreme Tux Racer is licenced under the GPL." },
-	{ NULL, "credits_text_small", "We grant use of the name 'Extreme Tux Racer' to any forks or continuations. " },
+  { NULL, "credits_text_small", N_("Tux Racer is a trademark of Jasmin F. Patry") },
+	{ NULL, "credits_text_small", N_("Extreme Tux Racer is licenced under the GPL.") },
+	{ NULL, "credits_text_small", N_("We grant use of the name 'Extreme Tux Racer'") },
+    { NULL, "credits_text_small", N_("to any forks or continuations.") },
 	{ NULL, "credits_text_small", "" },
-	{ NULL, "credits_text_small", "PlanetPenguin Racer is Copyright © 2005 Volker Stroebel" },
-  { NULL, "credits_text_small", "Tux Racer and the Tux Racer Name are Copyright © 2001 Jasmin F. Patry" },
+	{ NULL, "credits_text_small", N_("PlanetPenguin Racer is Copyright © 2005 Volker Stroebel") },
+  { NULL, "credits_text_small", N_("Tux Racer and the Tux Racer Name are Copyright © 2001 Jasmin F. Patry") },
 };
 
 Credits::Credits()
@@ -193,12 +193,21 @@ Credits::drawText( float timeStep )
 
 		//get the font and sizes for the binding
 		//pp::Font *font = pp::Font::get(line.binding);
-		float width = line.font->advance(line.text);
+        
+        char* text;
+        // Translate the credit line, but *don't* translate any empty
+        // strings (this would return the entire translation file).
+        if(line.text=="") {
+        text = line.text;
+        } else {
+        text = _(line.text);
+        }
+		float width = line.font->advance(text);
 		float desc = line.font->descender();
 		float asc = line.font->ascender();
 		
 		//draw the line on the screen
-		line.font->draw(line.text, w/2 - width/2, y);
+		line.font->draw(text, w/2 - width/2, y);
 
 		//calculate the y value for the next line
 		y-=asc-desc;
