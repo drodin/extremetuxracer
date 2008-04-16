@@ -194,20 +194,12 @@ Credits::drawText( float timeStep )
 		//get the font and sizes for the binding
 		//pp::Font *font = pp::Font::get(line.binding);
         
-        char* text;
-        // Translate the credit line, but *don't* translate any empty
-        // strings (this would return the entire translation file).
-        if(line.text=="") {
-        text = line.text;
-        } else {
-        text = _(line.text);
-        }
-		float width = line.font->advance(text);
+		float width = line.font->advance(_(line.text));
 		float desc = line.font->descender();
 		float asc = line.font->ascender();
 		
 		//draw the line on the screen
-		line.font->draw(text, w/2 - width/2, y);
+		line.font->draw(_(line.text), w/2 - width/2, y);
 
 		//calculate the y value for the next line
 		y-=asc-desc;
