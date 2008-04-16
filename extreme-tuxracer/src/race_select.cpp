@@ -102,7 +102,7 @@ RaceSelect::RaceSelect()
 			       pp::Vec2d(312, 107),
 			       "race_description",
 			       "" );
-	mp_descTa->setText( (*curElem).description.c_str() );
+	mp_descTa->setText( _((*curElem).description.c_str()) );
 	
 	
 
@@ -338,8 +338,8 @@ RaceSelect::updateRaceData()
 {
 	players[0].name = mp_nameEnt->getContent();
   	gameMgr->getCurrentRace().course = (*curElem).course;
-	gameMgr->getCurrentRace().name = (*curElem).name;
-	gameMgr->getCurrentRace().description = (*curElem).description;
+	gameMgr->getCurrentRace().name = _((*curElem).name.c_str());
+	gameMgr->getCurrentRace().description = _((*curElem).description.c_str());
 	gameMgr->getCurrentRace().mirrored = (bool) mp_mirrorSSBtn->getState();
 	gameMgr->getCurrentRace().condition = (race_conditions_t) mp_conditionsSSBtn->getState();
 	gameMgr->getCurrentRace().windy = (bool) mp_windSSBtn->getState();
@@ -433,7 +433,7 @@ RaceSelect::listboxItemChange()
 	curElem=mp_raceListbox->getCurrentItem();
 	gameMgr->setCurrentRace(curElem);	
 	updateRaceData();
-	mp_descTa->setText( (*curElem).description.c_str() );
+	mp_descTa->setText( _((*curElem).description.c_str()) );
 	updateButtonEnabledStates();
 	UIMgr.setDirty();
 }

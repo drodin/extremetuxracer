@@ -16,3 +16,4 @@ src/loading.cpp
 src/paused.cpp
 src/splash_screen.cpp
 src/videoconfig.cpp
+po/levelinfo

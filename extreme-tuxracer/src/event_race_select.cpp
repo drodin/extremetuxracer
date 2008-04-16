@@ -84,7 +84,7 @@ EventRaceSelect::EventRaceSelect()
 			       pp::Vec2d(312, 107),
 			       "race_description",
 			       "" );
-	mp_descTa->setText( (*curElem).description.c_str() );
+	mp_descTa->setText( _((*curElem).description.c_str()) );
     // Create state buttons - only if practicing or if cup_complete
     
   	mp_conditionsSSBtn = NULL;
@@ -425,7 +425,7 @@ void
 EventRaceSelect::listboxItemChange()
 {
 	curElem = mp_raceListbox->getCurrentItem();
-	mp_descTa->setText( (*curElem).description.c_str() );
+	mp_descTa->setText( _((*curElem).description.c_str()) );
 	updateStates();
 	UIMgr.setDirty();
 }
