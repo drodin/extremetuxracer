@@ -42,7 +42,6 @@ class highscore
 	int findLevel(std::string level);
 	void sort(int level);
 	
-	bool anyHighscore;
 	
 	std::string toOutputFormat(std::string str);
 	std::string fromOutputFormat(std::string str);
@@ -52,7 +51,8 @@ class highscore
 	
 	static bool useHighscore;
 	static bool hsDebug;
-	
+	static bool anyHighscore;
+
 	struct
 	scorepost {
 		std::string nick;

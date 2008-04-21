@@ -42,9 +42,10 @@ bool highscore::useHighscore=true;
 
 bool highscore::hsDebug=false;
 
+bool highscore::anyHighscore=false;
+
 highscore::highscore() {
 	level_hs_length=0;
-	bool anyHighscore=false;
 }
 
 int
