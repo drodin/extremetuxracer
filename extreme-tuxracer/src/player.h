@@ -60,6 +60,8 @@ public:
 					int herring,
 					int score,
 					bool won);
+	
+	bool loaded;
 
 	void saveData(std::ofstream& sfile);
 	void loadData(std::ifstream& sfile);
@@ -71,7 +73,7 @@ class PlayerEventData
 public:
 	PlayerEventData();
 
-	bool won;
+	bool won;	
 
 	bool isCupWon(std::string cup);
 	bool getCupCourseData(std::string cup,
@@ -86,6 +88,8 @@ public:
 	void setCupComplete(std::string cup);
 
 	void clearCupData(std::string cup);
+
+	bool loaded;
 
 	void saveData(std::ofstream& sfile);
 	void loadData(std::ifstream& sfile);
@@ -145,8 +149,7 @@ public:
 	
 	
 	bool saveData();
-	bool loadData();
-	
+	bool loadData();	
 	
 	/// name of player 
 	std::string name;
@@ -160,7 +163,8 @@ public:
 	
 	int max_speed;
 
-		
+	// to check if loadData was executed
+	bool loaded;
 
     /// current position
 	pp::Vec3d pos;   

@@ -45,7 +45,7 @@ PlayerCourseData::update(double time,int herring,int score, bool won)
 }
 
 PlayerEventData::PlayerEventData()
- : won(false)
+ : won(false), loaded(false)
 {	
 }
 
@@ -102,13 +102,15 @@ PlayerEventData::clearCupData(std::string cup)
 void
 PlayerEventData::saveData(std::ofstream& sfile)
 {
-	sfile << won << std::endl;
-	sfile << cups.size() << std::endl;
-	if(cups.size()>0){	
-		std::map<std::string,PlayerCupData>::iterator it;
-		for(it=cups.begin(); it!=cups.end(); it++){
-			sfile << (*it).first << std::endl;
-			(*it).second.saveData(sfile);	
+	if (loaded) {
+		sfile << won << std::endl;
+		sfile << cups.size() << std::endl;
+		if(cups.size()>0){	
+			std::map<std::string,PlayerCupData>::iterator it;
+			for(it=cups.begin(); it!=cups.end(); it++){
+				sfile << (*it).first << std::endl;
+				(*it).second.saveData(sfile);	
+			}
 		}
 	}
 }
@@ -126,10 +128,11 @@ PlayerEventData::loadData(std::ifstream& sfile)
 		sfile.getline(buff,256);
 		cups[buff].loadData(sfile);
 	}
+	loaded=true;
 }
 
 PlayerCupData::PlayerCupData()
- : won(false)
+ : won(false), loaded(false)
 {
 }
 
@@ -158,16 +161,18 @@ PlayerCupData::updateCupCourseData(std::string course,
 void
 PlayerCupData::saveData(std::ofstream& sfile)
 {
-	sfile << won << std::endl;
-	sfile << courses.size() << std::endl;
-	if(courses.size()>0){
-		std::map<std::string,PlayerCourseData>::iterator it;
-		for(it=courses.begin(); it!=courses.end(); it++){
-			sfile << (*it).first << std::endl;
-			sfile << (*it).second.won << std::endl;
-			sfile << (*it).second.time << std::endl;
-			sfile << (*it).second.herring << std::endl;
-			sfile << (*it).second.score << std::endl;
+	if (loaded) {
+		sfile << won << std::endl;
+		sfile << courses.size() << std::endl;
+		if(courses.size()>0){
+			std::map<std::string,PlayerCourseData>::iterator it;
+			for(it=courses.begin(); it!=courses.end(); it++){
+				sfile << (*it).first << std::endl;
+				sfile << (*it).second.won << std::endl;
+				sfile << (*it).second.time << std::endl;
+				sfile << (*it).second.herring << std::endl;
+				sfile << (*it).second.score << std::endl;
+			}
 		}
 	}
 }
@@ -189,10 +194,11 @@ PlayerCupData::loadData(std::ifstream& sfile)
 		sfile >> course.herring;
 		sfile >> course.score;		
 	}
+	loaded = true;
 }
 
 Player::Player()
- : health(100)
+ : health(100), loaded(false)
 {
 }
 	
@@ -324,6 +330,7 @@ Player::updateOpenCourseData(std::string course, double time,
 bool
 Player::saveData()
 {
+	if (!loaded) { return false; }
 	char buff[256];
 
     if (get_config_dir_name( buff, 255 ) != 0) {
@@ -433,9 +440,10 @@ Player::loadData()
 			events[buff].loadData(sfile);
 		}
 	} else {
-		std::cout<<"Fileversions missmatch, sorry, saved data deleted"<<std::endl;
+		std::cout<<"File versions mismatch, sorry, saved data deleted"<<std::endl;
 	}
 	ModelHndl->load_model(model);
+	loaded=true;
 	return true;
 }
 
