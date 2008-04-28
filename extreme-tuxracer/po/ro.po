@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Extreme Tux Racer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-16 20:58+0200\n"
+"POT-Creation-Date: 2008-04-28 21:28+0200\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -78,7 +78,7 @@ msgid "Joystick"
 msgstr "Joystick"
 
 #: src/configuration.cpp:81 src/event_select.cpp:96
-#: src/event_race_select.cpp:53 src/highscore.cpp:412
+#: src/event_race_select.cpp:53 src/highscore.cpp:413
 msgid "Back"
 msgstr "Înapoi"
 
@@ -313,6 +313,11 @@ msgstr "Încă nu poţi să participi la cursa asta."
 msgid "Time:"
 msgstr "Timp:"
 
+#: src/event_race_select.cpp:320
+#, fuzzy, c-format
+msgid "%02d:%02d.%02d"
+msgstr "%02d:%02d:%02d"
+
 #: src/event_race_select.cpp:324
 msgid "Herring:"
 msgstr "Heringi:"
@@ -325,7 +330,7 @@ msgstr "Scor:"
 msgid "Contributed by:"
 msgstr "Autor:"
 
-#: src/event_race_select.cpp:349 po/levelinfo:100
+#: src/event_race_select.cpp:349 po/levelinfo:109
 msgid "Unknown"
 msgstr "Necunoscut"
 
@@ -395,7 +400,7 @@ msgstr "Concurs"
 msgid "Practice"
 msgstr "Antrenament"
 
-#: src/game_type_select.cpp:50 src/highscore.cpp:349
+#: src/game_type_select.cpp:50 src/highscore.cpp:350
 msgid "Highscore"
 msgstr "Scoruri record"
 
@@ -439,51 +444,51 @@ msgstr "Reflexii:"
 msgid "Shadows:"
 msgstr "Umbre:"
 
-#: src/highscore.cpp:87
+#: src/highscore.cpp:88
 msgid "1:st"
 msgstr "1:"
 
-#: src/highscore.cpp:89
+#: src/highscore.cpp:90
 msgid "2:nd"
 msgstr "2:"
 
-#: src/highscore.cpp:91
+#: src/highscore.cpp:92
 msgid "3:rd"
 msgstr "3:"
 
-#: src/highscore.cpp:93
+#: src/highscore.cpp:94
 msgid "4:th"
 msgstr "4:"
 
-#: src/highscore.cpp:95
+#: src/highscore.cpp:96
 msgid "5:th"
 msgstr "5:"
 
-#: src/highscore.cpp:97
+#: src/highscore.cpp:98
 msgid "6:th"
 msgstr "6:"
 
-#: src/highscore.cpp:99
+#: src/highscore.cpp:100
 msgid "7:th"
 msgstr "7:"
 
-#: src/highscore.cpp:101
+#: src/highscore.cpp:102
 msgid "8:th"
 msgstr "8:"
 
-#: src/highscore.cpp:103
+#: src/highscore.cpp:104
 msgid "9:th"
 msgstr "9:"
 
-#: src/highscore.cpp:105
+#: src/highscore.cpp:106
 msgid "10:th"
 msgstr "10:"
 
-#: src/highscore.cpp:316
+#: src/highscore.cpp:317
 msgid "No records"
 msgstr ""
 
-#: src/highscore.cpp:326
+#: src/highscore.cpp:327
 #, c-format
 msgid " (%d points)"
 msgstr ""
@@ -1055,17 +1060,29 @@ msgstr ""
 msgid "Swiss Cup"
 msgstr ""
 
+#: po/levelinfo:100
+#, c-format
+msgid "FPS: %.1f"
+msgstr "FPS : %.1f"
+
+#: po/levelinfo:101 po/levelinfo:102
+#, c-format
+msgid "%03d"
+msgstr "%03d"
+
+#: po/levelinfo:103 po/levelinfo:104
+#, c-format
+msgid "%02d:%02d:%02d"
+msgstr "%02d:%02d:%02d"
+
+#: po/levelinfo:105 po/levelinfo:107
+msgid "km/h"
+msgstr "km/h"
+
+#: po/levelinfo:106 po/levelinfo:108
+#, c-format
+msgid "%.0f"
+msgstr ""
+
 #~ msgid "Language:"
 #~ msgstr "Limba:"
-
-#~ msgid "FPS: %.1f"
-#~ msgstr "FPS : %.1f"
-
-#~ msgid "km/h"
-#~ msgstr "km/h"
-
-#~ msgid "%03d"
-#~ msgstr "%03d"
-
-#~ msgid "%02d:%02d:%02d"
-#~ msgstr "%02d:%02d:%02d"

@@ -4,13 +4,12 @@
 # This file is distributed under the same license as the etracer package.
 #
 # Karl Ove Hufthammer <karl@huftis.org>, 2005, 2008.
-#: po/levelinfo:2
 msgid ""
 msgstr ""
 "Project-Id-Version: Extreme Tux Racer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-16 20:58+0200\n"
-"PO-Revision-Date: 2008-04-16 21:05+0200\n"
+"POT-Creation-Date: 2008-04-28 21:28+0200\n"
+"PO-Revision-Date: 2008-04-28 21:41+0100\n"
 "Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
 "Language-Team: Norwegian Nynorsk <i18n-nn@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
@@ -59,11 +58,14 @@ msgstr "Avbryt"
 msgid "Ok"
 msgstr "OK"
 
-#: src/configuration.cpp:38 src/game_type_select.cpp:57 src/paused.cpp:62
+#: src/configuration.cpp:38
+#: src/game_type_select.cpp:57
+#: src/paused.cpp:62
 msgid "Configuration"
 msgstr "Oppsett"
 
-#: src/configuration.cpp:45 src/credits.cpp:89
+#: src/configuration.cpp:45
+#: src/credits.cpp:89
 msgid "Graphics"
 msgstr "Grafikk"
 
@@ -83,8 +85,10 @@ msgstr "Tastatur"
 msgid "Joystick"
 msgstr "Styrespak"
 
-#: src/configuration.cpp:81 src/event_select.cpp:96
-#: src/event_race_select.cpp:53 src/highscore.cpp:412
+#: src/configuration.cpp:81
+#: src/event_select.cpp:96
+#: src/event_race_select.cpp:53
+#: src/highscore.cpp:413
 msgid "Back"
 msgstr "Tilbake"
 
@@ -316,6 +320,11 @@ msgstr "Du kan ikkje spela dette rennet enno"
 msgid "Time:"
 msgstr "Tid:"
 
+#: src/event_race_select.cpp:320
+#, c-format
+msgid "%02d:%02d.%02d"
+msgstr "%02d.%02d,%02d"
+
 #: src/event_race_select.cpp:324
 msgid "Herring:"
 msgstr "Sild:"
@@ -328,7 +337,8 @@ msgstr "Poeng:"
 msgid "Contributed by:"
 msgstr "Laga av:"
 
-#: src/event_race_select.cpp:349 po/levelinfo:100
+#: src/event_race_select.cpp:349
+#: po/levelinfo:109
 msgid "Unknown"
 msgstr "Ukjend"
 
@@ -398,7 +408,8 @@ msgstr "Køyr renn"
 msgid "Practice"
 msgstr "Øving"
 
-#: src/game_type_select.cpp:50 src/highscore.cpp:349
+#: src/game_type_select.cpp:50
+#: src/highscore.cpp:350
 msgid "Highscore"
 msgstr "Rekordar"
 
@@ -406,7 +417,8 @@ msgstr "Rekordar"
 msgid "Credits"
 msgstr "Bidragsytarar"
 
-#: src/game_type_select.cpp:71 src/paused.cpp:78
+#: src/game_type_select.cpp:71
+#: src/paused.cpp:78
 msgid "Quit"
 msgstr "Avslutt"
 
@@ -442,51 +454,51 @@ msgstr "Refleksjonar:"
 msgid "Shadows:"
 msgstr "Skuggar:"
 
-#: src/highscore.cpp:87
+#: src/highscore.cpp:88
 msgid "1:st"
 msgstr "1."
 
-#: src/highscore.cpp:89
+#: src/highscore.cpp:90
 msgid "2:nd"
 msgstr "2."
 
-#: src/highscore.cpp:91
+#: src/highscore.cpp:92
 msgid "3:rd"
 msgstr "3."
 
-#: src/highscore.cpp:93
+#: src/highscore.cpp:94
 msgid "4:th"
 msgstr "4."
 
-#: src/highscore.cpp:95
+#: src/highscore.cpp:96
 msgid "5:th"
 msgstr "5."
 
-#: src/highscore.cpp:97
+#: src/highscore.cpp:98
 msgid "6:th"
 msgstr "6."
 
-#: src/highscore.cpp:99
+#: src/highscore.cpp:100
 msgid "7:th"
 msgstr "7."
 
-#: src/highscore.cpp:101
+#: src/highscore.cpp:102
 msgid "8:th"
 msgstr "8."
 
-#: src/highscore.cpp:103
+#: src/highscore.cpp:104
 msgid "9:th"
 msgstr "9."
 
-#: src/highscore.cpp:105
+#: src/highscore.cpp:106
 msgid "10:th"
 msgstr "10."
 
-#: src/highscore.cpp:316
+#: src/highscore.cpp:317
 msgid "No records"
 msgstr "Ingen rekordar"
 
-#: src/highscore.cpp:326
+#: src/highscore.cpp:327
 #, c-format
 msgid " (%d points)"
 msgstr " (%d poeng)"
@@ -499,19 +511,23 @@ msgstr "Styrespakoppsett"
 msgid "Enable Joystick"
 msgstr "Bruk styrespak"
 
-#: src/joystickconfig.cpp:41 src/keyboardconfig.cpp:132
+#: src/joystickconfig.cpp:41
+#: src/keyboardconfig.cpp:132
 msgid "Paddle:"
 msgstr "Gje fart:"
 
-#: src/joystickconfig.cpp:54 src/keyboardconfig.cpp:136
+#: src/joystickconfig.cpp:54
+#: src/keyboardconfig.cpp:136
 msgid "Brake:"
 msgstr "Brems:"
 
-#: src/joystickconfig.cpp:67 src/keyboardconfig.cpp:140
+#: src/joystickconfig.cpp:67
+#: src/keyboardconfig.cpp:140
 msgid "Jump:"
 msgstr "Hopp:"
 
-#: src/joystickconfig.cpp:80 src/keyboardconfig.cpp:144
+#: src/joystickconfig.cpp:80
+#: src/keyboardconfig.cpp:144
 msgid "Trick:"
 msgstr "Triks:"
 
@@ -593,23 +609,18 @@ msgstr "Dåing"
 
 #: po/levelinfo:3
 msgid "Hippo Run"
-msgstr ""
+msgstr "Flodhestlaupet"
 
 #: po/levelinfo:4
-msgid ""
-"In Hippo Run, you slide down an icy slope as a penguin, I honestly don't "
-"know what this has to do with hippos or running..."
-msgstr ""
+msgid "In Hippo Run, you slide down an icy slope as a penguin, I honestly don't know what this has to do with hippos or running..."
+msgstr "I Flodhestlaupet glir du, ein pingvin, ned ei glatt skråning. Eg anar ærleg talt ikkje kva dette har med verken flodhestar eller lauping å gjera ..."
 
 #: po/levelinfo:5
 msgid "In Search of Vodka"
-msgstr ""
+msgstr "På jakt etter vodka"
 
 #: po/levelinfo:6
-msgid ""
-"Tux needs some needs some vodka to warm up his cold belly. Alas, his liquor "
-"cabinet has been pillaged. Join Tux on the quest for vodka.Pick up herring "
-"for dinner along the way!"
+msgid "Tux needs some needs some vodka to warm up his cold belly. Alas, his liquor cabinet has been pillaged. Join Tux on the quest for vodka.Pick up herring for dinner along the way!"
 msgstr ""
 
 #: po/levelinfo:7
@@ -617,14 +628,12 @@ msgid "Crazy Path"
 msgstr ""
 
 #: po/levelinfo:8
-msgid ""
-"You'll have trouble slowing down on this one. There's lots of herring, but "
-"be careful not to fly too much or you won't get any."
+msgid "You'll have trouble slowing down on this one. There's lots of herring, but be careful not to fly too much or you won't get any."
 msgstr ""
 
 #: po/levelinfo:9
 msgid "Hey, Tux!"
-msgstr ""
+msgstr "Hei Tux!"
 
 #: po/levelinfo:10
 msgid "This course offers true excitement for your race-loving penguin buddy."
@@ -648,17 +657,15 @@ msgstr ""
 
 #: po/levelinfo:15
 msgid "Volcanoes"
-msgstr ""
+msgstr "Vulkanar"
 
 #: po/levelinfo:16
-msgid ""
-"This gigantic crater was full of water, and herring, but now it's all "
-"frozen, and yours for the taking."
+msgid "This gigantic crater was full of water, and herring, but now it's all frozen, and yours for the taking."
 msgstr ""
 
 #: po/levelinfo:17
 msgid "Merry Go Round"
-msgstr ""
+msgstr "Berre rundtomkring"
 
 #: po/levelinfo:18
 msgid "Try to build up enough speed to jump from one roundabout to the next."
@@ -666,20 +673,18 @@ msgstr ""
 
 #: po/levelinfo:19
 msgid "Bobsled Ride"
-msgstr ""
+msgstr "Bobsleighbane"
 
 #: po/levelinfo:20
 msgid "Just like a real bobsled ride, only more dangerous."
-msgstr ""
+msgstr "Nett som ei ekte bobsleighbane, berre endå farlegare."
 
 #: po/levelinfo:21
 msgid "Candy Lane"
 msgstr ""
 
 #: po/levelinfo:22
-msgid ""
-"Mostly ice, with very few obstacles in your path, this is like a stroll down "
-"Candy Lane."
+msgid "Mostly ice, with very few obstacles in your path, this is like a stroll down Candy Lane."
 msgstr ""
 
 #: po/levelinfo:23
@@ -687,9 +692,7 @@ msgid "Nature Stroll"
 msgstr ""
 
 #: po/levelinfo:24
-msgid ""
-"The fresh air, the pine scent, who doesn't like a nice refreshing walk "
-"through the mountains?"
+msgid "The fresh air, the pine scent, who doesn't like a nice refreshing walk through the mountains?"
 msgstr ""
 
 #: po/levelinfo:25
@@ -717,24 +720,15 @@ msgid "Hazzard Valley"
 msgstr "Våghalsvegen"
 
 #: po/levelinfo:31
-msgid ""
-"Hazzard Valley is full of hazards, like trees, deep caverns, spikes, and "
-"huge areas of rocky plains, not to mention your speed being your enemy in "
-"trying to get the herrings and stay on course!"
-msgstr ""
-"Våghalsvegen er full av farer – tre, djupe holer, piggar og store, steinete "
-"opne område, for ikkje å nemna det konstante tidspresset i jakta på sild!"
+msgid "Hazzard Valley is full of hazards, like trees, deep caverns, spikes, and huge areas of rocky plains, not to mention your speed being your enemy in trying to get the herrings and stay on course!"
+msgstr "Våghalsvegen er full av farer – tre, djupe holer, piggar og store, steinete opne område, for ikkje å nemna det konstante tidspresset i jakta på sild!"
 
 #: po/levelinfo:32
-#, fuzzy
 msgid "Mt. Herring"
-msgstr "Sild:"
+msgstr "Sildetoppen"
 
 #: po/levelinfo:33
-msgid ""
-"Mt. Herring is relatively fast but long, somewhat bumpy in places, and has "
-"some wide open areas and branching paths. Lots of herrings to collect though "
-"it can be difficult unless you watch your speed."
+msgid "Mt. Herring is relatively fast but long, somewhat bumpy in places, and has some wide open areas and branching paths. Lots of herrings to collect though it can be difficult unless you watch your speed."
 msgstr ""
 
 #: po/levelinfo:34
@@ -743,20 +737,15 @@ msgstr "Skihopp"
 
 #: po/levelinfo:35
 #, fuzzy
-msgid ""
-"Steering will be unnecessary, just line yourself up and reap the rewards. "
-"Rememember, acceleration will slow you down after a while."
-msgstr ""
-"Nett som eit vanleg skihopp, men du får ingen ekstrapoeng for å hoppa langt."
+msgid "Steering will be unnecessary, just line yourself up and reap the rewards. Rememember, acceleration will slow you down after a while."
+msgstr "Nett som eit vanleg skihopp, men du får ingen ekstrapoeng for å hoppa langt."
 
 #: po/levelinfo:36
 msgid "Keep It Up"
 msgstr ""
 
 #: po/levelinfo:37
-msgid ""
-"If you fall you might as well just quit then and there, 'cause your chances "
-"are slim on the rocky ground."
+msgid "If you fall you might as well just quit then and there, 'cause your chances are slim on the rocky ground."
 msgstr ""
 
 #: po/levelinfo:38
@@ -764,9 +753,7 @@ msgid "High Road"
 msgstr ""
 
 #: po/levelinfo:39
-msgid ""
-"Just stay on the path and collect herring. Oh yeah, and if you fall you'll "
-"be eating pine needles."
+msgid "Just stay on the path and collect herring. Oh yeah, and if you fall you'll be eating pine needles."
 msgstr ""
 
 #: po/levelinfo:40
@@ -774,20 +761,15 @@ msgid "Hamburger Hill"
 msgstr "Hamburgerhaugen"
 
 #: po/levelinfo:41
-msgid ""
-"Hamburger Hill is steep, narrow, twisty, lumpy, icy, and rocky, with a few "
-"trees right in your way!"
-msgstr ""
-"Hamburgerhaugen er bratt, glatt, smal, svingete, humpete og har til og med "
-"nokre tre i vegen!"
+msgid "Hamburger Hill is steep, narrow, twisty, lumpy, icy, and rocky, with a few trees right in your way!"
+msgstr "Hamburgerhaugen er bratt, glatt, smal, svingete, humpete og har til og med nokre tre i vegen!"
 
 #: po/levelinfo:42
 msgid "Slalom"
 msgstr ""
 
 #: po/levelinfo:43
-msgid ""
-"Brake while you turn and the herrings on this pseudo-slalom will be yours."
+msgid "Brake while you turn and the herrings on this pseudo-slalom will be yours."
 msgstr ""
 
 #: po/levelinfo:44
@@ -795,9 +777,7 @@ msgid "Mt. Satan"
 msgstr "Mt. Satan"
 
 #: po/levelinfo:45
-msgid ""
-"Mount Satan is a sister mountain to Dead Man's Drop. No surprises here, just "
-"a steep, bumpy, twisty path full of trees to get through."
+msgid "Mount Satan is a sister mountain to Dead Man's Drop. No surprises here, just a steep, bumpy, twisty path full of trees to get through."
 msgstr ""
 
 #: po/levelinfo:46
@@ -805,36 +785,23 @@ msgid "The Narrow Way"
 msgstr "Den smale stig"
 
 #: po/levelinfo:47
-msgid ""
-"To put it simply, stay on the path or you lose! It's hard to see where "
-"you're going, there's trees in your way, and the herrings are hard to get. "
-"Good luck, you'll need it!"
-msgstr ""
-"Kort sagt: Held deg på den smale stig eller døy! Det er vanskeleg å sjå kor "
-"du akar, det er tre i vegen og det er vanskeleg å få tak i sild. Lykke til "
-"(du kjem til å trenga det)!"
+msgid "To put it simply, stay on the path or you lose! It's hard to see where you're going, there's trees in your way, and the herrings are hard to get. Good luck, you'll need it!"
+msgstr "Kort sagt: Held deg på den smale stig eller døy! Det er vanskeleg å sjå kor du akar, det er tre i vegen og det er vanskeleg å få tak i sild. Lykke til (du kjem til å trenga det)!"
 
 #: po/levelinfo:48
 msgid "Dead Man's Drop"
 msgstr "Daudmannsbrekka"
 
 #: po/levelinfo:49
-msgid ""
-"Pretty tough hill. It's fast, steep, lumpy, twisty, and full of trees. Hard "
-"to get herrings. Don't forget the drop."
-msgstr ""
-"Ganske vanskeleg. Daudmannsbrekka er bratt, rask, humpete, svingete og full "
-"av tre. Det er ikkje lett å få tak i sild. Og ikkje gløym hoppet."
+msgid "Pretty tough hill. It's fast, steep, lumpy, twisty, and full of trees. Hard to get herrings. Don't forget the drop."
+msgstr "Ganske vanskeleg. Daudmannsbrekka er bratt, rask, humpete, svingete og full av tre. Det er ikkje lett å få tak i sild. Og ikkje gløym hoppet."
 
 #: po/levelinfo:50
 msgid "Snow Valley"
-msgstr ""
+msgstr "Snødalen"
 
 #: po/levelinfo:51
-msgid ""
-"Snow Valley is a relatively flat, and very fast course. You'll find a few "
-"herrings very difficult to get if you're going for a perfect score! Watch "
-"your speed in certain areas to get the most herrings!"
+msgid "Snow Valley is a relatively flat, and very fast course. You'll find a few herrings very difficult to get if you're going for a perfect score! Watch your speed in certain areas to get the most herrings!"
 msgstr ""
 
 #: po/levelinfo:52
@@ -842,9 +809,7 @@ msgid "Tux Toboggan Run"
 msgstr ""
 
 #: po/levelinfo:53
-msgid ""
-"Collect herrings in an ice channel with various paths and many high and low "
-"speed passages. Watch out for the occasional tree."
+msgid "Collect herrings in an ice channel with various paths and many high and low speed passages. Watch out for the occasional tree."
 msgstr ""
 
 #: po/levelinfo:54
@@ -852,9 +817,7 @@ msgid "Skull Mountain"
 msgstr ""
 
 #: po/levelinfo:55
-msgid ""
-"Skull mountain is a steep, twisty drop around tree-filled inner peaks. "
-"Expect to miss a lot of herrings and crash a lot."
+msgid "Skull mountain is a steep, twisty drop around tree-filled inner peaks. Expect to miss a lot of herrings and crash a lot."
 msgstr ""
 
 #: po/levelinfo:56
@@ -862,9 +825,7 @@ msgid "Who Says Penguins Can't Fly?"
 msgstr ""
 
 #: po/levelinfo:57
-msgid ""
-"It'll be tough collecting herrings at speeds over 200, so try to brake "
-"whenever possible to get the required herring."
+msgid "It'll be tough collecting herrings at speeds over 200, so try to brake whenever possible to get the required herring."
 msgstr ""
 
 #: po/levelinfo:58
@@ -872,11 +833,8 @@ msgid "Ice Labyrinth"
 msgstr "Islabyrinten"
 
 #: po/levelinfo:59
-msgid ""
-"You choose your destiny, you could end up full or starving depending on the "
-"path you pick."
-msgstr ""
-"Du har mange vegar å velja mellom, men nokre har fleire sild enn andre."
+msgid "You choose your destiny, you could end up full or starving depending on the path you pick."
+msgstr "Du har mange vegar å velja mellom, men nokre har fleire sild enn andre."
 
 #: po/levelinfo:60
 msgid "I've Got A Woody"
@@ -884,20 +842,16 @@ msgstr "Tresmak bak"
 
 #: po/levelinfo:61
 #, fuzzy
-msgid ""
-"Yet another horrible elevated ice-coaster. If you thought the last two were "
-"hard, try this one. Have fun winding through the woods.  Look out for a huge "
-"shortcut!!"
+msgid "Yet another horrible elevated ice-coaster. If you thought the last two were hard, try this one. Have fun winding through the woods.  Look out for a huge shortcut!!"
 msgstr "Held deg i lufta, eller kjenn på tresmaken."
 
 #: po/levelinfo:62
-#, fuzzy
 msgid "Herring Run"
-msgstr "Sild:"
+msgstr "Sildelaupet"
 
 #: po/levelinfo:63
 msgid "Mountain Man"
-msgstr ""
+msgstr "Fjellmannen"
 
 #: po/levelinfo:64
 msgid "Valley Cup"
@@ -916,9 +870,7 @@ msgid "Frozen Lakes"
 msgstr ""
 
 #: po/levelinfo:68
-msgid ""
-"To reach the finish you must pass several frozen lakes. Watch your speed on "
-"the ice - there are some dangerous corners."
+msgid "To reach the finish you must pass several frozen lakes. Watch your speed on the ice - there are some dangerous corners."
 msgstr ""
 
 #: po/levelinfo:69
@@ -926,10 +878,7 @@ msgid "Challenge One"
 msgstr ""
 
 #: po/levelinfo:70
-msgid ""
-"A very dangerous path along the mountains. Try to catch more than 60 "
-"herrings. Warning: The course is very difficult and there are some "
-"situations where you can get stuck."
+msgid "A very dangerous path along the mountains. Try to catch more than 60 herrings. Warning: The course is very difficult and there are some situations where you can get stuck."
 msgstr ""
 
 #: po/levelinfo:71
@@ -937,9 +886,7 @@ msgid "Secret Valleys"
 msgstr ""
 
 #: po/levelinfo:72
-msgid ""
-"Your task: Find the hidden valleys and the ten groups of dead trees. Look "
-"around, the ways are not easy to find."
+msgid "Your task: Find the hidden valleys and the ten groups of dead trees. Look around, the ways are not easy to find."
 msgstr ""
 
 #: po/levelinfo:73
@@ -947,14 +894,12 @@ msgid "In Search of the Holy Grail"
 msgstr ""
 
 #: po/levelinfo:74
-msgid ""
-"An adventure course with a simple task: Find the grail! Warning: It is very "
-"difficult to find the way."
+msgid "An adventure course with a simple task: Find the grail! Warning: It is very difficult to find the way."
 msgstr ""
 
 #: po/levelinfo:75
 msgid "Explore the Mountains"
-msgstr ""
+msgstr "Utforsk fjella"
 
 #: po/levelinfo:76
 msgid "Can you find your way through the icy, dangerous mountains. I doubt it."
@@ -965,10 +910,7 @@ msgid "Tux at Home"
 msgstr "Tux på heimebane"
 
 #: po/levelinfo:78
-msgid ""
-"Here lives Tux. You can take the corridore on the right - it's the shortest "
-"and fastest way. But if you want to catch some herrings you have to enter "
-"the rooms on the left."
+msgid "Here lives Tux. You can take the corridore on the right - it's the shortest and fastest way. But if you want to catch some herrings you have to enter the rooms on the left."
 msgstr ""
 
 #: po/levelinfo:79
@@ -976,58 +918,47 @@ msgid "Wild Mountains"
 msgstr ""
 
 #: po/levelinfo:80
-msgid ""
-"A wild landscape of ice and snow. It isn't easy to keep the right way. Not "
-"for beginners."
+msgid "A wild landscape of ice and snow. It isn't easy to keep the right way. Not for beginners."
 msgstr ""
 
 #: po/levelinfo:81
 msgid "Chinese Wall"
-msgstr ""
+msgstr "Den kinesiske muren"
 
 #: po/levelinfo:82
-msgid ""
-"The Great Wall of China in winter. Try to stay on top of the wall - that's "
-"where the herrings are. If you fall off you can try to jump back up, there "
-"are 7 hidden ramps. You'll get a lot of exercise."
-msgstr ""
+msgid "The Great Wall of China in winter. Try to stay on top of the wall - that's where the herrings are. If you fall off you can try to jump back up, there are 7 hidden ramps. You'll get a lot of exercise."
+msgstr "Den kinesiske muren om vinteren. Prøv å halda deg oppå muren; det er der silda ligg. Viss du dett ned, kan du prøva å komma deg opp att. Det finst sju gøymde rampar. Dette er god trening!"
 
 #: po/levelinfo:83
 msgid "The Niehoff Experience"
-msgstr ""
+msgstr "Niehoff-opplevinga"
 
 #: po/levelinfo:84
 msgid "Search, Search, Search"
-msgstr ""
+msgstr "Leit, leit, leit"
 
 #: po/levelinfo:85
 msgid "Mountains and Hills"
-msgstr ""
+msgstr "Atter slike fjell og dalar"
 
 #: po/levelinfo:86
 msgid "The Final Challenge"
-msgstr ""
+msgstr "Den siste utfordringa"
 
 #: po/levelinfo:87
 msgid "Bumpy Ride"
 msgstr "Humpetitten"
 
 #: po/levelinfo:88
-msgid ""
-"This hill has a series of ramps to tackle.  Be sure to line yourself up "
-"before getting airborne."
-msgstr ""
-"Denne bakken har mange småhopp. Sjå til at du held rett kurs før du når "
-"hoppkantane."
+msgid "This hill has a series of ramps to tackle.  Be sure to line yourself up before getting airborne."
+msgstr "Denne bakken har mange småhopp. Sjå til at du held rett kurs før du når hoppkantane."
 
 #: po/levelinfo:89
 msgid "Bunny Hill"
-msgstr ""
+msgstr "Kaninåsen"
 
 #: po/levelinfo:90
-msgid ""
-"Let's start out easy, just collect the herring in the time limit and you'll "
-"be fine. The best part is that you don't have to use those stupid T-lifts."
+msgid "Let's start out easy, just collect the herring in the time limit and you'll be fine. The best part is that you don't have to use those stupid T-lifts."
 msgstr ""
 
 #: po/levelinfo:91
@@ -1035,21 +966,15 @@ msgid "Twisty Slope"
 msgstr "Svinseskrenten"
 
 #: po/levelinfo:92
-msgid ""
-"Tight twists make grabbing herring difficult.  Hard turns and not too much "
-"braking will lead you to victory."
-msgstr ""
-"Krappe svingar gjer det vanskelig å få tak i sild. Men legg du deg godt i "
-"selen, vinn du nok."
+msgid "Tight twists make grabbing herring difficult.  Hard turns and not too much braking will lead you to victory."
+msgstr "Krappe svingar gjer det vanskelig å få tak i sild. Men legg du deg godt i selen, vinn du nok."
 
 #: po/levelinfo:93
 msgid "Frozen River"
 msgstr "Iselva"
 
 #: po/levelinfo:94
-msgid ""
-"Keep your speed down to collect herring. You have plenty of time, so don't "
-"rush things."
+msgid "Keep your speed down to collect herring. You have plenty of time, so don't rush things."
 msgstr "Ta det roleg, og prøv heller å få tak i mykje sild!"
 
 #: po/levelinfo:95
@@ -1057,46 +982,55 @@ msgid "Path of Daggers"
 msgstr ""
 
 #: po/levelinfo:96
-msgid ""
-"Big spikes may prove to be the least of your worries on this course. Muliple "
-"paths allow you to take low or high roads, each with their own challenges."
+msgid "Big spikes may prove to be the least of your worries on this course. Muliple paths allow you to take low or high roads, each with their own challenges."
 msgstr ""
 
 #: po/levelinfo:97
 msgid "Tux Racer Classics"
-msgstr ""
+msgstr "Tux Racer-klassikarar"
 
 #: po/levelinfo:98
 msgid "Canadian Cup"
-msgstr ""
+msgstr "Canada-turnering"
 
 #: po/levelinfo:99
 msgid "Swiss Cup"
-msgstr ""
+msgstr "Sveitsisk turnering"
+
+#: po/levelinfo:100
+#, c-format
+msgid "FPS: %.1f"
+msgstr "B/s: %.1f"
+
+#: po/levelinfo:101
+#: po/levelinfo:102
+#, c-format
+msgid "%03d"
+msgstr "%03d"
+
+#: po/levelinfo:103
+#: po/levelinfo:104
+#, c-format
+msgid "%02d:%02d:%02d"
+msgstr "%02d.%02d,%02d"
+
+#: po/levelinfo:105
+#: po/levelinfo:107
+msgid "km/h"
+msgstr "km/t"
+
+#: po/levelinfo:106
+#: po/levelinfo:108
+#, c-format
+msgid "%.0f"
+msgstr "%.0f"
 
 #~ msgid "on the web at"
 #~ msgstr "på nettet på"
-
 #~ msgid "Tux on Snowboard"
 #~ msgstr "Tux på snøbrett"
-
 #~ msgid "on the web at: www.extremetuxracer.com"
 #~ msgstr "finn du på nettet!!!"
-
 #~ msgid "Language:"
 #~ msgstr "Språk:"
 
-#~ msgid "FPS: %.1f"
-#~ msgstr "B/s: %.1f"
-
-#~ msgid "km/h"
-#~ msgstr "km/t"
-
-#~ msgid "%03d"
-#~ msgstr "%03d"
-
-#~ msgid "%02d:%02d:%02d"
-#~ msgstr "%02d.%02d,%02d"
-
-#~ msgid "%.0f"
-#~ msgstr "%.0f"
