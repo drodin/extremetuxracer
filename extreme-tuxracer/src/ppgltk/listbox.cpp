@@ -302,7 +302,7 @@ Listbox<T>::draw()
 		float asc = font->ascender();
 		float desc = font->descender();
 			
-		font->draw((*mi_curItem).name.c_str(),
+		font->draw(_((*mi_curItem).name.c_str()),
 				m_position.x + m_borderWidth + m_textPad,
 				m_position.y + m_size.y/2.0 - asc/2.0 - desc/2);
 

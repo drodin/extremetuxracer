@@ -127,7 +127,7 @@ stamp-po: $(srcdir)/$(DOMAIN).pot
 # for all levels and events, automatically. The file is only used by
 # gettext, for extracting translatable strings.
 levelinfo: Makefile
-	find ../data -name '*.tcl' -print0 | xargs -0 sed -nr '/(\(name\)|(course|event)_(name|description))/s/^[^\"]*"(.*)"/_("\1")/p' > levelinfo
+	find ../data -name '*.tcl' -print0 | xargs -0 sed -nr '/string |(\(name\)|(course|event)_(name|description))/s/^[^\"]*"(.*)"/_("\1")/p' > levelinfo
 
 # Note: Target 'all' must not depend on target '$(DOMAIN).pot-update',
 # otherwise packages like GCC can not be built if only parts of the source

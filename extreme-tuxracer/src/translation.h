@@ -25,7 +25,7 @@
 
 #include <libintl.h>
 
-#define _(String) (String==""?"":gettext(String))
+#define _(String) (strcmp(String,"")?gettext(String):"")
 #define N_(String) (String)
 
 #endif // _TRANSLATION_H_

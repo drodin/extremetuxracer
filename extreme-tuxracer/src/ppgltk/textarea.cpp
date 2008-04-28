@@ -25,6 +25,8 @@
 
 #include "render_util.h"
 
+#include "translation.h"
+
 #define DEFAULT_ARROW_BUTTON_HEIGHT 15
 #define DEFAULT_ARROW_BUTTON_WIDTH  27
 #define DEFAULT_ARROW_REGION_WIDTH  36
@@ -283,6 +285,8 @@ Textarea::setText( const char *text )
     if ( text == NULL ) {
 		text = "";
     }
+
+    text = _(text);
 
     mp_textOrig = new char[strlen( text ) + 1];
 	strcpy( mp_textOrig, text );
