@@ -129,6 +129,10 @@ stamp-po: $(srcdir)/$(DOMAIN).pot
 levelinfo: Makefile
 	find ../data -name '*.tcl' -print0 | xargs -0 sed -nr '/string |(\(name\)|(course|event)_(name|description))/s/^[^\"]*"(.*)"/_("\1")/p' > levelinfo
 
+# And the same for modelinfo:
+modelinfo: Makefile
+	grep ^tux_add_model ../data/models.tcl | cut -d '"' -f 4 | sed -e 's/^/_("/' -e '/\(.*\)/s//\1")/' > modelinfo	
+
 # Note: Target 'all' must not depend on target '$(DOMAIN).pot-update',
 # otherwise packages like GCC can not be built if only parts of the source
 # have been downloaded.
@@ -146,7 +150,9 @@ $(DOMAIN).pot-update: $(POTFILES) $(srcdir)/POTFILES.in remove-potcdate.sed
 	  --files-from=$(srcdir)/POTFILES.in \
 		--from-code=UTF-8 \
 	  --copyright-holder='$(COPYRIGHT_HOLDER)' \
-	  --msgid-bugs-address="$$msgid_bugs_address"
+	  --msgid-bugs-address="$$msgid_bugs_address" \
+	  --package-name='$(PACKAGE)' \
+	  --package-version='$(VERSION)' 
 	test ! -f $(DOMAIN).po || { \
 	  if test -f $(srcdir)/$(DOMAIN).pot; then \
 	    sed -f remove-potcdate.sed < $(srcdir)/$(DOMAIN).pot > $(DOMAIN).1po && \
@@ -319,7 +325,7 @@ mostlyclean:
 clean: mostlyclean
 
 distclean: clean
-	rm -f Makefile Makefile.in POTFILES *.mo
+	rm -f Makefile Makefile.in POTFILES *.mo levelinfo modelinfo
 
 maintainer-clean: distclean
 	@echo "This command is intended for maintainers to use;"
@@ -358,6 +364,7 @@ dist2: stamp-po $(DISTFILES)
 
 update-po: Makefile
 	$(MAKE) levelinfo
+	$(MAKE) modelinfo
 	$(MAKE) $(DOMAIN).pot-update
 	test -z "$(UPDATEPOFILES)" || $(MAKE) $(UPDATEPOFILES)
 	$(MAKE) update-gmo

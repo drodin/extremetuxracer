@@ -1,9 +1,10 @@
 dnl Process this file with autoconf to produce a configure script.
-AC_INIT(src/etracer.h)
+AC_INIT(etracer, SVN Development, https://bugs.launchpad.net/etracer)
+AC_CONFIG_SRCDIR(src/etracer.h)
 
 dnl Check system type
 AC_CANONICAL_TARGET
-AM_INIT_AUTOMAKE(etracer, "SVN Development")
+AM_INIT_AUTOMAKE
 AM_CONFIG_HEADER(config.h)
 AM_MAINTAINER_MODE
 
