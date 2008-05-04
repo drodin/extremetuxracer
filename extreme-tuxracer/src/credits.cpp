@@ -123,13 +123,13 @@ static credit_line_t credit_lines[] =
     { NULL, "credits_text", "James Barnard" },
     { NULL, "credits_text", "Alan Levy" },
     { NULL, "credits_text", "" },
-  { NULL, "credits_text_small", N_("Tux Racer is a trademark of Jasmin F. Patry") },
+  { NULL, "credits_text_small", N_("Tux Racer is a trademark of Jasmin F. Patry.") },
 	{ NULL, "credits_text_small", N_("Extreme Tux Racer is licenced under the GPL.") },
 	{ NULL, "credits_text_small", N_("We grant use of the name 'Extreme Tux Racer'") },
     { NULL, "credits_text_small", N_("to any forks or continuations.") },
 	{ NULL, "credits_text_small", "" },
-	{ NULL, "credits_text_small", N_("PlanetPenguin Racer is Copyright © 2005 Volker Stroebel") },
-  { NULL, "credits_text_small", N_("Tux Racer and the Tux Racer Name are Copyright © 2001 Jasmin F. Patry") },
+	{ NULL, "credits_text_small", N_("PlanetPenguin Racer is Copyright © 2005 Volker Stroebel.") },
+  { NULL, "credits_text_small", N_("Tux Racer and the Tux Racer Name are Copyright © 2001 Jasmin F. Patry.") },
 };
 
 Credits::Credits()
