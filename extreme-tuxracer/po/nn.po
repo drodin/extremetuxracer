@@ -257,11 +257,11 @@ msgstr "Tux Racer og namnet «Tux Racer» er Copyright © 2001 Jasmin F. Patry."
 
 #: src/event_select.cpp:50
 msgid "Select event and cup"
-msgstr "Vel renn og turnering"
+msgstr "Vel konkurranse og turnering"
 
 #: src/event_select.cpp:56
 msgid "Event:"
-msgstr "Renn:"
+msgstr "Konkurranse:"
 
 #: src/event_select.cpp:67
 msgid "Cup:"
@@ -380,7 +380,7 @@ msgstr "Du slo rekorden din!"
 
 #: src/game_over.cpp:156
 msgid "Congratulations! You won the event!"
-msgstr "Gratulerer! Du vann rennet!"
+msgstr "Gratulerer! Du vann konkurransen!"
 
 #: src/game_over.cpp:158
 msgid "Congratulations! You won the cup!"
@@ -396,7 +396,7 @@ msgstr "Du kom ikkje vidare."
 
 #: src/game_type_select.cpp:36
 msgid "Enter an event"
-msgstr "Køyr renn"
+msgstr "Konkurranse"
 
 #: src/game_type_select.cpp:43
 msgid "Practice"
@@ -611,7 +611,7 @@ msgid ""
 "know what this has to do with hippos or running..."
 msgstr ""
 "I Flodhestlaupet glir du, ein pingvin, ned ei glatt skråning. Eg anar ærleg "
-"talt ikkje kva dette har med verken flodhestar eller lauping å gjera ..."
+"talt ikkje kva dette har med verken flodhestar eller lauping å gjera …"
 
 #: po/levelinfo:5
 msgid "In Search of Vodka"
@@ -815,7 +815,8 @@ msgid "Slalom"
 msgstr "Slalåm"
 
 #: po/levelinfo:43
-msgid "Brake while you turn and the herrings on this pseudo-slalom will be yours."
+msgid ""
+"Brake while you turn and the herrings on this pseudo-slalom will be yours."
 msgstr "Brems når du svingar for å få tak i silda i denne slalåmbana."
 
 #: po/levelinfo:44
@@ -867,8 +868,8 @@ msgid ""
 "your speed in certain areas to get the most herrings!"
 msgstr ""
 "Snødalen er relativt flat, og kjemperask. Noko av silda er veldig vanskeleg "
-"å få tak i! Pass på farten i visse område om du ønskjer å få tak i mest "
-"mogleg sild."
+"å få tak i! Om du ønskjer å få tak i mest mogleg sild, bør du passa farten i "
+"visse område."
 
 #: po/levelinfo:52
 msgid "Tux Toboggan Run"
@@ -915,7 +916,8 @@ msgstr "Islabyrinten"
 msgid ""
 "You choose your destiny, you could end up full or starving depending on the "
 "path you pick."
-msgstr "Du har mange vegar å velja mellom, men nokre har fleire sild enn andre."
+msgstr ""
+"Du har mange vegar å velja mellom, men nokre har fleire sild enn andre."
 
 #: po/levelinfo:60
 msgid "I've Got A Woody"
@@ -927,7 +929,7 @@ msgid ""
 "hard, try this one. Have fun winding through the woods.  Look out for a huge "
 "shortcut!!"
 msgstr ""
-"Nok ei grusom, opphøgd isbane. Viss du syntest dei to førre var vanskeleg, "
+"Nok ei grusom, opphøgd isbane. Viss du syntest dei to førre var vanskelege, "
 "har du noko å sjå fram til! Kos deg på turen gjennom skogen. Og ver på vakt "
 "etter snarvegen!"
 
@@ -953,7 +955,7 @@ msgstr "Hovudveg til helvete"
 
 #: po/levelinfo:67
 msgid "Frozen Lakes"
-msgstr "Islagde insjøar"
+msgstr "Islagde innsjøar"
 
 #: po/levelinfo:68
 msgid ""
@@ -986,7 +988,7 @@ msgid ""
 "Your task: Find the hidden valleys and the ten groups of dead trees. Look "
 "around, the ways are not easy to find."
 msgstr ""
-"Oppdraget ditt: Finn dei skjulte dalane og ti grupper daude tre. Sjå deg "
+"Oppdraget ditt: Finn dei skjulte dalane og ti grupper med daude tre. Sjå deg "
 "godt rundt. Det er ikkje lett å finna rett veg."
 
 #: po/levelinfo:73
@@ -998,7 +1000,7 @@ msgid ""
 "An adventure course with a simple task: Find the grail! Warning: It is very "
 "difficult to find the way."
 msgstr ""
-"Ei eventyrbane med ei enkel oppgve. Finn gralen! Åtvaring: Dette er "
+"Ei eventyrbane med ei enkel oppgåve. Finn gralen! Åtvaring: Dette er "
 "frykteleg vanskeleg."
 
 #: po/levelinfo:75
@@ -1086,8 +1088,8 @@ msgid ""
 "be fine. The best part is that you don't have to use those stupid T-lifts."
 msgstr ""
 "La oss ta ei lett bane no i starten. Berre få med deg silda innanfor "
-"tidsgrensa, så går alt bra. Og best av alt: Du slepp å måtta bruka sånne "
-"tåpelege skiheisar."
+"tidsgrensa, så går alt bra. Og best av alt: Du slepp å måtta bruka teite "
+"skiheisar."
 
 #: po/levelinfo:91
 msgid "Twisty Slope"
@@ -1175,4 +1177,3 @@ msgstr "Tux på snøbrett"
 
 #~ msgid "Language:"
 #~ msgstr "Språk:"
-

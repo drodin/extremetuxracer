@@ -1,21 +1,26 @@
-# Translation of Extreme Tux Racer to Norwegian Bokmål
+# Translation of nb to Norwegian Nynorsk
 #
 # Copyright (C) 2008 The Extreme Tux Racer team
 # This file is distributed under the same license as the etracer package.
 #
-# Trygve B. Wiig <trygvebw@gmail.com>.
+# Karl Ove Hufthammer <karl@huftis.org>, 2005, 2008.
 msgid ""
 msgstr ""
 "Project-Id-Version: Extreme Tux Racer\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-01 11:07+0200\n"
+"Report-Msgid-Bugs-To: https://translations.edge.launchpad.net/etracer\n"
+"POT-Creation-Date: 2008-05-04 12:38+0200\n"
+"PO-Revision-Date: 2008-05-04 14:16+0200\n"
+"Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
+"Language-Team: Norwegian Nynorsk <i18n-nn@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bitPlural-Forms: nplurals=2; plural=n != 1;\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #: src/audioconfig.cpp:36
 msgid "Audio Configuration"
-msgstr "Lydkonfigurasjon"
+msgstr "Lydoppsett"
 
 #: src/audioconfig.cpp:112
 msgid "Sound Effects:"
@@ -23,11 +28,11 @@ msgstr "Lydeffekter:"
 
 #: src/audioconfig.cpp:116
 msgid "Music:"
-msgstr ""
+msgstr "Musikk:"
 
 #: src/audioconfig.cpp:120
 msgid "(needs restart)"
-msgstr "(må restartes)"
+msgstr "(trenger omstart)"
 
 #: src/audioconfig.cpp:122
 msgid "Disable Audio:"
@@ -39,11 +44,11 @@ msgstr "Stereo:"
 
 #: src/audioconfig.cpp:130
 msgid "Bits Per Sample:"
-msgstr "Bits per sampling"
+msgstr "Bit per prøve:"
 
 #: src/audioconfig.cpp:134
 msgid "Samples Per Second:"
-msgstr "Samplinger per sekund"
+msgstr "Prøver per sekund:"
 
 #: src/configmode.cpp:36
 msgid "Cancel"
@@ -55,7 +60,7 @@ msgstr "OK"
 
 #: src/configuration.cpp:38 src/game_type_select.cpp:57 src/paused.cpp:62
 msgid "Configuration"
-msgstr "Konfigurasjon"
+msgstr "Oppsett"
 
 #: src/configuration.cpp:45 src/credits.cpp:89
 msgid "Graphics"
@@ -63,7 +68,7 @@ msgstr "Grafikk"
 
 #: src/configuration.cpp:52
 msgid "Video"
-msgstr "Bilde"
+msgstr "Skjerm"
 
 #: src/configuration.cpp:59
 msgid "Audio"
@@ -84,189 +89,187 @@ msgstr "Tilbake"
 
 #: src/credits.cpp:43
 msgid "Version 0.4"
-msgstr ""
+msgstr "Versjon 0.4"
 
 #: src/credits.cpp:46
 msgid "Extreme Tux Racer is in the process of being"
-msgstr ""
+msgstr "Extreme Tux Racer holder på å bli skrevet"
 
 #: src/credits.cpp:47
 msgid "completely rewritten. All versions after 0.35,"
-msgstr ""
+msgstr "på nytt fra grunnen av. Versjoner etter 0.35,"
 
 #: src/credits.cpp:48
 msgid "including this one, won't have major code changes"
-msgstr ""
+msgstr "inkludert denne, vil ikke ha store endringer,"
 
 #: src/credits.cpp:49
 msgid "because the programmers are busy making a new,"
-msgstr ""
+msgstr "fordi programmererene er opptatt med å"
 
 #: src/credits.cpp:50
 msgid "improved game."
-msgstr ""
+msgstr "lage et nytt, forbedret spill."
 
 #: src/credits.cpp:52
 msgid "Extreme Tux Racer is based on"
-msgstr ""
+msgstr "Extreme Tux Racer er basert på"
 
 #: src/credits.cpp:53
 msgid "PlanetPenguin Racer, Open Racer and Tux Racer."
-msgstr ""
+msgstr "PlanetPenguin Racer, Open Racer og Tux Racer."
 
 #: src/credits.cpp:55
 msgid "Some courses may have been modified from their"
-msgstr ""
+msgstr "Noen renn er endret fra de opprinnelige"
 
 #: src/credits.cpp:56
 msgid "original versions to fit the requirements of the game."
-msgstr ""
+msgstr "versjonene for å passe bedre til dette spillet."
 
 #: src/credits.cpp:58
 msgid "Development"
-msgstr ""
+msgstr "Utvikling"
 
 #: src/credits.cpp:63
 msgid "from Sunspire Studios:"
-msgstr ""
+msgstr "fra Sunspire Studios:"
 
 #: src/credits.cpp:71
 msgid "Non-Rewrite Version Organization"
-msgstr ""
+msgstr "Versjonsorganisering for ikkenyskriving"
 
 #: src/credits.cpp:74
 msgid "Translators"
-msgstr ""
+msgstr "Oversettere"
 
 #: src/credits.cpp:87
 msgid "Other (incomplete) translations are from the PPRacer Project."
-msgstr ""
+msgstr "Andre (ufullstendige) oversettelser er tatt fra PPRacer-prosjektet."
 
 #: src/credits.cpp:90
 msgid "Nicosmos (Logo, Hud Graphics)"
-msgstr ""
+msgstr "Nicosmos (logo og Hud-bilde)"
 
 #: src/credits.cpp:91
 msgid "Christian Picon (Objects, Skyboxes)"
-msgstr ""
+msgstr "Christian Picon (objekt og skybokser)"
 
 #: src/credits.cpp:92
 msgid "Reinhard Niehoff (Trees)"
-msgstr ""
+msgstr "Reinhard Niehoff (tre)"
 
 #: src/credits.cpp:93
 msgid "Daniel Poeira and Christian Picon (Font)"
-msgstr ""
+msgstr "Daniel Poeira and Christian Picon (skrift)"
 
 #: src/credits.cpp:95
 msgid "Music"
-msgstr ""
+msgstr "Musikk"
 
 #: src/credits.cpp:97
-#, fuzzy
 msgid "'Race 1'"
-msgstr "Kjør!"
+msgstr "'Renn 1'"
 
 #: src/credits.cpp:98
 msgid "'Menu'"
-msgstr ""
+msgstr "'Meny'"
 
 #: src/credits.cpp:99
 msgid "'Options'"
-msgstr ""
+msgstr "'Oppsett'"
 
 #: src/credits.cpp:100
 msgid "'Won Race'"
-msgstr ""
+msgstr "'Vant rennet'"
 
 #: src/credits.cpp:103
-#, fuzzy
 msgid "'Credits Ballad'"
-msgstr "Kreditering"
+msgstr "Bidragsyterskjerm"
 
 #: src/credits.cpp:105
 msgid "Misc. PPRacer Contributors"
-msgstr ""
+msgstr "Ymse PPRacer-bidragsytere"
 
 #: src/credits.cpp:110
 msgid "Thanks To"
-msgstr ""
+msgstr "Takk til"
 
 #: src/credits.cpp:111
 msgid "(for Exteme Tux Racer)"
-msgstr ""
+msgstr "(for Exteme Tux Racer)"
 
 #: src/credits.cpp:112
 msgid "Ranger (for hosting the website)"
-msgstr ""
+msgstr "Ranger (for nettstedplass)"
 
 #: src/credits.cpp:113
 msgid "Slythfox (for making the website)"
-msgstr ""
+msgstr "Slythfox (for å lage nettstedet)"
 
 #: src/credits.cpp:114
 msgid "The Course Creators"
-msgstr ""
+msgstr "Rennutviklerene"
 
 #: src/credits.cpp:115
 msgid "The OpenRacer project"
-msgstr ""
+msgstr "OpenRacer-prosjektet"
 
 #: src/credits.cpp:116
 msgid "Reinhard Niehoff (for helping with code modification)"
-msgstr ""
+msgstr "Reinhard Niehoff (for hjelp til kodeendringer)"
 
 #: src/credits.cpp:117
 msgid "All the people on the forum"
-msgstr ""
+msgstr "Alle folkene på forumet"
 
 #: src/credits.cpp:118
 msgid "Larry Ewing (creator of Tux)"
-msgstr ""
+msgstr "Larry Ewing (som laget Tux)"
 
 #: src/credits.cpp:119
 msgid "(for Tux Racer)"
-msgstr ""
+msgstr "(for Tux Racer)"
 
 #: src/credits.cpp:126
-msgid "Tux Racer is a trademark of Jasmin F. Patry"
-msgstr ""
+msgid "Tux Racer is a trademark of Jasmin F. Patry."
+msgstr "Tux Racer er et varemerke som tilhører Jasmin F. Patry."
 
 #: src/credits.cpp:127
 msgid "Extreme Tux Racer is licenced under the GPL."
-msgstr ""
+msgstr "Extreme Tux Racer er lisensiert under GPL."
 
 #: src/credits.cpp:128
 msgid "We grant use of the name 'Extreme Tux Racer'"
-msgstr ""
+msgstr "Vi gir alle lov til å bruke navnet «Extreme Tux Racer»"
 
 #: src/credits.cpp:129
 msgid "to any forks or continuations."
-msgstr ""
+msgstr "til varianter og vidareutviklinger av spillet."
 
 #: src/credits.cpp:131
-msgid "PlanetPenguin Racer is Copyright © 2005 Volker Stroebel"
-msgstr ""
+msgid "PlanetPenguin Racer is Copyright © 2005 Volker Stroebel."
+msgstr "PlanetPenguin Racer er Copyright © 2005 Volker Stroebel."
 
 #: src/credits.cpp:132
-msgid "Tux Racer and the Tux Racer Name are Copyright © 2001 Jasmin F. Patry"
-msgstr ""
+msgid "Tux Racer and the Tux Racer Name are Copyright © 2001 Jasmin F. Patry."
+msgstr "Tux Racer og navnet «Tux Racer» er Copyright © 2001 Jasmin F. Patry."
 
 #: src/event_select.cpp:50
 msgid "Select event and cup"
-msgstr "Velg renn og cup"
+msgstr "Velg konkurranse og turnering"
 
 #: src/event_select.cpp:56
 msgid "Event:"
-msgstr "Renn:"
+msgstr "Konkurranse:"
 
 #: src/event_select.cpp:67
 msgid "Cup:"
-msgstr "Cup:"
+msgstr "Turnering:"
 
 #: src/event_select.cpp:87
 msgid "Player name:"
-msgstr ""
+msgstr "Spillernavn:"
 
 #: src/event_select.cpp:104
 msgid "Continue"
@@ -274,19 +277,19 @@ msgstr "Fortsett"
 
 #: src/event_select.cpp:158
 msgid "You've won this cup!"
-msgstr "Du har vunnet denne cupen!"
+msgstr "Du vant denne turneringen!"
 
 #: src/event_select.cpp:160
 msgid "You must complete this cup next"
-msgstr "Du må vinne denne cupen før du kan gå videre"
+msgstr "Du må nå vinne denne turneringen"
 
 #: src/event_select.cpp:162
 msgid "You cannot enter this cup yet"
-msgstr "Du kan ikke kjøre denne cupen"
+msgstr "Du kan ikke spille denne turneringen ennå"
 
 #: src/event_race_select.cpp:45
 msgid "Select a race"
-msgstr "Velg et renn"
+msgstr "Velg renn"
 
 #: src/event_race_select.cpp:60
 msgid "Race!"
@@ -294,28 +297,28 @@ msgstr "Kjør!"
 
 #: src/event_race_select.cpp:280
 msgid "You don't have any lives left."
-msgstr "Du har ingen liv igjen."
+msgstr "Du har ikke flere liv igjen."
 
 #: src/event_race_select.cpp:285
 msgid "Race won! Your result:"
-msgstr "Du vant rennet! Ditt resultat:"
+msgstr "Du vant! Resultat:"
 
 #: src/event_race_select.cpp:289
 msgid "Needed to advance:"
-msgstr "Trengs for å avansere:"
+msgstr "For å gå videre:"
 
 #: src/event_race_select.cpp:293
 msgid "You can't enter this race yet."
-msgstr "Du kan ikke kjøre dette rennet ennå."
+msgstr "Du kan ikke spille dette rennet ennå"
 
 #: src/event_race_select.cpp:316
 msgid "Time:"
 msgstr "Tid:"
 
 #: src/event_race_select.cpp:320
-#, fuzzy, c-format
+#, c-format
 msgid "%02d:%02d.%02d"
-msgstr "%02d:%02d:%02d"
+msgstr "%02d.%02d,%02d"
 
 #: src/event_race_select.cpp:324
 msgid "Herring:"
@@ -327,7 +330,7 @@ msgstr "Poeng:"
 
 #: src/event_race_select.cpp:341
 msgid "Contributed by:"
-msgstr "Bidratt med av:"
+msgstr "Laget av:"
 
 #: src/event_race_select.cpp:349 po/levelinfo:109
 msgid "Unknown"
@@ -335,16 +338,16 @@ msgstr "Ukjent"
 
 #: src/game_over.cpp:101
 msgid "Race aborted"
-msgstr "Rennet ble avbrutt"
+msgstr "Avbrøt rennet"
 
 #: src/game_over.cpp:104
 msgid "Race Over"
-msgstr "Rennet er over"
+msgstr "Rennet er ferdig"
 
 #: src/game_over.cpp:111
 #, c-format
 msgid "Time: %02d:%02d.%02d"
-msgstr "Tid: %02d:%02d.%02d"
+msgstr "Tid: %02d.%02d,%02d"
 
 #: src/game_over.cpp:116
 #, c-format
@@ -359,53 +362,53 @@ msgstr "Poeng: %6d"
 #: src/game_over.cpp:127
 #, c-format
 msgid "Max speed: %3d km/h"
-msgstr "Maksfart: %3d km/h"
+msgstr "Maksfart: %3d km/t"
 
 #: src/game_over.cpp:133
 #, c-format
 msgid "Was flying: %.01f %% of time"
-msgstr "Var i luften %.01f %% av rennet"
+msgstr "Flydde %.01f %% av tiden"
 
 #: src/game_over.cpp:143
 #, c-format
 msgid "You made it to the %s place in the highscore!"
-msgstr ""
+msgstr "Du kom inn på %s plass på rekordlista!"
 
 #: src/game_over.cpp:153
 msgid "You beat your best score!"
-msgstr "Du slo din egen poengrekord!"
+msgstr "Du slo rekorden din!"
 
 #: src/game_over.cpp:156
 msgid "Congratulations! You won the event!"
-msgstr "Gratulerer! Du vant rennet!"
+msgstr "Gratulerer! Du vant konkurransen!"
 
 #: src/game_over.cpp:158
 msgid "Congratulations! You won the cup!"
-msgstr "Gratulerer! Du vant cupen!"
+msgstr "Gratulerer! Du vant turneringen!"
 
 #: src/game_over.cpp:160
 msgid "You advanced to the next race!"
-msgstr "Du avanserte til det neste rennet."
+msgstr "Du kom videre til neste renn!"
 
 #: src/game_over.cpp:162
 msgid "You didn't advance."
-msgstr "Du avanserte ikke."
+msgstr "Du kom ikke videre."
 
 #: src/game_type_select.cpp:36
 msgid "Enter an event"
-msgstr "Kjør et renn"
+msgstr "Konkurranse"
 
 #: src/game_type_select.cpp:43
 msgid "Practice"
-msgstr "Øvelsesrenn"
+msgstr "Øvelse"
 
 #: src/game_type_select.cpp:50 src/highscore.cpp:350
 msgid "Highscore"
-msgstr ""
+msgstr "Rekorder"
 
 #: src/game_type_select.cpp:64
 msgid "Credits"
-msgstr "Kreditering"
+msgstr "Bidragsytere"
 
 #: src/game_type_select.cpp:71 src/paused.cpp:78
 msgid "Quit"
@@ -413,27 +416,27 @@ msgstr "Avslutt"
 
 #: src/graphicsconfig.cpp:30
 msgid "Graphics Configuration"
-msgstr "Grafikk-konfigurasjon"
+msgstr "Grafikkoppsett"
 
 #: src/graphicsconfig.cpp:104
 msgid "Model:"
-msgstr ""
+msgstr "Modell:"
 
 #: src/graphicsconfig.cpp:113
 msgid "Show UI Snow:"
-msgstr "Vis snø:"
+msgstr "Snø:"
 
 #: src/graphicsconfig.cpp:117
 msgid "Display FPS:"
-msgstr "Vis FPS:"
+msgstr "Bilderate:"
 
 #: src/graphicsconfig.cpp:121
 msgid "Display Progress Bar:"
-msgstr "Vis fremdriftsviser:"
+msgstr "Framgangsstolpe:"
 
 #: src/graphicsconfig.cpp:125
 msgid "Draw Fog:"
-msgstr "Vis røyk:"
+msgstr "Tåke:"
 
 #: src/graphicsconfig.cpp:129
 msgid "Reflections:"
@@ -441,76 +444,76 @@ msgstr "Refleksjoner:"
 
 #: src/graphicsconfig.cpp:133
 msgid "Shadows:"
-msgstr "Skygge:"
+msgstr "Skygger:"
 
 #: src/highscore.cpp:88
 msgid "1:st"
-msgstr ""
+msgstr "1."
 
 #: src/highscore.cpp:90
 msgid "2:nd"
-msgstr ""
+msgstr "2."
 
 #: src/highscore.cpp:92
 msgid "3:rd"
-msgstr ""
+msgstr "3."
 
 #: src/highscore.cpp:94
 msgid "4:th"
-msgstr ""
+msgstr "4."
 
 #: src/highscore.cpp:96
 msgid "5:th"
-msgstr ""
+msgstr "5."
 
 #: src/highscore.cpp:98
 msgid "6:th"
-msgstr ""
+msgstr "6."
 
 #: src/highscore.cpp:100
 msgid "7:th"
-msgstr ""
+msgstr "7."
 
 #: src/highscore.cpp:102
 msgid "8:th"
-msgstr ""
+msgstr "8."
 
 #: src/highscore.cpp:104
 msgid "9:th"
-msgstr ""
+msgstr "9."
 
 #: src/highscore.cpp:106
 msgid "10:th"
-msgstr ""
+msgstr "10."
 
 #: src/highscore.cpp:317
 msgid "No records"
-msgstr ""
+msgstr "Ingen rekorder"
 
 #: src/highscore.cpp:327
 #, c-format
 msgid " (%d points)"
-msgstr ""
+msgstr " (%d poeng)"
 
 #: src/joystickconfig.cpp:29
 msgid "Joystick Configuration"
-msgstr "Styrespaks-konfigurasjon"
+msgstr "Styrespakoppsett"
 
 #: src/joystickconfig.cpp:33
 msgid "Enable Joystick"
-msgstr "Aktiver joystick"
+msgstr "Bruk styrespak"
 
 #: src/joystickconfig.cpp:41 src/keyboardconfig.cpp:132
 msgid "Paddle:"
-msgstr "Paddle:"
+msgstr "Gi fart:"
 
 #: src/joystickconfig.cpp:54 src/keyboardconfig.cpp:136
 msgid "Brake:"
-msgstr "Bremse:"
+msgstr "Brems:"
 
 #: src/joystickconfig.cpp:67 src/keyboardconfig.cpp:140
 msgid "Jump:"
-msgstr "Hoppe:"
+msgstr "Hopp:"
 
 #: src/joystickconfig.cpp:80 src/keyboardconfig.cpp:144
 msgid "Trick:"
@@ -518,27 +521,27 @@ msgstr "Triks:"
 
 #: src/keyboardconfig.cpp:55
 msgid "Keyboard Configuration"
-msgstr "Tastatur-konfigurasjon"
+msgstr "Tasteoppsett"
 
 #: src/keyboardconfig.cpp:124
 msgid "Turn left:"
-msgstr "Snu til venstre"
+msgstr "Sving til venstre:"
 
 #: src/keyboardconfig.cpp:128
 msgid "Turn right:"
-msgstr "Snu til høyre"
+msgstr "Sving til høyre:"
 
 #: src/keyboardconfig.cpp:148
 msgid "Reset:"
-msgstr "Tilbakestill:"
+msgstr "Nullstill:"
 
 #: src/loading.cpp:53
 msgid "Loading, Please Wait..."
-msgstr "Laster renn..."
+msgstr "Laster. Vent litt …"
 
 #: src/paused.cpp:54
 msgid "Paused"
-msgstr "Spillet er pauset"
+msgstr "Pause"
 
 #: src/paused.cpp:70
 msgid "Resume"
@@ -546,19 +549,19 @@ msgstr "Fortsett"
 
 #: src/splash_screen.cpp:34
 msgid "PRESS ANY KEY TO START"
-msgstr "Trykk en tast for å starte"
+msgstr "TRYKK EN TAST FOR Å STARTE"
 
 #: src/videoconfig.cpp:60
 msgid "Video Configuration"
-msgstr "Bilde-konfigurasjon"
+msgstr "Skjermoppsett"
 
 #: src/videoconfig.cpp:173
 msgid "To change the resolution, or switch into fullscreen mode"
-msgstr ""
+msgstr "For å bytte oppløsning, eller for å bytte til fullskjermsvisning,"
 
 #: src/videoconfig.cpp:175
 msgid "use options.txt, located in the config folder."
-msgstr ""
+msgstr "bruk fila «options.txt», som ligger i oppsettmappa."
 
 #: src/videoconfig.cpp:177
 msgid "Resolution:"
@@ -566,7 +569,7 @@ msgstr "Oppløsning:"
 
 #: src/videoconfig.cpp:181
 msgid "Bits Per Pixel:"
-msgstr "Farger:"
+msgstr "Fargedybde:"
 
 #: src/videoconfig.cpp:185
 msgid "Fullscreen:"
@@ -574,501 +577,570 @@ msgstr "Fullskjerm:"
 
 #: src/videoconfig.cpp:189
 msgid "Experimental (needs restart)"
-msgstr "Eksperimentellt (må restartes)"
+msgstr "Eksperimentell (trenger omstart)"
 
 #: src/videoconfig.cpp:192
 msgid "Stencil Buffer:"
-msgstr ""
+msgstr "Stensilbuffer:"
 
 #: src/videoconfig.cpp:196
 msgid "Enable FSAA:"
-msgstr "FSAA"
+msgstr "Bruk kantutjevning:"
 
 #: src/videoconfig.cpp:200
 msgid "FSAA Multisamples:"
-msgstr ""
+msgstr "FSAA-flerprøver:"
 
 #: po/levelinfo:1
 msgid "Doing"
-msgstr ""
+msgstr "Dåing"
 
 #: po/levelinfo:2
 msgid ""
 "This course was probably created to present new textures introduced in "
 "PPRacer."
-msgstr ""
+msgstr "Denne banen ble laget for å vise fram de nye teksturene i PPRacer."
 
 #: po/levelinfo:3
-msgid "Bunny Hill"
-msgstr ""
+msgid "Hippo Run"
+msgstr "Flodhestløpet"
 
 #: po/levelinfo:4
 msgid ""
-"Let's start out easy, just collect the herring in the time limit and you'll "
-"be fine. The best part is that you don't have to use those stupid T-lifts."
+"In Hippo Run, you slide down an icy slope as a penguin, I honestly don't "
+"know what this has to do with hippos or running..."
 msgstr ""
+"I Flodhestløpet glir du, en pingvin, ned en glatt skråning. Jeg aner ærlig "
+"talt ikke hva dette har med verken flodhester eller løping å gjøre …"
 
 #: po/levelinfo:5
-msgid "Tux Racer Classics"
-msgstr ""
+msgid "In Search of Vodka"
+msgstr "På jakt etter vodka"
 
 #: po/levelinfo:6
-msgid "Canadian Cup"
-msgstr ""
-
-#: po/levelinfo:7
-msgid "Swiss Cup"
-msgstr ""
-
-#: po/levelinfo:8
-msgid "Twisty Slope"
-msgstr ""
-
-#: po/levelinfo:9
-msgid ""
-"Tight twists make grabbing herring difficult.  Hard turns and not too much "
-"braking will lead you to victory."
-msgstr ""
-
-#: po/levelinfo:10
-msgid "Bumpy Ride"
-msgstr ""
-
-#: po/levelinfo:11
-msgid ""
-"This hill has a series of ramps to tackle.  Be sure to line yourself up "
-"before getting airborne."
-msgstr ""
-
-#: po/levelinfo:12
-msgid "Path of Daggers"
-msgstr ""
-
-#: po/levelinfo:13
-msgid ""
-"Big spikes may prove to be the least of your worries on this course. Muliple "
-"paths allow you to take low or high roads, each with their own challenges."
-msgstr ""
-
-#: po/levelinfo:14
-msgid "Frozen River"
-msgstr ""
-
-#: po/levelinfo:15
-msgid ""
-"Keep your speed down to collect herring. You have plenty of time, so don't "
-"rush things."
-msgstr ""
-
-#: po/levelinfo:16
-msgid "Explore the Mountains"
-msgstr ""
-
-#: po/levelinfo:17
-msgid "Can you find your way through the icy, dangerous mountains. I doubt it."
-msgstr ""
-
-#: po/levelinfo:18
-msgid "In Search of the Holy Grail"
-msgstr ""
-
-#: po/levelinfo:19
-msgid ""
-"An adventure course with a simple task: Find the grail! Warning: It is very "
-"difficult to find the way."
-msgstr ""
-
-#: po/levelinfo:20
-msgid "Tux at Home"
-msgstr ""
-
-#: po/levelinfo:21
-msgid ""
-"Here lives Tux. You can take the corridore on the right - it's the shortest "
-"and fastest way. But if you want to catch some herrings you have to enter "
-"the rooms on the left."
-msgstr ""
-
-#: po/levelinfo:22
-msgid "Wild Mountains"
-msgstr ""
-
-#: po/levelinfo:23
-msgid ""
-"A wild landscape of ice and snow. It isn't easy to keep the right way. Not "
-"for beginners."
-msgstr ""
-
-#: po/levelinfo:24
-msgid "Secret Valleys"
-msgstr ""
-
-#: po/levelinfo:25
-msgid ""
-"Your task: Find the hidden valleys and the ten groups of dead trees. Look "
-"around, the ways are not easy to find."
-msgstr ""
-
-#: po/levelinfo:26
-msgid "The Niehoff Experience"
-msgstr ""
-
-#: po/levelinfo:27
-msgid "Search, Search, Search"
-msgstr ""
-
-#: po/levelinfo:28
-msgid "Mountains and Hills"
-msgstr ""
-
-#: po/levelinfo:29
-msgid "The Final Challenge"
-msgstr ""
-
-#: po/levelinfo:30
-msgid "Chinese Wall"
-msgstr ""
-
-#: po/levelinfo:31
-msgid ""
-"The Great Wall of China in winter. Try to stay on top of the wall - that's "
-"where the herrings are. If you fall off you can try to jump back up, there "
-"are 7 hidden ramps. You'll get a lot of exercise."
-msgstr ""
-
-#: po/levelinfo:32
-msgid "Frozen Lakes"
-msgstr ""
-
-#: po/levelinfo:33
-msgid ""
-"To reach the finish you must pass several frozen lakes. Watch your speed on "
-"the ice - there are some dangerous corners."
-msgstr ""
-
-#: po/levelinfo:34
-msgid "Challenge One"
-msgstr ""
-
-#: po/levelinfo:35
-msgid ""
-"A very dangerous path along the mountains. Try to catch more than 60 "
-"herrings. Warning: The course is very difficult and there are some "
-"situations where you can get stuck."
-msgstr ""
-
-#: po/levelinfo:36
-msgid "Dead Man's Drop"
-msgstr ""
-
-#: po/levelinfo:37
-msgid ""
-"Pretty tough hill. It's fast, steep, lumpy, twisty, and full of trees. Hard "
-"to get herrings. Don't forget the drop."
-msgstr ""
-
-#: po/levelinfo:38
-msgid "Tux Toboggan Run"
-msgstr ""
-
-#: po/levelinfo:39
-msgid ""
-"Collect herrings in an ice channel with various paths and many high and low "
-"speed passages. Watch out for the occasional tree."
-msgstr ""
-
-#: po/levelinfo:40
-msgid "Hazzard Valley"
-msgstr ""
-
-#: po/levelinfo:41
-msgid ""
-"Hazzard Valley is full of hazards, like trees, deep caverns, spikes, and "
-"huge areas of rocky plains, not to mention your speed being your enemy in "
-"trying to get the herrings and stay on course!"
-msgstr ""
-
-#: po/levelinfo:42
-msgid "Mt. Satan"
-msgstr ""
-
-#: po/levelinfo:43
-msgid ""
-"Mount Satan is a sister mountain to Dead Man's Drop. No surprises here, just "
-"a steep, bumpy, twisty path full of trees to get through."
-msgstr ""
-
-#: po/levelinfo:44
-#, fuzzy
-msgid "Mt. Herring"
-msgstr "Sild:"
-
-#: po/levelinfo:45
-msgid ""
-"Mt. Herring is relatively fast but long, somewhat bumpy in places, and has "
-"some wide open areas and branching paths. Lots of herrings to collect though "
-"it can be difficult unless you watch your speed."
-msgstr ""
-
-#: po/levelinfo:46
-#, fuzzy
-msgid "Herring Run"
-msgstr "Sild:"
-
-#: po/levelinfo:47
-msgid "Mountain Man"
-msgstr ""
-
-#: po/levelinfo:48
-msgid "Valley Cup"
-msgstr ""
-
-#: po/levelinfo:49
-msgid "Tux the winter sportsman"
-msgstr ""
-
-#: po/levelinfo:50
-msgid "Highway To Hell"
-msgstr ""
-
-#: po/levelinfo:51
-msgid "Skull Mountain"
-msgstr ""
-
-#: po/levelinfo:52
-msgid ""
-"Skull mountain is a steep, twisty drop around tree-filled inner peaks. "
-"Expect to miss a lot of herrings and crash a lot."
-msgstr ""
-
-#: po/levelinfo:53
-#, fuzzy
-msgid "Ski Jump"
-msgstr "Hoppe:"
-
-#: po/levelinfo:54
-msgid ""
-"Steering will be unnecessary, just line yourself up and reap the rewards. "
-"Rememember, acceleration will slow you down after a while."
-msgstr ""
-
-#: po/levelinfo:55
-msgid "High Road"
-msgstr ""
-
-#: po/levelinfo:56
-msgid ""
-"Just stay on the path and collect herring. Oh yeah, and if you fall you'll "
-"be eating pine needles."
-msgstr ""
-
-#: po/levelinfo:57
-msgid "Who Says Penguins Can't Fly?"
-msgstr ""
-
-#: po/levelinfo:58
-msgid ""
-"It'll be tough collecting herrings at speeds over 200, so try to brake "
-"whenever possible to get the required herring."
-msgstr ""
-
-#: po/levelinfo:59
-msgid "Hamburger Hill"
-msgstr ""
-
-#: po/levelinfo:60
-msgid ""
-"Hamburger Hill is steep, narrow, twisty, lumpy, icy, and rocky, with a few "
-"trees right in your way!"
-msgstr ""
-
-#: po/levelinfo:61
-msgid "I've Got A Woody"
-msgstr ""
-
-#: po/levelinfo:62
-msgid ""
-"Yet another horrible elevated ice-coaster. If you thought the last two were "
-"hard, try this one. Have fun winding through the woods.  Look out for a huge "
-"shortcut!!"
-msgstr ""
-
-#: po/levelinfo:63
-msgid "Ice Labyrinth"
-msgstr ""
-
-#: po/levelinfo:64
-msgid ""
-"You choose your destiny, you could end up full or starving depending on the "
-"path you pick."
-msgstr ""
-
-#: po/levelinfo:65
-msgid "Snow Valley"
-msgstr ""
-
-#: po/levelinfo:66
-msgid ""
-"Snow Valley is a relatively flat, and very fast course. You'll find a few "
-"herrings very difficult to get if you're going for a perfect score! Watch "
-"your speed in certain areas to get the most herrings!"
-msgstr ""
-
-#: po/levelinfo:67
-msgid "Slalom"
-msgstr ""
-
-#: po/levelinfo:68
-msgid ""
-"Brake while you turn and the herrings on this pseudo-slalom will be yours."
-msgstr ""
-
-#: po/levelinfo:69
-msgid "Keep It Up"
-msgstr ""
-
-#: po/levelinfo:70
-msgid ""
-"If you fall you might as well just quit then and there, 'cause your chances "
-"are slim on the rocky ground."
-msgstr ""
-
-#: po/levelinfo:71
-msgid "The Narrow Way"
-msgstr ""
-
-#: po/levelinfo:72
-msgid ""
-"To put it simply, stay on the path or you lose! It's hard to see where "
-"you're going, there's trees in your way, and the herrings are hard to get. "
-"Good luck, you'll need it!"
-msgstr ""
-
-#: po/levelinfo:73
-msgid "Merry Go Round"
-msgstr ""
-
-#: po/levelinfo:74
-msgid "Try to build up enough speed to jump from one roundabout to the next."
-msgstr ""
-
-#: po/levelinfo:75
-msgid "In Search of Vodka"
-msgstr ""
-
-#: po/levelinfo:76
 msgid ""
 "Tux needs some needs some vodka to warm up his cold belly. Alas, his liquor "
 "cabinet has been pillaged. Join Tux on the quest for vodka.Pick up herring "
 "for dinner along the way!"
 msgstr ""
+"Tux trenger vodka for å varme magen, men uheldigvis er brennevinsskapet hans "
+"plyndret. Bli med Tux på jakt etter vodka. Plukk også med deg litt sild som "
+"middagsmat på veien!"
 
-#: po/levelinfo:77
-msgid "Ice Pipeline"
-msgstr ""
-
-#: po/levelinfo:78
-msgid "A short, slippery ice-trough with herring scattered throughout."
-msgstr ""
-
-#: po/levelinfo:79
-msgid "Candy Lane"
-msgstr ""
-
-#: po/levelinfo:80
-msgid ""
-"Mostly ice, with very few obstacles in your path, this is like a stroll down "
-"Candy Lane."
-msgstr ""
-
-#: po/levelinfo:81
-msgid "Mountain Mania"
-msgstr ""
-
-#: po/levelinfo:82
-msgid "Icy Peril"
-msgstr ""
-
-#: po/levelinfo:83
-msgid "Death Cup"
-msgstr ""
-
-#: po/levelinfo:84
-msgid "Slippery Defeat"
-msgstr ""
-
-#: po/levelinfo:85
-msgid "The Final Three"
-msgstr ""
-
-#: po/levelinfo:86
-msgid "Nature Stroll"
-msgstr ""
-
-#: po/levelinfo:87
-msgid ""
-"The fresh air, the pine scent, who doesn't like a nice refreshing walk "
-"through the mountains?"
-msgstr ""
-
-#: po/levelinfo:88
+#: po/levelinfo:7
 msgid "Crazy Path"
-msgstr ""
+msgstr "Villmannsveien"
 
-#: po/levelinfo:89
+#: po/levelinfo:8
 msgid ""
 "You'll have trouble slowing down on this one. There's lots of herring, but "
 "be careful not to fly too much or you won't get any."
 msgstr ""
+"Det blir ikke lett å ta det rolig her. Det er mye sild, men pass på å ikke "
+"fly så mye, ellers får du ikke tak i noe."
 
-#: po/levelinfo:90
-msgid "Slippy-Slidey"
-msgstr ""
-
-#: po/levelinfo:91
-msgid "Slide on the slippery frozen river in a hilly forest, slipperily."
-msgstr ""
-
-#: po/levelinfo:92
+#: po/levelinfo:9
 msgid "Hey, Tux!"
-msgstr ""
+msgstr "Hei Tux!"
 
-#: po/levelinfo:93
+#: po/levelinfo:10
 msgid "This course offers true excitement for your race-loving penguin buddy."
-msgstr ""
+msgstr "Denne banen gir ekte spenning for fartsglade pingviner."
 
-#: po/levelinfo:94
+#: po/levelinfo:11
+msgid "Ice Pipeline"
+msgstr "Isrøret"
+
+#: po/levelinfo:12
+msgid "A short, slippery ice-trough with herring scattered throughout."
+msgstr "Et kort, glatt isrør med sild overalt."
+
+#: po/levelinfo:13
+msgid "Slippy-Slidey"
+msgstr "God glid"
+
+#: po/levelinfo:14
+msgid "Slide on the slippery frozen river in a hilly forest, slipperily."
+msgstr "Gli på den glatte, frosne elva i den åslendte skogen."
+
+#: po/levelinfo:15
 msgid "Volcanoes"
-msgstr ""
+msgstr "Vulkaner"
 
-#: po/levelinfo:95
+#: po/levelinfo:16
 msgid ""
 "This gigantic crater was full of water, and herring, but now it's all "
 "frozen, and yours for the taking."
 msgstr ""
+"Dette enorme krateret var én gang full av vann og sild, men er nå helt "
+"bunnfrosset."
+
+#: po/levelinfo:17
+msgid "Merry Go Round"
+msgstr "Bare rundtomkring"
+
+#: po/levelinfo:18
+msgid "Try to build up enough speed to jump from one roundabout to the next."
+msgstr "Prøv å bygge opp nok fart til å hoppe fra én rundkjøring til neste."
+
+#: po/levelinfo:19
+msgid "Bobsled Ride"
+msgstr "Bobsleighbane"
+
+#: po/levelinfo:20
+msgid "Just like a real bobsled ride, only more dangerous."
+msgstr "Akkurat som en ekte bobsleighbane, bare enda farligere."
+
+#: po/levelinfo:21
+msgid "Candy Lane"
+msgstr "Godterigata"
+
+#: po/levelinfo:22
+msgid ""
+"Mostly ice, with very few obstacles in your path, this is like a stroll down "
+"Candy Lane."
+msgstr ""
+"For det meste is, med veldig få hinder. Dette er som en spasertur ned "
+"godterigata."
+
+#: po/levelinfo:23
+msgid "Nature Stroll"
+msgstr "Naturtur"
+
+#: po/levelinfo:24
+msgid ""
+"The fresh air, the pine scent, who doesn't like a nice refreshing walk "
+"through the mountains?"
+msgstr ""
+"Frisk luft og lukten av furutre. Hvem kan vel ha noe imot en rolig fottur i "
+"fjellet?"
+
+#: po/levelinfo:25
+msgid "Mountain Mania"
+msgstr "Fjellmania"
+
+#: po/levelinfo:26
+msgid "Icy Peril"
+msgstr "Isfarlig"
+
+#: po/levelinfo:27
+msgid "Death Cup"
+msgstr "Dødsturneringen"
+
+#: po/levelinfo:28
+msgid "Slippery Defeat"
+msgstr "Glatt nederlag"
+
+#: po/levelinfo:29
+msgid "The Final Three"
+msgstr "De tre siste"
+
+#: po/levelinfo:30
+msgid "Hazzard Valley"
+msgstr "Våghalsveien"
+
+#: po/levelinfo:31
+msgid ""
+"Hazzard Valley is full of hazards, like trees, deep caverns, spikes, and "
+"huge areas of rocky plains, not to mention your speed being your enemy in "
+"trying to get the herrings and stay on course!"
+msgstr ""
+"Våghalsveien er full av farer – tre, dype huler, pigger og store, steinete "
+"åpne områder, for ikke å nevne det konstante tidspresset i jakten på sild!"
+
+#: po/levelinfo:32
+msgid "Mt. Herring"
+msgstr "Sildetoppen"
+
+#: po/levelinfo:33
+msgid ""
+"Mt. Herring is relatively fast but long, somewhat bumpy in places, and has "
+"some wide open areas and branching paths. Lots of herrings to collect though "
+"it can be difficult unless you watch your speed."
+msgstr ""
+"På Sildetoppen går det raskt unna, men banen er både lang og humpete, og har "
+"flere vidåpne landskap og alternative ruter. Det finnes mye sild her, men "
+"den kan være vanskelig å få tak i om du aker for fort."
+
+#: po/levelinfo:34
+msgid "Ski Jump"
+msgstr "Skihopp"
+
+#: po/levelinfo:35
+msgid ""
+"Steering will be unnecessary, just line yourself up and reap the rewards. "
+"Rememember, acceleration will slow you down after a while."
+msgstr ""
+"Her trenger du ikke styre; bare kjør på, og plukk opp belønningene. Husk at "
+"du mister fart etter hvert."
+
+#: po/levelinfo:36
+msgid "Keep It Up"
+msgstr "Hold deg oppe"
+
+#: po/levelinfo:37
+msgid ""
+"If you fall you might as well just quit then and there, 'cause your chances "
+"are slim on the rocky ground."
+msgstr ""
+"Hvis du faller ned, kan du like godt bare gi opp med én gang. Det skal godt "
+"gjøres å klare seg på den steinete bakken."
+
+#: po/levelinfo:38
+msgid "High Road"
+msgstr "Himmelveien"
+
+#: po/levelinfo:39
+msgid ""
+"Just stay on the path and collect herring. Oh yeah, and if you fall you'll "
+"be eating pine needles."
+msgstr ""
+"Bare hold deg på veien, og plukk med deg sild. Og, ja, det er sant: Hvis du "
+"faller ned, blir det heller furukongler til middag."
+
+#: po/levelinfo:40
+msgid "Hamburger Hill"
+msgstr "Hamburgerhaugen"
+
+#: po/levelinfo:41
+msgid ""
+"Hamburger Hill is steep, narrow, twisty, lumpy, icy, and rocky, with a few "
+"trees right in your way!"
+msgstr ""
+"Hamburgerhaugen er bratt, glatt, smal, svingete, humpete, og har til og med "
+"noen tre i veien!"
+
+#: po/levelinfo:42
+msgid "Slalom"
+msgstr "Slalåm"
+
+#: po/levelinfo:43
+msgid ""
+"Brake while you turn and the herrings on this pseudo-slalom will be yours."
+msgstr "Brems når du svinger for å få tak i sildene i denne slalåmbanen."
+
+#: po/levelinfo:44
+msgid "Mt. Satan"
+msgstr "Mount Satan"
+
+#: po/levelinfo:45
+msgid ""
+"Mount Satan is a sister mountain to Dead Man's Drop. No surprises here, just "
+"a steep, bumpy, twisty path full of trees to get through."
+msgstr ""
+"Mount Satan er søsterfjellet til Daudmannsbrekka. Ingen overraskelser her – "
+"bare en bratt, humpete, svingete bane full av tre."
+
+#: po/levelinfo:46
+msgid "The Narrow Way"
+msgstr "Den smale sti"
+
+#: po/levelinfo:47
+msgid ""
+"To put it simply, stay on the path or you lose! It's hard to see where "
+"you're going, there's trees in your way, and the herrings are hard to get. "
+"Good luck, you'll need it!"
+msgstr ""
+"Kort sagt: Holder deg på den smale sti – eller dø! Det er vanskelig å se "
+"hvor du aker, det er tre i veien, og det er vrient å få tak i sild. Lykke "
+"til (du kommer til å trenge det)!"
+
+#: po/levelinfo:48
+msgid "Dead Man's Drop"
+msgstr "Dudmannsbrekka"
+
+#: po/levelinfo:49
+msgid ""
+"Pretty tough hill. It's fast, steep, lumpy, twisty, and full of trees. Hard "
+"to get herrings. Don't forget the drop."
+msgstr ""
+"Ganske vanskelig. Daudmannsbrekka er bratt, rask, humpete, svingete og full "
+"av tre. Det er ikke lett å få tak i sild. Og ikke glem hoppet."
+
+#: po/levelinfo:50
+msgid "Snow Valley"
+msgstr "Snødalen"
+
+#: po/levelinfo:51
+msgid ""
+"Snow Valley is a relatively flat, and very fast course. You'll find a few "
+"herrings very difficult to get if you're going for a perfect score! Watch "
+"your speed in certain areas to get the most herrings!"
+msgstr ""
+"Snødalen er relativt flat, og kjemperask. Noe av silden er veldig vanskelig "
+"å få tak i! Om du ønsker å få tak i mest mulig sild, bør du passe farten i "
+"visse områder."
+
+#: po/levelinfo:52
+msgid "Tux Toboggan Run"
+msgstr "Aketur"
+
+#: po/levelinfo:53
+msgid ""
+"Collect herrings in an ice channel with various paths and many high and low "
+"speed passages. Watch out for the occasional tree."
+msgstr ""
+"Plukk opp sild i en iskanal med flere veier å velge mellom, og flere mindre "
+"passasjar med høy eller lav fart. Pass deg for ett og annet tre som måtte "
+"dukke opp."
+
+#: po/levelinfo:54
+msgid "Skull Mountain"
+msgstr "Hodeskallefjellet"
+
+#: po/levelinfo:55
+msgid ""
+"Skull mountain is a steep, twisty drop around tree-filled inner peaks. "
+"Expect to miss a lot of herrings and crash a lot."
+msgstr ""
+"Hodeskallefjellet er bratt og svingete, og med små hauger med tre. Her må du "
+"regne med mye krasjing og lite sild."
+
+#: po/levelinfo:56
+msgid "Who Says Penguins Can't Fly?"
+msgstr "Hvem har sagt at pingviner ikke kan fly?"
+
+#: po/levelinfo:57
+msgid ""
+"It'll be tough collecting herrings at speeds over 200, so try to brake "
+"whenever possible to get the required herring."
+msgstr ""
+"Det er ikke lett å spise sild i over 200 kilometer i timen, så prøv å bremse "
+"ned når du kan."
+
+#: po/levelinfo:58
+msgid "Ice Labyrinth"
+msgstr "Islabyrinten"
+
+#: po/levelinfo:59
+msgid ""
+"You choose your destiny, you could end up full or starving depending on the "
+"path you pick."
+msgstr "Du har mange veier å velge mellom, men noen har flere sild enn andre."
+
+#: po/levelinfo:60
+msgid "I've Got A Woody"
+msgstr "Tresmak bak"
+
+#: po/levelinfo:61
+msgid ""
+"Yet another horrible elevated ice-coaster. If you thought the last two were "
+"hard, try this one. Have fun winding through the woods.  Look out for a huge "
+"shortcut!!"
+msgstr ""
+"Nok en grusom, opphøyd isbane. Hvis du syntest de to forrige var vanskelige, "
+"har du noe å se fram til! Kos deg på turen gjennom skogen. Og vær på vakt "
+"etter snarveien!"
+
+#: po/levelinfo:62
+msgid "Herring Run"
+msgstr "Sildeløp"
+
+#: po/levelinfo:63
+msgid "Mountain Man"
+msgstr "Fjellmannen"
+
+#: po/levelinfo:64
+msgid "Valley Cup"
+msgstr "Dalturneringen"
+
+#: po/levelinfo:65
+msgid "Tux the winter sportsman"
+msgstr "Vintersportsmannen Tux"
+
+#: po/levelinfo:66
+msgid "Highway To Hell"
+msgstr "Hovedvei til helvete"
+
+#: po/levelinfo:67
+msgid "Frozen Lakes"
+msgstr "Islagte innsjøer"
+
+#: po/levelinfo:68
+msgid ""
+"To reach the finish you must pass several frozen lakes. Watch your speed on "
+"the ice - there are some dangerous corners."
+msgstr ""
+"For å komme i mål, må du passere flere islagte innsjøer. Pass farten på "
+"isen; det er noen farlige svinger der."
+
+#: po/levelinfo:69
+msgid "Challenge One"
+msgstr "Utfordring én"
+
+#: po/levelinfo:70
+msgid ""
+"A very dangerous path along the mountains. Try to catch more than 60 "
+"herrings. Warning: The course is very difficult and there are some "
+"situations where you can get stuck."
+msgstr ""
+"En veldig farlig vei langs fjellene. Prøv å få tak i mer enn 60 sild. "
+"Advarsel: Banen er veldig vanskelig, og det er noen steder du kan sette deg "
+"fast."
+
+#: po/levelinfo:71
+msgid "Secret Valleys"
+msgstr "Hemmelige daler"
+
+#: po/levelinfo:72
+msgid ""
+"Your task: Find the hidden valleys and the ten groups of dead trees. Look "
+"around, the ways are not easy to find."
+msgstr ""
+"Oppdraget ditt: Finn de skjulte dalene og ti grupper med døde tre. Se deg "
+"godt rundt. Det er ikke lett å finne rett vei."
+
+#: po/levelinfo:73
+msgid "In Search of the Holy Grail"
+msgstr "På jakt etter den hellige gral"
+
+#: po/levelinfo:74
+msgid ""
+"An adventure course with a simple task: Find the grail! Warning: It is very "
+"difficult to find the way."
+msgstr ""
+"En eventyrbane med en enkel oppgave. Finn gralen! Advarsel: Dette er "
+"fryktelig vanskelig."
+
+#: po/levelinfo:75
+msgid "Explore the Mountains"
+msgstr "Utforsk fjellene"
+
+#: po/levelinfo:76
+msgid "Can you find your way through the icy, dangerous mountains. I doubt it."
+msgstr ""
+"Finner du veien gjennom de glatte, farlige fjellene? Det tviler jeg på."
+
+#: po/levelinfo:77
+msgid "Tux at Home"
+msgstr "Tux på hjemmebane"
+
+#: po/levelinfo:78
+msgid ""
+"Here lives Tux. You can take the corridore on the right - it's the shortest "
+"and fastest way. But if you want to catch some herrings you have to enter "
+"the rooms on the left."
+msgstr ""
+"Her bor Tux. Du kan ta korridoren til høyre; den er den korteste og raskeste "
+"veien. Men om du ønsker å få tak i sild, må du innom rommene til venstre."
+
+#: po/levelinfo:79
+msgid "Wild Mountains"
+msgstr "Ville fjell"
+
+#: po/levelinfo:80
+msgid ""
+"A wild landscape of ice and snow. It isn't easy to keep the right way. Not "
+"for beginners."
+msgstr ""
+"Et uberørt landskap av snø og is. Det er ikke lett å holde rett kurs. Slett "
+"ikke noe for nybegynnere."
+
+#: po/levelinfo:81
+msgid "Chinese Wall"
+msgstr "Den kinesiske mur"
+
+#: po/levelinfo:82
+msgid ""
+"The Great Wall of China in winter. Try to stay on top of the wall - that's "
+"where the herrings are. If you fall off you can try to jump back up, there "
+"are 7 hidden ramps. You'll get a lot of exercise."
+msgstr ""
+"Den kinesiske mur om vinteren. Prøv å holde deg oppå muren; det er der "
+"silden ligger. Hvis du faller ned, kan du prøve å komme deg opp igjen. Det "
+"finnes sju skjulte ramper. Dette er god trening!"
+
+#: po/levelinfo:83
+msgid "The Niehoff Experience"
+msgstr "Niehoff-opplevelsen"
+
+#: po/levelinfo:84
+msgid "Search, Search, Search"
+msgstr "Leit, leit, leit"
+
+#: po/levelinfo:85
+msgid "Mountains and Hills"
+msgstr "Atter slike fjell og daler"
+
+#: po/levelinfo:86
+msgid "The Final Challenge"
+msgstr "Den siste utfordringen"
+
+#: po/levelinfo:87
+msgid "Bumpy Ride"
+msgstr "Humpetitten"
+
+#: po/levelinfo:88
+msgid ""
+"This hill has a series of ramps to tackle.  Be sure to line yourself up "
+"before getting airborne."
+msgstr ""
+"Denne bakken har mange småhopp. Se til at du holder rett kurs før du når "
+"hoppkantene."
+
+#: po/levelinfo:89
+msgid "Bunny Hill"
+msgstr "Kaninåsen"
+
+#: po/levelinfo:90
+msgid ""
+"Let's start out easy, just collect the herring in the time limit and you'll "
+"be fine. The best part is that you don't have to use those stupid T-lifts."
+msgstr ""
+"La oss ta en lett bane nå i starten. Bare få med deg silden innenfor "
+"tidsgrensen, så går alt bra. Og best av alt: Du slipper å måtte bruke teite "
+"skiheiser."
+
+#: po/levelinfo:91
+msgid "Twisty Slope"
+msgstr "Svinseskrenten"
+
+#: po/levelinfo:92
+msgid ""
+"Tight twists make grabbing herring difficult.  Hard turns and not too much "
+"braking will lead you to victory."
+msgstr ""
+"Krappe svinger gjør det vanskelig å få tak i sild. Men legger du deg godt i "
+"selen, klarer du det nok."
+
+#: po/levelinfo:93
+msgid "Frozen River"
+msgstr "Iselva"
+
+#: po/levelinfo:94
+msgid ""
+"Keep your speed down to collect herring. You have plenty of time, so don't "
+"rush things."
+msgstr "Ta det rolig, og prøv heller å få tak i mye sild!"
+
+#: po/levelinfo:95
+msgid "Path of Daggers"
+msgstr "Dolkestien"
 
 #: po/levelinfo:96
-msgid "Hippo Run"
+msgid ""
+"Big spikes may prove to be the least of your worries on this course. Muliple "
+"paths allow you to take low or high roads, each with their own challenges."
 msgstr ""
+"Store pigger kan vise seg å være din minste bekymring. Flere stier, hver med "
+"sin egen utfordring, lar deg velge veien til mål selv."
 
 #: po/levelinfo:97
-msgid ""
-"In Hippo Run, you slide down an icy slope as a penguin, I honestly don't "
-"know what this has to do with hippos or running..."
-msgstr ""
+msgid "Tux Racer Classics"
+msgstr "Tux Racer-klassikere"
 
 #: po/levelinfo:98
-msgid "Bobsled Ride"
-msgstr ""
+msgid "Canadian Cup"
+msgstr "Canada-turnering"
 
 #: po/levelinfo:99
-msgid "Just like a real bobsled ride, only more dangerous."
-msgstr ""
+msgid "Swiss Cup"
+msgstr "Sveitsisk turnering"
 
 #: po/levelinfo:100
 #, c-format
 msgid "FPS: %.1f"
-msgstr "FPS: %.1f"
+msgstr "B/s: %.1f"
 
 #: po/levelinfo:101 po/levelinfo:102
 #, c-format
@@ -1078,7 +1150,7 @@ msgstr "%03d"
 #: po/levelinfo:103 po/levelinfo:104
 #, c-format
 msgid "%02d:%02d:%02d"
-msgstr "%02d:%02d:%02d"
+msgstr "%02d.%02d,%02d"
 
 #: po/levelinfo:105 po/levelinfo:107
 msgid "km/h"
@@ -1091,11 +1163,17 @@ msgstr "%.0f"
 
 #: po/modelinfo:1
 msgid "Tux"
-msgstr ""
+msgstr "Tux"
 
 #: po/modelinfo:2
 msgid "Tux on Snowboard"
-msgstr ""
+msgstr "Tux på snøbrett"
+
+#~ msgid "on the web at"
+#~ msgstr "på nettet på"
+
+#~ msgid "on the web at: www.extremetuxracer.com"
+#~ msgstr "finn du på nettet!!!"
 
 #~ msgid "Language:"
 #~ msgstr "Språk:"
