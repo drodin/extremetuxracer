@@ -78,7 +78,8 @@ std::string configurationFile;
  */
 static void handleCommandLineOptions( int argc, char *argv[] )
 {
-	for(int i=0; i<argc; i++){
+  //skip the first argument, since it's the command we were invoked with (e.g, etracer or path/etracer)
+	for(int i=1; i<argc; i++){
 		if( !strcmp(argv[i],"-c") ){
 			i++;
 			configurationFile = argv[i]; //do a null check?
@@ -135,7 +136,7 @@ static void handleCommandLineOptions( int argc, char *argv[] )
                " -rc [condition]  Sets the race conditions in benchmark mode\n");
     }
     else{
-      printf("Unknown argument: %s", argv[i]);
+      printf("Unknown argument: %s\n", argv[i]);
     }
 
 	}// END iterating through parameters
