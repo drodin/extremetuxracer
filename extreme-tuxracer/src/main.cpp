@@ -75,8 +75,11 @@ std::string configurationFile;
  * -p  Sets the position in benchmark mode
  * -t  Sets timestamping in benchmark mode
  * -rc  Sets the race conditions in benchmark mode
+
+ * This function returns true if the game should continue, false if it should not (such as when the user
+ * specifies --help)
  */
-static void handleCommandLineOptions( int argc, char *argv[] )
+static bool handleCommandLineOptions( int argc, char *argv[] )
 {
   //skip the first argument, since it's the command we were invoked with (e.g, etracer or path/etracer)
 	for(int i=1; i<argc; i++){
@@ -134,12 +137,15 @@ static void handleCommandLineOptions( int argc, char *argv[] )
                " -p [x y] Sets the position in benchmark mode\n"
                " -t [timestamp]  Sets timestamping in benchmark mode\n"
                " -rc [condition]  Sets the race conditions in benchmark mode\n");
+      return(false);
     }
     else{
       printf("Unknown argument: %s\n", argv[i]);
+      return(false);
     }
 
 	}// END iterating through parameters
+  return(true);
 }//END handleCommandLineOptions()
 
 
@@ -225,7 +231,10 @@ int main( int argc, char *argv[] )
 
   /* Setup the configuration variables and read the ~/.etracer/options file */
     
-	handleCommandLineOptions(argc,argv);
+	bool continuePlaying = handleCommandLineOptions(argc,argv);
+  if(!continuePlaying){
+    return(0);
+  }
 	
 	init_game_configuration();
   read_config_file(configurationFile);
