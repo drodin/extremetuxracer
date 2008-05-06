@@ -67,6 +67,7 @@ Tcl_Interp *tclInterp;
 std::string configurationFile;
 
 /* Summary of command-line arguments:
+ * -h or --help  Help message
  * -c  Sets the configuration file
  * -f  Sets the course in benchmark mode
  * -m  Maximum number of frames in benchmark mode
@@ -122,8 +123,9 @@ static void handleCommandLineOptions( int argc, char *argv[] )
 				Benchmark::setRaceCondition(atoi(argv[i]));
 			}
 		}
-    else if( !strcmp(argv[i], "-h" ) ){ //print help message
+    else if( !strcmp(argv[i], "-h") || !strcmp(argv[i], "--help") ){ //print help message
       fprintf(stdout, "Usage: etracer [arguments] \n"
+               " -h or --help  This help message"
                " -c [file]  Sets the configuration file\n"
                " -f [course]  Sets the course in benchmark mode\n"
                " -m [frames]  Maximum number of frames in benchmark mode\n"
@@ -131,6 +133,9 @@ static void handleCommandLineOptions( int argc, char *argv[] )
                " -p [x y] Sets the position in benchmark mode\n"
                " -t [timestamp]  Sets timestamping in benchmark mode\n"
                " -rc [condition]  Sets the race conditions in benchmark mode\n");
+    }
+    else{
+      printf("Unknown argument: %s", argv[i]);
     }
 
 	}// END iterating through parameters
