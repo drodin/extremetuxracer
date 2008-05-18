@@ -505,7 +505,7 @@ msgstr "Bruk styrespak"
 
 #: src/joystickconfig.cpp:41 src/keyboardconfig.cpp:132
 msgid "Paddle:"
-msgstr "Gi fart:"
+msgstr "Padle:"
 
 #: src/joystickconfig.cpp:54 src/keyboardconfig.cpp:136
 msgid "Brake:"
