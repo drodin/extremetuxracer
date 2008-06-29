@@ -14,6 +14,7 @@ tux_fog -on -mode linear -density 0.005 -color { 0.45 0.3 0.15 1 } -start 0 \
 
 tux_particle_color { 0.9 0.7 0.35 1.0 }
 
+if ![tux_get_param disable_background] {
 tux_load_texture sky_front eveningfront.png 0
 tux_load_texture sky_right eveningright.png 0
 tux_load_texture sky_left eveningleft.png 0
@@ -27,3 +28,4 @@ tux_bind_texture sky_left sky_left
 tux_bind_texture sky_back sky_back
 tux_bind_texture sky_top sky_top
 tux_bind_texture sky_bottom sky_bottom
+}

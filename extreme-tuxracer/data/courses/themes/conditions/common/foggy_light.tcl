@@ -17,7 +17,7 @@ tux_particle_color { 0.36 0.41 0.49 1.0 }
 tux_load_texture envmap envmap.png 0
 tux_bind_texture terrain_envmap envmap
 
-
+if ![tux_get_param disable_background] {
 tux_load_texture alpine1-front cloudyfront.png 0
 tux_load_texture alpine1-right cloudyright.png 0
 tux_load_texture alpine1-left cloudyleft.png 0
@@ -31,3 +31,4 @@ tux_bind_texture sky_left alpine1-left
 tux_bind_texture sky_back alpine1-back
 tux_bind_texture sky_top alpine1-top
 tux_bind_texture sky_bottom alpine1-bottom
+}

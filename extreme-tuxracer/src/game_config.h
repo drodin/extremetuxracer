@@ -196,6 +196,8 @@ PROTO_PARAM_BOOL( disable_joystick );
 
 PROTO_PARAM_BOOL( disable_videomode_autodetection );
 
+PROTO_PARAM_BOOL( disable_background );
+
 PROTO_PARAM_STRING( ui_language );
 
 

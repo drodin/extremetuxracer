@@ -471,6 +471,7 @@ struct params {
 	struct param disable_collision_detection;
 	struct param ui_language;
 	struct param disable_videomode_autodetection;			
+	struct param disable_background;
 };
 
 static struct params Params;
@@ -826,6 +827,11 @@ void init_game_configuration()
 	"# Set this to true disable the autodetection\n"
 	"# for available video modes." );
 		
+	INIT_PARAM_BOOL(
+	disable_background, false,
+	"# Set this to completely remove the background (skybox)\n"
+	"# This option would improve the performance." );
+	
 	INIT_PARAM_STRING( 
 	ui_language, "en_GB" ,
 	"# set the language for the ui"
@@ -914,6 +920,7 @@ FN_PARAM_INT( multisamples )
 FN_PARAM_BOOL( always_save_event_race_data )
 FN_PARAM_BOOL( disable_collision_detection )
 FN_PARAM_BOOL( disable_videomode_autodetection )
+FN_PARAM_BOOL( disable_background )
 
 FN_PARAM_STRING( ui_language )
 

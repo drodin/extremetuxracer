@@ -76,6 +76,9 @@ GraphicsConfig::GraphicsConfig()
 
 	mp_shadowsBox = new pp::CheckBox(pos, pp::Vec2d(32, 32) );
 	mp_shadowsBox->setState( getparam_draw_tux_shadow() );
+
+	mp_backgroundBox = new pp::CheckBox(pos, pp::Vec2d(32, 32) );
+	mp_backgroundBox->setState( !getparam_disable_background() );
 }
 
 GraphicsConfig::~GraphicsConfig()
@@ -88,6 +91,7 @@ GraphicsConfig::~GraphicsConfig()
 	delete mp_fogBox;
 	delete mp_reflectionsBox;
 	delete mp_shadowsBox;
+	delete mp_backgroundBox;
 }
 
 void
@@ -132,6 +136,10 @@ GraphicsConfig::setWidgetPositions()
 	pos.y-=40;
 	font->draw(_("Shadows:"),pos);
 	mp_shadowsBox->setPosition(pp::Vec2d(pos.x+width-32,pos.y));
+
+	pos.y-=40;
+	font->draw(_("Draw Background:"),pos);
+	mp_backgroundBox->setPosition(pp::Vec2d(pos.x+width-32,pos.y));
 }
 
 void
@@ -145,9 +153,10 @@ GraphicsConfig::apply()
 	setparam_ui_snow(bool( mp_uiSnowBox->getState() ));
 	setparam_display_fps(bool( mp_fpsBox->getState() ));
 	setparam_display_course_percentage(bool( mp_coursePercentageBox->getState() ));
-	setparam_disable_fog(!bool(mp_fogBox->getState() ));
+	setparam_disable_fog(!bool( mp_fogBox->getState() ));
 	setparam_terrain_envmap(bool( mp_reflectionsBox->getState() ));
 	setparam_draw_tux_shadow(bool( mp_shadowsBox->getState() ));
+	setparam_disable_background(!bool( mp_backgroundBox->getState() )); 
 	
 	write_config_file();
 	set_game_mode( GameMode::prevmode );

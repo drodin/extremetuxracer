@@ -11,6 +11,7 @@ tux_bind_texture terrain_envmap envmap
 
 tux_particle_color { 0.85 0.9 1.0 1.0 }
 
+if ![tux_get_param disable_background] {
 tux_load_texture sky_front sunnyfront.png 0
 tux_load_texture sky_right sunnyright.png 0
 tux_load_texture sky_left sunnyleft.png 0
@@ -24,3 +25,4 @@ tux_bind_texture sky_left sky_left
 tux_bind_texture sky_back sky_back
 tux_bind_texture sky_top sky_top
 tux_bind_texture sky_bottom sky_bottom
+}

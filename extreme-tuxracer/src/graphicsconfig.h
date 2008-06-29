@@ -34,6 +34,7 @@ class GraphicsConfig : public ConfigMode
 	pp::CheckBox* mp_fogBox;
 	pp::CheckBox* mp_reflectionsBox;
 	pp::CheckBox* mp_shadowsBox;
+	pp::CheckBox* mp_backgroundBox;
 	
 //	pp::Listbox<language_t>* mp_langListBox;
 	pp::Listbox<model_t>* mp_modelListBox;
