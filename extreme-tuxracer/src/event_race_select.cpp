@@ -404,6 +404,7 @@ EventRaceSelect::updateStates()
 void
 EventRaceSelect::back()
 {
+    gameMgr->setRaceHasToBeRetried(false);
 	set_game_mode( EVENT_SELECT );
     UIMgr.setDirty();
 }

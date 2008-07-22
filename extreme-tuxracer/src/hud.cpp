@@ -131,6 +131,19 @@ HUD::draw(Player& plyr)
 					bar(i,players[0].getCoursePercentage()/100);
 				}
 				break;
+            case 11:
+                objectives_time(i,false);
+                break;
+            case 12:
+                objectives_herring(i,false);
+                break;
+            case 13:
+                objectives_time(i,true);
+                break;
+            case 14:
+                objectives_herring(i,true);
+                break;
+
 		}
 	}
 }
@@ -315,7 +328,7 @@ HUD::bar(const int i, double percentage)
 #define SPEED_UNITS_Y_OFFSET 4.0
 
 static GLfloat energy_background_color[] = { 0.2, 0.2, 0.2, 0.5 };
-static GLfloat energy_foreground_color[] = { 0.54, 0.59, 1.00, 0.5 };
+static GLfloat energy_foreground_color[] = { 0.54, 0.59, 1.0, 1.0 };
 static GLfloat speedbar_background_color[] = { 0.2, 0.2, 0.2, 0.5 };
 static GLfloat white[] = { 1.0, 1.0, 1.0, 1.0 };
 
@@ -557,4 +570,79 @@ HUD::coursePercentage(const int i)
 		m_element[i].font->draw(m_element[i].u_string, m_element[i].x, m_element[i].y);		
 		
 	}
+}
+
+void
+HUD::objectives_time(const int i, bool outline_font)
+{
+    if(gameMgr->gametype!=GameMgr::PRACTICING ) {
+        int minsLeft = -1;
+        int secsLeft = -1;
+        int centsLeft = -1;
+        pp::Color green(0.0,1.0,0.0);
+        pp::Color red(1.0,0.0,0.0);
+        pp::Color black(0.0,0.0,0.0);
+            
+    	if(m_element[i].font){
+            if(	gameMgr->time <= gameMgr->getCurrentRace().time_req[gameMgr->difficulty]) {
+                m_element[i].font->setColor(green);
+                getTimeComponents( gameMgr->getCurrentRace().time_req[gameMgr->difficulty] - gameMgr->time, minsLeft, secsLeft, centsLeft );
+            } else {
+                m_element[i].font->setColor(red);
+                minsLeft = 0;
+                secsLeft = 0;
+                centsLeft = 0;
+            }
+
+            if(outline_font) {
+                m_element[i].font->setColor(black);
+            }
+
+    		char string[BUFF_LEN];
+    		sprintf( string, m_element[i].string.c_str(), minsLeft, secsLeft, centsLeft );
+    		
+    		pp::Font::utf8ToUnicode(m_element[i].u_string,string);
+    		int width = int(m_element[i].font->advance(m_element[i].u_string));
+    		
+    		fix_xy(m_element[i].x,m_element[i].y,m_element[i].height,width);
+    		m_element[i].font->draw(m_element[i].u_string, m_element[i].x-(width/2), m_element[i].y);		
+    		
+    	}
+    }
+}
+
+void
+HUD::objectives_herring(const int i, bool outline_font)
+{
+    if(gameMgr->gametype!=GameMgr::PRACTICING ) {
+        pp::Color green(0.0,1.0,0.0);
+        pp::Color red(1.0,0.0,0.0);
+        pp::Color black(0.0,0.0,0.0);
+        
+        int req_herring = -1;
+        
+    	if(m_element[i].font){
+            if(players[0].herring >= gameMgr->getCurrentRace().herring_req[gameMgr->difficulty]) {
+                m_element[i].font->setColor(green);
+                req_herring = 0;
+            } else {
+                m_element[i].font->setColor(red);
+                req_herring = gameMgr->getCurrentRace().herring_req[gameMgr->difficulty] - players[0].herring;
+            }
+            
+            if(outline_font) {
+                m_element[i].font->setColor(black);
+            }
+        
+    		char string[BUFF_LEN];
+    		sprintf( string, m_element[i].string.c_str(), req_herring );
+    		
+    		pp::Font::utf8ToUnicode(m_element[i].u_string,string);
+    		int width = int(m_element[i].font->advance(m_element[i].u_string));
+    		
+    		fix_xy(m_element[i].x,m_element[i].y,m_element[i].height,width);
+    		m_element[i].font->draw(m_element[i].u_string, m_element[i].x-(width/2), m_element[i].y);		
+    		
+    	}	
+    }
 }

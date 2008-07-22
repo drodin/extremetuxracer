@@ -33,6 +33,8 @@ class GameMgr
 	bool m_raceWon;
 	bool m_cupWon;
 	bool m_eventWon;
+    bool m_raceHasToBeRetried;
+
 	
 	double m_lastTicks;
 		
@@ -81,6 +83,9 @@ public:
 	bool wasRaceWon();
 	bool wasCupWon();
 	bool wasEventWon();
+    bool doesRaceHaveToBeRetried();
+    void setRaceHasToBeRetried(bool);
+
 	
 	void resetTimeStep();
 	void updateTimeStep();

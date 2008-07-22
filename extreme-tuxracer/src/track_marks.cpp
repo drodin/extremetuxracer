@@ -38,7 +38,7 @@
 #undef TRACK_TRIANGLES
 
 #define TRACK_WIDTH  0.7
-#define MAX_TRACK_MARKS 1000
+#define MAX_TRACK_MARKS 16000
 #define MAX_CONTINUE_TRACK_DIST TRACK_WIDTH*4
 #define MAX_CONTINUE_TRACK_TIME .1
 #define SPEED_TO_START_TRENCH 0.0
@@ -329,16 +329,21 @@ static void add_tri_tracks_from_quad( track_quad_t *q )
 
 void init_track_marks(void)
 {
-    track_marks.current_mark = 0;
-    track_marks.next_mark = 0;
-    track_marks.last_mark_time = -99999;
-    track_marks.last_mark_pos = pp::Vec3d(-9999, -9999, -9999);
-    continuing_track = false;
+    if(gameMgr->doesRaceHaveToBeRetried()) {
+    //do nothing, since we want to keep last try's tracks
+    } else {
+
+        track_marks.current_mark = 0;
+        track_marks.next_mark = 0;
+        track_marks.last_mark_time = -99999;
+        track_marks.last_mark_pos = pp::Vec3d(-9999, -9999, -9999);
+        continuing_track = false;
 #ifdef TRACK_TRIANGLES
-    track_tris.first_mark = 0;
-    track_tris.next_mark = 0;
-    track_tris.num_tris = 0;
+        track_tris.first_mark = 0;
+        track_tris.next_mark = 0;
+        track_tris.num_tris = 0;
 #endif
+    }
 }
 
 

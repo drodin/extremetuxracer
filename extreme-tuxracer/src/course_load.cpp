@@ -1515,6 +1515,15 @@ static int hud_cb( ClientData cd, Tcl_Interp *ip, int argc, CONST84 char *argv[]
 				element.type=9;	
 			}else if(!strcmp("percentagebar",*argv)){
 				element.type=10;	
+            }else if(!strcmp("objectives_time",*argv)){
+                element.type=11;
+			}else if(!strcmp("objectives_herring",*argv)){
+                element.type=12;
+            }else if(!strcmp("objectives_time_outline",*argv)){
+                element.type=13;
+			}else if(!strcmp("objectives_herring_outline",*argv)){
+                element.type=14;
+
 			}else{
 				err_msg = "invalid type";
 				goto item_spec_bail;

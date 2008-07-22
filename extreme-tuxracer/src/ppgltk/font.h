@@ -36,6 +36,8 @@ private:
 
 public:	
 	Font(const char *fileName, unsigned int size, const pp::Color &color);
+    Font(const char *fileName, unsigned int size, const pp::Color &color, bool isOutline);
+
 
 	Font(FTFont *font, const pp::Color &color);
 
@@ -59,6 +61,8 @@ public:
 	float advance(const wchar_t* string);
 
 	pp::Color& getColor();
+    void setColor(pp::Color& c);
+
 	FTFont* getFTFont();
 	
 //static stuff	
@@ -71,6 +75,7 @@ public:
 	
 	/// loads and registers the ttf file to the specified binding
 	static bool registerFont(const char *binding, const char *fileName, unsigned int size, const pp::Color &color);
+    static bool registerFont(const char *binding, const char *fileName, unsigned int size, const pp::Color &color, bool isOutline);
 	
 	/// bind font to the specified font
 	static bool bindFont(const char *binding, const char *fontName);

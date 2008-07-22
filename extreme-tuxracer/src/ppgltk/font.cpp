@@ -38,6 +38,8 @@
 #include <iostream>
 
 #include "FT/FTGLTextureFont.h"
+#include "FT/FTGLOutlineFont.h"
+
 
 namespace pp{
 	
@@ -50,6 +52,22 @@ Font::Font(const char *fileName, unsigned int size, const pp::Color &color)
 	mp_font->FaceSize(size);
 	mp_font->CharMap(ft_encoding_unicode);	
 }
+
+Font::Font(const char *fileName, unsigned int size, const pp::Color &color, bool isOutline)
+ : mp_font(NULL),
+   m_color(color)
+{
+    if(isOutline) {
+        mp_font = new FTGLOutlineFont(fileName);
+    }else{
+        mp_font = new FTGLTextureFont(fileName);
+    };
+	
+	mp_font->FaceSize(size);
+	mp_font->CharMap(ft_encoding_unicode);	
+}
+
+
 
 Font::Font(FTFont *font, const pp::Color &color)
  : mp_font(font),
@@ -143,6 +161,11 @@ Font::getColor()
 	return m_color;
 }
 
+void Font::setColor(pp::Color& c) {
+    m_color = c;
+}
+
+
 FTFont*
 Font::getFTFont()
 {
@@ -159,6 +182,14 @@ Font::registerFont(const char *binding, const char *fileName, unsigned int size,
 {
 	//todo: check wether the font alrady exists	
 	sm_bindings[binding] = new pp::Font(fileName, size, color);
+	return true;
+}
+
+bool
+Font::registerFont(const char *binding, const char *fileName, unsigned int size, const pp::Color &color, bool isOutline)
+{
+	//todo: check wether the font alrady exists	
+	sm_bindings[binding] = new pp::Font(fileName, size, color, isOutline);
 	return true;
 }
 

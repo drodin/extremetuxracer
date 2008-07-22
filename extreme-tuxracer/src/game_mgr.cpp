@@ -29,6 +29,8 @@ GameMgr* gameMgr = NULL;
 GameMgr::GameMgr()
 {
 	m_lastTicks = SDL_GetTicks()/1000.0;
+    m_raceHasToBeRetried = false;
+
 }
 
 
@@ -142,6 +144,16 @@ GameMgr::wasEventWon()
 {
 	return m_eventWon;	
 }
+
+bool GameMgr::doesRaceHaveToBeRetried() 
+{
+    return m_raceHasToBeRetried;
+}
+
+void GameMgr::setRaceHasToBeRetried(bool b) {
+    m_raceHasToBeRetried = b;
+}
+
 
 void
 GameMgr::resetTimeStep()

@@ -24,7 +24,7 @@
 #include "textures.h"
 #include "ppgltk/font.h"
 
-#define HUD_MAX_ITEMS 16
+#define HUD_MAX_ITEMS 32
 
 class HUD
 {
@@ -63,6 +63,9 @@ private:
 	void gauge(const int i, const double speed, const double energy);
 	void bar(const int i, double percentage);
 	void coursePercentage(const int i);
+    void objectives_time(const int i, bool outline_font);
+    void objectives_herring(const int i, bool outline_font);
+
 		
 	void draw_partial_tri_fan(const double fraction);
 	pp::Vec2d calc_new_fan_pt(const double angle);

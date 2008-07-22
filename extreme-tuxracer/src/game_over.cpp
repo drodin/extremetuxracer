@@ -72,6 +72,14 @@ GameOver::GameOver()
 		
 		if(!gameMgr->wasRaceWon()){
 			players[0].decLives();
+            //We have tried it and failed, and we have to play it next to advance
+            if(players[0].getLives()>0) {
+                gameMgr->setRaceHasToBeRetried(true);
+            } else {
+                //We cant play it any more, since we dont have any lives left...
+                gameMgr->setRaceHasToBeRetried(false);
+            }
+
 		}
     }else{
 		if ( !m_aborted ) {

@@ -31,6 +31,7 @@ pp_register_font_cb ( ClientData cd, Tcl_Interp *ip,
 
     CONST84 char *binding = NULL;
     CONST84 char *fileName = NULL;
+    bool isOutline = false;
     pp::Color color = pp::Color::white;
     unsigned int size = 30;
 
@@ -82,6 +83,9 @@ pp_register_font_cb ( ClientData cd, Tcl_Interp *ip,
 		error = true;
 		break;
 	    }
+    } else if ( strcmp( "-outline", *argv ) == 0 ) {
+        isOutline = true;
+
 		
 	} else {
 	    print_warning( TCL_WARNING, "pp_load_font: unrecognized "
@@ -99,7 +103,7 @@ pp_register_font_cb ( ClientData cd, Tcl_Interp *ip,
 		return TCL_ERROR;
     }
 
-	pp::Font::registerFont(binding, fileName, size, color);
+	pp::Font::registerFont(binding, fileName, size, color, isOutline);
 
     return TCL_OK;
 }
