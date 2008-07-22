@@ -245,14 +245,22 @@ pp_bind_font -binding credits_text_big -font credits_text_big -color {1.00 0.89 
 
 #we don't be this because hud fonts need to be fast
 pp_load_font -binding herring_count -font fonts/PaperCuts20.ttf -size 40 -color {1.00 0.89 0.01 1.0}
-pp_load_font -binding herring_count_outline -font fonts/PaperCuts_outline.ttf -size 40 -color {0 0 0 1.0}
+pp_load_font -binding herring_count_outline -font fonts/PaperCuts20.ttf -outline -size 40 -color {0 0 0 1.0}
 pp_load_font -binding fps -font fonts/PaperCuts20.ttf -size 20 -color {1.00 0.89 0.01 1.0}
 pp_load_font -binding time_value -font fonts/PaperCuts20.ttf -size 40 -color {1.00 0.89 0.01 1.0}
 pp_load_font -binding speed_digits -font fonts/PaperCuts20.ttf -size 40 -color {1.00 0.89 0.01 1.0}
 pp_load_font -binding speed_units -font fonts/PaperCuts20.ttf -size 25 -color {1.00 0.89 0.01 1.0}
 
-pp_load_font -binding speed_digits_outline -font fonts/PaperCuts_outline.ttf -size 40 -color {0 0 0 1.0}
-pp_load_font -binding speed_units_outline -font fonts/PaperCuts_outline.ttf -size 25 -color {0 0 0 1.0}
+pp_load_font -binding speed_digits_outline -font fonts/PaperCuts20.ttf -outline -size 40 -color {0 0 0 1.0}
+pp_load_font -binding speed_units_outline -font fonts/PaperCuts20.ttf -outline -size 25 -color {0 0 0 1.0}
+
+pp_load_font -binding objectives_time -font fonts/PaperCuts20.ttf -size 25 -color {1.00 0.89 0.01 1.0}
+pp_load_font -binding objectives_herring -font fonts/PaperCuts20.ttf -size 25 -color {1.00 0.89 0.01 1.0}
+
+pp_load_font -binding objectives_time_outline -outline -font fonts/PaperCuts20.ttf -size 25 -color {0 0 0 1.0}
+pp_load_font -binding objectives_herring_outline -outline -font fonts/PaperCuts20.ttf -size 25 -color {0 0 0 1.0}
+
+
 
 # not used
 #pp_load_font -binding time_hundredths -font fonts/PaperCuts20.ttf -size 20 -color {1.00 0.89 0.01 1.0}

@@ -79,3 +79,24 @@ tux_hud -hud 1 -type percentagebar \
 	-width 29 \
 	-height 124 \
 	-angle 180
+    
+tux_hud -hud 1 -type objectives_time \
+	-position {-673 524} \
+    -font objectives_time \
+    -string "%d:%d:%d"
+    
+tux_hud -hud 1 -type objectives_time_outline \
+	-position {-674 524} \
+    -font objectives_time_outline \
+    -string "%d:%d:%d"    
+    
+tux_hud -hud 1 -type objectives_herring \
+	-position {-13 524} \
+    -font objectives_herring \
+    -string "%d"
+    
+tux_hud -hud 1 -type objectives_herring_outline \
+	-position {-14 524} \
+    -font objectives_herring_outline \
+    -string "%d"
+
