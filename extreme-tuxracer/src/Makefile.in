@@ -88,7 +88,9 @@ am_etracer_OBJECTS = ssbutton.$(OBJEXT) checkbox.$(OBJEXT) \
 	FTFace.$(OBJEXT) FTFont.$(OBJEXT) FTGLTextureFont.$(OBJEXT) \
 	FTGlyph.$(OBJEXT) FTGlyphContainer.$(OBJEXT) \
 	FTLibrary.$(OBJEXT) FTPoint.$(OBJEXT) FTSize.$(OBJEXT) \
-	FTTextureGlyph.$(OBJEXT)
+	FTTextureGlyph.$(OBJEXT) FTOutlineGlyph.$(OBJEXT) \
+	FTGLOutlineFont.$(OBJEXT) FTVectoriser.$(OBJEXT) \
+	FTContour.$(OBJEXT)
 etracer_OBJECTS = $(am_etracer_OBJECTS)
 etracer_LDADD = $(LDADD)
 etracer_DEPENDENCIES =
@@ -334,8 +336,8 @@ etracer_SOURCES = \
 	hier_cb.h				\
 	hier_util.cpp				\
 	hier_util.h				\
-  highscore.cpp   \
-  highscore.h   \
+	highscore.cpp				\
+	highscore.h				\
 	hud.cpp					\
 	hud.h					\
 	intro.cpp				\
@@ -394,8 +396,8 @@ etracer_SOURCES = \
 	textures.h				\
         track_marks.cpp				\
         track_marks.h				\
-	model_hndl.cpp					\
-	model_hndl.h					\
+	model_hndl.cpp				\
+	model_hndl.h				\
         tux_shadow.cpp				\
         tux_shadow.h				\
 	pp_types.h				\
@@ -441,33 +443,43 @@ etracer_SOURCES = \
 	ppgltk/label.h				\
 	\
 	\
-	ppgltk/FT/FTBBox.h		\
+	ppgltk/FT/FTBBox.h			\
 	ppgltk/FT/FTCharToGlyphIndexMap.h	\
-	ppgltk/FT/FTCharmap.h		\
-	ppgltk/FT/FTFace.h		\
-	ppgltk/FT/FTFont.h		\
-	ppgltk/FT/FTGL.h		\
-	ppgltk/FT/FTGLTextureFont.h	\
-	ppgltk/FT/FTGlyph.h		\
-	ppgltk/FT/FTGlyphContainer.h	\
-	ppgltk/FT/FTLibrary.h		\
-	ppgltk/FT/FTList.h		\
-	ppgltk/FT/FTPoint.h		\
-	ppgltk/FT/FTSize.h		\
-	ppgltk/FT/FTVector.h		\
-	ppgltk/FT/FTTextureGlyph.h	\
+	ppgltk/FT/FTCharmap.h			\
+	ppgltk/FT/FTFace.h			\
+	ppgltk/FT/FTFont.h			\
+	ppgltk/FT/FTGL.h			\
+	ppgltk/FT/FTGLTextureFont.h		\
+	ppgltk/FT/FTGlyph.h			\
+	ppgltk/FT/FTGlyphContainer.h		\
+	ppgltk/FT/FTLibrary.h			\
+	ppgltk/FT/FTList.h			\
+	ppgltk/FT/FTPoint.h			\
+	ppgltk/FT/FTSize.h			\
+	ppgltk/FT/FTVector.h			\
+	ppgltk/FT/FTTextureGlyph.h		\
 	\
 	\
-	ppgltk/FT/FTCharmap.cpp		\
-	ppgltk/FT/FTFace.cpp		\
-	ppgltk/FT/FTFont.cpp		\
-	ppgltk/FT/FTGLTextureFont.cpp	\
-	ppgltk/FT/FTGlyph.cpp		\
-	ppgltk/FT/FTGlyphContainer.cpp	\
-	ppgltk/FT/FTLibrary.cpp		\
-	ppgltk/FT/FTPoint.cpp		\
-	ppgltk/FT/FTSize.cpp		\
-	ppgltk/FT/FTTextureGlyph.cpp
+	ppgltk/FT/FTCharmap.cpp			\
+	ppgltk/FT/FTFace.cpp			\
+	ppgltk/FT/FTFont.cpp			\
+	ppgltk/FT/FTGLTextureFont.cpp		\
+	ppgltk/FT/FTGlyph.cpp			\
+	ppgltk/FT/FTGlyphContainer.cpp		\
+	ppgltk/FT/FTLibrary.cpp			\
+	ppgltk/FT/FTPoint.cpp			\
+	ppgltk/FT/FTSize.cpp			\
+	ppgltk/FT/FTTextureGlyph.cpp		\
+	\
+	\
+	ppgltk/FT/FTOutlineGlyph.h		\
+	ppgltk/FT/FTGLOutlineFont.h		\
+	ppgltk/FT/FTVectoriser.h		\
+	ppgltk/FT/FTOutlineGlyph.cpp		\
+	ppgltk/FT/FTGLOutlineFont.cpp		\
+	ppgltk/FT/FTVectoriser.cpp		\
+	ppgltk/FT/FTContour.cpp			\
+	ppgltk/FT/FTContour.h
 
 EXTRA_DIST = ppgltk/listbox.cpp 	\
 	ppgltk/FT/license.txt		\
@@ -540,15 +552,19 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/FTCharmap.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/FTContour.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/FTFace.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/FTFont.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/FTGLOutlineFont.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/FTGLTextureFont.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/FTGlyph.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/FTGlyphContainer.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/FTLibrary.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/FTOutlineGlyph.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/FTPoint.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/FTSize.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/FTTextureGlyph.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/FTVectoriser.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/alignment.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/audio.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/audio_data.Po@am__quote@
@@ -1203,6 +1219,62 @@ FTTextureGlyph.obj: ppgltk/FT/FTTextureGlyph.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='ppgltk/FT/FTTextureGlyph.cpp' object='FTTextureGlyph.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o FTTextureGlyph.obj `if test -f 'ppgltk/FT/FTTextureGlyph.cpp'; then $(CYGPATH_W) 'ppgltk/FT/FTTextureGlyph.cpp'; else $(CYGPATH_W) '$(srcdir)/ppgltk/FT/FTTextureGlyph.cpp'; fi`
+
+FTOutlineGlyph.o: ppgltk/FT/FTOutlineGlyph.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT FTOutlineGlyph.o -MD -MP -MF $(DEPDIR)/FTOutlineGlyph.Tpo -c -o FTOutlineGlyph.o `test -f 'ppgltk/FT/FTOutlineGlyph.cpp' || echo '$(srcdir)/'`ppgltk/FT/FTOutlineGlyph.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/FTOutlineGlyph.Tpo $(DEPDIR)/FTOutlineGlyph.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='ppgltk/FT/FTOutlineGlyph.cpp' object='FTOutlineGlyph.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o FTOutlineGlyph.o `test -f 'ppgltk/FT/FTOutlineGlyph.cpp' || echo '$(srcdir)/'`ppgltk/FT/FTOutlineGlyph.cpp
+
+FTOutlineGlyph.obj: ppgltk/FT/FTOutlineGlyph.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT FTOutlineGlyph.obj -MD -MP -MF $(DEPDIR)/FTOutlineGlyph.Tpo -c -o FTOutlineGlyph.obj `if test -f 'ppgltk/FT/FTOutlineGlyph.cpp'; then $(CYGPATH_W) 'ppgltk/FT/FTOutlineGlyph.cpp'; else $(CYGPATH_W) '$(srcdir)/ppgltk/FT/FTOutlineGlyph.cpp'; fi`
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/FTOutlineGlyph.Tpo $(DEPDIR)/FTOutlineGlyph.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='ppgltk/FT/FTOutlineGlyph.cpp' object='FTOutlineGlyph.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o FTOutlineGlyph.obj `if test -f 'ppgltk/FT/FTOutlineGlyph.cpp'; then $(CYGPATH_W) 'ppgltk/FT/FTOutlineGlyph.cpp'; else $(CYGPATH_W) '$(srcdir)/ppgltk/FT/FTOutlineGlyph.cpp'; fi`
+
+FTGLOutlineFont.o: ppgltk/FT/FTGLOutlineFont.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT FTGLOutlineFont.o -MD -MP -MF $(DEPDIR)/FTGLOutlineFont.Tpo -c -o FTGLOutlineFont.o `test -f 'ppgltk/FT/FTGLOutlineFont.cpp' || echo '$(srcdir)/'`ppgltk/FT/FTGLOutlineFont.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/FTGLOutlineFont.Tpo $(DEPDIR)/FTGLOutlineFont.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='ppgltk/FT/FTGLOutlineFont.cpp' object='FTGLOutlineFont.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o FTGLOutlineFont.o `test -f 'ppgltk/FT/FTGLOutlineFont.cpp' || echo '$(srcdir)/'`ppgltk/FT/FTGLOutlineFont.cpp
+
+FTGLOutlineFont.obj: ppgltk/FT/FTGLOutlineFont.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT FTGLOutlineFont.obj -MD -MP -MF $(DEPDIR)/FTGLOutlineFont.Tpo -c -o FTGLOutlineFont.obj `if test -f 'ppgltk/FT/FTGLOutlineFont.cpp'; then $(CYGPATH_W) 'ppgltk/FT/FTGLOutlineFont.cpp'; else $(CYGPATH_W) '$(srcdir)/ppgltk/FT/FTGLOutlineFont.cpp'; fi`
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/FTGLOutlineFont.Tpo $(DEPDIR)/FTGLOutlineFont.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='ppgltk/FT/FTGLOutlineFont.cpp' object='FTGLOutlineFont.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o FTGLOutlineFont.obj `if test -f 'ppgltk/FT/FTGLOutlineFont.cpp'; then $(CYGPATH_W) 'ppgltk/FT/FTGLOutlineFont.cpp'; else $(CYGPATH_W) '$(srcdir)/ppgltk/FT/FTGLOutlineFont.cpp'; fi`
+
+FTVectoriser.o: ppgltk/FT/FTVectoriser.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT FTVectoriser.o -MD -MP -MF $(DEPDIR)/FTVectoriser.Tpo -c -o FTVectoriser.o `test -f 'ppgltk/FT/FTVectoriser.cpp' || echo '$(srcdir)/'`ppgltk/FT/FTVectoriser.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/FTVectoriser.Tpo $(DEPDIR)/FTVectoriser.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='ppgltk/FT/FTVectoriser.cpp' object='FTVectoriser.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o FTVectoriser.o `test -f 'ppgltk/FT/FTVectoriser.cpp' || echo '$(srcdir)/'`ppgltk/FT/FTVectoriser.cpp
+
+FTVectoriser.obj: ppgltk/FT/FTVectoriser.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT FTVectoriser.obj -MD -MP -MF $(DEPDIR)/FTVectoriser.Tpo -c -o FTVectoriser.obj `if test -f 'ppgltk/FT/FTVectoriser.cpp'; then $(CYGPATH_W) 'ppgltk/FT/FTVectoriser.cpp'; else $(CYGPATH_W) '$(srcdir)/ppgltk/FT/FTVectoriser.cpp'; fi`
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/FTVectoriser.Tpo $(DEPDIR)/FTVectoriser.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='ppgltk/FT/FTVectoriser.cpp' object='FTVectoriser.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o FTVectoriser.obj `if test -f 'ppgltk/FT/FTVectoriser.cpp'; then $(CYGPATH_W) 'ppgltk/FT/FTVectoriser.cpp'; else $(CYGPATH_W) '$(srcdir)/ppgltk/FT/FTVectoriser.cpp'; fi`
+
+FTContour.o: ppgltk/FT/FTContour.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT FTContour.o -MD -MP -MF $(DEPDIR)/FTContour.Tpo -c -o FTContour.o `test -f 'ppgltk/FT/FTContour.cpp' || echo '$(srcdir)/'`ppgltk/FT/FTContour.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/FTContour.Tpo $(DEPDIR)/FTContour.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='ppgltk/FT/FTContour.cpp' object='FTContour.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o FTContour.o `test -f 'ppgltk/FT/FTContour.cpp' || echo '$(srcdir)/'`ppgltk/FT/FTContour.cpp
+
+FTContour.obj: ppgltk/FT/FTContour.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT FTContour.obj -MD -MP -MF $(DEPDIR)/FTContour.Tpo -c -o FTContour.obj `if test -f 'ppgltk/FT/FTContour.cpp'; then $(CYGPATH_W) 'ppgltk/FT/FTContour.cpp'; else $(CYGPATH_W) '$(srcdir)/ppgltk/FT/FTContour.cpp'; fi`
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/FTContour.Tpo $(DEPDIR)/FTContour.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='ppgltk/FT/FTContour.cpp' object='FTContour.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o FTContour.obj `if test -f 'ppgltk/FT/FTContour.cpp'; then $(CYGPATH_W) 'ppgltk/FT/FTContour.cpp'; else $(CYGPATH_W) '$(srcdir)/ppgltk/FT/FTContour.cpp'; fi`
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \

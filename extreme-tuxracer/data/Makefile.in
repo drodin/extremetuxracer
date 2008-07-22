@@ -536,7 +536,6 @@ courses/events/a-tux_racer/path_of_daggers/elev.png \
 		courses/themes/common.tcl \
 		courses/course_idx.tcl \
 		fonts/PaperCuts20.ttf \
-		fonts/PaperCuts_outline.ttf \
 		music/race1-jt.it \
 		music/wonrace1-jt.it \
 		music/credits1-cp.it \

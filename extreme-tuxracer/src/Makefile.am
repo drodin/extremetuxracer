@@ -94,8 +94,8 @@ etracer_SOURCES =				\
 	hier_cb.h				\
 	hier_util.cpp				\
 	hier_util.h				\
-  highscore.cpp   \
-  highscore.h   \
+	highscore.cpp				\
+	highscore.h				\
 	hud.cpp					\
 	hud.h					\
 	intro.cpp				\
@@ -154,8 +154,8 @@ etracer_SOURCES =				\
 	textures.h				\
         track_marks.cpp				\
         track_marks.h				\
-	model_hndl.cpp					\
-	model_hndl.h					\
+	model_hndl.cpp				\
+	model_hndl.h				\
         tux_shadow.cpp				\
         tux_shadow.h				\
 	pp_types.h				\
@@ -201,36 +201,45 @@ etracer_SOURCES =				\
 	ppgltk/label.h				\
 	\
 	\
-	ppgltk/FT/FTBBox.h		\
+	ppgltk/FT/FTBBox.h			\
 	ppgltk/FT/FTCharToGlyphIndexMap.h	\
-	ppgltk/FT/FTCharmap.h		\
-	ppgltk/FT/FTFace.h		\
-	ppgltk/FT/FTFont.h		\
-	ppgltk/FT/FTGL.h		\
-	ppgltk/FT/FTGLTextureFont.h	\
-	ppgltk/FT/FTGlyph.h		\
-	ppgltk/FT/FTGlyphContainer.h	\
-	ppgltk/FT/FTLibrary.h		\
-	ppgltk/FT/FTList.h		\
-	ppgltk/FT/FTPoint.h		\
-	ppgltk/FT/FTSize.h		\
-	ppgltk/FT/FTVector.h		\
-	ppgltk/FT/FTTextureGlyph.h	\
+	ppgltk/FT/FTCharmap.h			\
+	ppgltk/FT/FTFace.h			\
+	ppgltk/FT/FTFont.h			\
+	ppgltk/FT/FTGL.h			\
+	ppgltk/FT/FTGLTextureFont.h		\
+	ppgltk/FT/FTGlyph.h			\
+	ppgltk/FT/FTGlyphContainer.h		\
+	ppgltk/FT/FTLibrary.h			\
+	ppgltk/FT/FTList.h			\
+	ppgltk/FT/FTPoint.h			\
+	ppgltk/FT/FTSize.h			\
+	ppgltk/FT/FTVector.h			\
+	ppgltk/FT/FTTextureGlyph.h		\
 	\
 	\
-	ppgltk/FT/FTCharmap.cpp		\
-	ppgltk/FT/FTFace.cpp		\
-	ppgltk/FT/FTFont.cpp		\
-	ppgltk/FT/FTGLTextureFont.cpp	\
-	ppgltk/FT/FTGlyph.cpp		\
-	ppgltk/FT/FTGlyphContainer.cpp	\
-	ppgltk/FT/FTLibrary.cpp		\
-	ppgltk/FT/FTPoint.cpp		\
-	ppgltk/FT/FTSize.cpp		\
-	ppgltk/FT/FTTextureGlyph.cpp
+	ppgltk/FT/FTCharmap.cpp			\
+	ppgltk/FT/FTFace.cpp			\
+	ppgltk/FT/FTFont.cpp			\
+	ppgltk/FT/FTGLTextureFont.cpp		\
+	ppgltk/FT/FTGlyph.cpp			\
+	ppgltk/FT/FTGlyphContainer.cpp		\
+	ppgltk/FT/FTLibrary.cpp			\
+	ppgltk/FT/FTPoint.cpp			\
+	ppgltk/FT/FTSize.cpp			\
+	ppgltk/FT/FTTextureGlyph.cpp		\
+	\
+	\
+	ppgltk/FT/FTOutlineGlyph.h		\
+	ppgltk/FT/FTGLOutlineFont.h		\
+	ppgltk/FT/FTVectoriser.h		\
+	ppgltk/FT/FTOutlineGlyph.cpp		\
+	ppgltk/FT/FTGLOutlineFont.cpp		\
+	ppgltk/FT/FTVectoriser.cpp		\
+	ppgltk/FT/FTContour.cpp			\
+	ppgltk/FT/FTContour.h
 
 
 EXTRA_DIST = ppgltk/listbox.cpp 	\
 	ppgltk/FT/license.txt		\
 	ppgltk/FT/README.txt
-
