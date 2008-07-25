@@ -102,7 +102,7 @@ PlayerEventData::clearCupData(std::string cup)
 void
 PlayerEventData::saveData(std::ofstream& sfile)
 {
-	if (loaded) {
+	if (!loaded) loadData((std::ifstream&) sfile);
 		sfile << won << std::endl;
 		sfile << cups.size() << std::endl;
 		if(cups.size()>0){	
@@ -112,7 +112,6 @@ PlayerEventData::saveData(std::ofstream& sfile)
 				(*it).second.saveData(sfile);	
 			}
 		}
-	}
 }
 
 void
@@ -161,7 +160,7 @@ PlayerCupData::updateCupCourseData(std::string course,
 void
 PlayerCupData::saveData(std::ofstream& sfile)
 {
-	if (loaded) {
+	if (!loaded) loadData((std::ifstream&) sfile);
 		sfile << won << std::endl;
 		sfile << courses.size() << std::endl;
 		if(courses.size()>0){
@@ -174,7 +173,6 @@ PlayerCupData::saveData(std::ofstream& sfile)
 				sfile << (*it).second.score << std::endl;
 			}
 		}
-	}
 }
 
 void
@@ -330,7 +328,7 @@ Player::updateOpenCourseData(std::string course, double time,
 bool
 Player::saveData()
 {
-	if (!loaded) { return false; }
+	if (!loaded) loadData();
 	char buff[256];
 
     if (get_config_dir_name( buff, 255 ) != 0) {
