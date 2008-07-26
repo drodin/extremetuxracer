@@ -86,9 +86,9 @@ set races_list {}
 
 
 #
-# Build list of contributed courses in ~/.ppracer/contrib
+# Build list of contributed courses in ~/.etracer/contrib
 #
-set ucontrib "$env(HOME)/.ppracer/contrib/"
+set ucontrib "$env(HOME)/.etracer/contrib/"
 if [file exists "$ucontrib"] {
 	cd $ucontrib
 	foreach course [glob -nocomplain *] {
