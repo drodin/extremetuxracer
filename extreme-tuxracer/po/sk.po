@@ -6,19 +6,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Extreme Tux Racer\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-01 11:07+0200\n"
-"PO-Revision-Date: 2008-04-21 11:28+0000\n"
-"Last-Translator: Paweł Drewniak <Unknown>\n"
+"Report-Msgid-Bugs-To: https://translations.edge.launchpad.net/etracer\n"
+"POT-Creation-Date: 2008-08-03 20:17+0200\n"
+"PO-Revision-Date: 2008-07-29 17:03+0000\n"
+"Last-Translator: helix84 <Unknown>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-05-03 14:32+0000\n"
+"X-Launchpad-Export-Date: 2008-08-03 17:56+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
-
-#~ msgid "Language:"
-#~ msgstr "Jazyk:"
 
 #: src/audioconfig.cpp:36
 msgid "Audio Configuration"
@@ -91,179 +88,180 @@ msgstr "Späť"
 
 #: src/credits.cpp:43
 msgid "Version 0.4"
-msgstr ""
+msgstr "Verzia 0.4"
 
 #: src/credits.cpp:46
 msgid "Extreme Tux Racer is in the process of being"
-msgstr ""
+msgstr "Práve prebieha snaha o úplné prepísanie"
 
 #: src/credits.cpp:47
 msgid "completely rewritten. All versions after 0.35,"
-msgstr ""
+msgstr "Extreme Tux Racer- Všetky verzie po 0.35"
 
 #: src/credits.cpp:48
 msgid "including this one, won't have major code changes"
-msgstr ""
+msgstr "vrátane tejto nebudú mať rozsiahle zmeny kódu,"
 
 #: src/credits.cpp:49
 msgid "because the programmers are busy making a new,"
-msgstr ""
+msgstr "pretože programátori sú zaneprázdnení vytváraním"
 
 #: src/credits.cpp:50
 msgid "improved game."
-msgstr ""
+msgstr "novej, vylepšenej hry."
 
 #: src/credits.cpp:52
 msgid "Extreme Tux Racer is based on"
-msgstr ""
+msgstr "Extreme Tux Racer je založený na"
 
 #: src/credits.cpp:53
 msgid "PlanetPenguin Racer, Open Racer and Tux Racer."
-msgstr ""
+msgstr "PlanetPenguin Racer, Open Racer a Tux Racer."
 
 #: src/credits.cpp:55
 msgid "Some courses may have been modified from their"
-msgstr ""
+msgstr "Niektoré trate mohli byť zmenené oproti"
 
 #: src/credits.cpp:56
 msgid "original versions to fit the requirements of the game."
-msgstr ""
+msgstr "pôvodnej verzii, aby spĺňali špecifiká hry."
 
 #: src/credits.cpp:58
 msgid "Development"
-msgstr ""
+msgstr "Vývoj"
 
 #: src/credits.cpp:63
 msgid "from Sunspire Studios:"
-msgstr ""
+msgstr "zo Sunspire Studios:"
 
 #: src/credits.cpp:71
 msgid "Non-Rewrite Version Organization"
-msgstr ""
+msgstr "Organizácia proti prepísaniu verzie"
 
 #: src/credits.cpp:74
 msgid "Translators"
-msgstr ""
+msgstr "Prekladatelia"
 
 #: src/credits.cpp:87
 msgid "Other (incomplete) translations are from the PPRacer Project."
-msgstr ""
+msgstr "Iné (neúplné) preklady pochádzajú z projektu PPRacer."
 
 #: src/credits.cpp:90
 msgid "Nicosmos (Logo, Hud Graphics)"
-msgstr ""
+msgstr "Nicosmos (Logo, grafika na displeji)"
 
 #: src/credits.cpp:91
 msgid "Christian Picon (Objects, Skyboxes)"
-msgstr ""
+msgstr "Christian Picon (objekty, skyboxy)"
 
 #: src/credits.cpp:92
 msgid "Reinhard Niehoff (Trees)"
-msgstr ""
+msgstr "Reinhard Niehoff (stromy)"
 
 #: src/credits.cpp:93
 msgid "Daniel Poeira and Christian Picon (Font)"
-msgstr ""
+msgstr "Daniel Poeira a Christian Picon (písmo)"
 
 #: src/credits.cpp:95
 msgid "Music"
-msgstr ""
+msgstr "Hudba"
 
 #: src/credits.cpp:97
 msgid "'Race 1'"
-msgstr ""
+msgstr "'Pretek 1'"
 
 #: src/credits.cpp:98
 msgid "'Menu'"
-msgstr ""
+msgstr "'Menu'"
 
 #: src/credits.cpp:99
 msgid "'Options'"
-msgstr ""
+msgstr "'Voľby'"
 
 #: src/credits.cpp:100
 msgid "'Won Race'"
-msgstr ""
+msgstr "'Vyhrané preteky'"
 
 #: src/credits.cpp:103
 msgid "'Credits Ballad'"
-msgstr ""
+msgstr "'Balada titulkov'"
 
 #: src/credits.cpp:105
 msgid "Misc. PPRacer Contributors"
-msgstr ""
+msgstr "Rozl. prispievatelia do PPRacer"
 
 #: src/credits.cpp:110
 msgid "Thanks To"
-msgstr ""
+msgstr "Poďakovanie"
 
 #: src/credits.cpp:111
 msgid "(for Exteme Tux Racer)"
-msgstr ""
+msgstr "(za Exteme Tux Racer)"
 
 #: src/credits.cpp:112
 msgid "Ranger (for hosting the website)"
-msgstr ""
+msgstr "Ranger (za hosting webstránky)"
 
 #: src/credits.cpp:113
 msgid "Slythfox (for making the website)"
-msgstr ""
+msgstr "Slythfox (za tvorbu webstránky)"
 
 #: src/credits.cpp:114
 msgid "The Course Creators"
-msgstr ""
+msgstr "Tvorcovia trate"
 
 #: src/credits.cpp:115
 msgid "The OpenRacer project"
-msgstr ""
+msgstr "Projekt OpenRacer"
 
 #: src/credits.cpp:116
 msgid "Reinhard Niehoff (for helping with code modification)"
-msgstr ""
+msgstr "Reinhard Niehoff (za pomoc so zmenou kódu)"
 
 #: src/credits.cpp:117
 msgid "All the people on the forum"
-msgstr ""
+msgstr "Všetkým ľuďom z diskusného fóra"
 
 #: src/credits.cpp:118
 msgid "Larry Ewing (creator of Tux)"
-msgstr ""
+msgstr "Larry Ewing (tvorcovi Tuxa)"
 
 #: src/credits.cpp:119
 msgid "(for Tux Racer)"
-msgstr ""
+msgstr "(za Tux Racer)"
 
 #: src/credits.cpp:126
-msgid "Tux Racer is a trademark of Jasmin F. Patry"
-msgstr ""
+msgid "Tux Racer is a trademark of Jasmin F. Patry."
+msgstr "Tux Racer je obchodnáz značka Jasmin F. Patryovej."
 
 #: src/credits.cpp:127
 msgid "Extreme Tux Racer is licenced under the GPL."
-msgstr ""
+msgstr "Extreme Tux Racer je šírený za podmienok licencie GPL."
 
 #: src/credits.cpp:128
 msgid "We grant use of the name 'Extreme Tux Racer'"
-msgstr ""
+msgstr "Povoľujeme použitie názvu „Extreme Tux Racer”"
 
 #: src/credits.cpp:129
 msgid "to any forks or continuations."
-msgstr ""
+msgstr "akýmkoľvek vetvám a nasledovníkom."
 
 #: src/credits.cpp:131
-msgid "PlanetPenguin Racer is Copyright © 2005 Volker Stroebel"
-msgstr ""
+msgid "PlanetPenguin Racer is Copyright © 2005 Volker Stroebel."
+msgstr "PlanetPenguin Racer, Copyright © 2005 Volker Stroebel."
 
 #: src/credits.cpp:132
-msgid "Tux Racer and the Tux Racer Name are Copyright © 2001 Jasmin F. Patry"
-msgstr ""
+msgid "Tux Racer and the Tux Racer Name are Copyright © 2001 Jasmin F. Patry."
+msgstr "Tux Racer a názov Tux Racer, Copyright © 2001 Jasmin F. Patry."
 
 #: src/event_select.cpp:50
-msgid "Select event and cup"
+#, fuzzy
+msgid "Select campaign and cup"
 msgstr "Vyberte kampaň a pohár"
 
 #: src/event_select.cpp:56
-msgid "Event:"
-msgstr "Kampaň:"
+msgid "Campaign:"
+msgstr ""
 
 #: src/event_select.cpp:67
 msgid "Cup:"
@@ -320,7 +318,7 @@ msgstr "Čas:"
 #: src/event_race_select.cpp:320
 #, c-format
 msgid "%02d:%02d.%02d"
-msgstr ""
+msgstr "%02d:%02d.%02d"
 
 #: src/event_race_select.cpp:324
 msgid "Herring:"
@@ -334,70 +332,72 @@ msgstr "Skóre:"
 msgid "Contributed by:"
 msgstr "Autor:"
 
-#: src/event_race_select.cpp:349 po/levelinfo:109
+#: src/event_race_select.cpp:349 po/levelinfo:16
 msgid "Unknown"
 msgstr "Neznámy"
 
-#: src/game_over.cpp:101
+#: src/game_over.cpp:109
 msgid "Race aborted"
 msgstr "Závod zrušený"
 
-#: src/game_over.cpp:104
+#: src/game_over.cpp:112
 msgid "Race Over"
 msgstr "Koniec závodu"
 
-#: src/game_over.cpp:111
+#: src/game_over.cpp:119
 #, c-format
 msgid "Time: %02d:%02d.%02d"
 msgstr "Čas: %02d:%02d.%02d"
 
-#: src/game_over.cpp:116
+#: src/game_over.cpp:124
 #, c-format
 msgid "Herring: %3d"
 msgstr "Počet rýb: %3d"
 
-#: src/game_over.cpp:121
+#: src/game_over.cpp:129
 #, c-format
 msgid "Score: %6d"
 msgstr "Skóre: %6d"
 
-#: src/game_over.cpp:127
+#: src/game_over.cpp:135
 #, c-format
 msgid "Max speed: %3d km/h"
 msgstr "Najvyššia rýchlosť: %3d km/h"
 
-#: src/game_over.cpp:133
+#: src/game_over.cpp:141
 #, c-format
 msgid "Was flying: %.01f %% of time"
 msgstr "Leteli ste: %.01f %% času"
 
-#: src/game_over.cpp:143
+#: src/game_over.cpp:151
 #, c-format
 msgid "You made it to the %s place in the highscore!"
 msgstr "Dostali ste sa na %s. miesto v rekordoch!"
 
-#: src/game_over.cpp:153
+#: src/game_over.cpp:161
 msgid "You beat your best score!"
 msgstr "Prekonali ste vaše najlepšie skóre!"
 
-#: src/game_over.cpp:156
-msgid "Congratulations! You won the event!"
-msgstr "Gratulujeme! Prešli ste kampaň!"
+#: src/game_over.cpp:164
+#, fuzzy
+msgid "Congratulations! You won the campaign!"
+msgstr "Gratulujeme! Vyhrali ste pohár!"
 
-#: src/game_over.cpp:158
+#: src/game_over.cpp:166
 msgid "Congratulations! You won the cup!"
 msgstr "Gratulujeme! Vyhrali ste pohár!"
 
-#: src/game_over.cpp:160
+#: src/game_over.cpp:168
 msgid "You advanced to the next race!"
 msgstr "Postúpili ste do ďalšieho závodu!"
 
-#: src/game_over.cpp:162
+#: src/game_over.cpp:170
 msgid "You didn't advance."
 msgstr "Nepostúpili ste."
 
 #: src/game_type_select.cpp:36
-msgid "Enter an event"
+#, fuzzy
+msgid "Enter a campaign"
 msgstr "Súťaž"
 
 #: src/game_type_select.cpp:43
@@ -420,33 +420,37 @@ msgstr "Koniec"
 msgid "Graphics Configuration"
 msgstr "Nastavenia grafiky"
 
-#: src/graphicsconfig.cpp:104
+#: src/graphicsconfig.cpp:108
 msgid "Model:"
 msgstr "Model:"
 
-#: src/graphicsconfig.cpp:113
+#: src/graphicsconfig.cpp:117
 msgid "Show UI Snow:"
 msgstr "Padajúci sneh na pozadí:"
 
-#: src/graphicsconfig.cpp:117
+#: src/graphicsconfig.cpp:121
 msgid "Display FPS:"
 msgstr "Zobraziť FPS:"
 
-#: src/graphicsconfig.cpp:121
+#: src/graphicsconfig.cpp:125
 msgid "Display Progress Bar:"
 msgstr "Ukazovateľ priebehu:"
 
-#: src/graphicsconfig.cpp:125
+#: src/graphicsconfig.cpp:129
 msgid "Draw Fog:"
 msgstr "Vykresľovať hmlu:"
 
-#: src/graphicsconfig.cpp:129
+#: src/graphicsconfig.cpp:133
 msgid "Reflections:"
 msgstr "Odrazy:"
 
-#: src/graphicsconfig.cpp:133
+#: src/graphicsconfig.cpp:137
 msgid "Shadows:"
 msgstr "Tiene:"
+
+#: src/graphicsconfig.cpp:141
+msgid "Draw Background:"
+msgstr ""
 
 #: src/highscore.cpp:88
 msgid "1:st"
@@ -490,12 +494,12 @@ msgstr "10."
 
 #: src/highscore.cpp:317
 msgid "No records"
-msgstr ""
+msgstr "Žiadne záznamy"
 
 #: src/highscore.cpp:327
 #, c-format
 msgid " (%d points)"
-msgstr ""
+msgstr " (%d bodov)"
 
 #: src/joystickconfig.cpp:29
 msgid "Joystick Configuration"
@@ -583,7 +587,7 @@ msgstr "Skúšobné (vyžaduje reštart)"
 
 #: src/videoconfig.cpp:192
 msgid "Stencil Buffer:"
-msgstr ""
+msgstr "Stencil buffer:"
 
 #: src/videoconfig.cpp:196
 msgid "Enable FSAA:"
@@ -591,512 +595,610 @@ msgstr "Zapnúť FSAA:"
 
 #: src/videoconfig.cpp:200
 msgid "FSAA Multisamples:"
-msgstr ""
+msgstr "FSAA multivzorky:"
 
 #: po/levelinfo:1
-msgid "Doing"
-msgstr ""
+#, c-format
+msgid "FPS: %.1f"
+msgstr "FPS: %.1f"
 
-#: po/levelinfo:2
+#: po/levelinfo:2 po/levelinfo:3
+#, c-format
+msgid "%03d"
+msgstr "%03d"
+
+#: po/levelinfo:4 po/levelinfo:5
+#, c-format
+msgid "%02d:%02d:%02d"
+msgstr "%02d:%02d:%02d"
+
+#: po/levelinfo:6 po/levelinfo:8
+msgid "km/h"
+msgstr "km/h"
+
+#: po/levelinfo:7 po/levelinfo:9
+#, c-format
+msgid "%.0f"
+msgstr "%.0f"
+
+#: po/levelinfo:10 po/levelinfo:11
+#, fuzzy, c-format
+msgid "%d:%d:%d"
+msgstr "%02d:%02d:%02d"
+
+#: po/levelinfo:12 po/levelinfo:13
+#, fuzzy, c-format
+msgid "%d"
+msgstr "%03d"
+
+#: po/levelinfo:14
+msgid "Doing"
+msgstr "Doing"
+
+#: po/levelinfo:15
 msgid ""
 "This course was probably created to present new textures introduced in "
 "PPRacer."
 msgstr ""
-
-#: po/levelinfo:3
-msgid "Bunny Hill"
-msgstr ""
-
-#: po/levelinfo:4
-msgid ""
-"Let's start out easy, just collect the herring in the time limit and you'll "
-"be fine. The best part is that you don't have to use those stupid T-lifts."
-msgstr ""
-
-#: po/levelinfo:5
-msgid "Tux Racer Classics"
-msgstr ""
-
-#: po/levelinfo:6
-msgid "Canadian Cup"
-msgstr ""
-
-#: po/levelinfo:7
-msgid "Swiss Cup"
-msgstr ""
-
-#: po/levelinfo:8
-msgid "Twisty Slope"
-msgstr ""
-
-#: po/levelinfo:9
-msgid ""
-"Tight twists make grabbing herring difficult.  Hard turns and not too much "
-"braking will lead you to victory."
-msgstr ""
-
-#: po/levelinfo:10
-msgid "Bumpy Ride"
-msgstr ""
-
-#: po/levelinfo:11
-msgid ""
-"This hill has a series of ramps to tackle.  Be sure to line yourself up "
-"before getting airborne."
-msgstr ""
-
-#: po/levelinfo:12
-msgid "Path of Daggers"
-msgstr ""
-
-#: po/levelinfo:13
-msgid ""
-"Big spikes may prove to be the least of your worries on this course. Muliple "
-"paths allow you to take low or high roads, each with their own challenges."
-msgstr ""
-
-#: po/levelinfo:14
-msgid "Frozen River"
-msgstr ""
-
-#: po/levelinfo:15
-msgid ""
-"Keep your speed down to collect herring. You have plenty of time, so don't "
-"rush things."
-msgstr ""
-
-#: po/levelinfo:16
-msgid "Explore the Mountains"
-msgstr ""
+"Táto trať bola pravdepodobne vytvorená na prezentáciu nových textúr v "
+"PPRacer."
 
 #: po/levelinfo:17
-msgid ""
-"Can you find your way through the icy, dangerous mountains. I doubt it."
-msgstr ""
+msgid "Hippo Run"
+msgstr "Hroší beh"
 
 #: po/levelinfo:18
-msgid "In Search of the Holy Grail"
+msgid ""
+"In Hippo Run, you slide down an icy slope as a penguin, I honestly don't "
+"know what this has to do with hippos or running..."
 msgstr ""
+"V hrošom behu sa kĺžete zľadovatelým svahom ako tučniak (a skutočne neviem, "
+"čo to má spoločné s hrochmi alebo behaním...)"
 
 #: po/levelinfo:19
-msgid ""
-"An adventure course with a simple task: Find the grail! Warning: It is very "
-"difficult to find the way."
-msgstr ""
+msgid "Ice Pipeline"
+msgstr "Ľadová rúra"
 
 #: po/levelinfo:20
-msgid "Tux at Home"
-msgstr ""
+msgid "A short, slippery ice-trough with herring scattered throughout."
+msgstr "Krátka, klzká, premrznutá rúra obsypaná sleďmi."
 
 #: po/levelinfo:21
-msgid ""
-"Here lives Tux. You can take the corridore on the right - it's the shortest "
-"and fastest way. But if you want to catch some herrings you have to enter "
-"the rooms on the left."
-msgstr ""
+msgid "Volcanoes"
+msgstr "Sopky"
 
 #: po/levelinfo:22
-msgid "Wild Mountains"
+msgid ""
+"This gigantic crater was full of water, and herring, but now it's all "
+"frozen, and yours for the taking."
 msgstr ""
+"Tento gigantický kráter bol plný vody a sleďov, ale teraz je zamrznutý a "
+"celý váš."
 
 #: po/levelinfo:23
-msgid ""
-"A wild landscape of ice and snow. It isn't easy to keep the right way. Not "
-"for beginners."
-msgstr ""
+msgid "Nature Stroll"
+msgstr "Potulky prírodou"
 
 #: po/levelinfo:24
-msgid "Secret Valleys"
+msgid ""
+"The fresh air, the pine scent, who doesn't like a nice refreshing walk "
+"through the mountains?"
 msgstr ""
+"Čerstvý vzduch, vôňa borovíc, komu by sa nepáčil pekný, osviežujúci výlet "
+"horami?"
 
 #: po/levelinfo:25
-msgid ""
-"Your task: Find the hidden valleys and the ten groups of dead trees. Look "
-"around, the ways are not easy to find."
-msgstr ""
+msgid "Mountain Mania"
+msgstr "Horská mánia"
 
 #: po/levelinfo:26
-msgid "The Niehoff Experience"
-msgstr ""
+msgid "Icy Peril"
+msgstr "Ľadové nebezpečenstvo"
 
 #: po/levelinfo:27
-msgid "Search, Search, Search"
-msgstr ""
+msgid "Death Cup"
+msgstr "Pohár smrti"
 
 #: po/levelinfo:28
-msgid "Mountains and Hills"
-msgstr ""
+msgid "Slippery Defeat"
+msgstr "Klzká porážka"
 
 #: po/levelinfo:29
-msgid "The Final Challenge"
-msgstr ""
+msgid "The Final Three"
+msgstr "Posledná trojica"
 
 #: po/levelinfo:30
-msgid "Chinese Wall"
-msgstr ""
+msgid "Slippy-Slidey"
+msgstr "Klzky-šmyky"
 
 #: po/levelinfo:31
-msgid ""
-"The Great Wall of China in winter. Try to stay on top of the wall - that's "
-"where the herrings are. If you fall off you can try to jump back up, there "
-"are 7 hidden ramps. You'll get a lot of exercise."
-msgstr ""
+msgid "Slide on the slippery frozen river in a hilly forest, slipperily."
+msgstr "Šmýkajte sa po klzkej zamrznutej rieke v hornatom lese."
 
 #: po/levelinfo:32
-msgid "Frozen Lakes"
-msgstr ""
+msgid "Crazy Path"
+msgstr "Bláznivá cesta"
 
 #: po/levelinfo:33
 msgid ""
-"To reach the finish you must pass several frozen lakes. Watch your speed on "
-"the ice - there are some dangerous corners."
+"You'll have trouble slowing down on this one. There's lots of herring, but "
+"be careful not to fly too much or you won't get any."
 msgstr ""
+"Na tejto budete mať problém spomaliť. Je tu veľa sleďov, ale dávajte si "
+"pozor, aby ste príliš nelietali, inak žiadne nedostanete."
 
 #: po/levelinfo:34
-msgid "Challenge One"
-msgstr ""
+msgid "Candy Lane"
+msgstr "Dráha sladkostí"
 
 #: po/levelinfo:35
 msgid ""
-"A very dangerous path along the mountains. Try to catch more than 60 "
-"herrings. Warning: The course is very difficult and there are some "
-"situations where you can get stuck."
+"Mostly ice, with very few obstacles in your path, this is like a stroll down "
+"Candy Lane."
 msgstr ""
+"Zväčša ľad, s niekoľkými prekážkami v ceste, je to ako prechádzka dráhou "
+"sladkostí."
 
 #: po/levelinfo:36
-msgid "Dead Man's Drop"
-msgstr ""
+msgid "Merry Go Round"
+msgstr "Kolotoč"
 
 #: po/levelinfo:37
-msgid ""
-"Pretty tough hill. It's fast, steep, lumpy, twisty, and full of trees. Hard "
-"to get herrings. Don't forget the drop."
-msgstr ""
-
-#: po/levelinfo:38
-msgid "Tux Toboggan Run"
-msgstr ""
-
-#: po/levelinfo:39
-msgid ""
-"Collect herrings in an ice channel with various paths and many high and low "
-"speed passages. Watch out for the occasional tree."
-msgstr ""
-
-#: po/levelinfo:40
-msgid "Hazzard Valley"
-msgstr ""
-
-#: po/levelinfo:41
-msgid ""
-"Hazzard Valley is full of hazards, like trees, deep caverns, spikes, and "
-"huge areas of rocky plains, not to mention your speed being your enemy in "
-"trying to get the herrings and stay on course!"
-msgstr ""
-
-#: po/levelinfo:42
-msgid "Mt. Satan"
-msgstr ""
-
-#: po/levelinfo:43
-msgid ""
-"Mount Satan is a sister mountain to Dead Man's Drop. No surprises here, just "
-"a steep, bumpy, twisty path full of trees to get through."
-msgstr ""
-
-#: po/levelinfo:44
-msgid "Mt. Herring"
-msgstr ""
-
-#: po/levelinfo:45
-msgid ""
-"Mt. Herring is relatively fast but long, somewhat bumpy in places, and has "
-"some wide open areas and branching paths. Lots of herrings to collect though "
-"it can be difficult unless you watch your speed."
-msgstr ""
-
-#: po/levelinfo:46
-msgid "Herring Run"
-msgstr ""
-
-#: po/levelinfo:47
-msgid "Mountain Man"
-msgstr ""
-
-#: po/levelinfo:48
-msgid "Valley Cup"
-msgstr ""
-
-#: po/levelinfo:49
-msgid "Tux the winter sportsman"
-msgstr ""
-
-#: po/levelinfo:50
-msgid "Highway To Hell"
-msgstr ""
-
-#: po/levelinfo:51
-msgid "Skull Mountain"
-msgstr ""
-
-#: po/levelinfo:52
-msgid ""
-"Skull mountain is a steep, twisty drop around tree-filled inner peaks. "
-"Expect to miss a lot of herrings and crash a lot."
-msgstr ""
-
-#: po/levelinfo:53
-msgid "Ski Jump"
-msgstr ""
-
-#: po/levelinfo:54
-msgid ""
-"Steering will be unnecessary, just line yourself up and reap the rewards. "
-"Rememember, acceleration will slow you down after a while."
-msgstr ""
-
-#: po/levelinfo:55
-msgid "High Road"
-msgstr ""
-
-#: po/levelinfo:56
-msgid ""
-"Just stay on the path and collect herring. Oh yeah, and if you fall you'll "
-"be eating pine needles."
-msgstr ""
-
-#: po/levelinfo:57
-msgid "Who Says Penguins Can't Fly?"
-msgstr ""
-
-#: po/levelinfo:58
-msgid ""
-"It'll be tough collecting herrings at speeds over 200, so try to brake "
-"whenever possible to get the required herring."
-msgstr ""
-
-#: po/levelinfo:59
-msgid "Hamburger Hill"
-msgstr ""
-
-#: po/levelinfo:60
-msgid ""
-"Hamburger Hill is steep, narrow, twisty, lumpy, icy, and rocky, with a few "
-"trees right in your way!"
-msgstr ""
-
-#: po/levelinfo:61
-msgid "I've Got A Woody"
-msgstr ""
-
-#: po/levelinfo:62
-msgid ""
-"Yet another horrible elevated ice-coaster. If you thought the last two were "
-"hard, try this one. Have fun winding through the woods.  Look out for a huge "
-"shortcut!!"
-msgstr ""
-
-#: po/levelinfo:63
-msgid "Ice Labyrinth"
-msgstr ""
-
-#: po/levelinfo:64
-msgid ""
-"You choose your destiny, you could end up full or starving depending on the "
-"path you pick."
-msgstr ""
-
-#: po/levelinfo:65
-msgid "Snow Valley"
-msgstr ""
-
-#: po/levelinfo:66
-msgid ""
-"Snow Valley is a relatively flat, and very fast course. You'll find a few "
-"herrings very difficult to get if you're going for a perfect score! Watch "
-"your speed in certain areas to get the most herrings!"
-msgstr ""
-
-#: po/levelinfo:67
-msgid "Slalom"
-msgstr ""
-
-#: po/levelinfo:68
-msgid ""
-"Brake while you turn and the herrings on this pseudo-slalom will be yours."
-msgstr ""
-
-#: po/levelinfo:69
-msgid "Keep It Up"
-msgstr ""
-
-#: po/levelinfo:70
-msgid ""
-"If you fall you might as well just quit then and there, 'cause your chances "
-"are slim on the rocky ground."
-msgstr ""
-
-#: po/levelinfo:71
-msgid "The Narrow Way"
-msgstr ""
-
-#: po/levelinfo:72
-msgid ""
-"To put it simply, stay on the path or you lose! It's hard to see where "
-"you're going, there's trees in your way, and the herrings are hard to get. "
-"Good luck, you'll need it!"
-msgstr ""
-
-#: po/levelinfo:73
-msgid "Merry Go Round"
-msgstr ""
-
-#: po/levelinfo:74
 msgid "Try to build up enough speed to jump from one roundabout to the next."
 msgstr ""
+"Skúste nabrať dostatočnú rýchlosť, aby ste preskočili z jedného kolotoča na "
+"druhý."
 
-#: po/levelinfo:75
-msgid "In Search of Vodka"
+#: po/levelinfo:38
+msgid "Hey, Tux!"
+msgstr "Hej, Tux!"
+
+#: po/levelinfo:39
+msgid "This course offers true excitement for your race-loving penguin buddy."
 msgstr ""
+"Táto trať ponúka vášmu pretekania-chtivému priateľovi tučniakovi skutočné "
+"vzrušenie."
 
-#: po/levelinfo:76
+#: po/levelinfo:40
+msgid "Bobsled Ride"
+msgstr "Bobová dráha"
+
+#: po/levelinfo:41
+msgid "Just like a real bobsled ride, only more dangerous."
+msgstr "Ako skutočná bobová dráha, len nebezpečnejšia."
+
+#: po/levelinfo:42
+msgid "In Search of Vodka"
+msgstr "Hľadanie vodky"
+
+#: po/levelinfo:43
 msgid ""
 "Tux needs some needs some vodka to warm up his cold belly. Alas, his liquor "
 "cabinet has been pillaged. Join Tux on the quest for vodka.Pick up herring "
 "for dinner along the way!"
 msgstr ""
+"Tux potrebuje vodku, aby so zahrial studené brucho. Nuž, jeho skrinka s "
+"alkoholom bola vyplienená. Pripojte sa k Tuxovej výprave za vodkou. Po ceste "
+"pozbierajte nejaké slede na obed."
+
+#: po/levelinfo:44
+msgid "Tux at Home"
+msgstr "Tux doma"
+
+#: po/levelinfo:45
+msgid ""
+"Here lives Tux. You can take the corridore on the right - it's the shortest "
+"and fastest way. But if you want to catch some herrings you have to enter "
+"the rooms on the left."
+msgstr ""
+"Tu žije Tux. Môžete sa dať cestou vpravo - je to najkratšia a najrýchlejšia "
+"cesta. Ale ak chcete uloviť nejaké slede, musíte sa dať cestami naľavo."
+
+#: po/levelinfo:46
+msgid "The Niehoff Experience"
+msgstr "Turbo"
+
+#: po/levelinfo:47
+msgid "Search, Search, Search"
+msgstr "Hľadaj, hľadaj"
+
+#: po/levelinfo:48
+msgid "Mountains and Hills"
+msgstr "Hory a kopce"
+
+#: po/levelinfo:49
+msgid "The Final Challenge"
+msgstr "Posledná výzva"
+
+#: po/levelinfo:50
+msgid "Wild Mountains"
+msgstr "Neskrotné hory"
+
+#: po/levelinfo:51
+msgid ""
+"A wild landscape of ice and snow. It isn't easy to keep the right way. Not "
+"for beginners."
+msgstr ""
+"Divoká krajina ľadu a snehu. Nie je ľahké udržať sa na správnej ceste. Toto "
+"nie je pre začiatočníkov!"
+
+#: po/levelinfo:52
+msgid "In Search of the Holy Grail"
+msgstr "Hľadanie svätého grálu"
+
+#: po/levelinfo:53
+msgid ""
+"An adventure course with a simple task: Find the grail! Warning: It is very "
+"difficult to find the way."
+msgstr ""
+"Dobrodružná výprava s kednoduchým cieľom: Nájsť grál! Upozornenie: Je veľmi "
+"ťažké násť cestu."
+
+#: po/levelinfo:54
+msgid "Frozen Lakes"
+msgstr "Zamrznuté jazerá"
+
+#: po/levelinfo:55
+msgid ""
+"To reach the finish you must pass several frozen lakes. Watch your speed on "
+"the ice - there are some dangerous corners."
+msgstr ""
+"Aby ste dosiahli cieľ, musíte prejsť niekoľkými zamrznutými jazerami. "
+"Dávajte pozor na rýchlosť na ľade - je tu niekoľko nebezpečných zákrut."
+
+#: po/levelinfo:56
+msgid "Chinese Wall"
+msgstr "Čínsky múr"
+
+#: po/levelinfo:57
+msgid ""
+"The Great Wall of China in winter. Try to stay on top of the wall - that's "
+"where the herrings are. If you fall off you can try to jump back up, there "
+"are 7 hidden ramps. You'll get a lot of exercise."
+msgstr ""
+"Veľký čínsky múr v zime. Skúste zostať na vrchu múru - tam sú slede. Ak "
+"spadnete, môžete sa pokúsiť vyskočiť späť navrch, je tu 7 skrytých rámp. "
+"Dosť si zacvičíte."
+
+#: po/levelinfo:58
+msgid "Secret Valleys"
+msgstr "Tajné údolia"
+
+#: po/levelinfo:59
+msgid ""
+"Your task: Find the hidden valleys and the ten groups of dead trees. Look "
+"around, the ways are not easy to find."
+msgstr ""
+"Vaša úloha: Nájsť skryté údolia a desať skupín mŕtvych stromov. Dobre sa "
+"rozhliadajte, nie je ľahké nájsť cestu."
+
+#: po/levelinfo:60
+msgid "Explore the Mountains"
+msgstr "Prieskum vrchov"
+
+#: po/levelinfo:61
+msgid "Can you find your way through the icy, dangerous mountains. I doubt it."
+msgstr "Dokážete nájsť cestu zľadovatelými, nebezpečnými vrchmi? Pochybujem."
+
+#: po/levelinfo:62
+msgid "Challenge One"
+msgstr "Výzva"
+
+#: po/levelinfo:63
+#, fuzzy
+msgid ""
+"A very dangerous path along the mountains. Warning: The course is very "
+"difficult and there are some situations where you can get stuck."
+msgstr ""
+"Veľmi nebezpečná trať vo vrchoch. Skúste chytiť viac ako 60 sleďov. "
+"Upozornenie: Trať je veľmi náročná a je niekoľko miest, odkiaľ sa nedá "
+"dostať."
+
+#: po/levelinfo:64
+msgid "Path of Daggers"
+msgstr "Cesta dýk"
+
+#: po/levelinfo:65
+msgid ""
+"Big spikes may prove to be the least of your worries on this course. Muliple "
+"paths allow you to take low or high roads, each with their own challenges."
+msgstr ""
+"Na tejto trati sa možno ukáže, že obrovské hroty sú posledné, čoho sa musíte "
+"báť. Viacero vetiev ponúka nízke a vysoké cesty, z ktorých každá má vlastné "
+"výzvy."
+
+#: po/levelinfo:66
+msgid "Tux Racer Classics"
+msgstr "Tux Racer klasika"
+
+#: po/levelinfo:67
+msgid "Canadian Cup"
+msgstr "Kanadský pohár"
+
+#: po/levelinfo:68
+msgid "Swiss Cup"
+msgstr "Švajčiarsky pohár"
+
+#: po/levelinfo:69
+msgid "Bumpy Ride"
+msgstr "Hrboľatá jazda"
+
+#: po/levelinfo:70
+msgid ""
+"This hill has a series of ramps to tackle.  Be sure to line yourself up "
+"before getting airborne."
+msgstr ""
+"Tento kopec má niekoľko rámp, s ktorými sa treba vysporiadať. Než sa "
+"vznesiete, choďte rovno!"
+
+#: po/levelinfo:71
+msgid "Bunny Hill"
+msgstr "Zajačí kopec"
+
+#: po/levelinfo:72
+msgid ""
+"Let's start out easy, just collect the herring in the time limit and you'll "
+"be fine. The best part is that you don't have to use those stupid T-lifts."
+msgstr ""
+"Začnime jednoducho, iba zbieraním sleďov v časovom limite a bude to v "
+"poriadku. Najlepšia časť je, že nemusíte používať tie hlúpe téčka."
+
+#: po/levelinfo:73
+msgid "Frozen River"
+msgstr "Zamrznutá rieka"
+
+#: po/levelinfo:74
+msgid ""
+"Keep your speed down to collect herring. You have plenty of time, so don't "
+"rush things."
+msgstr ""
+"Choďte pomaly, aby ste mohli zbierať slede. Máte veľa času, tak sa "
+"neunáhlite."
+
+#: po/levelinfo:75
+msgid "Twisty Slope"
+msgstr "Točitý svah"
+
+#: po/levelinfo:76
+msgid ""
+"Tight twists make grabbing herring difficult.  Hard turns and not too much "
+"braking will lead you to victory."
+msgstr ""
+"Je ťažké chytať slede v úzkych zákrutách. Ostré zatáčanie a nie príliš "
+"brzdenia povedie k víťazstvu."
 
 #: po/levelinfo:77
-msgid "Ice Pipeline"
-msgstr ""
+msgid "Mt. Herring"
+msgstr "Hora sleďov"
 
 #: po/levelinfo:78
-msgid "A short, slippery ice-trough with herring scattered throughout."
+msgid ""
+"Mt. Herring is relatively fast but long, somewhat bumpy in places, and has "
+"some wide open areas and branching paths. Lots of herrings to collect though "
+"it can be difficult unless you watch your speed."
 msgstr ""
+"Hora sleďov je pomerne rýchla, ale dlhá, miestami hrboľatá a má niekoľko "
+"otvorených oblastí a vetiev. Je náročné pozbierať cestou mnoho sleďov, ak si "
+"nedávate pozor na rýchlosť."
 
 #: po/levelinfo:79
-msgid "Candy Lane"
-msgstr ""
+msgid "Herring Run"
+msgstr "Na slede!"
 
 #: po/levelinfo:80
-msgid ""
-"Mostly ice, with very few obstacles in your path, this is like a stroll down "
-"Candy Lane."
-msgstr ""
+msgid "Mountain Man"
+msgstr "Horal"
 
 #: po/levelinfo:81
-msgid "Mountain Mania"
-msgstr ""
+msgid "Valley Cup"
+msgstr "Pohár údolia"
 
 #: po/levelinfo:82
-msgid "Icy Peril"
-msgstr ""
+msgid "Tux the winter sportsman"
+msgstr "Tux, zimný športovec"
 
 #: po/levelinfo:83
-msgid "Death Cup"
-msgstr ""
+msgid "Highway To Hell"
+msgstr "Diaľnica do pekiel"
 
 #: po/levelinfo:84
-msgid "Slippery Defeat"
-msgstr ""
+msgid "Ice Labyrinth"
+msgstr "Ľadový labyrint"
 
 #: po/levelinfo:85
-msgid "The Final Three"
+msgid ""
+"You choose your destiny, you could end up full or starving depending on the "
+"path you pick."
 msgstr ""
+"Ste pánom svojho osudu, podľa cesty, ktorú si zvolíte, skončíte plný alebo "
+"hladný."
 
 #: po/levelinfo:86
-msgid "Nature Stroll"
-msgstr ""
+msgid "Snow Valley"
+msgstr "Snehové údolie"
 
 #: po/levelinfo:87
 msgid ""
-"The fresh air, the pine scent, who doesn't like a nice refreshing walk "
-"through the mountains?"
+"Snow Valley is a relatively flat, and very fast course. You'll find a few "
+"herrings very difficult to get if you're going for a perfect score! Watch "
+"your speed in certain areas to get the most herrings!"
 msgstr ""
+"Snehové údolie je pometne plochá a veľmi rýchla trať. Uvidíte, že niekoľko "
+"sleďov je ťažké dostať, ak sa pokúšate o dokonalé skóre. V niektorých "
+"miestach si dávajte pozor na rýchlosť, ak chcete dostať čo najviac sleďov!"
 
 #: po/levelinfo:88
-msgid "Crazy Path"
-msgstr ""
+msgid "Tux Toboggan Run"
+msgstr "Tuxov tobogan"
 
 #: po/levelinfo:89
 msgid ""
-"You'll have trouble slowing down on this one. There's lots of herring, but "
-"be careful not to fly too much or you won't get any."
+"Collect herrings in an ice channel with various paths and many high and low "
+"speed passages. Watch out for the occasional tree."
 msgstr ""
+"Zbierajte slede v ľadovom kanáli s rozličnými cestami a mnohými vysoko- a "
+"nízkorýchlostnými úsekmi. Pozor na občasný strom."
 
 #: po/levelinfo:90
-msgid "Slippy-Slidey"
-msgstr ""
+msgid "Hazzard Valley"
+msgstr "Údolie nástrah"
 
 #: po/levelinfo:91
-msgid "Slide on the slippery frozen river in a hilly forest, slipperily."
+msgid ""
+"Hazzard Valley is full of hazards, like trees, deep caverns, spikes, and "
+"huge areas of rocky plains, not to mention your speed being your enemy in "
+"trying to get the herrings and stay on course!"
 msgstr ""
+"Údolie nástrah je plné nástrah ako stromy, hlboké jaskyne, hroty a obrovské "
+"plochy skalnatých plání, nehovoriac o tom, že vaša rýchlosť je vašim "
+"nepriateľom v snahe zostať na trati a získať slede!"
 
 #: po/levelinfo:92
-msgid "Hey, Tux!"
-msgstr ""
+msgid "Skull Mountain"
+msgstr "Hora lebiek"
 
 #: po/levelinfo:93
 msgid ""
-"This course offers true excitement for your race-loving penguin buddy."
+"Skull mountain is a steep, twisty drop around tree-filled inner peaks. "
+"Expect to miss a lot of herrings and crash a lot."
 msgstr ""
+"Hora lebiek je strmý zostup plný zákrut okolo vrcholkov pokrytých stromami. "
+"Pripravte sa, že miniete mnoho sleďov a často narazíte."
 
 #: po/levelinfo:94
-msgid "Volcanoes"
-msgstr ""
+msgid "Keep It Up"
+msgstr "Do toho"
 
 #: po/levelinfo:95
 msgid ""
-"This gigantic crater was full of water, and herring, but now it's all "
-"frozen, and yours for the taking."
+"If you fall you might as well just quit then and there, 'cause your chances "
+"are slim on the rocky ground."
 msgstr ""
+"Ak spadnete, to už môžete rovno na mieste skončiť, lebo na skalnatej zemi sú "
+"vaše šance chabé."
 
 #: po/levelinfo:96
-msgid "Hippo Run"
-msgstr ""
+msgid "Dead Man's Drop"
+msgstr "Pád mŕtveho muža"
 
 #: po/levelinfo:97
 msgid ""
-"In Hippo Run, you slide down an icy slope as a penguin, I honestly don't "
-"know what this has to do with hippos or running..."
+"Pretty tough hill. It's fast, steep, lumpy, twisty, and full of trees. Hard "
+"to get herrings. Don't forget the drop."
 msgstr ""
+"Dosť drsný kopec. Rýchly, strmý, hrboľatý a plný stromov. Je ťažké dostať "
+"slede. Nezabudnite na pád."
 
 #: po/levelinfo:98
-msgid "Bobsled Ride"
-msgstr ""
+msgid "I've Got A Woody"
+msgstr "Mám drievko"
 
 #: po/levelinfo:99
-msgid "Just like a real bobsled ride, only more dangerous."
+msgid ""
+"Yet another horrible elevated ice-coaster. If you thought the last two were "
+"hard, try this one. Have fun winding through the woods.  Look out for a huge "
+"shortcut!!"
 msgstr ""
+"Ďalšia hrozná ľadová horská dráha. Ak ste si mysleli, že posledné dve boli "
+"ťažké, neskúsili ste túto! Bavte sa pri uhýbaní pred stromami. A pozor na "
+"obrovskú skratku!"
 
 #: po/levelinfo:100
-#, c-format
-msgid "FPS: %.1f"
-msgstr "FPS: %.1f"
+msgid "Mt. Satan"
+msgstr "Diablova hora"
 
-#: po/levelinfo:101 po/levelinfo:102
-#, c-format
-msgid "%03d"
-msgstr "%03d"
+#: po/levelinfo:101
+msgid ""
+"Mount Satan is a sister mountain to Dead Man's Drop. No surprises here, just "
+"a steep, bumpy, twisty path full of trees to get through."
+msgstr ""
+"Diablova hora je sestra Pádu mŕtveho muža. Bez prekvapení, len strmá, "
+"hrboľatá cesta plná stromov a zákrut."
 
-#: po/levelinfo:103 po/levelinfo:104
-#, c-format
-msgid "%02d:%02d:%02d"
-msgstr "%02d:%02d:%02d"
+#: po/levelinfo:102
+msgid "Ski Jump"
+msgstr "Skoky na lyžiach"
 
-#: po/levelinfo:105 po/levelinfo:107
-msgid "km/h"
-msgstr "km/h"
+#: po/levelinfo:103
+msgid ""
+"Steering will be unnecessary, just line yourself up and reap the rewards. "
+"Rememember, acceleration will slow you down after a while."
+msgstr ""
+"Nebude potrebné otáčať do strán, iba sa vyrovnajte a žnite odmenu. "
+"Pamätajte, že zrýchlenie vás po chvíli spomalí."
 
-#: po/levelinfo:106 po/levelinfo:108
-#, c-format
-msgid "%.0f"
-msgstr "%.0f"
+#: po/levelinfo:104
+msgid "High Road"
+msgstr "Trať vo výške"
+
+#: po/levelinfo:105
+msgid ""
+"Just stay on the path and collect herring. Oh yeah, and if you fall you'll "
+"be eating pine needles."
+msgstr ""
+"Len zostať na trati a zbierať slede. Aha, a ak spadnete, nakŕmite sa ihličím "
+"z borovíc."
+
+#: po/levelinfo:106
+msgid "The Narrow Way"
+msgstr "Úžina"
+
+#: po/levelinfo:107
+msgid ""
+"To put it simply, stay on the path or you lose! It's hard to see where "
+"you're going, there's trees in your way, and the herrings are hard to get. "
+"Good luck, you'll need it!"
+msgstr ""
+"Jednoducho povedané, zostaňte na trati, inak prehráte! Je ťažké sledovať, "
+"kam idete, lebo vám v ceste stoja stromy a slede je ťažké získať. Veľa "
+"štastia, budete ho potrebovať."
+
+#: po/levelinfo:108
+msgid "Hamburger Hill"
+msgstr "Kopec hamburgerov"
+
+#: po/levelinfo:109
+msgid ""
+"Hamburger Hill is steep, narrow, twisty, lumpy, icy, and rocky, with a few "
+"trees right in your way!"
+msgstr ""
+"Kopec hamburgerov je strmý, úzky, zľadovatelý a skalnatý so zákrutami a "
+"niekoľkými stromami rovno v ceste!"
+
+#: po/levelinfo:110
+msgid "Slalom"
+msgstr "Slalom"
+
+#: po/levelinfo:111
+msgid ""
+"Brake while you turn and the herrings on this pseudo-slalom will be yours."
+msgstr "Brzdite, keď zatáčate a slede na tomto pseudo-slalome budú vaše."
+
+#: po/levelinfo:112
+msgid "Who Says Penguins Can't Fly?"
+msgstr "Kto povedal, že tučniaky nevedia lietať?"
+
+#: po/levelinfo:113
+msgid ""
+"It'll be tough collecting herrings at speeds over 200, so try to brake "
+"whenever possible to get the required herring."
+msgstr ""
+"Bude ťažké zbierať slede pri rýchlosti cez 200, tak sa pokúst brzdiť kedy sa "
+"len bude dať, aby ste dostali potrebného sleďa."
 
 #: po/modelinfo:1
 msgid "Tux"
-msgstr ""
+msgstr "Tux"
 
 #: po/modelinfo:2
 msgid "Tux on Snowboard"
-msgstr ""
+msgstr "Tux na snowboarde"
+
+#~ msgid "Language:"
+#~ msgstr "Jazyk:"
+
+#~ msgid "Event:"
+#~ msgstr "Kampaň:"
+
+#~ msgid "Congratulations! You won the event!"
+#~ msgstr "Gratulujeme! Prešli ste kampaň!"

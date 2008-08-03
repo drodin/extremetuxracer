@@ -47,13 +47,13 @@ EventSelect::EventSelect()
 	pp::Vec2d pos( getparam_x_resolution()/2,
 				   getparam_y_resolution()/2+90);
 	
-	mp_titleLbl = new pp::Label(pos,"menu_label",_("Select event and cup"));
+	mp_titleLbl = new pp::Label(pos,"menu_label",_("Select campaign and cup"));
 	mp_titleLbl->alignment.center();
 	
 	
 	pos.x-=200;
 	pos.y-=40;
-	mp_eventLbl = new pp::Label(pos,"event_and_cup_label",_("Event:"));	
+	mp_eventLbl = new pp::Label(pos,"event_and_cup_label",_("Campaign:"));	
 	
 	pos.y-=50;
 	mp_eventListbox = new pp::Listbox<EventData>( pos,

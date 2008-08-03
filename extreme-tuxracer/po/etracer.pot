@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: etracer SVN Development\n"
 "Report-Msgid-Bugs-To: https://translations.edge.launchpad.net/etracer\n"
-"POT-Creation-Date: 2008-05-04 12:38+0200\n"
+"POT-Creation-Date: 2008-08-03 20:17+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -254,11 +254,11 @@ msgid "Tux Racer and the Tux Racer Name are Copyright © 2001 Jasmin F. Patry."
 msgstr ""
 
 #: src/event_select.cpp:50
-msgid "Select event and cup"
+msgid "Select campaign and cup"
 msgstr ""
 
 #: src/event_select.cpp:56
-msgid "Event:"
+msgid "Campaign:"
 msgstr ""
 
 #: src/event_select.cpp:67
@@ -330,70 +330,70 @@ msgstr ""
 msgid "Contributed by:"
 msgstr ""
 
-#: src/event_race_select.cpp:349 po/levelinfo:109
+#: src/event_race_select.cpp:349 po/levelinfo:16
 msgid "Unknown"
 msgstr ""
 
-#: src/game_over.cpp:101
+#: src/game_over.cpp:109
 msgid "Race aborted"
 msgstr ""
 
-#: src/game_over.cpp:104
+#: src/game_over.cpp:112
 msgid "Race Over"
 msgstr ""
 
-#: src/game_over.cpp:111
+#: src/game_over.cpp:119
 #, c-format
 msgid "Time: %02d:%02d.%02d"
 msgstr ""
 
-#: src/game_over.cpp:116
+#: src/game_over.cpp:124
 #, c-format
 msgid "Herring: %3d"
 msgstr ""
 
-#: src/game_over.cpp:121
+#: src/game_over.cpp:129
 #, c-format
 msgid "Score: %6d"
 msgstr ""
 
-#: src/game_over.cpp:127
+#: src/game_over.cpp:135
 #, c-format
 msgid "Max speed: %3d km/h"
 msgstr ""
 
-#: src/game_over.cpp:133
+#: src/game_over.cpp:141
 #, c-format
 msgid "Was flying: %.01f %% of time"
 msgstr ""
 
-#: src/game_over.cpp:143
+#: src/game_over.cpp:151
 #, c-format
 msgid "You made it to the %s place in the highscore!"
 msgstr ""
 
-#: src/game_over.cpp:153
+#: src/game_over.cpp:161
 msgid "You beat your best score!"
 msgstr ""
 
-#: src/game_over.cpp:156
-msgid "Congratulations! You won the event!"
+#: src/game_over.cpp:164
+msgid "Congratulations! You won the campaign!"
 msgstr ""
 
-#: src/game_over.cpp:158
+#: src/game_over.cpp:166
 msgid "Congratulations! You won the cup!"
 msgstr ""
 
-#: src/game_over.cpp:160
+#: src/game_over.cpp:168
 msgid "You advanced to the next race!"
 msgstr ""
 
-#: src/game_over.cpp:162
+#: src/game_over.cpp:170
 msgid "You didn't advance."
 msgstr ""
 
 #: src/game_type_select.cpp:36
-msgid "Enter an event"
+msgid "Enter a campaign"
 msgstr ""
 
 #: src/game_type_select.cpp:43
@@ -416,32 +416,36 @@ msgstr ""
 msgid "Graphics Configuration"
 msgstr ""
 
-#: src/graphicsconfig.cpp:104
+#: src/graphicsconfig.cpp:108
 msgid "Model:"
 msgstr ""
 
-#: src/graphicsconfig.cpp:113
+#: src/graphicsconfig.cpp:117
 msgid "Show UI Snow:"
 msgstr ""
 
-#: src/graphicsconfig.cpp:117
+#: src/graphicsconfig.cpp:121
 msgid "Display FPS:"
 msgstr ""
 
-#: src/graphicsconfig.cpp:121
+#: src/graphicsconfig.cpp:125
 msgid "Display Progress Bar:"
 msgstr ""
 
-#: src/graphicsconfig.cpp:125
+#: src/graphicsconfig.cpp:129
 msgid "Draw Fog:"
 msgstr ""
 
-#: src/graphicsconfig.cpp:129
+#: src/graphicsconfig.cpp:133
 msgid "Reflections:"
 msgstr ""
 
-#: src/graphicsconfig.cpp:133
+#: src/graphicsconfig.cpp:137
 msgid "Shadows:"
+msgstr ""
+
+#: src/graphicsconfig.cpp:141
+msgid "Draw Background:"
 msgstr ""
 
 #: src/highscore.cpp:88
@@ -590,104 +594,75 @@ msgid "FSAA Multisamples:"
 msgstr ""
 
 #: po/levelinfo:1
+#, c-format
+msgid "FPS: %.1f"
+msgstr ""
+
+#: po/levelinfo:2 po/levelinfo:3
+#, c-format
+msgid "%03d"
+msgstr ""
+
+#: po/levelinfo:4 po/levelinfo:5
+#, c-format
+msgid "%02d:%02d:%02d"
+msgstr ""
+
+#: po/levelinfo:6 po/levelinfo:8
+msgid "km/h"
+msgstr ""
+
+#: po/levelinfo:7 po/levelinfo:9
+#, c-format
+msgid "%.0f"
+msgstr ""
+
+#: po/levelinfo:10 po/levelinfo:11
+#, c-format
+msgid "%d:%d:%d"
+msgstr ""
+
+#: po/levelinfo:12 po/levelinfo:13
+#, c-format
+msgid "%d"
+msgstr ""
+
+#: po/levelinfo:14
 msgid "Doing"
 msgstr ""
 
-#: po/levelinfo:2
+#: po/levelinfo:15
 msgid ""
 "This course was probably created to present new textures introduced in "
 "PPRacer."
 msgstr ""
 
-#: po/levelinfo:3
+#: po/levelinfo:17
 msgid "Hippo Run"
 msgstr ""
 
-#: po/levelinfo:4
+#: po/levelinfo:18
 msgid ""
 "In Hippo Run, you slide down an icy slope as a penguin, I honestly don't "
 "know what this has to do with hippos or running..."
 msgstr ""
 
-#: po/levelinfo:5
-msgid "In Search of Vodka"
-msgstr ""
-
-#: po/levelinfo:6
-msgid ""
-"Tux needs some needs some vodka to warm up his cold belly. Alas, his liquor "
-"cabinet has been pillaged. Join Tux on the quest for vodka.Pick up herring "
-"for dinner along the way!"
-msgstr ""
-
-#: po/levelinfo:7
-msgid "Crazy Path"
-msgstr ""
-
-#: po/levelinfo:8
-msgid ""
-"You'll have trouble slowing down on this one. There's lots of herring, but "
-"be careful not to fly too much or you won't get any."
-msgstr ""
-
-#: po/levelinfo:9
-msgid "Hey, Tux!"
-msgstr ""
-
-#: po/levelinfo:10
-msgid "This course offers true excitement for your race-loving penguin buddy."
-msgstr ""
-
-#: po/levelinfo:11
+#: po/levelinfo:19
 msgid "Ice Pipeline"
 msgstr ""
 
-#: po/levelinfo:12
+#: po/levelinfo:20
 msgid "A short, slippery ice-trough with herring scattered throughout."
 msgstr ""
 
-#: po/levelinfo:13
-msgid "Slippy-Slidey"
-msgstr ""
-
-#: po/levelinfo:14
-msgid "Slide on the slippery frozen river in a hilly forest, slipperily."
-msgstr ""
-
-#: po/levelinfo:15
-msgid "Volcanoes"
-msgstr ""
-
-#: po/levelinfo:16
-msgid ""
-"This gigantic crater was full of water, and herring, but now it's all "
-"frozen, and yours for the taking."
-msgstr ""
-
-#: po/levelinfo:17
-msgid "Merry Go Round"
-msgstr ""
-
-#: po/levelinfo:18
-msgid "Try to build up enough speed to jump from one roundabout to the next."
-msgstr ""
-
-#: po/levelinfo:19
-msgid "Bobsled Ride"
-msgstr ""
-
-#: po/levelinfo:20
-msgid "Just like a real bobsled ride, only more dangerous."
-msgstr ""
-
 #: po/levelinfo:21
-msgid "Candy Lane"
+msgid "Volcanoes"
 msgstr ""
 
 #: po/levelinfo:22
 msgid ""
-"Mostly ice, with very few obstacles in your path, this is like a stroll down "
-"Candy Lane."
+"This gigantic crater was full of water, and herring, but now it's all "
+"frozen, and yours for the taking."
 msgstr ""
 
 #: po/levelinfo:23
@@ -721,370 +696,408 @@ msgid "The Final Three"
 msgstr ""
 
 #: po/levelinfo:30
-msgid "Hazzard Valley"
+msgid "Slippy-Slidey"
 msgstr ""
 
 #: po/levelinfo:31
-msgid ""
-"Hazzard Valley is full of hazards, like trees, deep caverns, spikes, and "
-"huge areas of rocky plains, not to mention your speed being your enemy in "
-"trying to get the herrings and stay on course!"
+msgid "Slide on the slippery frozen river in a hilly forest, slipperily."
 msgstr ""
 
 #: po/levelinfo:32
-msgid "Mt. Herring"
+msgid "Crazy Path"
 msgstr ""
 
 #: po/levelinfo:33
 msgid ""
-"Mt. Herring is relatively fast but long, somewhat bumpy in places, and has "
-"some wide open areas and branching paths. Lots of herrings to collect though "
-"it can be difficult unless you watch your speed."
+"You'll have trouble slowing down on this one. There's lots of herring, but "
+"be careful not to fly too much or you won't get any."
 msgstr ""
 
 #: po/levelinfo:34
-msgid "Ski Jump"
+msgid "Candy Lane"
 msgstr ""
 
 #: po/levelinfo:35
 msgid ""
-"Steering will be unnecessary, just line yourself up and reap the rewards. "
-"Rememember, acceleration will slow you down after a while."
+"Mostly ice, with very few obstacles in your path, this is like a stroll down "
+"Candy Lane."
 msgstr ""
 
 #: po/levelinfo:36
-msgid "Keep It Up"
+msgid "Merry Go Round"
 msgstr ""
 
 #: po/levelinfo:37
-msgid ""
-"If you fall you might as well just quit then and there, 'cause your chances "
-"are slim on the rocky ground."
+msgid "Try to build up enough speed to jump from one roundabout to the next."
 msgstr ""
 
 #: po/levelinfo:38
-msgid "High Road"
+msgid "Hey, Tux!"
 msgstr ""
 
 #: po/levelinfo:39
-msgid ""
-"Just stay on the path and collect herring. Oh yeah, and if you fall you'll "
-"be eating pine needles."
+msgid "This course offers true excitement for your race-loving penguin buddy."
 msgstr ""
 
 #: po/levelinfo:40
-msgid "Hamburger Hill"
+msgid "Bobsled Ride"
 msgstr ""
 
 #: po/levelinfo:41
-msgid ""
-"Hamburger Hill is steep, narrow, twisty, lumpy, icy, and rocky, with a few "
-"trees right in your way!"
+msgid "Just like a real bobsled ride, only more dangerous."
 msgstr ""
 
 #: po/levelinfo:42
-msgid "Slalom"
+msgid "In Search of Vodka"
 msgstr ""
 
 #: po/levelinfo:43
 msgid ""
-"Brake while you turn and the herrings on this pseudo-slalom will be yours."
+"Tux needs some needs some vodka to warm up his cold belly. Alas, his liquor "
+"cabinet has been pillaged. Join Tux on the quest for vodka.Pick up herring "
+"for dinner along the way!"
 msgstr ""
 
 #: po/levelinfo:44
-msgid "Mt. Satan"
-msgstr ""
-
-#: po/levelinfo:45
-msgid ""
-"Mount Satan is a sister mountain to Dead Man's Drop. No surprises here, just "
-"a steep, bumpy, twisty path full of trees to get through."
-msgstr ""
-
-#: po/levelinfo:46
-msgid "The Narrow Way"
-msgstr ""
-
-#: po/levelinfo:47
-msgid ""
-"To put it simply, stay on the path or you lose! It's hard to see where "
-"you're going, there's trees in your way, and the herrings are hard to get. "
-"Good luck, you'll need it!"
-msgstr ""
-
-#: po/levelinfo:48
-msgid "Dead Man's Drop"
-msgstr ""
-
-#: po/levelinfo:49
-msgid ""
-"Pretty tough hill. It's fast, steep, lumpy, twisty, and full of trees. Hard "
-"to get herrings. Don't forget the drop."
-msgstr ""
-
-#: po/levelinfo:50
-msgid "Snow Valley"
-msgstr ""
-
-#: po/levelinfo:51
-msgid ""
-"Snow Valley is a relatively flat, and very fast course. You'll find a few "
-"herrings very difficult to get if you're going for a perfect score! Watch "
-"your speed in certain areas to get the most herrings!"
-msgstr ""
-
-#: po/levelinfo:52
-msgid "Tux Toboggan Run"
-msgstr ""
-
-#: po/levelinfo:53
-msgid ""
-"Collect herrings in an ice channel with various paths and many high and low "
-"speed passages. Watch out for the occasional tree."
-msgstr ""
-
-#: po/levelinfo:54
-msgid "Skull Mountain"
-msgstr ""
-
-#: po/levelinfo:55
-msgid ""
-"Skull mountain is a steep, twisty drop around tree-filled inner peaks. "
-"Expect to miss a lot of herrings and crash a lot."
-msgstr ""
-
-#: po/levelinfo:56
-msgid "Who Says Penguins Can't Fly?"
-msgstr ""
-
-#: po/levelinfo:57
-msgid ""
-"It'll be tough collecting herrings at speeds over 200, so try to brake "
-"whenever possible to get the required herring."
-msgstr ""
-
-#: po/levelinfo:58
-msgid "Ice Labyrinth"
-msgstr ""
-
-#: po/levelinfo:59
-msgid ""
-"You choose your destiny, you could end up full or starving depending on the "
-"path you pick."
-msgstr ""
-
-#: po/levelinfo:60
-msgid "I've Got A Woody"
-msgstr ""
-
-#: po/levelinfo:61
-msgid ""
-"Yet another horrible elevated ice-coaster. If you thought the last two were "
-"hard, try this one. Have fun winding through the woods.  Look out for a huge "
-"shortcut!!"
-msgstr ""
-
-#: po/levelinfo:62
-msgid "Herring Run"
-msgstr ""
-
-#: po/levelinfo:63
-msgid "Mountain Man"
-msgstr ""
-
-#: po/levelinfo:64
-msgid "Valley Cup"
-msgstr ""
-
-#: po/levelinfo:65
-msgid "Tux the winter sportsman"
-msgstr ""
-
-#: po/levelinfo:66
-msgid "Highway To Hell"
-msgstr ""
-
-#: po/levelinfo:67
-msgid "Frozen Lakes"
-msgstr ""
-
-#: po/levelinfo:68
-msgid ""
-"To reach the finish you must pass several frozen lakes. Watch your speed on "
-"the ice - there are some dangerous corners."
-msgstr ""
-
-#: po/levelinfo:69
-msgid "Challenge One"
-msgstr ""
-
-#: po/levelinfo:70
-msgid ""
-"A very dangerous path along the mountains. Try to catch more than 60 "
-"herrings. Warning: The course is very difficult and there are some "
-"situations where you can get stuck."
-msgstr ""
-
-#: po/levelinfo:71
-msgid "Secret Valleys"
-msgstr ""
-
-#: po/levelinfo:72
-msgid ""
-"Your task: Find the hidden valleys and the ten groups of dead trees. Look "
-"around, the ways are not easy to find."
-msgstr ""
-
-#: po/levelinfo:73
-msgid "In Search of the Holy Grail"
-msgstr ""
-
-#: po/levelinfo:74
-msgid ""
-"An adventure course with a simple task: Find the grail! Warning: It is very "
-"difficult to find the way."
-msgstr ""
-
-#: po/levelinfo:75
-msgid "Explore the Mountains"
-msgstr ""
-
-#: po/levelinfo:76
-msgid "Can you find your way through the icy, dangerous mountains. I doubt it."
-msgstr ""
-
-#: po/levelinfo:77
 msgid "Tux at Home"
 msgstr ""
 
-#: po/levelinfo:78
+#: po/levelinfo:45
 msgid ""
 "Here lives Tux. You can take the corridore on the right - it's the shortest "
 "and fastest way. But if you want to catch some herrings you have to enter "
 "the rooms on the left."
 msgstr ""
 
-#: po/levelinfo:79
+#: po/levelinfo:46
+msgid "The Niehoff Experience"
+msgstr ""
+
+#: po/levelinfo:47
+msgid "Search, Search, Search"
+msgstr ""
+
+#: po/levelinfo:48
+msgid "Mountains and Hills"
+msgstr ""
+
+#: po/levelinfo:49
+msgid "The Final Challenge"
+msgstr ""
+
+#: po/levelinfo:50
 msgid "Wild Mountains"
 msgstr ""
 
-#: po/levelinfo:80
+#: po/levelinfo:51
 msgid ""
 "A wild landscape of ice and snow. It isn't easy to keep the right way. Not "
 "for beginners."
 msgstr ""
 
-#: po/levelinfo:81
+#: po/levelinfo:52
+msgid "In Search of the Holy Grail"
+msgstr ""
+
+#: po/levelinfo:53
+msgid ""
+"An adventure course with a simple task: Find the grail! Warning: It is very "
+"difficult to find the way."
+msgstr ""
+
+#: po/levelinfo:54
+msgid "Frozen Lakes"
+msgstr ""
+
+#: po/levelinfo:55
+msgid ""
+"To reach the finish you must pass several frozen lakes. Watch your speed on "
+"the ice - there are some dangerous corners."
+msgstr ""
+
+#: po/levelinfo:56
 msgid "Chinese Wall"
 msgstr ""
 
-#: po/levelinfo:82
+#: po/levelinfo:57
 msgid ""
 "The Great Wall of China in winter. Try to stay on top of the wall - that's "
 "where the herrings are. If you fall off you can try to jump back up, there "
 "are 7 hidden ramps. You'll get a lot of exercise."
 msgstr ""
 
-#: po/levelinfo:83
-msgid "The Niehoff Experience"
+#: po/levelinfo:58
+msgid "Secret Valleys"
 msgstr ""
 
-#: po/levelinfo:84
-msgid "Search, Search, Search"
-msgstr ""
-
-#: po/levelinfo:85
-msgid "Mountains and Hills"
-msgstr ""
-
-#: po/levelinfo:86
-msgid "The Final Challenge"
-msgstr ""
-
-#: po/levelinfo:87
-msgid "Bumpy Ride"
-msgstr ""
-
-#: po/levelinfo:88
+#: po/levelinfo:59
 msgid ""
-"This hill has a series of ramps to tackle.  Be sure to line yourself up "
-"before getting airborne."
+"Your task: Find the hidden valleys and the ten groups of dead trees. Look "
+"around, the ways are not easy to find."
 msgstr ""
 
-#: po/levelinfo:89
-msgid "Bunny Hill"
+#: po/levelinfo:60
+msgid "Explore the Mountains"
 msgstr ""
 
-#: po/levelinfo:90
+#: po/levelinfo:61
+msgid "Can you find your way through the icy, dangerous mountains. I doubt it."
+msgstr ""
+
+#: po/levelinfo:62
+msgid "Challenge One"
+msgstr ""
+
+#: po/levelinfo:63
 msgid ""
-"Let's start out easy, just collect the herring in the time limit and you'll "
-"be fine. The best part is that you don't have to use those stupid T-lifts."
+"A very dangerous path along the mountains. Warning: The course is very "
+"difficult and there are some situations where you can get stuck."
 msgstr ""
 
-#: po/levelinfo:91
-msgid "Twisty Slope"
-msgstr ""
-
-#: po/levelinfo:92
-msgid ""
-"Tight twists make grabbing herring difficult.  Hard turns and not too much "
-"braking will lead you to victory."
-msgstr ""
-
-#: po/levelinfo:93
-msgid "Frozen River"
-msgstr ""
-
-#: po/levelinfo:94
-msgid ""
-"Keep your speed down to collect herring. You have plenty of time, so don't "
-"rush things."
-msgstr ""
-
-#: po/levelinfo:95
+#: po/levelinfo:64
 msgid "Path of Daggers"
 msgstr ""
 
-#: po/levelinfo:96
+#: po/levelinfo:65
 msgid ""
 "Big spikes may prove to be the least of your worries on this course. Muliple "
 "paths allow you to take low or high roads, each with their own challenges."
 msgstr ""
 
-#: po/levelinfo:97
+#: po/levelinfo:66
 msgid "Tux Racer Classics"
 msgstr ""
 
-#: po/levelinfo:98
+#: po/levelinfo:67
 msgid "Canadian Cup"
 msgstr ""
 
-#: po/levelinfo:99
+#: po/levelinfo:68
 msgid "Swiss Cup"
 msgstr ""
 
+#: po/levelinfo:69
+msgid "Bumpy Ride"
+msgstr ""
+
+#: po/levelinfo:70
+msgid ""
+"This hill has a series of ramps to tackle.  Be sure to line yourself up "
+"before getting airborne."
+msgstr ""
+
+#: po/levelinfo:71
+msgid "Bunny Hill"
+msgstr ""
+
+#: po/levelinfo:72
+msgid ""
+"Let's start out easy, just collect the herring in the time limit and you'll "
+"be fine. The best part is that you don't have to use those stupid T-lifts."
+msgstr ""
+
+#: po/levelinfo:73
+msgid "Frozen River"
+msgstr ""
+
+#: po/levelinfo:74
+msgid ""
+"Keep your speed down to collect herring. You have plenty of time, so don't "
+"rush things."
+msgstr ""
+
+#: po/levelinfo:75
+msgid "Twisty Slope"
+msgstr ""
+
+#: po/levelinfo:76
+msgid ""
+"Tight twists make grabbing herring difficult.  Hard turns and not too much "
+"braking will lead you to victory."
+msgstr ""
+
+#: po/levelinfo:77
+msgid "Mt. Herring"
+msgstr ""
+
+#: po/levelinfo:78
+msgid ""
+"Mt. Herring is relatively fast but long, somewhat bumpy in places, and has "
+"some wide open areas and branching paths. Lots of herrings to collect though "
+"it can be difficult unless you watch your speed."
+msgstr ""
+
+#: po/levelinfo:79
+msgid "Herring Run"
+msgstr ""
+
+#: po/levelinfo:80
+msgid "Mountain Man"
+msgstr ""
+
+#: po/levelinfo:81
+msgid "Valley Cup"
+msgstr ""
+
+#: po/levelinfo:82
+msgid "Tux the winter sportsman"
+msgstr ""
+
+#: po/levelinfo:83
+msgid "Highway To Hell"
+msgstr ""
+
+#: po/levelinfo:84
+msgid "Ice Labyrinth"
+msgstr ""
+
+#: po/levelinfo:85
+msgid ""
+"You choose your destiny, you could end up full or starving depending on the "
+"path you pick."
+msgstr ""
+
+#: po/levelinfo:86
+msgid "Snow Valley"
+msgstr ""
+
+#: po/levelinfo:87
+msgid ""
+"Snow Valley is a relatively flat, and very fast course. You'll find a few "
+"herrings very difficult to get if you're going for a perfect score! Watch "
+"your speed in certain areas to get the most herrings!"
+msgstr ""
+
+#: po/levelinfo:88
+msgid "Tux Toboggan Run"
+msgstr ""
+
+#: po/levelinfo:89
+msgid ""
+"Collect herrings in an ice channel with various paths and many high and low "
+"speed passages. Watch out for the occasional tree."
+msgstr ""
+
+#: po/levelinfo:90
+msgid "Hazzard Valley"
+msgstr ""
+
+#: po/levelinfo:91
+msgid ""
+"Hazzard Valley is full of hazards, like trees, deep caverns, spikes, and "
+"huge areas of rocky plains, not to mention your speed being your enemy in "
+"trying to get the herrings and stay on course!"
+msgstr ""
+
+#: po/levelinfo:92
+msgid "Skull Mountain"
+msgstr ""
+
+#: po/levelinfo:93
+msgid ""
+"Skull mountain is a steep, twisty drop around tree-filled inner peaks. "
+"Expect to miss a lot of herrings and crash a lot."
+msgstr ""
+
+#: po/levelinfo:94
+msgid "Keep It Up"
+msgstr ""
+
+#: po/levelinfo:95
+msgid ""
+"If you fall you might as well just quit then and there, 'cause your chances "
+"are slim on the rocky ground."
+msgstr ""
+
+#: po/levelinfo:96
+msgid "Dead Man's Drop"
+msgstr ""
+
+#: po/levelinfo:97
+msgid ""
+"Pretty tough hill. It's fast, steep, lumpy, twisty, and full of trees. Hard "
+"to get herrings. Don't forget the drop."
+msgstr ""
+
+#: po/levelinfo:98
+msgid "I've Got A Woody"
+msgstr ""
+
+#: po/levelinfo:99
+msgid ""
+"Yet another horrible elevated ice-coaster. If you thought the last two were "
+"hard, try this one. Have fun winding through the woods.  Look out for a huge "
+"shortcut!!"
+msgstr ""
+
 #: po/levelinfo:100
-#, c-format
-msgid "FPS: %.1f"
+msgid "Mt. Satan"
 msgstr ""
 
-#: po/levelinfo:101 po/levelinfo:102
-#, c-format
-msgid "%03d"
+#: po/levelinfo:101
+msgid ""
+"Mount Satan is a sister mountain to Dead Man's Drop. No surprises here, just "
+"a steep, bumpy, twisty path full of trees to get through."
 msgstr ""
 
-#: po/levelinfo:103 po/levelinfo:104
-#, c-format
-msgid "%02d:%02d:%02d"
+#: po/levelinfo:102
+msgid "Ski Jump"
 msgstr ""
 
-#: po/levelinfo:105 po/levelinfo:107
-msgid "km/h"
+#: po/levelinfo:103
+msgid ""
+"Steering will be unnecessary, just line yourself up and reap the rewards. "
+"Rememember, acceleration will slow you down after a while."
 msgstr ""
 
-#: po/levelinfo:106 po/levelinfo:108
-#, c-format
-msgid "%.0f"
+#: po/levelinfo:104
+msgid "High Road"
+msgstr ""
+
+#: po/levelinfo:105
+msgid ""
+"Just stay on the path and collect herring. Oh yeah, and if you fall you'll "
+"be eating pine needles."
+msgstr ""
+
+#: po/levelinfo:106
+msgid "The Narrow Way"
+msgstr ""
+
+#: po/levelinfo:107
+msgid ""
+"To put it simply, stay on the path or you lose! It's hard to see where "
+"you're going, there's trees in your way, and the herrings are hard to get. "
+"Good luck, you'll need it!"
+msgstr ""
+
+#: po/levelinfo:108
+msgid "Hamburger Hill"
+msgstr ""
+
+#: po/levelinfo:109
+msgid ""
+"Hamburger Hill is steep, narrow, twisty, lumpy, icy, and rocky, with a few "
+"trees right in your way!"
+msgstr ""
+
+#: po/levelinfo:110
+msgid "Slalom"
+msgstr ""
+
+#: po/levelinfo:111
+msgid ""
+"Brake while you turn and the herrings on this pseudo-slalom will be yours."
+msgstr ""
+
+#: po/levelinfo:112
+msgid "Who Says Penguins Can't Fly?"
+msgstr ""
+
+#: po/levelinfo:113
+msgid ""
+"It'll be tough collecting herrings at speeds over 200, so try to brake "
+"whenever possible to get the required herring."
 msgstr ""
 
 #: po/modelinfo:1

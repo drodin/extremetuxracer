@@ -1,16 +1,16 @@
-# Translation of Extreme Tux Racer to Spanish
-#
-# Copyright (C) 2008 The Extreme Tux Racer team
+# Irish translation for etracer
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
 # This file is distributed under the same license as the etracer package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Extreme Tux Racer\n"
+"Project-Id-Version: etracer\n"
 "Report-Msgid-Bugs-To: https://translations.edge.launchpad.net/etracer\n"
 "POT-Creation-Date: 2008-08-03 20:17+0200\n"
-"PO-Revision-Date: 2008-04-21 11:34+0000\n"
-"Last-Translator: Paweł Drewniak <Unknown>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2008-06-28 11:56+0000\n"
+"Last-Translator: Seanan <Unknown>\n"
+"Language-Team: Irish <ga@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,245 +19,246 @@ msgstr ""
 
 #: src/audioconfig.cpp:36
 msgid "Audio Configuration"
-msgstr "Configuración del sonido"
+msgstr "Cumraíocht Fuaime"
 
 #: src/audioconfig.cpp:112
 msgid "Sound Effects:"
-msgstr "Efectos de sonido:"
+msgstr "Maisíocht Fuaime:"
 
 #: src/audioconfig.cpp:116
 msgid "Music:"
-msgstr "Musica:"
+msgstr "Ceol:"
 
 #: src/audioconfig.cpp:120
 msgid "(needs restart)"
-msgstr "(requiere reiniciar)"
+msgstr "(tá atosú de dhíth)"
 
 #: src/audioconfig.cpp:122
 msgid "Disable Audio:"
-msgstr "Desactivar sonido:"
+msgstr "Díchumasaigh an Fhuaim:"
 
 #: src/audioconfig.cpp:126
 msgid "Stereo:"
-msgstr "Stereo:"
+msgstr "Steiriófónach:"
 
 #: src/audioconfig.cpp:130
 msgid "Bits Per Sample:"
-msgstr "Bits por muestra:"
+msgstr "Beartanna An Sampla:"
 
 #: src/audioconfig.cpp:134
 msgid "Samples Per Second:"
-msgstr "Muestras por segundo:"
+msgstr "Samplaí An Soicind:"
 
 #: src/configmode.cpp:36
 msgid "Cancel"
-msgstr "Cancelar"
+msgstr "Cealaigh"
 
 #: src/configmode.cpp:43
 msgid "Ok"
-msgstr "Ok"
+msgstr "Tá go maith"
 
 #: src/configuration.cpp:38 src/game_type_select.cpp:57 src/paused.cpp:62
 msgid "Configuration"
-msgstr "Configuración"
+msgstr "Cumraíocht"
 
 #: src/configuration.cpp:45 src/credits.cpp:89
 msgid "Graphics"
-msgstr "Gráficos"
+msgstr "Grafaicí"
 
 #: src/configuration.cpp:52
 msgid "Video"
-msgstr "Vídeo"
+msgstr "Físeán"
 
 #: src/configuration.cpp:59
 msgid "Audio"
-msgstr "Sonido"
+msgstr "Fuaim"
 
 #: src/configuration.cpp:66
 msgid "Keyboard"
-msgstr "Teclado"
+msgstr "Méarchlár"
 
 #: src/configuration.cpp:73
 msgid "Joystick"
-msgstr "Joystick"
+msgstr "Luamhán Stiúrtha"
 
 #: src/configuration.cpp:81 src/event_select.cpp:96
 #: src/event_race_select.cpp:53 src/highscore.cpp:413
 msgid "Back"
-msgstr "Atrás"
+msgstr "Siar"
 
 #: src/credits.cpp:43
 msgid "Version 0.4"
-msgstr ""
+msgstr "Leagan 0.4"
 
 #: src/credits.cpp:46
 msgid "Extreme Tux Racer is in the process of being"
-msgstr ""
+msgstr "Tá Extreme Tux Racer á"
 
 #: src/credits.cpp:47
 msgid "completely rewritten. All versions after 0.35,"
-msgstr ""
+msgstr "athscríobh go huile is go hiomlán. Ní bheidh athruithe móra cód"
 
 #: src/credits.cpp:48
 msgid "including this one, won't have major code changes"
-msgstr ""
+msgstr "ag gach leagan tar éis 0.35, an ceann seo san áireamh,"
 
 #: src/credits.cpp:49
 msgid "because the programmers are busy making a new,"
-msgstr ""
+msgstr "mar tá na ríomhchláraitheoirí gnóthach ag cruthú"
 
 #: src/credits.cpp:50
 msgid "improved game."
-msgstr ""
+msgstr "cluiche nua feabhsaithe."
 
 #: src/credits.cpp:52
 msgid "Extreme Tux Racer is based on"
-msgstr ""
+msgstr "Tá Extreme Tux Racer bunaithe ar"
 
 #: src/credits.cpp:53
 msgid "PlanetPenguin Racer, Open Racer and Tux Racer."
-msgstr ""
+msgstr "PlanetPenguin Racer, Open Racer agus Tux Racer."
 
 #: src/credits.cpp:55
 msgid "Some courses may have been modified from their"
-msgstr ""
+msgstr "Athraíodh roinnt de na rianta óna"
 
 #: src/credits.cpp:56
 msgid "original versions to fit the requirements of the game."
-msgstr ""
+msgstr "leagain bunaidh chun a bheith oiriúnach don cluiche."
 
 #: src/credits.cpp:58
 msgid "Development"
-msgstr ""
+msgstr "Forbairt"
 
 #: src/credits.cpp:63
 msgid "from Sunspire Studios:"
-msgstr ""
+msgstr "ó Sunspire Studios:"
 
 #: src/credits.cpp:71
 msgid "Non-Rewrite Version Organization"
-msgstr ""
+msgstr "Eagras Leagan Neamh-Athscríobh"
 
 #: src/credits.cpp:74
 msgid "Translators"
-msgstr ""
+msgstr "Aistritheoirí"
 
 #: src/credits.cpp:87
 msgid "Other (incomplete) translations are from the PPRacer Project."
-msgstr ""
+msgstr "Tá na haistriúcháin (neamhchríochnaithe) eile ón Tionscadal PPRacer."
 
 #: src/credits.cpp:90
 msgid "Nicosmos (Logo, Hud Graphics)"
-msgstr ""
+msgstr "Nicosmos (Comhartha, Grafaic Hud)"
 
 #: src/credits.cpp:91
 msgid "Christian Picon (Objects, Skyboxes)"
-msgstr ""
+msgstr "Christian Picon (Nithe, Boscaí an Lucht Féachana)"
 
 #: src/credits.cpp:92
 msgid "Reinhard Niehoff (Trees)"
-msgstr ""
+msgstr "Reinhard Niehoff (Crainn)"
 
 #: src/credits.cpp:93
 msgid "Daniel Poeira and Christian Picon (Font)"
-msgstr ""
+msgstr "Daniel Poeira agus Christian Picon (Clófhoireann)"
 
 #: src/credits.cpp:95
 msgid "Music"
-msgstr ""
+msgstr "Ceol"
 
 #: src/credits.cpp:97
 msgid "'Race 1'"
-msgstr ""
+msgstr "'Rás 1'"
 
 #: src/credits.cpp:98
 msgid "'Menu'"
-msgstr ""
+msgstr "Roghchlár"
 
 #: src/credits.cpp:99
 msgid "'Options'"
-msgstr ""
+msgstr "Roghanna"
 
 #: src/credits.cpp:100
 msgid "'Won Race'"
-msgstr ""
+msgstr "'Bhuaigh Tú An Rás'"
 
 #: src/credits.cpp:103
 msgid "'Credits Ballad'"
-msgstr ""
+msgstr "'Bailéad an Bhuíochais'"
 
 #: src/credits.cpp:105
 msgid "Misc. PPRacer Contributors"
-msgstr ""
+msgstr "Rannpháirtithe Ilghnéitheacha PPRacer"
 
 #: src/credits.cpp:110
 msgid "Thanks To"
-msgstr ""
+msgstr "Buíochas le"
 
 #: src/credits.cpp:111
 msgid "(for Exteme Tux Racer)"
-msgstr ""
+msgstr "(as ucht Extreme Tux Racer)"
 
 #: src/credits.cpp:112
 msgid "Ranger (for hosting the website)"
-msgstr ""
+msgstr "Ranger (as ucht an láithreán gréasáin a óstáil)"
 
 #: src/credits.cpp:113
 msgid "Slythfox (for making the website)"
-msgstr ""
+msgstr "Slythfox (as ucht an láithreán gréasáin a dhéanamh)"
 
 #: src/credits.cpp:114
 msgid "The Course Creators"
-msgstr ""
+msgstr "Cruthathóirí an Chúrsa"
 
 #: src/credits.cpp:115
 msgid "The OpenRacer project"
-msgstr ""
+msgstr "An tionscadal OpenRacer"
 
 #: src/credits.cpp:116
 msgid "Reinhard Niehoff (for helping with code modification)"
-msgstr ""
+msgstr "Reinhard Niehoff (as ucht cabhrú le mionathrú códanna)"
 
 #: src/credits.cpp:117
 msgid "All the people on the forum"
-msgstr ""
+msgstr "Gach uile duine ar an clár plé"
 
 #: src/credits.cpp:118
 msgid "Larry Ewing (creator of Tux)"
-msgstr ""
+msgstr "Larry Ewing (cruthaitheoir Tux)"
 
 #: src/credits.cpp:119
 msgid "(for Tux Racer)"
-msgstr ""
+msgstr "(as ucht Tux Racer)"
 
 #: src/credits.cpp:126
 msgid "Tux Racer is a trademark of Jasmin F. Patry."
-msgstr ""
+msgstr "Is comhartha tráchtála de chuid Jasmin F. Patry é Tux Racer."
 
 #: src/credits.cpp:127
 msgid "Extreme Tux Racer is licenced under the GPL."
-msgstr ""
+msgstr "Tá Extreme Tux Racer ceadúnaithe faoin GPL."
 
 #: src/credits.cpp:128
 msgid "We grant use of the name 'Extreme Tux Racer'"
-msgstr ""
+msgstr "Dámhaimid cead feidhm a bhaint as an t-ainm 'Extreme Tux Racer'"
 
 #: src/credits.cpp:129
 msgid "to any forks or continuations."
-msgstr ""
+msgstr "do gabhlóg nó leanúint ar bith."
 
 #: src/credits.cpp:131
 msgid "PlanetPenguin Racer is Copyright © 2005 Volker Stroebel."
-msgstr ""
+msgstr "Is Cóipcheart é PlanetPenguin Racer © 2005 Volker Stroebel."
 
 #: src/credits.cpp:132
 msgid "Tux Racer and the Tux Racer Name are Copyright © 2001 Jasmin F. Patry."
 msgstr ""
+"Is Cóipcheart iad Tux Racer agus an t-Ainm Tux Racer © 2001 Jasmin F. Patry."
 
 #: src/event_select.cpp:50
 #, fuzzy
 msgid "Select campaign and cup"
-msgstr "Elige evento y copa"
+msgstr "Roghnaigh teagmhas agus corn"
 
 #: src/event_select.cpp:56
 msgid "Campaign:"
@@ -265,188 +266,188 @@ msgstr ""
 
 #: src/event_select.cpp:67
 msgid "Cup:"
-msgstr "Copa:"
+msgstr "Corn:"
 
 #: src/event_select.cpp:87
 msgid "Player name:"
-msgstr "Nombre del jugador:"
+msgstr "Ainm an imreora:"
 
 #: src/event_select.cpp:104
 msgid "Continue"
-msgstr "Continuar"
+msgstr "Ar Aghaidh"
 
 #: src/event_select.cpp:158
 msgid "You've won this cup!"
-msgstr "¡Has ganado esta copa!"
+msgstr "Bhuaigh tú an corn seo!"
 
 #: src/event_select.cpp:160
 msgid "You must complete this cup next"
-msgstr "Tienes que completar esta copa"
+msgstr "Caithfidh tú an corn seo a chríochnú anois"
 
 #: src/event_select.cpp:162
 msgid "You cannot enter this cup yet"
-msgstr "Todavía no puedes acceder a esta copa"
+msgstr "Ní féidir cur isteach sa chomórtas seo fós"
 
 #: src/event_race_select.cpp:45
 msgid "Select a race"
-msgstr "Elige una carrera"
+msgstr "Roghnaigh rás"
 
 #: src/event_race_select.cpp:60
 msgid "Race!"
-msgstr "¡Correr!"
+msgstr "Imir"
 
 #: src/event_race_select.cpp:280
 msgid "You don't have any lives left."
-msgstr "No te quedan vidas."
+msgstr "Níl saol ar bith fágtha agat."
 
 #: src/event_race_select.cpp:285
 msgid "Race won! Your result:"
-msgstr "¡Victoria! Resultado:"
+msgstr "Bhuaigh tú an rás! Do thoradh:"
 
 #: src/event_race_select.cpp:289
 msgid "Needed to advance:"
-msgstr "Necesario para avanzar:"
+msgstr "Tá na nithe seo a leanas de dhíth chun dul chun cinn a dhéanamh:"
 
 #: src/event_race_select.cpp:293
 msgid "You can't enter this race yet."
-msgstr "Todavía no puedes acceder a esta carrera."
+msgstr "Ní féidir cur isteach sa rás seo fós."
 
 #: src/event_race_select.cpp:316
 msgid "Time:"
-msgstr "Tiempo:"
+msgstr "Am:"
 
 #: src/event_race_select.cpp:320
 #, c-format
 msgid "%02d:%02d.%02d"
-msgstr ""
+msgstr "%02d:%02d.%02d"
 
 #: src/event_race_select.cpp:324
 msgid "Herring:"
-msgstr "Arenques:"
+msgstr "Scadáin:"
 
 #: src/event_race_select.cpp:332
 msgid "Score:"
-msgstr "Puntuación:"
+msgstr "Scór:"
 
 #: src/event_race_select.cpp:341
 msgid "Contributed by:"
-msgstr "Autor:"
+msgstr "Churtha leis ag:"
 
 #: src/event_race_select.cpp:349 po/levelinfo:16
 msgid "Unknown"
-msgstr "Desconocido"
+msgstr "Ní fios"
 
 #: src/game_over.cpp:109
 msgid "Race aborted"
-msgstr "Carrera abortada"
+msgstr "Tobscoireadh an rás"
 
 #: src/game_over.cpp:112
 msgid "Race Over"
-msgstr "Carrera terminada"
+msgstr "Tá an Rás Chríochnaithe"
 
 #: src/game_over.cpp:119
 #, c-format
 msgid "Time: %02d:%02d.%02d"
-msgstr "Tiempo: %02d:%02d.%02d"
+msgstr "Am: %02d:%02d.%02d"
 
 #: src/game_over.cpp:124
 #, c-format
 msgid "Herring: %3d"
-msgstr "Arenques: %3d"
+msgstr "Scadáin: %3d"
 
 #: src/game_over.cpp:129
 #, c-format
 msgid "Score: %6d"
-msgstr "Puntuación: %6d"
+msgstr "Scór: %6d"
 
 #: src/game_over.cpp:135
 #, c-format
 msgid "Max speed: %3d km/h"
-msgstr "Velocidad máxima: %3d km/h"
+msgstr "Uasluas: %3d km/u"
 
 #: src/game_over.cpp:141
 #, c-format
 msgid "Was flying: %.01f %% of time"
-msgstr "Volando el %.01f %% del tiempo"
+msgstr "Bhí tú ag eitilt: %.01f %% den t-am"
 
 #: src/game_over.cpp:151
 #, c-format
 msgid "You made it to the %s place in the highscore!"
-msgstr "¡Estas en el puesto %s del Highscore!"
+msgstr "D'éirigh leat an %s scór is fearr a fháil!"
 
 #: src/game_over.cpp:161
 msgid "You beat your best score!"
-msgstr "¡Has batido tu propio record!"
+msgstr "Sháraigh tú do scór is fearr!"
 
 #: src/game_over.cpp:164
 #, fuzzy
 msgid "Congratulations! You won the campaign!"
-msgstr "¡Enhorabuena! ¡Has ganado la copa!"
+msgstr "Comhghairdeas! Bhuaigh tú an corn!"
 
 #: src/game_over.cpp:166
 msgid "Congratulations! You won the cup!"
-msgstr "¡Enhorabuena! ¡Has ganado la copa!"
+msgstr "Comhghairdeas! Bhuaigh tú an corn!"
 
 #: src/game_over.cpp:168
 msgid "You advanced to the next race!"
-msgstr "¡Te has clasificado para la siguiente carrera!"
+msgstr "D'éirigh leat dul ar aghaidh chuig an chéad rás eile!"
 
 #: src/game_over.cpp:170
 msgid "You didn't advance."
-msgstr "No estás clasificado."
+msgstr "Theip ort dul ar aghaidh."
 
 #: src/game_type_select.cpp:36
 #, fuzzy
 msgid "Enter a campaign"
-msgstr "Entrar en un evento"
+msgstr "Cur isteach i gcomórtas"
 
 #: src/game_type_select.cpp:43
 msgid "Practice"
-msgstr "Práctica"
+msgstr "Cleachtaigh"
 
 #: src/game_type_select.cpp:50 src/highscore.cpp:350
 msgid "Highscore"
-msgstr "Highscore"
+msgstr "An Scór is Fearr"
 
 #: src/game_type_select.cpp:64
 msgid "Credits"
-msgstr "Créditos"
+msgstr "Buíochas le"
 
 #: src/game_type_select.cpp:71 src/paused.cpp:78
 msgid "Quit"
-msgstr "Salir"
+msgstr "Scoir"
 
 #: src/graphicsconfig.cpp:30
 msgid "Graphics Configuration"
-msgstr "Configuración de los gráficos"
+msgstr "Cumraíocht na Grafaicí"
 
 #: src/graphicsconfig.cpp:108
 msgid "Model:"
-msgstr "Modelo:"
+msgstr "Samhail:"
 
 #: src/graphicsconfig.cpp:117
 msgid "Show UI Snow:"
-msgstr "Mostrar nieve:"
+msgstr "Taispeáin Sneachta:"
 
 #: src/graphicsconfig.cpp:121
 msgid "Display FPS:"
-msgstr "Mostrar FPS:"
+msgstr "Taispeáin LCD:"
 
 #: src/graphicsconfig.cpp:125
 msgid "Display Progress Bar:"
-msgstr "Mostrar progreso:"
+msgstr "Taispeáin an Táscaire Dul Chun Cinn:"
 
 #: src/graphicsconfig.cpp:129
 msgid "Draw Fog:"
-msgstr "Niebla:"
+msgstr "Tarraing Ceo:"
 
 #: src/graphicsconfig.cpp:133
 msgid "Reflections:"
-msgstr "Reflejos:"
+msgstr "Friothaimh:"
 
 #: src/graphicsconfig.cpp:137
 msgid "Shadows:"
-msgstr "Sombras:"
+msgstr "Scáthanna:"
 
 #: src/graphicsconfig.cpp:141
 msgid "Draw Background:"
@@ -454,148 +455,148 @@ msgstr ""
 
 #: src/highscore.cpp:88
 msgid "1:st"
-msgstr "1."
+msgstr "1:ú"
 
 #: src/highscore.cpp:90
 msgid "2:nd"
-msgstr "2."
+msgstr "2:ú"
 
 #: src/highscore.cpp:92
 msgid "3:rd"
-msgstr "3."
+msgstr "3:ú"
 
 #: src/highscore.cpp:94
 msgid "4:th"
-msgstr "4."
+msgstr "4:ú"
 
 #: src/highscore.cpp:96
 msgid "5:th"
-msgstr "5."
+msgstr "5:ú"
 
 #: src/highscore.cpp:98
 msgid "6:th"
-msgstr "6."
+msgstr "6:ú"
 
 #: src/highscore.cpp:100
 msgid "7:th"
-msgstr "7."
+msgstr "7:ú"
 
 #: src/highscore.cpp:102
 msgid "8:th"
-msgstr "8."
+msgstr "8:ú"
 
 #: src/highscore.cpp:104
 msgid "9:th"
-msgstr "9."
+msgstr "9:ú"
 
 #: src/highscore.cpp:106
 msgid "10:th"
-msgstr "10."
+msgstr "10:ú"
 
 #: src/highscore.cpp:317
 msgid "No records"
-msgstr ""
+msgstr "Níl taifid ann"
 
 #: src/highscore.cpp:327
 #, c-format
 msgid " (%d points)"
-msgstr ""
+msgstr " (%d poncanna)"
 
 #: src/joystickconfig.cpp:29
 msgid "Joystick Configuration"
-msgstr "Configuración del joystick"
+msgstr "Cumraíocht an Luamháin Stiúrtha"
 
 #: src/joystickconfig.cpp:33
 msgid "Enable Joystick"
-msgstr "Activar joystick"
+msgstr "Cumasaigh an Luamhán Stiúrtha"
 
 #: src/joystickconfig.cpp:41 src/keyboardconfig.cpp:132
 msgid "Paddle:"
-msgstr "Remar:"
+msgstr "Céaslaigh:"
 
 #: src/joystickconfig.cpp:54 src/keyboardconfig.cpp:136
 msgid "Brake:"
-msgstr "Frenar:"
+msgstr "Coisc:"
 
 #: src/joystickconfig.cpp:67 src/keyboardconfig.cpp:140
 msgid "Jump:"
-msgstr "Saltar:"
+msgstr "Léim:"
 
 #: src/joystickconfig.cpp:80 src/keyboardconfig.cpp:144
 msgid "Trick:"
-msgstr "Truco:"
+msgstr "Cleas:"
 
 #: src/keyboardconfig.cpp:55
 msgid "Keyboard Configuration"
-msgstr "Configuración del teclado"
+msgstr "Cumraíocht an Mhéarchláir"
 
 #: src/keyboardconfig.cpp:124
 msgid "Turn left:"
-msgstr "Girar a la izquierda:"
+msgstr "Cas ar chlé:"
 
 #: src/keyboardconfig.cpp:128
 msgid "Turn right:"
-msgstr "Girar a la derecha:"
+msgstr "Cas ar dheis:"
 
 #: src/keyboardconfig.cpp:148
 msgid "Reset:"
-msgstr "Reiniciar:"
+msgstr "Athshocraigh:"
 
 #: src/loading.cpp:53
 msgid "Loading, Please Wait..."
-msgstr "Cargando, por favor espera..."
+msgstr "Á Luchtú, Fan Le Do Thoil..."
 
 #: src/paused.cpp:54
 msgid "Paused"
-msgstr "Parado"
+msgstr "Moillithe"
 
 #: src/paused.cpp:70
 msgid "Resume"
-msgstr "Volver"
+msgstr "Atosaigh"
 
 #: src/splash_screen.cpp:34
 msgid "PRESS ANY KEY TO START"
-msgstr "PULSA UNA TECLA PARA EMPEZAR"
+msgstr "BRÚIGH CNAIPE AR BITH LE TOSÚ"
 
 #: src/videoconfig.cpp:60
 msgid "Video Configuration"
-msgstr "Configuración del vídeo"
+msgstr "Cumraíocht an Fhíseáin"
 
 #: src/videoconfig.cpp:173
 msgid "To change the resolution, or switch into fullscreen mode"
-msgstr "Para cambiar la resolución o entrar en modo pantalla completa"
+msgstr "Chun an taifeach a athrú, nó chun athrú go dtí an lánscáileán"
 
 #: src/videoconfig.cpp:175
 msgid "use options.txt, located in the config folder."
-msgstr "usa options.txt que está en la carpeta config."
+msgstr "bain feidhm as options.txt, lonnaithe sa bhfillteán config."
 
 #: src/videoconfig.cpp:177
 msgid "Resolution:"
-msgstr "Resolución:"
+msgstr "Taifeach:"
 
 #: src/videoconfig.cpp:181
 msgid "Bits Per Pixel:"
-msgstr "Bits por pixel:"
+msgstr "Beartanna An Phicteilín:"
 
 #: src/videoconfig.cpp:185
 msgid "Fullscreen:"
-msgstr "Pantalla completa:"
+msgstr "Lánscáileán:"
 
 #: src/videoconfig.cpp:189
 msgid "Experimental (needs restart)"
-msgstr "Experimental (requiere reiniciar)"
+msgstr "Turgnamhach (atosú de dhíth)"
 
 #: src/videoconfig.cpp:192
 msgid "Stencil Buffer:"
-msgstr ""
+msgstr "Maolán Stionsal:"
 
 #: src/videoconfig.cpp:196
 msgid "Enable FSAA:"
-msgstr "Activar FSAA:"
+msgstr "Cumasaigh FSAA:"
 
 #: src/videoconfig.cpp:200
 msgid "FSAA Multisamples:"
-msgstr ""
+msgstr "Ilshamplaí FSAA:"
 
 #: po/levelinfo:1
 #, c-format
@@ -614,7 +615,7 @@ msgstr "%02d:%02d:%02d"
 
 #: po/levelinfo:6 po/levelinfo:8
 msgid "km/h"
-msgstr "km/h"
+msgstr "km/u"
 
 #: po/levelinfo:7 po/levelinfo:9
 #, c-format
@@ -633,127 +634,145 @@ msgstr "%03d"
 
 #: po/levelinfo:14
 msgid "Doing"
-msgstr ""
+msgstr "Ag Déanamh"
 
 #: po/levelinfo:15
 msgid ""
 "This course was probably created to present new textures introduced in "
 "PPRacer."
 msgstr ""
+"Chruthaíodh an cúrsa seo de réir dealraimh chun uigeachtaí nua a thugadh "
+"isteach i bPPRacer a léiriú."
 
 #: po/levelinfo:17
 msgid "Hippo Run"
-msgstr ""
+msgstr "An Turraing Thosaigh"
 
 #: po/levelinfo:18
 msgid ""
 "In Hippo Run, you slide down an icy slope as a penguin, I honestly don't "
 "know what this has to do with hippos or running..."
 msgstr ""
+"Seo é an chéad thurraing síos le fána atá furasta go leor. Sleamhnaíonn tú "
+"síos fánán oighreata mar phiongain."
 
 #: po/levelinfo:19
 msgid "Ice Pipeline"
-msgstr ""
+msgstr "Feadán Oighear"
 
 #: po/levelinfo:20
 msgid "A short, slippery ice-trough with herring scattered throughout."
-msgstr ""
+msgstr "Clais oighreata ghearr sleamhain le scadáin scaipthe ar fad na háite."
 
 #: po/levelinfo:21
 msgid "Volcanoes"
-msgstr ""
+msgstr "Bolcáin"
 
 #: po/levelinfo:22
 msgid ""
 "This gigantic crater was full of water, and herring, but now it's all "
 "frozen, and yours for the taking."
 msgstr ""
+"Bhí an coire seo lán d'uisce agus scadáin tráth, ach anois tá sé reoite, "
+"agus tá sé ann duitse."
 
 #: po/levelinfo:23
 msgid "Nature Stroll"
-msgstr ""
+msgstr "Siúlóid an Dúlra"
 
 #: po/levelinfo:24
 msgid ""
 "The fresh air, the pine scent, who doesn't like a nice refreshing walk "
 "through the mountains?"
 msgstr ""
+"Leis an t-aer úr agus boladh ó na crainn giúise, cé nach maith leo siúl breá "
+"tríd na sléibhte?"
 
 #: po/levelinfo:25
 msgid "Mountain Mania"
-msgstr ""
+msgstr "Mire na Sléibhte"
 
 #: po/levelinfo:26
 msgid "Icy Peril"
-msgstr ""
+msgstr "An Ghuaiseacht Oighreata"
 
 #: po/levelinfo:27
 msgid "Death Cup"
-msgstr ""
+msgstr "Corn an Bháis"
 
 #: po/levelinfo:28
 msgid "Slippery Defeat"
-msgstr ""
+msgstr "Treascairt Sleamhain"
 
 #: po/levelinfo:29
 msgid "The Final Three"
-msgstr ""
+msgstr "Na Trí Chinn Deiridh"
 
 #: po/levelinfo:30
 msgid "Slippy-Slidey"
-msgstr ""
+msgstr "Scriorradh-Sleamhain"
 
 #: po/levelinfo:31
 msgid "Slide on the slippery frozen river in a hilly forest, slipperily."
 msgstr ""
+"Sleamhnaigh ar an abhainn reoite sleamhain i gcoill sléibhtiúil. Tá sé "
+"sleamhain!"
 
 #: po/levelinfo:32
 msgid "Crazy Path"
-msgstr ""
+msgstr "Raon Mearaí"
 
 #: po/levelinfo:33
 msgid ""
 "You'll have trouble slowing down on this one. There's lots of herring, but "
 "be careful not to fly too much or you won't get any."
 msgstr ""
+"Beidh sé deacair ort do luas a mhaolú ag taisteal ar an ceann seo. Tá a lán "
+"scadáin ann, ach bí cúramach gan eitilt in iomarca nó ní éireoidh leat mórán "
+"dóibh a fháil."
 
 #: po/levelinfo:34
 msgid "Candy Lane"
-msgstr ""
+msgstr "Cabhsa na Milseán"
 
 #: po/levelinfo:35
 msgid ""
 "Mostly ice, with very few obstacles in your path, this is like a stroll down "
 "Candy Lane."
 msgstr ""
+"Gan mórán bacainn i do bhealach, agus formhór de clúdaithe le oighear, tá an "
+"raon seo ar nós siúlóid síos Cabhsa na Milseán."
 
 #: po/levelinfo:36
 msgid "Merry Go Round"
-msgstr ""
+msgstr "Roithleagán Ró"
 
 #: po/levelinfo:37
 msgid "Try to build up enough speed to jump from one roundabout to the next."
 msgstr ""
+"Déan iarracht dóthain luas a neartú chun léimt ó thimpeallán amháin go dtí "
+"an chéad ceann eile."
 
 #: po/levelinfo:38
 msgid "Hey, Tux!"
-msgstr ""
+msgstr "Hóra, a Thux!"
 
 #: po/levelinfo:39
 msgid "This course offers true excitement for your race-loving penguin buddy."
 msgstr ""
+"Beidh a lán scleondar ar an phiongain chara agat ag dul síos an raon seo."
 
 #: po/levelinfo:40
 msgid "Bobsled Ride"
-msgstr ""
+msgstr "Séad an tSleamhnáin"
 
 #: po/levelinfo:41
 msgid "Just like a real bobsled ride, only more dangerous."
-msgstr ""
+msgstr "Díreach ar nós séad i sleamhnán, ach níos contúirtí."
 
 #: po/levelinfo:42
 msgid "In Search of Vodka"
-msgstr ""
+msgstr "Ar Thóir Vodca"
 
 #: po/levelinfo:43
 msgid ""
@@ -761,10 +780,13 @@ msgid ""
 "cabinet has been pillaged. Join Tux on the quest for vodka.Pick up herring "
 "for dinner along the way!"
 msgstr ""
+"Tá braonán vodca de dhíth ó Thux chun a bholg fuar a théamh. Ach ar an "
+"drochuair, ghoideadh a bhiotáille. Bí le Tux ar thóir vodca. Beir greim ar "
+"scadáin le n-ithe ar ball ar an bhealach!"
 
 #: po/levelinfo:44
 msgid "Tux at Home"
-msgstr ""
+msgstr "Tux sa Bhaile"
 
 #: po/levelinfo:45
 msgid ""
@@ -772,56 +794,65 @@ msgid ""
 "and fastest way. But if you want to catch some herrings you have to enter "
 "the rooms on the left."
 msgstr ""
+"Tá cónaí ar Tux anseo. Is féidir leat an dorchla ar dheis a ghabháil - is é "
+"an bhealach is giorra agus is gasta. Ach má theastaíonn uait greim a fháil "
+"ar roinnt scadáin ní mór duit dul isteach sna seomraí ar chlé."
 
 #: po/levelinfo:46
 msgid "The Niehoff Experience"
-msgstr ""
+msgstr "An Dreas Niehoff"
 
 #: po/levelinfo:47
 msgid "Search, Search, Search"
-msgstr ""
+msgstr "Cuardaigh, Cuardaigh, Cuardaigh"
 
 #: po/levelinfo:48
 msgid "Mountains and Hills"
-msgstr ""
+msgstr "Sléibhte agus Cnoic"
 
 #: po/levelinfo:49
 msgid "The Final Challenge"
-msgstr ""
+msgstr "An Dúshlán Deiridh"
 
 #: po/levelinfo:50
 msgid "Wild Mountains"
-msgstr ""
+msgstr "Na Sléibhte Fiáine"
 
 #: po/levelinfo:51
 msgid ""
 "A wild landscape of ice and snow. It isn't easy to keep the right way. Not "
 "for beginners."
 msgstr ""
+"Tírdhreach fiáin oighear agus sneachta. Níl sé éasca fanacht sa treo ceart. "
+"Níl sé oiriúnach dóibh siúd atá ag tosú amach."
 
 #: po/levelinfo:52
 msgid "In Search of the Holy Grail"
-msgstr ""
+msgstr "Ar Thóir an Duais Mhór"
 
 #: po/levelinfo:53
 msgid ""
 "An adventure course with a simple task: Find the grail! Warning: It is very "
 "difficult to find the way."
 msgstr ""
+"Raon eachtraíochta le cuspóir amháin: Aimsigh an duais! Rabhadh: Tá sé fíor-"
+"dheacair an bealach a aimsiú."
 
 #: po/levelinfo:54
 msgid "Frozen Lakes"
-msgstr ""
+msgstr "Lochanna Reoite"
 
 #: po/levelinfo:55
 msgid ""
 "To reach the finish you must pass several frozen lakes. Watch your speed on "
 "the ice - there are some dangerous corners."
 msgstr ""
+"Chun an críoch a sroiche, caithfear dul thar lochanna atá reoite. Coinnigh "
+"smacht ar do luas fad is atá tú ar an leac oighear - tá roinnt géaróga ann."
 
 #: po/levelinfo:56
 msgid "Chinese Wall"
-msgstr ""
+msgstr "Múr Síneach"
 
 #: po/levelinfo:57
 msgid ""
@@ -829,100 +860,123 @@ msgid ""
 "where the herrings are. If you fall off you can try to jump back up, there "
 "are 7 hidden ramps. You'll get a lot of exercise."
 msgstr ""
+"Balla Mór na Síne sa gheimhreadh. Déan iarracht fanacht ar bharr an balla - "
+"is ansin atá na scadáin. Má thiteann tú, is féidir iarracht a dhéanamh léim "
+"suas arís mar tá 7 fánáin folaithe ann. Beidh do dhóthain aclaíocht  agat."
 
 #: po/levelinfo:58
 msgid "Secret Valleys"
-msgstr ""
+msgstr "Gleannta Rúnda"
 
 #: po/levelinfo:59
 msgid ""
 "Your task: Find the hidden valleys and the ten groups of dead trees. Look "
 "around, the ways are not easy to find."
 msgstr ""
+"Do chúram: Aimsigh na gleannta atá i bhfolach agus deich mothair de crainn "
+"marbh ina dhiaidh. Féach thart, níl na bealaí furasta a aimisú."
 
 #: po/levelinfo:60
 msgid "Explore the Mountains"
-msgstr ""
+msgstr "Taiscéal na Sléibhte"
 
 #: po/levelinfo:61
 msgid "Can you find your way through the icy, dangerous mountains. I doubt it."
 msgstr ""
+"An féidir leat do bhealach a aimsiú tríd na sléibhte oighreata "
+"contúirteacha? Ní dóigh liom é."
 
 #: po/levelinfo:62
 msgid "Challenge One"
-msgstr ""
+msgstr "Dúshlán a hAon"
 
 #: po/levelinfo:63
+#, fuzzy
 msgid ""
 "A very dangerous path along the mountains. Warning: The course is very "
 "difficult and there are some situations where you can get stuck."
 msgstr ""
+"Conair fíor-chontúirteach sna sléibhte. Déan iarracht greim a fháil ar "
+"bhreis is 60 scadáin. Tá an raon fíor-dheacair agus tá roinnt dálaí ann a "
+"d'fhéadfá bheith in abar."
 
 #: po/levelinfo:64
 msgid "Path of Daggers"
-msgstr ""
+msgstr "Conair na Miodóg"
 
 #: po/levelinfo:65
 msgid ""
 "Big spikes may prove to be the least of your worries on this course. Muliple "
 "paths allow you to take low or high roads, each with their own challenges."
 msgstr ""
+"Ní hiad dealga móra an t-ábhar imní is mó duit ar an raon seo. Ligeann "
+"conairí iolracha duit bóithre ísle agus airde a ghabháil, dúshláin ag gach "
+"ceann acu."
 
 #: po/levelinfo:66
 msgid "Tux Racer Classics"
-msgstr ""
+msgstr "Seanrásanna Tux Racer"
 
 #: po/levelinfo:67
 msgid "Canadian Cup"
-msgstr ""
+msgstr "Corn Cheanada"
 
 #: po/levelinfo:68
 msgid "Swiss Cup"
-msgstr ""
+msgstr "Corn na hEilbhéise"
 
 #: po/levelinfo:69
 msgid "Bumpy Ride"
-msgstr ""
+msgstr "Séad Tuairteálach"
 
 #: po/levelinfo:70
 msgid ""
 "This hill has a series of ramps to tackle.  Be sure to line yourself up "
 "before getting airborne."
 msgstr ""
+"Tá sraith fánáin ar an gcnoc seo. Déan cinnte tú féin a chur sa treo ceart "
+"roimh duit éirí san aer."
 
 #: po/levelinfo:71
 msgid "Bunny Hill"
-msgstr ""
+msgstr "Cnoc an Choinín"
 
 #: po/levelinfo:72
 msgid ""
 "Let's start out easy, just collect the herring in the time limit and you'll "
 "be fine. The best part is that you don't have to use those stupid T-lifts."
 msgstr ""
+"Tosóimid go réidh, ní gá ach na scadáin a bhailiú laistigh den teorainn ama "
+"agus beidh leat. An rud is fearr ná ní gá duit feidhm a bhaint as na "
+"diabhail T-airditheoirí."
 
 #: po/levelinfo:73
 msgid "Frozen River"
-msgstr ""
+msgstr "Abhainn Reoite"
 
 #: po/levelinfo:74
 msgid ""
 "Keep your speed down to collect herring. You have plenty of time, so don't "
 "rush things."
 msgstr ""
+"Taisteal go mall chun scadáin a bhailiú. Tá dóthain am agat, mar sin ná bí "
+"deifir ort."
 
 #: po/levelinfo:75
 msgid "Twisty Slope"
-msgstr ""
+msgstr "Fánán Casta"
 
 #: po/levelinfo:76
 msgid ""
 "Tight twists make grabbing herring difficult.  Hard turns and not too much "
 "braking will lead you to victory."
 msgstr ""
+"Déanann na cora géara é deacair greim a fháil ar na scadáin. Déan géaróga "
+"agus ná déan in iomarca coisc agus beidh an bua agat."
 
 #: po/levelinfo:77
 msgid "Mt. Herring"
-msgstr ""
+msgstr "Sliabh Scadáin"
 
 #: po/levelinfo:78
 msgid ""
@@ -930,40 +984,46 @@ msgid ""
 "some wide open areas and branching paths. Lots of herrings to collect though "
 "it can be difficult unless you watch your speed."
 msgstr ""
+"Tá Sliabh Scadáin gasta go leor ach tá sé fada, beagán tuairteálach in "
+"áiteanna, agus tá bláir fairsing agus fo-chonairí ann. Tá a lán scadáin le "
+"bailiú ann ach d'fhéadfadh sé bheith deacair greim a fháil orthu mura "
+"choimeádann tú smacht ar do luas."
 
 #: po/levelinfo:79
 msgid "Herring Run"
-msgstr ""
+msgstr "Séad na Scadán"
 
 #: po/levelinfo:80
 msgid "Mountain Man"
-msgstr ""
+msgstr "Sléibhteánach"
 
 #: po/levelinfo:81
 msgid "Valley Cup"
-msgstr ""
+msgstr "Corn an Ghleanna"
 
 #: po/levelinfo:82
 msgid "Tux the winter sportsman"
-msgstr ""
+msgstr "Tux an fear cluichíochta geimhridh"
 
 #: po/levelinfo:83
 msgid "Highway To Hell"
-msgstr ""
+msgstr "An Mórbhealach Go Ifreann"
 
 #: po/levelinfo:84
 msgid "Ice Labyrinth"
-msgstr ""
+msgstr "Cathair Ghríobháin Oighear"
 
 #: po/levelinfo:85
 msgid ""
 "You choose your destiny, you could end up full or starving depending on the "
 "path you pick."
 msgstr ""
+"Roghnaíonn tusa cad atá i ndán duit. D'fhéadfadh tú bheith ramhar le scadáin "
+"nó bheith stiúgtha leis an ocras ag braith ar an chonair a roghnaíonn tú."
 
 #: po/levelinfo:86
 msgid "Snow Valley"
-msgstr ""
+msgstr "Gleann an tSneachta"
 
 #: po/levelinfo:87
 msgid ""
@@ -971,20 +1031,25 @@ msgid ""
 "herrings very difficult to get if you're going for a perfect score! Watch "
 "your speed in certain areas to get the most herrings!"
 msgstr ""
+"Tá Gleann an tSneachta réidh go leor, agus is raon fíorghasta é. Beidh sé "
+"deacair ort scadáin a fháil má tá tú ar thóir scór foirfe. Coinnigh smacht "
+"ar do luas in áiteanna faoi leith chun an líon is mó scadáin a fháil!"
 
 #: po/levelinfo:88
 msgid "Tux Toboggan Run"
-msgstr ""
+msgstr "Rith Carr Sleamhnáin Tux"
 
 #: po/levelinfo:89
 msgid ""
 "Collect herrings in an ice channel with various paths and many high and low "
 "speed passages. Watch out for the occasional tree."
 msgstr ""
+"Bailigh scadáin i gclais oighear le conairí éagsúla agus a lán fithisí ard-"
+"luas agus íseal-luas. Fair amach don corr-chrann."
 
 #: po/levelinfo:90
 msgid "Hazzard Valley"
-msgstr ""
+msgstr "Gleann na nGuaiseacha"
 
 #: po/levelinfo:91
 msgid ""
@@ -992,40 +1057,50 @@ msgid ""
 "huge areas of rocky plains, not to mention your speed being your enemy in "
 "trying to get the herrings and stay on course!"
 msgstr ""
+"Tá Gleann na nGuaiseacha lán de guaiseacha, ar nós crainn, cuasáin, dealga, "
+"agus mánna creagacha fairsing, gan trácht ar do luas bheith mar namhaid duit "
+"agus tú ag iarraidh na scadáin a fháil agus fanacht ar an raon!"
 
 #: po/levelinfo:92
 msgid "Skull Mountain"
-msgstr ""
+msgstr "Sliabh an Chloiginn"
 
 #: po/levelinfo:93
 msgid ""
 "Skull mountain is a steep, twisty drop around tree-filled inner peaks. "
 "Expect to miss a lot of herrings and crash a lot."
 msgstr ""
+"Is titim ghéar, casta le beanna lán de crainn istigh ann é Sliabh an "
+"Chloiginn. Bí ag súil le tuairteáil go minic agus gan greim a fháil ar "
+"mhórán scadáin."
 
 #: po/levelinfo:94
 msgid "Keep It Up"
-msgstr ""
+msgstr "Lean Ort"
 
 #: po/levelinfo:95
 msgid ""
 "If you fall you might as well just quit then and there, 'cause your chances "
 "are slim on the rocky ground."
 msgstr ""
+"Má thiteann tú, is bhfiú duit scoir ansin, mar is beag iad na failleanna atá "
+"agat ar an talamh creagach."
 
 #: po/levelinfo:96
 msgid "Dead Man's Drop"
-msgstr ""
+msgstr "Titim an Mharbháin"
 
 #: po/levelinfo:97
 msgid ""
 "Pretty tough hill. It's fast, steep, lumpy, twisty, and full of trees. Hard "
 "to get herrings. Don't forget the drop."
 msgstr ""
+"Cnoc fíor-dheacair. Tá sé gasta, géar, cnapach agus lán de crainn. Tá sé "
+"deacair greim a fháil ar na scadáin. Ná dearmad an titim."
 
 #: po/levelinfo:98
 msgid "I've Got A Woody"
-msgstr ""
+msgstr "Tá Fonn Orm Arís"
 
 #: po/levelinfo:99
 msgid ""
@@ -1033,40 +1108,49 @@ msgid ""
 "hard, try this one. Have fun winding through the woods.  Look out for a huge "
 "shortcut!!"
 msgstr ""
+"Oighearchóstóir ardaithe uafásach eile. Má shíl tú go raibh an dá ceann "
+"deiridh deacair, bain triail as an ceann seo. Bain taitneamh as bheith ag "
+"casadh is ag lúbadh idir na crainn. Fair amach don t-aicearra ollmhór!!"
 
 #: po/levelinfo:100
 msgid "Mt. Satan"
-msgstr ""
+msgstr "Sliabh an Diabhail"
 
 #: po/levelinfo:101
 msgid ""
 "Mount Satan is a sister mountain to Dead Man's Drop. No surprises here, just "
 "a steep, bumpy, twisty path full of trees to get through."
 msgstr ""
+"Is comhsliabh le Titim an Mharbháin é Sliabh an Diabhail. Níl aon iontais "
+"anseo ach conair ghéar, thuairteálach, chasta lán de crainn le dul tríd."
 
 #: po/levelinfo:102
 msgid "Ski Jump"
-msgstr ""
+msgstr "Fánán Marcaíocht Sneachta"
 
 #: po/levelinfo:103
 msgid ""
 "Steering will be unnecessary, just line yourself up and reap the rewards. "
 "Rememember, acceleration will slow you down after a while."
 msgstr ""
+"Ní bheidh gá le tú féin a stiúradh, cuir tú féin i dtreo an fhánáin agus "
+"bain sochar as. Ná déan dearmad, moilleoidh luasghéarú thú tar éis tamall."
 
 #: po/levelinfo:104
 msgid "High Road"
-msgstr ""
+msgstr "An Bóthar Ard"
 
 #: po/levelinfo:105
 msgid ""
 "Just stay on the path and collect herring. Oh yeah, and if you fall you'll "
 "be eating pine needles."
 msgstr ""
+"Fan ar an gconair agus bailigh na scadáin. Agus lena chois sin, má thiteann "
+"tú beidh dealga na crainn giúise á ithe agat."
 
 #: po/levelinfo:106
 msgid "The Narrow Way"
-msgstr ""
+msgstr "An Caolbhealach"
 
 #: po/levelinfo:107
 msgid ""
@@ -1074,49 +1158,54 @@ msgid ""
 "you're going, there's trees in your way, and the herrings are hard to get. "
 "Good luck, you'll need it!"
 msgstr ""
+"Chun é a rá go follasach, fan ar an gconair nó beidh tú thíos leis! Tá sé "
+"deacair a fheiceáil cá bhfuil tú ag dul, tá crainn i do bhealach, agus tá sé "
+"deacair greim a fháil ar na scadáin. Ádh mór - beidh sé de dhíth uait!"
 
 #: po/levelinfo:108
 msgid "Hamburger Hill"
-msgstr ""
+msgstr "Cnoc an Bhurgair"
 
 #: po/levelinfo:109
 msgid ""
 "Hamburger Hill is steep, narrow, twisty, lumpy, icy, and rocky, with a few "
 "trees right in your way!"
 msgstr ""
+"Tá Cnoc an Bhurgair géar, cúng, casta, tuairteálach agus creagach, le roinnt "
+"crainn díreach i do bhealach!"
 
 #: po/levelinfo:110
 msgid "Slalom"
-msgstr ""
+msgstr "Slalóm"
 
 #: po/levelinfo:111
 msgid ""
 "Brake while you turn and the herrings on this pseudo-slalom will be yours."
 msgstr ""
+"Coisc nuair a chasann tú agus beidh na scadáin sa slalóm bréagach seo agat."
 
 #: po/levelinfo:112
 msgid "Who Says Penguins Can't Fly?"
-msgstr ""
+msgstr "Cé A Dúirt Nach Féidir Le Piongainí Eitilt?"
 
 #: po/levelinfo:113
 msgid ""
 "It'll be tough collecting herrings at speeds over 200, so try to brake "
 "whenever possible to get the required herring."
 msgstr ""
+"Beidh sé deacair na scadáin a bhailiú ag luasanna níos mó ná 200, mar sin "
+"déan iarracht coisc nuair ar féidir chun na scadáin atá de dhíth a fháil."
 
 #: po/modelinfo:1
 msgid "Tux"
-msgstr ""
+msgstr "Tux"
 
 #: po/modelinfo:2
 msgid "Tux on Snowboard"
-msgstr ""
-
-#~ msgid "Language:"
-#~ msgstr "Idioma:"
+msgstr "Tux ar Chlár Sneachta"
 
 #~ msgid "Event:"
-#~ msgstr "Evento:"
+#~ msgstr "Teagmhas:"
 
 #~ msgid "Congratulations! You won the event!"
-#~ msgstr "¡Enhorabuena! ¡Has ganado el evento!"
+#~ msgstr "Comhghairdeas! Bhuaigh tú an teagmhas!"

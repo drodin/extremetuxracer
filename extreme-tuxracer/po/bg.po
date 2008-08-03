@@ -1,17 +1,16 @@
-# Translation of Extreme Tux Racer to Russian
-#
-# Copyright (C) 2008 The Extreme Tux Racer team
+# Bulgarian translation for etracer
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
 # This file is distributed under the same license as the etracer package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
 #
-# EFU.
 msgid ""
 msgstr ""
-"Project-Id-Version: Extreme Tux Racer\n"
+"Project-Id-Version: etracer\n"
 "Report-Msgid-Bugs-To: https://translations.edge.launchpad.net/etracer\n"
 "POT-Creation-Date: 2008-08-03 20:17+0200\n"
-"PO-Revision-Date: 2008-05-18 12:55+0000\n"
-"Last-Translator: Mikhail Kuznetsov <Unknown>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2008-07-12 20:17+0000\n"
+"Last-Translator: Plamen Atanasov <Unknown>\n"
+"Language-Team: Bulgarian <bg@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,23 +19,23 @@ msgstr ""
 
 #: src/audioconfig.cpp:36
 msgid "Audio Configuration"
-msgstr "Настройки звука"
+msgstr "Аудио конфигурация"
 
 #: src/audioconfig.cpp:112
 msgid "Sound Effects:"
-msgstr "Звуковые эффекты:"
+msgstr "Звукови ефекти:"
 
 #: src/audioconfig.cpp:116
 msgid "Music:"
-msgstr "Музыка:"
+msgstr "Музика:"
 
 #: src/audioconfig.cpp:120
 msgid "(needs restart)"
-msgstr "(нужен перезапуск)"
+msgstr "(изисква рестарт)"
 
 #: src/audioconfig.cpp:122
 msgid "Disable Audio:"
-msgstr "Выключить звук:"
+msgstr "Изключи звука:"
 
 #: src/audioconfig.cpp:126
 msgid "Stereo:"
@@ -44,19 +43,19 @@ msgstr "Стерео:"
 
 #: src/audioconfig.cpp:130
 msgid "Bits Per Sample:"
-msgstr "Бит"
+msgstr "Бита за дискрет:"
 
 #: src/audioconfig.cpp:134
 msgid "Samples Per Second:"
-msgstr "Частота дискретизации"
+msgstr "Дискрети за секунда:"
 
 #: src/configmode.cpp:36
 msgid "Cancel"
-msgstr "Отмена"
+msgstr "Отказ"
 
 #: src/configmode.cpp:43
 msgid "Ok"
-msgstr "Готово"
+msgstr "Добре"
 
 #: src/configuration.cpp:38 src/game_type_select.cpp:57 src/paused.cpp:62
 msgid "Configuration"
@@ -64,7 +63,7 @@ msgstr "Настройки"
 
 #: src/configuration.cpp:45 src/credits.cpp:89
 msgid "Graphics"
-msgstr "Графика"
+msgstr "Графики"
 
 #: src/configuration.cpp:52
 msgid "Video"
@@ -72,7 +71,7 @@ msgstr "Видео"
 
 #: src/configuration.cpp:59
 msgid "Audio"
-msgstr "Звук"
+msgstr "Аудио"
 
 #: src/configuration.cpp:66
 msgid "Keyboard"
@@ -93,27 +92,27 @@ msgstr "Версия 0.4"
 
 #: src/credits.cpp:46
 msgid "Extreme Tux Racer is in the process of being"
-msgstr "Extreme Tux Racer находится в процессе"
+msgstr "Extreme Tux Racer е в процес на"
 
 #: src/credits.cpp:47
 msgid "completely rewritten. All versions after 0.35,"
-msgstr "полной переработки. Все версии после 0.35,"
+msgstr "пълно пренаписване. Всички версии след 0.35,"
 
 #: src/credits.cpp:48
 msgid "including this one, won't have major code changes"
-msgstr "включая эту, не будут иметь значительных изменений в коде,"
+msgstr "включително тази, няма да имат големи промени в кода"
 
 #: src/credits.cpp:49
 msgid "because the programmers are busy making a new,"
-msgstr "потому что программисты заняты созданием новой,"
+msgstr "защото програмистите са заети да правят нова,"
 
 #: src/credits.cpp:50
 msgid "improved game."
-msgstr "улучшенной игры."
+msgstr "подобрена игра."
 
 #: src/credits.cpp:52
 msgid "Extreme Tux Racer is based on"
-msgstr "Extreme Tux Racer сделан на основе"
+msgstr "Extreme Tux Racer е базиран на"
 
 #: src/credits.cpp:53
 msgid "PlanetPenguin Racer, Open Racer and Tux Racer."
@@ -121,11 +120,11 @@ msgstr "PlanetPenguin Racer, Open Racer и Tux Racer."
 
 #: src/credits.cpp:55
 msgid "Some courses may have been modified from their"
-msgstr "Некоторые трассы могли быть изменены по сравнению с"
+msgstr "Някои писти може да са били променени от техните"
 
 #: src/credits.cpp:56
 msgid "original versions to fit the requirements of the game."
-msgstr "оригинальными версиями для соответствия требованиям игры."
+msgstr "оригинални версии за да се впишат в изискванията на играта."
 
 #: src/credits.cpp:58
 msgid "Development"
@@ -133,67 +132,67 @@ msgstr "Разработка"
 
 #: src/credits.cpp:63
 msgid "from Sunspire Studios:"
-msgstr "Sunspire Studios:"
+msgstr "от студия Sunspire:"
 
 #: src/credits.cpp:71
 msgid "Non-Rewrite Version Organization"
-msgstr "Подготовка старой (неперерабатываемой) версии"
+msgstr "Организация за непренаписана версия"
 
 #: src/credits.cpp:74
 msgid "Translators"
-msgstr "Переводчики"
+msgstr "Преводачи"
 
 #: src/credits.cpp:87
 msgid "Other (incomplete) translations are from the PPRacer Project."
-msgstr "Другие (незаконченные) переводы осуществлены  PPRacer Project."
+msgstr "Други (незавършени) преводи са от проекта PPRacer."
 
 #: src/credits.cpp:90
 msgid "Nicosmos (Logo, Hud Graphics)"
-msgstr "Nicosmos (логотип игры, графика HUD)"
+msgstr "Никосмос (Лого, Hud графики)"
 
 #: src/credits.cpp:91
 msgid "Christian Picon (Objects, Skyboxes)"
-msgstr "Christian Picon (объекты, небо)"
+msgstr "Кристиан Пикон (Обекти, Небесни кутии)"
 
 #: src/credits.cpp:92
 msgid "Reinhard Niehoff (Trees)"
-msgstr "Reinhard Niehoff (деревья)"
+msgstr "Рейнхард Нихоф (Дървета)"
 
 #: src/credits.cpp:93
 msgid "Daniel Poeira and Christian Picon (Font)"
-msgstr "Daniel Poeira и Christian Picon (шрифт)"
+msgstr "Даниел Поейра и Кристиан Пикон (Шрифт)"
 
 #: src/credits.cpp:95
 msgid "Music"
-msgstr "Музыка"
+msgstr "Музика"
 
 #: src/credits.cpp:97
 msgid "'Race 1'"
-msgstr "\"Гонка 1\""
+msgstr "'Състезание 1'"
 
 #: src/credits.cpp:98
 msgid "'Menu'"
-msgstr "\"Меню\""
+msgstr "'Меню'"
 
 #: src/credits.cpp:99
 msgid "'Options'"
-msgstr "\"Настройки\""
+msgstr "'Опции'"
 
 #: src/credits.cpp:100
 msgid "'Won Race'"
-msgstr "\"Выигранная гонка\""
+msgstr "'Спечелено състезание'"
 
 #: src/credits.cpp:103
 msgid "'Credits Ballad'"
-msgstr "\"Баллада для титров\""
+msgstr "'Балада на заслугите'"
 
 #: src/credits.cpp:105
 msgid "Misc. PPRacer Contributors"
-msgstr "Люди, внёсшие вклад в PPRacer"
+msgstr "Разнообразни PPRacer сътрудници"
 
 #: src/credits.cpp:110
 msgid "Thanks To"
-msgstr "Благодарности"
+msgstr "Благодарности на"
 
 #: src/credits.cpp:111
 msgid "(for Exteme Tux Racer)"
@@ -201,31 +200,31 @@ msgstr "(за Exteme Tux Racer)"
 
 #: src/credits.cpp:112
 msgid "Ranger (for hosting the website)"
-msgstr "Ranger (за размещение веб-сайта)"
+msgstr "Рейнджър (за хостването на уебсайта)"
 
 #: src/credits.cpp:113
 msgid "Slythfox (for making the website)"
-msgstr "Slythfox (за создание веб-сайта)"
+msgstr "Слитфокс (за направата на уебсайта)"
 
 #: src/credits.cpp:114
 msgid "The Course Creators"
-msgstr "Создатели трасс"
+msgstr "Създателите на пистите"
 
 #: src/credits.cpp:115
 msgid "The OpenRacer project"
-msgstr "Проект OpenRacer"
+msgstr "Проекта OpenRacer"
 
 #: src/credits.cpp:116
 msgid "Reinhard Niehoff (for helping with code modification)"
-msgstr "Reinhard Niehoff (за помощь в модификации кода)"
+msgstr "Рейнхард Нихоф (за помощта при модификацията на кода)"
 
 #: src/credits.cpp:117
 msgid "All the people on the forum"
-msgstr "Всем людям с форума"
+msgstr "Всички хора във форума"
 
 #: src/credits.cpp:118
 msgid "Larry Ewing (creator of Tux)"
-msgstr "Larry Ewing (создатель Tux'а)"
+msgstr "Лари Юинг (създател на Тъкс)"
 
 #: src/credits.cpp:119
 msgid "(for Tux Racer)"
@@ -233,32 +232,33 @@ msgstr "(за Tux Racer)"
 
 #: src/credits.cpp:126
 msgid "Tux Racer is a trademark of Jasmin F. Patry."
-msgstr "Tux Racer является зарегистрированным торговым знаком Jasmin F. Patry."
+msgstr "Tux Racer е запазена марка на Жасмин Ф. Патри."
 
 #: src/credits.cpp:127
 msgid "Extreme Tux Racer is licenced under the GPL."
-msgstr "Extreme Tux Racer распространяется по лицензии GPL."
+msgstr "Extreme Tux Racer е лицензиран под GPL."
 
 #: src/credits.cpp:128
 msgid "We grant use of the name 'Extreme Tux Racer'"
-msgstr "Мы позволяем использовать название \"Extreme Tux Racer\""
+msgstr "Официално даваме използването на името 'Extreme Tux Racer'"
 
 #: src/credits.cpp:129
 msgid "to any forks or continuations."
-msgstr "любым ответвлениям или продолжениям игры."
+msgstr "на всякакви разклонения или продължения."
 
 #: src/credits.cpp:131
 msgid "PlanetPenguin Racer is Copyright © 2005 Volker Stroebel."
-msgstr "PlanetPenguin Racer © 2005 Volker Stroebel."
+msgstr "PlanetPenguin Racer е авторско право © 2005 на Волкер Щрьобел."
 
 #: src/credits.cpp:132
 msgid "Tux Racer and the Tux Racer Name are Copyright © 2001 Jasmin F. Patry."
-msgstr "Tux Racer и Tux Racer Name © 2001 Jasmin F. Patry."
+msgstr ""
+"Tux Racer и името Tux Racer са авторско право © 2001 на Жасмин Ф. Патри."
 
 #: src/event_select.cpp:50
 #, fuzzy
 msgid "Select campaign and cup"
-msgstr "Выбор соревнования и кубка"
+msgstr "Избери събитие и купа"
 
 #: src/event_select.cpp:56
 msgid "Campaign:"
@@ -266,31 +266,31 @@ msgstr ""
 
 #: src/event_select.cpp:67
 msgid "Cup:"
-msgstr "Кубок:"
+msgstr "Купа:"
 
 #: src/event_select.cpp:87
 msgid "Player name:"
-msgstr "Имя игрока:"
+msgstr "Име на играч:"
 
 #: src/event_select.cpp:104
 msgid "Continue"
-msgstr "Продолжить"
+msgstr "Продължаване"
 
 #: src/event_select.cpp:158
 msgid "You've won this cup!"
-msgstr "Кубок выигран!"
+msgstr "Вие спечелихте тази купа!"
 
 #: src/event_select.cpp:160
 msgid "You must complete this cup next"
-msgstr "Вы должны выиграть этот кубок следующим"
+msgstr "Първо трябва да спечелите тази купа"
 
 #: src/event_select.cpp:162
 msgid "You cannot enter this cup yet"
-msgstr "Вы пока не можете участвовать в этом кубке"
+msgstr "Все още не можете да играете за тази купа"
 
 #: src/event_race_select.cpp:45
 msgid "Select a race"
-msgstr "Выбор гонки"
+msgstr "Избери състезание"
 
 #: src/event_race_select.cpp:60
 msgid "Race!"
@@ -298,23 +298,23 @@ msgstr "Старт!"
 
 #: src/event_race_select.cpp:280
 msgid "You don't have any lives left."
-msgstr "У вас кончились жизни."
+msgstr "Нямате повече животи."
 
 #: src/event_race_select.cpp:285
 msgid "Race won! Your result:"
-msgstr "Гонка выиграна! Результат:"
+msgstr "Спечелихте състезанието! Вашият резултат:"
 
 #: src/event_race_select.cpp:289
 msgid "Needed to advance:"
-msgstr "Необходимо для победы:"
+msgstr "Нужно за да преминете:"
 
 #: src/event_race_select.cpp:293
 msgid "You can't enter this race yet."
-msgstr "Вы пока не можете выбрать эту гонку."
+msgstr "Все още не можете да влезете в това състезание."
 
 #: src/event_race_select.cpp:316
 msgid "Time:"
-msgstr "Время:"
+msgstr "Време:"
 
 #: src/event_race_select.cpp:320
 #, c-format
@@ -323,83 +323,83 @@ msgstr "%02d:%02d.%02d"
 
 #: src/event_race_select.cpp:324
 msgid "Herring:"
-msgstr "Улов:"
+msgstr "Херинги:"
 
 #: src/event_race_select.cpp:332
 msgid "Score:"
-msgstr "Очки:"
+msgstr "Резултат:"
 
 #: src/event_race_select.cpp:341
 msgid "Contributed by:"
-msgstr "Авторы:"
+msgstr "Допринесено от:"
 
 #: src/event_race_select.cpp:349 po/levelinfo:16
 msgid "Unknown"
-msgstr "Неизвестный"
+msgstr "Неизвестно"
 
 #: src/game_over.cpp:109
 msgid "Race aborted"
-msgstr "Гонка отменена"
+msgstr "Състезанието е отменено"
 
 #: src/game_over.cpp:112
 msgid "Race Over"
-msgstr "Финиш"
+msgstr "Край на състезанието"
 
 #: src/game_over.cpp:119
 #, c-format
 msgid "Time: %02d:%02d.%02d"
-msgstr "Время: %02d:%02d.%02d"
+msgstr "Време: %02d:%02d.%02d"
 
 #: src/game_over.cpp:124
 #, c-format
 msgid "Herring: %3d"
-msgstr "Улов: %3d"
+msgstr "Херинги: %3d"
 
 #: src/game_over.cpp:129
 #, c-format
 msgid "Score: %6d"
-msgstr "Очки: %6d"
+msgstr "Точки: %6d"
 
 #: src/game_over.cpp:135
 #, c-format
 msgid "Max speed: %3d km/h"
-msgstr "Максимальная скорость: %3d км/ч"
+msgstr "Максимална скорост: %3d км/ч"
 
 #: src/game_over.cpp:141
 #, c-format
 msgid "Was flying: %.01f %% of time"
-msgstr "В полёте %.01f %% времени"
+msgstr "Летене: %.01f %% от времето"
 
 #: src/game_over.cpp:151
 #, c-format
 msgid "You made it to the %s place in the highscore!"
-msgstr "%s место!"
+msgstr "Вие сте на %s място в рекордите!"
 
 #: src/game_over.cpp:161
 msgid "You beat your best score!"
-msgstr "Новый рекорд!"
+msgstr "Подобрихте рекорда си!"
 
 #: src/game_over.cpp:164
 #, fuzzy
 msgid "Congratulations! You won the campaign!"
-msgstr "Поздравления! Кубок выигран!"
+msgstr "Поздравления! Спечелихте купата!"
 
 #: src/game_over.cpp:166
 msgid "Congratulations! You won the cup!"
-msgstr "Поздравления! Кубок выигран!"
+msgstr "Поздравления! Спечелихте купата!"
 
 #: src/game_over.cpp:168
 msgid "You advanced to the next race!"
-msgstr "Уровень пройден!"
+msgstr "Преминавате към следващото състезание!"
 
 #: src/game_over.cpp:170
 msgid "You didn't advance."
-msgstr "Уровень не пройден."
+msgstr "Не преминахте."
 
 #: src/game_type_select.cpp:36
 #, fuzzy
 msgid "Enter a campaign"
-msgstr "Соревнование"
+msgstr "Влез в събитие"
 
 #: src/game_type_select.cpp:43
 msgid "Practice"
@@ -407,39 +407,39 @@ msgstr "Тренировка"
 
 #: src/game_type_select.cpp:50 src/highscore.cpp:350
 msgid "Highscore"
-msgstr "Рекорды"
+msgstr "Класиране"
 
 #: src/game_type_select.cpp:64
 msgid "Credits"
-msgstr "Авторы"
+msgstr "Заслуги"
 
 #: src/game_type_select.cpp:71 src/paused.cpp:78
 msgid "Quit"
-msgstr "Выход"
+msgstr "Изход"
 
 #: src/graphicsconfig.cpp:30
 msgid "Graphics Configuration"
-msgstr "Настройки графики"
+msgstr "Графична конфигурация"
 
 #: src/graphicsconfig.cpp:108
 msgid "Model:"
-msgstr "Персонаж:"
+msgstr "Модел:"
 
 #: src/graphicsconfig.cpp:117
 msgid "Show UI Snow:"
-msgstr "Снег в интерфейсе:"
+msgstr "Показвай UI сняг:"
 
 #: src/graphicsconfig.cpp:121
 msgid "Display FPS:"
-msgstr "FPS:"
+msgstr "Показвай кадри за секунда:"
 
 #: src/graphicsconfig.cpp:125
 msgid "Display Progress Bar:"
-msgstr "Продвижение по уровню:"
+msgstr "Показвай лента за прогрес:"
 
 #: src/graphicsconfig.cpp:129
 msgid "Draw Fog:"
-msgstr "Туман:"
+msgstr "Изобразявай мъгла:"
 
 #: src/graphicsconfig.cpp:133
 msgid "Reflections:"
@@ -447,7 +447,7 @@ msgstr "Отражения:"
 
 #: src/graphicsconfig.cpp:137
 msgid "Shadows:"
-msgstr "Тени:"
+msgstr "Сенки:"
 
 #: src/graphicsconfig.cpp:141
 msgid "Draw Background:"
@@ -455,153 +455,154 @@ msgstr ""
 
 #: src/highscore.cpp:88
 msgid "1:st"
-msgstr "1:ое"
+msgstr "1:ви"
 
 #: src/highscore.cpp:90
 msgid "2:nd"
-msgstr "2:ое"
+msgstr "2:ри"
 
 #: src/highscore.cpp:92
 msgid "3:rd"
-msgstr "3:ье"
+msgstr "3:ти"
 
 #: src/highscore.cpp:94
 msgid "4:th"
-msgstr "4:ое"
+msgstr "4:ти"
 
 #: src/highscore.cpp:96
 msgid "5:th"
-msgstr "5:ое"
+msgstr "5:ти"
 
 #: src/highscore.cpp:98
 msgid "6:th"
-msgstr "6:ое"
+msgstr "6:ти"
 
 #: src/highscore.cpp:100
 msgid "7:th"
-msgstr "7:ое"
+msgstr "7:ми"
 
 #: src/highscore.cpp:102
 msgid "8:th"
-msgstr "8:ое"
+msgstr "8:ми"
 
 #: src/highscore.cpp:104
 msgid "9:th"
-msgstr "9:ое"
+msgstr "9:ти"
 
 #: src/highscore.cpp:106
 msgid "10:th"
-msgstr "10:ое"
+msgstr "10:ти"
 
 #: src/highscore.cpp:317
 msgid "No records"
-msgstr "Нет рекорда"
+msgstr "Няма рекорди"
 
 #: src/highscore.cpp:327
 #, c-format
 msgid " (%d points)"
-msgstr " (%d очков)"
+msgstr " (%d точки)"
 
 #: src/joystickconfig.cpp:29
 msgid "Joystick Configuration"
-msgstr "Настройки джойстика"
+msgstr "Конфигурация на джойстика"
 
 #: src/joystickconfig.cpp:33
 msgid "Enable Joystick"
-msgstr "Включить джойстик:"
+msgstr "Включи джойстик"
 
 #: src/joystickconfig.cpp:41 src/keyboardconfig.cpp:132
 msgid "Paddle:"
-msgstr "Вперёд:"
+msgstr "Газ:"
 
 #: src/joystickconfig.cpp:54 src/keyboardconfig.cpp:136
 msgid "Brake:"
-msgstr "Тормоз:"
+msgstr "Спирачка:"
 
 #: src/joystickconfig.cpp:67 src/keyboardconfig.cpp:140
 msgid "Jump:"
-msgstr "Прыжок:"
+msgstr "Скок:"
 
 #: src/joystickconfig.cpp:80 src/keyboardconfig.cpp:144
 msgid "Trick:"
-msgstr "Трюк:"
+msgstr "Трик:"
 
 #: src/keyboardconfig.cpp:55
 msgid "Keyboard Configuration"
-msgstr "Настройки клавиатуры"
+msgstr "Конфигурация на клавиатурата"
 
 #: src/keyboardconfig.cpp:124
 msgid "Turn left:"
-msgstr "Влево:"
+msgstr "Завой наляво:"
 
 #: src/keyboardconfig.cpp:128
 msgid "Turn right:"
-msgstr "Вправо:"
+msgstr "Завой надясно:"
 
 #: src/keyboardconfig.cpp:148
 msgid "Reset:"
-msgstr "Сброс:"
+msgstr "Рестарт:"
 
 #: src/loading.cpp:53
 msgid "Loading, Please Wait..."
-msgstr "Загрузка..."
+msgstr "Зареждане, моля изчакайте..."
 
 #: src/paused.cpp:54
 msgid "Paused"
-msgstr "Пауза"
+msgstr "Паузиран"
 
 #: src/paused.cpp:70
 msgid "Resume"
-msgstr "Продолжить"
+msgstr "Поднови"
 
 #: src/splash_screen.cpp:34
 msgid "PRESS ANY KEY TO START"
-msgstr "ДЛЯ СТАРТА НАЖМИТЕ ЛЮБУЮ КЛАВИШУ"
+msgstr "НАТИСНИ КОЙ ДА Е БУТОН ЗА СТАРТ"
 
 #: src/videoconfig.cpp:60
 msgid "Video Configuration"
-msgstr "Настойки видео"
+msgstr "Видео конфигурация"
 
 #: src/videoconfig.cpp:173
 msgid "To change the resolution, or switch into fullscreen mode"
-msgstr "Для изменения разрешения или перехода в полноэкранный режим"
+msgstr ""
+"За смяна на разделителната способност, или превключване в режим цял екран"
 
 #: src/videoconfig.cpp:175
 msgid "use options.txt, located in the config folder."
-msgstr "можно редактировать options.txt в папке настроек."
+msgstr "използвай options.txt, намиращо се в папка config."
 
 #: src/videoconfig.cpp:177
 msgid "Resolution:"
-msgstr "Разрешение:"
+msgstr "Разделителна способност:"
 
 #: src/videoconfig.cpp:181
 msgid "Bits Per Pixel:"
-msgstr "Бит на пиксел:"
+msgstr "Бита за пиксел:"
 
 #: src/videoconfig.cpp:185
 msgid "Fullscreen:"
-msgstr "Полноэкранный режим:"
+msgstr "Цял екран:"
 
 #: src/videoconfig.cpp:189
 msgid "Experimental (needs restart)"
-msgstr "Экспериментально (нужен перезаруск)"
+msgstr "Експериментално (изисква рестарт)"
 
 #: src/videoconfig.cpp:192
 msgid "Stencil Buffer:"
-msgstr "Трафаретный буфер:"
+msgstr "Шаблонов буфер:"
 
 #: src/videoconfig.cpp:196
 msgid "Enable FSAA:"
-msgstr "Сглаживание:"
+msgstr "Включи FSAA:"
 
 #: src/videoconfig.cpp:200
 msgid "FSAA Multisamples:"
-msgstr "Качество сглаживания:"
+msgstr "FSAA мултидискрети:"
 
 #: po/levelinfo:1
 #, c-format
 msgid "FPS: %.1f"
-msgstr "FPS: %.1f"
+msgstr "Кадри за секунда: %.1f"
 
 #: po/levelinfo:2 po/levelinfo:3
 #, c-format
@@ -634,141 +635,143 @@ msgstr "%03d"
 
 #: po/levelinfo:14
 msgid "Doing"
-msgstr "В разработке"
+msgstr "Правене"
 
 #: po/levelinfo:15
 msgid ""
 "This course was probably created to present new textures introduced in "
 "PPRacer."
 msgstr ""
-"Вероятно, эта трасса была создана, чтобы показать новые текстуры, "
-"появивишиеся в PPRacer."
+"Тази писта вероятно е била създадена да представи новите текстури в PPRacer."
 
 #: po/levelinfo:17
 msgid "Hippo Run"
-msgstr "Бегемотьи бега"
+msgstr "Хипопотамски пробег"
 
 #: po/levelinfo:18
 msgid ""
 "In Hippo Run, you slide down an icy slope as a penguin, I honestly don't "
 "know what this has to do with hippos or running..."
 msgstr ""
-"В \"Бегемотьих бегах\" вы съезжаете с горы пингвином. Я честно не знаю, при "
-"чём тут бегемоты или бега..."
+"В Хипопотамски пробег, Вие се пързаляте по заледен склон като пингвин. "
+"Честно казано не знам какво общо има това с хипопотамите или пробега..."
 
 #: po/levelinfo:19
 msgid "Ice Pipeline"
-msgstr "Ледяная труба"
+msgstr "Леден тръбопровод"
 
 #: po/levelinfo:20
 msgid "A short, slippery ice-trough with herring scattered throughout."
-msgstr "Короткий и скользкий ледяной жёлоб с рассыпаной по нему селёдкой."
+msgstr "Късо, хлъзгаво ледено корито с херинги разпръснати навсякъде."
 
 #: po/levelinfo:21
 msgid "Volcanoes"
-msgstr "Вулканы"
+msgstr "Волкани"
 
 #: po/levelinfo:22
 msgid ""
 "This gigantic crater was full of water, and herring, but now it's all "
 "frozen, and yours for the taking."
 msgstr ""
-"Этот гигантский кратер был полон воды и селёдки, а теперь он весь замёрз, "
-"что бы вы по нему прокатились."
+"Този гигантски кратер е бил пълен с вода, и херинги, но сега целият е "
+"замръзнал, и Ваш за превземането."
 
 #: po/levelinfo:23
 msgid "Nature Stroll"
-msgstr "Прогулка на свежем воздухе"
+msgstr "Разходка в природата"
 
 #: po/levelinfo:24
 msgid ""
 "The fresh air, the pine scent, who doesn't like a nice refreshing walk "
 "through the mountains?"
 msgstr ""
-"Свежий воздух, запах сосен, кому не нравится освежающая прогулка в горах?"
+"Чистият въздух, благоуханието на боровете, кой не харесва една приятна "
+"ободрителна разходка в планината."
 
 #: po/levelinfo:25
 msgid "Mountain Mania"
-msgstr "Горная мания"
+msgstr "Планинска мания"
 
 #: po/levelinfo:26
 msgid "Icy Peril"
-msgstr "Ледяная угроза"
+msgstr "Ледена опасност"
 
 #: po/levelinfo:27
 msgid "Death Cup"
-msgstr "Кубок смерти"
+msgstr "Купа на смъртта"
 
 #: po/levelinfo:28
 msgid "Slippery Defeat"
-msgstr "Скользкое поражение"
+msgstr "Хлъзгаво поражение"
 
 #: po/levelinfo:29
 msgid "The Final Three"
-msgstr "Последняя тройка"
+msgstr "Финалната тройка"
 
 #: po/levelinfo:30
 msgid "Slippy-Slidey"
-msgstr "Скользкий скат"
+msgstr "Бързо пързаляне"
 
 #: po/levelinfo:31
 msgid "Slide on the slippery frozen river in a hilly forest, slipperily."
 msgstr ""
-"Скатитесь по скользкой замёрзшей реке в холмистом лесу. Скользко скатитесь."
+"Пързаляйте се на хлъзгавата замръзнала река в хълмиста гора, плъзгайки се."
 
 #: po/levelinfo:32
 msgid "Crazy Path"
-msgstr "Безумная дорожка"
+msgstr "Луда писта"
 
 #: po/levelinfo:33
 msgid ""
 "You'll have trouble slowing down on this one. There's lots of herring, but "
 "be careful not to fly too much or you won't get any."
 msgstr ""
-"А здесь будет нелегко затормозить. Хоть тут и много селёдки, не увлекайтесь "
-"полётами, а то вообще ничего не получите."
+"Ще имате проблеми със забавянето на тази писта. Има много херинги, но бъдете "
+"внимателни да не летите твърде много или няма да съберете нито една."
 
 #: po/levelinfo:34
 msgid "Candy Lane"
-msgstr "Леденцовая дорожка"
+msgstr "Коридор с бонбони"
 
 #: po/levelinfo:35
 msgid ""
 "Mostly ice, with very few obstacles in your path, this is like a stroll down "
 "Candy Lane."
 msgstr ""
-"По большей части ледяная трасса почти без препятствий. Прямо как прогулка по "
-"леденцовой дорожке."
+"Главно лед, с много малко препядствия по Вашия път, това е като бавна "
+"разходка по тясна уличка с бонбони."
 
 #: po/levelinfo:36
 msgid "Merry Go Round"
-msgstr "Карусель"
+msgstr "Въртележка"
 
 #: po/levelinfo:37
 msgid "Try to build up enough speed to jump from one roundabout to the next."
 msgstr ""
-"Постарайтесь набрать достаточную скорость для того, что бы перепрыгнуть с "
-"одной развязки на другую."
+"Опитайте се да наберете достатъчно скорост за да скачате от един площад на "
+"друг."
 
 #: po/levelinfo:38
 msgid "Hey, Tux!"
-msgstr "Эй, Tux!"
+msgstr "Хей, Тъкс!"
 
 #: po/levelinfo:39
 msgid "This course offers true excitement for your race-loving penguin buddy."
-msgstr "По-настоящему волнующая трасса для нашего дружка-пингвина."
+msgstr ""
+"Тази писта предлага истинско вълнение за Вашият приятел, който обича "
+"състезанията."
 
 #: po/levelinfo:40
 msgid "Bobsled Ride"
-msgstr "Бобслей"
+msgstr "Бобслей разходка"
 
 #: po/levelinfo:41
 msgid "Just like a real bobsled ride, only more dangerous."
-msgstr "Прямо как настоящий бобслей, только опаснее."
+msgstr "Също като истинско пътуване с бобслей, само че по-опасно."
 
 #: po/levelinfo:42
 msgid "In Search of Vodka"
-msgstr "В поисках водки"
+msgstr "В търсене на водка"
 
 #: po/levelinfo:43
 msgid ""
@@ -776,13 +779,13 @@ msgid ""
 "cabinet has been pillaged. Join Tux on the quest for vodka.Pick up herring "
 "for dinner along the way!"
 msgstr ""
-"Такс должен найти немного водки, что бы согреть свой замёрзший живот. Увы, "
-"его мини-бар разграбили. Присоединитесь к Таксу в его поисках водки. И "
-"захватите по пути селёдки!!"
+"Тъкс се нуждае от малко водка за да стопли студеният си корем. Уви, неговото "
+"шкафче със спиртни напитки беше ограбено. Присъединете се към Тъкс в "
+"неговото търсене за водка. Съберете херинги за вечеря по пътя!"
 
 #: po/levelinfo:44
 msgid "Tux at Home"
-msgstr "Tux дома"
+msgstr "Тъкс вкъщи"
 
 #: po/levelinfo:45
 msgid ""
@@ -790,65 +793,64 @@ msgid ""
 "and fastest way. But if you want to catch some herrings you have to enter "
 "the rooms on the left."
 msgstr ""
-"Здесь Tux живёт. Можно поехать по правой дорожке - это самый короткий и "
-"быстрый путь. Но если хотите селёдки, то вам направо!"
+"Тук живее Тъкс. Можете да вземете коридора вдясно - това е най-късия и бърз "
+"път. Но ако искате да хванете някои херинги трябва да влезете в стаите вляво."
 
 #: po/levelinfo:46
 msgid "The Niehoff Experience"
-msgstr "Испытания Niehoff'a"
+msgstr "Опита на Нихоф"
 
 #: po/levelinfo:47
 msgid "Search, Search, Search"
-msgstr "Искать, искать, искать"
+msgstr "Търсене, Търсене, Търсене"
 
 #: po/levelinfo:48
 msgid "Mountains and Hills"
-msgstr "Горы и холмы"
+msgstr "Планини и хълмове"
 
 #: po/levelinfo:49
 msgid "The Final Challenge"
-msgstr "Последнее испытание"
+msgstr "Последното предизвикателство"
 
 #: po/levelinfo:50
 msgid "Wild Mountains"
-msgstr "Дикие горы"
+msgstr "Диви Планини"
 
 #: po/levelinfo:51
 msgid ""
 "A wild landscape of ice and snow. It isn't easy to keep the right way. Not "
 "for beginners."
 msgstr ""
-"Дикая местность, покрытая льдом и снегом. Здесь сложно не сбиться с пути. Не "
-"для новичков."
+"Един див пейзаж от лед и сняг. Не е лесно да се поддържа правилната посока. "
+"Не е за начинаещи."
 
 #: po/levelinfo:52
 msgid "In Search of the Holy Grail"
-msgstr "В поисках Святого Грааля."
+msgstr "В търсене на светия Граал"
 
 #: po/levelinfo:53
 msgid ""
 "An adventure course with a simple task: Find the grail! Warning: It is very "
 "difficult to find the way."
 msgstr ""
-"Приключенческая трасса с просым заданием: найдите Грааль. Внимание! Очень "
-"сложно найти дорогу!"
+"Една приключенска писта с проста задача: Намерете Граала! Внимание: Много е "
+"трудно да се намери пътят."
 
 #: po/levelinfo:54
 msgid "Frozen Lakes"
-msgstr "Замёрзшие озёра"
+msgstr "Замръзнали езера"
 
 #: po/levelinfo:55
 msgid ""
 "To reach the finish you must pass several frozen lakes. Watch your speed on "
 "the ice - there are some dangerous corners."
 msgstr ""
-"Для того, чтобы добраться до финиша вам придётся преодолеть несколько "
-"замёрзших озёр. Следите за скоростью на льду - там есть несколько опасных "
-"поворотов."
+"За да достигнете финала трябва да преминете няколко замръзнали езера. "
+"Гледайте скоростта си на леда - има някои опасни ъгли."
 
 #: po/levelinfo:56
 msgid "Chinese Wall"
-msgstr "Великая китайская стена"
+msgstr "Китайска стена"
 
 #: po/levelinfo:57
 msgid ""
@@ -856,34 +858,33 @@ msgid ""
 "where the herrings are. If you fall off you can try to jump back up, there "
 "are 7 hidden ramps. You'll get a lot of exercise."
 msgstr ""
-"Великая китайская стена зимой. Пытайтесь оставаться на стене - там селёдка. "
-"Если упадёте, то можете попробовать запрыгнуть назад с помощью одного из 7 "
-"спрятанных трамплинов. Вы отлично натренируетесь."
+"Великата китайска стена през зимата. Опитайте се да останете върху стената - "
+"това е там където са херингите. Ако паднете можете да опитате да скочите "
+"обратно, има 7 скрити рампи. Ще получите много упражнения."
 
 #: po/levelinfo:58
 msgid "Secret Valleys"
-msgstr "Тайные долины"
+msgstr "Секретни долини"
 
 #: po/levelinfo:59
 msgid ""
 "Your task: Find the hidden valleys and the ten groups of dead trees. Look "
 "around, the ways are not easy to find."
 msgstr ""
-"Ваше задание - найти скрытые долины и десять групп мёртвых деревьев. "
-"Смотрите по сторонам, не так то просто найти дорогу."
+"Вашата задача: Намерете скритите долини и десетте групи от сухи дървета. "
+"Огледайте се, пътеките не са лесни за намиране."
 
 #: po/levelinfo:60
 msgid "Explore the Mountains"
-msgstr "Исследование гор"
+msgstr "Изследвайте планините"
 
 #: po/levelinfo:61
 msgid "Can you find your way through the icy, dangerous mountains. I doubt it."
-msgstr ""
-"Можете ли вы найти дорогу через эти опасные, покрытые льдом горы? Сомневаюсь."
+msgstr "Можете ли да намерите пътя през ледените, опасни планини. Съмнявам се."
 
 #: po/levelinfo:62
 msgid "Challenge One"
-msgstr "Соревнование №1"
+msgstr "Предизвикателство едно"
 
 #: po/levelinfo:63
 #, fuzzy
@@ -891,86 +892,87 @@ msgid ""
 "A very dangerous path along the mountains. Warning: The course is very "
 "difficult and there are some situations where you can get stuck."
 msgstr ""
-"Очень опасная горная трасса. Попытайтесь собрать больше 60 рыбинок. Внмание! "
-"Эта трасса очень сложная и в некоторых местах вы можете застрять."
+"Една много опасна писта покрай планините. Опитайте се да хванете повече от "
+"60 херинги. Внимание: Тази писта е много трудна и има някои ситуации в които "
+"можете да затънете."
 
 #: po/levelinfo:64
 msgid "Path of Daggers"
-msgstr "Тропа кинжалов"
+msgstr "Писта от кинжали"
 
 #: po/levelinfo:65
 msgid ""
 "Big spikes may prove to be the least of your worries on this course. Muliple "
 "paths allow you to take low or high roads, each with their own challenges."
 msgstr ""
-"Большие шипы будут волновать вас меньше всего на этой трассе. Разветвления "
-"позволяют вам выбирать между дорожками наверху и внизу, и на каждой - свои "
-"трудности."
+"Големите шипове може да се окажат най-малките Ви притеснения на тази писта. "
+"Съставените от много елементи пътеки Ви позволяват да тръгнете по ниски или "
+"високи пътища, всяка със свои собствени предизвикателства."
 
 #: po/levelinfo:66
 msgid "Tux Racer Classics"
-msgstr "Классический Tux Racer"
+msgstr "Tux Racer класики"
 
 #: po/levelinfo:67
 msgid "Canadian Cup"
-msgstr "Кубок Канады"
+msgstr "Канадска купа"
 
 #: po/levelinfo:68
 msgid "Swiss Cup"
-msgstr "Кубок Швейцарии"
+msgstr "Швейцарска купа"
 
 #: po/levelinfo:69
 msgid "Bumpy Ride"
-msgstr "Ухабистая гонка"
+msgstr "Пътуване по неравен път"
 
 #: po/levelinfo:70
 msgid ""
 "This hill has a series of ramps to tackle.  Be sure to line yourself up "
 "before getting airborne."
 msgstr ""
-"На этом холме есть несколько трамплинов, с которыми придётся повозиться. Не "
-"забывайте ехать точно на трамплин перед прыжком."
+"Този хълм има поредица от рампи с които да се справите. Бъдете сигурни, че "
+"сте в права линия преди да се отделите от земята."
 
 #: po/levelinfo:71
 msgid "Bunny Hill"
-msgstr "Холм \"Банни Хилл\""
+msgstr "Зайчешки хълм"
 
 #: po/levelinfo:72
 msgid ""
 "Let's start out easy, just collect the herring in the time limit and you'll "
 "be fine. The best part is that you don't have to use those stupid T-lifts."
 msgstr ""
-"Начнём с простого. Просто соберите селёдку во время и всё будет "
-"замечательно. И что лучше всего - вам не надо использовать эти дурацкие "
-"подъёмники для горнолыжников."
+"Нека да започнем с нещо лесно, само събирайте херинга във времевия лимит и "
+"ще бъдете отлични. Най-хубавата част е, че не трябва да ползвате тези "
+"глупави T-издигания."
 
 #: po/levelinfo:73
 msgid "Frozen River"
-msgstr "Замёрзшая река"
+msgstr "Замръзнала река"
 
 #: po/levelinfo:74
 msgid ""
 "Keep your speed down to collect herring. You have plenty of time, so don't "
 "rush things."
 msgstr ""
-"Едьте медленно, чтобы собрать селёдку. У вас много времени, поэтому не "
-"торопитесь."
+"Поддържайте скоростта си ниска за да събирате херинга. Имате време в "
+"изобилие, така че не пришпорвайте нещата."
 
 #: po/levelinfo:75
 msgid "Twisty Slope"
-msgstr "Извилистый склон"
+msgstr "Криволичещ склон"
 
 #: po/levelinfo:76
 msgid ""
 "Tight twists make grabbing herring difficult.  Hard turns and not too much "
 "braking will lead you to victory."
 msgstr ""
-"Из-за крутых поворотов сложно собирать селёдку. Не тормозите слишком часто, "
-"резко поворачивайте и вы выиграете!"
+"Тесните извивки правят хващането на херинга трудно. Остри завои и не "
+"прекалено много спирачки ще Ви отведат към победата."
 
 #: po/levelinfo:77
 msgid "Mt. Herring"
-msgstr "Селёдочная гора"
+msgstr "Връх херинга"
 
 #: po/levelinfo:78
 msgid ""
@@ -978,45 +980,45 @@ msgid ""
 "some wide open areas and branching paths. Lots of herrings to collect though "
 "it can be difficult unless you watch your speed."
 msgstr ""
-"Селёдочная гора - довольно быстрая, но длинная трасса. Кое-где с кочками, "
-"широкими открытыми участками и ветвящимися путями. Много селёдки, хотя "
-"собрать её может быть сложно, если не следить за скоростью."
+"Връх херинга е сравнително бърза, но дълга, доста неравна на места, и има "
+"някои отворени пространства и разклонения. Има много херинги за събиране, "
+"макар че може да бъде трудно освен ако не гледате скоростта си."
 
 #: po/levelinfo:79
 msgid "Herring Run"
-msgstr "В погоне за селёдкой"
+msgstr "Херингов пробег"
 
 #: po/levelinfo:80
 msgid "Mountain Man"
-msgstr "Горняк"
+msgstr "Планински играч"
 
 #: po/levelinfo:81
 msgid "Valley Cup"
-msgstr "Кубок долины"
+msgstr "Купа на долината"
 
 #: po/levelinfo:82
 msgid "Tux the winter sportsman"
-msgstr "Tux - спортсмен по зимнему виду спорта!"
+msgstr "Тъкс зимния спортист"
 
 #: po/levelinfo:83
 msgid "Highway To Hell"
-msgstr "Дорога в ад"
+msgstr "Шосе до Ада"
 
 #: po/levelinfo:84
 msgid "Ice Labyrinth"
-msgstr "Ледяной лабиринт"
+msgstr "Леден лабиринт"
 
 #: po/levelinfo:85
 msgid ""
 "You choose your destiny, you could end up full or starving depending on the "
 "path you pick."
 msgstr ""
-"Вы - хозяин своей судьбы. Вы можете наесться до отвала, а можете умереть с "
-"голоду. Всё зависит от вашего выбора."
+"Избирате съдбата си, можете да приключите пълен или гладен в зависимост от "
+"това коя пътека сте взели."
 
 #: po/levelinfo:86
 msgid "Snow Valley"
-msgstr "Снежная долина"
+msgstr "Снежна долина"
 
 #: po/levelinfo:87
 msgid ""
@@ -1024,26 +1026,26 @@ msgid ""
 "herrings very difficult to get if you're going for a perfect score! Watch "
 "your speed in certain areas to get the most herrings!"
 msgstr ""
-"Снежная долина - довольно ровная и очень скоростная трасса. Если вы захотите "
-"набрать максимальное количество, очков, то обнаружите, что некоторую селёдку "
-"очень трудно достать. На некоторых участках следите за скоростью, чтобы "
-"собрать всю селёдку!"
+"Снежна долина е сравнително равна, и много бърза писта. Ще откриете малко "
+"херинги, които са много трудни за взимане ако се стремите към перфектен "
+"резултат! Гледайте скоростта си в някои райони за да вземете най-много "
+"херинги!"
 
 #: po/levelinfo:88
 msgid "Tux Toboggan Run"
-msgstr "Tux в санном спорте"
+msgstr "Спускане с тобоган на Тъкс"
 
 #: po/levelinfo:89
 msgid ""
 "Collect herrings in an ice channel with various paths and many high and low "
 "speed passages. Watch out for the occasional tree."
 msgstr ""
-"Собирайте селёдку в ледяном канале со скоростными и не очень разветвлениями. "
-"И не наткинтесь на какое-нибудь одиноко стоящее дерево!"
+"Събирайте херинги в заледено речно корито с разнообразни пътеки и много "
+"високо и нискоскоростни проходи. Внимавайте за извънредни дървета."
 
 #: po/levelinfo:90
 msgid "Hazzard Valley"
-msgstr "Долина опасностей"
+msgstr "Опасна долина"
 
 #: po/levelinfo:91
 msgid ""
@@ -1051,49 +1053,50 @@ msgid ""
 "huge areas of rocky plains, not to mention your speed being your enemy in "
 "trying to get the herrings and stay on course!"
 msgstr ""
-"Долина опасностей полна препятствий - деревьев, глубоких впадин, шипов и "
-"огромных каменистых участков. Не говоря уже о том, что высокая скорость "
-"совсем не помогает вам собирать селёдку и оставаться на трассе."
+"Опасна долина е пълна с опасности, като дървета, дълбоки пещери, шипове, и "
+"огромни площи от скалисти равнини, да не споменаваме скоростта, която е Ваш "
+"враг в опитите да вземете херингите и в оставането на пистата."
 
 #: po/levelinfo:92
 msgid "Skull Mountain"
-msgstr "Гора-череп"
+msgstr "Черепна планина"
 
 #: po/levelinfo:93
 msgid ""
 "Skull mountain is a steep, twisty drop around tree-filled inner peaks. "
 "Expect to miss a lot of herrings and crash a lot."
 msgstr ""
-"Гора-череп - крутой извилистый скат вокруг покрытых деревьями пиков. Не "
-"удивляйтесь, если будете часто пропускать сёлёку и врезаться."
+"Черепна планина е едно стръмно спускане с много извивки около пълни с "
+"дървета вътрешни върхове. Очаквайте да пропускате много херинги и да се "
+"блъскате много."
 
 #: po/levelinfo:94
 msgid "Keep It Up"
-msgstr "Выше нос!"
+msgstr "Продължавай"
 
 #: po/levelinfo:95
 msgid ""
 "If you fall you might as well just quit then and there, 'cause your chances "
 "are slim on the rocky ground."
 msgstr ""
-"Если упадёте, то можете не продолжать - у вас мало шансов на каменистой "
-"поверхности."
+"Ако паднете бихте могли също така да излезете веднага, защото нямате шанс на "
+"скалистата земя."
 
 #: po/levelinfo:96
 msgid "Dead Man's Drop"
-msgstr "Скат мертвеца"
+msgstr "Спускането на мъртвеца"
 
 #: po/levelinfo:97
 msgid ""
 "Pretty tough hill. It's fast, steep, lumpy, twisty, and full of trees. Hard "
 "to get herrings. Don't forget the drop."
 msgstr ""
-"Достаточно сложный холм. Скоростной, крутой, извилистый, полный кочек и "
-"деревьев. Сложно собирать селёдку. И не забвайте, что вы ещё и скатываетесь!"
+"Доста труден хълм. Той е бърз, стръмен, неравен, с много извивки, и пълен с "
+"дървета. Трудно е да се взимат херингите. Не забравяйте спускането."
 
 #: po/levelinfo:98
 msgid "I've Got A Woody"
-msgstr "Ой, заноза!"
+msgstr "Притежавам един дървесен"
 
 #: po/levelinfo:99
 msgid ""
@@ -1101,49 +1104,49 @@ msgid ""
 "hard, try this one. Have fun winding through the woods.  Look out for a huge "
 "shortcut!!"
 msgstr ""
-"Ещё одни ужасные ледяные горки. Если вы думаете, что две предыдущие трассы "
-"были сложными, попробуйте эту. Приятно вам провести время, лавируя между "
-"деревьями! И не пропустите место, где можно хорошенько срезать!!"
+"Още едно ужасно издигнато ледено влакче. Ако мислите, че последните две са "
+"били трудни, опитайте това. Забавлявайте се да завивате през горите. "
+"Оглеждайте се за огромен пряк път!!"
 
 #: po/levelinfo:100
 msgid "Mt. Satan"
-msgstr "Гора Сатаны"
+msgstr "Връх Сатана"
 
 #: po/levelinfo:101
 msgid ""
 "Mount Satan is a sister mountain to Dead Man's Drop. No surprises here, just "
 "a steep, bumpy, twisty path full of trees to get through."
 msgstr ""
-"Гора Сатаны - гора-сестра Ската Мертвеца. Ничего неожиданного, просто "
-"крутая, ухабистая, извилистая трасса, полная деревьев."
+"Връх Сатана е сродна планина на Спускането на мъртвеца. Няма изненади тук, "
+"само стръмна, неравна писта с много извивки, пълна с дървета за преминаване."
 
 #: po/levelinfo:102
 msgid "Ski Jump"
-msgstr "Прыжок с трамплина"
+msgstr "Ски скок"
 
 #: po/levelinfo:103
 msgid ""
 "Steering will be unnecessary, just line yourself up and reap the rewards. "
 "Rememember, acceleration will slow you down after a while."
 msgstr ""
-"Поворачивать не надо, просто выровняйтесь и  собирайте урожай наград. "
-"Помните, что ускорение замедлит вас через некоторое время."
+"Завиването ще бъде излишно, само се наредете в линията и приберете "
+"наградите. Помнете, ускорението ще Ви забави след време."
 
 #: po/levelinfo:104
 msgid "High Road"
-msgstr "Cтолбовая дорога"
+msgstr "Възвишен път"
 
 #: po/levelinfo:105
 msgid ""
 "Just stay on the path and collect herring. Oh yeah, and if you fall you'll "
 "be eating pine needles."
 msgstr ""
-"Просто придерживайтесь трассы и собирайте селёдку. Ах, да, если вы упадёте, "
-"то набьёте полный рот сосновых иголок!"
+"Само стойте на пистата и събирайте херинги. А да, и ако паднете ще ядете "
+"борови иглички."
 
 #: po/levelinfo:106
 msgid "The Narrow Way"
-msgstr "Узкое местечко"
+msgstr "Тесният път"
 
 #: po/levelinfo:107
 msgid ""
@@ -1151,57 +1154,54 @@ msgid ""
 "you're going, there's trees in your way, and the herrings are hard to get. "
 "Good luck, you'll need it!"
 msgstr ""
-"В двух словах: оставайтесь на трассе, либо проиграете! Здесь сложно увидеть, "
-"куда катишься, перед глазами мешаются деревья, а селёдку трудно достать. "
-"Удачи, она вам понадобится!"
+"Да го кажем направо, стойте на пистата или губите! Трудно е да видите накъде "
+"отивате, има дървета по пътя, и херингите са трудни за взимане. Късмет, ще "
+"Ви трябва!"
 
 #: po/levelinfo:108
 msgid "Hamburger Hill"
-msgstr "Холм-гамбургер"
+msgstr "Хамбургерски хълм"
 
 #: po/levelinfo:109
 msgid ""
 "Hamburger Hill is steep, narrow, twisty, lumpy, icy, and rocky, with a few "
 "trees right in your way!"
 msgstr ""
-"Холм-гамбургер - крутая, узкая, извилистая, ухабистая покрытая льдом трасса "
-"с камнями и деревьями прямо у вас на пути!"
+"Хамбургерски хълм е стръмен, тесен, с много извивки, неравен, заледен, и "
+"скалист, с малко дървета точно по пътя Ви!"
 
 #: po/levelinfo:110
 msgid "Slalom"
-msgstr "Слалом"
+msgstr "Ски слалом"
 
 #: po/levelinfo:111
 msgid ""
 "Brake while you turn and the herrings on this pseudo-slalom will be yours."
 msgstr ""
-"Притормаживайте на поворотах и вся селёдка в этом псевдо-слаломе будет ваша."
+"Забавете докато завивате и херингите на този лъже-слалом ще бъдат Ваши."
 
 #: po/levelinfo:112
 msgid "Who Says Penguins Can't Fly?"
-msgstr "Кто сказал, что пингвины не летают?"
+msgstr "Кой казва, че пингвините не могат да летят?"
 
 #: po/levelinfo:113
 msgid ""
 "It'll be tough collecting herrings at speeds over 200, so try to brake "
 "whenever possible to get the required herring."
 msgstr ""
-"Будет сложновато собирать селёдку на скорости за 200, так что старайтесь "
-"притормаживать для этого."
+"Събирането на херинги ще бъде трудно при скорости от над 200, така че се "
+"опитайте да забавяте когато е възможно за да приберете нужните херинги."
 
 #: po/modelinfo:1
 msgid "Tux"
-msgstr "Tux"
+msgstr "Тъкс"
 
 #: po/modelinfo:2
 msgid "Tux on Snowboard"
-msgstr "Tux на сноуборде"
-
-#~ msgid "Language:"
-#~ msgstr "Язык:"
+msgstr "Тъкс върху сноуборд"
 
 #~ msgid "Event:"
-#~ msgstr "Соревнование:"
+#~ msgstr "Събитие:"
 
 #~ msgid "Congratulations! You won the event!"
-#~ msgstr "Поздравления! Соревнование выиграно!"
+#~ msgstr "Поздравления! Спечелихте събитието!"

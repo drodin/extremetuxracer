@@ -1,16 +1,16 @@
-# Translation of Extreme Tux Racer to Spanish
-#
-# Copyright (C) 2008 The Extreme Tux Racer team
+# Turkish translation for etracer
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
 # This file is distributed under the same license as the etracer package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Extreme Tux Racer\n"
+"Project-Id-Version: etracer\n"
 "Report-Msgid-Bugs-To: https://translations.edge.launchpad.net/etracer\n"
 "POT-Creation-Date: 2008-08-03 20:17+0200\n"
-"PO-Revision-Date: 2008-04-21 11:34+0000\n"
-"Last-Translator: Paweł Drewniak <Unknown>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2008-07-29 19:00+0000\n"
+"Last-Translator: Furkan KARA <kingofthepixels@gmail.com>\n"
+"Language-Team: Turkish <tr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,23 +19,23 @@ msgstr ""
 
 #: src/audioconfig.cpp:36
 msgid "Audio Configuration"
-msgstr "Configuración del sonido"
+msgstr "Ses Ayarları"
 
 #: src/audioconfig.cpp:112
 msgid "Sound Effects:"
-msgstr "Efectos de sonido:"
+msgstr "Ses Efektleri:"
 
 #: src/audioconfig.cpp:116
 msgid "Music:"
-msgstr "Musica:"
+msgstr "Müzik:"
 
 #: src/audioconfig.cpp:120
 msgid "(needs restart)"
-msgstr "(requiere reiniciar)"
+msgstr "(yeniden başlatılması gerek)"
 
 #: src/audioconfig.cpp:122
 msgid "Disable Audio:"
-msgstr "Desactivar sonido:"
+msgstr "Sesi Kapat:"
 
 #: src/audioconfig.cpp:126
 msgid "Stereo:"
@@ -43,221 +43,222 @@ msgstr "Stereo:"
 
 #: src/audioconfig.cpp:130
 msgid "Bits Per Sample:"
-msgstr "Bits por muestra:"
+msgstr "Örnek başına bit:"
 
 #: src/audioconfig.cpp:134
 msgid "Samples Per Second:"
-msgstr "Muestras por segundo:"
+msgstr "Saniyedeki örnek sayısı:"
 
 #: src/configmode.cpp:36
 msgid "Cancel"
-msgstr "Cancelar"
+msgstr "İptal"
 
 #: src/configmode.cpp:43
 msgid "Ok"
-msgstr "Ok"
+msgstr "Tamam"
 
 #: src/configuration.cpp:38 src/game_type_select.cpp:57 src/paused.cpp:62
 msgid "Configuration"
-msgstr "Configuración"
+msgstr "Konfigürasyon"
 
 #: src/configuration.cpp:45 src/credits.cpp:89
 msgid "Graphics"
-msgstr "Gráficos"
+msgstr "Grafik"
 
 #: src/configuration.cpp:52
 msgid "Video"
-msgstr "Vídeo"
+msgstr "Görüntü"
 
 #: src/configuration.cpp:59
 msgid "Audio"
-msgstr "Sonido"
+msgstr "Ses"
 
 #: src/configuration.cpp:66
 msgid "Keyboard"
-msgstr "Teclado"
+msgstr "Klavye"
 
 #: src/configuration.cpp:73
 msgid "Joystick"
-msgstr "Joystick"
+msgstr "Oyun Çubuğu"
 
 #: src/configuration.cpp:81 src/event_select.cpp:96
 #: src/event_race_select.cpp:53 src/highscore.cpp:413
 msgid "Back"
-msgstr "Atrás"
+msgstr "Geri"
 
 #: src/credits.cpp:43
 msgid "Version 0.4"
-msgstr ""
+msgstr "Sürüm 0.4"
 
 #: src/credits.cpp:46
 msgid "Extreme Tux Racer is in the process of being"
-msgstr ""
+msgstr "Extreme Tux Racer işlenmek için oluşturuluyor"
 
 #: src/credits.cpp:47
 msgid "completely rewritten. All versions after 0.35,"
-msgstr ""
+msgstr "0.35 sürümünden sonra tüm sürümlerin yeniden yazılımı tamamlandı."
 
 #: src/credits.cpp:48
 msgid "including this one, won't have major code changes"
-msgstr ""
+msgstr "Buda dahil olmak üzere ana kod değişimi olmadı"
 
 #: src/credits.cpp:49
 msgid "because the programmers are busy making a new,"
-msgstr ""
+msgstr "Çünkü programcılar yenisini yapmakla meşgul."
 
 #: src/credits.cpp:50
 msgid "improved game."
-msgstr ""
+msgstr "İyileştirilmiş oyun"
 
 #: src/credits.cpp:52
 msgid "Extreme Tux Racer is based on"
-msgstr ""
+msgstr "Extreme Tux Racer bunlardan esinlenmiştir"
 
 #: src/credits.cpp:53
 msgid "PlanetPenguin Racer, Open Racer and Tux Racer."
-msgstr ""
+msgstr "PlanetPenguin Racer, Open Racer ve Tux Racer."
 
 #: src/credits.cpp:55
 msgid "Some courses may have been modified from their"
-msgstr ""
+msgstr "Bazı bölümler belki bunlardan düzenlenmiştir"
 
 #: src/credits.cpp:56
 msgid "original versions to fit the requirements of the game."
-msgstr ""
+msgstr "orijinal versiyonlar için oyun gereksinimlerini sağlayın."
 
 #: src/credits.cpp:58
 msgid "Development"
-msgstr ""
+msgstr "Geliştirme"
 
 #: src/credits.cpp:63
 msgid "from Sunspire Studios:"
-msgstr ""
+msgstr "Sunspire Stüdyoları tarafından"
 
 #: src/credits.cpp:71
 msgid "Non-Rewrite Version Organization"
-msgstr ""
+msgstr "duraksamayan yeniden yazım sürüm organizasyonu"
 
 #: src/credits.cpp:74
 msgid "Translators"
-msgstr ""
+msgstr "Çevirmenler:"
 
 #: src/credits.cpp:87
 msgid "Other (incomplete) translations are from the PPRacer Project."
-msgstr ""
+msgstr "PPRacer Project tarafından (tamamlanmamış) diğer çeviriler."
 
 #: src/credits.cpp:90
 msgid "Nicosmos (Logo, Hud Graphics)"
-msgstr ""
+msgstr "Nicosmos (Logo, Hud Graphics)"
 
 #: src/credits.cpp:91
 msgid "Christian Picon (Objects, Skyboxes)"
-msgstr ""
+msgstr "Christian Picon (Objeler, Art alan)"
 
 #: src/credits.cpp:92
 msgid "Reinhard Niehoff (Trees)"
-msgstr ""
+msgstr "Reinhard Niehoff (Ağaçlar)"
 
 #: src/credits.cpp:93
 msgid "Daniel Poeira and Christian Picon (Font)"
-msgstr ""
+msgstr "Daniel Poeira and Christian Picon (Yazı Karakteri)"
 
 #: src/credits.cpp:95
 msgid "Music"
-msgstr ""
+msgstr "Müzik"
 
 #: src/credits.cpp:97
 msgid "'Race 1'"
-msgstr ""
+msgstr "'Yarış 1'"
 
 #: src/credits.cpp:98
 msgid "'Menu'"
-msgstr ""
+msgstr "'Menü'"
 
 #: src/credits.cpp:99
 msgid "'Options'"
-msgstr ""
+msgstr "'Ayarlar'"
 
 #: src/credits.cpp:100
 msgid "'Won Race'"
-msgstr ""
+msgstr "'yarışı kazan'"
 
 #: src/credits.cpp:103
 msgid "'Credits Ballad'"
-msgstr ""
+msgstr "'Katkıda Bulunanlar Tablosu'"
 
 #: src/credits.cpp:105
 msgid "Misc. PPRacer Contributors"
-msgstr ""
+msgstr "PPRacer 'a Katkıda  Bulunanlar"
 
 #: src/credits.cpp:110
 msgid "Thanks To"
-msgstr ""
+msgstr "Teşekkürler"
 
 #: src/credits.cpp:111
 msgid "(for Exteme Tux Racer)"
-msgstr ""
+msgstr "(Exteme Tux Racer için)"
 
 #: src/credits.cpp:112
 msgid "Ranger (for hosting the website)"
-msgstr ""
+msgstr "Ranger (web Sitesi Hostingi İçin)"
 
 #: src/credits.cpp:113
 msgid "Slythfox (for making the website)"
-msgstr ""
+msgstr "Slythfox (website yapımı için)"
 
 #: src/credits.cpp:114
 msgid "The Course Creators"
-msgstr ""
+msgstr "Pist yaratıcıları"
 
 #: src/credits.cpp:115
 msgid "The OpenRacer project"
-msgstr ""
+msgstr "OpenRacer projesi"
 
 #: src/credits.cpp:116
 msgid "Reinhard Niehoff (for helping with code modification)"
-msgstr ""
+msgstr "Reinhard Niehoff (kod modifikasyonuna yardımlarından dolayı)"
 
 #: src/credits.cpp:117
 msgid "All the people on the forum"
-msgstr ""
+msgstr "Tüm insanlar forumda"
 
 #: src/credits.cpp:118
 msgid "Larry Ewing (creator of Tux)"
-msgstr ""
+msgstr "Larry Ewing (Tux yaratıcısı)"
 
 #: src/credits.cpp:119
 msgid "(for Tux Racer)"
-msgstr ""
+msgstr "Tux Racer için"
 
 #: src/credits.cpp:126
 msgid "Tux Racer is a trademark of Jasmin F. Patry."
-msgstr ""
+msgstr "Tux Racer bir Jasmin F. Patry. markasıdır."
 
 #: src/credits.cpp:127
 msgid "Extreme Tux Racer is licenced under the GPL."
-msgstr ""
+msgstr "Extreme Tux Racer GPL ilkeleri altında lisanslanmıştır."
 
 #: src/credits.cpp:128
 msgid "We grant use of the name 'Extreme Tux Racer'"
-msgstr ""
+msgstr "Bizler 'Extreme Tux Racer' adının kullanımını tasdik ediyoruz"
 
 #: src/credits.cpp:129
 msgid "to any forks or continuations."
-msgstr ""
+msgstr "herhangi bir çatallaşma veya sürdürme"
 
 #: src/credits.cpp:131
 msgid "PlanetPenguin Racer is Copyright © 2005 Volker Stroebel."
-msgstr ""
+msgstr "PlanetPenguin Racer 'ın yayın hakkı © 2005  Volker Stroebel  'a aittir"
 
 #: src/credits.cpp:132
 msgid "Tux Racer and the Tux Racer Name are Copyright © 2001 Jasmin F. Patry."
 msgstr ""
+"Tux Racer ve Tux Racer Adının yayın hakkı © 2001 Jasmin F. Patry'e aittir."
 
 #: src/event_select.cpp:50
 #, fuzzy
 msgid "Select campaign and cup"
-msgstr "Elige evento y copa"
+msgstr "Yarışma ve kupa seç"
 
 #: src/event_select.cpp:56
 msgid "Campaign:"
@@ -265,188 +266,188 @@ msgstr ""
 
 #: src/event_select.cpp:67
 msgid "Cup:"
-msgstr "Copa:"
+msgstr "Kupa:"
 
 #: src/event_select.cpp:87
 msgid "Player name:"
-msgstr "Nombre del jugador:"
+msgstr "Oyuncu Adı:"
 
 #: src/event_select.cpp:104
 msgid "Continue"
-msgstr "Continuar"
+msgstr "Devam Et"
 
 #: src/event_select.cpp:158
 msgid "You've won this cup!"
-msgstr "¡Has ganado esta copa!"
+msgstr "Bu kupayı kazandınız!"
 
 #: src/event_select.cpp:160
 msgid "You must complete this cup next"
-msgstr "Tienes que completar esta copa"
+msgstr "Öncelikli olarak bu kupayı tamamlamalısınız."
 
 #: src/event_select.cpp:162
 msgid "You cannot enter this cup yet"
-msgstr "Todavía no puedes acceder a esta copa"
+msgstr "Bu kupaya henüz giremezsiniz"
 
 #: src/event_race_select.cpp:45
 msgid "Select a race"
-msgstr "Elige una carrera"
+msgstr "Yarış Seç"
 
 #: src/event_race_select.cpp:60
 msgid "Race!"
-msgstr "¡Correr!"
+msgstr "Yarış!"
 
 #: src/event_race_select.cpp:280
 msgid "You don't have any lives left."
-msgstr "No te quedan vidas."
+msgstr "Geriye hiçbir canın kalmadı"
 
 #: src/event_race_select.cpp:285
 msgid "Race won! Your result:"
-msgstr "¡Victoria! Resultado:"
+msgstr "Yarışı Kazandın! Senin sonucun:"
 
 #: src/event_race_select.cpp:289
 msgid "Needed to advance:"
-msgstr "Necesario para avanzar:"
+msgstr "Yükselmeye ihtiyacı var"
 
 #: src/event_race_select.cpp:293
 msgid "You can't enter this race yet."
-msgstr "Todavía no puedes acceder a esta carrera."
+msgstr "Henüz bu yarışa giremezsiniz."
 
 #: src/event_race_select.cpp:316
 msgid "Time:"
-msgstr "Tiempo:"
+msgstr "Zaman:"
 
 #: src/event_race_select.cpp:320
 #, c-format
 msgid "%02d:%02d.%02d"
-msgstr ""
+msgstr "%02d:%02d.%02d"
 
 #: src/event_race_select.cpp:324
 msgid "Herring:"
-msgstr "Arenques:"
+msgstr "manevra:"
 
 #: src/event_race_select.cpp:332
 msgid "Score:"
-msgstr "Puntuación:"
+msgstr "Skor:"
 
 #: src/event_race_select.cpp:341
 msgid "Contributed by:"
-msgstr "Autor:"
+msgstr "Katkıda Bulunan:"
 
 #: src/event_race_select.cpp:349 po/levelinfo:16
 msgid "Unknown"
-msgstr "Desconocido"
+msgstr "Bilinmeyen"
 
 #: src/game_over.cpp:109
 msgid "Race aborted"
-msgstr "Carrera abortada"
+msgstr "Yrış durduruldu"
 
 #: src/game_over.cpp:112
 msgid "Race Over"
-msgstr "Carrera terminada"
+msgstr "Yarış Bitti"
 
 #: src/game_over.cpp:119
 #, c-format
 msgid "Time: %02d:%02d.%02d"
-msgstr "Tiempo: %02d:%02d.%02d"
+msgstr "Zaman: %02d:%02d.%02d"
 
 #: src/game_over.cpp:124
 #, c-format
 msgid "Herring: %3d"
-msgstr "Arenques: %3d"
+msgstr "manevra: %3d"
 
 #: src/game_over.cpp:129
 #, c-format
 msgid "Score: %6d"
-msgstr "Puntuación: %6d"
+msgstr "Skor: %6d"
 
 #: src/game_over.cpp:135
 #, c-format
 msgid "Max speed: %3d km/h"
-msgstr "Velocidad máxima: %3d km/h"
+msgstr "Maksimum Hız: %3d km/h"
 
 #: src/game_over.cpp:141
 #, c-format
 msgid "Was flying: %.01f %% of time"
-msgstr "Volando el %.01f %% del tiempo"
+msgstr "Uçuş süresi: %.01f %%"
 
 #: src/game_over.cpp:151
 #, c-format
 msgid "You made it to the %s place in the highscore!"
-msgstr "¡Estas en el puesto %s del Highscore!"
+msgstr "Yüksek skorlarda %s . oldun!"
 
 #: src/game_over.cpp:161
 msgid "You beat your best score!"
-msgstr "¡Has batido tu propio record!"
+msgstr "En iyi skorunuzun üstüne geçtiniz"
 
 #: src/game_over.cpp:164
 #, fuzzy
 msgid "Congratulations! You won the campaign!"
-msgstr "¡Enhorabuena! ¡Has ganado la copa!"
+msgstr "Tebrikler! Kupa kazandınız!"
 
 #: src/game_over.cpp:166
 msgid "Congratulations! You won the cup!"
-msgstr "¡Enhorabuena! ¡Has ganado la copa!"
+msgstr "Tebrikler! Kupa kazandınız!"
 
 #: src/game_over.cpp:168
 msgid "You advanced to the next race!"
-msgstr "¡Te has clasificado para la siguiente carrera!"
+msgstr "Bir sonraki yarışa geçmeyi başardın!"
 
 #: src/game_over.cpp:170
 msgid "You didn't advance."
-msgstr "No estás clasificado."
+msgstr "Başaramadın."
 
 #: src/game_type_select.cpp:36
 #, fuzzy
 msgid "Enter a campaign"
-msgstr "Entrar en un evento"
+msgstr "Bir olay gir"
 
 #: src/game_type_select.cpp:43
 msgid "Practice"
-msgstr "Práctica"
+msgstr "Pratik"
 
 #: src/game_type_select.cpp:50 src/highscore.cpp:350
 msgid "Highscore"
-msgstr "Highscore"
+msgstr "Yüksek Skorlar"
 
 #: src/game_type_select.cpp:64
 msgid "Credits"
-msgstr "Créditos"
+msgstr "Katkıda bulunanlar"
 
 #: src/game_type_select.cpp:71 src/paused.cpp:78
 msgid "Quit"
-msgstr "Salir"
+msgstr "Çıkış"
 
 #: src/graphicsconfig.cpp:30
 msgid "Graphics Configuration"
-msgstr "Configuración de los gráficos"
+msgstr "Grafik Konfigirasyon"
 
 #: src/graphicsconfig.cpp:108
 msgid "Model:"
-msgstr "Modelo:"
+msgstr "Model:"
 
 #: src/graphicsconfig.cpp:117
 msgid "Show UI Snow:"
-msgstr "Mostrar nieve:"
+msgstr "Ul karını göster"
 
 #: src/graphicsconfig.cpp:121
 msgid "Display FPS:"
-msgstr "Mostrar FPS:"
+msgstr "Ekran FSP"
 
 #: src/graphicsconfig.cpp:125
 msgid "Display Progress Bar:"
-msgstr "Mostrar progreso:"
+msgstr "Ekran İlerleme Raporu Çubuğu"
 
 #: src/graphicsconfig.cpp:129
 msgid "Draw Fog:"
-msgstr "Niebla:"
+msgstr "Sis yap"
 
 #: src/graphicsconfig.cpp:133
 msgid "Reflections:"
-msgstr "Reflejos:"
+msgstr "Düşünceler"
 
 #: src/graphicsconfig.cpp:137
 msgid "Shadows:"
-msgstr "Sombras:"
+msgstr "Gölgeler:"
 
 #: src/graphicsconfig.cpp:141
 msgid "Draw Background:"
@@ -454,148 +455,148 @@ msgstr ""
 
 #: src/highscore.cpp:88
 msgid "1:st"
-msgstr "1."
+msgstr "1.ci"
 
 #: src/highscore.cpp:90
 msgid "2:nd"
-msgstr "2."
+msgstr "2.ci"
 
 #: src/highscore.cpp:92
 msgid "3:rd"
-msgstr "3."
+msgstr "3.cü"
 
 #: src/highscore.cpp:94
 msgid "4:th"
-msgstr "4."
+msgstr "4.cü"
 
 #: src/highscore.cpp:96
 msgid "5:th"
-msgstr "5."
+msgstr "5.ci"
 
 #: src/highscore.cpp:98
 msgid "6:th"
-msgstr "6."
+msgstr "6.cı"
 
 #: src/highscore.cpp:100
 msgid "7:th"
-msgstr "7."
+msgstr "7.ci"
 
 #: src/highscore.cpp:102
 msgid "8:th"
-msgstr "8."
+msgstr "8.inci"
 
 #: src/highscore.cpp:104
 msgid "9:th"
-msgstr "9."
+msgstr "9.uncu"
 
 #: src/highscore.cpp:106
 msgid "10:th"
-msgstr "10."
+msgstr "10.cu"
 
 #: src/highscore.cpp:317
 msgid "No records"
-msgstr ""
+msgstr "Kayıt yok"
 
 #: src/highscore.cpp:327
 #, c-format
 msgid " (%d points)"
-msgstr ""
+msgstr " (%d puan)"
 
 #: src/joystickconfig.cpp:29
 msgid "Joystick Configuration"
-msgstr "Configuración del joystick"
+msgstr "Joystick Yapılandırma"
 
 #: src/joystickconfig.cpp:33
 msgid "Enable Joystick"
-msgstr "Activar joystick"
+msgstr "Joystick Etkin"
 
 #: src/joystickconfig.cpp:41 src/keyboardconfig.cpp:132
 msgid "Paddle:"
-msgstr "Remar:"
+msgstr "denetim kolu"
 
 #: src/joystickconfig.cpp:54 src/keyboardconfig.cpp:136
 msgid "Brake:"
-msgstr "Frenar:"
+msgstr "Fren:"
 
 #: src/joystickconfig.cpp:67 src/keyboardconfig.cpp:140
 msgid "Jump:"
-msgstr "Saltar:"
+msgstr "Sıçrama:"
 
 #: src/joystickconfig.cpp:80 src/keyboardconfig.cpp:144
 msgid "Trick:"
-msgstr "Truco:"
+msgstr "Hile:"
 
 #: src/keyboardconfig.cpp:55
 msgid "Keyboard Configuration"
-msgstr "Configuración del teclado"
+msgstr "Klavye Yapılandırma"
 
 #: src/keyboardconfig.cpp:124
 msgid "Turn left:"
-msgstr "Girar a la izquierda:"
+msgstr "sola dön"
 
 #: src/keyboardconfig.cpp:128
 msgid "Turn right:"
-msgstr "Girar a la derecha:"
+msgstr "sağa dön"
 
 #: src/keyboardconfig.cpp:148
 msgid "Reset:"
-msgstr "Reiniciar:"
+msgstr "sıfırla"
 
 #: src/loading.cpp:53
 msgid "Loading, Please Wait..."
-msgstr "Cargando, por favor espera..."
+msgstr "Yükleniyor, Lütfen Bekleyiniz..."
 
 #: src/paused.cpp:54
 msgid "Paused"
-msgstr "Parado"
+msgstr "Duraklatıldı"
 
 #: src/paused.cpp:70
 msgid "Resume"
-msgstr "Volver"
+msgstr "Devam Et"
 
 #: src/splash_screen.cpp:34
 msgid "PRESS ANY KEY TO START"
-msgstr "PULSA UNA TECLA PARA EMPEZAR"
+msgstr "Başlamak İçin Herhangi Bir Tuşa Basın"
 
 #: src/videoconfig.cpp:60
 msgid "Video Configuration"
-msgstr "Configuración del vídeo"
+msgstr "Görüntü Yapılandırma"
 
 #: src/videoconfig.cpp:173
 msgid "To change the resolution, or switch into fullscreen mode"
-msgstr "Para cambiar la resolución o entrar en modo pantalla completa"
+msgstr "Çözünürlüğü değiştirmek için veya tam ekrana geçmek için"
 
 #: src/videoconfig.cpp:175
 msgid "use options.txt, located in the config folder."
-msgstr "usa options.txt que está en la carpeta config."
+msgstr "config dizinindeki \"options.txt\" dosyasını kullan."
 
 #: src/videoconfig.cpp:177
 msgid "Resolution:"
-msgstr "Resolución:"
+msgstr "Çözünürlük:"
 
 #: src/videoconfig.cpp:181
 msgid "Bits Per Pixel:"
-msgstr "Bits por pixel:"
+msgstr "piksel başına düşen parça"
 
 #: src/videoconfig.cpp:185
 msgid "Fullscreen:"
-msgstr "Pantalla completa:"
+msgstr "Tam Ekran:"
 
 #: src/videoconfig.cpp:189
 msgid "Experimental (needs restart)"
-msgstr "Experimental (requiere reiniciar)"
+msgstr "Deneme(yaniden başlatmak gerekir)"
 
 #: src/videoconfig.cpp:192
 msgid "Stencil Buffer:"
-msgstr ""
+msgstr "şablon tampon"
 
 #: src/videoconfig.cpp:196
 msgid "Enable FSAA:"
-msgstr "Activar FSAA:"
+msgstr "FSAA'yı etkinleştir"
 
 #: src/videoconfig.cpp:200
 msgid "FSAA Multisamples:"
-msgstr ""
+msgstr "FSSA aşamalı örnekleri"
 
 #: po/levelinfo:1
 #, c-format
@@ -614,7 +615,7 @@ msgstr "%02d:%02d:%02d"
 
 #: po/levelinfo:6 po/levelinfo:8
 msgid "km/h"
-msgstr "km/h"
+msgstr "km/s"
 
 #: po/levelinfo:7 po/levelinfo:9
 #, c-format
@@ -633,127 +634,141 @@ msgstr "%03d"
 
 #: po/levelinfo:14
 msgid "Doing"
-msgstr ""
+msgstr "Yapıyor"
 
 #: po/levelinfo:15
 msgid ""
 "This course was probably created to present new textures introduced in "
 "PPRacer."
 msgstr ""
+"PPRacer'deki bu bölüm muhtemelen yeni haritaların tanıtılması için "
+"oluşturuldu."
 
 #: po/levelinfo:17
 msgid "Hippo Run"
-msgstr ""
+msgstr "Hippo koşusu"
 
 #: po/levelinfo:18
 msgid ""
 "In Hippo Run, you slide down an icy slope as a penguin, I honestly don't "
 "know what this has to do with hippos or running..."
 msgstr ""
+"Su aygırı koşusunda, buzlu bir yokuştan aşağı bir penguen olarak kayacaksın. "
+"Doğrusunu istersen bu bölümde su aygırı ile yada koşmayla ilgili ne yapmak "
+"zorundayız bilmiyorum."
 
 #: po/levelinfo:19
 msgid "Ice Pipeline"
-msgstr ""
+msgstr "Buz boru"
 
 #: po/levelinfo:20
 msgid "A short, slippery ice-trough with herring scattered throughout."
-msgstr ""
+msgstr "yavaş! saçılmış ringa balıkları boyunca kaygan buz var."
 
 #: po/levelinfo:21
 msgid "Volcanoes"
-msgstr ""
+msgstr "Volkanlar"
 
 #: po/levelinfo:22
 msgid ""
 "This gigantic crater was full of water, and herring, but now it's all "
 "frozen, and yours for the taking."
 msgstr ""
+"Bu devasa krater tamamen su ve ringa balıklarıyla doluydu ama şimdi hepsi "
+"donmuş ve alman için seni bekliyor."
 
 #: po/levelinfo:23
 msgid "Nature Stroll"
-msgstr ""
+msgstr "Doğa Gezisi"
 
 #: po/levelinfo:24
 msgid ""
 "The fresh air, the pine scent, who doesn't like a nice refreshing walk "
 "through the mountains?"
 msgstr ""
+"Temiz hava, çamların kokusu, kim böyle bir yenileyici bir dağ yürüyüşünü "
+"istemezki?"
 
 #: po/levelinfo:25
 msgid "Mountain Mania"
-msgstr ""
+msgstr "Dağ tutkunu"
 
 #: po/levelinfo:26
 msgid "Icy Peril"
-msgstr ""
+msgstr "Buzlu Tehlike"
 
 #: po/levelinfo:27
 msgid "Death Cup"
-msgstr ""
+msgstr "Ölüm Kupası"
 
 #: po/levelinfo:28
 msgid "Slippery Defeat"
-msgstr ""
+msgstr "Hafif Yenilgi"
 
 #: po/levelinfo:29
 msgid "The Final Three"
-msgstr ""
+msgstr "Son Üçlü"
 
 #: po/levelinfo:30
 msgid "Slippy-Slidey"
-msgstr ""
+msgstr "Kaygan-Heyelanımsı"
 
 #: po/levelinfo:31
 msgid "Slide on the slippery frozen river in a hilly forest, slipperily."
-msgstr ""
+msgstr "Tepelik ormandaki kaygan buz tutmuş nehirde kay."
 
 #: po/levelinfo:32
 msgid "Crazy Path"
-msgstr ""
+msgstr "Çılgın Patika"
 
 #: po/levelinfo:33
 msgid ""
 "You'll have trouble slowing down on this one. There's lots of herring, but "
 "be careful not to fly too much or you won't get any."
 msgstr ""
+"Bu yarışta yavaşlarken zorlanacaksın. Bu bölümde çok fazla ringa balığı var, "
+"ama dikkatli ol çok uçma yoksa hiç bir şey alamazsın."
 
 #: po/levelinfo:34
 msgid "Candy Lane"
-msgstr ""
+msgstr "Şeker Geçidi"
 
 #: po/levelinfo:35
 msgid ""
 "Mostly ice, with very few obstacles in your path, this is like a stroll down "
 "Candy Lane."
 msgstr ""
+"Yolun birkaç engelle birlikte çoğunlukla buz. Bu Şeker Keçiyolu boyunca "
+"gezinmek gibi."
 
 #: po/levelinfo:36
 msgid "Merry Go Round"
-msgstr ""
+msgstr "Atlı Karınca"
 
 #: po/levelinfo:37
 msgid "Try to build up enough speed to jump from one roundabout to the next."
 msgstr ""
+"Bir atlı karıncadan diğerine sıçramak için yeterli derece hızlanmayı dene."
 
 #: po/levelinfo:38
 msgid "Hey, Tux!"
-msgstr ""
+msgstr "Hey, Tux!"
 
 #: po/levelinfo:39
 msgid "This course offers true excitement for your race-loving penguin buddy."
-msgstr ""
+msgstr "Bu bölüm gerçek yarış sever penguenine esaslı bir heyecan sunuyor."
 
 #: po/levelinfo:40
 msgid "Bobsled Ride"
-msgstr ""
+msgstr "Kızak Sürme"
 
 #: po/levelinfo:41
 msgid "Just like a real bobsled ride, only more dangerous."
-msgstr ""
+msgstr "Tıpkı gerçek kızak sürmek gibi sacece daha tehlikeli"
 
 #: po/levelinfo:42
 msgid "In Search of Vodka"
-msgstr ""
+msgstr "Votka arayışında"
 
 #: po/levelinfo:43
 msgid ""
@@ -761,10 +776,13 @@ msgid ""
 "cabinet has been pillaged. Join Tux on the quest for vodka.Pick up herring "
 "for dinner along the way!"
 msgstr ""
+"Tux'un üşümüş midesini ısıtmak için biraz biraz vodkaya ihtiyacı var. Ne "
+"yazık ki onun içki dolabı yağmalanmış. Vodka görevinde Tux'a katıl. Akşam "
+"yemeği için yolçevresinde ringa balığı topla."
 
 #: po/levelinfo:44
 msgid "Tux at Home"
-msgstr ""
+msgstr "Tux Evinde"
 
 #: po/levelinfo:45
 msgid ""
@@ -779,29 +797,31 @@ msgstr ""
 
 #: po/levelinfo:47
 msgid "Search, Search, Search"
-msgstr ""
+msgstr "Ara, Ara, Ara"
 
 #: po/levelinfo:48
 msgid "Mountains and Hills"
-msgstr ""
+msgstr "Dağlar ve Tepeler"
 
 #: po/levelinfo:49
 msgid "The Final Challenge"
-msgstr ""
+msgstr "Son Mücadele"
 
 #: po/levelinfo:50
 msgid "Wild Mountains"
-msgstr ""
+msgstr "Vahşi Dağlar"
 
 #: po/levelinfo:51
 msgid ""
 "A wild landscape of ice and snow. It isn't easy to keep the right way. Not "
 "for beginners."
 msgstr ""
+"Karlı ve buzlu vahşi bir ortam. Doğru yolda durmak kolay değil. Acemilere "
+"göre değil."
 
 #: po/levelinfo:52
 msgid "In Search of the Holy Grail"
-msgstr ""
+msgstr "Kutsal Kase'yi Ararken"
 
 #: po/levelinfo:53
 msgid ""
@@ -811,7 +831,7 @@ msgstr ""
 
 #: po/levelinfo:54
 msgid "Frozen Lakes"
-msgstr ""
+msgstr "Donmuş Göl"
 
 #: po/levelinfo:55
 msgid ""
@@ -821,7 +841,7 @@ msgstr ""
 
 #: po/levelinfo:56
 msgid "Chinese Wall"
-msgstr ""
+msgstr "Çin Seddi"
 
 #: po/levelinfo:57
 msgid ""
@@ -829,28 +849,33 @@ msgid ""
 "where the herrings are. If you fall off you can try to jump back up, there "
 "are 7 hidden ramps. You'll get a lot of exercise."
 msgstr ""
+"Kışın Büyük Çin Seddi. Duvarın üstünde durmayı dene -ringa balıklarının "
+"olduğu yerler. Eğer düşersen zıplayark geri tırmanabilirsin. 7gizli rampa "
+"var. Çok fazla egzersiz yapacaksın."
 
 #: po/levelinfo:58
 msgid "Secret Valleys"
-msgstr ""
+msgstr "Gizli Vadi"
 
 #: po/levelinfo:59
 msgid ""
 "Your task: Find the hidden valleys and the ten groups of dead trees. Look "
 "around, the ways are not easy to find."
 msgstr ""
+"Görevin: Gizlenmiş vadileri ve donmuş on grup ağacı bul. Etrafına bakın, "
+"yolu bulmak kolay değil."
 
 #: po/levelinfo:60
 msgid "Explore the Mountains"
-msgstr ""
+msgstr "Dağları Keşfet"
 
 #: po/levelinfo:61
 msgid "Can you find your way through the icy, dangerous mountains. I doubt it."
-msgstr ""
+msgstr "Buzlu ve tehlikeli dağlarda yolunu bulabilir misin? Ben şüpheliyim."
 
 #: po/levelinfo:62
 msgid "Challenge One"
-msgstr ""
+msgstr "Birinci Mücadele"
 
 #: po/levelinfo:63
 msgid ""
@@ -860,7 +885,7 @@ msgstr ""
 
 #: po/levelinfo:64
 msgid "Path of Daggers"
-msgstr ""
+msgstr "Hançer Patikası"
 
 #: po/levelinfo:65
 msgid ""
@@ -870,19 +895,19 @@ msgstr ""
 
 #: po/levelinfo:66
 msgid "Tux Racer Classics"
-msgstr ""
+msgstr "Tux Yarışları Klasiği"
 
 #: po/levelinfo:67
 msgid "Canadian Cup"
-msgstr ""
+msgstr "Kanada Kupası"
 
 #: po/levelinfo:68
 msgid "Swiss Cup"
-msgstr ""
+msgstr "İsviçre Kupası"
 
 #: po/levelinfo:69
 msgid "Bumpy Ride"
-msgstr ""
+msgstr "Engelli Koşu"
 
 #: po/levelinfo:70
 msgid ""
@@ -892,17 +917,19 @@ msgstr ""
 
 #: po/levelinfo:71
 msgid "Bunny Hill"
-msgstr ""
+msgstr "Tavşancık Tepesi"
 
 #: po/levelinfo:72
 msgid ""
 "Let's start out easy, just collect the herring in the time limit and you'll "
 "be fine. The best part is that you don't have to use those stupid T-lifts."
 msgstr ""
+"Kolaylarla başlayalım. Sadece verilen zamanda Ringa Balıklarını topla bu "
+"yeterli. Bunun en iyi yanı şu salak T-liftleri kullanmak zorunda değilsin."
 
 #: po/levelinfo:73
 msgid "Frozen River"
-msgstr ""
+msgstr "Donmuş Nehir"
 
 #: po/levelinfo:74
 msgid ""
@@ -912,7 +939,7 @@ msgstr ""
 
 #: po/levelinfo:75
 msgid "Twisty Slope"
-msgstr ""
+msgstr "Dönemeçli Yamaç"
 
 #: po/levelinfo:76
 msgid ""
@@ -922,7 +949,7 @@ msgstr ""
 
 #: po/levelinfo:77
 msgid "Mt. Herring"
-msgstr ""
+msgstr "Herring Dağı"
 
 #: po/levelinfo:78
 msgid ""
@@ -933,37 +960,37 @@ msgstr ""
 
 #: po/levelinfo:79
 msgid "Herring Run"
-msgstr ""
+msgstr "Ringa Balığı koşusu"
 
 #: po/levelinfo:80
 msgid "Mountain Man"
-msgstr ""
+msgstr "Dağ Adamı"
 
 #: po/levelinfo:81
 msgid "Valley Cup"
-msgstr ""
+msgstr "Vadi Kupası"
 
 #: po/levelinfo:82
 msgid "Tux the winter sportsman"
-msgstr ""
+msgstr "Kış sporcusu Tux"
 
 #: po/levelinfo:83
 msgid "Highway To Hell"
-msgstr ""
+msgstr "Cehenneme Giden Otoban"
 
 #: po/levelinfo:84
 msgid "Ice Labyrinth"
-msgstr ""
+msgstr "Buz Labirent"
 
 #: po/levelinfo:85
 msgid ""
 "You choose your destiny, you could end up full or starving depending on the "
 "path you pick."
-msgstr ""
+msgstr "Kaderini sen seç, sonuna kadar git yada seçtiğin yolda açlıktan öl."
 
 #: po/levelinfo:86
 msgid "Snow Valley"
-msgstr ""
+msgstr "Kar Vadisi"
 
 #: po/levelinfo:87
 msgid ""
@@ -974,7 +1001,7 @@ msgstr ""
 
 #: po/levelinfo:88
 msgid "Tux Toboggan Run"
-msgstr ""
+msgstr "Tux Kızak Yarışı"
 
 #: po/levelinfo:89
 msgid ""
@@ -984,7 +1011,7 @@ msgstr ""
 
 #: po/levelinfo:90
 msgid "Hazzard Valley"
-msgstr ""
+msgstr "Ölümcül Vadi"
 
 #: po/levelinfo:91
 msgid ""
@@ -992,10 +1019,13 @@ msgid ""
 "huge areas of rocky plains, not to mention your speed being your enemy in "
 "trying to get the herrings and stay on course!"
 msgstr ""
+"Ölümcül Vadi ağaçlar, derin büyük mağralar, uçurumlar ve büyük taşlık "
+"alanlar gibi tehlikelerle dolu. ringa balıklarını almaya çalışırken "
+"düşmanının hızından bahsetmiyorum bile"
 
 #: po/levelinfo:92
 msgid "Skull Mountain"
-msgstr ""
+msgstr "Kafatası Dağı"
 
 #: po/levelinfo:93
 msgid ""
@@ -1005,7 +1035,7 @@ msgstr ""
 
 #: po/levelinfo:94
 msgid "Keep It Up"
-msgstr ""
+msgstr "Yukarı Devam"
 
 #: po/levelinfo:95
 msgid ""
@@ -1015,17 +1045,19 @@ msgstr ""
 
 #: po/levelinfo:96
 msgid "Dead Man's Drop"
-msgstr ""
+msgstr "Ölü Cesetler Dağı"
 
 #: po/levelinfo:97
 msgid ""
 "Pretty tough hill. It's fast, steep, lumpy, twisty, and full of trees. Hard "
 "to get herrings. Don't forget the drop."
 msgstr ""
+"Çok düz bir tepe. Hızlı, tümsekli, kar yığınları ve ağaçlarla dolu. Ringa "
+"balıklarını toplamak zor. Engebeleri unutma."
 
 #: po/levelinfo:98
 msgid "I've Got A Woody"
-msgstr ""
+msgstr "Ormanlığım Var"
 
 #: po/levelinfo:99
 msgid ""
@@ -1036,17 +1068,19 @@ msgstr ""
 
 #: po/levelinfo:100
 msgid "Mt. Satan"
-msgstr ""
+msgstr "Şeytan Dağı"
 
 #: po/levelinfo:101
 msgid ""
 "Mount Satan is a sister mountain to Dead Man's Drop. No surprises here, just "
 "a steep, bumpy, twisty path full of trees to get through."
 msgstr ""
+"Şeytan Dağı, Ölü Cesetler Dağının kız kardeşidir. Burada süpriz yok, sadece "
+"yamaç, tümsek, ve ağaçlarla dolu bir geçit."
 
 #: po/levelinfo:102
 msgid "Ski Jump"
-msgstr ""
+msgstr "Kayak Zıplaması"
 
 #: po/levelinfo:103
 msgid ""
@@ -1056,7 +1090,7 @@ msgstr ""
 
 #: po/levelinfo:104
 msgid "High Road"
-msgstr ""
+msgstr "Yüksek Yol"
 
 #: po/levelinfo:105
 msgid ""
@@ -1066,7 +1100,7 @@ msgstr ""
 
 #: po/levelinfo:106
 msgid "The Narrow Way"
-msgstr ""
+msgstr "Dar Yol"
 
 #: po/levelinfo:107
 msgid ""
@@ -1077,7 +1111,7 @@ msgstr ""
 
 #: po/levelinfo:108
 msgid "Hamburger Hill"
-msgstr ""
+msgstr "Hamburger Tepesi"
 
 #: po/levelinfo:109
 msgid ""
@@ -1088,6 +1122,8 @@ msgstr ""
 #: po/levelinfo:110
 msgid "Slalom"
 msgstr ""
+"Slalom\r\n"
+"(Zikzaklı Kaymak)"
 
 #: po/levelinfo:111
 msgid ""
@@ -1096,7 +1132,7 @@ msgstr ""
 
 #: po/levelinfo:112
 msgid "Who Says Penguins Can't Fly?"
-msgstr ""
+msgstr "Kim Demiş Penguenler Uçamaz?"
 
 #: po/levelinfo:113
 msgid ""
@@ -1106,17 +1142,14 @@ msgstr ""
 
 #: po/modelinfo:1
 msgid "Tux"
-msgstr ""
+msgstr "Tux"
 
 #: po/modelinfo:2
 msgid "Tux on Snowboard"
-msgstr ""
-
-#~ msgid "Language:"
-#~ msgstr "Idioma:"
+msgstr "Snowboard'daki Tux"
 
 #~ msgid "Event:"
-#~ msgstr "Evento:"
+#~ msgstr "Yarışma:"
 
 #~ msgid "Congratulations! You won the event!"
-#~ msgstr "¡Enhorabuena! ¡Has ganado el evento!"
+#~ msgstr "Tebrikler! Yarışmayı kazandınız!"

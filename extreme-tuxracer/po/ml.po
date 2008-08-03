@@ -1,16 +1,16 @@
-# Translation of Extreme Tux Racer to Spanish
-#
-# Copyright (C) 2008 The Extreme Tux Racer team
+# Malayalam translation for etracer
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
 # This file is distributed under the same license as the etracer package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Extreme Tux Racer\n"
+"Project-Id-Version: etracer\n"
 "Report-Msgid-Bugs-To: https://translations.edge.launchpad.net/etracer\n"
 "POT-Creation-Date: 2008-08-03 20:17+0200\n"
-"PO-Revision-Date: 2008-04-21 11:34+0000\n"
-"Last-Translator: Paweł Drewniak <Unknown>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2008-08-03 14:07+0000\n"
+"Last-Translator: Jesse P Francis <fedorajesse@yahoo.com>\n"
+"Language-Team: Malayalam <ml@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,84 +19,85 @@ msgstr ""
 
 #: src/audioconfig.cpp:36
 msgid "Audio Configuration"
-msgstr "Configuración del sonido"
+msgstr "ശബ്ദ ക്രമീകരണങ്ങള്‍"
 
 #: src/audioconfig.cpp:112
 msgid "Sound Effects:"
-msgstr "Efectos de sonido:"
+msgstr ""
 
 #: src/audioconfig.cpp:116
 msgid "Music:"
-msgstr "Musica:"
+msgstr "സംഗീതം:"
 
 #: src/audioconfig.cpp:120
 msgid "(needs restart)"
-msgstr "(requiere reiniciar)"
+msgstr "(പുനരാരംഭനം ആവശ്യമാണ്)"
 
 #: src/audioconfig.cpp:122
 msgid "Disable Audio:"
-msgstr "Desactivar sonido:"
+msgstr "നിശബ്ദമാക്കുക:"
 
 #: src/audioconfig.cpp:126
 msgid "Stereo:"
-msgstr "Stereo:"
+msgstr "സ്റ്റീരിയോ:"
 
 #: src/audioconfig.cpp:130
 msgid "Bits Per Sample:"
-msgstr "Bits por muestra:"
+msgstr "ബിറ്റ്സ് പെര്‍ സാമ്പിള്‍"
 
 #: src/audioconfig.cpp:134
 msgid "Samples Per Second:"
-msgstr "Muestras por segundo:"
+msgstr "സാമ്പിള്‍സ് പെര്‍ സെക്കന്റ്"
 
 #: src/configmode.cpp:36
 msgid "Cancel"
-msgstr "Cancelar"
+msgstr "റദ്ദാക്കുക"
 
 #: src/configmode.cpp:43
 msgid "Ok"
-msgstr "Ok"
+msgstr "ശരി"
 
 #: src/configuration.cpp:38 src/game_type_select.cpp:57 src/paused.cpp:62
 msgid "Configuration"
-msgstr "Configuración"
+msgstr "ക്രമീകരണം"
 
 #: src/configuration.cpp:45 src/credits.cpp:89
 msgid "Graphics"
-msgstr "Gráficos"
+msgstr "ഗ്രാഫിക്സ്"
 
 #: src/configuration.cpp:52
 msgid "Video"
-msgstr "Vídeo"
+msgstr "വീഡിയോ"
 
 #: src/configuration.cpp:59
 msgid "Audio"
-msgstr "Sonido"
+msgstr "ഓഡിയോ"
 
 #: src/configuration.cpp:66
 msgid "Keyboard"
-msgstr "Teclado"
+msgstr "കീബോര്‍ഡ്"
 
 #: src/configuration.cpp:73
 msgid "Joystick"
-msgstr "Joystick"
+msgstr "ജോയ്സ്റ്റിക്ക്"
 
 #: src/configuration.cpp:81 src/event_select.cpp:96
 #: src/event_race_select.cpp:53 src/highscore.cpp:413
 msgid "Back"
-msgstr "Atrás"
+msgstr "പിന്നോട്ട്"
 
 #: src/credits.cpp:43
 msgid "Version 0.4"
-msgstr ""
+msgstr "വേര്‍ഷന്‍ 0.4"
 
 #: src/credits.cpp:46
 msgid "Extreme Tux Racer is in the process of being"
 msgstr ""
 
 #: src/credits.cpp:47
+#, fuzzy
 msgid "completely rewritten. All versions after 0.35,"
-msgstr ""
+msgstr "പൂര്‍ണ്ണമായും മാറ്റിയെഴുതപ്പെട്ടുകഴിഞ്ഞു.0.35 കഴിഞ്ഞുള്ള എല്ലാ വേര്‍ഷനുകളിലും,"
 
 #: src/credits.cpp:48
 msgid "including this one, won't have major code changes"
@@ -128,11 +129,11 @@ msgstr ""
 
 #: src/credits.cpp:58
 msgid "Development"
-msgstr ""
+msgstr "വികസനം‌"
 
 #: src/credits.cpp:63
 msgid "from Sunspire Studios:"
-msgstr ""
+msgstr "സണ്‍സ്പൈര്‍ സ്റ്റുഡിയോയില്‍ നിന്നും:"
 
 #: src/credits.cpp:71
 msgid "Non-Rewrite Version Organization"
@@ -140,99 +141,101 @@ msgstr ""
 
 #: src/credits.cpp:74
 msgid "Translators"
-msgstr ""
+msgstr "വിവര്‍ത്തകര്‍"
 
 #: src/credits.cpp:87
 msgid "Other (incomplete) translations are from the PPRacer Project."
-msgstr ""
+msgstr "മറ്റ് അപൂര്‍ണ്ണ വിവര്‍ത്തനങ്ങള്‍ PPRacer പ്രൊജക്റ്റില്‍നിന്നെടുത്തതാണ്."
 
 #: src/credits.cpp:90
 msgid "Nicosmos (Logo, Hud Graphics)"
-msgstr ""
+msgstr "നികൊസ്മോസ് (ലോഗൊ, ഹഡ് ഗ്രാഫിക്ക്സ്)"
 
 #: src/credits.cpp:91
 msgid "Christian Picon (Objects, Skyboxes)"
-msgstr ""
+msgstr "ക്രിസ്റ്റിയന്‍ പിക്കണ്‍ (ഒബ്ജക്റ്റുകള്‍,സ്കൈബോക്സുകള്‍)"
 
 #: src/credits.cpp:92
+#, fuzzy
 msgid "Reinhard Niehoff (Trees)"
-msgstr ""
+msgstr "റെയ്നാര്‍ഡ് നൈഹോഫ് (മരങ്ങള്‍)"
 
 #: src/credits.cpp:93
 msgid "Daniel Poeira and Christian Picon (Font)"
-msgstr ""
+msgstr "ഡാനിയേല്‍ പൊയേരിയയും ക്രിസ്റ്റിയന്‍ പിക്കണും (ഫോണ്ട്)"
 
 #: src/credits.cpp:95
 msgid "Music"
-msgstr ""
+msgstr "സംഗീതം"
 
 #: src/credits.cpp:97
 msgid "'Race 1'"
-msgstr ""
+msgstr "'മത്സരം 1'"
 
 #: src/credits.cpp:98
 msgid "'Menu'"
-msgstr ""
+msgstr "'മെനു'"
 
 #: src/credits.cpp:99
+#, fuzzy
 msgid "'Options'"
-msgstr ""
+msgstr "ഓപ്ഷനുകള്‍"
 
 #: src/credits.cpp:100
 msgid "'Won Race'"
-msgstr ""
+msgstr "'മത്സരം വിജയിച്ചിരിക്കുന്നു'"
 
 #: src/credits.cpp:103
 msgid "'Credits Ballad'"
-msgstr ""
+msgstr "'നേടിയ കീര്‍ത്തി'"
 
 #: src/credits.cpp:105
 msgid "Misc. PPRacer Contributors"
-msgstr ""
+msgstr "മറ്റു PPRacer ദാതാക്കള്‍"
 
 #: src/credits.cpp:110
 msgid "Thanks To"
-msgstr ""
+msgstr "നന്ദി"
 
 #: src/credits.cpp:111
 msgid "(for Exteme Tux Racer)"
-msgstr ""
+msgstr "(എക്സ്ട്രീം ടക്സ് റേസറിനായി)"
 
 #: src/credits.cpp:112
 msgid "Ranger (for hosting the website)"
-msgstr ""
+msgstr "റേഞ്ചര്‍ (വെബ്സൈറ്റ് ഹോസ്റ്റ് ചെയ്തതിന്)"
 
 #: src/credits.cpp:113
 msgid "Slythfox (for making the website)"
-msgstr ""
+msgstr "സ്ലിത്ഫോക്സ് (വെബ്സൈറ്റ് ഉണ്ടാക്ക്കിയതിന്)"
 
 #: src/credits.cpp:114
 msgid "The Course Creators"
-msgstr ""
+msgstr "കോഴ്സുകള്‍ ഉണ്ടാക്കിയവര്‍ക്ക്"
 
 #: src/credits.cpp:115
 msgid "The OpenRacer project"
-msgstr ""
+msgstr "ഓപ്പണ്‍ റേസര്‍ പ്രൊജക്റ്റിന്"
 
 #: src/credits.cpp:116
 msgid "Reinhard Niehoff (for helping with code modification)"
-msgstr ""
+msgstr "റെയ്നാര്‍ഡ് നൈഹോഫ് (കോഡ് മോഡിഫിക്കേഷന്‍ സഹായിച്ചതിന്)"
 
 #: src/credits.cpp:117
 msgid "All the people on the forum"
-msgstr ""
+msgstr "ഫോറത്തിലുള്ള എല്ലാവര്‍ക്കും"
 
 #: src/credits.cpp:118
 msgid "Larry Ewing (creator of Tux)"
-msgstr ""
+msgstr "ലാരി എവിങ്ങ് (ടക്സിന്റെ സ്രിഷ്ടിതാവ്)"
 
 #: src/credits.cpp:119
 msgid "(for Tux Racer)"
-msgstr ""
+msgstr "(ടക്സ് റേസറിനായി)"
 
 #: src/credits.cpp:126
 msgid "Tux Racer is a trademark of Jasmin F. Patry."
-msgstr ""
+msgstr "ടക്സ് റേസര്‍ ജാസ്മിന്‍ എഫ്. പാട്രിയുടെ ട്രേഡ്മാര്‍ക്കാണ്."
 
 #: src/credits.cpp:127
 msgid "Extreme Tux Racer is licenced under the GPL."
@@ -248,16 +251,16 @@ msgstr ""
 
 #: src/credits.cpp:131
 msgid "PlanetPenguin Racer is Copyright © 2005 Volker Stroebel."
-msgstr ""
+msgstr "പ്ലാനറ്റ്‌പെന്‍ഗ്വിന്‍ റേസര്‍ Copyright © 2005 വോള്‍ക്കര്‍ സ്ട്രോബെല്‍."
 
 #: src/credits.cpp:132
 msgid "Tux Racer and the Tux Racer Name are Copyright © 2001 Jasmin F. Patry."
-msgstr ""
+msgstr "ടക്സ് റേസര്‍, ടക്സ് റേസര്‍ എന്ന പേരും © 2001 ജാസ്മിന്‍ എഫ് പാട്രി"
 
 #: src/event_select.cpp:50
 #, fuzzy
 msgid "Select campaign and cup"
-msgstr "Elige evento y copa"
+msgstr "ഇവന്റും കപ്പും തിരഞ്ഞെടുക്കുക"
 
 #: src/event_select.cpp:56
 msgid "Campaign:"
@@ -265,188 +268,194 @@ msgstr ""
 
 #: src/event_select.cpp:67
 msgid "Cup:"
-msgstr "Copa:"
+msgstr "കപ്പ്"
 
 #: src/event_select.cpp:87
+#, fuzzy
 msgid "Player name:"
-msgstr "Nombre del jugador:"
+msgstr "കളിക്കാരന്റെ പേര്:"
 
 #: src/event_select.cpp:104
 msgid "Continue"
-msgstr "Continuar"
+msgstr "തുടരുക"
 
 #: src/event_select.cpp:158
 msgid "You've won this cup!"
-msgstr "¡Has ganado esta copa!"
+msgstr "താങ്കള്‍ ഈ കപ്പ് വിജയിച്ചിരിക്കുന്നു..."
 
 #: src/event_select.cpp:160
 msgid "You must complete this cup next"
-msgstr "Tienes que completar esta copa"
+msgstr "അടുത്തതായി ഈ കപ്പ് തീര്‍ക്കണം"
 
 #: src/event_select.cpp:162
 msgid "You cannot enter this cup yet"
-msgstr "Todavía no puedes acceder a esta copa"
+msgstr "ഇപ്പോള്‍ ഈ കപ്പ് കളിക്കുവാനാവില്ല"
 
 #: src/event_race_select.cpp:45
 msgid "Select a race"
-msgstr "Elige una carrera"
+msgstr "ഒരു റേസ് തിരഞ്ഞെടുക്കുക"
 
 #: src/event_race_select.cpp:60
+#, fuzzy
 msgid "Race!"
-msgstr "¡Correr!"
+msgstr "കളിക്കു!"
 
 #: src/event_race_select.cpp:280
+#, fuzzy
 msgid "You don't have any lives left."
-msgstr "No te quedan vidas."
+msgstr "താങ്കള്‍ക്ക് ജീവന്‍ ബാക്കിയില്ല."
 
 #: src/event_race_select.cpp:285
 msgid "Race won! Your result:"
-msgstr "¡Victoria! Resultado:"
+msgstr "റേസ് ജയിച്ചിരിക്കുന്നു! റിസല്‍റ്റ്:"
 
 #: src/event_race_select.cpp:289
 msgid "Needed to advance:"
-msgstr "Necesario para avanzar:"
+msgstr "മുന്നേറുവാന്‍ ആവശ്യമുള്ളത്:"
 
 #: src/event_race_select.cpp:293
 msgid "You can't enter this race yet."
-msgstr "Todavía no puedes acceder a esta carrera."
+msgstr "ഇപ്പോള്‍ ഈ കപ്പ് കളിക്കുവാനാവില്ല"
 
 #: src/event_race_select.cpp:316
 msgid "Time:"
-msgstr "Tiempo:"
+msgstr "സമയം:"
 
 #: src/event_race_select.cpp:320
 #, c-format
 msgid "%02d:%02d.%02d"
-msgstr ""
+msgstr "%02d:%02d.%02d"
 
 #: src/event_race_select.cpp:324
 msgid "Herring:"
-msgstr "Arenques:"
+msgstr "ഹെര്‍റിങ്ങ് മീനുകള്‍:"
 
 #: src/event_race_select.cpp:332
 msgid "Score:"
-msgstr "Puntuación:"
+msgstr "സ്കോര്‍:"
 
 #: src/event_race_select.cpp:341
+#, fuzzy
 msgid "Contributed by:"
-msgstr "Autor:"
+msgstr "സംഭാവന ചെയ്തത്:"
 
 #: src/event_race_select.cpp:349 po/levelinfo:16
 msgid "Unknown"
-msgstr "Desconocido"
+msgstr "അജ്ഞാതം"
 
 #: src/game_over.cpp:109
+#, fuzzy
 msgid "Race aborted"
-msgstr "Carrera abortada"
+msgstr "റേസ് അബോര്‍ട്ട് ചെയ്തിരിക്കുന്നു"
 
 #: src/game_over.cpp:112
+#, fuzzy
 msgid "Race Over"
-msgstr "Carrera terminada"
+msgstr "റേസ് കഴിഞ്ഞു"
 
 #: src/game_over.cpp:119
 #, c-format
 msgid "Time: %02d:%02d.%02d"
-msgstr "Tiempo: %02d:%02d.%02d"
+msgstr "സമയം: %02d:%02d.%02d"
 
 #: src/game_over.cpp:124
 #, c-format
 msgid "Herring: %3d"
-msgstr "Arenques: %3d"
+msgstr "ഹെര്‍റിങ്ങ് മീനുകള്‍: %3d"
 
 #: src/game_over.cpp:129
 #, c-format
 msgid "Score: %6d"
-msgstr "Puntuación: %6d"
+msgstr "സ്കോര്‍: %6d"
 
 #: src/game_over.cpp:135
 #, c-format
 msgid "Max speed: %3d km/h"
-msgstr "Velocidad máxima: %3d km/h"
+msgstr "ഉയര്‍ന്ന വേഗത: %3d km/h"
 
 #: src/game_over.cpp:141
 #, c-format
 msgid "Was flying: %.01f %% of time"
-msgstr "Volando el %.01f %% del tiempo"
+msgstr "%.01f %% സമയം പറക്കുകയായിരുന്നു."
 
 #: src/game_over.cpp:151
 #, c-format
 msgid "You made it to the %s place in the highscore!"
-msgstr "¡Estas en el puesto %s del Highscore!"
+msgstr "താങ്കള്‍ ഹൈയ്യസ്റ്റ് സ്കോര്‍ ടേബിളില്‍ %s സ്ഥാനത്തെത്തിയിരിക്കുന്നു."
 
 #: src/game_over.cpp:161
 msgid "You beat your best score!"
-msgstr "¡Has batido tu propio record!"
+msgstr "താങ്കളുടെ ഉയര്‍ന്നസ്കോറിനെ താങ്കള്‍ തന്നെ തകര്‍ത്തിരിക്കുന്നു"
 
 #: src/game_over.cpp:164
 #, fuzzy
 msgid "Congratulations! You won the campaign!"
-msgstr "¡Enhorabuena! ¡Has ganado la copa!"
+msgstr "അഭിനന്ദനങ്ങള്‍! താങ്കള്‍ കപ്പ് ജയിച്ചിരിക്കുന്നു!"
 
 #: src/game_over.cpp:166
 msgid "Congratulations! You won the cup!"
-msgstr "¡Enhorabuena! ¡Has ganado la copa!"
+msgstr "അഭിനന്ദനങ്ങള്‍! താങ്കള്‍ കപ്പ് ജയിച്ചിരിക്കുന്നു!"
 
 #: src/game_over.cpp:168
 msgid "You advanced to the next race!"
-msgstr "¡Te has clasificado para la siguiente carrera!"
+msgstr "താങ്കള്‍ക്ക് അടുത്ത റേസിലേക്ക് മുന്നേറാം!"
 
 #: src/game_over.cpp:170
 msgid "You didn't advance."
-msgstr "No estás clasificado."
+msgstr "താങ്കള്‍ക്ക് മുന്നേറുവാന്‍ സാദ്ധ്യമല്ല"
 
 #: src/game_type_select.cpp:36
 #, fuzzy
 msgid "Enter a campaign"
-msgstr "Entrar en un evento"
+msgstr "ഇവന്റില്‍ പ്രവേശിക്കുക"
 
 #: src/game_type_select.cpp:43
 msgid "Practice"
-msgstr "Práctica"
+msgstr "പരിശീലനം"
 
 #: src/game_type_select.cpp:50 src/highscore.cpp:350
 msgid "Highscore"
-msgstr "Highscore"
+msgstr "ഉയേന്ന സ്കോര്‍"
 
 #: src/game_type_select.cpp:64
 msgid "Credits"
-msgstr "Créditos"
+msgstr "ക്രെഡിറ്റുകള്‍"
 
 #: src/game_type_select.cpp:71 src/paused.cpp:78
 msgid "Quit"
-msgstr "Salir"
+msgstr "പുറത്ത് കടക്കുക"
 
 #: src/graphicsconfig.cpp:30
 msgid "Graphics Configuration"
-msgstr "Configuración de los gráficos"
+msgstr "ഗ്രാഫിക്ക് ക്രമീകരണങ്ങള്‍"
 
 #: src/graphicsconfig.cpp:108
 msgid "Model:"
-msgstr "Modelo:"
+msgstr "മാതൃക:"
 
 #: src/graphicsconfig.cpp:117
 msgid "Show UI Snow:"
-msgstr "Mostrar nieve:"
+msgstr "യു.ഐ. മഞ്ഞ് കാണിക്കുക:"
 
 #: src/graphicsconfig.cpp:121
 msgid "Display FPS:"
-msgstr "Mostrar FPS:"
+msgstr "എഫ്.പി.എസ് കാണിക്കുക:"
 
 #: src/graphicsconfig.cpp:125
 msgid "Display Progress Bar:"
-msgstr "Mostrar progreso:"
+msgstr "പ്രോഗ്രസ്സ് ബാര്‍ കാണിക്കുക:"
 
 #: src/graphicsconfig.cpp:129
 msgid "Draw Fog:"
-msgstr "Niebla:"
+msgstr "ഫോഗ് വരക്കുക:"
 
 #: src/graphicsconfig.cpp:133
 msgid "Reflections:"
-msgstr "Reflejos:"
+msgstr "പ്രതിഫലനങ്ങള്‍:"
 
 #: src/graphicsconfig.cpp:137
 msgid "Shadows:"
-msgstr "Sombras:"
+msgstr ""
 
 #: src/graphicsconfig.cpp:141
 msgid "Draw Background:"
@@ -454,43 +463,43 @@ msgstr ""
 
 #: src/highscore.cpp:88
 msgid "1:st"
-msgstr "1."
+msgstr ""
 
 #: src/highscore.cpp:90
 msgid "2:nd"
-msgstr "2."
+msgstr ""
 
 #: src/highscore.cpp:92
 msgid "3:rd"
-msgstr "3."
+msgstr ""
 
 #: src/highscore.cpp:94
 msgid "4:th"
-msgstr "4."
+msgstr ""
 
 #: src/highscore.cpp:96
 msgid "5:th"
-msgstr "5."
+msgstr ""
 
 #: src/highscore.cpp:98
 msgid "6:th"
-msgstr "6."
+msgstr ""
 
 #: src/highscore.cpp:100
 msgid "7:th"
-msgstr "7."
+msgstr ""
 
 #: src/highscore.cpp:102
 msgid "8:th"
-msgstr "8."
+msgstr ""
 
 #: src/highscore.cpp:104
 msgid "9:th"
-msgstr "9."
+msgstr ""
 
 #: src/highscore.cpp:106
 msgid "10:th"
-msgstr "10."
+msgstr ""
 
 #: src/highscore.cpp:317
 msgid "No records"
@@ -503,87 +512,87 @@ msgstr ""
 
 #: src/joystickconfig.cpp:29
 msgid "Joystick Configuration"
-msgstr "Configuración del joystick"
+msgstr ""
 
 #: src/joystickconfig.cpp:33
 msgid "Enable Joystick"
-msgstr "Activar joystick"
+msgstr ""
 
 #: src/joystickconfig.cpp:41 src/keyboardconfig.cpp:132
 msgid "Paddle:"
-msgstr "Remar:"
+msgstr ""
 
 #: src/joystickconfig.cpp:54 src/keyboardconfig.cpp:136
 msgid "Brake:"
-msgstr "Frenar:"
+msgstr ""
 
 #: src/joystickconfig.cpp:67 src/keyboardconfig.cpp:140
 msgid "Jump:"
-msgstr "Saltar:"
+msgstr ""
 
 #: src/joystickconfig.cpp:80 src/keyboardconfig.cpp:144
 msgid "Trick:"
-msgstr "Truco:"
+msgstr ""
 
 #: src/keyboardconfig.cpp:55
 msgid "Keyboard Configuration"
-msgstr "Configuración del teclado"
+msgstr ""
 
 #: src/keyboardconfig.cpp:124
 msgid "Turn left:"
-msgstr "Girar a la izquierda:"
+msgstr ""
 
 #: src/keyboardconfig.cpp:128
 msgid "Turn right:"
-msgstr "Girar a la derecha:"
+msgstr ""
 
 #: src/keyboardconfig.cpp:148
 msgid "Reset:"
-msgstr "Reiniciar:"
+msgstr ""
 
 #: src/loading.cpp:53
 msgid "Loading, Please Wait..."
-msgstr "Cargando, por favor espera..."
+msgstr ""
 
 #: src/paused.cpp:54
 msgid "Paused"
-msgstr "Parado"
+msgstr ""
 
 #: src/paused.cpp:70
 msgid "Resume"
-msgstr "Volver"
+msgstr ""
 
 #: src/splash_screen.cpp:34
 msgid "PRESS ANY KEY TO START"
-msgstr "PULSA UNA TECLA PARA EMPEZAR"
+msgstr ""
 
 #: src/videoconfig.cpp:60
 msgid "Video Configuration"
-msgstr "Configuración del vídeo"
+msgstr ""
 
 #: src/videoconfig.cpp:173
 msgid "To change the resolution, or switch into fullscreen mode"
-msgstr "Para cambiar la resolución o entrar en modo pantalla completa"
+msgstr ""
 
 #: src/videoconfig.cpp:175
 msgid "use options.txt, located in the config folder."
-msgstr "usa options.txt que está en la carpeta config."
+msgstr ""
 
 #: src/videoconfig.cpp:177
 msgid "Resolution:"
-msgstr "Resolución:"
+msgstr ""
 
 #: src/videoconfig.cpp:181
 msgid "Bits Per Pixel:"
-msgstr "Bits por pixel:"
+msgstr ""
 
 #: src/videoconfig.cpp:185
 msgid "Fullscreen:"
-msgstr "Pantalla completa:"
+msgstr ""
 
 #: src/videoconfig.cpp:189
 msgid "Experimental (needs restart)"
-msgstr "Experimental (requiere reiniciar)"
+msgstr ""
 
 #: src/videoconfig.cpp:192
 msgid "Stencil Buffer:"
@@ -591,7 +600,7 @@ msgstr ""
 
 #: src/videoconfig.cpp:196
 msgid "Enable FSAA:"
-msgstr "Activar FSAA:"
+msgstr ""
 
 #: src/videoconfig.cpp:200
 msgid "FSAA Multisamples:"
@@ -600,36 +609,36 @@ msgstr ""
 #: po/levelinfo:1
 #, c-format
 msgid "FPS: %.1f"
-msgstr "FPS: %.1f"
+msgstr ""
 
 #: po/levelinfo:2 po/levelinfo:3
 #, c-format
 msgid "%03d"
-msgstr "%03d"
+msgstr ""
 
 #: po/levelinfo:4 po/levelinfo:5
 #, c-format
 msgid "%02d:%02d:%02d"
-msgstr "%02d:%02d:%02d"
+msgstr ""
 
 #: po/levelinfo:6 po/levelinfo:8
 msgid "km/h"
-msgstr "km/h"
+msgstr ""
 
 #: po/levelinfo:7 po/levelinfo:9
 #, c-format
 msgid "%.0f"
-msgstr "%.0f"
+msgstr ""
 
 #: po/levelinfo:10 po/levelinfo:11
 #, fuzzy, c-format
 msgid "%d:%d:%d"
-msgstr "%02d:%02d:%02d"
+msgstr "%02d:%02d.%02d"
 
 #: po/levelinfo:12 po/levelinfo:13
-#, fuzzy, c-format
+#, c-format
 msgid "%d"
-msgstr "%03d"
+msgstr ""
 
 #: po/levelinfo:14
 msgid "Doing"
@@ -1112,11 +1121,8 @@ msgstr ""
 msgid "Tux on Snowboard"
 msgstr ""
 
-#~ msgid "Language:"
-#~ msgstr "Idioma:"
-
 #~ msgid "Event:"
-#~ msgstr "Evento:"
+#~ msgstr "ഇവന്റ്"
 
 #~ msgid "Congratulations! You won the event!"
-#~ msgstr "¡Enhorabuena! ¡Has ganado el evento!"
+#~ msgstr "അഭിനന്ദനങ്ങള്‍! താങ്കള്‍ ഇവന്റ് ജയിച്ചിരിക്കുന്നു!"

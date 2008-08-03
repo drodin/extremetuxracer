@@ -33,7 +33,7 @@ GameTypeSelect::GameTypeSelect()
     mp_enterEventBtn = new pp::Button(pos,
 				     pp::Vec2d(300, 40), 
 				     "button_label", 
-				     _("Enter an event") );
+				     _("Enter a campaign") );
     mp_enterEventBtn->setHilitFontBinding( "button_label_hilit" );
     mp_enterEventBtn->signalClicked.Connect(pp::CreateSlot(this,&GameTypeSelect::eventSelect));
 

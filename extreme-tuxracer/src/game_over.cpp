@@ -161,7 +161,7 @@ GameOver::GameOver()
 				string = _("You beat your best score!");
 			}
 		} else if(gameMgr->wasEventWon()){
-			string = _("Congratulations! You won the event!");
+			string = _("Congratulations! You won the campaign!");
 		} else if(gameMgr->wasCupWon()){
 			string = _("Congratulations! You won the cup!");
 		} else if(gameMgr->wasRaceWon()){

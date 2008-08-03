@@ -1,16 +1,16 @@
-# Translation of Extreme Tux Racer to Spanish
-#
-# Copyright (C) 2008 The Extreme Tux Racer team
+# Czech translation for etracer
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
 # This file is distributed under the same license as the etracer package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Extreme Tux Racer\n"
+"Project-Id-Version: etracer\n"
 "Report-Msgid-Bugs-To: https://translations.edge.launchpad.net/etracer\n"
 "POT-Creation-Date: 2008-08-03 20:17+0200\n"
-"PO-Revision-Date: 2008-04-21 11:34+0000\n"
-"Last-Translator: Paweł Drewniak <Unknown>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2008-07-09 09:57+0000\n"
+"Last-Translator: Martin Stružský <Unknown>\n"
+"Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,23 +19,23 @@ msgstr ""
 
 #: src/audioconfig.cpp:36
 msgid "Audio Configuration"
-msgstr "Configuración del sonido"
+msgstr "Nastavení zvuku"
 
 #: src/audioconfig.cpp:112
 msgid "Sound Effects:"
-msgstr "Efectos de sonido:"
+msgstr "Zvukové efekty:"
 
 #: src/audioconfig.cpp:116
 msgid "Music:"
-msgstr "Musica:"
+msgstr "Hudba:"
 
 #: src/audioconfig.cpp:120
 msgid "(needs restart)"
-msgstr "(requiere reiniciar)"
+msgstr "(následující nastavení vyžadují restart hry)"
 
 #: src/audioconfig.cpp:122
 msgid "Disable Audio:"
-msgstr "Desactivar sonido:"
+msgstr "Zakázat zvuk:"
 
 #: src/audioconfig.cpp:126
 msgid "Stereo:"
@@ -43,39 +43,39 @@ msgstr "Stereo:"
 
 #: src/audioconfig.cpp:130
 msgid "Bits Per Sample:"
-msgstr "Bits por muestra:"
+msgstr "Bitů na vzorek:"
 
 #: src/audioconfig.cpp:134
 msgid "Samples Per Second:"
-msgstr "Muestras por segundo:"
+msgstr "Vzorkovací frekvence:"
 
 #: src/configmode.cpp:36
 msgid "Cancel"
-msgstr "Cancelar"
+msgstr "Zrušit"
 
 #: src/configmode.cpp:43
 msgid "Ok"
-msgstr "Ok"
+msgstr "OK"
 
 #: src/configuration.cpp:38 src/game_type_select.cpp:57 src/paused.cpp:62
 msgid "Configuration"
-msgstr "Configuración"
+msgstr "Nastavení"
 
 #: src/configuration.cpp:45 src/credits.cpp:89
 msgid "Graphics"
-msgstr "Gráficos"
+msgstr "Grafika"
 
 #: src/configuration.cpp:52
 msgid "Video"
-msgstr "Vídeo"
+msgstr "Obraz"
 
 #: src/configuration.cpp:59
 msgid "Audio"
-msgstr "Sonido"
+msgstr "Zvuk"
 
 #: src/configuration.cpp:66
 msgid "Keyboard"
-msgstr "Teclado"
+msgstr "Klávesnice"
 
 #: src/configuration.cpp:73
 msgid "Joystick"
@@ -84,107 +84,108 @@ msgstr "Joystick"
 #: src/configuration.cpp:81 src/event_select.cpp:96
 #: src/event_race_select.cpp:53 src/highscore.cpp:413
 msgid "Back"
-msgstr "Atrás"
+msgstr "Zpět"
 
 #: src/credits.cpp:43
 msgid "Version 0.4"
-msgstr ""
+msgstr "Verze 0.4"
 
 #: src/credits.cpp:46
 msgid "Extreme Tux Racer is in the process of being"
-msgstr ""
+msgstr "Extreme Tux Racer je v současné době"
 
 #: src/credits.cpp:47
 msgid "completely rewritten. All versions after 0.35,"
-msgstr ""
+msgstr "komletně přepisován. Všechny verze od 0.35."
 
 #: src/credits.cpp:48
 msgid "including this one, won't have major code changes"
-msgstr ""
+msgstr "včetně této, nebudou obsahovat zásadní změny kódu"
 
 #: src/credits.cpp:49
 msgid "because the programmers are busy making a new,"
-msgstr ""
+msgstr "protože programátoři jsou zaneprázdněni vývojem nové"
 
 #: src/credits.cpp:50
 msgid "improved game."
-msgstr ""
+msgstr "vylepšené hry."
 
 #: src/credits.cpp:52
 msgid "Extreme Tux Racer is based on"
-msgstr ""
+msgstr "Extreme Tux Racer je založen na"
 
 #: src/credits.cpp:53
 msgid "PlanetPenguin Racer, Open Racer and Tux Racer."
-msgstr ""
+msgstr "PlanetPenguin Racer, Open Racer a Tux Racer."
 
 #: src/credits.cpp:55
 msgid "Some courses may have been modified from their"
-msgstr ""
+msgstr "Některé dráhy mohly být změněny od svých"
 
 #: src/credits.cpp:56
 msgid "original versions to fit the requirements of the game."
-msgstr ""
+msgstr "původních verzí, aby vyhovovaly požadavkům této hry."
 
 #: src/credits.cpp:58
 msgid "Development"
-msgstr ""
+msgstr "Vývoj"
 
 #: src/credits.cpp:63
 msgid "from Sunspire Studios:"
-msgstr ""
+msgstr "od Sunspire Studios:"
 
 #: src/credits.cpp:71
 msgid "Non-Rewrite Version Organization"
-msgstr ""
+msgstr "Non-Rewrite Version Organization"
 
 #: src/credits.cpp:74
 msgid "Translators"
-msgstr ""
+msgstr "Překladatelé"
 
 #: src/credits.cpp:87
 msgid "Other (incomplete) translations are from the PPRacer Project."
-msgstr ""
+msgstr "Ostatní (nedokončené) překlady pocházejí z PPRacer Project."
 
 #: src/credits.cpp:90
 msgid "Nicosmos (Logo, Hud Graphics)"
-msgstr ""
+msgstr "Nicosmos (Logo, Hud Graphics)"
 
 #: src/credits.cpp:91
 msgid "Christian Picon (Objects, Skyboxes)"
-msgstr ""
+msgstr "Christian Picon (Objects, Skyboxes)"
 
 #: src/credits.cpp:92
 msgid "Reinhard Niehoff (Trees)"
-msgstr ""
+msgstr "Reinhard Niehoff (Trees)"
 
 #: src/credits.cpp:93
 msgid "Daniel Poeira and Christian Picon (Font)"
-msgstr ""
+msgstr "Daniel Poeira and Christian Picon (Font)"
 
 #: src/credits.cpp:95
 msgid "Music"
-msgstr ""
+msgstr "Hudba:"
 
 #: src/credits.cpp:97
 msgid "'Race 1'"
-msgstr ""
+msgstr "'Závod 1'"
 
 #: src/credits.cpp:98
 msgid "'Menu'"
-msgstr ""
+msgstr "'Menu'"
 
 #: src/credits.cpp:99
 msgid "'Options'"
-msgstr ""
+msgstr "'Vlastnosti'"
 
 #: src/credits.cpp:100
 msgid "'Won Race'"
 msgstr ""
 
 #: src/credits.cpp:103
+#, fuzzy
 msgid "'Credits Ballad'"
-msgstr ""
+msgstr "'Credits Ballad'"
 
 #: src/credits.cpp:105
 msgid "Misc. PPRacer Contributors"
@@ -192,72 +193,75 @@ msgstr ""
 
 #: src/credits.cpp:110
 msgid "Thanks To"
-msgstr ""
+msgstr "Poděkování"
 
 #: src/credits.cpp:111
 msgid "(for Exteme Tux Racer)"
-msgstr ""
+msgstr "(za Exteme Tux Racer)"
 
 #: src/credits.cpp:112
 msgid "Ranger (for hosting the website)"
-msgstr ""
+msgstr "Ranger (za hosting website)"
 
 #: src/credits.cpp:113
 msgid "Slythfox (for making the website)"
-msgstr ""
+msgstr "Slythfox (za výrobu website)"
 
 #: src/credits.cpp:114
 msgid "The Course Creators"
-msgstr ""
+msgstr "Tvůrci drah"
 
 #: src/credits.cpp:115
 msgid "The OpenRacer project"
-msgstr ""
+msgstr "OpenRacer projekt"
 
 #: src/credits.cpp:116
 msgid "Reinhard Niehoff (for helping with code modification)"
-msgstr ""
+msgstr "Reinhard Niehoff (za pomoc při modofikaci kódu)"
 
 #: src/credits.cpp:117
 msgid "All the people on the forum"
-msgstr ""
+msgstr "Všem lidem na fóru"
 
 #: src/credits.cpp:118
 msgid "Larry Ewing (creator of Tux)"
-msgstr ""
+msgstr "Larry Ewing (tvůrce Tuxe)"
 
 #: src/credits.cpp:119
 msgid "(for Tux Racer)"
-msgstr ""
+msgstr "(za Tux Racer)"
 
 #: src/credits.cpp:126
 msgid "Tux Racer is a trademark of Jasmin F. Patry."
-msgstr ""
+msgstr "Tux Racer je obchodní známka Jasmina F. Patryho."
 
 #: src/credits.cpp:127
 msgid "Extreme Tux Racer is licenced under the GPL."
-msgstr ""
+msgstr "Extreme Tux Racer je licencován pod GPL."
 
 #: src/credits.cpp:128
 msgid "We grant use of the name 'Extreme Tux Racer'"
-msgstr ""
+msgstr "Povolujeme používání názvu 'Extreme Tux Racer'"
 
 #: src/credits.cpp:129
 msgid "to any forks or continuations."
-msgstr ""
+msgstr "pro jakékoliv větvení nebo pokračování."
 
 #: src/credits.cpp:131
 msgid "PlanetPenguin Racer is Copyright © 2005 Volker Stroebel."
 msgstr ""
+"PlanetPenguin Racer je chráněný autorským právem © 2005 Volker Stroebel."
 
 #: src/credits.cpp:132
 msgid "Tux Racer and the Tux Racer Name are Copyright © 2001 Jasmin F. Patry."
 msgstr ""
+"Tux Racer a název Tux Racer jsou chráněny autorsým právem © 2001 Jasmin F. "
+"Patry."
 
 #: src/event_select.cpp:50
 #, fuzzy
 msgid "Select campaign and cup"
-msgstr "Elige evento y copa"
+msgstr "Vyberte kampaň a pohár"
 
 #: src/event_select.cpp:56
 msgid "Campaign:"
@@ -265,68 +269,68 @@ msgstr ""
 
 #: src/event_select.cpp:67
 msgid "Cup:"
-msgstr "Copa:"
+msgstr "Pohár:"
 
 #: src/event_select.cpp:87
 msgid "Player name:"
-msgstr "Nombre del jugador:"
+msgstr "Jméno hráče:"
 
 #: src/event_select.cpp:104
 msgid "Continue"
-msgstr "Continuar"
+msgstr "Pokračovat"
 
 #: src/event_select.cpp:158
 msgid "You've won this cup!"
-msgstr "¡Has ganado esta copa!"
+msgstr "Tento pohár jste již vyhráli!"
 
 #: src/event_select.cpp:160
 msgid "You must complete this cup next"
-msgstr "Tienes que completar esta copa"
+msgstr "Tento pohár ještě není dokončen."
 
 #: src/event_select.cpp:162
 msgid "You cannot enter this cup yet"
-msgstr "Todavía no puedes acceder a esta copa"
+msgstr "Do tohoto poháru nyní nelze vstoupit."
 
 #: src/event_race_select.cpp:45
 msgid "Select a race"
-msgstr "Elige una carrera"
+msgstr "Vyberte závod"
 
 #: src/event_race_select.cpp:60
 msgid "Race!"
-msgstr "¡Correr!"
+msgstr "Start!"
 
 #: src/event_race_select.cpp:280
 msgid "You don't have any lives left."
-msgstr "No te quedan vidas."
+msgstr "Nezbyly vám žádné životy."
 
 #: src/event_race_select.cpp:285
 msgid "Race won! Your result:"
-msgstr "¡Victoria! Resultado:"
+msgstr "Vyhráli jste závod! Výsledek:"
 
 #: src/event_race_select.cpp:289
 msgid "Needed to advance:"
-msgstr "Necesario para avanzar:"
+msgstr "Podmínky pro vítězství:"
 
 #: src/event_race_select.cpp:293
 msgid "You can't enter this race yet."
-msgstr "Todavía no puedes acceder a esta carrera."
+msgstr "Tohoto závodu se nyní nemůžete zúčasnit."
 
 #: src/event_race_select.cpp:316
 msgid "Time:"
-msgstr "Tiempo:"
+msgstr "Čas:"
 
 #: src/event_race_select.cpp:320
 #, c-format
 msgid "%02d:%02d.%02d"
-msgstr ""
+msgstr "%02d:%02d.%02d"
 
 #: src/event_race_select.cpp:324
 msgid "Herring:"
-msgstr "Arenques:"
+msgstr "Sleďů:"
 
 #: src/event_race_select.cpp:332
 msgid "Score:"
-msgstr "Puntuación:"
+msgstr "Bodů:"
 
 #: src/event_race_select.cpp:341
 msgid "Contributed by:"
@@ -334,119 +338,119 @@ msgstr "Autor:"
 
 #: src/event_race_select.cpp:349 po/levelinfo:16
 msgid "Unknown"
-msgstr "Desconocido"
+msgstr "Neznámý"
 
 #: src/game_over.cpp:109
 msgid "Race aborted"
-msgstr "Carrera abortada"
+msgstr "Závod zrušen"
 
 #: src/game_over.cpp:112
 msgid "Race Over"
-msgstr "Carrera terminada"
+msgstr "Konec závodu"
 
 #: src/game_over.cpp:119
 #, c-format
 msgid "Time: %02d:%02d.%02d"
-msgstr "Tiempo: %02d:%02d.%02d"
+msgstr "Čas: %02d:%02d.%02d"
 
 #: src/game_over.cpp:124
 #, c-format
 msgid "Herring: %3d"
-msgstr "Arenques: %3d"
+msgstr "Sleďů: %3d"
 
 #: src/game_over.cpp:129
 #, c-format
 msgid "Score: %6d"
-msgstr "Puntuación: %6d"
+msgstr "Bodů: %6d"
 
 #: src/game_over.cpp:135
 #, c-format
 msgid "Max speed: %3d km/h"
-msgstr "Velocidad máxima: %3d km/h"
+msgstr "Nejvyšší rychlost: %3d km/h"
 
 #: src/game_over.cpp:141
 #, c-format
 msgid "Was flying: %.01f %% of time"
-msgstr "Volando el %.01f %% del tiempo"
+msgstr "Letěli jste %.01f %% celkového času"
 
 #: src/game_over.cpp:151
 #, c-format
 msgid "You made it to the %s place in the highscore!"
-msgstr "¡Estas en el puesto %s del Highscore!"
+msgstr "Dostali jste se na %s. místo!"
 
 #: src/game_over.cpp:161
 msgid "You beat your best score!"
-msgstr "¡Has batido tu propio record!"
+msgstr "Překonali jste svůj rekord!"
 
 #: src/game_over.cpp:164
 #, fuzzy
 msgid "Congratulations! You won the campaign!"
-msgstr "¡Enhorabuena! ¡Has ganado la copa!"
+msgstr "Blahopřejeme, vyhráli jste pohár!"
 
 #: src/game_over.cpp:166
 msgid "Congratulations! You won the cup!"
-msgstr "¡Enhorabuena! ¡Has ganado la copa!"
+msgstr "Blahopřejeme, vyhráli jste pohár!"
 
 #: src/game_over.cpp:168
 msgid "You advanced to the next race!"
-msgstr "¡Te has clasificado para la siguiente carrera!"
+msgstr "Postupujete do dalšího závodu!"
 
 #: src/game_over.cpp:170
 msgid "You didn't advance."
-msgstr "No estás clasificado."
+msgstr "Nepostoupili jste."
 
 #: src/game_type_select.cpp:36
 #, fuzzy
 msgid "Enter a campaign"
-msgstr "Entrar en un evento"
+msgstr "Kampaň"
 
 #: src/game_type_select.cpp:43
 msgid "Practice"
-msgstr "Práctica"
+msgstr "Trénink"
 
 #: src/game_type_select.cpp:50 src/highscore.cpp:350
 msgid "Highscore"
-msgstr "Highscore"
+msgstr "Nejlepší výkony"
 
 #: src/game_type_select.cpp:64
 msgid "Credits"
-msgstr "Créditos"
+msgstr "Autoři"
 
 #: src/game_type_select.cpp:71 src/paused.cpp:78
 msgid "Quit"
-msgstr "Salir"
+msgstr "Konec"
 
 #: src/graphicsconfig.cpp:30
 msgid "Graphics Configuration"
-msgstr "Configuración de los gráficos"
+msgstr "Nastavení grafiky"
 
 #: src/graphicsconfig.cpp:108
 msgid "Model:"
-msgstr "Modelo:"
+msgstr "Model:"
 
 #: src/graphicsconfig.cpp:117
 msgid "Show UI Snow:"
-msgstr "Mostrar nieve:"
+msgstr "Zobrazovat sníh v rozhraní:"
 
 #: src/graphicsconfig.cpp:121
 msgid "Display FPS:"
-msgstr "Mostrar FPS:"
+msgstr "Zobrazovat počet snímků za sekundu (FPS):"
 
 #: src/graphicsconfig.cpp:125
 msgid "Display Progress Bar:"
-msgstr "Mostrar progreso:"
+msgstr "Zobrazovat pozici na trati:"
 
 #: src/graphicsconfig.cpp:129
 msgid "Draw Fog:"
-msgstr "Niebla:"
+msgstr "Vykreslovat mlhu:"
 
 #: src/graphicsconfig.cpp:133
 msgid "Reflections:"
-msgstr "Reflejos:"
+msgstr "Odlesky:"
 
 #: src/graphicsconfig.cpp:137
 msgid "Shadows:"
-msgstr "Sombras:"
+msgstr "Stíny:"
 
 #: src/graphicsconfig.cpp:141
 msgid "Draw Background:"
@@ -494,96 +498,96 @@ msgstr "10."
 
 #: src/highscore.cpp:317
 msgid "No records"
-msgstr ""
+msgstr "Žádné záznamy"
 
 #: src/highscore.cpp:327
 #, c-format
 msgid " (%d points)"
-msgstr ""
+msgstr " (%d bodů)"
 
 #: src/joystickconfig.cpp:29
 msgid "Joystick Configuration"
-msgstr "Configuración del joystick"
+msgstr "Nastavení joysticku"
 
 #: src/joystickconfig.cpp:33
 msgid "Enable Joystick"
-msgstr "Activar joystick"
+msgstr "Povolit joystick:"
 
 #: src/joystickconfig.cpp:41 src/keyboardconfig.cpp:132
 msgid "Paddle:"
-msgstr "Remar:"
+msgstr "Pádlovat:"
 
 #: src/joystickconfig.cpp:54 src/keyboardconfig.cpp:136
 msgid "Brake:"
-msgstr "Frenar:"
+msgstr "Brzdit:"
 
 #: src/joystickconfig.cpp:67 src/keyboardconfig.cpp:140
 msgid "Jump:"
-msgstr "Saltar:"
+msgstr "Skok:"
 
 #: src/joystickconfig.cpp:80 src/keyboardconfig.cpp:144
 msgid "Trick:"
-msgstr "Truco:"
+msgstr "Trik:"
 
 #: src/keyboardconfig.cpp:55
 msgid "Keyboard Configuration"
-msgstr "Configuración del teclado"
+msgstr "Nastavení klávesnice"
 
 #: src/keyboardconfig.cpp:124
 msgid "Turn left:"
-msgstr "Girar a la izquierda:"
+msgstr "Zatočit doleva:"
 
 #: src/keyboardconfig.cpp:128
 msgid "Turn right:"
-msgstr "Girar a la derecha:"
+msgstr "Zatočit doprava:"
 
 #: src/keyboardconfig.cpp:148
 msgid "Reset:"
-msgstr "Reiniciar:"
+msgstr "Obnovit polohu na trati:"
 
 #: src/loading.cpp:53
 msgid "Loading, Please Wait..."
-msgstr "Cargando, por favor espera..."
+msgstr "Probíhá načítání, čekejte prosím…"
 
 #: src/paused.cpp:54
 msgid "Paused"
-msgstr "Parado"
+msgstr "Pozastaveno"
 
 #: src/paused.cpp:70
 msgid "Resume"
-msgstr "Volver"
+msgstr "Pokračovat ve hře"
 
 #: src/splash_screen.cpp:34
 msgid "PRESS ANY KEY TO START"
-msgstr "PULSA UNA TECLA PARA EMPEZAR"
+msgstr "Pokračujte stiskem libovolné klávesy"
 
 #: src/videoconfig.cpp:60
 msgid "Video Configuration"
-msgstr "Configuración del vídeo"
+msgstr "Nastavení obrazu"
 
 #: src/videoconfig.cpp:173
 msgid "To change the resolution, or switch into fullscreen mode"
-msgstr "Para cambiar la resolución o entrar en modo pantalla completa"
+msgstr "Chcete-li změnit rozlišení nebo nastavení režimu celé"
 
 #: src/videoconfig.cpp:175
 msgid "use options.txt, located in the config folder."
-msgstr "usa options.txt que está en la carpeta config."
+msgstr "obrazovky, upravte soubor options.txt ve složce s nastavením."
 
 #: src/videoconfig.cpp:177
 msgid "Resolution:"
-msgstr "Resolución:"
+msgstr "Rozlišení:"
 
 #: src/videoconfig.cpp:181
 msgid "Bits Per Pixel:"
-msgstr "Bits por pixel:"
+msgstr "Barevná hloubka:"
 
 #: src/videoconfig.cpp:185
 msgid "Fullscreen:"
-msgstr "Pantalla completa:"
+msgstr "Přes celou obrazovku:"
 
 #: src/videoconfig.cpp:189
 msgid "Experimental (needs restart)"
-msgstr "Experimental (requiere reiniciar)"
+msgstr "Testovací (vyžadují restart hry)"
 
 #: src/videoconfig.cpp:192
 msgid "Stencil Buffer:"
@@ -591,11 +595,11 @@ msgstr ""
 
 #: src/videoconfig.cpp:196
 msgid "Enable FSAA:"
-msgstr "Activar FSAA:"
+msgstr "Povolit FSAA:"
 
 #: src/videoconfig.cpp:200
 msgid "FSAA Multisamples:"
-msgstr ""
+msgstr "FSAA Multisamples:"
 
 #: po/levelinfo:1
 #, c-format
@@ -633,89 +637,99 @@ msgstr "%03d"
 
 #: po/levelinfo:14
 msgid "Doing"
-msgstr ""
+msgstr "Činnost"
 
 #: po/levelinfo:15
 msgid ""
 "This course was probably created to present new textures introduced in "
 "PPRacer."
 msgstr ""
+"Tato dráha byla pravděpodobně vytvořena k předvedení nových textur "
+"představených v PPRaceru."
 
 #: po/levelinfo:17
 msgid "Hippo Run"
-msgstr ""
+msgstr "Hroší běh"
 
 #: po/levelinfo:18
 msgid ""
 "In Hippo Run, you slide down an icy slope as a penguin, I honestly don't "
 "know what this has to do with hippos or running..."
 msgstr ""
+"V hroším běhu jedeš dolu ze sjezdovky jako tučňák. Abych řek pravdu, nevím, "
+"co to má co dělat s hrochem nebo běháním..."
 
 #: po/levelinfo:19
 msgid "Ice Pipeline"
-msgstr ""
+msgstr "Ledové potrubí"
 
 #: po/levelinfo:20
 msgid "A short, slippery ice-trough with herring scattered throughout."
-msgstr ""
+msgstr "Krátké, kluzké ledové koryto se slanečky roztroušenými všude možně."
 
 #: po/levelinfo:21
 msgid "Volcanoes"
-msgstr ""
+msgstr "Vulkány"
 
 #: po/levelinfo:22
 msgid ""
 "This gigantic crater was full of water, and herring, but now it's all "
 "frozen, and yours for the taking."
 msgstr ""
+"Gigantický kráter býval plný vody a slanečků, ale nyní je celý zamrzlý a pro "
+"tebe k dobývání."
 
 #: po/levelinfo:23
 msgid "Nature Stroll"
-msgstr ""
+msgstr "Vycházka do přírody"
 
 #: po/levelinfo:24
 msgid ""
 "The fresh air, the pine scent, who doesn't like a nice refreshing walk "
 "through the mountains?"
 msgstr ""
+"Čerstcý vzduch, vůně borovic, kdo by neměl rád pěknou osvěžující procházku "
+"horami?"
 
 #: po/levelinfo:25
 msgid "Mountain Mania"
-msgstr ""
+msgstr "Horské šílenství"
 
 #: po/levelinfo:26
 msgid "Icy Peril"
-msgstr ""
+msgstr "Ledové ohrožení"
 
 #: po/levelinfo:27
 msgid "Death Cup"
-msgstr ""
+msgstr "Pohár smrti"
 
 #: po/levelinfo:28
 msgid "Slippery Defeat"
-msgstr ""
+msgstr "Kluzká porážka"
 
 #: po/levelinfo:29
 msgid "The Final Three"
-msgstr ""
+msgstr "Závěrečná trojka"
 
 #: po/levelinfo:30
 msgid "Slippy-Slidey"
-msgstr ""
+msgstr "Hladko-kluzko"
 
 #: po/levelinfo:31
 msgid "Slide on the slippery frozen river in a hilly forest, slipperily."
-msgstr ""
+msgstr "Sklouzni se hladce po zamrzlé řece v kopcovitém lese."
 
 #: po/levelinfo:32
 msgid "Crazy Path"
-msgstr ""
+msgstr "Šílená dráha"
 
 #: po/levelinfo:33
 msgid ""
 "You'll have trouble slowing down on this one. There's lots of herring, but "
 "be careful not to fly too much or you won't get any."
 msgstr ""
+"Při sjíždění této dráhy se pěkně zapotíš. Čeká tu hodně slanečků, ale pozor "
+"ať moc nelítáš, nebo žádného nechytíš."
 
 #: po/levelinfo:34
 msgid "Candy Lane"
@@ -729,31 +743,33 @@ msgstr ""
 
 #: po/levelinfo:36
 msgid "Merry Go Round"
-msgstr ""
+msgstr "Veselý kolotoč"
 
 #: po/levelinfo:37
 msgid "Try to build up enough speed to jump from one roundabout to the next."
 msgstr ""
+"Snaž se vytvořit si dostatečnou rychlost ke skoku z jednoho kolotoče na "
+"další."
 
 #: po/levelinfo:38
 msgid "Hey, Tux!"
-msgstr ""
+msgstr "Hej, Tuxi!"
 
 #: po/levelinfo:39
 msgid "This course offers true excitement for your race-loving penguin buddy."
-msgstr ""
+msgstr "Tato dráha nabízí opravdové vzrušení pro tučňáčka milujícího závodění."
 
 #: po/levelinfo:40
 msgid "Bobsled Ride"
-msgstr ""
+msgstr "Bobová dráha"
 
 #: po/levelinfo:41
 msgid "Just like a real bobsled ride, only more dangerous."
-msgstr ""
+msgstr "Skoro jako opravdová bobová dráha, akorát nebezpečnější."
 
 #: po/levelinfo:42
 msgid "In Search of Vodka"
-msgstr ""
+msgstr "Pátrání po vodce"
 
 #: po/levelinfo:43
 msgid ""
@@ -761,6 +777,9 @@ msgid ""
 "cabinet has been pillaged. Join Tux on the quest for vodka.Pick up herring "
 "for dinner along the way!"
 msgstr ""
+"Tux potřebuje nějakou vodku na zahřátí svéh promrzlého bříška. Jako "
+"napotvoru ale někdo vydrancoval jeho domácí bar. Připoj se k Tuxovi na jeho "
+"výpravě za vodkou. V průběhu cesty sbírej slanečky k večeři!"
 
 #: po/levelinfo:44
 msgid "Tux at Home"
@@ -783,11 +802,11 @@ msgstr ""
 
 #: po/levelinfo:48
 msgid "Mountains and Hills"
-msgstr ""
+msgstr "Hory a kopce"
 
 #: po/levelinfo:49
 msgid "The Final Challenge"
-msgstr ""
+msgstr "Poslední výzva"
 
 #: po/levelinfo:50
 msgid "Wild Mountains"
@@ -821,7 +840,7 @@ msgstr ""
 
 #: po/levelinfo:56
 msgid "Chinese Wall"
-msgstr ""
+msgstr "Čínská zeď"
 
 #: po/levelinfo:57
 msgid ""
@@ -870,15 +889,15 @@ msgstr ""
 
 #: po/levelinfo:66
 msgid "Tux Racer Classics"
-msgstr ""
+msgstr "Tux Racer Classics"
 
 #: po/levelinfo:67
 msgid "Canadian Cup"
-msgstr ""
+msgstr "Kanadský pohár"
 
 #: po/levelinfo:68
 msgid "Swiss Cup"
-msgstr ""
+msgstr "Švýcarský pohár"
 
 #: po/levelinfo:69
 msgid "Bumpy Ride"
@@ -902,13 +921,15 @@ msgstr ""
 
 #: po/levelinfo:73
 msgid "Frozen River"
-msgstr ""
+msgstr "Zamrzlá řeka"
 
 #: po/levelinfo:74
 msgid ""
 "Keep your speed down to collect herring. You have plenty of time, so don't "
 "rush things."
 msgstr ""
+"Udržuj nízkou rychlost, abys mohl sbírat slanečky. Máš dost času, takže "
+"nemusíš spěchat."
 
 #: po/levelinfo:75
 msgid "Twisty Slope"
@@ -922,7 +943,7 @@ msgstr ""
 
 #: po/levelinfo:77
 msgid "Mt. Herring"
-msgstr ""
+msgstr "Mt. Herring"
 
 #: po/levelinfo:78
 msgid ""
@@ -930,10 +951,14 @@ msgid ""
 "some wide open areas and branching paths. Lots of herrings to collect though "
 "it can be difficult unless you watch your speed."
 msgstr ""
+"Hora Slaneček je poměrně rychlá ale dlouhá, někde poněkud hrbolatá dráha. "
+"Obsahuje široké otevřené prostory a větvící se cesty. Čeká na tebe mnoho "
+"slanečků,í ačkoliv jejich sbíráíní může být nesnadné, pokud nesleduješ svou "
+"rychlost."
 
 #: po/levelinfo:79
 msgid "Herring Run"
-msgstr ""
+msgstr "Herring Run"
 
 #: po/levelinfo:80
 msgid "Mountain Man"
@@ -984,7 +1009,7 @@ msgstr ""
 
 #: po/levelinfo:90
 msgid "Hazzard Valley"
-msgstr ""
+msgstr "Údolí hazardu"
 
 #: po/levelinfo:91
 msgid ""
@@ -992,6 +1017,9 @@ msgid ""
 "huge areas of rocky plains, not to mention your speed being your enemy in "
 "trying to get the herrings and stay on course!"
 msgstr ""
+"Údolí hazardu je plné úskalí, jako jsou stromy, hluboké propadliny, špice a "
+"obrovské prostory skalnatých rovin, které ti připomínají, že tvoje rychlost "
+"je nepřítel tvé snahy ulovit slanečky a setrvání na dráze."
 
 #: po/levelinfo:92
 msgid "Skull Mountain"
@@ -1046,7 +1074,7 @@ msgstr ""
 
 #: po/levelinfo:102
 msgid "Ski Jump"
-msgstr ""
+msgstr "Ski Jump"
 
 #: po/levelinfo:103
 msgid ""
@@ -1106,17 +1134,17 @@ msgstr ""
 
 #: po/modelinfo:1
 msgid "Tux"
-msgstr ""
+msgstr "Tux"
 
 #: po/modelinfo:2
 msgid "Tux on Snowboard"
-msgstr ""
+msgstr "Tux na snowboardu"
 
 #~ msgid "Language:"
-#~ msgstr "Idioma:"
+#~ msgstr "Jazyk:"
 
 #~ msgid "Event:"
-#~ msgstr "Evento:"
+#~ msgstr "Kampaň:"
 
 #~ msgid "Congratulations! You won the event!"
-#~ msgstr "¡Enhorabuena! ¡Has ganado el evento!"
+#~ msgstr "Blahopřejeme, vyhráli jste kampaň!"

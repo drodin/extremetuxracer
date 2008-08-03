@@ -1,16 +1,16 @@
-# Translation of Extreme Tux Racer to Spanish
-#
-# Copyright (C) 2008 The Extreme Tux Racer team
+# Slovenian translation for etracer
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
 # This file is distributed under the same license as the etracer package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Extreme Tux Racer\n"
+"Project-Id-Version: etracer\n"
 "Report-Msgid-Bugs-To: https://translations.edge.launchpad.net/etracer\n"
 "POT-Creation-Date: 2008-08-03 20:17+0200\n"
-"PO-Revision-Date: 2008-04-21 11:34+0000\n"
-"Last-Translator: Paweł Drewniak <Unknown>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2008-07-10 13:48+0000\n"
+"Last-Translator: Štefan Baebler <Unknown>\n"
+"Language-Team: Slovenian <sl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,96 +19,98 @@ msgstr ""
 
 #: src/audioconfig.cpp:36
 msgid "Audio Configuration"
-msgstr "Configuración del sonido"
+msgstr "Nastavitev zvoka"
 
 #: src/audioconfig.cpp:112
 msgid "Sound Effects:"
-msgstr "Efectos de sonido:"
+msgstr "Zvočni učinki:"
 
 #: src/audioconfig.cpp:116
 msgid "Music:"
-msgstr "Musica:"
+msgstr "Glasba:"
 
 #: src/audioconfig.cpp:120
 msgid "(needs restart)"
-msgstr "(requiere reiniciar)"
+msgstr "(potreben ponoven zagon)"
 
 #: src/audioconfig.cpp:122
 msgid "Disable Audio:"
-msgstr "Desactivar sonido:"
+msgstr "Onemogoči zvok:"
 
 #: src/audioconfig.cpp:126
 msgid "Stereo:"
 msgstr "Stereo:"
 
 #: src/audioconfig.cpp:130
+#, fuzzy
 msgid "Bits Per Sample:"
-msgstr "Bits por muestra:"
+msgstr "Bitov na vzorec:"
 
 #: src/audioconfig.cpp:134
+#, fuzzy
 msgid "Samples Per Second:"
-msgstr "Muestras por segundo:"
+msgstr "Vzorcev na sekundo:"
 
 #: src/configmode.cpp:36
 msgid "Cancel"
-msgstr "Cancelar"
+msgstr "Prekliči"
 
 #: src/configmode.cpp:43
 msgid "Ok"
-msgstr "Ok"
+msgstr "V redu"
 
 #: src/configuration.cpp:38 src/game_type_select.cpp:57 src/paused.cpp:62
 msgid "Configuration"
-msgstr "Configuración"
+msgstr "Nastavitve"
 
 #: src/configuration.cpp:45 src/credits.cpp:89
 msgid "Graphics"
-msgstr "Gráficos"
+msgstr "Grafika"
 
 #: src/configuration.cpp:52
 msgid "Video"
-msgstr "Vídeo"
+msgstr ""
 
 #: src/configuration.cpp:59
 msgid "Audio"
-msgstr "Sonido"
+msgstr "Zvok"
 
 #: src/configuration.cpp:66
 msgid "Keyboard"
-msgstr "Teclado"
+msgstr "Tipkovnica"
 
 #: src/configuration.cpp:73
 msgid "Joystick"
-msgstr "Joystick"
+msgstr "Igralna palica"
 
 #: src/configuration.cpp:81 src/event_select.cpp:96
 #: src/event_race_select.cpp:53 src/highscore.cpp:413
 msgid "Back"
-msgstr "Atrás"
+msgstr "Nazaj"
 
 #: src/credits.cpp:43
 msgid "Version 0.4"
-msgstr ""
+msgstr "Verzija 0.4"
 
 #: src/credits.cpp:46
 msgid "Extreme Tux Racer is in the process of being"
-msgstr ""
+msgstr "Igra Extreme Tux Racer je v postopku"
 
 #: src/credits.cpp:47
 msgid "completely rewritten. All versions after 0.35,"
-msgstr ""
+msgstr "popolne prenove. Vse verzije po 0.35,"
 
 #: src/credits.cpp:48
 msgid "including this one, won't have major code changes"
-msgstr ""
+msgstr "vključno s to ne bodo imele večjih sprememb kode"
 
 #: src/credits.cpp:49
 msgid "because the programmers are busy making a new,"
-msgstr ""
+msgstr "ker so programerji zasedeni s pisanjem nove,"
 
 #: src/credits.cpp:50
 msgid "improved game."
-msgstr ""
+msgstr "boljše igrice."
 
 #: src/credits.cpp:52
 msgid "Extreme Tux Racer is based on"
@@ -128,7 +130,7 @@ msgstr ""
 
 #: src/credits.cpp:58
 msgid "Development"
-msgstr ""
+msgstr "Razvoj"
 
 #: src/credits.cpp:63
 msgid "from Sunspire Studios:"
@@ -140,7 +142,7 @@ msgstr ""
 
 #: src/credits.cpp:74
 msgid "Translators"
-msgstr ""
+msgstr "Prevajalci"
 
 #: src/credits.cpp:87
 msgid "Other (incomplete) translations are from the PPRacer Project."
@@ -164,19 +166,19 @@ msgstr ""
 
 #: src/credits.cpp:95
 msgid "Music"
-msgstr ""
+msgstr "Glasba"
 
 #: src/credits.cpp:97
 msgid "'Race 1'"
-msgstr ""
+msgstr "'Tekma 1'"
 
 #: src/credits.cpp:98
 msgid "'Menu'"
-msgstr ""
+msgstr "'Meni'"
 
 #: src/credits.cpp:99
 msgid "'Options'"
-msgstr ""
+msgstr "'Možnosti'"
 
 #: src/credits.cpp:100
 msgid "'Won Race'"
@@ -192,7 +194,7 @@ msgstr ""
 
 #: src/credits.cpp:110
 msgid "Thanks To"
-msgstr ""
+msgstr "Zahvale"
 
 #: src/credits.cpp:111
 msgid "(for Exteme Tux Racer)"
@@ -255,9 +257,8 @@ msgid "Tux Racer and the Tux Racer Name are Copyright © 2001 Jasmin F. Patry."
 msgstr ""
 
 #: src/event_select.cpp:50
-#, fuzzy
 msgid "Select campaign and cup"
-msgstr "Elige evento y copa"
+msgstr ""
 
 #: src/event_select.cpp:56
 msgid "Campaign:"
@@ -265,55 +266,55 @@ msgstr ""
 
 #: src/event_select.cpp:67
 msgid "Cup:"
-msgstr "Copa:"
+msgstr "Pokal:"
 
 #: src/event_select.cpp:87
 msgid "Player name:"
-msgstr "Nombre del jugador:"
+msgstr "Ime igralca:"
 
 #: src/event_select.cpp:104
 msgid "Continue"
-msgstr "Continuar"
+msgstr "Naprej"
 
 #: src/event_select.cpp:158
 msgid "You've won this cup!"
-msgstr "¡Has ganado esta copa!"
+msgstr ""
 
 #: src/event_select.cpp:160
 msgid "You must complete this cup next"
-msgstr "Tienes que completar esta copa"
+msgstr ""
 
 #: src/event_select.cpp:162
 msgid "You cannot enter this cup yet"
-msgstr "Todavía no puedes acceder a esta copa"
+msgstr ""
 
 #: src/event_race_select.cpp:45
 msgid "Select a race"
-msgstr "Elige una carrera"
+msgstr ""
 
 #: src/event_race_select.cpp:60
 msgid "Race!"
-msgstr "¡Correr!"
+msgstr ""
 
 #: src/event_race_select.cpp:280
 msgid "You don't have any lives left."
-msgstr "No te quedan vidas."
+msgstr ""
 
 #: src/event_race_select.cpp:285
 msgid "Race won! Your result:"
-msgstr "¡Victoria! Resultado:"
+msgstr ""
 
 #: src/event_race_select.cpp:289
 msgid "Needed to advance:"
-msgstr "Necesario para avanzar:"
+msgstr ""
 
 #: src/event_race_select.cpp:293
 msgid "You can't enter this race yet."
-msgstr "Todavía no puedes acceder a esta carrera."
+msgstr ""
 
 #: src/event_race_select.cpp:316
 msgid "Time:"
-msgstr "Tiempo:"
+msgstr "Čas:"
 
 #: src/event_race_select.cpp:320
 #, c-format
@@ -322,131 +323,129 @@ msgstr ""
 
 #: src/event_race_select.cpp:324
 msgid "Herring:"
-msgstr "Arenques:"
+msgstr ""
 
 #: src/event_race_select.cpp:332
 msgid "Score:"
-msgstr "Puntuación:"
+msgstr "Rezultat:"
 
 #: src/event_race_select.cpp:341
 msgid "Contributed by:"
-msgstr "Autor:"
+msgstr ""
 
 #: src/event_race_select.cpp:349 po/levelinfo:16
 msgid "Unknown"
-msgstr "Desconocido"
+msgstr "Neznano"
 
 #: src/game_over.cpp:109
 msgid "Race aborted"
-msgstr "Carrera abortada"
+msgstr "Tekma prekinjena"
 
 #: src/game_over.cpp:112
 msgid "Race Over"
-msgstr "Carrera terminada"
+msgstr "Tekma zaključena"
 
 #: src/game_over.cpp:119
 #, c-format
 msgid "Time: %02d:%02d.%02d"
-msgstr "Tiempo: %02d:%02d.%02d"
+msgstr "Čas: %02d:%02d.%02d"
 
 #: src/game_over.cpp:124
 #, c-format
 msgid "Herring: %3d"
-msgstr "Arenques: %3d"
+msgstr "Herring: %3d"
 
 #: src/game_over.cpp:129
 #, c-format
 msgid "Score: %6d"
-msgstr "Puntuación: %6d"
+msgstr "Rezultat: %6d"
 
 #: src/game_over.cpp:135
 #, c-format
 msgid "Max speed: %3d km/h"
-msgstr "Velocidad máxima: %3d km/h"
+msgstr "Največja hitrost: %3d km/h"
 
 #: src/game_over.cpp:141
 #, c-format
 msgid "Was flying: %.01f %% of time"
-msgstr "Volando el %.01f %% del tiempo"
+msgstr "V letu: %.01f %% časa"
 
 #: src/game_over.cpp:151
 #, c-format
 msgid "You made it to the %s place in the highscore!"
-msgstr "¡Estas en el puesto %s del Highscore!"
+msgstr ""
 
 #: src/game_over.cpp:161
 msgid "You beat your best score!"
-msgstr "¡Has batido tu propio record!"
+msgstr ""
 
 #: src/game_over.cpp:164
-#, fuzzy
 msgid "Congratulations! You won the campaign!"
-msgstr "¡Enhorabuena! ¡Has ganado la copa!"
+msgstr ""
 
 #: src/game_over.cpp:166
 msgid "Congratulations! You won the cup!"
-msgstr "¡Enhorabuena! ¡Has ganado la copa!"
+msgstr ""
 
 #: src/game_over.cpp:168
 msgid "You advanced to the next race!"
-msgstr "¡Te has clasificado para la siguiente carrera!"
+msgstr ""
 
 #: src/game_over.cpp:170
 msgid "You didn't advance."
-msgstr "No estás clasificado."
+msgstr ""
 
 #: src/game_type_select.cpp:36
-#, fuzzy
 msgid "Enter a campaign"
-msgstr "Entrar en un evento"
+msgstr ""
 
 #: src/game_type_select.cpp:43
 msgid "Practice"
-msgstr "Práctica"
+msgstr ""
 
 #: src/game_type_select.cpp:50 src/highscore.cpp:350
 msgid "Highscore"
-msgstr "Highscore"
+msgstr "Najboljši rezultati"
 
 #: src/game_type_select.cpp:64
 msgid "Credits"
-msgstr "Créditos"
+msgstr "Zasluge"
 
 #: src/game_type_select.cpp:71 src/paused.cpp:78
 msgid "Quit"
-msgstr "Salir"
+msgstr "Končaj"
 
 #: src/graphicsconfig.cpp:30
 msgid "Graphics Configuration"
-msgstr "Configuración de los gráficos"
+msgstr ""
 
 #: src/graphicsconfig.cpp:108
 msgid "Model:"
-msgstr "Modelo:"
+msgstr "Model:"
 
 #: src/graphicsconfig.cpp:117
 msgid "Show UI Snow:"
-msgstr "Mostrar nieve:"
+msgstr ""
 
 #: src/graphicsconfig.cpp:121
 msgid "Display FPS:"
-msgstr "Mostrar FPS:"
+msgstr ""
 
 #: src/graphicsconfig.cpp:125
 msgid "Display Progress Bar:"
-msgstr "Mostrar progreso:"
+msgstr ""
 
 #: src/graphicsconfig.cpp:129
 msgid "Draw Fog:"
-msgstr "Niebla:"
+msgstr "Riši meglo:"
 
 #: src/graphicsconfig.cpp:133
 msgid "Reflections:"
-msgstr "Reflejos:"
+msgstr "Odsevi:"
 
 #: src/graphicsconfig.cpp:137
 msgid "Shadows:"
-msgstr "Sombras:"
+msgstr "Sence:"
 
 #: src/graphicsconfig.cpp:141
 msgid "Draw Background:"
@@ -499,91 +498,91 @@ msgstr ""
 #: src/highscore.cpp:327
 #, c-format
 msgid " (%d points)"
-msgstr ""
+msgstr " (%d točk)"
 
 #: src/joystickconfig.cpp:29
 msgid "Joystick Configuration"
-msgstr "Configuración del joystick"
+msgstr "Nastavitve krmilne palice"
 
 #: src/joystickconfig.cpp:33
 msgid "Enable Joystick"
-msgstr "Activar joystick"
+msgstr "Omogoči krmilno palico"
 
 #: src/joystickconfig.cpp:41 src/keyboardconfig.cpp:132
 msgid "Paddle:"
-msgstr "Remar:"
+msgstr ""
 
 #: src/joystickconfig.cpp:54 src/keyboardconfig.cpp:136
 msgid "Brake:"
-msgstr "Frenar:"
+msgstr "Zavora:"
 
 #: src/joystickconfig.cpp:67 src/keyboardconfig.cpp:140
 msgid "Jump:"
-msgstr "Saltar:"
+msgstr "Skok:"
 
 #: src/joystickconfig.cpp:80 src/keyboardconfig.cpp:144
 msgid "Trick:"
-msgstr "Truco:"
+msgstr "Trik:"
 
 #: src/keyboardconfig.cpp:55
 msgid "Keyboard Configuration"
-msgstr "Configuración del teclado"
+msgstr "Nastavitve tipkovnice"
 
 #: src/keyboardconfig.cpp:124
 msgid "Turn left:"
-msgstr "Girar a la izquierda:"
+msgstr "Zavij levo:"
 
 #: src/keyboardconfig.cpp:128
 msgid "Turn right:"
-msgstr "Girar a la derecha:"
+msgstr "Zavij desno:"
 
 #: src/keyboardconfig.cpp:148
 msgid "Reset:"
-msgstr "Reiniciar:"
+msgstr "Ponastavi:"
 
 #: src/loading.cpp:53
 msgid "Loading, Please Wait..."
-msgstr "Cargando, por favor espera..."
+msgstr "Nalaganje, prosimo počakajte..."
 
 #: src/paused.cpp:54
 msgid "Paused"
-msgstr "Parado"
+msgstr "Premor"
 
 #: src/paused.cpp:70
 msgid "Resume"
-msgstr "Volver"
+msgstr "Nadaljuj"
 
 #: src/splash_screen.cpp:34
 msgid "PRESS ANY KEY TO START"
-msgstr "PULSA UNA TECLA PARA EMPEZAR"
+msgstr "PRITISNI KATEROKOLI TIPKO ZA ZAČETEK"
 
 #: src/videoconfig.cpp:60
 msgid "Video Configuration"
-msgstr "Configuración del vídeo"
+msgstr ""
 
 #: src/videoconfig.cpp:173
 msgid "To change the resolution, or switch into fullscreen mode"
-msgstr "Para cambiar la resolución o entrar en modo pantalla completa"
+msgstr ""
 
 #: src/videoconfig.cpp:175
 msgid "use options.txt, located in the config folder."
-msgstr "usa options.txt que está en la carpeta config."
+msgstr ""
 
 #: src/videoconfig.cpp:177
 msgid "Resolution:"
-msgstr "Resolución:"
+msgstr "Ločljivost:"
 
 #: src/videoconfig.cpp:181
 msgid "Bits Per Pixel:"
-msgstr "Bits por pixel:"
+msgstr ""
 
 #: src/videoconfig.cpp:185
 msgid "Fullscreen:"
-msgstr "Pantalla completa:"
+msgstr "Celozaslonski način"
 
 #: src/videoconfig.cpp:189
 msgid "Experimental (needs restart)"
-msgstr "Experimental (requiere reiniciar)"
+msgstr "Poskusno (potreben ponoven zagon)"
 
 #: src/videoconfig.cpp:192
 msgid "Stencil Buffer:"
@@ -591,7 +590,7 @@ msgstr ""
 
 #: src/videoconfig.cpp:196
 msgid "Enable FSAA:"
-msgstr "Activar FSAA:"
+msgstr ""
 
 #: src/videoconfig.cpp:200
 msgid "FSAA Multisamples:"
@@ -600,17 +599,17 @@ msgstr ""
 #: po/levelinfo:1
 #, c-format
 msgid "FPS: %.1f"
-msgstr "FPS: %.1f"
+msgstr ""
 
 #: po/levelinfo:2 po/levelinfo:3
 #, c-format
 msgid "%03d"
-msgstr "%03d"
+msgstr ""
 
 #: po/levelinfo:4 po/levelinfo:5
 #, c-format
 msgid "%02d:%02d:%02d"
-msgstr "%02d:%02d:%02d"
+msgstr ""
 
 #: po/levelinfo:6 po/levelinfo:8
 msgid "km/h"
@@ -619,17 +618,17 @@ msgstr "km/h"
 #: po/levelinfo:7 po/levelinfo:9
 #, c-format
 msgid "%.0f"
-msgstr "%.0f"
+msgstr ""
 
 #: po/levelinfo:10 po/levelinfo:11
-#, fuzzy, c-format
+#, c-format
 msgid "%d:%d:%d"
-msgstr "%02d:%02d:%02d"
+msgstr ""
 
 #: po/levelinfo:12 po/levelinfo:13
-#, fuzzy, c-format
+#, c-format
 msgid "%d"
-msgstr "%03d"
+msgstr ""
 
 #: po/levelinfo:14
 msgid "Doing"
@@ -661,7 +660,7 @@ msgstr ""
 
 #: po/levelinfo:21
 msgid "Volcanoes"
-msgstr ""
+msgstr "Vulkani"
 
 #: po/levelinfo:22
 msgid ""
@@ -671,7 +670,7 @@ msgstr ""
 
 #: po/levelinfo:23
 msgid "Nature Stroll"
-msgstr ""
+msgstr "Sprehod po naravi"
 
 #: po/levelinfo:24
 msgid ""
@@ -729,7 +728,7 @@ msgstr ""
 
 #: po/levelinfo:36
 msgid "Merry Go Round"
-msgstr ""
+msgstr "Vrtiljak"
 
 #: po/levelinfo:37
 msgid "Try to build up enough speed to jump from one roundabout to the next."
@@ -745,7 +744,7 @@ msgstr ""
 
 #: po/levelinfo:40
 msgid "Bobsled Ride"
-msgstr ""
+msgstr "Bob steza"
 
 #: po/levelinfo:41
 msgid "Just like a real bobsled ride, only more dangerous."
@@ -753,7 +752,7 @@ msgstr ""
 
 #: po/levelinfo:42
 msgid "In Search of Vodka"
-msgstr ""
+msgstr "V iskanju vodke"
 
 #: po/levelinfo:43
 msgid ""
@@ -1046,7 +1045,7 @@ msgstr ""
 
 #: po/levelinfo:102
 msgid "Ski Jump"
-msgstr ""
+msgstr "Smučarska skakalnica"
 
 #: po/levelinfo:103
 msgid ""
@@ -1087,7 +1086,7 @@ msgstr ""
 
 #: po/levelinfo:110
 msgid "Slalom"
-msgstr ""
+msgstr "Slalom"
 
 #: po/levelinfo:111
 msgid ""
@@ -1106,17 +1105,11 @@ msgstr ""
 
 #: po/modelinfo:1
 msgid "Tux"
-msgstr ""
+msgstr "Tux"
 
 #: po/modelinfo:2
 msgid "Tux on Snowboard"
 msgstr ""
 
-#~ msgid "Language:"
-#~ msgstr "Idioma:"
-
 #~ msgid "Event:"
-#~ msgstr "Evento:"
-
-#~ msgid "Congratulations! You won the event!"
-#~ msgstr "¡Enhorabuena! ¡Has ganado el evento!"
+#~ msgstr "Dogodek:"
