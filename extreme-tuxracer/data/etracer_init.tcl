@@ -270,8 +270,14 @@ pp_load_font -binding objectives_herring_outline -outline -font fonts/PaperCuts2
 tux_load_texture herring_icon textures/herringicon.png 0
 tux_bind_texture herring_icon herring_icon
 
+tux_load_texture herring_icon-ok textures/herringicon-ok.png 0
+tux_bind_texture herring_icon-ok herring_icon-ok
+
 tux_load_texture time_icon textures/timeicon.png 0
 tux_bind_texture time_icon time_icon
+
+tux_load_texture time_icon-no textures/timeicon-no.png 0
+tux_bind_texture time_icon-no time_icon-no
 
 tux_load_texture gauge_outline textures/gaugeoutline.png 0
 tux_bind_texture gauge_outline gauge_outline

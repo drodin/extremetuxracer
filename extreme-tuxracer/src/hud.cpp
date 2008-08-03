@@ -39,6 +39,7 @@ HUD::Element::Element()
    x(0), y(0),
    font(NULL),
    texture(0),
+   texture2(0),
    width(0), height(0),
    size(0),
    angle(0)   
@@ -143,7 +144,12 @@ HUD::draw(Player& plyr)
             case 14:
                 objectives_herring(i,true);
                 break;
-
+	    case 15:
+		icon_time(i);
+		break;
+	    case 16:
+		icon_herring(i);
+		break;
 		}
 	}
 }
@@ -645,4 +651,28 @@ HUD::objectives_herring(const int i, bool outline_font)
     		
     	}	
     }
+}
+
+void 
+HUD::icon_time(const int i)
+{
+	int m;
+	m = i;
+	
+	if(gameMgr->time > gameMgr->getCurrentRace().time_req[gameMgr->difficulty] && gameMgr->gametype!=GameMgr::PRACTICING)
+		m_element[m].texture = m_element[i].texture2;
+	
+	image(m);
+}
+
+void 
+HUD::icon_herring(const int i)
+{
+	int m;
+	m = i;
+
+	if(players[0].herring >= gameMgr->getCurrentRace().herring_req[gameMgr->difficulty] && gameMgr->gametype!=GameMgr::PRACTICING)
+		m_element[m].texture = m_element[i].texture2;
+
+	image(m);
 }

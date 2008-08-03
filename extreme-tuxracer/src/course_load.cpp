@@ -1523,6 +1523,10 @@ static int hud_cb( ClientData cd, Tcl_Interp *ip, int argc, CONST84 char *argv[]
                 element.type=13;
 			}else if(!strcmp("objectives_herring_outline",*argv)){
                 element.type=14;
+			}else if(!strcmp("icon_time",*argv)){
+                                element.type=15;
+			}else if(!strcmp("icon_herring",*argv)){
+                                element.type=16;
 
 			}else{
 				err_msg = "invalid type";
@@ -1555,6 +1559,14 @@ static int hud_cb( ClientData cd, Tcl_Interp *ip, int argc, CONST84 char *argv[]
 			
 			if ( !get_texture_binding(*argv, &element.texture ) ) {
 				err_msg = "Couldn't get texture";
+				goto item_spec_bail;
+			}
+		} else if ( strcmp( "-texture2", *argv ) == 0 ) {
+		    NEXT_ARG;
+			CHECK_ARG( "-texture2", err_msg, item_spec_bail );
+			
+			if ( !get_texture_binding(*argv, &element.texture2 ) ) {
+				err_msg = "Couldn't get texture2";
 				goto item_spec_bail;
 			}
 		} else if ( strcmp( "-font", *argv ) == 0 ) {

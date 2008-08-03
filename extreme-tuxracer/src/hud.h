@@ -37,6 +37,7 @@ public:
 		int x,y;
 		pp::Font *font;
 		GLuint texture;
+		GLuint texture2;
 		int width,height,size;
 		std::string string;
 		wchar_t u_string[16];
@@ -65,7 +66,8 @@ private:
 	void coursePercentage(const int i);
     void objectives_time(const int i, bool outline_font);
     void objectives_herring(const int i, bool outline_font);
-
+	void icon_time(const int i);
+	void icon_herring(const int i);
 		
 	void draw_partial_tri_fan(const double fraction);
 	pp::Vec2d calc_new_fan_pt(const double angle);

@@ -16,16 +16,18 @@ tux_hud -hud 1 -type herring \
 	-font herring_count_outline \
 	-string "%03d"
 
-tux_hud -hud 1 -type image \
+tux_hud -hud 1 -type icon_time \
    -position {12 -12} \
    -texture time_icon \
+   -texture2 time_icon-no \
    -width 50 \
    -height 50 \
    -size 50
 
-tux_hud -hud 1 -type image \
+tux_hud -hud 1 -type icon_herring \
    -position {-70 -16} \
    -texture herring_icon \
+   -texture2 herring_icon-ok \
    -width 50 \
    -height 50 \
    -size 50
