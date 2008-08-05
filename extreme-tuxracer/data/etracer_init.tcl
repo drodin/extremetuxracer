@@ -83,7 +83,7 @@ source courses/course_idx.tcl
 #
 
 # Splash & Start screens
-if { [tux_load_music start_screen music/start1-jt.it] } {
+if { [tux_load_music start_screen music/start1-jt.ogg] } {
     tux_bind_music splash_screen start_screen -1
     tux_bind_music start_screen start_screen -1
 }
@@ -94,19 +94,19 @@ if { [tux_load_music credits_screen music/credits1-cp.ogg] } {
 }
 
 # Options screen
-if { [tux_load_music options_screen music/options.ogg] } {
+if { [tux_load_music options_screen music/options1-jt.ogg] } {
     tux_bind_music options_screen options_screen -1
 }
 
 # Music played during race
-if { [tux_load_music racing music/race1-jt.it] } {
+if { [tux_load_music racing music/race1-jt.ogg] } {
     tux_bind_music intro racing -1
     tux_bind_music racing racing -1
     tux_bind_music paused racing -1
 }
 
 # Game Over screen
-if { [tux_load_music game_over music/wonrace1-jt.it] } {
+if { [tux_load_music game_over music/wonrace1-jt.ogg] } {
     tux_bind_music game_over game_over 1
 }
 

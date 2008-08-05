@@ -361,13 +361,12 @@ courses/events/a-tux_racer/path_of_daggers/elev.png \
 		courses/themes/common.tcl \
 		courses/course_idx.tcl \
 		fonts/PaperCuts20.ttf \
-		music/race1-jt.it \
-		music/wonrace1-jt.it \
-		music/credits1-cp.it \
+		music/race1-jt.ogg \
+		music/wonrace1-jt.ogg \
 		music/credits1-cp.ogg \
-		music/options1-jt.it \
-		music/options.ogg \
-		music/start1-jt.it \
+		music/credits1-cp.ogg \
+		music/options1-jt.ogg \
+		music/start1-jt.ogg \
 		music/readme \
 		textures/menu_top_left.png \
 		textures/checkmark.png \
@@ -376,7 +375,9 @@ courses/events/a-tux_racer/path_of_daggers/elev.png \
 		textures/splash.png \
 		textures/splash_small.png \
 		textures/herringicon.png \
+		textures/herringicon-ok.png \
 		textures/timeicon.png \
+		textures/timeicon-no.png \
 		textures/menu_bottom_left.png \
 		textures/menu_top_right.png \
 		textures/nopreview.png \
