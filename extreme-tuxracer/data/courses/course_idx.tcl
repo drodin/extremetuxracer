@@ -91,7 +91,7 @@ set races_list {}
 set ucontrib "$env(HOME)/.etracer/contrib/"
 if [file exists "$ucontrib"] {
 	cd $ucontrib
-	foreach course [glob -nocomplain *] {
+	foreach course [lsort [glob -nocomplain *]] {
 		append_course_info $course contrib/
 		load_preview $course $ucontrib
 	}
@@ -117,7 +117,7 @@ tux_bind_texture no_preview no_preview
 # Build list of contributed courses in contrib
 #
 cd contrib
-foreach course [glob -nocomplain *] {
+foreach course [lsort [glob -nocomplain *]] {
 	load_preview $course contrib/	
 	append_course_info $course contrib/
 }
@@ -128,7 +128,7 @@ cd ..
 # Load events and bind preview textures if they exist
 #
 cd events
-foreach event [glob -nocomplain *] {
+foreach event [lsort [glob -nocomplain *]] {
 	cd $event    
 	append_event_info $event 
 	cd ..
@@ -137,7 +137,7 @@ foreach event [glob -nocomplain *] {
 if [file exists "$env(HOME)/.etracer/events/"] {
 	set path "$env(HOME)/.etracer/events/"
 	cd $path
-	foreach event [glob -nocomplain *] {
+	foreach event [lsort [glob -nocomplain *]] {
 		cd $event
 		append_event_info $event $path
 		cd ..
