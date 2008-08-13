@@ -4,6 +4,7 @@
 
 #include "FTFont.h"
 #include "FTGL.h"
+#include <GL/gl.h>
 
 class FTGlyph;
 
@@ -50,6 +51,8 @@ class FTGL_EXPORT FTGLOutlineFont : public FTFont
          * @param string    wchar_t string to be output.     
          */
         void Render( const wchar_t* string);
+        
+        inline void setWidth(GLfloat w) {width = w;}
 
     private:
         /**
@@ -59,6 +62,8 @@ class FTGL_EXPORT FTGLOutlineFont : public FTFont
          * @return  An FTOutlineGlyph or <code>null</code> on failure.
          */
         inline virtual FTGlyph* MakeGlyph( unsigned int g);
+
+        GLfloat width;
         
 };
 #endif // __FTGLOutlineFont__

@@ -16,6 +16,10 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
+//for the code that specifies an outline font's width
+#include <GL/gl.h> 
+#include "ppgltk/FT/FTGLOutlineFont.h"
+ 
 #include "callbacks.h"
 
 #include "tcl_util.h"
@@ -32,6 +36,8 @@ pp_register_font_cb ( ClientData cd, Tcl_Interp *ip,
     CONST84 char *binding = NULL;
     CONST84 char *fileName = NULL;
     bool isOutline = false;
+    bool width_defined = false;
+    GLfloat width;
     pp::Color color = pp::Color::white;
     unsigned int size = 30;
 
@@ -85,8 +91,22 @@ pp_register_font_cb ( ClientData cd, Tcl_Interp *ip,
 	    }
     } else if ( strcmp( "-outline", *argv ) == 0 ) {
         isOutline = true;
-
-		
+	} else if ( strcmp( "-width", *argv ) == 0 ) {
+        NEXT_ARG;
+	    if ( argc == 0 ) {
+            error = true;
+            break;
+	    }
+        if(isOutline) {
+            if ( Tcl_GetDouble ( ip, *argv, &tmp_dbl ) == TCL_ERROR ) {
+                error = true;
+                break;
+    	    }
+            width_defined = true;
+    	    width = GLfloat(tmp_dbl);
+        } else {
+            print_warning( TCL_WARNING, "pp_load_font: -width parameter only needed for outline fonts !");
+        }
 	} else {
 	    print_warning( TCL_WARNING, "pp_load_font: unrecognized "
 			   "parameter `%s'", *argv );
@@ -104,6 +124,11 @@ pp_register_font_cb ( ClientData cd, Tcl_Interp *ip,
     }
 
 	pp::Font::registerFont(binding, fileName, size, color, isOutline);
+    
+    if(width_defined) {
+        FTGLOutlineFont* outlineFont = (FTGLOutlineFont*)(pp::Font::get(binding)->getFTFont());
+        outlineFont->setWidth(width);
+    }
 
     return TCL_OK;
 }

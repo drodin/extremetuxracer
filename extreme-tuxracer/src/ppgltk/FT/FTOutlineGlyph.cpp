@@ -2,9 +2,10 @@
 #include    "FTVectoriser.h"
 
 
-FTOutlineGlyph::FTOutlineGlyph( FT_GlyphSlot glyph, bool useDisplayList)
+FTOutlineGlyph::FTOutlineGlyph( FT_GlyphSlot glyph, bool useDisplayList, GLfloat _width)
 :   FTGlyph( glyph),
-    glList(0)
+    glList(0),
+    width(_width)
 {
     if( ft_glyph_format_outline != glyph->format)
     {
@@ -26,6 +27,10 @@ FTOutlineGlyph::FTOutlineGlyph( FT_GlyphSlot glyph, bool useDisplayList)
         glNewList( glList, GL_COMPILE);
     }
     
+    if(numContours>0) {
+        glLineWidth(width);
+    }
+    
     for( unsigned int c = 0; c < numContours; ++c)
     {
         const FTContour* contour = vectoriser.Contour(c);
@@ -45,7 +50,6 @@ FTOutlineGlyph::FTOutlineGlyph( FT_GlyphSlot glyph, bool useDisplayList)
     }
 }
 
-
 FTOutlineGlyph::~FTOutlineGlyph()
 {
     glDeleteLists( glList, 1);
@@ -63,4 +67,3 @@ const FTPoint& FTOutlineGlyph::Render( const FTPoint& pen)
     
     return advance;
 }
-

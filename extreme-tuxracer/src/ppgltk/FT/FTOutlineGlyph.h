@@ -1,6 +1,7 @@
 #ifndef		__FTOutlineGlyph__
 #define		__FTOutlineGlyph__
 
+#include <GL/gl.h>
 #include <ft2build.h>
 #include FT_FREETYPE_H
 #include FT_GLYPH_H
@@ -29,7 +30,7 @@ class FTGL_EXPORT FTOutlineGlyph : public FTGlyph
          *                       <code>true</code> turns ON display lists.
          *                       <code>false</code> turns OFF display lists.
          */
-        FTOutlineGlyph( FT_GlyphSlot glyph, bool useDisplayList);
+        FTOutlineGlyph( FT_GlyphSlot glyph, bool useDisplayList, GLfloat _width = DEFAULT_WIDTH);
 
         /**
          * Destructor
@@ -44,11 +45,14 @@ class FTGL_EXPORT FTOutlineGlyph : public FTGlyph
          */
         virtual const FTPoint& Render( const FTPoint& pen);
         
+        static const GLfloat DEFAULT_WIDTH = 1.0;
+        
     private:		
         /**
          * OpenGL display list
          */
         GLuint glList;
+        GLfloat width;
 	
 };
 

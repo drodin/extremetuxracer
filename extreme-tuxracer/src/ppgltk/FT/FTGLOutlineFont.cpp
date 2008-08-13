@@ -3,12 +3,12 @@
 
 
 FTGLOutlineFont::FTGLOutlineFont( const char* fontFilePath)
-:   FTFont( fontFilePath)
+:   FTFont( fontFilePath), width(FTOutlineGlyph::DEFAULT_WIDTH)
 {}
 
 
 FTGLOutlineFont::FTGLOutlineFont( const unsigned char *pBufferBytes, size_t bufferSizeInBytes)
-:   FTFont( pBufferBytes, bufferSizeInBytes)
+:   FTFont( pBufferBytes, bufferSizeInBytes), width(FTOutlineGlyph::DEFAULT_WIDTH)
 {}
 
 
@@ -22,7 +22,7 @@ FTGlyph* FTGLOutlineFont::MakeGlyph( unsigned int g)
 
     if( ftGlyph)
     {
-        FTOutlineGlyph* tempGlyph = new FTOutlineGlyph( ftGlyph, useDisplayLists);
+        FTOutlineGlyph* tempGlyph = new FTOutlineGlyph( ftGlyph, useDisplayLists, width);
         return tempGlyph;
     }
 
