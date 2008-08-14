@@ -110,6 +110,7 @@ void set_gl_options( const RenderMode mode )
 		glDisable( GL_COLOR_MATERIAL );
 		glDepthMask( GL_TRUE );
 		glShadeModel( GL_SMOOTH );
+        glEnable( GL_LINE_SMOOTH );
 		glDepthFunc( GL_LESS );
         break;
 
