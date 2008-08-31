@@ -80,7 +80,16 @@ Paused::Paused()
     mp_quitBtn->setHilitFontBinding("button_label_hilit");
 	mp_quitBtn->signalClicked.Connect(pp::CreateSlot(this,&Paused::quit));
 
-	play_music( "paused" );
+if (gameMgr->gametype!=GameMgr::PRACTICING) {
+std::string mus = gameMgr->currentEvent->music;
+mus += "_paused";
+play_music( (char *)mus.c_str() );
+}
+else
+{
+play_music("paused");
+}
+
 }
 
 Paused::~Paused()

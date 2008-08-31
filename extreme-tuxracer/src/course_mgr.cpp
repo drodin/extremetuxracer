@@ -641,6 +641,15 @@ EventData* create_event_data( Tcl_Interp *ip, CONST84 char *string, char **err_m
 	    }
 
 	    event_data->icon = *argv; //string_copy( *argv );
+	} else if ( strcmp( *argv, "-music" ) == 0 ) {
+	    NEXT_ARG;
+
+	    if ( *argv == NULL ) {
+		*err_msg = "No data supplied for -music in event data";
+		goto bail_event_data;
+	    }
+
+	    event_data->music = *argv; //string_copy( *argv );
 	} else if ( strcmp( *argv, "-cups" ) == 0 ) {
 	    NEXT_ARG;
 

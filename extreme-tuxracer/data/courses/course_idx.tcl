@@ -38,6 +38,8 @@ proc append_event_info {event {path events/}} {
 	global events_list
 	global races_list
 	set cups_list {}
+	# A default value for compatibility
+	set event_music tuxracer
 	
 	source event.tcl	
 	
@@ -57,7 +59,7 @@ proc append_event_info {event {path events/}} {
 	}	
 	
 	lappend events_list \
-		[list -name $event_name -icon $event_icon \
+		[list -name $event_name -icon $event_icon -music $event_music \
 		-cups $cups_list]
 }
 

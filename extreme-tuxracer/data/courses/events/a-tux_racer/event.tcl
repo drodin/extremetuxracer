@@ -1,5 +1,6 @@
 set event_name "Tux Racer Classics"
 set event_icon herring_run_icon
+set event_music tuxracer
 
 set cups [list canadian swiss]
 

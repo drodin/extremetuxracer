@@ -108,8 +108,17 @@ Racing::Racing()
 	
 	init_snow(players[0].view.pos);
 		
-    play_music( "racing" );	
+if (gameMgr->gametype!=GameMgr::PRACTICING) {
+	std::string mus = gameMgr->currentEvent->music;
+	mus += "_racing";
+	play_music( (char *)mus.c_str() );
 }
+else {
+	play_music("racing");
+}
+ 
+}
+
 
 
 Racing::~Racing()

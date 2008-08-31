@@ -110,6 +110,8 @@ if { [tux_load_music game_over music/wonrace1-jt.ogg] } {
     tux_bind_music game_over game_over 1
 }
 
+# Event music theme
+source music/themes.tcl
 
 #
 # Set Up Sounds

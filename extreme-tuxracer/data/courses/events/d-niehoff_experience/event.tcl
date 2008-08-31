@@ -1,5 +1,6 @@
 set event_name "The Niehoff Experience"
 set event_icon herring_run_icon
+set event_music tuxracer
 
 set cups [list search mountains final]
 

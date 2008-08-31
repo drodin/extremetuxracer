@@ -1,5 +1,6 @@
 set event_name "Mountain Mania"
 set event_icon herring_run_icon
+set event_music tuxracer
 
 set cups [list icy_peril death defeat final]
 

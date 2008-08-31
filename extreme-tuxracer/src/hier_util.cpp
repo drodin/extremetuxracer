@@ -257,8 +257,7 @@ pp::Vec3d make_normal( pp::Polygon p, pp::Vec3d *v )
     normal = v1^v2;
 
     old_len = normal.normalize();
-    check_assertion( old_len > 0, "normal vector has length 0" );
-
+    //check_assertion( old_len > 0, "normal vector has length 0" );
     return normal;
 } 
 

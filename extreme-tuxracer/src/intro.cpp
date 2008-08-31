@@ -93,7 +93,16 @@ Intro::Intro()
 		*/
     }
 
-    play_music( "intro" );
+if (gameMgr->gametype!=GameMgr::PRACTICING) {
+std::string mus = gameMgr->currentEvent->music;
+mus += "_intro";
+play_music( (char *)mus.c_str() );
+}
+else
+{
+play_music("intro");
+}    
+
 }
 
 Intro::~Intro()

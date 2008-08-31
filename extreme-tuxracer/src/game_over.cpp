@@ -59,7 +59,16 @@ GameOver::GameOver()
 		winsys_exit( 0 );
 	}
 		
-    play_music( "game_over" );
+if (gameMgr->gametype!=GameMgr::PRACTICING) {
+std::string mus = gameMgr->currentEvent->music;
+mus += "_game_over";
+play_music( (char *)mus.c_str() );
+}
+else
+{
+play_music("game_over");
+}
+
 
     m_aborted = gameMgr->wasRaceAborted();
 

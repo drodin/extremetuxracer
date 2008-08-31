@@ -38,7 +38,8 @@ struct CupData {
 
 struct EventData {
     std::string name;
-	std::string icon;
+    std::string icon;
+    std::string music;
     std::list<CupData> cupList;
 };
 
