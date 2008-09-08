@@ -7,6 +7,10 @@ tux_bind_texture c_snow_head c_snow_head
 tux_bind_texture c_snow_mark c_snow_mark
 tux_bind_texture c_snow_tail c_snow_tail
 
+#cracks
+tux_load_texture crack crack.png 1
+tux_bind_texture crack crack
+
 # snow Particle
 tux_load_texture c_snow_particle snowparticles.png 0
 tux_bind_texture c_snow_particle c_snow_particle
