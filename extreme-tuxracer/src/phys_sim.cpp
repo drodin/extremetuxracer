@@ -850,35 +850,37 @@ static void adjust_for_tree_collision( Player& plyr,
 	 * Calculate the normal vector to the tree; here we model the tree
 	 * as a vertical cylinder.
 	 */
-        treeNml.x = pos.x - treeLoc.x;
+        treeNml.x = treeLoc.x - pos.x;
         treeNml.y = 0;
-        treeNml.z = pos.z - treeLoc.z; 
-        treeNml.normalize();
+        treeNml.z = treeLoc.z - pos.z;
+        //Calculate distance from the player location to the center of the tree
+        float lenNml = treeNml.normalize();
+        
+        float speed = vel->length();
 
-	/* Reduce speed by a minimum of 30% */
-        speed = vel->normalize();
-        speed *= 0.7;
+        //velocity projected on the tree normal : t
+        pp::Vec3d vel_t(treeNml);
+        vel_t = vel_t * (*vel * treeNml);
 
-	/* 
-	 * If Tux is moving into the tree, reduce the speed further, 
-	 * and reflect the velocity vector off of the tree
-	 */
-        costheta = *vel*treeNml;
-        if (costheta < 0 ) {
-	    /* Reduce speed */
-	    
-            speed *= 1 + costheta;
-            speed *= 1 + costheta; 
+        //perpendicular component of the velocity vector : n = vel - t
+        pp::Vec3d vel_n(*vel);
+        vel_n = *vel + (-1.0)*vel_t ;
 
-	    /* Do the reflection */
-            *vel = ((-2. * ( *vel* treeNml ))*treeNml)+*vel;
+        double n_factor = 1.0;
+        double t_factor = 0.3;
+        double random_t_factor = 1;//TODO
+        //random_t_factor = static_cast<double>(std::rand())/static_cast<double>(RAND_MAX);;//random value between 0 and 1
+        //random_t_factor *=0.3;
+        //random_t_factor +=0.7;
+        //We now have a random factor between 0.7 and 1.0
+        double f_z = 1.0;//TODO
 
-	    vel->normalize();
+        vel_n=vel_n*n_factor;
+        vel_t=vel_t*t_factor*random_t_factor*f_z;
 
-        } 
-
-	speed = MAX( speed, get_min_tux_speed() );
-        *vel = speed*(*vel);
+        *vel = vel_t + vel_n;
+        vel->normalize();
+        *vel = *vel * speed;
     } 
 }
 
