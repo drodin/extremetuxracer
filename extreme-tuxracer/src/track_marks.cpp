@@ -44,6 +44,14 @@
 #define SPEED_TO_START_TRENCH 0.0
 #define SPEED_OF_DEEPEST_TRENCH 10
 
+#define MAX_CRACKS 100
+#define CRACK_MIN_FORCE 10000
+#define CRACK_SIZE_PER_FORCE 0.0001
+#define CRACK_MAX_SIZE 1.5
+#define CRACK_MAX_UNIFY_DISTANCE 0.5
+#define CRACK_HEIGHT 0.08
+#define MAX_CRACK_HEIGHT 0.2
+
 #ifdef TRACK_TRIANGLES
   #define TRACK_HEIGHT 0.1
   #define MAX_TRACK_DEPTH 10
@@ -82,6 +90,21 @@ static bool continuing_track;
 
 extern terrain_tex_t terrain_texture[NUM_TERRAIN_TYPES];
 extern unsigned int num_terrains;
+
+typedef struct crack_quad_t {
+    pp::Vec3d v1, v2, v3, v4;
+    pp::Vec2d t1, t2, t3, t4;
+    pp::Vec3d n1, n2, n3, n4;
+} crack_quad_t;
+
+typedef struct cracks_t {
+  crack_quad_t quads[MAX_CRACKS];
+  int current_crack;
+  double last_size;
+  pp::Vec3d last_pos;
+} cracks_t;
+
+static cracks_t cracks;
 
 #ifdef TRACK_TRIANGLES
 typedef struct track_tris_t {
@@ -343,9 +366,63 @@ void init_track_marks(void)
         track_tris.next_mark = 0;
         track_tris.num_tris = 0;
 #endif
+        cracks.current_crack = 0;
+        cracks.last_pos = pp::Vec3d(-9999, -9999, -9999);
     }
 }
 
+void draw_cracks(void) {
+    int curr_crack;
+    int first_crack;
+    int num_cracks;
+    GLuint texid;
+
+    /* opengl-settings should still be ok from draw_track_marks() */
+//     set_gl_options( TRACK_MARKS );
+//
+//     glColor4f( 0, 0, 0, 1);
+//
+//     glTexEnvf( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE );
+//     set_material( pp::Color::white, pp::Color::black, 1.0 );
+//     setup_course_lighting();
+
+    get_texture_binding( "crack", &texid );
+
+
+    num_cracks = MIN(cracks.current_crack, MAX_CRACKS);
+
+    first_crack = cracks.current_crack - num_cracks;
+
+    for (curr_crack = 0; curr_crack < num_cracks; curr_crack++) {
+        crack_quad_t *q;
+
+        q = &cracks.quads[(first_crack + curr_crack)%MAX_CRACKS];
+
+        set_material( pp::Color::white, pp::Color::black, 1.0 );
+
+        glBindTexture( GL_TEXTURE_2D, texid );
+
+        glBegin(GL_QUADS);
+
+        glNormal3f( q->n1.x, q->n1.y, q->n1.z );
+        glTexCoord2f( q->t1.x, q->t1.y );
+        glVertex3f( q->v1.x, q->v1.y, q->v1.z );
+
+        glNormal3f( q->n2.x, q->n2.y, q->n2.z );
+        glTexCoord2f( q->t2.x, q->t2.y );
+        glVertex3f( q->v2.x, q->v2.y, q->v2.z );
+
+        glNormal3f( q->n4.x, q->n4.y, q->n4.z );
+        glTexCoord2f( q->t4.x, q->t4.y );
+        glVertex3f( q->v4.x, q->v4.y, q->v4.z );
+
+        glNormal3f( q->n3.x, q->n3.y, q->n3.z );
+        glTexCoord2f( q->t3.x, q->t3.y );
+        glVertex3f( q->v3.x, q->v3.y, q->v3.z );
+
+        glEnd();
+     }
+ }
 
 
 void draw_track_marks(void)
@@ -489,6 +566,84 @@ void draw_track_marks(void)
     }
 #endif
 
+    draw_cracks();
+}
+
+void add_crack( Player& plyr )
+{
+    crack_quad_t *q;
+    //double terrain_weights[NumTerrains];
+    pp::Vec3d normal_force;
+    double force;
+    double half_size;
+    pp::Vec3d dist;
+
+
+    /*
+    get_surface_type(plyr.pos.x, plyr.pos.z, terrain_weights);
+    if (terrain_weights[Snow] > 0.5) {
+      return;
+    }
+    */
+
+    normal_force = plyr.normal_force;
+    force = normal_force.normalize();
+
+    if (force < CRACK_MIN_FORCE)
+      return;
+
+    half_size = force * CRACK_SIZE_PER_FORCE / 2.0;
+   
+    dist = plyr.pos - cracks.last_pos;
+    if (dist.normalize() <= CRACK_MAX_UNIFY_DISTANCE) {
+       cracks.current_crack--;
+        half_size += cracks.last_size;
+    }
+
+    /* Too big cracks may hang around in the air, if the terrain is not plane */
+    if (half_size > CRACK_MAX_SIZE / 2.0)
+        half_size = CRACK_MAX_SIZE / 2.0;
+
+    q = &cracks.quads[cracks.current_crack%MAX_TRACK_MARKS];
+
+
+    q->v1 = pp::Vec3d( plyr.pos.x - half_size,
+           find_y_coord(plyr.pos.x - half_size, plyr.pos.z - half_size) + CRACK_HEIGHT,
+                                            plyr.pos.z - half_size  );
+    q->v2 = pp::Vec3d( plyr.pos.x + half_size,
+           find_y_coord(plyr.pos.x + half_size, plyr.pos.z - half_size) + CRACK_HEIGHT,
+                                            plyr.pos.z - half_size  );
+    q->v3 = pp::Vec3d( plyr.pos.x - half_size,
+           find_y_coord(plyr.pos.x - half_size, plyr.pos.z + half_size) + CRACK_HEIGHT,
+                                            plyr.pos.z + half_size  );
+    q->v4 = pp::Vec3d( plyr.pos.x + half_size,
+           find_y_coord(plyr.pos.x + half_size, plyr.pos.z + half_size) + CRACK_HEIGHT,
+                                            plyr.pos.z + half_size  );
+
+    /* Big cracks tended to hang around in the air. Reduce the probability that
+       this happens: */
+    double center_height = (q->v1.y + q->v2.y + q->v3.y + q->v4.y) / 4
+                           - find_y_coord(plyr.pos.x, plyr.pos.z);
+    if (center_height > MAX_CRACK_HEIGHT) {
+        center_height -= MAX_CRACK_HEIGHT;
+        q->v1.y -= center_height;
+        q->v2.y -= center_height;
+        q->v3.y -= center_height;
+        q->v4.y -= center_height;
+    }
+   
+    q->n1 = find_course_normal( q->v1.x, q->v1.z);
+    q->n2 = find_course_normal( q->v2.x, q->v2.z);
+    q->n3 = find_course_normal( q->v3.x, q->v3.z);
+    q->n4 = find_course_normal( q->v4.x, q->v4.z);
+    q->t1 = pp::Vec2d(0.0, 0.0);
+    q->t2 = pp::Vec2d(1.0, 0.0);
+    q->t3 = pp::Vec2d(0.0, 1.0);
+    q->t4 = pp::Vec2d(1.0, 1.0);
+    cracks.current_crack++;
+
+    cracks.last_pos = plyr.pos;
+    cracks.last_size = half_size;
 }
 
 void break_track_marks( void )
@@ -537,6 +692,8 @@ void add_track_mark( Player& plyr )
     if (getparam_track_marks() == false) {
 	return;
     }
+    
+    add_crack(plyr);
 
     q = &track_marks.quads[track_marks.current_mark%MAX_TRACK_MARKS];
     qprev = &track_marks.quads[(track_marks.current_mark-1)%MAX_TRACK_MARKS];
