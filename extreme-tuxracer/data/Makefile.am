@@ -338,6 +338,7 @@ courses/events/a-tux_racer/path_of_daggers/elev.png \
 		courses/themes/terrains/snow/buttstop.png \
 		courses/themes/terrains/common/snow.png \
 		courses/themes/terrains/common/buttprint.png \
+		courses/themes/terrains/common/crack.png \
 		courses/themes/terrains/common/snowparticles.png \
 		courses/themes/terrains/common/rock.png \
 		courses/themes/terrains/common/terrains.tcl \
