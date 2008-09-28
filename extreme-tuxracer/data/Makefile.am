@@ -368,6 +368,7 @@ courses/events/a-tux_racer/path_of_daggers/elev.png \
 		music/options1-jt.ogg \
 		music/start1-jt.ogg \
 		music/readme \
+		music/themes.tcl \
 		textures/menu_top_left.png \
 		textures/checkmark.png \
 		textures/snowparticles.png \
