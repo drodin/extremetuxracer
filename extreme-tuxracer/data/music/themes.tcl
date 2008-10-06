@@ -32,4 +32,6 @@ proc create_music_theme_simple { name intro game_over } {
 #
 
 create_music_theme_simple tuxracer race1-jt.ogg wonrace1-jt.ogg
-
+create_music_theme_simple calmrace calmrace-ks.ogg wonrace-ks.ogg
+create_music_theme spunkyrace raceintro-ks.ogg spunkyrace-ks.ogg spunkyrace-ks.ogg wonrace-ks.ogg
+create_music_theme_simple nighttime nighttime-fc.ogg wonrace1-jt.ogg

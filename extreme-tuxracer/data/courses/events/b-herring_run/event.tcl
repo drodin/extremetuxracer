@@ -1,6 +1,6 @@
 set event_name "Herring Run"
 set event_icon herring_run_icon
-set event_music tuxracer
+set event_music calmrace
 
 set cups [list mountain valley sportsman highway]
 
