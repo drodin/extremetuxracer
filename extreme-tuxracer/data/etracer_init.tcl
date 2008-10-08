@@ -198,7 +198,7 @@ pp_bind_font -binding listbox_item_insensitive \
 
 # race requirements
 pp_load_font -binding race_requirements \
-             -font fonts/PaperCuts20.ttf \
+             -font fonts/std.ttf \
              -size 13
 
 pp_bind_font -binding race_requirements_label \
@@ -211,11 +211,21 @@ pp_load_font -binding heading \
              -size 40 \
              -color { 1.00 0.89 0.01 1.0 }
 
+pp_load_font -binding heading_outline \
+             -outline \
+             -width 1.0 \
+             -font fonts/PaperCuts20.ttf \
+             -size 40 \
+             -color { 0 0 0 1.0 }
+
 pp_bind_font -binding paused \
              -font heading
 
 pp_bind_font -binding race_over \
-             -font heading
+             -font heading \
+
+pp_bind_font -binding race_over_outline \
+             -font heading_outline \
 
 
 # several stuff
@@ -229,8 +239,32 @@ pp_bind_font -binding cup_status \
 
 pp_load_font -binding race_stats \
              -font fonts/PaperCuts20.ttf \
-             -size 25 \
+             -size 27 \
              -color {1.00 0.89 0.01 1.0}
+
+pp_load_font -binding race_stats_outline \
+             -font fonts/PaperCuts20.ttf \
+		-outline \
+		-width 0.2 \
+             -size 27 \
+             -color {0 0 0 1.0}
+
+pp_load_font -binding race_results \
+             -font fonts/PaperCuts20.ttf \
+             -size 35 \
+             -color {1.00 0.89 0.01 1.0}
+
+pp_load_font -binding race_results_outline \
+             -font fonts/PaperCuts20.ttf \
+		-outline \
+		-width 0.2 \
+             -size 35 \
+             -color {0 0 0 1.0}
+
+pp_load_font -binding race_results_fail \
+             -font fonts/PaperCuts20.ttf \
+             -size 35 \
+             -color {1.00 0 0.00 1.0}
 
 pp_load_font -binding event_and_cup_label \
              -font fonts/PaperCuts20.ttf \
@@ -247,20 +281,20 @@ pp_bind_font -binding credits_text_big -font credits_text_big -color {1.00 0.89 
 
 #we don't be this because hud fonts need to be fast
 pp_load_font -binding herring_count -font fonts/PaperCuts20.ttf -size 40 -color {1.00 0.89 0.01 1.0}
-pp_load_font -binding herring_count_outline -font fonts/PaperCuts20.ttf -outline -size 40 -color {0 0 0 1.0} -width 2.5
-pp_load_font -binding fps -font fonts/PaperCuts20.ttf -size 20 -color {1.00 0.89 0.01 1.0}
+pp_load_font -binding herring_count_outline -font fonts/PaperCuts20.ttf -outline -size 40 -color {0 0 0 1.0} -width 1.5
+pp_load_font -binding fps -font fonts/std.ttf -size 20 -color {0 0 0 1.0}
 pp_load_font -binding time_value -font fonts/PaperCuts20.ttf -size 40 -color {1.00 0.89 0.01 1.0}
 pp_load_font -binding speed_digits -font fonts/PaperCuts20.ttf -size 40 -color {1.00 0.89 0.01 1.0}
 pp_load_font -binding speed_units -font fonts/PaperCuts20.ttf -size 25 -color {1.00 0.89 0.01 1.0}
 
-pp_load_font -binding speed_digits_outline -font fonts/PaperCuts20.ttf -outline -size 40 -color {0 0 0 1.0} -width 2.5
+pp_load_font -binding speed_digits_outline -font fonts/PaperCuts20.ttf -outline -size 40 -color {0 0 0 1.0} -width 1.5
 pp_load_font -binding speed_units_outline -font fonts/PaperCuts20.ttf -outline -size 25 -color {0 0 0 1.0} -width 1.0
 
 pp_load_font -binding objectives_time -font fonts/PaperCuts20.ttf -size 25 -color {1.00 0.89 0.01 1.0}
 pp_load_font -binding objectives_herring -font fonts/PaperCuts20.ttf -size 25 -color {1.00 0.89 0.01 1.0}
 
-pp_load_font -binding objectives_time_outline -outline -font fonts/PaperCuts20.ttf -size 25 -color {0 0 0 1.0} -width 1.0
-pp_load_font -binding objectives_herring_outline -outline -font fonts/PaperCuts20.ttf -size 25 -color {0 0 0 1.0} -width 1.0
+pp_load_font -binding objectives_time_outline -outline -font fonts/PaperCuts20.ttf -size 25 -color {0 0 0 1.0} -width 0.8
+pp_load_font -binding objectives_herring_outline -outline -font fonts/PaperCuts20.ttf -size 25 -color {0 0 0 1.0} -width 0.8
 
 
 

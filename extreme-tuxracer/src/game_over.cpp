@@ -117,9 +117,13 @@ play_music("game_over");
 	if ( gameMgr->wasRaceAborted() ) {
 		mp_raceOverLbl = new pp::Label(pos,"race_over",_("Race aborted"));
 		mp_raceOverLbl->alignment.center();
+		mp_raceOverOutlineLbl = new pp::Label(pos,"race_over_outline",_("Race aborted"));
+		mp_raceOverOutlineLbl->alignment.center();
     }else{	
 		mp_raceOverLbl = new pp::Label(pos,"race_over",_("Race Over"));
 		mp_raceOverLbl->alignment.center();
+		mp_raceOverOutlineLbl = new pp::Label(pos,"race_over_outline",_("Race Over"));
+		mp_raceOverOutlineLbl->alignment.center();
 	
 		char buff[BUFF_LEN];
 		int minutes, seconds, hundredths;
@@ -127,30 +131,40 @@ play_music("game_over");
 		getTimeComponents( gameMgr->time, minutes, seconds, hundredths );
 		sprintf( buff, _("Time: %02d:%02d.%02d"), minutes, seconds, hundredths );	
 		pos.y-=100;
-		mp_timeLbl = new pp::Label(pos,"race_stats", buff);
+		mp_timeLbl = new pp::Label(pos,"race_stats",buff);
 		mp_timeLbl->alignment.center();
+		mp_timeOutlineLbl = new pp::Label(pos,"race_stats_outline",buff);
+		mp_timeOutlineLbl->alignment.center();
 	
 		sprintf( buff, _("Herring: %3d"), players[0].herring );
 		pos.y-=30;
 		mp_herringLbl = new pp::Label(pos,"race_stats",buff);
 		mp_herringLbl->alignment.center();
+		mp_herringOutlineLbl = new pp::Label(pos,"race_stats_outline",buff);
+		mp_herringOutlineLbl->alignment.center();
 	
 		sprintf( buff, _("Score: %6d"), players[0].score );
 		pos.y-=30;
 		mp_scoreLbl = new pp::Label(pos,"race_stats",buff);
 		mp_scoreLbl->alignment.center();
+		mp_scoreOutlineLbl = new pp::Label(pos,"race_stats_outline",buff);
+		mp_scoreOutlineLbl->alignment.center();
 	
 		int speed = int((double)players[0].max_speed * M_PER_SEC_TO_KM_PER_H);
 		sprintf( buff, _("Max speed: %3d km/h"), speed);
 		pos.y-=30;
 		mp_maxspeedLbl = new pp::Label(pos,"race_stats",buff);
 		mp_maxspeedLbl->alignment.center();
+		mp_maxspeedOutlineLbl = new pp::Label(pos,"race_stats_outline",buff);
+		mp_maxspeedOutlineLbl->alignment.center();
 	
 		double percent = (gameMgr->airbornetime / gameMgr->time) * 100.0;
 		sprintf( buff, _("Was flying: %.01f %% of time"), percent);
 		pos.y-=30;
 		mp_flyingLbl = new pp::Label(pos,"race_stats",buff);
 		mp_flyingLbl->alignment.center();
+		mp_flyingOutlineLbl = new pp::Label(pos,"race_stats_outline",buff);
+		mp_flyingOutlineLbl->alignment.center();
 		
 		char buff2[50];
 		snprintf(buff2, 50, "");
@@ -162,6 +176,8 @@ play_music("game_over");
 		pos.y-=30;
 		mp_highscoreLbl = new pp::Label(pos,"race_stats",buff2);
 		mp_highscoreLbl->alignment.center();
+		mp_highscoreOutlineLbl = new pp::Label(pos,"race_stats_outline",buff2);
+		mp_highscoreOutlineLbl->alignment.center();
 	
 		const char *string="";
 	
@@ -174,22 +190,33 @@ play_music("game_over");
 		} else if(gameMgr->wasCupWon()){
 			string = _("Congratulations! You won the cup!");
 		} else if(gameMgr->wasRaceWon()){
-			string = _("You advanced to the next race!");
+			string = _("Requirements met! Advance to the next race. ");
 		} else {
-			string = _("You didn't advance.");
+			string = _("Race requirements not met.");
 		}	
 	
 		pos.y-=30;
-		mp_resultsLbl = new pp::Label(pos,"race_stats",string);
-		mp_resultsLbl->alignment.center();
+		if (gameMgr->wasRaceWon()) {
+			mp_resultsLbl = new pp::Label(pos,"race_results",string);
+			mp_resultsLbl->alignment.center();}
+		else{
+			mp_resultsLbl = new pp::Label(pos,"race_results_fail",string);
+			mp_resultsLbl->alignment.center();}
+
+		mp_resultsOutlineLbl = new pp::Label(pos,"race_results_outline",string);
+		mp_resultsOutlineLbl->alignment.center();
 	}
 }
 
 GameOver::~GameOver()
 {
+//erase "game over" text from screen
 	delete mp_raceOverLbl;
+//erase "game over" outline
+	delete mp_raceOverOutlineLbl;
 	
 	if ( !gameMgr->wasRaceAborted() ) {
+//erase stats from the screen
 		delete mp_timeLbl;
 		delete mp_herringLbl;
 		delete mp_scoreLbl;
@@ -197,6 +224,15 @@ GameOver::~GameOver()
 		delete mp_flyingLbl;
 		delete mp_resultsLbl;
 		delete mp_highscoreLbl;
+
+//erase stat outlines from the screen
+		delete mp_timeOutlineLbl;
+		delete mp_herringOutlineLbl;
+		delete mp_scoreOutlineLbl;
+		delete mp_maxspeedOutlineLbl;
+		delete mp_flyingOutlineLbl;
+		delete mp_resultsOutlineLbl;
+		delete mp_highscoreOutlineLbl;
 	}
 }
 

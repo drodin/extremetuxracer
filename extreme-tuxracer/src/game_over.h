@@ -29,7 +29,8 @@ class GameOver : public GameMode
 {
 	bool m_aborted;
 	bool m_bestScore;
-	
+
+//create labels	
 	pp::Label *mp_raceOverLbl;
 	
 	pp::Label *mp_timeLbl;
@@ -40,6 +41,18 @@ class GameOver : public GameMode
 	pp::Label *mp_highscoreLbl;
 	
 	pp::Label *mp_resultsLbl;
+
+//create duplicate labels for outlines
+	pp::Label *mp_raceOverOutlineLbl;
+	
+	pp::Label *mp_timeOutlineLbl;
+	pp::Label *mp_herringOutlineLbl;
+	pp::Label *mp_scoreOutlineLbl;
+	pp::Label *mp_maxspeedOutlineLbl;
+	pp::Label *mp_flyingOutlineLbl;
+	pp::Label *mp_highscoreOutlineLbl;
+	
+	pp::Label *mp_resultsOutlineLbl;
 	
 public:
 	GameOver();
