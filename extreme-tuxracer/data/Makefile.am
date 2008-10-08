@@ -362,6 +362,7 @@ courses/events/a-tux_racer/path_of_daggers/elev.png \
 		courses/themes/common.tcl \
 		courses/course_idx.tcl \
 		fonts/PaperCuts20.ttf \
+		fonts/std.ttf \
 		music/race1-jt.ogg \
 		music/wonrace1-jt.ogg \
 		music/credits1-cp.ogg \
@@ -369,6 +370,12 @@ courses/events/a-tux_racer/path_of_daggers/elev.png \
 		music/options1-jt.ogg \
 		music/start1-jt.ogg \
 		music/readme \
+		music/calmrace-ks.ogg \
+		music/lostrace-ks.ogg \
+		music/nighttime-fc.ogg \
+		music/raceintro-ks.ogg \
+		music/spunkyrace-ks.ogg \
+		music/wonrace-ks.ogg \
 		music/themes.tcl \
 		textures/menu_top_left.png \
 		textures/checkmark.png \
