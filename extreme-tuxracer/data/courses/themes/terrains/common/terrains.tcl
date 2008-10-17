@@ -12,7 +12,7 @@ tux_load_texture crack crack.png 1
 tux_bind_texture crack crack
 
 # snow Particle
-tux_load_texture c_snow_particle snowparticles.png 0
+tux_load_texture c_snow_particle snowparticles.rgb 0
 tux_bind_texture c_snow_particle c_snow_particle
 
 # icy terrains
