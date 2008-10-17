@@ -26,6 +26,8 @@
 
 #include "player.h"
 
+extern GLfloat particleColor[4];
+
 void create_new_particles( pp::Vec3d loc, pp::Vec3d vel, int num, GLuint particle_binding);
 void update_particles( double time_step );
 void clear_particles();

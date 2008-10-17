@@ -105,8 +105,7 @@ Racing::Racing()
     }
 
     gameMgr->abortRace(false);
-	
-	init_snow(players[0].view.pos);
+	if(gameMgr->getCurrentRace().snowing) init_snow(players[0].pos);
 		
 if (gameMgr->gametype!=GameMgr::PRACTICING) {
 	std::string mus = gameMgr->currentEvent->music;
@@ -392,8 +391,10 @@ Racing::loop(float timeStep)
 	
 	
 	//Draw snow
-	update_snow( timeStep, false, players[0].view.pos );
-	draw_snow(players[0].view.pos);
+    if(gameMgr->getCurrentRace().snowing) {
+        update_snow( timeStep, false, players[0].pos );
+        draw_snow(players[0]);
+    }
 	
     draw_trees();
 	

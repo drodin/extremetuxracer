@@ -22,10 +22,19 @@
 
 #include "ppgltk/ppgltk.h"
 
+#include "player.h"
+
+static double xrand (double min, double max);
+
+void UpdateArea(pp::Vec3d eyepoint);
+void LoadSnowList ();
+void LoadSnow ();
+static void MakeSnowParticle (int i);
+static void MakeNearParticle (int i);
  
 void init_snow( pp::Vec3d eyepoint);
 void update_snow( double time_step, bool windy, pp::Vec3d eyepoint );
-void draw_snow( pp::Vec3d eyepoint );
+void draw_snow( Player& player );
 
 
 #endif // _SNOW_H_

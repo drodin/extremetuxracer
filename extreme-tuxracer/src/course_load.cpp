@@ -34,6 +34,7 @@
 #include "gl_util.h"
 #include "lights.h"
 #include "fog.h"
+#include "snow.h"
 #include "part_sys.h"
 
 #include "hud.h"

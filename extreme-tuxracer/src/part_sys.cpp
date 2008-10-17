@@ -44,6 +44,8 @@
 #define PARTICLE_SHADOW_HEIGHT 0.05
 #define PARTICLE_SHADOW_ALPHA 0.1
 
+GLfloat particleColor[4];
+
 typedef struct _Particle {
     pp::Vec3d pt;
     short type;
@@ -57,8 +59,6 @@ typedef struct _Particle {
 	GLuint particle_binding;
     struct _Particle *next;
 } Particle;
-
-static GLfloat particleColor[4];
 
 static Particle* head = NULL;
 static int num_particles = 0;

@@ -179,8 +179,6 @@ RaceSelect::RaceSelect()
 				  pp::Color::white );
 
 	mp_snowSSBtn->setState( (int)gameMgr->getCurrentRace().snowing );
-	// XXX snow button doesn't do anything, so disable for now 
-	mp_snowSSBtn->setSensitive(false);
 	
     updateButtonEnabledStates();
 
