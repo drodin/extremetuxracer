@@ -62,6 +62,7 @@ RaceSelect::RaceSelect()
 	    gameMgr->getCurrentRace().condition = RACE_CONDITIONS_SUNNY;
 	    gameMgr->getCurrentRace().windy = false;
 	    gameMgr->getCurrentRace().snowing = false;
+        gameMgr->getCurrentRace().snowtype = -1;
     }
 
 	mp_titleLbl = new pp::Label(pos, "heading", _("Select a race"));
@@ -188,7 +189,7 @@ RaceSelect::RaceSelect()
 				  pp::Vec2d( 64.0/64.0, 32.0/64.0 ),
 				  pp::Color::white );
                   
-	mp_snowSSBtn->setState( 0 );
+	mp_snowSSBtn->setState( gameMgr->getCurrentRace().snowtype + 1 );
 	
     updateButtonEnabledStates();
 

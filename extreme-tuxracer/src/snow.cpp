@@ -61,6 +61,7 @@ typedef struct {
     pp::Vec3d pt;
     double size;
     pp::Vec3d vel;
+    int index_tex;
     pp::Vec2d tex_min;
     pp::Vec2d tex_max;
 } TParticle;
@@ -78,7 +79,7 @@ TParticle* PartArr;
 static TArea area;
 TParticle* NearArr;
 static TArea neararea;
-static GLuint snow_tex;
+static GLuint snow_tex[4];
 
 
 static double xrand (double min, double max) {
@@ -139,8 +140,6 @@ void SetSnowType (int index) {
     }
 }
 
-void LoadSnow () {
-}
 
 static void MakeSnowParticle (int i) {
 
@@ -154,6 +153,9 @@ static void MakeSnowParticle (int i) {
 	PartArr[i].vel.x = 0;
 	PartArr[i].vel.y = -PartArr[i].size * speed;
 	PartArr[i].vel.z = 0;	
+    
+    tmp = xrand(0.0,1.0) * (4.0 - EPS);
+	PartArr[i].index_tex = (int)tmp;
     
     /*
     tmp = xrand(0.0,1.0) * (4.0 - EPS);
@@ -172,15 +174,8 @@ static void MakeSnowParticle (int i) {
 		PartArr[i].tex_max = pp::Vec2d(0.5, 1.0);
     }
     */
-    tmp = xrand(0.0,1.0) * (2.0 - EPS);
-    type = (int)tmp;
-    if(type == 0){
-        PartArr[i].tex_min = pp::Vec2d(0.0, 0.0);
-		PartArr[i].tex_max = pp::Vec2d(1.0, 1.0);
-    } else if(type == 1){
-		PartArr[i].tex_max = pp::Vec2d(0.0, 0.0);
-        PartArr[i].tex_min = pp::Vec2d(1.0, 1.0);
-    }
+    PartArr[i].tex_min = pp::Vec2d(0.0, 0.0);
+    PartArr[i].tex_max = pp::Vec2d(1.0, 1.0);
     
     //std::cout << "[snow.cpp] Particle, index " << i << " created at " << PartArr[i].pt.x << " " << PartArr[i].pt.y << " " << PartArr[i].pt.z << "\n";
 }
@@ -198,6 +193,9 @@ static void MakeNearParticle (int i) {
 	NearArr[i].vel.y = -NearArr[i].size * speed;
 	NearArr[i].vel.z = 0;	
     
+    tmp = xrand(0.0,1.0) * (4.0 - EPS);
+	NearArr[i].index_tex = (int)tmp;
+    
 	/*tmp = xrand(0.0,1.0) * (4.0 - EPS);
 	type = (int)tmp;
 	if (type == 0) {
@@ -213,15 +211,9 @@ static void MakeNearParticle (int i) {
 		NearArr[i].tex_min = pp::Vec2d(0.0, 0.5);
 		NearArr[i].tex_max = pp::Vec2d(0.5, 1.0);
     }*/
-    tmp = xrand(0.0,1.0) * (2.0 - EPS);
-    type = (int)tmp;
-    if(type == 0){
-        NearArr[i].tex_min = pp::Vec2d(0.0, 0.0);
-		NearArr[i].tex_max = pp::Vec2d(1.0, 1.0);
-    } else if(type == 1){
-		NearArr[i].tex_max = pp::Vec2d(0.0, 0.0);
-        NearArr[i].tex_min = pp::Vec2d(1.0, 1.0);
-    }
+    NearArr[i].tex_min = pp::Vec2d(0.0, 0.0);
+	NearArr[i].tex_max = pp::Vec2d(1.0, 1.0);
+    
     //std::cout << "[snow.cpp] Near particle, index " << i << " created at " << NearArr[i].pt.x << " " << NearArr[i].pt.y << " " << NearArr[i].pt.z << "\n";
 }
 
@@ -232,8 +224,17 @@ void init_snow( pp::Vec3d playerPos )
     //init_snow(players[0].view.pos);
     //but both pos and view.pos werent initialized
     //now this function is called in racing::racing()
-    if ( !get_texture_binding("c_snow_particle", &snow_tex ) ) {
-        std::cerr << "Can't load snow texture ! Ay Ay Ay !\n";
+    if ( !get_texture_binding("c_snow_flake0", &(snow_tex[0]) ) ) {
+        std::cerr << "Can't load snow texture : c_snow_flake0 ! Ay Ay Ay !\n";
+    }
+    if ( !get_texture_binding("c_snow_flake1", &(snow_tex[1]) ) ) {
+        std::cerr << "Can't load snow texture : c_snow_flake1 ! Ay Ay Ay !\n";
+    }
+    if ( !get_texture_binding("c_snow_flake2", &(snow_tex[2]) ) ) {
+        std::cerr << "Can't load snow texture : c_snow_flake2 ! Ay Ay Ay !\n";
+    }
+    if ( !get_texture_binding("c_snow_flake3", &(snow_tex[3]) ) ) {
+        std::cerr << "Can't load snow texture : c_snow_flake3 ! Ay Ay Ay !\n";
     }
     
     UpdateArea(playerPos);
@@ -360,7 +361,6 @@ void draw_snow( pp::Vec3d eyepoint )
 
     set_gl_options (PARTICLES);
     glTexEnvf (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-    glBindTexture(GL_TEXTURE_2D, snow_tex);
     
     glColor4f( particleColor[0], particleColor[1], particleColor[2],particleColor[3] );
     
@@ -392,7 +392,7 @@ void draw_snow( pp::Vec3d eyepoint )
         }*/
     
         size = PartArr[i].size;
-        
+        glBindTexture(GL_TEXTURE_2D, snow_tex[PartArr[i].index_tex]);
         draw_sprite( eyepoint, PartArr[i].pt, size, PartArr[i].tex_min, PartArr[i].tex_max );
         /*
         glPushMatrix();
@@ -417,7 +417,7 @@ void draw_snow( pp::Vec3d eyepoint )
     
     for(i=0;i<MAXNEAR;i++) {
         size = NearArr[i].size;
-        
+        glBindTexture(GL_TEXTURE_2D, snow_tex[NearArr[i].index_tex]);
         /*
         glPushMatrix();
         glTranslatef(NearArr[i].pt.x,NearArr[i].pt.y,NearArr[i].pt.z);
