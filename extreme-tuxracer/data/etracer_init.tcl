@@ -249,10 +249,11 @@ pp_load_font -binding race_stats_outline \
              -size 27 \
              -color {0 0 0 1.0}
 
+#pp_load_font -binding race_results -font fonts/PaperCuts20.ttf -size 35 -color {1.00 0.89 0.01 1.0}
 pp_load_font -binding race_results \
              -font fonts/PaperCuts20.ttf \
              -size 35 \
-             -color {1.00 0.89 0.01 1.0}
+             -color {0.0 1.0 0.0 1.0}
 
 pp_load_font -binding race_results_outline \
              -font fonts/PaperCuts20.ttf \

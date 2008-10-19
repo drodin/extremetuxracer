@@ -9,4 +9,5 @@ set mirrored no
 set conditions evening
 set windy no
 set snowing no
+set snowtype 0
 
