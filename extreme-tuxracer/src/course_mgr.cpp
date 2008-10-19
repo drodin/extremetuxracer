@@ -256,6 +256,8 @@ CourseData* create_race_data ( Tcl_Interp *ip, CONST84 char *string, char **err_
     bool   score_req_init = false;
 
     CourseData *race_data = new CourseData;
+    
+    race_data->snowtype = -1;
 	
     if ( Tcl_SplitList( ip, string, &argc, &argv ) == TCL_ERROR ) {
 		*err_msg = "race data is not a list";
@@ -371,6 +373,17 @@ CourseData* create_race_data ( Tcl_Interp *ip, CONST84 char *string, char **err_
 			race_data->mirrored = true;
 	    } else {
 			race_data->mirrored = false;
+	    }
+    } else if ( strcmp( *argv, "-snowtype" ) == 0 ) {
+	    NEXT_ARG;
+
+	    if ( *argv == NULL ) {
+		*err_msg = "No data supplied for -snowtype in race data";
+		goto bail_race_data;
+	    }
+        if ( Tcl_GetInt( ip, *argv, &(race_data->snowtype) ) != TCL_OK ) {
+    		*err_msg = "Invalid value for -snowtype in open course data";
+    		goto bail_race_data;
 	    }
 	} else if ( strcmp( *argv, "-conditions" ) == 0 ) {
 	    int i;

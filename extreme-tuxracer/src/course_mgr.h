@@ -62,6 +62,7 @@ public:
 	race_conditions_t condition;
 	bool windy;
 	bool snowing;
+    int snowtype;
 };
 
 extern std::list<CourseData> openCourseList;

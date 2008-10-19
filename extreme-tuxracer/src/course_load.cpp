@@ -751,6 +751,57 @@ static int terrain_tex_cb ( ClientData cd, Tcl_Interp *ip, int argc, CONST84 cha
 	
 } 
 
+static int snow_type_cb(ClientData cd, Tcl_Interp *ip, int argc, CONST84 char *argv[]){
+    
+    if ( argc != SnowTypeArgCount + 2) { // the arguments for the type, plus the index, plus the arg for the function name itself
+        Tcl_AppendResult(ip, argv[0], ": invalid number of arguments\n", 
+			 "Usage: ", argv[0], " <index of the type> <speed> <minSize> <maxSize> <number of particles> <number of near particles>",
+			 (char *)0 );
+        return TCL_ERROR;
+    }
+    SnowType type;
+    int index;
+    
+    if ( Tcl_GetInt( ip, argv[1],
+		    &index) != TCL_OK ){
+				Tcl_AppendResult(ip, argv[0], ": invalid index",
+				 (char *)0 );
+			return TCL_ERROR;	
+	    }
+    if ( Tcl_GetDouble( ip, argv[2],
+		    &(type.speed)) != TCL_OK ){
+				Tcl_AppendResult(ip, argv[0], ": invalid speed",
+				 (char *)0 );
+			return TCL_ERROR;	
+	    }
+    if ( Tcl_GetDouble( ip, argv[3],
+		    &(type.minSize)) != TCL_OK ){
+				Tcl_AppendResult(ip, argv[0], ": invalid minSize",
+				 (char *)0 );
+			return TCL_ERROR;	
+	    }
+    if ( Tcl_GetDouble( ip, argv[4],
+		    &(type.maxSize)) != TCL_OK ){
+				Tcl_AppendResult(ip, argv[0], ": invalid maxSize",
+				 (char *)0 );
+			return TCL_ERROR;	
+	    }
+    if ( Tcl_GetInt( ip, argv[5],
+		    &(type.MAXPART)) != TCL_OK ){
+				Tcl_AppendResult(ip, argv[0], ": invalid MAXPART",
+				 (char *)0 );
+			return TCL_ERROR;	
+	    }
+    if ( Tcl_GetInt( ip, argv[6],
+		    &(type.MAXNEAR)) != TCL_OK ){
+				Tcl_AppendResult(ip, argv[0], ": invalid MAXNEAR",
+				 (char *)0 );
+			return TCL_ERROR;	
+	    }
+    
+    RegisterSnowType(index,type);
+    return TCL_OK;
+}
 
 static int start_pt_cb ( ClientData cd, Tcl_Interp *ip, int argc, CONST84 char *argv[]) 
 {
@@ -1680,6 +1731,7 @@ void register_course_load_tcl_callbacks( Tcl_Interp *ip )
     Tcl_CreateCommand (ip, "tux_trees",      trees_cb,   0,0);
     Tcl_CreateCommand (ip, "tux_bgnd_img",   bgnd_img_cb,   0,0);
 	Tcl_CreateCommand (ip, "tux_terrain_tex",   terrain_tex_cb,   0,0);
+    Tcl_CreateCommand (ip, "tux_snow_type",   snow_type_cb,   0,0);
     Tcl_CreateCommand (ip, "tux_start_pt",   start_pt_cb,   0,0);
     Tcl_CreateCommand (ip, "tux_friction",   friction_cb,   0,0);
     Tcl_CreateCommand (ip, "tux_course_author", course_author_cb, 0,0);

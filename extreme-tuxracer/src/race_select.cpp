@@ -167,7 +167,7 @@ RaceSelect::RaceSelect()
 	// snow 
 	mp_snowSSBtn = new pp::SSButton( pos,
 				      pp::Vec2d(32, 32),
-				      2 );
+				      4 );
 	mp_snowSSBtn->setStateImage(0,"snow_button",
 				  pp::Vec2d( 0.0/64.0, 32.0/64.0 ),
 				  pp::Vec2d( 32.0/64.0, 64.0/64.0 ),
@@ -177,8 +177,18 @@ RaceSelect::RaceSelect()
 				  pp::Vec2d( 32.0/64.0, 32.0/64.0 ),
 				  pp::Vec2d( 64.0/64.0, 64.0/64.0 ),
 				  pp::Color::white );
+                  
+    mp_snowSSBtn->setStateImage(2,"snow_button",
+				  pp::Vec2d( 0.0/64.0, 0.0/64.0 ),
+				  pp::Vec2d( 32.0/64.0, 32.0/64.0 ),
+				  pp::Color::white );
 
-	mp_snowSSBtn->setState( (int)gameMgr->getCurrentRace().snowing );
+    mp_snowSSBtn->setStateImage(3,"snow_button",
+				  pp::Vec2d( 32.0/64.0, 0.0/64.0 ),
+				  pp::Vec2d( 64.0/64.0, 32.0/64.0 ),
+				  pp::Color::white );
+                  
+	mp_snowSSBtn->setState( 0 );
 	
     updateButtonEnabledStates();
 
@@ -341,7 +351,9 @@ RaceSelect::updateRaceData()
 	gameMgr->getCurrentRace().mirrored = (bool) mp_mirrorSSBtn->getState();
 	gameMgr->getCurrentRace().condition = (race_conditions_t) mp_conditionsSSBtn->getState();
 	gameMgr->getCurrentRace().windy = (bool) mp_windSSBtn->getState();
-	gameMgr->getCurrentRace().snowing = (bool) mp_snowSSBtn->getState();
+    int snowtype = (int) mp_snowSSBtn->getState();
+    gameMgr->getCurrentRace().snowing = (snowtype > 0);
+    gameMgr->getCurrentRace().snowtype = gameMgr->getCurrentRace().snowing ? snowtype-1:-1;
 }
 
 void

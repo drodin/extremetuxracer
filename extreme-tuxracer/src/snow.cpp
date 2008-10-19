@@ -28,26 +28,32 @@
 #include "ppgltk/alg/defs.h"
 #include "part_sys.h"
 
-#define MAXPART 64
-#define MAXNEAR 30
+static double XRANGE = 18;
+static double YRANGE = 26;
+static double ZRANGE = 27;
 
-#define XRANGE 18
-#define YRANGE 13
-#define ZRANGE 18
+static double NEAR_XRANGE = 12;
+static double NEAR_YRANGE = 16;
+static double NEAR_ZRANGE = 12;
 
-#define NEAR_XRANGE 12
-#define NEAR_YRANGE 8
-#define NEAR_ZRANGE 8
-
-static double minSize = 0.15; 
-static double maxSize = 0.45;
+//default snowtype : light (decorative snow)
 
 static double speed = 8;
+static double minSize = 0.15; 
+static double maxSize = 0.45;
+static int MAXPART = 64;
+static int MAXNEAR = 30;
+
+
 static double xdrift = 1;
 static double ydrift = 1;
 static double zdrift = 1;
 static double ZWindFactor = 0.0;
 static double XWindFactor = 0.0;
+
+#define MAXTYPES 8
+static SnowType snowtypes[MAXTYPES];
+static bool istyperegistered[MAXTYPES] = {false,false,false,false,false,false,false,false};
 
 static pp::Vec3d lastPos;
 
@@ -68,9 +74,9 @@ typedef struct {
 	double back;
 } TArea;  // the cuboid for the snow flakes
 
-static TParticle PartArr [MAXPART];
+TParticle* PartArr;
 static TArea area;
-static TParticle NearArr [MAXNEAR];
+TParticle* NearArr;
 static TArea neararea;
 static GLuint snow_tex;
 
@@ -81,29 +87,56 @@ static double xrand (double min, double max) {
 void UpdateArea(pp::Vec3d pos) {
     area.left = pos.x - XRANGE / 2;
 	area.right = area.left + XRANGE;
-	area.back = pos.z;
+	area.back = pos.z + ZRANGE/3;
 	area.front = area.back - ZRANGE;
-	area.top = pos.y + YRANGE;
-	area.bottom = pos.y;
+	area.top = pos.y + 0.5*YRANGE;
+	area.bottom = area.top - YRANGE;
 
 // some remarks about the neararea:
+//============================
+
 // If the size of the flakes is very low they won't appear dense enough
 // If the flakes are sized very large they seem to be snowballs in the near area
 // This problem can be solved by using two areas, one for the far and ond for the 
 // near with smaller flakes
 
+//if the Yarea doesnt go below the player's Z, then the player can see the snow ahead of him just stopping in midair
+//if the Zarea doesnt go behind the player, the player can see that there is no snow behind, when he turns around
+
 	neararea.left = pos.x - NEAR_XRANGE / 2;
 	neararea.right = neararea.left + NEAR_XRANGE;
-	neararea.back = pos.z;
+	neararea.back = pos.z + NEAR_ZRANGE/3;
 	neararea.front = neararea.back - NEAR_ZRANGE;
-	neararea.top = pos.y + NEAR_YRANGE;
-	neararea.bottom = pos.y;
+	neararea.top = pos.y + 0.5*NEAR_YRANGE;
+	neararea.bottom = neararea.top - NEAR_YRANGE;
     
-    std::cout << "[snow.cpp] Player position as passed to UpdateArea() : " << pos.x << " " << pos.y << " " << pos.z << "\n";
-    std::cout << "[snow.cpp] Updated snow area : " << neararea.left << " " << neararea.back << " " <<neararea.top  << "\n";
+    //std::cout << "[snow.cpp] Player position as passed to UpdateArea() : " << pos.x << " " << pos.y << " " << pos.z << "\n";
+    //std::cout << "[snow.cpp] Updated snow area : " << neararea.left << " " << neararea.back << " " <<neararea.top  << "\n";
 }
 
-void LoadSnowList () {
+void RegisterSnowType (int index, SnowType type) {
+    if((index < MAXTYPES) && (index > -1)) {
+        snowtypes[index] = type;
+        istyperegistered[index] = true;
+    } else {
+        std::cerr << "RegisterSnowType, index : " << index << " [ERROR] Index must be in range [0 .. " << MAXTYPES << "]\n";
+    }
+}
+
+void SetSnowType (int index) {
+    if((index < MAXTYPES) && (index > -1)) {
+        if(istyperegistered[index]){
+            speed = snowtypes[index].speed;
+            minSize = snowtypes[index].minSize;
+            maxSize = snowtypes[index].maxSize;
+            MAXPART = snowtypes[index].MAXPART;
+            MAXNEAR = snowtypes[index].MAXNEAR;
+        } else {
+            std::cerr << "SetSnowType, index : " << index << " [ERROR] No type has been registered with this index !\n";
+        }
+    } else {
+        std::cerr << "RegisterSnowType, index : " << index << " [ERROR] Index must be in range [0 .. " << MAXTYPES << "]\n";
+    }
 }
 
 void LoadSnow () {
@@ -145,11 +178,11 @@ static void MakeSnowParticle (int i) {
         PartArr[i].tex_min = pp::Vec2d(0.0, 0.0);
 		PartArr[i].tex_max = pp::Vec2d(1.0, 1.0);
     } else if(type == 1){
-        PartArr[i].tex_min = pp::Vec2d(1.0, 1.0);
 		PartArr[i].tex_max = pp::Vec2d(0.0, 0.0);
+        PartArr[i].tex_min = pp::Vec2d(1.0, 1.0);
     }
     
-    std::cout << "[snow.cpp] Particle, index " << i << " created at " << PartArr[i].pt.x << " " << PartArr[i].pt.y << " " << PartArr[i].pt.z << "\n";
+    //std::cout << "[snow.cpp] Particle, index " << i << " created at " << PartArr[i].pt.x << " " << PartArr[i].pt.y << " " << PartArr[i].pt.z << "\n";
 }
 
 static void MakeNearParticle (int i) {
@@ -186,13 +219,13 @@ static void MakeNearParticle (int i) {
         NearArr[i].tex_min = pp::Vec2d(0.0, 0.0);
 		NearArr[i].tex_max = pp::Vec2d(1.0, 1.0);
     } else if(type == 1){
-        NearArr[i].tex_min = pp::Vec2d(1.0, 1.0);
 		NearArr[i].tex_max = pp::Vec2d(0.0, 0.0);
+        NearArr[i].tex_min = pp::Vec2d(1.0, 1.0);
     }
-    std::cout << "[snow.cpp] Near particle, index " << i << " created at " << NearArr[i].pt.x << " " << NearArr[i].pt.y << " " << NearArr[i].pt.z << "\n";
+    //std::cout << "[snow.cpp] Near particle, index " << i << " created at " << NearArr[i].pt.x << " " << NearArr[i].pt.y << " " << NearArr[i].pt.z << "\n";
 }
 
-void init_snow( pp::Vec3d eyepoint )
+void init_snow( pp::Vec3d playerPos )
 {
     //tried to call this function in course_load::course_load()
     //init_snow(players[0].pos);
@@ -203,21 +236,14 @@ void init_snow( pp::Vec3d eyepoint )
         std::cerr << "Can't load snow texture ! Ay Ay Ay !\n";
     }
     
-    PartArr[0].pt.x += (eyepoint.x - PartArr[0].pt.x);  
-	PartArr[0].pt.y += (eyepoint.y - PartArr[0].pt.y);
-	PartArr[0].pt.z += (eyepoint.z - PartArr[0].pt.z) - 1;
-    
-    PartArr[0].size = maxSize;
-    
-    PartArr[0].tex_min = pp::Vec2d(0.0, 0.5);
-    PartArr[0].tex_max = pp::Vec2d(0.5, 1.0);
-    
-    UpdateArea(eyepoint);
+    UpdateArea(playerPos);
+    NearArr = (TParticle*)malloc(sizeof(TParticle)*MAXNEAR);
+    PartArr = (TParticle*)malloc(sizeof(TParticle)*MAXPART);
     int i;
-    for(i = 1; i<MAXPART;i++) MakeSnowParticle(i);
+    for(i = 0; i<MAXPART;i++) MakeSnowParticle(i);
     for(i = 0; i<MAXNEAR;i++) MakeNearParticle(i);
     
-    lastPos = eyepoint;
+    lastPos = playerPos;
     
     /*
     UpdateArea(eyepoint);
@@ -232,20 +258,26 @@ void init_snow( pp::Vec3d eyepoint )
     */
 }
 
-void update_snow( double time_step, bool windy, pp::Vec3d eyepoint )
+void reset_snow() {
+    free(NearArr);
+    free(PartArr);
+}
+
+void update_snow( double time_step, bool windy, pp::Vec3d playerPos )
 {
-    UpdateArea(eyepoint);
+    UpdateArea(playerPos);
     
-    double xdiff = eyepoint.x - lastPos.x;
-    double ydiff = eyepoint.y - lastPos.y;
-	double zdiff = eyepoint.z - lastPos.z;
-	double xcoeff = XWindFactor * time_step + (xdiff * xdrift);
+    double xdiff = playerPos.x - lastPos.x;
+    double ydiff = playerPos.y - lastPos.y;
+	double zdiff = playerPos.z - lastPos.z;
+    double xNearCoeff = XWindFactor * time_step;//We disable the xdrift for near particles because it is too obvious when the player turns
+    double xcoeff = xNearCoeff + (xdiff * xdrift);
 	double ycoeff = (ydiff * ydrift) + (ZWindFactor * 0.025);	
 	double zcoeff = (ZWindFactor * time_step) + (zdiff * zdrift);
     
     int i;
     
-    for(i = 1; i<MAXPART;i++) {
+    for(i = 0; i<MAXPART;i++) {
         //PartArr[i].pt.x += (eyepoint.x - PartArr[0].pt.x);  
     	//PartArr[i].pt.y += (eyepoint.y - PartArr[0].pt.y) + 1;
     	//PartArr[i].pt.z += (eyepoint.z - PartArr[0].pt.z);
@@ -300,19 +332,13 @@ void update_snow( double time_step, bool windy, pp::Vec3d eyepoint )
 			NearArr[i].pt.z -= NEAR_ZRANGE;		
 		}
         
-        NearArr[i].pt.x += xcoeff;
+        NearArr[i].pt.x += xNearCoeff;//We disable the xdrift for near particles because it is too obvious when the player turns
 		NearArr[i].pt.y += NearArr[i].vel.y * time_step + ycoeff;
 		NearArr[i].pt.z += zcoeff;
     }
     
-    lastPos = eyepoint;
+    lastPos = playerPos;
     
-    //PartArr[0].pt.x += (eyepoint.x - PartArr[0].pt.x);  
-	//PartArr[0].pt.y += (eyepoint.y - PartArr[0].pt.y) + 1;
-	//PartArr[0].pt.z += (eyepoint.z - PartArr[0].pt.z);
-    
-    PartArr[0].pt = eyepoint;
-    PartArr[0].pt.z -=1;
     
     /*
     UpdateArea(eyepoint);
@@ -327,12 +353,10 @@ void update_snow( double time_step, bool windy, pp::Vec3d eyepoint )
     */
 } 
 
-void draw_snow( Player& player )
+void draw_snow( pp::Vec3d eyepoint )
 {
     int i;
     double size;
-    
-    pp::Vec3d eyepoint = player.pos;
 
     set_gl_options (PARTICLES);
     glTexEnvf (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
@@ -360,8 +384,6 @@ void draw_snow( Player& player )
     
     
     
-    glPushMatrix();
-    
     for(i=0;i<MAXPART;i++) {
     
         /*
@@ -371,7 +393,7 @@ void draw_snow( Player& player )
     
         size = PartArr[i].size;
         
-        draw_billboard( player, PartArr[i].pt, size, size, false, PartArr[i].tex_min, PartArr[i].tex_max );
+        draw_sprite( eyepoint, PartArr[i].pt, size, PartArr[i].tex_min, PartArr[i].tex_max );
         /*
         glPushMatrix();
         glTranslatef(PartArr[i].pt.x,PartArr[i].pt.y,PartArr[i].pt.z);
@@ -413,11 +435,43 @@ void draw_snow( Player& player )
         
         glPopMatrix();
         */
-        draw_billboard( player, NearArr[i].pt, size, size, false, NearArr[i].tex_min, NearArr[i].tex_max );
+        draw_sprite( eyepoint, NearArr[i].pt, size, NearArr[i].tex_min, NearArr[i].tex_max );
     }
     
-    glPopMatrix();
+    
 
+}
+
+void draw_sprite( pp::Vec3d eyepoint, pp::Vec3d spriteLoc, double spriteSize, pp::Vec2d tex_min, pp::Vec2d tex_max ) {
+    pp::Vec3d normal = eyepoint - spriteLoc;
+    normal.normalize();
+    if(normal.y == 1) return; // ||normal||==1 so if normal.y == 1 then normal == (0,1,0) and then we dont want to draw a "flat" sprite (contained in the (x,z) plane)
+    glPushMatrix();
+        glTranslatef( spriteLoc.x, spriteLoc.y, spriteLoc.z );
+        glNormal3f(normal.x,normal.y,normal.z);//for lightning purposes... dont know if this is relevant here, so i put it just in case
+        normal.y = 0; //the sprite has to be drawn using a normal vector contained in the (x,z) plane in order to appear as a billboard
+        normal.normalize();
+        glBegin( GL_QUADS );
+	    {
+            double spriteRadius = spriteSize/2; //we assume the sprite to occupy the space of a cube in 3d; so the radius is equal to size/2 here
+            double spriteHeight = spriteSize;//we assume the sprite to occupy the space of a cube in 3d; so the height is equal to the size here
+    		glTexCoord2f( tex_min.x, tex_min.y );
+    		glVertex3f( -spriteRadius*normal.z, 0.0, spriteRadius*normal.x );
+    		glTexCoord2f( tex_max.x, tex_min.y );
+    		glVertex3f( spriteRadius*normal.z, 0.0, -spriteRadius*normal.x );
+    		glTexCoord2f( tex_max.x, tex_max.y );
+    		glVertex3f( spriteRadius*normal.z, spriteHeight, -spriteRadius*normal.x );
+    		glTexCoord2f( tex_min.x, tex_max.y );
+    		glVertex3f( -spriteRadius*normal.z, spriteHeight, spriteRadius*normal.x );
+	    }
+	    glEnd();
+    glPopMatrix();
+}
+
+
+//Use for debugging purposes
+// !!! Doesn't work with most of the snow textures. Works with snow.png as the texture for snow flakes (probably because it has no transparent pixels)
+void draw_cuboid_areas() {
     glLineWidth(3.0);
     
     glPushMatrix();
@@ -511,5 +565,4 @@ void draw_snow( Player& player )
     glEnd();
     
     glPopMatrix();
-
 }
