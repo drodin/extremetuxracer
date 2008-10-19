@@ -345,6 +345,9 @@ courses/events/a-tux_racer/path_of_daggers/elev.png \
 		courses/themes/terrains/common/ice.png \
 		courses/themes/terrains/common/buttstart.png \
 		courses/themes/terrains/common/buttstop.png \
+		courses/themes/terrains/common/snowflake1.png \
+		courses/themes/terrains/common/snowflake2.png \
+		courses/themes/terrains/common/snowflake3.png \
 		courses/themes/models/stuff/barrier.png \
 		courses/themes/models/stuff/barrier.ac \
 		courses/themes/models/stuff/models.tcl \
