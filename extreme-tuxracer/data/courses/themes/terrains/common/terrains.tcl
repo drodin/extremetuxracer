@@ -30,6 +30,16 @@ tux_bind_texture crack crack
 tux_load_texture c_snow_particle snowparticles.png 0
 tux_bind_texture c_snow_particle c_snow_particle
 
+#snow flakes
+tux_bind_texture c_snow_flake0 c_snow_particle
+tux_load_texture c_snow_flake1 snowflake1.png 0
+tux_bind_texture c_snow_flake1 c_snow_flake1
+tux_load_texture c_snow_flake2 snowflake2.png 0
+tux_bind_texture c_snow_flake2 c_snow_flake2
+tux_load_texture c_snow_flake3 snowflake3.png 0
+tux_bind_texture c_snow_flake3 c_snow_flake3
+
+
 # icy terrains
 
 tux_terrain_tex -name ice -texture ice.png \
