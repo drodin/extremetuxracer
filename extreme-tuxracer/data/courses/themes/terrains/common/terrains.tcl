@@ -23,7 +23,7 @@ tux_bind_texture c_snow_mark c_snow_mark
 tux_bind_texture c_snow_tail c_snow_tail
 
 #cracks
-tux_load_texture crack crack.png 1
+tux_load_texture crack crack2.png 1
 tux_bind_texture crack crack
 
 # snow Particle
