@@ -36,6 +36,7 @@
 #include "tux_shadow.h"
 #include "loop.h"
 #include "fog.h"
+#include "snow.h"
 #include "viewfrustum.h"
 #include "hud.h"
 #include "joystick.h"
@@ -210,6 +211,7 @@ play_music("game_over");
 
 GameOver::~GameOver()
 {
+    if(gameMgr->getCurrentRace().snowing) reset_snow();
 //erase "game over" text from screen
 	delete mp_raceOverLbl;
 //erase "game over" outline
@@ -278,6 +280,10 @@ GameOver::loop(float timeStep)
     set_course_eye_point( players[0].view.pos );
     setup_course_lighting();
     render_course();
+    //Draw snow
+    if(gameMgr->getCurrentRace().snowing) {
+        draw_snow(players[0].view.pos);
+    }
     draw_trees();
     if ( getparam_draw_particles() ) {
 		draw_particles( players[0] );

@@ -104,14 +104,15 @@ Racing::Racing()
 		init_physical_simulation();
     }
 
-    gameMgr->abortRace(false);
-	if(gameMgr->getCurrentRace().snowing) {
+    if(gameMgr->getCurrentRace().snowing) {
         int snowtype = gameMgr->getCurrentRace().snowtype;
         if(snowtype > -1) {
             SetSnowType(snowtype);
         }
         init_snow(players[0].pos);
     }
+    
+    gameMgr->abortRace(false);
 		
 if (gameMgr->gametype!=GameMgr::PRACTICING) {
 	std::string mus = gameMgr->currentEvent->music;
@@ -134,7 +135,6 @@ Racing::~Racing()
     halt_sound( "ice_sound" );
     halt_sound( "snow_sound" );
     break_track_marks();
-    if(gameMgr->getCurrentRace().snowing) reset_snow();
 }
 
 void

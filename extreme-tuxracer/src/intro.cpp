@@ -43,6 +43,7 @@
 #include "game_config.h"
 #include "winsys.h"
 #include "course_mgr.h"
+#include "snow.h"
 
 #include "game_mgr.h"
 
@@ -81,6 +82,14 @@ Intro::Intro()
     set_view_mode( players[0], ABOVE );
     update_view( players[0], EPS ); 
 
+    if(gameMgr->getCurrentRace().snowing) {
+        int snowtype = gameMgr->getCurrentRace().snowtype;
+        if(snowtype > -1) {
+            SetSnowType(snowtype);
+        }
+        init_snow(players[0].pos);
+    }
+    
     // reset all items as collectable 
     num_items = get_num_items();
     item_locs = get_item_locs();
@@ -117,6 +126,7 @@ Intro::loop(float timeStep)
 	int width, height;
 
     if ( getparam_do_intro_animation() == false ) {
+        if(gameMgr->getCurrentRace().snowing) reset_snow();
 		set_game_mode( RACING );
 		return;
     }
@@ -157,6 +167,11 @@ Intro::loop(float timeStep)
     set_course_eye_point( players[0].view.pos );
     setup_course_lighting();
     render_course( );
+    //Draw snow
+    if(gameMgr->getCurrentRace().snowing) {
+        update_snow( timeStep, false, players[0].pos );
+        draw_snow(players[0].view.pos);
+    }
     draw_trees();
 
     ModelHndl->draw_tux();
@@ -176,6 +191,8 @@ void
 Intro::abort( Player& plyr )
 {
     pp::Vec2d start_pt = get_start_pt();
+    
+    if(gameMgr->getCurrentRace().snowing) reset_snow();
 
     set_game_mode( RACING );
 
