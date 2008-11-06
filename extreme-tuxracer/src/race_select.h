@@ -1,6 +1,6 @@
 /* 
- * PPRacer 
- * Copyright (C) 2004-2005 Volker Stroebel <volker@planetpenguin.de>
+ * Extreme Tux Racer
+ * Copyleft 2007-2008 The ETR Team <http://www.extremetuxracer.com/>
  * 
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,6 +24,8 @@
 
 #include "course_mgr.h"
 
+#include "model_hndl.h"
+
 #include "ppgltk/ssbutton.h"
 #include "ppgltk/listbox.h"
 #include "ppgltk/textarea.h"
@@ -43,6 +45,8 @@ class RaceSelect : public GameMode
 	pp::Label *mp_titleLbl;
 	pp::Label* mp_nameLbl;
 	pp::Entry* mp_nameEnt;
+	pp::Listbox<model_t>* mp_modelEnt;
+	std::list<model_t> m_modelList;
 	
 	void setWidgetPositionsAndDrawDecorations();	
 	void updateRaceData();
