@@ -1,8 +1,6 @@
 /* 
- * PPRacer 
- * Copyright (C) 2004-2005 Volker Stroebel <volker@planetpenguin.de>
- *
- * Copyright (C) 1999-2001 Jasmin F. Patry
+ * Extreme Tux Racer
+ * Copyleft 2007-2008 The ETR Team <http://www.extremetuxracer.com/>
  * 
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -48,6 +46,9 @@ RaceSelect::RaceSelect()
 {
     pp::Vec2d pos(0,0);
 
+	m_modelList = ModelHndl->l_models;
+	std::list<model_t>::iterator modelit=m_modelList.begin();
+
 	courseList = &openCourseList;
 		
     // Unless we're coming back from a race, initialize the race data to 
@@ -89,6 +90,9 @@ RaceSelect::RaceSelect()
      mp_nameLbl = new pp::Label( pos,"event_and_cup_label",_("Player name:"));
 	mp_nameEnt = new pp::Entry(pos,pp::Vec2d(176,32),"event_and_cup_label",players[0].name.c_str());
 	mp_nameEnt->setMaxChars(13);
+
+
+	mp_modelEnt = new pp::Listbox<model_t>( pos, pp::Vec2d(240, 32), "listbox_item", m_modelList);
 
   
 	mp_raceListbox = new pp::Listbox<CourseData>(pos,
@@ -194,6 +198,9 @@ RaceSelect::RaceSelect()
     updateButtonEnabledStates();
 
     play_music( "start_screen" );
+
+
+
 }
 
 RaceSelect::~RaceSelect()
@@ -209,6 +216,7 @@ RaceSelect::~RaceSelect()
 	delete mp_titleLbl;
 	delete mp_nameLbl;
 	delete mp_nameEnt;
+	delete mp_modelEnt;
 }
 
 void
@@ -266,6 +274,9 @@ RaceSelect::setWidgetPositionsAndDrawDecorations()
 		      y_org) );
 	mp_nameEnt->setPosition(pp::Vec2d( x_org+180,
 		      y_org-8) );
+
+	mp_modelEnt->setPosition(pp::Vec2d( x_org+180,
+		      y_org-50) );
 
 	mp_raceListbox->setPosition(pp::Vec2d( x_org,y_org + 221 ) );
 
@@ -435,6 +446,8 @@ RaceSelect::start()
 	updateRaceData();	
 	loop( 0 );
     set_game_mode( LOADING );
+	std::list<model_t>::iterator modelit = mp_modelEnt->getCurrentItem();
+	ModelHndl->load_model((*modelit).id);	
 }
 
 

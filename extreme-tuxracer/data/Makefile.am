@@ -412,6 +412,9 @@ courses/events/a-tux_racer/path_of_daggers/elev.png \
 		textures/menu_title.png \
 		textures/menu_title_small.png \
 		tux.tcl \
+		samuel.tcl \
+		trixi.tcl \
+		speedy.tcl \
 		tux_snowboard.tcl \
 		sounds/tux_hit_tree1.wav \
 		sounds/tux_on_snow1.wav \

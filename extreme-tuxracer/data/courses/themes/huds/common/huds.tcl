@@ -7,12 +7,12 @@ tux_hud -hud 1 -type fsb \
 
 
 tux_hud -hud 1 -type herring \
-	-position {-12 -21} \
+	-position {-12 -12} \
 	-font herring_count \
 	-string "%03d"
 
 tux_hud -hud 1 -type herring \
-	-position {-12 -20} \
+	-position {-12 -12} \
 	-font herring_count_outline \
 	-string "%03d"
 
@@ -33,12 +33,12 @@ tux_hud -hud 1 -type icon_herring \
    -size 50
 
 tux_hud -hud 1 -type time \
-	-position {60 -21} \
+	-position {60 -12} \
 	-font time_value \
 	-string "%02d:%02d:%02d"
 
 tux_hud -hud 1 -type time \
-	-position {60 -20} \
+	-position {60 -12} \
 	-font herring_count_outline \
 	-string "%02d:%02d:%02d"
 

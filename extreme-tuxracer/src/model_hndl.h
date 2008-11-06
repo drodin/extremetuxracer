@@ -1,8 +1,6 @@
 /* 
- * ETRacer 
- * Copyright (C) 2004-2005 Volker Stroebel <volker@planetpenguin.de>
- *
- * Copyright (C) 1999-2001 Jasmin F. Patry
+ * Extreme Tux Racer
+ * Copyleft 2007-2008 The ETR Team <http://www.extremetuxracer.com/>
  * 
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
