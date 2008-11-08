@@ -46,6 +46,7 @@ class RaceSelect : public GameMode
 	pp::Label* mp_nameLbl;
 	pp::Entry* mp_nameEnt;
 	pp::Listbox<model_t>* mp_modelEnt;
+    pp::SSButton* mp_modelSSBtn;
 	std::list<model_t> m_modelList;
 	
 	void setWidgetPositionsAndDrawDecorations();	
@@ -61,7 +62,9 @@ public:
 
 	void start();
 	void back();
+    void listboxModelChange();
 	void listboxItemChange();
+    void buttonModelChange();
 
 	bool keyPressEvent(SDLKey key);
 

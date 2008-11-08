@@ -87,13 +87,46 @@ RaceSelect::RaceSelect()
 	mp_startBtn->signalClicked.Connect(pp::CreateSlot(this,&RaceSelect::start));
 
     
-     mp_nameLbl = new pp::Label( pos,"event_and_cup_label",_("Player name:"));
+    mp_nameLbl = new pp::Label( pos,"event_and_cup_label",_("Player name:"));
 	mp_nameEnt = new pp::Entry(pos,pp::Vec2d(176,32),"event_and_cup_label",players[0].name.c_str());
 	mp_nameEnt->setMaxChars(13);
 
 
-	mp_modelEnt = new pp::Listbox<model_t>( pos, pp::Vec2d(240, 32), "listbox_item", m_modelList);
+	mp_modelEnt = new pp::Listbox<model_t>( pos, pp::Vec2d(139, 32), "listbox_item", m_modelList);
+    mp_modelEnt->signalChange.Connect(pp::CreateSlot(this,&RaceSelect::listboxModelChange));
 
+    #define MODELID_TUX 0
+    #define MODELID_SAMUEL 1
+    #define MODELID_TRIXI 2
+    #define MODELID_SPEEDY 3
+    // model icon
+	mp_modelSSBtn = new pp::SSButton( pos,
+				      pp::Vec2d(99, 99),
+				      4 );
+    mp_modelSSBtn->setStateImage(MODELID_TUX,"modelpreviews_button",
+				  pp::Vec2d( 0.0/512.0, 256.0/512.0 ),
+				  pp::Vec2d( 256.0/512.0, 512.0/512.0 ),
+				  pp::Color::white );
+	mp_modelSSBtn->setStateImage(MODELID_SAMUEL,"modelpreviews_button",
+				  pp::Vec2d( 256.0/512.0, 256.0/512.0 ),
+				  pp::Vec2d( 512.0/512.0, 512.0/512.0 ),
+				  pp::Color::white );
+
+	mp_modelSSBtn->setStateImage(MODELID_TRIXI,"modelpreviews_button",
+				  pp::Vec2d( 0.0/512.0, 0.0/512.0 ),
+				  pp::Vec2d( 256.0/512.0, 256.0/512.0 ),
+				  pp::Color::white );
+                  
+    mp_modelSSBtn->setStateImage(MODELID_SPEEDY,"modelpreviews_button",
+				  pp::Vec2d( 256.0/512.0, 0.0/512.0 ),
+				  pp::Vec2d( 512.0/512.0, 256.0/512.0 ),
+				  pp::Color::white );
+
+    
+    
+    modelit = mp_modelEnt->getCurrentItem();    
+	mp_modelSSBtn->setState((*modelit).id);
+    mp_modelSSBtn->signalClicked.Connect(pp::CreateSlot(this,&RaceSelect::buttonModelChange));
   
 	mp_raceListbox = new pp::Listbox<CourseData>(pos,
 				   pp::Vec2d(460, 44),
@@ -210,6 +243,7 @@ RaceSelect::~RaceSelect()
 	delete mp_raceListbox;
 	delete mp_conditionsSSBtn;
 	delete mp_snowSSBtn;
+    delete mp_modelSSBtn;
 	delete mp_windSSBtn;
 	delete mp_mirrorSSBtn;
     delete mp_descTa;	
@@ -275,7 +309,9 @@ RaceSelect::setWidgetPositionsAndDrawDecorations()
 	mp_nameEnt->setPosition(pp::Vec2d( x_org+180,
 		      y_org-8) );
 
-	mp_modelEnt->setPosition(pp::Vec2d( x_org+180,
+	mp_modelEnt->setPosition(pp::Vec2d( x_org+400,
+		      y_org-50 -32) );
+    mp_modelSSBtn->setPosition(pp::Vec2d( x_org+400,
 		      y_org-50) );
 
 	mp_raceListbox->setPosition(pp::Vec2d( x_org,y_org + 221 ) );
@@ -460,6 +496,25 @@ RaceSelect::listboxItemChange()
 	mp_descTa->setText( (*curElem).description.c_str() );
 	updateButtonEnabledStates();
 	UIMgr.setDirty();
+}
+
+void
+RaceSelect::listboxModelChange()
+{
+    std::list<model_t>::iterator modelit = mp_modelEnt->getCurrentItem();
+    mp_modelSSBtn->setState((*modelit).id);
+}
+
+void
+RaceSelect::buttonModelChange()
+{
+    std::list<model_t>::iterator modelit = mp_modelEnt->getCurrentItem();
+    modelit++;
+    if(modelit!=mp_modelEnt->getItemList().end()) {
+        mp_modelEnt->setCurrentItem(modelit);
+    } else {
+        mp_modelEnt->setCurrentItem(mp_modelEnt->getItemList().begin());
+    }
 }
 
 bool
