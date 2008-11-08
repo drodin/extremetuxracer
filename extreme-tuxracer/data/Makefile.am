@@ -395,6 +395,7 @@ courses/events/a-tux_racer/path_of_daggers/elev.png \
 		textures/menu_top_right.png \
 		textures/nopreview.png \
 		textures/snow_button.png \
+        textures/modelpreviews_button.png \
 		textures/mirror_button.png \
 		textures/mask_outline2.png \
 		textures/gaugeenergymask.png \

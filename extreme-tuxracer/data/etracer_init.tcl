@@ -351,6 +351,9 @@ tux_bind_texture conditions_button conditions_button
 tux_load_texture snow_button textures/snow_button.png 0
 tux_bind_texture snow_button snow_button
 
+tux_load_texture modelpreviews_button textures/modelpreviews_button.png 0
+tux_bind_texture modelpreviews_button modelpreviews_button
+
 tux_load_texture wind_button textures/wind_button.png 0
 tux_bind_texture wind_button wind_button
 
