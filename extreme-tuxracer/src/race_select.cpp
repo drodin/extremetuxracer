@@ -101,25 +101,25 @@ RaceSelect::RaceSelect()
     #define MODELID_SPEEDY 3
     // model icon
 	mp_modelSSBtn = new pp::SSButton( pos,
-				      pp::Vec2d(99, 99),
+				      pp::Vec2d(89, 99),
 				      4 );
     mp_modelSSBtn->setStateImage(MODELID_TUX,"modelpreviews_button",
-				  pp::Vec2d( 0.0/512.0, 256.0/512.0 ),
-				  pp::Vec2d( 256.0/512.0, 512.0/512.0 ),
+				  pp::Vec2d( 0.0, 0.0 ),
+				  pp::Vec2d( 0.25, 1.0 ),
 				  pp::Color::white );
 	mp_modelSSBtn->setStateImage(MODELID_SAMUEL,"modelpreviews_button",
-				  pp::Vec2d( 256.0/512.0, 256.0/512.0 ),
-				  pp::Vec2d( 512.0/512.0, 512.0/512.0 ),
+				  pp::Vec2d( 0.25, 0.0 ),
+				  pp::Vec2d( 0.50, 1.0 ),
 				  pp::Color::white );
 
 	mp_modelSSBtn->setStateImage(MODELID_TRIXI,"modelpreviews_button",
-				  pp::Vec2d( 0.0/512.0, 0.0/512.0 ),
-				  pp::Vec2d( 256.0/512.0, 256.0/512.0 ),
+				  pp::Vec2d( 0.50, 0.0 ),
+				  pp::Vec2d( 0.75, 1.0 ),
 				  pp::Color::white );
                   
     mp_modelSSBtn->setStateImage(MODELID_SPEEDY,"modelpreviews_button",
-				  pp::Vec2d( 256.0/512.0, 0.0/512.0 ),
-				  pp::Vec2d( 512.0/512.0, 256.0/512.0 ),
+				  pp::Vec2d( 0.75, 0.0 ),
+				  pp::Vec2d( 1.0, 1.0 ),
 				  pp::Color::white );
 
     
