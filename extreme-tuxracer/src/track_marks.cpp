@@ -592,6 +592,7 @@ void add_crack( Player& plyr )
     if (force < CRACK_MIN_FORCE)
       return;
 
+    play_sound( "crack_ice_sound", 0 );
     half_size = force * CRACK_SIZE_PER_FORCE / 2.0;
    
     dist = plyr.pos - cracks.last_pos;
@@ -640,7 +641,7 @@ void add_crack( Player& plyr )
     q->t2 = pp::Vec2d(1.0, 0.0);
     q->t3 = pp::Vec2d(0.0, 1.0);
     q->t4 = pp::Vec2d(1.0, 1.0);
-    cracks.current_crack++;
+    cracks.current_crack++;    
 
     cracks.last_pos = plyr.pos;
     cracks.last_size = half_size;
