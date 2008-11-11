@@ -421,6 +421,8 @@ courses/events/a-tux_racer/path_of_daggers/elev.png \
 		sounds/tux_on_snow1.wav \
 		sounds/tux_on_rock1.wav \
 		sounds/tux_on_ice1.wav \
+        sounds/52143__blaukreuz__imp_01.wav \
+        sounds/52143__blaukreuz__imp_01_modified_v2.wav \
 		sounds/fish_pickup1.wav \
 		sounds/fish_pickup2.wav \
 		sounds/fish_pickup3.wav \

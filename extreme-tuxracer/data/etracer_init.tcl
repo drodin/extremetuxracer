@@ -148,6 +148,11 @@ if { [tux_load_sound ice_sound sounds/tux_on_ice1.wav] } {
     tux_bind_sounds ice_sound ice_sound
 }
 
+# Crack in the Ice
+if { [tux_load_sound crack_ice_sound sounds/52143__blaukreuz__imp_01_modified_v2.wav] } {
+    tux_bind_sounds crack_ice_sound crack_ice_sound
+}
+
 # Splash screen
 tux_load_texture splash_screen textures/splash.png 0
 tux_bind_texture splash_screen splash_screen
