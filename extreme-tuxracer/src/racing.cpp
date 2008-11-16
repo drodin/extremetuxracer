@@ -112,6 +112,13 @@ Racing::Racing()
         init_snow(players[0].pos);
     }
     
+    if(gameMgr->getCurrentRace().windy) {
+		int windtype = gameMgr->getCurrentRace().windtype;
+        if(windtype > -1) {
+            SetWindType(windtype);
+        }
+	}
+    
     gameMgr->abortRace(false);
 		
 if (gameMgr->gametype!=GameMgr::PRACTICING) {

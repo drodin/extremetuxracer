@@ -23,6 +23,7 @@
 #include "render_util.h"
 #include "game_config.h"
 #include "player.h"
+#include "game_mgr.h"
 #include "textures.h"
 #include "loop.h"
 #include "ppgltk/alg/defs.h"
@@ -44,6 +45,8 @@ static double maxSize = 0.45;
 static int MAXPART = 64;
 static int MAXNEAR = 30;
 
+//default windtype : no wind
+pp::Vec3d wind_vel(0.0,0.0,0.0);
 
 static double xdrift = 1;
 static double ydrift = 1;
@@ -54,6 +57,9 @@ static double XWindFactor = 0.0;
 #define MAXTYPES 8
 static SnowType snowtypes[MAXTYPES];
 static bool istyperegistered[MAXTYPES] = {false,false,false,false,false,false,false,false};
+
+static WindType windtypes[MAXTYPES];
+static bool iswindtyperegistered[MAXTYPES] = {false,false,false,false,false,false,false,false};
 
 static pp::Vec3d lastPos;
 
@@ -117,10 +123,27 @@ void UpdateArea(pp::Vec3d pos) {
 
 void RegisterSnowType (int index, SnowType type) {
     if((index < MAXTYPES) && (index > -1)) {
-        snowtypes[index] = type;
-        istyperegistered[index] = true;
+        if(istyperegistered[index] == false) {
+            snowtypes[index] = type;
+            istyperegistered[index] = true;
+        } else {
+            std::cerr << "RegisterSnowType, index : " << index << " [ERROR] Type is already registered !\n";
+        }
     } else {
         std::cerr << "RegisterSnowType, index : " << index << " [ERROR] Index must be in range [0 .. " << MAXTYPES << "]\n";
+    }
+}
+
+void RegisterWindType (int index, WindType type) {
+    if((index < MAXTYPES) && (index > -1)) {
+        if(iswindtyperegistered[index] == false) {
+            windtypes[index] = type;
+            iswindtyperegistered[index] = true;
+        } else {
+            std::cerr << "RegisterWindType, index : " << index << " [ERROR] Type is already registered !\n";
+        }
+    } else {
+        std::cerr << "RegisterWindType, index : " << index << " [ERROR] Index must be in range [0 .. " << MAXTYPES << "]\n";
     }
 }
 
@@ -140,6 +163,17 @@ void SetSnowType (int index) {
     }
 }
 
+void SetWindType (int index) {
+    if((index < MAXTYPES) && (index > -1)) {
+        if(iswindtyperegistered[index]){
+            wind_vel = windtypes[index].wind_vel;
+        } else {
+            std::cerr << "SetWindType, index : " << index << " [ERROR] No type has been registered with this index !\n";
+        }
+    } else {
+        std::cerr << "RegisterWindType, index : " << index << " [ERROR] Index must be in range [0 .. " << MAXTYPES << "]\n";
+    }
+}
 
 static void MakeSnowParticle (int i) {
 
@@ -267,12 +301,17 @@ void reset_snow() {
 void update_snow( double time_step, bool windy, pp::Vec3d playerPos )
 {
     UpdateArea(playerPos);
-    
+ 
+    if ( gameMgr->getCurrentRace().windy ) {
+        XWindFactor = wind_vel.x * 0.03;
+        ZWindFactor = wind_vel.z * 0.045;
+    }
+  
     double xdiff = playerPos.x - lastPos.x;
     double ydiff = playerPos.y - lastPos.y;
 	double zdiff = playerPos.z - lastPos.z;
-    double xNearCoeff = XWindFactor * time_step;//We disable the xdrift for near particles because it is too obvious when the player turns
-    double xcoeff = xNearCoeff + (xdiff * xdrift);
+    double xNearCoeff = XWindFactor * time_step + 0.5*(xdiff * xdrift);//We slow down the xdrift for near particles because otherwise the correction would be too obvious when the player turns (having snow flakes "following" him along the x axis)
+    double xcoeff = XWindFactor * time_step + (xdiff * xdrift);
 	double ycoeff = (ydiff * ydrift) + (ZWindFactor * 0.025);	
 	double zcoeff = (ZWindFactor * time_step) + (zdiff * zdrift);
     
@@ -442,6 +481,7 @@ void draw_snow( pp::Vec3d eyepoint )
 
 }
 
+//copied from the code that draws herrings & other collectible items
 void draw_sprite( pp::Vec3d eyepoint, pp::Vec3d spriteLoc, double spriteSize, pp::Vec2d tex_min, pp::Vec2d tex_max ) {
     pp::Vec3d normal = eyepoint - spriteLoc;
     normal.normalize();

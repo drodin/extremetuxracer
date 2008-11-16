@@ -385,6 +385,17 @@ CourseData* create_race_data ( Tcl_Interp *ip, CONST84 char *string, char **err_
     		*err_msg = "Invalid value for -snowtype in open course data";
     		goto bail_race_data;
 	    }
+    } else if ( strcmp( *argv, "-windtype" ) == 0 ) {
+	    NEXT_ARG;
+
+	    if ( *argv == NULL ) {
+		*err_msg = "No data supplied for -windtype in race data";
+		goto bail_race_data;
+	    }
+        if ( Tcl_GetInt( ip, *argv, &(race_data->windtype) ) != TCL_OK ) {
+    		*err_msg = "Invalid value for -windtype in open course data";
+    		goto bail_race_data;
+	    }
 	} else if ( strcmp( *argv, "-conditions" ) == 0 ) {
 	    int i;
 	    NEXT_ARG;

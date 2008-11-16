@@ -90,6 +90,13 @@ Intro::Intro()
         init_snow(players[0].pos);
     }
     
+    if(gameMgr->getCurrentRace().windy) {
+		int windtype = gameMgr->getCurrentRace().windtype;
+        if(windtype > -1) {
+            SetWindType(windtype);
+        }
+	}
+    
     // reset all items as collectable 
     num_items = get_num_items();
     item_locs = get_item_locs();

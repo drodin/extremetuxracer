@@ -25,6 +25,7 @@
 #include "hier_util.h"
 #include "model_hndl.h"
 #include "part_sys.h"
+#include "snow.h"
 #include "phys_sim.h"
 #include "nmrcl.h"
 #include "game_config.h"
@@ -241,9 +242,9 @@ static const double air_log_drag_coeff[] = { 2.25,
 #define PADDLING_DAMAGE 0.02
 
 
-/* Wind velocity */
-static pp::Vec3d wind_vel(250.0/3.6, 0, 0);
+/* Wind scale*/
 static double wind_scale = 0.5;
+//wind_vel (the wind vector) is declared (and set) in snow.h
 
 /*
  * Static variables

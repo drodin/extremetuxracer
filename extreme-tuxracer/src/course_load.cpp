@@ -753,7 +753,7 @@ static int terrain_tex_cb ( ClientData cd, Tcl_Interp *ip, int argc, CONST84 cha
 
 static int snow_type_cb(ClientData cd, Tcl_Interp *ip, int argc, CONST84 char *argv[]){
     
-    if ( argc != SnowTypeArgCount + 2) { // the arguments for the type, plus the index, plus the arg for the function name itself
+    if ( argc != SnowTypeArgCount + 2) { // the arguments for the type, plus the index, plus the arg for the function name itself (argv[0])
         Tcl_AppendResult(ip, argv[0], ": invalid number of arguments\n", 
 			 "Usage: ", argv[0], " <index of the type> <speed> <minSize> <maxSize> <number of particles> <number of near particles>",
 			 (char *)0 );
@@ -800,7 +800,47 @@ static int snow_type_cb(ClientData cd, Tcl_Interp *ip, int argc, CONST84 char *a
 	    }
     
     RegisterSnowType(index,type);
-    return TCL_OK;
+    return TCL_OK;//Must return TCL_OK, otherwise the program just crashes because the Tcl interpreter assumes the absence of return value signals an error
+}
+
+static int wind_type_cb(ClientData cd, Tcl_Interp *ip, int argc, CONST84 char *argv[]){
+    
+    if ( argc != WindTypeArgCount + 2) { // the arguments for the type, plus the index, plus the arg for the function name itself(argv[0])
+        Tcl_AppendResult(ip, argv[0], ": invalid number of arguments\n", 
+			 "Usage: ", argv[0], " <index of the type> <wind_vel.x> <wind_vel.y> <wind_vel.z>",
+			 (char *)0 );
+        return TCL_ERROR;
+    }
+    WindType type;
+    int index;
+    
+    if ( Tcl_GetInt( ip, argv[1],
+		    &index) != TCL_OK ){
+				Tcl_AppendResult(ip, argv[0], ": invalid index",
+				 (char *)0 );
+			return TCL_ERROR;	
+	    }
+    if ( Tcl_GetDouble( ip, argv[2],
+		    &(type.wind_vel.x)) != TCL_OK ){
+				Tcl_AppendResult(ip, argv[0], ": invalid wind_vel.x",
+				 (char *)0 );
+			return TCL_ERROR;	
+	    }
+    if ( Tcl_GetDouble( ip, argv[3],
+		    &(type.wind_vel.y)) != TCL_OK ){
+				Tcl_AppendResult(ip, argv[0], ": invalid wind_vel.y",
+				 (char *)0 );
+			return TCL_ERROR;	
+	    }
+    if ( Tcl_GetDouble( ip, argv[4],
+		    &(type.wind_vel.z)) != TCL_OK ){
+				Tcl_AppendResult(ip, argv[0], ": invalid wind_vel.z",
+				 (char *)0 );
+			return TCL_ERROR;	
+	    }
+    
+    RegisterWindType(index,type);
+    return TCL_OK;//Must return TCL_OK, otherwise the program just crashes because the Tcl interpreter assumes the absence of return value signals an error
 }
 
 static int start_pt_cb ( ClientData cd, Tcl_Interp *ip, int argc, CONST84 char *argv[]) 
@@ -1732,6 +1772,7 @@ void register_course_load_tcl_callbacks( Tcl_Interp *ip )
     Tcl_CreateCommand (ip, "tux_bgnd_img",   bgnd_img_cb,   0,0);
 	Tcl_CreateCommand (ip, "tux_terrain_tex",   terrain_tex_cb,   0,0);
     Tcl_CreateCommand (ip, "tux_snow_type",   snow_type_cb,   0,0);
+    Tcl_CreateCommand (ip, "tux_wind_type",   wind_type_cb,   0,0);
     Tcl_CreateCommand (ip, "tux_start_pt",   start_pt_cb,   0,0);
     Tcl_CreateCommand (ip, "tux_friction",   friction_cb,   0,0);
     Tcl_CreateCommand (ip, "tux_course_author", course_author_cb, 0,0);

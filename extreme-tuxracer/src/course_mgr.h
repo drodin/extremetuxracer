@@ -63,6 +63,7 @@ public:
 	bool windy;
 	bool snowing;
     int snowtype;
+    int windtype;
 };
 
 extern std::list<CourseData> openCourseList;

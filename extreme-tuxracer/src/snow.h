@@ -45,10 +45,21 @@ typedef struct {
     int MAXNEAR;
 } SnowType;
 
+typedef struct {
+    pp::Vec3d wind_vel;
+} WindType;
+
 static const int SnowTypeArgCount = 5;
+static const int WindTypeArgCount = 3;
 
 void reset_snow();
+
 void RegisterSnowType(int index, SnowType type);
 void SetSnowType(int index);
+void RegisterWindType(int index, WindType type);
+void SetWindType(int index);
+
+//wind vector
+extern pp::Vec3d wind_vel;
 
 #endif // _SNOW_H_
