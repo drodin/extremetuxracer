@@ -10,3 +10,4 @@ set conditions sunny
 set windy no
 set snowing yes
 set snowtype 2
+set windtype 0

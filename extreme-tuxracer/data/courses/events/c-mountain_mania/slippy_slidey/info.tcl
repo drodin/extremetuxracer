@@ -10,4 +10,5 @@ set conditions night
 set windy no
 set snowing no
 set snowtype 0
+set windtype 0
 

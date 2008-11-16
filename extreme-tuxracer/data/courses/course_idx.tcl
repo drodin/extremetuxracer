@@ -27,7 +27,7 @@ proc append_course_info {course path {mode "open"}} {
 		[list -course $path$course -name $course_name \
 		-description $course_description -contributed $course_author \
 		-herring $herring -time $times -score $score -mirrored $mirrored \
-		-conditions $conditions -windy $windy -snowing $snowing -snowtype $snowtype ] 
+		-conditions $conditions -windy $windy -snowing $snowing -snowtype $snowtype -windtype $windtype ] 
 	}
 }
 
