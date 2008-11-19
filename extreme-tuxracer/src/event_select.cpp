@@ -105,6 +105,45 @@ EventSelect::EventSelect()
     mp_continueBtn->setHilitFontBinding( "button_label_hilit" );
     mp_continueBtn->setDisabledFontBinding( "button_label_disabled" );
     mp_continueBtn->signalClicked.Connect(pp::CreateSlot(this,&EventSelect::apply));
+    
+    
+    pos.x+=170;
+    
+    #define MODELID_TUX 0
+    #define MODELID_SAMUEL 1
+    #define MODELID_TRIXI 2
+    #define MODELID_SPEEDY 3
+    // model icon
+	mp_modelSSBtn = new pp::SSButton( pos,
+				      pp::Vec2d(89, 99),
+				      4 );
+    mp_modelSSBtn->setStateImage(MODELID_TUX,"modelpreviews_button",
+				  pp::Vec2d( 0.0, 0.0 ),
+				  pp::Vec2d( 0.25, 1.0 ),
+				  pp::Color::white );
+	mp_modelSSBtn->setStateImage(MODELID_SAMUEL,"modelpreviews_button",
+				  pp::Vec2d( 0.25, 0.0 ),
+				  pp::Vec2d( 0.50, 1.0 ),
+				  pp::Color::white );
+
+	mp_modelSSBtn->setStateImage(MODELID_TRIXI,"modelpreviews_button",
+				  pp::Vec2d( 0.50, 0.0 ),
+				  pp::Vec2d( 0.75, 1.0 ),
+				  pp::Color::white );
+                  
+    mp_modelSSBtn->setStateImage(MODELID_SPEEDY,"modelpreviews_button",
+				  pp::Vec2d( 0.75, 0.0 ),
+				  pp::Vec2d( 1.0, 1.0 ),
+				  pp::Color::white );
+    mp_modelSSBtn->signalClicked.Connect(pp::CreateSlot(this,&EventSelect::buttonModelChange));
+
+    m_modelList = ModelHndl->l_models;
+    pos.y -= 32;
+    mp_modelEnt = new pp::Listbox<model_t>( pos, pp::Vec2d(139, 32), "listbox_item", m_modelList);
+    mp_modelEnt->signalChange.Connect(pp::CreateSlot(this,&EventSelect::listboxModelChange));
+    std::list<model_t>::iterator modelit = mp_modelEnt->getCurrentItem();
+    mp_modelSSBtn->setState(modelit->id);
+    
 	
 	updateCupStates();
 	updateButtonEnabledStates();
@@ -122,6 +161,10 @@ EventSelect::~EventSelect()
 	delete mp_cupLbl;	
 	delete mp_statusLbl;
 	delete mp_nameLbl;
+    
+    //if we don't delete the buttons, the game just crashes when the player leaves the event selection screen
+    delete mp_modelSSBtn;
+    delete mp_modelEnt;
 	
 	delete mp_nameEnt;
 }
@@ -198,6 +241,21 @@ EventSelect::eventChanged()
 	updateButtonEnabledStates();
 }
 
+void EventSelect::listboxModelChange() {
+    std::list<model_t>::iterator modelit = mp_modelEnt->getCurrentItem();
+    mp_modelSSBtn->setState(modelit->id);
+}
+
+void EventSelect::buttonModelChange() {
+    std::list<model_t>::iterator modelit = mp_modelEnt->getCurrentItem();
+    modelit++;
+    if(modelit!=mp_modelEnt->getItemList().end()) {
+        mp_modelEnt->setCurrentItem(modelit);
+    } else {
+        mp_modelEnt->setCurrentItem(mp_modelEnt->getItemList().begin());
+    }
+}
+
 void
 EventSelect::back()
 {
@@ -212,6 +270,7 @@ EventSelect::apply()
 		players[0].name = mp_nameEnt->getContent();
 	     m_curEvent = mp_eventListbox->getCurrentItem();
 		m_curCup = mp_cupListbox->getCurrentItem();
+        
 
 
 		gameMgr->setupEventAndCup(	m_curEvent,
@@ -223,6 +282,8 @@ EventSelect::apply()
 			}
 		}
 		players[0].resetLives();
+        std::list<model_t>::iterator modelit = mp_modelEnt->getCurrentItem();
+        ModelHndl->load_model((*modelit).id);
 	    set_game_mode( EVENT_RACE_SELECT );
 	    UIMgr.setDirty();
     }

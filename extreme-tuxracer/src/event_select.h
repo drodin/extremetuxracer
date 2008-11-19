@@ -24,7 +24,10 @@
 
 #include "course_mgr.h"
 
+#include "model_hndl.h"
+
 #include "ppgltk/button.h"
+#include "ppgltk/ssbutton.h"
 #include "ppgltk/listbox.h"
 #include "ppgltk/label.h"
 #include "ppgltk/entry.h"
@@ -44,6 +47,11 @@ class EventSelect : public GameMode
 	
 	pp::Button* mp_backBtn;
 	pp::Button* mp_continueBtn;
+    
+    std::list<model_t> m_modelList;
+    
+    pp::SSButton* mp_modelSSBtn;
+    pp::Listbox<model_t>* mp_modelEnt;
 		
 	pp::Label *mp_titleLbl;
 	pp::Label *mp_eventLbl;
@@ -64,6 +72,8 @@ public:
 
 	void cupChanged();
 	void eventChanged();
+    void listboxModelChange();
+    void buttonModelChange();
 
 	void back();
 	void apply();
