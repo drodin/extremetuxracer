@@ -34,6 +34,8 @@ void init_snow( pp::Vec3d playerPos);
 void update_snow( double time_step, bool windy, pp::Vec3d playerPos );
 void draw_snow( pp::Vec3d eyepoint );
 
+void update_wind();
+
 void draw_sprite( pp::Vec3d eyepoint, pp::Vec3d spriteLoc, double spriteSize, pp::Vec2d tex_min, pp::Vec2d tex_max );
 void draw_cuboid_areas();
 
@@ -61,5 +63,7 @@ void SetWindType(int index);
 
 //wind vector
 extern pp::Vec3d wind_vel;
+
+extern double wind_scale;
 
 #endif // _SNOW_H_

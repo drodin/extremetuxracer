@@ -404,6 +404,11 @@ Racing::loop(float timeStep)
     render_course();
 	
 	
+    //Update wind
+    if(gameMgr->getCurrentRace().windy) {
+        update_wind();
+    }
+    
 	//Draw snow
     if(gameMgr->getCurrentRace().snowing) {
         update_snow( timeStep, false, players[0].pos );

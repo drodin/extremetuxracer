@@ -242,9 +242,9 @@ static const double air_log_drag_coeff[] = { 2.25,
 #define PADDLING_DAMAGE 0.02
 
 
-/* Wind scale*/
-static double wind_scale = 0.5;
-//wind_vel (the wind vector) is declared (and set) in snow.h
+
+//WIND
+//wind_vel (the wind vector) and wind_scale (its random variations in intensity) are declared (and set) in snow.h
 
 /*
  * Static variables
@@ -1168,19 +1168,10 @@ pp::Vec3d calc_wind_force( pp::Vec3d player_vel )
     float drag_coeff; /* drag coefficient */
     int table_size;      /* size of drag coeff table */
 
-    static float last_time_called = -1;
-
     total_vel = -1*player_vel;
     
     if ( gameMgr->getCurrentRace().windy ) {
-	/* adjust wind_scale with a random walk */
-	if ( last_time_called != gameMgr->time ) {
-	    wind_scale = wind_scale + 
-		(rand()/(double)RAND_MAX-0.50) * 0.15;
-	    wind_scale = MIN( 1.0, MAX( 0.0, wind_scale ) );
-	}
-
-	total_vel = total_vel+(wind_scale*wind_vel);
+        total_vel = total_vel+(wind_scale*wind_vel);
     }
 
     wind_speed = total_vel.normalize();
@@ -1197,8 +1188,6 @@ pp::Vec3d calc_wind_force( pp::Vec3d player_vel )
 	* ( M_PI * ( TUX_DIAMETER * TUX_DIAMETER ) * 0.25 );
 
     check_assertion( df_mag > 0, "Negative wind force" );
-
-    last_time_called = gameMgr->time;
 
     return df_mag*total_vel;
 }

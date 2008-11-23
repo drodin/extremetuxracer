@@ -190,20 +190,40 @@ RaceSelect::RaceSelect()
 	// wind
 	mp_windSSBtn = new pp::SSButton( pos,
 				      pp::Vec2d(32, 32),
-				      3 );
+				      7 );
 	mp_windSSBtn->setStateImage(0,"wind_button",
-				  pp::Vec2d( 0.0/64.0, 32.0/64.0 ),
-				  pp::Vec2d( 32.0/64.0, 64.0/64.0 ),
+				  pp::Vec2d( 0.0/64.0, 96.0/128.0 ),
+				  pp::Vec2d( 32.0/64.0, 128.0/128.0 ),
 				  pp::Color::white );
 
 	mp_windSSBtn->setStateImage(1,"wind_button",
-				  pp::Vec2d( 32.0/64.0, 32.0/64.0 ),
-				  pp::Vec2d( 64.0/64.0, 64.0/64.0 ),
+				  pp::Vec2d( 32.0/64.0, 96.0/128.0 ),
+				  pp::Vec2d( 64.0/64.0, 128.0/128.0 ),
 				  pp::Color::white );
-    
+                  
     mp_windSSBtn->setStateImage(2,"wind_button",
-				  pp::Vec2d( 0.0/64.0, 0.0/64.0 ),
-				  pp::Vec2d( 32.0/64.0, 32.0/64.0 ),
+				  pp::Vec2d( 0.0/64.0, 64.0/128.0 ),
+				  pp::Vec2d( 32.0/64.0, 96.0/128.0 ),
+				  pp::Color::white );
+
+    mp_windSSBtn->setStateImage(3,"wind_button",
+				  pp::Vec2d( 32.0/64.0, 64.0/128.0 ),
+				  pp::Vec2d( 64.0/64.0, 96.0/128.0 ),
+				  pp::Color::white );
+
+    mp_windSSBtn->setStateImage(4,"wind_button",
+				  pp::Vec2d( 0.0/64.0, 32.0/128.0 ),
+				  pp::Vec2d( 32.0/64.0, 64.0/128.0 ),
+				  pp::Color::white );
+
+    mp_windSSBtn->setStateImage(5,"wind_button",
+				  pp::Vec2d( 32.0/64.0, 32.0/128.0 ),
+				  pp::Vec2d( 64.0/64.0, 64.0/128.0 ),
+				  pp::Color::white );
+                  
+    mp_windSSBtn->setStateImage(6,"wind_button",
+				  pp::Vec2d( 0.0/64.0, 0.0/128.0 ),
+				  pp::Vec2d( 32.0/64.0, 32.0/128.0 ),
 				  pp::Color::white );
 
 	mp_windSSBtn->setState( gameMgr->getCurrentRace().windtype + 1 );
@@ -231,7 +251,7 @@ RaceSelect::RaceSelect()
 				  pp::Vec2d( 32.0/64.0, 0.0/64.0 ),
 				  pp::Vec2d( 64.0/64.0, 32.0/64.0 ),
 				  pp::Color::white );
-                  
+
 	mp_snowSSBtn->setState( gameMgr->getCurrentRace().snowtype + 1 );
 	
     updateButtonEnabledStates();

@@ -48,6 +48,8 @@ static int MAXNEAR = 30;
 //default windtype : no wind
 pp::Vec3d wind_vel(0.0,0.0,0.0);
 
+double wind_scale = 0.5;
+
 static double xdrift = 1;
 static double ydrift = 1;
 static double zdrift = 1;
@@ -303,8 +305,8 @@ void update_snow( double time_step, bool windy, pp::Vec3d playerPos )
     UpdateArea(playerPos);
  
     if ( gameMgr->getCurrentRace().windy ) {
-        XWindFactor = wind_vel.x * 0.03;
-        ZWindFactor = wind_vel.z * 0.045;
+        XWindFactor = wind_vel.x * wind_scale * 0.03;
+        ZWindFactor = wind_vel.z * wind_scale * 0.045;
     }
   
     double xdiff = playerPos.x - lastPos.x;
@@ -392,6 +394,19 @@ void update_snow( double time_step, bool windy, pp::Vec3d playerPos )
     }
     */
 } 
+
+void update_wind() {
+    static float last_time_called = -1;
+    if ( gameMgr->getCurrentRace().windy ) {
+        /* adjust wind_scale with a random walk */
+    	if ( last_time_called != gameMgr->time ) {
+    	    wind_scale = wind_scale + 
+    		(rand()/(double)RAND_MAX-0.50) * 0.15;
+    	    wind_scale = MIN( 1.0, MAX( 0.0, wind_scale ) );
+    	}
+        last_time_called = gameMgr->time;
+    }
+}
 
 void draw_snow( pp::Vec3d eyepoint )
 {

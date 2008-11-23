@@ -139,6 +139,7 @@ EventSelect::EventSelect()
 
     m_modelList = ModelHndl->l_models;
     pos.y -= 32;
+    pos.x -= 10;
     mp_modelEnt = new pp::Listbox<model_t>( pos, pp::Vec2d(139, 32), "listbox_item", m_modelList);
     mp_modelEnt->signalChange.Connect(pp::CreateSlot(this,&EventSelect::listboxModelChange));
     std::list<model_t>::iterator modelit = mp_modelEnt->getCurrentItem();
