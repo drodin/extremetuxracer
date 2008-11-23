@@ -7,8 +7,8 @@ set times { 26 25 25 25 }
 set score { 0 0 0 0 }
 set mirrored no
 set conditions cloudy
-set windy no
+set windy yes
 set snowing no
 set snowtype 0
-set windtype 0
+set windtype 4
 

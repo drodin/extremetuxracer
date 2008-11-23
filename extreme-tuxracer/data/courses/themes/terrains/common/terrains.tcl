@@ -13,18 +13,22 @@ tux_snow_type    1       13.0    0.35      0.65      250       150
 #hard snow -- "snowfall" mode, will make the race more difficult ! Ex. twisty slope in foggy weather :-P
 tux_snow_type    2       18.0    0.35      0.65      700       700
 
-# wind types
+# wind types -- initial values (too strong) : 69.4 180.0 280.0
 
-
-#wind to the right side of tux
-tux_wind_type    0       280     0.0      0.0
+#wind to the right side of tux -- Easy (original : 250.0/3.6)
+tux_wind_type    0       50.0     0.0      0.0
 #wind to the left side of tux
-tux_wind_type    1       -280    0.0      0.0
+tux_wind_type    1       -50.0    0.0      0.0
 
-#wind to the right side of tux -- 250.0/3.6
-tux_wind_type    2       69.4    0.0      0.0
+#wind to the right side of tux -- Medium
+tux_wind_type    2       120.0    0.0      0.0
 #wind to the left side of tux
-tux_wind_type    3       -69.4   0.0      0.0
+tux_wind_type    3       -120.0   0.0      0.0
+
+#wind to the right side of tux -- Hard (used in Practice mode)
+tux_wind_type    4       200      0.0      0.0
+#wind to the left side of tux
+tux_wind_type    5       -200     0.0      0.0
 
 # snow marks
 tux_load_texture c_snow_head buttstart.png 1
