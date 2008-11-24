@@ -81,7 +81,7 @@ EventSelect::EventSelect()
 								  "cup_status","");
 	mp_statusLbl->alignment.center();
 
-     pos.y-=45;
+     pos.y-=80;
      pp::Vec2d size(176,32);
      pp::Vec2d pos2(pos.x+150,pos.y-10);
      mp_nameLbl = new pp::Label( pos,"event_and_cup_label",_("Player name:"));
@@ -107,7 +107,8 @@ EventSelect::EventSelect()
     mp_continueBtn->signalClicked.Connect(pp::CreateSlot(this,&EventSelect::apply));
     
     
-    pos.x+=170;
+    pos.x+=50;
+    pos.y+=50;
     
     #define MODELID_TUX 0
     #define MODELID_SAMUEL 1
@@ -138,8 +139,8 @@ EventSelect::EventSelect()
     mp_modelSSBtn->signalClicked.Connect(pp::CreateSlot(this,&EventSelect::buttonModelChange));
 
     m_modelList = ModelHndl->l_models;
-    pos.y -= 32;
-    pos.x -= 10;
+    pos.y -= -45;
+    pos.x -= 200;
     mp_modelEnt = new pp::Listbox<model_t>( pos, pp::Vec2d(139, 32), "listbox_item", m_modelList);
     mp_modelEnt->signalChange.Connect(pp::CreateSlot(this,&EventSelect::listboxModelChange));
     std::list<model_t>::iterator modelit = mp_modelEnt->getCurrentItem();

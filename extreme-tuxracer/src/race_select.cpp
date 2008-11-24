@@ -331,14 +331,14 @@ RaceSelect::setWidgetPositionsAndDrawDecorations()
 		      42 ) );
 
 	mp_nameLbl->setPosition(pp::Vec2d( x_org,
-		      y_org) );
-	mp_nameEnt->setPosition(pp::Vec2d( x_org+180,
-		      y_org-8) );
+		      y_org-40) );
+	mp_nameEnt->setPosition(pp::Vec2d( x_org+120,
+		      y_org-48) );
 
-	mp_modelEnt->setPosition(pp::Vec2d( x_org+400,
-		      y_org-50 -32) );
-    mp_modelSSBtn->setPosition(pp::Vec2d( x_org+400,
-		      y_org-50) );
+	mp_modelEnt->setPosition(pp::Vec2d( x_org+120,
+		      y_org) );
+    mp_modelSSBtn->setPosition(pp::Vec2d( x_org+320,
+		      y_org-60) );
 
 	mp_raceListbox->setPosition(pp::Vec2d( x_org,y_org + 221 ) );
 
