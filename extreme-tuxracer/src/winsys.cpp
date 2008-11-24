@@ -138,6 +138,9 @@ void setup_sdl_video_mode()
 	}
 	
     height = getparam_y_resolution();
+    
+    if(width < 800) width = 800;
+    if(height < 600) height = 600;
 
     if ( ( screen = SDL_SetVideoMode( width, height, bpp, video_flags ) ) ==  NULL ){
     	handle_system_error( 1, "Couldn't initialize video: %s", 
