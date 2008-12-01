@@ -109,6 +109,9 @@ void main_loop()
 			case CREDITS:
 				GameMode::currentMode = new Credits();
 				break;
+			case CREDITS_TRANS:
+				GameMode::currentMode = new CreditsTrans();
+				break;
 			case CONFIGURATION:
 				GameMode::currentMode = new Configuration();
 				break;

@@ -21,16 +21,35 @@
 #define _CREDITS_H_
 
 #include "loop.h"
+#include "ppgltk/button.h"
 
 class Credits : public GameMode
 {	
 	double m_yOffset;
 	
 	void drawText( float timeStep );
+	pp::Button* mp_creditstransBtn;
+	pp::Button* mp_backBtn;
 
 public:
 	Credits();
 	~Credits();
+
+	void loop(float timeStep);
+	bool keyReleaseEvent(SDLKey key);
+	void Trans();
+	void CredBack();
+};
+
+class CreditsTrans : public GameMode
+{	
+	double m_yOffset;
+	
+	void drawText( float timeStep );
+
+public:
+	CreditsTrans();
+	~CreditsTrans();
 
 	void loop(float timeStep);
 	bool mouseButtonReleaseEvent(int button, int x, int y);

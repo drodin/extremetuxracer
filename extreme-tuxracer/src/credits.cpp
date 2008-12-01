@@ -144,11 +144,33 @@ Credits::Credits()
 	}
 	
   play_music( "credits_screen" );
+
+{
+	pp::Vec2d pos(0,0);
+	mp_creditstransBtn = new pp::Button(pos,
+				  pp::Vec2d(1200, 40),
+				  "button_label",
+				  _("Translators") );
+    mp_creditstransBtn->setHilitFontBinding( "button_label_hilit" );
+	mp_creditstransBtn->signalClicked.Connect(pp::CreateSlot(this,&Credits::Trans)); 
+}
+{
+	pp::Vec2d pos(0,0);
+	mp_backBtn = new pp::Button(pos,
+				  pp::Vec2d(500, 40),
+				  "button_label",
+				  _("Back") );
+    mp_backBtn->setHilitFontBinding( "button_label_hilit" );
+	mp_backBtn->signalClicked.Connect(pp::CreateSlot(this,&Credits::CredBack)); 
+}
+
 }
 
 
 Credits::~Credits()
 {	
+delete mp_creditstransBtn;
+delete mp_backBtn;
 }
 
 void
@@ -256,13 +278,7 @@ Credits::drawText( float timeStep )
     glEnable( GL_TEXTURE_2D );
 }
 
-bool
-Credits::mouseButtonReleaseEvent(int button, int x, int y)
-{
-	set_game_mode( GAME_TYPE_SELECT );
-    winsys_post_redisplay();
-	return true;
-}
+
 
 bool
 Credits::keyReleaseEvent(SDLKey key)
@@ -270,5 +286,20 @@ Credits::keyReleaseEvent(SDLKey key)
 	set_game_mode( GAME_TYPE_SELECT );
     winsys_post_redisplay();
 	return true;
+}
+
+void
+Credits::Trans()
+{
+set_game_mode( CREDITS_TRANS );
+UIMgr.setDirty();
+}
+
+void
+Credits::CredBack()
+{
+set_game_mode( GAME_TYPE_SELECT );
+UIMgr.setDirty();
+    winsys_post_redisplay();
 }
 

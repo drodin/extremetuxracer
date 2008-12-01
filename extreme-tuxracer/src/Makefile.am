@@ -68,6 +68,7 @@ etracer_SOURCES =				\
 	course_render.h				\
 	credits.cpp				\
 	credits.h				\
+	credits_trans.cpp			\
 	debug.cpp				\
 	debug.h					\
 	error_util.cpp				\
