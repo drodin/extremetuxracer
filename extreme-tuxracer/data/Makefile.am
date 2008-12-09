@@ -400,13 +400,11 @@ courses/events/a-tux_racer/path_of_daggers/elev.png \
 		textures/mask_outline2.png \
 		textures/gaugeenergymask.png \
 		textures/wind_button.png \
-		textures/mask_outline.png \
 		textures/energymask.png \
 		textures/gaugeoutline.png \
 		textures/menu_bottom_right.png \
 		textures/listbox_arrows.png \
 		textures/noicon.png \
-		textures/speedmask.png \
 		textures/conditions_button.png \
 		textures/mouse_cursor.png \
 		textures/tuxlife.png \

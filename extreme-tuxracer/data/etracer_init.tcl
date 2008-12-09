@@ -330,14 +330,9 @@ tux_bind_texture gauge_energy_mask gauge_energy_mask
 tux_load_texture gauge_speed_mask textures/gaugespeedmask.png 0
 tux_bind_texture gauge_speed_mask gauge_speed_mask
 
-
-#Energy und Speedmask für die Demobalken
 tux_load_texture energy_mask textures/energymask.png 0
 tux_bind_texture energy_mask energy_mask
-tux_load_texture speed_mask textures/speedmask.png 0
-tux_bind_texture speed_mask speed_mask
-tux_load_texture mask_outline textures/mask_outline.png 0
-tux_bind_texture mask_outline mask_outline
+
 tux_load_texture mask_outline2 textures/mask_outline2.png 0
 tux_bind_texture mask_outline2 mask_outline2
 
