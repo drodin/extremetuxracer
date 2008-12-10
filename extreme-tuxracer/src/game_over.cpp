@@ -91,6 +91,9 @@ play_music("game_over");
             }
 
 		}
+    else{ //race was won
+      gameMgr->setRaceHasToBeRetried(false);
+    }
     }else{
 		if ( !m_aborted ) {
 			m_bestScore = players[0].updateOpenCourseData(
