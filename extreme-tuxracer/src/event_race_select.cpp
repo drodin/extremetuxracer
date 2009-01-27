@@ -85,6 +85,13 @@ EventRaceSelect::EventRaceSelect()
 			       "race_description",
 			       "" );
 	mp_descTa->setText( (*curElem).description.c_str() );
+
+// Create preview
+
+	mp_previewSSBtn = new pp::SSButton( pos, pp::Vec2d(132,99), 1);
+	handlePreview( (*curElem).course.c_str() );
+	mp_previewSSBtn->signalClicked.Connect(pp::CreateSlot(this,&EventRaceSelect::start));
+
     // Create state buttons - only if practicing or if cup_complete
     
   	mp_conditionsSSBtn = NULL;
@@ -100,15 +107,15 @@ EventRaceSelect::EventRaceSelect()
 EventRaceSelect::~EventRaceSelect()
 {
 	delete mp_titleLbl;
-	
 	delete mp_backBtn;
 	delete mp_startBtn;
 	delete mp_raceListbox;
+	delete mp_previewSSBtn;
 	delete mp_conditionsSSBtn;
 	delete mp_snowSSBtn;
 	delete mp_windSSBtn;
 	delete mp_mirrorSSBtn;
-    delete mp_descTa;	
+	delete mp_descTa;
 }
 
 void
@@ -226,8 +233,10 @@ EventRaceSelect::setWidgetPositionsAndDrawDecorations()
     drawStatusMsg( x_org, y_org, box_width, box_height );
 
     // Draw preview
-	std::list<CourseData>::iterator elem;
-	elem = mp_raceListbox->getCurrentItem();
+	mp_previewSSBtn->setPosition(pp::Vec2d( x_org+box_width-136, y_org+70 ));
+	
+	//std::list<CourseData>::iterator elem;
+	//elem = mp_raceListbox->getCurrentItem();
 
     glDisable( GL_TEXTURE_2D );
 
@@ -242,7 +251,7 @@ EventRaceSelect::setWidgetPositionsAndDrawDecorations()
     glEnd();
 
     glEnable( GL_TEXTURE_2D );
-
+/* Old preview system
     if ( !get_texture_binding( (*elem).course.c_str(), &texobj ) ) {
 	if ( !get_texture_binding( "no_preview", &texobj ) ) {
 	    texobj = 0;
@@ -266,6 +275,7 @@ EventRaceSelect::setWidgetPositionsAndDrawDecorations()
 	glVertex2f( x_org+box_width-136, y_org+70+99 );
     }
     glEnd();
+*/
 }
 
 void
@@ -358,6 +368,7 @@ EventRaceSelect::updateStates()
 	if ( players[0].getLives() <= 0 ) {
 		state=DEAD;
 		mp_startBtn->setSensitive( false );
+		mp_previewSSBtn->setSensitive( false );
 	} else {
 		m_data.won=false;
 		players[0].getCupCourseData(
@@ -368,7 +379,8 @@ EventRaceSelect::updateStates()
 	
 		if(m_data.won){
 			state=RACEWON;
-			mp_startBtn->setSensitive( false );	
+			mp_startBtn->setSensitive( false );
+			mp_previewSSBtn->setSensitive( false );
 		}else{
 			
 			difficulty_level_t d = gameMgr->difficulty;
@@ -379,6 +391,7 @@ EventRaceSelect::updateStates()
 			if(curElem==gameMgr->getCurrentCup().raceList.begin()){
 				state=PLAYABLE;
 				mp_startBtn->setSensitive( true );
+				mp_previewSSBtn->setSensitive( true );
 			}else{
 				PlayerCourseData prev;
 				curElem--;
@@ -392,9 +405,11 @@ EventRaceSelect::updateStates()
 				if(prev.won){
 					state=PLAYABLE;
 					mp_startBtn->setSensitive( true );
+					mp_previewSSBtn->setSensitive( true );
 				} else {
 					state=UNPLAYABLE;
 					mp_startBtn->setSensitive( false );
+					mp_previewSSBtn->setSensitive( false );
 				}
 			}
 		}
@@ -427,8 +442,20 @@ EventRaceSelect::listboxItemChange()
 {
 	curElem = mp_raceListbox->getCurrentItem();
 	mp_descTa->setText( (*curElem).description.c_str() );
+	handlePreview( (*curElem).course.c_str() );
 	updateStates();
 	UIMgr.setDirty();
+}
+
+void
+EventRaceSelect::handlePreview(const char* preview)
+{
+	GLuint texobj;
+	if ( get_texture_binding( preview, &texobj ) ) 
+		mp_previewSSBtn->setStateImage(0, preview, pp::Vec2d(0.0, 0.0), pp::Vec2d(1.0, 1.0), pp::Color::white);	
+	else
+		mp_previewSSBtn->setStateImage(0, "no_preview", pp::Vec2d(0.0, 0.0), pp::Vec2d(1.0, 1.0), pp::Color::white);
+	
 }
 
 bool

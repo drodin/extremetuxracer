@@ -37,6 +37,7 @@ class EventRaceSelect : public GameMode
 	pp::Label *mp_titleLbl;
 	pp::Textarea *mp_descTa;
 	pp::Listbox<CourseData> *mp_raceListbox;
+	pp::SSButton* mp_previewSSBtn;
 	pp::Button *mp_backBtn;
 	pp::Button *mp_startBtn;
 	pp::SSButton *mp_conditionsSSBtn;
@@ -67,6 +68,7 @@ public:
 	void start();
 	void back();
 	void listboxItemChange();
+	void handlePreview(const char* preview);
 
 	bool keyPressEvent(SDLKey key);
 

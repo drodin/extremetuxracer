@@ -142,7 +142,11 @@ RaceSelect::RaceSelect()
 			       "race_description",
 			       "" );
 	mp_descTa->setText( (*curElem).description.c_str() );
-	
+// Create preview
+
+	mp_previewSSBtn = new pp::SSButton( pos, pp::Vec2d(132,99), 1);
+	handlePreview( (*curElem).course.c_str() );
+	mp_previewSSBtn->signalClicked.Connect(pp::CreateSlot(this,&RaceSelect::start));
 	
 
     // Create state buttons - only if practicing or if cup_complete
@@ -267,12 +271,13 @@ RaceSelect::~RaceSelect()
 	delete mp_backBtn;
 	delete mp_startBtn;
 	delete mp_raceListbox;
+	delete mp_previewSSBtn;
 	delete mp_conditionsSSBtn;
 	delete mp_snowSSBtn;
-    delete mp_modelSSBtn;
+	delete mp_modelSSBtn;
 	delete mp_windSSBtn;
 	delete mp_mirrorSSBtn;
-    delete mp_descTa;	
+	delete mp_descTa;	
 	delete mp_titleLbl;
 	delete mp_nameLbl;
 	delete mp_nameEnt;
@@ -311,7 +316,7 @@ RaceSelect::setWidgetPositionsAndDrawDecorations()
     int h = getparam_y_resolution();
     int box_width, box_height, box_max_y;
     int x_org, y_org;
-    GLuint texobj;
+//    GLuint texobj;
 
     // set the dimensions of the box in which all widgets should fit
     box_width = 460;
@@ -370,8 +375,10 @@ RaceSelect::setWidgetPositionsAndDrawDecorations()
 
     // Draw preview
 
-	std::list<CourseData>::iterator elem;
-	elem = mp_raceListbox->getCurrentItem();
+	mp_previewSSBtn->setPosition(pp::Vec2d( x_org+box_width-136, y_org+70 ));
+	
+	//std::list<CourseData>::iterator elem;
+	//elem = mp_raceListbox->getCurrentItem();
 
     glDisable( GL_TEXTURE_2D );
 
@@ -386,6 +393,8 @@ RaceSelect::setWidgetPositionsAndDrawDecorations()
     glEnd();
 
     glEnable( GL_TEXTURE_2D );
+
+/* Old preview system
 
 	//current_course = (*elem).course;
 	//if ( !get_texture_binding( current_course, &texobj ) ) {
@@ -410,8 +419,9 @@ RaceSelect::setWidgetPositionsAndDrawDecorations()
 
 	glTexCoord2d( 0, 1);
 	glVertex2f( x_org+box_width-136, y_org+70+99 );
-    }
+	    }
     glEnd();
+*/
 }
 
 
@@ -495,6 +505,7 @@ void
 RaceSelect::updateButtonEnabledStates()
 {
 	mp_startBtn->setSensitive( true );
+	mp_previewSSBtn->setSensitive( true );
 }
 
 void
@@ -515,6 +526,16 @@ RaceSelect::start()
 	ModelHndl->load_model((*modelit).id);	
 }
 
+void
+RaceSelect::handlePreview(const char* preview)
+{
+	GLuint texobj;
+	if ( get_texture_binding( preview, &texobj ) ) 
+		mp_previewSSBtn->setStateImage(0, preview, pp::Vec2d(0.0, 0.0), pp::Vec2d(1.0, 1.0), pp::Color::white);	
+	else
+		mp_previewSSBtn->setStateImage(0, "no_preview", pp::Vec2d(0.0, 0.0), pp::Vec2d(1.0, 1.0), pp::Color::white);
+	
+}
 
 void
 RaceSelect::listboxItemChange()
@@ -523,6 +544,7 @@ RaceSelect::listboxItemChange()
 	gameMgr->setCurrentRace(curElem);	
 	updateRaceData();
 	mp_descTa->setText( (*curElem).description.c_str() );
+	handlePreview( (*curElem).course.c_str() );
 	updateButtonEnabledStates();
 	UIMgr.setDirty();
 }
