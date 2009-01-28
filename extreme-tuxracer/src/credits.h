@@ -36,7 +36,7 @@ public:
 	~Credits();
 
 	void loop(float timeStep);
-	bool keyReleaseEvent(SDLKey key);
+	bool keyPressEvent(SDLKey key);
 	void Trans();
 	void CredBack();
 };
@@ -53,7 +53,7 @@ public:
 
 	void loop(float timeStep);
 	bool mouseButtonReleaseEvent(int button, int x, int y);
-	bool keyReleaseEvent(SDLKey key);
+	bool keyPressEvent(SDLKey key);
 };
 
 #endif // _CREDITS_H_

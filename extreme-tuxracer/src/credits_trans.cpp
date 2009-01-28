@@ -184,7 +184,7 @@ CreditsTrans::mouseButtonReleaseEvent(int button, int x, int y)
 }
 
 bool
-CreditsTrans::keyReleaseEvent(SDLKey key)
+CreditsTrans::keyPressEvent(SDLKey key)
 {
 	set_game_mode( GAME_TYPE_SELECT );
     winsys_post_redisplay();

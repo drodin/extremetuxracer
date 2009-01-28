@@ -194,7 +194,7 @@ play_music("game_over");
 		} else if(gameMgr->wasCupWon()){
 			string = _("Congratulations! You won the cup!");
 		} else if(gameMgr->wasRaceWon()){
-			string = _("Requirements met! Advance to the next race. ");
+			string = _("Requirements met! Advance to the next race.");
 		} else {
 			string = _("Race requirements not met.");
 		}	

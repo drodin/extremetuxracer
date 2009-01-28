@@ -123,14 +123,16 @@ void UpdateArea(pp::Vec3d pos) {
     //std::cout << "[snow.cpp] Updated snow area : " << neararea.left << " " << neararea.back << " " <<neararea.top  << "\n";
 }
 
+//There should be no harm in re-registering wind and snow types... or we should add deregistering at the end of each course
+
 void RegisterSnowType (int index, SnowType type) {
     if((index < MAXTYPES) && (index > -1)) {
-        if(istyperegistered[index] == false) {
+//        if(istyperegistered[index] == false) {
             snowtypes[index] = type;
             istyperegistered[index] = true;
-        } else {
-            std::cerr << "RegisterSnowType, index : " << index << " [ERROR] Type is already registered !\n";
-        }
+//       } else {
+//            std::cerr << "RegisterSnowType, index : " << index << " [ERROR] Type is already registered !\n";
+//        }
     } else {
         std::cerr << "RegisterSnowType, index : " << index << " [ERROR] Index must be in range [0 .. " << MAXTYPES << "]\n";
     }
@@ -138,12 +140,12 @@ void RegisterSnowType (int index, SnowType type) {
 
 void RegisterWindType (int index, WindType type) {
     if((index < MAXTYPES) && (index > -1)) {
-        if(iswindtyperegistered[index] == false) {
+//	if(iswindtyperegistered[index] == false) {
             windtypes[index] = type;
             iswindtyperegistered[index] = true;
-        } else {
-            std::cerr << "RegisterWindType, index : " << index << " [ERROR] Type is already registered !\n";
-        }
+//        } else {
+//            std::cerr << "RegisterWindType, index : " << index << " [ERROR] Type is already registered !\n";
+//        }
     } else {
         std::cerr << "RegisterWindType, index : " << index << " [ERROR] Index must be in range [0 .. " << MAXTYPES << "]\n";
     }

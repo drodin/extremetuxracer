@@ -40,7 +40,7 @@ typedef struct {
 static credit_line_t credit_lines[] = 
 {
 	{ NULL, "credits_text_big", "Extreme Tux Racer" },
-    { NULL, "credits_text", N_("Version 0.4") },
+    { NULL, "credits_text", N_("Version 0.5") },
     { NULL, "credits_text", "www.extremetuxracer.com" },
     { NULL, "credits_text", "" },	
 	{ NULL, "credits_text", N_("Extreme Tux Racer is in the process of being") },	
@@ -56,10 +56,12 @@ static credit_line_t credit_lines[] =
 		{ NULL, "credits_text", N_("original versions to fit the requirements of the game.") },		
     { NULL, "credits_text", "" },
     { NULL, "credits_h2", N_("Development") },
-    { NULL, "credits_text", "Volker Ströbel" },
+    { NULL, "credits_text", "Jean-Vivien Maurice" },
+    { NULL, "credits_text", "Paweł Drewniak" },
     { NULL, "credits_text", "Steven Bell" },
     { NULL, "credits_text", "Hamish Morrison" },
     { NULL, "credits_text", "Andreas Tarandi" },
+    { NULL, "credits_text", "Volker Ströbel (PlanetPenguin Racer)" },
 	{ NULL, "credits_text_small", N_("from Sunspire Studios:") },
     { NULL, "credits_text", "Patrick \"Pog\" Gilhuly" },
     { NULL, "credits_text", "Eric \"Monster\" Hall" },
@@ -68,29 +70,14 @@ static credit_line_t credit_lines[] =
     { NULL, "credits_text", "Jasmin Patry" },
     { NULL, "credits_text", "Mark Riddell" },
 		{ NULL, "credits_text", "" },
-		{ NULL, "credits_h2", N_("Non-Rewrite Version Organization") },
+		{ NULL, "credits_h2", N_("Release Organization") },
 		{ NULL, "credits_text", "Christian Picon" },	
 		{ NULL, "credits_text", "" },
-	{ NULL, "credits_h2", N_("Translators") },
-	{ NULL, "credits_text", "Nicosmos (French)" },
-	{ NULL, "credits_text", "teksturi (Finnish)" },
-	{ NULL, "credits_text", "arith, spacedwarv, and JoyFM (German)" },
-	{ NULL, "credits_text", "spectrum (Italian)" },
-	{ NULL, "credits_text", "Karl Ove Hufthammer (Norwegian Bokmål)" },
-	{ NULL, "credits_text", "Karl Ove Hufthammer (Norwegian Nynorsk)" },
-	{ NULL, "credits_text", "Andreas Tarandi and pingvin (Swedish)" },
-    	{ NULL, "credits_text", "Asciimonster (Dutch)" },
-    	{ NULL, "credits_text", "woody (Polish)" },
-    	{ NULL, "credits_text", "ttsmj (Slovak)" },		
-	{ NULL, "credits_text", "Jonan (Spanish)" },	
-	{ NULL, "credits_text", "EFU (Russian)" },		
-    	{ NULL, "credits_text_small", N_("Other (incomplete) translations are from the PPRacer Project.") },
-    { NULL, "credits_text", "" },
     { NULL, "credits_h2", N_("Graphics") },
-    { NULL, "credits_text", N_("Nicosmos (Logo, Hud Graphics)") },
-    { NULL, "credits_text", N_("Christian Picon (Objects, Skyboxes)") },
+    { NULL, "credits_text", N_("Nicosmos (Logo, HUD and Interface)") },
+    { NULL, "credits_text", N_("Christian Picon (Objects, Skyboxes, Characters)") },
     { NULL, "credits_text", N_("Reinhard Niehoff (Trees)") },	
-    { NULL, "credits_text", N_("Daniel Poeira and Christian Picon (Font)") },
+    { NULL, "credits_text", N_("Daniel Poeira and Christian Picon (Papercuts Font)") },
     { NULL, "credits_text", "" },
     { NULL, "credits_h2", N_("Music") },
     { NULL, "credits_text", "Joseph Toscano" },
@@ -100,7 +87,17 @@ static credit_line_t credit_lines[] =
 	    { NULL, "credits_text_small", N_("'Won Race'") },
 	    { NULL, "credits_text_small", "" },		
     { NULL, "credits_text", "Christian Picon" },
-	    { NULL, "credits_text_small", N_("'Credits Ballad'") },	
+	    { NULL, "credits_text_small", N_("'Credits Ballad'") },
+	    { NULL, "credits_text_small", "" },		
+    { NULL, "credits_text", "Grady O'Connell" },
+	    { NULL, "credits_text_small", N_("'Freezing Point'") },
+	{ NULL, "credits_text_small", "" },
+    { NULL, "credits_text", "Karl Schroeder" },
+            { NULL, "credits_text_small", N_("'Calm Race'") },	
+            { NULL, "credits_text_small", N_("'Lost Race'") },	
+            { NULL, "credits_text_small", N_("'Race Intro'") },	
+            { NULL, "credits_text_small", N_("'Spunky Race'") },	
+            { NULL, "credits_text_small", N_("'Won Race: kschroeder Remix'") },	
 		    { NULL, "credits_text", "" },
 	{ NULL, "credits_h2", N_("Misc. PPRacer Contributors") },
 	{ NULL, "credits_text", "Peter Reichel" },
@@ -112,13 +109,13 @@ static credit_line_t credit_lines[] =
     { NULL, "credits_text_small", N_("http://www.freesound.org/samplesViewSingle.php?id=52143") },
     { NULL, "credits_text", "" },
     { NULL, "credits_h2", N_("Thanks To") },
-    { NULL, "credits_text_small", N_("(for Exteme Tux Racer)") },
+    { NULL, "credits_text_small", N_("(for Extreme Tux Racer)") },
     { NULL, "credits_text", N_("Ranger (for hosting the website)") },
     { NULL, "credits_text", N_("Slythfox (for making the website)") },
     { NULL, "credits_text", N_("The Course Creators") },	
     { NULL, "credits_text", N_("The OpenRacer project") },
-    { NULL, "credits_text", N_("Reinhard Niehoff (for helping with code modification)") },
-    { NULL, "credits_text", N_("All the people on the forum") },
+    { NULL, "credits_text", N_("Reinhard Niehoff (tons of advice)") },
+    { NULL, "credits_text", N_("All the people of the forum") },
     { NULL, "credits_text", N_("Larry Ewing (creator of Tux)") },
     { NULL, "credits_text_small", N_("(for Tux Racer)") },
     { NULL, "credits_text", "Thatcher Ulrich" },
@@ -145,24 +142,24 @@ Credits::Credits()
 	
   play_music( "credits_screen" );
 
-{
-	pp::Vec2d pos(0,0);
-	mp_creditstransBtn = new pp::Button(pos,
-				  pp::Vec2d(1200, 40),
-				  "button_label",
-				  _("Translators") );
-    mp_creditstransBtn->setHilitFontBinding( "button_label_hilit" );
-	mp_creditstransBtn->signalClicked.Connect(pp::CreateSlot(this,&Credits::Trans)); 
-}
-{
+
 	pp::Vec2d pos(0,0);
 	mp_backBtn = new pp::Button(pos,
-				  pp::Vec2d(500, 40),
+				  pp::Vec2d(50, 40),
 				  "button_label",
 				  _("Back") );
-    mp_backBtn->setHilitFontBinding( "button_label_hilit" );
+	mp_backBtn->setHilitFontBinding( "button_label_hilit" );
 	mp_backBtn->signalClicked.Connect(pp::CreateSlot(this,&Credits::CredBack)); 
-}
+	mp_backBtn->setPosition( pp::Vec2d(100,0) );
+
+
+mp_creditstransBtn = new pp::Button(pos,
+				  pp::Vec2d(120, 40),
+				  "button_label",
+				  _("Translators") );
+	mp_creditstransBtn->setHilitFontBinding( "button_label_hilit" );
+	mp_creditstransBtn->signalClicked.Connect(pp::CreateSlot(this,&Credits::Trans)); 
+	mp_creditstransBtn->setPosition( pp::Vec2d(700,0) );
 
 }
 
@@ -281,8 +278,9 @@ Credits::drawText( float timeStep )
 
 
 bool
-Credits::keyReleaseEvent(SDLKey key)
+Credits::keyPressEvent(SDLKey key)
 {
+	if (key == SDLK_t) { set_game_mode( CREDITS_TRANS ); return true; }
 	set_game_mode( GAME_TYPE_SELECT );
     winsys_post_redisplay();
 	return true;
