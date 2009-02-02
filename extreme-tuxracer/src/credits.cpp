@@ -143,23 +143,26 @@ Credits::Credits()
   play_music( "credits_screen" );
 
 
-	pp::Vec2d pos(0,0);
+	int w = getparam_x_resolution();
+	int h = getparam_y_resolution();
+	
+	pp::Vec2d pos(w/4,h/20);
+
 	mp_backBtn = new pp::Button(pos,
 				  pp::Vec2d(50, 40),
 				  "button_label",
 				  _("Back") );
 	mp_backBtn->setHilitFontBinding( "button_label_hilit" );
 	mp_backBtn->signalClicked.Connect(pp::CreateSlot(this,&Credits::CredBack)); 
-	mp_backBtn->setPosition( pp::Vec2d(100,0) );
+	
+	pos.x = w - pos.x - 70;
 
-
-mp_creditstransBtn = new pp::Button(pos,
+	mp_creditstransBtn = new pp::Button(pos,
 				  pp::Vec2d(120, 40),
 				  "button_label",
 				  _("Translators") );
 	mp_creditstransBtn->setHilitFontBinding( "button_label_hilit" );
 	mp_creditstransBtn->signalClicked.Connect(pp::CreateSlot(this,&Credits::Trans)); 
-	mp_creditstransBtn->setPosition( pp::Vec2d(700,0) );
 
 }
 
