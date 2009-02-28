@@ -3,13 +3,13 @@
 # Copyright (C) 2008 The Extreme Tux Racer team
 # This file is distributed under the same license as the etracer package.
 #
-# Karl Ove Hufthammer <karl@huftis.org>, 2005, 2008.
+# Karl Ove Hufthammer <karl@huftis.org>, 2005, 2008, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: Extreme Tux Racer\n"
 "Report-Msgid-Bugs-To: https://translations.edge.launchpad.net/etracer\n"
-"POT-Creation-Date: 2008-12-30 23:47+0100\n"
-"PO-Revision-Date: 2008-12-31 00:00+0100\n"
+"POT-Creation-Date: 2009-02-28 09:57+0100\n"
+"PO-Revision-Date: 2009-02-28 10:01+0100\n"
 "Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
 "Language-Team: Norwegian Nynorsk <i18n-nn@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
@@ -62,7 +62,7 @@ msgstr "OK"
 msgid "Configuration"
 msgstr "Oppsett"
 
-#: src/configuration.cpp:45 src/credits.cpp:89
+#: src/configuration.cpp:45 src/credits.cpp:76
 msgid "Graphics"
 msgstr "Grafikk"
 
@@ -82,14 +82,15 @@ msgstr "Tastatur"
 msgid "Joystick"
 msgstr "Styrespak"
 
-#: src/configuration.cpp:81 src/credits.cpp:162 src/event_select.cpp:96
+#: src/configuration.cpp:81 src/credits.cpp:154 src/event_select.cpp:96
 #: src/event_race_select.cpp:53 src/highscore.cpp:413
 msgid "Back"
 msgstr "Tilbake"
 
 #: src/credits.cpp:43
-msgid "Version 0.4"
-msgstr "Versjon 0.4"
+#| msgid "Version 0.4"
+msgid "Version 0.5"
+msgstr "Versjon 0.5"
 
 #: src/credits.cpp:46
 msgid "Extreme Tux Racer is in the process of being"
@@ -131,137 +132,168 @@ msgstr "versjonane for å passa betre til dette spelet."
 msgid "Development"
 msgstr "Utvikling"
 
-#: src/credits.cpp:63
+#: src/credits.cpp:65
 msgid "from Sunspire Studios:"
 msgstr "frå Sunspire Studios:"
 
-#: src/credits.cpp:71
-msgid "Non-Rewrite Version Organization"
-msgstr "Versjonsorganisering for ikkjenyskriving"
+#: src/credits.cpp:73
+#| msgid "Non-Rewrite Version Organization"
+msgid "Release Organization"
+msgstr "Utgjevingsorganisering"
 
-#: src/credits.cpp:74 src/credits.cpp:153
-msgid "Translators"
-msgstr "Omsetjarar"
+#: src/credits.cpp:77
+#| msgid "Nicosmos (Logo, Hud Graphics)"
+msgid "Nicosmos (Logo, HUD and Interface)"
+msgstr "Nicosmos (logo, HUD og brukargrensesnitt)"
 
-#: src/credits.cpp:87
-msgid "Other (incomplete) translations are from the PPRacer Project."
-msgstr "Andre (ufullstendige) omsettingar er tekne frå PPRacer-prosjektet."
+#: src/credits.cpp:78
+#| msgid "Christian Picon (Objects, Skyboxes)"
+msgid "Kristian Picon (Objects, Skyboxes, Characters)"
+msgstr "Kristian Picon (objekt, skyboksar og spelfigurar)"
 
-#: src/credits.cpp:90
-msgid "Nicosmos (Logo, Hud Graphics)"
-msgstr "Nicosmos (logo og Hud-bilete)"
-
-#: src/credits.cpp:91
-msgid "Christian Picon (Objects, Skyboxes)"
-msgstr "Christian Picon (objekt og skyboksar)"
-
-#: src/credits.cpp:92
+#: src/credits.cpp:79
 msgid "Reinhard Niehoff (Trees)"
 msgstr "Reinhard Niehoff (tre)"
 
-#: src/credits.cpp:93
-msgid "Daniel Poeira and Christian Picon (Font)"
-msgstr "Daniel Poeira and Christian Picon (skrift)"
+#: src/credits.cpp:80
+#| msgid "Daniel Poeira and Christian Picon (Font)"
+msgid "Daniel Poeira and Kristian Picon (Papercuts Font)"
+msgstr "Daniel Poeira og Kristian Picon (Papercuts-skrifta)"
 
-#: src/credits.cpp:95
+#: src/credits.cpp:82
 msgid "Music"
 msgstr "Musikk"
 
-#: src/credits.cpp:97
+#: src/credits.cpp:84
 msgid "'Race 1'"
 msgstr "'Renn 1'"
 
-#: src/credits.cpp:98
+#: src/credits.cpp:85
 msgid "'Menu'"
 msgstr "'Meny'"
 
-#: src/credits.cpp:99
+#: src/credits.cpp:86
 msgid "'Options'"
 msgstr "'Oppsett'"
 
-#: src/credits.cpp:100
+#: src/credits.cpp:87
 msgid "'Won Race'"
 msgstr "'Vann rennet'"
 
-#: src/credits.cpp:103
+#: src/credits.cpp:90
 msgid "'Credits Ballad'"
-msgstr "Bidragsytarskjerm"
+msgstr "'Bidragsytarar'"
 
-#: src/credits.cpp:105
+#: src/credits.cpp:93
+msgid "'Freezing Point'"
+msgstr "'Frysepunktet'"
+
+#: src/credits.cpp:96
+#| msgid "'Won Race'"
+msgid "'Calm Race'"
+msgstr "'Roleg renn'"
+
+#: src/credits.cpp:97
+#| msgid "'Won Race'"
+msgid "'Lost Race'"
+msgstr "'Tapte rennet'"
+
+#: src/credits.cpp:98
+#| msgid "'Race 1'"
+msgid "'Race Intro'"
+msgstr "'Rennintro'"
+
+#: src/credits.cpp:99
+#| msgid "'Won Race'"
+msgid "'Spunky Race'"
+msgstr "'Livleg renn'"
+
+#: src/credits.cpp:100
+msgid "'Won Race: kschroeder Remix'"
+msgstr "'Vann rennet: kschroeder-remiksen'"
+
+#: src/credits.cpp:102
 msgid "Misc. PPRacer Contributors"
 msgstr "Ymse PPRacer-bidragsytarar"
 
-#: src/credits.cpp:111
+#: src/credits.cpp:108
 msgid "52143__blaukreuz__imp_01.wav - Original sound of ice cracking..."
 msgstr "52143__blaukreuz__imp_01.wav – Opphavleg lyd av is som brest …"
 
-#: src/credits.cpp:112
+#: src/credits.cpp:109
 msgid "http://www.freesound.org/samplesViewSingle.php?id=52143"
 msgstr "http://www.freesound.org/samplesViewSingle.php?id=52143"
 
-#: src/credits.cpp:114
+#: src/credits.cpp:111
 msgid "Thanks To"
 msgstr "Takk til"
 
-#: src/credits.cpp:115
-msgid "(for Exteme Tux Racer)"
-msgstr "(for Exteme Tux Racer)"
+#: src/credits.cpp:112
+#| msgid "(for Exteme Tux Racer)"
+msgid "(for Extreme Tux Racer)"
+msgstr "(for Extreme Tux Racer)"
 
-#: src/credits.cpp:116
+#: src/credits.cpp:113
 msgid "Ranger (for hosting the website)"
 msgstr "Ranger (for nettstadplass)"
 
-#: src/credits.cpp:117
+#: src/credits.cpp:114
 msgid "Slythfox (for making the website)"
 msgstr "Slythfox (for å laga nettstaden)"
 
-#: src/credits.cpp:118
+#: src/credits.cpp:115
 msgid "The Course Creators"
 msgstr "Rennutviklarane"
 
-#: src/credits.cpp:119
+#: src/credits.cpp:116
 msgid "The OpenRacer project"
 msgstr "OpenRacer-prosjektet"
 
-#: src/credits.cpp:120
-msgid "Reinhard Niehoff (for helping with code modification)"
-msgstr "Reinhard Niehoff (for hjelp til kodeendringar)"
+#: src/credits.cpp:117
+#| msgid "Reinhard Niehoff (Trees)"
+msgid "Reinhard Niehoff (tons of advice)"
+msgstr "Reinhard Niehoff (haugevis med råd)"
 
-#: src/credits.cpp:121
-msgid "All the people on the forum"
+#: src/credits.cpp:118
+#| msgid "All the people on the forum"
+msgid "All the people of the forum"
 msgstr "Alle folka på forumet"
 
-#: src/credits.cpp:122
+#: src/credits.cpp:119
 msgid "Larry Ewing (creator of Tux)"
 msgstr "Larry Ewing (som laga Tux)"
 
-#: src/credits.cpp:123
+#: src/credits.cpp:120
 msgid "(for Tux Racer)"
 msgstr "(for Tux Racer)"
 
-#: src/credits.cpp:130
+#: src/credits.cpp:127
 msgid "Tux Racer is a trademark of Jasmin F. Patry."
 msgstr "Tux Racer er eit varemerke som tilhøyrer Jasmin F. Patry."
 
-#: src/credits.cpp:131
+#: src/credits.cpp:128
 msgid "Extreme Tux Racer is licenced under the GPL."
 msgstr "Extreme Tux Racer er lisensiert under GPL."
 
-#: src/credits.cpp:132
+#: src/credits.cpp:129
 msgid "We grant use of the name 'Extreme Tux Racer'"
 msgstr "Me gjev alle løyve til å bruka namnet «Extreme Tux Racer»"
 
-#: src/credits.cpp:133
+#: src/credits.cpp:130
 msgid "to any forks or continuations."
 msgstr "til variantar og vidareutviklingar av spelet."
 
-#: src/credits.cpp:135
+#: src/credits.cpp:132
 msgid "PlanetPenguin Racer is Copyright © 2005 Volker Stroebel."
 msgstr "PlanetPenguin Racer er Copyright © 2005 Volker Stroebel."
 
-#: src/credits.cpp:136
+#: src/credits.cpp:133
 msgid "Tux Racer and the Tux Racer Name are Copyright © 2001 Jasmin F. Patry."
 msgstr "Tux Racer og namnet «Tux Racer» er Copyright © 2001 Jasmin F. Patry."
+
+#: src/credits.cpp:163
+msgid "Translators"
+msgstr "Omsetjarar"
 
 #: src/event_select.cpp:50
 msgid "Select campaign and cup"
@@ -303,44 +335,44 @@ msgstr "Vel renn"
 msgid "Race!"
 msgstr "Køyr!"
 
-#: src/event_race_select.cpp:280
+#: src/event_race_select.cpp:290
 msgid "You don't have any lives left."
 msgstr "Du har ikkje fleire liv igjen."
 
-#: src/event_race_select.cpp:285
+#: src/event_race_select.cpp:295
 msgid "Race won! Your result:"
 msgstr "Du vann! Resultat:"
 
-#: src/event_race_select.cpp:289
+#: src/event_race_select.cpp:299
 msgid "Needed to advance:"
 msgstr "For å gå vidare:"
 
-#: src/event_race_select.cpp:293
+#: src/event_race_select.cpp:303
 msgid "You can't enter this race yet."
 msgstr "Du kan ikkje spela dette rennet enno"
 
-#: src/event_race_select.cpp:316
+#: src/event_race_select.cpp:326
 msgid "Time:"
 msgstr "Tid:"
 
-#: src/event_race_select.cpp:320
+#: src/event_race_select.cpp:330
 #, c-format
 msgid "%02d:%02d.%02d"
 msgstr "%02d.%02d,%02d"
 
-#: src/event_race_select.cpp:324
+#: src/event_race_select.cpp:334
 msgid "Herring:"
 msgstr "Sild:"
 
-#: src/event_race_select.cpp:332
+#: src/event_race_select.cpp:342
 msgid "Score:"
 msgstr "Poeng:"
 
-#: src/event_race_select.cpp:341
+#: src/event_race_select.cpp:351
 msgid "Contributed by:"
 msgstr "Laga av:"
 
-#: src/event_race_select.cpp:349 po/levelinfo:113
+#: src/event_race_select.cpp:359 po/levelinfo:113
 msgid "Unknown"
 msgstr "Ukjend"
 
@@ -395,7 +427,8 @@ msgid "Congratulations! You won the cup!"
 msgstr "Gratulerer! Du vann turneringa!"
 
 #: src/game_over.cpp:197
-msgid "Requirements met! Advance to the next race. "
+#| msgid "Requirements met! Advance to the next race. "
+msgid "Requirements met! Advance to the next race."
 msgstr "Du klarte krava, og kom vidare til neste renn!"
 
 #: src/game_over.cpp:199
@@ -1193,6 +1226,12 @@ msgstr "Trixi"
 msgid "Speedy"
 msgstr "Lynet"
 
+#~ msgid "Other (incomplete) translations are from the PPRacer Project."
+#~ msgstr "Andre (ufullstendige) omsettingar er tekne frå PPRacer-prosjektet."
+
+#~ msgid "Reinhard Niehoff (for helping with code modification)"
+#~ msgstr "Reinhard Niehoff (for hjelp til kodeendringar)"
+
 #~ msgid "Event:"
 #~ msgstr "Konkurranse:"
 
@@ -1216,3 +1255,4 @@ msgstr "Lynet"
 
 #~ msgid "Language:"
 #~ msgstr "Språk:"
+
