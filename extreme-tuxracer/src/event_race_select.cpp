@@ -478,6 +478,7 @@ EventRaceSelect::keyPressEvent(SDLKey key)
 	    	mp_backBtn->simulateMouseClick();
 			UIMgr.setDirty();
 			return true;
+/*
 		case 'c': 
 	    	mp_conditionsSSBtn->simulateMouseClick();
 	    	return true;
@@ -487,6 +488,7 @@ EventRaceSelect::keyPressEvent(SDLKey key)
 		case 'm':
 	    	mp_mirrorSSBtn->simulateMouseClick();
 	    	return true;
+*/
 		default:
 			return false;
 	}	

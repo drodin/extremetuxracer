@@ -588,7 +588,7 @@ RaceSelect::keyPressEvent(SDLKey key)
 	    	mp_backBtn->simulateMouseClick();
 			UIMgr.setDirty();
 			return true;
-/* We cant use only letters since that makes them imposible to type in the name input
+/* We cant use letters since that makes them imposible to type in the name input
 		case 'c': 
 	    	mp_conditionsSSBtn->simulateMouseClick();
 	    	return true;
