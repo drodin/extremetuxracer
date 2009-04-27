@@ -9,14 +9,14 @@ msgstr ""
 "Project-Id-Version: Extreme Tux Racer\n"
 "Report-Msgid-Bugs-To: https://translations.edge.launchpad.net/etracer\n"
 "POT-Creation-Date: 2009-02-28 09:57+0100\n"
-"PO-Revision-Date: 2009-02-28 10:01+0100\n"
-"Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
+"PO-Revision-Date: 2009-04-27 04:26+0000\n"
+"Last-Translator: 386sky <seotaewong40@gmail.com>\n"
 "Language-Team: Norwegian Nynorsk <i18n-nn@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 0.2\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Launchpad-Export-Date: 2009-04-27 12:04+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
 
 #: src/audioconfig.cpp:36
 msgid "Audio Configuration"
@@ -88,7 +88,6 @@ msgid "Back"
 msgstr "Tilbake"
 
 #: src/credits.cpp:43
-#| msgid "Version 0.4"
 msgid "Version 0.5"
 msgstr "Versjon 0.5"
 
@@ -137,17 +136,14 @@ msgid "from Sunspire Studios:"
 msgstr "frå Sunspire Studios:"
 
 #: src/credits.cpp:73
-#| msgid "Non-Rewrite Version Organization"
 msgid "Release Organization"
 msgstr "Utgjevingsorganisering"
 
 #: src/credits.cpp:77
-#| msgid "Nicosmos (Logo, Hud Graphics)"
 msgid "Nicosmos (Logo, HUD and Interface)"
 msgstr "Nicosmos (logo, HUD og brukargrensesnitt)"
 
 #: src/credits.cpp:78
-#| msgid "Christian Picon (Objects, Skyboxes)"
 msgid "Kristian Picon (Objects, Skyboxes, Characters)"
 msgstr "Kristian Picon (objekt, skyboksar og spelfigurar)"
 
@@ -156,7 +152,6 @@ msgid "Reinhard Niehoff (Trees)"
 msgstr "Reinhard Niehoff (tre)"
 
 #: src/credits.cpp:80
-#| msgid "Daniel Poeira and Christian Picon (Font)"
 msgid "Daniel Poeira and Kristian Picon (Papercuts Font)"
 msgstr "Daniel Poeira og Kristian Picon (Papercuts-skrifta)"
 
@@ -189,22 +184,18 @@ msgid "'Freezing Point'"
 msgstr "'Frysepunktet'"
 
 #: src/credits.cpp:96
-#| msgid "'Won Race'"
 msgid "'Calm Race'"
 msgstr "'Roleg renn'"
 
 #: src/credits.cpp:97
-#| msgid "'Won Race'"
 msgid "'Lost Race'"
 msgstr "'Tapte rennet'"
 
 #: src/credits.cpp:98
-#| msgid "'Race 1'"
 msgid "'Race Intro'"
 msgstr "'Rennintro'"
 
 #: src/credits.cpp:99
-#| msgid "'Won Race'"
 msgid "'Spunky Race'"
 msgstr "'Livleg renn'"
 
@@ -229,7 +220,6 @@ msgid "Thanks To"
 msgstr "Takk til"
 
 #: src/credits.cpp:112
-#| msgid "(for Exteme Tux Racer)"
 msgid "(for Extreme Tux Racer)"
 msgstr "(for Extreme Tux Racer)"
 
@@ -250,12 +240,10 @@ msgid "The OpenRacer project"
 msgstr "OpenRacer-prosjektet"
 
 #: src/credits.cpp:117
-#| msgid "Reinhard Niehoff (Trees)"
 msgid "Reinhard Niehoff (tons of advice)"
 msgstr "Reinhard Niehoff (haugevis med råd)"
 
 #: src/credits.cpp:118
-#| msgid "All the people on the forum"
 msgid "All the people of the forum"
 msgstr "Alle folka på forumet"
 
@@ -427,7 +415,6 @@ msgid "Congratulations! You won the cup!"
 msgstr "Gratulerer! Du vann turneringa!"
 
 #: src/game_over.cpp:197
-#| msgid "Requirements met! Advance to the next race. "
 msgid "Requirements met! Advance to the next race."
 msgstr "Du klarte krava, og kom vidare til neste renn!"
 
@@ -1256,3 +1243,8 @@ msgstr "Lynet"
 #~ msgid "Language:"
 #~ msgstr "Språk:"
 
+#~ msgid "Christian Picon (Objects, Skyboxes, Characters)"
+#~ msgstr "Christian Picon (Objects, Skyboxes, Tegn)"
+
+#~ msgid "Daniel Poeira and Christian Picon (Papercuts Font)"
+#~ msgstr "Daniel Poeira og Christian Picon (Papercuts Font)"

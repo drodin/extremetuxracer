@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: etracer\n"
 "Report-Msgid-Bugs-To: https://translations.edge.launchpad.net/etracer\n"
 "POT-Creation-Date: 2008-08-03 20:17+0200\n"
-"PO-Revision-Date: 2008-07-12 20:17+0000\n"
+"PO-Revision-Date: 2009-02-02 12:41+0000\n"
 "Last-Translator: Plamen Atanasov <Unknown>\n"
 "Language-Team: Bulgarian <bg@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-08-03 17:56+0000\n"
+"X-Launchpad-Export-Date: 2009-04-27 12:04+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: src/audioconfig.cpp:36
@@ -87,8 +87,9 @@ msgid "Back"
 msgstr "Назад"
 
 #: src/credits.cpp:43
+#, fuzzy
 msgid "Version 0.4"
-msgstr "Версия 0.4"
+msgstr "Версия 0.5"
 
 #: src/credits.cpp:46
 msgid "Extreme Tux Racer is in the process of being"
@@ -135,8 +136,9 @@ msgid "from Sunspire Studios:"
 msgstr "от студия Sunspire:"
 
 #: src/credits.cpp:71
+#, fuzzy
 msgid "Non-Rewrite Version Organization"
-msgstr "Организация за непренаписана версия"
+msgstr "Организация за издаване"
 
 #: src/credits.cpp:74
 msgid "Translators"
@@ -147,20 +149,23 @@ msgid "Other (incomplete) translations are from the PPRacer Project."
 msgstr "Други (незавършени) преводи са от проекта PPRacer."
 
 #: src/credits.cpp:90
+#, fuzzy
 msgid "Nicosmos (Logo, Hud Graphics)"
-msgstr "Никосмос (Лого, Hud графики)"
+msgstr "Никосмос (Лого и потребителски интерфейс)"
 
 #: src/credits.cpp:91
+#, fuzzy
 msgid "Christian Picon (Objects, Skyboxes)"
-msgstr "Кристиан Пикон (Обекти, Небесни кутии)"
+msgstr "Кристиан Пикон (Обекти, Небесни кутии, Герои)"
 
 #: src/credits.cpp:92
 msgid "Reinhard Niehoff (Trees)"
 msgstr "Рейнхард Нихоф (Дървета)"
 
 #: src/credits.cpp:93
+#, fuzzy
 msgid "Daniel Poeira and Christian Picon (Font)"
-msgstr "Даниел Поейра и Кристиан Пикон (Шрифт)"
+msgstr "Даниел Поейра и Кристиан Пикон (Шрифт от хартиени изрезки)"
 
 #: src/credits.cpp:95
 msgid "Music"
@@ -195,8 +200,9 @@ msgid "Thanks To"
 msgstr "Благодарности на"
 
 #: src/credits.cpp:111
+#, fuzzy
 msgid "(for Exteme Tux Racer)"
-msgstr "(за Exteme Tux Racer)"
+msgstr "(за Extreme Tux Racer)"
 
 #: src/credits.cpp:112
 msgid "Ranger (for hosting the website)"
@@ -215,12 +221,14 @@ msgid "The OpenRacer project"
 msgstr "Проекта OpenRacer"
 
 #: src/credits.cpp:116
+#, fuzzy
 msgid "Reinhard Niehoff (for helping with code modification)"
-msgstr "Рейнхард Нихоф (за помощта при модификацията на кода)"
+msgstr "Рейнхард Нихоф (тонове съвети)"
 
 #: src/credits.cpp:117
+#, fuzzy
 msgid "All the people on the forum"
-msgstr "Всички хора във форума"
+msgstr "Всички хора от форума"
 
 #: src/credits.cpp:118
 msgid "Larry Ewing (creator of Tux)"
@@ -256,13 +264,12 @@ msgstr ""
 "Tux Racer и името Tux Racer са авторско право © 2001 на Жасмин Ф. Патри."
 
 #: src/event_select.cpp:50
-#, fuzzy
 msgid "Select campaign and cup"
-msgstr "Избери събитие и купа"
+msgstr "Избери кампания и купа"
 
 #: src/event_select.cpp:56
 msgid "Campaign:"
-msgstr ""
+msgstr "Кампания:"
 
 #: src/event_select.cpp:67
 msgid "Cup:"
@@ -380,26 +387,26 @@ msgid "You beat your best score!"
 msgstr "Подобрихте рекорда си!"
 
 #: src/game_over.cpp:164
-#, fuzzy
 msgid "Congratulations! You won the campaign!"
-msgstr "Поздравления! Спечелихте купата!"
+msgstr "Поздравления! Вие спечелихте кампанията!"
 
 #: src/game_over.cpp:166
 msgid "Congratulations! You won the cup!"
 msgstr "Поздравления! Спечелихте купата!"
 
 #: src/game_over.cpp:168
+#, fuzzy
 msgid "You advanced to the next race!"
-msgstr "Преминавате към следващото състезание!"
+msgstr "Изискванията са покрити! Преминавате към следващото състезание."
 
 #: src/game_over.cpp:170
+#, fuzzy
 msgid "You didn't advance."
-msgstr "Не преминахте."
+msgstr "Нямате повече животи."
 
 #: src/game_type_select.cpp:36
-#, fuzzy
 msgid "Enter a campaign"
-msgstr "Влез в събитие"
+msgstr "Влез в кампания"
 
 #: src/game_type_select.cpp:43
 msgid "Practice"
@@ -451,7 +458,7 @@ msgstr "Сенки:"
 
 #: src/graphicsconfig.cpp:141
 msgid "Draw Background:"
-msgstr ""
+msgstr "Изобразявай фон:"
 
 #: src/highscore.cpp:88
 msgid "1:st"
@@ -624,14 +631,14 @@ msgid "%.0f"
 msgstr "%.0f"
 
 #: po/levelinfo:10 po/levelinfo:11
-#, fuzzy, c-format
+#, c-format
 msgid "%d:%d:%d"
-msgstr "%02d:%02d:%02d"
+msgstr "%d:%d:%d"
 
 #: po/levelinfo:12 po/levelinfo:13
-#, fuzzy, c-format
+#, c-format
 msgid "%d"
-msgstr "%03d"
+msgstr "%d"
 
 #: po/levelinfo:14
 msgid "Doing"
@@ -887,14 +894,12 @@ msgid "Challenge One"
 msgstr "Предизвикателство едно"
 
 #: po/levelinfo:63
-#, fuzzy
 msgid ""
 "A very dangerous path along the mountains. Warning: The course is very "
 "difficult and there are some situations where you can get stuck."
 msgstr ""
-"Една много опасна писта покрай планините. Опитайте се да хванете повече от "
-"60 херинги. Внимание: Тази писта е много трудна и има някои ситуации в които "
-"можете да затънете."
+"Много опасна писта покрай планините. Внимание: Този курс е много опасен и "
+"има ситуации където можете да затънете."
 
 #: po/levelinfo:64
 msgid "Path of Daggers"
@@ -1200,8 +1205,45 @@ msgstr "Тъкс"
 msgid "Tux on Snowboard"
 msgstr "Тъкс върху сноуборд"
 
-#~ msgid "Event:"
-#~ msgstr "Събитие:"
+msgid "Event:"
+msgstr "Събитие:"
 
+#, fuzzy
 #~ msgid "Congratulations! You won the event!"
-#~ msgstr "Поздравления! Спечелихте събитието!"
+#~ msgstr "Поздравления! Спечелихте купата!"
+
+#~ msgid "'Freezing Point'"
+#~ msgstr "'Точка на замръзване'"
+
+#~ msgid "'Calm Race'"
+#~ msgstr "'Спокойно състезание'"
+
+#~ msgid "'Lost Race'"
+#~ msgstr "'Загубено състезание'"
+
+#~ msgid "'Race Intro'"
+#~ msgstr "'Въведение в състезанието'"
+
+#~ msgid "'Spunky Race'"
+#~ msgstr "'Смело състезание'"
+
+#~ msgid "'Won Race: kschroeder Remix'"
+#~ msgstr "'Спечелено състезание: kschroeder Remix'"
+
+#~ msgid "52143__blaukreuz__imp_01.wav - Original sound of ice cracking..."
+#~ msgstr "52143__blaukreuz__imp_01.wav - Оригинален звук от трошене на лед..."
+
+#~ msgid "http://www.freesound.org/samplesViewSingle.php?id=52143"
+#~ msgstr "http://www.freesound.org/samplesViewSingle.php?id=52143"
+
+#~ msgid "Race requirements not met."
+#~ msgstr "Изискванията на състезанието не са покрити."
+
+#~ msgid "Samuel"
+#~ msgstr "Самюел"
+
+#~ msgid "Trixi"
+#~ msgstr "Трикси"
+
+#~ msgid "Speedy"
+#~ msgstr "Бързак"

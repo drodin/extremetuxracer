@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: etracer\n"
 "Report-Msgid-Bugs-To: https://translations.edge.launchpad.net/etracer\n"
 "POT-Creation-Date: 2008-08-03 20:17+0200\n"
-"PO-Revision-Date: 2008-05-02 08:31+0000\n"
+"PO-Revision-Date: 2008-09-23 14:32+0000\n"
 "Last-Translator: Manatsawin Hanmongkolchai <Unknown>\n"
 "Language-Team: Thai <th@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-08-03 17:56+0000\n"
+"X-Launchpad-Export-Date: 2009-04-27 12:04+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: src/audioconfig.cpp:36
@@ -131,9 +131,8 @@ msgid "Development"
 msgstr "การพัฒนาโปรแกรม"
 
 #: src/credits.cpp:63
-#, fuzzy
 msgid "from Sunspire Studios:"
-msgstr "จาก Sunspire Studios:"
+msgstr ""
 
 #: src/credits.cpp:71
 msgid "Non-Rewrite Version Organization"
@@ -180,18 +179,16 @@ msgid "'Options'"
 msgstr "'ตัวเลือก'"
 
 #: src/credits.cpp:100
-#, fuzzy
 msgid "'Won Race'"
-msgstr "'ชนะการแข่งขัน'"
+msgstr ""
 
 #: src/credits.cpp:103
 msgid "'Credits Ballad'"
 msgstr ""
 
 #: src/credits.cpp:105
-#, fuzzy
 msgid "Misc. PPRacer Contributors"
-msgstr "ผู้ร่วมพัฒนา PPRacer อื่นๆ"
+msgstr ""
 
 #: src/credits.cpp:110
 msgid "Thanks To"
@@ -235,7 +232,7 @@ msgstr "(สำหรับ Tux Racer)"
 
 #: src/credits.cpp:126
 msgid "Tux Racer is a trademark of Jasmin F. Patry."
-msgstr ""
+msgstr "Tux Racer เป็นเครื่องหมายการค้าของ Jasmin F. Patry."
 
 #: src/credits.cpp:127
 msgid "Extreme Tux Racer is licenced under the GPL."
@@ -246,22 +243,20 @@ msgid "We grant use of the name 'Extreme Tux Racer'"
 msgstr "เราอนุญาตให้ใช้ชื่อ 'Extreme Tux Racer'"
 
 #: src/credits.cpp:129
-#, fuzzy
 msgid "to any forks or continuations."
-msgstr "ใน forks หรือการพัฒนาต่อใดๆ"
+msgstr ""
 
 #: src/credits.cpp:131
 msgid "PlanetPenguin Racer is Copyright © 2005 Volker Stroebel."
-msgstr ""
+msgstr "PlanetPenguin Racer สงวนลิขสิทธิ์ © 2005 Volker Stroebel."
 
 #: src/credits.cpp:132
 msgid "Tux Racer and the Tux Racer Name are Copyright © 2001 Jasmin F. Patry."
-msgstr ""
+msgstr "Tux Racer และชื่อ Tux Racer สงวนลิขสิทธิ์ © 2001 Jasmin F. Patry."
 
 #: src/event_select.cpp:50
-#, fuzzy
 msgid "Select campaign and cup"
-msgstr "เลือกการแข่งขันและถ้วย"
+msgstr ""
 
 #: src/event_select.cpp:56
 msgid "Campaign:"
@@ -280,12 +275,10 @@ msgid "Continue"
 msgstr "ต่อไป"
 
 #: src/event_select.cpp:158
-#, fuzzy
 msgid "You've won this cup!"
-msgstr "คุณชนะถ้วยนี้!"
+msgstr ""
 
 #: src/event_select.cpp:160
-#, fuzzy
 msgid "You must complete this cup next"
 msgstr "ต่อไปคุณต้องแข่งขันชิงถ้วยนี้"
 
@@ -302,17 +295,14 @@ msgid "Race!"
 msgstr "ลุย!"
 
 #: src/event_race_select.cpp:280
-#, fuzzy
 msgid "You don't have any lives left."
-msgstr "คุณไม่มีชีวิตเหลือแล้ว"
+msgstr ""
 
 #: src/event_race_select.cpp:285
-#, fuzzy
 msgid "Race won! Your result:"
 msgstr "ชนะการแข่งขัน! ผลการแข่งขันของคุณ:"
 
 #: src/event_race_select.cpp:289
-#, fuzzy
 msgid "Needed to advance:"
 msgstr "ต้องไปต่อ:"
 
@@ -338,9 +328,8 @@ msgid "Score:"
 msgstr "คะแนน:"
 
 #: src/event_race_select.cpp:341
-#, fuzzy
 msgid "Contributed by:"
-msgstr "สร้างโดย:"
+msgstr ""
 
 #: src/event_race_select.cpp:349 po/levelinfo:16
 msgid "Unknown"
@@ -389,9 +378,8 @@ msgid "You beat your best score!"
 msgstr "คุณทำลายสถิติของคุณ!"
 
 #: src/game_over.cpp:164
-#, fuzzy
 msgid "Congratulations! You won the campaign!"
-msgstr "ขอแสดงความยินดี! คุณชนะถ้วยนี้!"
+msgstr ""
 
 #: src/game_over.cpp:166
 msgid "Congratulations! You won the cup!"
@@ -406,9 +394,8 @@ msgid "You didn't advance."
 msgstr "คุณตกรอบ"
 
 #: src/game_type_select.cpp:36
-#, fuzzy
 msgid "Enter a campaign"
-msgstr "เข้าเล่นสนาม"
+msgstr ""
 
 #: src/game_type_select.cpp:43
 msgid "Practice"
@@ -431,7 +418,6 @@ msgid "Graphics Configuration"
 msgstr "ตั้งค่ากราฟฟิค"
 
 #: src/graphicsconfig.cpp:108
-#, fuzzy
 msgid "Model:"
 msgstr "โมเดล:"
 
@@ -444,9 +430,8 @@ msgid "Display FPS:"
 msgstr "แสดง FPS:"
 
 #: src/graphicsconfig.cpp:125
-#, fuzzy
 msgid "Display Progress Bar:"
-msgstr "แสดงแถบความก้าวหน้า:"
+msgstr "แสดงแถบความคืบหน้า:"
 
 #: src/graphicsconfig.cpp:129
 msgid "Draw Fog:"
@@ -462,7 +447,7 @@ msgstr "เงา:"
 
 #: src/graphicsconfig.cpp:141
 msgid "Draw Background:"
-msgstr ""
+msgstr "วาดพื้นหลัง:"
 
 #: src/highscore.cpp:88
 msgid "1:st"
@@ -514,9 +499,8 @@ msgid " (%d points)"
 msgstr " (%d คะแนน)"
 
 #: src/joystickconfig.cpp:29
-#, fuzzy
 msgid "Joystick Configuration"
-msgstr "ตั้งค่าจอยสติ๊ก"
+msgstr ""
 
 #: src/joystickconfig.cpp:33
 msgid "Enable Joystick"
@@ -588,16 +572,15 @@ msgstr "ความละเอียด:"
 
 #: src/videoconfig.cpp:181
 msgid "Bits Per Pixel:"
-msgstr ""
+msgstr "บิตต่อพิกเซล:"
 
 #: src/videoconfig.cpp:185
 msgid "Fullscreen:"
 msgstr "เต็มจอ:"
 
 #: src/videoconfig.cpp:189
-#, fuzzy
 msgid "Experimental (needs restart)"
-msgstr "กำลังทดลองใช้ (ต้องเริ่มใหม่)"
+msgstr ""
 
 #: src/videoconfig.cpp:192
 msgid "Stencil Buffer:"
@@ -624,7 +607,7 @@ msgstr "%03d"
 #: po/levelinfo:4 po/levelinfo:5
 #, c-format
 msgid "%02d:%02d:%02d"
-msgstr ""
+msgstr "%02d:%02d:%02d"
 
 #: po/levelinfo:6 po/levelinfo:8
 msgid "km/h"
@@ -636,14 +619,14 @@ msgid "%.0f"
 msgstr "%.0f"
 
 #: po/levelinfo:10 po/levelinfo:11
-#, fuzzy, c-format
+#, c-format
 msgid "%d:%d:%d"
-msgstr "%02d:%02d.%02d"
+msgstr "%d:%d:%d"
 
 #: po/levelinfo:12 po/levelinfo:13
-#, fuzzy, c-format
+#, c-format
 msgid "%d"
-msgstr "%03d"
+msgstr "%d"
 
 #: po/levelinfo:14
 msgid "Doing"
@@ -657,13 +640,15 @@ msgstr "สนามนี้น่าจะถูกสร้างเพื่
 
 #: po/levelinfo:17
 msgid "Hippo Run"
-msgstr ""
+msgstr "วิ่งอย่างฮิปโป"
 
 #: po/levelinfo:18
 msgid ""
 "In Hippo Run, you slide down an icy slope as a penguin, I honestly don't "
 "know what this has to do with hippos or running..."
 msgstr ""
+"ในฉากนี้เพนกวิ้นของคุณจะไหลลงมาจากทางลาด ผมก็ไม่รู้จริงๆ "
+"ว่ามันเกี่ยวอะไรกับการวิ่งหรือพวกฮิปโป..."
 
 #: po/levelinfo:19
 msgid "Ice Pipeline"
@@ -675,13 +660,14 @@ msgstr ""
 
 #: po/levelinfo:21
 msgid "Volcanoes"
-msgstr ""
+msgstr "ภูเขาไฟ"
 
 #: po/levelinfo:22
 msgid ""
 "This gigantic crater was full of water, and herring, but now it's all "
 "frozen, and yours for the taking."
 msgstr ""
+"หลุมอุกาบาตยักษ์หลุมนี้เคยเต็มไปด้วยน้ำและปลา แต่ขณะนี้มันถูกแช่แข็งทั่วไปหมด และได้เวลาของคุณแล้ว"
 
 #: po/levelinfo:23
 msgid "Nature Stroll"
@@ -691,7 +677,7 @@ msgstr ""
 msgid ""
 "The fresh air, the pine scent, who doesn't like a nice refreshing walk "
 "through the mountains?"
-msgstr ""
+msgstr "อากาศสดชื่นพร้อมกลิ่นใบไม้ ใครบ้างไม่อยากเดินชมภูเขา?"
 
 #: po/levelinfo:25
 msgid "Mountain Mania"
@@ -703,7 +689,7 @@ msgstr ""
 
 #: po/levelinfo:27
 msgid "Death Cup"
-msgstr ""
+msgstr "ถ้วยแห่งความตาย"
 
 #: po/levelinfo:28
 msgid "Slippery Defeat"
@@ -715,11 +701,11 @@ msgstr ""
 
 #: po/levelinfo:30
 msgid "Slippy-Slidey"
-msgstr ""
+msgstr "ลื่นๆไหลๆ"
 
 #: po/levelinfo:31
 msgid "Slide on the slippery frozen river in a hilly forest, slipperily."
-msgstr ""
+msgstr "ไหลลงมาตามแม่น้ำแช่แข็งที่ลื่นในป่าที่มีแต่เนิน"
 
 #: po/levelinfo:32
 msgid "Crazy Path"
@@ -730,6 +716,8 @@ msgid ""
 "You'll have trouble slowing down on this one. There's lots of herring, but "
 "be careful not to fly too much or you won't get any."
 msgstr ""
+"คุณเบรคบนทางนี้ไม่ได้แน่ๆ และแถวนี้ยังมีปลาเยอะมาก "
+"แต่ระวังอย่ากระโดดมากไม่อย่างนั้นคุณจะไม่ได้เลย"
 
 #: po/levelinfo:34
 msgid "Candy Lane"
@@ -743,7 +731,7 @@ msgstr ""
 
 #: po/levelinfo:36
 msgid "Merry Go Round"
-msgstr ""
+msgstr "ม้าหมุน"
 
 #: po/levelinfo:37
 msgid "Try to build up enough speed to jump from one roundabout to the next."
@@ -751,11 +739,11 @@ msgstr ""
 
 #: po/levelinfo:38
 msgid "Hey, Tux!"
-msgstr ""
+msgstr "เฮ้ยเพนกวิ้น!"
 
 #: po/levelinfo:39
 msgid "This course offers true excitement for your race-loving penguin buddy."
-msgstr ""
+msgstr "สนามนี้เป็นสนามที่เร้าใจเพนกวิ้นนักขับของคุณอย่างแท้จริง"
 
 #: po/levelinfo:40
 msgid "Bobsled Ride"
@@ -767,7 +755,7 @@ msgstr ""
 
 #: po/levelinfo:42
 msgid "In Search of Vodka"
-msgstr ""
+msgstr "ตามล่าหาเมรัย"
 
 #: po/levelinfo:43
 msgid ""
@@ -775,14 +763,15 @@ msgid ""
 "cabinet has been pillaged. Join Tux on the quest for vodka.Pick up herring "
 "for dinner along the way!"
 msgstr ""
+"เพนกวินต้องการเหล้าวอดก้ามาอบอุ่นกระเพาะเย็นๆ ของเขา อย่างไรก็ตามตู้เก็บเหล้าของเขาหมดแล้ว "
+"มาร่วมผจญภัยกับเพนกวินทักซ์และภารกิจหาเหล้าวอดก้า "
+"และอย่าลืมเก็บปลาสำหรับอาหารเย็นระหว่างทางด้วย!"
 
 #: po/levelinfo:44
-#, fuzzy
 msgid "Tux at Home"
-msgstr "บ้านเพนกวิน"
+msgstr ""
 
 #: po/levelinfo:45
-#, fuzzy
 msgid ""
 "Here lives Tux. You can take the corridore on the right - it's the shortest "
 "and fastest way. But if you want to catch some herrings you have to enter "
@@ -797,15 +786,15 @@ msgstr ""
 
 #: po/levelinfo:47
 msgid "Search, Search, Search"
-msgstr ""
+msgstr "หา หา หา"
 
 #: po/levelinfo:48
 msgid "Mountains and Hills"
-msgstr ""
+msgstr "ภูเขาและเนิน"
 
 #: po/levelinfo:49
 msgid "The Final Challenge"
-msgstr ""
+msgstr "อุปสรรคสุดท้าย"
 
 #: po/levelinfo:50
 msgid "Wild Mountains"
@@ -815,7 +804,7 @@ msgstr ""
 msgid ""
 "A wild landscape of ice and snow. It isn't easy to keep the right way. Not "
 "for beginners."
-msgstr ""
+msgstr "ภูมิประเทศที่เต็มไปด้วยน้ำแข็งและหิมะ ไม่ง่ายนักที่มือใหม่หัดขับจะไปตามทางได้"
 
 #: po/levelinfo:52
 msgid "In Search of the Holy Grail"
@@ -829,17 +818,19 @@ msgstr ""
 
 #: po/levelinfo:54
 msgid "Frozen Lakes"
-msgstr ""
+msgstr "ทะเลสาปแช่แข็ง"
 
 #: po/levelinfo:55
 msgid ""
 "To reach the finish you must pass several frozen lakes. Watch your speed on "
 "the ice - there are some dangerous corners."
 msgstr ""
+"ฉากนี้คุณต้องผ่านทะเลสาบน้ำแข็งหลายที่ "
+"ระวังความเร็วของคุณบนน้ำแข็งด้วยเพราะมันมีโค้งอันตรายอยู่บ้าง"
 
 #: po/levelinfo:56
 msgid "Chinese Wall"
-msgstr ""
+msgstr "กำแพงเมืองจีน"
 
 #: po/levelinfo:57
 msgid ""
@@ -847,62 +838,60 @@ msgid ""
 "where the herrings are. If you fall off you can try to jump back up, there "
 "are 7 hidden ramps. You'll get a lot of exercise."
 msgstr ""
+"กำแพงเมืองจีนในหน้าหนาว พยายามอย่าตกกำแพงเพราะมันมีปลาอยู่ "
+"ถ้าคุณตกคุณอาจจะลองกระโดดขึ้นไปใหม่จากทางลาดที่ซ่อนอยู่ 7 แห่ง คุณจะได้ออกกำลังกายอย่างหนักเลย"
 
 #: po/levelinfo:58
 msgid "Secret Valleys"
-msgstr ""
+msgstr "หุบเขาลึกลับ"
 
 #: po/levelinfo:59
 msgid ""
 "Your task: Find the hidden valleys and the ten groups of dead trees. Look "
 "around, the ways are not easy to find."
 msgstr ""
+"งานของคุณ: หาหุบเขาที่ซ่อนอยู่และต้นไม้ที่ตายแล้ว 10 กลุ่ม มองดีๆ "
+"เพราะการหาเส้นทางไม่ใช่เรื่องง่าย"
 
 #: po/levelinfo:60
-#, fuzzy
 msgid "Explore the Mountains"
-msgstr "สำรวจภูเขา"
+msgstr ""
 
 #: po/levelinfo:61
-#, fuzzy
 msgid "Can you find your way through the icy, dangerous mountains. I doubt it."
-msgstr "คุณจะหาทางผ่านภูเขาที่น่าอันตรายและเยือกเย็นเหล่านี้ไปได้หรือไม่"
+msgstr ""
 
 #: po/levelinfo:62
 msgid "Challenge One"
-msgstr ""
+msgstr "ท้าทาย"
 
 #: po/levelinfo:63
 msgid ""
 "A very dangerous path along the mountains. Warning: The course is very "
 "difficult and there are some situations where you can get stuck."
-msgstr ""
+msgstr "เส้นทางที่อันตรายมากตามแนวเขา ระวัง: ฉากนี้ยากมากและอาจมีบางสถานการณ์ที่คุณจะติดได้"
 
 #: po/levelinfo:64
 msgid "Path of Daggers"
 msgstr "เส้นทางแห่งขวากหนาม"
 
 #: po/levelinfo:65
-#, fuzzy
 msgid ""
 "Big spikes may prove to be the least of your worries on this course. Muliple "
 "paths allow you to take low or high roads, each with their own challenges."
 msgstr ""
-"หนามโตๆ อาจจะเป็นเรื่องไม่น่ากังวลที่สุดของคุณในสนามนี้ และยังมีเส้นทางหลายๆแบบทั้งที่สูงต่ำที่ท้าทาย"
 
 #: po/levelinfo:66
 msgid "Tux Racer Classics"
 msgstr ""
 
 #: po/levelinfo:67
-#, fuzzy
 msgid "Canadian Cup"
-msgstr "ถ้วย Canadian"
+msgstr ""
 
 #: po/levelinfo:68
-#, fuzzy
 msgid "Swiss Cup"
-msgstr "ถ้วยสวิส"
+msgstr ""
 
 #: po/levelinfo:69
 msgid "Bumpy Ride"
@@ -912,23 +901,19 @@ msgstr ""
 msgid ""
 "This hill has a series of ramps to tackle.  Be sure to line yourself up "
 "before getting airborne."
-msgstr ""
+msgstr "เนินนี้มีทางลาดหลายที่ให้กระโดด แต่อย่าลืมจัดตัวเองก่อนโดดร่มละ"
 
 #: po/levelinfo:71
-#, fuzzy
 msgid "Bunny Hill"
 msgstr "เนินกระต่าย"
 
 #: po/levelinfo:72
-#, fuzzy
 msgid ""
 "Let's start out easy, just collect the herring in the time limit and you'll "
 "be fine. The best part is that you don't have to use those stupid T-lifts."
 msgstr ""
-"เริ่มกันง่ายๆก่อน แค่เก็บปลาในเวลาที่กำหนดให้เท่านี้เอง แต่ที่น่าสนใจคือคุณไม่ต้องใช้พวก T-lifts"
 
 #: po/levelinfo:73
-#, fuzzy
 msgid "Frozen River"
 msgstr "ธารน้ำแข็ง"
 
@@ -950,7 +935,7 @@ msgstr ""
 
 #: po/levelinfo:77
 msgid "Mt. Herring"
-msgstr ""
+msgstr "ภูเขาปลา"
 
 #: po/levelinfo:78
 msgid ""
@@ -958,6 +943,8 @@ msgid ""
 "some wide open areas and branching paths. Lots of herrings to collect though "
 "it can be difficult unless you watch your speed."
 msgstr ""
+"ฉากนี้ค่อนข้างเร็วแต่ยาว มีจุดกระแทกบางที่ และมีพื้นที่เปิดและเส้นทางแยก "
+"มีปลาให้เก็บมากมายแต่ก็ยากถ้าคุณไม่ระวังความเร็วของคุณ"
 
 #: po/levelinfo:79
 msgid "Herring Run"
@@ -973,25 +960,25 @@ msgstr ""
 
 #: po/levelinfo:82
 msgid "Tux the winter sportsman"
-msgstr ""
+msgstr "ทักซ์นักกีฬาหน้าหนาว"
 
 #: po/levelinfo:83
 msgid "Highway To Hell"
-msgstr ""
+msgstr "ทางด่วนลงนรก"
 
 #: po/levelinfo:84
 msgid "Ice Labyrinth"
-msgstr ""
+msgstr "เขาวงกฏน้ำแข็ง"
 
 #: po/levelinfo:85
 msgid ""
 "You choose your destiny, you could end up full or starving depending on the "
 "path you pick."
-msgstr ""
+msgstr "คุณเลือกจุดมุ่งหมายของคุณ คุณอาจจะอิ่มหรือกำลังหิวตายแล้วแต่ทางที่คุณเลือก"
 
 #: po/levelinfo:86
 msgid "Snow Valley"
-msgstr ""
+msgstr "หุบเขาหิมะ"
 
 #: po/levelinfo:87
 msgid ""
@@ -999,6 +986,9 @@ msgid ""
 "herrings very difficult to get if you're going for a perfect score! Watch "
 "your speed in certain areas to get the most herrings!"
 msgstr ""
+"หุบเขาหิมะเป็นฉากที่ค่อนข้างเรียบและเร็วมาก "
+"คุณจะพบปลาไม่กี่ตัวที่คุณจะเก็บได้ยากหากต้องการคะแนนสวยๆ "
+"ระวังความเร็วในบางจุดเพื่อเก็บปลาให้มากที่สุด!"
 
 #: po/levelinfo:88
 msgid "Tux Toboggan Run"
@@ -1012,7 +1002,7 @@ msgstr ""
 
 #: po/levelinfo:90
 msgid "Hazzard Valley"
-msgstr ""
+msgstr "หุบเขาอุปสรรค์"
 
 #: po/levelinfo:91
 msgid ""
@@ -1020,10 +1010,12 @@ msgid ""
 "huge areas of rocky plains, not to mention your speed being your enemy in "
 "trying to get the herrings and stay on course!"
 msgstr ""
+"หุบเขาอุปสรรค์เต็มไปด้วยอุปสรรค์เช่นต้นไม้ หลุมลึก หนาว และบริเวณขรุขระใหญ่ๆ "
+"และยังไม่รวมไปถึงความเร็วที่เป็นอุปสรรค์ของคุณในการเก็บปลาและอยู่ในเส้นทาง"
 
 #: po/levelinfo:92
 msgid "Skull Mountain"
-msgstr ""
+msgstr "หุบเขากะโหลก"
 
 #: po/levelinfo:93
 msgid ""
@@ -1039,7 +1031,7 @@ msgstr ""
 msgid ""
 "If you fall you might as well just quit then and there, 'cause your chances "
 "are slim on the rocky ground."
-msgstr ""
+msgstr "ถ้าคุณตกลงมาละก็คุณอาจจะเลิกเล่นเสียตรงนั้นเลยเพราะพื้นขรุขระเล่นยากมาก"
 
 #: po/levelinfo:96
 msgid "Dead Man's Drop"
@@ -1064,7 +1056,7 @@ msgstr ""
 
 #: po/levelinfo:100
 msgid "Mt. Satan"
-msgstr ""
+msgstr "ภูเขาซาตาน"
 
 #: po/levelinfo:101
 msgid ""
@@ -1074,27 +1066,27 @@ msgstr ""
 
 #: po/levelinfo:102
 msgid "Ski Jump"
-msgstr ""
+msgstr "กระโดดแบบสกี"
 
 #: po/levelinfo:103
 msgid ""
 "Steering will be unnecessary, just line yourself up and reap the rewards. "
 "Rememember, acceleration will slow you down after a while."
-msgstr ""
+msgstr "ไม่ต้องบังคับทิศ แค่จัดตัวเองและเก็บรางวัล จำไว้ว่าความเร่งจะทำให้คุณช้าลงครู่หนึ่ง"
 
 #: po/levelinfo:104
 msgid "High Road"
-msgstr ""
+msgstr "ทางสูง"
 
 #: po/levelinfo:105
 msgid ""
 "Just stay on the path and collect herring. Oh yeah, and if you fall you'll "
 "be eating pine needles."
-msgstr ""
+msgstr "แค่ไปตามทางและเก็บปลา และถ้าคุณตกลงมาคุณจะได้เก็บหนามต้นไพน์"
 
 #: po/levelinfo:106
 msgid "The Narrow Way"
-msgstr ""
+msgstr "ทางแคบ"
 
 #: po/levelinfo:107
 msgid ""
@@ -1102,10 +1094,12 @@ msgid ""
 "you're going, there's trees in your way, and the herrings are hard to get. "
 "Good luck, you'll need it!"
 msgstr ""
+"ง่ายๆ แค่ไปตามทางหรือไม่คุณก็แพ้ มันจะมองเห็นทางได้ยาก เพราะมีต้นไม้ระหว่างทาง "
+"แล้วแถมปลายังเก็บได้ยากอีก ขอให้โชคดี!"
 
 #: po/levelinfo:108
 msgid "Hamburger Hill"
-msgstr ""
+msgstr "เนินแฮมเบอร์เกอร์"
 
 #: po/levelinfo:109
 msgid ""
@@ -1124,25 +1118,25 @@ msgstr ""
 
 #: po/levelinfo:112
 msgid "Who Says Penguins Can't Fly?"
-msgstr ""
+msgstr "ใครว่าเพนกวินบินไม่ได้?"
 
 #: po/levelinfo:113
 msgid ""
 "It'll be tough collecting herrings at speeds over 200, so try to brake "
 "whenever possible to get the required herring."
-msgstr ""
+msgstr "ยากแน่ๆ ถ้าจะเก็บปลาในความเร็วระดับ 200 ดังนั้นอย่าลืมเบรคเมื่อจะเก็บปลา"
 
 #: po/modelinfo:1
 msgid "Tux"
 msgstr "Tux"
 
 #: po/modelinfo:2
-#, fuzzy
 msgid "Tux on Snowboard"
-msgstr "Tux บนกระดานลื่น"
+msgstr "Tux บนกระดานหิมะ"
 
-#~ msgid "Event:"
-#~ msgstr "การแข่งขัน:"
+msgid "Event:"
+msgstr "การแข่งขัน:"
 
+#, fuzzy
 #~ msgid "Congratulations! You won the event!"
-#~ msgstr "ขอแสดงความยินดี! คุณชนะสนามนี้!"
+#~ msgstr "ขอแสดงความยินดี! คุณชนะถ้วยนี้!"

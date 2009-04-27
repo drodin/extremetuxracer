@@ -1,0 +1,1227 @@
+# Javanese translation for etracer
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the etracer package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: etracer\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2009-01-28 17:36+0100\n"
+"PO-Revision-Date: 2009-02-19 17:25+0000\n"
+"Last-Translator: Arief Setiadi Wibowo <Unknown>\n"
+"Language-Team: Javanese <jv@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2009-04-27 12:04+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#: src/audioconfig.cpp:36
+msgid "Audio Configuration"
+msgstr "Ngatur Suoro"
+
+#: src/audioconfig.cpp:112
+msgid "Sound Effects:"
+msgstr "Efek Suoro"
+
+#: src/audioconfig.cpp:116
+msgid "Music:"
+msgstr "Musik"
+
+#: src/audioconfig.cpp:120
+msgid "(needs restart)"
+msgstr "Butuh restart"
+
+#: src/audioconfig.cpp:122
+msgid "Disable Audio:"
+msgstr "Suoro Gak Digawe"
+
+#: src/audioconfig.cpp:126
+msgid "Stereo:"
+msgstr "Stereo:"
+
+#: src/audioconfig.cpp:130
+msgid "Bits Per Sample:"
+msgstr "Bit saben Sampel"
+
+#: src/audioconfig.cpp:134
+msgid "Samples Per Second:"
+msgstr "Sampel saben detik"
+
+#: src/configmode.cpp:36
+msgid "Cancel"
+msgstr "Wurung"
+
+#: src/configmode.cpp:43
+msgid "Ok"
+msgstr "Ok"
+
+#: src/configuration.cpp:38 src/game_type_select.cpp:57 src/paused.cpp:63
+msgid "Configuration"
+msgstr "Setelan"
+
+#: src/configuration.cpp:45 src/credits.cpp:76
+msgid "Graphics"
+msgstr "Gambar"
+
+#: src/configuration.cpp:52
+msgid "Video"
+msgstr "Video"
+
+#: src/configuration.cpp:59
+msgid "Audio"
+msgstr "Suoro"
+
+#: src/configuration.cpp:66
+msgid "Keyboard"
+msgstr "Ketikan"
+
+#: src/configuration.cpp:73
+msgid "Joystick"
+msgstr "Stik Gem"
+
+#: src/configuration.cpp:81 src/credits.cpp:150 src/event_select.cpp:96
+#: src/event_race_select.cpp:53 src/highscore.cpp:413
+msgid "Back"
+msgstr "Mbalik"
+
+#: src/credits.cpp:43
+msgid "Version 0.5"
+msgstr "Versi 0.5"
+
+#: src/credits.cpp:46
+msgid "Extreme Tux Racer is in the process of being"
+msgstr "Extreme Tux Racer nembe diproses"
+
+#: src/credits.cpp:47
+msgid "completely rewritten. All versions after 0.35,"
+msgstr "ditulis maneh kanti komplit. Kabeh versine sawise 0.35,"
+
+#: src/credits.cpp:48
+msgid "including this one, won't have major code changes"
+msgstr "lebokake iki, ora bakal gawe penggubahan geden-geden"
+
+#: src/credits.cpp:49
+msgid "because the programmers are busy making a new,"
+msgstr "amarga programer lagi sibuk nggawe sing anyar"
+
+#: src/credits.cpp:50
+msgid "improved game."
+msgstr "dolanan kang wis diapiki"
+
+#: src/credits.cpp:52
+msgid "Extreme Tux Racer is based on"
+msgstr "Extreme Tux Racer digawe saka"
+
+#: src/credits.cpp:53
+msgid "PlanetPenguin Racer, Open Racer and Tux Racer."
+msgstr "PlanetPenguin Racer, Open Racer lan Tux Racer."
+
+#: src/credits.cpp:55
+msgid "Some courses may have been modified from their"
+msgstr "Sawatara bagian mungkin wis diganti saka asline"
+
+#: src/credits.cpp:56
+msgid "original versions to fit the requirements of the game."
+msgstr "versi asline kanggo nyocokake kebutuhan dolanan"
+
+#: src/credits.cpp:58
+msgid "Development"
+msgstr "Sing Ngembangno"
+
+#: src/credits.cpp:65
+msgid "from Sunspire Studios:"
+msgstr "saka Sunspire Studios"
+
+#: src/credits.cpp:73
+msgid "Release Organization"
+msgstr "Oraganisasi kang ngetokke"
+
+#: src/credits.cpp:77
+msgid "Nicosmos (Logo, HUD and Interface)"
+msgstr "Nicosmos (Logo, HUD lan Interface)"
+
+#: src/credits.cpp:78
+msgid "Christian Picon (Objects, Skyboxes, Characters)"
+msgstr "Christian Picon (Obyek, Skybox, Karakter)"
+
+#: src/credits.cpp:79
+msgid "Reinhard Niehoff (Trees)"
+msgstr "Reinhard Niehoff (Wit-witan)"
+
+#: src/credits.cpp:80
+msgid "Daniel Poeira and Christian Picon (Papercuts Font)"
+msgstr "Daniel Poeira lan Christian Picon (Font Papercuts)"
+
+#: src/credits.cpp:82
+msgid "Music"
+msgstr "Musik"
+
+#: src/credits.cpp:84
+msgid "'Race 1'"
+msgstr "'Balapan 1'"
+
+#: src/credits.cpp:85
+msgid "'Menu'"
+msgstr "'Menu'"
+
+#: src/credits.cpp:86
+msgid "'Options'"
+msgstr "'Pilihan'"
+
+#: src/credits.cpp:87
+msgid "'Won Race'"
+msgstr "'Menang Balapan'"
+
+#: src/credits.cpp:90
+msgid "'Credits Ballad'"
+msgstr "'Credits Ballad'"
+
+#: src/credits.cpp:93
+msgid "'Freezing Point'"
+msgstr "'Poin Mbeku'ke'"
+
+#: src/credits.cpp:96
+msgid "'Calm Race'"
+msgstr "'Balapan Alon-alonan'"
+
+#: src/credits.cpp:97
+msgid "'Lost Race'"
+msgstr "'Nyasar'"
+
+#: src/credits.cpp:98
+msgid "'Race Intro'"
+msgstr "'Intro Balapan'"
+
+#: src/credits.cpp:99
+msgid "'Spunky Race'"
+msgstr "'Balapan Kendhel-kendhelan'"
+
+#: src/credits.cpp:100
+msgid "'Won Race: kschroeder Remix'"
+msgstr "'Menang Balapan: kschroeder Remix'"
+
+#: src/credits.cpp:102
+msgid "Misc. PPRacer Contributors"
+msgstr "Penyumbang Misc. PPRacer"
+
+#: src/credits.cpp:108
+msgid "52143__blaukreuz__imp_01.wav - Original sound of ice cracking..."
+msgstr "52143__blaukreuz__imp_01.wav - Suara asline Mecah Es..."
+
+#: src/credits.cpp:109
+msgid "http://www.freesound.org/samplesViewSingle.php?id=52143"
+msgstr "http://www.freesound.org/samplesViewSingle.php?id=52143"
+
+#: src/credits.cpp:111
+msgid "Thanks To"
+msgstr "Matur suwun kanggo"
+
+#: src/credits.cpp:112
+msgid "(for Extreme Tux Racer)"
+msgstr "(kanggo Extreme Tux Racer)"
+
+#: src/credits.cpp:113
+msgid "Ranger (for hosting the website)"
+msgstr "Ranger (kanggo hosting website)"
+
+#: src/credits.cpp:114
+msgid "Slythfox (for making the website)"
+msgstr "Slythfox (kanggo nggawe website)"
+
+#: src/credits.cpp:115
+msgid "The Course Creators"
+msgstr "Para Tukang Gawe Dalan"
+
+#: src/credits.cpp:116
+msgid "The OpenRacer project"
+msgstr "Proyek OpenRacer"
+
+#: src/credits.cpp:117
+msgid "Reinhard Niehoff (tons of advice)"
+msgstr "Reinhard Niehoff (anjuran kang akeh)"
+
+#: src/credits.cpp:118
+msgid "All the people of the forum"
+msgstr "Kabeh sedherek ning forum"
+
+#: src/credits.cpp:119
+msgid "Larry Ewing (creator of Tux)"
+msgstr "Larry Ewing (kang gawe Tux)"
+
+#: src/credits.cpp:120
+msgid "(for Tux Racer)"
+msgstr "(kanggo Tux Racer)"
+
+#: src/credits.cpp:127
+msgid "Tux Racer is a trademark of Jasmin F. Patry."
+msgstr "Tux Racer iku trademark saka Jasmin F. Patry"
+
+#: src/credits.cpp:128
+msgid "Extreme Tux Racer is licenced under the GPL."
+msgstr "Extreme Tux Racer dilisensi'ke ning lisensi GPL."
+
+#: src/credits.cpp:129
+msgid "We grant use of the name 'Extreme Tux Racer'"
+msgstr "Kita idinake panganggone 'Extreme Tux Racer'"
+
+#: src/credits.cpp:130
+msgid "to any forks or continuations."
+msgstr "kanggo kabeh garapan turunane utowo terusane."
+
+#: src/credits.cpp:132
+msgid "PlanetPenguin Racer is Copyright © 2005 Volker Stroebel."
+msgstr "PlanetPenguin Racer nduweni Hakcipta © 2005 Volker Stroebel."
+
+#: src/credits.cpp:133
+msgid ""
+"Tux Racer and the Tux Racer Name are Copyright © 2001 Jasmin F. Patry."
+msgstr ""
+"Tux Racer lan Jeneng Tux Racer nduweni Hakcipta © 2001 Jasmin F. Patry."
+
+#: src/credits.cpp:159
+msgid "Translators"
+msgstr "Sing Ngartekno"
+
+#: src/event_select.cpp:50
+msgid "Select campaign and cup"
+msgstr "Pilih kampanye lan piala"
+
+#: src/event_select.cpp:56
+msgid "Campaign:"
+msgstr "Kampanye:"
+
+#: src/event_select.cpp:67
+msgid "Cup:"
+msgstr "Kejuaraan:"
+
+#: src/event_select.cpp:87
+msgid "Player name:"
+msgstr "Jenenge pemain"
+
+#: src/event_select.cpp:104
+msgid "Continue"
+msgstr "Teruske"
+
+#: src/event_select.cpp:203
+msgid "You've won this cup!"
+msgstr "Kowe menangake piala iki!"
+
+#: src/event_select.cpp:205
+msgid "You must complete this cup next"
+msgstr "Kowe kudu ngebarke kejuaraan iki"
+
+#: src/event_select.cpp:207
+msgid "You cannot enter this cup yet"
+msgstr "Kowe durung isa melu kejuaraan iki saiki"
+
+#: src/event_race_select.cpp:45
+msgid "Select a race"
+msgstr "Pilih Balapan"
+
+#: src/event_race_select.cpp:60
+msgid "Race!"
+msgstr "Balapan!"
+
+#: src/event_race_select.cpp:290
+msgid "You don't have any lives left."
+msgstr "Kowe wis ora nduwe nyawa maneh."
+
+#: src/event_race_select.cpp:295
+msgid "Race won! Your result:"
+msgstr "Menang balapan! Hasilmu:"
+
+#: src/event_race_select.cpp:299
+msgid "Needed to advance:"
+msgstr "Dibutuhke kanggo kang wis prigel:"
+
+#: src/event_race_select.cpp:303
+msgid "You can't enter this race yet."
+msgstr "Kowe durung iso melu lomba iki sik."
+
+#: src/event_race_select.cpp:326
+msgid "Time:"
+msgstr "Wektu:"
+
+#: src/event_race_select.cpp:330
+#, c-format
+msgid "%02d:%02d.%02d"
+msgstr "%02d:%02d.%02d"
+
+#: src/event_race_select.cpp:334
+msgid "Herring:"
+msgstr "Iwak Hering:"
+
+#: src/event_race_select.cpp:342
+msgid "Score:"
+msgstr "Skor:"
+
+#: src/event_race_select.cpp:351
+msgid "Contributed by:"
+msgstr "Disumbangke dening:"
+
+#: src/event_race_select.cpp:359 po/levelinfo:113
+msgid "Unknown"
+msgstr "Ora dikenali"
+
+#: src/game_over.cpp:122 src/game_over.cpp:124
+msgid "Race aborted"
+msgstr "Balapan dibatalke"
+
+#: src/game_over.cpp:127 src/game_over.cpp:129
+msgid "Race Over"
+msgstr "Balapan Wis Bar"
+
+#: src/game_over.cpp:136
+#, c-format
+msgid "Time: %02d:%02d.%02d"
+msgstr "Wektu: %02d:%02d.%02d"
+
+#: src/game_over.cpp:143
+#, c-format
+msgid "Herring: %3d"
+msgstr "Iwak Hering: %3d"
+
+#: src/game_over.cpp:150
+#, c-format
+msgid "Score: %6d"
+msgstr "Skor: %6d"
+
+#: src/game_over.cpp:158
+#, c-format
+msgid "Max speed: %3d km/h"
+msgstr "Paling Banter: %3d km/jam"
+
+#: src/game_over.cpp:166
+#, c-format
+msgid "Was flying: %.01f %% of time"
+msgstr "Mabur: %.01f %%"
+
+#: src/game_over.cpp:178
+#, c-format
+msgid "You made it to the %s place in the highscore!"
+msgstr "Kasil mlebu nomer %s ning skor paling dhuwur!"
+
+#: src/game_over.cpp:190
+msgid "You beat your best score!"
+msgstr "Kasil nglewati skormu kang paling apik!"
+
+#: src/game_over.cpp:193
+msgid "Congratulations! You won the campaign!"
+msgstr "Selamat! Kowe menang kampanye!"
+
+#: src/game_over.cpp:195
+msgid "Congratulations! You won the cup!"
+msgstr "Selamat! Kowe menang kejuaraan!"
+
+#: src/game_over.cpp:197
+msgid "Requirements met! Advance to the next race."
+msgstr "Sarat dicukupi! Teruske ning balapan sateruse."
+
+#: src/game_over.cpp:199
+msgid "Race requirements not met."
+msgstr "Sarat balapan ora kacukupi."
+
+#: src/game_type_select.cpp:36
+msgid "Enter a campaign"
+msgstr "Mlebu menu kampanye"
+
+#: src/game_type_select.cpp:43
+msgid "Practice"
+msgstr "Latihan"
+
+#: src/game_type_select.cpp:50 src/highscore.cpp:350
+msgid "Highscore"
+msgstr "Skor paling dhuwur"
+
+#: src/game_type_select.cpp:64
+msgid "Credits"
+msgstr "Panghargaan"
+
+#: src/game_type_select.cpp:71 src/paused.cpp:79
+msgid "Quit"
+msgstr "Metu"
+
+#: src/graphicsconfig.cpp:30
+msgid "Graphics Configuration"
+msgstr "Tatanan gambar"
+
+#: src/graphicsconfig.cpp:117
+msgid "Show UI Snow:"
+msgstr "Tampilke Salju UI"
+
+#: src/graphicsconfig.cpp:121
+msgid "Display FPS:"
+msgstr "Tampilke FPS:"
+
+#: src/graphicsconfig.cpp:125
+msgid "Display Progress Bar:"
+msgstr "Tampilke Bar Kamajuan:"
+
+#: src/graphicsconfig.cpp:129
+msgid "Draw Fog:"
+msgstr "Gambar Pedhut"
+
+#: src/graphicsconfig.cpp:133
+msgid "Reflections:"
+msgstr "Pantulan:"
+
+#: src/graphicsconfig.cpp:137
+msgid "Shadows:"
+msgstr "Ayang-ayang:"
+
+#: src/graphicsconfig.cpp:141
+msgid "Draw Background:"
+msgstr "Gambar latar:"
+
+#: src/highscore.cpp:88
+msgid "1:st"
+msgstr "Nomer 1"
+
+#: src/highscore.cpp:90
+msgid "2:nd"
+msgstr "Nomer 2"
+
+#: src/highscore.cpp:92
+msgid "3:rd"
+msgstr "Nomer 3"
+
+#: src/highscore.cpp:94
+msgid "4:th"
+msgstr "Nomer 4"
+
+#: src/highscore.cpp:96
+msgid "5:th"
+msgstr "Nomer 5"
+
+#: src/highscore.cpp:98
+msgid "6:th"
+msgstr "Nomer 6"
+
+#: src/highscore.cpp:100
+msgid "7:th"
+msgstr "Nomer 7"
+
+#: src/highscore.cpp:102
+msgid "8:th"
+msgstr "Nomer 8"
+
+#: src/highscore.cpp:104
+msgid "9:th"
+msgstr "Nomer 9"
+
+#: src/highscore.cpp:106
+msgid "10:th"
+msgstr "Nomer 10"
+
+#: src/highscore.cpp:317
+msgid "No records"
+msgstr "Ora ono rekor"
+
+#: src/highscore.cpp:327
+#, c-format
+msgid " (%d points)"
+msgstr " (%d point)"
+
+#: src/joystickconfig.cpp:29
+msgid "Joystick Configuration"
+msgstr "Tatanan Joistik"
+
+#: src/joystickconfig.cpp:33
+msgid "Enable Joystick"
+msgstr "Gunakke Joistik"
+
+#: src/joystickconfig.cpp:41 src/keyboardconfig.cpp:132
+msgid "Paddle:"
+msgstr "Tongkat:"
+
+#: src/joystickconfig.cpp:54 src/keyboardconfig.cpp:136
+msgid "Brake:"
+msgstr "Rem:"
+
+#: src/joystickconfig.cpp:67 src/keyboardconfig.cpp:140
+msgid "Jump:"
+msgstr "Mlompat:"
+
+#: src/joystickconfig.cpp:80 src/keyboardconfig.cpp:144
+msgid "Trick:"
+msgstr "Apus-apusan:"
+
+#: src/keyboardconfig.cpp:55
+msgid "Keyboard Configuration"
+msgstr "Tatanan kibor"
+
+#: src/keyboardconfig.cpp:124
+msgid "Turn left:"
+msgstr "Menggok ngiwa:"
+
+#: src/keyboardconfig.cpp:128
+msgid "Turn right:"
+msgstr "Menggok nengen:"
+
+#: src/keyboardconfig.cpp:148
+msgid "Reset:"
+msgstr "Ditata ulang:"
+
+#: src/loading.cpp:53
+msgid "Loading, Please Wait..."
+msgstr "Lagi ngemot, tunggu sekedap..."
+
+#: src/paused.cpp:55
+msgid "Paused"
+msgstr "Mandeg sedhela"
+
+#: src/paused.cpp:71
+msgid "Resume"
+msgstr "Teruske"
+
+#: src/splash_screen.cpp:34
+msgid "PRESS ANY KEY TO START"
+msgstr "PENCET SEMBARANG KANGGO MULAI"
+
+#: src/videoconfig.cpp:60
+msgid "Video Configuration"
+msgstr "Tatanan Video"
+
+#: src/videoconfig.cpp:173
+msgid "To change the resolution, or switch into fullscreen mode"
+msgstr "Kanggo ngganti resolusi, utawa pindah ning mode sak layar kebak"
+
+#: src/videoconfig.cpp:175
+msgid "use options.txt, located in the config folder."
+msgstr "gunakke options.txt, ning folder config."
+
+#: src/videoconfig.cpp:177
+msgid "Resolution:"
+msgstr "Resolusi:"
+
+#: src/videoconfig.cpp:181
+msgid "Bits Per Pixel:"
+msgstr "Bit saben Piksel:"
+
+#: src/videoconfig.cpp:185
+msgid "Fullscreen:"
+msgstr "Sak layar Kebak:"
+
+#: src/videoconfig.cpp:189
+msgid "Experimental (needs restart)"
+msgstr "Pacoban (mbutuhake restart)"
+
+#: src/videoconfig.cpp:192
+msgid "Stencil Buffer:"
+msgstr "Panyangga Stensil"
+
+#: src/videoconfig.cpp:196
+msgid "Enable FSAA:"
+msgstr "Gunakke FSAA:"
+
+#: src/videoconfig.cpp:200
+msgid "FSAA Multisamples:"
+msgstr "FSAA Multisampel:"
+
+#: po/levelinfo:1
+msgid "Doing"
+msgstr "Lagi nglakokke"
+
+#: po/levelinfo:2
+msgid ""
+"This course was probably created to present new textures introduced in "
+"PPRacer."
+msgstr ""
+"Bagian iki digawe mungkin kanggo munculke tekstur anyar kang dikenalke ning "
+"PPRacer."
+
+#: po/levelinfo:3
+#, c-format
+msgid "FPS: %.1f"
+msgstr "FPS: %.1f"
+
+#: po/levelinfo:4 po/levelinfo:5
+#, c-format
+msgid "%03d"
+msgstr "%03d"
+
+#: po/levelinfo:6 po/levelinfo:7
+#, c-format
+msgid "%02d:%02d:%02d"
+msgstr "%02d:%02d:%02d"
+
+#: po/levelinfo:8 po/levelinfo:10
+msgid "km/h"
+msgstr "km/jam"
+
+#: po/levelinfo:9 po/levelinfo:11
+#, c-format
+msgid "%.0f"
+msgstr "%.0f"
+
+#: po/levelinfo:12 po/levelinfo:13
+#, c-format
+msgid "%d:%d:%d"
+msgstr "%d:%d:%d"
+
+#: po/levelinfo:14 po/levelinfo:15
+#, c-format
+msgid "%d"
+msgstr "%d"
+
+#: po/levelinfo:16
+msgid "Mountain Mania"
+msgstr "Mania Gunung"
+
+#: po/levelinfo:17
+msgid "Icy Peril"
+msgstr "Peril kang Adem"
+
+#: po/levelinfo:18
+msgid "Death Cup"
+msgstr "Piala Kapaten"
+
+#: po/levelinfo:19
+msgid "Slippery Defeat"
+msgstr "Urik kalah"
+
+#: po/levelinfo:20
+msgid "The Final Three"
+msgstr "Telu kang pungkasan"
+
+#: po/levelinfo:21
+msgid "Bobsled Ride"
+msgstr "Bobsled Ride"
+
+#: po/levelinfo:22
+msgid "Just like a real bobsled ride, only more dangerous."
+msgstr "Kaya Bobsled Ride, tapi luwih mbebayani"
+
+#: po/levelinfo:23
+msgid "Candy Lane"
+msgstr "Candy Lane"
+
+#: po/levelinfo:24
+msgid ""
+"Mostly ice, with very few obstacles in your path, this is like a stroll down "
+"Candy Lane."
+msgstr ""
+"Akeh es, sithik alangan kang ngalingi dalanmu, iki kaya mudhun ning Candy "
+"Lane."
+
+#: po/levelinfo:25
+msgid "Ice Pipeline"
+msgstr "Pipa Saluran Es"
+
+#: po/levelinfo:26
+msgid "A short, slippery ice-trough with herring scattered throughout."
+msgstr "Dalan kang cendhek, lunyu kanthi iwak Hering sumebar ning ndi-ndi."
+
+#: po/levelinfo:27
+msgid "Hippo Run"
+msgstr "Mlayu Hippo"
+
+#: po/levelinfo:28
+msgid ""
+"In Hippo Run, you slide down an icy slope as a penguin, I honestly don't "
+"know what this has to do with hippos or running..."
+msgstr ""
+"ing Mlayu Hippo, kowe bakal prosotan ning lereng es koyo Penguin. Sakjane "
+"aku ora ngerti opo kang kudu dilakoni kanthi hippo utawa mlayu..."
+
+#: po/levelinfo:29
+msgid "Nature Stroll"
+msgstr "Plesir ning Alam"
+
+#: po/levelinfo:30
+msgid ""
+"The fresh air, the pine scent, who doesn't like a nice refreshing walk "
+"through the mountains?"
+msgstr ""
+"Hawa seger,ambune cemara, sapa kang ora seneng mlaku-mlaku ning gunung?"
+
+#: po/levelinfo:31
+msgid "Crazy Path"
+msgstr "Dalan Edan"
+
+#: po/levelinfo:32
+msgid ""
+"You'll have trouble slowing down on this one. There's lots of herring, but "
+"be careful not to fly too much or you won't get any."
+msgstr ""
+"Kowe bakal entuk masalah karo ngurangi banter. Akeh iwak Hering, tapi ati-"
+"ati ojo kakehan mabur utawa kowe ora bakal entuk siji-sijia."
+
+#: po/levelinfo:33
+msgid "In Search of Vodka"
+msgstr "Nggoleki Vodka"
+
+#: po/levelinfo:34
+msgid ""
+"Tux needs some needs some vodka to warm up his cold belly. Alas, his liquor "
+"cabinet has been pillaged. Join Tux on the quest for vodka.Pick up herring "
+"for dinner along the way!"
+msgstr ""
+"Tux butuh Vodka kanggo ngangetke wetenge. Waduh, lemarine nembe wae "
+"dirayah.Nggabung karo Tux nggoleki vodka. Jupuk iwak Hering kanggo mangan "
+"bengi sinambi mlaku."
+
+#: po/levelinfo:35
+msgid "Merry Go Round"
+msgstr "Komidi Puter"
+
+#: po/levelinfo:36
+msgid "Try to build up enough speed to jump from one roundabout to the next."
+msgstr "Coba luwih banter kanggo mlompat."
+
+#: po/levelinfo:37
+msgid "Hey, Tux!"
+msgstr "Hei, Tux!"
+
+#: po/levelinfo:38
+msgid ""
+"This course offers true excitement for your race-loving penguin buddy."
+msgstr ""
+"Bagian iki nawani kasenengan kanggo mitra penguinmu kang seneng balapan."
+
+#: po/levelinfo:39
+msgid "Volcanoes"
+msgstr "Gunung api"
+
+#: po/levelinfo:40
+msgid ""
+"This gigantic crater was full of water, and herring, but now it's all "
+"frozen, and yours for the taking."
+msgstr ""
+"Kawah gede iki mbiyene kebak banyu lan iwak Hering, tapi saiki kabeh mbeku, "
+"kabeh iki duwekmu yen pingin mbok jupuk."
+
+#: po/levelinfo:41
+msgid "Slippy-Slidey"
+msgstr "Prosotan-Lunyu"
+
+#: po/levelinfo:42
+msgid "Slide on the slippery frozen river in a hilly forest, slipperily."
+msgstr "Prosotan ning kali beku ing alas, lunyu banget."
+
+#: po/levelinfo:43
+msgid "Herring Run"
+msgstr "Iwak Hering Mlayu"
+
+#: po/levelinfo:44
+msgid "Mountain Man"
+msgstr "Wong Gunung"
+
+#: po/levelinfo:45
+msgid "Valley Cup"
+msgstr "Piala Lembah"
+
+#: po/levelinfo:46
+msgid "Tux the winter sportsman"
+msgstr "Tux olahragawan musim adem"
+
+#: po/levelinfo:47
+msgid "Highway To Hell"
+msgstr "Dalan Gede menyang Neraka"
+
+#: po/levelinfo:48
+msgid "Dead Man's Drop"
+msgstr "Jurang Wong Mati"
+
+#: po/levelinfo:49
+msgid ""
+"Pretty tough hill. It's fast, steep, lumpy, twisty, and full of trees. Hard "
+"to get herrings. Don't forget the drop."
+msgstr ""
+"Bukit sing kuat. Banter, jero, nggronjal, menggak-menggok lan kebak wit-"
+"witan. Angel golek iwak Hering. Ojo lalekke jurang."
+
+#: po/levelinfo:50
+msgid "Skull Mountain"
+msgstr "Gunung Tengkorak"
+
+#: po/levelinfo:51
+msgid ""
+"Skull mountain is a steep, twisty drop around tree-filled inner peaks. "
+"Expect to miss a lot of herrings and crash a lot."
+msgstr ""
+"Gunung Tengkorak nduweni jurang kang jero, menggak-menggok lan kebak wit-"
+"witan ning puncake. Mungkin banget kelangan iwak Hering lan kerep tabrakan."
+
+#: po/levelinfo:52
+msgid "The Narrow Way"
+msgstr "Dalan Sempit"
+
+#: po/levelinfo:53
+msgid ""
+"To put it simply, stay on the path or you lose! It's hard to see where "
+"you're going, there's trees in your way, and the herrings are hard to get. "
+"Good luck, you'll need it!"
+msgstr ""
+"Gampang wae,tetep ning jalur opo kalah! Angel dideleng arahmu mlaku, akeh "
+"wit-witan kang nutupi dalanmu, lan angel golek iwak Hering. Mugo-mugo entuk "
+"kabejan, kowe mbutuhake iku."
+
+#: po/levelinfo:54
+msgid "Hamburger Hill"
+msgstr "Bukit Hamburger"
+
+#: po/levelinfo:55
+msgid ""
+"Hamburger Hill is steep, narrow, twisty, lumpy, icy, and rocky, with a few "
+"trees right in your way!"
+msgstr ""
+"Bukit Hamburger iku sempit, jero, menggak-menggok, lunyu, akeh es, lan akeh "
+"watu, kanti sithik banget wit-witan ning dalan kang mbok lewati!"
+
+#: po/levelinfo:56
+msgid "Who Says Penguins Can't Fly?"
+msgstr "Jare sopo Penguin ora iso mabur?"
+
+#: po/levelinfo:57
+msgid ""
+"It'll be tough collecting herrings at speeds over 200, so try to brake "
+"whenever possible to get the required herring."
+msgstr ""
+"Bakal angel banget golek iwak Hering yen bantermu luwih saka 200, coba direm "
+"yen mungkin kanggo golek iwak Hering sing dibutuhake."
+
+#: po/levelinfo:58
+msgid "Snow Valley"
+msgstr "Lembah Salju"
+
+#: po/levelinfo:59
+msgid ""
+"Snow Valley is a relatively flat, and very fast course. You'll find a few "
+"herrings very difficult to get if you're going for a perfect score! Watch "
+"your speed in certain areas to get the most herrings!"
+msgstr ""
+"Lembah Salju relatis rata lan jalur kang cepet. Kowe bakal angel nemokke "
+"iwak Hering yen pingin golek skor sampurna! Ati-ati karo bantermu ning "
+"panggonan kang akeh iwak Hering'e."
+
+#: po/levelinfo:60
+msgid "Ski Jump"
+msgstr "Lompatan Ski"
+
+#: po/levelinfo:61
+msgid ""
+"Steering will be unnecessary, just line yourself up and reap the rewards. "
+"Rememember, acceleration will slow you down after a while."
+msgstr ""
+"Nyetir bakal ora dibutuhake, namung luruske awakmu lan jupuk hadiahe. Eling-"
+"eling, playumu bakal luwih alon sakwise sawatara."
+
+#: po/levelinfo:62
+msgid "Slalom"
+msgstr "Slalom"
+
+#: po/levelinfo:63
+msgid ""
+"Brake while you turn and the herrings on this pseudo-slalom will be yours."
+msgstr ""
+"Ngerem'a yen pas menggok lan iwak Hering ning pseudo-slalom bakal dadi "
+"duwekmu."
+
+#: po/levelinfo:64
+msgid "Hazzard Valley"
+msgstr "Lembah Bebaya"
+
+#: po/levelinfo:65
+msgid ""
+"Hazzard Valley is full of hazards, like trees, deep caverns, spikes, and "
+"huge areas of rocky plains, not to mention your speed being your enemy in "
+"trying to get the herrings and stay on course!"
+msgstr ""
+"Lembah Bebaya iku kebak bebaya, kaya ta wit-witan, gua kang jero, paku-paku, "
+"padang ombo kan kebak watu, ora usah gatekke bantere playumu lan musuhmu "
+"coba'a golek iwak Hering lan tetep ning jalur balapan!"
+
+#: po/levelinfo:66
+msgid "I've Got A Woody"
+msgstr "Nemoni Kayu"
+
+#: po/levelinfo:67
+msgid ""
+"Yet another horrible elevated ice-coaster. If you thought the last two were "
+"hard, try this one. Have fun winding through the woods.  Look out for a huge "
+"shortcut!!"
+msgstr ""
+"Angkatan es-coaster kang medeni. Yen Kowe mikir rong level sak durunge "
+"angel, coba'a sing iki. Seneng-senenga muter ning kayu. Goleka dalan "
+"ringkes!!"
+
+#: po/levelinfo:68
+msgid "Tux Toboggan Run"
+msgstr "Mlayu, Tux Toboggan"
+
+#: po/levelinfo:69
+msgid ""
+"Collect herrings in an ice channel with various paths and many high and low "
+"speed passages. Watch out for the occasional tree."
+msgstr ""
+"Kumpulke iwak Hering ning trowongan es kang akeh dalan tembus lan jalur "
+"cepet utawa alon. Ati-ati karo wit-witan kang ana ing dalan."
+
+#: po/levelinfo:70
+msgid "Mt. Satan"
+msgstr "Gunung Setan"
+
+#: po/levelinfo:71
+msgid ""
+"Mount Satan is a sister mountain to Dead Man's Drop. No surprises here, just "
+"a steep, bumpy, twisty path full of trees to get through."
+msgstr ""
+"Gunung Setan iku sedulure Jurang Wong Mati. Ora ana sing ngageti, mung ana "
+"jurang, dalan nggronjal, menggak-menggok lan wit-witan kang kudu dilewati."
+
+#: po/levelinfo:72
+msgid "Ice Labyrinth"
+msgstr "Labirin Es"
+
+#: po/levelinfo:73
+msgid ""
+"You choose your destiny, you could end up full or starving depending on the "
+"path you pick."
+msgstr ""
+"Pilihanmu iku tekdirmu, Kowe bakal ngebarke balapan kanti weteng luwe utawa "
+"wareg, tergantung dalan kang mbok pilih."
+
+#: po/levelinfo:74
+msgid "High Road"
+msgstr "Dalan Gedhe"
+
+#: po/levelinfo:75
+msgid ""
+"Just stay on the path and collect herring. Oh yeah, and if you fall you'll "
+"be eating pine needles."
+msgstr ""
+"Tetep ning jalurmu lan kumpulke iwak Hering. Siip.. Yen kowe tiba Kowe bakal "
+"mangan godong Cemara."
+
+#: po/levelinfo:76
+msgid "Mt. Herring"
+msgstr "Gunung Hering"
+
+#: po/levelinfo:77
+msgid ""
+"Mt. Herring is relatively fast but long, somewhat bumpy in places, and has "
+"some wide open areas and branching paths. Lots of herrings to collect though "
+"it can be difficult unless you watch your speed."
+msgstr ""
+"Gunung Hering iku relatif banter tapi dawa, kadang nggronjal lan nduweni "
+"padang ombo lan dalan kang nyabang. Akeh iwak Hering kang iso dikumpulke, "
+"tapi iso wae angel paling ora ngawasi bantere playumu."
+
+#: po/levelinfo:78
+msgid "Keep It Up"
+msgstr "Teruske"
+
+#: po/levelinfo:79
+msgid ""
+"If you fall you might as well just quit then and there, 'cause your chances "
+"are slim on the rocky ground."
+msgstr ""
+"Yen tiba luwih apik yen metu wae, amarga kesempatanmu luwih sithik ning "
+"dalan kang kebak watu."
+
+#: po/levelinfo:80
+msgid "Tux Racer Classics"
+msgstr "Tux Racer Klasik"
+
+#: po/levelinfo:81
+msgid "Canadian Cup"
+msgstr "Kejuaraan Kanada"
+
+#: po/levelinfo:82
+msgid "Swiss Cup"
+msgstr "Kejuaraan Swiss"
+
+#: po/levelinfo:83
+msgid "Path of Daggers"
+msgstr "Dalan Golok"
+
+#: po/levelinfo:84
+msgid ""
+"Big spikes may prove to be the least of your worries on this course. Muliple "
+"paths allow you to take low or high roads, each with their own challenges."
+msgstr ""
+"Paku-paku gede iku mbuktekake sithike kawedenmu. Akeh dalan kang iso dipilih "
+"kanti tantangan kang diduweni."
+
+#: po/levelinfo:85
+msgid "Bunny Hill"
+msgstr "Bukit Kelinci"
+
+#: po/levelinfo:86
+msgid ""
+"Let's start out easy, just collect the herring in the time limit and you'll "
+"be fine. The best part is that you don't have to use those stupid T-lifts."
+msgstr ""
+"Ayo dimulai, kumpulke iwak Hering ning wektu kang dibatesi lan Kowe bakal "
+"penak wae.Bangian paling apik yaiku Kowe ora kudu nganggo T-lifts kang bodho "
+"iku."
+
+#: po/levelinfo:87
+msgid "Bumpy Ride"
+msgstr "Dalan Nggronjal"
+
+#: po/levelinfo:88
+msgid ""
+"This hill has a series of ramps to tackle.  Be sure to line yourself up "
+"before getting airborne."
+msgstr ""
+"Bukit iki nduweni sak pernagkat papan tolakan. Pastekake awakmu lurus "
+"sakdurunge arep mabur."
+
+#: po/levelinfo:89
+msgid "Frozen River"
+msgstr "Kali Mbeku"
+
+#: po/levelinfo:90
+msgid ""
+"Keep your speed down to collect herring. You have plenty of time, so don't "
+"rush things."
+msgstr ""
+"Tetep alon-alon ben iso entuk iwak Hering. Wektune isih akeh, ora usah "
+"kesusu."
+
+#: po/levelinfo:91
+msgid "Twisty Slope"
+msgstr "LEreng kang Menggak-menggok"
+
+#: po/levelinfo:92
+msgid ""
+"Tight twists make grabbing herring difficult.  Hard turns and not too much "
+"braking will lead you to victory."
+msgstr ""
+"Dalan kang menggak-menggok bakal gawe angel upaya ngumpulke iwak Hering. "
+"Kurangi manuver lan ojo kakehan ngerem bakal ndadekake awakmu juara."
+
+#: po/levelinfo:93
+msgid "The Niehoff Experience"
+msgstr "Pengalamane Niehoff"
+
+#: po/levelinfo:94
+msgid "Search, Search, Search"
+msgstr "Goleki, Goleki, Goleki"
+
+#: po/levelinfo:95
+msgid "Mountains and Hills"
+msgstr "Gunung-gunung lan Lembah"
+
+#: po/levelinfo:96
+msgid "The Final Challenge"
+msgstr "Tantangan Pungkasan"
+
+#: po/levelinfo:97
+msgid "Tux at Home"
+msgstr "Tux ning Omah"
+
+#: po/levelinfo:98
+msgid ""
+"Here lives Tux. You can take the corridore on the right - it's the shortest "
+"and fastest way. But if you want to catch some herrings you have to enter "
+"the rooms on the left."
+msgstr ""
+"Ning kene omahe Tux. Kowe iso njupuk dalan menengen- dalan kang paling "
+"cendhak lan dalan kang paling cepet. Tapi yen pingin golek iwak Hering "
+"njupuka dalan sing ning kiwa."
+
+#: po/levelinfo:99
+msgid "Secret Valleys"
+msgstr "Lembah Rahasia"
+
+#: po/levelinfo:100
+msgid ""
+"Your task: Find the hidden valleys and the ten groups of dead trees. Look "
+"around, the ways are not easy to find."
+msgstr ""
+"Tugasmu: Goleki Lembah Rahasia lan sepuluh kelompok wit mati. Deleng "
+"sekitarmu, dalane ora gampang ditemokake."
+
+#: po/levelinfo:101
+msgid "Chinese Wall"
+msgstr "Tembok Cina"
+
+#: po/levelinfo:102
+msgid ""
+"The Great Wall of China in winter. Try to stay on top of the wall - that's "
+"where the herrings are. If you fall off you can try to jump back up, there "
+"are 7 hidden ramps. You'll get a lot of exercise."
+msgstr ""
+"Tembok Cina ing musim adem. Coba tetep ning dhuwur tembok - iku panggonan "
+"kang akeh iwak Hering'e. Yen tiba usahakna kanggo mlompat maneh, ono 7 "
+"panggonan rahasia kang iso dadi pancatan. Akeh-akeh'a latihan."
+
+#: po/levelinfo:103
+msgid "Challenge One"
+msgstr "Tantangan Kapisan"
+
+#: po/levelinfo:104
+msgid ""
+"A very dangerous path along the mountains. Warning: The course is very "
+"difficult and there are some situations where you can get stuck."
+msgstr ""
+"Dalan kang mbebayani ning gunung. Ati-ati: jalur'e angel banget lan akeh "
+"kahanan kang iso gawe mogok."
+
+#: po/levelinfo:105
+msgid "Frozen Lakes"
+msgstr "Sendang Beku"
+
+#: po/levelinfo:106
+msgid ""
+"To reach the finish you must pass several frozen lakes. Watch your speed on "
+"the ice - there are some dangerous corners."
+msgstr ""
+"Kanggo tekan finish kowe kudu nglewati sendang beku. Aja banter-banter ning "
+"ndhuwur es - akeh enggok-enggokan kang mbebayani."
+
+#: po/levelinfo:107
+msgid "In Search of the Holy Grail"
+msgstr "Nggoleki Cawan Suci"
+
+#: po/levelinfo:108
+msgid ""
+"An adventure course with a simple task: Find the grail! Warning: It is very "
+"difficult to find the way."
+msgstr ""
+"Penjelajahan kanti tugas kang simpel: Temokke cawan suci!Ati-ati: Angel "
+"banget golek dalane."
+
+#: po/levelinfo:109
+msgid "Explore the Mountains"
+msgstr "Njelajahi Gunung"
+
+#: po/levelinfo:110
+msgid ""
+"Can you find your way through the icy, dangerous mountains. I doubt it."
+msgstr ""
+"Opo kowe iso nemu dalan kanggo nglewati gunung kang mbebayani lan kebak es "
+"iki?Tak kiro koq ora."
+
+#: po/levelinfo:111
+msgid "Wild Mountains"
+msgstr "Gunung Liar"
+
+#: po/levelinfo:112
+msgid ""
+"A wild landscape of ice and snow. It isn't easy to keep the right way. Not "
+"for beginners."
+msgstr ""
+"Padang es lan salju kang jembar. Ora gampang kanggo tetep ning dalanmu. Ora "
+"kanggo cah anyaran."
+
+#: po/modelinfo:1
+msgid "Tux"
+msgstr "Tux"
+
+#: po/modelinfo:2
+msgid "Samuel"
+msgstr "Samuel"
+
+#: po/modelinfo:3
+msgid "Trixi"
+msgstr "Trixi"
+
+#: po/modelinfo:4
+msgid "Speedy"
+msgstr "Speedy"

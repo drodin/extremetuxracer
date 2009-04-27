@@ -8,38 +8,38 @@ msgstr ""
 "Project-Id-Version: etracer\n"
 "Report-Msgid-Bugs-To: https://translations.edge.launchpad.net/etracer\n"
 "POT-Creation-Date: 2008-08-03 20:17+0200\n"
-"PO-Revision-Date: 2008-04-29 20:15+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2009-02-12 02:18+0000\n"
+"Last-Translator: Baldur <baldurpet@gmail.com>\n"
 "Language-Team: Icelandic <is@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-08-03 17:56+0000\n"
+"X-Launchpad-Export-Date: 2009-04-27 12:04+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: src/audioconfig.cpp:36
 msgid "Audio Configuration"
-msgstr ""
+msgstr "Hljóðstillingar"
 
 #: src/audioconfig.cpp:112
 msgid "Sound Effects:"
-msgstr ""
+msgstr "Hljóðbrellur"
 
 #: src/audioconfig.cpp:116
 msgid "Music:"
-msgstr ""
+msgstr "Tónlist:"
 
 #: src/audioconfig.cpp:120
 msgid "(needs restart)"
-msgstr ""
+msgstr "(krefst endurræsingar)"
 
 #: src/audioconfig.cpp:122
 msgid "Disable Audio:"
-msgstr ""
+msgstr "Slökkva á hljóði:"
 
 #: src/audioconfig.cpp:126
 msgid "Stereo:"
-msgstr ""
+msgstr "Stereó:"
 
 #: src/audioconfig.cpp:130
 msgid "Bits Per Sample:"
@@ -51,23 +51,23 @@ msgstr ""
 
 #: src/configmode.cpp:36
 msgid "Cancel"
-msgstr ""
+msgstr "Hætta við"
 
 #: src/configmode.cpp:43
 msgid "Ok"
-msgstr ""
+msgstr "Í lagi"
 
 #: src/configuration.cpp:38 src/game_type_select.cpp:57 src/paused.cpp:62
 msgid "Configuration"
-msgstr ""
+msgstr "Stillingar"
 
 #: src/configuration.cpp:45 src/credits.cpp:89
 msgid "Graphics"
-msgstr ""
+msgstr "Myndir"
 
 #: src/configuration.cpp:52
 msgid "Video"
-msgstr ""
+msgstr "Videó"
 
 #: src/configuration.cpp:59
 msgid "Audio"
@@ -75,88 +75,92 @@ msgstr ""
 
 #: src/configuration.cpp:66
 msgid "Keyboard"
-msgstr ""
+msgstr "Lyklaborð"
 
 #: src/configuration.cpp:73
 msgid "Joystick"
-msgstr ""
+msgstr "Stýripinni"
 
 #: src/configuration.cpp:81 src/event_select.cpp:96
 #: src/event_race_select.cpp:53 src/highscore.cpp:413
 msgid "Back"
-msgstr ""
+msgstr "Til baka"
 
 #: src/credits.cpp:43
+#, fuzzy
 msgid "Version 0.4"
-msgstr ""
+msgstr "Útgáfa 0,5"
 
 #: src/credits.cpp:46
 msgid "Extreme Tux Racer is in the process of being"
-msgstr ""
+msgstr "Núna er verið að  skrifa Extreme Tux Racer"
 
 #: src/credits.cpp:47
 msgid "completely rewritten. All versions after 0.35,"
-msgstr ""
+msgstr "upp á nýtt. Allar útgáfur eftir 0,35"
 
 #: src/credits.cpp:48
 msgid "including this one, won't have major code changes"
-msgstr ""
+msgstr "sem og þessi innihalda eingar gífurlegar breytingar"
 
 #: src/credits.cpp:49
 msgid "because the programmers are busy making a new,"
-msgstr ""
+msgstr "vegna þess að forritararnir eru uppteknir við að búta til"
 
 #: src/credits.cpp:50
 msgid "improved game."
-msgstr ""
+msgstr "nýjan og betri leik."
 
 #: src/credits.cpp:52
 msgid "Extreme Tux Racer is based on"
-msgstr ""
+msgstr "Hugmyndin að Extreme Tux Racer kom frá"
 
 #: src/credits.cpp:53
 msgid "PlanetPenguin Racer, Open Racer and Tux Racer."
-msgstr ""
+msgstr "PlanetPenguin Racer, Open Racer og Tux Racer."
 
 #: src/credits.cpp:55
 msgid "Some courses may have been modified from their"
-msgstr ""
+msgstr "Búið er að breyta sumum brautum frá þeirra"
 
 #: src/credits.cpp:56
 msgid "original versions to fit the requirements of the game."
-msgstr ""
+msgstr "upprunalegu útgáfu til að passa við leikinn."
 
 #: src/credits.cpp:58
 msgid "Development"
-msgstr ""
+msgstr "Þróun"
 
 #: src/credits.cpp:63
 msgid "from Sunspire Studios:"
-msgstr ""
+msgstr "frá Sunspire Studios:"
 
 #: src/credits.cpp:71
+#, fuzzy
 msgid "Non-Rewrite Version Organization"
-msgstr ""
+msgstr "Útgáfufyrirtæki"
 
 #: src/credits.cpp:74
 msgid "Translators"
-msgstr ""
+msgstr "Þýðendur"
 
 #: src/credits.cpp:87
 msgid "Other (incomplete) translations are from the PPRacer Project."
 msgstr ""
 
 #: src/credits.cpp:90
+#, fuzzy
 msgid "Nicosmos (Logo, Hud Graphics)"
-msgstr ""
+msgstr "Nicosmos (Logo, HUD og Interface)"
 
 #: src/credits.cpp:91
+#, fuzzy
 msgid "Christian Picon (Objects, Skyboxes)"
-msgstr ""
+msgstr "Christian Picon (hlutir, skyboxes, persónur)"
 
 #: src/credits.cpp:92
 msgid "Reinhard Niehoff (Trees)"
-msgstr ""
+msgstr "Reinhard Niehoff (tré)"
 
 #: src/credits.cpp:93
 msgid "Daniel Poeira and Christian Picon (Font)"
@@ -164,7 +168,7 @@ msgstr ""
 
 #: src/credits.cpp:95
 msgid "Music"
-msgstr ""
+msgstr "Tónlist"
 
 #: src/credits.cpp:97
 msgid "'Race 1'"
@@ -176,7 +180,7 @@ msgstr ""
 
 #: src/credits.cpp:99
 msgid "'Options'"
-msgstr ""
+msgstr "'Valmöguleikar'"
 
 #: src/credits.cpp:100
 msgid "'Won Race'"
@@ -195,8 +199,9 @@ msgid "Thanks To"
 msgstr ""
 
 #: src/credits.cpp:111
+#, fuzzy
 msgid "(for Exteme Tux Racer)"
-msgstr ""
+msgstr "Hugmyndin að Extreme Tux Racer kom frá"
 
 #: src/credits.cpp:112
 msgid "Ranger (for hosting the website)"
@@ -268,11 +273,11 @@ msgstr ""
 
 #: src/event_select.cpp:87
 msgid "Player name:"
-msgstr ""
+msgstr "Nafn leikmanns:"
 
 #: src/event_select.cpp:104
 msgid "Continue"
-msgstr ""
+msgstr "Halda áfram"
 
 #: src/event_select.cpp:158
 msgid "You've won this cup!"
@@ -288,44 +293,44 @@ msgstr ""
 
 #: src/event_race_select.cpp:45
 msgid "Select a race"
-msgstr ""
+msgstr "Velja keppni"
 
 #: src/event_race_select.cpp:60
 msgid "Race!"
-msgstr ""
+msgstr "Af stað!"
 
 #: src/event_race_select.cpp:280
 msgid "You don't have any lives left."
-msgstr ""
+msgstr "Þú átt engin líf eftir!"
 
 #: src/event_race_select.cpp:285
 msgid "Race won! Your result:"
-msgstr ""
+msgstr "Keppnin er búin! Svona gekk þér:"
 
 #: src/event_race_select.cpp:289
 msgid "Needed to advance:"
-msgstr ""
+msgstr "Það sem þurfti til að komast áfram:"
 
 #: src/event_race_select.cpp:293
 msgid "You can't enter this race yet."
-msgstr ""
+msgstr "Þú getur ekki tekið þátt í þessari keppni."
 
 #: src/event_race_select.cpp:316
 msgid "Time:"
-msgstr ""
+msgstr "Tími:"
 
 #: src/event_race_select.cpp:320
 #, c-format
 msgid "%02d:%02d.%02d"
-msgstr ""
+msgstr "%02d:%02d.%02d"
 
 #: src/event_race_select.cpp:324
 msgid "Herring:"
-msgstr ""
+msgstr "Síld:"
 
 #: src/event_race_select.cpp:332
 msgid "Score:"
-msgstr ""
+msgstr "Stig:"
 
 #: src/event_race_select.cpp:341
 msgid "Contributed by:"
@@ -333,49 +338,49 @@ msgstr ""
 
 #: src/event_race_select.cpp:349 po/levelinfo:16
 msgid "Unknown"
-msgstr ""
+msgstr "Óþekkt"
 
 #: src/game_over.cpp:109
 msgid "Race aborted"
-msgstr ""
+msgstr "Hætt við keppni"
 
 #: src/game_over.cpp:112
 msgid "Race Over"
-msgstr ""
+msgstr "Keppni lokið"
 
 #: src/game_over.cpp:119
 #, c-format
 msgid "Time: %02d:%02d.%02d"
-msgstr ""
+msgstr "Tími: %02d:%02d.%02d"
 
 #: src/game_over.cpp:124
 #, c-format
 msgid "Herring: %3d"
-msgstr ""
+msgstr "Síld: %3d"
 
 #: src/game_over.cpp:129
 #, c-format
 msgid "Score: %6d"
-msgstr ""
+msgstr "Stig: %6d"
 
 #: src/game_over.cpp:135
 #, c-format
 msgid "Max speed: %3d km/h"
-msgstr ""
+msgstr "Hraðast: %3d km/klst"
 
 #: src/game_over.cpp:141
 #, c-format
 msgid "Was flying: %.01f %% of time"
-msgstr ""
+msgstr "Á lofti: %.01f %% tímans"
 
 #: src/game_over.cpp:151
 #, c-format
 msgid "You made it to the %s place in the highscore!"
-msgstr ""
+msgstr "Þú náðist %s. sæti í stigatöflunni!"
 
 #: src/game_over.cpp:161
 msgid "You beat your best score!"
-msgstr ""
+msgstr "Þú náðir hæsta stiginu!"
 
 #: src/game_over.cpp:164
 msgid "Congratulations! You won the campaign!"
@@ -390,8 +395,9 @@ msgid "You advanced to the next race!"
 msgstr ""
 
 #: src/game_over.cpp:170
+#, fuzzy
 msgid "You didn't advance."
-msgstr ""
+msgstr "Þú átt engin líf eftir!"
 
 #: src/game_type_select.cpp:36
 msgid "Enter a campaign"
@@ -399,23 +405,23 @@ msgstr ""
 
 #: src/game_type_select.cpp:43
 msgid "Practice"
-msgstr ""
+msgstr "Æfing"
 
 #: src/game_type_select.cpp:50 src/highscore.cpp:350
 msgid "Highscore"
-msgstr ""
+msgstr "Besti árangur"
 
 #: src/game_type_select.cpp:64
 msgid "Credits"
-msgstr ""
+msgstr "Þakkir"
 
 #: src/game_type_select.cpp:71 src/paused.cpp:78
 msgid "Quit"
-msgstr ""
+msgstr "Hætta"
 
 #: src/graphicsconfig.cpp:30
 msgid "Graphics Configuration"
-msgstr ""
+msgstr "Grafískar stillingar"
 
 #: src/graphicsconfig.cpp:108
 msgid "Model:"
@@ -423,71 +429,71 @@ msgstr ""
 
 #: src/graphicsconfig.cpp:117
 msgid "Show UI Snow:"
-msgstr ""
+msgstr "Sýna snjó:"
 
 #: src/graphicsconfig.cpp:121
 msgid "Display FPS:"
-msgstr ""
+msgstr "Sýna ramma á sekúndu:"
 
 #: src/graphicsconfig.cpp:125
 msgid "Display Progress Bar:"
-msgstr ""
+msgstr "Sýna hve langt þú hefur runnið:"
 
 #: src/graphicsconfig.cpp:129
 msgid "Draw Fog:"
-msgstr ""
+msgstr "Teikna þoku:"
 
 #: src/graphicsconfig.cpp:133
 msgid "Reflections:"
-msgstr ""
+msgstr "Endurspeglanir:"
 
 #: src/graphicsconfig.cpp:137
 msgid "Shadows:"
-msgstr ""
+msgstr "Skuggar:"
 
 #: src/graphicsconfig.cpp:141
 msgid "Draw Background:"
-msgstr ""
+msgstr "Hafa bakgrunn:"
 
 #: src/highscore.cpp:88
 msgid "1:st"
-msgstr ""
+msgstr "1."
 
 #: src/highscore.cpp:90
 msgid "2:nd"
-msgstr ""
+msgstr "2."
 
 #: src/highscore.cpp:92
 msgid "3:rd"
-msgstr ""
+msgstr "3."
 
 #: src/highscore.cpp:94
 msgid "4:th"
-msgstr ""
+msgstr "4."
 
 #: src/highscore.cpp:96
 msgid "5:th"
-msgstr ""
+msgstr "5."
 
 #: src/highscore.cpp:98
 msgid "6:th"
-msgstr ""
+msgstr "6."
 
 #: src/highscore.cpp:100
 msgid "7:th"
-msgstr ""
+msgstr "7."
 
 #: src/highscore.cpp:102
 msgid "8:th"
-msgstr ""
+msgstr "8."
 
 #: src/highscore.cpp:104
 msgid "9:th"
-msgstr ""
+msgstr "9."
 
 #: src/highscore.cpp:106
 msgid "10:th"
-msgstr ""
+msgstr "10."
 
 #: src/highscore.cpp:317
 msgid "No records"
@@ -496,15 +502,15 @@ msgstr ""
 #: src/highscore.cpp:327
 #, c-format
 msgid " (%d points)"
-msgstr ""
+msgstr " (%d stig)"
 
 #: src/joystickconfig.cpp:29
 msgid "Joystick Configuration"
-msgstr ""
+msgstr "Stillingar fyrir stýripinna"
 
 #: src/joystickconfig.cpp:33
 msgid "Enable Joystick"
-msgstr ""
+msgstr "Virkja stýripinna"
 
 #: src/joystickconfig.cpp:41 src/keyboardconfig.cpp:132
 msgid "Paddle:"
@@ -512,31 +518,31 @@ msgstr ""
 
 #: src/joystickconfig.cpp:54 src/keyboardconfig.cpp:136
 msgid "Brake:"
-msgstr ""
+msgstr "Bremsa:"
 
 #: src/joystickconfig.cpp:67 src/keyboardconfig.cpp:140
 msgid "Jump:"
-msgstr ""
+msgstr "Hoppa:"
 
 #: src/joystickconfig.cpp:80 src/keyboardconfig.cpp:144
 msgid "Trick:"
-msgstr ""
+msgstr "Bragð:"
 
 #: src/keyboardconfig.cpp:55
 msgid "Keyboard Configuration"
-msgstr ""
+msgstr "Stillingar fyrir lyklaborð"
 
 #: src/keyboardconfig.cpp:124
 msgid "Turn left:"
-msgstr ""
+msgstr "Beygja til vinstri:"
 
 #: src/keyboardconfig.cpp:128
 msgid "Turn right:"
-msgstr ""
+msgstr "Beygja til hægri:"
 
 #: src/keyboardconfig.cpp:148
 msgid "Reset:"
-msgstr ""
+msgstr "Endurstilla:"
 
 #: src/loading.cpp:53
 msgid "Loading, Please Wait..."
@@ -544,19 +550,19 @@ msgstr ""
 
 #: src/paused.cpp:54
 msgid "Paused"
-msgstr ""
+msgstr "Sett á pásu"
 
 #: src/paused.cpp:70
 msgid "Resume"
-msgstr ""
+msgstr "Halda áfram"
 
 #: src/splash_screen.cpp:34
 msgid "PRESS ANY KEY TO START"
-msgstr ""
+msgstr "ÝTTA Á EINHVERN TAKKA TIL AÐ HALDA ÁFRAM"
 
 #: src/videoconfig.cpp:60
 msgid "Video Configuration"
-msgstr ""
+msgstr "Stilling á myndbandi"
 
 #: src/videoconfig.cpp:173
 msgid "To change the resolution, or switch into fullscreen mode"
@@ -568,7 +574,7 @@ msgstr ""
 
 #: src/videoconfig.cpp:177
 msgid "Resolution:"
-msgstr ""
+msgstr "Upplausn:"
 
 #: src/videoconfig.cpp:181
 msgid "Bits Per Pixel:"
@@ -576,7 +582,7 @@ msgstr ""
 
 #: src/videoconfig.cpp:185
 msgid "Fullscreen:"
-msgstr ""
+msgstr "Heilskjár:"
 
 #: src/videoconfig.cpp:189
 msgid "Experimental (needs restart)"
@@ -588,7 +594,7 @@ msgstr ""
 
 #: src/videoconfig.cpp:196
 msgid "Enable FSAA:"
-msgstr ""
+msgstr "Virkja FSAA:"
 
 #: src/videoconfig.cpp:200
 msgid "FSAA Multisamples:"
@@ -597,36 +603,36 @@ msgstr ""
 #: po/levelinfo:1
 #, c-format
 msgid "FPS: %.1f"
-msgstr ""
+msgstr "Rammar á sekúndu: %.1f"
 
 #: po/levelinfo:2 po/levelinfo:3
 #, c-format
 msgid "%03d"
-msgstr ""
+msgstr "%03d"
 
 #: po/levelinfo:4 po/levelinfo:5
 #, c-format
 msgid "%02d:%02d:%02d"
-msgstr ""
+msgstr "%02d:%02d:%02d"
 
 #: po/levelinfo:6 po/levelinfo:8
 msgid "km/h"
-msgstr ""
+msgstr "km/klst"
 
 #: po/levelinfo:7 po/levelinfo:9
 #, c-format
 msgid "%.0f"
-msgstr ""
+msgstr "%.0f"
 
 #: po/levelinfo:10 po/levelinfo:11
 #, c-format
 msgid "%d:%d:%d"
-msgstr ""
+msgstr "%d:%d:%d"
 
 #: po/levelinfo:12 po/levelinfo:13
 #, c-format
 msgid "%d"
-msgstr ""
+msgstr "%d"
 
 #: po/levelinfo:14
 msgid "Doing"
@@ -658,7 +664,7 @@ msgstr ""
 
 #: po/levelinfo:21
 msgid "Volcanoes"
-msgstr ""
+msgstr "Eldfjöll"
 
 #: po/levelinfo:22
 msgid ""
@@ -750,7 +756,7 @@ msgstr ""
 
 #: po/levelinfo:42
 msgid "In Search of Vodka"
-msgstr ""
+msgstr "Í leit að vodka"
 
 #: po/levelinfo:43
 msgid ""
@@ -761,7 +767,7 @@ msgstr ""
 
 #: po/levelinfo:44
 msgid "Tux at Home"
-msgstr ""
+msgstr "Heima hjá Tux"
 
 #: po/levelinfo:45
 msgid ""
@@ -776,11 +782,11 @@ msgstr ""
 
 #: po/levelinfo:47
 msgid "Search, Search, Search"
-msgstr ""
+msgstr "Leita, leita, leita"
 
 #: po/levelinfo:48
 msgid "Mountains and Hills"
-msgstr ""
+msgstr "Fjöll og hólar"
 
 #: po/levelinfo:49
 msgid "The Final Challenge"
@@ -808,7 +814,7 @@ msgstr ""
 
 #: po/levelinfo:54
 msgid "Frozen Lakes"
-msgstr ""
+msgstr "Frosin stöðuvötn"
 
 #: po/levelinfo:55
 msgid ""

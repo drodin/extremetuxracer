@@ -9,13 +9,13 @@ msgstr ""
 "Project-Id-Version: Extreme Tux Racer\n"
 "Report-Msgid-Bugs-To: https://translations.edge.launchpad.net/etracer\n"
 "POT-Creation-Date: 2008-08-03 20:17+0200\n"
-"PO-Revision-Date: 2008-08-03 17:36+0000\n"
+"PO-Revision-Date: 2009-03-18 16:59+0000\n"
 "Last-Translator: Nicosmos <Unknown>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-08-03 17:56+0000\n"
+"X-Launchpad-Export-Date: 2009-04-27 12:04+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: src/audioconfig.cpp:36
@@ -28,7 +28,7 @@ msgstr "Effets sonores :"
 
 #: src/audioconfig.cpp:116
 msgid "Music:"
-msgstr "Musique"
+msgstr "Musique :"
 
 #: src/audioconfig.cpp:120
 msgid "(needs restart)"
@@ -106,7 +106,7 @@ msgstr ""
 
 #: src/credits.cpp:49
 msgid "because the programmers are busy making a new,"
-msgstr "car les programmeurs sont occupés à développer un nouveau"
+msgstr "car les programmeurs travaillent au développement d'un nouveau"
 
 #: src/credits.cpp:50
 msgid "improved game."
@@ -122,11 +122,11 @@ msgstr "PlanetPenguin Racer, Open Racer et Tux Racer."
 
 #: src/credits.cpp:55
 msgid "Some courses may have been modified from their"
-msgstr "Quelques courses peuvent avoir été modifiées par rapport à leur"
+msgstr "La version originale de certaines courses a pu être modifiée"
 
 #: src/credits.cpp:56
 msgid "original versions to fit the requirements of the game."
-msgstr "versions originales pour s'ajuster aux besoins du jeu."
+msgstr "pour les besoins du jeu."
 
 #: src/credits.cpp:58
 msgid "Development"
@@ -170,7 +170,7 @@ msgstr "Musique"
 
 #: src/credits.cpp:97
 msgid "'Race 1'"
-msgstr "'Course 1'"
+msgstr "'Race 1\""
 
 #: src/credits.cpp:98
 msgid "'Menu'"
@@ -182,7 +182,7 @@ msgstr "'Options'"
 
 #: src/credits.cpp:100
 msgid "'Won Race'"
-msgstr "'Course remportée'"
+msgstr "'Won Race'"
 
 #: src/credits.cpp:103
 msgid "'Credits Ballad'"
@@ -217,8 +217,9 @@ msgid "The OpenRacer project"
 msgstr "Le projet OpenRacer"
 
 #: src/credits.cpp:116
+#, fuzzy
 msgid "Reinhard Niehoff (for helping with code modification)"
-msgstr "Reinhard Niehoff (pour son aide à la modification du code)"
+msgstr "Reinhard Niehoff (plein de conseils)"
 
 #: src/credits.cpp:117
 msgid "All the people on the forum"
@@ -257,13 +258,12 @@ msgid "Tux Racer and the Tux Racer Name are Copyright © 2001 Jasmin F. Patry."
 msgstr "Tux Racer et le nom Tux Racer sont Copyright © 2001 Jasmin F. Patry"
 
 #: src/event_select.cpp:50
-#, fuzzy
 msgid "Select campaign and cup"
-msgstr "Choisissez une compétition et une coupe"
+msgstr "Sélectionnez une compétition et une coupe"
 
 #: src/event_select.cpp:56
 msgid "Campaign:"
-msgstr ""
+msgstr "Compétition :"
 
 #: src/event_select.cpp:67
 msgid "Cup:"
@@ -303,7 +303,7 @@ msgstr "Il ne vous reste plus aucune vie."
 
 #: src/event_race_select.cpp:285
 msgid "Race won! Your result:"
-msgstr "Vous avez réussi la course ! Votre score :"
+msgstr "Course réussie ! Votre score :"
 
 #: src/event_race_select.cpp:289
 msgid "Needed to advance:"
@@ -381,13 +381,12 @@ msgid "You beat your best score!"
 msgstr "Vous avez battu votre score !"
 
 #: src/game_over.cpp:164
-#, fuzzy
 msgid "Congratulations! You won the campaign!"
-msgstr "Félicitations, vous avez remporté la coupe !"
+msgstr "Félicitations ! Vous avez remporté la compétition !"
 
 #: src/game_over.cpp:166
 msgid "Congratulations! You won the cup!"
-msgstr "Félicitations, vous avez remporté la coupe !"
+msgstr "Félicitations ! Vous avez remporté la coupe !"
 
 #: src/game_over.cpp:168
 msgid "You advanced to the next race!"
@@ -398,7 +397,6 @@ msgid "You didn't advance."
 msgstr "Vous n'avez pas avancé."
 
 #: src/game_type_select.cpp:36
-#, fuzzy
 msgid "Enter a campaign"
 msgstr "Compétition"
 
@@ -452,7 +450,7 @@ msgstr "Ombres :"
 
 #: src/graphicsconfig.cpp:141
 msgid "Draw Background:"
-msgstr ""
+msgstr "Afficher l'arrière-plan :"
 
 #: src/highscore.cpp:88
 msgid "1:st"
@@ -496,7 +494,7 @@ msgstr "10ème"
 
 #: src/highscore.cpp:317
 msgid "No records"
-msgstr "Aucun records"
+msgstr "Aucun record"
 
 #: src/highscore.cpp:327
 #, c-format
@@ -624,14 +622,14 @@ msgid "%.0f"
 msgstr "%.0f"
 
 #: po/levelinfo:10 po/levelinfo:11
-#, fuzzy, c-format
+#, c-format
 msgid "%d:%d:%d"
-msgstr "%02d:%02d:%02d"
+msgstr "%d:%d:%d"
 
 #: po/levelinfo:12 po/levelinfo:13
-#, fuzzy, c-format
+#, c-format
 msgid "%d"
-msgstr "%03d"
+msgstr "%d"
 
 #: po/levelinfo:14
 msgid "Doing"
@@ -654,9 +652,8 @@ msgid ""
 "In Hippo Run, you slide down an icy slope as a penguin, I honestly don't "
 "know what this has to do with hippos or running..."
 msgstr ""
-"Dans la course de l'hippo, vous glissez vers le bas dans une pente glaciale "
-"comme un pingouin, et je ne sais honnêtement pas que faire avec des "
-"hippopotames."
+"Dans la course de l'hippo, vous dévalez une pente glaciale comme un "
+"pingouin, et je ne sais honnêtement pas que faire avec des hippopotames."
 
 #: po/levelinfo:19
 msgid "Ice Pipeline"
@@ -687,8 +684,8 @@ msgid ""
 "The fresh air, the pine scent, who doesn't like a nice refreshing walk "
 "through the mountains?"
 msgstr ""
-"L'air frais, le parfum de pin, qui n'apprécie pas une sympathique promenade "
-"rafraîchissante à travers les montagnes ?"
+"L'air frais, l'odeur des pins, qui n'apprécie pas une sympathique et "
+"rafraîchissante promenade alpine ?"
 
 #: po/levelinfo:25
 msgid "Mountain Mania"
@@ -746,7 +743,7 @@ msgstr ""
 
 #: po/levelinfo:36
 msgid "Merry Go Round"
-msgstr "Joyeux tour en rond"
+msgstr "Manège"
 
 #: po/levelinfo:37
 msgid "Try to build up enough speed to jump from one roundabout to the next."
@@ -892,14 +889,12 @@ msgid "Challenge One"
 msgstr "Premier défi"
 
 #: po/levelinfo:63
-#, fuzzy
 msgid ""
 "A very dangerous path along the mountains. Warning: The course is very "
 "difficult and there are some situations where you can get stuck."
 msgstr ""
-"Un chemin très dangereux le long des montagnes. Essayez d'attraper plus de "
-"60 harengs. Attention : cette course est très difficile et il y a quelques "
-"situations ou vous pourrez rester bloqué."
+"Un chemin très dangereux le long des montagnes. Attention : cette course est "
+"très difficile et il y a quelques situations ou vous pourrez rester bloqué."
 
 #: po/levelinfo:64
 msgid "Path of Daggers"
@@ -996,7 +991,7 @@ msgstr "Harengs :"
 
 #: po/levelinfo:80
 msgid "Mountain Man"
-msgstr "L'homme de la montagne"
+msgstr "Le montagnard"
 
 #: po/levelinfo:81
 msgid "Valley Cup"
@@ -1164,20 +1159,20 @@ msgid ""
 "Good luck, you'll need it!"
 msgstr ""
 "Pour faire simple : restez sur le chemin ou perdez ! Il est difficile de "
-"voir ou vous allez, il y a des arbres sur votre voie, et les harengs sont "
-"difficile à attraper. Bonne chance, vous en aurez besoin !"
+"voir où vous allez, il y a des arbres vous barrent le chemin, et les harengs "
+"sont difficile à attraper. Bonne chance, vous en aurez besoin !"
 
 #: po/levelinfo:108
 msgid "Hamburger Hill"
-msgstr "Colline hamburger"
+msgstr "Colline Hamburger"
 
 #: po/levelinfo:109
 msgid ""
 "Hamburger Hill is steep, narrow, twisty, lumpy, icy, and rocky, with a few "
 "trees right in your way!"
 msgstr ""
-"La colline hamburger est abrupte, étroite, sinueuse, bosseuse, glaciale, et "
-"rocheuse, avec des arbres juste dans votre chemin !"
+"La colline Hamburger est abrupte, étroite, sinueuse, bosselée, glacée, "
+"rocheuse et avec des arbres juste sur votre route !"
 
 #: po/levelinfo:110
 msgid "Slalom"
@@ -1192,15 +1187,15 @@ msgstr ""
 
 #: po/levelinfo:112
 msgid "Who Says Penguins Can't Fly?"
-msgstr "Qui a dit que les pingouins de savent pas voler ?"
+msgstr "Qui dit que les pingouins de savent pas voler ?"
 
 #: po/levelinfo:113
 msgid ""
 "It'll be tough collecting herrings at speeds over 200, so try to brake "
 "whenever possible to get the required herring."
 msgstr ""
-"Il va être difficile de collecter les harengs avec une vitesse dépassant les "
-"200, donc essayez de freiner autant que possible pour attraper les harengs "
+"Il va être difficile de collecter les harengs à une vitesse dépassant les "
+"200, essayez donc de freiner autant que possible pour attraper les harengs "
 "requis."
 
 #: po/modelinfo:1
@@ -1334,3 +1329,79 @@ msgstr "Tux en snowboard"
 
 #~ msgid "Congratulations! You won the event!"
 #~ msgstr "Félicitations, vous avez gagné la compétition !"
+
+#~ msgid "Version 0.5"
+#~ msgstr "Version 0.5"
+
+#~ msgid "Release Organization"
+#~ msgstr "Organisation des sorties"
+
+#~ msgid "Nicosmos (Logo, HUD and Interface)"
+#~ msgstr "Nicosmos (Logo, HUD et interface)"
+
+#~ msgid "Christian Picon (Objects, Skyboxes, Characters)"
+#~ msgstr "Christian Picon (Objets, arrière-plans, personnages)"
+
+#~ msgid "Daniel Poeira and Christian Picon (Papercuts Font)"
+#~ msgstr "Daniel Poeira et Christian Picon (fonte Papercuts)"
+
+#~ msgid "'Freezing Point'"
+#~ msgstr "'Freezing Point'"
+
+#~ msgid "'Calm Race'"
+#~ msgstr "'Calm Race'"
+
+#~ msgid "'Lost Race'"
+#~ msgstr "'Lost Race'"
+
+#~ msgid "'Race Intro'"
+#~ msgstr "'Race Intro'"
+
+#~ msgid "'Spunky Race'"
+#~ msgstr "'Spunky Race'"
+
+#~ msgid "'Won Race: kschroeder Remix'"
+#~ msgstr "'Won Race: kschroeder Remix'"
+
+#~ msgid "52143__blaukreuz__imp_01.wav - Original sound of ice cracking..."
+#~ msgstr ""
+#~ "52143__blaukreuz__imp_01.wav - Le son original de la glace qui craque..."
+
+#~ msgid "http://www.freesound.org/samplesViewSingle.php?id=52143"
+#~ msgstr "http://www.freesound.org/samplesViewSingle.php?id=52143"
+
+#~ msgid "(for Extreme Tux Racer)"
+#~ msgstr "(pour Extreme Tux Racer)"
+
+#~ msgid "All the people of the forum"
+#~ msgstr "Toutes les personnes du forum"
+
+#~ msgid "Requirements met! Advance to the next race."
+#~ msgstr "Exigences satisfaites ! Continuez vers la course suivante."
+
+#~ msgid "Race requirements not met."
+#~ msgstr "Exigences de la course insatisfaites."
+
+#~ msgid "Samuel"
+#~ msgstr "Samuel"
+
+#~ msgid "Trixi"
+#~ msgstr "Trixi"
+
+#~ msgid "Speedy"
+#~ msgstr "Speedy"
+
+#~ msgid "Select event and cup"
+#~ msgstr "Choisissez une compétition et une coupe"
+
+#~ msgid "Enter an event"
+#~ msgstr "Compétition"
+
+#~ msgid ""
+#~ "A very dangerous path along the mountains. Try to catch more than 60 "
+#~ "herrings. Warning: The course is very difficult and there are some "
+#~ "situations where you can get stuck."
+#~ msgstr ""
+#~ "Un chemin très dangereux le long des montagnes. Essayez d'attraper plus "
+#~ "de 60 harengs. Attention : cette course est très difficile et il y a "
+#~ "quelques situations ou vous pourrez rester bloqué."

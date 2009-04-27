@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-08-03 17:56+0000\n"
+"X-Launchpad-Export-Date: 2009-04-27 12:04+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: src/audioconfig.cpp:36
@@ -255,9 +255,8 @@ msgid "Tux Racer and the Tux Racer Name are Copyright © 2001 Jasmin F. Patry."
 msgstr ""
 
 #: src/event_select.cpp:50
-#, fuzzy
 msgid "Select campaign and cup"
-msgstr "Elige evento y copa"
+msgstr ""
 
 #: src/event_select.cpp:56
 msgid "Campaign:"
@@ -379,9 +378,8 @@ msgid "You beat your best score!"
 msgstr "¡Has batido tu propio record!"
 
 #: src/game_over.cpp:164
-#, fuzzy
 msgid "Congratulations! You won the campaign!"
-msgstr "¡Enhorabuena! ¡Has ganado la copa!"
+msgstr ""
 
 #: src/game_over.cpp:166
 msgid "Congratulations! You won the cup!"
@@ -396,9 +394,8 @@ msgid "You didn't advance."
 msgstr "No estás clasificado."
 
 #: src/game_type_select.cpp:36
-#, fuzzy
 msgid "Enter a campaign"
-msgstr "Entrar en un evento"
+msgstr ""
 
 #: src/game_type_select.cpp:43
 msgid "Practice"
@@ -622,14 +619,14 @@ msgid "%.0f"
 msgstr "%.0f"
 
 #: po/levelinfo:10 po/levelinfo:11
-#, fuzzy, c-format
+#, c-format
 msgid "%d:%d:%d"
-msgstr "%02d:%02d:%02d"
+msgstr ""
 
 #: po/levelinfo:12 po/levelinfo:13
-#, fuzzy, c-format
+#, c-format
 msgid "%d"
-msgstr "%03d"
+msgstr ""
 
 #: po/levelinfo:14
 msgid "Doing"
@@ -1120,3 +1117,9 @@ msgstr ""
 
 #~ msgid "Congratulations! You won the event!"
 #~ msgstr "¡Enhorabuena! ¡Has ganado el evento!"
+
+#~ msgid "Select event and cup"
+#~ msgstr "Elige evento y copa"
+
+#~ msgid "Enter an event"
+#~ msgstr "Entrar en un evento"

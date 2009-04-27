@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: etracer\n"
 "Report-Msgid-Bugs-To: https://translations.edge.launchpad.net/etracer\n"
 "POT-Creation-Date: 2008-08-03 20:17+0200\n"
-"PO-Revision-Date: 2008-07-29 19:00+0000\n"
-"Last-Translator: Furkan KARA <kingofthepixels@gmail.com>\n"
+"PO-Revision-Date: 2009-04-02 15:25+0000\n"
+"Last-Translator: ironic <Unknown>\n"
 "Language-Team: Turkish <tr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-08-03 17:56+0000\n"
+"X-Launchpad-Export-Date: 2009-04-27 12:04+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: src/audioconfig.cpp:36
@@ -59,7 +59,7 @@ msgstr "Tamam"
 
 #: src/configuration.cpp:38 src/game_type_select.cpp:57 src/paused.cpp:62
 msgid "Configuration"
-msgstr "Konfigürasyon"
+msgstr "Ayarlar"
 
 #: src/configuration.cpp:45 src/credits.cpp:89
 msgid "Graphics"
@@ -87,8 +87,9 @@ msgid "Back"
 msgstr "Geri"
 
 #: src/credits.cpp:43
+#, fuzzy
 msgid "Version 0.4"
-msgstr "Sürüm 0.4"
+msgstr "Versiyon 0.5"
 
 #: src/credits.cpp:46
 msgid "Extreme Tux Racer is in the process of being"
@@ -100,7 +101,7 @@ msgstr "0.35 sürümünden sonra tüm sürümlerin yeniden yazılımı tamamland
 
 #: src/credits.cpp:48
 msgid "including this one, won't have major code changes"
-msgstr "Buda dahil olmak üzere ana kod değişimi olmadı"
+msgstr "Bu da dahil olmak üzere ana kod değişimi olmadı"
 
 #: src/credits.cpp:49
 msgid "because the programmers are busy making a new,"
@@ -135,8 +136,9 @@ msgid "from Sunspire Studios:"
 msgstr "Sunspire Stüdyoları tarafından"
 
 #: src/credits.cpp:71
+#, fuzzy
 msgid "Non-Rewrite Version Organization"
-msgstr "duraksamayan yeniden yazım sürüm organizasyonu"
+msgstr "Yayım Derneği"
 
 #: src/credits.cpp:74
 msgid "Translators"
@@ -147,20 +149,23 @@ msgid "Other (incomplete) translations are from the PPRacer Project."
 msgstr "PPRacer Project tarafından (tamamlanmamış) diğer çeviriler."
 
 #: src/credits.cpp:90
+#, fuzzy
 msgid "Nicosmos (Logo, Hud Graphics)"
-msgstr "Nicosmos (Logo, Hud Graphics)"
+msgstr "Nicosmos (Logo, HUD ve Arayüz)"
 
 #: src/credits.cpp:91
+#, fuzzy
 msgid "Christian Picon (Objects, Skyboxes)"
-msgstr "Christian Picon (Objeler, Art alan)"
+msgstr "Christian Picon (Objeler, Gökyüzü, Karakterler)"
 
 #: src/credits.cpp:92
 msgid "Reinhard Niehoff (Trees)"
 msgstr "Reinhard Niehoff (Ağaçlar)"
 
 #: src/credits.cpp:93
+#, fuzzy
 msgid "Daniel Poeira and Christian Picon (Font)"
-msgstr "Daniel Poeira and Christian Picon (Yazı Karakteri)"
+msgstr "Daniel Poeira ve Christian Picon (Papercuts Font)"
 
 #: src/credits.cpp:95
 msgid "Music"
@@ -195,8 +200,9 @@ msgid "Thanks To"
 msgstr "Teşekkürler"
 
 #: src/credits.cpp:111
+#, fuzzy
 msgid "(for Exteme Tux Racer)"
-msgstr "(Exteme Tux Racer için)"
+msgstr "Tux Racer için"
 
 #: src/credits.cpp:112
 msgid "Ranger (for hosting the website)"
@@ -256,13 +262,12 @@ msgstr ""
 "Tux Racer ve Tux Racer Adının yayın hakkı © 2001 Jasmin F. Patry'e aittir."
 
 #: src/event_select.cpp:50
-#, fuzzy
 msgid "Select campaign and cup"
-msgstr "Yarışma ve kupa seç"
+msgstr "bölüm ve kupa seç"
 
 #: src/event_select.cpp:56
 msgid "Campaign:"
-msgstr ""
+msgstr "Şampiyona"
 
 #: src/event_select.cpp:67
 msgid "Cup:"
@@ -339,7 +344,7 @@ msgstr "Bilinmeyen"
 
 #: src/game_over.cpp:109
 msgid "Race aborted"
-msgstr "Yrış durduruldu"
+msgstr "yarış durduruldu"
 
 #: src/game_over.cpp:112
 msgid "Race Over"
@@ -380,9 +385,8 @@ msgid "You beat your best score!"
 msgstr "En iyi skorunuzun üstüne geçtiniz"
 
 #: src/game_over.cpp:164
-#, fuzzy
 msgid "Congratulations! You won the campaign!"
-msgstr "Tebrikler! Kupa kazandınız!"
+msgstr "Tebriker! Şampiyonayı siz kazandınız!"
 
 #: src/game_over.cpp:166
 msgid "Congratulations! You won the cup!"
@@ -393,13 +397,13 @@ msgid "You advanced to the next race!"
 msgstr "Bir sonraki yarışa geçmeyi başardın!"
 
 #: src/game_over.cpp:170
+#, fuzzy
 msgid "You didn't advance."
-msgstr "Başaramadın."
+msgstr "Geriye hiçbir canın kalmadı"
 
 #: src/game_type_select.cpp:36
-#, fuzzy
 msgid "Enter a campaign"
-msgstr "Bir olay gir"
+msgstr "Bölüme gir"
 
 #: src/game_type_select.cpp:43
 msgid "Practice"
@@ -451,7 +455,7 @@ msgstr "Gölgeler:"
 
 #: src/graphicsconfig.cpp:141
 msgid "Draw Background:"
-msgstr ""
+msgstr "Arkaplan Çiz"
 
 #: src/highscore.cpp:88
 msgid "1:st"
@@ -623,14 +627,14 @@ msgid "%.0f"
 msgstr "%.0f"
 
 #: po/levelinfo:10 po/levelinfo:11
-#, fuzzy, c-format
+#, c-format
 msgid "%d:%d:%d"
-msgstr "%02d:%02d:%02d"
+msgstr "%d:%d:%d"
 
 #: po/levelinfo:12 po/levelinfo:13
-#, fuzzy, c-format
+#, c-format
 msgid "%d"
-msgstr "%03d"
+msgstr "%d"
 
 #: po/levelinfo:14
 msgid "Doing"
@@ -1097,6 +1101,8 @@ msgid ""
 "Just stay on the path and collect herring. Oh yeah, and if you fall you'll "
 "be eating pine needles."
 msgstr ""
+"Sadece yolda kal ve ringaları topla. İşte böyle ve düşersen çam iğnelerinin "
+"tadına bakarsın."
 
 #: po/levelinfo:106
 msgid "The Narrow Way"
@@ -1148,8 +1154,24 @@ msgstr "Tux"
 msgid "Tux on Snowboard"
 msgstr "Snowboard'daki Tux"
 
-#~ msgid "Event:"
-#~ msgstr "Yarışma:"
+msgid "Event:"
+msgstr "Yarışma:"
 
+#, fuzzy
 #~ msgid "Congratulations! You won the event!"
-#~ msgstr "Tebrikler! Yarışmayı kazandınız!"
+#~ msgstr "Tebrikler! Kupa kazandınız!"
+
+#~ msgid "'Won Race: kschroeder Remix'"
+#~ msgstr "'Yarışı Kazanan: kschroeder Remix'"
+
+#~ msgid "http://www.freesound.org/samplesViewSingle.php?id=52143"
+#~ msgstr "http://www.freesound.org/samplesViewSingle.php?id=52143"
+
+#~ msgid "Samuel"
+#~ msgstr "Samuel"
+
+#~ msgid "Trixi"
+#~ msgstr "Trixi"
+
+#~ msgid "Speedy"
+#~ msgstr "Speedy"

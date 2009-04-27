@@ -1,0 +1,1222 @@
+# Bosnian translation for etracer
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the etracer package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: etracer\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2009-01-28 17:36+0100\n"
+"PO-Revision-Date: 2009-01-30 03:16+0000\n"
+"Last-Translator: Kenan Dervišević <kenan3008@gmail.com>\n"
+"Language-Team: Bosnian <bs@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2009-04-27 12:04+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#: src/audioconfig.cpp:36
+msgid "Audio Configuration"
+msgstr "Konfiguracija zvuka"
+
+#: src/audioconfig.cpp:112
+msgid "Sound Effects:"
+msgstr "Zvučni efekti"
+
+#: src/audioconfig.cpp:116
+msgid "Music:"
+msgstr "Muzika"
+
+#: src/audioconfig.cpp:120
+msgid "(needs restart)"
+msgstr "(potreban restart)"
+
+#: src/audioconfig.cpp:122
+msgid "Disable Audio:"
+msgstr "Isključi zvuk"
+
+#: src/audioconfig.cpp:126
+msgid "Stereo:"
+msgstr "Stereo"
+
+#: src/audioconfig.cpp:130
+msgid "Bits Per Sample:"
+msgstr "Bita po uzorku"
+
+#: src/audioconfig.cpp:134
+msgid "Samples Per Second:"
+msgstr "Uzoraka po sekundi:"
+
+#: src/configmode.cpp:36
+msgid "Cancel"
+msgstr "Odustani"
+
+#: src/configmode.cpp:43
+msgid "Ok"
+msgstr "Uredu"
+
+#: src/configuration.cpp:38 src/game_type_select.cpp:57 src/paused.cpp:63
+msgid "Configuration"
+msgstr "Podešavanje"
+
+#: src/configuration.cpp:45 src/credits.cpp:76
+msgid "Graphics"
+msgstr "Grafika"
+
+#: src/configuration.cpp:52
+msgid "Video"
+msgstr "Video"
+
+#: src/configuration.cpp:59
+msgid "Audio"
+msgstr "Zvuk"
+
+#: src/configuration.cpp:66
+msgid "Keyboard"
+msgstr "Tastatura"
+
+#: src/configuration.cpp:73
+msgid "Joystick"
+msgstr "Upravljačka palica"
+
+#: src/configuration.cpp:81 src/credits.cpp:150 src/event_select.cpp:96
+#: src/event_race_select.cpp:53 src/highscore.cpp:413
+msgid "Back"
+msgstr "Nazad"
+
+#: src/credits.cpp:43
+msgid "Version 0.5"
+msgstr "Verzija 0.5"
+
+#: src/credits.cpp:46
+msgid "Extreme Tux Racer is in the process of being"
+msgstr "Extreme Tux Racer je u procesu stvaranja"
+
+#: src/credits.cpp:47
+msgid "completely rewritten. All versions after 0.35,"
+msgstr "potpuno nanovo isprogramiran. Sve verzije poslije 0.35,"
+
+#: src/credits.cpp:48
+msgid "including this one, won't have major code changes"
+msgstr "uključujući ovaj, neće imati značajnije promjene koda"
+
+#: src/credits.cpp:49
+msgid "because the programmers are busy making a new,"
+msgstr "jer su programeri zauzeti stvarajući novi,"
+
+#: src/credits.cpp:50
+msgid "improved game."
+msgstr "unaprijeđena igra."
+
+#: src/credits.cpp:52
+msgid "Extreme Tux Racer is based on"
+msgstr "Extreme Tux Racer je baziran na"
+
+#: src/credits.cpp:53
+msgid "PlanetPenguin Racer, Open Racer and Tux Racer."
+msgstr "PlanetPenguin Racer, Open Racer i Tux Racer."
+
+#: src/credits.cpp:55
+msgid "Some courses may have been modified from their"
+msgstr "Neke staze možda nisu bile modificrane još od"
+
+#: src/credits.cpp:56
+msgid "original versions to fit the requirements of the game."
+msgstr "originalne verzije kako bi se uklopile u zahtijeve igre."
+
+#: src/credits.cpp:58
+msgid "Development"
+msgstr "Razvoj"
+
+#: src/credits.cpp:65
+msgid "from Sunspire Studios:"
+msgstr "od strane Sunspire Studios:"
+
+#: src/credits.cpp:73
+msgid "Release Organization"
+msgstr "Organizacija za izdavanje"
+
+#: src/credits.cpp:77
+msgid "Nicosmos (Logo, HUD and Interface)"
+msgstr "Nicosmos  (Logo, HUD i interfejs)"
+
+#: src/credits.cpp:78
+msgid "Christian Picon (Objects, Skyboxes, Characters)"
+msgstr "Christian Picon (Objekti, ski boksovi, likovi)"
+
+#: src/credits.cpp:79
+msgid "Reinhard Niehoff (Trees)"
+msgstr "Reinhard Niehoff (Stabla)"
+
+#: src/credits.cpp:80
+msgid "Daniel Poeira and Christian Picon (Papercuts Font)"
+msgstr "Daniel Poeira i Christian Picon (Papercuts vrsta slova)"
+
+#: src/credits.cpp:82
+msgid "Music"
+msgstr "Muzika"
+
+#: src/credits.cpp:84
+msgid "'Race 1'"
+msgstr "'Trka 1'"
+
+#: src/credits.cpp:85
+msgid "'Menu'"
+msgstr "'Meni'"
+
+#: src/credits.cpp:86
+msgid "'Options'"
+msgstr "'Opcije'"
+
+#: src/credits.cpp:87
+msgid "'Won Race'"
+msgstr "'Osvojena trka'"
+
+#: src/credits.cpp:90
+msgid "'Credits Ballad'"
+msgstr "'Balada o zaslugama'"
+
+#: src/credits.cpp:93
+msgid "'Freezing Point'"
+msgstr "'Tačka smrzavanja'"
+
+#: src/credits.cpp:96
+msgid "'Calm Race'"
+msgstr "'Mirna trka'"
+
+#: src/credits.cpp:97
+msgid "'Lost Race'"
+msgstr "'Izgubljena trka'"
+
+#: src/credits.cpp:98
+msgid "'Race Intro'"
+msgstr "'Uvod u trku'"
+
+#: src/credits.cpp:99
+msgid "'Spunky Race'"
+msgstr "'Hrabra trka'"
+
+#: src/credits.cpp:100
+msgid "'Won Race: kschroeder Remix'"
+msgstr "'Pobjeda u trci: kschroeder remiks'"
+
+#: src/credits.cpp:102
+msgid "Misc. PPRacer Contributors"
+msgstr "Razno: PPRacer doprinositelji"
+
+#: src/credits.cpp:108
+msgid "52143__blaukreuz__imp_01.wav - Original sound of ice cracking..."
+msgstr "52143__blaukreuz__imp_01.wav - Originalni zvuk lomljenja leda..."
+
+#: src/credits.cpp:109
+msgid "http://www.freesound.org/samplesViewSingle.php?id=52143"
+msgstr "http://www.freesound.org/samplesViewSingle.php?id=52143"
+
+#: src/credits.cpp:111
+msgid "Thanks To"
+msgstr "Hvala"
+
+#: src/credits.cpp:112
+msgid "(for Extreme Tux Racer)"
+msgstr "(za Extreme Tux Racer)"
+
+#: src/credits.cpp:113
+msgid "Ranger (for hosting the website)"
+msgstr "Ranger (za hosting web stranice)"
+
+#: src/credits.cpp:114
+msgid "Slythfox (for making the website)"
+msgstr "Slythfox (za izradu web stranice)"
+
+#: src/credits.cpp:115
+msgid "The Course Creators"
+msgstr "Kreatori staza"
+
+#: src/credits.cpp:116
+msgid "The OpenRacer project"
+msgstr "Projekat OpenRacer"
+
+#: src/credits.cpp:117
+msgid "Reinhard Niehoff (tons of advice)"
+msgstr "Reinhard Niehoff (gomile savjeta)"
+
+#: src/credits.cpp:118
+msgid "All the people of the forum"
+msgstr "Sve osobe na forumu"
+
+#: src/credits.cpp:119
+msgid "Larry Ewing (creator of Tux)"
+msgstr "Larry Ewing (tvorcu Tux-a)"
+
+#: src/credits.cpp:120
+msgid "(for Tux Racer)"
+msgstr "(za Tux Racer)"
+
+#: src/credits.cpp:127
+msgid "Tux Racer is a trademark of Jasmin F. Patry."
+msgstr "Tux Racer je zaštitni znak Jasmin F. Patry."
+
+#: src/credits.cpp:128
+msgid "Extreme Tux Racer is licenced under the GPL."
+msgstr "Extreme Tux Racer podliježe pod GPL."
+
+#: src/credits.cpp:129
+msgid "We grant use of the name 'Extreme Tux Racer'"
+msgstr "Dodijelili smo ime 'Extreme Tux Racer'"
+
+#: src/credits.cpp:130
+msgid "to any forks or continuations."
+msgstr "za bilo koje viljuške ili nastavke."
+
+#: src/credits.cpp:132
+msgid "PlanetPenguin Racer is Copyright © 2005 Volker Stroebel."
+msgstr "PlanetPenguin Racer - autorsko pravo © 2005 Volker Stroebel."
+
+#: src/credits.cpp:133
+msgid ""
+"Tux Racer and the Tux Racer Name are Copyright © 2001 Jasmin F. Patry."
+msgstr "Tux Racer i ime Tux Racer su autorsko pravo © 2001 Jasmin F. Patry."
+
+#: src/credits.cpp:159
+msgid "Translators"
+msgstr "Prevodioci"
+
+#: src/event_select.cpp:50
+msgid "Select campaign and cup"
+msgstr "Odaberi kampanju i kup"
+
+#: src/event_select.cpp:56
+msgid "Campaign:"
+msgstr "Kampanja:"
+
+#: src/event_select.cpp:67
+msgid "Cup:"
+msgstr "Kup:"
+
+#: src/event_select.cpp:87
+msgid "Player name:"
+msgstr "Ime igrača:"
+
+#: src/event_select.cpp:104
+msgid "Continue"
+msgstr "Nastavite"
+
+#: src/event_select.cpp:203
+msgid "You've won this cup!"
+msgstr "Osvojili ste ovaj kup!"
+
+#: src/event_select.cpp:205
+msgid "You must complete this cup next"
+msgstr "Morate dovršiti slijedeći kup"
+
+#: src/event_select.cpp:207
+msgid "You cannot enter this cup yet"
+msgstr "Još uvijek ne možete učestvovati u ovom kupu"
+
+#: src/event_race_select.cpp:45
+msgid "Select a race"
+msgstr "Izaberite trku"
+
+#: src/event_race_select.cpp:60
+msgid "Race!"
+msgstr "Trka!"
+
+#: src/event_race_select.cpp:290
+msgid "You don't have any lives left."
+msgstr "Nemate više života."
+
+#: src/event_race_select.cpp:295
+msgid "Race won! Your result:"
+msgstr "Pobijedili ste! Vaš rezultat:"
+
+#: src/event_race_select.cpp:299
+msgid "Needed to advance:"
+msgstr "Potrebno za napredak:"
+
+#: src/event_race_select.cpp:303
+msgid "You can't enter this race yet."
+msgstr "Ne možete još pristupiti ovoj trci."
+
+#: src/event_race_select.cpp:326
+msgid "Time:"
+msgstr "Vrijeme:"
+
+#: src/event_race_select.cpp:330
+#, c-format
+msgid "%02d:%02d.%02d"
+msgstr "%02d:%02d.%02d"
+
+#: src/event_race_select.cpp:334
+msgid "Herring:"
+msgstr "Haringa:"
+
+#: src/event_race_select.cpp:342
+msgid "Score:"
+msgstr "Rezultat:"
+
+#: src/event_race_select.cpp:351
+msgid "Contributed by:"
+msgstr "Doprinos od:"
+
+#: src/event_race_select.cpp:359 po/levelinfo:113
+msgid "Unknown"
+msgstr "Nepoznato"
+
+#: src/game_over.cpp:122 src/game_over.cpp:124
+msgid "Race aborted"
+msgstr "Trka prekinuta"
+
+#: src/game_over.cpp:127 src/game_over.cpp:129
+msgid "Race Over"
+msgstr "Trka završena"
+
+#: src/game_over.cpp:136
+#, c-format
+msgid "Time: %02d:%02d.%02d"
+msgstr "Vrijeme: %02d:%02d.%02d"
+
+#: src/game_over.cpp:143
+#, c-format
+msgid "Herring: %3d"
+msgstr "Haringi: %3d"
+
+#: src/game_over.cpp:150
+#, c-format
+msgid "Score: %6d"
+msgstr "Rezultat: %6d"
+
+#: src/game_over.cpp:158
+#, c-format
+msgid "Max speed: %3d km/h"
+msgstr "Maksimalna przina: %3d km/h"
+
+#: src/game_over.cpp:166
+#, c-format
+msgid "Was flying: %.01f %% of time"
+msgstr "Let: %.01f %% ukupnog vremena"
+
+#: src/game_over.cpp:178
+#, c-format
+msgid "You made it to the %s place in the highscore!"
+msgstr "Dospjeli ste na %s mjesto najboljih rezultata!"
+
+#: src/game_over.cpp:190
+msgid "You beat your best score!"
+msgstr "Oborili ste rekord!"
+
+#: src/game_over.cpp:193
+msgid "Congratulations! You won the campaign!"
+msgstr "Čestitke! Osvojili ste kampanju!"
+
+#: src/game_over.cpp:195
+msgid "Congratulations! You won the cup!"
+msgstr "Čestitke! Osvojili ste kup!"
+
+#: src/game_over.cpp:197
+msgid "Requirements met! Advance to the next race."
+msgstr "Zahtjevi dostignuti! Nastavite na sljedećoj trci."
+
+#: src/game_over.cpp:199
+msgid "Race requirements not met."
+msgstr "Zahtjev za trku nisu dostignuti."
+
+#: src/game_type_select.cpp:36
+msgid "Enter a campaign"
+msgstr "Započni kampanju"
+
+#: src/game_type_select.cpp:43
+msgid "Practice"
+msgstr "Vježba"
+
+#: src/game_type_select.cpp:50 src/highscore.cpp:350
+msgid "Highscore"
+msgstr "Najbolji rezultati"
+
+#: src/game_type_select.cpp:64
+msgid "Credits"
+msgstr "Zasluge"
+
+#: src/game_type_select.cpp:71 src/paused.cpp:79
+msgid "Quit"
+msgstr "Izlaz"
+
+#: src/graphicsconfig.cpp:30
+msgid "Graphics Configuration"
+msgstr "Konfiguracija grafike"
+
+#: src/graphicsconfig.cpp:117
+msgid "Show UI Snow:"
+msgstr "Prikaži UI snijeg:"
+
+#: src/graphicsconfig.cpp:121
+msgid "Display FPS:"
+msgstr "Prikaži FPS:"
+
+#: src/graphicsconfig.cpp:125
+msgid "Display Progress Bar:"
+msgstr "Prikaži traku napretka:"
+
+#: src/graphicsconfig.cpp:129
+msgid "Draw Fog:"
+msgstr "Magla:"
+
+#: src/graphicsconfig.cpp:133
+msgid "Reflections:"
+msgstr "Odrazi:"
+
+#: src/graphicsconfig.cpp:137
+msgid "Shadows:"
+msgstr "Sijenke:"
+
+#: src/graphicsconfig.cpp:141
+msgid "Draw Background:"
+msgstr "Pozadina:"
+
+#: src/highscore.cpp:88
+msgid "1:st"
+msgstr "1."
+
+#: src/highscore.cpp:90
+msgid "2:nd"
+msgstr "2."
+
+#: src/highscore.cpp:92
+msgid "3:rd"
+msgstr "3."
+
+#: src/highscore.cpp:94
+msgid "4:th"
+msgstr "4."
+
+#: src/highscore.cpp:96
+msgid "5:th"
+msgstr "5."
+
+#: src/highscore.cpp:98
+msgid "6:th"
+msgstr "6."
+
+#: src/highscore.cpp:100
+msgid "7:th"
+msgstr "7."
+
+#: src/highscore.cpp:102
+msgid "8:th"
+msgstr "8."
+
+#: src/highscore.cpp:104
+msgid "9:th"
+msgstr "9."
+
+#: src/highscore.cpp:106
+msgid "10:th"
+msgstr "10."
+
+#: src/highscore.cpp:317
+msgid "No records"
+msgstr "Bez rekorda"
+
+#: src/highscore.cpp:327
+#, c-format
+msgid " (%d points)"
+msgstr " (%d bodova)"
+
+#: src/joystickconfig.cpp:29
+msgid "Joystick Configuration"
+msgstr "Podešavanje Joystick-a"
+
+#: src/joystickconfig.cpp:33
+msgid "Enable Joystick"
+msgstr "Omogući upravljačku palicu"
+
+#: src/joystickconfig.cpp:41 src/keyboardconfig.cpp:132
+msgid "Paddle:"
+msgstr "Gas:"
+
+#: src/joystickconfig.cpp:54 src/keyboardconfig.cpp:136
+msgid "Brake:"
+msgstr "Kočnica:"
+
+#: src/joystickconfig.cpp:67 src/keyboardconfig.cpp:140
+msgid "Jump:"
+msgstr "Skok:"
+
+#: src/joystickconfig.cpp:80 src/keyboardconfig.cpp:144
+msgid "Trick:"
+msgstr "Trik:"
+
+#: src/keyboardconfig.cpp:55
+msgid "Keyboard Configuration"
+msgstr "Podešavanje tastature"
+
+#: src/keyboardconfig.cpp:124
+msgid "Turn left:"
+msgstr "Skretanje lijevo:"
+
+#: src/keyboardconfig.cpp:128
+msgid "Turn right:"
+msgstr "Skretanje desno:"
+
+#: src/keyboardconfig.cpp:148
+msgid "Reset:"
+msgstr "Reset:"
+
+#: src/loading.cpp:53
+msgid "Loading, Please Wait..."
+msgstr "Učitavanje, molim sačekajte..."
+
+#: src/paused.cpp:55
+msgid "Paused"
+msgstr "Pauza"
+
+#: src/paused.cpp:71
+msgid "Resume"
+msgstr "Nastavi"
+
+#: src/splash_screen.cpp:34
+msgid "PRESS ANY KEY TO START"
+msgstr "Pritisnite bilo koju tipku za start"
+
+#: src/videoconfig.cpp:60
+msgid "Video Configuration"
+msgstr "Podešavanje videa"
+
+#: src/videoconfig.cpp:173
+msgid "To change the resolution, or switch into fullscreen mode"
+msgstr "Da bi promijenili rezoluciju ili koristili cijeli ekran"
+
+#: src/videoconfig.cpp:175
+msgid "use options.txt, located in the config folder."
+msgstr "koristite \"options.txt\", smješten u folderu \"config\"."
+
+#: src/videoconfig.cpp:177
+msgid "Resolution:"
+msgstr "Rezolucija:"
+
+#: src/videoconfig.cpp:181
+msgid "Bits Per Pixel:"
+msgstr "Bita po pikselu:"
+
+#: src/videoconfig.cpp:185
+msgid "Fullscreen:"
+msgstr "Cijeli ekran:"
+
+#: src/videoconfig.cpp:189
+msgid "Experimental (needs restart)"
+msgstr "Eksperimentalno (potreban restart)"
+
+#: src/videoconfig.cpp:192
+msgid "Stencil Buffer:"
+msgstr "Međumemorija matrice:"
+
+#: src/videoconfig.cpp:196
+msgid "Enable FSAA:"
+msgstr "Omogućiti FSAA:"
+
+#: src/videoconfig.cpp:200
+msgid "FSAA Multisamples:"
+msgstr "FSAA uzorci:"
+
+#: po/levelinfo:1
+msgid "Doing"
+msgstr "Ponašanje"
+
+#: po/levelinfo:2
+msgid ""
+"This course was probably created to present new textures introduced in "
+"PPRacer."
+msgstr ""
+"Ova staza je vjerovatno kreirana kako bi demonstrirala nove mogućnosti "
+"predstavljene u PPRacer-u."
+
+#: po/levelinfo:3
+#, c-format
+msgid "FPS: %.1f"
+msgstr "FPS: %.1f"
+
+#: po/levelinfo:4 po/levelinfo:5
+#, c-format
+msgid "%03d"
+msgstr "%03d"
+
+#: po/levelinfo:6 po/levelinfo:7
+#, c-format
+msgid "%02d:%02d:%02d"
+msgstr "%02d:%02d:%02d"
+
+#: po/levelinfo:8 po/levelinfo:10
+msgid "km/h"
+msgstr "km/h"
+
+#: po/levelinfo:9 po/levelinfo:11
+#, c-format
+msgid "%.0f"
+msgstr "%.0f"
+
+#: po/levelinfo:12 po/levelinfo:13
+#, c-format
+msgid "%d:%d:%d"
+msgstr "%d:%d:%d"
+
+#: po/levelinfo:14 po/levelinfo:15
+#, c-format
+msgid "%d"
+msgstr "%d"
+
+#: po/levelinfo:16
+msgid "Mountain Mania"
+msgstr "Planinska manija"
+
+#: po/levelinfo:17
+msgid "Icy Peril"
+msgstr "Ledena opasnost"
+
+#: po/levelinfo:18
+msgid "Death Cup"
+msgstr "Kup smrti"
+
+#: po/levelinfo:19
+msgid "Slippery Defeat"
+msgstr "Klizavi poraz"
+
+#: po/levelinfo:20
+msgid "The Final Three"
+msgstr "Posljednje troje"
+
+#: po/levelinfo:21
+msgid "Bobsled Ride"
+msgstr "Bob trka"
+
+#: po/levelinfo:22
+msgid "Just like a real bobsled ride, only more dangerous."
+msgstr "Baš kao i prava bob trka, samo mnogo opasnije."
+
+#: po/levelinfo:23
+msgid "Candy Lane"
+msgstr "Aleja slatkiša"
+
+#: po/levelinfo:24
+msgid ""
+"Mostly ice, with very few obstacles in your path, this is like a stroll down "
+"Candy Lane."
+msgstr ""
+"Većinom led, sa par prepreka na putu, ovo je kao šetnja alejom slatkiša."
+
+#: po/levelinfo:25
+msgid "Ice Pipeline"
+msgstr "Ledena cijev"
+
+#: po/levelinfo:26
+msgid "A short, slippery ice-trough with herring scattered throughout."
+msgstr "Ukratko, klizavi led sa haringama razbacanim uokolo."
+
+#: po/levelinfo:27
+msgid "Hippo Run"
+msgstr "Trka nilskih konja"
+
+#: po/levelinfo:28
+msgid ""
+"In Hippo Run, you slide down an icy slope as a penguin, I honestly don't "
+"know what this has to do with hippos or running..."
+msgstr ""
+"U trci nilskih konja se spuštate niz ledenu strminu kao pingvin i iskreno "
+"nemam pojma kakve ovo ima veze sa nilskim konjima ili trčanjem..."
+
+#: po/levelinfo:29
+msgid "Nature Stroll"
+msgstr "Skitnja po prirodi"
+
+#: po/levelinfo:30
+msgid ""
+"The fresh air, the pine scent, who doesn't like a nice refreshing walk "
+"through the mountains?"
+msgstr ""
+"Svjež zrak, miris borovine. Kome se ne bi svidjela osvježavajuća šetnja "
+"preko planina?"
+
+#: po/levelinfo:31
+msgid "Crazy Path"
+msgstr "Ludi put"
+
+#: po/levelinfo:32
+msgid ""
+"You'll have trouble slowing down on this one. There's lots of herring, but "
+"be careful not to fly too much or you won't get any."
+msgstr ""
+"Biće teško usporiti. Mnogo je haringi, ali budite pažljivi da ne letite "
+"previše inače nećete uhvatiti ni jednu."
+
+#: po/levelinfo:33
+msgid "In Search of Vodka"
+msgstr "U potrazi ta votkom"
+
+#: po/levelinfo:34
+msgid ""
+"Tux needs some needs some vodka to warm up his cold belly. Alas, his liquor "
+"cabinet has been pillaged. Join Tux on the quest for vodka.Pick up herring "
+"for dinner along the way!"
+msgstr ""
+"Tux treba malo votke da ugrije svoj hladni stomak. Ustvari, njegov kabinet "
+"sa likerom je opljačkan. Pridruži se Tuxu u potrazi za votkom. Pokupi i koju "
+"haringu usput!"
+
+#: po/levelinfo:35
+msgid "Merry Go Round"
+msgstr "Veselo idemo okolo"
+
+#: po/levelinfo:36
+msgid "Try to build up enough speed to jump from one roundabout to the next."
+msgstr ""
+"Pokušajte postići dovoljnu brzinu da skočite sa jedne obilaznice na drugu."
+
+#: po/levelinfo:37
+msgid "Hey, Tux!"
+msgstr "Hej, Tux!"
+
+#: po/levelinfo:38
+msgid ""
+"This course offers true excitement for your race-loving penguin buddy."
+msgstr ""
+"Ovaj put pruža pravi užitak  za vašeg prijatelja pingvina, ljubitelja utrka."
+
+#: po/levelinfo:39
+msgid "Volcanoes"
+msgstr "Vulkani."
+
+#: po/levelinfo:40
+msgid ""
+"This gigantic crater was full of water, and herring, but now it's all "
+"frozen, and yours for the taking."
+msgstr ""
+"Ovaj ogromni krater je pun vode i haringi, ali je sada zamrznut i vama na "
+"raspolaganju."
+
+#: po/levelinfo:41
+msgid "Slippy-Slidey"
+msgstr "Klizi-bljuzgi"
+
+#: po/levelinfo:42
+msgid "Slide on the slippery frozen river in a hilly forest, slipperily."
+msgstr "Spust na klizavoj zamrznutoj rijeci u brdovitoj bljuzgavoj šumi."
+
+#: po/levelinfo:43
+msgid "Herring Run"
+msgstr "Haringina trka"
+
+#: po/levelinfo:44
+msgid "Mountain Man"
+msgstr "Planinski čovjek"
+
+#: po/levelinfo:45
+msgid "Valley Cup"
+msgstr "Kup doline"
+
+#: po/levelinfo:46
+msgid "Tux the winter sportsman"
+msgstr "Tux zimski sportaš"
+
+#: po/levelinfo:47
+msgid "Highway To Hell"
+msgstr "Put za pakao"
+
+#: po/levelinfo:48
+msgid "Dead Man's Drop"
+msgstr "Spust mrtvog čovjeka"
+
+#: po/levelinfo:49
+msgid ""
+"Pretty tough hill. It's fast, steep, lumpy, twisty, and full of trees. Hard "
+"to get herrings. Don't forget the drop."
+msgstr ""
+"Prilično teška brdska staza. Brza je, strma, grudvasta, uvrnuta i puna "
+"drveća. Veoma je teško doći do haringi. Ne zaboravite spust."
+
+#: po/levelinfo:50
+msgid "Skull Mountain"
+msgstr "Planina Lubanja"
+
+#: po/levelinfo:51
+msgid ""
+"Skull mountain is a steep, twisty drop around tree-filled inner peaks. "
+"Expect to miss a lot of herrings and crash a lot."
+msgstr ""
+"Planina Lubanja je strmi, uvrnuti spust oko drvetom popunjenih najviših "
+"tačaka. Očekujte da ne pokupite mnogo haringi i da se slupate mnogo puta."
+
+#: po/levelinfo:52
+msgid "The Narrow Way"
+msgstr "Uzak put"
+
+#: po/levelinfo:53
+msgid ""
+"To put it simply, stay on the path or you lose! It's hard to see where "
+"you're going, there's trees in your way, and the herrings are hard to get. "
+"Good luck, you'll need it!"
+msgstr ""
+"Da pojednostavimo, ostani na stazi ili propadaš! Teško je vidjeti gdje ideš, "
+"stabla su tvom putu i haringe je teško uhvatiti. Sretno, trebaće ti!"
+
+#: po/levelinfo:54
+msgid "Hamburger Hill"
+msgstr "Brdo hamburger"
+
+#: po/levelinfo:55
+msgid ""
+"Hamburger Hill is steep, narrow, twisty, lumpy, icy, and rocky, with a few "
+"trees right in your way!"
+msgstr ""
+"Brdo hamburger je strmo, usko, uvrnuto, grudvasto, ledeno i stjenovito sa "
+"nekoliko drveća upravo na vašem putu!"
+
+#: po/levelinfo:56
+msgid "Who Says Penguins Can't Fly?"
+msgstr "Ko kaže da pingvine ne mogu letjeti?"
+
+#: po/levelinfo:57
+msgid ""
+"It'll be tough collecting herrings at speeds over 200, so try to brake "
+"whenever possible to get the required herring."
+msgstr ""
+"Biće teško skupljati haringe pri brzini većoj od 200, pa zato probaj kočiti "
+"kad god je moguće da skupiš potrebne haringe."
+
+#: po/levelinfo:58
+msgid "Snow Valley"
+msgstr "Snježna dolina"
+
+#: po/levelinfo:59
+msgid ""
+"Snow Valley is a relatively flat, and very fast course. You'll find a few "
+"herrings very difficult to get if you're going for a perfect score! Watch "
+"your speed in certain areas to get the most herrings!"
+msgstr ""
+"Snježna dolina je relativno ravna i veoma brza. Nekoliko haringi koje se tu "
+"nalaze je veoma teško pokupiti ukoliko želite savršen rezultat! Pazite na "
+"brzinu u nekim oblastima da biste pokupili većinu haringi!"
+
+#: po/levelinfo:60
+msgid "Ski Jump"
+msgstr "Skijaški skok"
+
+#: po/levelinfo:61
+msgid ""
+"Steering will be unnecessary, just line yourself up and reap the rewards. "
+"Rememember, acceleration will slow you down after a while."
+msgstr ""
+"Skretanje će biti nepotrebno, samo se poravnaj kako treba i beri nagrade. "
+"Zapamti, ubrzanje ćete usporiti nakon nekog vremena."
+
+#: po/levelinfo:62
+msgid "Slalom"
+msgstr "Slalom"
+
+#: po/levelinfo:63
+msgid ""
+"Brake while you turn and the herrings on this pseudo-slalom will be yours."
+msgstr "Kočite prilikom skretanja i haringe na ovom pseudo slalomu su vaše."
+
+#: po/levelinfo:64
+msgid "Hazzard Valley"
+msgstr "Dolina uništenja"
+
+#: po/levelinfo:65
+msgid ""
+"Hazzard Valley is full of hazards, like trees, deep caverns, spikes, and "
+"huge areas of rocky plains, not to mention your speed being your enemy in "
+"trying to get the herrings and stay on course!"
+msgstr ""
+"Dolina uništenja je puna rizika, kao što su drveće, duboke pećine, šiljci i "
+"ogromna prostranstva stjenovitih ravnica, da ne spominjemo da vam je vaša "
+"brzina najveći neprijatelj u pokušajima da uhvatite haringe i ostanete na "
+"stazi!"
+
+#: po/levelinfo:66
+msgid "I've Got A Woody"
+msgstr "Imam Vudija"
+
+#: po/levelinfo:67
+msgid ""
+"Yet another horrible elevated ice-coaster. If you thought the last two were "
+"hard, try this one. Have fun winding through the woods.  Look out for a huge "
+"shortcut!!"
+msgstr ""
+"Još jedan užasan uzdignuti ledeni brzac. Ukoliko mislite da su posljednja "
+"dva bila teška, pokušajte ovaj. Puno sreće pri probijanju kroz drveće. "
+"Potražite ogromnu prečicu!!"
+
+#: po/levelinfo:68
+msgid "Tux Toboggan Run"
+msgstr "Tux tobogan trka"
+
+#: po/levelinfo:69
+msgid ""
+"Collect herrings in an ice channel with various paths and many high and low "
+"speed passages. Watch out for the occasional tree."
+msgstr ""
+"Skupljajte haringe u ledenom kanalu sa raznovrsnim putevima i mnogo brzih i "
+"sporih prolaza. Pripazite na povremeno drveće."
+
+#: po/levelinfo:70
+msgid "Mt. Satan"
+msgstr "Planina Džavo"
+
+#: po/levelinfo:71
+msgid ""
+"Mount Satan is a sister mountain to Dead Man's Drop. No surprises here, just "
+"a steep, bumpy, twisty path full of trees to get through."
+msgstr ""
+"Planina Džavo je sestra planini Spust mrtvog čovjeka. Ovdje nema "
+"iznenađenja, samo strmi, neravni, uvrnuti put pun drveća za proći."
+
+#: po/levelinfo:72
+msgid "Ice Labyrinth"
+msgstr "Ledeni labirint"
+
+#: po/levelinfo:73
+msgid ""
+"You choose your destiny, you could end up full or starving depending on the "
+"path you pick."
+msgstr ""
+"Ti biraš svoju sudbinu, možeš završiti sit ili izgladniti do smrti u "
+"zavisnosti od puta koji izabereš."
+
+#: po/levelinfo:74
+msgid "High Road"
+msgstr "Brza cesta"
+
+#: po/levelinfo:75
+msgid ""
+"Just stay on the path and collect herring. Oh yeah, and if you fall you'll "
+"be eating pine needles."
+msgstr ""
+"Samo ostani na putu i skupljaj haringe. I da, ukoliko upadneš završićeš "
+"jedući borove iglice."
+
+#: po/levelinfo:76
+msgid "Mt. Herring"
+msgstr "Planina Haringa"
+
+#: po/levelinfo:77
+msgid ""
+"Mt. Herring is relatively fast but long, somewhat bumpy in places, and has "
+"some wide open areas and branching paths. Lots of herrings to collect though "
+"it can be difficult unless you watch your speed."
+msgstr ""
+"Planina Haringa je relativno brzo ali duga, ponekad neravna na nekim "
+"mjestima i ima neke otvorene prostore i prolaze pune grana. Puno haringi za "
+"pokupiti što može biti teško ukoliko ne budete pazili na vašu brzinu."
+
+#: po/levelinfo:78
+msgid "Keep It Up"
+msgstr "Samo naprijed"
+
+#: po/levelinfo:79
+msgid ""
+"If you fall you might as well just quit then and there, 'cause your chances "
+"are slim on the rocky ground."
+msgstr ""
+"Ukoliko padneš možeš onda i da odustaneš, zato što su tvoje šanse male na "
+"stjenovitoj podlozi."
+
+#: po/levelinfo:80
+msgid "Tux Racer Classics"
+msgstr "Tux Racer klasika"
+
+#: po/levelinfo:81
+msgid "Canadian Cup"
+msgstr "Kanadski kup"
+
+#: po/levelinfo:82
+msgid "Swiss Cup"
+msgstr "Švicarski kup"
+
+#: po/levelinfo:83
+msgid "Path of Daggers"
+msgstr "Puz noževa"
+
+#: po/levelinfo:84
+msgid ""
+"Big spikes may prove to be the least of your worries on this course. Muliple "
+"paths allow you to take low or high roads, each with their own challenges."
+msgstr ""
+"Veliki šiljci mogli bi postati tvoja najmanja briga na ovoj stazi. "
+"Višestruki putevi ti dozvoljavaju da odeš na spore ili brze ceste, svake sa "
+"svojim izazovima."
+
+#: po/levelinfo:85
+msgid "Bunny Hill"
+msgstr "Zec brdo"
+
+#: po/levelinfo:86
+msgid ""
+"Let's start out easy, just collect the herring in the time limit and you'll "
+"be fine. The best part is that you don't have to use those stupid T-lifts."
+msgstr ""
+"Započnimo jednostavno, samo skupi haringe u određenom vremenu i biće uredu. "
+"Najbolji je dio da ne moraš koristiti te glupe T-liftove."
+
+#: po/levelinfo:87
+msgid "Bumpy Ride"
+msgstr "Vožnja neravnim putem"
+
+#: po/levelinfo:88
+msgid ""
+"This hill has a series of ramps to tackle.  Be sure to line yourself up "
+"before getting airborne."
+msgstr ""
+"Ovo brdo ima mnogo rampi koje treba podići. Poravnajte se sa rampom prije "
+"nego skočite."
+
+#: po/levelinfo:89
+msgid "Frozen River"
+msgstr "Zaleđena rijeka"
+
+#: po/levelinfo:90
+msgid ""
+"Keep your speed down to collect herring. You have plenty of time, so don't "
+"rush things."
+msgstr ""
+"Smanjite svoju brzinu da skupite haringe. Imate i previše vremena, ne "
+"požurujte stvari."
+
+#: po/levelinfo:91
+msgid "Twisty Slope"
+msgstr "Uvrnuta padina"
+
+#: po/levelinfo:92
+msgid ""
+"Tight twists make grabbing herring difficult.  Hard turns and not too much "
+"braking will lead you to victory."
+msgstr ""
+"Uski zavoji čine hvatanje haringe veoma teškim. Brza skretanja i ne baš "
+"mnogo kočenja će vas odvesti u pobjedu."
+
+#: po/levelinfo:93
+msgid "The Niehoff Experience"
+msgstr "Niehoff iskustvo"
+
+#: po/levelinfo:94
+msgid "Search, Search, Search"
+msgstr "Traži, traži, traži"
+
+#: po/levelinfo:95
+msgid "Mountains and Hills"
+msgstr "Planine i brda"
+
+#: po/levelinfo:96
+msgid "The Final Challenge"
+msgstr "Završni izazov"
+
+#: po/levelinfo:97
+msgid "Tux at Home"
+msgstr "Tux kod kuće"
+
+#: po/levelinfo:98
+msgid ""
+"Here lives Tux. You can take the corridore on the right - it's the shortest "
+"and fastest way. But if you want to catch some herrings you have to enter "
+"the rooms on the left."
+msgstr ""
+"Ovdje živi Tux. Možeš izabrati desni prolaz - to je najkraći i najbrži put. "
+"Ali ako hoćeš da uhvatiš haringe moraćeš ući u sobe lijevo."
+
+#: po/levelinfo:99
+msgid "Secret Valleys"
+msgstr "Tajne doline"
+
+#: po/levelinfo:100
+msgid ""
+"Your task: Find the hidden valleys and the ten groups of dead trees. Look "
+"around, the ways are not easy to find."
+msgstr ""
+"Tvoj zadatak: Nađi skrivene doline i skupi deset grupa mrtvih drveća. "
+"Pogledaj okolo, put nije lahko pronaći."
+
+#: po/levelinfo:101
+msgid "Chinese Wall"
+msgstr "Kineski zid"
+
+#: po/levelinfo:102
+msgid ""
+"The Great Wall of China in winter. Try to stay on top of the wall - that's "
+"where the herrings are. If you fall off you can try to jump back up, there "
+"are 7 hidden ramps. You'll get a lot of exercise."
+msgstr ""
+"Veliki Kineski zid zimi. Pokušajte ostati na vrhu zida - tu se nalaze "
+"haringe. Ukoliko padnete ispod pokušajte ponovo skočiti gore, postoji 7 "
+"skrivenih rampi. Prilično ćete se uvježbati."
+
+#: po/levelinfo:103
+msgid "Challenge One"
+msgstr "Izazov jedan"
+
+#: po/levelinfo:104
+msgid ""
+"A very dangerous path along the mountains. Warning: The course is very "
+"difficult and there are some situations where you can get stuck."
+msgstr ""
+"Veoma opasna staza u planinama. Upozerenje: Ova staza je veoma teška i "
+"postoje situacije u kojima se možeš zaglaviti."
+
+#: po/levelinfo:105
+msgid "Frozen Lakes"
+msgstr "Zaleđena jezera"
+
+#: po/levelinfo:106
+msgid ""
+"To reach the finish you must pass several frozen lakes. Watch your speed on "
+"the ice - there are some dangerous corners."
+msgstr ""
+"Da stigneš do kraja moraš proći nekoliko zaleđenih jezera. Pazi na svoju "
+"brzinu na ledu - ima opasnih skretanja."
+
+#: po/levelinfo:107
+msgid "In Search of the Holy Grail"
+msgstr "U potrazi za svetim gralom"
+
+#: po/levelinfo:108
+msgid ""
+"An adventure course with a simple task: Find the grail! Warning: It is very "
+"difficult to find the way."
+msgstr ""
+"Avantura sa jednostavnim zadatkom: nađite gral! Upozorenje: veoma je teško "
+"naći pravi put."
+
+#: po/levelinfo:109
+msgid "Explore the Mountains"
+msgstr "Istražite planine"
+
+#: po/levelinfo:110
+msgid ""
+"Can you find your way through the icy, dangerous mountains. I doubt it."
+msgstr "Možete li pronaći put kroz ledene, opasne planine. Čisto sumnjam."
+
+#: po/levelinfo:111
+msgid "Wild Mountains"
+msgstr "Divlje planine"
+
+#: po/levelinfo:112
+msgid ""
+"A wild landscape of ice and snow. It isn't easy to keep the right way. Not "
+"for beginners."
+msgstr ""
+"Divlji krajolik leda i snijega. Nije jednostavno ostati na pravom putu. Nije "
+"za početnike."
+
+#: po/modelinfo:1
+msgid "Tux"
+msgstr "Tux"
+
+#: po/modelinfo:2
+msgid "Samuel"
+msgstr "Samuel"
+
+#: po/modelinfo:3
+msgid "Trixi"
+msgstr "Trixi"
+
+#: po/modelinfo:4
+msgid "Speedy"
+msgstr "Brzonogi"

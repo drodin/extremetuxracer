@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: etracer\n"
 "Report-Msgid-Bugs-To: https://translations.edge.launchpad.net/etracer\n"
 "POT-Creation-Date: 2008-08-03 20:17+0200\n"
-"PO-Revision-Date: 2008-07-31 10:07+0000\n"
-"Last-Translator: Миладин Миладиноски <Unknown>\n"
+"PO-Revision-Date: 2008-12-07 13:06+0000\n"
+"Last-Translator: 386sky <seotaewong40@gmail.com>\n"
 "Language-Team: Macedonian <mk@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-08-03 17:56+0000\n"
+"X-Launchpad-Export-Date: 2009-04-27 12:04+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: src/audioconfig.cpp:36
@@ -128,11 +128,11 @@ msgstr "оригинални верзии за да се вклопат во п�
 
 #: src/credits.cpp:58
 msgid "Development"
-msgstr ""
+msgstr "Програмирање"
 
 #: src/credits.cpp:63
 msgid "from Sunspire Studios:"
-msgstr ""
+msgstr "од Sunspire Studios:"
 
 #: src/credits.cpp:71
 msgid "Non-Rewrite Version Organization"
@@ -140,7 +140,7 @@ msgstr ""
 
 #: src/credits.cpp:74
 msgid "Translators"
-msgstr ""
+msgstr "Преведувачи"
 
 #: src/credits.cpp:87
 msgid "Other (incomplete) translations are from the PPRacer Project."
@@ -156,7 +156,7 @@ msgstr ""
 
 #: src/credits.cpp:92
 msgid "Reinhard Niehoff (Trees)"
-msgstr ""
+msgstr "Reinhard Niehoff (дрва)"
 
 #: src/credits.cpp:93
 msgid "Daniel Poeira and Christian Picon (Font)"
@@ -164,55 +164,56 @@ msgstr ""
 
 #: src/credits.cpp:95
 msgid "Music"
-msgstr ""
+msgstr "Музика"
 
 #: src/credits.cpp:97
 msgid "'Race 1'"
-msgstr ""
+msgstr "'Прва трка'"
 
 #: src/credits.cpp:98
 msgid "'Menu'"
-msgstr ""
+msgstr "'Мени'"
 
 #: src/credits.cpp:99
 msgid "'Options'"
-msgstr ""
+msgstr "'Опции'"
 
 #: src/credits.cpp:100
 msgid "'Won Race'"
-msgstr ""
+msgstr "'Победник на трката'"
 
 #: src/credits.cpp:103
 msgid "'Credits Ballad'"
-msgstr ""
+msgstr "'Песна за заслугите'"
 
 #: src/credits.cpp:105
 msgid "Misc. PPRacer Contributors"
-msgstr ""
+msgstr "Разни соработници на PPRacer"
 
 #: src/credits.cpp:110
 msgid "Thanks To"
-msgstr ""
+msgstr "Благодарност до"
 
 #: src/credits.cpp:111
+#, fuzzy
 msgid "(for Exteme Tux Racer)"
-msgstr ""
+msgstr "(за Tux Racer)"
 
 #: src/credits.cpp:112
 msgid "Ranger (for hosting the website)"
-msgstr ""
+msgstr "Ranger (за хостирање на веб страницата)"
 
 #: src/credits.cpp:113
 msgid "Slythfox (for making the website)"
-msgstr ""
+msgstr "Slythfox (за правењето на веб страницата)"
 
 #: src/credits.cpp:114
 msgid "The Course Creators"
-msgstr ""
+msgstr "Креатори на курсот"
 
 #: src/credits.cpp:115
 msgid "The OpenRacer project"
-msgstr ""
+msgstr "OpenRacer проектот"
 
 #: src/credits.cpp:116
 msgid "Reinhard Niehoff (for helping with code modification)"
@@ -224,198 +225,200 @@ msgstr ""
 
 #: src/credits.cpp:118
 msgid "Larry Ewing (creator of Tux)"
-msgstr ""
+msgstr "Larry Ewing (креаторот на Tux)"
 
 #: src/credits.cpp:119
 msgid "(for Tux Racer)"
-msgstr ""
+msgstr "(за Tux Racer)"
 
 #: src/credits.cpp:126
 msgid "Tux Racer is a trademark of Jasmin F. Patry."
-msgstr ""
+msgstr "Tux Racer е регистриран заштитен знак на Jasmin F. Patry."
 
 #: src/credits.cpp:127
 msgid "Extreme Tux Racer is licenced under the GPL."
-msgstr ""
+msgstr "Extreme Tux Racer е лиценциран под ГПЛ."
 
 #: src/credits.cpp:128
 msgid "We grant use of the name 'Extreme Tux Racer'"
-msgstr ""
+msgstr "Дозволуваме употреба на името 'Extreme Tux Racer'"
 
 #: src/credits.cpp:129
 msgid "to any forks or continuations."
-msgstr ""
+msgstr "на било какви изведени форми или континуации на ова дело."
 
 #: src/credits.cpp:131
 msgid "PlanetPenguin Racer is Copyright © 2005 Volker Stroebel."
-msgstr ""
+msgstr "PlanetPenguin Racer е заштитен знак © 2005 Volker Stroebel."
 
 #: src/credits.cpp:132
 msgid "Tux Racer and the Tux Racer Name are Copyright © 2001 Jasmin F. Patry."
 msgstr ""
+"Tux Racer и името на Tux Racer се авторско право © 2001 Jasmin F. Patry."
 
 #: src/event_select.cpp:50
 msgid "Select campaign and cup"
-msgstr ""
+msgstr "Одбери кампања или куп"
 
 #: src/event_select.cpp:56
 msgid "Campaign:"
-msgstr ""
+msgstr "Кампања:"
 
 #: src/event_select.cpp:67
 msgid "Cup:"
-msgstr ""
+msgstr "Куп:"
 
 #: src/event_select.cpp:87
 msgid "Player name:"
-msgstr ""
+msgstr "Име на играчот:"
 
 #: src/event_select.cpp:104
 msgid "Continue"
-msgstr ""
+msgstr "Продолжи"
 
 #: src/event_select.cpp:158
 msgid "You've won this cup!"
-msgstr ""
+msgstr "Победивте во овој куп!"
 
 #: src/event_select.cpp:160
 msgid "You must complete this cup next"
-msgstr ""
+msgstr "Морате да го завршите овој куп потоа"
 
 #: src/event_select.cpp:162
 msgid "You cannot enter this cup yet"
-msgstr ""
+msgstr "Сеуште неможете да влезете во овој куп"
 
 #: src/event_race_select.cpp:45
 msgid "Select a race"
-msgstr ""
+msgstr "Одберете трка"
 
 #: src/event_race_select.cpp:60
 msgid "Race!"
-msgstr ""
+msgstr "Вози!"
 
 #: src/event_race_select.cpp:280
 msgid "You don't have any lives left."
-msgstr ""
+msgstr "Немате повеќе преостанати животи."
 
 #: src/event_race_select.cpp:285
 msgid "Race won! Your result:"
-msgstr ""
+msgstr "Победивте на трката! Вашиот резултат"
 
 #: src/event_race_select.cpp:289
 msgid "Needed to advance:"
-msgstr ""
+msgstr "Потребно за напредок:"
 
 #: src/event_race_select.cpp:293
 msgid "You can't enter this race yet."
-msgstr ""
+msgstr "Сеуште неможете да влезете во оваа трка."
 
 #: src/event_race_select.cpp:316
 msgid "Time:"
-msgstr ""
+msgstr "Време:"
 
 #: src/event_race_select.cpp:320
 #, c-format
 msgid "%02d:%02d.%02d"
-msgstr ""
+msgstr "%02d:%02d.%02d"
 
 #: src/event_race_select.cpp:324
 msgid "Herring:"
-msgstr ""
+msgstr "Харинга:"
 
 #: src/event_race_select.cpp:332
 msgid "Score:"
-msgstr ""
+msgstr "Резултат:"
 
 #: src/event_race_select.cpp:341
 msgid "Contributed by:"
-msgstr ""
+msgstr "Приложено од:"
 
 #: src/event_race_select.cpp:349 po/levelinfo:16
 msgid "Unknown"
-msgstr ""
+msgstr "Непознато"
 
 #: src/game_over.cpp:109
 msgid "Race aborted"
-msgstr ""
+msgstr "Трката е прекината"
 
 #: src/game_over.cpp:112
 msgid "Race Over"
-msgstr ""
+msgstr "Трката заврши"
 
 #: src/game_over.cpp:119
 #, c-format
 msgid "Time: %02d:%02d.%02d"
-msgstr ""
+msgstr "Време: %02d:%02d.%02d"
 
 #: src/game_over.cpp:124
 #, c-format
 msgid "Herring: %3d"
-msgstr ""
+msgstr "Харинга: %3d"
 
 #: src/game_over.cpp:129
 #, c-format
 msgid "Score: %6d"
-msgstr ""
+msgstr "Резултат: %6d"
 
 #: src/game_over.cpp:135
 #, c-format
 msgid "Max speed: %3d km/h"
-msgstr ""
+msgstr "Максимална брзина: %3d км/ч"
 
 #: src/game_over.cpp:141
 #, c-format
 msgid "Was flying: %.01f %% of time"
-msgstr ""
+msgstr "Летавте:  %.01f %% од времето"
 
 #: src/game_over.cpp:151
 #, c-format
 msgid "You made it to the %s place in the highscore!"
-msgstr ""
+msgstr "Успеавте да се искачите на %s место во табелата!"
 
 #: src/game_over.cpp:161
 msgid "You beat your best score!"
-msgstr ""
+msgstr "Го победивте вашиот најдобар резултат!"
 
 #: src/game_over.cpp:164
 msgid "Congratulations! You won the campaign!"
-msgstr ""
+msgstr "Честитки! Победивте на кампањата!"
 
 #: src/game_over.cpp:166
 msgid "Congratulations! You won the cup!"
-msgstr ""
+msgstr "Честитки! Победивте на купот!"
 
 #: src/game_over.cpp:168
 msgid "You advanced to the next race!"
 msgstr ""
 
 #: src/game_over.cpp:170
+#, fuzzy
 msgid "You didn't advance."
-msgstr ""
+msgstr "Немате повеќе преостанати животи."
 
 #: src/game_type_select.cpp:36
 msgid "Enter a campaign"
-msgstr ""
+msgstr "Влезете во кампања"
 
 #: src/game_type_select.cpp:43
 msgid "Practice"
-msgstr ""
+msgstr "Вежбајте"
 
 #: src/game_type_select.cpp:50 src/highscore.cpp:350
 msgid "Highscore"
-msgstr ""
+msgstr "Најдобри резултати"
 
 #: src/game_type_select.cpp:64
 msgid "Credits"
-msgstr ""
+msgstr "Заслуги"
 
 #: src/game_type_select.cpp:71 src/paused.cpp:78
 msgid "Quit"
-msgstr ""
+msgstr "Напушти"
 
 #: src/graphicsconfig.cpp:30
 msgid "Graphics Configuration"
-msgstr ""
+msgstr "Конфигурација на изгледот"
 
 #: src/graphicsconfig.cpp:108
 msgid "Model:"
@@ -423,334 +426,351 @@ msgstr ""
 
 #: src/graphicsconfig.cpp:117
 msgid "Show UI Snow:"
-msgstr ""
+msgstr "Прикажи го интерфејсот на снегот:"
 
 #: src/graphicsconfig.cpp:121
 msgid "Display FPS:"
-msgstr ""
+msgstr "Прикажи ФВС:"
 
 #: src/graphicsconfig.cpp:125
 msgid "Display Progress Bar:"
-msgstr ""
+msgstr "Прикажи ја развојната лента:"
 
 #: src/graphicsconfig.cpp:129
 msgid "Draw Fog:"
-msgstr ""
+msgstr "Исцртајте ја маглата:"
 
 #: src/graphicsconfig.cpp:133
 msgid "Reflections:"
-msgstr ""
+msgstr "Рефлексии:"
 
 #: src/graphicsconfig.cpp:137
 msgid "Shadows:"
-msgstr ""
+msgstr "Сенки:"
 
 #: src/graphicsconfig.cpp:141
 msgid "Draw Background:"
-msgstr ""
+msgstr "Исцртајте ја позадината:"
 
 #: src/highscore.cpp:88
 msgid "1:st"
-msgstr ""
+msgstr "Прв"
 
 #: src/highscore.cpp:90
 msgid "2:nd"
-msgstr ""
+msgstr "Втор"
 
 #: src/highscore.cpp:92
 msgid "3:rd"
-msgstr ""
+msgstr "Трет"
 
 #: src/highscore.cpp:94
 msgid "4:th"
-msgstr ""
+msgstr "Четврт"
 
 #: src/highscore.cpp:96
 msgid "5:th"
-msgstr ""
+msgstr "Петти"
 
 #: src/highscore.cpp:98
 msgid "6:th"
-msgstr ""
+msgstr "Шести"
 
 #: src/highscore.cpp:100
 msgid "7:th"
-msgstr ""
+msgstr "Седми"
 
 #: src/highscore.cpp:102
 msgid "8:th"
-msgstr ""
+msgstr "Осми"
 
 #: src/highscore.cpp:104
 msgid "9:th"
-msgstr ""
+msgstr "Деветти"
 
 #: src/highscore.cpp:106
 msgid "10:th"
-msgstr ""
+msgstr "Десетти"
 
 #: src/highscore.cpp:317
 msgid "No records"
-msgstr ""
+msgstr "Нема записи"
 
 #: src/highscore.cpp:327
 #, c-format
 msgid " (%d points)"
-msgstr ""
+msgstr " (%d поени)"
 
 #: src/joystickconfig.cpp:29
 msgid "Joystick Configuration"
-msgstr ""
+msgstr "Конфигурација на џојстикот"
 
 #: src/joystickconfig.cpp:33
 msgid "Enable Joystick"
-msgstr ""
+msgstr "Приклучи го џојстикот"
 
 #: src/joystickconfig.cpp:41 src/keyboardconfig.cpp:132
 msgid "Paddle:"
-msgstr ""
+msgstr "Палка:"
 
 #: src/joystickconfig.cpp:54 src/keyboardconfig.cpp:136
 msgid "Brake:"
-msgstr ""
+msgstr "Кочница:"
 
 #: src/joystickconfig.cpp:67 src/keyboardconfig.cpp:140
 msgid "Jump:"
-msgstr ""
+msgstr "Скок:"
 
 #: src/joystickconfig.cpp:80 src/keyboardconfig.cpp:144
 msgid "Trick:"
-msgstr ""
+msgstr "Трик:"
 
 #: src/keyboardconfig.cpp:55
 msgid "Keyboard Configuration"
-msgstr ""
+msgstr "Конфигурација на тастатурата"
 
 #: src/keyboardconfig.cpp:124
 msgid "Turn left:"
-msgstr ""
+msgstr "Сврти лево:"
 
 #: src/keyboardconfig.cpp:128
 msgid "Turn right:"
-msgstr ""
+msgstr "Сврти десно:"
 
 #: src/keyboardconfig.cpp:148
 msgid "Reset:"
-msgstr ""
+msgstr "Ресет:"
 
 #: src/loading.cpp:53
 msgid "Loading, Please Wait..."
-msgstr ""
+msgstr "Вчитување. Ве молиме почекајте..."
 
 #: src/paused.cpp:54
 msgid "Paused"
-msgstr ""
+msgstr "Паузирано"
 
 #: src/paused.cpp:70
 msgid "Resume"
-msgstr ""
+msgstr "Продолжи"
 
 #: src/splash_screen.cpp:34
 msgid "PRESS ANY KEY TO START"
-msgstr ""
+msgstr "ПРИТИСНИ КОПЧЕ ЗА ПОЧЕТОК"
 
 #: src/videoconfig.cpp:60
 msgid "Video Configuration"
-msgstr ""
+msgstr "Видео конфигурација"
 
 #: src/videoconfig.cpp:173
 msgid "To change the resolution, or switch into fullscreen mode"
 msgstr ""
+"За да ја промените резолуцијата, префрлете се во преглед на целосен екран"
 
 #: src/videoconfig.cpp:175
 msgid "use options.txt, located in the config folder."
-msgstr ""
+msgstr "користете options.txt, лоцирано во конфигурациската папка."
 
 #: src/videoconfig.cpp:177
 msgid "Resolution:"
-msgstr ""
+msgstr "Резолуција:"
 
 #: src/videoconfig.cpp:181
 msgid "Bits Per Pixel:"
-msgstr ""
+msgstr "Битови по пиксел:"
 
 #: src/videoconfig.cpp:185
 msgid "Fullscreen:"
-msgstr ""
+msgstr "Целосен екран:"
 
 #: src/videoconfig.cpp:189
 msgid "Experimental (needs restart)"
-msgstr ""
+msgstr "Експериментално (бара рестарт)"
 
 #: src/videoconfig.cpp:192
 msgid "Stencil Buffer:"
-msgstr ""
+msgstr "Матрична меѓумеморија:"
 
 #: src/videoconfig.cpp:196
 msgid "Enable FSAA:"
-msgstr ""
+msgstr "Приклучии FSAA:"
 
 #: src/videoconfig.cpp:200
 msgid "FSAA Multisamples:"
-msgstr ""
+msgstr "Мулти сеплови на FSAA:"
 
 #: po/levelinfo:1
 #, c-format
 msgid "FPS: %.1f"
-msgstr ""
+msgstr "ФВС: %.1f"
 
 #: po/levelinfo:2 po/levelinfo:3
 #, c-format
 msgid "%03d"
-msgstr ""
+msgstr "%03d"
 
 #: po/levelinfo:4 po/levelinfo:5
 #, c-format
 msgid "%02d:%02d:%02d"
-msgstr ""
+msgstr "%02d:%02d:%02d"
 
 #: po/levelinfo:6 po/levelinfo:8
 msgid "km/h"
-msgstr ""
+msgstr "км/ч"
 
 #: po/levelinfo:7 po/levelinfo:9
 #, c-format
 msgid "%.0f"
-msgstr ""
+msgstr "%.0f"
 
 #: po/levelinfo:10 po/levelinfo:11
 #, c-format
 msgid "%d:%d:%d"
-msgstr ""
+msgstr "%d:%d:%d"
 
 #: po/levelinfo:12 po/levelinfo:13
 #, c-format
 msgid "%d"
-msgstr ""
+msgstr "%d"
 
 #: po/levelinfo:14
 msgid "Doing"
-msgstr ""
+msgstr "Прави"
 
 #: po/levelinfo:15
 msgid ""
 "This course was probably created to present new textures introduced in "
 "PPRacer."
 msgstr ""
+"Овој курс веројатно бил креиран за да се презентираат нови текстури воведени "
+"во PPRacer."
 
 #: po/levelinfo:17
 msgid "Hippo Run"
-msgstr ""
+msgstr "Трката на нилскиот коњ"
 
 #: po/levelinfo:18
 msgid ""
 "In Hippo Run, you slide down an icy slope as a penguin, I honestly don't "
 "know what this has to do with hippos or running..."
 msgstr ""
+"Во „трката на нилскиот коњ“, вие се лизгате по мразовита падина како "
+"пингвин, искрено не знам што има врска со нилски коњи или тркање..."
 
 #: po/levelinfo:19
 msgid "Ice Pipeline"
-msgstr ""
+msgstr "Мразовит цевковод"
 
 #: po/levelinfo:20
 msgid "A short, slippery ice-trough with herring scattered throughout."
-msgstr ""
+msgstr "Краток, лизгав мразовит премин со харинга расфлана ваму и таму."
 
 #: po/levelinfo:21
 msgid "Volcanoes"
-msgstr ""
+msgstr "Вулкани"
 
 #: po/levelinfo:22
 msgid ""
 "This gigantic crater was full of water, and herring, but now it's all "
 "frozen, and yours for the taking."
 msgstr ""
+"Овој гигантски кратерк беше полно со вода, и харинга, но сега е целиот "
+"замрзнат, и твој за преземање."
 
 #: po/levelinfo:23
 msgid "Nature Stroll"
-msgstr ""
+msgstr "Прошетка по природата"
 
 #: po/levelinfo:24
 msgid ""
 "The fresh air, the pine scent, who doesn't like a nice refreshing walk "
 "through the mountains?"
 msgstr ""
+"Свежиот воздух, боровиот мирис, кој не сака убава освежувачка прошетка низ "
+"планините?"
 
 #: po/levelinfo:25
 msgid "Mountain Mania"
-msgstr ""
+msgstr "Планинско лудило"
 
 #: po/levelinfo:26
 msgid "Icy Peril"
-msgstr ""
+msgstr "Ледена опасност"
 
 #: po/levelinfo:27
 msgid "Death Cup"
-msgstr ""
+msgstr "Куп на смртта"
 
 #: po/levelinfo:28
 msgid "Slippery Defeat"
-msgstr ""
+msgstr "Лизгав пораз"
 
 #: po/levelinfo:29
 msgid "The Final Three"
-msgstr ""
+msgstr "Последните три"
 
 #: po/levelinfo:30
 msgid "Slippy-Slidey"
-msgstr ""
+msgstr "Лизгаво лизгање"
 
 #: po/levelinfo:31
 msgid "Slide on the slippery frozen river in a hilly forest, slipperily."
-msgstr ""
+msgstr "Лизгајте се по лизгавата замрзната река во висока шума."
 
 #: po/levelinfo:32
 msgid "Crazy Path"
-msgstr ""
+msgstr "Луда патека"
 
 #: po/levelinfo:33
 msgid ""
 "You'll have trouble slowing down on this one. There's lots of herring, but "
 "be careful not to fly too much or you won't get any."
 msgstr ""
+"Ќе имате потешкотии спуштајќи се по оваа. Има многу харинга, но бидете "
+"внимателни да не летате премногу затоа што нема да добиете ништо."
 
 #: po/levelinfo:34
 msgid "Candy Lane"
-msgstr ""
+msgstr "Шеќерна патека"
 
 #: po/levelinfo:35
 msgid ""
 "Mostly ice, with very few obstacles in your path, this is like a stroll down "
 "Candy Lane."
 msgstr ""
+"Повеќе мраз, со многу малку пречки на вашиот пат, ова е како шетање низ "
+"некоја шеќерна патека."
 
 #: po/levelinfo:36
 msgid "Merry Go Round"
-msgstr ""
+msgstr "Среќна рунда"
 
 #: po/levelinfo:37
 msgid "Try to build up enough speed to jump from one roundabout to the next."
 msgstr ""
+"Обидете се да изградите доволно брзина за да скокнете од еден заобиколен пат "
+"до другиот."
 
 #: po/levelinfo:38
 msgid "Hey, Tux!"
-msgstr ""
+msgstr "Еј Tux!"
 
 #: po/levelinfo:39
 msgid "This course offers true excitement for your race-loving penguin buddy."
 msgstr ""
+"Овој курс ви нуди вистинска возбуда за вашиот пингвин кој што обожава да се "
+"трка."
 
 #: po/levelinfo:40
 msgid "Bobsled Ride"
-msgstr ""
+msgstr "Возење со боб-санка"
 
 #: po/levelinfo:41
 msgid "Just like a real bobsled ride, only more dangerous."
-msgstr ""
+msgstr "Исто како во вистинска трка со боб-санка, само многу поопасно."
 
 #: po/levelinfo:42
 msgid "In Search of Vodka"
-msgstr ""
+msgstr "Во потрага по вотка"
 
 #: po/levelinfo:43
 msgid ""
@@ -758,10 +778,13 @@ msgid ""
 "cabinet has been pillaged. Join Tux on the quest for vodka.Pick up herring "
 "for dinner along the way!"
 msgstr ""
+"На Tux му треба малку вотка да си го стопли својот ладен стомак. За жал, "
+"неговиот кабинет со алкохол беше ограбен. Придружете му се на Tux во "
+"потрагата по вотка. Подигнете ја харингата по патот за ручек."
 
 #: po/levelinfo:44
 msgid "Tux at Home"
-msgstr ""
+msgstr "Tux дома"
 
 #: po/levelinfo:45
 msgid ""
@@ -769,56 +792,65 @@ msgid ""
 "and fastest way. But if you want to catch some herrings you have to enter "
 "the rooms on the left."
 msgstr ""
+"Овде живее Tux. Можете да го земете коридорот на десно - тој е најкраткиот и "
+"најбрзиот пат. Но ако сакате да фатите некои риби по патот тогаш ќе мора да "
+"влезете во собите од лево."
 
 #: po/levelinfo:46
 msgid "The Niehoff Experience"
-msgstr ""
+msgstr "Нихоф искуството"
 
 #: po/levelinfo:47
 msgid "Search, Search, Search"
-msgstr ""
+msgstr "Барај, барај, барај"
 
 #: po/levelinfo:48
 msgid "Mountains and Hills"
-msgstr ""
+msgstr "Ридови и планини"
 
 #: po/levelinfo:49
 msgid "The Final Challenge"
-msgstr ""
+msgstr "Последниот предизвик"
 
 #: po/levelinfo:50
 msgid "Wild Mountains"
-msgstr ""
+msgstr "Диви планини"
 
 #: po/levelinfo:51
 msgid ""
 "A wild landscape of ice and snow. It isn't easy to keep the right way. Not "
 "for beginners."
 msgstr ""
+"Див предел со мраз и снег. Не е лесно да го држите правиот пат. Не е за "
+"почетници."
 
 #: po/levelinfo:52
 msgid "In Search of the Holy Grail"
-msgstr ""
+msgstr "Во потрага на Светиот Грал"
 
 #: po/levelinfo:53
 msgid ""
 "An adventure course with a simple task: Find the grail! Warning: It is very "
 "difficult to find the way."
 msgstr ""
+"Авантура со едноставна задача: најдете го Гралот! Предупредување: Многу е "
+"тешко да го најдете патот."
 
 #: po/levelinfo:54
 msgid "Frozen Lakes"
-msgstr ""
+msgstr "Замрзнати езера"
 
 #: po/levelinfo:55
 msgid ""
 "To reach the finish you must pass several frozen lakes. Watch your speed on "
 "the ice - there are some dangerous corners."
 msgstr ""
+"За да ја достигнете целта мора да поминете низ неколку замрзнати езера. "
+"Надгледувајте ја вашата брзина над мразот - има неколку опасни агли."
 
 #: po/levelinfo:56
 msgid "Chinese Wall"
-msgstr ""
+msgstr "Кинескиот ѕид"
 
 #: po/levelinfo:57
 msgid ""
@@ -826,100 +858,121 @@ msgid ""
 "where the herrings are. If you fall off you can try to jump back up, there "
 "are 7 hidden ramps. You'll get a lot of exercise."
 msgstr ""
+"Големиот кинески ѕид во зима. Обидете се да останете на врвот од ѕидот - "
+"таму има најмногу риби. Ако паднете може да се обидете да скокнете назад, "
+"има 7 скриени рампи. Ќе се извежбате многу."
 
 #: po/levelinfo:58
 msgid "Secret Valleys"
-msgstr ""
+msgstr "Тајни долини"
 
 #: po/levelinfo:59
 msgid ""
 "Your task: Find the hidden valleys and the ten groups of dead trees. Look "
 "around, the ways are not easy to find."
 msgstr ""
+"Вашата задача: Најдете ги скриените долини и десетте групи од мртви дрвја. "
+"Погледнете наоколу, патовите не се лесни да се најдат."
 
 #: po/levelinfo:60
 msgid "Explore the Mountains"
-msgstr ""
+msgstr "Истражете ги планините."
 
 #: po/levelinfo:61
 msgid "Can you find your way through the icy, dangerous mountains. I doubt it."
 msgstr ""
+"Дали можете да си го најдете патот низ замрзнатите, опасни планини. Се "
+"сомневам во тоа."
 
 #: po/levelinfo:62
 msgid "Challenge One"
-msgstr ""
+msgstr "Прв предизвик"
 
 #: po/levelinfo:63
 msgid ""
 "A very dangerous path along the mountains. Warning: The course is very "
 "difficult and there are some situations where you can get stuck."
 msgstr ""
+"Многу опасна патека низ планините. Предупредување: Оваа патека е многу тешка "
+"и ќе има ситуации кога ќе заглавите."
 
 #: po/levelinfo:64
 msgid "Path of Daggers"
-msgstr ""
+msgstr "Патеката на ножевите"
 
 #: po/levelinfo:65
 msgid ""
 "Big spikes may prove to be the least of your worries on this course. Muliple "
 "paths allow you to take low or high roads, each with their own challenges."
 msgstr ""
+"Големите шилци изгледа ќе бидат најмалата ваша грижа за време на овој курс. "
+"Повеќето патови ќе ви овозможат да земете ниски или високи патеки, секоја "
+"патека со свој посебен предизвик."
 
 #: po/levelinfo:66
 msgid "Tux Racer Classics"
-msgstr ""
+msgstr "Tux Racer класика"
 
 #: po/levelinfo:67
 msgid "Canadian Cup"
-msgstr ""
+msgstr "Канадски куп"
 
 #: po/levelinfo:68
 msgid "Swiss Cup"
-msgstr ""
+msgstr "Швајцарски куп"
 
 #: po/levelinfo:69
 msgid "Bumpy Ride"
-msgstr ""
+msgstr "Тумбест пат"
 
 #: po/levelinfo:70
 msgid ""
 "This hill has a series of ramps to tackle.  Be sure to line yourself up "
 "before getting airborne."
 msgstr ""
+"Овој рид има серија од рампи за соборување. Бидете сигурни да се подредите "
+"убаво пред да летнете во воздухот."
 
 #: po/levelinfo:71
 msgid "Bunny Hill"
-msgstr ""
+msgstr "Рид на зајаците"
 
 #: po/levelinfo:72
 msgid ""
 "Let's start out easy, just collect the herring in the time limit and you'll "
 "be fine. The best part is that you don't have to use those stupid T-lifts."
 msgstr ""
+"Да почнеме лесно, само соберете ја харингата во временскиот лимит и ќе "
+"бидете во ред. Најдобриот дел е тоа што нема да мора да ги користите тие "
+"глупави T-кривини."
 
 #: po/levelinfo:73
 msgid "Frozen River"
-msgstr ""
+msgstr "Замрзната река"
 
 #: po/levelinfo:74
 msgid ""
 "Keep your speed down to collect herring. You have plenty of time, so don't "
 "rush things."
 msgstr ""
+"Намалете ја вашата брзина за да ја соберете харингата. Ќе имате многу време, "
+"затоа не избрзувајте."
 
 #: po/levelinfo:75
 msgid "Twisty Slope"
-msgstr ""
+msgstr "Извртена падина"
 
 #: po/levelinfo:76
 msgid ""
 "Tight twists make grabbing herring difficult.  Hard turns and not too much "
 "braking will lead you to victory."
 msgstr ""
+"Збиените кривини ќе ви направат потешкотии при собирањето на харингата. "
+"Тешките вртења и не преголемото кочење ќе ве однесат до победата."
 
 #: po/levelinfo:77
 msgid "Mt. Herring"
-msgstr ""
+msgstr "Брдото Харинга"
 
 #: po/levelinfo:78
 msgid ""
@@ -927,40 +980,45 @@ msgid ""
 "some wide open areas and branching paths. Lots of herrings to collect though "
 "it can be difficult unless you watch your speed."
 msgstr ""
+"Брдото Харинга е релативно брзо но долго, понекогаш нерамно во места и има "
+"широки отворени области и гранчести патеки. Многу харинга за собирање иако "
+"може да биде тешко доколку не внимавате на вашата брзина."
 
 #: po/levelinfo:79
 msgid "Herring Run"
-msgstr ""
+msgstr "Трка по харинга"
 
 #: po/levelinfo:80
 msgid "Mountain Man"
-msgstr ""
+msgstr "Планински човек"
 
 #: po/levelinfo:81
 msgid "Valley Cup"
-msgstr ""
+msgstr "Куп на долината"
 
 #: po/levelinfo:82
 msgid "Tux the winter sportsman"
-msgstr ""
+msgstr "Tux - зимскиот спортист"
 
 #: po/levelinfo:83
 msgid "Highway To Hell"
-msgstr ""
+msgstr "Патот до пеколот"
 
 #: po/levelinfo:84
 msgid "Ice Labyrinth"
-msgstr ""
+msgstr "Леден лавиринт"
 
 #: po/levelinfo:85
 msgid ""
 "You choose your destiny, you could end up full or starving depending on the "
 "path you pick."
 msgstr ""
+"Вие ја избирате вашата судбина, може да завршите гладен во зависност од "
+"патеката која што ќе ја одберите."
 
 #: po/levelinfo:86
 msgid "Snow Valley"
-msgstr ""
+msgstr "Снежна долина"
 
 #: po/levelinfo:87
 msgid ""
@@ -968,20 +1026,26 @@ msgid ""
 "herrings very difficult to get if you're going for a perfect score! Watch "
 "your speed in certain areas to get the most herrings!"
 msgstr ""
+"Снежна долина е релативно сплескана и многу брза патека. Ќе најдете многу "
+"малку харинга која што ќе биде многу тешка да се собере ако одите на "
+"перфектен резултат! Внимавајте на вашата брзина во определни околини за да "
+"ги земете повеќете од харингите!"
 
 #: po/levelinfo:88
 msgid "Tux Toboggan Run"
-msgstr ""
+msgstr "Tux тобоган трка"
 
 #: po/levelinfo:89
 msgid ""
 "Collect herrings in an ice channel with various paths and many high and low "
 "speed passages. Watch out for the occasional tree."
 msgstr ""
+"Собирајте харинга во ледениот канал со разни патеки и многу високо и ниско "
+"брзински премини. Внимавајте на повременото дрво."
 
 #: po/levelinfo:90
 msgid "Hazzard Valley"
-msgstr ""
+msgstr "Хазардна долина"
 
 #: po/levelinfo:91
 msgid ""
@@ -989,40 +1053,50 @@ msgid ""
 "huge areas of rocky plains, not to mention your speed being your enemy in "
 "trying to get the herrings and stay on course!"
 msgstr ""
+"Хазардната долина е полна со опасности како дрва, длабоки пештери, шилци и "
+"големи терени составени од каменести прерии, а да не се спомнува брзината "
+"која што е ваш непријател во вашите напори да ги соберете харингите и да "
+"останете на определениот курс!"
 
 #: po/levelinfo:92
 msgid "Skull Mountain"
-msgstr ""
+msgstr "Планина на черепите"
 
 #: po/levelinfo:93
 msgid ""
 "Skull mountain is a steep, twisty drop around tree-filled inner peaks. "
 "Expect to miss a lot of herrings and crash a lot."
 msgstr ""
+"Планината на черепите е стрмна, искривена и полна со врвови исполнети со "
+"многу дрвја. Очекувајте да испуштите многу харинга и да се уривате."
 
 #: po/levelinfo:94
 msgid "Keep It Up"
-msgstr ""
+msgstr "Држи се"
 
 #: po/levelinfo:95
 msgid ""
 "If you fall you might as well just quit then and there, 'cause your chances "
 "are slim on the rocky ground."
 msgstr ""
+"Ако паднете можете веднаш да се откажете, затоа што вашите шанси за назад се "
+"тенки на камена подлога."
 
 #: po/levelinfo:96
 msgid "Dead Man's Drop"
-msgstr ""
+msgstr "Падот на мртвиот човек"
 
 #: po/levelinfo:97
 msgid ""
 "Pretty tough hill. It's fast, steep, lumpy, twisty, and full of trees. Hard "
 "to get herrings. Don't forget the drop."
 msgstr ""
+"Многу тежок рид. Брз, стрмен, грутчест, искривен и полн со дрвја. Тешко е да "
+"се дојде до харингата. Не заборавајте на големиот пад."
 
 #: po/levelinfo:98
 msgid "I've Got A Woody"
-msgstr ""
+msgstr "I've Got A Woody"
 
 #: po/levelinfo:99
 msgid ""
@@ -1030,40 +1104,51 @@ msgid ""
 "hard, try this one. Have fun winding through the woods.  Look out for a huge "
 "shortcut!!"
 msgstr ""
+"И уште еден ужасен поткренат леден брег. Ако мислевте дека последните две "
+"трки се тешки, пробајте ја оваа. Забавувајте се низ шумите. Барајте огромен "
+"скратен пат!!!"
 
 #: po/levelinfo:100
 msgid "Mt. Satan"
-msgstr ""
+msgstr "Брдото на ѓаволот"
 
 #: po/levelinfo:101
 msgid ""
 "Mount Satan is a sister mountain to Dead Man's Drop. No surprises here, just "
 "a steep, bumpy, twisty path full of trees to get through."
 msgstr ""
+"Брдото на ѓаволот е сестринска планина на „Падот на мртвиот човек“. Нема "
+"изненадувања овде, само стрмна, тумбеста патека полна со дрвја тешки за "
+"минување."
 
 #: po/levelinfo:102
 msgid "Ski Jump"
-msgstr ""
+msgstr "Ски скок"
 
 #: po/levelinfo:103
 msgid ""
 "Steering will be unnecessary, just line yourself up and reap the rewards. "
 "Rememember, acceleration will slow you down after a while."
 msgstr ""
+"Управувањето ќе биде непотребно, само подредете се добро и соберете ги "
+"плодовите од вашиот труд. Запаметете, забрзувањето ќе ве забави по некое "
+"време."
 
 #: po/levelinfo:104
 msgid "High Road"
-msgstr ""
+msgstr "Автопат"
 
 #: po/levelinfo:105
 msgid ""
 "Just stay on the path and collect herring. Oh yeah, and if you fall you'll "
 "be eating pine needles."
 msgstr ""
+"Само останете на патот и соберете ја харингата. Ах да, ако паднете ќе ги "
+"јадете иглите на борот."
 
 #: po/levelinfo:106
 msgid "The Narrow Way"
-msgstr ""
+msgstr "Тесниот пат"
 
 #: po/levelinfo:107
 msgid ""
@@ -1071,39 +1156,46 @@ msgid ""
 "you're going, there's trees in your way, and the herrings are hard to get. "
 "Good luck, you'll need it!"
 msgstr ""
+"Едноставно кажано, останете на патеката или ќе изгубите! Тешко е да се види "
+"што правите, има дрва по вашиот пат, а и харингата е тешка да се земе. Со "
+"среќа, ќе ви треба!"
 
 #: po/levelinfo:108
 msgid "Hamburger Hill"
-msgstr ""
+msgstr "Ридот на хамбургерот"
 
 #: po/levelinfo:109
 msgid ""
 "Hamburger Hill is steep, narrow, twisty, lumpy, icy, and rocky, with a few "
 "trees right in your way!"
 msgstr ""
+"Ридот на хамбургерот е стрмна, тесна, извртена, грутчеста, ледена и камена "
+"планина, со неколку дрвја кои што ќе ви го попречуваат патот."
 
 #: po/levelinfo:110
 msgid "Slalom"
-msgstr ""
+msgstr "Слалом"
 
 #: po/levelinfo:111
 msgid ""
 "Brake while you turn and the herrings on this pseudo-slalom will be yours."
-msgstr ""
+msgstr "Кочете додека вртите и харинги на овој псеудо-слалом ќе бидат ваши."
 
 #: po/levelinfo:112
 msgid "Who Says Penguins Can't Fly?"
-msgstr ""
+msgstr "Кој вели дека пингвините не летаат?"
 
 #: po/levelinfo:113
 msgid ""
 "It'll be tough collecting herrings at speeds over 200, so try to brake "
 "whenever possible to get the required herring."
 msgstr ""
+"Ќе биде тешко да се соберат харингите на брзини над 200, па затоа обидете се "
+"да закочите секогаш кога  ќе биде можно за да ја добиете бараната харинга."
 
 #: po/modelinfo:1
 msgid "Tux"
-msgstr ""
+msgstr "Tux"
 
 #: po/modelinfo:2
 msgid "Tux on Snowboard"

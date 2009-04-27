@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: etracer\n"
 "Report-Msgid-Bugs-To: https://translations.edge.launchpad.net/etracer\n"
 "POT-Creation-Date: 2008-08-03 20:17+0200\n"
-"PO-Revision-Date: 2008-07-10 14:06+0000\n"
-"Last-Translator: luojie-dune <Unknown>\n"
+"PO-Revision-Date: 2009-02-12 15:44+0000\n"
+"Last-Translator: yuan <zwjyuan@gmail.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-08-03 17:56+0000\n"
+"X-Launchpad-Export-Date: 2009-04-27 12:04+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: src/audioconfig.cpp:36
@@ -87,8 +87,9 @@ msgid "Back"
 msgstr "返回"
 
 #: src/credits.cpp:43
+#, fuzzy
 msgid "Version 0.4"
-msgstr "版本 0.4"
+msgstr "版本号 0.5"
 
 #: src/credits.cpp:46
 msgid "Extreme Tux Racer is in the process of being"
@@ -135,8 +136,9 @@ msgid "from Sunspire Studios:"
 msgstr "来自 Sunspire Studios"
 
 #: src/credits.cpp:71
+#, fuzzy
 msgid "Non-Rewrite Version Organization"
-msgstr "原创组织"
+msgstr "发布组织"
 
 #: src/credits.cpp:74
 msgid "Translators"
@@ -188,19 +190,20 @@ msgstr "荣誉榜"
 
 #: src/credits.cpp:105
 msgid "Misc. PPRacer Contributors"
-msgstr ""
+msgstr "PPRacer贡献者"
 
 #: src/credits.cpp:110
 msgid "Thanks To"
 msgstr "致谢"
 
 #: src/credits.cpp:111
+#, fuzzy
 msgid "(for Exteme Tux Racer)"
-msgstr "Exteme Tux Racer"
+msgstr "（极速滑翔企鹅比赛）"
 
 #: src/credits.cpp:112
 msgid "Ranger (for hosting the website)"
-msgstr ""
+msgstr "Ranger（组织网站）"
 
 #: src/credits.cpp:113
 msgid "Slythfox (for making the website)"
@@ -208,7 +211,7 @@ msgstr ""
 
 #: src/credits.cpp:114
 msgid "The Course Creators"
-msgstr ""
+msgstr "原创"
 
 #: src/credits.cpp:115
 msgid "The OpenRacer project"
@@ -219,8 +222,9 @@ msgid "Reinhard Niehoff (for helping with code modification)"
 msgstr "Reinhard Niehoff (for helping with code modification)"
 
 #: src/credits.cpp:117
+#, fuzzy
 msgid "All the people on the forum"
-msgstr "论坛里的人们"
+msgstr "论坛上的所有人"
 
 #: src/credits.cpp:118
 msgid "Larry Ewing (creator of Tux)"
@@ -240,7 +244,7 @@ msgstr "Extreme Tux Racer 以GPL协议授权"
 
 #: src/credits.cpp:128
 msgid "We grant use of the name 'Extreme Tux Racer'"
-msgstr ""
+msgstr "我们命名为“Tux极限滑雪”"
 
 #: src/credits.cpp:129
 msgid "to any forks or continuations."
@@ -248,174 +252,176 @@ msgstr ""
 
 #: src/credits.cpp:131
 msgid "PlanetPenguin Racer is Copyright © 2005 Volker Stroebel."
-msgstr ""
+msgstr "PlanetPenguin Racer is Copyright © 2005 Volker Stroebel."
 
 #: src/credits.cpp:132
 msgid "Tux Racer and the Tux Racer Name are Copyright © 2001 Jasmin F. Patry."
-msgstr ""
+msgstr "Tux Racer and the Tux Racer Name are Copyright © 2001 Jasmin F. Patry."
 
 #: src/event_select.cpp:50
 msgid "Select campaign and cup"
-msgstr ""
+msgstr "选择赛程"
 
 #: src/event_select.cpp:56
 msgid "Campaign:"
-msgstr ""
+msgstr "竞赛"
 
 #: src/event_select.cpp:67
 msgid "Cup:"
-msgstr ""
+msgstr "大奖赛"
 
 #: src/event_select.cpp:87
 msgid "Player name:"
-msgstr ""
+msgstr "玩家名字："
 
 #: src/event_select.cpp:104
 msgid "Continue"
-msgstr ""
+msgstr "继续"
 
 #: src/event_select.cpp:158
 msgid "You've won this cup!"
-msgstr ""
+msgstr "你赢得了大奖赛！"
 
 #: src/event_select.cpp:160
 msgid "You must complete this cup next"
-msgstr ""
+msgstr "这项赛事必须首先完成"
 
 #: src/event_select.cpp:162
 msgid "You cannot enter this cup yet"
-msgstr ""
+msgstr "你还不能进入此赛事"
 
 #: src/event_race_select.cpp:45
 msgid "Select a race"
-msgstr ""
+msgstr "选择一个跑道"
 
 #: src/event_race_select.cpp:60
 msgid "Race!"
-msgstr ""
+msgstr "出发！"
 
 #: src/event_race_select.cpp:280
 msgid "You don't have any lives left."
-msgstr ""
+msgstr "你没机会了。"
 
 #: src/event_race_select.cpp:285
 msgid "Race won! Your result:"
-msgstr ""
+msgstr "胜利完成！你的成绩是："
 
 #: src/event_race_select.cpp:289
 msgid "Needed to advance:"
-msgstr ""
+msgstr "晋级需要"
 
 #: src/event_race_select.cpp:293
 msgid "You can't enter this race yet."
-msgstr ""
+msgstr "你不能参加此项目"
 
 #: src/event_race_select.cpp:316
 msgid "Time:"
-msgstr ""
+msgstr "时间："
 
 #: src/event_race_select.cpp:320
 #, c-format
 msgid "%02d:%02d.%02d"
-msgstr ""
+msgstr "%02d:%02d.%02d"
 
 #: src/event_race_select.cpp:324
 msgid "Herring:"
-msgstr ""
+msgstr "钓鱼："
 
 #: src/event_race_select.cpp:332
 msgid "Score:"
-msgstr ""
+msgstr "得分："
 
 #: src/event_race_select.cpp:341
 msgid "Contributed by:"
-msgstr ""
+msgstr "贡献"
 
 #: src/event_race_select.cpp:349 po/levelinfo:16
 msgid "Unknown"
-msgstr ""
+msgstr "未知"
 
 #: src/game_over.cpp:109
 msgid "Race aborted"
-msgstr ""
+msgstr "比赛中止"
 
 #: src/game_over.cpp:112
 msgid "Race Over"
-msgstr ""
+msgstr "比赛结束"
 
 #: src/game_over.cpp:119
 #, c-format
 msgid "Time: %02d:%02d.%02d"
-msgstr ""
+msgstr "Time: %02d:%02d.%02d"
 
 #: src/game_over.cpp:124
 #, c-format
 msgid "Herring: %3d"
-msgstr ""
+msgstr "鲱鱼: %3d"
 
 #: src/game_over.cpp:129
 #, c-format
 msgid "Score: %6d"
-msgstr ""
+msgstr "得分: %6d"
 
 #: src/game_over.cpp:135
 #, c-format
 msgid "Max speed: %3d km/h"
-msgstr ""
+msgstr "极速: %3d km/h"
 
 #: src/game_over.cpp:141
 #, c-format
 msgid "Was flying: %.01f %% of time"
-msgstr ""
+msgstr "飞翔: %.01f %% of time"
 
 #: src/game_over.cpp:151
 #, c-format
 msgid "You made it to the %s place in the highscore!"
-msgstr ""
+msgstr "您在高分榜排名为 %s ！"
 
 #: src/game_over.cpp:161
 msgid "You beat your best score!"
-msgstr ""
+msgstr "您超越了自己的最好成绩！"
 
 #: src/game_over.cpp:164
 msgid "Congratulations! You won the campaign!"
-msgstr ""
+msgstr "恭喜！你赢得了比赛！"
 
 #: src/game_over.cpp:166
 msgid "Congratulations! You won the cup!"
-msgstr ""
+msgstr "恭喜！你赢得了大奖赛！"
 
 #: src/game_over.cpp:168
+#, fuzzy
 msgid "You advanced to the next race!"
-msgstr ""
+msgstr "要求会见了！前进到下一场比赛。"
 
 #: src/game_over.cpp:170
+#, fuzzy
 msgid "You didn't advance."
-msgstr ""
+msgstr "你没机会了。"
 
 #: src/game_type_select.cpp:36
 msgid "Enter a campaign"
-msgstr ""
+msgstr "进入一场比赛"
 
 #: src/game_type_select.cpp:43
 msgid "Practice"
-msgstr ""
+msgstr "练习"
 
 #: src/game_type_select.cpp:50 src/highscore.cpp:350
 msgid "Highscore"
-msgstr ""
+msgstr "高分"
 
 #: src/game_type_select.cpp:64
 msgid "Credits"
-msgstr ""
+msgstr "贡献者"
 
 #: src/game_type_select.cpp:71 src/paused.cpp:78
 msgid "Quit"
-msgstr ""
+msgstr "退出"
 
 #: src/graphicsconfig.cpp:30
 msgid "Graphics Configuration"
-msgstr ""
+msgstr "图形设置"
 
 #: src/graphicsconfig.cpp:108
 msgid "Model:"
@@ -423,210 +429,210 @@ msgstr ""
 
 #: src/graphicsconfig.cpp:117
 msgid "Show UI Snow:"
-msgstr ""
+msgstr "界面下降雪"
 
 #: src/graphicsconfig.cpp:121
 msgid "Display FPS:"
-msgstr ""
+msgstr "显示帧数"
 
 #: src/graphicsconfig.cpp:125
 msgid "Display Progress Bar:"
-msgstr ""
+msgstr "显示比赛进程"
 
 #: src/graphicsconfig.cpp:129
 msgid "Draw Fog:"
-msgstr ""
+msgstr "烟雾"
 
 #: src/graphicsconfig.cpp:133
 msgid "Reflections:"
-msgstr ""
+msgstr "反应"
 
 #: src/graphicsconfig.cpp:137
 msgid "Shadows:"
-msgstr ""
+msgstr "阴影"
 
 #: src/graphicsconfig.cpp:141
 msgid "Draw Background:"
-msgstr ""
+msgstr "背景"
 
 #: src/highscore.cpp:88
 msgid "1:st"
-msgstr ""
+msgstr "第一"
 
 #: src/highscore.cpp:90
 msgid "2:nd"
-msgstr ""
+msgstr "第二"
 
 #: src/highscore.cpp:92
 msgid "3:rd"
-msgstr ""
+msgstr "第三"
 
 #: src/highscore.cpp:94
 msgid "4:th"
-msgstr ""
+msgstr "第四"
 
 #: src/highscore.cpp:96
 msgid "5:th"
-msgstr ""
+msgstr "第五"
 
 #: src/highscore.cpp:98
 msgid "6:th"
-msgstr ""
+msgstr "第六"
 
 #: src/highscore.cpp:100
 msgid "7:th"
-msgstr ""
+msgstr "第七"
 
 #: src/highscore.cpp:102
 msgid "8:th"
-msgstr ""
+msgstr "第八"
 
 #: src/highscore.cpp:104
 msgid "9:th"
-msgstr ""
+msgstr "第九"
 
 #: src/highscore.cpp:106
 msgid "10:th"
-msgstr ""
+msgstr "第十"
 
 #: src/highscore.cpp:317
 msgid "No records"
-msgstr ""
+msgstr "没有记录"
 
 #: src/highscore.cpp:327
 #, c-format
 msgid " (%d points)"
-msgstr ""
+msgstr " (%d 分)"
 
 #: src/joystickconfig.cpp:29
 msgid "Joystick Configuration"
-msgstr ""
+msgstr "游戏杆设置"
 
 #: src/joystickconfig.cpp:33
 msgid "Enable Joystick"
-msgstr ""
+msgstr "启用游戏杆"
 
 #: src/joystickconfig.cpp:41 src/keyboardconfig.cpp:132
 msgid "Paddle:"
-msgstr ""
+msgstr "桨："
 
 #: src/joystickconfig.cpp:54 src/keyboardconfig.cpp:136
 msgid "Brake:"
-msgstr ""
+msgstr "刹车："
 
 #: src/joystickconfig.cpp:67 src/keyboardconfig.cpp:140
 msgid "Jump:"
-msgstr ""
+msgstr "跳跃"
 
 #: src/joystickconfig.cpp:80 src/keyboardconfig.cpp:144
 msgid "Trick:"
-msgstr ""
+msgstr "技俩"
 
 #: src/keyboardconfig.cpp:55
 msgid "Keyboard Configuration"
-msgstr ""
+msgstr "键盘设置"
 
 #: src/keyboardconfig.cpp:124
 msgid "Turn left:"
-msgstr ""
+msgstr "左转"
 
 #: src/keyboardconfig.cpp:128
 msgid "Turn right:"
-msgstr ""
+msgstr "右转"
 
 #: src/keyboardconfig.cpp:148
 msgid "Reset:"
-msgstr ""
+msgstr "重新启动"
 
 #: src/loading.cpp:53
 msgid "Loading, Please Wait..."
-msgstr ""
+msgstr "请等待"
 
 #: src/paused.cpp:54
 msgid "Paused"
-msgstr ""
+msgstr "已暂停"
 
 #: src/paused.cpp:70
 msgid "Resume"
-msgstr ""
+msgstr "继续"
 
 #: src/splash_screen.cpp:34
 msgid "PRESS ANY KEY TO START"
-msgstr ""
+msgstr "按键即开始"
 
 #: src/videoconfig.cpp:60
 msgid "Video Configuration"
-msgstr ""
+msgstr "视频设置"
 
 #: src/videoconfig.cpp:173
 msgid "To change the resolution, or switch into fullscreen mode"
-msgstr ""
+msgstr "改变分辨率或者进入全屏模式"
 
 #: src/videoconfig.cpp:175
 msgid "use options.txt, located in the config folder."
-msgstr ""
+msgstr "使用位于 config 文件夹下的 option.txt"
 
 #: src/videoconfig.cpp:177
 msgid "Resolution:"
-msgstr ""
+msgstr "分辨率："
 
 #: src/videoconfig.cpp:181
 msgid "Bits Per Pixel:"
-msgstr ""
+msgstr "每像素点数"
 
 #: src/videoconfig.cpp:185
 msgid "Fullscreen:"
-msgstr ""
+msgstr "全屏"
 
 #: src/videoconfig.cpp:189
 msgid "Experimental (needs restart)"
-msgstr ""
+msgstr "实验功能（需重新开始）"
 
 #: src/videoconfig.cpp:192
 msgid "Stencil Buffer:"
-msgstr ""
+msgstr "Stencil Buffer"
 
 #: src/videoconfig.cpp:196
 msgid "Enable FSAA:"
-msgstr ""
+msgstr "开启FSAA"
 
 #: src/videoconfig.cpp:200
 msgid "FSAA Multisamples:"
-msgstr ""
+msgstr "多样本FSAA"
 
 #: po/levelinfo:1
 #, c-format
 msgid "FPS: %.1f"
-msgstr ""
+msgstr "FPS: %.1f"
 
 #: po/levelinfo:2 po/levelinfo:3
 #, c-format
 msgid "%03d"
-msgstr ""
+msgstr "%03d"
 
 #: po/levelinfo:4 po/levelinfo:5
 #, c-format
 msgid "%02d:%02d:%02d"
-msgstr ""
+msgstr "%02d:%02d:%02d"
 
 #: po/levelinfo:6 po/levelinfo:8
 msgid "km/h"
-msgstr ""
+msgstr "公里/小时"
 
 #: po/levelinfo:7 po/levelinfo:9
 #, c-format
 msgid "%.0f"
-msgstr ""
+msgstr "%.0f"
 
 #: po/levelinfo:10 po/levelinfo:11
 #, c-format
 msgid "%d:%d:%d"
-msgstr ""
+msgstr "%d:%d:%d"
 
 #: po/levelinfo:12 po/levelinfo:13
 #, c-format
 msgid "%d"
-msgstr ""
+msgstr "%d"
 
 #: po/levelinfo:14
 msgid "Doing"
@@ -640,7 +646,7 @@ msgstr ""
 
 #: po/levelinfo:17
 msgid "Hippo Run"
-msgstr ""
+msgstr "河马狂奔"
 
 #: po/levelinfo:18
 msgid ""
@@ -650,51 +656,51 @@ msgstr ""
 
 #: po/levelinfo:19
 msgid "Ice Pipeline"
-msgstr ""
+msgstr "溜冰隧道"
 
 #: po/levelinfo:20
 msgid "A short, slippery ice-trough with herring scattered throughout."
-msgstr ""
+msgstr "穿越短而陡峭的冰封狩猎场"
 
 #: po/levelinfo:21
 msgid "Volcanoes"
-msgstr ""
+msgstr "火山群"
 
 #: po/levelinfo:22
 msgid ""
 "This gigantic crater was full of water, and herring, but now it's all "
 "frozen, and yours for the taking."
-msgstr ""
+msgstr "这个巨大的坑口曾经是鱼的乐园，但是现在它已经结冰了，你现在就要挑战它。"
 
 #: po/levelinfo:23
 msgid "Nature Stroll"
-msgstr ""
+msgstr "自由漫步"
 
 #: po/levelinfo:24
 msgid ""
 "The fresh air, the pine scent, who doesn't like a nice refreshing walk "
 "through the mountains?"
-msgstr ""
+msgstr "清新的空气，飘逸的松树香味，谁不想在这样一个好天气里在山间远足呢？"
 
 #: po/levelinfo:25
 msgid "Mountain Mania"
-msgstr ""
+msgstr "山岭狂人"
 
 #: po/levelinfo:26
 msgid "Icy Peril"
-msgstr ""
+msgstr "寒冰险境"
 
 #: po/levelinfo:27
 msgid "Death Cup"
-msgstr ""
+msgstr "死亡杯"
 
 #: po/levelinfo:28
 msgid "Slippery Defeat"
-msgstr ""
+msgstr "快速击败"
 
 #: po/levelinfo:29
 msgid "The Final Three"
-msgstr ""
+msgstr "最后三个"
 
 #: po/levelinfo:30
 msgid "Slippy-Slidey"
@@ -706,7 +712,7 @@ msgstr ""
 
 #: po/levelinfo:32
 msgid "Crazy Path"
-msgstr ""
+msgstr "疯狂跑道"
 
 #: po/levelinfo:33
 msgid ""
@@ -716,25 +722,25 @@ msgstr ""
 
 #: po/levelinfo:34
 msgid "Candy Lane"
-msgstr ""
+msgstr "糖果小巷"
 
 #: po/levelinfo:35
 msgid ""
 "Mostly ice, with very few obstacles in your path, this is like a stroll down "
 "Candy Lane."
-msgstr ""
+msgstr "您的路程里主要是冰，除了极少数的障碍，这是像糖果里漫步。"
 
 #: po/levelinfo:36
 msgid "Merry Go Round"
-msgstr ""
+msgstr "头与目眩"
 
 #: po/levelinfo:37
 msgid "Try to build up enough speed to jump from one roundabout to the next."
-msgstr ""
+msgstr "加速并在迂回路线中穿梭。"
 
 #: po/levelinfo:38
 msgid "Hey, Tux!"
-msgstr ""
+msgstr "嗨,Tux!"
 
 #: po/levelinfo:39
 msgid "This course offers true excitement for your race-loving penguin buddy."
@@ -742,15 +748,15 @@ msgstr ""
 
 #: po/levelinfo:40
 msgid "Bobsled Ride"
-msgstr ""
+msgstr "长橇乘坐"
 
 #: po/levelinfo:41
 msgid "Just like a real bobsled ride, only more dangerous."
-msgstr ""
+msgstr "如同真正的长撬滑行，甚至更加危险."
 
 #: po/levelinfo:42
 msgid "In Search of Vodka"
-msgstr ""
+msgstr "在搜索伏特加"
 
 #: po/levelinfo:43
 msgid ""
@@ -761,7 +767,7 @@ msgstr ""
 
 #: po/levelinfo:44
 msgid "Tux at Home"
-msgstr ""
+msgstr "Tux 在家中"
 
 #: po/levelinfo:45
 msgid ""
@@ -776,19 +782,19 @@ msgstr ""
 
 #: po/levelinfo:47
 msgid "Search, Search, Search"
-msgstr ""
+msgstr "探索，探索，探索"
 
 #: po/levelinfo:48
 msgid "Mountains and Hills"
-msgstr ""
+msgstr "山地和丘陵"
 
 #: po/levelinfo:49
 msgid "The Final Challenge"
-msgstr ""
+msgstr "终极挑战"
 
 #: po/levelinfo:50
 msgid "Wild Mountains"
-msgstr ""
+msgstr "野蛮山涧"
 
 #: po/levelinfo:51
 msgid ""
@@ -808,7 +814,7 @@ msgstr ""
 
 #: po/levelinfo:54
 msgid "Frozen Lakes"
-msgstr ""
+msgstr "冰封之湖"
 
 #: po/levelinfo:55
 msgid ""
@@ -818,7 +824,7 @@ msgstr ""
 
 #: po/levelinfo:56
 msgid "Chinese Wall"
-msgstr ""
+msgstr "中国城墙"
 
 #: po/levelinfo:57
 msgid ""
@@ -826,28 +832,30 @@ msgid ""
 "where the herrings are. If you fall off you can try to jump back up, there "
 "are 7 hidden ramps. You'll get a lot of exercise."
 msgstr ""
+"冬季的万里长城。试着在墙壁上驻留－青鱼就在那。如果掉下去，你可以再试着跳回"
+"来，这里有7个隐藏的斜坡，并且你可以在那里得到大量的经验。"
 
 #: po/levelinfo:58
 msgid "Secret Valleys"
-msgstr ""
+msgstr "隐秘村落"
 
 #: po/levelinfo:59
 msgid ""
 "Your task: Find the hidden valleys and the ten groups of dead trees. Look "
 "around, the ways are not easy to find."
-msgstr ""
+msgstr "你的人物:找到隐秘错落以及10组死亡的树。四周看看，并不好找哦～"
 
 #: po/levelinfo:60
 msgid "Explore the Mountains"
-msgstr ""
+msgstr "搜索山岭"
 
 #: po/levelinfo:61
 msgid "Can you find your way through the icy, dangerous mountains. I doubt it."
-msgstr ""
+msgstr "你能找到通往即冰冷又危险的山岭的路么，我表示怀疑。。"
 
 #: po/levelinfo:62
 msgid "Challenge One"
-msgstr ""
+msgstr "挑战一个看看"
 
 #: po/levelinfo:63
 msgid ""
@@ -867,11 +875,11 @@ msgstr ""
 
 #: po/levelinfo:66
 msgid "Tux Racer Classics"
-msgstr ""
+msgstr "Tux经典赛车"
 
 #: po/levelinfo:67
 msgid "Canadian Cup"
-msgstr ""
+msgstr "加拿大杯"
 
 #: po/levelinfo:68
 msgid "Swiss Cup"
@@ -895,21 +903,21 @@ msgstr ""
 msgid ""
 "Let's start out easy, just collect the herring in the time limit and you'll "
 "be fine. The best part is that you don't have to use those stupid T-lifts."
-msgstr ""
+msgstr "兔山"
 
 #: po/levelinfo:73
 msgid "Frozen River"
-msgstr ""
+msgstr "冰河"
 
 #: po/levelinfo:74
 msgid ""
 "Keep your speed down to collect herring. You have plenty of time, so don't "
 "rush things."
-msgstr ""
+msgstr "降低你的速度去手机鲱鱼。你还有充足的时间，不要浪费它们。"
 
 #: po/levelinfo:75
 msgid "Twisty Slope"
-msgstr ""
+msgstr "曲折的斜坡"
 
 #: po/levelinfo:76
 msgid ""
@@ -938,7 +946,7 @@ msgstr ""
 
 #: po/levelinfo:81
 msgid "Valley Cup"
-msgstr ""
+msgstr "山谷杯"
 
 #: po/levelinfo:82
 msgid "Tux the winter sportsman"
@@ -950,17 +958,17 @@ msgstr ""
 
 #: po/levelinfo:84
 msgid "Ice Labyrinth"
-msgstr ""
+msgstr "冰雪迷宫"
 
 #: po/levelinfo:85
 msgid ""
 "You choose your destiny, you could end up full or starving depending on the "
 "path you pick."
-msgstr ""
+msgstr "你来选择一条路，你选择的道路可能导致你们全部饿死。"
 
 #: po/levelinfo:86
 msgid "Snow Valley"
-msgstr ""
+msgstr "雪山谷"
 
 #: po/levelinfo:87
 msgid ""
@@ -971,7 +979,7 @@ msgstr ""
 
 #: po/levelinfo:88
 msgid "Tux Toboggan Run"
-msgstr ""
+msgstr "企鹅平底雪橇滑行"
 
 #: po/levelinfo:89
 msgid ""
@@ -981,7 +989,7 @@ msgstr ""
 
 #: po/levelinfo:90
 msgid "Hazzard Valley"
-msgstr ""
+msgstr "哈泽德山谷"
 
 #: po/levelinfo:91
 msgid ""
@@ -992,7 +1000,7 @@ msgstr ""
 
 #: po/levelinfo:92
 msgid "Skull Mountain"
-msgstr ""
+msgstr "骷髅山"
 
 #: po/levelinfo:93
 msgid ""
@@ -1002,7 +1010,7 @@ msgstr ""
 
 #: po/levelinfo:94
 msgid "Keep It Up"
-msgstr ""
+msgstr "继续下去"
 
 #: po/levelinfo:95
 msgid ""
@@ -1043,7 +1051,7 @@ msgstr ""
 
 #: po/levelinfo:102
 msgid "Ski Jump"
-msgstr ""
+msgstr "跳台滑雪"
 
 #: po/levelinfo:103
 msgid ""
@@ -1053,7 +1061,7 @@ msgstr ""
 
 #: po/levelinfo:104
 msgid "High Road"
-msgstr ""
+msgstr "高路"
 
 #: po/levelinfo:105
 msgid ""
@@ -1074,17 +1082,19 @@ msgstr ""
 
 #: po/levelinfo:108
 msgid "Hamburger Hill"
-msgstr ""
+msgstr "汉堡包山"
 
 #: po/levelinfo:109
 msgid ""
 "Hamburger Hill is steep, narrow, twisty, lumpy, icy, and rocky, with a few "
 "trees right in your way!"
 msgstr ""
+"汉堡包山是陡峭，狭窄，弯曲，粗糙，冰冷的，还有岩石，另外有一些树木在你的旅途"
+"中！"
 
 #: po/levelinfo:110
 msgid "Slalom"
-msgstr ""
+msgstr "激流回旋"
 
 #: po/levelinfo:111
 msgid ""
@@ -1093,7 +1103,7 @@ msgstr ""
 
 #: po/levelinfo:112
 msgid "Who Says Penguins Can't Fly?"
-msgstr ""
+msgstr "谁说企鹅不会飞？"
 
 #: po/levelinfo:113
 msgid ""
@@ -1103,8 +1113,23 @@ msgstr ""
 
 #: po/modelinfo:1
 msgid "Tux"
-msgstr ""
+msgstr "企鹅"
 
 #: po/modelinfo:2
 msgid "Tux on Snowboard"
 msgstr ""
+
+#~ msgid "'Freezing Point'"
+#~ msgstr "'冰点'"
+
+#~ msgid "http://www.freesound.org/samplesViewSingle.php?id=52143"
+#~ msgstr "http://www.freesound.org/samplesViewSingle.php?id=52143"
+
+#~ msgid "Race requirements not met."
+#~ msgstr "没有达到比赛的要求"
+
+#~ msgid "Samuel"
+#~ msgstr "塞缪尔"
+
+#~ msgid "Speedy"
+#~ msgstr "迅速"

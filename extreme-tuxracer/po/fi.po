@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: Extreme Tux Racer\n"
 "Report-Msgid-Bugs-To: https://translations.edge.launchpad.net/etracer\n"
 "POT-Creation-Date: 2008-08-03 20:17+0200\n"
-"PO-Revision-Date: 2008-05-04 17:09+0000\n"
-"Last-Translator: Kari Argillander <Unknown>\n"
+"PO-Revision-Date: 2009-02-18 18:57+0000\n"
+"Last-Translator: Elias Julkunen <elias.julkunen@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-08-03 17:56+0000\n"
+"X-Launchpad-Export-Date: 2009-04-27 12:04+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: src/audioconfig.cpp:36
@@ -128,11 +128,11 @@ msgstr ""
 
 #: src/credits.cpp:58
 msgid "Development"
-msgstr ""
+msgstr "Ohjelmistokehitys"
 
 #: src/credits.cpp:63
 msgid "from Sunspire Studios:"
-msgstr ""
+msgstr "Sunspire Studioilta:"
 
 #: src/credits.cpp:71
 msgid "Non-Rewrite Version Organization"
@@ -168,15 +168,15 @@ msgstr "Musiikki"
 
 #: src/credits.cpp:97
 msgid "'Race 1'"
-msgstr "'Kisa 1'"
+msgstr "\"Kilpailu 1\""
 
 #: src/credits.cpp:98
 msgid "'Menu'"
-msgstr "'Valikko'"
+msgstr "\"Valikko\""
 
 #: src/credits.cpp:99
 msgid "'Options'"
-msgstr "'Asetukset'"
+msgstr "\"Asetukset\""
 
 #: src/credits.cpp:100
 msgid "'Won Race'"
@@ -191,22 +191,21 @@ msgid "Misc. PPRacer Contributors"
 msgstr ""
 
 #: src/credits.cpp:110
-#, fuzzy
 msgid "Thanks To"
 msgstr "Kiitokset"
 
 #: src/credits.cpp:111
+#, fuzzy
 msgid "(for Exteme Tux Racer)"
-msgstr "(Extreme Tux Racer:stä)"
+msgstr "Extreme Tux Racer pohjautuu"
 
 #: src/credits.cpp:112
 msgid "Ranger (for hosting the website)"
 msgstr ""
 
 #: src/credits.cpp:113
-#, fuzzy
 msgid "Slythfox (for making the website)"
-msgstr "Slythfox:lle (nettisivujen tekemisestä)"
+msgstr ""
 
 #: src/credits.cpp:114
 msgid "The Course Creators"
@@ -214,36 +213,33 @@ msgstr ""
 
 #: src/credits.cpp:115
 msgid "The OpenRacer project"
-msgstr ""
+msgstr "OpenRacer-projekti"
 
 #: src/credits.cpp:116
+#, fuzzy
 msgid "Reinhard Niehoff (for helping with code modification)"
-msgstr ""
+msgstr "Reinhard Niehoff (paljon apuja)"
 
 #: src/credits.cpp:117
 #, fuzzy
 msgid "All the people on the forum"
-msgstr "Kaikille ihmisille foorumilla"
+msgstr "Kaikki ihmiset foorumilla"
 
 #: src/credits.cpp:118
-#, fuzzy
 msgid "Larry Ewing (creator of Tux)"
-msgstr "Larry Ewing:lle (Tux:in tekemisestä)"
+msgstr ""
 
 #: src/credits.cpp:119
-#, fuzzy
 msgid "(for Tux Racer)"
-msgstr "(Tux Racer:stä)"
+msgstr ""
 
 #: src/credits.cpp:126
-#, fuzzy
 msgid "Tux Racer is a trademark of Jasmin F. Patry."
-msgstr "Tux Racer tavaramerkin omistaa Jasmin F. Patry"
+msgstr "Tux Racer-tavaramerkin omistaa Jasmin F. Patry."
 
 #: src/credits.cpp:127
-#, fuzzy
 msgid "Extreme Tux Racer is licenced under the GPL."
-msgstr "Extreme Tux Racer on lisensoitu GPL:llä"
+msgstr "Extreme Tux Racer on GPL-lisenssin alainen."
 
 #: src/credits.cpp:128
 msgid "We grant use of the name 'Extreme Tux Racer'"
@@ -262,13 +258,12 @@ msgid "Tux Racer and the Tux Racer Name are Copyright © 2001 Jasmin F. Patry."
 msgstr ""
 
 #: src/event_select.cpp:50
-#, fuzzy
 msgid "Select campaign and cup"
-msgstr "Valitse tapahtuma ja turnaus"
+msgstr "Valitse kampanja ja turnaus"
 
 #: src/event_select.cpp:56
 msgid "Campaign:"
-msgstr ""
+msgstr "Kampanja:"
 
 #: src/event_select.cpp:67
 msgid "Cup:"
@@ -316,7 +311,7 @@ msgstr "Saavutettava edetäksesi:"
 
 #: src/event_race_select.cpp:293
 msgid "You can't enter this race yet."
-msgstr "Et voi mennä tähän kisaan vielä."
+msgstr "Et voi osallistua tähän kisaan vielä."
 
 #: src/event_race_select.cpp:316
 msgid "Time:"
@@ -386,13 +381,12 @@ msgid "You beat your best score!"
 msgstr "Päihitit ennätyksesi!"
 
 #: src/game_over.cpp:164
-#, fuzzy
 msgid "Congratulations! You won the campaign!"
-msgstr "Onneksi olkoon! Voitit tämän turnauksen!"
+msgstr "Onnittelut, voitit kampanjan!"
 
 #: src/game_over.cpp:166
 msgid "Congratulations! You won the cup!"
-msgstr "Onneksi olkoon! Voitit tämän turnauksen!"
+msgstr "Onneksi olkoon! Voitit turnauksen!"
 
 #: src/game_over.cpp:168
 msgid "You advanced to the next race!"
@@ -403,9 +397,8 @@ msgid "You didn't advance."
 msgstr "Et läpäissyt kisaa."
 
 #: src/game_type_select.cpp:36
-#, fuzzy
 msgid "Enter a campaign"
-msgstr "Osallistu tapahtumaan"
+msgstr "Osallistu kampanjaan"
 
 #: src/game_type_select.cpp:43
 msgid "Practice"
@@ -445,7 +438,7 @@ msgstr "Näytä edistymispalkki:"
 
 #: src/graphicsconfig.cpp:129
 msgid "Draw Fog:"
-msgstr "Näytä sumu:"
+msgstr "Piirrä sumu:"
 
 #: src/graphicsconfig.cpp:133
 msgid "Reflections:"
@@ -457,7 +450,7 @@ msgstr "Varjot:"
 
 #: src/graphicsconfig.cpp:141
 msgid "Draw Background:"
-msgstr ""
+msgstr "Piirrä tausta:"
 
 #: src/highscore.cpp:88
 msgid "1:st"
@@ -504,9 +497,9 @@ msgid "No records"
 msgstr "Ei ennätyksiä"
 
 #: src/highscore.cpp:327
-#, fuzzy, c-format
+#, c-format
 msgid " (%d points)"
-msgstr " (%d pisteet)"
+msgstr " (%d pistettä)"
 
 #: src/joystickconfig.cpp:29
 msgid "Joystick Configuration"
@@ -546,15 +539,15 @@ msgstr "Käänny oikeaan:"
 
 #: src/keyboardconfig.cpp:148
 msgid "Reset:"
-msgstr "Resetoi:"
+msgstr "Nollaa:"
 
 #: src/loading.cpp:53
 msgid "Loading, Please Wait..."
-msgstr "Lataa, Odota..."
+msgstr "Ladataan, odota..."
 
 #: src/paused.cpp:54
 msgid "Paused"
-msgstr "Tauko"
+msgstr "Pysäytetty"
 
 #: src/paused.cpp:70
 msgid "Resume"
@@ -569,14 +562,12 @@ msgid "Video Configuration"
 msgstr "Videoasetukset"
 
 #: src/videoconfig.cpp:173
-#, fuzzy
 msgid "To change the resolution, or switch into fullscreen mode"
-msgstr "Vaihtaaksesi resoluutiota tai kokoruudun tilaa"
+msgstr "Vaihtaaksesi resoluutiota tai siirtyäksesi kokoruututilaan"
 
 #: src/videoconfig.cpp:175
-#, fuzzy
 msgid "use options.txt, located in the config folder."
-msgstr "käytä options.txt tiedostoa, joka sijaitsee asetuksien kansiossa."
+msgstr "käytä options.txt-tiedostoa, joka sijaitsee asetuskansiossa."
 
 #: src/videoconfig.cpp:177
 msgid "Resolution:"
@@ -631,14 +622,14 @@ msgid "%.0f"
 msgstr "%.0f"
 
 #: po/levelinfo:10 po/levelinfo:11
-#, fuzzy, c-format
+#, c-format
 msgid "%d:%d:%d"
-msgstr "%02d:%02d:%02d"
+msgstr "%d:%d:%d"
 
 #: po/levelinfo:12 po/levelinfo:13
-#, fuzzy, c-format
+#, c-format
 msgid "%d"
-msgstr "%03d"
+msgstr "%d"
 
 #: po/levelinfo:14
 msgid "Doing"
@@ -651,18 +642,14 @@ msgid ""
 msgstr ""
 
 #: po/levelinfo:17
-#, fuzzy
 msgid "Hippo Run"
-msgstr "Hippo juoksu"
+msgstr ""
 
 #: po/levelinfo:18
-#, fuzzy
 msgid ""
 "In Hippo Run, you slide down an icy slope as a penguin, I honestly don't "
 "know what this has to do with hippos or running..."
 msgstr ""
-"Hippo juoksussa sinä liu'ut alas jäistä rinnettä pingviinillä. En "
-"todellakaan tiedä miten tämä liittyy hippoihin tai juoksemiseen..."
 
 #: po/levelinfo:19
 msgid "Ice Pipeline"
@@ -683,43 +670,34 @@ msgid ""
 msgstr ""
 
 #: po/levelinfo:23
-#, fuzzy
 msgid "Nature Stroll"
-msgstr "Luonto lasku"
+msgstr ""
 
 #: po/levelinfo:24
-#, fuzzy
 msgid ""
 "The fresh air, the pine scent, who doesn't like a nice refreshing walk "
 "through the mountains?"
 msgstr ""
-"Raikasta ilmaa, männyn tuoksua, kuka ei tykkäisi virkistävästä kävelystä "
-"vuoristossa."
 
 #: po/levelinfo:25
-#, fuzzy
 msgid "Mountain Mania"
-msgstr "Vuori Mania"
+msgstr ""
 
 #: po/levelinfo:26
-#, fuzzy
 msgid "Icy Peril"
-msgstr "Jää vaara"
+msgstr ""
 
 #: po/levelinfo:27
-#, fuzzy
 msgid "Death Cup"
-msgstr "Kuollut turnaus"
+msgstr ""
 
 #: po/levelinfo:28
-#, fuzzy
 msgid "Slippery Defeat"
-msgstr "Liukas päihitettävä"
+msgstr ""
 
 #: po/levelinfo:29
-#, fuzzy
 msgid "The Final Three"
-msgstr "Viimeinen puu"
+msgstr ""
 
 #: po/levelinfo:30
 msgid "Slippy-Slidey"
@@ -730,32 +708,24 @@ msgid "Slide on the slippery frozen river in a hilly forest, slipperily."
 msgstr ""
 
 #: po/levelinfo:32
-#, fuzzy
 msgid "Crazy Path"
-msgstr "Hullu reitti"
+msgstr ""
 
 #: po/levelinfo:33
-#, fuzzy
 msgid ""
 "You'll have trouble slowing down on this one. There's lots of herring, but "
 "be careful not to fly too much or you won't get any."
 msgstr ""
-"Sinulla tulee olemaan ongelmia hidastaessasi. Täällä on paljon silakoita, "
-"mutta ole varoivainen, jotta et lentäisi liikkaa tai et saa yhtään."
 
 #: po/levelinfo:34
-#, fuzzy
 msgid "Candy Lane"
-msgstr "Karkkikuja"
+msgstr ""
 
 #: po/levelinfo:35
-#, fuzzy
 msgid ""
 "Mostly ice, with very few obstacles in your path, this is like a stroll down "
 "Candy Lane."
 msgstr ""
-"Suurimmaksi osaksi jäätä, mutta matkallasi on paljon esteitä. Tämä on kuin "
-"laskisit alas karkkikujaa."
 
 #: po/levelinfo:36
 msgid "Merry Go Round"
@@ -766,9 +736,8 @@ msgid "Try to build up enough speed to jump from one roundabout to the next."
 msgstr ""
 
 #: po/levelinfo:38
-#, fuzzy
 msgid "Hey, Tux!"
-msgstr "Hei Tux!"
+msgstr ""
 
 #: po/levelinfo:39
 msgid "This course offers true excitement for your race-loving penguin buddy."
@@ -922,18 +891,14 @@ msgid ""
 msgstr ""
 
 #: po/levelinfo:71
-#, fuzzy
 msgid "Bunny Hill"
-msgstr "Pupu kukkula"
+msgstr ""
 
 #: po/levelinfo:72
-#, fuzzy
 msgid ""
 "Let's start out easy, just collect the herring in the time limit and you'll "
 "be fine. The best part is that you don't have to use those stupid T-lifts."
 msgstr ""
-"Aloitetaan helpolla. Kerää vain silakat ylittämättä aikarajaa ja pärjäät "
-"mainiosti. Paras asia on, että sinun ei tarvitse käyttää (Hyppyjäkö?)"
 
 #: po/levelinfo:73
 msgid "Frozen River"
@@ -1155,3 +1120,21 @@ msgstr "Tux lumilaudalla"
 
 #~ msgid "Congratulations! You won the event!"
 #~ msgstr "Onneksi olkoon! Voitit tapahtuman!"
+
+#~ msgid "52143__blaukreuz__imp_01.wav - Original sound of ice cracking..."
+#~ msgstr "52143__blaukreuz__imp_01.wav - Alkuperäinen jäänmurtumisääni..."
+
+#~ msgid "http://www.freesound.org/samplesViewSingle.php?id=52143"
+#~ msgstr "http://www.freesound.org/samplesViewSingle.php?id=52143"
+
+#~ msgid "Requirements met! Advance to the next race."
+#~ msgstr "Vaatimukset täytetty! Jatka seuraavaan kisaan."
+
+#~ msgid "Race requirements not met."
+#~ msgstr "Kisan vaatimuksia ei ole täytetty."
+
+#~ msgid "Select event and cup"
+#~ msgstr "Valitse tapahtuma ja turnaus"
+
+#~ msgid "Enter an event"
+#~ msgstr "Osallistu tapahtumaan"

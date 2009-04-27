@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: Extreme Tux Racer\n"
 "Report-Msgid-Bugs-To: https://translations.edge.launchpad.net/etracer\n"
 "POT-Creation-Date: 2008-08-03 20:17+0200\n"
-"PO-Revision-Date: 2008-07-29 17:03+0000\n"
-"Last-Translator: helix84 <Unknown>\n"
+"PO-Revision-Date: 2009-03-22 16:22+0000\n"
+"Last-Translator: Filip Lintner <Unknown>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-08-03 17:56+0000\n"
+"X-Launchpad-Export-Date: 2009-04-27 12:04+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: src/audioconfig.cpp:36
@@ -87,8 +87,9 @@ msgid "Back"
 msgstr "Späť"
 
 #: src/credits.cpp:43
+#, fuzzy
 msgid "Version 0.4"
-msgstr "Verzia 0.4"
+msgstr "Verzia 0.5"
 
 #: src/credits.cpp:46
 msgid "Extreme Tux Racer is in the process of being"
@@ -195,8 +196,9 @@ msgid "Thanks To"
 msgstr "Poďakovanie"
 
 #: src/credits.cpp:111
+#, fuzzy
 msgid "(for Exteme Tux Racer)"
-msgstr "(za Exteme Tux Racer)"
+msgstr "(pre Extreme Tux Racer)"
 
 #: src/credits.cpp:112
 msgid "Ranger (for hosting the website)"
@@ -255,13 +257,12 @@ msgid "Tux Racer and the Tux Racer Name are Copyright © 2001 Jasmin F. Patry."
 msgstr "Tux Racer a názov Tux Racer, Copyright © 2001 Jasmin F. Patry."
 
 #: src/event_select.cpp:50
-#, fuzzy
 msgid "Select campaign and cup"
 msgstr "Vyberte kampaň a pohár"
 
 #: src/event_select.cpp:56
 msgid "Campaign:"
-msgstr ""
+msgstr "Kampaň:"
 
 #: src/event_select.cpp:67
 msgid "Cup:"
@@ -379,9 +380,8 @@ msgid "You beat your best score!"
 msgstr "Prekonali ste vaše najlepšie skóre!"
 
 #: src/game_over.cpp:164
-#, fuzzy
 msgid "Congratulations! You won the campaign!"
-msgstr "Gratulujeme! Vyhrali ste pohár!"
+msgstr "Gratulujeme! Vyhrali ste kampaň!"
 
 #: src/game_over.cpp:166
 msgid "Congratulations! You won the cup!"
@@ -396,9 +396,8 @@ msgid "You didn't advance."
 msgstr "Nepostúpili ste."
 
 #: src/game_type_select.cpp:36
-#, fuzzy
 msgid "Enter a campaign"
-msgstr "Súťaž"
+msgstr "Vstúpiť do kamapane"
 
 #: src/game_type_select.cpp:43
 msgid "Practice"
@@ -450,7 +449,7 @@ msgstr "Tiene:"
 
 #: src/graphicsconfig.cpp:141
 msgid "Draw Background:"
-msgstr ""
+msgstr "Vykresliť pozadie:"
 
 #: src/highscore.cpp:88
 msgid "1:st"
@@ -622,14 +621,14 @@ msgid "%.0f"
 msgstr "%.0f"
 
 #: po/levelinfo:10 po/levelinfo:11
-#, fuzzy, c-format
+#, c-format
 msgid "%d:%d:%d"
-msgstr "%02d:%02d:%02d"
+msgstr "%d:%d:%d"
 
 #: po/levelinfo:12 po/levelinfo:13
-#, fuzzy, c-format
+#, c-format
 msgid "%d"
-msgstr "%03d"
+msgstr "%d"
 
 #: po/levelinfo:14
 msgid "Doing"
@@ -885,14 +884,12 @@ msgid "Challenge One"
 msgstr "Výzva"
 
 #: po/levelinfo:63
-#, fuzzy
 msgid ""
 "A very dangerous path along the mountains. Warning: The course is very "
 "difficult and there are some situations where you can get stuck."
 msgstr ""
-"Veľmi nebezpečná trať vo vrchoch. Skúste chytiť viac ako 60 sleďov. "
-"Upozornenie: Trať je veľmi náročná a je niekoľko miest, odkiaľ sa nedá "
-"dostať."
+"Veľmi nebezpečná cesta okolo hôr. Upozornenie: Dráha je veľmi náročná a na "
+"niektorých miesta môžete ostať zaseknutý."
 
 #: po/levelinfo:64
 msgid "Path of Daggers"
@@ -1183,8 +1180,8 @@ msgid ""
 "It'll be tough collecting herrings at speeds over 200, so try to brake "
 "whenever possible to get the required herring."
 msgstr ""
-"Bude ťažké zbierať slede pri rýchlosti cez 200, tak sa pokúst brzdiť kedy sa "
-"len bude dať, aby ste dostali potrebného sleďa."
+"Bude ťažké zbierať slede pri rýchlosti cez 200, tak sa pokúste brzdiť kedy "
+"sa len bude dať, aby ste dostali potrebného sleďa."
 
 #: po/modelinfo:1
 msgid "Tux"
@@ -1202,3 +1199,21 @@ msgstr "Tux na snowboarde"
 
 #~ msgid "Congratulations! You won the event!"
 #~ msgstr "Gratulujeme! Prešli ste kampaň!"
+
+#~ msgid "'Race Intro'"
+#~ msgstr "'Úvodna jazda'"
+
+#~ msgid "52143__blaukreuz__imp_01.wav - Original sound of ice cracking..."
+#~ msgstr "52143__blaukreuz__imp_01.wav - Originalny zvuk praskania ľadu"
+
+#~ msgid "Requirements met! Advance to the next race."
+#~ msgstr "Podmienky splnené! Pokračuješ do ďalšieho kola."
+
+#~ msgid "Race requirements not met."
+#~ msgstr "Podmienky kola nesplnené."
+
+#~ msgid "Select event and cup"
+#~ msgstr "Vyberte kampaň a pohár"
+
+#~ msgid "Enter an event"
+#~ msgstr "Súťaž"

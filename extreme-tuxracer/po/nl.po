@@ -9,13 +9,13 @@ msgstr ""
 "Project-Id-Version: Extreme Tux Racer\n"
 "Report-Msgid-Bugs-To: https://translations.edge.launchpad.net/etracer\n"
 "POT-Creation-Date: 2008-08-03 20:17+0200\n"
-"PO-Revision-Date: 2008-05-18 09:21+0000\n"
-"Last-Translator: Asciimonster <asciimonster@myrealbox.com>\n"
+"PO-Revision-Date: 2009-04-27 04:08+0000\n"
+"Last-Translator: 386sky <seotaewong40@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-08-03 17:56+0000\n"
+"X-Launchpad-Export-Date: 2009-04-27 12:04+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: src/audioconfig.cpp:36
@@ -88,8 +88,9 @@ msgid "Back"
 msgstr "Terug"
 
 #: src/credits.cpp:43
+#, fuzzy
 msgid "Version 0.4"
-msgstr "Versie 0.4"
+msgstr "Versie 0.5"
 
 #: src/credits.cpp:46
 msgid "Extreme Tux Racer is in the process of being"
@@ -136,8 +137,9 @@ msgid "from Sunspire Studios:"
 msgstr "van Sunspire Studios:"
 
 #: src/credits.cpp:71
+#, fuzzy
 msgid "Non-Rewrite Version Organization"
-msgstr "Niet-herschreven versie Organisatie"
+msgstr "Release Team"
 
 #: src/credits.cpp:74
 msgid "Translators"
@@ -148,20 +150,23 @@ msgid "Other (incomplete) translations are from the PPRacer Project."
 msgstr "Andere (onvolledige) vertalingen komen uit het PPRacer Project."
 
 #: src/credits.cpp:90
+#, fuzzy
 msgid "Nicosmos (Logo, Hud Graphics)"
-msgstr "Nicosmos (Logo en HUD elementen)"
+msgstr "Nicosmos (Logo, HUD en interface)"
 
 #: src/credits.cpp:91
+#, fuzzy
 msgid "Christian Picon (Objects, Skyboxes)"
-msgstr "Christian Picon (Voorwerpen, Achtergronden)"
+msgstr "Christian Picon (Objecten, Panorama's, Karakters)"
 
 #: src/credits.cpp:92
 msgid "Reinhard Niehoff (Trees)"
 msgstr "Reinhard Niehoff (Bomen)"
 
 #: src/credits.cpp:93
+#, fuzzy
 msgid "Daniel Poeira and Christian Picon (Font)"
-msgstr "Daniel Poeira and Christian Picon (Lettertype)"
+msgstr "Daniel Poeira en Christian Picon (Papercuts Lettertype)"
 
 #: src/credits.cpp:95
 msgid "Music"
@@ -196,8 +201,9 @@ msgid "Thanks To"
 msgstr "Met dank aan"
 
 #: src/credits.cpp:111
+#, fuzzy
 msgid "(for Exteme Tux Racer)"
-msgstr "(voor Exteme Tux Racer)"
+msgstr "(voor Extreme Tux Racer)"
 
 #: src/credits.cpp:112
 msgid "Ranger (for hosting the website)"
@@ -216,12 +222,14 @@ msgid "The OpenRacer project"
 msgstr "Het OpenRacer project"
 
 #: src/credits.cpp:116
+#, fuzzy
 msgid "Reinhard Niehoff (for helping with code modification)"
-msgstr "Reinhard Niehoff (hulp bij het wijzigen v/d code)"
+msgstr "Reinhard Niehoff (adviseur)"
 
 #: src/credits.cpp:117
+#, fuzzy
 msgid "All the people on the forum"
-msgstr "Alle mensen op het forum"
+msgstr "Iedereen van het Forum"
 
 #: src/credits.cpp:118
 msgid "Larry Ewing (creator of Tux)"
@@ -257,13 +265,12 @@ msgstr ""
 "Tux Racer and de naam 'Tux Racer' zijn Copyright © 2001 Jasmin F. Patry"
 
 #: src/event_select.cpp:50
-#, fuzzy
 msgid "Select campaign and cup"
-msgstr "Selecteer wedstrijd en toernooi"
+msgstr "Selecteer campagne en beker"
 
 #: src/event_select.cpp:56
 msgid "Campaign:"
-msgstr ""
+msgstr "Campagne:"
 
 #: src/event_select.cpp:67
 msgid "Cup:"
@@ -381,9 +388,8 @@ msgid "You beat your best score!"
 msgstr "Je hebt je beste tijd verbeterd!"
 
 #: src/game_over.cpp:164
-#, fuzzy
 msgid "Congratulations! You won the campaign!"
-msgstr "Gefeliciteerd! Je hebt het toernooi gewonnen"
+msgstr "Gefeliciteerd! Je hebt de campagne gewonnen!"
 
 #: src/game_over.cpp:166
 msgid "Congratulations! You won the cup!"
@@ -398,9 +404,8 @@ msgid "You didn't advance."
 msgstr "Je hebt het niet gehaald"
 
 #: src/game_type_select.cpp:36
-#, fuzzy
 msgid "Enter a campaign"
-msgstr "Start een toernooi"
+msgstr "Campagne starten"
 
 #: src/game_type_select.cpp:43
 msgid "Practice"
@@ -452,7 +457,7 @@ msgstr "Schaduwen:"
 
 #: src/graphicsconfig.cpp:141
 msgid "Draw Background:"
-msgstr ""
+msgstr "Geef achtergrond weer:"
 
 #: src/highscore.cpp:88
 msgid "1:st"
@@ -624,14 +629,14 @@ msgid "%.0f"
 msgstr "%.0f"
 
 #: po/levelinfo:10 po/levelinfo:11
-#, fuzzy, c-format
+#, c-format
 msgid "%d:%d:%d"
-msgstr "%02d:%02d:%02d"
+msgstr "%d:%d:%d"
 
 #: po/levelinfo:12 po/levelinfo:13
-#, fuzzy, c-format
+#, c-format
 msgid "%d"
-msgstr "%03d"
+msgstr "%d"
 
 #: po/levelinfo:14
 msgid "Doing"
@@ -883,13 +888,12 @@ msgid "Challenge One"
 msgstr "Uitdaging nummer 1"
 
 #: po/levelinfo:63
-#, fuzzy
 msgid ""
 "A very dangerous path along the mountains. Warning: The course is very "
 "difficult and there are some situations where you can get stuck."
 msgstr ""
-"Een erg gevaarlijk bergpas. Probeer meer dan 60 haringen te halen. Pas op: "
-"op verschillende plaatsen kun je vast komen te zitten. Alleen voor pro's."
+"Een zeer gevaarlijk pad langs bergen. Waarschuwing: Dit parcours is zeer "
+"moeilijk en er zijn sommige plekken waarbij je vast kan komen te zitten."
 
 #: po/levelinfo:64
 msgid "Path of Daggers"
@@ -1197,3 +1201,48 @@ msgstr "Tux met Snowboard"
 
 #~ msgid "Congratulations! You won the event!"
 #~ msgstr "Gefeliciteerd! Je hebt de wedstrijd gewonnen"
+
+#~ msgid "'Freezing Point'"
+#~ msgstr "'Vriespunt'"
+
+#~ msgid "'Calm Race'"
+#~ msgstr "'Rustig Ritje'"
+
+#~ msgid "'Lost Race'"
+#~ msgstr "'In verloren positie'"
+
+#~ msgid "'Race Intro'"
+#~ msgstr "'Race er naar toe'"
+
+#~ msgid "'Spunky Race'"
+#~ msgstr "'Spannende wedstrijd'"
+
+#~ msgid "'Won Race: kschroeder Remix'"
+#~ msgstr "'Gewonnen wedstrijd: kschroeder remix'"
+
+#~ msgid "52143__blaukreuz__imp_01.wav - Original sound of ice cracking..."
+#~ msgstr "52143__blaukreuz__imp_01.wav - Origineel geluid van krakend ijs..."
+
+#~ msgid "http://www.freesound.org/samplesViewSingle.php?id=52143"
+#~ msgstr "http://www.freesound.org/samplesViewSingle.php?id=52143"
+
+#~ msgid "Requirements met! Advance to the next race."
+#~ msgstr "De doelen zijn gehaald! Ga door naar de volgende wedstrijd."
+
+#~ msgid "Race requirements not met."
+#~ msgstr "Je doelen zijn niet gehaald."
+
+#~ msgid "Samuel"
+#~ msgstr "Samuel"
+
+#~ msgid "Trixi"
+#~ msgstr "Trixi"
+
+#~ msgid "Speedy"
+#~ msgstr "Snelle jongen"
+
+#~ msgid "Select event and cup"
+#~ msgstr "Selecteer wedstrijd en toernooi"
+
+#~ msgid "Enter an event"
+#~ msgstr "Start een toernooi"

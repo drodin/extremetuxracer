@@ -8,83 +8,83 @@ msgstr ""
 "Project-Id-Version: etracer\n"
 "Report-Msgid-Bugs-To: https://translations.edge.launchpad.net/etracer\n"
 "POT-Creation-Date: 2008-08-03 20:17+0200\n"
-"PO-Revision-Date: 2008-06-16 14:25+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2008-12-25 09:11+0000\n"
+"Last-Translator: Alexander10 <desyatnichenko@gmail.com>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-08-03 17:56+0000\n"
+"X-Launchpad-Export-Date: 2009-04-27 12:04+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: src/audioconfig.cpp:36
 msgid "Audio Configuration"
-msgstr ""
+msgstr "Аудіо конфігурація"
 
 #: src/audioconfig.cpp:112
 msgid "Sound Effects:"
-msgstr ""
+msgstr "Звукові ефекти:"
 
 #: src/audioconfig.cpp:116
 msgid "Music:"
-msgstr ""
+msgstr "Музика:"
 
 #: src/audioconfig.cpp:120
 msgid "(needs restart)"
-msgstr ""
+msgstr "(потрібне перезавантаження)"
 
 #: src/audioconfig.cpp:122
 msgid "Disable Audio:"
-msgstr ""
+msgstr "Вимкнути Аудіо:"
 
 #: src/audioconfig.cpp:126
 msgid "Stereo:"
-msgstr ""
+msgstr "Стерео:"
 
 #: src/audioconfig.cpp:130
 msgid "Bits Per Sample:"
-msgstr ""
+msgstr "Бітів на кожний зразок:"
 
 #: src/audioconfig.cpp:134
 msgid "Samples Per Second:"
-msgstr ""
+msgstr "Частота дискретизації:"
 
 #: src/configmode.cpp:36
 msgid "Cancel"
-msgstr ""
+msgstr "Відмінити"
 
 #: src/configmode.cpp:43
 msgid "Ok"
-msgstr ""
+msgstr "Гаразд"
 
 #: src/configuration.cpp:38 src/game_type_select.cpp:57 src/paused.cpp:62
 msgid "Configuration"
-msgstr ""
+msgstr "Налаштування"
 
 #: src/configuration.cpp:45 src/credits.cpp:89
 msgid "Graphics"
-msgstr ""
+msgstr "Графіка"
 
 #: src/configuration.cpp:52
 msgid "Video"
-msgstr ""
+msgstr "Відео"
 
 #: src/configuration.cpp:59
 msgid "Audio"
-msgstr ""
+msgstr "Аудіо"
 
 #: src/configuration.cpp:66
 msgid "Keyboard"
-msgstr ""
+msgstr "Клавіатура"
 
 #: src/configuration.cpp:73
 msgid "Joystick"
-msgstr ""
+msgstr "Джойстик"
 
 #: src/configuration.cpp:81 src/event_select.cpp:96
 #: src/event_race_select.cpp:53 src/highscore.cpp:413
 msgid "Back"
-msgstr ""
+msgstr "Назад"
 
 #: src/credits.cpp:43
 msgid "Version 0.4"
@@ -92,47 +92,47 @@ msgstr ""
 
 #: src/credits.cpp:46
 msgid "Extreme Tux Racer is in the process of being"
-msgstr ""
+msgstr "Екстремальний Tux Racer в процесі"
 
 #: src/credits.cpp:47
 msgid "completely rewritten. All versions after 0.35,"
-msgstr ""
+msgstr "повністю переписана. Усі версії після 0.35"
 
 #: src/credits.cpp:48
 msgid "including this one, won't have major code changes"
-msgstr ""
+msgstr "включаючи цю, не будуть мати кардинальних змін коду"
 
 #: src/credits.cpp:49
 msgid "because the programmers are busy making a new,"
-msgstr ""
+msgstr "оскільки програмісти зараз зайняті, новою,"
 
 #: src/credits.cpp:50
 msgid "improved game."
-msgstr ""
+msgstr "покращеною грою."
 
 #: src/credits.cpp:52
 msgid "Extreme Tux Racer is based on"
-msgstr ""
+msgstr "Extreme Tux Racer гонщик базується на"
 
 #: src/credits.cpp:53
 msgid "PlanetPenguin Racer, Open Racer and Tux Racer."
-msgstr ""
+msgstr "PlanetPenguin Racer, Open Racer і Tux Racer."
 
 #: src/credits.cpp:55
 msgid "Some courses may have been modified from their"
-msgstr ""
+msgstr "Деякі траси можуть бути змінені у порівнянні із"
 
 #: src/credits.cpp:56
 msgid "original versions to fit the requirements of the game."
-msgstr ""
+msgstr "оригінальними версіями для відповідності вимогам гри ."
 
 #: src/credits.cpp:58
 msgid "Development"
-msgstr ""
+msgstr "Розробка"
 
 #: src/credits.cpp:63
 msgid "from Sunspire Studios:"
-msgstr ""
+msgstr "Sunspire Studios:"
 
 #: src/credits.cpp:71
 msgid "Non-Rewrite Version Organization"
@@ -140,7 +140,7 @@ msgstr ""
 
 #: src/credits.cpp:74
 msgid "Translators"
-msgstr ""
+msgstr "Перекладачі"
 
 #: src/credits.cpp:87
 msgid "Other (incomplete) translations are from the PPRacer Project."
@@ -156,7 +156,7 @@ msgstr ""
 
 #: src/credits.cpp:92
 msgid "Reinhard Niehoff (Trees)"
-msgstr ""
+msgstr "Reinhard Niehoff (дерева)"
 
 #: src/credits.cpp:93
 msgid "Daniel Poeira and Christian Picon (Font)"
@@ -164,55 +164,56 @@ msgstr ""
 
 #: src/credits.cpp:95
 msgid "Music"
-msgstr ""
+msgstr "Музика"
 
 #: src/credits.cpp:97
 msgid "'Race 1'"
-msgstr ""
+msgstr "\"Гонка 1\""
 
 #: src/credits.cpp:98
 msgid "'Menu'"
-msgstr ""
+msgstr "\"Меню\""
 
 #: src/credits.cpp:99
 msgid "'Options'"
-msgstr ""
+msgstr "\"Параметри\""
 
 #: src/credits.cpp:100
 msgid "'Won Race'"
-msgstr ""
+msgstr "\"Перемога у гонці\""
 
 #: src/credits.cpp:103
 msgid "'Credits Ballad'"
-msgstr ""
+msgstr "\"Балада титрів\""
 
 #: src/credits.cpp:105
 msgid "Misc. PPRacer Contributors"
-msgstr ""
+msgstr "Люди, які внесли вклад до PPRacer"
 
 #: src/credits.cpp:110
 msgid "Thanks To"
-msgstr ""
+msgstr "Подяка"
 
 #: src/credits.cpp:111
+#, fuzzy
 msgid "(for Exteme Tux Racer)"
-msgstr ""
+msgstr "(за Tux Racer)"
 
 #: src/credits.cpp:112
 msgid "Ranger (for hosting the website)"
-msgstr ""
+msgstr "Ranger (за хостинг веб-сайту)"
 
 #: src/credits.cpp:113
 msgid "Slythfox (for making the website)"
-msgstr ""
+msgstr "Slythfox (за створення веб-сайту)"
 
 #: src/credits.cpp:114
 msgid "The Course Creators"
-msgstr ""
+msgstr "Творці трас"
 
 #: src/credits.cpp:115
 msgid "The OpenRacer project"
-msgstr ""
+msgstr "Проект OpenRacer"
 
 #: src/credits.cpp:116
 msgid "Reinhard Niehoff (for helping with code modification)"
@@ -224,198 +225,199 @@ msgstr ""
 
 #: src/credits.cpp:118
 msgid "Larry Ewing (creator of Tux)"
-msgstr ""
+msgstr "Larry Ewing (творець Tux'у)"
 
 #: src/credits.cpp:119
 msgid "(for Tux Racer)"
-msgstr ""
+msgstr "(за Tux Racer)"
 
 #: src/credits.cpp:126
 msgid "Tux Racer is a trademark of Jasmin F. Patry."
-msgstr ""
+msgstr "Tux Racer є зареєстрованою торговельним знаком Jasmin F. Patry."
 
 #: src/credits.cpp:127
 msgid "Extreme Tux Racer is licenced under the GPL."
-msgstr ""
+msgstr "Extreme Tux Racer розповсюджується за ліцензією GPL."
 
 #: src/credits.cpp:128
 msgid "We grant use of the name 'Extreme Tux Racer'"
-msgstr ""
+msgstr "Ми дозволяємо використовувати назву \"Extreme Tux Racer\""
 
 #: src/credits.cpp:129
 msgid "to any forks or continuations."
-msgstr ""
+msgstr "будь-яким відгалуженням або продовженням гри."
 
 #: src/credits.cpp:131
 msgid "PlanetPenguin Racer is Copyright © 2005 Volker Stroebel."
-msgstr ""
+msgstr "PlanetPenguin Racer Copyright © 2005 Volker Stroebel."
 
 #: src/credits.cpp:132
 msgid "Tux Racer and the Tux Racer Name are Copyright © 2001 Jasmin F. Patry."
-msgstr ""
+msgstr "Tux Racer і Tux Racer Name © 2001 Jasmin F. Patry."
 
 #: src/event_select.cpp:50
 msgid "Select campaign and cup"
-msgstr ""
+msgstr "Оберіть кампанію та кубок"
 
 #: src/event_select.cpp:56
 msgid "Campaign:"
-msgstr ""
+msgstr "Кампанія:"
 
 #: src/event_select.cpp:67
 msgid "Cup:"
-msgstr ""
+msgstr "Кубок:"
 
 #: src/event_select.cpp:87
 msgid "Player name:"
-msgstr ""
+msgstr "Ім'я гравця:"
 
 #: src/event_select.cpp:104
 msgid "Continue"
-msgstr ""
+msgstr "Продовжити"
 
 #: src/event_select.cpp:158
 msgid "You've won this cup!"
-msgstr ""
+msgstr "Кубок виграно!"
 
 #: src/event_select.cpp:160
 msgid "You must complete this cup next"
-msgstr ""
+msgstr "Далі Ви повинні виграти цей кубок"
 
 #: src/event_select.cpp:162
 msgid "You cannot enter this cup yet"
-msgstr ""
+msgstr "Ви поки не можете брати участь в цьому кубку"
 
 #: src/event_race_select.cpp:45
 msgid "Select a race"
-msgstr ""
+msgstr "Обрання гонки"
 
 #: src/event_race_select.cpp:60
 msgid "Race!"
-msgstr ""
+msgstr "Старт!"
 
 #: src/event_race_select.cpp:280
 msgid "You don't have any lives left."
-msgstr ""
+msgstr "У Вас не залишилось жодного життя."
 
 #: src/event_race_select.cpp:285
 msgid "Race won! Your result:"
-msgstr ""
+msgstr "Гонка виграна! Результат:"
 
 #: src/event_race_select.cpp:289
 msgid "Needed to advance:"
-msgstr ""
+msgstr "Необхідно для перемоги:"
 
 #: src/event_race_select.cpp:293
 msgid "You can't enter this race yet."
-msgstr ""
+msgstr "Ви поки не можете обирати цю гонку."
 
 #: src/event_race_select.cpp:316
 msgid "Time:"
-msgstr ""
+msgstr "Час:"
 
 #: src/event_race_select.cpp:320
 #, c-format
 msgid "%02d:%02d.%02d"
-msgstr ""
+msgstr "%02d:%02d.%02d"
 
 #: src/event_race_select.cpp:324
 msgid "Herring:"
-msgstr ""
+msgstr "Вилов:"
 
 #: src/event_race_select.cpp:332
 msgid "Score:"
-msgstr ""
+msgstr "Рахунок:"
 
 #: src/event_race_select.cpp:341
 msgid "Contributed by:"
-msgstr ""
+msgstr "Автори:"
 
 #: src/event_race_select.cpp:349 po/levelinfo:16
 msgid "Unknown"
-msgstr ""
+msgstr "Невідомо"
 
 #: src/game_over.cpp:109
 msgid "Race aborted"
-msgstr ""
+msgstr "Гонку скасовано"
 
 #: src/game_over.cpp:112
 msgid "Race Over"
-msgstr ""
+msgstr "Фініш"
 
 #: src/game_over.cpp:119
 #, c-format
 msgid "Time: %02d:%02d.%02d"
-msgstr ""
+msgstr "Час: %02d:%02d.%02d"
 
 #: src/game_over.cpp:124
 #, c-format
 msgid "Herring: %3d"
-msgstr ""
+msgstr "Вилов: %3d"
 
 #: src/game_over.cpp:129
 #, c-format
 msgid "Score: %6d"
-msgstr ""
+msgstr "Бали: %6d"
 
 #: src/game_over.cpp:135
 #, c-format
 msgid "Max speed: %3d km/h"
-msgstr ""
+msgstr "Максимальна швидкість: %3d км/год"
 
 #: src/game_over.cpp:141
 #, c-format
 msgid "Was flying: %.01f %% of time"
-msgstr ""
+msgstr "Був у польоті %.01f %% часу"
 
 #: src/game_over.cpp:151
 #, c-format
 msgid "You made it to the %s place in the highscore!"
-msgstr ""
+msgstr "Ви зробили це на %s місце у таблиці рекордів!"
 
 #: src/game_over.cpp:161
 msgid "You beat your best score!"
-msgstr ""
+msgstr "Новий рекорд!"
 
 #: src/game_over.cpp:164
 msgid "Congratulations! You won the campaign!"
-msgstr ""
+msgstr "Вітаємо! Ви перемогли у кампанії!"
 
 #: src/game_over.cpp:166
 msgid "Congratulations! You won the cup!"
-msgstr ""
+msgstr "Вітаємо! Ви виграли кубок!"
 
 #: src/game_over.cpp:168
 msgid "You advanced to the next race!"
 msgstr ""
 
 #: src/game_over.cpp:170
+#, fuzzy
 msgid "You didn't advance."
-msgstr ""
+msgstr "У Вас не залишилось жодного життя."
 
 #: src/game_type_select.cpp:36
 msgid "Enter a campaign"
-msgstr ""
+msgstr "Розпочати компанію"
 
 #: src/game_type_select.cpp:43
 msgid "Practice"
-msgstr ""
+msgstr "Тренування"
 
 #: src/game_type_select.cpp:50 src/highscore.cpp:350
 msgid "Highscore"
-msgstr ""
+msgstr "Рекорди"
 
 #: src/game_type_select.cpp:64
 msgid "Credits"
-msgstr ""
+msgstr "Автори"
 
 #: src/game_type_select.cpp:71 src/paused.cpp:78
 msgid "Quit"
-msgstr ""
+msgstr "Вихід"
 
 #: src/graphicsconfig.cpp:30
 msgid "Graphics Configuration"
-msgstr ""
+msgstr "Налаштування графіки"
 
 #: src/graphicsconfig.cpp:108
 msgid "Model:"
@@ -423,310 +425,323 @@ msgstr ""
 
 #: src/graphicsconfig.cpp:117
 msgid "Show UI Snow:"
-msgstr ""
+msgstr "Зобразити сніг в меню:"
 
 #: src/graphicsconfig.cpp:121
 msgid "Display FPS:"
-msgstr ""
+msgstr "Показувати FPS (фреймів за секунду):"
 
 #: src/graphicsconfig.cpp:125
 msgid "Display Progress Bar:"
-msgstr ""
+msgstr "Показувати панель прогресу:"
 
 #: src/graphicsconfig.cpp:129
 msgid "Draw Fog:"
-msgstr ""
+msgstr "Туман:"
 
 #: src/graphicsconfig.cpp:133
 msgid "Reflections:"
-msgstr ""
+msgstr "Віддзеркалення:"
 
 #: src/graphicsconfig.cpp:137
 msgid "Shadows:"
-msgstr ""
+msgstr "Тіні:"
 
 #: src/graphicsconfig.cpp:141
 msgid "Draw Background:"
-msgstr ""
+msgstr "Зобразити фон:"
 
 #: src/highscore.cpp:88
 msgid "1:st"
-msgstr ""
+msgstr "1:е"
 
 #: src/highscore.cpp:90
 msgid "2:nd"
-msgstr ""
+msgstr "2:е"
 
 #: src/highscore.cpp:92
 msgid "3:rd"
-msgstr ""
+msgstr "3:є"
 
 #: src/highscore.cpp:94
 msgid "4:th"
-msgstr ""
+msgstr "4:е"
 
 #: src/highscore.cpp:96
 msgid "5:th"
-msgstr ""
+msgstr "5:е"
 
 #: src/highscore.cpp:98
 msgid "6:th"
-msgstr ""
+msgstr "6:е"
 
 #: src/highscore.cpp:100
 msgid "7:th"
-msgstr ""
+msgstr "7:е"
 
 #: src/highscore.cpp:102
 msgid "8:th"
-msgstr ""
+msgstr "8:е"
 
 #: src/highscore.cpp:104
 msgid "9:th"
-msgstr ""
+msgstr "9:е"
 
 #: src/highscore.cpp:106
 msgid "10:th"
-msgstr ""
+msgstr "10:е"
 
 #: src/highscore.cpp:317
 msgid "No records"
-msgstr ""
+msgstr "Немає записів"
 
 #: src/highscore.cpp:327
 #, c-format
 msgid " (%d points)"
-msgstr ""
+msgstr " (%d балів)"
 
 #: src/joystickconfig.cpp:29
 msgid "Joystick Configuration"
-msgstr ""
+msgstr "Налаштування джойстику"
 
 #: src/joystickconfig.cpp:33
 msgid "Enable Joystick"
-msgstr ""
+msgstr "Увімкнути джойстик"
 
 #: src/joystickconfig.cpp:41 src/keyboardconfig.cpp:132
 msgid "Paddle:"
-msgstr ""
+msgstr "Вперед:"
 
 #: src/joystickconfig.cpp:54 src/keyboardconfig.cpp:136
 msgid "Brake:"
-msgstr ""
+msgstr "Гальма:"
 
 #: src/joystickconfig.cpp:67 src/keyboardconfig.cpp:140
 msgid "Jump:"
-msgstr ""
+msgstr "Стрибок:"
 
 #: src/joystickconfig.cpp:80 src/keyboardconfig.cpp:144
 msgid "Trick:"
-msgstr ""
+msgstr "Трюк:"
 
 #: src/keyboardconfig.cpp:55
 msgid "Keyboard Configuration"
-msgstr ""
+msgstr "Настройки клавіатури"
 
 #: src/keyboardconfig.cpp:124
 msgid "Turn left:"
-msgstr ""
+msgstr "Ліворуч:"
 
 #: src/keyboardconfig.cpp:128
 msgid "Turn right:"
-msgstr ""
+msgstr "Праворуч:"
 
 #: src/keyboardconfig.cpp:148
 msgid "Reset:"
-msgstr ""
+msgstr "Скидання:"
 
 #: src/loading.cpp:53
 msgid "Loading, Please Wait..."
-msgstr ""
+msgstr "Завантаження, Будь ласка зачекайте..."
 
 #: src/paused.cpp:54
 msgid "Paused"
-msgstr ""
+msgstr "Призупинено"
 
 #: src/paused.cpp:70
 msgid "Resume"
-msgstr ""
+msgstr "Продовжити"
 
 #: src/splash_screen.cpp:34
 msgid "PRESS ANY KEY TO START"
-msgstr ""
+msgstr "ДЛЯ СТАРТУ НАТИСНІТЬ БУДЬ-ЯКУ КЛАВІШУ"
 
 #: src/videoconfig.cpp:60
 msgid "Video Configuration"
-msgstr ""
+msgstr "Налаштування відео"
 
 #: src/videoconfig.cpp:173
 msgid "To change the resolution, or switch into fullscreen mode"
-msgstr ""
+msgstr "Для зміни роздільності та переходу до режиму повного екрану"
 
 #: src/videoconfig.cpp:175
 msgid "use options.txt, located in the config folder."
 msgstr ""
+"використовуйте options.txt, розташований в директорії config (налаштувань)."
 
 #: src/videoconfig.cpp:177
 msgid "Resolution:"
-msgstr ""
+msgstr "Роздільність:"
 
 #: src/videoconfig.cpp:181
 msgid "Bits Per Pixel:"
-msgstr ""
+msgstr "Біт на піксель:"
 
 #: src/videoconfig.cpp:185
 msgid "Fullscreen:"
-msgstr ""
+msgstr "Повний екран:"
 
 #: src/videoconfig.cpp:189
 msgid "Experimental (needs restart)"
-msgstr ""
+msgstr "Експериментально (потрібен перезапуск)"
 
 #: src/videoconfig.cpp:192
 msgid "Stencil Buffer:"
-msgstr ""
+msgstr "Трафаретний буфер:"
 
 #: src/videoconfig.cpp:196
 msgid "Enable FSAA:"
-msgstr ""
+msgstr "Дозволити FSAA (згладжування):"
 
 #: src/videoconfig.cpp:200
 msgid "FSAA Multisamples:"
-msgstr ""
+msgstr "Якість FSAA (згладжування):"
 
 #: po/levelinfo:1
 #, c-format
 msgid "FPS: %.1f"
-msgstr ""
+msgstr "FPS: %.1f"
 
 #: po/levelinfo:2 po/levelinfo:3
 #, c-format
 msgid "%03d"
-msgstr ""
+msgstr "%03d"
 
 #: po/levelinfo:4 po/levelinfo:5
 #, c-format
 msgid "%02d:%02d:%02d"
-msgstr ""
+msgstr "%02d:%02d:%02d"
 
 #: po/levelinfo:6 po/levelinfo:8
 msgid "km/h"
-msgstr ""
+msgstr "км/год"
 
 #: po/levelinfo:7 po/levelinfo:9
 #, c-format
 msgid "%.0f"
-msgstr ""
+msgstr "%.0f"
 
 #: po/levelinfo:10 po/levelinfo:11
 #, c-format
 msgid "%d:%d:%d"
-msgstr ""
+msgstr "%d:%d:%d"
 
 #: po/levelinfo:12 po/levelinfo:13
 #, c-format
 msgid "%d"
-msgstr ""
+msgstr "%d"
 
 #: po/levelinfo:14
 msgid "Doing"
-msgstr ""
+msgstr "Виконується"
 
 #: po/levelinfo:15
 msgid ""
 "This course was probably created to present new textures introduced in "
 "PPRacer."
 msgstr ""
+"Вірогідно, цю трасу було створено аби зобразити нові текстури, які "
+"представлені у PPRacer."
 
 #: po/levelinfo:17
 msgid "Hippo Run"
-msgstr ""
+msgstr "Біг бегемотів"
 
 #: po/levelinfo:18
 msgid ""
 "In Hippo Run, you slide down an icy slope as a penguin, I honestly don't "
 "know what this has to do with hippos or running..."
 msgstr ""
+"В \"Біг бегемотів\" Ви зісковзуєте зі схилу як пінгвін. Щиро кажучи я не "
+"знаю до чого тут бегемоти або біг..."
 
 #: po/levelinfo:19
 msgid "Ice Pipeline"
-msgstr ""
+msgstr "Льодова труба"
 
 #: po/levelinfo:20
 msgid "A short, slippery ice-trough with herring scattered throughout."
-msgstr ""
+msgstr "Короткий та слизький льодовий жолоб із розсипаним по ньому оселедцем."
 
 #: po/levelinfo:21
 msgid "Volcanoes"
-msgstr ""
+msgstr "Вулкани"
 
 #: po/levelinfo:22
 msgid ""
 "This gigantic crater was full of water, and herring, but now it's all "
 "frozen, and yours for the taking."
 msgstr ""
+"Цей гігантський кратер був полон води та оселедця, а зараз він цілком замерз "
+"та дістався вам."
 
 #: po/levelinfo:23
 msgid "Nature Stroll"
-msgstr ""
+msgstr "Прогулянка природою"
 
 #: po/levelinfo:24
 msgid ""
 "The fresh air, the pine scent, who doesn't like a nice refreshing walk "
 "through the mountains?"
 msgstr ""
+"Свіже повітря, запах сосен, хто не полюбляє гарну освіжаючу прогулянку в "
+"горах?"
 
 #: po/levelinfo:25
 msgid "Mountain Mania"
-msgstr ""
+msgstr "Гірська манія"
 
 #: po/levelinfo:26
 msgid "Icy Peril"
-msgstr ""
+msgstr "Льодова небезпека"
 
 #: po/levelinfo:27
 msgid "Death Cup"
-msgstr ""
+msgstr "Кубок смерті"
 
 #: po/levelinfo:28
 msgid "Slippery Defeat"
-msgstr ""
+msgstr "Слизьке розгром"
 
 #: po/levelinfo:29
 msgid "The Final Three"
-msgstr ""
+msgstr "Остання трійка"
 
 #: po/levelinfo:30
 msgid "Slippy-Slidey"
-msgstr ""
+msgstr "Слизький нахил"
 
 #: po/levelinfo:31
 msgid "Slide on the slippery frozen river in a hilly forest, slipperily."
-msgstr ""
+msgstr "Зісковзуйтесь слизькою змерзлою річкою в горбкуватому лісі"
 
 #: po/levelinfo:32
 msgid "Crazy Path"
-msgstr ""
+msgstr "Скажений шлях"
 
 #: po/levelinfo:33
 msgid ""
 "You'll have trouble slowing down on this one. There's lots of herring, but "
 "be careful not to fly too much or you won't get any."
 msgstr ""
+"Тут буде складно пригальмувати. Хоча тут багато оселедця, будьте обережні, "
+"не захоплюйтесь польотами бо нічого не отримаєте."
 
 #: po/levelinfo:34
 msgid "Candy Lane"
-msgstr ""
+msgstr "Льодяникова доріжка"
 
 #: po/levelinfo:35
 msgid ""
 "Mostly ice, with very few obstacles in your path, this is like a stroll down "
 "Candy Lane."
 msgstr ""
+"Більшою частиною - лід, із дуже малою кількістю перешкод, це як прогулянка "
+"Льодяниковою доріжкою."
 
 #: po/levelinfo:36
 msgid "Merry Go Round"
-msgstr ""
+msgstr "Мері прямує колом"
 
 #: po/levelinfo:37
 msgid "Try to build up enough speed to jump from one roundabout to the next."
@@ -734,7 +749,7 @@ msgstr ""
 
 #: po/levelinfo:38
 msgid "Hey, Tux!"
-msgstr ""
+msgstr "Гей, Туксе!"
 
 #: po/levelinfo:39
 msgid "This course offers true excitement for your race-loving penguin buddy."
@@ -742,7 +757,7 @@ msgstr ""
 
 #: po/levelinfo:40
 msgid "Bobsled Ride"
-msgstr ""
+msgstr "Бобслей"
 
 #: po/levelinfo:41
 msgid "Just like a real bobsled ride, only more dangerous."
@@ -750,7 +765,7 @@ msgstr ""
 
 #: po/levelinfo:42
 msgid "In Search of Vodka"
-msgstr ""
+msgstr "У пошуках горілки."
 
 #: po/levelinfo:43
 msgid ""
@@ -758,10 +773,13 @@ msgid ""
 "cabinet has been pillaged. Join Tux on the quest for vodka.Pick up herring "
 "for dinner along the way!"
 msgstr ""
+"Тукс має знайти трохи горілки, аби зігріти свій змерзлий живіт. Шкода, його "
+"міні-бар розтрощили.Приєднуйтесь до Тукса в його пошуках горілки. Також "
+"прихопіть по дорозі оселедців для вечері!"
 
 #: po/levelinfo:44
 msgid "Tux at Home"
-msgstr ""
+msgstr "Тукс вдома"
 
 #: po/levelinfo:45
 msgid ""
@@ -769,56 +787,65 @@ msgid ""
 "and fastest way. But if you want to catch some herrings you have to enter "
 "the rooms on the left."
 msgstr ""
+"Тут мешкає Тукс. Ви взмозі обрати коридор праворуч - це коротший та швидший "
+"шлях. Проте, якщо ви бажаєте зловити трохи оселедця, ви маєте увійти у "
+"кімнату ліворуч."
 
 #: po/levelinfo:46
 msgid "The Niehoff Experience"
-msgstr ""
+msgstr "Випробування Niehoff'a"
 
 #: po/levelinfo:47
 msgid "Search, Search, Search"
-msgstr ""
+msgstr "Шукайте, шукайте, шукайте"
 
 #: po/levelinfo:48
 msgid "Mountains and Hills"
-msgstr ""
+msgstr "Гори та пагорби"
 
 #: po/levelinfo:49
 msgid "The Final Challenge"
-msgstr ""
+msgstr "Останнє випробування"
 
 #: po/levelinfo:50
 msgid "Wild Mountains"
-msgstr ""
+msgstr "Дикі гори"
 
 #: po/levelinfo:51
 msgid ""
 "A wild landscape of ice and snow. It isn't easy to keep the right way. Not "
 "for beginners."
 msgstr ""
+"Дика місцевість, вкрита льодом та снігом. Тут складно не втратити шлях. Не "
+"для новаків."
 
 #: po/levelinfo:52
 msgid "In Search of the Holy Grail"
-msgstr ""
+msgstr "В поисках Святого Граалю"
 
 #: po/levelinfo:53
 msgid ""
 "An adventure course with a simple task: Find the grail! Warning: It is very "
 "difficult to find the way."
 msgstr ""
+"Пригодницька траса із простим завданням: Знайдіть Грааль. Попередження: дуже "
+"складно знайти шлях."
 
 #: po/levelinfo:54
 msgid "Frozen Lakes"
-msgstr ""
+msgstr "Змерзлі озера"
 
 #: po/levelinfo:55
 msgid ""
 "To reach the finish you must pass several frozen lakes. Watch your speed on "
 "the ice - there are some dangerous corners."
 msgstr ""
+"Аби дістатися фінішу, Ви мусите подолати декілька змерзлих озер. Стежте за "
+"швидкістю на льоді - там є декілька небезпечних поворотів."
 
 #: po/levelinfo:56
 msgid "Chinese Wall"
-msgstr ""
+msgstr "Велика китайська стіна"
 
 #: po/levelinfo:57
 msgid ""
@@ -826,28 +853,35 @@ msgid ""
 "where the herrings are. If you fall off you can try to jump back up, there "
 "are 7 hidden ramps. You'll get a lot of exercise."
 msgstr ""
+"Велика китайська стіна взимку. Спробуйте залишитись на стіні - там "
+"оселедець. Якщо впадете, то Ви можете спробувати заплигнути назад, існує 7 "
+"прихованих трамплінів.  Ви отримаєте багато досвіду."
 
 #: po/levelinfo:58
 msgid "Secret Valleys"
-msgstr ""
+msgstr "Таємні долини"
 
 #: po/levelinfo:59
 msgid ""
 "Your task: Find the hidden valleys and the ten groups of dead trees. Look "
 "around, the ways are not easy to find."
 msgstr ""
+"Ваше завдання - знайти приховані долини та десять груп мертвих дерев. "
+"Дивіться навколо, не так вже і легко знайти шлях."
 
 #: po/levelinfo:60
 msgid "Explore the Mountains"
-msgstr ""
+msgstr "Дослідження гір"
 
 #: po/levelinfo:61
 msgid "Can you find your way through the icy, dangerous mountains. I doubt it."
 msgstr ""
+"Чи зможете Ви знайти шлях крізь ці небезпечні, вкриті льодом гори? Я не "
+"впевнений у цьому."
 
 #: po/levelinfo:62
 msgid "Challenge One"
-msgstr ""
+msgstr "Змагання №1"
 
 #: po/levelinfo:63
 msgid ""
@@ -867,15 +901,15 @@ msgstr ""
 
 #: po/levelinfo:66
 msgid "Tux Racer Classics"
-msgstr ""
+msgstr "Класичний Tux Racer"
 
 #: po/levelinfo:67
 msgid "Canadian Cup"
-msgstr ""
+msgstr "Кубок Канади"
 
 #: po/levelinfo:68
 msgid "Swiss Cup"
-msgstr ""
+msgstr "Кубок Швейцарії"
 
 #: po/levelinfo:69
 msgid "Bumpy Ride"
@@ -906,6 +940,7 @@ msgid ""
 "Keep your speed down to collect herring. You have plenty of time, so don't "
 "rush things."
 msgstr ""
+"Їдьте повільно, аби зібрати оселедця. У вас багато часу, тому не кваптеся."
 
 #: po/levelinfo:75
 msgid "Twisty Slope"
@@ -946,11 +981,11 @@ msgstr ""
 
 #: po/levelinfo:83
 msgid "Highway To Hell"
-msgstr ""
+msgstr "Шлях до пекла"
 
 #: po/levelinfo:84
 msgid "Ice Labyrinth"
-msgstr ""
+msgstr "Льодовий лабіринт."
 
 #: po/levelinfo:85
 msgid ""
@@ -1043,7 +1078,7 @@ msgstr ""
 
 #: po/levelinfo:102
 msgid "Ski Jump"
-msgstr ""
+msgstr "Стрибок з трампліну"
 
 #: po/levelinfo:103
 msgid ""
@@ -1063,7 +1098,7 @@ msgstr ""
 
 #: po/levelinfo:106
 msgid "The Narrow Way"
-msgstr ""
+msgstr "Вузький шлях"
 
 #: po/levelinfo:107
 msgid ""
@@ -1084,16 +1119,17 @@ msgstr ""
 
 #: po/levelinfo:110
 msgid "Slalom"
-msgstr ""
+msgstr "Слалом"
 
 #: po/levelinfo:111
 msgid ""
 "Brake while you turn and the herrings on this pseudo-slalom will be yours."
 msgstr ""
+"Пригальмовуйте на поворотах і весь оселедець в цьому псевдо-слаломі буде Ваш."
 
 #: po/levelinfo:112
 msgid "Who Says Penguins Can't Fly?"
-msgstr ""
+msgstr "Хто каже, що пінгвіни не літають?"
 
 #: po/levelinfo:113
 msgid ""
@@ -1103,7 +1139,7 @@ msgstr ""
 
 #: po/modelinfo:1
 msgid "Tux"
-msgstr ""
+msgstr "Тукс"
 
 #: po/modelinfo:2
 msgid "Tux on Snowboard"

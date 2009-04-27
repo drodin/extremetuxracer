@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: Extreme Tux Racer\n"
 "Report-Msgid-Bugs-To: https://translations.edge.launchpad.net/etracer\n"
 "POT-Creation-Date: 2008-08-03 20:17+0200\n"
-"PO-Revision-Date: 2008-07-11 20:15+0000\n"
-"Last-Translator: Furkan KARA <kingofthepixels@gmail.com>\n"
+"PO-Revision-Date: 2009-04-27 04:28+0000\n"
+"Last-Translator: 386sky <seotaewong40@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-08-03 17:56+0000\n"
+"X-Launchpad-Export-Date: 2009-04-27 12:04+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: src/audioconfig.cpp:36
@@ -87,8 +87,9 @@ msgid "Back"
 msgstr "Backwards"
 
 #: src/credits.cpp:43
+#, fuzzy
 msgid "Version 0.4"
-msgstr "Version 0.4"
+msgstr "Version: 0.5"
 
 #: src/credits.cpp:46
 msgid "Extreme Tux Racer is in the process of being"
@@ -135,8 +136,9 @@ msgid "from Sunspire Studios:"
 msgstr "from Sunspire Studios:"
 
 #: src/credits.cpp:71
+#, fuzzy
 msgid "Non-Rewrite Version Organization"
-msgstr "Non-Rewrite Version Organization"
+msgstr "Release Organisation"
 
 #: src/credits.cpp:74
 msgid "Translators"
@@ -159,8 +161,9 @@ msgid "Reinhard Niehoff (Trees)"
 msgstr "Reinhard Niehoff (Trees)"
 
 #: src/credits.cpp:93
+#, fuzzy
 msgid "Daniel Poeira and Christian Picon (Font)"
-msgstr "Daniel Poeira and Christian Picon (Font)"
+msgstr "Daniel Poeira and Christian Picon (Paper Cuts Font)"
 
 #: src/credits.cpp:95
 msgid "Music"
@@ -195,8 +198,9 @@ msgid "Thanks To"
 msgstr "Thanks To"
 
 #: src/credits.cpp:111
+#, fuzzy
 msgid "(for Exteme Tux Racer)"
-msgstr "(for Exteme Tux Racer)"
+msgstr "(for Tux Racer)"
 
 #: src/credits.cpp:112
 msgid "Ranger (for hosting the website)"
@@ -255,13 +259,12 @@ msgid "Tux Racer and the Tux Racer Name are Copyright © 2001 Jasmin F. Patry."
 msgstr "Tux Racer and the Tux Racer Name are Copyright © 2001 Jasmin F. Patry."
 
 #: src/event_select.cpp:50
-#, fuzzy
 msgid "Select campaign and cup"
 msgstr "Select campaign and cup"
 
 #: src/event_select.cpp:56
 msgid "Campaign:"
-msgstr ""
+msgstr "Campaign:"
 
 #: src/event_select.cpp:67
 msgid "Cup:"
@@ -379,9 +382,8 @@ msgid "You beat your best score!"
 msgstr "You beat your best score!"
 
 #: src/game_over.cpp:164
-#, fuzzy
 msgid "Congratulations! You won the campaign!"
-msgstr "Congratulations! You won the cup!"
+msgstr "Congratulations! You won the campaign!"
 
 #: src/game_over.cpp:166
 msgid "Congratulations! You won the cup!"
@@ -392,11 +394,11 @@ msgid "You advanced to the next race!"
 msgstr "You advanced to the next race!"
 
 #: src/game_over.cpp:170
+#, fuzzy
 msgid "You didn't advance."
-msgstr "You didn't advance."
+msgstr "You don't have any lives left."
 
 #: src/game_type_select.cpp:36
-#, fuzzy
 msgid "Enter a campaign"
 msgstr "Enter a campaign"
 
@@ -450,7 +452,7 @@ msgstr "Shadows:"
 
 #: src/graphicsconfig.cpp:141
 msgid "Draw Background:"
-msgstr ""
+msgstr "Draw Background:"
 
 #: src/highscore.cpp:88
 msgid "1:st"
@@ -622,14 +624,14 @@ msgid "%.0f"
 msgstr "%.0f"
 
 #: po/levelinfo:10 po/levelinfo:11
-#, fuzzy, c-format
+#, c-format
 msgid "%d:%d:%d"
-msgstr "%02d:%02d:%02d"
+msgstr "%d:%d:%d"
 
 #: po/levelinfo:12 po/levelinfo:13
-#, fuzzy, c-format
+#, c-format
 msgid "%d"
-msgstr "%03d"
+msgstr "%d"
 
 #: po/levelinfo:14
 msgid "Doing"
@@ -883,14 +885,12 @@ msgid "Challenge One"
 msgstr "Challenge One"
 
 #: po/levelinfo:63
-#, fuzzy
 msgid ""
 "A very dangerous path along the mountains. Warning: The course is very "
 "difficult and there are some situations where you can get stuck."
 msgstr ""
-"A very dangerous path along the mountains. Try to catch more than 60 "
-"herrings. Warning: The course is very difficult and there are some "
-"situations where you can get stuck."
+"A very dangerous path along the mountains. Warning: The course is very "
+"difficult and there are some situations where you can get stuck."
 
 #: po/levelinfo:64
 msgid "Path of Daggers"
@@ -1197,3 +1197,9 @@ msgstr "Tux on Snowboard"
 
 #~ msgid "Congratulations! You won the event!"
 #~ msgstr "Congratulations! You won the campaign!"
+
+#~ msgid "Select event and cup"
+#~ msgstr "Select campaign and cup"
+
+#~ msgid "Enter an event"
+#~ msgstr "Enter a campaign"

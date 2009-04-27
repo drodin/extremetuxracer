@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: etracer\n"
 "Report-Msgid-Bugs-To: https://translations.edge.launchpad.net/etracer\n"
 "POT-Creation-Date: 2008-08-03 20:17+0200\n"
-"PO-Revision-Date: 2008-07-23 19:22+0000\n"
+"PO-Revision-Date: 2009-01-28 17:25+0000\n"
 "Last-Translator: Paweł Drewniak <Unknown>\n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-08-03 17:56+0000\n"
+"X-Launchpad-Export-Date: 2009-04-27 12:04+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: src/audioconfig.cpp:36
@@ -87,8 +87,9 @@ msgid "Back"
 msgstr "Wstecz"
 
 #: src/credits.cpp:43
+#, fuzzy
 msgid "Version 0.4"
-msgstr "Wersja 0.4"
+msgstr "Wersja 0.5"
 
 #: src/credits.cpp:46
 msgid "Extreme Tux Racer is in the process of being"
@@ -137,7 +138,7 @@ msgstr "Sunspire Studios:"
 #: src/credits.cpp:71
 #, fuzzy
 msgid "Non-Rewrite Version Organization"
-msgstr "Organizacja Wersji Bez-Przepisywania-Kodu-Od-Nowa"
+msgstr "Organizacja Wydania"
 
 #: src/credits.cpp:74
 msgid "Translators"
@@ -148,20 +149,23 @@ msgid "Other (incomplete) translations are from the PPRacer Project."
 msgstr "Inne (niekompletne) tłumaczenia pochodzą z projektu PPRacer."
 
 #: src/credits.cpp:90
+#, fuzzy
 msgid "Nicosmos (Logo, Hud Graphics)"
-msgstr "Nicosmos (Logo, HUD)"
+msgstr "Nicosmos (Logo, HUD i Interfejs)"
 
 #: src/credits.cpp:91
+#, fuzzy
 msgid "Christian Picon (Objects, Skyboxes)"
-msgstr "Christian Picon (Obiekty, Niebo)"
+msgstr "Christian Picon (Obiekty, Niebo, Postacie)"
 
 #: src/credits.cpp:92
 msgid "Reinhard Niehoff (Trees)"
 msgstr "Reinhard Niehoff (Drzewa)"
 
 #: src/credits.cpp:93
+#, fuzzy
 msgid "Daniel Poeira and Christian Picon (Font)"
-msgstr "Daniel Poeira i Christian Picon (Czcionka)"
+msgstr "Daniel Poeira i Christan Picon (Czcionka Papercuts)"
 
 #: src/credits.cpp:95
 msgid "Music"
@@ -196,6 +200,7 @@ msgid "Thanks To"
 msgstr "Podziękowania Dla"
 
 #: src/credits.cpp:111
+#, fuzzy
 msgid "(for Exteme Tux Racer)"
 msgstr "(Extreme Tux Racer)"
 
@@ -216,12 +221,14 @@ msgid "The OpenRacer project"
 msgstr "Projekt OpenRacer"
 
 #: src/credits.cpp:116
+#, fuzzy
 msgid "Reinhard Niehoff (for helping with code modification)"
-msgstr "Reinharda Niehoff (za pomoc w modyfikacji kodu)"
+msgstr "Reinhard Niehoff (mnóstwo porad)"
 
 #: src/credits.cpp:117
+#, fuzzy
 msgid "All the people on the forum"
-msgstr "Wszystkim ludziom na forum"
+msgstr "Wszyscy ludzie na forum"
 
 #: src/credits.cpp:118
 msgid "Larry Ewing (creator of Tux)"
@@ -256,13 +263,12 @@ msgid "Tux Racer and the Tux Racer Name are Copyright © 2001 Jasmin F. Patry."
 msgstr "Prawa autorskie Tux Racera i nazwy Tux Racer © 2001 Jasmin F. Patry."
 
 #: src/event_select.cpp:50
-#, fuzzy
 msgid "Select campaign and cup"
 msgstr "Wybierz rozgrywki i puchar"
 
 #: src/event_select.cpp:56
 msgid "Campaign:"
-msgstr ""
+msgstr "Rozgrywki:"
 
 #: src/event_select.cpp:67
 msgid "Cup:"
@@ -380,9 +386,8 @@ msgid "You beat your best score!"
 msgstr "Pobiłeś swój rekord!"
 
 #: src/game_over.cpp:164
-#, fuzzy
 msgid "Congratulations! You won the campaign!"
-msgstr "Gratulacje! Wygrałeś puchar!"
+msgstr "Gratulacje! Wygrałeś rozgrywki!"
 
 #: src/game_over.cpp:166
 msgid "Congratulations! You won the cup!"
@@ -397,7 +402,6 @@ msgid "You didn't advance."
 msgstr "Niestety, nie przeszedłeś dalej."
 
 #: src/game_type_select.cpp:36
-#, fuzzy
 msgid "Enter a campaign"
 msgstr "Rozpocznij grę"
 
@@ -451,7 +455,7 @@ msgstr "Cienie:"
 
 #: src/graphicsconfig.cpp:141
 msgid "Draw Background:"
-msgstr ""
+msgstr "Tło:"
 
 #: src/highscore.cpp:88
 msgid "1:st"
@@ -625,14 +629,14 @@ msgstr ""
 "%.0f"
 
 #: po/levelinfo:10 po/levelinfo:11
-#, fuzzy, c-format
+#, c-format
 msgid "%d:%d:%d"
-msgstr "%02d:%02d:%02d"
+msgstr "%d:%d:%d"
 
 #: po/levelinfo:12 po/levelinfo:13
-#, fuzzy, c-format
+#, c-format
 msgid "%d"
-msgstr "%03d"
+msgstr "%d"
 
 #: po/levelinfo:14
 msgid "Doing"
@@ -801,11 +805,11 @@ msgstr ""
 
 #: po/levelinfo:46
 msgid "The Niehoff Experience"
-msgstr ""
+msgstr "Doświadczenie Niehoffa"
 
 #: po/levelinfo:47
 msgid "Search, Search, Search"
-msgstr ""
+msgstr "Szukaj, Szukaj, Szukaj"
 
 #: po/levelinfo:48
 msgid "Mountains and Hills"
@@ -891,14 +895,12 @@ msgid "Challenge One"
 msgstr "Wyzwanie Pierwsze"
 
 #: po/levelinfo:63
-#, fuzzy
 msgid ""
 "A very dangerous path along the mountains. Warning: The course is very "
 "difficult and there are some situations where you can get stuck."
 msgstr ""
-"Bardzo niebezpieczna trasa wzdłuż gór. Postaraj się złapać powyżej 60 "
-"śledzi. Uwaga: trasa jest bardzo trudna, a w dodatku jest kilka miejsc, w "
-"których można utknąć."
+"Bardzo niebezpieczna ścieżka prowadząca wzdłuż gór. Uwaga: niełatwo jest "
+"podążać trasą, w niektórych sytuacjach możesz utknąć."
 
 #: po/levelinfo:64
 msgid "Path of Daggers"
@@ -909,6 +911,9 @@ msgid ""
 "Big spikes may prove to be the least of your worries on this course. Muliple "
 "paths allow you to take low or high roads, each with their own challenges."
 msgstr ""
+"Wielkie, ostre szczyty mogą się okazać najmniejszym ze zmartwień na tej "
+"trasie. Wielość szlaków  pozwala na wybór tras biegnących górą lub dołem, a "
+"na każdej z nich czekają inne wyzwania."
 
 #: po/levelinfo:66
 msgid "Tux Racer Classics"
@@ -924,23 +929,28 @@ msgstr "Puchar Szwajcarii"
 
 #: po/levelinfo:69
 msgid "Bumpy Ride"
-msgstr ""
+msgstr "Wyboisty Zjazd"
 
 #: po/levelinfo:70
 msgid ""
 "This hill has a series of ramps to tackle.  Be sure to line yourself up "
 "before getting airborne."
 msgstr ""
+"Na tym wzgórzu będziesz musiał sobie poradzić z kilkoma podjazdami. Ustaw "
+"się równo przed wzbiciem się w powietrze."
 
 #: po/levelinfo:71
 msgid "Bunny Hill"
-msgstr ""
+msgstr "Ośla Łączka"
 
 #: po/levelinfo:72
 msgid ""
 "Let's start out easy, just collect the herring in the time limit and you'll "
 "be fine. The best part is that you don't have to use those stupid T-lifts."
 msgstr ""
+"Na dobry początek po prostu zbierz śledzie mieszcząc się w limicie czasu i "
+"wszytko będzie w porządku. Najlepsze jest to, że nie musisz korzystać z tych "
+"głupich wyciągów."
 
 #: po/levelinfo:73
 msgid "Frozen River"
@@ -956,7 +966,7 @@ msgstr ""
 
 #: po/levelinfo:75
 msgid "Twisty Slope"
-msgstr ""
+msgstr "Kręte Zbocze"
 
 #: po/levelinfo:76
 msgid ""
@@ -983,11 +993,11 @@ msgstr ""
 
 #: po/levelinfo:79
 msgid "Herring Run"
-msgstr ""
+msgstr "Jazda po śledzie"
 
 #: po/levelinfo:80
 msgid "Mountain Man"
-msgstr ""
+msgstr "Człowiek Gór"
 
 #: po/levelinfo:81
 msgid "Valley Cup"
@@ -1023,16 +1033,22 @@ msgid ""
 "herrings very difficult to get if you're going for a perfect score! Watch "
 "your speed in certain areas to get the most herrings!"
 msgstr ""
+"Śnieżna Dolina jest dość równym i bardzo szybkim torem. Znalezienie kilku "
+"śledzi będzie bardzo trudne, jeśli chcesz osiągnąć maksymalny wynik! "
+"Kontroluj prędkość w pewnych miejscach żeby zdobyć najwięcej rybek!"
 
 #: po/levelinfo:88
 msgid "Tux Toboggan Run"
-msgstr ""
+msgstr "Tuksowy Zjazd Na Sankach"
 
 #: po/levelinfo:89
 msgid ""
 "Collect herrings in an ice channel with various paths and many high and low "
 "speed passages. Watch out for the occasional tree."
 msgstr ""
+"Zbieraj śledzie w lodowym korytarzu z przeróżnymi ścieżkami i wieloma "
+"szybkimi lub wolnymi przejściami. Uważaj na rzadko występujące, aczkolwiek "
+"obecne drzewa."
 
 #: po/levelinfo:90
 msgid "Hazzard Valley"
@@ -1058,6 +1074,8 @@ msgid ""
 "Skull mountain is a steep, twisty drop around tree-filled inner peaks. "
 "Expect to miss a lot of herrings and crash a lot."
 msgstr ""
+"Góra Czaszki to stroma, kręta droga wokół zalesionych szczytów. Możesz się "
+"spodziewać, że ominiesz wiele śledzi i często będziesz się z czymś zderzał."
 
 #: po/levelinfo:94
 msgid "Keep It Up"
@@ -1085,7 +1103,7 @@ msgstr ""
 
 #: po/levelinfo:98
 msgid "I've Got A Woody"
-msgstr ""
+msgstr "Las, Widzę Las"
 
 #: po/levelinfo:99
 msgid ""
@@ -1093,6 +1111,9 @@ msgid ""
 "hard, try this one. Have fun winding through the woods.  Look out for a huge "
 "shortcut!!"
 msgstr ""
+"I po raz kolejny masakrycznie wzniesiony lodowy roller-coaster. Jeśli "
+"myślisz, że ostatnie 2 trasy były trudne, zobacz tę. Spróbuj radować się "
+"ślizgiem miedzy lasami. Wypatrz drogę na skróty!"
 
 #: po/levelinfo:100
 msgid "Mt. Satan"
@@ -1155,6 +1176,8 @@ msgid ""
 "Hamburger Hill is steep, narrow, twisty, lumpy, icy, and rocky, with a few "
 "trees right in your way!"
 msgstr ""
+"Hamburgerowe Wzgórze to stroma, wąska, zakręcona, nierówna, oblodzona i "
+"skalista trasa z paroma drzewkami prosto na Twojej drodze!"
 
 #: po/levelinfo:110
 msgid "Slalom"
@@ -1167,13 +1190,15 @@ msgstr "Hamuj podczas skrętów, a śledzie na tym niby-slalomie będą twoje."
 
 #: po/levelinfo:112
 msgid "Who Says Penguins Can't Fly?"
-msgstr ""
+msgstr "A Kto Mówi, Że Pingwiny Nie Potrafią Latać?"
 
 #: po/levelinfo:113
 msgid ""
 "It'll be tough collecting herrings at speeds over 200, so try to brake "
 "whenever possible to get the required herring."
 msgstr ""
+"Zbieranie śledzi przy prędkości powyżej 200 km/h będzie trudne, więc staraj "
+"się hamować, gdy to tylko możliwe, by udało ci się je złapać."
 
 #: po/modelinfo:1
 msgid "Tux"
@@ -1188,3 +1213,48 @@ msgstr "Tux na Snowboardzie"
 
 #~ msgid "Congratulations! You won the event!"
 #~ msgstr "Gratulacje! Wygrałeś rozgrywki!"
+
+#~ msgid "'Freezing Point'"
+#~ msgstr "Punkt Mrozu"
+
+#~ msgid "'Calm Race'"
+#~ msgstr "Spokojny Wyścig"
+
+#~ msgid "'Lost Race'"
+#~ msgstr "Przegrany Wyścig"
+
+#~ msgid "'Race Intro'"
+#~ msgstr "Intro do Wyścigu"
+
+#~ msgid "'Spunky Race'"
+#~ msgstr "Brawurowy Wyścig"
+
+#~ msgid "'Won Race: kschroeder Remix'"
+#~ msgstr "Wygrany Wyścig: kschroeder Remix"
+
+#~ msgid "52143__blaukreuz__imp_01.wav - Original sound of ice cracking..."
+#~ msgstr "52143__blaukreuz__imp_01.wav - Oryginalny dźwięk pękającego lodu..."
+
+#~ msgid "http://www.freesound.org/samplesViewSingle.php?id=52143"
+#~ msgstr "http://www.freesound.org/samplesViewSingle.php?id=52143"
+
+#~ msgid "Requirements met! Advance to the next race."
+#~ msgstr "Wymagania spełnione! Awans do następnego wyścigu."
+
+#~ msgid "Race requirements not met."
+#~ msgstr "Wymagania wyścigu niespełnione."
+
+#~ msgid "Samuel"
+#~ msgstr "Samuel"
+
+#~ msgid "Trixi"
+#~ msgstr "Trixi"
+
+#~ msgid "Speedy"
+#~ msgstr "Speedy"
+
+#~ msgid "Select event and cup"
+#~ msgstr "Wybierz rozgrywki i puchar"
+
+#~ msgid "Enter an event"
+#~ msgstr "Rozpocznij grę"

@@ -8,131 +8,136 @@ msgstr ""
 "Project-Id-Version: etracer\n"
 "Report-Msgid-Bugs-To: https://translations.edge.launchpad.net/etracer\n"
 "POT-Creation-Date: 2008-08-03 20:17+0200\n"
-"PO-Revision-Date: 2008-04-25 23:31+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2009-03-09 15:51+0000\n"
+"Last-Translator: Νιάνιος Ρωμανός <Unknown>\n"
 "Language-Team: Greek <el@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-08-03 17:56+0000\n"
+"X-Launchpad-Export-Date: 2009-04-27 12:04+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: src/audioconfig.cpp:36
 msgid "Audio Configuration"
-msgstr ""
+msgstr "Ρυθμίσεις Ήχου"
 
 #: src/audioconfig.cpp:112
 msgid "Sound Effects:"
-msgstr ""
+msgstr "Εφέ Ήχου"
 
 #: src/audioconfig.cpp:116
 msgid "Music:"
-msgstr ""
+msgstr "Μουσική:"
 
 #: src/audioconfig.cpp:120
 msgid "(needs restart)"
-msgstr ""
+msgstr "(απαιτείται επανεκκίνηση)"
 
 #: src/audioconfig.cpp:122
 msgid "Disable Audio:"
-msgstr ""
+msgstr "Απενεργοποίηση Ήχου:"
 
 #: src/audioconfig.cpp:126
 msgid "Stereo:"
-msgstr ""
+msgstr "Στερεοφωνικός:"
 
 #: src/audioconfig.cpp:130
 msgid "Bits Per Sample:"
-msgstr ""
+msgstr "Bits ανά δείγμα:"
 
 #: src/audioconfig.cpp:134
 msgid "Samples Per Second:"
-msgstr ""
+msgstr "Δείγματα ανα δευτερόλεπτο:"
 
 #: src/configmode.cpp:36
 msgid "Cancel"
-msgstr ""
+msgstr "Άκυρο"
 
 #: src/configmode.cpp:43
 msgid "Ok"
-msgstr ""
+msgstr "Εντάξει"
 
 #: src/configuration.cpp:38 src/game_type_select.cpp:57 src/paused.cpp:62
 msgid "Configuration"
-msgstr ""
+msgstr "Ρυθμίσεις"
 
 #: src/configuration.cpp:45 src/credits.cpp:89
 msgid "Graphics"
-msgstr ""
+msgstr "Γραφικα"
 
 #: src/configuration.cpp:52
 msgid "Video"
-msgstr ""
+msgstr "Βίντεο"
 
 #: src/configuration.cpp:59
 msgid "Audio"
-msgstr ""
+msgstr "Ήχος"
 
 #: src/configuration.cpp:66
 msgid "Keyboard"
-msgstr ""
+msgstr "Πληκτρολόγιο"
 
 #: src/configuration.cpp:73
 msgid "Joystick"
-msgstr ""
+msgstr "Χειριστήριο"
 
 #: src/configuration.cpp:81 src/event_select.cpp:96
 #: src/event_race_select.cpp:53 src/highscore.cpp:413
 msgid "Back"
-msgstr ""
+msgstr "Πίσω"
 
 #: src/credits.cpp:43
+#, fuzzy
 msgid "Version 0.4"
-msgstr ""
+msgstr "Έκδοση 0.5"
 
 #: src/credits.cpp:46
 msgid "Extreme Tux Racer is in the process of being"
-msgstr ""
+msgstr "Το Extreme Tux Racer βρίσκεται στη διαδικασία"
 
 #: src/credits.cpp:47
 msgid "completely rewritten. All versions after 0.35,"
-msgstr ""
+msgstr "ολοκληρωτικής ανασύνταξης. Όλες οι εκδόσεις μετά την 0.35"
 
 #: src/credits.cpp:48
 msgid "including this one, won't have major code changes"
 msgstr ""
+"συμπεριλαμβανομένης και της παρούσας, δεν θα έχουν σημαντικές αλλαγές στον "
+"κώδικα"
 
 #: src/credits.cpp:49
 msgid "because the programmers are busy making a new,"
 msgstr ""
+"επειδή οι προγραμματιστές είναι απασχολημένοι φτιάχνοντας ένα καινούριο,"
 
 #: src/credits.cpp:50
 msgid "improved game."
-msgstr ""
+msgstr "βελτιωμένο παιχνίδι."
 
 #: src/credits.cpp:52
 msgid "Extreme Tux Racer is based on"
-msgstr ""
+msgstr "Το Extreme Tux Racer είναι βασισμένο στο"
 
 #: src/credits.cpp:53
 msgid "PlanetPenguin Racer, Open Racer and Tux Racer."
-msgstr ""
+msgstr "PlanetPenguin Racer, το Open Racer και το Tux Racer."
 
 #: src/credits.cpp:55
 msgid "Some courses may have been modified from their"
-msgstr ""
+msgstr "Μερικές πίστες έχουν διαφοροποιηθεί από τις"
 
 #: src/credits.cpp:56
 msgid "original versions to fit the requirements of the game."
 msgstr ""
+"αρχικές εκδόσεις τους για να προσαρμοστούν στις απαιτήσεις του παιχνιδιού."
 
 #: src/credits.cpp:58
 msgid "Development"
-msgstr ""
+msgstr "Ανάπτυξη λογισμικού"
 
 #: src/credits.cpp:63
 msgid "from Sunspire Studios:"
-msgstr ""
+msgstr "Από την Sunrise Studios"
 
 #: src/credits.cpp:71
 msgid "Non-Rewrite Version Organization"
@@ -140,7 +145,7 @@ msgstr ""
 
 #: src/credits.cpp:74
 msgid "Translators"
-msgstr ""
+msgstr "Μεταφραστές"
 
 #: src/credits.cpp:87
 msgid "Other (incomplete) translations are from the PPRacer Project."
@@ -156,7 +161,7 @@ msgstr ""
 
 #: src/credits.cpp:92
 msgid "Reinhard Niehoff (Trees)"
-msgstr ""
+msgstr "Reinhard Niehoff (Δέντρα)"
 
 #: src/credits.cpp:93
 msgid "Daniel Poeira and Christian Picon (Font)"
@@ -164,23 +169,23 @@ msgstr ""
 
 #: src/credits.cpp:95
 msgid "Music"
-msgstr ""
+msgstr "Μουσική"
 
 #: src/credits.cpp:97
 msgid "'Race 1'"
-msgstr ""
+msgstr "'Αγώνας 1'"
 
 #: src/credits.cpp:98
 msgid "'Menu'"
-msgstr ""
+msgstr "'Μενού'"
 
 #: src/credits.cpp:99
 msgid "'Options'"
-msgstr ""
+msgstr "'Επιλογές'"
 
 #: src/credits.cpp:100
 msgid "'Won Race'"
-msgstr ""
+msgstr "'Νίκη'"
 
 #: src/credits.cpp:103
 msgid "'Credits Ballad'"
@@ -192,27 +197,28 @@ msgstr ""
 
 #: src/credits.cpp:110
 msgid "Thanks To"
-msgstr ""
+msgstr "Ευχαριστίες στους"
 
 #: src/credits.cpp:111
+#, fuzzy
 msgid "(for Exteme Tux Racer)"
-msgstr ""
+msgstr "(για το Tux Racer)"
 
 #: src/credits.cpp:112
 msgid "Ranger (for hosting the website)"
-msgstr ""
+msgstr "Ranger (για την στέγαση της ιστοσελίδας)"
 
 #: src/credits.cpp:113
 msgid "Slythfox (for making the website)"
-msgstr ""
+msgstr "Slythfox (για την δημιουργία της ιστοσελίδας)"
 
 #: src/credits.cpp:114
 msgid "The Course Creators"
-msgstr ""
+msgstr "Οι δημιουργοί του μαθήματος"
 
 #: src/credits.cpp:115
 msgid "The OpenRacer project"
-msgstr ""
+msgstr "Το έργο του OpenRacer"
 
 #: src/credits.cpp:116
 msgid "Reinhard Niehoff (for helping with code modification)"
@@ -224,23 +230,23 @@ msgstr ""
 
 #: src/credits.cpp:118
 msgid "Larry Ewing (creator of Tux)"
-msgstr ""
+msgstr "Larry Ewing (δημιουργό του Tux)"
 
 #: src/credits.cpp:119
 msgid "(for Tux Racer)"
-msgstr ""
+msgstr "(για το Tux Racer)"
 
 #: src/credits.cpp:126
 msgid "Tux Racer is a trademark of Jasmin F. Patry."
-msgstr ""
+msgstr "To Tux Racer είναι ένα εμπορικό σήμα της Jasmin F. Patry."
 
 #: src/credits.cpp:127
 msgid "Extreme Tux Racer is licenced under the GPL."
-msgstr ""
+msgstr "Το Extreme Tux Racer είναι αδειοδοτημένο υπό τους όρους της GPL."
 
 #: src/credits.cpp:128
 msgid "We grant use of the name 'Extreme Tux Racer'"
-msgstr ""
+msgstr "Παραχωρούμε προς χρήση το όνομα 'Extreme Tux Racer'"
 
 #: src/credits.cpp:129
 msgid "to any forks or continuations."
@@ -249,10 +255,14 @@ msgstr ""
 #: src/credits.cpp:131
 msgid "PlanetPenguin Racer is Copyright © 2005 Volker Stroebel."
 msgstr ""
+"To PlanetPenguin Racer είναι πνευματική ιδιοκτησία του © 2005 Volker "
+"Stroebel."
 
 #: src/credits.cpp:132
 msgid "Tux Racer and the Tux Racer Name are Copyright © 2001 Jasmin F. Patry."
 msgstr ""
+"Το Tux Racer και το Tux Racer Name είναι πνευματική ιδιοκτησία της © 2001 "
+"Jasmin F. Patry."
 
 #: src/event_select.cpp:50
 msgid "Select campaign and cup"
@@ -264,15 +274,15 @@ msgstr ""
 
 #: src/event_select.cpp:67
 msgid "Cup:"
-msgstr ""
+msgstr "Πρωτάθλημα:"
 
 #: src/event_select.cpp:87
 msgid "Player name:"
-msgstr ""
+msgstr "Όνομα παίκτη:"
 
 #: src/event_select.cpp:104
 msgid "Continue"
-msgstr ""
+msgstr "Συνέχεια"
 
 #: src/event_select.cpp:158
 msgid "You've won this cup!"
@@ -280,15 +290,15 @@ msgstr ""
 
 #: src/event_select.cpp:160
 msgid "You must complete this cup next"
-msgstr ""
+msgstr "Πρέπει να ολοκληρώσετε αυτό το πρωτάθλημα στη συνέχεια"
 
 #: src/event_select.cpp:162
 msgid "You cannot enter this cup yet"
-msgstr ""
+msgstr "Δεν μπορείτε να εισέλθετε σε αυτό το πρωτάθλημα ακόμα"
 
 #: src/event_race_select.cpp:45
 msgid "Select a race"
-msgstr ""
+msgstr "Επιλέξτε αγώνα"
 
 #: src/event_race_select.cpp:60
 msgid "Race!"
@@ -296,11 +306,11 @@ msgstr ""
 
 #: src/event_race_select.cpp:280
 msgid "You don't have any lives left."
-msgstr ""
+msgstr "Δεν σου απέμειναν άλλες ζωές."
 
 #: src/event_race_select.cpp:285
 msgid "Race won! Your result:"
-msgstr ""
+msgstr "Νικητής! Το αποτέλεσμά σου:"
 
 #: src/event_race_select.cpp:289
 msgid "Needed to advance:"
@@ -308,16 +318,16 @@ msgstr ""
 
 #: src/event_race_select.cpp:293
 msgid "You can't enter this race yet."
-msgstr ""
+msgstr "Δεν μπορείς να τρέξεις σε αυτόν τον αγώνα ακόμα."
 
 #: src/event_race_select.cpp:316
 msgid "Time:"
-msgstr ""
+msgstr "Χρόνος:"
 
 #: src/event_race_select.cpp:320
 #, c-format
 msgid "%02d:%02d.%02d"
-msgstr ""
+msgstr "%02d:%02d.%02d"
 
 #: src/event_race_select.cpp:324
 msgid "Herring:"
@@ -325,7 +335,7 @@ msgstr ""
 
 #: src/event_race_select.cpp:332
 msgid "Score:"
-msgstr ""
+msgstr "Βαθμολογία:"
 
 #: src/event_race_select.cpp:341
 msgid "Contributed by:"
@@ -333,20 +343,20 @@ msgstr ""
 
 #: src/event_race_select.cpp:349 po/levelinfo:16
 msgid "Unknown"
-msgstr ""
+msgstr "Άγνωστο"
 
 #: src/game_over.cpp:109
 msgid "Race aborted"
-msgstr ""
+msgstr "Ο αγώνας ακυρώθηκε"
 
 #: src/game_over.cpp:112
 msgid "Race Over"
-msgstr ""
+msgstr "Τέλος αγώνα"
 
 #: src/game_over.cpp:119
 #, c-format
 msgid "Time: %02d:%02d.%02d"
-msgstr ""
+msgstr "Χρόνος:%02d:%02d.%02d"
 
 #: src/game_over.cpp:124
 #, c-format
@@ -356,12 +366,12 @@ msgstr ""
 #: src/game_over.cpp:129
 #, c-format
 msgid "Score: %6d"
-msgstr ""
+msgstr "Βαθμολογία: %6d"
 
 #: src/game_over.cpp:135
 #, c-format
 msgid "Max speed: %3d km/h"
-msgstr ""
+msgstr "Μέγιστη ταχύτητα: %3d km/h"
 
 #: src/game_over.cpp:141
 #, c-format
@@ -371,11 +381,11 @@ msgstr ""
 #: src/game_over.cpp:151
 #, c-format
 msgid "You made it to the %s place in the highscore!"
-msgstr ""
+msgstr "Έφτασες την %s θέση στο πίνακα των ρεκορ"
 
 #: src/game_over.cpp:161
 msgid "You beat your best score!"
-msgstr ""
+msgstr "Βελτίωσες το προσωπικό σου σκορ!"
 
 #: src/game_over.cpp:164
 msgid "Congratulations! You won the campaign!"
@@ -383,15 +393,16 @@ msgstr ""
 
 #: src/game_over.cpp:166
 msgid "Congratulations! You won the cup!"
-msgstr ""
+msgstr "Συγχαρητήρια! Κέρδισες το πρωτάθλημα!"
 
 #: src/game_over.cpp:168
 msgid "You advanced to the next race!"
 msgstr ""
 
 #: src/game_over.cpp:170
+#, fuzzy
 msgid "You didn't advance."
-msgstr ""
+msgstr "Δεν σου απέμειναν άλλες ζωές."
 
 #: src/game_type_select.cpp:36
 msgid "Enter a campaign"
@@ -399,7 +410,7 @@ msgstr ""
 
 #: src/game_type_select.cpp:43
 msgid "Practice"
-msgstr ""
+msgstr "Εξάσκηση"
 
 #: src/game_type_select.cpp:50 src/highscore.cpp:350
 msgid "Highscore"
@@ -407,15 +418,15 @@ msgstr ""
 
 #: src/game_type_select.cpp:64
 msgid "Credits"
-msgstr ""
+msgstr "Μνεία"
 
 #: src/game_type_select.cpp:71 src/paused.cpp:78
 msgid "Quit"
-msgstr ""
+msgstr "Έξοδος"
 
 #: src/graphicsconfig.cpp:30
 msgid "Graphics Configuration"
-msgstr ""
+msgstr "Ρυθμίσεις Γραφικών"
 
 #: src/graphicsconfig.cpp:108
 msgid "Model:"
@@ -427,27 +438,27 @@ msgstr ""
 
 #: src/graphicsconfig.cpp:121
 msgid "Display FPS:"
-msgstr ""
+msgstr "Εμφάνιση FPS"
 
 #: src/graphicsconfig.cpp:125
 msgid "Display Progress Bar:"
-msgstr ""
+msgstr "Εμφάνιση μπάρας προόδου"
 
 #: src/graphicsconfig.cpp:129
 msgid "Draw Fog:"
-msgstr ""
+msgstr "Σχεδίαση Ομίχλης"
 
 #: src/graphicsconfig.cpp:133
 msgid "Reflections:"
-msgstr ""
+msgstr "Αντανακλάσεις"
 
 #: src/graphicsconfig.cpp:137
 msgid "Shadows:"
-msgstr ""
+msgstr "Σκιές:"
 
 #: src/graphicsconfig.cpp:141
 msgid "Draw Background:"
-msgstr ""
+msgstr "Εμφάνιση Φόντου:"
 
 #: src/highscore.cpp:88
 msgid "1:st"
@@ -496,15 +507,15 @@ msgstr ""
 #: src/highscore.cpp:327
 #, c-format
 msgid " (%d points)"
-msgstr ""
+msgstr " (%d βαθμοί)"
 
 #: src/joystickconfig.cpp:29
 msgid "Joystick Configuration"
-msgstr ""
+msgstr "Ρυθμίσεις Joystick"
 
 #: src/joystickconfig.cpp:33
 msgid "Enable Joystick"
-msgstr ""
+msgstr "Ενεργοποίηση Joystick"
 
 #: src/joystickconfig.cpp:41 src/keyboardconfig.cpp:132
 msgid "Paddle:"
@@ -524,15 +535,15 @@ msgstr ""
 
 #: src/keyboardconfig.cpp:55
 msgid "Keyboard Configuration"
-msgstr ""
+msgstr "Ρύθμιση πληκτρολογίου"
 
 #: src/keyboardconfig.cpp:124
 msgid "Turn left:"
-msgstr ""
+msgstr "Στροφή αριστερά:"
 
 #: src/keyboardconfig.cpp:128
 msgid "Turn right:"
-msgstr ""
+msgstr "Στροφή δεξιά:"
 
 #: src/keyboardconfig.cpp:148
 msgid "Reset:"
@@ -540,19 +551,19 @@ msgstr ""
 
 #: src/loading.cpp:53
 msgid "Loading, Please Wait..."
-msgstr ""
+msgstr "Φόρτωση, παρακαλώ περιμένετε..."
 
 #: src/paused.cpp:54
 msgid "Paused"
-msgstr ""
+msgstr "Παύση"
 
 #: src/paused.cpp:70
 msgid "Resume"
-msgstr ""
+msgstr "Συνέχεια"
 
 #: src/splash_screen.cpp:34
 msgid "PRESS ANY KEY TO START"
-msgstr ""
+msgstr "ΠΑΤΗΣΤΕ ΟΠΟΙΟΔΗΠΟΤΕ ΠΛΗΚΤΡΟ ΓΙΑ ΕΚΚΙΝΗΣΗ"
 
 #: src/videoconfig.cpp:60
 msgid "Video Configuration"
@@ -572,7 +583,7 @@ msgstr ""
 
 #: src/videoconfig.cpp:181
 msgid "Bits Per Pixel:"
-msgstr ""
+msgstr "Βάθος χρώματος ανά Pixel"
 
 #: src/videoconfig.cpp:185
 msgid "Fullscreen:"
@@ -597,12 +608,12 @@ msgstr ""
 #: po/levelinfo:1
 #, c-format
 msgid "FPS: %.1f"
-msgstr ""
+msgstr "FPS: %.1f"
 
 #: po/levelinfo:2 po/levelinfo:3
 #, c-format
 msgid "%03d"
-msgstr ""
+msgstr "%03d"
 
 #: po/levelinfo:4 po/levelinfo:5
 #, c-format
@@ -611,22 +622,22 @@ msgstr ""
 
 #: po/levelinfo:6 po/levelinfo:8
 msgid "km/h"
-msgstr ""
+msgstr "χλμ/ώρα"
 
 #: po/levelinfo:7 po/levelinfo:9
 #, c-format
 msgid "%.0f"
-msgstr ""
+msgstr "%.0f"
 
 #: po/levelinfo:10 po/levelinfo:11
 #, c-format
 msgid "%d:%d:%d"
-msgstr ""
+msgstr "%d:%d:%d"
 
 #: po/levelinfo:12 po/levelinfo:13
 #, c-format
 msgid "%d"
-msgstr ""
+msgstr "%d"
 
 #: po/levelinfo:14
 msgid "Doing"

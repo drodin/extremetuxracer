@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: etracer\n"
 "Report-Msgid-Bugs-To: https://translations.edge.launchpad.net/etracer\n"
 "POT-Creation-Date: 2008-08-03 20:17+0200\n"
-"PO-Revision-Date: 2008-07-10 10:38+0000\n"
-"Last-Translator: egg8383 <egg8383@yahoo.com.hk>\n"
+"PO-Revision-Date: 2009-04-27 04:21+0000\n"
+"Last-Translator: 386sky <seotaewong40@gmail.com>\n"
 "Language-Team: Chinese (Hong Kong) <zh_HK@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-08-03 17:56+0000\n"
+"X-Launchpad-Export-Date: 2009-04-27 12:04+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: src/audioconfig.cpp:36
@@ -128,7 +128,7 @@ msgstr ""
 
 #: src/credits.cpp:58
 msgid "Development"
-msgstr ""
+msgstr "開發"
 
 #: src/credits.cpp:63
 msgid "from Sunspire Studios:"
@@ -164,7 +164,7 @@ msgstr ""
 
 #: src/credits.cpp:95
 msgid "Music"
-msgstr ""
+msgstr "音樂"
 
 #: src/credits.cpp:97
 msgid "'Race 1'"

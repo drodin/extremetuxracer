@@ -8,18 +8,18 @@ msgstr ""
 "Project-Id-Version: Extreme Tux Racer\n"
 "Report-Msgid-Bugs-To: https://translations.edge.launchpad.net/etracer\n"
 "POT-Creation-Date: 2008-08-03 20:17+0200\n"
-"PO-Revision-Date: 2008-04-21 11:29+0000\n"
-"Last-Translator: Paweł Drewniak <Unknown>\n"
+"PO-Revision-Date: 2008-12-13 15:20+0000\n"
+"Last-Translator: Dan Telecan <telecan_dan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-08-03 17:56+0000\n"
+"X-Launchpad-Export-Date: 2009-04-27 12:04+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: src/audioconfig.cpp:36
 msgid "Audio Configuration"
-msgstr "Configuraţie audio"
+msgstr "Configurație audio"
 
 #: src/audioconfig.cpp:112
 msgid "Sound Effects:"
@@ -31,7 +31,7 @@ msgstr "Muzică:"
 
 #: src/audioconfig.cpp:120
 msgid "(needs restart)"
-msgstr "(trebuie restartat)"
+msgstr "(trebuie repornit)"
 
 #: src/audioconfig.cpp:122
 msgid "Disable Audio:"
@@ -92,47 +92,47 @@ msgstr ""
 
 #: src/credits.cpp:46
 msgid "Extreme Tux Racer is in the process of being"
-msgstr ""
+msgstr "Extreme Tux Racer este pe cale de a fi"
 
 #: src/credits.cpp:47
 msgid "completely rewritten. All versions after 0.35,"
-msgstr ""
+msgstr "complet rescris. Toate versiunile de după 0.35,"
 
 #: src/credits.cpp:48
 msgid "including this one, won't have major code changes"
-msgstr ""
+msgstr "incluzând-o pe aceasta, nu vor avea schimbări de cod majore"
 
 #: src/credits.cpp:49
 msgid "because the programmers are busy making a new,"
-msgstr ""
+msgstr "pentru că programatorii sunt ocupați cu facerea unui nou"
 
 #: src/credits.cpp:50
 msgid "improved game."
-msgstr ""
+msgstr "și îmbunătăți joc."
 
 #: src/credits.cpp:52
 msgid "Extreme Tux Racer is based on"
-msgstr ""
+msgstr "Extreme Tux Racer este bazat pe"
 
 #: src/credits.cpp:53
 msgid "PlanetPenguin Racer, Open Racer and Tux Racer."
-msgstr ""
+msgstr "PlanetPenguin Racer, Open Racer și Tux Racer."
 
 #: src/credits.cpp:55
 msgid "Some courses may have been modified from their"
-msgstr ""
+msgstr "Câteva trasee au fost probabil modificate de la"
 
 #: src/credits.cpp:56
 msgid "original versions to fit the requirements of the game."
-msgstr ""
+msgstr "versiunile lor originale pentru a se potrivi cu cerințele jocului."
 
 #: src/credits.cpp:58
 msgid "Development"
-msgstr ""
+msgstr "Dezvoltare"
 
 #: src/credits.cpp:63
 msgid "from Sunspire Studios:"
-msgstr ""
+msgstr "de la Sunspire Studios:"
 
 #: src/credits.cpp:71
 msgid "Non-Rewrite Version Organization"
@@ -140,7 +140,7 @@ msgstr ""
 
 #: src/credits.cpp:74
 msgid "Translators"
-msgstr ""
+msgstr "Traducători"
 
 #: src/credits.cpp:87
 msgid "Other (incomplete) translations are from the PPRacer Project."
@@ -156,7 +156,7 @@ msgstr ""
 
 #: src/credits.cpp:92
 msgid "Reinhard Niehoff (Trees)"
-msgstr ""
+msgstr "Reinhard Niehoff (copaci)"
 
 #: src/credits.cpp:93
 msgid "Daniel Poeira and Christian Picon (Font)"
@@ -164,55 +164,56 @@ msgstr ""
 
 #: src/credits.cpp:95
 msgid "Music"
-msgstr ""
+msgstr "Muzică"
 
 #: src/credits.cpp:97
 msgid "'Race 1'"
-msgstr ""
+msgstr "„Cursa 1”"
 
 #: src/credits.cpp:98
 msgid "'Menu'"
-msgstr ""
+msgstr "„Meniu”"
 
 #: src/credits.cpp:99
 msgid "'Options'"
-msgstr ""
+msgstr "„Opțiuni”"
 
 #: src/credits.cpp:100
 msgid "'Won Race'"
-msgstr ""
+msgstr "„Cursa câștigată”"
 
 #: src/credits.cpp:103
 msgid "'Credits Ballad'"
-msgstr ""
+msgstr "„Balada autorilor”"
 
 #: src/credits.cpp:105
 msgid "Misc. PPRacer Contributors"
-msgstr ""
+msgstr "Diverși contribuitori PPRacer"
 
 #: src/credits.cpp:110
 msgid "Thanks To"
-msgstr ""
+msgstr "Mulțumiri"
 
 #: src/credits.cpp:111
+#, fuzzy
 msgid "(for Exteme Tux Racer)"
-msgstr ""
+msgstr "(pentru Tux Racer)"
 
 #: src/credits.cpp:112
 msgid "Ranger (for hosting the website)"
-msgstr ""
+msgstr "Ranger (pentru găzduirea website-ului)"
 
 #: src/credits.cpp:113
 msgid "Slythfox (for making the website)"
-msgstr ""
+msgstr "Slythfox (pentru construirea website-ului)"
 
 #: src/credits.cpp:114
 msgid "The Course Creators"
-msgstr ""
+msgstr "Creatorilor traseelor"
 
 #: src/credits.cpp:115
 msgid "The OpenRacer project"
-msgstr ""
+msgstr "Proiectului OpenRacer"
 
 #: src/credits.cpp:116
 msgid "Reinhard Niehoff (for helping with code modification)"
@@ -224,44 +225,44 @@ msgstr ""
 
 #: src/credits.cpp:118
 msgid "Larry Ewing (creator of Tux)"
-msgstr ""
+msgstr "Larry Ewing (creatorul lui Tux)"
 
 #: src/credits.cpp:119
 msgid "(for Tux Racer)"
-msgstr ""
+msgstr "(pentru Tux Racer)"
 
 #: src/credits.cpp:126
 msgid "Tux Racer is a trademark of Jasmin F. Patry."
-msgstr ""
+msgstr "Tux Racer este o marcă înregistrată a lui Jasmin F. Patry."
 
 #: src/credits.cpp:127
 msgid "Extreme Tux Racer is licenced under the GPL."
-msgstr ""
+msgstr "Extreme Tux Racer este licențiat sub GPL."
 
 #: src/credits.cpp:128
 msgid "We grant use of the name 'Extreme Tux Racer'"
-msgstr ""
+msgstr "Ne permitem utilizarea numelui „Extreme Tux Racer”"
 
 #: src/credits.cpp:129
 msgid "to any forks or continuations."
-msgstr ""
+msgstr "pentru orice ramificații și continuări."
 
 #: src/credits.cpp:131
 msgid "PlanetPenguin Racer is Copyright © 2005 Volker Stroebel."
-msgstr ""
+msgstr "PlanetPenguin Racer este Copyright © 2005 Volker Stroebel."
 
 #: src/credits.cpp:132
 msgid "Tux Racer and the Tux Racer Name are Copyright © 2001 Jasmin F. Patry."
 msgstr ""
+"Tux Racer and și numele de Tux Racer sunt Copyright © 2001 Jasmin F. Patry."
 
 #: src/event_select.cpp:50
-#, fuzzy
 msgid "Select campaign and cup"
-msgstr "Alege turneul şi cupa"
+msgstr "Selectați campaina și cupa"
 
 #: src/event_select.cpp:56
 msgid "Campaign:"
-msgstr ""
+msgstr "Campania:"
 
 #: src/event_select.cpp:67
 msgid "Cup:"
@@ -318,7 +319,7 @@ msgstr "Timp:"
 #: src/event_race_select.cpp:320
 #, c-format
 msgid "%02d:%02d.%02d"
-msgstr ""
+msgstr "%02d:%02d.%02d"
 
 #: src/event_race_select.cpp:324
 msgid "Herring:"
@@ -379,9 +380,8 @@ msgid "You beat your best score!"
 msgstr "Ţi-ai depăşit recordul"
 
 #: src/game_over.cpp:164
-#, fuzzy
 msgid "Congratulations! You won the campaign!"
-msgstr "Felicitări, ai câştigat cupa!"
+msgstr "Felicitări! Ați câștigat campania!"
 
 #: src/game_over.cpp:166
 msgid "Congratulations! You won the cup!"
@@ -396,9 +396,8 @@ msgid "You didn't advance."
 msgstr "Nu ai avansat."
 
 #: src/game_type_select.cpp:36
-#, fuzzy
 msgid "Enter a campaign"
-msgstr "Concurs"
+msgstr "Intră într-o campanie"
 
 #: src/game_type_select.cpp:43
 msgid "Practice"
@@ -450,7 +449,7 @@ msgstr "Umbre:"
 
 #: src/graphicsconfig.cpp:141
 msgid "Draw Background:"
-msgstr ""
+msgstr "Desenează fundalul:"
 
 #: src/highscore.cpp:88
 msgid "1:st"
@@ -494,12 +493,12 @@ msgstr "10:"
 
 #: src/highscore.cpp:317
 msgid "No records"
-msgstr ""
+msgstr "Nici un record"
 
 #: src/highscore.cpp:327
 #, c-format
 msgid " (%d points)"
-msgstr ""
+msgstr " (%d puncte)"
 
 #: src/joystickconfig.cpp:29
 msgid "Joystick Configuration"
@@ -555,7 +554,7 @@ msgstr "Continuă"
 
 #: src/splash_screen.cpp:34
 msgid "PRESS ANY KEY TO START"
-msgstr "APASÃ O TASTÃ PENTRU A ÎNCEPE"
+msgstr "APASĂ ORICE TASTĂ PENTRU A ÎNCEPE"
 
 #: src/videoconfig.cpp:60
 msgid "Video Configuration"
@@ -587,7 +586,7 @@ msgstr "Experimental (trebuie restartat)"
 
 #: src/videoconfig.cpp:192
 msgid "Stencil Buffer:"
-msgstr ""
+msgstr "Amortizorul stencil:"
 
 #: src/videoconfig.cpp:196
 msgid "Enable FSAA:"
@@ -595,7 +594,7 @@ msgstr "Activează FSAA:"
 
 #: src/videoconfig.cpp:200
 msgid "FSAA Multisamples:"
-msgstr ""
+msgstr "FSAA Multisamples:"
 
 #: po/levelinfo:1
 #, c-format
@@ -619,141 +618,158 @@ msgstr "km/h"
 #: po/levelinfo:7 po/levelinfo:9
 #, c-format
 msgid "%.0f"
-msgstr ""
+msgstr "%.0f"
 
 #: po/levelinfo:10 po/levelinfo:11
-#, fuzzy, c-format
+#, c-format
 msgid "%d:%d:%d"
-msgstr "%02d:%02d:%02d"
+msgstr "%d:%d:%d"
 
 #: po/levelinfo:12 po/levelinfo:13
-#, fuzzy, c-format
+#, c-format
 msgid "%d"
-msgstr "%03d"
+msgstr "%d"
 
 #: po/levelinfo:14
 msgid "Doing"
-msgstr ""
+msgstr "Doing"
 
 #: po/levelinfo:15
 msgid ""
 "This course was probably created to present new textures introduced in "
 "PPRacer."
 msgstr ""
+"Acest traseu a fost probabil creat pentru a prezenta noi texturi introduse "
+"în PPRacer."
 
 #: po/levelinfo:17
 msgid "Hippo Run"
-msgstr ""
+msgstr "Fuga hipopotamului"
 
 #: po/levelinfo:18
 msgid ""
 "In Hippo Run, you slide down an icy slope as a penguin, I honestly don't "
 "know what this has to do with hippos or running..."
 msgstr ""
+"În Fuga hipopotamului, alunecați pe o pantă înghețată, fiind un pinguin, nu "
+"știu sincer ce legătură are aceasta cu hipopotami sau cu fuga..."
 
 #: po/levelinfo:19
 msgid "Ice Pipeline"
-msgstr ""
+msgstr "Trasă de gheață"
 
 #: po/levelinfo:20
 msgid "A short, slippery ice-trough with herring scattered throughout."
 msgstr ""
+"Un traseu scurt, aluncos ca o covată de gheață cu hering împrăștiat prin ea."
 
 #: po/levelinfo:21
 msgid "Volcanoes"
-msgstr ""
+msgstr "Vulcani"
 
 #: po/levelinfo:22
 msgid ""
 "This gigantic crater was full of water, and herring, but now it's all "
 "frozen, and yours for the taking."
 msgstr ""
+"Craterul acesta gigant a fost plin de apă, și hering, dar acum este "
+"înghețat, și este doar pentru tine."
 
 #: po/levelinfo:23
 msgid "Nature Stroll"
-msgstr ""
+msgstr "Plimbare prin natură"
 
 #: po/levelinfo:24
 msgid ""
 "The fresh air, the pine scent, who doesn't like a nice refreshing walk "
 "through the mountains?"
 msgstr ""
+"Aerul proaspăt, mirosul de pin, cui nu-i place o plimbare revigorantă prin "
+"munți?"
 
 #: po/levelinfo:25
 msgid "Mountain Mania"
-msgstr ""
+msgstr "Mania muntelui"
 
 #: po/levelinfo:26
 msgid "Icy Peril"
-msgstr ""
+msgstr "Riscul gheții"
 
 #: po/levelinfo:27
 msgid "Death Cup"
-msgstr ""
+msgstr "Cupa morții"
 
 #: po/levelinfo:28
 msgid "Slippery Defeat"
-msgstr ""
+msgstr "Înfrângere alunecoasă"
 
 #: po/levelinfo:29
 msgid "The Final Three"
-msgstr ""
+msgstr "Copacul final"
 
 #: po/levelinfo:30
 msgid "Slippy-Slidey"
-msgstr ""
+msgstr "Alunecare-alunecoasă"
 
 #: po/levelinfo:31
 msgid "Slide on the slippery frozen river in a hilly forest, slipperily."
-msgstr ""
+msgstr "Alunecă pe alunecosul râu înghețat în pădurea deluroasă, alunecos."
 
 #: po/levelinfo:32
 msgid "Crazy Path"
-msgstr ""
+msgstr "Calea nebună"
 
 #: po/levelinfo:33
 msgid ""
 "You'll have trouble slowing down on this one. There's lots of herring, but "
 "be careful not to fly too much or you won't get any."
 msgstr ""
+"O să ai probleme să încetinești la aceasta. Este mult herring, dar fi atent "
+"să nu zbori prea mult sau nu vei prinde nici unul."
 
 #: po/levelinfo:34
 msgid "Candy Lane"
-msgstr ""
+msgstr "Banda boboanelor"
 
 #: po/levelinfo:35
 msgid ""
 "Mostly ice, with very few obstacles in your path, this is like a stroll down "
 "Candy Lane."
 msgstr ""
+"Aproape în întregime din gheață, cu puține obstacole în calea ta, aceasta "
+"este ca o plimbare în jos pe banda bomboanelor."
 
 #: po/levelinfo:36
 msgid "Merry Go Round"
-msgstr ""
+msgstr "Rundă veselă"
 
 #: po/levelinfo:37
 msgid "Try to build up enough speed to jump from one roundabout to the next."
 msgstr ""
+"Încearcă să capeși suficientă viteză pentru a sări dintr-un ocoliș în "
+"celălalt."
 
 #: po/levelinfo:38
 msgid "Hey, Tux!"
-msgstr ""
+msgstr "Hei, Tux!"
 
 #: po/levelinfo:39
 msgid "This course offers true excitement for your race-loving penguin buddy."
 msgstr ""
+"Această cursă oferă distracție adevărată pentru bobocul tău de pinguin, "
+"iubitor de curse."
 
 #: po/levelinfo:40
 msgid "Bobsled Ride"
-msgstr ""
+msgstr "Cursa bobului"
 
 #: po/levelinfo:41
 msgid "Just like a real bobsled ride, only more dangerous."
-msgstr ""
+msgstr "Asemenea unei curse reale de bob, doar că este mult mai periculoasă."
 
 #: po/levelinfo:42
 msgid "In Search of Vodka"
-msgstr ""
+msgstr "În căutarea votcii"
 
 #: po/levelinfo:43
 msgid ""
@@ -761,10 +777,13 @@ msgid ""
 "cabinet has been pillaged. Join Tux on the quest for vodka.Pick up herring "
 "for dinner along the way!"
 msgstr ""
+"Tux are nevoie de niște votcă pentru a-și încălzi burtica rece. Alas, "
+"cabinetul lui de lichior a fost jefuit. Alăturăte lui Tux în căutarea lui de "
+"vodcă. Strânge hering pentru prânz în călătoria ta!"
 
 #: po/levelinfo:44
 msgid "Tux at Home"
-msgstr ""
+msgstr "Tux acasă"
 
 #: po/levelinfo:45
 msgid ""
@@ -772,56 +791,65 @@ msgid ""
 "and fastest way. But if you want to catch some herrings you have to enter "
 "the rooms on the left."
 msgstr ""
+"Aici trăiește Tux. Poți să mergi pe coridorul din dreapta - este cea mai "
+"scurtă și mai rapidă cale. Dar dacă dorești să prinzi niște hering, trebuie "
+"să intri în camerele din stânga."
 
 #: po/levelinfo:46
 msgid "The Niehoff Experience"
-msgstr ""
+msgstr "Experiența Niehoff"
 
 #: po/levelinfo:47
 msgid "Search, Search, Search"
-msgstr ""
+msgstr "Caută, caută, caută"
 
 #: po/levelinfo:48
 msgid "Mountains and Hills"
-msgstr ""
+msgstr "Munți și dealuri"
 
 #: po/levelinfo:49
 msgid "The Final Challenge"
-msgstr ""
+msgstr "Ultima provocare"
 
 #: po/levelinfo:50
 msgid "Wild Mountains"
-msgstr ""
+msgstr "Munții sălbatici"
 
 #: po/levelinfo:51
 msgid ""
 "A wild landscape of ice and snow. It isn't easy to keep the right way. Not "
 "for beginners."
 msgstr ""
+"Un peisaj sălbatic de gheață și zăpadă. Nu este ușor să menți calea cea "
+"bună. Nu pentru începători."
 
 #: po/levelinfo:52
 msgid "In Search of the Holy Grail"
-msgstr ""
+msgstr "În căutarea Sfântului Pocal"
 
 #: po/levelinfo:53
 msgid ""
 "An adventure course with a simple task: Find the grail! Warning: It is very "
 "difficult to find the way."
 msgstr ""
+"O cursă de aventură cu o sarcină simplă: Găsește graalul! Avertisment: Este "
+"foarte greu să găsești calea."
 
 #: po/levelinfo:54
 msgid "Frozen Lakes"
-msgstr ""
+msgstr "Lacurile înghețate"
 
 #: po/levelinfo:55
 msgid ""
 "To reach the finish you must pass several frozen lakes. Watch your speed on "
 "the ice - there are some dangerous corners."
 msgstr ""
+"Pentru a ajunge la final trebuie să treci de câteva lacuri înghețate. Ai "
+"grijă la viteză pe gheață - sunt niște colțuri periculoase."
 
 #: po/levelinfo:56
 msgid "Chinese Wall"
-msgstr ""
+msgstr "Zidul chinezesc"
 
 #: po/levelinfo:57
 msgid ""
@@ -829,100 +857,119 @@ msgid ""
 "where the herrings are. If you fall off you can try to jump back up, there "
 "are 7 hidden ramps. You'll get a lot of exercise."
 msgstr ""
+"Marele Zid chinezesc iarna. Încearcă să rămâi deasupra zidului - acolo este "
+"hering. Dacă vei cădea poși încerca să sari înapoi, sunt 7 rampe ascunse."
 
 #: po/levelinfo:58
 msgid "Secret Valleys"
-msgstr ""
+msgstr "Văile secrete"
 
 #: po/levelinfo:59
 msgid ""
 "Your task: Find the hidden valleys and the ten groups of dead trees. Look "
 "around, the ways are not easy to find."
 msgstr ""
+"Sarcina ta: Găsește vaile ascunse și cele zece grupuri de copaci morți. Uită-"
+"te în jur, caile nu sunt ușor de găsit."
 
 #: po/levelinfo:60
 msgid "Explore the Mountains"
-msgstr ""
+msgstr "Explorează munții"
 
 #: po/levelinfo:61
 msgid "Can you find your way through the icy, dangerous mountains. I doubt it."
 msgstr ""
+"Poți să găsești calea ce bună prin munții înghețați și periculoși.Mă "
+"îndoiesc."
 
 #: po/levelinfo:62
 msgid "Challenge One"
-msgstr ""
+msgstr "Provocarea unu"
 
 #: po/levelinfo:63
 msgid ""
 "A very dangerous path along the mountains. Warning: The course is very "
 "difficult and there are some situations where you can get stuck."
 msgstr ""
+"O cale foarte periculoasă de-a lungul munților. Avertisment: Cursa este "
+"foarte dificilă și sunt situați în care poți rămâne blocat."
 
 #: po/levelinfo:64
 msgid "Path of Daggers"
-msgstr ""
+msgstr "Calea pumnalelor"
 
 #: po/levelinfo:65
 msgid ""
 "Big spikes may prove to be the least of your worries on this course. Muliple "
 "paths allow you to take low or high roads, each with their own challenges."
 msgstr ""
+"Țepii uriași se dovedesc a fi cea mai minoră problemă a acestei curse.Căile "
+"multiple îți permit să mergi pe drumurile înalte sau pe cele joase, fiecare "
+"cu provocările sale."
 
 #: po/levelinfo:66
 msgid "Tux Racer Classics"
-msgstr ""
+msgstr "Clasicele din Tux Racer"
 
 #: po/levelinfo:67
 msgid "Canadian Cup"
-msgstr ""
+msgstr "Cupa canadiană"
 
 #: po/levelinfo:68
 msgid "Swiss Cup"
-msgstr ""
+msgstr "Cupa suedeză"
 
 #: po/levelinfo:69
 msgid "Bumpy Ride"
-msgstr ""
+msgstr "Cursa denivelată"
 
 #: po/levelinfo:70
 msgid ""
 "This hill has a series of ramps to tackle.  Be sure to line yourself up "
 "before getting airborne."
 msgstr ""
+"Acest deal are o serie de rampe care trebuie atacate. Alinează-te înainte de "
+"a decola."
 
 #: po/levelinfo:71
 msgid "Bunny Hill"
-msgstr ""
+msgstr "Dealul iepuraș"
 
 #: po/levelinfo:72
 msgid ""
 "Let's start out easy, just collect the herring in the time limit and you'll "
 "be fine. The best part is that you don't have to use those stupid T-lifts."
 msgstr ""
+"Să începem ușor, doar strânge heringul la timp și vei fii în regulă. Cea mai "
+"bună parte este că nu trebuie să folosești acele ridicări-T enervante."
 
 #: po/levelinfo:73
 msgid "Frozen River"
-msgstr ""
+msgstr "Râul înghețat"
 
 #: po/levelinfo:74
 msgid ""
 "Keep your speed down to collect herring. You have plenty of time, so don't "
 "rush things."
 msgstr ""
+"Mențineți viteza încet pentru a strânge hering. Ai destul timp, așa că nu "
+"grăbi lucrurile."
 
 #: po/levelinfo:75
 msgid "Twisty Slope"
-msgstr ""
+msgstr "Panta întortocheată"
 
 #: po/levelinfo:76
 msgid ""
 "Tight twists make grabbing herring difficult.  Hard turns and not too much "
 "braking will lead you to victory."
 msgstr ""
+"Virajele strânse îngreunează colectarea heringului. Întoarcerile puternice "
+"și nu prea multă frânare te vor conduce spre victorie."
 
 #: po/levelinfo:77
 msgid "Mt. Herring"
-msgstr ""
+msgstr "Mt. Herring"
 
 #: po/levelinfo:78
 msgid ""
@@ -930,40 +977,45 @@ msgid ""
 "some wide open areas and branching paths. Lots of herrings to collect though "
 "it can be difficult unless you watch your speed."
 msgstr ""
+"Mt. Herring este relativ rapid dar lung, denivelat în anumite locuri, și are "
+"niște zone deschise și căi ramificate. Strângerea unei cantități mari de "
+"hering de-a lungul ei poate fi dificilă dacă nu îți grijești viteza."
 
 #: po/levelinfo:79
 msgid "Herring Run"
-msgstr ""
+msgstr "Alergarea heringului"
 
 #: po/levelinfo:80
 msgid "Mountain Man"
-msgstr ""
+msgstr "Omul muntelui"
 
 #: po/levelinfo:81
 msgid "Valley Cup"
-msgstr ""
+msgstr "Cupa văii"
 
 #: po/levelinfo:82
 msgid "Tux the winter sportsman"
-msgstr ""
+msgstr "Tux sportivul iernii"
 
 #: po/levelinfo:83
 msgid "Highway To Hell"
-msgstr ""
+msgstr "Autostrada către iad"
 
 #: po/levelinfo:84
 msgid "Ice Labyrinth"
-msgstr ""
+msgstr "Labirintul de gheață"
 
 #: po/levelinfo:85
 msgid ""
 "You choose your destiny, you could end up full or starving depending on the "
 "path you pick."
 msgstr ""
+"Îți alegi singur destinul, poți să sfârșești plin sau înfomentat, depinde de "
+"calea pe care o alegi."
 
 #: po/levelinfo:86
 msgid "Snow Valley"
-msgstr ""
+msgstr "Valea zăpezii"
 
 #: po/levelinfo:87
 msgid ""
@@ -971,20 +1023,25 @@ msgid ""
 "herrings very difficult to get if you're going for a perfect score! Watch "
 "your speed in certain areas to get the most herrings!"
 msgstr ""
+"Valea zăpezii este relativ plată, și este o cursă foarte rapidă. Vei vedea "
+"ca unii heringi sunt foarte greu de luat dacă vrei să obții un scor perfect! "
+"Ai grijă la viteza în anumite zone pentru a strânge tot heringul!"
 
 #: po/levelinfo:88
 msgid "Tux Toboggan Run"
-msgstr ""
+msgstr "Cursa Tux tobogan"
 
 #: po/levelinfo:89
 msgid ""
 "Collect herrings in an ice channel with various paths and many high and low "
 "speed passages. Watch out for the occasional tree."
 msgstr ""
+"Strânge heringul dintr-un canal de gheță cu o varietate de rute și multe "
+"pasaje de mare, respectiv mică viteză. Ai grijă la copacul ocazional."
 
 #: po/levelinfo:90
 msgid "Hazzard Valley"
-msgstr ""
+msgstr "Valea hazardului"
 
 #: po/levelinfo:91
 msgid ""
@@ -992,40 +1049,49 @@ msgid ""
 "huge areas of rocky plains, not to mention your speed being your enemy in "
 "trying to get the herrings and stay on course!"
 msgstr ""
+"Valea hazardului este plină de hazarde, precum copaci, caverne adânci, și "
+"zone mari de câmpie de rocă, fără să menționăm că viteza este inamicul tău "
+"când încerci să strângi hering și să rămâi în cursă!"
 
 #: po/levelinfo:92
 msgid "Skull Mountain"
-msgstr ""
+msgstr "Muntele craniu"
 
 #: po/levelinfo:93
 msgid ""
 "Skull mountain is a steep, twisty drop around tree-filled inner peaks. "
 "Expect to miss a lot of herrings and crash a lot."
 msgstr ""
+"Muntele craniu este o prăpastie, cu căderi întortocheate în jurul crestelor "
+"pline de pomi. Așteaptă-te să ratezi mult hering și să te accidentezi mult."
 
 #: po/levelinfo:94
 msgid "Keep It Up"
-msgstr ""
+msgstr "Ține-o tot așa"
 
 #: po/levelinfo:95
 msgid ""
 "If you fall you might as well just quit then and there, 'cause your chances "
 "are slim on the rocky ground."
 msgstr ""
+"Dacă vei cădea probabil vei renunța atunci și acolo, pentru că șansele tale "
+"sunt mici pe teren cu roci."
 
 #: po/levelinfo:96
 msgid "Dead Man's Drop"
-msgstr ""
+msgstr "Căderea omului mort"
 
 #: po/levelinfo:97
 msgid ""
 "Pretty tough hill. It's fast, steep, lumpy, twisty, and full of trees. Hard "
 "to get herrings. Don't forget the drop."
 msgstr ""
+"Un deal destul de aspru. Este rapid, prăpăstios, întortocheat, și plin de "
+"copaci. Este greu să strângi hering. Să nu uiți căderea."
 
 #: po/levelinfo:98
 msgid "I've Got A Woody"
-msgstr ""
+msgstr "Am primit un lemnuț"
 
 #: po/levelinfo:99
 msgid ""
@@ -1033,40 +1099,50 @@ msgid ""
 "hard, try this one. Have fun winding through the woods.  Look out for a huge "
 "shortcut!!"
 msgstr ""
+"Încă o costă înaltă și oribilă. Dacă credeai că ultimele două au fost grele, "
+"încearc-o pe aceasta. Distracție plăcută prin pădure. Fii atent după o mare "
+"scurtătură!!"
 
 #: po/levelinfo:100
 msgid "Mt. Satan"
-msgstr ""
+msgstr "Mt. Satan"
 
 #: po/levelinfo:101
 msgid ""
 "Mount Satan is a sister mountain to Dead Man's Drop. No surprises here, just "
 "a steep, bumpy, twisty path full of trees to get through."
 msgstr ""
+"Muntele Satan este frate cu Căderea omului mort. Nici o surpriză aici, doar "
+"o prăpastie,  denivelată, o cale întortocheată plină de copaci printre care "
+"să treci."
 
 #: po/levelinfo:102
 msgid "Ski Jump"
-msgstr ""
+msgstr "Săritura cu schiurile"
 
 #: po/levelinfo:103
 msgid ""
 "Steering will be unnecessary, just line yourself up and reap the rewards. "
 "Rememember, acceleration will slow you down after a while."
 msgstr ""
+"Virajele nu vor fi necesare, doar alinează-te și strânge recompensele. Ține "
+"minte că accelerația te va încetini după o perioadă."
 
 #: po/levelinfo:104
 msgid "High Road"
-msgstr ""
+msgstr "Autostrada"
 
 #: po/levelinfo:105
 msgid ""
 "Just stay on the path and collect herring. Oh yeah, and if you fall you'll "
 "be eating pine needles."
 msgstr ""
+"Doar rămâi pe traseu și colectează heringul. Desigur, și dacă vei cădea vei "
+"mânca ace de pin."
 
 #: po/levelinfo:106
 msgid "The Narrow Way"
-msgstr ""
+msgstr "Calea îngustă"
 
 #: po/levelinfo:107
 msgid ""
@@ -1074,39 +1150,47 @@ msgid ""
 "you're going, there's trees in your way, and the herrings are hard to get. "
 "Good luck, you'll need it!"
 msgstr ""
+"Pe înțelesul tuturor, rămâi pe traseu sau vei pierde! Este dificil să vezi "
+"unde mergi, sunt copaci în calea ta, și heringul este foarte greu de strâns. "
+"Baftă, vei avea nevoie!"
 
 #: po/levelinfo:108
 msgid "Hamburger Hill"
-msgstr ""
+msgstr "Dealul hamburger"
 
 #: po/levelinfo:109
 msgid ""
 "Hamburger Hill is steep, narrow, twisty, lumpy, icy, and rocky, with a few "
 "trees right in your way!"
 msgstr ""
+"Dealul hamburger este o prăpastie, îngustă, întortocheată, noduroasă, "
+"înghețată, și stâncoasă, cu câțiva copaci în calea ta!"
 
 #: po/levelinfo:110
 msgid "Slalom"
-msgstr ""
+msgstr "Slalom"
 
 #: po/levelinfo:111
 msgid ""
 "Brake while you turn and the herrings on this pseudo-slalom will be yours."
 msgstr ""
+"Frânează când întorci și heringul din acest pseudo-slalom va fii al tău."
 
 #: po/levelinfo:112
 msgid "Who Says Penguins Can't Fly?"
-msgstr ""
+msgstr "Cine spune că pinguinii nu pot zbura?"
 
 #: po/levelinfo:113
 msgid ""
 "It'll be tough collecting herrings at speeds over 200, so try to brake "
 "whenever possible to get the required herring."
 msgstr ""
+"Va fi dificil să strângi hering la viteze de peste 200 k/h, deci înceacă să "
+"frânezi oricând este posibil să iei heringul cerut."
 
 #: po/modelinfo:1
 msgid "Tux"
-msgstr ""
+msgstr "Tux"
 
 #: po/modelinfo:2
 msgid "Tux on Snowboard"
@@ -1120,3 +1204,9 @@ msgstr ""
 
 #~ msgid "Congratulations! You won the event!"
 #~ msgstr "Felicitări, ai câştigat cursa!"
+
+#~ msgid "Select event and cup"
+#~ msgstr "Alege turneul şi cupa"
+
+#~ msgid "Enter an event"
+#~ msgstr "Concurs"

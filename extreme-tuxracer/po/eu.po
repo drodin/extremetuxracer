@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: Extreme Tux Racer\n"
 "Report-Msgid-Bugs-To: https://translations.edge.launchpad.net/etracer\n"
 "POT-Creation-Date: 2008-08-03 20:17+0200\n"
-"PO-Revision-Date: 2008-04-21 11:33+0000\n"
-"Last-Translator: Paweł Drewniak <Unknown>\n"
+"PO-Revision-Date: 2008-10-07 19:37+0000\n"
+"Last-Translator: benat mendi <arrietaarambarri@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-08-03 17:56+0000\n"
+"X-Launchpad-Export-Date: 2009-04-27 12:04+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: src/audioconfig.cpp:36
@@ -27,7 +27,7 @@ msgstr "Soinu efektoak:"
 
 #: src/audioconfig.cpp:116
 msgid "Music:"
-msgstr ""
+msgstr "Musika:"
 
 #: src/audioconfig.cpp:120
 msgid "(needs restart)"
@@ -92,31 +92,31 @@ msgstr ""
 
 #: src/credits.cpp:46
 msgid "Extreme Tux Racer is in the process of being"
-msgstr ""
+msgstr "Extreme Tux Racer hasieratze procesuan dago"
 
 #: src/credits.cpp:47
 msgid "completely rewritten. All versions after 0.35,"
-msgstr ""
+msgstr "gustiz berridatzia. 0.35 bertsioaren ondorengo guztiak."
 
 #: src/credits.cpp:48
 msgid "including this one, won't have major code changes"
-msgstr ""
+msgstr "Hau ere kontutan hartuta, kodeak ez ditu aldaketa haundiak izango."
 
 #: src/credits.cpp:49
 msgid "because the programmers are busy making a new,"
-msgstr ""
+msgstr "Programatzaileak berria egiten okupatuta daudelako."
 
 #: src/credits.cpp:50
 msgid "improved game."
-msgstr ""
+msgstr "Joku hoberena."
 
 #: src/credits.cpp:52
 msgid "Extreme Tux Racer is based on"
-msgstr ""
+msgstr "Extreme Tux Racer oinarrituta dago"
 
 #: src/credits.cpp:53
 msgid "PlanetPenguin Racer, Open Racer and Tux Racer."
-msgstr ""
+msgstr "PlanetPenguin Racer, Open Racer eta Tux Racer."
 
 #: src/credits.cpp:55
 msgid "Some courses may have been modified from their"
@@ -128,7 +128,7 @@ msgstr ""
 
 #: src/credits.cpp:58
 msgid "Development"
-msgstr ""
+msgstr "Garapena"
 
 #: src/credits.cpp:63
 msgid "from Sunspire Studios:"
@@ -140,7 +140,7 @@ msgstr ""
 
 #: src/credits.cpp:74
 msgid "Translators"
-msgstr ""
+msgstr "Itzultzaileak"
 
 #: src/credits.cpp:87
 msgid "Other (incomplete) translations are from the PPRacer Project."
@@ -156,7 +156,7 @@ msgstr ""
 
 #: src/credits.cpp:92
 msgid "Reinhard Niehoff (Trees)"
-msgstr ""
+msgstr "Reinhard Niehoff (Trees)"
 
 #: src/credits.cpp:93
 msgid "Daniel Poeira and Christian Picon (Font)"
@@ -164,23 +164,23 @@ msgstr ""
 
 #: src/credits.cpp:95
 msgid "Music"
-msgstr ""
+msgstr "Musika"
 
 #: src/credits.cpp:97
 msgid "'Race 1'"
-msgstr ""
+msgstr "1 lasterketa"
 
 #: src/credits.cpp:98
 msgid "'Menu'"
-msgstr ""
+msgstr "'Menu'"
 
 #: src/credits.cpp:99
 msgid "'Options'"
-msgstr ""
+msgstr "'Aukerak'"
 
 #: src/credits.cpp:100
 msgid "'Won Race'"
-msgstr ""
+msgstr "'lasterketa irabazlea'"
 
 #: src/credits.cpp:103
 msgid "'Credits Ballad'"
@@ -192,11 +192,12 @@ msgstr ""
 
 #: src/credits.cpp:110
 msgid "Thanks To"
-msgstr ""
+msgstr "Eskerrak"
 
 #: src/credits.cpp:111
+#, fuzzy
 msgid "(for Exteme Tux Racer)"
-msgstr ""
+msgstr "Extreme Tux Racer oinarrituta dago"
 
 #: src/credits.cpp:112
 msgid "Ranger (for hosting the website)"
@@ -212,7 +213,7 @@ msgstr ""
 
 #: src/credits.cpp:115
 msgid "The OpenRacer project"
-msgstr ""
+msgstr "OpenRacer proiektua"
 
 #: src/credits.cpp:116
 msgid "Reinhard Niehoff (for helping with code modification)"
@@ -255,9 +256,8 @@ msgid "Tux Racer and the Tux Racer Name are Copyright © 2001 Jasmin F. Patry."
 msgstr ""
 
 #: src/event_select.cpp:50
-#, fuzzy
 msgid "Select campaign and cup"
-msgstr "Aukeratu froga eta kopa"
+msgstr ""
 
 #: src/event_select.cpp:56
 msgid "Campaign:"
@@ -379,9 +379,8 @@ msgid "You beat your best score!"
 msgstr "Zure markarik onena hautsi duzu!"
 
 #: src/game_over.cpp:164
-#, fuzzy
 msgid "Congratulations! You won the campaign!"
-msgstr "Zorionak! Kopa irabazi duzu!"
+msgstr ""
 
 #: src/game_over.cpp:166
 msgid "Congratulations! You won the cup!"
@@ -396,9 +395,8 @@ msgid "You didn't advance."
 msgstr "Ez duzu aurreratu."
 
 #: src/game_type_select.cpp:36
-#, fuzzy
 msgid "Enter a campaign"
-msgstr "Hasi froga bat"
+msgstr ""
 
 #: src/game_type_select.cpp:43
 msgid "Practice"
@@ -622,14 +620,14 @@ msgid "%.0f"
 msgstr "%.0f"
 
 #: po/levelinfo:10 po/levelinfo:11
-#, fuzzy, c-format
+#, c-format
 msgid "%d:%d:%d"
-msgstr "%02d:%02d:%02d"
+msgstr ""
 
 #: po/levelinfo:12 po/levelinfo:13
-#, fuzzy, c-format
+#, c-format
 msgid "%d"
-msgstr "%03d"
+msgstr ""
 
 #: po/levelinfo:14
 msgid "Doing"
@@ -1120,3 +1118,9 @@ msgstr ""
 
 #~ msgid "Congratulations! You won the event!"
 #~ msgstr "Zorionak! Froga irabazi duzu!"
+
+#~ msgid "Select event and cup"
+#~ msgstr "Aukeratu froga eta kopa"
+
+#~ msgid "Enter an event"
+#~ msgstr "Hasi froga bat"

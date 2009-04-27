@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: etracer\n"
 "Report-Msgid-Bugs-To: https://translations.edge.launchpad.net/etracer\n"
 "POT-Creation-Date: 2008-08-03 20:17+0200\n"
-"PO-Revision-Date: 2008-07-09 09:57+0000\n"
-"Last-Translator: Martin Stružský <Unknown>\n"
+"PO-Revision-Date: 2009-03-30 15:09+0000\n"
+"Last-Translator: Miloslav Pansky <mips@seznam.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-08-03 17:56+0000\n"
+"X-Launchpad-Export-Date: 2009-04-27 12:04+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: src/audioconfig.cpp:36
@@ -180,12 +180,11 @@ msgstr "'Vlastnosti'"
 
 #: src/credits.cpp:100
 msgid "'Won Race'"
-msgstr ""
+msgstr "'Vyhrál závod'"
 
 #: src/credits.cpp:103
-#, fuzzy
 msgid "'Credits Ballad'"
-msgstr "'Credits Ballad'"
+msgstr ""
 
 #: src/credits.cpp:105
 msgid "Misc. PPRacer Contributors"
@@ -259,13 +258,12 @@ msgstr ""
 "Patry."
 
 #: src/event_select.cpp:50
-#, fuzzy
 msgid "Select campaign and cup"
-msgstr "Vyberte kampaň a pohár"
+msgstr "Vyber kampaň a pohár"
 
 #: src/event_select.cpp:56
 msgid "Campaign:"
-msgstr ""
+msgstr "Kampaň:"
 
 #: src/event_select.cpp:67
 msgid "Cup:"
@@ -383,9 +381,8 @@ msgid "You beat your best score!"
 msgstr "Překonali jste svůj rekord!"
 
 #: src/game_over.cpp:164
-#, fuzzy
 msgid "Congratulations! You won the campaign!"
-msgstr "Blahopřejeme, vyhráli jste pohár!"
+msgstr "Gratuluji! Vyhrál jsi kampaň!"
 
 #: src/game_over.cpp:166
 msgid "Congratulations! You won the cup!"
@@ -400,9 +397,8 @@ msgid "You didn't advance."
 msgstr "Nepostoupili jste."
 
 #: src/game_type_select.cpp:36
-#, fuzzy
 msgid "Enter a campaign"
-msgstr "Kampaň"
+msgstr "Vstup do kampaně"
 
 #: src/game_type_select.cpp:43
 msgid "Practice"
@@ -454,7 +450,7 @@ msgstr "Stíny:"
 
 #: src/graphicsconfig.cpp:141
 msgid "Draw Background:"
-msgstr ""
+msgstr "Vykreslit pozadí:"
 
 #: src/highscore.cpp:88
 msgid "1:st"
@@ -626,14 +622,14 @@ msgid "%.0f"
 msgstr "%.0f"
 
 #: po/levelinfo:10 po/levelinfo:11
-#, fuzzy, c-format
+#, c-format
 msgid "%d:%d:%d"
-msgstr "%02d:%02d:%02d"
+msgstr "%d:%d:%d"
 
 #: po/levelinfo:12 po/levelinfo:13
-#, fuzzy, c-format
+#, c-format
 msgid "%d"
-msgstr "%03d"
+msgstr "%d"
 
 #: po/levelinfo:14
 msgid "Doing"
@@ -733,7 +729,7 @@ msgstr ""
 
 #: po/levelinfo:34
 msgid "Candy Lane"
-msgstr ""
+msgstr "Cukrová trať"
 
 #: po/levelinfo:35
 msgid ""
@@ -798,7 +794,7 @@ msgstr ""
 
 #: po/levelinfo:47
 msgid "Search, Search, Search"
-msgstr ""
+msgstr "Hledat, Hledat, Hledat"
 
 #: po/levelinfo:48
 msgid "Mountains and Hills"
@@ -810,13 +806,15 @@ msgstr "Poslední výzva"
 
 #: po/levelinfo:50
 msgid "Wild Mountains"
-msgstr ""
+msgstr "Divoké hory"
 
 #: po/levelinfo:51
 msgid ""
 "A wild landscape of ice and snow. It isn't easy to keep the right way. Not "
 "for beginners."
 msgstr ""
+"Divoká krajina ze sněhu a ledu. Není lehké držet se správné cesty. Nevhodné "
+"pro začátečníky."
 
 #: po/levelinfo:52
 msgid "In Search of the Holy Grail"
@@ -827,16 +825,20 @@ msgid ""
 "An adventure course with a simple task: Find the grail! Warning: It is very "
 "difficult to find the way."
 msgstr ""
+"Dobrodružný závod s jednoduchým úkolem: Najít grál! Varování: Je velmi těžké "
+"najít cestu."
 
 #: po/levelinfo:54
 msgid "Frozen Lakes"
-msgstr ""
+msgstr "Zamrzlá jezera"
 
 #: po/levelinfo:55
 msgid ""
 "To reach the finish you must pass several frozen lakes. Watch your speed on "
 "the ice - there are some dangerous corners."
 msgstr ""
+"K dosažení cíle musíš projet přes nekolik zamrzlých jezer. Kontroluj si "
+"rychlost na ledu - jsou zde některé nebezpečné rohy."
 
 #: po/levelinfo:56
 msgid "Chinese Wall"
@@ -848,24 +850,29 @@ msgid ""
 "where the herrings are. If you fall off you can try to jump back up, there "
 "are 7 hidden ramps. You'll get a lot of exercise."
 msgstr ""
+"Velká čínská zeď v zimě. Pokus se udržet na vrchu zdi - tam kde jsou i "
+"slanečci. Pokud spadneš, můžeš zkusit vyskočit zpět nahoru, je zde 7 "
+"skrytých nájezdů. Získáš mnoho zkušeností."
 
 #: po/levelinfo:58
 msgid "Secret Valleys"
-msgstr ""
+msgstr "Tajná údolí"
 
 #: po/levelinfo:59
 msgid ""
 "Your task: Find the hidden valleys and the ten groups of dead trees. Look "
 "around, the ways are not easy to find."
 msgstr ""
+"Tvůj úkol: Najít skryté údolí a skupinu mrtvých stromů. Rozhlížej se kolem, "
+"cestu není snadné najít."
 
 #: po/levelinfo:60
 msgid "Explore the Mountains"
-msgstr ""
+msgstr "Prozkoumej hory"
 
 #: po/levelinfo:61
 msgid "Can you find your way through the icy, dangerous mountains. I doubt it."
-msgstr ""
+msgstr "Jsi schopen najít cestu skrze zmrzlé, nebezpečné hory? Pochybuji."
 
 #: po/levelinfo:62
 msgid "Challenge One"
@@ -974,11 +981,11 @@ msgstr ""
 
 #: po/levelinfo:83
 msgid "Highway To Hell"
-msgstr ""
+msgstr "Dálnice do pekla"
 
 #: po/levelinfo:84
 msgid "Ice Labyrinth"
-msgstr ""
+msgstr "Ledový labyrint"
 
 #: po/levelinfo:85
 msgid ""
@@ -1102,10 +1109,13 @@ msgid ""
 "you're going, there's trees in your way, and the herrings are hard to get. "
 "Good luck, you'll need it!"
 msgstr ""
+"K úspěchu stačí zůstat na cestě, jinak prohraješ! Je těžké koukat, kudy "
+"jedeš, v cestě ti stojí stromy a je těžké získávat slanečky. Hodně štěstí, "
+"budeš ho potřebovat!"
 
 #: po/levelinfo:108
 msgid "Hamburger Hill"
-msgstr ""
+msgstr "Hamburgerový kopec"
 
 #: po/levelinfo:109
 msgid ""
@@ -1115,7 +1125,7 @@ msgstr ""
 
 #: po/levelinfo:110
 msgid "Slalom"
-msgstr ""
+msgstr "Slalom"
 
 #: po/levelinfo:111
 msgid ""
@@ -1124,7 +1134,7 @@ msgstr ""
 
 #: po/levelinfo:112
 msgid "Who Says Penguins Can't Fly?"
-msgstr ""
+msgstr "Kdo říkal, že tučňáci neumějí létat?"
 
 #: po/levelinfo:113
 msgid ""
@@ -1148,3 +1158,15 @@ msgstr "Tux na snowboardu"
 
 #~ msgid "Congratulations! You won the event!"
 #~ msgstr "Blahopřejeme, vyhráli jste kampaň!"
+
+#~ msgid "Version 0.5"
+#~ msgstr "Verze 0.5"
+
+#~ msgid "http://www.freesound.org/samplesViewSingle.php?id=52143"
+#~ msgstr "http://www.freesound.org/samplesViewSingle.php?id=52143"
+
+#~ msgid "Select event and cup"
+#~ msgstr "Vyberte kampaň a pohár"
+
+#~ msgid "Enter an event"
+#~ msgstr "Kampaň"

@@ -1,4 +1,4 @@
-# Persian translation for etracer
+# Kannada translation for etracer
 # Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
 # This file is distributed under the same license as the etracer package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
@@ -6,11 +6,11 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: etracer\n"
-"Report-Msgid-Bugs-To: https://translations.edge.launchpad.net/etracer\n"
-"POT-Creation-Date: 2008-08-03 20:17+0200\n"
-"PO-Revision-Date: 2008-06-04 23:43+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: Persian <fa@li.org>\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2009-01-28 17:36+0100\n"
+"PO-Revision-Date: 2008-08-29 17:56+0000\n"
+"Last-Translator: ಸುಧೀಂದ್ರ <Unknown>\n"
+"Language-Team: Kannada <kn@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -27,7 +27,7 @@ msgstr ""
 
 #: src/audioconfig.cpp:116
 msgid "Music:"
-msgstr ""
+msgstr "ಸಂಗೀತ"
 
 #: src/audioconfig.cpp:120
 msgid "(needs restart)"
@@ -51,43 +51,43 @@ msgstr ""
 
 #: src/configmode.cpp:36
 msgid "Cancel"
-msgstr ""
+msgstr "ರದ್ದುಗೊಳಿಸು"
 
 #: src/configmode.cpp:43
 msgid "Ok"
-msgstr ""
+msgstr "ಸರಿ"
 
-#: src/configuration.cpp:38 src/game_type_select.cpp:57 src/paused.cpp:62
+#: src/configuration.cpp:38 src/game_type_select.cpp:57 src/paused.cpp:63
 msgid "Configuration"
-msgstr ""
+msgstr "ಸಂರಚನೆ"
 
-#: src/configuration.cpp:45 src/credits.cpp:89
+#: src/configuration.cpp:45 src/credits.cpp:76
 msgid "Graphics"
-msgstr ""
+msgstr "ಚಿತ್ರಕಲೆಗಳು"
 
 #: src/configuration.cpp:52
 msgid "Video"
-msgstr ""
+msgstr "ವೀಡಿಯೋ"
 
 #: src/configuration.cpp:59
 msgid "Audio"
-msgstr ""
+msgstr "ಆಡಿಯೋ"
 
 #: src/configuration.cpp:66
 msgid "Keyboard"
-msgstr ""
+msgstr "ಕೀಲಿಮಣೆ"
 
 #: src/configuration.cpp:73
 msgid "Joystick"
 msgstr ""
 
-#: src/configuration.cpp:81 src/event_select.cpp:96
+#: src/configuration.cpp:81 src/credits.cpp:150 src/event_select.cpp:96
 #: src/event_race_select.cpp:53 src/highscore.cpp:413
 msgid "Back"
-msgstr ""
+msgstr "ಹಿಂದೆ"
 
 #: src/credits.cpp:43
-msgid "Version 0.4"
+msgid "Version 0.5"
 msgstr ""
 
 #: src/credits.cpp:46
@@ -128,131 +128,160 @@ msgstr ""
 
 #: src/credits.cpp:58
 msgid "Development"
-msgstr ""
+msgstr "ಅಭಿವೃದ್ಧಿ"
 
-#: src/credits.cpp:63
+#: src/credits.cpp:65
 msgid "from Sunspire Studios:"
 msgstr ""
 
-#: src/credits.cpp:71
-msgid "Non-Rewrite Version Organization"
+#: src/credits.cpp:73
+msgid "Release Organization"
 msgstr ""
 
-#: src/credits.cpp:74
-msgid "Translators"
+#: src/credits.cpp:77
+msgid "Nicosmos (Logo, HUD and Interface)"
 msgstr ""
 
-#: src/credits.cpp:87
-msgid "Other (incomplete) translations are from the PPRacer Project."
+#: src/credits.cpp:78
+msgid "Christian Picon (Objects, Skyboxes, Characters)"
 msgstr ""
 
-#: src/credits.cpp:90
-msgid "Nicosmos (Logo, Hud Graphics)"
-msgstr ""
-
-#: src/credits.cpp:91
-msgid "Christian Picon (Objects, Skyboxes)"
-msgstr ""
-
-#: src/credits.cpp:92
+#: src/credits.cpp:79
 msgid "Reinhard Niehoff (Trees)"
 msgstr ""
 
-#: src/credits.cpp:93
-msgid "Daniel Poeira and Christian Picon (Font)"
+#: src/credits.cpp:80
+msgid "Daniel Poeira and Christian Picon (Papercuts Font)"
 msgstr ""
 
-#: src/credits.cpp:95
+#: src/credits.cpp:82
 msgid "Music"
-msgstr ""
+msgstr "ಸಂಗೀತ"
 
-#: src/credits.cpp:97
+#: src/credits.cpp:84
 msgid "'Race 1'"
 msgstr ""
 
-#: src/credits.cpp:98
+#: src/credits.cpp:85
 msgid "'Menu'"
 msgstr ""
 
-#: src/credits.cpp:99
+#: src/credits.cpp:86
 msgid "'Options'"
 msgstr ""
 
-#: src/credits.cpp:100
+#: src/credits.cpp:87
 msgid "'Won Race'"
 msgstr ""
 
-#: src/credits.cpp:103
+#: src/credits.cpp:90
 msgid "'Credits Ballad'"
 msgstr ""
 
-#: src/credits.cpp:105
+#: src/credits.cpp:93
+msgid "'Freezing Point'"
+msgstr ""
+
+#: src/credits.cpp:96
+msgid "'Calm Race'"
+msgstr ""
+
+#: src/credits.cpp:97
+msgid "'Lost Race'"
+msgstr ""
+
+#: src/credits.cpp:98
+msgid "'Race Intro'"
+msgstr ""
+
+#: src/credits.cpp:99
+msgid "'Spunky Race'"
+msgstr ""
+
+#: src/credits.cpp:100
+msgid "'Won Race: kschroeder Remix'"
+msgstr ""
+
+#: src/credits.cpp:102
 msgid "Misc. PPRacer Contributors"
 msgstr ""
 
-#: src/credits.cpp:110
-msgid "Thanks To"
+#: src/credits.cpp:108
+msgid "52143__blaukreuz__imp_01.wav - Original sound of ice cracking..."
+msgstr ""
+
+#: src/credits.cpp:109
+msgid "http://www.freesound.org/samplesViewSingle.php?id=52143"
 msgstr ""
 
 #: src/credits.cpp:111
-msgid "(for Exteme Tux Racer)"
-msgstr ""
+msgid "Thanks To"
+msgstr "ಧನ್ಯವಾದಗಳು"
 
 #: src/credits.cpp:112
-msgid "Ranger (for hosting the website)"
+msgid "(for Extreme Tux Racer)"
 msgstr ""
 
 #: src/credits.cpp:113
-msgid "Slythfox (for making the website)"
+msgid "Ranger (for hosting the website)"
 msgstr ""
 
 #: src/credits.cpp:114
-msgid "The Course Creators"
+msgid "Slythfox (for making the website)"
 msgstr ""
 
 #: src/credits.cpp:115
-msgid "The OpenRacer project"
+msgid "The Course Creators"
 msgstr ""
 
 #: src/credits.cpp:116
-msgid "Reinhard Niehoff (for helping with code modification)"
+msgid "The OpenRacer project"
 msgstr ""
 
 #: src/credits.cpp:117
-msgid "All the people on the forum"
+msgid "Reinhard Niehoff (tons of advice)"
 msgstr ""
 
 #: src/credits.cpp:118
-msgid "Larry Ewing (creator of Tux)"
+msgid "All the people of the forum"
 msgstr ""
 
 #: src/credits.cpp:119
+msgid "Larry Ewing (creator of Tux)"
+msgstr ""
+
+#: src/credits.cpp:120
 msgid "(for Tux Racer)"
 msgstr ""
 
-#: src/credits.cpp:126
+#: src/credits.cpp:127
 msgid "Tux Racer is a trademark of Jasmin F. Patry."
 msgstr ""
 
-#: src/credits.cpp:127
+#: src/credits.cpp:128
 msgid "Extreme Tux Racer is licenced under the GPL."
 msgstr ""
 
-#: src/credits.cpp:128
+#: src/credits.cpp:129
 msgid "We grant use of the name 'Extreme Tux Racer'"
 msgstr ""
 
-#: src/credits.cpp:129
+#: src/credits.cpp:130
 msgid "to any forks or continuations."
 msgstr ""
 
-#: src/credits.cpp:131
+#: src/credits.cpp:132
 msgid "PlanetPenguin Racer is Copyright © 2005 Volker Stroebel."
 msgstr ""
 
-#: src/credits.cpp:132
-msgid "Tux Racer and the Tux Racer Name are Copyright © 2001 Jasmin F. Patry."
+#: src/credits.cpp:133
+msgid ""
+"Tux Racer and the Tux Racer Name are Copyright © 2001 Jasmin F. Patry."
 msgstr ""
+
+#: src/credits.cpp:159
+msgid "Translators"
+msgstr "ಅನುವಾದಕರು"
 
 #: src/event_select.cpp:50
 msgid "Select campaign and cup"
@@ -268,21 +297,21 @@ msgstr ""
 
 #: src/event_select.cpp:87
 msgid "Player name:"
-msgstr ""
+msgstr "ಆಟಗಾರನ ಹೆಸರು"
 
 #: src/event_select.cpp:104
 msgid "Continue"
-msgstr ""
+msgstr "ಮುಂದುವರಿಸು"
 
-#: src/event_select.cpp:158
+#: src/event_select.cpp:203
 msgid "You've won this cup!"
 msgstr ""
 
-#: src/event_select.cpp:160
+#: src/event_select.cpp:205
 msgid "You must complete this cup next"
 msgstr ""
 
-#: src/event_select.cpp:162
+#: src/event_select.cpp:207
 msgid "You cannot enter this cup yet"
 msgstr ""
 
@@ -294,103 +323,103 @@ msgstr ""
 msgid "Race!"
 msgstr ""
 
-#: src/event_race_select.cpp:280
+#: src/event_race_select.cpp:290
 msgid "You don't have any lives left."
 msgstr ""
 
-#: src/event_race_select.cpp:285
+#: src/event_race_select.cpp:295
 msgid "Race won! Your result:"
 msgstr ""
 
-#: src/event_race_select.cpp:289
+#: src/event_race_select.cpp:299
 msgid "Needed to advance:"
 msgstr ""
 
-#: src/event_race_select.cpp:293
+#: src/event_race_select.cpp:303
 msgid "You can't enter this race yet."
 msgstr ""
 
-#: src/event_race_select.cpp:316
+#: src/event_race_select.cpp:326
 msgid "Time:"
-msgstr ""
+msgstr "ಸಮಯ:"
 
-#: src/event_race_select.cpp:320
+#: src/event_race_select.cpp:330
 #, c-format
 msgid "%02d:%02d.%02d"
 msgstr ""
 
-#: src/event_race_select.cpp:324
+#: src/event_race_select.cpp:334
 msgid "Herring:"
 msgstr ""
 
-#: src/event_race_select.cpp:332
+#: src/event_race_select.cpp:342
 msgid "Score:"
-msgstr ""
+msgstr "ಅಂಕ"
 
-#: src/event_race_select.cpp:341
+#: src/event_race_select.cpp:351
 msgid "Contributed by:"
 msgstr ""
 
-#: src/event_race_select.cpp:349 po/levelinfo:16
+#: src/event_race_select.cpp:359 po/levelinfo:113
 msgid "Unknown"
 msgstr ""
 
-#: src/game_over.cpp:109
+#: src/game_over.cpp:122 src/game_over.cpp:124
 msgid "Race aborted"
 msgstr ""
 
-#: src/game_over.cpp:112
+#: src/game_over.cpp:127 src/game_over.cpp:129
 msgid "Race Over"
 msgstr ""
 
-#: src/game_over.cpp:119
+#: src/game_over.cpp:136
 #, c-format
 msgid "Time: %02d:%02d.%02d"
-msgstr ""
+msgstr "ಸಮಯ: %02d:%02d.%02d"
 
-#: src/game_over.cpp:124
+#: src/game_over.cpp:143
 #, c-format
 msgid "Herring: %3d"
 msgstr ""
 
-#: src/game_over.cpp:129
+#: src/game_over.cpp:150
 #, c-format
 msgid "Score: %6d"
-msgstr ""
+msgstr "ಅಂಕ: %6d"
 
-#: src/game_over.cpp:135
+#: src/game_over.cpp:158
 #, c-format
 msgid "Max speed: %3d km/h"
-msgstr ""
+msgstr "ಗರಿಷ್ಟ ವೇಗ: %3d km/h"
 
-#: src/game_over.cpp:141
+#: src/game_over.cpp:166
 #, c-format
 msgid "Was flying: %.01f %% of time"
 msgstr ""
 
-#: src/game_over.cpp:151
+#: src/game_over.cpp:178
 #, c-format
 msgid "You made it to the %s place in the highscore!"
 msgstr ""
 
-#: src/game_over.cpp:161
+#: src/game_over.cpp:190
 msgid "You beat your best score!"
 msgstr ""
 
-#: src/game_over.cpp:164
+#: src/game_over.cpp:193
 msgid "Congratulations! You won the campaign!"
 msgstr ""
 
-#: src/game_over.cpp:166
+#: src/game_over.cpp:195
 msgid "Congratulations! You won the cup!"
 msgstr ""
 
-#: src/game_over.cpp:168
-msgid "You advanced to the next race!"
+#: src/game_over.cpp:197
+msgid "Requirements met! Advance to the next race."
 msgstr ""
 
-#: src/game_over.cpp:170
-msgid "You didn't advance."
+#: src/game_over.cpp:199
+msgid "Race requirements not met."
 msgstr ""
 
 #: src/game_type_select.cpp:36
@@ -407,18 +436,14 @@ msgstr ""
 
 #: src/game_type_select.cpp:64
 msgid "Credits"
-msgstr ""
+msgstr "ಮನ್ನಣೆಗಳು"
 
-#: src/game_type_select.cpp:71 src/paused.cpp:78
+#: src/game_type_select.cpp:71 src/paused.cpp:79
 msgid "Quit"
-msgstr ""
+msgstr "ಹೊರ ನೆಡೆ"
 
 #: src/graphicsconfig.cpp:30
 msgid "Graphics Configuration"
-msgstr ""
-
-#: src/graphicsconfig.cpp:108
-msgid "Model:"
 msgstr ""
 
 #: src/graphicsconfig.cpp:117
@@ -439,11 +464,11 @@ msgstr ""
 
 #: src/graphicsconfig.cpp:133
 msgid "Reflections:"
-msgstr ""
+msgstr "ಪ್ರತಿಬಿಂಬಗಳು:"
 
 #: src/graphicsconfig.cpp:137
 msgid "Shadows:"
-msgstr ""
+msgstr "ನೆರಳುಗಳು:"
 
 #: src/graphicsconfig.cpp:141
 msgid "Draw Background:"
@@ -528,11 +553,11 @@ msgstr ""
 
 #: src/keyboardconfig.cpp:124
 msgid "Turn left:"
-msgstr ""
+msgstr "ಎಡಕ್ಕೆ ತಿರುವು:"
 
 #: src/keyboardconfig.cpp:128
 msgid "Turn right:"
-msgstr ""
+msgstr "ಬಲಕ್ಕೆ ತಿರುವು:"
 
 #: src/keyboardconfig.cpp:148
 msgid "Reset:"
@@ -542,13 +567,13 @@ msgstr ""
 msgid "Loading, Please Wait..."
 msgstr ""
 
-#: src/paused.cpp:54
+#: src/paused.cpp:55
 msgid "Paused"
 msgstr ""
 
-#: src/paused.cpp:70
+#: src/paused.cpp:71
 msgid "Resume"
-msgstr ""
+msgstr "ಪುನರಾರಂಭಿಸು"
 
 #: src/splash_screen.cpp:34
 msgid "PRESS ANY KEY TO START"
@@ -568,7 +593,7 @@ msgstr ""
 
 #: src/videoconfig.cpp:177
 msgid "Resolution:"
-msgstr ""
+msgstr "ರೆಸಲ್ಯೂಶನ್:"
 
 #: src/videoconfig.cpp:181
 msgid "Bits Per Pixel:"
@@ -576,7 +601,7 @@ msgstr ""
 
 #: src/videoconfig.cpp:185
 msgid "Fullscreen:"
-msgstr ""
+msgstr "ಪೂರ್ಣಪರದೆ:"
 
 #: src/videoconfig.cpp:189
 msgid "Experimental (needs restart)"
@@ -595,510 +620,512 @@ msgid "FSAA Multisamples:"
 msgstr ""
 
 #: po/levelinfo:1
-#, c-format
-msgid "FPS: %.1f"
-msgstr ""
-
-#: po/levelinfo:2 po/levelinfo:3
-#, c-format
-msgid "%03d"
-msgstr ""
-
-#: po/levelinfo:4 po/levelinfo:5
-#, c-format
-msgid "%02d:%02d:%02d"
-msgstr ""
-
-#: po/levelinfo:6 po/levelinfo:8
-msgid "km/h"
-msgstr ""
-
-#: po/levelinfo:7 po/levelinfo:9
-#, c-format
-msgid "%.0f"
-msgstr ""
-
-#: po/levelinfo:10 po/levelinfo:11
-#, c-format
-msgid "%d:%d:%d"
-msgstr ""
-
-#: po/levelinfo:12 po/levelinfo:13
-#, c-format
-msgid "%d"
-msgstr ""
-
-#: po/levelinfo:14
 msgid "Doing"
 msgstr ""
 
-#: po/levelinfo:15
+#: po/levelinfo:2
 msgid ""
 "This course was probably created to present new textures introduced in "
 "PPRacer."
 msgstr ""
 
-#: po/levelinfo:17
-msgid "Hippo Run"
+#: po/levelinfo:3
+#, c-format
+msgid "FPS: %.1f"
 msgstr ""
 
-#: po/levelinfo:18
-msgid ""
-"In Hippo Run, you slide down an icy slope as a penguin, I honestly don't "
-"know what this has to do with hippos or running..."
+#: po/levelinfo:4 po/levelinfo:5
+#, c-format
+msgid "%03d"
 msgstr ""
 
-#: po/levelinfo:19
-msgid "Ice Pipeline"
+#: po/levelinfo:6 po/levelinfo:7
+#, c-format
+msgid "%02d:%02d:%02d"
 msgstr ""
 
-#: po/levelinfo:20
-msgid "A short, slippery ice-trough with herring scattered throughout."
+#: po/levelinfo:8 po/levelinfo:10
+msgid "km/h"
+msgstr "km/h"
+
+#: po/levelinfo:9 po/levelinfo:11
+#, c-format
+msgid "%.0f"
 msgstr ""
 
-#: po/levelinfo:21
-msgid "Volcanoes"
+#: po/levelinfo:12 po/levelinfo:13
+#, c-format
+msgid "%d:%d:%d"
 msgstr ""
 
-#: po/levelinfo:22
-msgid ""
-"This gigantic crater was full of water, and herring, but now it's all "
-"frozen, and yours for the taking."
+#: po/levelinfo:14 po/levelinfo:15
+#, c-format
+msgid "%d"
 msgstr ""
 
-#: po/levelinfo:23
-msgid "Nature Stroll"
-msgstr ""
-
-#: po/levelinfo:24
-msgid ""
-"The fresh air, the pine scent, who doesn't like a nice refreshing walk "
-"through the mountains?"
-msgstr ""
-
-#: po/levelinfo:25
+#: po/levelinfo:16
 msgid "Mountain Mania"
 msgstr ""
 
-#: po/levelinfo:26
+#: po/levelinfo:17
 msgid "Icy Peril"
 msgstr ""
 
-#: po/levelinfo:27
+#: po/levelinfo:18
 msgid "Death Cup"
 msgstr ""
 
-#: po/levelinfo:28
+#: po/levelinfo:19
 msgid "Slippery Defeat"
 msgstr ""
 
-#: po/levelinfo:29
+#: po/levelinfo:20
 msgid "The Final Three"
 msgstr ""
 
-#: po/levelinfo:30
-msgid "Slippy-Slidey"
+#: po/levelinfo:21
+msgid "Bobsled Ride"
 msgstr ""
 
-#: po/levelinfo:31
-msgid "Slide on the slippery frozen river in a hilly forest, slipperily."
+#: po/levelinfo:22
+msgid "Just like a real bobsled ride, only more dangerous."
 msgstr ""
 
-#: po/levelinfo:32
-msgid "Crazy Path"
-msgstr ""
-
-#: po/levelinfo:33
-msgid ""
-"You'll have trouble slowing down on this one. There's lots of herring, but "
-"be careful not to fly too much or you won't get any."
-msgstr ""
-
-#: po/levelinfo:34
+#: po/levelinfo:23
 msgid "Candy Lane"
 msgstr ""
 
-#: po/levelinfo:35
+#: po/levelinfo:24
 msgid ""
 "Mostly ice, with very few obstacles in your path, this is like a stroll down "
 "Candy Lane."
 msgstr ""
 
-#: po/levelinfo:36
-msgid "Merry Go Round"
+#: po/levelinfo:25
+msgid "Ice Pipeline"
 msgstr ""
 
-#: po/levelinfo:37
-msgid "Try to build up enough speed to jump from one roundabout to the next."
+#: po/levelinfo:26
+msgid "A short, slippery ice-trough with herring scattered throughout."
 msgstr ""
 
-#: po/levelinfo:38
-msgid "Hey, Tux!"
+#: po/levelinfo:27
+msgid "Hippo Run"
 msgstr ""
 
-#: po/levelinfo:39
-msgid "This course offers true excitement for your race-loving penguin buddy."
+#: po/levelinfo:28
+msgid ""
+"In Hippo Run, you slide down an icy slope as a penguin, I honestly don't "
+"know what this has to do with hippos or running..."
 msgstr ""
 
-#: po/levelinfo:40
-msgid "Bobsled Ride"
+#: po/levelinfo:29
+msgid "Nature Stroll"
 msgstr ""
 
-#: po/levelinfo:41
-msgid "Just like a real bobsled ride, only more dangerous."
+#: po/levelinfo:30
+msgid ""
+"The fresh air, the pine scent, who doesn't like a nice refreshing walk "
+"through the mountains?"
 msgstr ""
 
-#: po/levelinfo:42
+#: po/levelinfo:31
+msgid "Crazy Path"
+msgstr ""
+
+#: po/levelinfo:32
+msgid ""
+"You'll have trouble slowing down on this one. There's lots of herring, but "
+"be careful not to fly too much or you won't get any."
+msgstr ""
+
+#: po/levelinfo:33
 msgid "In Search of Vodka"
 msgstr ""
 
-#: po/levelinfo:43
+#: po/levelinfo:34
 msgid ""
 "Tux needs some needs some vodka to warm up his cold belly. Alas, his liquor "
 "cabinet has been pillaged. Join Tux on the quest for vodka.Pick up herring "
 "for dinner along the way!"
 msgstr ""
 
-#: po/levelinfo:44
-msgid "Tux at Home"
+#: po/levelinfo:35
+msgid "Merry Go Round"
 msgstr ""
 
-#: po/levelinfo:45
+#: po/levelinfo:36
+msgid "Try to build up enough speed to jump from one roundabout to the next."
+msgstr ""
+
+#: po/levelinfo:37
+msgid "Hey, Tux!"
+msgstr ""
+
+#: po/levelinfo:38
 msgid ""
-"Here lives Tux. You can take the corridore on the right - it's the shortest "
-"and fastest way. But if you want to catch some herrings you have to enter "
-"the rooms on the left."
+"This course offers true excitement for your race-loving penguin buddy."
 msgstr ""
 
-#: po/levelinfo:46
-msgid "The Niehoff Experience"
+#: po/levelinfo:39
+msgid "Volcanoes"
 msgstr ""
 
-#: po/levelinfo:47
-msgid "Search, Search, Search"
-msgstr ""
-
-#: po/levelinfo:48
-msgid "Mountains and Hills"
-msgstr ""
-
-#: po/levelinfo:49
-msgid "The Final Challenge"
-msgstr ""
-
-#: po/levelinfo:50
-msgid "Wild Mountains"
-msgstr ""
-
-#: po/levelinfo:51
+#: po/levelinfo:40
 msgid ""
-"A wild landscape of ice and snow. It isn't easy to keep the right way. Not "
-"for beginners."
+"This gigantic crater was full of water, and herring, but now it's all "
+"frozen, and yours for the taking."
 msgstr ""
 
-#: po/levelinfo:52
-msgid "In Search of the Holy Grail"
+#: po/levelinfo:41
+msgid "Slippy-Slidey"
 msgstr ""
 
-#: po/levelinfo:53
-msgid ""
-"An adventure course with a simple task: Find the grail! Warning: It is very "
-"difficult to find the way."
+#: po/levelinfo:42
+msgid "Slide on the slippery frozen river in a hilly forest, slipperily."
 msgstr ""
 
-#: po/levelinfo:54
-msgid "Frozen Lakes"
-msgstr ""
-
-#: po/levelinfo:55
-msgid ""
-"To reach the finish you must pass several frozen lakes. Watch your speed on "
-"the ice - there are some dangerous corners."
-msgstr ""
-
-#: po/levelinfo:56
-msgid "Chinese Wall"
-msgstr ""
-
-#: po/levelinfo:57
-msgid ""
-"The Great Wall of China in winter. Try to stay on top of the wall - that's "
-"where the herrings are. If you fall off you can try to jump back up, there "
-"are 7 hidden ramps. You'll get a lot of exercise."
-msgstr ""
-
-#: po/levelinfo:58
-msgid "Secret Valleys"
-msgstr ""
-
-#: po/levelinfo:59
-msgid ""
-"Your task: Find the hidden valleys and the ten groups of dead trees. Look "
-"around, the ways are not easy to find."
-msgstr ""
-
-#: po/levelinfo:60
-msgid "Explore the Mountains"
-msgstr ""
-
-#: po/levelinfo:61
-msgid "Can you find your way through the icy, dangerous mountains. I doubt it."
-msgstr ""
-
-#: po/levelinfo:62
-msgid "Challenge One"
-msgstr ""
-
-#: po/levelinfo:63
-msgid ""
-"A very dangerous path along the mountains. Warning: The course is very "
-"difficult and there are some situations where you can get stuck."
-msgstr ""
-
-#: po/levelinfo:64
-msgid "Path of Daggers"
-msgstr ""
-
-#: po/levelinfo:65
-msgid ""
-"Big spikes may prove to be the least of your worries on this course. Muliple "
-"paths allow you to take low or high roads, each with their own challenges."
-msgstr ""
-
-#: po/levelinfo:66
-msgid "Tux Racer Classics"
-msgstr ""
-
-#: po/levelinfo:67
-msgid "Canadian Cup"
-msgstr ""
-
-#: po/levelinfo:68
-msgid "Swiss Cup"
-msgstr ""
-
-#: po/levelinfo:69
-msgid "Bumpy Ride"
-msgstr ""
-
-#: po/levelinfo:70
-msgid ""
-"This hill has a series of ramps to tackle.  Be sure to line yourself up "
-"before getting airborne."
-msgstr ""
-
-#: po/levelinfo:71
-msgid "Bunny Hill"
-msgstr ""
-
-#: po/levelinfo:72
-msgid ""
-"Let's start out easy, just collect the herring in the time limit and you'll "
-"be fine. The best part is that you don't have to use those stupid T-lifts."
-msgstr ""
-
-#: po/levelinfo:73
-msgid "Frozen River"
-msgstr ""
-
-#: po/levelinfo:74
-msgid ""
-"Keep your speed down to collect herring. You have plenty of time, so don't "
-"rush things."
-msgstr ""
-
-#: po/levelinfo:75
-msgid "Twisty Slope"
-msgstr ""
-
-#: po/levelinfo:76
-msgid ""
-"Tight twists make grabbing herring difficult.  Hard turns and not too much "
-"braking will lead you to victory."
-msgstr ""
-
-#: po/levelinfo:77
-msgid "Mt. Herring"
-msgstr ""
-
-#: po/levelinfo:78
-msgid ""
-"Mt. Herring is relatively fast but long, somewhat bumpy in places, and has "
-"some wide open areas and branching paths. Lots of herrings to collect though "
-"it can be difficult unless you watch your speed."
-msgstr ""
-
-#: po/levelinfo:79
+#: po/levelinfo:43
 msgid "Herring Run"
 msgstr ""
 
-#: po/levelinfo:80
+#: po/levelinfo:44
 msgid "Mountain Man"
 msgstr ""
 
-#: po/levelinfo:81
+#: po/levelinfo:45
 msgid "Valley Cup"
 msgstr ""
 
-#: po/levelinfo:82
+#: po/levelinfo:46
 msgid "Tux the winter sportsman"
 msgstr ""
 
-#: po/levelinfo:83
+#: po/levelinfo:47
 msgid "Highway To Hell"
 msgstr ""
 
-#: po/levelinfo:84
-msgid "Ice Labyrinth"
-msgstr ""
-
-#: po/levelinfo:85
-msgid ""
-"You choose your destiny, you could end up full or starving depending on the "
-"path you pick."
-msgstr ""
-
-#: po/levelinfo:86
-msgid "Snow Valley"
-msgstr ""
-
-#: po/levelinfo:87
-msgid ""
-"Snow Valley is a relatively flat, and very fast course. You'll find a few "
-"herrings very difficult to get if you're going for a perfect score! Watch "
-"your speed in certain areas to get the most herrings!"
-msgstr ""
-
-#: po/levelinfo:88
-msgid "Tux Toboggan Run"
-msgstr ""
-
-#: po/levelinfo:89
-msgid ""
-"Collect herrings in an ice channel with various paths and many high and low "
-"speed passages. Watch out for the occasional tree."
-msgstr ""
-
-#: po/levelinfo:90
-msgid "Hazzard Valley"
-msgstr ""
-
-#: po/levelinfo:91
-msgid ""
-"Hazzard Valley is full of hazards, like trees, deep caverns, spikes, and "
-"huge areas of rocky plains, not to mention your speed being your enemy in "
-"trying to get the herrings and stay on course!"
-msgstr ""
-
-#: po/levelinfo:92
-msgid "Skull Mountain"
-msgstr ""
-
-#: po/levelinfo:93
-msgid ""
-"Skull mountain is a steep, twisty drop around tree-filled inner peaks. "
-"Expect to miss a lot of herrings and crash a lot."
-msgstr ""
-
-#: po/levelinfo:94
-msgid "Keep It Up"
-msgstr ""
-
-#: po/levelinfo:95
-msgid ""
-"If you fall you might as well just quit then and there, 'cause your chances "
-"are slim on the rocky ground."
-msgstr ""
-
-#: po/levelinfo:96
+#: po/levelinfo:48
 msgid "Dead Man's Drop"
 msgstr ""
 
-#: po/levelinfo:97
+#: po/levelinfo:49
 msgid ""
 "Pretty tough hill. It's fast, steep, lumpy, twisty, and full of trees. Hard "
 "to get herrings. Don't forget the drop."
 msgstr ""
 
-#: po/levelinfo:98
-msgid "I've Got A Woody"
+#: po/levelinfo:50
+msgid "Skull Mountain"
 msgstr ""
 
-#: po/levelinfo:99
+#: po/levelinfo:51
 msgid ""
-"Yet another horrible elevated ice-coaster. If you thought the last two were "
-"hard, try this one. Have fun winding through the woods.  Look out for a huge "
-"shortcut!!"
+"Skull mountain is a steep, twisty drop around tree-filled inner peaks. "
+"Expect to miss a lot of herrings and crash a lot."
 msgstr ""
 
-#: po/levelinfo:100
-msgid "Mt. Satan"
-msgstr ""
-
-#: po/levelinfo:101
-msgid ""
-"Mount Satan is a sister mountain to Dead Man's Drop. No surprises here, just "
-"a steep, bumpy, twisty path full of trees to get through."
-msgstr ""
-
-#: po/levelinfo:102
-msgid "Ski Jump"
-msgstr ""
-
-#: po/levelinfo:103
-msgid ""
-"Steering will be unnecessary, just line yourself up and reap the rewards. "
-"Rememember, acceleration will slow you down after a while."
-msgstr ""
-
-#: po/levelinfo:104
-msgid "High Road"
-msgstr ""
-
-#: po/levelinfo:105
-msgid ""
-"Just stay on the path and collect herring. Oh yeah, and if you fall you'll "
-"be eating pine needles."
-msgstr ""
-
-#: po/levelinfo:106
+#: po/levelinfo:52
 msgid "The Narrow Way"
 msgstr ""
 
-#: po/levelinfo:107
+#: po/levelinfo:53
 msgid ""
 "To put it simply, stay on the path or you lose! It's hard to see where "
 "you're going, there's trees in your way, and the herrings are hard to get. "
 "Good luck, you'll need it!"
 msgstr ""
 
-#: po/levelinfo:108
+#: po/levelinfo:54
 msgid "Hamburger Hill"
 msgstr ""
 
-#: po/levelinfo:109
+#: po/levelinfo:55
 msgid ""
 "Hamburger Hill is steep, narrow, twisty, lumpy, icy, and rocky, with a few "
 "trees right in your way!"
 msgstr ""
 
-#: po/levelinfo:110
+#: po/levelinfo:56
+msgid "Who Says Penguins Can't Fly?"
+msgstr ""
+
+#: po/levelinfo:57
+msgid ""
+"It'll be tough collecting herrings at speeds over 200, so try to brake "
+"whenever possible to get the required herring."
+msgstr ""
+
+#: po/levelinfo:58
+msgid "Snow Valley"
+msgstr ""
+
+#: po/levelinfo:59
+msgid ""
+"Snow Valley is a relatively flat, and very fast course. You'll find a few "
+"herrings very difficult to get if you're going for a perfect score! Watch "
+"your speed in certain areas to get the most herrings!"
+msgstr ""
+
+#: po/levelinfo:60
+msgid "Ski Jump"
+msgstr ""
+
+#: po/levelinfo:61
+msgid ""
+"Steering will be unnecessary, just line yourself up and reap the rewards. "
+"Rememember, acceleration will slow you down after a while."
+msgstr ""
+
+#: po/levelinfo:62
 msgid "Slalom"
 msgstr ""
 
-#: po/levelinfo:111
+#: po/levelinfo:63
 msgid ""
 "Brake while you turn and the herrings on this pseudo-slalom will be yours."
 msgstr ""
 
-#: po/levelinfo:112
-msgid "Who Says Penguins Can't Fly?"
+#: po/levelinfo:64
+msgid "Hazzard Valley"
 msgstr ""
 
-#: po/levelinfo:113
+#: po/levelinfo:65
 msgid ""
-"It'll be tough collecting herrings at speeds over 200, so try to brake "
-"whenever possible to get the required herring."
+"Hazzard Valley is full of hazards, like trees, deep caverns, spikes, and "
+"huge areas of rocky plains, not to mention your speed being your enemy in "
+"trying to get the herrings and stay on course!"
+msgstr ""
+
+#: po/levelinfo:66
+msgid "I've Got A Woody"
+msgstr ""
+
+#: po/levelinfo:67
+msgid ""
+"Yet another horrible elevated ice-coaster. If you thought the last two were "
+"hard, try this one. Have fun winding through the woods.  Look out for a huge "
+"shortcut!!"
+msgstr ""
+
+#: po/levelinfo:68
+msgid "Tux Toboggan Run"
+msgstr ""
+
+#: po/levelinfo:69
+msgid ""
+"Collect herrings in an ice channel with various paths and many high and low "
+"speed passages. Watch out for the occasional tree."
+msgstr ""
+
+#: po/levelinfo:70
+msgid "Mt. Satan"
+msgstr ""
+
+#: po/levelinfo:71
+msgid ""
+"Mount Satan is a sister mountain to Dead Man's Drop. No surprises here, just "
+"a steep, bumpy, twisty path full of trees to get through."
+msgstr ""
+
+#: po/levelinfo:72
+msgid "Ice Labyrinth"
+msgstr ""
+
+#: po/levelinfo:73
+msgid ""
+"You choose your destiny, you could end up full or starving depending on the "
+"path you pick."
+msgstr ""
+
+#: po/levelinfo:74
+msgid "High Road"
+msgstr ""
+
+#: po/levelinfo:75
+msgid ""
+"Just stay on the path and collect herring. Oh yeah, and if you fall you'll "
+"be eating pine needles."
+msgstr ""
+
+#: po/levelinfo:76
+msgid "Mt. Herring"
+msgstr ""
+
+#: po/levelinfo:77
+msgid ""
+"Mt. Herring is relatively fast but long, somewhat bumpy in places, and has "
+"some wide open areas and branching paths. Lots of herrings to collect though "
+"it can be difficult unless you watch your speed."
+msgstr ""
+
+#: po/levelinfo:78
+msgid "Keep It Up"
+msgstr ""
+
+#: po/levelinfo:79
+msgid ""
+"If you fall you might as well just quit then and there, 'cause your chances "
+"are slim on the rocky ground."
+msgstr ""
+
+#: po/levelinfo:80
+msgid "Tux Racer Classics"
+msgstr ""
+
+#: po/levelinfo:81
+msgid "Canadian Cup"
+msgstr ""
+
+#: po/levelinfo:82
+msgid "Swiss Cup"
+msgstr ""
+
+#: po/levelinfo:83
+msgid "Path of Daggers"
+msgstr ""
+
+#: po/levelinfo:84
+msgid ""
+"Big spikes may prove to be the least of your worries on this course. Muliple "
+"paths allow you to take low or high roads, each with their own challenges."
+msgstr ""
+
+#: po/levelinfo:85
+msgid "Bunny Hill"
+msgstr ""
+
+#: po/levelinfo:86
+msgid ""
+"Let's start out easy, just collect the herring in the time limit and you'll "
+"be fine. The best part is that you don't have to use those stupid T-lifts."
+msgstr ""
+
+#: po/levelinfo:87
+msgid "Bumpy Ride"
+msgstr ""
+
+#: po/levelinfo:88
+msgid ""
+"This hill has a series of ramps to tackle.  Be sure to line yourself up "
+"before getting airborne."
+msgstr ""
+
+#: po/levelinfo:89
+msgid "Frozen River"
+msgstr ""
+
+#: po/levelinfo:90
+msgid ""
+"Keep your speed down to collect herring. You have plenty of time, so don't "
+"rush things."
+msgstr ""
+
+#: po/levelinfo:91
+msgid "Twisty Slope"
+msgstr ""
+
+#: po/levelinfo:92
+msgid ""
+"Tight twists make grabbing herring difficult.  Hard turns and not too much "
+"braking will lead you to victory."
+msgstr ""
+
+#: po/levelinfo:93
+msgid "The Niehoff Experience"
+msgstr ""
+
+#: po/levelinfo:94
+msgid "Search, Search, Search"
+msgstr ""
+
+#: po/levelinfo:95
+msgid "Mountains and Hills"
+msgstr ""
+
+#: po/levelinfo:96
+msgid "The Final Challenge"
+msgstr ""
+
+#: po/levelinfo:97
+msgid "Tux at Home"
+msgstr ""
+
+#: po/levelinfo:98
+msgid ""
+"Here lives Tux. You can take the corridore on the right - it's the shortest "
+"and fastest way. But if you want to catch some herrings you have to enter "
+"the rooms on the left."
+msgstr ""
+
+#: po/levelinfo:99
+msgid "Secret Valleys"
+msgstr ""
+
+#: po/levelinfo:100
+msgid ""
+"Your task: Find the hidden valleys and the ten groups of dead trees. Look "
+"around, the ways are not easy to find."
+msgstr ""
+
+#: po/levelinfo:101
+msgid "Chinese Wall"
+msgstr ""
+
+#: po/levelinfo:102
+msgid ""
+"The Great Wall of China in winter. Try to stay on top of the wall - that's "
+"where the herrings are. If you fall off you can try to jump back up, there "
+"are 7 hidden ramps. You'll get a lot of exercise."
+msgstr ""
+
+#: po/levelinfo:103
+msgid "Challenge One"
+msgstr ""
+
+#: po/levelinfo:104
+msgid ""
+"A very dangerous path along the mountains. Warning: The course is very "
+"difficult and there are some situations where you can get stuck."
+msgstr ""
+
+#: po/levelinfo:105
+msgid "Frozen Lakes"
+msgstr ""
+
+#: po/levelinfo:106
+msgid ""
+"To reach the finish you must pass several frozen lakes. Watch your speed on "
+"the ice - there are some dangerous corners."
+msgstr ""
+
+#: po/levelinfo:107
+msgid "In Search of the Holy Grail"
+msgstr ""
+
+#: po/levelinfo:108
+msgid ""
+"An adventure course with a simple task: Find the grail! Warning: It is very "
+"difficult to find the way."
+msgstr ""
+
+#: po/levelinfo:109
+msgid "Explore the Mountains"
+msgstr ""
+
+#: po/levelinfo:110
+msgid ""
+"Can you find your way through the icy, dangerous mountains. I doubt it."
+msgstr ""
+
+#: po/levelinfo:111
+msgid "Wild Mountains"
+msgstr ""
+
+#: po/levelinfo:112
+msgid ""
+"A wild landscape of ice and snow. It isn't easy to keep the right way. Not "
+"for beginners."
 msgstr ""
 
 #: po/modelinfo:1
@@ -1106,5 +1133,13 @@ msgid "Tux"
 msgstr ""
 
 #: po/modelinfo:2
-msgid "Tux on Snowboard"
+msgid "Samuel"
+msgstr ""
+
+#: po/modelinfo:3
+msgid "Trixi"
+msgstr ""
+
+#: po/modelinfo:4
+msgid "Speedy"
 msgstr ""

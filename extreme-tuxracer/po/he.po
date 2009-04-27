@@ -8,430 +8,425 @@ msgstr ""
 "Project-Id-Version: etracer\n"
 "Report-Msgid-Bugs-To: https://translations.edge.launchpad.net/etracer\n"
 "POT-Creation-Date: 2008-08-03 20:17+0200\n"
-"PO-Revision-Date: 2008-08-03 02:32+0000\n"
-"Last-Translator: idovmagal <Unknown>\n"
+"PO-Revision-Date: 2009-02-20 07:29+0000\n"
+"Last-Translator: Yaron <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <he@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-08-03 17:56+0000\n"
+"X-Launchpad-Export-Date: 2009-04-27 12:04+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: src/audioconfig.cpp:36
-#, fuzzy
 msgid "Audio Configuration"
 msgstr "הגדרות שמע"
 
 #: src/audioconfig.cpp:112
-#, fuzzy
 msgid "Sound Effects:"
-msgstr "אפקטי קול"
+msgstr "אפקטי קול:"
 
 #: src/audioconfig.cpp:116
-#, fuzzy
 msgid "Music:"
-msgstr "מוסיקה"
+msgstr "מוסיקה:"
 
 #: src/audioconfig.cpp:120
-#, fuzzy
 msgid "(needs restart)"
 msgstr "(זקוק לאתחול)"
 
 #: src/audioconfig.cpp:122
-#, fuzzy
 msgid "Disable Audio:"
-msgstr "בטל קול"
+msgstr "בטל קול:"
 
 #: src/audioconfig.cpp:126
-#, fuzzy
 msgid "Stereo:"
-msgstr "סטראו"
+msgstr "סטריאו:"
 
 #: src/audioconfig.cpp:130
 msgid "Bits Per Sample:"
-msgstr ""
+msgstr "סיביות לדגימה:"
 
 #: src/audioconfig.cpp:134
 msgid "Samples Per Second:"
-msgstr ""
+msgstr "דגימות לשניה:"
 
 #: src/configmode.cpp:36
-#, fuzzy
 msgid "Cancel"
-msgstr "בטל"
+msgstr "ביטול"
 
 #: src/configmode.cpp:43
-#, fuzzy
 msgid "Ok"
 msgstr "אישור"
 
 #: src/configuration.cpp:38 src/game_type_select.cpp:57 src/paused.cpp:62
-#, fuzzy
 msgid "Configuration"
 msgstr "תצורה"
 
 #: src/configuration.cpp:45 src/credits.cpp:89
-#, fuzzy
 msgid "Graphics"
 msgstr "גרפיקה"
 
 #: src/configuration.cpp:52
-#, fuzzy
 msgid "Video"
 msgstr "וידאו"
 
 #: src/configuration.cpp:59
-#, fuzzy
 msgid "Audio"
 msgstr "שמע"
 
 #: src/configuration.cpp:66
-#, fuzzy
 msgid "Keyboard"
 msgstr "מקלדת"
 
 #: src/configuration.cpp:73
-#, fuzzy
 msgid "Joystick"
 msgstr "ג'ויסטיק"
 
 #: src/configuration.cpp:81 src/event_select.cpp:96
 #: src/event_race_select.cpp:53 src/highscore.cpp:413
-#, fuzzy
 msgid "Back"
 msgstr "חזרה"
 
 #: src/credits.cpp:43
 #, fuzzy
 msgid "Version 0.4"
-msgstr "גירסא 0.4"
+msgstr "גירסה 0.5"
 
 #: src/credits.cpp:46
 msgid "Extreme Tux Racer is in the process of being"
-msgstr ""
+msgstr "Extreme Tux Racer נמצא כעת בהתליכי"
 
 #: src/credits.cpp:47
 msgid "completely rewritten. All versions after 0.35,"
-msgstr ""
+msgstr "שיכתוב כללי מחדש. בכל הגירסאות שלאחר 0.35,"
 
 #: src/credits.cpp:48
 msgid "including this one, won't have major code changes"
-msgstr ""
+msgstr "כולל גירסה זאת, לא יופיעו שינויים מהותיים בקוד"
 
 #: src/credits.cpp:49
 msgid "because the programmers are busy making a new,"
-msgstr ""
+msgstr "כיוון שהמפתחים עסוקים בפיתוח משחק חדש,"
 
 #: src/credits.cpp:50
 msgid "improved game."
-msgstr ""
+msgstr "משופר."
 
 #: src/credits.cpp:52
 msgid "Extreme Tux Racer is based on"
-msgstr ""
+msgstr "Extreme Tux Racer מבוסס על"
 
 #: src/credits.cpp:53
 msgid "PlanetPenguin Racer, Open Racer and Tux Racer."
-msgstr ""
+msgstr "PlanetPenguin Racer, Open Racer ו־Tux Racer."
 
 #: src/credits.cpp:55
 msgid "Some courses may have been modified from their"
-msgstr ""
+msgstr "כמה מהמסלולים שונו מגירסאותיהם"
 
 #: src/credits.cpp:56
 msgid "original versions to fit the requirements of the game."
-msgstr ""
+msgstr "המקוריות כדי להתאים לצרכי המשחק."
 
 #: src/credits.cpp:58
 msgid "Development"
-msgstr ""
+msgstr "פיתוח"
 
 #: src/credits.cpp:63
 msgid "from Sunspire Studios:"
-msgstr ""
+msgstr "מ־Sunspire Studios:"
 
 #: src/credits.cpp:71
+#, fuzzy
 msgid "Non-Rewrite Version Organization"
-msgstr ""
+msgstr "אירגון הפצה"
 
 #: src/credits.cpp:74
 msgid "Translators"
-msgstr ""
+msgstr "מתרגמים"
 
 #: src/credits.cpp:87
 msgid "Other (incomplete) translations are from the PPRacer Project."
 msgstr ""
 
 #: src/credits.cpp:90
+#, fuzzy
 msgid "Nicosmos (Logo, Hud Graphics)"
-msgstr ""
+msgstr "Nicosmos (לוגו, HUD ומנשק)"
 
 #: src/credits.cpp:91
+#, fuzzy
 msgid "Christian Picon (Objects, Skyboxes)"
-msgstr ""
+msgstr "Christian Picon (פריטים, תיבות שמיימיות, דמויות)"
 
 #: src/credits.cpp:92
 msgid "Reinhard Niehoff (Trees)"
-msgstr ""
+msgstr "Reinhard Niehoff (עצים)"
 
 #: src/credits.cpp:93
+#, fuzzy
 msgid "Daniel Poeira and Christian Picon (Font)"
-msgstr ""
+msgstr "Daniel Poeira ו־Christian Picon (הגופן Papercuts)"
 
 #: src/credits.cpp:95
 msgid "Music"
-msgstr ""
+msgstr "מוסיקה"
 
 #: src/credits.cpp:97
 msgid "'Race 1'"
-msgstr ""
+msgstr "'מרוץ 1'"
 
 #: src/credits.cpp:98
 msgid "'Menu'"
-msgstr ""
+msgstr "'תפריט'"
 
 #: src/credits.cpp:99
 msgid "'Options'"
-msgstr ""
+msgstr "'אפשרויות'"
 
 #: src/credits.cpp:100
 msgid "'Won Race'"
-msgstr ""
+msgstr "'ניצח במרוץ'"
 
 #: src/credits.cpp:103
 msgid "'Credits Ballad'"
-msgstr ""
+msgstr "'בלדת התודות'"
 
 #: src/credits.cpp:105
 msgid "Misc. PPRacer Contributors"
-msgstr ""
+msgstr "תורמי PPRacer שונים"
 
 #: src/credits.cpp:110
 msgid "Thanks To"
-msgstr ""
+msgstr "תודתנו נתונה"
 
 #: src/credits.cpp:111
+#, fuzzy
 msgid "(for Exteme Tux Racer)"
-msgstr ""
+msgstr "(על Extreme Tux Racer)"
 
 #: src/credits.cpp:112
 msgid "Ranger (for hosting the website)"
-msgstr ""
+msgstr "Ranger (על אירוח האתר)"
 
 #: src/credits.cpp:113
 msgid "Slythfox (for making the website)"
-msgstr ""
+msgstr "Slythfox (על יצירת האתר)"
 
 #: src/credits.cpp:114
 msgid "The Course Creators"
-msgstr ""
+msgstr "יוצרי המסלולים"
 
 #: src/credits.cpp:115
 msgid "The OpenRacer project"
-msgstr ""
+msgstr "מיזם OpenRacer"
 
 #: src/credits.cpp:116
+#, fuzzy
 msgid "Reinhard Niehoff (for helping with code modification)"
-msgstr ""
+msgstr "Reinhard Niehoff (על טונות של עצות)"
 
 #: src/credits.cpp:117
+#, fuzzy
 msgid "All the people on the forum"
-msgstr ""
+msgstr "כל חברי הפורום"
 
 #: src/credits.cpp:118
 msgid "Larry Ewing (creator of Tux)"
-msgstr ""
+msgstr "Larry Ewing (היוצר של טאקס)"
 
 #: src/credits.cpp:119
 msgid "(for Tux Racer)"
-msgstr ""
+msgstr "(על Tux Racer)"
 
 #: src/credits.cpp:126
 msgid "Tux Racer is a trademark of Jasmin F. Patry."
-msgstr ""
+msgstr "Tux Racer הינו סימן רשום על שם Jasmin F. Patry."
 
 #: src/credits.cpp:127
 msgid "Extreme Tux Racer is licenced under the GPL."
-msgstr ""
+msgstr "Extreme Tux Racer מורשה תחת תנאי ה־GPL."
 
 #: src/credits.cpp:128
 msgid "We grant use of the name 'Extreme Tux Racer'"
-msgstr ""
+msgstr "אנו מרשים להשתמש בשם 'Extreme Tux Racer'"
 
 #: src/credits.cpp:129
 msgid "to any forks or continuations."
-msgstr ""
+msgstr "עבור פיצולים או המשכים."
 
 #: src/credits.cpp:131
 msgid "PlanetPenguin Racer is Copyright © 2005 Volker Stroebel."
-msgstr ""
+msgstr "PlanetPenguin Racer הינו מוגן בזכויות יוצרים © 2005 Volker Stroebel."
 
 #: src/credits.cpp:132
 msgid "Tux Racer and the Tux Racer Name are Copyright © 2001 Jasmin F. Patry."
 msgstr ""
+"Tux Racer והשם Tux Racer הינם מוגנים בזכויות יוצרים © 2001 Jasmin F. Patry."
 
 #: src/event_select.cpp:50
 msgid "Select campaign and cup"
-msgstr ""
+msgstr "בחר תחרות וגביע"
 
 #: src/event_select.cpp:56
 msgid "Campaign:"
-msgstr ""
+msgstr "תחרות:"
 
 #: src/event_select.cpp:67
 msgid "Cup:"
-msgstr ""
+msgstr "גביע:"
 
 #: src/event_select.cpp:87
 msgid "Player name:"
-msgstr ""
+msgstr "שם השחקן:"
 
 #: src/event_select.cpp:104
 msgid "Continue"
-msgstr ""
+msgstr "המשך"
 
 #: src/event_select.cpp:158
 msgid "You've won this cup!"
-msgstr ""
+msgstr "זכית בגביע זה!"
 
 #: src/event_select.cpp:160
 msgid "You must complete this cup next"
-msgstr ""
+msgstr "עליך להשלים גביע זה כדי להמשיך"
 
 #: src/event_select.cpp:162
 msgid "You cannot enter this cup yet"
-msgstr ""
+msgstr "לא תוכל להכנס לגביע זה עדיין"
 
 #: src/event_race_select.cpp:45
 msgid "Select a race"
-msgstr ""
+msgstr "בחר תחרות"
 
 #: src/event_race_select.cpp:60
 msgid "Race!"
-msgstr ""
+msgstr "התחרה!"
 
 #: src/event_race_select.cpp:280
 msgid "You don't have any lives left."
-msgstr ""
+msgstr "לא נותרו לך עוד חיים."
 
 #: src/event_race_select.cpp:285
 msgid "Race won! Your result:"
-msgstr ""
+msgstr "נצחון במרוץ! התוצאה שלך:"
 
 #: src/event_race_select.cpp:289
 msgid "Needed to advance:"
-msgstr ""
+msgstr "נדרש להתקדמות"
 
 #: src/event_race_select.cpp:293
 msgid "You can't enter this race yet."
-msgstr ""
+msgstr "לא תוכל להכנס למרוץ זה עדיין."
 
 #: src/event_race_select.cpp:316
 msgid "Time:"
-msgstr ""
+msgstr "זמן:"
 
 #: src/event_race_select.cpp:320
 #, c-format
 msgid "%02d:%02d.%02d"
-msgstr ""
+msgstr "%02d:%02d.%02d"
 
 #: src/event_race_select.cpp:324
 msgid "Herring:"
-msgstr ""
+msgstr "דג מלוח:"
 
 #: src/event_race_select.cpp:332
 msgid "Score:"
-msgstr ""
+msgstr "ניקוד:"
 
 #: src/event_race_select.cpp:341
 msgid "Contributed by:"
-msgstr ""
+msgstr "נתרם על ידי:"
 
 #: src/event_race_select.cpp:349 po/levelinfo:16
 msgid "Unknown"
-msgstr ""
+msgstr "לא ידוע"
 
 #: src/game_over.cpp:109
 msgid "Race aborted"
-msgstr ""
+msgstr "המרוץ בוטל"
 
 #: src/game_over.cpp:112
 msgid "Race Over"
-msgstr ""
+msgstr "המרוץ הסתיים"
 
 #: src/game_over.cpp:119
 #, c-format
 msgid "Time: %02d:%02d.%02d"
-msgstr ""
+msgstr "זמן: %02d:%02d.%02d"
 
 #: src/game_over.cpp:124
 #, c-format
 msgid "Herring: %3d"
-msgstr ""
+msgstr "דג מלוח: %3d"
 
 #: src/game_over.cpp:129
 #, c-format
 msgid "Score: %6d"
-msgstr ""
+msgstr "ניקוד: %6d"
 
 #: src/game_over.cpp:135
 #, c-format
 msgid "Max speed: %3d km/h"
-msgstr ""
+msgstr "מהירות מירבית: %3d קמ\"ש"
 
 #: src/game_over.cpp:141
 #, c-format
 msgid "Was flying: %.01f %% of time"
-msgstr ""
+msgstr "ריחוף:%.01f %% מהזמן"
 
 #: src/game_over.cpp:151
 #, c-format
 msgid "You made it to the %s place in the highscore!"
-msgstr ""
+msgstr "הגעת למקום ה־%s בטבלת השיאים!"
 
 #: src/game_over.cpp:161
 msgid "You beat your best score!"
-msgstr ""
+msgstr "הבסת את הניקוד הגבוה ביותר!"
 
 #: src/game_over.cpp:164
 msgid "Congratulations! You won the campaign!"
-msgstr ""
+msgstr "ברכותינו! זכית בתחרות!"
 
 #: src/game_over.cpp:166
 msgid "Congratulations! You won the cup!"
-msgstr ""
+msgstr "ברכותינו! זכית בגביע!"
 
 #: src/game_over.cpp:168
+#, fuzzy
 msgid "You advanced to the next race!"
-msgstr ""
+msgstr "הדרישות הושגו! התקדם למרוץ הבא."
 
 #: src/game_over.cpp:170
+#, fuzzy
 msgid "You didn't advance."
-msgstr ""
+msgstr "לא נותרו לך עוד חיים."
 
 #: src/game_type_select.cpp:36
 msgid "Enter a campaign"
-msgstr ""
+msgstr "הכנס לתחרות"
 
 #: src/game_type_select.cpp:43
 msgid "Practice"
-msgstr ""
+msgstr "אימון"
 
 #: src/game_type_select.cpp:50 src/highscore.cpp:350
 msgid "Highscore"
-msgstr ""
+msgstr "תוצאות שיא"
 
 #: src/game_type_select.cpp:64
 msgid "Credits"
-msgstr ""
+msgstr "תודות"
 
 #: src/game_type_select.cpp:71 src/paused.cpp:78
 msgid "Quit"
-msgstr ""
+msgstr "יציאה"
 
 #: src/graphicsconfig.cpp:30
 msgid "Graphics Configuration"
-msgstr ""
+msgstr "תצורת הגרפיקה"
 
 #: src/graphicsconfig.cpp:108
 msgid "Model:"
@@ -439,334 +434,340 @@ msgstr ""
 
 #: src/graphicsconfig.cpp:117
 msgid "Show UI Snow:"
-msgstr ""
+msgstr "הצגת שלג למשתמש:"
 
 #: src/graphicsconfig.cpp:121
 msgid "Display FPS:"
-msgstr ""
+msgstr "קצב השקופיות לשניה:"
 
 #: src/graphicsconfig.cpp:125
 msgid "Display Progress Bar:"
-msgstr ""
+msgstr "הצג סרגל התקדמות"
 
 #: src/graphicsconfig.cpp:129
 msgid "Draw Fog:"
-msgstr ""
+msgstr "צייר ערפל:"
 
 #: src/graphicsconfig.cpp:133
 msgid "Reflections:"
-msgstr ""
+msgstr "השתקפויות:"
 
 #: src/graphicsconfig.cpp:137
 msgid "Shadows:"
-msgstr ""
+msgstr "צללים:"
 
 #: src/graphicsconfig.cpp:141
 msgid "Draw Background:"
-msgstr ""
+msgstr "ציור הרקע:"
 
 #: src/highscore.cpp:88
 msgid "1:st"
-msgstr ""
+msgstr "ראשון"
 
 #: src/highscore.cpp:90
 msgid "2:nd"
-msgstr ""
+msgstr "שני"
 
 #: src/highscore.cpp:92
 msgid "3:rd"
-msgstr ""
+msgstr "שלישי"
 
 #: src/highscore.cpp:94
 msgid "4:th"
-msgstr ""
+msgstr "רביעי"
 
 #: src/highscore.cpp:96
 msgid "5:th"
-msgstr ""
+msgstr "חמישי"
 
 #: src/highscore.cpp:98
 msgid "6:th"
-msgstr ""
+msgstr "שישי"
 
 #: src/highscore.cpp:100
 msgid "7:th"
-msgstr ""
+msgstr "שביעי"
 
 #: src/highscore.cpp:102
 msgid "8:th"
-msgstr ""
+msgstr "שמיני"
 
 #: src/highscore.cpp:104
 msgid "9:th"
-msgstr ""
+msgstr "תשיעי"
 
 #: src/highscore.cpp:106
 msgid "10:th"
-msgstr ""
+msgstr "עשירי"
 
 #: src/highscore.cpp:317
 msgid "No records"
-msgstr ""
+msgstr "אין רשומות"
 
 #: src/highscore.cpp:327
 #, c-format
 msgid " (%d points)"
-msgstr ""
+msgstr " (%d נקודות)"
 
 #: src/joystickconfig.cpp:29
 msgid "Joystick Configuration"
-msgstr ""
+msgstr "הגדרות ג'ויסטיק"
 
 #: src/joystickconfig.cpp:33
 msgid "Enable Joystick"
-msgstr ""
+msgstr "אפשר ג'ויסטיק"
 
 #: src/joystickconfig.cpp:41 src/keyboardconfig.cpp:132
 msgid "Paddle:"
-msgstr ""
+msgstr "דוושת האצה:"
 
 #: src/joystickconfig.cpp:54 src/keyboardconfig.cpp:136
 msgid "Brake:"
-msgstr ""
+msgstr "בלימה:"
 
 #: src/joystickconfig.cpp:67 src/keyboardconfig.cpp:140
 msgid "Jump:"
-msgstr ""
+msgstr "קפיצה:"
 
 #: src/joystickconfig.cpp:80 src/keyboardconfig.cpp:144
 msgid "Trick:"
-msgstr ""
+msgstr "תעלול:"
 
 #: src/keyboardconfig.cpp:55
 msgid "Keyboard Configuration"
-msgstr ""
+msgstr "תצורת המקלדת"
 
 #: src/keyboardconfig.cpp:124
 msgid "Turn left:"
-msgstr ""
+msgstr "פנייה שמאלה:"
 
 #: src/keyboardconfig.cpp:128
 msgid "Turn right:"
-msgstr ""
+msgstr "פנייה ימינה:"
 
 #: src/keyboardconfig.cpp:148
 msgid "Reset:"
-msgstr ""
+msgstr "איפוס:"
 
 #: src/loading.cpp:53
 msgid "Loading, Please Wait..."
-msgstr ""
+msgstr "בטעינה, נא להמתין..."
 
 #: src/paused.cpp:54
 msgid "Paused"
-msgstr ""
+msgstr "הופסק"
 
 #: src/paused.cpp:70
 msgid "Resume"
-msgstr ""
+msgstr "המשך"
 
 #: src/splash_screen.cpp:34
 msgid "PRESS ANY KEY TO START"
-msgstr ""
+msgstr "לחץ על כפתור כלשהו כדי להתחיל"
 
 #: src/videoconfig.cpp:60
 msgid "Video Configuration"
-msgstr ""
+msgstr "תצורת הווידאו"
 
 #: src/videoconfig.cpp:173
 msgid "To change the resolution, or switch into fullscreen mode"
-msgstr ""
+msgstr "לשינוי הרזולוציה, או למעבר למסך מלא"
 
 #: src/videoconfig.cpp:175
 msgid "use options.txt, located in the config folder."
-msgstr ""
+msgstr "השתמש ב־options.txt, הממקום בתיקיית ה־config."
 
 #: src/videoconfig.cpp:177
 msgid "Resolution:"
-msgstr ""
+msgstr "רזולוציה:"
 
 #: src/videoconfig.cpp:181
 msgid "Bits Per Pixel:"
-msgstr ""
+msgstr "סיביות לפיקסל:"
 
 #: src/videoconfig.cpp:185
 msgid "Fullscreen:"
-msgstr ""
+msgstr "מסך מלא:"
 
 #: src/videoconfig.cpp:189
 msgid "Experimental (needs restart)"
-msgstr ""
+msgstr "נסיוני (נדרש איתחול)"
 
 #: src/videoconfig.cpp:192
 msgid "Stencil Buffer:"
-msgstr ""
+msgstr "חוצץ הסטנסיל:"
 
 #: src/videoconfig.cpp:196
 msgid "Enable FSAA:"
-msgstr ""
+msgstr "אפשר FSAA:"
 
 #: src/videoconfig.cpp:200
 msgid "FSAA Multisamples:"
-msgstr ""
+msgstr "דגימות רבות של FSAA:"
 
 #: po/levelinfo:1
 #, c-format
 msgid "FPS: %.1f"
-msgstr ""
+msgstr "שקופיות לשניה: %.1f"
 
 #: po/levelinfo:2 po/levelinfo:3
 #, c-format
 msgid "%03d"
-msgstr ""
+msgstr "%03d"
 
 #: po/levelinfo:4 po/levelinfo:5
 #, c-format
 msgid "%02d:%02d:%02d"
-msgstr ""
+msgstr "%02d:%02d:%02d"
 
 #: po/levelinfo:6 po/levelinfo:8
 msgid "km/h"
-msgstr ""
+msgstr "קמ\"ש"
 
 #: po/levelinfo:7 po/levelinfo:9
 #, c-format
 msgid "%.0f"
-msgstr ""
+msgstr "%.0f"
 
 #: po/levelinfo:10 po/levelinfo:11
 #, c-format
 msgid "%d:%d:%d"
-msgstr ""
+msgstr "%d:%d:%d"
 
 #: po/levelinfo:12 po/levelinfo:13
 #, c-format
 msgid "%d"
-msgstr ""
+msgstr "%d"
 
 #: po/levelinfo:14
 msgid "Doing"
-msgstr ""
+msgstr "בביצוע"
 
 #: po/levelinfo:15
 msgid ""
 "This course was probably created to present new textures introduced in "
 "PPRacer."
-msgstr ""
+msgstr "מסלול זה נוצא כדי להציג טקסטורות חדשות המופיעות ב־PPRacer."
 
 #: po/levelinfo:17
 msgid "Hippo Run"
-msgstr ""
+msgstr "ריצת היפופוטם"
 
 #: po/levelinfo:18
 msgid ""
 "In Hippo Run, you slide down an icy slope as a penguin, I honestly don't "
 "know what this has to do with hippos or running..."
 msgstr ""
+"בריצת ההיפופוטם, תוכל לגלוש במורד שיפוע מושלג, בכנות אינני יודע מה לזה "
+"ולהיפופוטמים או לריצה..."
 
 #: po/levelinfo:19
 msgid "Ice Pipeline"
-msgstr ""
+msgstr "צינור קרח"
 
 #: po/levelinfo:20
 msgid "A short, slippery ice-trough with herring scattered throughout."
-msgstr ""
+msgstr "מעבר קרח קצר וחלקלק שלאורכו מפוזרים דגים מלוחים."
 
 #: po/levelinfo:21
 msgid "Volcanoes"
-msgstr ""
+msgstr "הרי געש"
 
 #: po/levelinfo:22
 msgid ""
 "This gigantic crater was full of water, and herring, but now it's all "
 "frozen, and yours for the taking."
 msgstr ""
+"לוע ענקי זה של הר הגעש היה מלא במים, ודגים מלוחים, אך כעת כולו קפוא, ועומד "
+"לרשותך."
 
 #: po/levelinfo:23
 msgid "Nature Stroll"
-msgstr ""
+msgstr "טיול בחיק הטבע"
 
 #: po/levelinfo:24
 msgid ""
 "The fresh air, the pine scent, who doesn't like a nice refreshing walk "
 "through the mountains?"
-msgstr ""
+msgstr "האוויר הצלול, ריח עצי האורן, מי לא היה רוצה לקיים צעדה קטנה דרך ההרים?"
 
 #: po/levelinfo:25
 msgid "Mountain Mania"
-msgstr ""
+msgstr "הר הטירוף"
 
 #: po/levelinfo:26
 msgid "Icy Peril"
-msgstr ""
+msgstr "סכנת קרח"
 
 #: po/levelinfo:27
 msgid "Death Cup"
-msgstr ""
+msgstr "גביע המוות"
 
 #: po/levelinfo:28
 msgid "Slippery Defeat"
-msgstr ""
+msgstr "תבוסה חלקלקה"
 
 #: po/levelinfo:29
 msgid "The Final Three"
-msgstr ""
+msgstr "שלושת האחרונים"
 
 #: po/levelinfo:30
 msgid "Slippy-Slidey"
-msgstr ""
+msgstr "גלישה חלקה"
 
 #: po/levelinfo:31
 msgid "Slide on the slippery frozen river in a hilly forest, slipperily."
-msgstr ""
+msgstr "גלוש במורד נהר חלקלק העובר ביער, בחלקלקות."
 
 #: po/levelinfo:32
 msgid "Crazy Path"
-msgstr ""
+msgstr "נתיב מטורף"
 
 #: po/levelinfo:33
 msgid ""
 "You'll have trouble slowing down on this one. There's lots of herring, but "
 "be careful not to fly too much or you won't get any."
 msgstr ""
+"כאן קשה מאוד להאט. ישנם הרבה מאוד דגים מלוחים, אך יש להזהר לא לרחף יותר מדי "
+"או שלא תגיעו אליהם."
 
 #: po/levelinfo:34
 msgid "Candy Lane"
-msgstr ""
+msgstr "שדרת הממתקים"
 
 #: po/levelinfo:35
 msgid ""
 "Mostly ice, with very few obstacles in your path, this is like a stroll down "
 "Candy Lane."
-msgstr ""
+msgstr "הרב קרח, עם מעט מאוד מכשולים בדרך, משול לטיול במורד שדרת ממתקים"
 
 #: po/levelinfo:36
 msgid "Merry Go Round"
-msgstr ""
+msgstr "נסיעה במעגלים"
 
 #: po/levelinfo:37
 msgid "Try to build up enough speed to jump from one roundabout to the next."
-msgstr ""
+msgstr "נסה לצבור מספיק מהירות כדי לקפוץ מסחרחרה אחת לבאה."
 
 #: po/levelinfo:38
 msgid "Hey, Tux!"
-msgstr ""
+msgstr "היי, טאקס!"
 
 #: po/levelinfo:39
 msgid "This course offers true excitement for your race-loving penguin buddy."
-msgstr ""
+msgstr "מסלול זה מציע התרגשות של ממש לחבר שלך הפינגווין חובב המרוצים."
 
 #: po/levelinfo:40
 msgid "Bobsled Ride"
-msgstr ""
+msgstr "גלישה במזחלת"
 
 #: po/levelinfo:41
 msgid "Just like a real bobsled ride, only more dangerous."
-msgstr ""
+msgstr "בדיוק כמו גלישה אמיתית במזחלת, רק יותר מסוכן."
 
 #: po/levelinfo:42
 msgid "In Search of Vodka"
-msgstr ""
+msgstr "בחיפוש אחר וודקה"
 
 #: po/levelinfo:43
 msgid ""
@@ -774,6 +775,9 @@ msgid ""
 "cabinet has been pillaged. Join Tux on the quest for vodka.Pick up herring "
 "for dinner along the way!"
 msgstr ""
+"טאקס זקוק למעט וודקה כדי לחמם את בטנו הקרירה. אך אבוי! ארונית המשקאות נבזזה. "
+"הצטרף לטאקס במסע החיפושים אחר וודקה. אסוף איתך כמה דגים מלוחים לארוחת הערב "
+"בדרך!"
 
 #: po/levelinfo:44
 msgid "Tux at Home"
@@ -946,23 +950,23 @@ msgstr ""
 
 #: po/levelinfo:79
 msgid "Herring Run"
-msgstr ""
+msgstr "מרוצת הדגים המלוחים"
 
 #: po/levelinfo:80
 msgid "Mountain Man"
-msgstr ""
+msgstr "איש ההרים"
 
 #: po/levelinfo:81
 msgid "Valley Cup"
-msgstr ""
+msgstr "גביע העמק"
 
 #: po/levelinfo:82
 msgid "Tux the winter sportsman"
-msgstr ""
+msgstr "טאקס ספורטאי חורפי"
 
 #: po/levelinfo:83
 msgid "Highway To Hell"
-msgstr ""
+msgstr "הדרך המהירה לגהנום"
 
 #: po/levelinfo:84
 msgid "Ice Labyrinth"
@@ -976,7 +980,7 @@ msgstr ""
 
 #: po/levelinfo:86
 msgid "Snow Valley"
-msgstr ""
+msgstr "עמק השלג"
 
 #: po/levelinfo:87
 msgid ""
@@ -1008,13 +1012,15 @@ msgstr ""
 
 #: po/levelinfo:92
 msgid "Skull Mountain"
-msgstr ""
+msgstr "הר הגולגלות"
 
 #: po/levelinfo:93
 msgid ""
 "Skull mountain is a steep, twisty drop around tree-filled inner peaks. "
 "Expect to miss a lot of herrings and crash a lot."
 msgstr ""
+"הר הגולגלות הינה נפילה תלולה ועקלקלה המלאה בגבעות פנימיות המלאות בעצים. צפה "
+"לפספס המון דגים מלוחים ולהתרסק הרבה."
 
 #: po/levelinfo:94
 msgid "Keep It Up"
@@ -1028,13 +1034,15 @@ msgstr ""
 
 #: po/levelinfo:96
 msgid "Dead Man's Drop"
-msgstr ""
+msgstr "נפילתו של איש מת"
 
 #: po/levelinfo:97
 msgid ""
 "Pretty tough hill. It's fast, steep, lumpy, twisty, and full of trees. Hard "
 "to get herrings. Don't forget the drop."
 msgstr ""
+"גבעה די קשה. מהירה, תלולה, מלאה בתלוליות, עקלקלה ומלאה בעצים. קשה להשיג דגים "
+"מלוחים. לבל תשכח את הנפילה."
 
 #: po/levelinfo:98
 msgid "I've Got A Woody"
@@ -1079,7 +1087,7 @@ msgstr ""
 
 #: po/levelinfo:106
 msgid "The Narrow Way"
-msgstr ""
+msgstr "הדרך הצרה"
 
 #: po/levelinfo:107
 msgid ""
@@ -1087,16 +1095,20 @@ msgid ""
 "you're going, there's trees in your way, and the herrings are hard to get. "
 "Good luck, you'll need it!"
 msgstr ""
+"בפשטות, השאר בנתיבך או שתפסיד! קשה לראות מה אתה עושה, ישנם עצים בדרכך, וקשה "
+"להגיע אל הדגים המלוחים. בהצלחה, אתה תזדקק לזה!"
 
 #: po/levelinfo:108
 msgid "Hamburger Hill"
-msgstr ""
+msgstr "גבעת ההמבורגרים"
 
 #: po/levelinfo:109
 msgid ""
 "Hamburger Hill is steep, narrow, twisty, lumpy, icy, and rocky, with a few "
 "trees right in your way!"
 msgstr ""
+"גבעת ההמבורגרים הינה תלולה, צרה, עקלקלה, מלאה בגבשושיות, מושלגת ומלאה "
+"בסלעים, עם כמה עצים באמצע הדרך!"
 
 #: po/levelinfo:110
 msgid "Slalom"
@@ -1109,13 +1121,15 @@ msgstr ""
 
 #: po/levelinfo:112
 msgid "Who Says Penguins Can't Fly?"
-msgstr ""
+msgstr "מי אמר שפינגווינים לא יכולים לעוף?"
 
 #: po/levelinfo:113
 msgid ""
 "It'll be tough collecting herrings at speeds over 200, so try to brake "
 "whenever possible to get the required herring."
 msgstr ""
+"יהיה קשה מאוד לאסוף דגים מלוחים במהירות העולה על 200, לכן נסה לבלום היכן "
+"שניתן כדי להגיע אל הדג המלוח המיוחל."
 
 #: po/modelinfo:1
 msgid "Tux"
@@ -1124,3 +1138,27 @@ msgstr ""
 #: po/modelinfo:2
 msgid "Tux on Snowboard"
 msgstr ""
+
+#~ msgid "'Freezing Point'"
+#~ msgstr "'נקודת הקפאון'"
+
+#~ msgid "'Calm Race'"
+#~ msgstr "'מרוץ רגוע'"
+
+#~ msgid "'Lost Race'"
+#~ msgstr "'הפסד במרוץ'"
+
+#~ msgid "'Race Intro'"
+#~ msgstr "'הקדמה למרוץ'"
+
+#~ msgid "'Won Race: kschroeder Remix'"
+#~ msgstr "'נצחון במרוץ: רמיקס של kschroeder'"
+
+#~ msgid "52143__blaukreuz__imp_01.wav - Original sound of ice cracking..."
+#~ msgstr "52143__blaukreuz__imp_01.wav - רעש מקורי של שבירת קרח..."
+
+#~ msgid "http://www.freesound.org/samplesViewSingle.php?id=52143"
+#~ msgstr "http://www.freesound.org/samplesViewSingle.php?id=52143"
+
+#~ msgid "Race requirements not met."
+#~ msgstr "דרישות המרוץ לא הושגו"

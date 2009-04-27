@@ -9,13 +9,13 @@ msgstr ""
 "Project-Id-Version: Extreme Tux Racer\n"
 "Report-Msgid-Bugs-To: https://translations.edge.launchpad.net/etracer\n"
 "POT-Creation-Date: 2008-08-03 20:17+0200\n"
-"PO-Revision-Date: 2008-05-18 12:55+0000\n"
-"Last-Translator: Mikhail Kuznetsov <Unknown>\n"
+"PO-Revision-Date: 2009-03-28 14:57+0000\n"
+"Last-Translator: Zafar Karimov <Unknown>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-08-03 17:56+0000\n"
+"X-Launchpad-Export-Date: 2009-04-27 12:04+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: src/audioconfig.cpp:36
@@ -44,11 +44,11 @@ msgstr "Стерео:"
 
 #: src/audioconfig.cpp:130
 msgid "Bits Per Sample:"
-msgstr "Бит"
+msgstr "Бит:"
 
 #: src/audioconfig.cpp:134
 msgid "Samples Per Second:"
-msgstr "Частота дискретизации"
+msgstr "Частота дискретизации:"
 
 #: src/configmode.cpp:36
 msgid "Cancel"
@@ -88,8 +88,9 @@ msgid "Back"
 msgstr "Назад"
 
 #: src/credits.cpp:43
+#, fuzzy
 msgid "Version 0.4"
-msgstr "Версия 0.4"
+msgstr "Версия 0.5"
 
 #: src/credits.cpp:46
 msgid "Extreme Tux Racer is in the process of being"
@@ -97,7 +98,7 @@ msgstr "Extreme Tux Racer находится в процессе"
 
 #: src/credits.cpp:47
 msgid "completely rewritten. All versions after 0.35,"
-msgstr "полной переработки. Все версии после 0.35,"
+msgstr "полностью  переписан. Все версии после 0.35,"
 
 #: src/credits.cpp:48
 msgid "including this one, won't have major code changes"
@@ -136,8 +137,9 @@ msgid "from Sunspire Studios:"
 msgstr "Sunspire Studios:"
 
 #: src/credits.cpp:71
+#, fuzzy
 msgid "Non-Rewrite Version Organization"
-msgstr "Подготовка старой (неперерабатываемой) версии"
+msgstr "Организация выпуска"
 
 #: src/credits.cpp:74
 msgid "Translators"
@@ -148,20 +150,23 @@ msgid "Other (incomplete) translations are from the PPRacer Project."
 msgstr "Другие (незаконченные) переводы осуществлены  PPRacer Project."
 
 #: src/credits.cpp:90
+#, fuzzy
 msgid "Nicosmos (Logo, Hud Graphics)"
-msgstr "Nicosmos (логотип игры, графика HUD)"
+msgstr "Nicosmos (Логотип и интерфейс пользователя)"
 
 #: src/credits.cpp:91
+#, fuzzy
 msgid "Christian Picon (Objects, Skyboxes)"
-msgstr "Christian Picon (объекты, небо)"
+msgstr "Christian Picon (Объекты, Символы)"
 
 #: src/credits.cpp:92
 msgid "Reinhard Niehoff (Trees)"
 msgstr "Reinhard Niehoff (деревья)"
 
 #: src/credits.cpp:93
+#, fuzzy
 msgid "Daniel Poeira and Christian Picon (Font)"
-msgstr "Daniel Poeira и Christian Picon (шрифт)"
+msgstr "Daniel Poeira и Christian Picon (Шрифт Бумаги)"
 
 #: src/credits.cpp:95
 msgid "Music"
@@ -193,11 +198,12 @@ msgstr "Люди, внёсшие вклад в PPRacer"
 
 #: src/credits.cpp:110
 msgid "Thanks To"
-msgstr "Благодарности"
+msgstr "Спасибо"
 
 #: src/credits.cpp:111
+#, fuzzy
 msgid "(for Exteme Tux Racer)"
-msgstr "(за Exteme Tux Racer)"
+msgstr "(для Экстремального Гонщика Tux)"
 
 #: src/credits.cpp:112
 msgid "Ranger (for hosting the website)"
@@ -216,12 +222,14 @@ msgid "The OpenRacer project"
 msgstr "Проект OpenRacer"
 
 #: src/credits.cpp:116
+#, fuzzy
 msgid "Reinhard Niehoff (for helping with code modification)"
-msgstr "Reinhard Niehoff (за помощь в модификации кода)"
+msgstr "Reinhard Niehoff (часть советов)"
 
 #: src/credits.cpp:117
+#, fuzzy
 msgid "All the people on the forum"
-msgstr "Всем людям с форума"
+msgstr "Все люди с форума"
 
 #: src/credits.cpp:118
 msgid "Larry Ewing (creator of Tux)"
@@ -256,13 +264,12 @@ msgid "Tux Racer and the Tux Racer Name are Copyright © 2001 Jasmin F. Patry."
 msgstr "Tux Racer и Tux Racer Name © 2001 Jasmin F. Patry."
 
 #: src/event_select.cpp:50
-#, fuzzy
 msgid "Select campaign and cup"
-msgstr "Выбор соревнования и кубка"
+msgstr "Выберите кампанию и кубок"
 
 #: src/event_select.cpp:56
 msgid "Campaign:"
-msgstr ""
+msgstr "Кампания:"
 
 #: src/event_select.cpp:67
 msgid "Cup:"
@@ -310,7 +317,7 @@ msgstr "Необходимо для победы:"
 
 #: src/event_race_select.cpp:293
 msgid "You can't enter this race yet."
-msgstr "Вы пока не можете выбрать эту гонку."
+msgstr "Вы пока не можете участвовать в этой гонке."
 
 #: src/event_race_select.cpp:316
 msgid "Time:"
@@ -380,13 +387,12 @@ msgid "You beat your best score!"
 msgstr "Новый рекорд!"
 
 #: src/game_over.cpp:164
-#, fuzzy
 msgid "Congratulations! You won the campaign!"
-msgstr "Поздравления! Кубок выигран!"
+msgstr "Поздравляем! Вы выиграли кампанию!"
 
 #: src/game_over.cpp:166
 msgid "Congratulations! You won the cup!"
-msgstr "Поздравления! Кубок выигран!"
+msgstr "Поздравляем! Кубок выигран!"
 
 #: src/game_over.cpp:168
 msgid "You advanced to the next race!"
@@ -397,9 +403,8 @@ msgid "You didn't advance."
 msgstr "Уровень не пройден."
 
 #: src/game_type_select.cpp:36
-#, fuzzy
 msgid "Enter a campaign"
-msgstr "Соревнование"
+msgstr "Начать кампанию"
 
 #: src/game_type_select.cpp:43
 msgid "Practice"
@@ -427,11 +432,11 @@ msgstr "Персонаж:"
 
 #: src/graphicsconfig.cpp:117
 msgid "Show UI Snow:"
-msgstr "Снег в интерфейсе:"
+msgstr "Снег в меню:"
 
 #: src/graphicsconfig.cpp:121
 msgid "Display FPS:"
-msgstr "FPS:"
+msgstr "Показывать FPS:"
 
 #: src/graphicsconfig.cpp:125
 msgid "Display Progress Bar:"
@@ -451,7 +456,7 @@ msgstr "Тени:"
 
 #: src/graphicsconfig.cpp:141
 msgid "Draw Background:"
-msgstr ""
+msgstr "Показвать фон:"
 
 #: src/highscore.cpp:88
 msgid "1:st"
@@ -568,7 +573,7 @@ msgstr "Для изменения разрешения или перехода �
 
 #: src/videoconfig.cpp:175
 msgid "use options.txt, located in the config folder."
-msgstr "можно редактировать options.txt в папке настроек."
+msgstr "использовать options.txt в папке настроек."
 
 #: src/videoconfig.cpp:177
 msgid "Resolution:"
@@ -584,7 +589,7 @@ msgstr "Полноэкранный режим:"
 
 #: src/videoconfig.cpp:189
 msgid "Experimental (needs restart)"
-msgstr "Экспериментально (нужен перезаруск)"
+msgstr "Экспериментально (нужен перезапуск)"
 
 #: src/videoconfig.cpp:192
 msgid "Stencil Buffer:"
@@ -623,14 +628,14 @@ msgid "%.0f"
 msgstr "%.0f"
 
 #: po/levelinfo:10 po/levelinfo:11
-#, fuzzy, c-format
+#, c-format
 msgid "%d:%d:%d"
-msgstr "%02d:%02d:%02d"
+msgstr "%d:%d:%d"
 
 #: po/levelinfo:12 po/levelinfo:13
-#, fuzzy, c-format
+#, c-format
 msgid "%d"
-msgstr "%03d"
+msgstr "%d"
 
 #: po/levelinfo:14
 msgid "Doing"
@@ -752,7 +757,7 @@ msgstr ""
 
 #: po/levelinfo:38
 msgid "Hey, Tux!"
-msgstr "Эй, Tux!"
+msgstr "Эй, Тукс!"
 
 #: po/levelinfo:39
 msgid "This course offers true excitement for your race-loving penguin buddy."
@@ -790,8 +795,8 @@ msgid ""
 "and fastest way. But if you want to catch some herrings you have to enter "
 "the rooms on the left."
 msgstr ""
-"Здесь Tux живёт. Можно поехать по правой дорожке - это самый короткий и "
-"быстрый путь. Но если хотите селёдки, то вам направо!"
+"Здесь живёт Тукс. Можно поехать по правой дорожке - это самый короткий и "
+"быстрый путь. Но если хотите селёдки, то вам налево!"
 
 #: po/levelinfo:46
 msgid "The Niehoff Experience"
@@ -886,13 +891,12 @@ msgid "Challenge One"
 msgstr "Соревнование №1"
 
 #: po/levelinfo:63
-#, fuzzy
 msgid ""
 "A very dangerous path along the mountains. Warning: The course is very "
 "difficult and there are some situations where you can get stuck."
 msgstr ""
-"Очень опасная горная трасса. Попытайтесь собрать больше 60 рыбинок. Внмание! "
-"Эта трасса очень сложная и в некоторых местах вы можете застрять."
+"Очень опасная горная дорог. Осторожно: трасса очень сложная и в некоторых "
+"местах можно застрять."
 
 #: po/levelinfo:64
 msgid "Path of Daggers"
@@ -970,7 +974,7 @@ msgstr ""
 
 #: po/levelinfo:77
 msgid "Mt. Herring"
-msgstr "Селёдочная гора"
+msgstr "Гора Селёдки"
 
 #: po/levelinfo:78
 msgid ""
@@ -978,7 +982,7 @@ msgid ""
 "some wide open areas and branching paths. Lots of herrings to collect though "
 "it can be difficult unless you watch your speed."
 msgstr ""
-"Селёдочная гора - довольно быстрая, но длинная трасса. Кое-где с кочками, "
+"Гора Селёдки - довольно быстрая, но длинная трасса. Кое-где с кочками, "
 "широкими открытыми участками и ветвящимися путями. Много селёдки, хотя "
 "собрать её может быть сложно, если не следить за скоростью."
 
@@ -996,7 +1000,7 @@ msgstr "Кубок долины"
 
 #: po/levelinfo:82
 msgid "Tux the winter sportsman"
-msgstr "Tux - спортсмен по зимнему виду спорта!"
+msgstr "Тукс - зимний спортсмен!"
 
 #: po/levelinfo:83
 msgid "Highway To Hell"
@@ -1031,7 +1035,7 @@ msgstr ""
 
 #: po/levelinfo:88
 msgid "Tux Toboggan Run"
-msgstr "Tux в санном спорте"
+msgstr "Тукс в санном спорте"
 
 #: po/levelinfo:89
 msgid ""
@@ -1191,7 +1195,7 @@ msgstr ""
 
 #: po/modelinfo:1
 msgid "Tux"
-msgstr "Tux"
+msgstr "Тукс"
 
 #: po/modelinfo:2
 msgid "Tux on Snowboard"
@@ -1205,3 +1209,50 @@ msgstr "Tux на сноуборде"
 
 #~ msgid "Congratulations! You won the event!"
 #~ msgstr "Поздравления! Соревнование выиграно!"
+
+#~ msgid "'Freezing Point'"
+#~ msgstr "'Установленная Точка'"
+
+#~ msgid "'Calm Race'"
+#~ msgstr "'Спокойная Гонка'"
+
+#~ msgid "'Lost Race'"
+#~ msgstr "'Проигранная Гонка'"
+
+#~ msgid "'Race Intro'"
+#~ msgstr "'Вступление Гонки'"
+
+#~ msgid "'Spunky Race'"
+#~ msgstr "'Пылкая Гонка'"
+
+#~ msgid "'Won Race: kschroeder Remix'"
+#~ msgstr "'Выигранная Гонка: kschroeder Remix'"
+
+#~ msgid "52143__blaukreuz__imp_01.wav - Original sound of ice cracking..."
+#~ msgstr ""
+#~ "52143__blaukreuz__imp_01.wav - Оригинальный звук прекрасного "
+#~ "взламывания..."
+
+#~ msgid "http://www.freesound.org/samplesViewSingle.php?id=52143"
+#~ msgstr "http://www.freesound.org/samplesViewSingle.php?id=52143"
+
+#~ msgid "Requirements met! Advance to the next race."
+#~ msgstr "Все требования выполнены! Переходите к следующей трассе."
+
+#~ msgid "Race requirements not met."
+#~ msgstr "Требования не выполнены."
+
+#~ msgid "Samuel"
+#~ msgstr "Самуэль"
+
+#~ msgid "Trixi"
+#~ msgstr "Трикси"
+
+#~ msgid "Speedy"
+#~ msgstr "Спиди"
+
+#~ msgid "Select event and cup"
+#~ msgstr "Выбор соревнования и кубка"
+
+#~ msgid "Enter an event"
+#~ msgstr "Соревнование"

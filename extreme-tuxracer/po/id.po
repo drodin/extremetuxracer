@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: etracer\n"
 "Report-Msgid-Bugs-To: https://translations.edge.launchpad.net/etracer\n"
 "POT-Creation-Date: 2008-08-03 20:17+0200\n"
-"PO-Revision-Date: 2008-07-08 04:51+0000\n"
-"Last-Translator: rotyyu <rotua.hd@gmail.com>\n"
+"PO-Revision-Date: 2009-02-06 14:05+0000\n"
+"Last-Translator: Arief Setiadi Wibowo <Unknown>\n"
 "Language-Team: Indonesian <id@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-08-03 17:56+0000\n"
+"X-Launchpad-Export-Date: 2009-04-27 12:04+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: src/audioconfig.cpp:36
@@ -75,7 +75,7 @@ msgstr "Suara"
 
 #: src/configuration.cpp:66
 msgid "Keyboard"
-msgstr "Papan Ketik"
+msgstr "Papan ketik"
 
 #: src/configuration.cpp:73
 msgid "Joystick"
@@ -87,8 +87,9 @@ msgid "Back"
 msgstr "Kembali"
 
 #: src/credits.cpp:43
+#, fuzzy
 msgid "Version 0.4"
-msgstr "Versi 0.4"
+msgstr "Versi 0.5"
 
 #: src/credits.cpp:46
 msgid "Extreme Tux Racer is in the process of being"
@@ -104,7 +105,7 @@ msgstr "masukkan yang ini, tidak akan memiliki perubahan kode yang besar"
 
 #: src/credits.cpp:49
 msgid "because the programmers are busy making a new,"
-msgstr "karena para programer sedang sibuk membuat,"
+msgstr "karena para programer sedang sibuk membuat yang baru,"
 
 #: src/credits.cpp:50
 msgid "improved game."
@@ -120,7 +121,7 @@ msgstr "PlanetPenguin Racer, Open Racer dan Tux Racer."
 
 #: src/credits.cpp:55
 msgid "Some courses may have been modified from their"
-msgstr "Beberapa bagian mungkin telah dirubah dari"
+msgstr "Beberapa bagian mungkin telah dirubah dari aslinya"
 
 #: src/credits.cpp:56
 msgid "original versions to fit the requirements of the game."
@@ -135,8 +136,9 @@ msgid "from Sunspire Studios:"
 msgstr "dari Sunspire Studios:"
 
 #: src/credits.cpp:71
+#, fuzzy
 msgid "Non-Rewrite Version Organization"
-msgstr ""
+msgstr "Organisasi yang mengeluarkan"
 
 #: src/credits.cpp:74
 msgid "Translators"
@@ -147,20 +149,23 @@ msgid "Other (incomplete) translations are from the PPRacer Project."
 msgstr "Terjemahan lain (yang belum selesai) dari Proyek PPRacer."
 
 #: src/credits.cpp:90
+#, fuzzy
 msgid "Nicosmos (Logo, Hud Graphics)"
-msgstr "Nicosmos (Logo, Hud Graphics)"
+msgstr "Nicosmos (Logo, HUD dan Antarmuka)"
 
 #: src/credits.cpp:91
+#, fuzzy
 msgid "Christian Picon (Objects, Skyboxes)"
-msgstr ""
+msgstr "Christian Picon (Obyek, Skyboxes, Karakter)"
 
 #: src/credits.cpp:92
 msgid "Reinhard Niehoff (Trees)"
-msgstr ""
+msgstr "Reinhard Niehoff (pepohonan)"
 
 #: src/credits.cpp:93
+#, fuzzy
 msgid "Daniel Poeira and Christian Picon (Font)"
-msgstr ""
+msgstr "Daniel Poeira dan Christian Picon (Font Papercuts)"
 
 #: src/credits.cpp:95
 msgid "Music"
@@ -192,9 +197,10 @@ msgstr "Penyumbang Misk. PPRacer"
 
 #: src/credits.cpp:110
 msgid "Thanks To"
-msgstr "Terima kasih ke pada"
+msgstr "Terima kasih kepada"
 
 #: src/credits.cpp:111
+#, fuzzy
 msgid "(for Exteme Tux Racer)"
 msgstr "(untuk Extreme Tux Racer)"
 
@@ -215,10 +221,12 @@ msgid "The OpenRacer project"
 msgstr "Proyek OpenRacer"
 
 #: src/credits.cpp:116
+#, fuzzy
 msgid "Reinhard Niehoff (for helping with code modification)"
-msgstr "Reinhard Niehoff (untuk bantuan mengubah kode)"
+msgstr "Reinhard Niehoff (banyak sekali anjuran)"
 
 #: src/credits.cpp:117
+#, fuzzy
 msgid "All the people on the forum"
 msgstr "Semua orang di forum"
 
@@ -248,25 +256,23 @@ msgstr "ke semua pekerjaan turunan atau kelanjutan."
 
 #: src/credits.cpp:131
 msgid "PlanetPenguin Racer is Copyright © 2005 Volker Stroebel."
-msgstr "PlanetPenguni Racer merupakan Copyright (c) 2005 Volker Stroebel."
+msgstr "PlanetPenguni Racer merupakan hakcipta© 2005 Volker Stroebel."
 
 #: src/credits.cpp:132
 msgid "Tux Racer and the Tux Racer Name are Copyright © 2001 Jasmin F. Patry."
-msgstr ""
-"Tux Racer dan Nama Tux Racer merupakan Copyright (c) 2001 Jasmin F. Patry."
+msgstr "Tux Racer dan Nama Tux Racer merupakan hakcipta© 2001 Jasmin F. Patry."
 
 #: src/event_select.cpp:50
-#, fuzzy
 msgid "Select campaign and cup"
-msgstr "Pilih pertandingan dan piala."
+msgstr "pilih kampanye dan cup"
 
 #: src/event_select.cpp:56
 msgid "Campaign:"
-msgstr ""
+msgstr "kampanye:"
 
 #: src/event_select.cpp:67
 msgid "Cup:"
-msgstr "Piala:"
+msgstr "Kejuaraan:"
 
 #: src/event_select.cpp:87
 msgid "Player name:"
@@ -278,15 +284,15 @@ msgstr "Lanjut"
 
 #: src/event_select.cpp:158
 msgid "You've won this cup!"
-msgstr "Anda telah memenangkan piala ini!"
+msgstr "Anda telah memenangkan kejuaraanini!"
 
 #: src/event_select.cpp:160
 msgid "You must complete this cup next"
-msgstr "Anda harus menyelesaikan piala ini berikutnya"
+msgstr "Anda harus menyelesaikan kejuaraan ini berikutnya"
 
 #: src/event_select.cpp:162
 msgid "You cannot enter this cup yet"
-msgstr "Anda belum bisa memasuki piala ini"
+msgstr "Anda belum bisa memasuki kejuaraan ini"
 
 #: src/event_race_select.cpp:45
 msgid "Select a race"
@@ -323,7 +329,7 @@ msgstr "%02d:%02d:%02d"
 
 #: src/event_race_select.cpp:324
 msgid "Herring:"
-msgstr "Ikan Haring:"
+msgstr "Ikan Hering:"
 
 #: src/event_race_select.cpp:332
 msgid "Score:"
@@ -335,7 +341,7 @@ msgstr "Disumbangkan oleh:"
 
 #: src/event_race_select.cpp:349 po/levelinfo:16
 msgid "Unknown"
-msgstr "Tidak Dikenal"
+msgstr "Tidak Dikenali"
 
 #: src/game_over.cpp:109
 msgid "Race aborted"
@@ -353,7 +359,7 @@ msgstr "Waktu: %02d:%02d:%02d"
 #: src/game_over.cpp:124
 #, c-format
 msgid "Herring: %3d"
-msgstr "Ikan Haring: %3d"
+msgstr "Ikan Hering: %3d"
 
 #: src/game_over.cpp:129
 #, c-format
@@ -377,29 +383,29 @@ msgstr "Anda menempati peringkat ke %s dalam nilai tertinggi!"
 
 #: src/game_over.cpp:161
 msgid "You beat your best score!"
-msgstr "Anda mengalahkan nilai terbaik!"
+msgstr "Anda mengalahkan nilai terbaikmu!"
 
 #: src/game_over.cpp:164
-#, fuzzy
 msgid "Congratulations! You won the campaign!"
-msgstr "Selamat! Anda memenangkan piala!"
+msgstr "Selamat! Anda memenangkan kampanye!"
 
 #: src/game_over.cpp:166
 msgid "Congratulations! You won the cup!"
 msgstr "Selamat! Anda memenangkan piala!"
 
 #: src/game_over.cpp:168
+#, fuzzy
 msgid "You advanced to the next race!"
-msgstr "Anda naik ke balapan berikutnya!"
+msgstr "Kebutuhan terpenuhi! Lanjut ke balapan berikutnya."
 
 #: src/game_over.cpp:170
+#, fuzzy
 msgid "You didn't advance."
-msgstr "Anda tidak naik!"
+msgstr "Anda tidak memiliki hidup yang tertinggal lagi."
 
 #: src/game_type_select.cpp:36
-#, fuzzy
 msgid "Enter a campaign"
-msgstr "Memasuki pertandingan"
+msgstr "Masuk ke kampanye"
 
 #: src/game_type_select.cpp:43
 msgid "Practice"
@@ -427,7 +433,7 @@ msgstr "Contoh"
 
 #: src/graphicsconfig.cpp:117
 msgid "Show UI Snow:"
-msgstr ""
+msgstr "menunjukkan salju UI"
 
 #: src/graphicsconfig.cpp:121
 msgid "Display FPS:"
@@ -451,7 +457,7 @@ msgstr "Bayangan:"
 
 #: src/graphicsconfig.cpp:141
 msgid "Draw Background:"
-msgstr ""
+msgstr "latar belakang gambar"
 
 #: src/highscore.cpp:88
 msgid "1:st"
@@ -532,15 +538,15 @@ msgstr "Pengaturan Papan Ketik"
 
 #: src/keyboardconfig.cpp:124
 msgid "Turn left:"
-msgstr "Putar kiri:"
+msgstr "Belok kiri:"
 
 #: src/keyboardconfig.cpp:128
 msgid "Turn right:"
-msgstr "Putar kanan:"
+msgstr "Belok kanan:"
 
 #: src/keyboardconfig.cpp:148
 msgid "Reset:"
-msgstr "Memasang lagi:"
+msgstr "Penataan Ulang:"
 
 #: src/loading.cpp:53
 msgid "Loading, Please Wait..."
@@ -596,41 +602,41 @@ msgstr "Aktifkan FSAA:"
 
 #: src/videoconfig.cpp:200
 msgid "FSAA Multisamples:"
-msgstr ""
+msgstr "FSAA Multisampel:"
 
 #: po/levelinfo:1
 #, c-format
 msgid "FPS: %.1f"
-msgstr ""
+msgstr "FPS: %.1f"
 
 #: po/levelinfo:2 po/levelinfo:3
 #, c-format
 msgid "%03d"
-msgstr ""
+msgstr "%03d"
 
 #: po/levelinfo:4 po/levelinfo:5
 #, c-format
 msgid "%02d:%02d:%02d"
-msgstr ""
+msgstr "%02d:%02d:%02d"
 
 #: po/levelinfo:6 po/levelinfo:8
 msgid "km/h"
-msgstr ""
+msgstr "km/jam"
 
 #: po/levelinfo:7 po/levelinfo:9
 #, c-format
 msgid "%.0f"
-msgstr ""
+msgstr "%.0f"
 
 #: po/levelinfo:10 po/levelinfo:11
-#, fuzzy, c-format
+#, c-format
 msgid "%d:%d:%d"
-msgstr "%02d:%02d:%02d"
+msgstr "%d:%d:%d"
 
 #: po/levelinfo:12 po/levelinfo:13
 #, c-format
 msgid "%d"
-msgstr ""
+msgstr "%d"
 
 #: po/levelinfo:14
 msgid "Doing"
@@ -663,7 +669,7 @@ msgstr "Pipa saluran es"
 
 #: po/levelinfo:20
 msgid "A short, slippery ice-trough with herring scattered throughout."
-msgstr ""
+msgstr "jalan es yang pendek dan licin dengan ikan Hering tersebar dimana-mana"
 
 #: po/levelinfo:21
 msgid "Volcanoes"
@@ -674,7 +680,7 @@ msgid ""
 "This gigantic crater was full of water, and herring, but now it's all "
 "frozen, and yours for the taking."
 msgstr ""
-"Kawah yang besar ini, dulunya penuh dengan air, dan ikan haring, tapi "
+"Kawah yang besar ini, dulunya penuh dengan air, dan ikan Hering, tapi "
 "sekarang membeku sama sekali, dan milikmu untuk mengambil."
 
 #: po/levelinfo:23
@@ -691,31 +697,31 @@ msgstr ""
 
 #: po/levelinfo:25
 msgid "Mountain Mania"
-msgstr ""
+msgstr "Mania Gunung"
 
 #: po/levelinfo:26
 msgid "Icy Peril"
-msgstr ""
+msgstr "Peril yang Dingin"
 
 #: po/levelinfo:27
 msgid "Death Cup"
-msgstr ""
+msgstr "Piala Kematian"
 
 #: po/levelinfo:28
 msgid "Slippery Defeat"
-msgstr ""
+msgstr "licik"
 
 #: po/levelinfo:29
 msgid "The Final Three"
-msgstr ""
+msgstr "tiga terakhir"
 
 #: po/levelinfo:30
 msgid "Slippy-Slidey"
-msgstr ""
+msgstr "Slippy-Slidey"
 
 #: po/levelinfo:31
 msgid "Slide on the slippery frozen river in a hilly forest, slipperily."
-msgstr ""
+msgstr "Meluncur pada sungai beku yang licin di hutan, licik"
 
 #: po/levelinfo:32
 msgid "Crazy Path"
@@ -726,8 +732,8 @@ msgid ""
 "You'll have trouble slowing down on this one. There's lots of herring, but "
 "be careful not to fly too much or you won't get any."
 msgstr ""
-"Anda akan mendapat masalah jika melambat. Ada banyak ikan haring, namun hati-"
-"hati terlalu sering terbang atau Anda tidak akan mendapatkan apapun."
+"Anda akan mendapat masalah dengan melambat. Ada banyak ikan Hering, namun "
+"hati-hati terlalu sering terbang atau Anda tidak akan mendapatkan apapun."
 
 #: po/levelinfo:34
 msgid "Candy Lane"
@@ -747,7 +753,7 @@ msgstr "Komidi putar"
 
 #: po/levelinfo:37
 msgid "Try to build up enough speed to jump from one roundabout to the next."
-msgstr ""
+msgstr "Cobalah lebih kencang untuk bisa melompat"
 
 #: po/levelinfo:38
 msgid "Hey, Tux!"
@@ -765,7 +771,7 @@ msgstr "Bobsled Ride"
 
 #: po/levelinfo:41
 msgid "Just like a real bobsled ride, only more dangerous."
-msgstr "Sama seperti bosled ride sungguhan, hanya lebih berbahaya."
+msgstr "Sama seperti bobsled ride sungguhan, hanya lebih berbahaya."
 
 #: po/levelinfo:42
 msgid "In Search of Vodka"
@@ -779,11 +785,11 @@ msgid ""
 msgstr ""
 "Tux membutuhkan vodka untuk menghangatkan perutnya yang dingin. Aduh, lemari "
 "minuman kerasnya telah dijarah. Bergabunglah dengan Tux dalam pencarian "
-"Vodka. Ambil ikan haring untuk makan malam selama perjalanan!"
+"Vodka. Ambil ikan Hering untuk makan malam selama perjalanan!"
 
 #: po/levelinfo:44
 msgid "Tux at Home"
-msgstr ""
+msgstr "Tux di Rumah"
 
 #: po/levelinfo:45
 msgid ""
@@ -791,56 +797,65 @@ msgid ""
 "and fastest way. But if you want to catch some herrings you have to enter "
 "the rooms on the left."
 msgstr ""
+"Disinilah Tux tinggal. Anda bisa mengambil jalan ke kanan - jalan terpendek "
+"dan tercepat. Tapi jika Anda ingin menangkap ikan Hering, Anda harus masuk "
+"ke ruangan di sebelah kiri."
 
 #: po/levelinfo:46
 msgid "The Niehoff Experience"
-msgstr ""
+msgstr "Pengalaman Niehoff"
 
 #: po/levelinfo:47
 msgid "Search, Search, Search"
-msgstr ""
+msgstr "Cari, Cari, Cari"
 
 #: po/levelinfo:48
 msgid "Mountains and Hills"
-msgstr ""
+msgstr "Gunung dan Bukit"
 
 #: po/levelinfo:49
 msgid "The Final Challenge"
-msgstr ""
+msgstr "Tantangan Terakhir"
 
 #: po/levelinfo:50
 msgid "Wild Mountains"
-msgstr ""
+msgstr "Gunung Liar"
 
 #: po/levelinfo:51
 msgid ""
 "A wild landscape of ice and snow. It isn't easy to keep the right way. Not "
 "for beginners."
 msgstr ""
+"Lansekap liar yang penuh es dan salju. Tidaklah mudah untuk tetap di "
+"jaluryang benar. Tidak untuk pemula."
 
 #: po/levelinfo:52
 msgid "In Search of the Holy Grail"
-msgstr ""
+msgstr "Dalam Pencarian Cawan Suci"
 
 #: po/levelinfo:53
 msgid ""
 "An adventure course with a simple task: Find the grail! Warning: It is very "
 "difficult to find the way."
 msgstr ""
+"Penjelajahan dengan tugas sederhana: Temukan Cawan!!Peringatan: Sangat sulit "
+"untuk menemukannya."
 
 #: po/levelinfo:54
 msgid "Frozen Lakes"
-msgstr ""
+msgstr "Danau Beku"
 
 #: po/levelinfo:55
 msgid ""
 "To reach the finish you must pass several frozen lakes. Watch your speed on "
 "the ice - there are some dangerous corners."
 msgstr ""
+"Untuk mencapai finish, Anda harus melewati beberapa danau beku. Jaga "
+"kecepatanmu di atas es - banyak tikungan berbahaya."
 
 #: po/levelinfo:56
 msgid "Chinese Wall"
-msgstr ""
+msgstr "Tembok China"
 
 #: po/levelinfo:57
 msgid ""
@@ -848,100 +863,121 @@ msgid ""
 "where the herrings are. If you fall off you can try to jump back up, there "
 "are 7 hidden ramps. You'll get a lot of exercise."
 msgstr ""
+"Tembok Cina di musim dingin. Cobalah untuk tetap di atas tembok - dimana "
+"banyak ikan Hering. Jika Anda jatuh, Anda bisa mencoba melompat, ada 7 papan "
+"tolakan yang tersembunyi. Banyaklah berlatih."
 
 #: po/levelinfo:58
 msgid "Secret Valleys"
-msgstr ""
+msgstr "Lembah Rahasia"
 
 #: po/levelinfo:59
 msgid ""
 "Your task: Find the hidden valleys and the ten groups of dead trees. Look "
 "around, the ways are not easy to find."
 msgstr ""
+"Tugasmu: Cari Lembah Rahasia dan kumpulan sepuluh pohon mati.Lihatlah "
+"sekelilingmu, jalannya tidaklah gampang ditemukan."
 
 #: po/levelinfo:60
 msgid "Explore the Mountains"
-msgstr ""
+msgstr "Menjelajahi Gunung"
 
 #: po/levelinfo:61
 msgid "Can you find your way through the icy, dangerous mountains. I doubt it."
 msgstr ""
+"Dapatkah Anda menemukan jalan melewati gunung yang penuh es dan berbahaya."
+"Aku ragukan itu."
 
 #: po/levelinfo:62
 msgid "Challenge One"
-msgstr ""
+msgstr "Tantangan pertama"
 
 #: po/levelinfo:63
 msgid ""
 "A very dangerous path along the mountains. Warning: The course is very "
 "difficult and there are some situations where you can get stuck."
 msgstr ""
+"Jalan yang berbahaya di sepanjang gunung. Peringatan: perjalanan sangat "
+"sulit dan sering membuatmu mengalami mogok."
 
 #: po/levelinfo:64
 msgid "Path of Daggers"
-msgstr ""
+msgstr "Jalan Golok"
 
 #: po/levelinfo:65
 msgid ""
 "Big spikes may prove to be the least of your worries on this course. Muliple "
 "paths allow you to take low or high roads, each with their own challenges."
 msgstr ""
+"Paku-paku besar mungkin membuktikan sedikitnya kecemasan Anda. Beberapa "
+"jalan mengijinkan Anda untuk mengambil jalan yang diatas atau dibawah, "
+"sesuai dengan tantangannya masing-masing."
 
 #: po/levelinfo:66
 msgid "Tux Racer Classics"
-msgstr ""
+msgstr "Tux Racer Klasik"
 
 #: po/levelinfo:67
 msgid "Canadian Cup"
-msgstr ""
+msgstr "Piala Kanada"
 
 #: po/levelinfo:68
 msgid "Swiss Cup"
-msgstr ""
+msgstr "Piala Swiss"
 
 #: po/levelinfo:69
 msgid "Bumpy Ride"
-msgstr ""
+msgstr "Balapan di Jalan Bergelombang"
 
 #: po/levelinfo:70
 msgid ""
 "This hill has a series of ramps to tackle.  Be sure to line yourself up "
 "before getting airborne."
 msgstr ""
+"Bukit ini memiliki rangkaian papan tolakan yang harus dihadapi. Pastikan "
+"dirimu lurus sebelum melompat."
 
 #: po/levelinfo:71
 msgid "Bunny Hill"
-msgstr ""
+msgstr "Bukit Kelinci"
 
 #: po/levelinfo:72
 msgid ""
 "Let's start out easy, just collect the herring in the time limit and you'll "
 "be fine. The best part is that you don't have to use those stupid T-lifts."
 msgstr ""
+"Mari mulai dengan mudah,kumpulkan ikan hering dalam batas waktu yang "
+"ditentukan dan Anda akan selamat. Bagian paling baik adalah Anda tidak harus "
+"memakai T-lifts yang bodoh itu."
 
 #: po/levelinfo:73
 msgid "Frozen River"
-msgstr ""
+msgstr "Sungai beku"
 
 #: po/levelinfo:74
 msgid ""
 "Keep your speed down to collect herring. You have plenty of time, so don't "
 "rush things."
 msgstr ""
+"Jaga kecepatan anda agar tetap pelan untuk mengumpulkan ikan Hering. Anda "
+"memiliki banyak waktu, jadi jangan mengerjakan dengan terburu-buru"
 
 #: po/levelinfo:75
 msgid "Twisty Slope"
-msgstr ""
+msgstr "Lereng Berliku"
 
 #: po/levelinfo:76
 msgid ""
 "Tight twists make grabbing herring difficult.  Hard turns and not too much "
 "braking will lead you to victory."
 msgstr ""
+"Jalan yang berliku-liku membuat penangkapan ikan Hering menjadi sulit.Banyak "
+"berbelok dan sedikit mengerem akan membuatmu menjadi juara."
 
 #: po/levelinfo:77
 msgid "Mt. Herring"
-msgstr ""
+msgstr "Gunung Hering"
 
 #: po/levelinfo:78
 msgid ""
@@ -949,40 +985,46 @@ msgid ""
 "some wide open areas and branching paths. Lots of herrings to collect though "
 "it can be difficult unless you watch your speed."
 msgstr ""
+"Gunung Hering relatif lebih cepat namun panjang, agak bergelombang, dan "
+"mempunyai beberapa area terbuka dan calan bercabang. Banyak ikan hering yang "
+"dapat dikumpulkan walaupun itu bisa menyulitkan kecuali jika Anda menjaga "
+"kecepatan Anda."
 
 #: po/levelinfo:79
 msgid "Herring Run"
-msgstr ""
+msgstr "Ikan Hering berlari"
 
 #: po/levelinfo:80
 msgid "Mountain Man"
-msgstr ""
+msgstr "Manusia Gunung"
 
 #: po/levelinfo:81
 msgid "Valley Cup"
-msgstr ""
+msgstr "Piala Lembah"
 
 #: po/levelinfo:82
 msgid "Tux the winter sportsman"
-msgstr ""
+msgstr "Tux, olahragawan musim dingin"
 
 #: po/levelinfo:83
 msgid "Highway To Hell"
-msgstr ""
+msgstr "Jalan besar ke neraka"
 
 #: po/levelinfo:84
 msgid "Ice Labyrinth"
-msgstr ""
+msgstr "Labirin Es"
 
 #: po/levelinfo:85
 msgid ""
 "You choose your destiny, you could end up full or starving depending on the "
 "path you pick."
 msgstr ""
+"Pilihanmu adalah takdirmu, Anda dapat mengakhirinya dengan perut kenyang "
+"atau kelaparan tergantung dari jalan yang Anda pilih."
 
 #: po/levelinfo:86
 msgid "Snow Valley"
-msgstr ""
+msgstr "Lembah Salju"
 
 #: po/levelinfo:87
 msgid ""
@@ -990,20 +1032,25 @@ msgid ""
 "herrings very difficult to get if you're going for a perfect score! Watch "
 "your speed in certain areas to get the most herrings!"
 msgstr ""
+"Lembah Salju relatif datar, dan jalur yang sangat cepat. Anda akan mendapati "
+"sedikit ikan Hering yang memungkinkan Anda mendapat nilai sempurna! Jaga "
+"kecepatan Anda di area ini untuk mendapatkan ikan Hering terbanyak."
 
 #: po/levelinfo:88
 msgid "Tux Toboggan Run"
-msgstr ""
+msgstr "Lari Tux Toboggan"
 
 #: po/levelinfo:89
 msgid ""
 "Collect herrings in an ice channel with various paths and many high and low "
 "speed passages. Watch out for the occasional tree."
 msgstr ""
+"Kumpulkan ikan Hering di terowongan es dengan beberapa jalan dan jalur cepat "
+"dan lambat. Hati-hati dengan pepohonan yang kebetulan ada."
 
 #: po/levelinfo:90
 msgid "Hazzard Valley"
-msgstr ""
+msgstr "Lembah Berbahaya"
 
 #: po/levelinfo:91
 msgid ""
@@ -1011,40 +1058,51 @@ msgid ""
 "huge areas of rocky plains, not to mention your speed being your enemy in "
 "trying to get the herrings and stay on course!"
 msgstr ""
+"Lembah Berbahaya penuh dengan bahaya, seperti pepohonan, gua yang dalam, "
+"paku-paku, dan areal luas yang berbatu, tidak menyinggung kecepatanmu "
+"dibawah musuhmu dalam usaha pengumpulan ikan Hering dan tetap dalam jalur "
+"balap."
 
 #: po/levelinfo:92
 msgid "Skull Mountain"
-msgstr ""
+msgstr "Gunung Tengkorak"
 
 #: po/levelinfo:93
 msgid ""
 "Skull mountain is a steep, twisty drop around tree-filled inner peaks. "
 "Expect to miss a lot of herrings and crash a lot."
 msgstr ""
+"Gunung Tengkorak adalah jurang yang curam dan berkelok-kelok disekitar "
+"puncak tree-filled inner. Dimungkinkan banyak melewatkan ikan Heringdan "
+"banyak terjadi kecelakaan."
 
 #: po/levelinfo:94
 msgid "Keep It Up"
-msgstr ""
+msgstr "Pertahankan Terus"
 
 #: po/levelinfo:95
 msgid ""
 "If you fall you might as well just quit then and there, 'cause your chances "
 "are slim on the rocky ground."
 msgstr ""
+"Jika Anda jatuh, mungkin lebih baik untuk keluar disini, karena kesempatanmu "
+"sangat kecil di tanah berbatu."
 
 #: po/levelinfo:96
 msgid "Dead Man's Drop"
-msgstr ""
+msgstr "Jurang Orang Mati"
 
 #: po/levelinfo:97
 msgid ""
 "Pretty tough hill. It's fast, steep, lumpy, twisty, and full of trees. Hard "
 "to get herrings. Don't forget the drop."
 msgstr ""
+"Bukit yang sangat kuat. Cepat, curam, bergeronjal, berliku, dan penuh dengan "
+"pepohonan. Sulit untuk mengumpulkan ikan Hering. Jangan lupakan jurang."
 
 #: po/levelinfo:98
 msgid "I've Got A Woody"
-msgstr ""
+msgstr "Menemukan Kayu"
 
 #: po/levelinfo:99
 msgid ""
@@ -1052,40 +1110,50 @@ msgid ""
 "hard, try this one. Have fun winding through the woods.  Look out for a huge "
 "shortcut!!"
 msgstr ""
+"Angkatan ice-coaster yang sangat mengerikan. Jika Anda pikir 2 level "
+"sebelumnya sangat susah, cobalah yang ini. Bersenang-senanglah dengan "
+"berputar di kayu-kayu. Carilah jalan pintas!!"
 
 #: po/levelinfo:100
 msgid "Mt. Satan"
-msgstr ""
+msgstr "Gunung Setan"
 
 #: po/levelinfo:101
 msgid ""
 "Mount Satan is a sister mountain to Dead Man's Drop. No surprises here, just "
 "a steep, bumpy, twisty path full of trees to get through."
 msgstr ""
+"Gunung Setan adalah saudara dari Jurang Orang Mati. Tidak ada kejutan "
+"disini, hanya ada lereng curang, jalan berliku-liku yang penuh dengan "
+"pepohonan menghadang."
 
 #: po/levelinfo:102
 msgid "Ski Jump"
-msgstr ""
+msgstr "Ski Jump"
 
 #: po/levelinfo:103
 msgid ""
 "Steering will be unnecessary, just line yourself up and reap the rewards. "
 "Rememember, acceleration will slow you down after a while."
 msgstr ""
+"Mengemudi akan tidak akan diperlukan, hanya luruskan diri Anda dan dapatkan "
+"hadiahnya. Ingatlah, kecepatan akan menurun sejenak."
 
 #: po/levelinfo:104
 msgid "High Road"
-msgstr ""
+msgstr "Jalan Besar"
 
 #: po/levelinfo:105
 msgid ""
 "Just stay on the path and collect herring. Oh yeah, and if you fall you'll "
 "be eating pine needles."
 msgstr ""
+"Tetaplah dijalur dan kumpulkan ikan Hering. Yeah, dan jika Anda jatuh, Anda "
+"akan makan daun Cemara."
 
 #: po/levelinfo:106
 msgid "The Narrow Way"
-msgstr ""
+msgstr "Jalan Sempit"
 
 #: po/levelinfo:107
 msgid ""
@@ -1093,46 +1161,92 @@ msgid ""
 "you're going, there's trees in your way, and the herrings are hard to get. "
 "Good luck, you'll need it!"
 msgstr ""
+"Aturannya sederhana, tetap di atas jalur atau anda kalah! Susah untuk "
+"melihat kemana arah Anda, ada pepohonan di jalan, dan ikan Hering susah "
+"untuk didapatkan. Semoga sukses, anda akan membutuhkannya!"
 
 #: po/levelinfo:108
 msgid "Hamburger Hill"
-msgstr ""
+msgstr "Bukit Hamburger"
 
 #: po/levelinfo:109
 msgid ""
 "Hamburger Hill is steep, narrow, twisty, lumpy, icy, and rocky, with a few "
 "trees right in your way!"
 msgstr ""
+"Bukit Hamburger itu sempit, curam, berliku-liku, beku, dan berbatu, dengan "
+"sedikit pepohonan di sepanjang jalan."
 
 #: po/levelinfo:110
 msgid "Slalom"
-msgstr ""
+msgstr "Slalom"
 
 #: po/levelinfo:111
 msgid ""
 "Brake while you turn and the herrings on this pseudo-slalom will be yours."
 msgstr ""
+"Injaklah Rem jika Anda berbelok dan ikan Hering di pseudo-slalom akan "
+"menjadi milikmu."
 
 #: po/levelinfo:112
 msgid "Who Says Penguins Can't Fly?"
-msgstr ""
+msgstr "Siapa bilang pinguin bisa terbang ?"
 
 #: po/levelinfo:113
 msgid ""
 "It'll be tough collecting herrings at speeds over 200, so try to brake "
 "whenever possible to get the required herring."
 msgstr ""
+"Akan sulit untuk mengumpulkan ikan Hering dengan kecepatan diatas 200, "
+"cobalah untuk mengerem jika memungkinkan untuk mendapatkan ikan Hering."
 
 #: po/modelinfo:1
 msgid "Tux"
-msgstr ""
+msgstr "Tux"
 
 #: po/modelinfo:2
 msgid "Tux on Snowboard"
 msgstr ""
 
-#~ msgid "Event:"
-#~ msgstr "Pertandingan:"
+msgid "Event:"
+msgstr "Pertandingan:"
 
+#, fuzzy
 #~ msgid "Congratulations! You won the event!"
-#~ msgstr "Selamat! Anda memenangkan pertandingan!"
+#~ msgstr "Selamat! Anda memenangkan piala!"
+
+#~ msgid "'Freezing Point'"
+#~ msgstr "Nilai Membekukan"
+
+#~ msgid "'Calm Race'"
+#~ msgstr "'Balapan Pelan'"
+
+#~ msgid "'Lost Race'"
+#~ msgstr "'Tersesat'"
+
+#~ msgid "'Race Intro'"
+#~ msgstr "Intro Balap"
+
+#~ msgid "'Spunky Race'"
+#~ msgstr "'Balapan Nyali'"
+
+#~ msgid "'Won Race: kschroeder Remix'"
+#~ msgstr "'Memenangkan Lomba: kschroeder Remix'"
+
+#~ msgid "52143__blaukreuz__imp_01.wav - Original sound of ice cracking..."
+#~ msgstr "52143__blaukreuz__imp_01.wav - Suara Original dari ice cracking..."
+
+#~ msgid "http://www.freesound.org/samplesViewSingle.php?id=52143"
+#~ msgstr "http://www.freesound.org/samplesViewSingle.php?id=52143"
+
+#~ msgid "Race requirements not met."
+#~ msgstr "Kebutuhan balapan tidak terpenuhi"
+
+#~ msgid "Samuel"
+#~ msgstr "Samuel"
+
+#~ msgid "Trixi"
+#~ msgstr "Trixi"
+
+#~ msgid "Speedy"
+#~ msgstr "Speedy"

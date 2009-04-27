@@ -9,18 +9,18 @@ msgstr ""
 "Project-Id-Version: Extreme Tux Racer\n"
 "Report-Msgid-Bugs-To: https://translations.edge.launchpad.net/etracer\n"
 "POT-Creation-Date: 2008-08-03 20:17+0200\n"
-"PO-Revision-Date: 2008-08-02 03:55+0000\n"
-"Last-Translator: Lucio Pileggi <Unknown>\n"
+"PO-Revision-Date: 2008-08-31 07:21+0000\n"
+"Last-Translator: spectrum <Unknown>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-08-03 17:56+0000\n"
+"X-Launchpad-Export-Date: 2009-04-27 12:04+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: src/audioconfig.cpp:36
 msgid "Audio Configuration"
-msgstr "Configurazione dell'Audio"
+msgstr "Configurazione Audio"
 
 #: src/audioconfig.cpp:112
 msgid "Sound Effects:"
@@ -97,15 +97,15 @@ msgstr "La applicazione Extreme Tux Racer sta per essere"
 
 #: src/credits.cpp:47
 msgid "completely rewritten. All versions after 0.35,"
-msgstr ""
+msgstr "completamente riscritta. Tutte le versioni sucessive alla 0.35,"
 
 #: src/credits.cpp:48
 msgid "including this one, won't have major code changes"
-msgstr ""
+msgstr "compresa questa, non hanno avuto grosse modifiche al codice."
 
 #: src/credits.cpp:49
 msgid "because the programmers are busy making a new,"
-msgstr ""
+msgstr "perché i programmatori sono occupati a creare un nuovo,"
 
 #: src/credits.cpp:50
 msgid "improved game."
@@ -117,23 +117,23 @@ msgstr "Extreme Tux Racer è basato su"
 
 #: src/credits.cpp:53
 msgid "PlanetPenguin Racer, Open Racer and Tux Racer."
-msgstr ""
+msgstr "PlanetPenguin Racer, Open Racer e Tux Racer."
 
 #: src/credits.cpp:55
 msgid "Some courses may have been modified from their"
-msgstr ""
+msgstr "Alcuni percorsi potrebbero essere stati modificati dalle loro"
 
 #: src/credits.cpp:56
 msgid "original versions to fit the requirements of the game."
-msgstr ""
+msgstr "versioni originali per adeguare i requisiti del gioco."
 
 #: src/credits.cpp:58
 msgid "Development"
-msgstr ""
+msgstr "Sviluppo"
 
 #: src/credits.cpp:63
 msgid "from Sunspire Studios:"
-msgstr ""
+msgstr "da Sunspire Studios:"
 
 #: src/credits.cpp:71
 msgid "Non-Rewrite Version Organization"
@@ -157,7 +157,7 @@ msgstr ""
 
 #: src/credits.cpp:92
 msgid "Reinhard Niehoff (Trees)"
-msgstr ""
+msgstr "Reinhard Niehoff (Alberi)"
 
 #: src/credits.cpp:93
 msgid "Daniel Poeira and Christian Picon (Font)"
@@ -165,11 +165,11 @@ msgstr ""
 
 #: src/credits.cpp:95
 msgid "Music"
-msgstr ""
+msgstr "Musica"
 
 #: src/credits.cpp:97
 msgid "'Race 1'"
-msgstr ""
+msgstr "'Gara 1'"
 
 #: src/credits.cpp:98
 msgid "'Menu'"
@@ -177,43 +177,44 @@ msgstr "'Menu'"
 
 #: src/credits.cpp:99
 msgid "'Options'"
-msgstr ""
+msgstr "'Opzioni'"
 
 #: src/credits.cpp:100
 msgid "'Won Race'"
-msgstr ""
+msgstr "'Vince La Gara'"
 
 #: src/credits.cpp:103
 msgid "'Credits Ballad'"
-msgstr "'Ballata dei riconoscimenti'"
+msgstr "'Ballata Dei Riconoscimenti'"
 
 #: src/credits.cpp:105
 msgid "Misc. PPRacer Contributors"
-msgstr ""
+msgstr "Contributori PPRacer Misti"
 
 #: src/credits.cpp:110
 msgid "Thanks To"
-msgstr ""
+msgstr "Grazie A"
 
 #: src/credits.cpp:111
+#, fuzzy
 msgid "(for Exteme Tux Racer)"
-msgstr ""
+msgstr "(per Tux Racer)"
 
 #: src/credits.cpp:112
 msgid "Ranger (for hosting the website)"
-msgstr ""
+msgstr "Ranger (per l'hosting del sito web)"
 
 #: src/credits.cpp:113
 msgid "Slythfox (for making the website)"
-msgstr ""
+msgstr "Slythfox (per la creazione del sito web)"
 
 #: src/credits.cpp:114
 msgid "The Course Creators"
-msgstr ""
+msgstr "I Creatori Dei Percorsi"
 
 #: src/credits.cpp:115
 msgid "The OpenRacer project"
-msgstr ""
+msgstr "Il progetto OpenRacer"
 
 #: src/credits.cpp:116
 msgid "Reinhard Niehoff (for helping with code modification)"
@@ -225,45 +226,43 @@ msgstr ""
 
 #: src/credits.cpp:118
 msgid "Larry Ewing (creator of Tux)"
-msgstr ""
+msgstr "Larry Ewing (creatore di Tux)"
 
 #: src/credits.cpp:119
 msgid "(for Tux Racer)"
-msgstr ""
+msgstr "(per Tux Racer)"
 
 #: src/credits.cpp:126
 msgid "Tux Racer is a trademark of Jasmin F. Patry."
-msgstr ""
+msgstr "Tux Racer è un marchio registrato di Jasmin F. Patry."
 
 #: src/credits.cpp:127
 msgid "Extreme Tux Racer is licenced under the GPL."
-msgstr ""
+msgstr "Extreme Tux Racer è distribuito su licenza GPL."
 
 #: src/credits.cpp:128
 msgid "We grant use of the name 'Extreme Tux Racer'"
-msgstr "Concediamo l'uso del nome 'Extreme Tux Racer'"
+msgstr "Garantiamo l'uso del nome 'Extreme Tux Racer'"
 
 #: src/credits.cpp:129
-#, fuzzy
 msgid "to any forks or continuations."
-msgstr "a qualsiasi progetto fork o a seguiti."
+msgstr "a qualunque fork o continuo"
 
 #: src/credits.cpp:131
 msgid "PlanetPenguin Racer is Copyright © 2005 Volker Stroebel."
-msgstr ""
+msgstr "PlanetPenguin Racer è Copyright © 2005 Volker Stroebel."
 
 #: src/credits.cpp:132
 msgid "Tux Racer and the Tux Racer Name are Copyright © 2001 Jasmin F. Patry."
-msgstr ""
+msgstr "Tux Racer e il nome Tux Racer sono Copyright © 2001 Jasmin F. Patry"
 
 #: src/event_select.cpp:50
-#, fuzzy
 msgid "Select campaign and cup"
-msgstr "Seleziona evento e coppa"
+msgstr "Seleziona la campagna e la coppa"
 
 #: src/event_select.cpp:56
 msgid "Campaign:"
-msgstr ""
+msgstr "Campagna:"
 
 #: src/event_select.cpp:67
 msgid "Cup:"
@@ -271,7 +270,7 @@ msgstr "Coppa:"
 
 #: src/event_select.cpp:87
 msgid "Player name:"
-msgstr ""
+msgstr "Nome del giocatore:"
 
 #: src/event_select.cpp:104
 msgid "Continue"
@@ -283,15 +282,15 @@ msgstr "Hai vinto questa coppa!"
 
 #: src/event_select.cpp:160
 msgid "You must complete this cup next"
-msgstr "Devi completare questa coppa"
+msgstr "Devi completare questa coppa successivamente"
 
 #: src/event_select.cpp:162
 msgid "You cannot enter this cup yet"
-msgstr "Non puoi ancora entrare in questa coppa"
+msgstr "Non puoi entrare ancora in questa coppa"
 
 #: src/event_race_select.cpp:45
 msgid "Select a race"
-msgstr "Seleziona una pista"
+msgstr "Seleziona una corsa"
 
 #: src/event_race_select.cpp:60
 msgid "Race!"
@@ -299,7 +298,7 @@ msgstr "Gara!"
 
 #: src/event_race_select.cpp:280
 msgid "You don't have any lives left."
-msgstr "Non ti � rimasta alcuna vita."
+msgstr "Non hai altre vite rimaste."
 
 #: src/event_race_select.cpp:285
 msgid "Race won! Your result:"
@@ -320,7 +319,7 @@ msgstr "Tempo:"
 #: src/event_race_select.cpp:320
 #, c-format
 msgid "%02d:%02d.%02d"
-msgstr ""
+msgstr "%02d:%02d.%02d"
 
 #: src/event_race_select.cpp:324
 msgid "Herring:"
@@ -364,7 +363,7 @@ msgstr "Punteggio: %6d"
 #: src/game_over.cpp:135
 #, c-format
 msgid "Max speed: %3d km/h"
-msgstr "Velocit� massima: %3d km/h"
+msgstr "Velocità massima: %3d km/h"
 
 #: src/game_over.cpp:141
 #, c-format
@@ -374,16 +373,15 @@ msgstr "In volo: %.01f %% del tempo"
 #: src/game_over.cpp:151
 #, c-format
 msgid "You made it to the %s place in the highscore!"
-msgstr ""
+msgstr "Hai raggiunto la %s posizione nella classifica!"
 
 #: src/game_over.cpp:161
 msgid "You beat your best score!"
 msgstr "Hai ottenuto il tuo miglior punteggio"
 
 #: src/game_over.cpp:164
-#, fuzzy
 msgid "Congratulations! You won the campaign!"
-msgstr "Congratulazioni! Hai vinto la coppa!"
+msgstr "Congratulazioni! Hai vinto la campagna!"
 
 #: src/game_over.cpp:166
 msgid "Congratulations! You won the cup!"
@@ -398,21 +396,20 @@ msgid "You didn't advance."
 msgstr "Non sei passato."
 
 #: src/game_type_select.cpp:36
-#, fuzzy
 msgid "Enter a campaign"
-msgstr "Inizia un evento"
+msgstr "Entra in una campagna"
 
 #: src/game_type_select.cpp:43
 msgid "Practice"
-msgstr "Pratica"
+msgstr "Allenamento"
 
 #: src/game_type_select.cpp:50 src/highscore.cpp:350
 msgid "Highscore"
-msgstr ""
+msgstr "Punteggio"
 
 #: src/game_type_select.cpp:64
 msgid "Credits"
-msgstr "Credits"
+msgstr "Riconoscimenti"
 
 #: src/game_type_select.cpp:71 src/paused.cpp:78
 msgid "Quit"
@@ -420,7 +417,7 @@ msgstr "Esci"
 
 #: src/graphicsconfig.cpp:30
 msgid "Graphics Configuration"
-msgstr "Configurazione della Grafica"
+msgstr "Configurazione Della Grafica"
 
 #: src/graphicsconfig.cpp:108
 msgid "Model:"
@@ -440,7 +437,7 @@ msgstr "Visualizza Avanzamento:"
 
 #: src/graphicsconfig.cpp:129
 msgid "Draw Fog:"
-msgstr "Visualizza Nebbia:"
+msgstr "Disegna Nebbia:"
 
 #: src/graphicsconfig.cpp:133
 msgid "Reflections:"
@@ -452,60 +449,60 @@ msgstr "Ombre:"
 
 #: src/graphicsconfig.cpp:141
 msgid "Draw Background:"
-msgstr ""
+msgstr "Disegna Sfondo:"
 
 #: src/highscore.cpp:88
 msgid "1:st"
-msgstr ""
+msgstr "Primo"
 
 #: src/highscore.cpp:90
 msgid "2:nd"
-msgstr ""
+msgstr "Secondo"
 
 #: src/highscore.cpp:92
 msgid "3:rd"
-msgstr ""
+msgstr "Terzo"
 
 #: src/highscore.cpp:94
 msgid "4:th"
-msgstr ""
+msgstr "Quarto"
 
 #: src/highscore.cpp:96
 msgid "5:th"
-msgstr ""
+msgstr "Quinto"
 
 #: src/highscore.cpp:98
 msgid "6:th"
-msgstr ""
+msgstr "Sesto"
 
 #: src/highscore.cpp:100
 msgid "7:th"
-msgstr ""
+msgstr "Settimo"
 
 #: src/highscore.cpp:102
 msgid "8:th"
-msgstr ""
+msgstr "Ottavo"
 
 #: src/highscore.cpp:104
 msgid "9:th"
-msgstr ""
+msgstr "Nono"
 
 #: src/highscore.cpp:106
 msgid "10:th"
-msgstr ""
+msgstr "Decimo"
 
 #: src/highscore.cpp:317
 msgid "No records"
-msgstr ""
+msgstr "Nessun record"
 
 #: src/highscore.cpp:327
 #, c-format
 msgid " (%d points)"
-msgstr ""
+msgstr " (%d punti)"
 
 #: src/joystickconfig.cpp:29
 msgid "Joystick Configuration"
-msgstr "Configurazione del Joystick"
+msgstr "Configurazione Del Joystick"
 
 #: src/joystickconfig.cpp:33
 msgid "Enable Joystick"
@@ -513,7 +510,7 @@ msgstr "Abilita Joystick"
 
 #: src/joystickconfig.cpp:41 src/keyboardconfig.cpp:132
 msgid "Paddle:"
-msgstr "Spinta:"
+msgstr "Pala:"
 
 #: src/joystickconfig.cpp:54 src/keyboardconfig.cpp:136
 msgid "Brake:"
@@ -521,15 +518,15 @@ msgstr "Freno:"
 
 #: src/joystickconfig.cpp:67 src/keyboardconfig.cpp:140
 msgid "Jump:"
-msgstr "Salta:"
+msgstr "Salto:"
 
 #: src/joystickconfig.cpp:80 src/keyboardconfig.cpp:144
 msgid "Trick:"
-msgstr "Trucchi:"
+msgstr "Trucco:"
 
 #: src/keyboardconfig.cpp:55
 msgid "Keyboard Configuration"
-msgstr "Configurazione della Tastiera"
+msgstr "Configurazione Della Tastiera"
 
 #: src/keyboardconfig.cpp:124
 msgid "Turn left:"
@@ -545,11 +542,11 @@ msgstr "Resetta:"
 
 #: src/loading.cpp:53
 msgid "Loading, Please Wait..."
-msgstr "Sto caricando, attendere prego..."
+msgstr "Caricamento, Attendere Per Favore..."
 
 #: src/paused.cpp:54
 msgid "Paused"
-msgstr "Pausa"
+msgstr "In Pausa"
 
 #: src/paused.cpp:70
 msgid "Resume"
@@ -557,7 +554,7 @@ msgstr "Riprendi"
 
 #: src/splash_screen.cpp:34
 msgid "PRESS ANY KEY TO START"
-msgstr "PREMI UN TASTO PER INIZIARE"
+msgstr "PREMI UN TASTO QUALSIASI PER INIZIARE"
 
 #: src/videoconfig.cpp:60
 msgid "Video Configuration"
@@ -565,11 +562,11 @@ msgstr "Configurazione del Video"
 
 #: src/videoconfig.cpp:173
 msgid "To change the resolution, or switch into fullscreen mode"
-msgstr ""
+msgstr "Per cambiare risoluzione o visualizzare a schermo intero"
 
 #: src/videoconfig.cpp:175
 msgid "use options.txt, located in the config folder."
-msgstr ""
+msgstr "usa il file options.txt all'interno della cartella di configurazione"
 
 #: src/videoconfig.cpp:177
 msgid "Resolution:"
@@ -589,7 +586,7 @@ msgstr "Sperimentale (necessita riavvio)"
 
 #: src/videoconfig.cpp:192
 msgid "Stencil Buffer:"
-msgstr ""
+msgstr "Buffer Dello Stampino:"
 
 #: src/videoconfig.cpp:196
 msgid "Enable FSAA:"
@@ -597,7 +594,7 @@ msgstr "Abilita FSAA:"
 
 #: src/videoconfig.cpp:200
 msgid "FSAA Multisamples:"
-msgstr ""
+msgstr "Multi-esempi FSAA"
 
 #: po/levelinfo:1
 #, c-format
@@ -624,24 +621,26 @@ msgid "%.0f"
 msgstr "%.0f"
 
 #: po/levelinfo:10 po/levelinfo:11
-#, fuzzy, c-format
+#, c-format
 msgid "%d:%d:%d"
-msgstr "%02d:%02d:%02d"
+msgstr "%d:%d:%d"
 
 #: po/levelinfo:12 po/levelinfo:13
-#, fuzzy, c-format
+#, c-format
 msgid "%d"
-msgstr "%03d"
+msgstr "%d"
 
 #: po/levelinfo:14
 msgid "Doing"
-msgstr ""
+msgstr "Facendo"
 
 #: po/levelinfo:15
 msgid ""
 "This course was probably created to present new textures introduced in "
 "PPRacer."
 msgstr ""
+"Questo tracciato è stato probabilmente creato con nuove texture introdotte "
+"in PPRacer"
 
 #: po/levelinfo:17
 msgid "Hippo Run"
@@ -651,15 +650,19 @@ msgstr "Corsa Hippo"
 msgid ""
 "In Hippo Run, you slide down an icy slope as a penguin, I honestly don't "
 "know what this has to do with hippos or running..."
-msgstr "Nella corsa Hippo scivoli su di una ghiacciata"
+msgstr ""
+"Nella Corsa Hippo, scivoli da un pendio ghiacciato come un pinguino, "
+"onestamente non so cosa questo abbia a che fare con ippopotami o correre..."
 
 #: po/levelinfo:19
 msgid "Ice Pipeline"
-msgstr ""
+msgstr "Tubatura Di Ghiaccio"
 
 #: po/levelinfo:20
 msgid "A short, slippery ice-trough with herring scattered throughout."
 msgstr ""
+"Un breve, scivoloso attraversamento dei ghiacci con un'attraversata piena di "
+"arringhe"
 
 #: po/levelinfo:21
 msgid "Volcanoes"
@@ -675,19 +678,19 @@ msgstr ""
 
 #: po/levelinfo:23
 msgid "Nature Stroll"
-msgstr "Passeggiata in mezzo alla Natura"
+msgstr "Passeggiata Nella Natura"
 
 #: po/levelinfo:24
 msgid ""
 "The fresh air, the pine scent, who doesn't like a nice refreshing walk "
 "through the mountains?"
 msgstr ""
-"Aria fresca, profumo di pino, chi non vorrebbe fare una rinfrenscante "
+"L'aria fresca, il profumo di pino, chi non vorrebbe fare una rinfrescante "
 "passeggiata in montagna?"
 
 #: po/levelinfo:25
 msgid "Mountain Mania"
-msgstr "Montagna Mania"
+msgstr "Mania Della Montagna"
 
 #: po/levelinfo:26
 msgid "Icy Peril"
@@ -695,7 +698,7 @@ msgstr "Pericolo Ghiacciato"
 
 #: po/levelinfo:27
 msgid "Death Cup"
-msgstr "Coppa della morte"
+msgstr "Coppa Della Morte"
 
 #: po/levelinfo:28
 msgid "Slippery Defeat"
@@ -703,15 +706,17 @@ msgstr "Sconfitta Scivolosa"
 
 #: po/levelinfo:29
 msgid "The Final Three"
-msgstr ""
+msgstr "I Tre Finali"
 
 #: po/levelinfo:30
 msgid "Slippy-Slidey"
-msgstr ""
+msgstr "Scivoloso-Scorrevoloso"
 
 #: po/levelinfo:31
 msgid "Slide on the slippery frozen river in a hilly forest, slipperily."
 msgstr ""
+"Scorri sul fiume ghiacciato scivoloso in una foresta collinosa, "
+"scivolosamente"
 
 #: po/levelinfo:32
 msgid "Crazy Path"
@@ -722,10 +727,12 @@ msgid ""
 "You'll have trouble slowing down on this one. There's lots of herring, but "
 "be careful not to fly too much or you won't get any."
 msgstr ""
+"Avrai problemi a rallentare in questo. Ci sono tonnellate di arringhe, ma "
+"fai attenzione a non volare troppo o non ne avrai."
 
 #: po/levelinfo:34
 msgid "Candy Lane"
-msgstr ""
+msgstr "Curva Del Dolce"
 
 #: po/levelinfo:35
 msgid ""
@@ -747,20 +754,22 @@ msgstr ""
 
 #: po/levelinfo:38
 msgid "Hey, Tux!"
-msgstr ""
+msgstr "Hey, Tux!"
 
 #: po/levelinfo:39
 msgid "This course offers true excitement for your race-loving penguin buddy."
 msgstr ""
+"Questo percorso offre una vera eccitazione per il tuo amico pinguino amante "
+"delle corse."
 
 #: po/levelinfo:40
 msgid "Bobsled Ride"
-msgstr "Corsa sulla Guidoslitta"
+msgstr "Corsa Sulla Guidoslitta"
 
 #: po/levelinfo:41
 msgid "Just like a real bobsled ride, only more dangerous."
 msgstr ""
-"Proprio come una vera corsa sulla guidoslitta, solo un pò più pericolosa."
+"Proprio come una vera corsa sulla guidoslitta, solo un po' più pericolosa."
 
 #: po/levelinfo:42
 msgid "In Search of Vodka"
@@ -772,6 +781,9 @@ msgid ""
 "cabinet has been pillaged. Join Tux on the quest for vodka.Pick up herring "
 "for dinner along the way!"
 msgstr ""
+"Tux ha bisogni di un po' di vodka per scaldare la sua pancia fredda. Ahimè, "
+"il suo armadietto dei liquori è stato saccheggiato. Unisciti a Tux nella "
+"ricerca della vodka. Prendi su arringhe per cena lungo la strada!"
 
 #: po/levelinfo:44
 msgid "Tux at Home"
@@ -789,23 +801,23 @@ msgstr ""
 
 #: po/levelinfo:46
 msgid "The Niehoff Experience"
-msgstr ""
+msgstr "L'Esperienza Niehoff"
 
 #: po/levelinfo:47
 msgid "Search, Search, Search"
-msgstr ""
+msgstr "Cerca, Cerca, Cerca"
 
 #: po/levelinfo:48
 msgid "Mountains and Hills"
-msgstr ""
+msgstr "Montagne e Colline"
 
 #: po/levelinfo:49
 msgid "The Final Challenge"
-msgstr ""
+msgstr "La Sfida Finale"
 
 #: po/levelinfo:50
 msgid "Wild Mountains"
-msgstr "Montagne Selvaggie"
+msgstr "Montagne Selvagge"
 
 #: po/levelinfo:51
 msgid ""
@@ -836,10 +848,12 @@ msgid ""
 "To reach the finish you must pass several frozen lakes. Watch your speed on "
 "the ice - there are some dangerous corners."
 msgstr ""
+"Per raggiungere la fine devi passare numerosi laghi ghiacciati. Osserva la "
+"tua velocità sul ghiaccio - ci sono alcuni angoli pericolosi"
 
 #: po/levelinfo:56
 msgid "Chinese Wall"
-msgstr "Muro Cinese"
+msgstr "Muraglia Cinese"
 
 #: po/levelinfo:57
 msgid ""
@@ -860,6 +874,8 @@ msgid ""
 "Your task: Find the hidden valleys and the ten groups of dead trees. Look "
 "around, the ways are not easy to find."
 msgstr ""
+"Il tuo compito: Trova le valli nascoste e i dieci gruppi di alberi morti. "
+"Guardati intorno, le strade non sono facili da trovare"
 
 #: po/levelinfo:60
 msgid "Explore the Mountains"
@@ -868,6 +884,8 @@ msgstr "Esplora le Montagne"
 #: po/levelinfo:61
 msgid "Can you find your way through the icy, dangerous mountains. I doubt it."
 msgstr ""
+"Potrai trovare la tua strada attraverso le montagne ghiacciate e pericolose? "
+"Ne dubito."
 
 #: po/levelinfo:62
 msgid "Challenge One"
@@ -878,68 +896,82 @@ msgid ""
 "A very dangerous path along the mountains. Warning: The course is very "
 "difficult and there are some situations where you can get stuck."
 msgstr ""
+"Un cammino molto pericoloso tra le montagne. Attenzione: Questo percorso è "
+"molto difficile e ci sono alcune situazioni in cui puoi rimanere bloccato."
 
 #: po/levelinfo:64
 msgid "Path of Daggers"
-msgstr ""
+msgstr "Cammino dei Pugnali"
 
 #: po/levelinfo:65
 msgid ""
 "Big spikes may prove to be the least of your worries on this course. Muliple "
 "paths allow you to take low or high roads, each with their own challenges."
 msgstr ""
+"Grosse spine possono essere l'ultima delle tue preoccupazioni in questo "
+"percorso. Cammini multipli ti permettono di prendere strade basse o alte, "
+"ognuna con le proprie sfide."
 
 #: po/levelinfo:66
 msgid "Tux Racer Classics"
-msgstr ""
+msgstr "Classici Tux Racer"
 
 #: po/levelinfo:67
 msgid "Canadian Cup"
-msgstr ""
+msgstr "Coppa Canadese"
 
 #: po/levelinfo:68
 msgid "Swiss Cup"
-msgstr ""
+msgstr "Coppa Canadese"
 
 #: po/levelinfo:69
 msgid "Bumpy Ride"
-msgstr ""
+msgstr "Corsa A Scossoni"
 
 #: po/levelinfo:70
 msgid ""
 "This hill has a series of ramps to tackle.  Be sure to line yourself up "
 "before getting airborne."
 msgstr ""
+"Questa collina ha una serie di rampe da affrontare. Prendi bene la mira "
+"prima di prendere il volo."
 
 #: po/levelinfo:71
 msgid "Bunny Hill"
-msgstr ""
+msgstr "Collina Coniglietto"
 
 #: po/levelinfo:72
 msgid ""
 "Let's start out easy, just collect the herring in the time limit and you'll "
 "be fine. The best part is that you don't have to use those stupid T-lifts."
 msgstr ""
+"Partiamo in maniera facile, colleziona semplicemente le arringhe nel tempo "
+"limite e sarai al sicuro. La parte migliore è che non devi usare questi "
+"stupidi T-lift"
 
 #: po/levelinfo:73
 msgid "Frozen River"
-msgstr ""
+msgstr "Fiume Ghiacciato"
 
 #: po/levelinfo:74
 msgid ""
 "Keep your speed down to collect herring. You have plenty of time, so don't "
 "rush things."
 msgstr ""
+"Vai piano e prendi tutte le arringhe. Hai tutto il tempo, quindi non saltare "
+"le cose."
 
 #: po/levelinfo:75
 msgid "Twisty Slope"
-msgstr ""
+msgstr "Discesa Contorta"
 
 #: po/levelinfo:76
 msgid ""
 "Tight twists make grabbing herring difficult.  Hard turns and not too much "
 "braking will lead you to victory."
 msgstr ""
+"Contorcimenti stretti rendono difficile il raccogliere le arringhe. Curve "
+"dure e non molte frenate ti condurranno alla vittoria"
 
 #: po/levelinfo:77
 msgid "Mt. Herring"
@@ -951,6 +983,10 @@ msgid ""
 "some wide open areas and branching paths. Lots of herrings to collect though "
 "it can be difficult unless you watch your speed."
 msgstr ""
+"Il Monte Arringa è relativamente veloce ma lungo, qualcosa di contorto in "
+"alcuni posti, e ha alcune aree aperte vaste e percorsi divisi. Molte "
+"arringhe da raccogliere durante il viaggio può essere difficile finché non "
+"guardi la tua velocità"
 
 #: po/levelinfo:79
 msgid "Herring Run"
@@ -958,19 +994,19 @@ msgstr "Corsa Aringa"
 
 #: po/levelinfo:80
 msgid "Mountain Man"
-msgstr ""
+msgstr "Uomo Della Montagna"
 
 #: po/levelinfo:81
 msgid "Valley Cup"
-msgstr ""
+msgstr "Coppa Della Vallata"
 
 #: po/levelinfo:82
 msgid "Tux the winter sportsman"
-msgstr ""
+msgstr "Tux l'uomo sportivo invernale"
 
 #: po/levelinfo:83
 msgid "Highway To Hell"
-msgstr "Autostrada per l'Inferno"
+msgstr "Autostrada Per L'Inferno"
 
 #: po/levelinfo:84
 msgid "Ice Labyrinth"
@@ -981,10 +1017,12 @@ msgid ""
 "You choose your destiny, you could end up full or starving depending on the "
 "path you pick."
 msgstr ""
+"Puoi scegliere il tuo destino, puoi finire pieno o affamato in base al "
+"cammino che scegli"
 
 #: po/levelinfo:86
 msgid "Snow Valley"
-msgstr ""
+msgstr "Valle Innevata"
 
 #: po/levelinfo:87
 msgid ""
@@ -992,20 +1030,26 @@ msgid ""
 "herrings very difficult to get if you're going for a perfect score! Watch "
 "your speed in certain areas to get the most herrings!"
 msgstr ""
+"La Valle Innevata è un percorso relativamente piatto e molto veloce. "
+"Troverai poche arringhe molto difficili da ottenere se stai cercando un "
+"punteggio perfetto! Guarda la tua velocità in certe aree per ottenere il "
+"maggior numero possibile di arringhe!"
 
 #: po/levelinfo:88
 msgid "Tux Toboggan Run"
-msgstr ""
+msgstr "Corsa Tux Toboggan"
 
 #: po/levelinfo:89
 msgid ""
 "Collect herrings in an ice channel with various paths and many high and low "
 "speed passages. Watch out for the occasional tree."
 msgstr ""
+"Colleziona arringhe in un canale di ghiaccio con vari percorsi e molti "
+"passaggi ad alta e bassa velocità. Fai attenzione all'albero occasionale."
 
 #: po/levelinfo:90
 msgid "Hazzard Valley"
-msgstr "Valle del Rischio"
+msgstr "Valle Del Rischio"
 
 #: po/levelinfo:91
 msgid ""
@@ -1013,40 +1057,50 @@ msgid ""
 "huge areas of rocky plains, not to mention your speed being your enemy in "
 "trying to get the herrings and stay on course!"
 msgstr ""
+"La Valle Del Rischio è piena di rischi, come alberi, caverne profonde, "
+"spuntoni, e aree enormi di pianure rocciose, non per nominare la tua "
+"velocità considerata un nemico per provare a ottenere le arringhe e rimanere "
+"in pista!"
 
 #: po/levelinfo:92
 msgid "Skull Mountain"
-msgstr "Montagna del Teschio"
+msgstr "Montagna Del Teschio"
 
 #: po/levelinfo:93
 msgid ""
 "Skull mountain is a steep, twisty drop around tree-filled inner peaks. "
 "Expect to miss a lot of herrings and crash a lot."
 msgstr ""
+"La Montagna Del Teschio è una cima ripida e contorta piena di alberi. "
+"Aspettati di mancare un mucchio di arringhe e di schiantarti molto"
 
 #: po/levelinfo:94
 msgid "Keep It Up"
-msgstr ""
+msgstr "Mantienila Su"
 
 #: po/levelinfo:95
 msgid ""
 "If you fall you might as well just quit then and there, 'cause your chances "
 "are slim on the rocky ground."
 msgstr ""
+"Se cadi potresti semplicemente uscire qua e la, perché le tue possibilità "
+"sono magre nel terreno roccioso"
 
 #: po/levelinfo:96
 msgid "Dead Man's Drop"
-msgstr "Burrone dell'Uomo Morto"
+msgstr "Burrone Dell'Uomo Morto"
 
 #: po/levelinfo:97
 msgid ""
 "Pretty tough hill. It's fast, steep, lumpy, twisty, and full of trees. Hard "
 "to get herrings. Don't forget the drop."
 msgstr ""
+"Collina abbastanza tosta. È veloce, ripida, grumosa, contorta, e piena di "
+"alberi. Dura ottenere arringhe. Non dimenticare la caduta"
 
 #: po/levelinfo:98
 msgid "I've Got A Woody"
-msgstr ""
+msgstr "Ho Una Legnata"
 
 #: po/levelinfo:99
 msgid ""
@@ -1054,40 +1108,50 @@ msgid ""
 "hard, try this one. Have fun winding through the woods.  Look out for a huge "
 "shortcut!!"
 msgstr ""
+"Ancora un'altra orribile montagna ghiacciata elevata. Se pensavi che gli "
+"ultimi 2 fossero difficili, prova questo. Divertiti sfrecciando attraverso i "
+"boschi. Fa attenzione a una enorme scorciatoia!!"
 
 #: po/levelinfo:100
 msgid "Mt. Satan"
-msgstr "monte Satana"
+msgstr "Monte Satana"
 
 #: po/levelinfo:101
 msgid ""
 "Mount Satan is a sister mountain to Dead Man's Drop. No surprises here, just "
 "a steep, bumpy, twisty path full of trees to get through."
 msgstr ""
+"Il Monte Satana è una montagna sorella al Dead Man's Drop. Nessuna sorpresa "
+"qui, solamente un ripido, sconnesso, contorto cammino pieno di alberi da "
+"attraversare."
 
 #: po/levelinfo:102
 msgid "Ski Jump"
-msgstr "Salto con gli sci"
+msgstr "Salto Con Gli Sci"
 
 #: po/levelinfo:103
 msgid ""
 "Steering will be unnecessary, just line yourself up and reap the rewards. "
 "Rememember, acceleration will slow you down after a while."
 msgstr ""
+"Curvare non sarà necessario, solamente allineati e ottieni le ricompense. "
+"Ricorda, l'accelerazione ti rallenterà dopo un pò"
 
 #: po/levelinfo:104
 msgid "High Road"
-msgstr ""
+msgstr "Strada Alta"
 
 #: po/levelinfo:105
 msgid ""
 "Just stay on the path and collect herring. Oh yeah, and if you fall you'll "
 "be eating pine needles."
 msgstr ""
+"Semplicemente stai nel cammino e colleziona arringhe. Ah, si, e se cadi "
+"mangerai spine di pino"
 
 #: po/levelinfo:106
 msgid "The Narrow Way"
-msgstr ""
+msgstr "La Via Stretta"
 
 #: po/levelinfo:107
 msgid ""
@@ -1095,16 +1159,21 @@ msgid ""
 "you're going, there's trees in your way, and the herrings are hard to get. "
 "Good luck, you'll need it!"
 msgstr ""
+"Per dirla semplicemente rimani sul percorso o perderai! È difficile vedere "
+"dove stai andando, ci sono alberi sul tuo percorso, e le arringhe sono "
+"difficili da ottenere. Buona fortuna, ti servirà!"
 
 #: po/levelinfo:108
 msgid "Hamburger Hill"
-msgstr ""
+msgstr "Collina Dell'Hamburger"
 
 #: po/levelinfo:109
 msgid ""
 "Hamburger Hill is steep, narrow, twisty, lumpy, icy, and rocky, with a few "
 "trees right in your way!"
 msgstr ""
+"La Collina Dell'Hamburger è ripida, stretta, contorta, grumosa, ghiacciata e "
+"rocciosa, con alcuni alberi nel tuo cammino!"
 
 #: po/levelinfo:110
 msgid "Slalom"
@@ -1113,21 +1182,23 @@ msgstr "Slalom"
 #: po/levelinfo:111
 msgid ""
 "Brake while you turn and the herrings on this pseudo-slalom will be yours."
-msgstr ""
+msgstr "Frena mentre volti e le arringhe in questo pseudo-slalom saranno tue."
 
 #: po/levelinfo:112
 msgid "Who Says Penguins Can't Fly?"
-msgstr "Chi lo ha detto che i pinguini non possono volare?"
+msgstr "Chi Lo Dice Che I Pinguini Non Possono Volare?"
 
 #: po/levelinfo:113
 msgid ""
 "It'll be tough collecting herrings at speeds over 200, so try to brake "
 "whenever possible to get the required herring."
 msgstr ""
+"Sarà tosto collezionare arringhe a velocità oltre a 200, quindi prova a "
+"frenare quando possibile per ottenere l'arringa richiesta."
 
 #: po/modelinfo:1
 msgid "Tux"
-msgstr ""
+msgstr "Tux"
 
 #: po/modelinfo:2
 msgid "Tux on Snowboard"
@@ -1141,3 +1212,9 @@ msgstr ""
 
 #~ msgid "Congratulations! You won the event!"
 #~ msgstr "Congratulazioni! Hai vinto l'evento!"
+
+#~ msgid "Select event and cup"
+#~ msgstr "Seleziona evento e coppa"
+
+#~ msgid "Enter an event"
+#~ msgstr "Inizia un evento"

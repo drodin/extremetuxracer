@@ -8,414 +8,423 @@ msgstr ""
 "Project-Id-Version: etracer\n"
 "Report-Msgid-Bugs-To: https://translations.edge.launchpad.net/etracer\n"
 "POT-Creation-Date: 2008-08-03 20:17+0200\n"
-"PO-Revision-Date: 2008-06-05 12:31+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2009-04-27 04:31+0000\n"
+"Last-Translator: 386sky <seotaewong40@gmail.com>\n"
 "Language-Team: Korean <ko@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-08-03 17:56+0000\n"
+"X-Launchpad-Export-Date: 2009-04-27 12:04+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: src/audioconfig.cpp:36
 msgid "Audio Configuration"
-msgstr ""
+msgstr "오디오 설정"
 
 #: src/audioconfig.cpp:112
 msgid "Sound Effects:"
-msgstr ""
+msgstr "사운드 효과:"
 
 #: src/audioconfig.cpp:116
 msgid "Music:"
-msgstr ""
+msgstr "음악:"
 
 #: src/audioconfig.cpp:120
 msgid "(needs restart)"
-msgstr ""
+msgstr "(재시작 필요함)"
 
 #: src/audioconfig.cpp:122
 msgid "Disable Audio:"
-msgstr ""
+msgstr "오디오 끄기:"
 
 #: src/audioconfig.cpp:126
 msgid "Stereo:"
-msgstr ""
+msgstr "스테레오:"
 
 #: src/audioconfig.cpp:130
 msgid "Bits Per Sample:"
-msgstr ""
+msgstr "비트-퍼-샘플:"
 
 #: src/audioconfig.cpp:134
 msgid "Samples Per Second:"
-msgstr ""
+msgstr "초 당 샘플 수:"
 
 #: src/configmode.cpp:36
 msgid "Cancel"
-msgstr ""
+msgstr "취소"
 
 #: src/configmode.cpp:43
 msgid "Ok"
-msgstr ""
+msgstr "확인"
 
 #: src/configuration.cpp:38 src/game_type_select.cpp:57 src/paused.cpp:62
 msgid "Configuration"
-msgstr ""
+msgstr "설정"
 
 #: src/configuration.cpp:45 src/credits.cpp:89
 msgid "Graphics"
-msgstr ""
+msgstr "그래픽"
 
 #: src/configuration.cpp:52
 msgid "Video"
-msgstr ""
+msgstr "비디오파일"
 
 #: src/configuration.cpp:59
 msgid "Audio"
-msgstr ""
+msgstr "오디오파일"
 
 #: src/configuration.cpp:66
 msgid "Keyboard"
-msgstr ""
+msgstr "키보드 도구"
 
 #: src/configuration.cpp:73
 msgid "Joystick"
-msgstr ""
+msgstr "게임 컨트롤러"
 
 #: src/configuration.cpp:81 src/event_select.cpp:96
 #: src/event_race_select.cpp:53 src/highscore.cpp:413
 msgid "Back"
-msgstr ""
+msgstr "되돌아가기"
 
 #: src/credits.cpp:43
+#, fuzzy
 msgid "Version 0.4"
-msgstr ""
+msgstr "버전 0.5"
 
 #: src/credits.cpp:46
 msgid "Extreme Tux Racer is in the process of being"
-msgstr ""
+msgstr "Tux Racer는 익스 트림의 과정에 있습니다 되고"
 
 #: src/credits.cpp:47
 msgid "completely rewritten. All versions after 0.35,"
-msgstr ""
+msgstr "0.35 이후 모든 버전은 완전히 재작성 됩니다."
 
 #: src/credits.cpp:48
 msgid "including this one, won't have major code changes"
-msgstr ""
+msgstr "이 하나의 주요 코드를 변경하지 않을 등"
 
 #: src/credits.cpp:49
 msgid "because the programmers are busy making a new,"
-msgstr ""
+msgstr "때문에 프로그래머들이 새로 만들기, 바쁘다"
 
 #: src/credits.cpp:50
 msgid "improved game."
-msgstr ""
+msgstr "항상된 게임."
 
 #: src/credits.cpp:52
 msgid "Extreme Tux Racer is based on"
-msgstr ""
+msgstr "익스 트림을 기반으로 Tux Racer"
 
 #: src/credits.cpp:53
 msgid "PlanetPenguin Racer, Open Racer and Tux Racer."
-msgstr ""
+msgstr "는 플레넷 펜귄 레이서, 오픈 레이서 및 턱스 레이서."
 
 #: src/credits.cpp:55
 msgid "Some courses may have been modified from their"
-msgstr ""
+msgstr "어떤 코스에서 수정되었을 수도있습니다들은"
 
 #: src/credits.cpp:56
 msgid "original versions to fit the requirements of the game."
-msgstr ""
+msgstr "원래 버전은 게임의 요구 사항에 적합합니다."
 
 #: src/credits.cpp:58
 msgid "Development"
-msgstr ""
+msgstr "만든 사람들"
 
 #: src/credits.cpp:63
 msgid "from Sunspire Studios:"
-msgstr ""
+msgstr "선스파이어 스튜디오 에서:"
 
 #: src/credits.cpp:71
+#, fuzzy
 msgid "Non-Rewrite Version Organization"
-msgstr ""
+msgstr "출시기구"
 
 #: src/credits.cpp:74
 msgid "Translators"
-msgstr ""
+msgstr "번역작업 사람들"
 
 #: src/credits.cpp:87
 msgid "Other (incomplete) translations are from the PPRacer Project."
 msgstr ""
 
 #: src/credits.cpp:90
+#, fuzzy
 msgid "Nicosmos (Logo, Hud Graphics)"
-msgstr ""
+msgstr "Nicosmos (로고, HUD 와 인터페이스)"
 
 #: src/credits.cpp:91
+#, fuzzy
 msgid "Christian Picon (Objects, Skyboxes)"
-msgstr ""
+msgstr "Christian Picon (객체, 관람석, 등장인물)"
 
 #: src/credits.cpp:92
 msgid "Reinhard Niehoff (Trees)"
-msgstr ""
+msgstr "래인하드 니호프 (나무)"
 
 #: src/credits.cpp:93
+#, fuzzy
 msgid "Daniel Poeira and Christian Picon (Font)"
-msgstr ""
+msgstr "Daniel Poeira 와 Christian Picon (페이퍼컷 글꼴)"
 
 #: src/credits.cpp:95
 msgid "Music"
-msgstr ""
+msgstr "음악"
 
 #: src/credits.cpp:97
 msgid "'Race 1'"
-msgstr ""
+msgstr "'레이스 1'"
 
 #: src/credits.cpp:98
 msgid "'Menu'"
-msgstr ""
+msgstr "'메뉴'"
 
 #: src/credits.cpp:99
 msgid "'Options'"
-msgstr ""
+msgstr "'옵션'"
 
 #: src/credits.cpp:100
 msgid "'Won Race'"
-msgstr ""
+msgstr "'단계 완성'"
 
 #: src/credits.cpp:103
 msgid "'Credits Ballad'"
-msgstr ""
+msgstr "'올아간 크레딧 음악'"
 
 #: src/credits.cpp:105
 msgid "Misc. PPRacer Contributors"
-msgstr ""
+msgstr "다른 플레넷 펭권 레이서 사람들"
 
 #: src/credits.cpp:110
 msgid "Thanks To"
-msgstr ""
+msgstr "감사한 사람들"
 
 #: src/credits.cpp:111
+#, fuzzy
 msgid "(for Exteme Tux Racer)"
-msgstr ""
+msgstr "(턱스 레이서 만든 사람)"
 
 #: src/credits.cpp:112
 msgid "Ranger (for hosting the website)"
-msgstr ""
+msgstr "렝저 (웹사이트 호스팅)"
 
 #: src/credits.cpp:113
 msgid "Slythfox (for making the website)"
-msgstr ""
+msgstr "슬라이스폭스 (홈페이지 만들기)"
 
 #: src/credits.cpp:114
 msgid "The Course Creators"
-msgstr ""
+msgstr "코스 작성자"
 
 #: src/credits.cpp:115
 msgid "The OpenRacer project"
-msgstr ""
+msgstr "오픈레이서 프로젝트"
 
 #: src/credits.cpp:116
+#, fuzzy
 msgid "Reinhard Niehoff (for helping with code modification)"
-msgstr ""
+msgstr "Reinhard Niehoff (조언의 톤)"
 
 #: src/credits.cpp:117
+#, fuzzy
 msgid "All the people on the forum"
-msgstr ""
+msgstr "포럼의 모든 사람"
 
 #: src/credits.cpp:118
 msgid "Larry Ewing (creator of Tux)"
-msgstr ""
+msgstr "라리 이윙 (tux 만든 사람)"
 
 #: src/credits.cpp:119
 msgid "(for Tux Racer)"
-msgstr ""
+msgstr "(턱스 레이서 만든 사람)"
 
 #: src/credits.cpp:126
 msgid "Tux Racer is a trademark of Jasmin F. Patry."
-msgstr ""
+msgstr "Tux Racer는 자스민 파트리의 상표입니다."
 
 #: src/credits.cpp:127
 msgid "Extreme Tux Racer is licenced under the GPL."
-msgstr ""
+msgstr "Tux Racer는 익스트림은 GPL 라이센스입니다."
 
 #: src/credits.cpp:128
 msgid "We grant use of the name 'Extreme Tux Racer'"
-msgstr ""
+msgstr "우리가 이름을 '의 사용 권한을 부여 익스트림 Tux Racer는'"
 
 #: src/credits.cpp:129
 msgid "to any forks or continuations."
-msgstr ""
+msgstr "어떤 포크 또는 continuations로했다."
 
 #: src/credits.cpp:131
 msgid "PlanetPenguin Racer is Copyright © 2005 Volker Stroebel."
-msgstr ""
+msgstr "펭귄 Racer는 저작권 © 2005 행성라고 벌켈 스트로에벨 입니다."
 
 #: src/credits.cpp:132
 msgid "Tux Racer and the Tux Racer Name are Copyright © 2001 Jasmin F. Patry."
-msgstr ""
+msgstr "Tux Racer는 Tux Racer는 이름과 저작권 © 2001 자스민 파트리있다."
 
 #: src/event_select.cpp:50
 msgid "Select campaign and cup"
-msgstr ""
+msgstr "캠페인 선택과 잔"
 
 #: src/event_select.cpp:56
 msgid "Campaign:"
-msgstr ""
+msgstr "켐페잉:"
 
 #: src/event_select.cpp:67
 msgid "Cup:"
-msgstr ""
+msgstr "물:"
 
 #: src/event_select.cpp:87
 msgid "Player name:"
-msgstr ""
+msgstr "사용자 이름:"
 
 #: src/event_select.cpp:104
 msgid "Continue"
-msgstr ""
+msgstr "계속"
 
 #: src/event_select.cpp:158
 msgid "You've won this cup!"
-msgstr ""
+msgstr "당신이 컵에 이겼어요!"
 
 #: src/event_select.cpp:160
 msgid "You must complete this cup next"
-msgstr ""
+msgstr "당신이 컵에 다음을 완료해야 합니다"
 
 #: src/event_select.cpp:162
 msgid "You cannot enter this cup yet"
-msgstr ""
+msgstr "아직이 컵에 들어갈 수 없어요"
 
 #: src/event_race_select.cpp:45
 msgid "Select a race"
-msgstr ""
+msgstr "레이스 선택하기"
 
 #: src/event_race_select.cpp:60
 msgid "Race!"
-msgstr ""
+msgstr "레이스!"
 
 #: src/event_race_select.cpp:280
 msgid "You don't have any lives left."
-msgstr ""
+msgstr "네가 어떤 삶을 필요가 없습니다."
 
 #: src/event_race_select.cpp:285
 msgid "Race won! Your result:"
-msgstr ""
+msgstr "레이스 끝! 당신의 결과:"
 
 #: src/event_race_select.cpp:289
 msgid "Needed to advance:"
-msgstr ""
+msgstr "사전에 필요한:"
 
 #: src/event_race_select.cpp:293
 msgid "You can't enter this race yet."
-msgstr ""
+msgstr "아직이 경주를 입력할 수 없습니다."
 
 #: src/event_race_select.cpp:316
 msgid "Time:"
-msgstr ""
+msgstr "시간"
 
 #: src/event_race_select.cpp:320
 #, c-format
 msgid "%02d:%02d.%02d"
-msgstr ""
+msgstr "%02d:%02d.%02d"
 
 #: src/event_race_select.cpp:324
 msgid "Herring:"
-msgstr ""
+msgstr "물고기:"
 
 #: src/event_race_select.cpp:332
 msgid "Score:"
-msgstr ""
+msgstr "점수:"
 
 #: src/event_race_select.cpp:341
 msgid "Contributed by:"
-msgstr ""
+msgstr "만든 사람:"
 
 #: src/event_race_select.cpp:349 po/levelinfo:16
 msgid "Unknown"
-msgstr ""
+msgstr "알 수가 없음"
 
 #: src/game_over.cpp:109
 msgid "Race aborted"
-msgstr ""
+msgstr "레이스 취소됨"
 
 #: src/game_over.cpp:112
 msgid "Race Over"
-msgstr ""
+msgstr "레이스 결과"
 
 #: src/game_over.cpp:119
 #, c-format
 msgid "Time: %02d:%02d.%02d"
-msgstr ""
+msgstr "시간: %02d:%02d.%02d"
 
 #: src/game_over.cpp:124
 #, c-format
 msgid "Herring: %3d"
-msgstr ""
+msgstr "물고기: %3d"
 
 #: src/game_over.cpp:129
 #, c-format
 msgid "Score: %6d"
-msgstr ""
+msgstr "점수: %6d"
 
 #: src/game_over.cpp:135
 #, c-format
 msgid "Max speed: %3d km/h"
-msgstr ""
+msgstr "최고 속력: %3d km/h"
 
 #: src/game_over.cpp:141
 #, c-format
 msgid "Was flying: %.01f %% of time"
-msgstr ""
+msgstr "날아가기: %.01f %% 시간"
 
 #: src/game_over.cpp:151
 #, c-format
 msgid "You made it to the %s place in the highscore!"
-msgstr ""
+msgstr "%s 에서 최고 점수를 기록 하셨습니다."
 
 #: src/game_over.cpp:161
 msgid "You beat your best score!"
-msgstr ""
+msgstr "점수 올렸습니다."
 
 #: src/game_over.cpp:164
 msgid "Congratulations! You won the campaign!"
-msgstr ""
+msgstr "그렌프릭스 을 완성되었습니다."
 
 #: src/game_over.cpp:166
 msgid "Congratulations! You won the cup!"
-msgstr ""
+msgstr "컵을 완성되었습니다."
 
 #: src/game_over.cpp:168
 msgid "You advanced to the next race!"
 msgstr ""
 
 #: src/game_over.cpp:170
+#, fuzzy
 msgid "You didn't advance."
-msgstr ""
+msgstr "네가 어떤 삶을 필요가 없습니다."
 
 #: src/game_type_select.cpp:36
 msgid "Enter a campaign"
-msgstr ""
+msgstr "캠페인 입력"
 
 #: src/game_type_select.cpp:43
 msgid "Practice"
-msgstr ""
+msgstr "프렉티스"
 
 #: src/game_type_select.cpp:50 src/highscore.cpp:350
 msgid "Highscore"
-msgstr ""
+msgstr "최고점수"
 
 #: src/game_type_select.cpp:64
 msgid "Credits"
-msgstr ""
+msgstr "만든이들"
 
 #: src/game_type_select.cpp:71 src/paused.cpp:78
 msgid "Quit"
-msgstr ""
+msgstr "종료하기"
 
 #: src/graphicsconfig.cpp:30
 msgid "Graphics Configuration"
-msgstr ""
+msgstr "그래픽 설정"
 
 #: src/graphicsconfig.cpp:108
 msgid "Model:"
@@ -423,334 +432,343 @@ msgstr ""
 
 #: src/graphicsconfig.cpp:117
 msgid "Show UI Snow:"
-msgstr ""
+msgstr "눈 표시:"
 
 #: src/graphicsconfig.cpp:121
 msgid "Display FPS:"
-msgstr ""
+msgstr "FPS 표시:"
 
 #: src/graphicsconfig.cpp:125
 msgid "Display Progress Bar:"
-msgstr ""
+msgstr "진행바 표시:"
 
 #: src/graphicsconfig.cpp:129
 msgid "Draw Fog:"
-msgstr ""
+msgstr "안개 표시:"
 
 #: src/graphicsconfig.cpp:133
 msgid "Reflections:"
-msgstr ""
+msgstr "반사:"
 
 #: src/graphicsconfig.cpp:137
 msgid "Shadows:"
-msgstr ""
+msgstr "그림자:"
 
 #: src/graphicsconfig.cpp:141
 msgid "Draw Background:"
-msgstr ""
+msgstr "바탕화면 그리기:"
 
 #: src/highscore.cpp:88
 msgid "1:st"
-msgstr ""
+msgstr "1:st"
 
 #: src/highscore.cpp:90
 msgid "2:nd"
-msgstr ""
+msgstr "2:nd"
 
 #: src/highscore.cpp:92
 msgid "3:rd"
-msgstr ""
+msgstr "3:rd"
 
 #: src/highscore.cpp:94
 msgid "4:th"
-msgstr ""
+msgstr "4:th"
 
 #: src/highscore.cpp:96
 msgid "5:th"
-msgstr ""
+msgstr "5:th"
 
 #: src/highscore.cpp:98
 msgid "6:th"
-msgstr ""
+msgstr "6:th"
 
 #: src/highscore.cpp:100
 msgid "7:th"
-msgstr ""
+msgstr "7:th"
 
 #: src/highscore.cpp:102
 msgid "8:th"
-msgstr ""
+msgstr "8:th"
 
 #: src/highscore.cpp:104
 msgid "9:th"
-msgstr ""
+msgstr "9:th"
 
 #: src/highscore.cpp:106
 msgid "10:th"
-msgstr ""
+msgstr "10:th"
 
 #: src/highscore.cpp:317
 msgid "No records"
-msgstr ""
+msgstr "레코드 없음"
 
 #: src/highscore.cpp:327
 #, c-format
 msgid " (%d points)"
-msgstr ""
+msgstr " (%d 포인트)"
 
 #: src/joystickconfig.cpp:29
 msgid "Joystick Configuration"
-msgstr ""
+msgstr "조이스틱 설정"
 
 #: src/joystickconfig.cpp:33
 msgid "Enable Joystick"
-msgstr ""
+msgstr "조이스틱 사용"
 
 #: src/joystickconfig.cpp:41 src/keyboardconfig.cpp:132
 msgid "Paddle:"
-msgstr ""
+msgstr "패들:"
 
 #: src/joystickconfig.cpp:54 src/keyboardconfig.cpp:136
 msgid "Brake:"
-msgstr ""
+msgstr "브레이크:"
 
 #: src/joystickconfig.cpp:67 src/keyboardconfig.cpp:140
 msgid "Jump:"
-msgstr ""
+msgstr "점프:"
 
 #: src/joystickconfig.cpp:80 src/keyboardconfig.cpp:144
 msgid "Trick:"
-msgstr ""
+msgstr "도움:"
 
 #: src/keyboardconfig.cpp:55
 msgid "Keyboard Configuration"
-msgstr ""
+msgstr "키보드 설정"
 
 #: src/keyboardconfig.cpp:124
 msgid "Turn left:"
-msgstr ""
+msgstr "좌회전:"
 
 #: src/keyboardconfig.cpp:128
 msgid "Turn right:"
-msgstr ""
+msgstr "우회전:"
 
 #: src/keyboardconfig.cpp:148
 msgid "Reset:"
-msgstr ""
+msgstr "리셋:"
 
 #: src/loading.cpp:53
 msgid "Loading, Please Wait..."
-msgstr ""
+msgstr "잠시만 기다리십시요. 로딩중 입니다..."
 
 #: src/paused.cpp:54
 msgid "Paused"
-msgstr ""
+msgstr "일시정지"
 
 #: src/paused.cpp:70
 msgid "Resume"
-msgstr ""
+msgstr "재시작"
 
 #: src/splash_screen.cpp:34
 msgid "PRESS ANY KEY TO START"
-msgstr ""
+msgstr "아무키나 입력하면 시작 됩니다"
 
 #: src/videoconfig.cpp:60
 msgid "Video Configuration"
-msgstr ""
+msgstr "비디오 설정"
 
 #: src/videoconfig.cpp:173
 msgid "To change the resolution, or switch into fullscreen mode"
-msgstr ""
+msgstr "해상도 변경 또는 전체화면 모드 전환"
 
 #: src/videoconfig.cpp:175
 msgid "use options.txt, located in the config folder."
-msgstr ""
+msgstr "사용 옵션 닷 텍스트, 컨피그 폴더에 위치해있습니다."
 
 #: src/videoconfig.cpp:177
 msgid "Resolution:"
-msgstr ""
+msgstr "해상도:"
 
 #: src/videoconfig.cpp:181
 msgid "Bits Per Pixel:"
-msgstr ""
+msgstr "픽셀당 비트수:"
 
 #: src/videoconfig.cpp:185
 msgid "Fullscreen:"
-msgstr ""
+msgstr "전체화면:"
 
 #: src/videoconfig.cpp:189
 msgid "Experimental (needs restart)"
-msgstr ""
+msgstr "실험적임 (재시작 필요함)"
 
 #: src/videoconfig.cpp:192
 msgid "Stencil Buffer:"
-msgstr ""
+msgstr "스텐실 버퍼:"
 
 #: src/videoconfig.cpp:196
 msgid "Enable FSAA:"
-msgstr ""
+msgstr "FSAA 활성:"
 
 #: src/videoconfig.cpp:200
 msgid "FSAA Multisamples:"
-msgstr ""
+msgstr "FSAA 멀티샘플:"
 
 #: po/levelinfo:1
 #, c-format
 msgid "FPS: %.1f"
-msgstr ""
+msgstr "FPS: %.1f"
 
 #: po/levelinfo:2 po/levelinfo:3
 #, c-format
 msgid "%03d"
-msgstr ""
+msgstr "%03d"
 
 #: po/levelinfo:4 po/levelinfo:5
 #, c-format
 msgid "%02d:%02d:%02d"
-msgstr ""
+msgstr "%02d:%02d:%02d"
 
 #: po/levelinfo:6 po/levelinfo:8
 msgid "km/h"
-msgstr ""
+msgstr "km/h"
 
 #: po/levelinfo:7 po/levelinfo:9
 #, c-format
 msgid "%.0f"
-msgstr ""
+msgstr "%.0f"
 
 #: po/levelinfo:10 po/levelinfo:11
 #, c-format
 msgid "%d:%d:%d"
-msgstr ""
+msgstr "%d:%d:%d"
 
 #: po/levelinfo:12 po/levelinfo:13
 #, c-format
 msgid "%d"
-msgstr ""
+msgstr "%d"
 
 #: po/levelinfo:14
 msgid "Doing"
-msgstr ""
+msgstr "하고"
 
 #: po/levelinfo:15
 msgid ""
 "This course was probably created to present new textures introduced in "
 "PPRacer."
-msgstr ""
+msgstr "이 과정은 아마 PPRacer에 도입된 새로운 텍스처를 선물로 만들었습니다."
 
 #: po/levelinfo:17
 msgid "Hippo Run"
-msgstr ""
+msgstr "히포 실행"
 
 #: po/levelinfo:18
 msgid ""
 "In Hippo Run, you slide down an icy slope as a penguin, I honestly don't "
 "know what this has to do with hippos or running..."
 msgstr ""
+"히포 실행에서 얼음 펭귄으로 완만한 내리막길을 내려, 슬라이드, 난 솔직히이 하"
+"마 또는 실행와 무슨 관계가 있는지 모르겠다..."
 
 #: po/levelinfo:19
 msgid "Ice Pipeline"
-msgstr ""
+msgstr "얼음 파이프라인"
 
 #: po/levelinfo:20
 msgid "A short, slippery ice-trough with herring scattered throughout."
-msgstr ""
+msgstr "짧은, 미끄러운 얼음 - 3048과 함께 반죽 청어에 걸쳐있다."
 
 #: po/levelinfo:21
 msgid "Volcanoes"
-msgstr ""
+msgstr "불화산"
 
 #: po/levelinfo:22
 msgid ""
 "This gigantic crater was full of water, and herring, but now it's all "
 "frozen, and yours for the taking."
 msgstr ""
+"이 거대한 분화구가 물 전체와 청어, 하지만 지금은 그것을 모두 얼려있어, 당신 "
+"가져갈 수있다."
 
 #: po/levelinfo:23
 msgid "Nature Stroll"
-msgstr ""
+msgstr "자연 산책"
 
 #: po/levelinfo:24
 msgid ""
 "The fresh air, the pine scent, who doesn't like a nice refreshing walk "
 "through the mountains?"
 msgstr ""
+"상쾌한 공기, 소나무, 향기가 좋은 사람은 산을 통해 상쾌한 산책을 좋아하지 않"
+"지?"
 
 #: po/levelinfo:25
 msgid "Mountain Mania"
-msgstr ""
+msgstr "산악 매니아"
 
 #: po/levelinfo:26
 msgid "Icy Peril"
-msgstr ""
+msgstr "얼음 보우"
 
 #: po/levelinfo:27
 msgid "Death Cup"
-msgstr ""
+msgstr "죽음 컵"
 
 #: po/levelinfo:28
 msgid "Slippery Defeat"
-msgstr ""
+msgstr "미끄러운 패배"
 
 #: po/levelinfo:29
 msgid "The Final Three"
-msgstr ""
+msgstr "마지막 3"
 
 #: po/levelinfo:30
 msgid "Slippy-Slidey"
-msgstr ""
+msgstr "미끄러운 - Slidey"
 
 #: po/levelinfo:31
 msgid "Slide on the slippery frozen river in a hilly forest, slipperily."
-msgstr ""
+msgstr "a 구릉 숲 속의 미끄러운 얼어붙은 강물에 슬라이드, slipperily."
 
 #: po/levelinfo:32
 msgid "Crazy Path"
-msgstr ""
+msgstr "미친 경로"
 
 #: po/levelinfo:33
 msgid ""
 "You'll have trouble slowing down on this one. There's lots of herring, but "
 "be careful not to fly too much or you won't get any."
 msgstr ""
+"당신이 하나에 문제가 느려지고 있어요. 이미 청어의 주되, 너무 많이 또는 더 얻"
+"을하지 않을 비행을하지 않도록주의."
 
 #: po/levelinfo:34
 msgid "Candy Lane"
-msgstr ""
+msgstr "캔디 레인"
 
 #: po/levelinfo:35
 msgid ""
 "Mostly ice, with very few obstacles in your path, this is like a stroll down "
 "Candy Lane."
 msgstr ""
+"귀하의 경로에 장애물과 거의 대부분의 얼음이 내려 산책 캔디 레인과 같다."
 
 #: po/levelinfo:36
 msgid "Merry Go Round"
-msgstr ""
+msgstr "메리 가서 라운드"
 
 #: po/levelinfo:37
 msgid "Try to build up enough speed to jump from one roundabout to the next."
-msgstr ""
+msgstr "로터리에서 점프 한 다음에 충분한 속도를 구현하기 위해 노력하고있다."
 
 #: po/levelinfo:38
 msgid "Hey, Tux!"
-msgstr ""
+msgstr "턱스야!"
 
 #: po/levelinfo:39
 msgid "This course offers true excitement for your race-loving penguin buddy."
-msgstr ""
+msgstr "물론 사실이 당신의 종족에 대한 흥분을 제공 - 사랑하는 펭귄 친구."
 
 #: po/levelinfo:40
 msgid "Bobsled Ride"
-msgstr ""
+msgstr "봅슬레이 라이드"
 
 #: po/levelinfo:41
 msgid "Just like a real bobsled ride, only more dangerous."
-msgstr ""
+msgstr "실제 봅슬레이를 타고처럼, 오직 더 위험합니다."
 
 #: po/levelinfo:42
 msgid "In Search of Vodka"
-msgstr ""
+msgstr "보드카의 검색에"
 
 #: po/levelinfo:43
 msgid ""
@@ -758,10 +776,12 @@ msgid ""
 "cabinet has been pillaged. Join Tux on the quest for vodka.Pick up herring "
 "for dinner along the way!"
 msgstr ""
+"그의 차가운 배를 턱시도를 워밍업 일부 보드카이 필요해. 아아, 그의 주류 캐비"
+"넷 털렸어. 보드카에 대한 탐구에 Tux를 가입하세요. 저녁 식사 도중에 청어 받어!"
 
 #: po/levelinfo:44
 msgid "Tux at Home"
-msgstr ""
+msgstr "턱시도를 홈에서"
 
 #: po/levelinfo:45
 msgid ""
@@ -769,56 +789,64 @@ msgid ""
 "and fastest way. But if you want to catch some herrings you have to enter "
 "the rooms on the left."
 msgstr ""
+"여기 Tux를 살고있다. 당신은 오른쪽에있는 corridore 걸릴 수있습니다 - 짧고 빠"
+"른 방법. 그러나 만약 당신이 왼쪽에있는 객실을 입력 일부 청어를 잡고 싶어."
 
 #: po/levelinfo:46
 msgid "The Niehoff Experience"
-msgstr ""
+msgstr "이 니호프 경험"
 
 #: po/levelinfo:47
 msgid "Search, Search, Search"
-msgstr ""
+msgstr ",, 검색 검색"
 
 #: po/levelinfo:48
 msgid "Mountains and Hills"
-msgstr ""
+msgstr "산과 힐즈"
 
 #: po/levelinfo:49
 msgid "The Final Challenge"
-msgstr ""
+msgstr "마지막 도전"
 
 #: po/levelinfo:50
 msgid "Wild Mountains"
-msgstr ""
+msgstr "와일드 마운틴"
 
 #: po/levelinfo:51
 msgid ""
 "A wild landscape of ice and snow. It isn't easy to keep the right way. Not "
 "for beginners."
 msgstr ""
+"눈과 얼음의 야생 프리. 그것은 옳은 방법을 계속하기가 쉽지 않다. 초보자를 위"
+"한 없다."
 
 #: po/levelinfo:52
 msgid "In Search of the Holy Grail"
-msgstr ""
+msgstr "성배의 검색 있음"
 
 #: po/levelinfo:53
 msgid ""
 "An adventure course with a simple task: Find the grail! Warning: It is very "
 "difficult to find the way."
 msgstr ""
+"간단한 작업과 모험 코스: 성배를 찾아라! 경고 : 그것은 매우 어려운 방법을 찾아"
+"야한다."
 
 #: po/levelinfo:54
 msgid "Frozen Lakes"
-msgstr ""
+msgstr "얼어붙은 호수"
 
 #: po/levelinfo:55
 msgid ""
 "To reach the finish you must pass several frozen lakes. Watch your speed on "
 "the ice - there are some dangerous corners."
 msgstr ""
+"당신이 몇 가지가 얼어붙은 호수에 결승점까지 통과해야 합니다. 시계를 얼음에 속"
+"도 - 이미 일부 위험 코너 입니다."
 
 #: po/levelinfo:56
 msgid "Chinese Wall"
-msgstr ""
+msgstr "중국어 벽"
 
 #: po/levelinfo:57
 msgid ""
@@ -826,100 +854,116 @@ msgid ""
 "where the herrings are. If you fall off you can try to jump back up, there "
 "are 7 hidden ramps. You'll get a lot of exercise."
 msgstr ""
+"중국의 만리 장성의 겨울. 벽 위쪽에 머물 봅니다 - 어디 청어입니다. 만약 당신"
+"이 다시 뛰어 올라를 시도해 볼 수있습니다 떨어지게 7 숨겨진 보드장입니다. 당신"
+"은 운동을 많이받을거야."
 
 #: po/levelinfo:58
 msgid "Secret Valleys"
-msgstr ""
+msgstr "비밀 계곡"
 
 #: po/levelinfo:59
 msgid ""
 "Your task: Find the hidden valleys and the ten groups of dead trees. Look "
 "around, the ways are not easy to find."
 msgstr ""
+"귀하의 작업: 죽은 나무의 숨겨진 계곡 10 단체를 찾습니다. 주위를보세요, 방법"
+"을 쉽게 찾을 수없습니다."
 
 #: po/levelinfo:60
 msgid "Explore the Mountains"
-msgstr ""
+msgstr "관하여 산"
 
 #: po/levelinfo:61
 msgid "Can you find your way through the icy, dangerous mountains. I doubt it."
 msgstr ""
+"당신은 얼음을 통해, 위험한 산들 길을 찾을 수있습니다. 나는 그것을 의심했다."
 
 #: po/levelinfo:62
 msgid "Challenge One"
-msgstr ""
+msgstr "도전 일"
 
 #: po/levelinfo:63
 msgid ""
 "A very dangerous path along the mountains. Warning: The course is very "
 "difficult and there are some situations where you can get stuck."
 msgstr ""
+"산과 함께 아주 위험한 경로입니다. 경고: 이 과정은 몇 가지 매우 어려운 상황이"
+"고 어디 붙어 얻을 수있다."
 
 #: po/levelinfo:64
 msgid "Path of Daggers"
-msgstr ""
+msgstr "경로 대거의"
 
 #: po/levelinfo:65
 msgid ""
 "Big spikes may prove to be the least of your worries on this course. Muliple "
 "paths allow you to take low or high roads, each with their own challenges."
 msgstr ""
+"스파이크는이 과정에서 큰 걱정거리로 증명할 수있습니다. 여러 경로가 있으면, 자"
+"신의 과제와 각 낮은 또는 높은 도로가 걸릴 수있습니다."
 
 #: po/levelinfo:66
 msgid "Tux Racer Classics"
-msgstr ""
+msgstr "Tux Racer는 고전"
 
 #: po/levelinfo:67
 msgid "Canadian Cup"
-msgstr ""
+msgstr "캐나다 컵"
 
 #: po/levelinfo:68
 msgid "Swiss Cup"
-msgstr ""
+msgstr "스위스 월드컵"
 
 #: po/levelinfo:69
 msgid "Bumpy Ride"
-msgstr ""
+msgstr "울퉁 불퉁한 달려라"
 
 #: po/levelinfo:70
 msgid ""
 "This hill has a series of ramps to tackle.  Be sure to line yourself up "
 "before getting airborne."
 msgstr ""
+"이 언덕 보드장의 태클을 위해 일련있다. 이륙하기 전에 줄을 스스로해야합니다."
 
 #: po/levelinfo:71
 msgid "Bunny Hill"
-msgstr ""
+msgstr "토끼 힐"
 
 #: po/levelinfo:72
 msgid ""
 "Let's start out easy, just collect the herring in the time limit and you'll "
 "be fine. The best part is that you don't have to use those stupid T-lifts."
 msgstr ""
+"시작하자 밖으로 쉽게, 그냥 시간 제한에 청어를 수집하고 넌 괜찮을거야. 가장 중"
+"요한 부분 당신은 그 멍청한 T는 - 리프트를 사용하지 않아도됩니다."
 
 #: po/levelinfo:73
 msgid "Frozen River"
-msgstr ""
+msgstr "얼어붙은 강"
 
 #: po/levelinfo:74
 msgid ""
 "Keep your speed down to collect herring. You have plenty of time, so don't "
 "rush things."
 msgstr ""
+"다운 청어를 수집하는 귀하의 속도를 유지했다. 당신, 너무 많은 것들을 서두르지 "
+"말고 시간을 갖고있다."
 
 #: po/levelinfo:75
 msgid "Twisty Slope"
-msgstr ""
+msgstr "twisty 경사진"
 
 #: po/levelinfo:76
 msgid ""
 "Tight twists make grabbing herring difficult.  Hard turns and not too much "
 "braking will lead you to victory."
 msgstr ""
+"꽉 잡아 비틀어 청어 어렵다. 하드와 너무 많은 승리로 이끌 제동하지 나타났다."
 
 #: po/levelinfo:77
 msgid "Mt. Herring"
-msgstr ""
+msgstr "산. 청어"
 
 #: po/levelinfo:78
 msgid ""
@@ -927,40 +971,45 @@ msgid ""
 "some wide open areas and branching paths. Lots of herrings to collect though "
 "it can be difficult unless you watch your speed."
 msgstr ""
+"산. 청어가 상대적으로 빠른 길이지만, 어느 장소에서, 기체 및 일부 지역과 내뻗"
+"은 길을 활짝 열려있다. 귀하의 속도를 감시하지 않으면 어려울 수 있지만 많은 청"
+"어의 수집."
 
 #: po/levelinfo:79
 msgid "Herring Run"
-msgstr ""
+msgstr "청어"
 
 #: po/levelinfo:80
 msgid "Mountain Man"
-msgstr ""
+msgstr "산 사나이"
 
 #: po/levelinfo:81
 msgid "Valley Cup"
-msgstr ""
+msgstr "밸리 컵"
 
 #: po/levelinfo:82
 msgid "Tux the winter sportsman"
-msgstr ""
+msgstr "턱시도 겨울 스포츠"
 
 #: po/levelinfo:83
 msgid "Highway To Hell"
-msgstr ""
+msgstr "고속도로에서 지옥으로"
 
 #: po/levelinfo:84
 msgid "Ice Labyrinth"
-msgstr ""
+msgstr "얼음 미로"
 
 #: po/levelinfo:85
 msgid ""
 "You choose your destiny, you could end up full or starving depending on the "
 "path you pick."
 msgstr ""
+"당신의 운명을 선택하면 최대 전체 또는 당신의 경로에 따라 골라 배고파 될 수도 "
+"있기 때문이다."
 
 #: po/levelinfo:86
 msgid "Snow Valley"
-msgstr ""
+msgstr "스노우 밸리"
 
 #: po/levelinfo:87
 msgid ""
@@ -968,20 +1017,25 @@ msgid ""
 "herrings very difficult to get if you're going for a perfect score! Watch "
 "your speed in certain areas to get the most herrings!"
 msgstr ""
+"스노우 밸리는 비교적 평평하게, 그리고 아주 빠른 코스입니다. 당신은 매우가는 "
+"경우 만점을 받아 어려운 몇 청어 찾을거야! 시계를 특정 지역에서 귀하의 속도가 "
+"가장 청어을 받으실 수있습니다!"
 
 #: po/levelinfo:88
 msgid "Tux Toboggan Run"
-msgstr ""
+msgstr "턱시도를 실행 터보건"
 
 #: po/levelinfo:89
 msgid ""
 "Collect herrings in an ice channel with various paths and many high and low "
 "speed passages. Watch out for the occasional tree."
 msgstr ""
+"다양한 경로와 많은 고속 및 저속 구절을 가진 얼음 채널에서 수집 청어. 가끔 나"
+"무 조심해."
 
 #: po/levelinfo:90
 msgid "Hazzard Valley"
-msgstr ""
+msgstr "함정 밸리"
 
 #: po/levelinfo:91
 msgid ""
@@ -989,10 +1043,13 @@ msgid ""
 "huge areas of rocky plains, not to mention your speed being your enemy in "
 "trying to get the herrings and stay on course!"
 msgstr ""
+"함정 밸리 위험의 나무처럼, 깊은 동굴, 스파이크, 그리고 거대한 암석 평원의 영"
+"역이 아니라 속도 청어 잡으려고에서하여 적의되고있어 코스에 대한 언급으로 가"
+"득 차있다!"
 
 #: po/levelinfo:92
 msgid "Skull Mountain"
-msgstr ""
+msgstr "두개골 산"
 
 #: po/levelinfo:93
 msgid ""
@@ -1012,17 +1069,19 @@ msgstr ""
 
 #: po/levelinfo:96
 msgid "Dead Man's Drop"
-msgstr ""
+msgstr "죽은자의 추락"
 
 #: po/levelinfo:97
 msgid ""
 "Pretty tough hill. It's fast, steep, lumpy, twisty, and full of trees. Hard "
 "to get herrings. Don't forget the drop."
 msgstr ""
+"꽤 거친 언덕. 그것은, 가파른, twisty 울퉁불퉁, 빨리와 나무가 가득합니다. 하"
+"드 청어를 얻으려고 말야. 드롭 잊지 마세요."
 
 #: po/levelinfo:98
 msgid "I've Got A Woody"
-msgstr ""
+msgstr "내가 우디를 찾았어요"
 
 #: po/levelinfo:99
 msgid ""
@@ -1030,10 +1089,12 @@ msgid ""
 "hard, try this one. Have fun winding through the woods.  Look out for a huge "
 "shortcut!!"
 msgstr ""
+"또 끔찍한 상승된 얼음 코스터. 만약 당신이 열심히 노력이 하나의 마지막 두 줄. "
+"숲을 통해 재밌게 와인딩. 엄청난 단축키를 잘 봐!!"
 
 #: po/levelinfo:100
 msgid "Mt. Satan"
-msgstr ""
+msgstr "악마산"
 
 #: po/levelinfo:101
 msgid ""
@@ -1043,13 +1104,15 @@ msgstr ""
 
 #: po/levelinfo:102
 msgid "Ski Jump"
-msgstr ""
+msgstr "스키 점프"
 
 #: po/levelinfo:103
 msgid ""
 "Steering will be unnecessary, just line yourself up and reap the rewards. "
 "Rememember, acceleration will slow you down after a while."
 msgstr ""
+"운영, 그냥 스스로 불필요한 라인과 보상을 거둘 것입니다. 기억하세요, 가속 잠"
+"시 뒤 천천히 것이다."
 
 #: po/levelinfo:104
 msgid "High Road"
@@ -1063,7 +1126,7 @@ msgstr ""
 
 #: po/levelinfo:106
 msgid "The Narrow Way"
-msgstr ""
+msgstr "좁은 길"
 
 #: po/levelinfo:107
 msgid ""
@@ -1071,10 +1134,13 @@ msgid ""
 "you're going, there's trees in your way, and the herrings are hard to get. "
 "Good luck, you'll need it!"
 msgstr ""
+"단순히, 그것을 넣으려면 경로에 머물거나 잃게! 그것은 어디로가는 걸 보니, 거기"
+"에 당신의 방법으로 나무, 그리고 청어 구하기 어렵 어렵다. 행운을 빌어요, 당신"
+"이 필요합니다!"
 
 #: po/levelinfo:108
 msgid "Hamburger Hill"
-msgstr ""
+msgstr "햄버거힐"
 
 #: po/levelinfo:109
 msgid ""
@@ -1084,27 +1150,59 @@ msgstr ""
 
 #: po/levelinfo:110
 msgid "Slalom"
-msgstr ""
+msgstr "회전활강"
 
 #: po/levelinfo:111
 msgid ""
 "Brake while you turn and the herrings on this pseudo-slalom will be yours."
-msgstr ""
+msgstr "브레이크 동안이 사이비에 청어 차례 회전 너의 것이 될 것이다."
 
 #: po/levelinfo:112
 msgid "Who Says Penguins Can't Fly?"
-msgstr ""
+msgstr "펭귄이 날지 못한다고 누가 그래?"
 
 #: po/levelinfo:113
 msgid ""
 "It'll be tough collecting herrings at speeds over 200, so try to brake "
 "whenever possible to get the required herring."
 msgstr ""
+"이건 수집 청어 속도로 200 이상, 청어를받을 수 있도록 필요한 때마다 브레이크하"
+"려고 힘들겠습니다."
 
 #: po/modelinfo:1
 msgid "Tux"
-msgstr ""
+msgstr "턱스"
 
 #: po/modelinfo:2
 msgid "Tux on Snowboard"
 msgstr ""
+
+#~ msgid "'Freezing Point'"
+#~ msgstr "'빙점'"
+
+#~ msgid "'Calm Race'"
+#~ msgstr "'고요한 경주'"
+
+#~ msgid "'Lost Race'"
+#~ msgstr "'잃어버린 경주'"
+
+#~ msgid "'Race Intro'"
+#~ msgstr "'경주의 서막'"
+
+#~ msgid "'Spunky Race'"
+#~ msgstr "'용감한 경주'"
+
+#~ msgid "52143__blaukreuz__imp_01.wav - Original sound of ice cracking..."
+#~ msgstr "52143__blaukreuz__imp_01.wav - 얼음 깨지는 소리 원본..."
+
+#~ msgid "http://www.freesound.org/samplesViewSingle.php?id=52143"
+#~ msgstr "http://www.freesound.org/samplesViewSingle.php?id=52143"
+
+#~ msgid "Samuel"
+#~ msgstr "사무엘"
+
+#~ msgid "Trixi"
+#~ msgstr "트릭시"
+
+#~ msgid "Speedy"
+#~ msgstr "스피디"
