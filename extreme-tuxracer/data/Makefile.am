@@ -370,7 +370,6 @@ courses/events/a-tux_racer/path_of_daggers/elev.png \
 		music/race1-jt.ogg \
 		music/wonrace1-jt.ogg \
 		music/credits1-cp.ogg \
-		music/credits1-cp.ogg \
 		music/options1-jt.ogg \
 		music/start1-jt.ogg \
 		music/readme \
