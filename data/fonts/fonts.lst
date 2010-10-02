@@ -1,0 +1,10 @@
+# list of fonts
+
+*[name] normal [file] std.ttf
+*[name] italic [file] stditalic.ttf 
+*[name] bold [file] stdbold.ttf
+*[name] outline [file] outline.ttf
+*[name] pc20 [file] pc_20.ttf
+*[name] pcoutline [file] pc_outline.ttf
+
+

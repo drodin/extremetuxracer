@@ -1,0 +1,10 @@
+*[fog] 1 [fogcol] 0.0 0.09 0.34 1.0 [fogstart] 0 [fogend] 75 [fogheight] 0
+[partcol] 0.39 0.51 0.88 1.0
+
+*[light] 0 [pos] 1 1 1 0 [diff] 0.39 0.51 0.88 1  [amb] 0.0 0.09 0.34 1.0
+[spec] 0.0 0.0 0.0 1.0 
+
+*[light] 1 [pos] 1 1 1 0 [diff] 0 0 0 0 [amb] 0 0 0 0 [spec] 0.8 0.8 0.8 1
+
+
+

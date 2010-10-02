@@ -1,0 +1,42 @@
+# First the standard objects of Tuxracer 0.61.
+# Do not change the order of these entries if you
+# want to use the objects map trees.rgb
+
+* [name] herring [texture] herring.png [repeat] 0 
+	 [coll] 0 [+y] 0.0 [snap] 1 [reset] 0 [draw] 1 [usenorm] 0
+
+* [name] flag [texture] flag.png [repeat] 0 
+	 [coll] 0 [+y] 0 [snap] 0 [reset] 0 [draw] 1 [usenorm] 0
+
+* [name] start [texture] start.png [repeat] 0
+	 [coll] 0 [+y] 0 [snap] 0 [reset] 0 [draw] 1 [usenorm] 1 [norm] 0 0 1
+
+* [name] finish [texture] finish.png [repeat] 0 
+	 [coll] 0 [+y] 0 [snap] 0 [reset] 0 [draw] 1 [usenorm] 1 [norm] 0 0 1
+
+* [name] float [texture]  
+	 [coll] 0 [+y] 0 [snap] 0 [reset] 1 [draw] 0 [usenorm] 0
+
+* [name] tree [texture] snowy_tree1.png [repeat] 0 [color]
+	 [coll] 1 [poly] tree [draw] 1 
+
+* [name] tree_barren [texture] tree_barren2.png [repeat] 0
+	 [coll] 1 [poly] tree [draw] 1 
+
+* [name] shrub [texture] shrub.png [repeat] 0
+	 [coll] 1 [poly] tree [draw] 1 
+
+# Here yow may append your own objects:
+
+* [name] tree_barren2 [texture] tree_barren2.png [repeat] 0
+	 [coll] 1 [poly] tree [draw] 1 
+
+* [name] tree1 [texture] snowy_tree1.png [repeat] 0
+	 [coll] 1 [poly] tree [draw] 1 
+
+* [name] tree2 [texture] snowy_forest_tree.png [repeat] 0
+	 [coll] 1 [poly] tree [draw] 1 
+
+* [name] tree3 [texture] forest_tree2.png [repeat] 0
+	 [coll] 1 [poly] tree [draw] 1 
+

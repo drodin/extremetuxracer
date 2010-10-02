@@ -1,0 +1,68 @@
+#*[name] Test Course [dir] course
+
+*[name] Bunny Hill [dir] bunny_hill[env]etr
+[desc]Use clever turning to conquer the Bunny Hill.
+
+*[name] Twisty Slope [dir] twisty_slope
+[desc] Tight twists make grabbing herring difficult. Hard turns will lead you to victory.
+
+*[name] Bumpy Ride [dir] bumpy_ride
+[desc] This hill has a series of ramps tackle. Make sure to line yourself up before getting airborne.
+
+*[name] Explore The Mountains [dir] explore_mountains
+[desc] If you don't reach time and herring try to find another way through the mountains.
+
+*[name] Frozen Lakes [dir] frozen_lakes
+[desc] A cold, silent world of rocks and ice. Regard your speed when you cross the lakes.
+
+*[name] Challenge One [dir] challenge_one
+[desc] A dangerous path along the mountains. Try to catch more than 60 herrings. It is possible!
+
+*[name] The Downhill Fear [dir] downhill_fear
+[desc] Downward the hill, sliding and jumping ...
+
+*[name] In Search Of Vodka [dir] in_search_of_vodka
+[desc] A course with a bit of everything; bumpy ice, fast trenches, jumps, tree dodging and more. Hope you enjoy.
+
+*[name] Hippo Run [dir] hippo_run
+[desc] The author says: This is a fast course that makes you think. There are three major sections to the course. The first is a twisty ride over hills and ice. The second is up on top, and the third is the fastest part of all. 
+
+*[name] Who Says Penguins Can't Fly? [dir] penguins_cant_fly
+[desc] A fast and stupid course but lot of people like it.
+
+*[name] Quiet River [dir] quiet_river
+[desc]This one is willingly a very fast and technical ride. Keeping the pace and getting all the herrings will be quite tricky (yes, it _is_ possible) and it's easyer to "fall" of the frosen rivver than to come back on it.
+
+*[name] Frozen River [dir] frozen_river
+[desc] This course was part of the Tuxracer 0.61 distribution
+
+*[name] Secret Valleys [dir] secret_valleys
+[desc]Hidden places, some of them not easy to discover. There are 10 groups of dead trees - try to find them.
+
+*[name] The Chinese Wall [dir] chinese_wall
+[desc] Try to keep the top of the wall. In the case of falling down you need to find a ramp to jump back on the wall.
+
+*[name] Wild Mountains [dir] wild_mountains
+[desc] Cleft mountains of ice and snow - bizarre and dangerous. If you like climbing you are encouraged to quit the paths. But be careful!
+
+*[name] Keep Your Country Tidy [dir] keep_country_tidy
+[desc] A long way to the end of the world.
+
+*[name] In The Search Of the Holy Grail [dir] holygrail
+[desc] Your task is to find the grail, and near the grail there are many herrings. Warning, it's extremely difficult to find the right path and the jumping ramps.  
+
+*[name] Milos Castle [dir] milos_castle 
+[desc] The course starts out with raised icy paths that are difficult to stay on. Keep your speed down to get those herring, but speed up to make those jumps. If you're lined up just right, get ready for a jump. 
+
+*[name] Path of Daggers [dir] path_of_daggers
+[desc] This course was part of the Tuxracer 0.61 distribution
+
+*[name] This Means Thomething [dir] this_means_something
+[desc] One of the most popular courses from Bellyrub webpage
+
+*[name] Tux At Home [dir] tux_at_home
+[desc] Ok, you can take the corridor on the right, the fastest and shortest way. But if you want to catch some herrings, you must enter the labyrinth of rooms on the left.
+
+*[name] Chragi's Gagiwaetter [dir] chragis_gagiwaetter
+[desc] The author says: a wicked course, wicked, wicked and very wicked indeed! Beginners stay home!
+

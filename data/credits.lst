@@ -1,0 +1,15 @@
+#*[offs]  [text]  [font]  [size]  [col]
+
+*[offs] 0 [text] Extreme Tux Racer [font] 0 [size] 36 [col] 1
+*[offs] 50 [text] Version 0.5.5  [font] 0 [size] 16 [col] 0
+*[offs] 40 [text] Release "Bunny Hill"  [font] 0 [size] 24 [col] 1
+*[offs] 50 [text] Copyright © 1999 - 2000 Jasmin F. Patry[font] 0 [size] 20 [col] 0
+*[offs] 25 [text] Copyright © 2010 Extreme Tux Racer Team[font] 0 [size] 20 [col] 0
+#*[offs] 50 [text] Authors: [font] 0 [size] 24 [col] 1
+#*[offs] 40 [text] Reinhard Niehoff [font] 0 [size] 20 [col] 0
+
+*[offs] 50 [text] This program is distributed in the hope that it will be useful, [font] 1 [size] 14 [col] 0
+*[offs] 20 [text] but WITHOUT ANY WARRANTY; without even the implied warranty of [font] 1 [size] 14 [col] 0
+*[offs] 20 [text] MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the [font] 1 [size] 14 [col] 0
+*[offs] 20 [text] GNU General Public License for more details. [font] 1 [size] 14 [col] 0
+

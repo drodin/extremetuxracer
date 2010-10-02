@@ -1,0 +1,26 @@
+# pos: must be in the order x, y, z
+# the position is relative in respect to the start position or final position
+# two values: the first is always the left part of the body
+# yaw: looking around
+# pitch: standing or lying
+
+*[time] 0.7 [pos] 0 0.25 0 [yaw] 180 [pitch] 90
+*[time] 0.6 [pos] 0 0.38 0 [yaw] 180 
+*[time] 0.3 [pos] 0 0.38 0 [yaw] 0 
+*[time] 0.4 [pos] 0 0.38 0 [yaw] 0 
+
+#*[time] 0.3 [pos] 0 0.28 0 [yaw] 0 [hip] 70 70 [knee] -70 -70
+#*[time] 0.5 [pos] 0 1.0 0 [yaw] 0 [neck] -40 [sh] 150 150
+#*[time] 0.3 [pos] 0 0.28 0 [yaw] 0 [hip] 70 70 [knee] -70 -70
+#*[time] 0.3 [pos] 0 0.38 0 [neck] -30
+#*[time] 0.3 [pos] 0 0.38 0 [neck] 20
+#*[time] 0.3 [pos] 0 0.38 0 [neck] -20
+#*[time] 0.3 [pos] 0 0.38 0 [neck] 20
+#*[time] 0.3 [pos] 0 0.38 0 [neck] -5
+#*[time] 0 [pos] 0 0.38 0 [neck] -10
+
+
+
+
+
+

@@ -1,0 +1,150 @@
+# Note: the textures with [shiny]1 should be listed first !
+
+# row 1 ---------------------------------------------------------------
+
+*[name] ice1 [texture] ice.png [friction] 0.2 [depth] 0.03
+	[col] 0 0 0 [sound] ice_sound [part] 0 [shiny] 1
+
+*[name] ice2 [texture] ice01.png [friction] 0.2 [depth] 0.03
+	[col] 0 60 120 [sound] [part] 0 [shiny] 1
+
+*[name] greenice [texture] ice03.png [friction] 0.2 [depth] 0.03
+	[col] 0 90 120 [sound] ice_sound [part] 0 [shiny] 1
+
+*[name] hockey_ice [texture] ice02.png [friction] 0.2 [depth] 0.03
+	[col] 30 30 120 [sound] ice_sound  [part] 0 [shiny] 0
+
+*[name] snow [texture] snow.png [friction] 0.35 [depth] 0.11
+	[col] 255 255 255 [sound] [part] 1 [trackmarks] 1
+	[shiny] 0 [starttex] 1 [tracktex] 2 [stoptex] 3
+
+*[name] dirty_snow [texture] snow01.png [friction] 0.4 [depth] 0.07
+	[col] 230 230 255 [sound]snow_sound [part] 1 [trackmarks] 1
+	[shiny] 0 [starttex] 1 [tracktex] 2 [stoptex] 3
+
+*[name] thin_snow [texture] snow03.png [friction] 0.4 [depth] 0.05
+	[col] 230 255 255 [sound] [part] 1 [trackmarks] 1
+	[shiny] 0 [starttex] 1 [tracktex] 2 [stoptex] 3
+
+*[name] strike_snow [texture] snow02.png [friction] 0.3 [depth] 0.04
+	[col] 255 230 255 [sound] [part] 1 [trackmarks] 0
+	[shiny] 0 
+
+
+# row 2 ---------------------------------------------------------------
+
+*[name] snowy_greenice [texture] snowy_ice03.png [friction] 0.2 [depth] 0.03
+	[col] 0 60 180 [sound] ice_sound [part] 0 [shiny] 0
+
+*[name] snowy_ice [texture] snowy_ice.png [friction] 0.2 [depth] 0.03
+	[col] 60 0 180 [sound] ice_sound [part] 0 [shiny] 0
+
+*[name] snowy_hockey_ice [texture] snowy_ice02 [friction] 0.2 [depth] 0.03
+	[col] 60 60 180 [sound] ice_sound [part] 0 [shiny] 0
+
+*[name] rock [texture] rock.png [friction] 0.7 [depth] 0.01
+	[col] 127 127 127 [sound] rock_sound [part] 0
+
+*[name] rock04 [texture] rock04.png [friction] 0.7 [depth] 0.01
+	[col] 180 180 180 [sound] rock_sound [part] 0
+
+*[name] rock02 [texture] rock02.png [friction] 0.7 [depth] 0.01
+	[col] 180 180 150 [sound] rock_sound [part] 0
+
+*[name] rock03 [texture] rock03.png [friction] 0.7 [depth] 0.01
+	[col] 180 180 120 [sound] rock_sound [part] 0
+
+*[name] snowy_rock02 [texture] snowy_rock02.png [friction] 0.6 [depth] 0.01
+	[col] 180 150 150 [sound] rock_sound [part] 0
+
+# row 3 ---------------------------------------------------------------
+
+*[name] rock06 [texture] rock06.png [friction] 0.7 [depth] 0.01
+	[col] 60 60 60 [sound] rock_sound [part] 0
+
+*[name] snowy_rock06 [texture] snowy_rock06.png [friction] 0.6 [depth] 0.01
+	[col] 90 60 90 [sound] rock_sound [part] 0
+
+*[name] rock07 [texture] rock07.png [friction] 0.7 [depth] 0.01
+	[col] 60 60 90 [sound] rock_sound [part] 0
+
+*[name] rock05 [texture] rock05.png [friction] 0.7 [depth] 0.01
+	[col] 60 90 60 [sound] rock_sound [part] 0
+
+*[name] rock01 [texture] rock01.png [friction] 0.7 [depth] 0.01
+	[col] 90 90 90 [sound] rock_sound [part] 0
+
+*[name] sand [texture] sand01.png [friction] 0.5 [depth] 0.05
+	[col] 240 240 0 [sound] [part] 0
+
+*[name] dirt [texture] dirt01.png [friction] 0.5 [depth] 0.1
+	[col] 210 210 0 [sound]mud_sound [part] 0
+
+*[name] mud [texture] mud01.png [friction] 0.5 [depth] 0.1
+	[col] 180 180 0 [sound]mud_sound [part] 0
+
+# row 4 ---------------------------------------------------------------
+
+*[name] pave04 [texture] pave04.png [friction] 0.5 [depth] 0.05
+	[col] 90 0 0 [sound]rock_sound [part] 0
+
+*[name] wall [texture] pave01.png [friction] 0.5 [depth] 0.05
+	[col] 120 0 0 [sound] rock_sound [part] 0
+
+*[name] pebbles [texture] pebbles01.png [friction] 0.5 [depth] 0.02
+	[col] 150 0 0 [sound]rock_sound [part] 0
+
+*[name] pave02 [texture] pave02.png [friction] 0.5 [depth] 0.05
+	[col] 210 0 0 [sound] [part] 0
+
+*[name] icy_pave05 [texture] icy_pave05.png [friction] 0.5 [depth] 0.05
+	[col] 240 30 30 [sound] [part] 0
+
+*[name] pave04 [texture] icy_rock06.png [friction] 0.5 [depth] 0.05
+	[col] 255 60 60 [sound] [part] 0
+
+*[name] pave04 [texture] icy_pave04.png [friction] 0.5 [depth] 0.05
+	[col] 255 120 120 [sound] [part] 0
+
+
+# row 5 ---------------------------------------------------------------
+
+*[name] icy_pave [texture] icy_pave01.png [friction] 0.4 [depth] 0.02
+	[col] 240 90 0 [sound] [part] 0
+
+*[name] fine_pebbles [texture] pebbles04.png [friction] 0.6 [depth] 0.02
+	[col] 180 90 0 [sound] [part] 0
+
+*[name] snowy_pebbles [texture] pebbles05.png [friction] 0.5 [depth] 0.02
+	[col] 255 180 150 [sound] [part] 0
+
+*[name] forest_floor1 [texture] floor01.png [friction] 0.5 [depth] 0.02
+	[col] 90 90 30 [sound]leaves_sound [part] 0
+
+*[name] forest_floor2 [texture] floor02.png [friction] 0.5 [depth] 0.02
+	[col] 60 60 0 [sound]leaves_sound [part] 0
+
+# row 6 ---------------------------------------------------------------
+
+*[name] icy_forest_floor [texture] icy_floor01.png [friction] 0.5 [depth] 0.02
+	[col] 60 90 0 [sound]leaves_sound [part] 0
+
+*[name] grass01 [texture] grass01.png [friction] 0.5 [depth] 0.02
+	[col] 0 120 0 [sound]grass_sound [part] 0
+
+*[name] grass03 [texture] grass03.png [friction] 0.5 [depth] 0.02
+	[col] 60 120 0 [sound]grass_sound [part] 0
+
+*[name] grass02 [texture] grass02.png [friction] 0.5 [depth] 0.02
+	[col] 0 120 60 [sound]grass_sound [part] 0
+
+*[name] snowy_grass03 [texture] snowy_grass03.png [friction] 0.4 [depth] 0.02
+	[col] 60 180 0 [sound]grass_sound [part] 0
+
+*[name] icy_grass03 [texture] icy_grass03.png [friction] 0.4 [depth] 0.02
+	[col] 0 180 60 [sound] grass_sound [part] 0
+
+*[name] icy_grass04 [texture] icy_grass04.png [friction] 0.4 [depth] 0.02
+	[col] 30 240 30 [sound] grass_sound [part] 0
+
+	

@@ -1,0 +1,101 @@
+---------------------------------------------
+Some internal changes: 
+---------------------------------------------
+
+The Tcl functions have completely been replaced with the functions of 
+the SP library. The SP library for loading and saving configuration data 
+has exclusively been written for Tuxracer. Due to this modification some
+modules or methods became obslolete: Tcl hash tables, the module "list" etc.
+
+There is a restrained approach to C++. The entire program can be compiled 
+with g++, but there are only a few C++ classes. Most of these classes are 
+implemented to allow more clarity. For example, if you see the function 
+"Env.DrawFog" anywhere, you know that this function is declared and defined 
+in the module env.cpp. The global instance Env of the class CEnvironment is 
+available in the entire code. The same with some other classes. And of course, 
+the classes put together data and belonging functions. The makes the 
+code clearer.
+
+A substantial change has happened with the phys_sim module (now physics.cpp) 
+though most of the functions have been kept unchanged or with little 
+modifications. There is a new class CControl that encapsulates all parameters 
+of the traditional structure "TControl" as well as the functions of old
+phys_sim. All this belongs together, and THIS class is really sensible 
+and simplifies the implementation of multiplaying. Some functions have
+moved to other modules, for example TuxOrientation to tux.cpp or 
+FindCourseNormal to course.cpp. All functions should have a fitting home area.
+
+----------------------------------------------
+Completely or almost rewritten modules
+----------------------------------------------
+
+The old modules audio.c and audio_data.c are replaced with audio.cpp. 
+The old code was - to say it with understatement - terrible and too long. 
+The same with game_config. The same with many parts of other modules. 
+A lot of modules have not changed completely but for the most part. For 
+example the winsys.cpp. It is shorter and clearer now, and it contains 
+the joystick functions (only a few lines). The module joystick.c is 
+obsolete now.
+
+These are only some examples. Compare the new code with the original code 
+and you will find that more than 60 % is rewritten. That's less than the 
+code of the Bunny Hill rewrite, but the intention of this ETR rewrite was 
+to clean up und clear up the code first, and then - later - to enhance it 
+with new functions. 
+
+One effect of the clearance was that the code became shorter. Three examples:
+
+1) In the old code there are 5 modules responsable for the character Tux:
+	tux.c, tux_shadow.c, hier.c, hier_cb.c and hier_util.c 
+That are about 1850 lines in total (ok, about 1500-1600 lines without comments). 
+The new code contains the complete functions in a single module (tux.cpp) 
+with totally 720 lines. 
+
+2) Or the audio modules. In Tuxracer 0.61 there are 2 modules, 
+	audio.c and audio_data.c 
+with 1630 lines in total. The new code contains only 1 module with 300 lines!
+
+3) The old race_select.c consists of 1300 lines; the reworked, new code 
+contains 230 lines - and does at least the same, of course. 
+
+
+------------------------------------------------------------------
+Unchanged modules
+------------------------------------------------------------------
+
+Some modules are almost unchanged (except the formal style). That doesn't mean 
+that these modules will never be modified. I think, as last the complete code 
+must be rewritten. But some tasks are not very urgent or too  
+extensive at the moment. Here the modules which are nearly unchanged:
+
+	view.cpp, quadtree.cpp, hud.cpp, trackmarks.cpp and parts of particles.cpp
+
+------------------------------------------------------------------
+Comments
+------------------------------------------------------------------
+
+I know, a good code should be well-commented. For me, the best commentation 
+is a clear and well-ordered structure. It sounds unbelievable but first I 
+removed all comments in the original code to make it understandable for me. 
+So excuse the lack of comments in the new code. Perhaps, anytime ...
+
+-------------------------------------------------------------------
+BTW
+-------------------------------------------------------------------
+
+Some people, including the authors of Tuxracer 0.61, prefer the following formal style:
+
+    scale_vector( -2. * dot_product( *vel, treeNml ) , treeNml ) ,*vel ) ;
+
+Ok ,it's not important( there are more important things )for the effectiveness 
+of the code ,but I have problems to bear this style .And additionally the 
+accumulation of underscores :
+
+    static vector_t adjust_tux_zvec_for_roll( player_data_t *plyr, vector_t vel, vector_t zvec )
+
+All clear? Oh yes, reading the code of other developers is pleasurable, and 
+so I can say: have fun with my code ;-)
+	
+
+
+

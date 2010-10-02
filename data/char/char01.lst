@@ -1,0 +1,159 @@
+# rotation: first value = axis (1, 2 or 3), second value = angle
+
+# Materialien
+*[cmd] material [mat] whitecol [diff] 0.78 0.78 0.78 [spec] 0.2 0.2 0.2 [exp] 50.0
+*[cmd] material [mat] blackcol [diff] 0.1 0.1 0.1 [spec] 0.5 0.5 0.5 [exp] 20.0
+*[cmd] material [mat] beakcol [diff] 0.64 0.54 0.06 [spec] 0.4 0.4 0.4 [exp] 5.0
+*[cmd] material [mat] iriscol [diff] 0.01 0.01 0.41 [spec] 0.4 0.4 0.4 [exp] 90.0
+
+# -----------------------------------------------------------------------------------
+
+# body
+*[cmd] create [node] 01 [par] root [scale] 0.35 0.35 0.35
+*[cmd] create [node] 02 [par] 01 [scale] 0.9 0.9 0.9
+*[cmd] create [node] 72 [par] 02 [vis] 10 [scale] 0.95 1.0 0.8 [mat] blackcol [shad] 1
+*[cmd] create [node] 73 [par] 02 [vis] 10 [trans] 0 0 0.17 [scale] 0.8 0.9 0.7 [mat] whitecol
+
+# breast
+*[cmd] create [node] 03 [par] 01 [trans] 0 0.4 0.05
+*[cmd] create [node] 04 [par] 03 [scale] 0.72 0.72 0.72
+*[cmd] create [node] 74 [par] 04 [vis] 10 [scale] 0.95 1.0 0.8 [mat] blackcol
+*[cmd] create [node] 75 [par] 04 [vis] 10 [trans] 0 0 0.17 [scale] 0.8 0.9 0.7 [mat] whitecol
+
+# neck
+*[cmd] create [node] 05 [par] 01 [trans] 0 0.9 0.07 [rot] 2 90.0
+*[cmd] create [node] neck [par] 05 
+*[cmd] create [node] 07 [par] neck [rot] 2 -90
+*[cmd] create [node] 08 [par] 07 [scale] 0.45 0.5 0.45
+*[cmd] create [node] 09 [par] 08 [vis] 10 [mat] blackcol [shad] 1
+*[cmd] create [node] 10 [par] 08 [vis] 10 [trans] 0 -0.08 0.35 [scale] 0.8 0.9 0.7 [mat] whitecol
+
+# head
+*[cmd] create [node] 11 [par] 07 [trans] 0 0.3 0.07 [rot] 2 90.0
+*[cmd] create [node] head [par] 11 
+*[cmd] create [node] 13 [par] head 
+*[cmd] create [node] 14 [par] 13 [trans] 0 0.2 0 [rot] 2 -90.0
+*[cmd] create [node] 15 [par] 14 [vis] 10 [scale] 0.42 0.5 0.42 [mat] blackcol [shad] 1
+
+# beak
+*[cmd] create [node] 16 [par] 14 [vis] 4 [trans] 0 -0.205 0.3 [rot] 1 10.0 [scale] 0.23 0.12 0.4 [mat] beakcol 
+*[cmd] create [node] 17 [par] 14 [vis] 4 [trans] 0 -0.23 0.3 [rot] 1 10.0 [scale] 0.21 0.17 0.38 [mat] beakcol
+
+# left eye
+*[cmd] create [node] 18 [par] 14 [vis] 4 [trans] 0.13 -0.03 0.38 [rot] 2 18.0 [mat] whitecol
+*[cmd] prop [node] 18 [rot] 3 -5.0
+*[cmd] prop [node] 18 [rot] 1 5.0 [scale] 0.1 0.13 0.03
+
+# right eye
+*[cmd] create [node] 19 [par] 14 [vis] 4 [trans] -0.13 -0.03 0.38 [rot] 2 -18.0 [mat] whitecol
+*[cmd] prop [node] 19 [rot] 3 -5.0
+*[cmd] prop [node] 19 [rot] 1 5.0 [scale] 0.1 0.13 0.03
+
+# left iris
+*[cmd] create [node] 20 [par] 14 [vis] 2 [trans] 0.12 -0.045 0.4 [rot] 2 18.0 [mat] iriscol
+*[cmd] prop [node] 20 [rot] 3 5.0
+*[cmd] prop [node] 20 [rot] 1 5.0 [scale] 0.055 0.07 0.03
+
+# right iris
+*[cmd] create [node] 21 [par] 14 [vis] 2 [trans] -0.12 -0.045 0.4 [rot] 2 -18.0 [mat] iriscol
+*[cmd] prop [node] 21 [rot] 3 -5.0
+*[cmd] prop [node] 21 [rot] 1 5.0 [scale] 0.055 0.07 0.03
+
+# left upper arm
+*[cmd] create [node] 22 [par] 03 [rot] 2 180
+*[cmd] prop [node] 22 [trans] -0.56 0.3 0
+*[cmd] prop [node] 22 [rot] 3 45.0
+*[cmd] prop [node] 22 [rot] 1 90.0
+*[cmd] create [node] left_shoulder [par] 22 
+*[cmd] create [node] 24 [par] left_shoulder [trans] -0.22 0 0 [rot] 1 -90.0
+*[cmd] create [node] 25 [par] 24 [vis] 5 [scale] 0.34 0.1 0.2 [mat] blackcol [shad] 1
+
+# left underarm
+*[cmd] create [node] 30 [par] 24 [trans] -0.23 0 0 [rot] 3 20.0
+*[cmd] prop [node] 30 [rot] 1 90
+*[cmd] create [node] 31 [par] 30 
+*[cmd] create [node] 32 [par] 31 [trans] -0.19 0 0 [rot] 1 -90.0
+*[cmd] create [node] 33 [par] 32 [vis] 5 [scale] 0.3 0.07 0.15 [mat] blackcol [shad] 1
+
+# left hand
+*[cmd] create [node] 38 [par] 32 [trans] -0.24 0 0 [rot] 3 20.0
+*[cmd] prop [node] 38 [rot] 1 90
+*[cmd] create [node] 39 [par] 38 
+*[cmd] create [node] 40 [par] 39 [trans] -0.1 0 0 [rot] 1 -90.0
+*[cmd] create [node] 41 [par] 40 [vis] 3 [scale] 0.12 0.05 0.12 [mat] blackcol [shad] 1
+
+# right upper arm
+*[cmd] create [node] 26 [par] 03 [trans] -0.56 0.3 0
+*[cmd] prop [node] 26 [rot] 3 45.0
+*[cmd] prop [node] 26 [rot] 1 -90.0
+*[cmd] create [node] right_shoulder [par] 26 [vis] 0
+*[cmd] create [node] 28 [par] right_shoulder [trans] -0.22 0 0 [rot] 1 90.0
+*[cmd] create [node] 29 [par] 28 [vis] 5 [scale] 0.34 0.1 0.2 [mat] blackcol [shad] 1
+
+# right underarm
+*[cmd] create [node] 34 [par] 28 [trans] -0.23 0 0 [rot] 3 20.0
+*[cmd] prop [node] 34 [rot] 1 -90.0
+*[cmd] create [node] 35 [par] 34 
+*[cmd] create [node] 36 [par] 35 [trans] -0.19 0 0 [rot] 1 90.0
+*[cmd] create [node] 37 [par] 36 [vis] 5 [scale] 0.3 0.07 0.15 [mat] blackcol [shad] 1
+
+# right hand
+*[cmd] create [node] 42 [par] 36 [trans] -0.24 0 0 [rot] 3 20.0
+*[cmd] prop [node] 42 [rot] 1 -90
+*[cmd] create [node] 43 [par] 42 
+*[cmd] create [node] 44 [par] 43 [trans] -0.1 0 0 [rot] 1 90.0
+*[cmd] create [node] 45 [par] 44 [vis] 3 [scale] 0.12 0.05 0.12 [mat] blackcol [shad] 1
+
+# left leg
+*[cmd] create [node] 46 [par] 01 [rot] 2 180.0
+*[cmd] prop [node] 46 [trans] -0.28 -0.8 0
+*[cmd] prop [node] 46 [rot] 2 110
+*[cmd] create [node] left_hip [par] 46 
+*[cmd] create [node] 48 [par] left_hip [trans] 0 -0.1 0 [rot] 2 -110.0
+*[cmd] create [node] 49 [par] 48 [vis] 3 [scale] 0.07 0.3 0.07 [mat] beakcol [shad] 1
+*[cmd] create [node] 50 [par] 48 [vis] 3 [trans] 0.0 0.05 0.0 [scale] 0.09 0.18 0.09 [mat] blackcol
+*[cmd] create [node] 56 [par] 48 [trans] 0 -0.21 0 [rot] 2 90.0
+*[cmd] create [node] left_knee [par] 56 
+*[cmd] create [node] 58 [par] left_knee [trans] 0 -0.13 0 [rot] 2 -90.0
+*[cmd] create [node] 59 [par] 58 [vis] 3 [scale] 0.06 0.18 0.06 [mat] beakcol
+*[cmd] create [node] 64 [par] 58 [trans] 0 -0.18 0 [rot] 2 -50.0
+*[cmd] create [node] left_ankle [par] 64 
+*[cmd] create [node] 76 [par] left_ankle [trans] -0.13 0 0 [scale] 1.1 1.0 1.3 
+*[cmd] create [node] 77 [par] 76 [vis] 3 [scale] 0.25 0.08 0.18 [mat] beakcol
+*[cmd] create [node] 78 [par] 76 [vis] 3 [trans] -0.07 0 0.1 [rot] 2 30 [scale] 0.27 0.07 0.11 [mat] beakcol [shad] 1
+*[cmd] create [node] 79 [par] 76 [vis] 3 [trans] -0.07 0 -0.1 [rot] 2 -30 [scale] 0.27 0.07 0.11 [mat] beakcol [shad] 1
+*[cmd] create [node] 80 [par] 76 [vis] 3 [trans] -0.08 0 0 [scale] 0.27 0.07 0.10 [mat] beakcol [shad] 1
+
+# right leg
+*[cmd] create [node] 51 [par] 01 [trans] -0.28 -0.8 0 [rot] 2 -110.0
+*[cmd] create [node] right_hip [par] 51 
+*[cmd] create [node] 53 [par] right_hip [trans] 0 -0.1 0 [rot] 2 110.0
+*[cmd] create [node] 54 [par] 53 [vis] 3 [scale] 0.07 0.3 0.07 [mat] beakcol [shad] 1
+*[cmd] create [node] 55 [par] 53 [vis] 3 [trans] 0.0 0.05 0.0 [scale] 0.09 0.18 0.09 [mat] blackcol
+*[cmd] create [node] 60 [par] 53 [trans] 0 -0.21 0 [rot] 2 -90.0
+*[cmd] create [node] right_knee [par] 60 
+*[cmd] create [node] 62 [par] right_knee [trans] 0 -0.13 0 [rot] 2 90.0
+*[cmd] create [node] 63 [par] 62 [vis] 3 [scale] 0.06 0.18 0.06 [mat] beakcol
+*[cmd] create [node] 66 [par] 62 [trans] 0 -0.18 0 [rot] 2 50.0
+*[cmd] create [node] right_ankle [par] 66 
+*[cmd] create [node] 81 [par] right_ankle [trans] -0.13 0 0 [scale] 1.1 1.0 1.3 
+*[cmd] create [node] 82 [par] 81 [vis] 3 [scale] 0.25 0.08 0.18 [mat] beakcol
+*[cmd] create [node] 83 [par] 81 [vis] 3 [trans] -0.07 0 0.1 [rot] 2 30 [scale] 0.27 0.07 0.11 [mat] beakcol [shad] 1
+*[cmd] create [node] 84 [par] 81 [vis] 3 [trans] -0.07 0 -0.1 [rot] 2 -30 [scale] 0.27 0.07 0.11 [mat] beakcol [shad] 1
+*[cmd] create [node] 85 [par] 81 [vis] 3 [trans] -0.08 0 0 [scale] 0.27 0.07 0.10 [mat] beakcol [shad] 1
+
+# tail
+*[cmd] create [node] 68 [par] 01 [trans] 0 -0.4 -0.5 [rot] 1 -60.0
+*[cmd] create [node] tail [par] 68 
+*[cmd] create [node] 70 [par] tail [trans] 0 0.15 0
+*[cmd] create [node] 71 [par] 70 [vis] 2 [scale] 0.2 0.3 0.1 [mat] blackcol [shad] 1
+
+
+
+
+
+
+
+
+
+

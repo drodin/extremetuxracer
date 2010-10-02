@@ -1,0 +1,377 @@
+*[cmd] 99 [1] 00 [=] 00 [+] :t1
+*[cmd] 99 [1] 01 [=] 00 [+] :t1:r1
+*[cmd] 99 [1] 02 [=] 01 [+] :tors_scl
+*[cmd] 99 [1] 03 [=] 01 [+] :t2
+*[cmd] 99 [1] 04 [=] 03 [+] :scl
+*[cmd] 99 [1] 05 [=] 01 [+] :t3
+*[cmd] 99 [1] 06 [=] 05 [+] :neckjt
+*[cmd] 99 [1] 07 [=] 06 [+] :t4
+*[cmd] 99 [1] 08 [=] 07 [+] :scl
+*[cmd] 99 [1] 09 [=] 08 [+] :neck
+*[cmd] 99 [1] 10 [=] 08 [+] :neckw
+*[cmd] 99 [1] 11 [=] 07 [+] :t5
+*[cmd] 99 [1] 12 [=] 11 [+] :hdjtrot      
+*[cmd] 99 [1] 13 [=] 12 [+] :hdjt         
+*[cmd] 99 [1] 14 [=] 13 [+] :hdorg
+*[cmd] 99 [1] 15 [=] 14 [+] :hd
+*[cmd] 99 [1] 16 [=] 14 [+] :bk1
+*[cmd] 99 [1] 17 [=] 14 [+] :bk3
+*[cmd] 99 [1] 18 [=] 14 [+] :le
+*[cmd] 99 [1] 19 [=] 14 [+] :re
+*[cmd] 99 [1] 20 [=] 14 [+] :li
+*[cmd] 99 [1] 21 [=] 14 [+] :ri
+*[cmd] 99 [1] 22 [=] 03 [+] :luarmxlate
+*[cmd] 99 [1] 23 [=] 22 [+] :lshjt     
+*[cmd] 99 [1] 24 [=] 23 [+] :luarmorg
+*[cmd] 99 [1] 25 [=] 24 [+] :uparm
+*[cmd] 99 [1] 26 [=] 03 [+] :ruarmxlate
+*[cmd] 99 [1] 27 [=] 26 [+] :rshjt
+*[cmd] 99 [1] 28 [=] 27 [+] :ruarmorg
+*[cmd] 99 [1] 29 [=] 28 [+] :uparm
+*[cmd] 99 [1] 30 [=] 24 [+] :llarmxlate
+*[cmd] 99 [1] 31 [=] 30 [+] :lelbjt    
+*[cmd] 99 [1] 32 [=] 31 [+] :llarmorg
+*[cmd] 99 [1] 33 [=] 32 [+] :llowarm
+*[cmd] 99 [1] 34 [=] 28 [+] :rlarmxlate
+*[cmd] 99 [1] 35 [=] 34 [+] :relbjt
+*[cmd] 99 [1] 36 [=] 35 [+] :rlarmorg
+*[cmd] 99 [1] 37 [=] 36 [+] :rlowarm
+*[cmd] 99 [1] 38 [=] 32 [+] :lhandxlate
+*[cmd] 99 [1] 39 [=] 38 [+] :lwrtjt     
+*[cmd] 99 [1] 40 [=] 39 [+] :lhndorg
+*[cmd] 99 [1] 41 [=] 40 [+] :lhand
+*[cmd] 99 [1] 42 [=] 36 [+] :rhandxlate
+*[cmd] 99 [1] 43 [=] 42 [+] :rwrtjt 
+*[cmd] 99 [1] 44 [=] 43 [+] :rhndorg
+*[cmd] 99 [1] 45 [=] 44 [+] :rhand
+*[cmd] 99 [1] 46 [=] 01 [+] :lthgxlate
+*[cmd] 99 [1] 47 [=] 46 [+] :lhipjt
+*[cmd] 99 [1] 48 [=] 47 [+] :lthgorg
+*[cmd] 99 [1] 49 [=] 48 [+] :lthigh
+*[cmd] 99 [1] 50 [=] 48 [+] :lhipball
+*[cmd] 99 [1] 51 [=] 01 [+] :rthgxlate
+*[cmd] 99 [1] 52 [=] 51 [+] :rhipjt
+*[cmd] 99 [1] 53 [=] 52 [+] :rthgorg
+*[cmd] 99 [1] 54 [=] 53 [+] :rthigh
+*[cmd] 99 [1] 55 [=] 53 [+] :rhipball
+*[cmd] 99 [1] 56 [=] 48 [+] :lclfxlate
+*[cmd] 99 [1] 57 [=] 56 [+] :lkneejt      
+*[cmd] 99 [1] 58 [=] 57 [+] :lclforg
+*[cmd] 99 [1] 59 [=] 58 [+] :lcalf
+*[cmd] 99 [1] 60 [=] 53 [+] :rclfxlate
+*[cmd] 99 [1] 61 [=] 60 [+] :rkneejt
+*[cmd] 99 [1] 62 [=] 61 [+] :rclforg
+*[cmd] 99 [1] 63 [=] 62 [+] :rcalf
+*[cmd] 99 [1] 64 [=] 58 [+] :lftxlate
+*[cmd] 99 [1] 65 [=] 64 [+] :lankjt        
+*[cmd] 99 [1] 66 [=] 62 [+] :rftxlate
+*[cmd] 99 [1] 67 [=] 66 [+] :rankjt        
+*[cmd] 99 [1] 68 [=] 01 [+] :tailxlate
+*[cmd] 99 [1] 69 [=] 68 [+] :tail_joint       
+*[cmd] 99 [1] 70 [=] 69 [+] :tail_orig
+*[cmd] 99 [1] 71 [=] 70 [+] :tail
+*[cmd] 99 [1] 72 [=] 02 [+] :b
+*[cmd] 99 [1] 73 [=] 02 [+] :w1
+*[cmd] 99 [1] 74 [=] 04 [+] :b
+*[cmd] 99 [1] 75 [=] 04 [+] :w1
+*[cmd] 99 [1] 76 [=] 65 [+] :footorg
+*[cmd] 99 [1] 77 [=] 76 [+] :base
+*[cmd] 99 [1] 78 [=] 76 [+] :toe1
+*[cmd] 99 [1] 79 [=] 76 [+] :toe2
+*[cmd] 99 [1] 80 [=] 76 [+] :toe3
+*[cmd] 99 [1] 81 [=] 67 [+] :footorg
+*[cmd] 99 [1] 82 [=] 81 [+] :base
+*[cmd] 99 [1] 83 [=] 81 [+] :toe1
+*[cmd] 99 [1] 84 [=] 81 [+] :toe2
+*[cmd] 99 [1] 85 [=] 81 [+] :toe3
+
+*[cmd] 0 [#] tux_material [mat] white_penguin [1] 0.78 0.78 0.78 [2] 0.2 0.2 0.2 [3] 50
+*[cmd] 0 [#] tux_material [mat] black_penguin [1] 0.1 0.1 0.1 [2] 0.5 0.5 0.5 [3] 20
+*[cmd] 0 [#] tux_material [mat] beak_colour [1] 0.64 0.54 0.06 [2] 0.4 0.4 0.4 [3] 5
+*[cmd] 0 [#] tux_material [mat] nostril_colour [1] 0.48 0.32 0.034 [2] 0 0 0 [3] 1
+*[cmd] 0 [#] tux_material [mat] iris_colour [1] 0.01 0.01 0.01 [2] 0.4 0.4 0.4 [3] 90
+
+# *[cmd] 8 [#] tux_root_node [1] 00
+# *[cmd] 1 [#] tux_transform [1] : [2] t1
+# *[cmd] 1 [#] tux_transform [1] :t1 [2] r1
+
+*[cmd] 2 [#] tux_scale [1] 01 [2] 0 0 0 [3]  0.35 0.35 0.35 
+*[cmd] 1 [#] tux_transform [1] 01 [2] tors_scl
+*[cmd] 2 [#] tux_scale [1] 02 [2] 0 0 0 [3]  0.90 0.9 0.9 
+*[cmd] 3 [#] tux_sphere [1] 02 [2] b [3] 1.0
+*[cmd] 4 [#] tux_surfaceproperty [1] 72 [2] black_penguin
+*[cmd] 2 [#] tux_scale [1] 72 [2] 0 0 0 [3]  0.95 1.0 0.8 
+*[cmd] 3 [#] tux_sphere [1] 02 [2] w1 [3] 1.0
+*[cmd] 4 [#] tux_surfaceproperty [1] 73 [2] white_penguin
+*[cmd] 5 [#] tux_translate [1] 73 [2]  0.0 0 0.17 
+*[cmd] 2 [#] tux_scale [1] 73 [2] 0 0 0 [3] 0.8 0.9 0.7
+*[cmd] 6 [#] tux_shadow [1] 73 [2] off
+*[cmd] 1 [#] tux_transform [1] 01 [2] t2
+*[cmd] 5 [#] tux_translate [1] 03 [2]  0 0.4 0.05 
+*[cmd] 1 [#] tux_transform [1] 03 [2] scl
+*[cmd] 2 [#] tux_scale [1] 04 [2] 0 0 0 [3]  0.72 0.72 0.72 
+*[cmd] 3 [#] tux_sphere [1] 04 [2] b [3] 1.0
+*[cmd] 4 [#] tux_surfaceproperty [1] 74 [2] black_penguin
+*[cmd] 2 [#] tux_scale [1] 74 [2] 0 0 0 [3]  0.95 1.0 0.8 
+*[cmd] 3 [#] tux_sphere [1] 04 [2] w1 [3] 1.0
+*[cmd] 4 [#] tux_surfaceproperty [1] 75 [2] white_penguin
+*[cmd] 5 [#] tux_translate [1] 75 [2]  0.0 0 0.17 
+*[cmd] 2 [#] tux_scale [1] 75 [2] 0 0 0 [3] 0.8 0.9 0.7
+*[cmd] 6 [#] tux_shadow [1] 75 [2] off
+*[cmd] 1 [#] tux_transform [1] 01 [2] t3
+*[cmd] 5 [#] tux_translate [1] 05 [2]  0 0.9 0.07 
+*[cmd] 7 [#] tux_rotate [1] 05 [2] y [3] 90
+*[cmd] 1 [#] tux_transform [1] 05 [2] neckjt   
+*[cmd] 9 [#] tux_neck [1] 06
+*[cmd] 1 [#] tux_transform [1] 06 [2] t4
+*[cmd] 7 [#] tux_rotate [1] 07 [2] y [3] -90
+*[cmd] 1 [#] tux_transform [1] 07 [2] scl
+*[cmd] 2 [#] tux_scale [1] 08 [2] 0 0 0 [3]  0.45 0.5 0.45 
+*[cmd] 3 [#] tux_sphere [1] 08 [2] neck [3] 0.8
+*[cmd] 4 [#] tux_surfaceproperty [1] 09 [2] black_penguin
+*[cmd] 3 [#] tux_sphere [1] 08 [2] neckw [3] 0.66
+*[cmd] 4 [#] tux_surfaceproperty [1] 10 [2] white_penguin
+*[cmd] 5 [#] tux_translate [1] 10 [2] 0 -0.08 0.35 
+*[cmd] 2 [#] tux_scale [1] 10 [2] 0 0 0 [3] 0.8 0.9 0.7
+*[cmd] 6 [#] tux_shadow [1] 10 [2] off
+*[cmd] 1 [#] tux_transform [1] 07 [2] t5
+*[cmd] 5 [#] tux_translate [1] 11 [2]  0 0.3 0.07 
+*[cmd] 7 [#] tux_rotate [1] 11 [2] y [3] +90
+*[cmd] 1 [#] tux_transform [1] 11 [2] hdjtrot
+*[cmd] 1 [#] tux_transform [1] 12 [2] hdjt
+*[cmd] 10 [#] tux_head [1] 13
+*[cmd] 1 [#] tux_transform [1] 13 [2] hdorg
+*[cmd] 7 [#] tux_rotate [1] 14 [2] y [3] -90
+*[cmd] 5 [#] tux_translate [1] 14 [2] 0 0.20 0
+*[cmd] 3 [#] tux_sphere [1] 14 [2] hd [3] 1.0
+*[cmd] 4 [#] tux_surfaceproperty [1] 15 [2] black_penguin
+*[cmd] 2 [#] tux_scale [1] 15 [2] 0 0 0 [3] 0.42 0.5 0.42
+*[cmd] 3 [#] tux_sphere [1] 14 [2] bk1 [3] 0.8
+*[cmd] 4 [#] tux_surfaceproperty [1] 16 [2] beak_colour
+*[cmd] 5 [#] tux_translate [1] 16 [2]  0 -0.205 0.3 
+*[cmd] 7 [#] tux_rotate [1] 16 [2] x [3] +10
+*[cmd] 2 [#] tux_scale [1] 16 [2] 0 0 0 [3]  0.23 0.12 0.4 
+*[cmd] 3 [#] tux_sphere [1] 14 [2] bk3 [3] 0.66
+*[cmd] 4 [#] tux_surfaceproperty [1] 17 [2] beak_colour
+*[cmd] 5 [#] tux_translate [1] 17 [2]  0 -0.23 0.3 
+*[cmd] 7 [#] tux_rotate [1] 17 [2] x [3] +10
+*[cmd] 2 [#] tux_scale [1] 17 [2] 0 0 0 [3]  0.21 0.17 0.38 
+*[cmd] 6 [#] tux_shadow [1] 17 [2] off
+*[cmd] 3 [#] tux_sphere [1] 14 [2] le [3] 0.66
+*[cmd] 4 [#] tux_surfaceproperty [1] 18 [2] white_penguin
+*[cmd] 5 [#] tux_translate [1] 18 [2] 0.13 -0.03 0.38
+*[cmd] 7 [#] tux_rotate [1] 18 [2] y [3] 18
+*[cmd] 7 [#] tux_rotate [1] 18 [2] z [3] 5
+*[cmd] 7 [#] tux_rotate [1] 18 [2] x [3] 5
+*[cmd] 2 [#] tux_scale [1] 18 [2] 0 0 0 [3] 0.1 0.13 0.03
+*[cmd] 6 [#] tux_shadow [1] 18 [2] off
+*[cmd] 3 [#] tux_sphere [1] 14 [2] re [3] 0.66
+*[cmd] 4 [#] tux_surfaceproperty [1] 19 [2] white_penguin
+*[cmd] 5 [#] tux_translate [1] 19 [2] -0.13 -0.03 0.38
+*[cmd] 7 [#] tux_rotate [1] 19 [2] y [3] -18
+*[cmd] 7 [#] tux_rotate [1] 19 [2] z [3] -5
+*[cmd] 7 [#] tux_rotate [1] 19 [2] x [3] 5
+*[cmd] 2 [#] tux_scale [1] 19 [2] 0 0 0 [3] 0.1 0.13 0.03
+*[cmd] 6 [#] tux_shadow [1] 19 [2] off
+*[cmd] 3 [#] tux_sphere [1] 14 [2] li [3] 0.66
+*[cmd] 4 [#] tux_surfaceproperty [1] 20 [2] iris_colour
+*[cmd] 5 [#] tux_translate [1] 20 [2] 0.12 -0.045 0.40
+*[cmd] 7 [#] tux_rotate [1] 20 [2] y [3] 18
+*[cmd] 7 [#] tux_rotate [1] 20 [2] z [3] 5
+*[cmd] 7 [#] tux_rotate [1] 20 [2] x [3] 5
+*[cmd] 2 [#] tux_scale [1] 20 [2] 0 0 0 [3] 0.055 0.07 0.03
+*[cmd] 6 [#] tux_shadow [1] 20 [2] off
+*[cmd] 11 [#] tux_eye [1] 20 [2] left
+*[cmd] 3 [#] tux_sphere [1] 14 [2] ri [3] 0.66
+*[cmd] 4 [#] tux_surfaceproperty [1] 21 [2] iris_colour
+*[cmd] 5 [#] tux_translate [1] 21 [2] -0.12 -0.045 0.40
+*[cmd] 7 [#] tux_rotate [1] 21 [2] y [3] -18
+*[cmd] 7 [#] tux_rotate [1] 21 [2] z [3] -5
+*[cmd] 7 [#] tux_rotate [1] 21 [2] x [3] 5
+*[cmd] 2 [#] tux_scale [1] 21 [2] 0 0 0 [3] 0.055 0.07 0.03
+*[cmd] 6 [#] tux_shadow [1] 21 [2] off
+*[cmd] 11 [#] tux_eye [1] 21 [2] right
+*[cmd] 1 [#] tux_transform [1] 03 [2] luarmxlate
+*[cmd] 7 [#] tux_rotate [1] 22 [2] y [3] 180
+*[cmd] 5 [#] tux_translate [1] 22 [2] -0.56 0.3 0
+*[cmd] 7 [#] tux_rotate [1] 22 [2] z [3] +45
+*[cmd] 7 [#] tux_rotate [1] 22 [2] x [3] +90
+*[cmd] 1 [#] tux_transform [1] 22 [2] lshjt
+*[cmd] 12 [#] tux_left_shoulder [1] 23
+*[cmd] 1 [#] tux_transform [1] 23 [2] luarmorg
+*[cmd] 7 [#] tux_rotate [1] 24 [2] x [3] -90
+*[cmd] 5 [#] tux_translate [1] 24 [2] -0.22 0 0
+*[cmd] 3 [#] tux_sphere [1] 24 [2] uparm [3] 0.66
+*[cmd] 4 [#] tux_surfaceproperty [1] 25 [2] black_penguin
+*[cmd] 2 [#] tux_scale [1] 25 [2] 0 0 0 [3] 0.34 0.1 0.2
+*[cmd] 1 [#] tux_transform [1] 03 [2] ruarmxlate
+*[cmd] 5 [#] tux_translate [1] 26 [2] -0.56 0.3 0
+*[cmd] 7 [#] tux_rotate [1] 26 [2] z [3] +45
+*[cmd] 7 [#] tux_rotate [1] 26 [2] x [3] -90
+*[cmd] 1 [#] tux_transform [1] 26 [2] rshjt    
+*[cmd] 13 [#] tux_right_shoulder [1] 27 [2]
+*[cmd] 1 [#] tux_transform [1] 27 [2] ruarmorg
+*[cmd] 7 [#] tux_rotate [1] 28 [2] x [3] +90
+*[cmd] 5 [#] tux_translate [1] 28 [2] -0.22 0 0
+*[cmd] 3 [#] tux_sphere [1] 28 [2] uparm [3] 0.66
+*[cmd] 4 [#] tux_surfaceproperty [1] 29 [2] black_penguin
+*[cmd] 2 [#] tux_scale [1] 29 [2] 0 0 0 [3] 0.34 0.1 0.2
+*[cmd] 1 [#] tux_transform [1] 24 [2] llarmxlate
+*[cmd] 5 [#] tux_translate [1] 30 [2] -0.23 0 0
+*[cmd] 7 [#] tux_rotate [1] 30 [2] z [3] 20
+*[cmd] 7 [#] tux_rotate [1] 30 [2] x [3] +90
+*[cmd] 1 [#] tux_transform [1] 30 [2] lelbjt
+*[cmd] 1 [#] tux_transform [1] 31 [2] llarmorg
+*[cmd] 7 [#] tux_rotate [1] 32 [2] x [3] -90
+*[cmd] 5 [#] tux_translate [1] 32 [2] -0.19 0 0
+*[cmd] 3 [#] tux_sphere [1] 32 [2] llowarm [3] 0.66
+*[cmd] 4 [#] tux_surfaceproperty [1] 33 [2] black_penguin
+*[cmd] 2 [#] tux_scale [1] 33 [2] 0 0 0 [3] 0.30 0.07 0.15
+*[cmd] 1 [#] tux_transform [1] 28 [2] rlarmxlate
+*[cmd] 5 [#] tux_translate [1] 34 [2] -0.23 0 0
+*[cmd] 7 [#] tux_rotate [1] 34 [2] z [3] 20
+*[cmd] 7 [#] tux_rotate [1] 34 [2] x [3] -90
+*[cmd] 1 [#] tux_transform [1] 34 [2] relbjt  
+*[cmd] 1 [#] tux_transform [1] 35 [2] rlarmorg
+*[cmd] 7 [#] tux_rotate [1] 36 [2] x [3] +90
+*[cmd] 5 [#] tux_translate [1] 36 [2] -0.19 0 0
+*[cmd] 3 [#] tux_sphere [1] 36 [2] rlowarm [3] 0.66
+*[cmd] 4 [#] tux_surfaceproperty [1] 37 [2] black_penguin
+*[cmd] 2 [#] tux_scale [1] 37 [2] 0 0 0 [3] 0.30 0.07 0.15
+*[cmd] 1 [#] tux_transform [1] 32 [2] lhandxlate
+*[cmd] 5 [#] tux_translate [1] 38 [2] -0.24 0 0
+*[cmd] 7 [#] tux_rotate [1] 38 [2] z [3] 20
+*[cmd] 7 [#] tux_rotate [1] 38 [2] x [3] +90
+*[cmd] 1 [#] tux_transform [1] 38 [2] lwrtjt
+*[cmd] 1 [#] tux_transform [1] 39 [2] lhndorg
+*[cmd] 7 [#] tux_rotate [1] 40 [2] x [3] -90
+*[cmd] 5 [#] tux_translate [1] 40 [2] -0.10 0 0
+*[cmd] 3 [#] tux_sphere [1] 40 [2] lhand [3] 0.5
+*[cmd] 4 [#] tux_surfaceproperty [1] 41 [2] black_penguin
+*[cmd] 2 [#] tux_scale [1] 41 [2] 0 0 0 [3] 0.12 0.05 0.12
+*[cmd] 1 [#] tux_transform [1] 36 [2] rhandxlate
+*[cmd] 5 [#] tux_translate [1] 42 [2] -0.24 0 0
+*[cmd] 7 [#] tux_rotate [1] 42 [2] z [3] 20
+*[cmd] 7 [#] tux_rotate [1] 42 [2] x [3] -90
+*[cmd] 1 [#] tux_transform [1] 42 [2] rwrtjt
+*[cmd] 1 [#] tux_transform [1] 43 [2] rhndorg
+*[cmd] 7 [#] tux_rotate [1] 44 [2] x [3] +90
+*[cmd] 5 [#] tux_translate [1] 44 [2] -0.10 0 0
+*[cmd] 3 [#] tux_sphere [1] 44 [2] rhand [3] 0.5
+*[cmd] 4 [#] tux_surfaceproperty [1] 45 [2] black_penguin
+*[cmd] 2 [#] tux_scale [1] 45 [2] 0 0 0 [3] 0.12 0.05 0.12
+*[cmd] 1 [#] tux_transform [1] 01 [2] lthgxlate
+*[cmd] 7 [#] tux_rotate [1] 46 [2] y [3] +180
+*[cmd] 5 [#] tux_translate [1] 46 [2] -0.28 -0.8 0
+*[cmd] 7 [#] tux_rotate [1] 46 [2] y [3] +110
+*[cmd] 1 [#] tux_transform [1] 46 [2] lhipjt   
+*[cmd] 15 [#] tux_left_hip [1] 47 [2]
+*[cmd] 1 [#] tux_transform [1] 47 [2] lthgorg
+*[cmd] 7 [#] tux_rotate [1] 48 [2] y [3] -110
+*[cmd] 5 [#] tux_translate [1] 48 [2]  0 -0.1 0  
+*[cmd] 3 [#] tux_sphere [1] 48 [2] lthigh [3] 0.5
+*[cmd] 4 [#] tux_surfaceproperty [1] 49 [2] beak_colour
+*[cmd] 2 [#] tux_scale [1] 49 [2] 0 0 0 [3] 0.07 0.30 0.07
+*[cmd] 3 [#] tux_sphere [1] 48 [2] lhipball [3] 0.5
+*[cmd] 4 [#] tux_surfaceproperty [1] 50 [2] black_penguin
+*[cmd] 5 [#] tux_translate [1] 50 [2] 0.0 0.05 0.0
+*[cmd] 2 [#] tux_scale [1] 50 [2] 0 0 0 [3] 0.09 0.18 0.09
+*[cmd] 6 [#] tux_shadow [1] 50 [2] off
+*[cmd] 1 [#] tux_transform [1] 01 [2] rthgxlate
+*[cmd] 5 [#] tux_translate [1] 51 [2] -0.28 -0.8 0
+*[cmd] 7 [#] tux_rotate [1] 51 [2] y [3] -110
+*[cmd] 1 [#] tux_transform [1] 51 [2] rhipjt        
+*[cmd] 14 [#] tux_right_hip [1] 52 [2]
+*[cmd] 1 [#] tux_transform [1] 52 [2] rthgorg
+*[cmd] 7 [#] tux_rotate [1] 53 [2] y [3] +110
+*[cmd] 5 [#] tux_translate [1] 53 [2]  0 -0.1 0  
+*[cmd] 3 [#] tux_sphere [1] 53 [2] rthigh [3] 0.5
+*[cmd] 4 [#] tux_surfaceproperty [1] 54 [2] beak_colour
+*[cmd] 2 [#] tux_scale [1] 54 [2] 0 0 0 [3] 0.07 0.30 0.07
+*[cmd] 3 [#] tux_sphere [1] 53 [2] rhipball [3] 0.5
+*[cmd] 4 [#] tux_surfaceproperty [1] 55 [2] black_penguin
+*[cmd] 5 [#] tux_translate [1] 55 [2] 0.0 0.05 0.0
+*[cmd] 2 [#] tux_scale [1] 55 [2] 0 0 0 [3] 0.09 0.18 0.09
+*[cmd] 6 [#] tux_shadow [1] 55 [2] off
+*[cmd] 1 [#] tux_transform [1] 48 [2] lclfxlate
+*[cmd] 5 [#] tux_translate [1] 56 [2] 0 -0.21 0
+*[cmd] 7 [#] tux_rotate [1] 56 [2] y [3] +90
+*[cmd] 1 [#] tux_transform [1] 56 [2] lkneejt          
+*[cmd] 16 [#] tux_left_knee [1] 57 [2]
+*[cmd] 1 [#] tux_transform [1] 57 [2] lclforg
+*[cmd] 7 [#] tux_rotate [1] 58 [2] y [3] -90
+*[cmd] 5 [#] tux_translate [1] 58 [2]  0 -0.13 0  
+*[cmd] 3 [#] tux_sphere [1] 58 [2] lcalf [3] 0.5
+*[cmd] 4 [#] tux_surfaceproperty [1] 59 [2] beak_colour
+*[cmd] 2 [#] tux_scale [1] 59 [2] 0 0 0 [3] 0.06 0.18 0.06
+*[cmd] 1 [#] tux_transform [1] 53 [2] rclfxlate
+*[cmd] 5 [#] tux_translate [1] 60 [2] 0 -0.21 0
+*[cmd] 7 [#] tux_rotate [1] 60 [2] y [3] -90
+*[cmd] 1 [#] tux_transform [1] 60 [2] rkneejt          
+*[cmd] 17 [#] tux_right_knee [1] 61 [2]
+*[cmd] 1 [#] tux_transform [1] 61 [2] rclforg
+*[cmd] 7 [#] tux_rotate [1] 62 [2] y [3] +90
+*[cmd] 5 [#] tux_translate [1] 62 [2]  0 -0.13 0  
+*[cmd] 3 [#] tux_sphere [1] 62 [2] rcalf [3] 0.5
+*[cmd] 4 [#] tux_surfaceproperty [1] 63 [2] beak_colour
+*[cmd] 2 [#] tux_scale [1] 63 [2] 0 0 0 [3] 0.06 0.18 0.06
+*[cmd] 1 [#] tux_transform [1] 58 [2] lftxlate
+*[cmd] 5 [#] tux_translate [1] 64 [2]  0 -0.18 0 
+*[cmd] 7 [#] tux_rotate [1] 64 [2] y [3] -50
+*[cmd] 1 [#] tux_transform [1] 64 [2] lankjt
+*[cmd] 19 [#] tux_left_ankle [1] 65 [2]
+*[cmd] 1 [#] tux_transform [1] 65 [2] footorg
+*[cmd] 5 [#] tux_translate [1] 76 [2]  -0.13 0 0 
+*[cmd] 4 [#] tux_surfaceproperty [1] 76 [2] beak_colour
+*[cmd] 2 [#] tux_scale [1] 76 [2]  0 0 0  [3]  1.1 1.0 1.3 
+*[cmd] 3 [#] tux_sphere [1] 76 [2] base [3] 0.66
+*[cmd] 2 [#] tux_scale [1] 77 [2] 0 0 0 [3] 0.25 0.08 0.18
+*[cmd] 3 [#] tux_sphere [1] 76 [2] toe1 [3] 0.66
+*[cmd] 4 [#] tux_surfaceproperty [1] 78 [2] beak_colour
+*[cmd] 5 [#] tux_translate [1] 78 [2] -0.07 0 0.1
+*[cmd] 7 [#] tux_rotate [1] 78 [2] y [3] 30
+*[cmd] 2 [#] tux_scale [1] 78 [2] 0 0 0 [3] 0.27 0.07 0.11
+*[cmd] 3 [#] tux_sphere [1] 76 [2] toe2 [3] 0.66
+*[cmd] 4 [#] tux_surfaceproperty [1] 79 [2] beak_colour
+*[cmd] 5 [#] tux_translate [1] 79 [2] -0.07 0 -0.1
+*[cmd] 7 [#] tux_rotate [1] 79 [2] y [3] -30
+*[cmd] 2 [#] tux_scale [1] 79 [2] 0 0 0 [3] 0.27 0.07 0.11
+*[cmd] 3 [#] tux_sphere [1] 76 [2] toe3 [3] 0.66
+*[cmd] 4 [#] tux_surfaceproperty [1] 80 [2] beak_colour
+*[cmd] 5 [#] tux_translate [1] 80 [2] -0.08 0 0
+*[cmd] 2 [#] tux_scale [1] 80 [2] 0 0 0 [3] 0.27 0.07 0.10
+*[cmd] 1 [#] tux_transform [1] 62 [2] rftxlate
+*[cmd] 5 [#] tux_translate [1] 66 [2]  0 -0.18 0 
+*[cmd] 7 [#] tux_rotate [1] 66 [2] y [3] +50
+*[cmd] 1 [#] tux_transform [1] 66 [2] rankjt
+*[cmd] 18 [#] tux_right_ankle [1] 67 [2]
+*[cmd] 1 [#] tux_transform [1] 67 [2] footorg
+*[cmd] 5 [#] tux_translate [1] 81 [2]  -0.13 0 0 
+*[cmd] 4 [#] tux_surfaceproperty [1] 81 [2] beak_colour
+*[cmd] 2 [#] tux_scale [1] 81 [2]  0 0 0  [3]  1.1 1.0 1.3 
+*[cmd] 3 [#] tux_sphere [1] 81 [2] base [3] 0.66
+*[cmd] 2 [#] tux_scale [1] 82 [2] 0 0 0 [3] 0.25 0.08 0.18
+*[cmd] 3 [#] tux_sphere [1] 81 [2] toe1 [3] 0.66
+*[cmd] 4 [#] tux_surfaceproperty [1] 83 [2] beak_colour
+*[cmd] 5 [#] tux_translate [1] 83 [2] -0.07 0 0.1
+*[cmd] 7 [#] tux_rotate [1] 83 [2] y [3] 30
+*[cmd] 2 [#] tux_scale [1] 83 [2] 0 0 0 [3] 0.27 0.07 0.11
+*[cmd] 3 [#] tux_sphere [1] 81 [2] toe2 [3] 0.66
+*[cmd] 4 [#] tux_surfaceproperty [1] 84 [2] beak_colour
+*[cmd] 5 [#] tux_translate [1] 84 [2] -0.07 0 -0.1
+*[cmd] 7 [#] tux_rotate [1] 84 [2] y [3] -30
+*[cmd] 2 [#] tux_scale [1] 84 [2] 0 0 0 [3] 0.27 0.07 0.11
+*[cmd] 3 [#] tux_sphere [1] 81 [2] toe3 [3] 0.66
+*[cmd] 4 [#] tux_surfaceproperty [1] 85 [2] beak_colour
+*[cmd] 5 [#] tux_translate [1] 85 [2] -0.08 0 0
+*[cmd] 2 [#] tux_scale [1] 85 [2] 0 0 0 [3] 0.27 0.07 0.10
+*[cmd] 1 [#] tux_transform [1] 01 [2] tailxlate
+*[cmd] 5 [#] tux_translate [1] 68 [2] 0 -0.4 -0.5
+*[cmd] 7 [#] tux_rotate [1] 68 [2] x [3] -60
+*[cmd] 1 [#] tux_transform [1] 68 [2] tail_joint
+*[cmd] 20 [#] tux_tail [1] 69 [2]
+*[cmd] 1 [#] tux_transform [1] 69 [2] tail_orig
+*[cmd] 5 [#] tux_translate [1] 70 [2] 0 0.15 0
+*[cmd] 3 [#] tux_sphere [1] 70 [2] tail [3] 0.5
+*[cmd] 4 [#] tux_surfaceproperty [1] 71 [2] black_penguin
+*[cmd] 2 [#] tux_scale [1] 71 [2] 0 0 0 [3] 0.2 0.3 0.1
