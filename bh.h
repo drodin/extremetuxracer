@@ -22,15 +22,14 @@ GNU General Public License for more details.
 //		compiler flags
 // --------------------------------------------------------------------
 
-// later these flags should set by a build system (on Linux)
-#define HAVE_SDL_MIXER
 #define HAVE_SDL 
+#define HAVE_SDL_MIXER
+#define HAVE_SDL_IMAGE
+#define HAVE_SDL_JOYSTICK
 #define STDC_HEADERS 		
 #define TIME_WITH_SYS_TIME	
-#define HAVE_FINITE 
 #define HAVE_GETCWD 
 #define HAVE_GETTIMEOFDAY 
-#define HAVE_ISNAN 
 #define HAVE_STRDUP 
 #define HAVE_GL_GLEXT_H 
 #define HAVE_GL_GLX_H 
@@ -58,6 +57,8 @@ GNU General Public License for more details.
 #include <float.h>
 #include <sys/stat.h>
 
+#include <map>
+#include <list>
 #include <string>
 #include <iostream>
 
@@ -99,27 +100,11 @@ GNU General Public License for more details.
 //			defines
 // --------------------------------------------------------------------
 
-#if defined (WIN32)
-#	define SEP "\\"
-#else
-#	define SEP "/"
-#endif
-
-#ifndef S_ISDIR
-#   define S_ISDIR(mode) (((mode) & S_IFMT) == S_IFDIR)
-#endif 
-
-#if defined( HAVE_FINITE )
-#   define FINITE(x) (finite(x))
-#elif defined( HAVE__FINITE )
-#   define FINITE(x) (_finite(x))
-#elif defined( HAVE_ISNAN )
-#   define FINITE(x) (!isnan(x))
-#elif defined( HAVE__ISNAN )
-#   define FINITE(x) (!_isnan(x))
-#else
-#   error "You don't have finite(), _finite(), isnan(), or _isnan() on your system!"
-#endif
+#define PROG_NAME "ETR"
+#define PACKAGE "etr"
+#define VERSION "0.5.5"
+#define WINDOW_TITLE "Extreme Tux Racer " VERSION
+#define PROG_DIR "/usr/local/games/etr-bh"
 
 using namespace std;
 

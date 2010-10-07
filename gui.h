@@ -33,6 +33,7 @@ typedef struct {
 	TRect rect;
 	int focus;
 	int dir;
+	int arrnr;
 } TMouseRect;
 
 typedef struct {

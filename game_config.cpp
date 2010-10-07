@@ -156,6 +156,7 @@ void InitConfig (char *arg0) {
 	param.sounds_dir = param.data_dir + SEP + "sounds";
 	param.music_dir = param.data_dir + SEP + "music";
 	param.font_dir = param.data_dir + SEP + "fonts";
+	param.trans_dir = param.data_dir + SEP + "translations";
 	param.configfile = param.config_dir + SEP + "options";
 
 	param.ui_snow = true;
@@ -331,6 +332,7 @@ void GameConfigMouseFunc (int button, int state, int x, int y) {
 }
 
 void GameConfigMotionFunc (int x, int y) {
+
     TVector2 old_pos;
  	int sc, dir;
 	if (Winsys.ModePending ()) return;
@@ -345,6 +347,8 @@ void GameConfigMotionFunc (int x, int y) {
 		if (param.ui_snow) push_ui_snow (cursor_pos);
     }
 }
+
+// ------------------ Init --------------------------------------------
 
 void GameConfigInit (void) {
 	Winsys.ShowCursor (!param.ice_cursor);    
@@ -373,8 +377,6 @@ void GameConfigInit (void) {
 	curr_detail_level = param.perf_level;
 	curr_language = param.language;
 
-	AddTextButton ("Cancel", xleft+70, ytop+320, 6, -1);
-	AddTextButton ("Ok!", xleft+300, ytop+320, 7, -1);
 	AddCheckbox (xleft, ytop, 0, 400, "Fullscreen");
 	AddArrow (xleft + 400 - 32, ytop+36, 0, 1);
 	AddArrow (xleft + 400 - 32, ytop+36+18, 1, 1);
@@ -386,6 +388,9 @@ void GameConfigInit (void) {
 	AddArrow (xleft + 400 - 32, ytop+144+18, 1, 4);
 	AddArrow (xleft + 400 - 32, ytop+180, 0, 5);
 	AddArrow (xleft + 400 - 32, ytop+180+18, 1, 5);	
+	AddTextButton ("Cancel", xleft+70, ytop+320, 6, -1);
+	AddTextButton ("Ok!", xleft+300, ytop+320, 7, -1);
+
 	curr_focus = 0;
  	Music.Play ("options1", -1);
 }
@@ -434,6 +439,7 @@ void GameConfigLoop (double time_step) {
 	FT.DrawString (xleft+240, ytop + 112, Int_StrN (curr_sound_vol));
 	FT.DrawString (xleft+240, ytop + 148, Int_StrN (curr_detail_level));
 	FT.DrawString (xleft+240, ytop + 184, languages[curr_language]);
+
 
 	PrintArrow (0, (curr_res > 0));	
 	PrintArrow (1, (curr_res < (NUM_RES-1)));

@@ -33,6 +33,7 @@ GNU General Public License for more details.
 #include "course.h"
 #include "event.h"
 #include "font.h"
+//#include "translation.h"
 
 TGameData g_game;
 
@@ -56,9 +57,9 @@ void InitGame () {
 // ====================================================================
 
 int main( int argc, char **argv ) {
-	printf (" --  Extreme Tux Racer - SVN  -- \n");
-	printf ("extremetuxracer.com\n");
-	printf ("See credits for more information.\n");
+	// ****************************************************************
+	printf ("\n----------- Extreme Tux Racer " VERSION " ----------------");
+    printf ("\n----------- (C) 2010 Extreme Tuxracer Team  --------\n\n ");
 
 	srand (time (NULL));
 	InitConfig (argv[0]);
@@ -85,6 +86,10 @@ int main( int argc, char **argv ) {
     RaceSelectRegister();
     credits_register();
     loading_register();
+
+
+//	Trans.getLanguages ();
+
 
 	// theses resources must be loaded before splashscreen starts
  	Course.MakeStandardPolyhedrons ();

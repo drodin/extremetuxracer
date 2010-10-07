@@ -536,7 +536,7 @@ void LoadTux2 () {
 //			tux shadow
 // --------------------------------------------------------------------
 
-#define SHADOW_HEIGHT 0.1
+#define SHADOW_HEIGHT 0.05
 
 #ifdef USE_STENCIL_BUFFER
 	static TColor shad_col = { 0.0, 0.0, 0.0, 0.3 };

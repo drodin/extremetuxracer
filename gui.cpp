@@ -49,7 +49,8 @@ void DrawCursor () {
 		CURSOR_SIZE  * (double)param.x_resolution / 14000);
 }
 
-void AddMouseRect (int left, int top, int width, int height, int focus, int dir) {
+void AddMouseRect (int left, int top, int width, int height,
+		int focus, int dir, int arrnr) {
 	TRect r;
 	
 	if (numMouseRect >= MAX_MOUSERECTS) return;
@@ -60,6 +61,7 @@ void AddMouseRect (int left, int top, int width, int height, int focus, int dir)
 	MouseArr[numMouseRect].rect = r;
 	MouseArr[numMouseRect].focus = focus;
 	MouseArr[numMouseRect].dir = dir;
+	MouseArr[numMouseRect].arrnr = arrnr;
 	numMouseRect++;
 }
 
@@ -69,7 +71,7 @@ void AddArrow (int x, int y, int dir, int focus) {
 	Arrows[numArrows].y = y;
 	Arrows[numArrows].dir = dir;
 	Arrows[numArrows].focus = focus;
-	AddMouseRect (x, y, 32, 16, focus, dir);
+	AddMouseRect (x, y, 32, 16, focus, dir, numArrows);
 	numArrows++;
 }
 
@@ -118,7 +120,7 @@ void AddTextButton (const char *text, int x, int y, int focus, double ftsize) {
 	double len = FT.GetTextWidth (text);
 	if (x == CENTER) x = (int)((param.x_resolution - len) / 2);
 	TextButtons[numTextButtons].x = x;
-	AddMouseRect (x, y, (int)len, 32, focus, 0);
+	AddMouseRect (x, y, (int)len, 32, focus, 0, numTextButtons);
 	numTextButtons++;	
 }
 
@@ -139,7 +141,7 @@ void AddCheckbox (int x, int y, int focus, int width, const string tag) {
 	Checkboxes[numCheckboxes].focus = focus;
 	Checkboxes[numCheckboxes].width = width;
 	Checkboxes[numCheckboxes].tag = tag;
-	AddMouseRect (x+width-32, y, 32, 32, focus, 0);
+	AddMouseRect (x+width-32, y, 32, 32, focus, 0, numCheckboxes);
 	numCheckboxes++;
 }
 
@@ -161,7 +163,7 @@ void AddIconButton (int x, int y, int focus, GLuint texid, double size) {
 	IconButtons[numIconButtons].focus = focus;	
 	IconButtons[numIconButtons].texid = texid;	
 	IconButtons[numIconButtons].size = size;	
-	AddMouseRect (x, y, 32, 32, focus, 0);
+	AddMouseRect (x, y, 32, 32, focus, 0, numIconButtons);
 	numIconButtons++;
 }
 
@@ -218,16 +220,15 @@ void PrintIconButton (int nr, int focus, int state) {
 }
 
 void DrawArrow (int x, int y, int dir, bool active, int sel) {
-	double textl[6] = {0.5, 0.0, 0.5, 0.5, 0.0, 0.5};
+	double textl[6] = {0.5, 0.0, 0.5, 0.5, 0.0, 0.5};		
 	double textr[6] = {1.0, 0.5, 1.0, 1.0, 0.5, 1.0};
 	double texbl[6] = {0.25, 0.25, 0.75, 0.00, 0.00, 0.50};
 	double texbr[6] = {0.50, 0.50, 1.00, 0.25, 0.25, 0.75};
     double texleft, texright, textop, texbottom;
     TVector2 bl, tr;
-	int type;
-	 
-	if (active) type = 3 * dir + 1 + sel;
-		else type = 3 * dir;
+
+	int type;	 
+	if (active) type = 3 * dir + 1 + sel; else type = 3 * dir;
 	
 	bl.x = x;
 	bl.y = param.y_resolution - y - 16;
@@ -256,6 +257,10 @@ void DrawArrow (int x, int y, int dir, bool active, int sel) {
 	glEnd();
 }
 
+
+// active is true if the arrow can be clicked on. If the value has reached the end
+// of range, active must be set to false
+// nr is the index in arrowarray Arrows
 void PrintArrow (int nr, bool active) {
 	int sel = 0;
 	if (nr >= numArrows) return;
@@ -281,7 +286,7 @@ void GetFocus (int x, int y, int *focus, int *dir) {
 		if (Inside (x,y,i)) {
 			*focus = MouseArr[i].focus;
 			*dir = MouseArr[i].dir;
-			selArrow = i;
+			selArrow = MouseArr[i].arrnr;
 			return;
 		}
 	}

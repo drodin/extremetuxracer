@@ -42,6 +42,7 @@ typedef struct {
 	string	screenshot_dir;
 	string	font_dir;
 	string  keyframe_dir;
+	string  trans_dir;
 	string  configfile;
 	int 	x_resolution;
 	int 	y_resolution;
