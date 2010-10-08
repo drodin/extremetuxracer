@@ -65,6 +65,7 @@ public:
 	void DrawText   (float x, float y, const wchar_t *text);	// wide char*
 	void DrawString (float x, float y, const string &s);		// string class
 
+
 	void DrawText   (float x, float y, const char *text, const string &fontname, float size);
 	void DrawText   (float x, float y, const wchar_t *text, const string &fontname, float size);
 	void DrawString (float x, float y, const string &s, const string &fontname, float size);
