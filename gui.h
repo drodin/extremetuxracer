@@ -29,11 +29,19 @@ GNU General Public License for more details.
 #define CENTER -1
 #define FIT -1
 
+typedef enum {
+	W_ARROW,
+	W_TEXTBUTTON,
+	W_ICONBUTTON,
+	W_CHECKBOX
+} TWidgetType;
+
 typedef struct {
 	TRect rect;
 	int focus;
 	int dir;
 	int arrnr;
+	TWidgetType type;
 } TMouseRect;
 
 typedef struct {

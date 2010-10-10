@@ -33,7 +33,7 @@ GNU General Public License for more details.
 #include "course.h"
 #include "event.h"
 #include "font.h"
-//#include "translation.h"
+#include "translation.h"
 
 TGameData g_game;
 
@@ -88,7 +88,7 @@ int main( int argc, char **argv ) {
     loading_register();
 
 
-//	Trans.getLanguages ();
+	Trans.getLanguages ();
 
 
 	// theses resources must be loaded before splashscreen starts

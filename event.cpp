@@ -96,7 +96,7 @@ void EventMotionFunc (int x, int y ){
  	int dir, foc;
 	if (Winsys.ModePending ()) return;
 	GetFocus (x, y, &foc, &dir); // necessary for drawing the cursor
-
+	if (foc >= 0) curr_focus = foc;
 	y = param.y_resolution - y;
     old_pos = cursor_pos;
     cursor_pos = MakeVector2 (x, y);

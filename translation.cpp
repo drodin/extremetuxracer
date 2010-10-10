@@ -33,6 +33,7 @@ bool CTranslation::getLanguages () {
 
 	for (int i=0; i<list.Count(); i++) {
 		line = list.Line (i);
+PrintString (line);
 	}
 
 	return true;

@@ -21,6 +21,7 @@ GNU General Public License for more details.
 #include "textures.h"
 #include "gui.h"
 #include "particles.h"
+#include "font.h"
 
 static int scope = 0;
 static TVector2 cursor_pos = {0, 0};
@@ -68,7 +69,6 @@ void GameSelectMotionFunc (int x, int y) {
 	if (Winsys.ModePending()) return;
 	GetFocus (x, y, &sc, &dir);
 	if (sc >= 0) scope = sc;
-	   
 	y = param.y_resolution - y;
     old_pos = cursor_pos;
     cursor_pos = MakeVector2 (x, y);
@@ -125,7 +125,9 @@ static void GameSelectLoop (double time_step) {
 	PrintTextButton (3, scope);
 	PrintTextButton (4, scope);
 	PrintTextButton (5, scope);
-	    
+
+//	FT.DrawText (100, hh-100, "Überfluß");
+
 	if (param.ice_cursor) DrawCursor ();
 	Reshape (ww, hh);
 	Winsys.SwapBuffers ();

@@ -19,7 +19,7 @@ GNU General Public License for more details.
 #include "font.h"
 #include "spx.h"
 
-#define USE_UMLAUTS true
+#define USE_UNICODE true
 
 // --------------------------------------------------------------------
 // First some common function used for textboxes and called by
@@ -287,7 +287,7 @@ void CFont::DrawText (float x, float y, const char *text) {
 		glRasterPos2i ((int)left, (int)y);
 	}
 
-	if (USE_UMLAUTS) fonts[curr_font]->Render (UnicodeStr (text));
+	if (USE_UNICODE) fonts[curr_font]->Render (UnicodeStr (text));
 		else fonts[curr_font]->Render (text);
 	glPopMatrix();
 }
@@ -341,7 +341,7 @@ void CFont::DrawText
 		glRasterPos2i ((int)left, (int)y);
 	}
 
-	if (USE_UMLAUTS) fonts[temp_font]->Render (UnicodeStr (text));
+	if (USE_UNICODE) fonts[temp_font]->Render (UnicodeStr (text));
 		else fonts[temp_font]->Render (text);
 	glPopMatrix();
 }
@@ -384,7 +384,7 @@ void CFont::GetTextSize (const char *text, float &x, float &y) {
 
 	float llx, lly, llz, urx, ury, urz;
 	fonts[curr_font]->FaceSize ((int)curr_size);
-	if (USE_UMLAUTS) fonts[curr_font]->BBox (UnicodeStr(text), llx, lly, llz, urx, ury, urz);
+	if (USE_UNICODE) fonts[curr_font]->BBox (UnicodeStr(text), llx, lly, llz, urx, ury, urz);
 		else fonts[curr_font]->BBox (text, llx, lly, llz, urx, ury, urz);
 	x = urx - llx;
 	y = ury - lly;
@@ -397,7 +397,7 @@ void CFont::GetTextSize (const char *text, float &x, float &y, const string &fon
 
 	float llx, lly, llz, urx, ury, urz;
 	fonts[temp_font]->FaceSize ((int)size);
-	if (USE_UMLAUTS) fonts[temp_font]->BBox (UnicodeStr(text), llx, lly, llz, urx, ury, urz);
+	if (USE_UNICODE) fonts[temp_font]->BBox (UnicodeStr(text), llx, lly, llz, urx, ury, urz);
 		else fonts[temp_font]->BBox (text, llx, lly, llz, urx, ury, urz);
 	x = urx - llx;
 	y = ury - lly;
@@ -409,7 +409,7 @@ float CFont::GetTextWidth (const char *text) {
 
 	float llx, lly, llz, urx, ury, urz;
 	fonts[curr_font]->FaceSize ((int)curr_size);
-	if (USE_UMLAUTS) fonts[curr_font]->BBox (UnicodeStr (text), llx, lly, llz, urx, ury, urz);
+	if (USE_UNICODE) fonts[curr_font]->BBox (UnicodeStr (text), llx, lly, llz, urx, ury, urz);
 		else fonts[curr_font]->BBox (text, llx, lly, llz, urx, ury, urz);
 	return urx - llx;
 }
@@ -431,7 +431,7 @@ float CFont::GetTextWidth (const char *text, const string &fontname, float size)
 
 	float llx, lly, llz, urx, ury, urz;
 	fonts[temp_font]->FaceSize ((int)size);
-	if (USE_UMLAUTS) fonts[temp_font]->BBox (UnicodeStr (text), llx, lly, llz, urx, ury, urz);
+	if (USE_UNICODE) fonts[temp_font]->BBox (UnicodeStr (text), llx, lly, llz, urx, ury, urz);
 		else fonts[temp_font]->BBox (text, llx, lly, llz, urx, ury, urz);
 	return urx - llx;
 }

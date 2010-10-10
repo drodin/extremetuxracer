@@ -29,6 +29,7 @@ static int numMouseRect = 0;
 static TArrow Arrows[MAX_ARROWS];
 static int numArrows = 0;
 static int selArrow = -1;
+static int selType = -1;
 static TTextButton TextButtons[MAX_TEXTBUTTONS];
 static int numTextButtons = 0;
 static TIconButton IconButtons[MAX_ICONBUTTONS];
@@ -50,7 +51,7 @@ void DrawCursor () {
 }
 
 void AddMouseRect (int left, int top, int width, int height,
-		int focus, int dir, int arrnr) {
+		int focus, int dir, int arrnr, TWidgetType type) {
 	TRect r;
 	
 	if (numMouseRect >= MAX_MOUSERECTS) return;
@@ -62,6 +63,7 @@ void AddMouseRect (int left, int top, int width, int height,
 	MouseArr[numMouseRect].focus = focus;
 	MouseArr[numMouseRect].dir = dir;
 	MouseArr[numMouseRect].arrnr = arrnr;
+	MouseArr[numMouseRect].type = type;
 	numMouseRect++;
 }
 
@@ -71,7 +73,7 @@ void AddArrow (int x, int y, int dir, int focus) {
 	Arrows[numArrows].y = y;
 	Arrows[numArrows].dir = dir;
 	Arrows[numArrows].focus = focus;
-	AddMouseRect (x, y, 32, 16, focus, dir, numArrows);
+	AddMouseRect (x, y, 32, 16, focus, dir, numArrows, W_ARROW);
 	numArrows++;
 }
 
@@ -115,12 +117,13 @@ void AddTextButton (const char *text, int x, int y, int focus, double ftsize) {
 
 	if (ftsize < 0) ftsize = AutoFtSize ();
 	TextButtons[numTextButtons].ftsize = ftsize;	
-	
 	FT.SetSize (ftsize);
 	double len = FT.GetTextWidth (text);
 	if (x == CENTER) x = (int)((param.x_resolution - len) / 2);
 	TextButtons[numTextButtons].x = x;
-	AddMouseRect (x, y, (int)len, 32, focus, 0, numTextButtons);
+	int offs = (int)(ftsize / 5);
+	AddMouseRect (x-20, y+offs, (int)len + 40, ftsize+offs, focus, 0, 
+		numTextButtons, W_TEXTBUTTON);
 	numTextButtons++;	
 }
 
@@ -141,7 +144,7 @@ void AddCheckbox (int x, int y, int focus, int width, const string tag) {
 	Checkboxes[numCheckboxes].focus = focus;
 	Checkboxes[numCheckboxes].width = width;
 	Checkboxes[numCheckboxes].tag = tag;
-	AddMouseRect (x+width-32, y, 32, 32, focus, 0, numCheckboxes);
+	AddMouseRect (x+width-32, y, 32, 32, focus, 0, numCheckboxes, W_CHECKBOX);
 	numCheckboxes++;
 }
 
@@ -163,7 +166,7 @@ void AddIconButton (int x, int y, int focus, GLuint texid, double size) {
 	IconButtons[numIconButtons].focus = focus;	
 	IconButtons[numIconButtons].texid = texid;	
 	IconButtons[numIconButtons].size = size;	
-	AddMouseRect (x, y, 32, 32, focus, 0, numIconButtons);
+	AddMouseRect (x, y, 32, 32, focus, 0, numIconButtons, W_ICONBUTTON);
 	numIconButtons++;
 }
 
@@ -264,7 +267,7 @@ void DrawArrow (int x, int y, int dir, bool active, int sel) {
 void PrintArrow (int nr, bool active) {
 	int sel = 0;
 	if (nr >= numArrows) return;
-	if ((nr == selArrow) && active) sel = 1;
+	if ((nr == selArrow) && (selType == W_ARROW) && active) sel = 1;
 	DrawArrow (Arrows[nr].x, Arrows[nr].y, Arrows[nr].dir, active, sel);		
 }
 
@@ -287,12 +290,14 @@ void GetFocus (int x, int y, int *focus, int *dir) {
 			*focus = MouseArr[i].focus;
 			*dir = MouseArr[i].dir;
 			selArrow = MouseArr[i].arrnr;
+			selType = MouseArr[i].type;
 			return;
 		}
 	}
 	*focus = -1;
 	*dir = -1;
 	selArrow = -1;
+	selType = -1;
 }
 
 void DrawFrameX (int x, int y, int w, int h, int line, 
