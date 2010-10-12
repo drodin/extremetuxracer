@@ -127,6 +127,10 @@ void AddTextButton (const char *text, int x, int y, int focus, double ftsize) {
 	numTextButtons++;	
 }
 
+void AddTextButton (const string text, int x, int y, int focus, double ftsize) {
+	AddTextButton (text.c_str(), x, y, focus, ftsize);
+}
+
 void PrintTextButton (int nr, int focus) {
 	TColor col = colWhite;
 	if (focus == TextButtons[nr].focus) col = colDYell;

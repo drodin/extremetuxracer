@@ -27,6 +27,7 @@ GNU General Public License for more details.
 #include "credits.h"
 #include "font.h"
 #include "game_ctrl.h"
+#include "translation.h"
 
 static TVector2 cursor_pos = {0, 0};
 static int pass = 0;
@@ -79,15 +80,19 @@ void SplashLoop (double timestep ){
 	FT.SetSize (AutoFtSize ());
 	int top = AutoYPos (350);
 	if (pass == 0) {
+		// this must be written in English:
 		FT.DrawText (CENTER, top, "loading resources");
 		FT.DrawText (CENTER, top + AutoDistance(), "please wait ...");
 	} else {
-		FT.DrawText (CENTER, top + AutoDistance(), "Press Any Key");
+		// this can already displayed in special languages:
+		FT.DrawString (CENTER, top + AutoDistance(), Trans.Text (0));
 	}
 
     Winsys.SwapBuffers();
 
 	if (pass == 0) {
+		Trans.LoadLanguages ();
+		Trans.LoadTranslations (param.language);
 		LoadCreditList ();
 		LoadTux2 ();		
 		Course.LoadObjectTypes (); 

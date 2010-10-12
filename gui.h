@@ -82,6 +82,7 @@ void ResetWidgets ();
 void AddArrow (int x, int y, int dir, int focus);
 void PrintArrow (int nr, bool active);
 void AddTextButton (const char *text, int x, int y, int focus, double ftsize);
+void AddTextButton (const string text, int x, int y, int focus, double ftsize);
 void PrintTextButton (int nr, int focus);
 void AddIconButton (int x, int y, int focus, GLuint texid, double size);
 void PrintIconButton (int nr, int focus, int state);

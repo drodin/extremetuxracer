@@ -22,8 +22,10 @@ GNU General Public License for more details.
 #include "gui.h"
 #include "textures.h"
 #include "font.h"
+#include "translation.h"
 
 TParam param;
+
 
 void LoadConfigFile () {
 	CSPList list(4);
@@ -182,11 +184,11 @@ void InitConfig (char *arg0) {
 // ********************************************************************
 
 #define NUM_RES 3
-#define NUM_LANG 1
+//#define NUM_LANG 1
 
 static TVector2 cursor_pos = {0, 0};
 static string resolution[NUM_RES];
-static string languages[NUM_LANG];
+//static string languages[NUM_LANG];
 static int xleft, ytop;
 
 static bool curr_fullscreen = false;
@@ -198,6 +200,8 @@ static int  curr_detail_level = 5;
 static int  curr_language = 0;
 static bool screenchanged = false;
 static bool paramchanged = false;
+static TLang *LangList;
+static int lastLang = 0;
 
 void SetConfig () {
 	if (paramchanged) {	
@@ -210,8 +214,11 @@ void SetConfig () {
 		Music.SetVolume (param.music_volume);
 		param.sound_volume = curr_sound_vol;
 		param.perf_level = curr_detail_level;
-		param.language = curr_language;
 		Winsys.SetFonttype ();
+		if (param.language != curr_language) {
+			param.language = curr_language;
+			Trans.LoadTranslations (curr_language);
+		}
 		SaveConfigFile ();
 	}
 	Winsys.SetMode (g_game.prev_mode);
@@ -255,7 +262,7 @@ void ChangeDetail (int val) {
 void ChangeLanguage (int val) {
 	curr_language += val;
 	if (curr_language < 0) curr_language = 0;
-	if (curr_language > 0) curr_language = 0;
+	if (curr_language > lastLang) curr_language = lastLang;
 	paramchanged = true; 
 }
 
@@ -355,13 +362,15 @@ void GameConfigInit (void) {
 	Winsys.KeyRepeat (true);
 	init_ui_snow (); 
 
+	LangList = Trans.languages;
+	lastLang = Trans.numLanguages - 1;
+
 	SDL_Surface *surf = 0;
 	surf = SDL_GetVideoSurface ();
 
  	resolution[0] = "auto";
 	resolution[1] = "800 x 600";
 	resolution[2] = "1024 x 768";
-	languages[0] = "English";
 
 	xleft = (param.x_resolution - 400) / 2;
 	ytop = AutoYPos (150);
@@ -376,8 +385,9 @@ void GameConfigInit (void) {
 	curr_sound_vol = param.sound_volume;
 	curr_detail_level = param.perf_level;
 	curr_language = param.language;
+	if (curr_language > lastLang) curr_language = lastLang;
 
-	AddCheckbox (xleft, ytop, 0, 400, "Fullscreen");
+	AddCheckbox (xleft, ytop, 0, 400, Trans.Text(31));
 	AddArrow (xleft + 400 - 32, ytop+36, 0, 1);
 	AddArrow (xleft + 400 - 32, ytop+36+18, 1, 1);
 	AddArrow (xleft + 400 - 32, ytop+72, 0, 2);
@@ -388,8 +398,8 @@ void GameConfigInit (void) {
 	AddArrow (xleft + 400 - 32, ytop+144+18, 1, 4);
 	AddArrow (xleft + 400 - 32, ytop+180, 0, 5);
 	AddArrow (xleft + 400 - 32, ytop+180+18, 1, 5);	
-	AddTextButton ("Cancel", xleft+70, ytop+320, 6, -1);
-	AddTextButton ("Ok!", xleft+300, ytop+320, 7, -1);
+	AddTextButton (Trans.Text(28), xleft+70, ytop+320, 6, -1);
+	AddTextButton (Trans.Text(15), xleft+300, ytop+320, 7, -1);
 
 	curr_focus = 0;
  	Music.Play ("options1", -1);
@@ -422,15 +432,15 @@ void GameConfigLoop (double time_step) {
 	PrintCheckbox (0, curr_focus, curr_fullscreen);
 
 	if (curr_focus == 1) FT.SetColor (colDYell); else FT.SetColor (colWhite);
-	FT.DrawString (xleft, ytop + 36, "Resolution:");
+	FT.DrawString (xleft, ytop + 36, Trans.Text(32));
 	if (curr_focus == 2) FT.SetColor (colDYell); else FT.SetColor (colWhite);
-	FT.DrawString (xleft, ytop + 72, "Music volume:");
+	FT.DrawString (xleft, ytop + 72, Trans.Text(33));
 	if (curr_focus == 3) FT.SetColor (colDYell); else FT.SetColor (colWhite);
-	FT.DrawString (xleft, ytop + 108, "Sound volume:");
+	FT.DrawString (xleft, ytop + 108, Trans.Text(34));
 	if (curr_focus == 4) FT.SetColor (colDYell); else FT.SetColor (colWhite);
-	FT.DrawString (xleft, ytop + 144, "Level of detail:");
+	FT.DrawString (xleft, ytop + 144, Trans.Text(36));
 	if (curr_focus == 5) FT.SetColor (colDYell); else FT.SetColor (colWhite);
-	FT.DrawString (xleft, ytop + 180, "Language:");
+	FT.DrawString (xleft, ytop + 180, Trans.Text(35));
 
 	if (param.use_papercut_font > 0) FT.SetSize (20); else FT.SetSize (14);
 	FT.SetColor (colWhite);
@@ -438,8 +448,7 @@ void GameConfigLoop (double time_step) {
 	FT.DrawString (xleft+240, ytop + 76, Int_StrN (curr_mus_vol));
 	FT.DrawString (xleft+240, ytop + 112, Int_StrN (curr_sound_vol));
 	FT.DrawString (xleft+240, ytop + 148, Int_StrN (curr_detail_level));
-	FT.DrawString (xleft+240, ytop + 184, languages[curr_language]);
-
+	FT.DrawString (xleft+240, ytop + 184, LangList[curr_language].language);
 
 	PrintArrow (0, (curr_res > 0));	
 	PrintArrow (1, (curr_res < (NUM_RES-1)));
@@ -450,15 +459,15 @@ void GameConfigLoop (double time_step) {
 	PrintArrow (6, (curr_detail_level > 1));	
 	PrintArrow (7, (curr_detail_level < 3));
 	PrintArrow (8, (curr_language > 0));	
-	PrintArrow (9, (curr_language < (NUM_LANG-1)));
+ 	PrintArrow (9, (curr_language < lastLang));
 	
 	PrintTextButton (0, curr_focus);
 	PrintTextButton (1, curr_focus);
 
 	FT.SetColor (colWhite);
 	if (param.use_papercut_font > 0) FT.SetSize (20); else FT.SetSize (14);
-	FT.DrawString (xleft, ytop+240, "For more configuration options, please edit the");
- 	FT.DrawString (xleft, ytop+262, "file 'options.lst' and read the documentation.");
+	FT.DrawString (xleft, ytop+240, Trans.Text(41));
+ 	FT.DrawString (xleft, ytop+262, Trans.Text(42));
 
 	if (param.ice_cursor) DrawCursor ();
 	Reshape (ww, hh);

@@ -24,6 +24,7 @@ GNU General Public License for more details.
 #include "course.h"
 #include "textures.h"
 #include "game_ctrl.h"
+#include "translation.h"
 
 static TEvent2 *EventList;
 static int last_event;
@@ -131,8 +132,8 @@ void EventSelectInit () {
 	AddArrow (xleft + 470, ytop+18, 1, 0);
 	AddArrow (xleft + 470, ytop2, 0, 1);
 	AddArrow (xleft + 470, ytop2+18, 1, 1);
-	AddTextButton ("Continue", xleft + 300, ytop + 200, 2, -1);
-	AddTextButton ("Back", xleft + 100, ytop + 200, 3, -1);
+	AddTextButton (Trans.Text (9), xleft + 300, ytop + 200, 2, -1);
+	AddTextButton (Trans.Text (8), xleft + 100, ytop + 200, 3, -1);
 
 	Events.MakeUnlockList (Players.GetCurrUnlocked());
 	Music.Play ("start_screen", -1);
@@ -162,11 +163,11 @@ void EventSelectLoop (double timestep) {
 
 	if (param.use_papercut_font > 0) FT.SetSize (20); else FT.SetSize (15);
 	FT.SetColor (colWhite);
-	FT.DrawString (xleft, ytop-40, "Select An Event");
-	FT.DrawString (xleft, ytop2-40, "Select A Cup");
+	FT.DrawString (xleft, ytop-40, Trans.Text (6));
+	FT.DrawString (xleft, ytop2-40, Trans.Text (7));
 	if (Events.IsUnlocked (curr_event, curr_cup) == false) {
 		FT.SetColor (colLGrey);
-		FT.DrawString (CENTER, ytop2+60, "You can't play this cup yet");
+		FT.DrawString (CENTER, ytop2+60, Trans.Text (10));
 	}
 
 	if (param.use_papercut_font > 0) FT.SetSize (28); else FT.SetSize (22);

@@ -24,6 +24,7 @@ GNU General Public License for more details.
 #include "course.h"
 #include "env.h"
 #include "keyframe.h"
+#include "translation.h"
 
 // ====================================================================
 void LoadingInit (void) {
@@ -35,8 +36,8 @@ void LoadingLoop (double time_step) {
  	TCourse *CourseList = Course.CourseList;
 	int ww = param.x_resolution;
     int hh = param.y_resolution;
-	string msg = "Loading ";	
-	msg += CourseList[g_game.course_id].name;
+	string msg = Trans.Text(29);	
+	msg += " " + CourseList[g_game.course_id].name;
 
 	check_gl_error ();
     set_gl_options (GUI );
@@ -57,7 +58,7 @@ void LoadingLoop (double time_step) {
 	FT.SetColor (colDYell);
 	FT.DrawString (-1, 240, msg);		
 	FT.SetColor (colWhite);
-	FT.DrawText (-1, 320, "please wait ...");		
+	FT.DrawString (-1, 320, Trans.Text (30));		
 	Winsys.SwapBuffers ();
 
 	SDL_Delay (100);

@@ -26,6 +26,7 @@ GNU General Public License for more details.
 #include "spx.h"
 #include "font.h"
 #include "game_ctrl.h"
+#include "translation.h"
 
 // ready: 0 - racing  1 - ready with success  2 - ready with failure
 static int ready = 0; 						// indicates if last race is done
@@ -144,9 +145,9 @@ void EventInit () {
 		else InitCupRacing ();
 
 	ResetWidgets ();
-	AddTextButton ("Race", xleft + 300, ytop + ecup->num_races * 35 + 160, 0, -1);
-	AddTextButton ("Back", xleft + 100, ytop + ecup->num_races * 35 + 160, 1, -1);
-	AddTextButton ("OK", CENTER, ytop + ecup->num_races * 35 + 160, 2, -1);
+	AddTextButton (Trans.Text(13), xleft + 300, ytop + ecup->num_races * 35 + 160, 0, -1);
+	AddTextButton (Trans.Text(8), xleft + 100, ytop + ecup->num_races * 35 + 160, 1, -1);
+	AddTextButton (Trans.Text(15), CENTER, ytop + ecup->num_races * 35 + 160, 2, -1);
 	Music.Play ("start_screen", -1);
 	if (ready < 1) curr_focus = 0; else curr_focus = 2;
 }
@@ -201,32 +202,32 @@ void EventLoop (double timestep) {
 		}			
 
 		FT.SetColor (colWhite);
-		info = "Herrings:";
+		info = Trans.Text(11);
 		info += "   " + Int_StrN (eraces[curr_race]->herrings.i);
 		info += "   " + Int_StrN (eraces[curr_race]->herrings.j);
 		info += "   " + Int_StrN (eraces[curr_race]->herrings.k);
 		FT.DrawString (xleft+30, ytop2 + ecup->num_races * 35 + 25, info);
 
-		info = "Time:";
+		info = Trans.Text(12);
 		info += "   " + Float_StrN (eraces[curr_race]->time.x, 0);
 		info += "   " + Float_StrN (eraces[curr_race]->time.y, 0);
 		info += "   " + Float_StrN (eraces[curr_race]->time.z, 0);
-		info += "  seconds";
+		info += "  " + Trans.Text(14);
 		FT.DrawString (xleft+280, ytop2 + ecup->num_races * 35 + 25, info);
 
 	} else if (ready == 1) {		// cup successfully finished
 		FT.SetColor (colWhite);
-		FT.DrawString (CENTER, ytop-20, "Congratulations! You have won this cup");
+		FT.DrawString (CENTER, ytop-20, Trans.Text(16));
 		DrawBonusExt (ytop+60, ecup->num_races, curr_bonus);
 		int res = resultlevel(curr_bonus, ecup->num_races);
 		if (param.use_papercut_font > 0) FT.SetSize (28); else FT.SetSize (20);
-		FT.DrawString (CENTER, ytop + 120, "You have reached Level  "+Int_StrN (res));
+		FT.DrawString (CENTER, ytop + 120, Trans.Text(17) + "  "+Int_StrN (res));
 	} else if (ready == 2) {		// cup finished but failed
 		FT.SetColor (colRed);
-		FT.DrawText (CENTER, ytop-20, "Sorry, you didn't advance !");
+		FT.DrawString (CENTER, ytop-20, Trans.Text(18));
 		DrawBonusExt (ytop+60, ecup->num_races, curr_bonus);
 		if (param.use_papercut_font > 0) FT.SetSize (28); else FT.SetSize (20);
-		FT.DrawString (CENTER, ytop + 120, "There is no tuxlife left");
+		FT.DrawString (CENTER, ytop + 120, Trans.Text(19));
 	}
 	if (ready < 1) {
 		PrintTextButton (0, curr_focus);

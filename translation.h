@@ -14,31 +14,58 @@ but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 ---------------------------------------------------------------------*/
+/* --------------------------------------------------------------------
+An name convention: 
+"lang" means the short identifier, e.g. "en_GB"
+"language" means the language name, e.g. "English"
+---------------------------------------------------------------------*/
 
 #ifndef TRANSLATION_H
 #define TRANSLATION_H
 
 #include "bh.h"
 
-typedef struct{
-	string language; 
-	string name;
-} TLanguage;
+#define MAX_LANGUAGES 32
+#define MAX_COMMON_TEXTS 128
+
+
+typedef struct {
+	string lang;
+	string language;
+} TLang;
 
 class CTranslation {
 private:	
-	/// the map for storing the translation strings
-	map < string, string > m_translations;	
-	list < TLanguage > m_languages;	
+//	map < string, string > m_translations;	// not used
+//	list < TLang > m_languages;	 // not used
+	string texts[MAX_COMMON_TEXTS];
+	string LangIndex;
+	bool languages_ok;
 public:
+	TLang languages[MAX_LANGUAGES];
+	int numLanguages;
+
 	CTranslation ();
-	
+
+	void LoadLanguages ();
+	int GetLangIdx (string lang);
+	string GetLanguage (int idx);
+	string GetLanguage (string lang);
+	void SetDefaultTranslations ();
+	string Text (int idx);
+	void LoadTranslations (int langidx);
+
+//	const char* getTranslation (const char *string);
+//	void setTranslation (const char *language, const char *name);
+
+
+
+/*	
 	void Lload (const char *language);
-	const char* getTranslation (const char *string);
-	void setTranslation (const char *language, const char *name);
 	void addLanguage (const char *language, const char *name);
 	bool getLanguages ();
 	list < TLanguage > LanguageList () {return m_languages;}
+*/
 };
 
 extern CTranslation Trans;

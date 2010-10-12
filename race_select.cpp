@@ -24,6 +24,7 @@ GNU General Public License for more details.
 #include "course.h"
 #include "gui.h"
 #include "font.h"
+#include "translation.h"
 
 static int curr_focus = 0;
 static int curr_light = 0;
@@ -167,8 +168,8 @@ void RaceSelectInit (void) {
 	AddIconButton (xleft + buttoffs + 210, ytop + 55, 5, Tex.TexID (RANDOM_BUTT), 32); 
 	AddIconButton (xleft + buttoffs + 260, ytop + 55, 6, Tex.TexID (CHAR_BUTT), 32); 
 
-	AddTextButton ("Race!", xleft + 300, ytop + 280, 7, -1);
-	AddTextButton ("Back", xleft + 100, ytop + 280, 8, -1);
+	AddTextButton (Trans.Text(13), xleft + 300, ytop + 280, 7, -1);
+	AddTextButton (Trans.Text(8), xleft + 100, ytop + 280, 8, -1);
 	curr_focus = 0;
 }
 

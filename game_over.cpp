@@ -30,6 +30,7 @@ GNU General Public License for more details.
 #include "font.h"
 #include "spx.h"
 #include "game_ctrl.h"
+#include "translation.h"
 
 static TVector2 cursor_pos = {0, 0 };
 
@@ -115,25 +116,28 @@ void GameOverMessage () {
 
 			switch (g_game.race_result) {
 				case -1: 
-					FT.DrawText (CENTER, hh-90+8, "Failed - you didn't advance");
+					FT.DrawString (CENTER, hh-90+8, Trans.Text(21));
 					break;
 				case 0: 
-					FT.DrawText (CENTER, hh-90+4, "Success: +/-0 Tuxlifes");
-					FT.DrawString (CENTER, hh-90+36, "Score:  " + Int_StrN (g_game.score) + " points");
+					FT.DrawString (CENTER, hh-90+4, Trans.Text(22));
+					FT.DrawString (CENTER, hh-90+36,  Trans.Text(26) + 
+						"  " + Int_StrN (g_game.score) + " " + Trans.Text(27));
 					break;
 				case 1: 
-					FT.DrawText (CENTER, hh-90+4, "Sucess: +1 Tuxlife");
-					FT.DrawString (CENTER, hh-90+36, "Score:  " + Int_StrN (g_game.score) + " points");
+					FT.DrawString (CENTER, hh-90+4, Trans.Text(23));
+					FT.DrawString (CENTER, hh-90+36, Trans.Text(26) +
+						+ "  " + Int_StrN (g_game.score) +" " + Trans.Text(27));
 					break;
 				case 2: 
-					FT.DrawText (CENTER, hh-90+4, "Sucess: +2 Tuxlifes");
-					FT.DrawString (CENTER, hh-90+36, "Score:  " + Int_StrN (g_game.score) + " points");
+					FT.DrawString (CENTER, hh-90+4,  Trans.Text(24));
+					FT.DrawString (CENTER, hh-90+36, Trans.Text (26) +
+						+ "  " + Int_StrN (g_game.score) + " " + Trans.Text(27));
 					break;
 			}
 		}
 	} else {
 		FT.SetColor (colDBlue);
-		FT.DrawText (CENTER, hh-90+18, "Race aborted");
+		FT.DrawString (CENTER, hh-90+18, Trans.Text(25));
 	}
 }
 

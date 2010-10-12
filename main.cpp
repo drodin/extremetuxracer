@@ -87,11 +87,7 @@ int main( int argc, char **argv ) {
     credits_register();
     loading_register();
 
-
-	Trans.getLanguages ();
-
-
-	// theses resources must be loaded before splashscreen starts
+	// theses resources must or should be loaded before splashscreen starts
  	Course.MakeStandardPolyhedrons ();
 	Tex.LoadTextureList ();
 	FT.LoadFontlist ();

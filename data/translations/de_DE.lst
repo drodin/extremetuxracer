@@ -1,0 +1,54 @@
+# Please, don't change the idx
+
+*[idx] 0 [engl] PRESS ANY KEY TO START [trans] Beliebige Taste drücken um fortzufahren
+*[idx] 1 [engl] Enter an event [trans] Veranstaltungen
+*[idx] 2 [engl] Practice [trans] Training
+*[idx] 3 [engl] Configuration [trans] Einstellungen
+*[idx] 4 [engl] Credits [trans] Mitwirkende
+*[idx] 5 [engl] Quit [trans] Beenden
+*[idx] 6 [engl] Select an event [trans] Veranstaltung wählen
+*[idx] 7 [engl] Select a cup [trans] Wettbewerb wählen
+*[idx] 8 [engl] Back [trans] Zurück
+*[idx] 9 [engl] Continue [trans] Weiter
+*[idx] 10 [engl] You cannot enter this cup yet 
+	[trans] Du kannst an diesem Wettbewerb noch nicht teilnehmen
+
+*[idx] 11 [engl] Herring: [trans] Heringe:
+*[idx] 12 [engl] Time: [trans] Zeit:
+*[idx] 13 [engl] Race! [trans] Start
+*[idx] 14 [engl] seconds [trans] Sekunden
+*[idx] 15 [engl] Ok [trans] Ok
+*[idx] 16 [engl] Congratulations! You won the cup! [trans] Gratulation! Du hast den Wettbewerb gewonnen!
+*[idx] 17 [engl] You have reached level [trans] Du hat es geschafft. Level:
+*[idx] 18 [engl] Sorry, you didn't advance [trans] Du hast es leider nicht geschafft
+*[idx] 19 [engl] You don't have any lives left [trans] Du hast kein Leben mehr übrig
+*[idx] 20 [engl] Select a race [trans] Rennen auswählen
+
+*[idx] 21 [engl] Failed, -1 Tuxlive [trans] Nicht geschafft, -1 Leben
+*[idx] 22 [engl] Success, +/- 0 Tuxlive [trans] Geschafft, +/- 0 Leben 
+*[idx] 23 [engl] Success, +1 Tuxlive [trans] Geschafft, + 1 Leben
+*[idx] 24 [engl] Success, +2 Tuxlive [trans] Geschafft, + 2 Leben
+*[idx] 25 [engl] Race aborted [trans] Rennen abgebrochen
+*[idx] 26 [engl] Score: [trans] Wertung:
+*[idx] 27 [engl] points [trans] Punkte
+
+*[idx] 28 [engl] Cancel [trans] Abbrechen
+*[idx] 29 [engl] Loading [trans] Laden
+*[idx] 30 [engl] Please wait... [trans] bitte warten...
+
+*[idx] 31 [engl] Fullscreen: [trans] Vollbild:
+*[idx] 32 [engl] Resolution: [trans] Auflösung:
+*[idx] 33 [engl] Music volume: [trans] Musiklautstäre:
+*[idx] 34 [engl] Sound volume: [trans] Geräuschlautstärke:
+*[idx] 35 [engl] Language: [trans] Sprache:
+*[idx] 36 [engl] Level of detail: [trans] Darstellung:
+*[idx] 37 [engl] Contributed by: [trans] Autor:
+*[idx] 38 [engl] Event: [trans] Veranstaltung:
+*[idx] 39 [engl] Cup: [trans] Wettbewerb:
+*[idx] 40 [engl] Race Over [trans] Rennen vorbei
+
+*[idx] 41 [engl] For more configuration options, please edit the 
+	[trans] Für weitere Einstellungen bearbeite bitte die
+*[idx] 42 [engl] file 'options.lst' and read the documentation. 
+	[trans] Datei 'options.lst' und lies die Dokumentation
+

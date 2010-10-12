@@ -22,6 +22,7 @@ GNU General Public License for more details.
 #include "gui.h"
 #include "particles.h"
 #include "font.h"
+#include "translation.h"
 
 static int scope = 0;
 static TVector2 cursor_pos = {0, 0};
@@ -83,16 +84,16 @@ void GameSelectMotionFunc (int x, int y) {
 static void GameSelectInit (void) {
 	Winsys.ShowCursor (!param.ice_cursor);    
 	init_ui_snow (); 
-	scope = 1;
+	scope = 0;
 	
 	ResetWidgets ();
 	double top = (double)(param.y_resolution * 0.4);
 	double dist = AutoDistance ();
-	AddTextButton ("Enter an event", CENTER, top, 0, FIT);
-	AddTextButton ("Practice", CENTER, top + dist, 1, FIT);
-	AddTextButton ("Configuration", CENTER, top + dist * 2, 2, FIT);
-	AddTextButton ("Credits", CENTER, top + dist * 3, 3, FIT);
-	AddTextButton ("Quit", CENTER, top + dist * 4, 4, FIT);
+	AddTextButton (Trans.Text(1), CENTER, top, 0, FIT);
+	AddTextButton (Trans.Text(2), CENTER, top + dist, 1, FIT);
+	AddTextButton (Trans.Text(3), CENTER, top + dist * 2, 2, FIT);
+	AddTextButton (Trans.Text(4), CENTER, top + dist * 3, 3, FIT);
+	AddTextButton (Trans.Text(5), CENTER, top + dist * 4, 4, FIT);
 	Music.Play ("start1", -1);
 }
 
@@ -126,7 +127,7 @@ static void GameSelectLoop (double time_step) {
 	PrintTextButton (4, scope);
 	PrintTextButton (5, scope);
 
-//	FT.DrawText (100, hh-100, "Überfluß");
+//	FT.DrawString (100, hh-100, Trans.GetLanguage ("ru_RU"));
 
 	if (param.ice_cursor) DrawCursor ();
 	Reshape (ww, hh);
