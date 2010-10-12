@@ -1,17 +1,20 @@
+Extreme Tux Racer - End User Documentation
+by Reinhard Niehoff, edited by Kristian Picon
+
 -------------------------------------------
 Important keys
 -------------------------------------------
 
-1, 2, 3 - different view modes (standard is 2)
+1, 2, 3 - different camera modes (standard is 2)
 
-f - hide or show fps display as part of the huds
+f - hide or show fps display as part of the hud (heads-up display)
 s - screenshot (in folder "screenshots")
-h - hide or show hud display
+h - hide or show hud
 u - toggle snowflakes on menu screens
 
 There are some special functions which might be relevant for newcomers 
-who are interested in the compoments of the scenery. You can hide 
-or display (toggle) the following elements:
+who are interested in the compoments of the scenery. You can toggle 
+the following elements:
 
 F5 - skybox
 F6 - fog
@@ -32,17 +35,17 @@ The configuration screen
 The most important adjustments can be done at runtime at the 
 config screen. Most options should be self-explanatory. 
 "Auto" for resolution means that the program uses the same values 
-as set in the basic computer configuration. Perhaps that's not the 
-best since it ignores the menu bar or the task bar on the screen.
+as set in the basic computer configuration. That's not convenient
+in windowed mode since it ignores the menu/task bar on the screen.
 
 There are 3 levels of detail:
 
 1 - for very slow computers (no trackmarks, particles etc.)
 2 - most details are shown but on an lower level
-3 - best appearance, actual computers should have no troubles with this value
+3 - best appearance, today's computers should have no problems with this
 
 The adjustments are entered and stored in the file "options". 
-Editing this file is possible but not necessary.
+Editing this file is possible, but not necessary.
 
 # 0 = framed window | 1 = fullscreen
 [fullscreen] 1
@@ -61,11 +64,11 @@ Editing this file is possible but not necessary.
 The options file
 -------------------------------------
 
-The following adjusments must be done by editing the options file, 
+The following adjustments must be done by editing the options file, 
 they don't appear on the config screen. The file is not commented
 yet, that will be done in a future version.
 
-# Index to a language list, not implemented yet
+# Index to a language list
 [language] 0
 
 # the distances where the course clipping begins
@@ -97,5 +100,5 @@ yet, that will be done in a future version.
 # Normally the sky is drawn with 6 textures (a cube). In the Tuxracer scene
 # are only 3 textures visible (left, front, right). So it's faster to draw
 # only the visible textures. In addition, it spares resources. 
-# If set to 1, all 6 textures will be drawn (they have to exist !).
+# If set to 1, all 6 textures will be drawn (they have to exist!).
 [full_skybox] 0
