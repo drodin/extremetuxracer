@@ -38,7 +38,8 @@ void QuitGameType (int sc) {
 		case 1: EnterPractice (); break;
 		case 2: Winsys.SetMode (GAME_CONFIG); break;
 		case 3: Winsys.SetMode (CREDITS); break;
-		case 4: Winsys.Quit (); break;
+		case 4: Winsys.SetMode (HELP); break;
+		case 5: Winsys.Quit (); break;
 	};
 }
 
@@ -56,7 +57,7 @@ void GameSelectKeys (unsigned int key, bool special, bool release, int x, int y)
 	switch (key) {
 		case SDLK_u: param.ui_snow = !param.ui_snow; break;	
 		case 27: Winsys.Quit (); break;
-		case 274: if (scope < 4) scope++; break;
+		case 274: if (scope < 5) scope++; break;
 		case 273: if (scope > 0) scope--; break;
 		case 13: QuitGameType (scope); break;
 		case SDLK_TAB: scope++; if (scope > 4) scope = 0; break;
@@ -93,7 +94,8 @@ static void GameSelectInit (void) {
 	AddTextButton (Trans.Text(2), CENTER, top + dist, 1, FIT);
 	AddTextButton (Trans.Text(3), CENTER, top + dist * 2, 2, FIT);
 	AddTextButton (Trans.Text(4), CENTER, top + dist * 3, 3, FIT);
-	AddTextButton (Trans.Text(5), CENTER, top + dist * 4, 4, FIT);
+	AddTextButton (Trans.Text(43), CENTER, top + dist * 4, 4, FIT);
+	AddTextButton (Trans.Text(5), CENTER, top + dist * 5, 5, FIT);
 	Music.Play ("start1", -1);
 }
 

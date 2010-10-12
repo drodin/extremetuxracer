@@ -51,4 +51,20 @@
 	[trans] Für weitere Einstellungen bearbeite bitte die
 *[idx] 42 [engl] file 'options.lst' and read the documentation. 
 	[trans] Datei 'options.lst' und lies die Dokumentation
+*[idx] 43 [engl] Help [trans] Hilfe
+*[idx] 44 [engl] 1, 2, 3 - change view mode [trans] 1, 2, 3 - Wechsel der Ansicht
+*[idx] 45 [engl] F - hide/show fps display [trans] F - Fps-Anzeige  
+*[idx] 46 [engl] H - hide/show hud display [trans] H - Hud-Anzeige
+*[idx] 47 [engl] S - screenshot [trans] S - Screenshot
+*[idx] 48 [engl] U - toggle ui snow [trans] U - Schnee auf Menübildschirmen
+*[idx] 49 [engl] P - set pause mode [trans] P - Pause-Modus
+*[idx] 50 [engl] T - trick [trans] T - Tricks
+*[idx] 51 [engl] ESC - abort Race [trans] ESC - Rennen abbrechen
+*[idx] 52 [engl] SPACE - jump [trans] Leertaste - Sprung
+*[idx] 53 [engl] CRSR Left - turn left [trans] CRSR links - nach links steuern
+*[idx] 54 [engl] CRSR Right - turn right [trans] CRSR rechts - nach rechts steuern
+*[idx] 55 [engl] CRSR Up - accelerate [trans] CRSR oben - beschleunigen
+*[idx] 56 [engl] CRSR down - brake [trans] CRSR unten - bremsen
+*[idx] 57 [engl] Keyboard functions [trans] Tastatur-Befehle
+
 

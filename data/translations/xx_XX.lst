@@ -1,4 +1,5 @@
 # Please, don't change the idx
+# but you may change the order of the entries
 
 *[idx] 0 [engl] PRESS ANY KEY TO START [trans]
 *[idx] 1 [engl] Enter an event [trans]
@@ -10,16 +11,14 @@
 *[idx] 7 [engl] Select a cup [trans]
 *[idx] 8 [engl] Back [trans]
 *[idx] 9 [engl] Continue [trans] 
-*[idx] 10 [engl] You cannot enter this cup yet 
-	[trans] 
+*[idx] 10 [engl] You cannot enter this cup yet [trans] 
 
 *[idx] 11 [engl] Herring: [trans]
 *[idx] 12 [engl] Time: [trans]
 *[idx] 13 [engl] Race! [trans]
 *[idx] 14 [engl] seconds [trans]
 *[idx] 15 [engl] Ok [trans]
-*[idx] 16 [engl] Congratulations! You won the cup! 
-	[trans] 
+*[idx] 16 [engl] Congratulations! You won the cup! [trans] 
 *[idx] 17 [engl] You have reached level [trans] 
 *[idx] 18 [engl] Sorry, you didn't advance [trans]
 *[idx] 19 [engl] You don't have any lives left [trans]
@@ -36,7 +35,6 @@
 *[idx] 28 [engl] Cancel [trans]
 *[idx] 29 [engl] Loading [trans]
 *[idx] 30 [engl] Please wait... [trans]
-
 *[idx] 31 [engl] Fullscreen: [trans]
 *[idx] 32 [engl] Resolution: [trans]
 *[idx] 33 [engl] Music volume: [trans]
@@ -48,8 +46,21 @@
 *[idx] 39 [engl] Cup: [trans]
 *[idx] 40 [engl] Race Over [trans]
 
-*[idx] 41 [engl] For more configuration options, please edit the 
-	[trans] 
-*[idx] 42 [engl] file 'options.lst' and read the documentation. 
-	[trans] 
+*[idx] 41 [engl] For more configuration options, please edit the [trans] 
+*[idx] 42 [engl] file 'options.lst' and read the documentation. [trans] 
 
+*[idx] 43 [engl] Help [trans]
+*[idx] 44 [engl] 1, 2, 3 - change view mode [trans]
+*[idx] 45 [engl] F - hide/show fps display [trans]
+*[idx] 46 [engl] H - hide/show hud display [trans]
+*[idx] 47 [engl] S - screenshot [trans]
+*[idx] 48 [engl] U - toggle ui snow [trans]
+*[idx] 49 [engl] P - set pause mode [trans]
+*[idx] 50 [engl] T - trick [trans]
+*[idx] 51 [engl] ESC - abort Race [trans]
+*[idx] 52 [engl] SPACE - jump [trans]
+*[idx] 53 [engl] CRSR Left - turn left [trans]
+*[idx] 54 [engl] CRSR Right - turn right [trans]
+*[idx] 55 [engl] CRSR Up - accelerate [trans]
+*[idx] 56 [engl] CRSR down - brake [trans]
+*[idx] 57 [engl] Keyboard Functions [trans]

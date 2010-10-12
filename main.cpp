@@ -34,6 +34,7 @@ GNU General Public License for more details.
 #include "event.h"
 #include "font.h"
 #include "translation.h"
+#include "help.h"
 
 TGameData g_game;
 
@@ -86,6 +87,7 @@ int main( int argc, char **argv ) {
     RaceSelectRegister();
     credits_register();
     loading_register();
+	RegisterKeyInfo ();
 
 	// theses resources must or should be loaded before splashscreen starts
  	Course.MakeStandardPolyhedrons ();

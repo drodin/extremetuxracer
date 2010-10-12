@@ -85,6 +85,14 @@ double AutoFtSize () {
 	}
 }
 
+double AutoFtSize (double basesize) {
+	if (param.use_papercut_font > 0) {
+		return ((double)param.x_resolution / 800 * basesize); 
+	} else {
+		return ((double)param.x_resolution / 800 * basesize * 0.75); 
+	}
+}
+
 int AutoXSize (int size) {
 	double sz = (double)param.x_resolution / 800 * size + 0.0001;
 	return (int)sz; 

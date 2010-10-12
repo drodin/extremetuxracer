@@ -53,3 +53,18 @@
 *[idx] 42 [engl] file 'options.lst' and read the documentation. 
 	[trans] file 'options.lst' and read the documentation. 
 
+*[idx] 43 [engl] Help [trans] Help
+*[idx] 44 [engl] 1, 2, 3 - change view mode [trans] 1, 2, 3 - change view mode
+*[idx] 45 [engl] F - hide/show fps display [trans] F - hide/show fps display
+*[idx] 46 [engl] H - hide/show hud display [trans] H - hide/show hud display
+*[idx] 47 [engl] S - screenshot [trans] S - screenshot
+*[idx] 48 [engl] U - toggle ui snow [trans]  U - toggle ui snow
+*[idx] 49 [engl] P - set pause mode [trans]  P - set pause mode
+*[idx] 50 [engl] T - trick [trans] T - trick
+*[idx] 51 [engl] ESC - abort Race [trans]  ESC - abort Race
+*[idx] 52 [engl] SPACE - jump [trans] SPACE - jump
+*[idx] 53 [engl] CRSR Left - turn left [trans] CRSR Left - turn left
+*[idx] 54 [engl] CRSR Left - turn left [trans] CRSR Left - turn left
+*[idx] 55 [engl] CRSR Up - accelerate [trans] CRSR Up - accelerate
+*[idx] 56 [engl] CRSR down - brake [trans] CRSR down - brake
+*[idx] 57 [engl] Keyboard Functions [trans]  Keyboard Functions

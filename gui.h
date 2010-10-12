@@ -97,6 +97,7 @@ void DrawBonusExt (int y, int numraces, int num);
 void DrawCursor ();
 
 double AutoFtSize ();
+double AutoFtSize (double basesize);
 int AutoXSize (int size);
 int AutoYSize (int size);
 int AutoXPos (int x);

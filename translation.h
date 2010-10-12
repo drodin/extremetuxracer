@@ -54,26 +54,9 @@ public:
 	void SetDefaultTranslations ();
 	string Text (int idx);
 	void LoadTranslations (int langidx);
-
-//	const char* getTranslation (const char *string);
-//	void setTranslation (const char *language, const char *name);
-
-
-
-/*	
-	void Lload (const char *language);
-	void addLanguage (const char *language, const char *name);
-	bool getLanguages ();
-	list < TLanguage > LanguageList () {return m_languages;}
-*/
 };
 
 extern CTranslation Trans;
-
-/// a gettext like macro that returns the translated string
-#define _(string) translation.getTranslation (string)
-
-//void register_translation_callbacks( Tcl_Interp *ip );
 
 
 #endif 
