@@ -121,6 +121,9 @@ void intro_loop (double time_step) {
 
 } 
 
+void IntroTerm () {
+}
+
 // -----------------------------------------------------------------------
 
 void IntroKeys (unsigned int key, bool special, bool release, int x, int y) {
@@ -131,7 +134,7 @@ void IntroKeys (unsigned int key, bool special, bool release, int x, int y) {
 
 
 void intro_register() {
-	Winsys.SetModeFuncs (INTRO, intro_init, intro_loop, NULL,
+	Winsys.SetModeFuncs (INTRO, intro_init, intro_loop, IntroTerm,
  		IntroKeys, NULL, NULL, NULL, NULL);
 }
 

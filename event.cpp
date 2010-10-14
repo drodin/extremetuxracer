@@ -148,7 +148,7 @@ void EventInit () {
 	AddTextButton (Trans.Text(13), xleft + 300, ytop + ecup->num_races * 35 + 160, 0, -1);
 	AddTextButton (Trans.Text(8), xleft + 100, ytop + ecup->num_races * 35 + 160, 1, -1);
 	AddTextButton (Trans.Text(15), CENTER, ytop + ecup->num_races * 35 + 160, 2, -1);
-	Music.Play ("start_screen", -1);
+	Music.Play ("start1", -1);
 	if (ready < 1) curr_focus = 0; else curr_focus = 2;
 }
 
@@ -168,6 +168,7 @@ void EventLoop (double timestep) {
 
 	check_gl_error();
 	set_gl_options (GUI );
+	Music.Update ();    
     ClearRenderContext ();
 	SetupGuiDisplay ();
 
@@ -238,7 +239,9 @@ void EventLoop (double timestep) {
     SDL_GL_SwapBuffers ();
 }
 
-void EventTerm () {}
+void EventTerm () {
+	Music.Halt ();
+}
 
 void event_register() {
 	Winsys.SetModeFuncs (EVENT, EventInit, EventLoop, EventTerm,

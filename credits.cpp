@@ -199,7 +199,9 @@ void CreditsLoop (double time_step) {
     Winsys.SwapBuffers();
 }
 
-void CreditsTerm () {}
+void CreditsTerm () {
+	Music.Halt ();
+}
 
 void credits_register() {
 	Winsys.SetModeFuncs (CREDITS, CreditsInit, CreditsLoop, CreditsTerm,

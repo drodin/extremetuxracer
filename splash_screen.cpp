@@ -106,7 +106,9 @@ void SplashLoop (double timestep ){
 	}
 } 
 
-void SplashTerm () {}
+void SplashTerm () {
+	Music.Halt ();
+}
 
 void splash_screen_register() {
 	Winsys.SetModeFuncs (SPLASH, SplashInit, SplashLoop, SplashTerm,

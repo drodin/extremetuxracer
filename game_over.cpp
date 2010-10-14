@@ -185,8 +185,13 @@ void GameOverLoop (double time_step) {
     Winsys.SwapBuffers ();
 } 
 
+void GameOverTerm () {
+	Music.Halt ();
+}
+
+
 void game_over_register() {
-	Winsys.SetModeFuncs (GAME_OVER, GameOverInit, GameOverLoop, NULL,
+	Winsys.SetModeFuncs (GAME_OVER, GameOverInit, GameOverLoop, GameOverTerm,
  		GameOverKeys, mouse_cb, GameOverMotionFunc, NULL, NULL);
 }
 

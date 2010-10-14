@@ -92,7 +92,9 @@ void HelpLoop (double timestep ){
 
 } 
 
-void HelpTerm () {}
+void HelpTerm () {
+	Music.Halt();
+}
 
 void RegisterKeyInfo () {
 	Winsys.SetModeFuncs (HELP, HelpInit, HelpLoop, HelpTerm,

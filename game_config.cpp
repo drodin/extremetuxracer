@@ -57,7 +57,8 @@ void LoadConfigFile () {
 		param.use_papercut_font = SPIntN (line, "use_papercut_font", true);
 		param.ice_cursor = SPIntN (line, "ice_cursor", true);
 		param.full_skybox = SPIntN (line, "full_skybox", false);
-
+		param.audio_freq = SPIntN (line, "audio_freq", 22050);
+		param.audio_buffer_size = SPIntN (line, "audio_buffer_size", 512);
 	}		
 }
 
@@ -77,6 +78,8 @@ void SetConfigDefaults () {
 	param.tux_sphere_divisions = 10;
 	param.tux_shadow_sphere_divisions = 3;
 	param.course_detail_level = 75;
+	param.audio_freq = 22050;
+	param.audio_buffer_size = 512;
 
 	param.use_papercut_font = 1;
 	param.ice_cursor = true;
@@ -115,6 +118,8 @@ void SaveConfigFile () {
 	AddIntItem (&liste, "use_papercut_font", param.use_papercut_font);
 	AddIntItem (&liste, "ice_cursor", param.ice_cursor);
 	AddIntItem (&liste, "full_skybox", param.full_skybox);
+	AddIntItem (&liste, "audio_freq", param.audio_freq);
+	AddIntItem (&liste, "audio_buffer_size", param.audio_buffer_size);
 	liste.Save (param.configfile);		
 }
 
@@ -475,6 +480,7 @@ void GameConfigLoop (double time_step) {
 }
 
 void GameConfigTerm (void) {
+	Music.Halt ();
 	Winsys.KeyRepeat (false);
 }
 

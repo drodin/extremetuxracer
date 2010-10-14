@@ -70,7 +70,9 @@ void LoadingLoop (double time_step) {
     Winsys.SetMode (INTRO);
 } 
 
-void LoadingTerm () {}
+void LoadingTerm () {
+	Music.Halt ();
+}
 
 void loading_register() {
 	Winsys.SetModeFuncs (LOADING, LoadingInit, LoadingLoop, LoadingTerm,

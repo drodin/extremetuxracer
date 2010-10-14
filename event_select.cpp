@@ -136,7 +136,7 @@ void EventSelectInit () {
 	AddTextButton (Trans.Text (8), xleft + 100, ytop + 200, 3, -1);
 
 	Events.MakeUnlockList (Players.GetCurrUnlocked());
-	Music.Play ("start_screen", -1);
+	Music.Play ("start1", -1);
 }
 
 void EventSelectLoop (double timestep) {
@@ -194,7 +194,9 @@ void EventSelectLoop (double timestep) {
     SDL_GL_SwapBuffers ();
 }
 
-void EventSelectTerm () {}
+void EventSelectTerm () {
+	Music.Halt ();
+}
 
 void event_select_register() {
 	Winsys.SetModeFuncs (EVENT_SELECT, EventSelectInit, EventSelectLoop, EventSelectTerm,

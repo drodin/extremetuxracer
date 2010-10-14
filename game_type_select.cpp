@@ -136,7 +136,9 @@ static void GameSelectLoop (double time_step) {
 	Winsys.SwapBuffers ();
 }
 
-static void GameSelectTerm (void) {}
+static void GameSelectTerm (void) {
+	Music.Halt ();
+}
 
 void game_type_select_register () {
 	Winsys.SetModeFuncs (GAME_TYPE_SELECT, GameSelectInit, GameSelectLoop, GameSelectTerm,

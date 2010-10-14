@@ -37,13 +37,11 @@ void CAudio::Open () {
 		return;
 	}
    	Uint16 format = AUDIO_S16SYS;	
-	int audio_freq = 22050;
-	int audio_buffer_size = 512;
     int channels = 2;				
-	if (Mix_OpenAudio (audio_freq, format, channels, audio_buffer_size) < 0)
+	if (Mix_OpenAudio (param.audio_freq, format, channels, param.audio_buffer_size) < 0)
 		Message ("Couldn't open SDL_mixer", Mix_GetError());
 	IsOpen = CheckOpen ();
-//	Mix_AllocateChannels (8);
+	Mix_AllocateChannels (8);
 }
 
 void CAudio::Close () {
