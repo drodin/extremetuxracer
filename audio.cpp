@@ -197,12 +197,19 @@ void CSound::HaltAll () {
 //				class CMusic
 // --------------------------------------------------------------------
 
+void Hook () {
+	Mix_HaltMusic();
+	PrintString ("halted");
+}
+
 CMusic::CMusic () {
 	for (int i=0; i<MAX_MUSICS; i++) musics[i] = 0;
 	MusicIndex = ""; 
 	numMusics = 0;
 	curr_musid = -1;
 	curr_volume = 10;
+	is_playing = false;
+//	Mix_HookMusicFinished (Hook);	
 }
 
 int CMusic::LoadPiece (const char *name, const char *filename) {
@@ -257,11 +264,11 @@ void CMusic::Update () {
 	Mix_VolumeMusic (curr_volume);
 }
 
-void CMusic::Play (int musid, int loop) {
-    if (!Audio.IsOpen) return;
-	if (musid < 0 || musid >= numMusics) return;
+bool CMusic::Play (int musid, int loop) {
+    if (!Audio.IsOpen) return false;
+	if (musid < 0 || musid >= numMusics) return false;
 	TMusic *music = musics[musid];
-	if (music->piece == NULL) return;
+	if (music->piece == NULL) return false;
 	if (musid != curr_musid) {
 		Halt ();
 		Mix_PlayMusic (music->piece, loop);
@@ -269,17 +276,18 @@ void CMusic::Play (int musid, int loop) {
 		loop_count = loop;
 	}
 	Mix_VolumeMusic (curr_volume);
+	return true;
 }
 
-void CMusic::Play (string name, int loop) {
-	Play (GetMusicIdx (name), loop);
+bool CMusic::Play (string name, int loop) {
+	return Play (GetMusicIdx (name), loop);
 }
 
-void CMusic::Play (int musid, int loop, int volume) {
-    if (!Audio.IsOpen) return;
-	if (musid < 0 || musid >= numMusics) return;
+bool CMusic::Play (int musid, int loop, int volume) {
+    if (!Audio.IsOpen) return false;
+	if (musid < 0 || musid >= numMusics) return false;
 	TMusic *music = musics[musid];
-	if (music->piece == NULL) return;
+	if (music->piece == NULL) return false;
 
 	int vol = MIN (MIX_MAX_VOLUME, MAX (0, volume));
 	if (musid != curr_musid) {
@@ -289,10 +297,15 @@ void CMusic::Play (int musid, int loop, int volume) {
 		curr_musid = musid;
 		loop_count = loop;
 	}
+	return true;
 }
 
-void CMusic::Play (string name, int loop, int volume) {
-	Play (GetMusicIdx (name), loop, volume);
+bool CMusic::Play (string name, int loop, int volume) {
+	return Play (GetMusicIdx (name), loop, volume);
+}
+
+void CMusic::Refresh (string name) {
+	Play (name, -1);	
 }
 
 void CMusic::Halt () {
@@ -300,6 +313,7 @@ void CMusic::Halt () {
 	loop_count = -1;
 	curr_musid = -1;
 }
+
 
 
 

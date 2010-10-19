@@ -59,6 +59,7 @@ void LoadConfigFile () {
 		param.full_skybox = SPIntN (line, "full_skybox", false);
 		param.audio_freq = SPIntN (line, "audio_freq", 22050);
 		param.audio_buffer_size = SPIntN (line, "audio_buffer_size", 512);
+		param.force_music_loop = SPIntN (line, "force_music_loop", 0);
 	}		
 }
 
@@ -80,6 +81,7 @@ void SetConfigDefaults () {
 	param.course_detail_level = 75;
 	param.audio_freq = 22050;
 	param.audio_buffer_size = 512;
+	param.force_music_loop = 0;
 
 	param.use_papercut_font = 1;
 	param.ice_cursor = true;
@@ -120,6 +122,7 @@ void SaveConfigFile () {
 	AddIntItem (&liste, "full_skybox", param.full_skybox);
 	AddIntItem (&liste, "audio_freq", param.audio_freq);
 	AddIntItem (&liste, "audio_buffer_size", param.audio_buffer_size);
+	AddIntItem (&liste, "force_music_loop", param.force_music_loop);
 	liste.Save (param.configfile);		
 }
 
@@ -407,7 +410,7 @@ void GameConfigInit (void) {
 	AddTextButton (Trans.Text(15), xleft+300, ytop+320, 7, -1);
 
 	curr_focus = 0;
- 	Music.Play ("options1", -1);
+ 	if (param.force_music_loop == false) Music.Play ("options", -1);
 }
 
 void GameConfigLoop (double time_step) {
@@ -418,6 +421,7 @@ void GameConfigLoop (double time_step) {
 			
 	check_gl_error();
 	Music.Update ();    
+ 	if (param.force_music_loop == true) Music.Play ("options", -1);
     set_gl_options (GUI);
     ClearRenderContext ();
     SetupGuiDisplay ();
@@ -480,7 +484,6 @@ void GameConfigLoop (double time_step) {
 }
 
 void GameConfigTerm (void) {
-	Music.Halt ();
 	Winsys.KeyRepeat (false);
 }
 

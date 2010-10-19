@@ -144,9 +144,12 @@ void GameOverMessage () {
 // =========================================================================
 void GameOverInit (void) {
 	Sound.HaltAll ();
-	Music.Halt ();
-	Music.Play ("wonrace1", 0);
 	CalcRaceResult ();
+	if (g_game.race_result >= 0) {
+		if (param.force_music_loop == false) Music.Play ("wonrace", -1);
+	} else {
+		if (param.force_music_loop == false) Music.Play ("lostrace", -1);
+	}
 }
 
 void GameOverLoop (double time_step) {
@@ -155,6 +158,13 @@ void GameOverLoop (double time_step) {
     width = param.x_resolution;
     height = param.y_resolution;
     check_gl_error();
+
+	Music.Update ();
+	if (g_game.race_result >= 0) {
+		if (param.force_music_loop == true) Music.Play ("wonrace", -1);
+	} else {
+		if (param.force_music_loop == true) Music.Play ("lostrace", -1);
+	}
 
 	ClearRenderContext ();
     Env.SetupFog ();
@@ -174,7 +184,6 @@ void GameOverLoop (double time_step) {
 	UpdateSnow (time_step, ctrl);
 	DrawSnow (ctrl);
 	
-    if (param.perf_level > 2) draw_particles (ctrl); 
 	DrawTux2 ();
 
     set_gl_options (GUI); 
@@ -186,7 +195,6 @@ void GameOverLoop (double time_step) {
 } 
 
 void GameOverTerm () {
-	Music.Halt ();
 }
 
 

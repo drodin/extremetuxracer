@@ -96,17 +96,16 @@ static void GameSelectInit (void) {
 	AddTextButton (Trans.Text(4), CENTER, top + dist * 3, 3, FIT);
 	AddTextButton (Trans.Text(43), CENTER, top + dist * 4, 4, FIT);
 	AddTextButton (Trans.Text(5), CENTER, top + dist * 5, 5, FIT);
-	Music.Play ("start1", -1);
+	if (param.force_music_loop == false) Music.Play ("menu", -1);
 }
 
 static void GameSelectLoop (double time_step) {
 	int ww = param.x_resolution;
 	int hh = param.y_resolution;
 
-	Music.Update ();    
-			
 	check_gl_error();
 	Music.Update ();    
+	if (param.force_music_loop == true) Music.Play ("menu", -1);
     set_gl_options (GUI);
     ClearRenderContext ();
     SetupGuiDisplay ();
@@ -129,15 +128,12 @@ static void GameSelectLoop (double time_step) {
 	PrintTextButton (4, scope);
 	PrintTextButton (5, scope);
 
-//	FT.DrawString (100, hh-100, Trans.GetLanguage ("ru_RU"));
-
 	if (param.ice_cursor) DrawCursor ();
 	Reshape (ww, hh);
 	Winsys.SwapBuffers ();
 }
 
 static void GameSelectTerm (void) {
-	Music.Halt ();
 }
 
 void game_type_select_register () {

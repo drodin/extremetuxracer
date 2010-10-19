@@ -97,6 +97,7 @@ private:
 public:
 	CMusic (); 
 	~CMusic () {}
+	bool is_playing;
 
 	int  LoadPiece (const char *name, const char *filename); 
 	void LoadMusicList ();
@@ -104,10 +105,11 @@ public:
 
 	void SetVolume (int volume);
 	void Update ();
-	void Play (int musid, int loop);
-	void Play (string name, int loop);
-	void Play (int musid, int loop, int volume);
-	void Play (string name, int loop, int volume);
+	bool Play (int musid, int loop);
+	bool Play (string name, int loop);
+	bool Play (int musid, int loop, int volume);
+	bool Play (string name, int loop, int volume);
+	void Refresh (string name);
 	void Halt ();
 };
 

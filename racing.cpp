@@ -169,7 +169,7 @@ void racing_init (void) {
     g_game.raceaborted = false;
 
 	SetSoundVolumes ();
-//	Music.Play ("race1", -1);
+	if (param.force_music_loop == false) Music.Play ("race", -1);
 	
 	g_game.fps = 0;
 	g_game.timesteps = 0;
@@ -286,6 +286,7 @@ void racing_loop (double time_step){
     ClearRenderContext ();
 	Env.SetupFog ();
 	Music.Update ();    
+	if (param.force_music_loop == true) Music.Play ("race", -1);
 
 	if (tricking) CalcTrickControls (ctrl, time_step, airborne);
 	CalcSteeringControls (ctrl, time_step);
@@ -323,7 +324,6 @@ void racing_loop (double time_step){
 // ---------------------------------- term ------------------
 static void racing_term() {
 	Sound.HaltAll ();
-	Music.Halt();
     break_track_marks ();
 }
 

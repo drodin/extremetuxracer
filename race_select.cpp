@@ -149,7 +149,7 @@ static void RaceSelectKeys
 
 void RaceSelectInit (void) {
 	Winsys.ShowCursor (!param.ice_cursor);    
-	Music.Play ("start1", -1);
+	if (param.force_music_loop == false) Music.Play ("menu", -1);
 	
 	CourseList = Course.CourseList;
 	lastCourse = Course.numCourses - 1;
@@ -184,6 +184,7 @@ void RaceSelectLoop (double timestep){
     ClearRenderContext ();
 	SetupGuiDisplay ();
 	Music.Update ();    
+	if (param.force_music_loop == true) Music.Play ("menu", -1);
 
 	if (param.ui_snow) {
 		update_ui_snow (timestep);
