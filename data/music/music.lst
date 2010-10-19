@@ -1,9 +1,9 @@
 *[name] credits [file] credits1-cp.ogg 
 *[name] options [file] options1-jt.ogg
-*[name] race [file] race1.it
+*[name] race [file] race1-jt.ogg
 #*[name] race [file] spunkyrace-ks.ogg
 *[name] menu [file] start1-jt.ogg
-*[name] wonrace [file] wonrace1.it 
+*[name] wonrace [file] wonrace1-jt.ogg 
 *[name] lostrace [file] lostrace-ks.ogg 
 
 
