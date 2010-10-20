@@ -96,7 +96,7 @@ static void GameSelectInit (void) {
 	AddTextButton (Trans.Text(4), CENTER, top + dist * 3, 3, FIT);
 	AddTextButton (Trans.Text(43), CENTER, top + dist * 4, 4, FIT);
 	AddTextButton (Trans.Text(5), CENTER, top + dist * 5, 5, FIT);
-	if (param.force_music_loop == false) Music.Play ("menu", -1);
+	Music.Play ("menu", -1);
 }
 
 static void GameSelectLoop (double time_step) {
@@ -105,7 +105,6 @@ static void GameSelectLoop (double time_step) {
 
 	check_gl_error();
 	Music.Update ();    
-	if (param.force_music_loop == true) Music.Play ("menu", -1);
     set_gl_options (GUI);
     ClearRenderContext ();
     SetupGuiDisplay ();

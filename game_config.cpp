@@ -59,7 +59,6 @@ void LoadConfigFile () {
 		param.full_skybox = SPIntN (line, "full_skybox", false);
 		param.audio_freq = SPIntN (line, "audio_freq", 22050);
 		param.audio_buffer_size = SPIntN (line, "audio_buffer_size", 512);
-		param.force_music_loop = SPIntN (line, "force_music_loop", 0);
 	}		
 }
 
@@ -81,48 +80,148 @@ void SetConfigDefaults () {
 	param.course_detail_level = 75;
 	param.audio_freq = 22050;
 	param.audio_buffer_size = 512;
-	param.force_music_loop = 0;
 
 	param.use_papercut_font = 1;
 	param.ice_cursor = true;
 	param.full_skybox = false;
 }
 
+
 void AddItem (CSPList *list, string tag, string content) {
-	string item = "[" +tag + "] " + content;
+	string item = "  [" +tag + "] " + content;
 	list->Add (item);
 }
 
 void AddIntItem (CSPList *list, string tag, int val) {
+	tag = tag;
 	string vs = Int_StrN (val);
 	AddItem (list, tag, vs);
 }
 
+void AddComment (CSPList &list, string comment)  {
+	string line;
+	line = "# " + comment;
+	list.Add (line);
+}
+
 void SaveConfigFile () {
-	CSPList liste(128);
+	CSPList liste (512);
 	
+	liste.Add ("# ------------------------------------------------------------------");
+	liste.Add ("#   The first group of params can be adjusted ");
+	liste.Add ("#   on the configuration screen, too");
+	liste.Add ("# ------------------------------------------------------------------");
+	liste.Add ("");
+
+	AddComment (liste, "Full-screen mode [0...1]");
 	AddIntItem (&liste, "fullscreen", param.fullscreen);
+	liste.Add ("");
+
+	AddComment (liste, "Screen resolution [0...2]");
+	AddComment (liste, "0 = auto (default resolution), 1 = 800x600, 2 = 1024x768");
 	AddIntItem (&liste, "res_type", param.res_type);
+	liste.Add ("");
+
+	AddComment (liste, "Level of details [1...3]");
+	AddComment (liste, "1 = best performance, 3 = best appearance");
 	AddIntItem (&liste, "detail_level", param.perf_level);
+	liste.Add ("");
+
+	AddComment (liste, "Language code [0...]");
+	AddComment (liste, "0 = English etc.");
 	AddIntItem (&liste, "language", param.language);
-    AddIntItem (&liste, "sound_volume", param.sound_volume);
+	liste.Add ("");
+
+	AddComment (liste, "Sound volume [0...120]");
+	AddComment (liste, "Sounds are the terrain effects or the pickup noise.");
+	AddIntItem (&liste, "sound_volume", param.sound_volume);
+	liste.Add ("");
+
+	AddComment (liste, "Volume of the background music [0...120]");
     AddIntItem (&liste, "music_volume", param.music_volume);
+	liste.Add ("");
 
+	liste.Add ("# ------------------------------------------------------------------");
+	liste.Add ("#   The second group of params must be adjusted in this file.");
+	liste.Add ("# ------------------------------------------------------------------");
+	liste.Add ("");
+
+	AddComment (liste, "Forward clipping distance");
+	AddComment (liste, "Controls how far ahead of the camera the course");
+	AddComment (liste, "is rendered. Larger values mean that more of the course is");
+	AddComment (liste, "rendered, resulting in slower performance. Decreasing this ");
+	AddComment (liste, "value is an effective way to improve framerates.");
 	AddIntItem (&liste, "forward_clip_distance", param.forward_clip_distance);
-	AddIntItem (&liste, "backward_clip_distance", param.backward_clip_distance);
-	AddIntItem (&liste, "fov", param.fov);
-	AddIntItem (&liste, "bpp_mode", param.bpp_mode);
-	AddIntItem (&liste, "tree_detail_distance", param.tree_detail_distance);
-	AddIntItem (&liste, "tux_sphere_divisions", param.tux_sphere_divisions);
-	AddIntItem (&liste, "tux_shadow_sphere_div", param.tux_shadow_sphere_divisions);
-	AddIntItem (&liste, "course_detail_level", param.course_detail_level);
+	liste.Add ("");
 
+	AddComment (liste, "Backward clipping distance");
+	AddComment (liste, "Some objects aren't yet clipped to the view frustum, ");
+	AddComment (liste, "so this value is used to control how far up the course these ");
+	AddComment (liste, "objects are drawn.");
+	AddIntItem (&liste, "backward_clip_distance", param.backward_clip_distance);
+	liste.Add ("");
+
+	AddComment (liste, "Field of View of the camera");
+	AddIntItem (&liste, "fov", param.fov);
+	liste.Add ("");
+
+	AddComment (liste, "Bpp mode - bits per pixel [0...2]");
+	AddComment (liste, "Controls the color depth of the OpenGL window");
+	AddComment (liste, "0 = use current bpp setting of operating system,");
+	AddComment (liste, "1 = 16 bpp, 2 = 32 bpp");
+	AddIntItem (&liste, "bpp_mode", param.bpp_mode);
+	liste.Add ("");
+
+	AddComment (liste, "Tree detail distance");
+	AddComment (liste, "Controls how far up the course the trees are drawn crosswise.");
+	AddIntItem (&liste, "tree_detail_distance", param.tree_detail_distance);
+	liste.Add ("");
+
+	AddComment (liste, "Tux sphere divisions");
+	AddComment (liste, "Controls how detailled the character is drawn");
+	AddIntItem (&liste, "tux_sphere_divisions", param.tux_sphere_divisions);
+	liste.Add ("");
+
+	AddComment (liste, "Tux shadow sphere divisions");
+	AddComment (liste, "The same but for the shadow of the character");
+	AddIntItem (&liste, "tux_shadow_sphere_div", param.tux_shadow_sphere_divisions);
+	liste.Add ("");
+
+	AddComment (liste, "Detail level of the course");
+	AddComment (liste, "This param is used for the quadtree and controls the");
+	AddComment (liste, "LOD of the algorithm. ");	
+	AddIntItem (&liste, "course_detail_level", param.course_detail_level);
+	liste.Add ("");
+
+	AddComment (liste, "Font type [0...2]");
+	AddComment (liste, "0 = always arial-like font,");
+	AddComment (liste, "1 = papercut font on the menu screens");
+	AddComment (liste, "2 = papercut font for the hud display, too");
 	AddIntItem (&liste, "use_papercut_font", param.use_papercut_font);
+	liste.Add ("");
+
+	AddComment (liste, "Cursor type [0...1]");
+	AddComment (liste, "0 = normal cursor (arrow), 1 = icicle");
 	AddIntItem (&liste, "ice_cursor", param.ice_cursor);
+	liste.Add ("");
+
+	AddComment (liste, "Draw full skybox [0...1]");
+	AddComment (liste, "A normal skybox consists of 6 textures. In Tuxracer");
+	AddComment (liste, "3 textures are invisible (top, bottom and back).");	
+	AddComment (liste, "These textures needn't be drawn.");	
 	AddIntItem (&liste, "full_skybox", param.full_skybox);
+	liste.Add ("");
+
+	AddComment (liste, "Audio frequency");
+	AddComment (liste, "Typical values are 11025, 22050 ...");
 	AddIntItem (&liste, "audio_freq", param.audio_freq);
+	liste.Add ("");
+
+	AddComment (liste, "Size of audio buffer");
+	AddComment (liste, "Typical values are 512, 1024, 2048 ...");
 	AddIntItem (&liste, "audio_buffer_size", param.audio_buffer_size);
-	AddIntItem (&liste, "force_music_loop", param.force_music_loop);
+	liste.Add ("");
+
 	liste.Save (param.configfile);		
 }
 
@@ -313,16 +412,16 @@ void ChangeConfigSelection (int focus, int dir) {
 	if (dir == 0) {
 		switch (focus) {
 			case 1: ChangeRes (-1); break;
-			case 2: ChangeMusVol (-1); break;
-			case 3: ChangeSoundVol (-1); break;
+			case 2: ChangeMusVol (1); break;
+			case 3: ChangeSoundVol (1); break;
 			case 4: ChangeDetail (-1); break;
 			case 5: ChangeLanguage (-1); break;
 		}
 	} else {
 		switch (focus) {
 			case 1: ChangeRes (1); break;
-			case 2: ChangeMusVol (1); break;
-			case 3: ChangeSoundVol (1); break;
+			case 2: ChangeMusVol (-1); break;
+			case 3: ChangeSoundVol (-1); break;
 			case 4: ChangeDetail (1); break;
 			case 5: ChangeLanguage (1); break;
 		}
@@ -410,7 +509,7 @@ void GameConfigInit (void) {
 	AddTextButton (Trans.Text(15), xleft+300, ytop+320, 7, -1);
 
 	curr_focus = 0;
- 	if (param.force_music_loop == false) Music.Play ("options", -1);
+ 	Music.Play ("options", -1);
 }
 
 void GameConfigLoop (double time_step) {
@@ -421,7 +520,6 @@ void GameConfigLoop (double time_step) {
 			
 	check_gl_error();
 	Music.Update ();    
- 	if (param.force_music_loop == true) Music.Play ("options", -1);
     set_gl_options (GUI);
     ClearRenderContext ();
     SetupGuiDisplay ();
@@ -461,10 +559,10 @@ void GameConfigLoop (double time_step) {
 
 	PrintArrow (0, (curr_res > 0));	
 	PrintArrow (1, (curr_res < (NUM_RES-1)));
-	PrintArrow (2, (curr_mus_vol > 0));	
-	PrintArrow (3, (curr_mus_vol < 120));
-	PrintArrow (4, (curr_sound_vol > 0));	
-	PrintArrow (5, (curr_sound_vol < 120));
+	PrintArrow (2, (curr_mus_vol < 120));
+	PrintArrow (3, (curr_mus_vol > 0));	
+	PrintArrow (4, (curr_sound_vol < 120));
+	PrintArrow (5, (curr_sound_vol > 0));	
 	PrintArrow (6, (curr_detail_level > 1));	
 	PrintArrow (7, (curr_detail_level < 3));
 	PrintArrow (8, (curr_language > 0));	

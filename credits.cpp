@@ -165,7 +165,7 @@ void CreditsMotionFunc (int x, int y ){
 }
 
 void CreditsInit () {
-    if (param.force_music_loop == false) Music.Play ("credits", -1);
+    Music.Play ("credits", -1);
 	y_offset = 0;
 	moving = true;
 	bgcol = colBackgr;
@@ -176,7 +176,6 @@ void CreditsLoop (double time_step) {
 	int hh = param.y_resolution;
 	
 	Music.Update ();    
-    if (param.force_music_loop == true) Music.Play ("credits", -1);
 	check_gl_error();
     ClearRenderContext ();
     set_gl_options (GUI);

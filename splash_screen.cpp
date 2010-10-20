@@ -54,7 +54,7 @@ void SplashMotionFunc (int x, int y ){
 void SplashInit (void) {  
 	Winsys.ShowCursor (false);
 	init_ui_snow (); 
-	if (param.force_music_loop == false) Music.Play ("menu", -1);
+	Music.Play ("menu", -1);
 	pass = 0;
 }
 
@@ -62,7 +62,6 @@ void SplashLoop (double timestep ){
 	int ww = param.x_resolution;
 	int hh = param.y_resolution;
 	Music.Update ();    
-	if (param.force_music_loop == true) Music.Play ("menu", -1);
 	check_gl_error();
     ClearRenderContext ();
     set_gl_options (GUI);

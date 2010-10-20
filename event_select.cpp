@@ -136,7 +136,7 @@ void EventSelectInit () {
 	AddTextButton (Trans.Text (8), xleft + 100, ytop + 200, 3, -1);
 
 	Events.MakeUnlockList (Players.GetCurrUnlocked());
-	if (param.force_music_loop == false) Music.Play ("menu", -1);
+	Music.Play ("menu", -1);
 }
 
 void EventSelectLoop (double timestep) {
@@ -147,7 +147,6 @@ void EventSelectLoop (double timestep) {
 	check_gl_error();
    	set_gl_options (GUI );
 	Music.Update ();    
-	if (param.force_music_loop == true) Music.Play ("menu", -1);
     ClearRenderContext ();
 	SetupGuiDisplay ();
 

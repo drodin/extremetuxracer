@@ -76,7 +76,6 @@ typedef struct {
     bool	display_fps;
 	bool	show_hud;
     int		view_mode;
-	bool	force_music_loop;
 } TParam;
 
 void InitConfig (char *arg0);

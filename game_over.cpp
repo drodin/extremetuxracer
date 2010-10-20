@@ -146,9 +146,9 @@ void GameOverInit (void) {
 	Sound.HaltAll ();
 	CalcRaceResult ();
 	if (g_game.race_result >= 0) {
-		if (param.force_music_loop == false) Music.Play ("wonrace", -1);
+		Music.Play ("wonrace", -1);
 	} else {
-		if (param.force_music_loop == false) Music.Play ("lostrace", -1);
+		Music.Play ("lostrace", -1);
 	}
 }
 
@@ -160,11 +160,6 @@ void GameOverLoop (double time_step) {
     check_gl_error();
 
 	Music.Update ();
-	if (g_game.race_result >= 0) {
-		if (param.force_music_loop == true) Music.Play ("wonrace", -1);
-	} else {
-		if (param.force_music_loop == true) Music.Play ("lostrace", -1);
-	}
 
 	ClearRenderContext ();
     Env.SetupFog ();

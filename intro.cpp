@@ -78,7 +78,7 @@ void intro_init(void) {
 	InitSnow (ctrl);
 	InitWind ();
 		
-	if (param.force_music_loop == false) Music.Play ("race", -1);
+	Music.Play ("race", -1);
     param.show_hud = true;	
 }
 
@@ -101,7 +101,6 @@ void intro_loop (double time_step) {
     SetupViewFrustum (ctrl);
 
 	Music.Update ();    
-	if (param.force_music_loop == true) Music.Play ("race", -1);
     Env.DrawSkybox (ctrl->viewpos);
 
 	Env.DrawFog ();
