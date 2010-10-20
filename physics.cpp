@@ -189,7 +189,6 @@ void CControl::CheckItemCollection (TVector3 pos) {
 			(pos.y - 0.6 <= loc.y && pos.y + 0.6 >= loc.y + height)) {
 			items[i].collectable = 0;
 			g_game.herring += 1;
-			Sound.HaltAll ();
 			Sound.Play ("pickup1", 0);
 			Sound.Play ("pickup2", 0);
 			Sound.Play ("pickup3", 0);

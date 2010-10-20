@@ -1,5 +1,5 @@
 *[name] tree_hit [file] tree_hit.wav [vol] 1.0
-*[name] snow_sound [file] snow_slide.wav [vol] 1.0
+*[name] snow_sound [file] snow_slide.wav [vol] 0.2
 *[name] rock_sound [file] rock_slide.wav [vol] 1.0
 *[name] ice_sound [file] ice_slide.wav [vol] 0.6
 *[name] grass_sound [file] grass_slide.wav [vol] 0.6
