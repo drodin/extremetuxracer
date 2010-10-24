@@ -18,6 +18,7 @@ GNU General Public License for more details.
 #include "spx.h"
 #include "course.h"
 #include "env.h"
+#include "audio.h"
 
 CEvents Events;
 
@@ -58,6 +59,7 @@ bool CEvents::LoadEventList () {
 				RaceList[numRaces].wind = SPIntN (line, "wind", 0);
 				RaceList[numRaces].time = SPVector3N (line, "time", MakeVector (0, 0, 0));
 				RaceList[numRaces].herrings = SPIndex3N (line, "herring", MakeIndex3 (0, 0, 0));
+				RaceList[numRaces].music_theme = Music.GetThemeIdx (SPStrN (line, "theme", "normal"));
 				numRaces++;
 			}
 		}

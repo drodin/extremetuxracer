@@ -62,7 +62,8 @@ void SetRaceConditions (void) {
 		g_game.wind_id = curr_wind;
 	}
 	g_game.course_id = curr_course;
-	g_game.GameType = PRACTICING;
+	g_game.theme_id = CourseList[curr_course].music_theme;
+	g_game.game_type = PRACTICING;
 	Winsys.SetMode (LOADING); 
 }
 
@@ -149,7 +150,7 @@ static void RaceSelectKeys
 
 void RaceSelectInit (void) {
 	Winsys.ShowCursor (!param.ice_cursor);    
-	Music.Play ("menu", -1);
+	Music.Play (param.menu_music, -1);
 	
 	CourseList = Course.CourseList;
 	lastCourse = Course.numCourses - 1;

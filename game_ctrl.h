@@ -33,6 +33,7 @@ typedef struct {
 	int wind;
 	TIndex3 herrings;
 	TVector3 time;
+	int music_theme;
 } TRace2;
 
 typedef struct {

@@ -46,13 +46,14 @@ void StartRace () {
 	}
 	g_game.mirror_id = 0;
 	g_game.course_id = eraces[curr_race]->course;
+	g_game.theme_id = eraces[curr_race]->music_theme;
 	g_game.light_id = eraces[curr_race]->light;
 	g_game.snow_id = eraces[curr_race]->snow;
 	g_game.wind_id = eraces[curr_race]->wind;
 	g_game.herring_req = eraces[curr_race]->herrings;
 	g_game.time_req = eraces[curr_race]->time;
 	g_game.numraces = ecup->num_races;
-	g_game.GameType = CUPRACING;
+	g_game.game_type = CUPRACING;
 	Winsys.SetMode (LOADING); 
 }
 
@@ -148,7 +149,7 @@ void EventInit () {
 	AddTextButton (Trans.Text(13), xleft + 300, ytop + ecup->num_races * 35 + 160, 0, -1);
 	AddTextButton (Trans.Text(8), xleft + 100, ytop + ecup->num_races * 35 + 160, 1, -1);
 	AddTextButton (Trans.Text(15), CENTER, ytop + ecup->num_races * 35 + 160, 2, -1);
-	Music.Play ("menu", -1);
+	Music.Play (param.menu_music, -1);
 	if (ready < 1) curr_focus = 0; else curr_focus = 2;
 }
 

@@ -59,6 +59,10 @@ void LoadConfigFile () {
 		param.full_skybox = SPIntN (line, "full_skybox", false);
 		param.audio_freq = SPIntN (line, "audio_freq", 22050);
 		param.audio_buffer_size = SPIntN (line, "audio_buffer_size", 512);
+
+		param.menu_music = SPStrN (line, "menu_music", "start_1");
+		param.credits_music = SPStrN (line, "credits_music", "credits_1");
+		param.config_music = SPStrN (line, "config_music", "options_1");
 	}		
 }
 
@@ -84,6 +88,10 @@ void SetConfigDefaults () {
 	param.use_papercut_font = 1;
 	param.ice_cursor = true;
 	param.full_skybox = false;
+
+	param.menu_music = "start_1";
+	param.credits_music = "credits_1";
+	param.config_music = "options_1";
 }
 
 
@@ -222,6 +230,10 @@ void SaveConfigFile () {
 	AddIntItem (&liste, "audio_buffer_size", param.audio_buffer_size);
 	liste.Add ("");
 
+	AddComment (liste, "Select the music:");
+	AddItem (&liste, "menu_music", param.menu_music);
+	AddItem (&liste, "credits_music", param.credits_music);
+	AddItem (&liste, "config_music", param.config_music);
 	liste.Save (param.configfile);		
 }
 
@@ -509,7 +521,7 @@ void GameConfigInit (void) {
 	AddTextButton (Trans.Text(15), xleft+300, ytop+320, 7, -1);
 
 	curr_focus = 0;
- 	Music.Play ("options", -1);
+	Music.Play (param.config_music, -1);
 }
 
 void GameConfigLoop (double time_step) {

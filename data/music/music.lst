@@ -1,10 +1,18 @@
-*[name] credits [file] credits1-cp.ogg 
-*[name] options [file] options1-jt.ogg
-*[name] race [file] race1-jt.ogg
-#*[name] race [file] spunkyrace-ks.ogg
-*[name] menu [file] start1-jt.ogg
-*[name] wonrace [file] wonrace1-jt.ogg 
-*[name] lostrace [file] lostrace-ks.ogg 
+# This list contains all availabe music files.
+# The names must be unique. 
+# Don't change the existing names, since
+# other lists refer to this entries
+
+*[name] credits_1 [file] credits1-cp.ogg 
+*[name] calmrace [file] calmrace-ks.ogg
+*[name] freezingpoint [file] freezingpoint.ogg
+*[name] lostrace_1 [file] lostrace-ks.ogg
+*[name] options_1 [file] options1-jt.ogg
+*[name] race_1 [file] race1-jt.ogg
+*[name] raceintro [file] raceintro-ks.ogg
+*[name] spunkyrace [file] spunkyrace-ks.ogg
+*[name] start_1 [file] start1-jt.ogg
+*[name] wonrace_1 [file] wonrace1-jt.ogg 
 
 
 

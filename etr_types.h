@@ -161,7 +161,7 @@ typedef struct {
     double secs_since_start;  
 	double fps;
 	int timesteps;
-	TGameType GameType;
+	TGameType game_type;
 	bool force_treemap;
 	int treesize;
 	int treevar;
@@ -177,6 +177,7 @@ typedef struct {
 	int light_id;
 	int snow_id;
 	int wind_id;
+	int theme_id;
 
 	// requirements
 	TIndex3 herring_req;	// 3 levels of needed herrings

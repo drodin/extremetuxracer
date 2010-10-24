@@ -169,7 +169,7 @@ void racing_init (void) {
     g_game.raceaborted = false;
 
 	SetSoundVolumes ();
-	Music.Play ("race", -1);
+	Music.PlayTheme (g_game.theme_id, MUS_RACING);
 	
 	g_game.fps = 0;
 	g_game.timesteps = 0;

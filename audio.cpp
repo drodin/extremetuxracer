@@ -206,6 +206,13 @@ CMusic::CMusic () {
 	for (int i=0; i<MAX_MUSICS; i++) musics[i] = 0;
 	MusicIndex = ""; 
 	numMusics = 0;
+
+	for (int i=0; i<MAX_THEMES; i++) {
+		for (int j=0; j<3; j++) themes[i][j] = -1;
+	}
+	ThemesIndex = "";
+	numThemes = 0;
+
 	curr_musid = -1;
 	curr_volume = 10;
 	is_playing = false;
@@ -216,8 +223,10 @@ int CMusic::LoadPiece (const char *name, const char *filename) {
     if (!Audio.IsOpen) return -1;
 	if (numMusics >= MAX_MUSICS) return -1; 
 	Mix_Music *load = Mix_LoadMUS (filename);
-	if (load == 0) return -1;
-
+	if (load == 0) {
+		Message ("could not load", filename);
+		return -1;
+	}
 	musics[numMusics] = new TMusic;
 	musics[numMusics]->piece = load;
 
@@ -228,11 +237,12 @@ int CMusic::LoadPiece (const char *name, const char *filename) {
 
 void CMusic::LoadMusicList () {
 	if (!Audio.IsOpen) {
-		Message ("cannot load music, first open Audio");
+		Message ("cannot load music, first open audio");
 		return;
 	}
+	// --- music ---
 	CSPList list(200);
-	string name, musicfile, path, line;
+	string name, musicfile, path, line, item;
 	int musid;
 	if (list.Load (param.music_dir, "music.lst")) { 
 		for (int i=0; i<list.Count(); i++) {
@@ -242,12 +252,39 @@ void CMusic::LoadMusicList () {
 			path = MakePathStr (param.music_dir, musicfile);
 			musid = LoadPiece (name.c_str(), path.c_str());
 		}
+	} else {
+		Message ("could not load music.lst");
+		return;
 	}
+
+	// --- racing themes ---
+	list.Clear();
+	numThemes = 0;
+	ThemesIndex = "";
+	if (list.Load (param.music_dir, "racing_themes.lst")) { 
+		for (int i=0; i<list.Count(); i++) {
+			line = list.Line(i);
+			name = SPStrN (line, "name", "");
+			ThemesIndex = ThemesIndex + "[" + name + "]" + Int_StrN (numThemes);
+			item  = SPStrN (line, "race", "race_1");
+			themes [numThemes][0] = GetMusicIdx (item);
+			item  = SPStrN (line, "wonrace", "wonrace_1");
+			themes [numThemes][1] = GetMusicIdx (item);
+			item  = SPStrN (line, "lostrace", "lostrace_1");
+			themes [numThemes][2] = GetMusicIdx (item);
+ 			numThemes++;
+		}
+	} else Message ("could not load racing_themes.lst");
 }
 
 int CMusic::GetMusicIdx (string name) {
     if (Audio.IsOpen == false) return -1;
 	return SPIntN (MusicIndex, name, -1);
+}
+
+int CMusic::GetThemeIdx (string theme) {
+    if (Audio.IsOpen == false) return -1;
+	return SPIntN (ThemesIndex, theme, -1);
 }
 
 void CMusic::SetVolume (int volume) {
@@ -302,6 +339,13 @@ bool CMusic::Play (int musid, int loop, int volume) {
 
 bool CMusic::Play (string name, int loop, int volume) {
 	return Play (GetMusicIdx (name), loop, volume);
+}
+
+bool CMusic::PlayTheme (int theme, int situation)  {
+	if (theme < 0 || theme >= numThemes) return false; 
+	if (situation < 0 || situation >= 3) return false; 
+	int musid = themes [theme][situation];
+	return Play (musid, -1);
 }
 
 void CMusic::Refresh (string name) {

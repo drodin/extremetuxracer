@@ -45,7 +45,7 @@ void CalcScore (CControl *ctrl){
 }
 
 void QuitGameOver () {
-    if (g_game.GameType == PRACTICING) {
+    if (g_game.game_type == PRACTICING) {
 		Winsys.SetMode (RACE_SELECT);
 	} else {
 		Winsys.SetMode (EVENT);
@@ -101,16 +101,16 @@ void GameOverMessage () {
 	if (param.use_papercut_font > 0) FT.SetSize (28); else FT.SetSize (22);
 
 	if (!g_game.raceaborted) {
-		if (g_game.GameType == PRACTICING) {
+		if (g_game.game_type == PRACTICING) {
 			CalcScore (ctrl);
 			sprintf (buff, "%d", g_game.score);
 			strcpy (s, "Score:  ");
 			strcat (s, buff);
 			FT.SetColor (colDBlue);
 			FT.DrawText (CENTER, hh-90+18, s);
-		} else if (g_game.GameType == TRAINING) {
+		} else if (g_game.game_type == TRAINING) {
 
-		} else if (g_game.GameType == CUPRACING) {
+		} else if (g_game.game_type == CUPRACING) {
 			if (g_game.race_result < 0) FT.SetColor (colRed); 
 				else FT.SetColor (colDBlue);
 
@@ -145,10 +145,18 @@ void GameOverMessage () {
 void GameOverInit (void) {
 	Sound.HaltAll ();
 	CalcRaceResult ();
-	if (g_game.race_result >= 0) {
-		Music.Play ("wonrace", -1);
+	if (g_game.game_type == CUPRACING) {
+		if (g_game.race_result >= 0) {
+			Music.PlayTheme (g_game.theme_id, MUS_WONRACE);
+		} else {
+			Music.PlayTheme (g_game.theme_id, MUS_LOSTRACE);
+		}
 	} else {
-		Music.Play ("lostrace", -1);
+		if (g_game.raceaborted) {
+			Music.PlayTheme (g_game.theme_id, MUS_LOSTRACE);
+		} else {
+			Music.PlayTheme (g_game.theme_id, MUS_WONRACE);
+		}
 	}
 }
 

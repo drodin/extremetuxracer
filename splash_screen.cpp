@@ -54,7 +54,7 @@ void SplashMotionFunc (int x, int y ){
 void SplashInit (void) {  
 	Winsys.ShowCursor (false);
 	init_ui_snow (); 
-	Music.Play ("menu", -1);
+	Music.Play (param.menu_music, -1);
 	pass = 0;
 }
 

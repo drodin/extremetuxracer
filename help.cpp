@@ -49,7 +49,7 @@ void HelpMotionFunc (int x, int y ){
 void HelpInit (void) {  
 	Winsys.ShowCursor (false);
 	init_ui_snow (); 
-	Music.Play ("credits2", -1);
+	Music.Play (param.credits_music, -1);
 
 	xleft1 = 20; 
 	xleft2 = (int)(param.x_resolution / 2) + 20;

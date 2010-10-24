@@ -55,6 +55,7 @@ typedef struct {
 	double startx;
 	double starty;
 	int env;
+	int music_theme;
 } TCourse;					   
 
 typedef struct {
@@ -113,6 +114,7 @@ private:
 	TVector2	start_pt;
 	int			base_height_value;
 	int			env;
+	int			music_theme;
 
 	void 		ResetCourse ();
 	void 		FreeTerrainTextures ();

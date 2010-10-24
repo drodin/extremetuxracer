@@ -79,7 +79,12 @@ public:
 //				class CMusic
 // --------------------------------------------------------------------
 
+#define MUS_RACING 0
+#define MUS_WONRACE 1
+#define MUS_LOSTRACE 2
+
 #define MAX_MUSICS 32
+#define MAX_THEMES 16
 
 typedef struct {
     Mix_Music *piece;  
@@ -91,6 +96,11 @@ private:
 	TMusic *musics[MAX_MUSICS];
 	int numMusics;
 	string MusicIndex;		
+
+	int themes[MAX_THEMES][3];
+	int numThemes;
+	string ThemesIndex;
+
 	int loop_count;			// we need only 1 variable for all pieces
 	int curr_musid;			// ID of current music piece
 	int curr_volume;
@@ -102,6 +112,7 @@ public:
 	int  LoadPiece (const char *name, const char *filename); 
 	void LoadMusicList ();
 	int  GetMusicIdx (string name);
+	int  GetThemeIdx (string theme);
 
 	void SetVolume (int volume);
 	void Update ();
@@ -109,6 +120,7 @@ public:
 	bool Play (string name, int loop);
 	bool Play (int musid, int loop, int volume);
 	bool Play (string name, int loop, int volume);
+	bool PlayTheme (int theme, int situation);
 	void Refresh (string name);
 	void Halt ();
 };

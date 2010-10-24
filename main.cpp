@@ -48,6 +48,7 @@ void InitGame () {
 	g_game.snow_id = 0;
 	g_game.cup_id = 0;
 	g_game.race_id = 0;
+	g_game.theme_id = 0;
 	g_game.force_treemap = 0;
 	g_game.treesize = 3;
 	g_game.treevar = 3;

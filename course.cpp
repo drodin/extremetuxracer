@@ -827,7 +827,8 @@ bool CCourse::LoadCourseList () {
 			CourseList[i].scale = SPFloatN (line, "scale", 10);
 			CourseList[i].startx = SPFloatN (line, "startx", 50);
 			CourseList[i].starty = SPFloatN (line, "starty", 5);
-			CourseList[i].env = Env.GetEnvIdx (SPStrN (line, "env", "tuxracer"));
+			CourseList[i].env = Env.GetEnvIdx (SPStrN (line, "env", "etr"));
+			CourseList[i].music_theme = Music.GetThemeIdx (SPStrN (line, "theme", "normal"));
 			paramlist.Clear ();	// the list is used several times
 		}
 		numCourses = i + 1;
@@ -877,6 +878,8 @@ bool CCourse::LoadCourse (int idx) {
 	start_pt.y = -CourseList[idx].starty;
     base_height_value = 127; 
 	env = CourseList[idx].env;
+	music_theme = CourseList[idx].music_theme;
+
 	if (!LoadElevMap ()) {
 		Message ("could not load course elev map");
 		return false;
@@ -886,7 +889,7 @@ bool CCourse::LoadCourse (int idx) {
     FillGlArrays ();
 
 	if (!LoadTerrainMap ()) {
-		Message ("Could not load course terrain map");
+		Message ("could not load course terrain map");
 		return false;
 	}
 

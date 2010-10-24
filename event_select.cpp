@@ -37,7 +37,7 @@ static int last_cup;
 static TVector2 cursor_pos = {0, 0};
 
 void EnterEvent () {
-	g_game.GameType = CUPRACING;
+	g_game.game_type = CUPRACING;
 	g_game.cup_id = EventList[curr_event].cups[curr_cup];
 	g_game.race_id = 0;
 	Winsys.SetMode (EVENT);
@@ -136,7 +136,7 @@ void EventSelectInit () {
 	AddTextButton (Trans.Text (8), xleft + 100, ytop + 200, 3, -1);
 
 	Events.MakeUnlockList (Players.GetCurrUnlocked());
-	Music.Play ("menu", -1);
+	Music.Play (param.menu_music, -1);
 }
 
 void EventSelectLoop (double timestep) {

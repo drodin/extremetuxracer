@@ -488,7 +488,7 @@ void LoadTux2 () {
 
 	CreateRootNode ();
 
-	if (!list.Load (param.char_dir, "char01.lst")) {
+	if (!list.Load (param.char_dir, "tux.lst")) {
 		Message ("could not load character");
 		return;
 	}

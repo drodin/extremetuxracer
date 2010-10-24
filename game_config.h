@@ -70,6 +70,9 @@ typedef struct {
 	int		use_papercut_font;
 	bool	ice_cursor;
 	bool	full_skybox;
+	string  menu_music;
+	string  credits_music;
+	string  config_music;
 
 	// toggle params, not saved in options file
     bool	ui_snow;

@@ -78,7 +78,7 @@ void intro_init(void) {
 	InitSnow (ctrl);
 	InitWind ();
 		
-	Music.Play ("race", -1);
+	Music.PlayTheme (g_game.theme_id, MUS_RACING);
     param.show_hud = true;	
 }
 

@@ -165,7 +165,7 @@ void CreditsMotionFunc (int x, int y ){
 }
 
 void CreditsInit () {
-    Music.Play ("credits", -1);
+	Music.Play (param.credits_music, -1);
 	y_offset = 0;
 	moving = true;
 	bgcol = colBackgr;

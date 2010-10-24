@@ -1,0 +1,9 @@
+# The first entry is the default theme. In the case there is
+# a mistake or a file doesn't exist, the programm falls back
+# to the default. The music pieces are defined in music.list.
+# Dont't change the first entry, it's used as default.
+
+*[name] normal [race] race_1 [wonrace] wonrace_1 [lostrace] lostrace_1
+*[name] calm [race] calmrace [wonrace] wonrace_1 [lostrace] lostrace_1
+*[name] spunky [race] spunkyrace [wonrace] wonrace_1 [lostrace] lostrace_1
+

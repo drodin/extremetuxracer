@@ -28,7 +28,7 @@ static int scope = 0;
 static TVector2 cursor_pos = {0, 0};
 
 void EnterPractice () {
-	g_game.GameType = PRACTICING;	
+	g_game.game_type = PRACTICING;	
 	Winsys.SetMode (RACE_SELECT);
 }
 
@@ -96,7 +96,7 @@ static void GameSelectInit (void) {
 	AddTextButton (Trans.Text(4), CENTER, top + dist * 3, 3, FIT);
 	AddTextButton (Trans.Text(43), CENTER, top + dist * 4, 4, FIT);
 	AddTextButton (Trans.Text(5), CENTER, top + dist * 5, 5, FIT);
-	Music.Play ("menu", -1);
+	Music.Play (param.menu_music, -1);
 }
 
 static void GameSelectLoop (double time_step) {
