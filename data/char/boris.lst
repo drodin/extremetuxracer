@@ -14,9 +14,9 @@
 #    9 additionl y-rotation, use z component
 
 # material
-*[material] 1 [mat] whitecol [diff] 0.78 0.78 0.78 [spec] 0.2 0.2 0.2 [exp] 50.0
-*[material] 1 [mat] blackcol [diff] 0.1 0.1 0.1 [spec] 0.5 0.5 0.5 [exp] 20.0
-*[material] 1 [mat] beakcol [diff] 0.64 0.54 0.06 [spec] 0.4 0.4 0.4 [exp] 5.0
+*[material] 1 [mat] whitecol [diff] 0.48 0.48 0.48 [spec] 0.2 0.2 0.2 [exp] 50.0
+*[material] 1 [mat] blackcol [diff] 0.3 0.3 0.3 [spec] 0.5 0.5 0.5 [exp] 20.0
+*[material] 1 [mat] beakcol [diff] 0.84 0.34 0.06 [spec] 0.4 0.4 0.4 [exp] 5.0
 *[material] 1 [mat] iriscol [diff] 0.01 0.01 0.41 [spec] 0.4 0.4 0.4 [exp] 90.0
 
 # -----------------------------------------------------------------------------------

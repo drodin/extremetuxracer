@@ -116,7 +116,7 @@ bool CControl::CheckTreeCollisions (TVector3 pos, TVector3 *tree_loc, double *tr
         TransPolyhedron (mat, ph2);
         MakeTranslationMatrix (mat, loc.x, loc.y, loc.z);
         TransPolyhedron (mat, ph2);
-		hit = TuxCollision2 (pos, ph2); 
+		hit = Tux.Collision (pos, ph2); 
         FreePolyhedron (ph2);
 
         if  (hit == true) {
@@ -247,8 +247,8 @@ void CControl::SetTuxPosition (TVector3 new_pos){
 
     cpos = new_pos;
     double disp_y = new_pos.y + TUX_Y_CORR; 
-	ResetCharNode2 ("root");
-	TranslateCharNode2 ("root", MakeVector (new_pos.x, disp_y, new_pos.z));	
+	Tux.ResetNode (0);
+	Tux.TranslateNode (0, MakeVector (new_pos.x, disp_y, new_pos.z));	
 } 
 
 // --------------------------------------------------------------------
@@ -627,8 +627,9 @@ void CControl::UpdatePlayerPos (double timestep) {
     AdjustVelocity (&cvel, cpos, surf_plane, dist_from_surface);
     AdjustPosition (&cpos, surf_plane, dist_from_surface);
     speed = NormVector (&tmp_vel);
+
     SetTuxPosition (cpos);
-	AdjustOrientation2 (this, timestep, dist_from_surface, surf_nml);
+	Tux.AdjustOrientation (this, timestep, dist_from_surface, surf_nml);
 
     flap_factor = 0;
     if (is_paddling) {
@@ -651,7 +652,7 @@ void CControl::UpdatePlayerPos (double timestep) {
     if (jumping)
 		flap_factor = (g_game.time - jump_start_time) / JUMP_FORCE_DURATION;
 
-    AdjustTuxJoints2 (turn_animation, is_braking, paddling_factor, speed, 
+    Tux.AdjustJoints (turn_animation, is_braking, paddling_factor, speed, 
 			local_force, flap_factor);
 }
 

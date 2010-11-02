@@ -94,7 +94,7 @@ void SplashLoop (double timestep ){
 		Trans.LoadLanguages ();
 		Trans.LoadTranslations (param.language);
 		LoadCreditList ();
-		LoadTux2 ();		
+		Tux.Load ("tux.lst", false);		
 		Course.LoadObjectTypes (); 
 		Course.LoadTerrainTypes ();
 		Env.LoadEnvironmentList ();

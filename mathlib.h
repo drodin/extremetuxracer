@@ -126,5 +126,6 @@ double LinearInterp (const double x[], const double y[], double val, int n);
 double	XRandom (float min, float max);
 double	FRandom ();
 int		IRandom (int min, int max);
-
+int		ITrunc (int val, int base);
+int		IFrac (int val, int base);
 #endif

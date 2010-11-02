@@ -38,6 +38,7 @@ string   Int_StrN     (const int val);
 string   Int_StrN     (const int val, const int count);
 void     Float_StrN   (string &s, const float val, const int count);
 string   Float_StrN   (const float val, const int count);
+string   Vector_StrN  (const TVector3 v, const int count);
 int      Str_IntN     (const string &s, const int def);
 bool     Str_BoolN    (const string &s, const bool def);
 bool     Str_BoolNX   (const string &s, const bool def);
@@ -52,7 +53,7 @@ TColor   Str_ColorN   (const string &s, const TColor def);
 TColor3  Str_Color3N  (const string &s, const TColor3 def);
 void     Str_ArrN     (const string &s, float *arr, int count, float def);
 string   Bool_StrN    (const bool val);
-TIndex3  Str_Index3N (const string &s, const TIndex3 def);
+TIndex3  Str_Index3N  (const string &s, const TIndex3 def);
 
 // ----- SP functions for parsing lines --------------------------------
 bool     SPExistsN    (string &s, const string &tag);

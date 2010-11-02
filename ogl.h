@@ -54,6 +54,7 @@ void set_material (TColor diffuse_colour,
 
 void set_gl_options (TRenderMode mode);
 void ClearRenderContext ();
+void ClearRenderContext (TColor col);
 void SetupGuiDisplay ();
 void Reshape (int w, int h);
 

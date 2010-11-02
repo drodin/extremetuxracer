@@ -858,5 +858,12 @@ int IRandom (int min, int max) {
 	return (int)XRandom ((double)min, (double)max + 0.999999);
 }
 
+int ITrunc (int val, int base) {
+	return (int)(val / base);
+}
+
+int IFrac (int val, int base) {
+	return val - ITrunc (val, base) * base;
+}
 
 

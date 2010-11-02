@@ -111,6 +111,13 @@ string Float_StrN (const float val, const int count) {
 	return os.str();
 }
 
+string Vector_StrN (const TVector3 v, const int count) {
+	string res = Float_StrN (v.x, count);
+	res += " " + Float_StrN (v.y, count);
+	res += " " + Float_StrN (v.z, count);
+	return res;
+}
+
 int Str_IntN (const string &s, const int def) {
 	int val;
 	istringstream is(s);

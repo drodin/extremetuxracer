@@ -138,8 +138,17 @@ typedef enum {
     CREDITS,
 	GAME_CONFIG,
 	HELP,
+	TOOLS,
     NUM_GAME_MODES
 } TGameMode;
+
+typedef enum {
+	NONE,
+	TUXSHAPE,
+	KEYFRAME,
+	TREEGEN,
+	LEARN,
+} TToolMode;
 
 typedef enum {
 	PRACTICING,
@@ -157,6 +166,7 @@ typedef enum {
 typedef struct {	
     TGameMode mode;              
     TGameMode prev_mode;         
+	TToolMode toolmode;
 	double time_step;            
     double secs_since_start;  
 	double fps;
@@ -165,6 +175,7 @@ typedef struct {
 	bool force_treemap;
 	int treesize;
 	int treevar;
+	int argument;
 
 	// course and race params 
 	int cup_id;
@@ -188,7 +199,7 @@ typedef struct {
 	int score;				// reached score
 	int herring;			// catched herrings during the race
 	int race_result;		// tuxlifes, only for a single race, see game_ctrl
-    bool raceaborted;        
+    bool raceaborted;     
 } TGameData;
 
 #endif

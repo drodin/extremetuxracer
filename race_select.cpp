@@ -180,10 +180,10 @@ void RaceSelectLoop (double timestep){
 	TColor col;
 		
 	check_gl_error();
-
    	set_gl_options (GUI );
     ClearRenderContext ();
 	SetupGuiDisplay ();
+
 	Music.Update ();    
 
 	if (param.ui_snow) {

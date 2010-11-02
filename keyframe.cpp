@@ -41,8 +41,8 @@ double CKeyframe::interp (double frac, double v1, double v2) {
 } 
 
 void CKeyframe::Init (TVector3 ref_pos) {
-    ResetCharNode2 ("head");
-    ResetCharNode2 ("neck");
+    Tux.ResetNode ("head");
+    Tux.ResetNode ("neck");
 	refpos = ref_pos;
 	active = true;
 	keyidx = 0;
@@ -96,40 +96,40 @@ void CKeyframe::Load (string filename) {
 void CKeyframe::InterpolateKeyframe (int idx, double frac) {
 	double v;
     v = interp (frac, frames[idx].yaw, frames[idx+1].yaw);
-    RotateCharNode2 ("root", 2, v);
+    Tux.RotateNode ("root", 2, v);
 
     v = interp (frac, frames[idx].pitch, frames[idx+1].pitch);
-    RotateCharNode2 ("root", 1, v);
+    Tux.RotateNode ("root", 1, v);
 
     v = interp (frac, frames[idx].neck, frames[idx+1].neck);
-    RotateCharNode2 ("neck", 3, v);
+    Tux.RotateNode ("neck", 3, v);
 
     v = interp (frac, frames[idx].head, frames[idx+1].head);
-    RotateCharNode2 ("head", 2, v);
+    Tux.RotateNode ("head", 2, v);
 
     v = interp (frac, frames[idx].l_shldr, frames[idx+1].l_shldr);
-    RotateCharNode2 ("left_shoulder", 3, v);
+    Tux.RotateNode ("left_shldr", 3, v);
 
     v = interp (frac, frames[idx].r_shldr, frames[idx+1].r_shldr);
-    RotateCharNode2 ("right_shoulder", 3, v);
+    Tux.RotateNode ("right_shldr", 3, v);
 
     v = interp (frac, frames[idx].l_hip, frames[idx+1].l_hip);
-    RotateCharNode2 ("left_hip", 3, v);
+    Tux.RotateNode ("left_hip", 3, v);
 
     v = interp (frac, frames[idx].r_hip, frames[idx+1].r_hip);
-    RotateCharNode2 ("right_hip", 3, v);
+    Tux.RotateNode ("right_hip", 3, v);
 
     v = interp (frac, frames[idx].l_knee, frames[idx+1].l_knee);
-    RotateCharNode2 ("left_knee", 3, v);
+    Tux.RotateNode ("left_knee", 3, v);
 
     v = interp (frac, frames[idx].r_knee, frames[idx+1].r_knee);
-    RotateCharNode2 ("right_knee", 3, v);
+    Tux.RotateNode ("right_knee", 3, v);
 
     v = interp (frac, frames[idx].l_ankle, frames[idx+1].l_ankle);
-    RotateCharNode2 ("left_ankle", 3, v);
+    Tux.RotateNode ("left_ankle", 3, v);
 
     v = interp (frac, frames[idx].r_ankle, frames[idx+1].r_ankle);
-    RotateCharNode2 ("right_ankle", 3, v);
+    Tux.RotateNode ("right_ankle", 3, v);
 }
 
 void CKeyframe::Update (double timestep, CControl *ctrl) {
@@ -157,12 +157,13 @@ void CKeyframe::Update (double timestep, CControl *ctrl) {
     pos.y += Course.FindYCoord (pos.x, pos.z);
     Players.GetControl(0)->SetTuxPosition (pos);
 
-	ResetTuxRoot2 ();
-	ResetTuxJoints2 ();
+	Tux.ResetRoot ();
+	Tux.ResetJoints ();
 
     double disp_y = pos.y + TUX_Y_CORR; 
-    ResetCharNode2 ("root");
-    TranslateCharNode2 ("root", MakeVector (pos.x, disp_y, pos.z));
+    Tux.ResetNode (0);
+
+    Tux.TranslateNode (0, MakeVector (pos.x, disp_y, pos.z));
 	InterpolateKeyframe (keyidx, frac);
 }
 
@@ -189,8 +190,8 @@ void CKeyframe::TestUpdate (double timestep) {
     pos.z = interp (frac, frames[keyidx].pos.z, frames[keyidx+1].pos.z);
     pos.y = interp (frac, frames[keyidx].pos.y, frames[keyidx+1].pos.y);
 
-	ResetTuxRoot2 ();
-	ResetTuxJoints2 ();
+	Tux.ResetRoot ();
+	Tux.ResetJoints ();
 	InterpolateKeyframe (keyidx, frac);
 }
 

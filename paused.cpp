@@ -89,7 +89,7 @@ void paused_loop (double time_step) {
 	DrawSnow (ctrl);
 
     if (param.perf_level > 2) draw_particles (ctrl);
-	DrawTux2 ();
+	Tux.Draw ();
 
     set_gl_options (GUI);
 	SetupGuiDisplay ();

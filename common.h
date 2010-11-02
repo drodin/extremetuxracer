@@ -41,6 +41,7 @@ extern const TColor colLBlue;
 extern const TColor colDBlue;
 extern const TColor colBackgr;
 extern const TColor colDBackgr;
+extern const TColor colDDBackgr;
 extern const TColor colMBackgr;
 extern const TColor colLBackgr;
 extern const TColor colMess;

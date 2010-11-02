@@ -38,6 +38,7 @@ const TColor colLBackgr =	{0.5, 0.7, 0.9, 1.0};
 const TColor colBackgr =	{0.4, 0.6, 0.8, 1.0};
 const TColor colMBackgr =	{0.35, 0.5, 0.7, 1.0};
 const TColor colDBackgr =	{0.2, 0.3, 0.6, 1.0};
+const TColor colDDBackgr =	{0.13, 0.2, 0.4, 1.0};
 const TColor colMess =		{0.3, 0.3, 0.7, 1.0};
 const TColor colSky =		{0.82, 0.86, 0.88, 1.0};
 

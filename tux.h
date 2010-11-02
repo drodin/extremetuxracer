@@ -20,45 +20,143 @@ GNU General Public License for more details.
 
 #include "bh.h"
 
+#define MAX_ACTIONS 8
+#define	MAX_CHAR_NODES 128
+#define	MAX_CHAR_MAT 32
+
+#define USE_CHAR_DISPLAY_LIST true
+#define MIN_SPHERE_DIV 3
+#define MAX_SPHERE_DIV 16 
+
+
 typedef struct {
     TColor diffuse;
     TColor specular;
     float exp;
-} TTuxMaterial2;
+} TCharMaterial;
 
-typedef struct NodeStruct2 {
-    struct NodeStruct2 *parent;
-    struct NodeStruct2 *next;
-    struct NodeStruct2 *child;
-    char *name;
+typedef struct {
+	int num;
+	int type[MAX_ACTIONS];
+	TVector3 vec[MAX_ACTIONS];
+ 	double dval[MAX_ACTIONS];
+	string name;
+	string order;
+	string mat;
+} TAction;		
+
+typedef struct NodeStruct {
+    struct NodeStruct *parent;
+    struct NodeStruct *next;
+    struct NodeStruct *child;
+
+	int node_idx;		// number in node_array
+	int parent_name;	// int identifier of parent
+	int node_name;		// int identifier of node itself
+    string joint;
 	bool visible;
     TMatrix trans;
 	TMatrix invtrans;   
 	double radius;
 	int divisions;
-    TTuxMaterial2 *mat;
+    TCharMaterial *mat;
     bool render_shadow;
-} TCharNode2;
+} TCharNode;
 
-bool GetCharNode2 (const char *node_name, TCharNode2 **node);
-bool TranslateCharNode2 (const char *node_name, TVector3 vec);
-void ScaleCharNode2 (const char *node_name, TVector3 vec);
-bool RotateCharNode2 (const char *node_name, double axis, double angle);
-bool ResetCharNode2 (const char *node_name);
-bool TransformCharNode2 (const char *node_name, TMatrix mat, TMatrix invmat);
-void ResetTuxJoints2 ();
-void ResetTuxRoot2 ();
+/*
+node = pointer to a node struct
+node_name = the integer identifier, used in char.lst (0 ... numNodes)
+*/
 
-void AdjustOrientation2 (CControl *ctrl, double dtime, 
+class CChar {
+private:
+	TCharNode *Nodes[MAX_CHAR_NODES];
+	TAction *Actions[MAX_CHAR_NODES];
+	int Index[MAX_CHAR_NODES];
+	string NodeIndex;
+	int numNodes;
+	bool useActions;
+	bool newActions;
+	TCharMaterial *Materials [MAX_CHAR_MAT];
+	int numMaterials;
+	string MaterialIndex;
+	string file_name;
+	string Matlines[MAX_CHAR_MAT];
+	int numMatlines;
+
+	// nodes 
+	int GetNodeIdx (int node_name);
+	TCharNode *GetNode (int node_name);
+	bool GetNode (int node_name, TCharNode **node);
+	void CreateRootNode ();
+	bool CreateCharNode 
+		(int parent_name, int node_name, const string joint, 
+		string name, string order, bool shadow);
+	bool VisibleNode (int node_name, float level);
+	bool MaterialNode (int node_name, string mat_name);
+	bool TransformNode (int node_name, TMatrix mat, TMatrix invmat);
+
+	// material
+	bool GetMaterial (const char *mat_name, TCharMaterial **mat);
+	void CreateMaterial (const char *line);
+
+	// drawing 
+	void DrawCharSphere (int num_divisions);
+	GLuint GetDisplayList (int divisions);
+	void DrawNodes (TCharNode *node, TCharMaterial *mat);
+	TVector3 AdjustRollvector (CControl *ctrl, TVector3 vel, TVector3 zvec);
+
+	// collision
+	bool CheckPolyhedronCollision (TCharNode *node, TMatrix modelMatrix, 
+		TMatrix invModelMatrix, TPolyhedron ph);
+	bool CheckCollision (TPolyhedron ph);
+
+	// shadow
+	void DrawShadowVertex (double x, double y, double z, TMatrix mat);
+	void DrawShadowSphere (TMatrix mat);
+	void TraverseDagForShadow (TCharNode *node, TMatrix mat);
+
+	// testing and developing
+	void AddAction (int node_name, int type, TVector3 vec, double val);
+public:
+	CChar ();
+	~CChar ();
+	bool useMaterials;
+
+	// nodes 
+	bool ResetNode (int node_name);
+	bool ResetNode (string node_trivialname);
+	bool TranslateNode (int node_name, TVector3 vec);
+	bool RotateNode (int node_name, double axis, double angle);
+	bool RotateNode (string node_trivialname, double axis, double angle);
+	void ScaleNode (int node_name, TVector3 vec);
+	void ResetRoot ();
+	void ResetJoints ();
+
+	// global functions
+	void Draw ();
+	void DrawShadow ();
+	void Load (string filename, bool with_actions);
+
+	void AdjustOrientation (CControl *ctrl, double dtime,
 		double dist_from_surface, TVector3 surf_nml);
-void AdjustTuxJoints2 (double turnFact, bool isBraking, double paddling_factor, 
-		double speed, TVector3 net_force, double flap_factor);
+	void AdjustJoints (double turnFact, bool isBraking, 
+		double paddling_factor, double speed,
+		TVector3 net_force, double flap_factor);
+	bool Collision (TVector3 pos, TPolyhedron ph);
 
-void LoadTux2 ();	
-void DrawTux2 ();
-void DrawTuxShadow2 ();
+	// testing and tools
+	string GetNodeName (int idx);
+	int    GetNumNodes ();
+	string GetNodeFullname (int idx);
+	int    GetNumActs (int idx);
+	TAction *GetAction (int idx);
+	void   PrintAction (int idx);	
+	void   PrintNode (int idx);
+	void   RefreshNode (int idx);
+	void   SaveCharNodes ();
+};
 
-bool CheckCollision2 (const char *node_name, TPolyhedron ph);
-bool TuxCollision2 (TVector3 pos, TPolyhedron ph);
+extern CChar Tux;
 
 #endif

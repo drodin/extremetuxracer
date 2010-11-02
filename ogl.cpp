@@ -163,11 +163,18 @@ void set_material (TColor diffuse_colour, TColor specular_colour, double specula
 	     diffuse_colour.a);
 } 
 
-void ClearRenderContext (){
-    glDepthMask (GL_TRUE);
-     glClearColor (colBackgr.r, colBackgr.g, colBackgr.b, colBackgr.a);
-    glClearStencil (0);
-    glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+void ClearRenderContext () {
+	glDepthMask (GL_TRUE);
+	glClearColor (colBackgr.r, colBackgr.g, colBackgr.b, colBackgr.a);
+	glClearStencil (0);
+	glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+}
+
+void ClearRenderContext (TColor col) {
+	glDepthMask (GL_TRUE);
+	glClearColor (col.r, col.g, col.b, col.a);
+	glClearStencil (0);
+	glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 }
 
 void SetupGuiDisplay (){

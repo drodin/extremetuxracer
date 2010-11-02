@@ -92,7 +92,6 @@ void intro_loop (double time_step) {
 
 	if (TuxStart.active) TuxStart.Update (time_step, ctrl);
 	else Winsys.SetMode (RACING);
-
     ClearRenderContext ();
 
 	Env.SetupFog ();
@@ -113,7 +112,7 @@ void intro_loop (double time_step) {
 	UpdateSnow (time_step, ctrl);
 	DrawSnow (ctrl);
 
-	DrawTux2 ();
+	Tux.Draw ();
     DrawHud (ctrl);
 
     Reshape (width, height);

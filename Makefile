@@ -7,7 +7,7 @@ particles.o mathlib.o splash_screen.o intro.o racing.o \
 game_over.o paused.o reset.o game_type_select.o event_select.o \
 race_select.o credits.o loading.o course.o keyframe.o env.o event.o \
 spx.o common.o course_render.o game_ctrl.o physics.o \
-track_marks.o hud.o view.o gui.o translation.o \
+track_marks.o hud.o view.o gui.o translation.o tools.o \
 quadtree.o font.o ft_font.o textures.o help.o\
 
 
@@ -19,6 +19,9 @@ $(BIN) : $(OBJ)
 
 # mmmm.o : mmmm.cpp mmmm.h
 #	$(CC) -c mmmm.cpp $(CFLAGS)
+
+tools.o : tools.cpp tools.h
+	$(CC) -c tools.cpp $(CFLAGS)
 
 help.o : help.cpp help.h
 	$(CC) -c help.cpp $(CFLAGS)
