@@ -140,7 +140,7 @@ void ToolsKeys (unsigned int key, bool special, bool release, int x, int y) {
 		switch (key) {
 			case SDLK_n: Tux.PrintNode(curr_node); break;
 			case SDLK_a: Tux.PrintAction(curr_node); break;
-			case SDLK_s: Tux.SaveCharNodes (); break;
+			case SDLK_s: Tux.SaveCharNodes (); charchanged = false; break;
 			case SDLK_c: ScreenshotN (); break;
 			case 27: QuitTool (); break;
 			case SDLK_q: QuitTool (); break;
@@ -314,7 +314,7 @@ void ToolsInit (void) {
 }
 
 void ToolsLoop (double timestep) {
-	bool is_visible;
+	bool is_visible = false;
 	check_gl_error();
 	set_gl_options (TUX);
     ClearRenderContext (colDDBackgr);

@@ -10,13 +10,13 @@ The character tool of Tuxracer is supposed to make shaping and adjusting of sphe
 
 - Only a few nodes are visible and represent a sphere or ellipsoid that will be drawn. On the structure they are marked yellow. On the list they are marked [vis] with a level. The higher the level the better the appearance of the node - and the more performance it takes. [vis] 3 is quite raw, and 10 is very nice. It doesn't make sense to draw a little toe on level 10 or higher whereas the body or heads need a higher level.
 
-- Besides the visible nodes there are different kinds of hidden nodes. They contain different transform actions like transformation, scale or rotation. By adjusting these parameters the character gets the desired shape and size. Very important are the blue-framed joint nodes, without any transform statements. These nodes are the interface nodes for the different kinds of animation. The keyframes use joint nodes, too. For this reason, the joints are specially [name]d in the list.
+- Besides the visible nodes there are different kinds of hidden nodes. They contain different transform actions like transformation, scale or rotation. By adjusting these parameters the character gets the desired shape and size. Very important are the blue-framed joint nodes, without any transform statements. These nodes are the interface nodes for the different kinds of animation. The keyframes use joint nodes, too. For this reason, the joints are specially named in the list ([joint]).
 
-- You may want to add a node. Make sure that the related parent node is already in the list ! The best will be th append the new node at the end of the list.
+- You may want to add a node. Make sure that the related parent node is already in the list ! The best will be to append the new node at the end of the list.
 
-- You can delete a node, too. But in this case you can run into troubles is the node is used as parent. Be careful and check the dependencies. The visible nodes, which are normally end nodes without childs, should be trouble-free.
+- You can delete a node, too. But in this case you can run into troubles if the node is used as parent. Be careful and check the dependencies. The visible nodes, which are normally end nodes without childs, should be trouble-free.
 
-- Most nodes contain a [order] entry. This entry controls the order of the transformations. The order is not abitrary! That means, it's a different if you rotate around the x-axis first and then around the y-axis instead of the reverse. For full understanding you should be a bit familiar with the transformation matrices of OpenGL. Or try. The [order] statement is encoded as follows:
+- Most nodes contain an [order] entry. This entry controls the order of the transformations. The order is not abitrary! That means, it's a difference if you rotate around the x-axis first and then around the y-axis instead of the reverse. For full understanding you should be a bit familiar with the transformation matrices of OpenGL. Or try. The [order] statement is encoded as follows:
 0 - trans
 1 - rot x-axis
 2 - rot y-axis
@@ -27,16 +27,15 @@ The character tool of Tuxracer is supposed to make shaping and adjusting of sphe
 
 It's impossible to explain the complete structure, but you will become familiar with it by doing. The tool will help a bit. But you should have in mind what the tool does NOT. You can't add or remove nodes, that must be done by editing the list. Also you can't define materials or set the shadow flag with the tool.
 
-
 The character tool of ETR
 
-- First copy "tux.lst" to "test.lst". The latter will be automatically loaded when you start the tool with "./etr 2". On the right you see the figure, you can change the view by using the mouse. Click and drag for rotating (left button), moving (right button) or zooming (wheel) the figure. 
+- First copy "tux.lst" to "test.lst". The latter will be automatically loaded when you start the tool with "./etr 2". On the right you see the figure, you can change the view by using the mouse. Click and drag for rotating (left button), moving (right button) or zooming (wheel). 
 
 - On the left there is a list of all nodes. You can select a node with the 4 cursor keys. Below this list you see a list of available transformations, dependent of the node. Select a transformation with PAGEUP or PAGEDOWN. And now you can change the adjustments. Type "1", "2" or "3" on the numeric keypad, together with SHIFT if you want the inverse impact. The results of these modifications can be seen immediately.
 
 - About the view: The figure is always drawn perspectively, never orthogonally. So don't wonder when the direction changes a bit in the case you move the figure. Also the figure is drawn with active lighting. So you can evaluate the effects of specular lights, for example. Sometimes it might be helpful to disable the material adjustments, therefore type "m". 
 
-- There's not a real undo option, that would be too much effort. But you can undo the changes of the current transformation by typing "u".
+- There's not a real undo option, that would be too much effort. But you can undo the changes of the current node by typing "u". After selecting another node, the undo will work no longer.
 
 - To save the changes type "s". The tool generates a new character list and stores it back to "test.lst". That can be done anytime.
 
