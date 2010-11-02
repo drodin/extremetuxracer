@@ -430,7 +430,7 @@ void CChar::Draw () {
 
 // --------------------------------------------------------------------
 
-void CChar::Load (string filename, bool with_actions) {
+bool CChar::Load (string filename, bool with_actions) {
 	CSPList list (500);
 	int i, ii, act;
 	string line, order, name, mat_name, fullname;
@@ -446,7 +446,7 @@ void CChar::Load (string filename, bool with_actions) {
 	file_name = filename;
  	if (!list.Load (param.char_dir, filename)) {
 		Message ("could not load character", filename.c_str());
-		return;
+		return false;
 	}
 
 	for (i=0; i<list.Count(); i++) {
@@ -492,6 +492,7 @@ void CChar::Load (string filename, bool with_actions) {
 		}
 	}
 	newActions = false;
+	return true;
 }
 
 TVector3 CChar::AdjustRollvector (CControl *ctrl, TVector3 vel, TVector3 zvec) {

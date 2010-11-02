@@ -136,7 +136,7 @@ public:
 	// global functions
 	void Draw ();
 	void DrawShadow ();
-	void Load (string filename, bool with_actions);
+	bool Load (string filename, bool with_actions);
 
 	void AdjustOrientation (CControl *ctrl, double dtime,
 		double dist_from_surface, TVector3 surf_nml);

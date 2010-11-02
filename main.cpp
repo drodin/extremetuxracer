@@ -133,7 +133,7 @@ PrintInt ('1');
 	switch (g_game.argument) {
 		case 0: Winsys.SetMode (SPLASH); break;
 		case 2: 
-			Tux.Load ("test.lst", true);
+			if (Tux.Load ("test.lst", true) == false) Winsys.Quit();
 			g_game.toolmode = TUXSHAPE; 
 			Winsys.SetMode (TOOLS); 
 			break;
