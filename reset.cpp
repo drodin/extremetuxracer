@@ -117,7 +117,7 @@ void reset_loop (double time_step) {
 		position_reset = true;
     } // if elapsed time
 
-    if (tux_visible) Tux.Draw ();
+    if (tux_visible) Char.Draw (g_game.char_id);
 
     if (++tux_visible_count > 3) {
 		tux_visible = (bool) !tux_visible;

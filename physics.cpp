@@ -67,6 +67,7 @@ void CControl::Init () {
 // --------------------------------------------------------------------
 
 bool CControl::CheckTreeCollisions (TVector3 pos, TVector3 *tree_loc, double *tree_diam){
+	CCharShape *shape = Char.GetShape (g_game.char_id);
     double diam = 0.0; 
     double height;
     TVector3 loc = MakeVector (0, 0, 0);
@@ -116,7 +117,7 @@ bool CControl::CheckTreeCollisions (TVector3 pos, TVector3 *tree_loc, double *tr
         TransPolyhedron (mat, ph2);
         MakeTranslationMatrix (mat, loc.x, loc.y, loc.z);
         TransPolyhedron (mat, ph2);
-		hit = Tux.Collision (pos, ph2); 
+		hit = shape->Collision (pos, ph2); 
         FreePolyhedron (ph2);
 
         if  (hit == true) {
@@ -225,6 +226,7 @@ void CControl::AdjustPosition (TVector3 *pos, TPlane surf_plane, double dist_fro
 }
 
 void CControl::SetTuxPosition (TVector3 new_pos){
+	CCharShape *shape = Char.GetShape (g_game.char_id);
 	double playWidth, playLength;
 	double courseWidth, courseLength;
 
@@ -247,8 +249,8 @@ void CControl::SetTuxPosition (TVector3 new_pos){
 
     cpos = new_pos;
     double disp_y = new_pos.y + TUX_Y_CORR; 
-	Tux.ResetNode (0);
-	Tux.TranslateNode (0, MakeVector (new_pos.x, disp_y, new_pos.z));	
+	shape->ResetNode (0);
+	shape->TranslateNode (0, MakeVector (new_pos.x, disp_y, new_pos.z));	
 } 
 
 // --------------------------------------------------------------------
@@ -609,6 +611,7 @@ void CControl::SolveOdeSystem (double timestep) {
 // --------------------------------------------------------------------
 
 void CControl::UpdatePlayerPos (double timestep) {
+	CCharShape *shape = Char.GetShape (g_game.char_id);
     TVector3 surf_nml;   // normal vector of terrain 
     TVector3 tmp_vel;
     double speed;
@@ -629,7 +632,7 @@ void CControl::UpdatePlayerPos (double timestep) {
     speed = NormVector (&tmp_vel);
 
     SetTuxPosition (cpos);
-	Tux.AdjustOrientation (this, timestep, dist_from_surface, surf_nml);
+	shape->AdjustOrientation (this, timestep, dist_from_surface, surf_nml);
 
     flap_factor = 0;
     if (is_paddling) {
@@ -652,7 +655,7 @@ void CControl::UpdatePlayerPos (double timestep) {
     if (jumping)
 		flap_factor = (g_game.time - jump_start_time) / JUMP_FORCE_DURATION;
 
-    Tux.AdjustJoints (turn_animation, is_braking, paddling_factor, speed, 
+    shape->AdjustJoints (turn_animation, is_braking, paddling_factor, speed, 
 			local_force, flap_factor);
 }
 

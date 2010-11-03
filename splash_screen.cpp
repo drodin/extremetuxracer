@@ -94,7 +94,9 @@ void SplashLoop (double timestep ){
 		Trans.LoadLanguages ();
 		Trans.LoadTranslations (param.language);
 		LoadCreditList ();
-		Tux.Load ("tux.lst", false);		
+		if (Char.LoadCharacterList () == false) Winsys.Quit();
+		Char.LoadCharacters ();
+//		Tux.Load ("tux.lst", false);		
 		Course.LoadObjectTypes (); 
 		Course.LoadTerrainTypes ();
 		Env.LoadEnvironmentList ();

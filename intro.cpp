@@ -112,7 +112,7 @@ void intro_loop (double time_step) {
 	UpdateSnow (time_step, ctrl);
 	DrawSnow (ctrl);
 
-	Tux.Draw ();
+	Char.Draw (g_game.char_id);
     DrawHud (ctrl);
 
     Reshape (width, height);

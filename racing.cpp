@@ -309,7 +309,7 @@ void racing_loop (double time_step){
 		update_particles (time_step);
 		draw_particles (ctrl);
     }
-	Tux.Draw ();
+	Char.Draw (g_game.char_id);
 	UpdateWind (time_step, ctrl);
 	UpdateSnow (time_step, ctrl);
 	DrawSnow (ctrl);

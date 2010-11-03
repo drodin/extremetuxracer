@@ -21,7 +21,7 @@ GNU General Public License for more details.
 #include "bh.h"
 
 #define MAX_ACTIONS 8
-#define	MAX_CHAR_NODES 128
+#define	MAX_CHAR_NODES 256
 #define	MAX_CHAR_MAT 32
 
 #define USE_CHAR_DISPLAY_LIST true
@@ -43,7 +43,7 @@ typedef struct {
 	string name;
 	string order;
 	string mat;
-} TAction;		
+} TCharAction;		
 
 typedef struct NodeStruct {
     struct NodeStruct *parent;
@@ -63,15 +63,10 @@ typedef struct NodeStruct {
     bool render_shadow;
 } TCharNode;
 
-/*
-node = pointer to a node struct
-node_name = the integer identifier, used in char.lst (0 ... numNodes)
-*/
-
-class CChar {
+class CCharShape {
 private:
 	TCharNode *Nodes[MAX_CHAR_NODES];
-	TAction *Actions[MAX_CHAR_NODES];
+	TCharAction *Actions[MAX_CHAR_NODES];
 	int Index[MAX_CHAR_NODES];
 	string NodeIndex;
 	int numNodes;
@@ -119,8 +114,8 @@ private:
 	// testing and developing
 	void AddAction (int node_name, int type, TVector3 vec, double val);
 public:
-	CChar ();
-	~CChar ();
+	CCharShape ();
+	~CCharShape ();
 	bool useMaterials;
 
 	// nodes 
@@ -150,13 +145,36 @@ public:
 	int    GetNumNodes ();
 	string GetNodeFullname (int idx);
 	int    GetNumActs (int idx);
-	TAction *GetAction (int idx);
+	TCharAction *GetAction (int idx);
 	void   PrintAction (int idx);	
 	void   PrintNode (int idx);
 	void   RefreshNode (int idx);
 	void   SaveCharNodes ();
 };
 
-extern CChar Tux;
+#define MAX_CHARACTERS 4
+
+class CCharacter {
+private:
+	string name[MAX_CHARACTERS];
+	string filename[MAX_CHARACTERS];
+	GLuint texid[MAX_CHARACTERS];
+	CCharShape *shape[MAX_CHARACTERS];
+	bool loaded[MAX_CHARACTERS];
+
+	int numCharacters;
+	int curr_character; 
+	int FindFirstValid ();
+public:
+	CCharacter ();
+	~CCharacter ();
+	bool LoadCharacterList ();
+	bool LoadCharacters ();
+	void Draw (int idx);
+	CCharShape *GetShape (int idx);
+};
+
+extern CCharShape TestChar;
+extern CCharacter Char;
 
 #endif

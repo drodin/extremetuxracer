@@ -48,7 +48,7 @@ static int firstact = 0;
 static int lastact;
 static int curr_act = 0;
 
-static TAction *action;
+static TCharAction *action;
 
 void DrawQuad (float x, float y, float w, float h,
 		float scrheight, TColor col, int frame) {
@@ -94,14 +94,14 @@ void TuxshapeMonitor () {
 //	ResetTuxRoot2 ();
 //	ResetTuxJoints2 ();
 
-	if (loopcount > 0) Tux.Draw ();
+	if (loopcount > 0) TestChar.Draw ();
 	glPopMatrix ();
 	loopcount++;
 }
 
-static TAction Undo;
+static TCharAction Undo;
 
-void StoreAction (TAction *act) {
+void StoreAction (TCharAction *act) {
 	int i;
 	for (i=0; i<=act->num; i++) {
 		Undo.vec[i] = act->vec[i];
@@ -110,7 +110,7 @@ void StoreAction (TAction *act) {
 
 }
 
-void RecallAction (TAction *act) {
+void RecallAction (TCharAction *act) {
 	int i;
 	for (i=0; i<=act->num; i++) {
 		act->vec[i] = Undo.vec[i];
@@ -128,7 +128,7 @@ void ToolsKeys (unsigned int key, bool special, bool release, int x, int y) {
 
 	if (finalstage) {
 		if (key == SDLK_y || key == SDLK_j) {
-			Tux.SaveCharNodes ();
+			TestChar.SaveCharNodes ();
 			Winsys.Quit();
 		} else if (key == SDLK_n) Winsys.Quit ();
 	} else {
@@ -138,23 +138,23 @@ void ToolsKeys (unsigned int key, bool special, bool release, int x, int y) {
 
 		int type = action->type[curr_act];	
 		switch (key) {
-			case SDLK_n: Tux.PrintNode(curr_node); break;
-			case SDLK_a: Tux.PrintAction(curr_node); break;
-			case SDLK_s: Tux.SaveCharNodes (); charchanged = false; break;
+			case SDLK_n: TestChar.PrintNode(curr_node); break;
+			case SDLK_a: TestChar.PrintAction(curr_node); break;
+			case SDLK_s: TestChar.SaveCharNodes (); charchanged = false; break;
 			case SDLK_c: ScreenshotN (); break;
 			case 27: QuitTool (); break;
 			case SDLK_q: QuitTool (); break;
-			case SDLK_m: Tux.useMaterials = !Tux.useMaterials; break;
+			case SDLK_m: TestChar.useMaterials = !TestChar.useMaterials; break;
 			case SDLK_u: if (action != NULL) {
 					RecallAction (action);
-					Tux.RefreshNode (curr_node);
+					TestChar.RefreshNode (curr_node);
 				} break;
 			case SDLK_UP: 
 				if (curr_node > firstnode) {
 					curr_node--; 
 					curr_act = firstact;
-					lastact = Tux.GetNumActs (curr_node) -1;
-					action = Tux.GetAction (curr_node);
+					lastact = TestChar.GetNumActs (curr_node) -1;
+					action = TestChar.GetAction (curr_node);
 					StoreAction (action);
 				}
 				break;
@@ -162,8 +162,8 @@ void ToolsKeys (unsigned int key, bool special, bool release, int x, int y) {
 				if (curr_node < lastnode) {
 					curr_node++; 
 					curr_act = firstact;
-					lastact = Tux.GetNumActs (curr_node) -1;
-					action = Tux.GetAction (curr_node);
+					lastact = TestChar.GetNumActs (curr_node) -1;
+					action = TestChar.GetAction (curr_node);
 					StoreAction (action);
 				}
 				break;
@@ -171,8 +171,8 @@ void ToolsKeys (unsigned int key, bool special, bool release, int x, int y) {
 				if (curr_node + base <= lastnode) {
 					curr_node += base;
 					curr_act = firstact;
-					lastact = Tux.GetNumActs (curr_node) -1;
-					action = Tux.GetAction (curr_node);
+					lastact = TestChar.GetNumActs (curr_node) -1;
+					action = TestChar.GetAction (curr_node);
 					StoreAction (action);
 				}
 				break;
@@ -180,42 +180,50 @@ void ToolsKeys (unsigned int key, bool special, bool release, int x, int y) {
 				if (curr_node - base >= 0) {
 					curr_node -= base;
 					curr_act = firstact;
-					lastact = Tux.GetNumActs (curr_node) -1;
-					action = Tux.GetAction (curr_node);
+					lastact = TestChar.GetNumActs (curr_node) -1;
+					action = TestChar.GetAction (curr_node);
 					StoreAction (action);
 				}
 				break;
-			case SDLK_r: Tux.RefreshNode (curr_node); break;
+			case SDLK_r: TestChar.RefreshNode (curr_node); break;
 			case SDLK_PAGEDOWN: if (curr_act < lastact) curr_act++; break; 
 			case SDLK_PAGEUP: if (curr_act > 0) curr_act--; break; 
-			case 257: 
+			case 257: case SDLK_x:
 				if (type == 0 || type == 4) {
 					action->vec[curr_act].x += (0.02 * keyfact); 
-					Tux.RefreshNode (curr_node);
+					TestChar.RefreshNode (curr_node);
 					charchanged = true;
 				} else if (type > 0 && type < 4) {
 					action->dval[curr_act] += (1 * keyfact);
-					Tux.RefreshNode (curr_node);				
+					TestChar.RefreshNode (curr_node);				
 					charchanged = true;
 				} else if (type == 5) {
 					action->dval[curr_act] += (1 * keyfact);
-					Tux.RefreshNode (curr_node);				
+					TestChar.RefreshNode (curr_node);				
 					charchanged = true;
 				}
 				break;
-			case 258: 
+			case 258: case SDLK_y:
 				if (type == 0 || type == 4) {
 					action->vec[curr_act].y += (0.02 * keyfact); 
-					Tux.RefreshNode (curr_node);
+					TestChar.RefreshNode (curr_node);
 					charchanged = true;
 				}
 				break;
-			case 259: 
+			case 259: case SDLK_z:
 				if (type == 0 || type == 4) {
 					action->vec[curr_act].z += (0.02 * keyfact); 
-					Tux.RefreshNode (curr_node);
+					TestChar.RefreshNode (curr_node);
 					charchanged = true;
 				}
+				break;
+			case SDLK_PLUS: 
+				zposition += 0.1;
+				xposition -= 0.03;
+				break;
+			case SDLK_MINUS: 
+				zposition -= 0.1;
+				xposition += 0.03;
 				break;
 		}
 	}
@@ -305,11 +313,11 @@ void ToolsInit (void) {
 		case LEARN: break;
 	}
 	firstnode = 1;
-	lastnode = Tux.GetNumNodes () -1;
+	lastnode = TestChar.GetNumNodes () -1;
 	curr_node = firstnode;
 	curr_act = firstact;
-	lastact = Tux.GetNumActs (curr_node) -1;
-	action = Tux.GetAction (curr_node);
+	lastact = TestChar.GetNumActs (curr_node) -1;
+	action = TestChar.GetAction (curr_node);
 	StoreAction (action);
 }
 
@@ -343,7 +351,7 @@ void ToolsLoop (double timestep) {
 			}
 			xl = ITrunc (i, base) * 100 + 20;
 			yt = IFrac (i, base) * 18 + 60;
-			FT.DrawString (xl, yt, Tux.GetNodeName (i));		
+			FT.DrawString (xl, yt, TestChar.GetNodeName (i));		
 		}
 
 		int num = action->num;

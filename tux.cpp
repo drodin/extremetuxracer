@@ -43,9 +43,9 @@ still shaped with spheres.
 
 TCharMaterial TuxDefMat = {{0.5, 0.5, 0.5, 1.0}, {0.0, 0.0, 0.0, 1.0}, 0.0};
 
-CChar Tux;
+CCharShape TestChar;
 
-CChar::CChar () {
+CCharShape::CCharShape () {
 	for (int i=0; i<MAX_CHAR_NODES; i++) {
 		Nodes[i] = NULL;
 		Actions[i] = NULL;
@@ -63,24 +63,24 @@ CChar::CChar () {
 	useMaterials = true;
 }
 
-CChar::~CChar () {}
+CCharShape::~CCharShape () {}
 
 // --------------------------------------------------------------------
 //				nodes
 // --------------------------------------------------------------------
 
-int CChar::GetNodeIdx (int node_name) {
+int CCharShape::GetNodeIdx (int node_name) {
 	if (node_name < 0 || node_name >= MAX_CHAR_NODES) return -1;
 	return Index[node_name];
 }
 
-TCharNode *CChar::GetNode (int node_name) {
+TCharNode *CCharShape::GetNode (int node_name) {
 	int idx = GetNodeIdx (node_name);
 	if (idx < 0 || idx >= numNodes) return NULL;
 	return Nodes[idx];
 }
 
-bool CChar::GetNode (int node_name, TCharNode **node) {
+bool CCharShape::GetNode (int node_name, TCharNode **node) {
 	int idx = GetNodeIdx (node_name);
 	if (idx < 0 || idx >= numNodes) {
 		*node = NULL;
@@ -91,7 +91,7 @@ bool CChar::GetNode (int node_name, TCharNode **node) {
 	}
 }
 
-void CChar::CreateRootNode () {
+void CCharShape::CreateRootNode () {
     TCharNode *node = new TCharNode;
     node->parent = NULL;
     node->next = NULL;
@@ -109,7 +109,7 @@ void CChar::CreateRootNode () {
 	numNodes = 1;
 }
 
-bool CChar::CreateCharNode 
+bool CCharShape::CreateCharNode 
 		(int parent_name, int node_name, const string joint, 
 		string name, string order, bool shadow) {
 
@@ -145,7 +145,7 @@ bool CChar::CreateCharNode
 	} 
 
 	if (useActions) {
-		Actions[numNodes] = new TAction;
+		Actions[numNodes] = new TCharAction;
 		Actions[numNodes]->num = 0;
 		Actions[numNodes]->name = name;
 		Actions[numNodes]->order = order;
@@ -156,17 +156,17 @@ bool CChar::CreateCharNode
     return true;
 } 
 
-void CChar::AddAction (int node_name, int type, TVector3 vec, double val) {
+void CCharShape::AddAction (int node_name, int type, TVector3 vec, double val) {
 	int idx = GetNodeIdx (node_name);
 	if (idx < 0) return;
-	TAction *act = Actions[idx];
+	TCharAction *act = Actions[idx];
 	act->type[act->num] = type;
 	act->vec[act->num] = vec;
 	act->dval[act->num] = val;
 	act->num++;
 }
 
-bool CChar::TranslateNode (int node_name, TVector3 vec) {
+bool CCharShape::TranslateNode (int node_name, TVector3 vec) {
     TCharNode *node;
     TMatrix TransMatrix;
 
@@ -180,7 +180,7 @@ bool CChar::TranslateNode (int node_name, TVector3 vec) {
     return true;
 }
 
-bool CChar::RotateNode (int node_name, double axis, double angle) {
+bool CCharShape::RotateNode (int node_name, double axis, double angle) {
 	TCharNode *node;
     TMatrix rotMatrix;
 	char caxis = '0';
@@ -205,13 +205,13 @@ bool CChar::RotateNode (int node_name, double axis, double angle) {
     return true;
 }
 
-bool CChar::RotateNode (string node_trivialname, double axis, double angle) {
+bool CCharShape::RotateNode (string node_trivialname, double axis, double angle) {
 	int node_name = SPIntN (NodeIndex, node_trivialname, -1);
 	if (node_name < 0) return false;
 	return RotateNode (node_name, axis, angle);
 }
 
-void CChar::ScaleNode (int node_name, TVector3 vec) {
+void CCharShape::ScaleNode (int node_name, TVector3 vec) {
     TCharNode *node;
     TMatrix matrix;
 
@@ -235,7 +235,7 @@ void CChar::ScaleNode (int node_name, TVector3 vec) {
 	if (newActions && useActions) AddAction (node_name, 4, vec, 0);
 }
 
-bool CChar::VisibleNode (int node_name, float level) {
+bool CCharShape::VisibleNode (int node_name, float level) {
     TCharNode *node;
     if (GetNode (node_name, &node) == false) return false;
 
@@ -251,7 +251,7 @@ bool CChar::VisibleNode (int node_name, float level) {
 	return true;
 }
 
-bool CChar::MaterialNode (int node_name, string mat_name) {
+bool CCharShape::MaterialNode (int node_name, string mat_name) {
     TCharMaterial *mat;
     TCharNode *node;
 	int idx = GetNodeIdx (node_name);
@@ -262,7 +262,7 @@ bool CChar::MaterialNode (int node_name, string mat_name) {
 	return true;
 }
 
-bool CChar::ResetNode (int node_name) {  
+bool CCharShape::ResetNode (int node_name) {  
     TCharNode *node;
     if (GetNode (node_name, &node) == false) return false;
 
@@ -271,13 +271,13 @@ bool CChar::ResetNode (int node_name) {
 	return true;
 }
 
-bool CChar::ResetNode (string node_trivialname) {
+bool CCharShape::ResetNode (string node_trivialname) {
 	int node_name = SPIntN (NodeIndex, node_trivialname, -1);
 	if (node_name < 0) return false;
 	return ResetNode (node_name);
 }
 
-bool CChar::TransformNode (int node_name, TMatrix mat, TMatrix invmat) {
+bool CCharShape::TransformNode (int node_name, TMatrix mat, TMatrix invmat) {
     TCharNode *node;
     if (GetNode (node_name, &node) == false) return false;
 
@@ -286,11 +286,11 @@ bool CChar::TransformNode (int node_name, TMatrix mat, TMatrix invmat) {
     return true;
 }
 
-void CChar::ResetRoot () { 
+void CCharShape::ResetRoot () { 
 	ResetNode (0);
 }
 
-void CChar::ResetJoints () {
+void CCharShape::ResetJoints () {
     ResetNode ("left_shldr");
     ResetNode ("right_shldr");
     ResetNode ("left_hip");
@@ -308,7 +308,7 @@ void CChar::ResetJoints () {
 //				materials
 // --------------------------------------------------------------------
 
-bool CChar::GetMaterial (const char *mat_name, TCharMaterial **mat) {
+bool CCharShape::GetMaterial (const char *mat_name, TCharMaterial **mat) {
 	int idx;
 	idx = SPIntN (MaterialIndex, mat_name, -1);
 	if (idx >= 0 && idx < numMaterials) {
@@ -320,7 +320,7 @@ bool CChar::GetMaterial (const char *mat_name, TCharMaterial **mat) {
 	}
 }
 
-void CChar::CreateMaterial (const char *line) {
+void CCharShape::CreateMaterial (const char *line) {
 	char matName[32];
 	TVector3 diff = {0,0,0}; 
 	TVector3 spec = {0,0,0};
@@ -358,7 +358,7 @@ void CChar::CreateMaterial (const char *line) {
 //				drawing
 // --------------------------------------------------------------------
 
-void CChar::DrawCharSphere (int num_divisions) {
+void CCharShape::DrawCharSphere (int num_divisions) {
     GLUquadricObj *qobj;
     qobj = gluNewQuadric();
     gluQuadricDrawStyle (qobj, GLU_FILL);
@@ -368,7 +368,7 @@ void CChar::DrawCharSphere (int num_divisions) {
     gluDeleteQuadric (qobj);
 }
 
-GLuint CChar::GetDisplayList (int divisions) {
+GLuint CCharShape::GetDisplayList (int divisions) {
     static bool initialized = false;
     static int num_display_lists;
     static GLuint *display_lists = NULL;
@@ -393,7 +393,7 @@ GLuint CChar::GetDisplayList (int divisions) {
     return display_lists[idx];
 }
 
-void CChar::DrawNodes (TCharNode *node, TCharMaterial *mat) {
+void CCharShape::DrawNodes (TCharNode *node, TCharMaterial *mat) {
     TCharNode *child;
     glPushMatrix();
     glMultMatrixd ((double *) node->trans);
@@ -414,7 +414,7 @@ void CChar::DrawNodes (TCharNode *node, TCharMaterial *mat) {
     glPopMatrix();
 } 
 
-void CChar::Draw () {
+void CCharShape::Draw () {
     TCharNode *node;
     float dummy_color[]  = {0.0, 0.0, 0.0, 1.0};
 
@@ -430,7 +430,7 @@ void CChar::Draw () {
 
 // --------------------------------------------------------------------
 
-bool CChar::Load (string filename, bool with_actions) {
+bool CCharShape::Load (string filename, bool with_actions) {
 	CSPList list (500);
 	int i, ii, act;
 	string line, order, name, mat_name, fullname;
@@ -495,7 +495,7 @@ bool CChar::Load (string filename, bool with_actions) {
 	return true;
 }
 
-TVector3 CChar::AdjustRollvector (CControl *ctrl, TVector3 vel, TVector3 zvec) {
+TVector3 CCharShape::AdjustRollvector (CControl *ctrl, TVector3 vel, TVector3 zvec) {
     TMatrix rot_mat; 
     vel = ProjectToPlane (zvec, vel);
     NormVector (&vel);
@@ -507,7 +507,7 @@ TVector3 CChar::AdjustRollvector (CControl *ctrl, TVector3 vel, TVector3 zvec) {
     return TransformVector (rot_mat, zvec);
 }
 
-void CChar::AdjustOrientation (CControl *ctrl, double dtime,
+void CCharShape::AdjustOrientation (CControl *ctrl, double dtime,
 		 double dist_from_surface, TVector3 surf_nml) {
     TVector3 new_x, new_y, new_z; 
     TMatrix cob_mat, inv_cob_mat;
@@ -560,7 +560,7 @@ void CChar::AdjustOrientation (CControl *ctrl, double dtime,
 	TransformNode (0, cob_mat, inv_cob_mat); 
 }
 
-void CChar::AdjustJoints (double turnFact, bool isBraking, 
+void CCharShape::AdjustJoints (double turnFact, bool isBraking, 
 			double paddling_factor, double speed,
 			TVector3 net_force, double flap_factor) {
     double turning_angle[2] = {0, 0};
@@ -613,7 +613,7 @@ void CChar::AdjustJoints (double turnFact, bool isBraking,
 //				collision
 // --------------------------------------------------------------------
 
-bool CChar::CheckPolyhedronCollision (TCharNode *node, TMatrix modelMatrix, 
+bool CCharShape::CheckPolyhedronCollision (TCharNode *node, TMatrix modelMatrix, 
 		TMatrix invModelMatrix, TPolyhedron ph) {
 
     TMatrix newModelMatrix, newInvModelMatrix;
@@ -641,7 +641,7 @@ bool CChar::CheckPolyhedronCollision (TCharNode *node, TMatrix modelMatrix,
     return false;
 }
 
-bool CChar::CheckCollision (TPolyhedron ph) {
+bool CCharShape::CheckCollision (TPolyhedron ph) {
     TCharNode *node;
     TMatrix mat, invmat;
 
@@ -652,7 +652,7 @@ bool CChar::CheckCollision (TPolyhedron ph) {
     return CheckPolyhedronCollision (node, mat, invmat, ph);
 } 
 
-bool CChar::Collision (TVector3 pos, TPolyhedron ph) {
+bool CCharShape::Collision (TVector3 pos, TPolyhedron ph) {
 	ResetNode (0);
 	TranslateNode (0, MakeVector (pos.x, pos.y, pos.z));	
 	return CheckCollision (ph);
@@ -662,7 +662,7 @@ bool CChar::Collision (TVector3 pos, TPolyhedron ph) {
 //				shadow
 // --------------------------------------------------------------------
 
-void CChar::DrawShadowVertex (double x, double y, double z, TMatrix mat) {
+void CCharShape::DrawShadowVertex (double x, double y, double z, TMatrix mat) {
     TVector3 pt;
     double old_y;
     TVector3 nml;
@@ -677,7 +677,7 @@ void CChar::DrawShadowVertex (double x, double y, double z, TMatrix mat) {
     glVertex3f (pt.x, pt.y, pt.z);
 }
 
-void CChar::DrawShadowSphere (TMatrix mat) {
+void CCharShape::DrawShadowSphere (TMatrix mat) {
     double theta, phi, d_theta, d_phi, eps, twopi;
     double x, y, z;
     int div = param.tux_shadow_sphere_divisions;
@@ -758,7 +758,7 @@ void CChar::DrawShadowSphere (TMatrix mat) {
     } 
 } 
 
-void CChar::TraverseDagForShadow (TCharNode *node, TMatrix mat) {
+void CCharShape::TraverseDagForShadow (TCharNode *node, TMatrix mat) {
     TMatrix new_matrix;
     TCharNode *child;
 
@@ -773,7 +773,7 @@ void CChar::TraverseDagForShadow (TCharNode *node, TMatrix mat) {
     } 
 }
 
-void CChar::DrawShadow () {
+void CCharShape::DrawShadow () {
     TMatrix model_matrix;
     TCharNode *node;
 
@@ -794,7 +794,7 @@ void CChar::DrawShadow () {
 //				testing and tools
 // --------------------------------------------------------------------
 
-string CChar::GetNodeName (int idx) {
+string CCharShape::GetNodeName (int idx) {
 	if (idx < 0 || idx >= numNodes) return "";
 	TCharNode *node = Nodes[idx];
 	if (node == NULL) return "";
@@ -802,14 +802,14 @@ string CChar::GetNodeName (int idx) {
 	else return Int_StrN (node->node_name);
 }
 
-void CChar::RefreshNode (int idx) {
+void CCharShape::RefreshNode (int idx) {
 	if (idx < 0 || idx >= numNodes) return;
     TMatrix TempMatrix;
 	char caxis;
 	double angle;
 	
 	TCharNode *node = Nodes[idx];
-	TAction *act = Actions[idx];
+	TCharAction *act = Actions[idx];
 	if (act == NULL) return;
 	if (act->num < 1) return;
 
@@ -878,28 +878,28 @@ void CChar::RefreshNode (int idx) {
 	}
 }
 
-int CChar::GetNumNodes () {
+int CCharShape::GetNumNodes () {
 	return numNodes;
 }
 
-string CChar::GetNodeFullname (int idx) {
+string CCharShape::GetNodeFullname (int idx) {
 	if (idx < 0 || idx >= numNodes) return "";
 	return Actions[idx]->name;
 }
 
-int CChar::GetNumActs (int idx) {
+int CCharShape::GetNumActs (int idx) {
 	if (idx < 0 || idx >= numNodes) return -1;
 	return Actions[idx]->num;
 }
 
-TAction *CChar::GetAction (int idx) {
+TCharAction *CCharShape::GetAction (int idx) {
 	if (idx < 0 || idx >= numNodes) return NULL;
 	return Actions[idx];
 }
 
-void CChar::PrintAction (int idx) {
+void CCharShape::PrintAction (int idx) {
 	if (idx < 0 || idx >= numNodes) return;
-	TAction *act = Actions[idx];
+	TCharAction *act = Actions[idx];
 	PrintInt (act->num);
 	for (int i=0; i<act->num; i++) {
 		PrintInt (act->type[i]);
@@ -908,17 +908,17 @@ void CChar::PrintAction (int idx) {
 	}
 }
 
-void CChar::PrintNode (int idx) {
+void CCharShape::PrintNode (int idx) {
 	TCharNode *node = Nodes[idx];
 	PrintInt (node->node_name);
 	PrintInt (node->parent_name);
 }
 
-void CChar::SaveCharNodes () {
+void CCharShape::SaveCharNodes () {
 	CSPList list (MAX_CHAR_NODES + 10);
 	string line, order;
 	TCharNode *node;
-	TAction *act;
+	TCharAction *act;
 	int  i, ii, aa;
 	TVector3 rotation;
 	bool rotflag;
@@ -967,4 +967,80 @@ void CChar::SaveCharNodes () {
 	}	
 	list.Save (param.char_dir, "test.lst");
 }
+
+// ********************************************************************
+//				Character Administration
+// ********************************************************************
+
+CCharacter Char;
+
+CCharacter::CCharacter () {
+	for (int i=0; i<MAX_CHARACTERS; i++) {
+		name[i] = "";
+		filename[i] = "";
+		texid[i] = 0;
+		loaded[i] = false;
+		shape[i] = NULL;
+	}
+	numCharacters = 0;
+	curr_character = 0;
+}
+
+CCharacter::~CCharacter () {}
+
+bool CCharacter::LoadCharacterList () {
+	CSPList list (8);
+	string line;
+	int i;
+
+	if (!list.Load (param.char_dir, "characters.lst")) {
+		Message ("could not load characters.lst");
+		return false;
+	}
+
+	for (i=0; i<list.Count(); i++) {
+		line = list.Line (i);
+		name[i] = SPStrN (line, "name", "");
+		filename[i] = SPStrN (line, "file", "");
+	}
+	numCharacters = list.Count();
+	return true;
+}
+
+int CCharacter::FindFirstValid () {
+	int val = MAX_CHARACTERS;
+	for (int i=3; i>=0; i--) 
+		if (loaded[i]) val = i;
+	if (val == MAX_CHARACTERS) val = -1;
+	return val;
+}
+
+bool CCharacter::LoadCharacters () {
+	for (int i=0; i<numCharacters; i++) {
+		shape[i] = new CCharShape;
+		loaded[i] = shape[i]->Load (filename[i], false);
+		if (loaded[i] == false) {
+			free (shape[i]);
+			shape[i] = NULL;
+		}
+	}
+	return true;
+}
+
+void CCharacter::Draw (int idx) {
+	if (idx < 0 || idx >= MAX_CHARACTERS) return;
+	if (loaded[idx] == false) idx = FindFirstValid ();
+	if (idx < 0) return;
+	shape[idx]->Draw();
+}
+
+CCharShape *CCharacter::GetShape (int idx) {
+	if (idx < 0 || idx >= MAX_CHARACTERS) return NULL;
+	if (loaded[idx] == false) idx = FindFirstValid ();
+	if (idx < 0) return NULL;
+	return shape[idx];
+
+}
+
+
 

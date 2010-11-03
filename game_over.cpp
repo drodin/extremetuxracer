@@ -187,7 +187,7 @@ void GameOverLoop (double time_step) {
 	UpdateSnow (time_step, ctrl);
 	DrawSnow (ctrl);
 	
-	Tux.Draw ();
+	Char.Draw (g_game.char_id);
 
     set_gl_options (GUI); 
 	SetupGuiDisplay ();

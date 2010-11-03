@@ -41,8 +41,9 @@ double CKeyframe::interp (double frac, double v1, double v2) {
 } 
 
 void CKeyframe::Init (TVector3 ref_pos) {
-    Tux.ResetNode ("head");
-    Tux.ResetNode ("neck");
+	CCharShape *shape = Char.GetShape (g_game.char_id);
+    shape->ResetNode ("head");
+    shape->ResetNode ("neck");
 	refpos = ref_pos;
 	active = true;
 	keyidx = 0;
@@ -94,47 +95,49 @@ void CKeyframe::Load (string filename) {
 // that will be implemented later
 
 void CKeyframe::InterpolateKeyframe (int idx, double frac) {
+	CCharShape *shape = Char.GetShape (g_game.char_id);
 	double v;
     v = interp (frac, frames[idx].yaw, frames[idx+1].yaw);
-    Tux.RotateNode ("root", 2, v);
+    shape->RotateNode ("root", 2, v);
 
     v = interp (frac, frames[idx].pitch, frames[idx+1].pitch);
-    Tux.RotateNode ("root", 1, v);
+	shape->RotateNode ("root", 1, v);
 
     v = interp (frac, frames[idx].neck, frames[idx+1].neck);
-    Tux.RotateNode ("neck", 3, v);
+    shape->RotateNode ("neck", 3, v);
 
     v = interp (frac, frames[idx].head, frames[idx+1].head);
-    Tux.RotateNode ("head", 2, v);
+    shape->RotateNode ("head", 2, v);
 
     v = interp (frac, frames[idx].l_shldr, frames[idx+1].l_shldr);
-    Tux.RotateNode ("left_shldr", 3, v);
+    shape->RotateNode ("left_shldr", 3, v);
 
     v = interp (frac, frames[idx].r_shldr, frames[idx+1].r_shldr);
-    Tux.RotateNode ("right_shldr", 3, v);
+    shape->RotateNode ("right_shldr", 3, v);
 
     v = interp (frac, frames[idx].l_hip, frames[idx+1].l_hip);
-    Tux.RotateNode ("left_hip", 3, v);
+    shape->RotateNode ("left_hip", 3, v);
 
     v = interp (frac, frames[idx].r_hip, frames[idx+1].r_hip);
-    Tux.RotateNode ("right_hip", 3, v);
+    shape->RotateNode ("right_hip", 3, v);
 
     v = interp (frac, frames[idx].l_knee, frames[idx+1].l_knee);
-    Tux.RotateNode ("left_knee", 3, v);
+    shape->RotateNode ("left_knee", 3, v);
 
     v = interp (frac, frames[idx].r_knee, frames[idx+1].r_knee);
-    Tux.RotateNode ("right_knee", 3, v);
+    shape->RotateNode ("right_knee", 3, v);
 
     v = interp (frac, frames[idx].l_ankle, frames[idx+1].l_ankle);
-    Tux.RotateNode ("left_ankle", 3, v);
+    shape->RotateNode ("left_ankle", 3, v);
 
     v = interp (frac, frames[idx].r_ankle, frames[idx+1].r_ankle);
-    Tux.RotateNode ("right_ankle", 3, v);
+    shape->RotateNode ("right_ankle", 3, v);
 }
 
 void CKeyframe::Update (double timestep, CControl *ctrl) {
     double frac;
     TVector3 pos;
+	CCharShape *shape = Char.GetShape (g_game.char_id);
 
 	if (!active) return;
     keytime += timestep;
@@ -157,19 +160,20 @@ void CKeyframe::Update (double timestep, CControl *ctrl) {
     pos.y += Course.FindYCoord (pos.x, pos.z);
     Players.GetControl(0)->SetTuxPosition (pos);
 
-	Tux.ResetRoot ();
-	Tux.ResetJoints ();
+	shape->ResetRoot ();
+	shape->ResetJoints ();
 
     double disp_y = pos.y + TUX_Y_CORR; 
-    Tux.ResetNode (0);
+    shape->ResetNode (0);
 
-    Tux.TranslateNode (0, MakeVector (pos.x, disp_y, pos.z));
+    shape->TranslateNode (0, MakeVector (pos.x, disp_y, pos.z));
 	InterpolateKeyframe (keyidx, frac);
 }
 
 void CKeyframe::TestUpdate (double timestep) {
     double frac;
     TVector3 pos;
+	CCharShape *shape = Char.GetShape (g_game.char_id);
 
 	if (!active) return;
     keytime += timestep;
@@ -190,8 +194,8 @@ void CKeyframe::TestUpdate (double timestep) {
     pos.z = interp (frac, frames[keyidx].pos.z, frames[keyidx+1].pos.z);
     pos.y = interp (frac, frames[keyidx].pos.y, frames[keyidx+1].pos.y);
 
-	Tux.ResetRoot ();
-	Tux.ResetJoints ();
+	shape->ResetRoot ();
+	shape->ResetJoints ();
 	InterpolateKeyframe (keyidx, frac);
 }
 

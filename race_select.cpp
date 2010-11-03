@@ -38,7 +38,7 @@ static int lastMirror = 1;
 static int curr_random = 0;
 static int lastRandom = 1;
 static int curr_char = 0;
-static int lastChar = 1;
+static int lastChar = 3;
 static int curr_course = 0;
 static int lastCourse;
 static TVector2 cursor_pos = {0, 0};
