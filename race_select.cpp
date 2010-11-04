@@ -37,8 +37,6 @@ static int curr_mirror = 0;
 static int lastMirror = 1;
 static int curr_random = 0;
 static int lastRandom = 1;
-static int curr_char = 0;
-static int lastChar = 3;
 static int curr_course = 0;
 static int lastCourse;
 static TVector2 cursor_pos = {0, 0};
@@ -49,14 +47,12 @@ static int xleft, ytop;
 void SetRaceConditions (void) {
 	if (curr_random > 0) {
 		g_game.mirror_id = IRandom (0, lastMirror);
-		g_game.char_id = IRandom (0, lastChar);
 		g_game.light_id = IRandom (0, lastLight);
 		g_game.snow_id = IRandom (0, lastSnow);
 		g_game.wind_id = IRandom (0, lastWind);
 		curr_random = 0;
 	} else {
 		g_game.mirror_id = curr_mirror;
-		g_game.char_id = curr_char;
 		g_game.light_id = curr_light;
 		g_game.snow_id = curr_snow;
 		g_game.wind_id = curr_wind;
@@ -76,7 +72,6 @@ void ChangeSelection (int focus, int dir) {
 			case 3: if (curr_wind > 0) curr_wind--; break;	
 			case 4: if (curr_mirror > 0) curr_mirror--; break;	
 			case 5: if (curr_random > 0) curr_random--; break;	
-			case 6: if (curr_char > 0) curr_char--; break;	
 		}
 	} else {
 		switch (focus) {
@@ -86,7 +81,6 @@ void ChangeSelection (int focus, int dir) {
 			case 3: if (curr_wind < lastWind) curr_wind++; break;	
 			case 4: if (curr_mirror < lastMirror) curr_mirror++; break;	
 			case 5: if (curr_random < lastRandom) curr_random++; break;	
-			case 6: if (curr_char < lastChar) curr_char++; break;	
 		}
 	}
 }
@@ -118,7 +112,6 @@ static void RaceSelectMouseFunc (int button, int state, int x, int y ){
 			case 3: if (curr_wind < lastWind) curr_wind++; else curr_wind = 0; break;
 			case 4: if (curr_mirror < lastMirror) curr_mirror++; else curr_mirror = 0; break;
 			case 5: if (curr_random < lastRandom) curr_random++; else curr_random = 0; break;
-			case 6: if (curr_char < lastChar) curr_char++; else curr_char = 0; break;
 			case 7: SetRaceConditions (); break;
 			case 8: Winsys.SetMode (GAME_TYPE_SELECT); break;
 		}
@@ -130,7 +123,7 @@ static void RaceSelectKeys
 	if (release) return;
 	switch (key) {
 		case 27: Winsys.SetMode (GAME_TYPE_SELECT); break;
-		case SDLK_TAB: if (curr_focus < 8) curr_focus++; else curr_focus = 0; break;
+		case SDLK_TAB: if (curr_focus < 7) curr_focus++; else curr_focus = 0; break;
 		case SDLK_DOWN: ChangeSelection (curr_focus, 1); break;
 		case SDLK_UP: ChangeSelection (curr_focus, 0); break;
 		case SDLK_LEFT: ChangeSelection (curr_focus, 0); break;
@@ -167,10 +160,9 @@ void RaceSelectInit (void) {
 	AddIconButton (xleft + buttoffs + 110, ytop + 55, 3, Tex.TexID (WIND_BUTT), 32); 
 	AddIconButton (xleft + buttoffs + 160, ytop + 55, 4, Tex.TexID (MIRROR_BUTT), 32); 
 	AddIconButton (xleft + buttoffs + 210, ytop + 55, 5, Tex.TexID (RANDOM_BUTT), 32); 
-	AddIconButton (xleft + buttoffs + 260, ytop + 55, 6, Tex.TexID (CHAR_BUTT), 32); 
 
-	AddTextButton (Trans.Text(13), xleft + 300, ytop + 280, 7, -1);
-	AddTextButton (Trans.Text(8), xleft + 100, ytop + 280, 8, -1);
+	AddTextButton (Trans.Text(13), xleft + 300, ytop + 280, 6, -1);
+	AddTextButton (Trans.Text(8), xleft + 100, ytop + 280, 7, -1);
 	curr_focus = 0;
 }
 
@@ -221,7 +213,6 @@ void RaceSelectLoop (double timestep){
 	PrintIconButton (2, curr_focus, curr_wind);
 	PrintIconButton (3, curr_focus, curr_mirror);
 	PrintIconButton (4, curr_focus, curr_random);
-	PrintIconButton (5, curr_focus, curr_char);
 
 	PrintTextButton (0, curr_focus);
 	PrintTextButton (1, curr_focus);

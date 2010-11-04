@@ -430,7 +430,7 @@ void CCharShape::Draw () {
 
 // --------------------------------------------------------------------
 
-bool CCharShape::Load (string filename, bool with_actions) {
+bool CCharShape::Load (string dir, string filename, bool with_actions) {
 	CSPList list (500);
 	int i, ii, act;
 	string line, order, name, mat_name, fullname;
@@ -444,7 +444,7 @@ bool CCharShape::Load (string filename, bool with_actions) {
 	newActions = true;
 
 	file_name = filename;
- 	if (!list.Load (param.char_dir, filename)) {
+ 	if (!list.Load (dir, filename)) {
 		Message ("could not load character", filename.c_str());
 		return false;
 	}
@@ -976,11 +976,10 @@ CCharacter Char;
 
 CCharacter::CCharacter () {
 	for (int i=0; i<MAX_CHARACTERS; i++) {
-		name[i] = "";
-		filename[i] = "";
-		texid[i] = 0;
-		loaded[i] = false;
-		shape[i] = NULL;
+		CharList[i].name = "";
+		CharList[i].dir = "";
+		CharList[i].preview = 0;
+		CharList[i].shape = NULL;
 	}
 	numCharacters = 0;
 	curr_character = 0;
@@ -988,59 +987,54 @@ CCharacter::CCharacter () {
 
 CCharacter::~CCharacter () {}
 
-bool CCharacter::LoadCharacterList () {
-	CSPList list (8);
-	string line;
+static string char_type_index = "[spheres]0[3d]1";
+
+void CCharacter::LoadCharacterList () {
+	CSPList list (MAX_CHARACTERS+2);
+	string line, typestr, charpath, previewfile;
 	int i;
+	GLuint texid;
 
 	if (!list.Load (param.char_dir, "characters.lst")) {
 		Message ("could not load characters.lst");
-		return false;
+		return;
 	}
 
+	numCharacters = 0;
 	for (i=0; i<list.Count(); i++) {
 		line = list.Line (i);
-		name[i] = SPStrN (line, "name", "");
-		filename[i] = SPStrN (line, "file", "");
-	}
-	numCharacters = list.Count();
-	return true;
-}
+		CharList[i].name = SPStrN (line, "name", "");
+		CharList[i].dir = SPStrN (line, "dir", "");
+		typestr = SPStrN (line, "type", "unknown");
+		CharList[i].type = SPIntN (char_type_index, typestr, -1);
 
-int CCharacter::FindFirstValid () {
-	int val = MAX_CHARACTERS;
-	for (int i=3; i>=0; i--) 
-		if (loaded[i]) val = i;
-	if (val == MAX_CHARACTERS) val = -1;
-	return val;
-}
+		charpath = param.char_dir + SEP + CharList[i].dir;
+		if (DirExists (charpath.c_str())) {
+			previewfile = charpath + SEP + "preview.png";
+			texid = Tex.LoadMipmapTexture (previewfile.c_str(), 0);
+			if (texid < 1) {
+				Message ("could not load previewfile of character");					
+				texid = Tex.TexID (NO_PREVIEW);
+			}
+			CharList[i].preview = texid;
 
-bool CCharacter::LoadCharacters () {
-	for (int i=0; i<numCharacters; i++) {
-		shape[i] = new CCharShape;
-		loaded[i] = shape[i]->Load (filename[i], false);
-		if (loaded[i] == false) {
-			free (shape[i]);
-			shape[i] = NULL;
+			CharList[i].shape = new CCharShape;
+			if (CharList[i].shape->Load (charpath, "shape.lst", false) == false) {
+				free (CharList[i].shape);
+				CharList[i].shape = NULL;
+				Message ("could not load character shape");
+			} else numCharacters++;
 		}
 	}
-	return true;
 }
 
 void CCharacter::Draw (int idx) {
-	if (idx < 0 || idx >= MAX_CHARACTERS) return;
-	if (loaded[idx] == false) idx = FindFirstValid ();
-	if (idx < 0) return;
-	shape[idx]->Draw();
+	if (idx < 0 || idx >= numCharacters) return;
+	CharList[idx].shape->Draw ();
 }
 
 CCharShape *CCharacter::GetShape (int idx) {
-	if (idx < 0 || idx >= MAX_CHARACTERS) return NULL;
-	if (loaded[idx] == false) idx = FindFirstValid ();
-	if (idx < 0) return NULL;
-	return shape[idx];
-
+	if (idx < 0 || idx >= numCharacters) return NULL;
+	return CharList[idx].shape;
 }
-
-
 

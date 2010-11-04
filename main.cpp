@@ -42,8 +42,12 @@ TGameData g_game;
 
 void InitGame (int argc, char **argv) {
 	g_game.toolmode = NONE;
+
 	if (argv[1] != NULL) g_game.argument = Str_IntN (argv[1], 0);
 		else g_game.argument = 0;
+
+//	if (argv[1] != NULL) PrintStr (argv[1]);
+//	if (argv[2] != NULL) PrintStr (argv[2]);
 
 	g_game.secs_since_start = 0;
 	g_game.course_id = 0;
@@ -80,27 +84,10 @@ int main( int argc, char **argv ) {
 	//	Winsys.PrintJoystickInfo ();
 	//	PrintGLInfo ();
 
-/*	
-	// Some arguments for special modes
-	switch (game.argument) {
-		case 99: C_Test (); return 0; break;	// test mode without OpenGL
-		case 80: MakeSPModel (1, 0); return (0); break; // .obj to SP (smooth shading)
-		case 81: MakeSPModel (0, 0); return (0); break; // .obj to SP (flat shading)
-	}
-*/
-/*
-	string decode = "[1] 11 [2] 22 [3] 33";
-	char cc;
-	int val;
-	string bb;
-	string ss = "123";
-	for (int i=0; i<(int)ss.size(); i++) {
-		bb = ss.at (i);
-//		PrintInt (SPIntN (decode, bb, -1));
-	}
-PrintInt ('1');
-	return 0;
-*/
+//	string uu = "hhh";
+//	if (uu == "hhh") PrintStr ("+++"); else PrintStr ("---");
+//	return 0;
+
 	// register loop functions
     splash_screen_register();
     intro_register();
@@ -133,7 +120,7 @@ PrintInt ('1');
 	switch (g_game.argument) {
 		case 0: Winsys.SetMode (SPLASH); break;
 		case 2: 
-			if (TestChar.Load ("test.lst", true) == false) Winsys.Quit();
+			if (TestChar.Load (param.char_dir, "test.lst", true) == false) Winsys.Quit();
 			g_game.toolmode = TUXSHAPE; 
 			Winsys.SetMode (TOOLS); 
 			break;

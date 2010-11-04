@@ -1,7 +1,8 @@
 # characters.list
+# [type] can be "spheres" or "3d"
 
-*[name] Tux [file] tux.lst [preview] tux.png
-*[name] Trixi [file] trixi.lst [preview] trixi.png
-*[name] Boris [file] boris.lst [preview] boris.png
-*[name] Samuel [file] samuel.lst [preview] samuel.png
+*[name] Tux [type] spheres [dir] tux
+*[name] Trixi [type] spheres [dir] trixi
+*[name] Boris [type] spheres [dir] boris
+*[name] Samuel [type] spheres [dir] samuel
 

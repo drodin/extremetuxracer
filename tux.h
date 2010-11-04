@@ -131,7 +131,7 @@ public:
 	// global functions
 	void Draw ();
 	void DrawShadow ();
-	bool Load (string filename, bool with_actions);
+	bool Load (string dir, string filename, bool with_actions);
 
 	void AdjustOrientation (CControl *ctrl, double dtime,
 		double dist_from_surface, TVector3 surf_nml);
@@ -152,26 +152,29 @@ public:
 	void   SaveCharNodes ();
 };
 
-#define MAX_CHARACTERS 4
+#define MAX_CHARACTERS 16
+
+typedef struct {
+	int type;
+	string name;
+	string dir;
+	GLuint preview;
+	CCharShape *shape;
+} TCharacter;
 
 class CCharacter {
 private:
-	string name[MAX_CHARACTERS];
-	string filename[MAX_CHARACTERS];
-	GLuint texid[MAX_CHARACTERS];
-	CCharShape *shape[MAX_CHARACTERS];
-	bool loaded[MAX_CHARACTERS];
-
-	int numCharacters;
 	int curr_character; 
-	int FindFirstValid ();
 public:
 	CCharacter ();
 	~CCharacter ();
-	bool LoadCharacterList ();
-	bool LoadCharacters ();
+
+	TCharacter CharList [MAX_CHARACTERS];
+	int numCharacters;
+
 	void Draw (int idx);
 	CCharShape *GetShape (int idx);
+	void LoadCharacterList ();
 };
 
 extern CCharShape TestChar;

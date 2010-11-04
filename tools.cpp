@@ -126,6 +126,7 @@ void QuitTool () {
 void ToolsKeys (unsigned int key, bool special, bool release, int x, int y) {
 	int keyfact;
 
+//	PrintInt (key);	
 	if (finalstage) {
 		if (key == SDLK_y || key == SDLK_j) {
 			TestChar.SaveCharNodes ();
@@ -217,11 +218,11 @@ void ToolsKeys (unsigned int key, bool special, bool release, int x, int y) {
 					charchanged = true;
 				}
 				break;
-			case SDLK_PLUS: 
+			case SDLK_PLUS: // zoom in
 				zposition += 0.1;
 				xposition -= 0.03;
 				break;
-			case SDLK_MINUS: 
+			case SDLK_MINUS: // zoom out
 				zposition -= 0.1;
 				xposition += 0.03;
 				break;
