@@ -51,8 +51,11 @@ typedef struct NodeStruct {
     struct NodeStruct *child;
 
 	int node_idx;		// number in node_array
-	int parent_name;	// int identifier of parent
 	int node_name;		// int identifier of node itself
+	int parent_name;	// int identifier of parent
+	int child_name;
+	int next_name;
+
     string joint;
 	bool visible;
     TMatrix trans;
@@ -98,7 +101,7 @@ private:
 	// drawing 
 	void DrawCharSphere (int num_divisions);
 	GLuint GetDisplayList (int divisions);
-	void DrawNodes (TCharNode *node, TCharMaterial *mat);
+	void DrawNodes (TCharNode *node);
 	TVector3 AdjustRollvector (CControl *ctrl, TVector3 vel, TVector3 zvec);
 
 	// collision
@@ -117,6 +120,7 @@ public:
 	CCharShape ();
 	~CCharShape ();
 	bool useMaterials;
+	bool useHighlighting;
 
 	// nodes 
 	bool ResetNode (int node_name);
@@ -141,7 +145,11 @@ public:
 	bool Collision (TVector3 pos, TPolyhedron ph);
 
 	// testing and tools
-	string GetNodeName (int idx);
+	bool   highlighted;
+	int    highlight_node;
+
+	int    GetNodeName (int idx);
+	string GetNodeJoint (int idx);
 	int    GetNumNodes ();
 	string GetNodeFullname (int idx);
 	int    GetNumActs (int idx);

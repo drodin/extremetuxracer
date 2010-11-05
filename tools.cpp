@@ -40,7 +40,6 @@ static float tdef_spec[] = {0.6, 0.6, 0.6, 1.0};
 static float tdef_pos[]  = {1, 2, 2, 0.0};    
 static TLight toollight;
 
-//static int steermode = 0;
 static int firstnode = 0;
 static int lastnode;
 static int curr_node = 0;
@@ -91,6 +90,7 @@ void TuxshapeMonitor () {
 	glRotatef (xrotation, 1, 0, 0);
 	glRotatef (yrotation, 0, 1, 0);
 	glRotatef (zrotation, 0, 0, 1);
+
 //	ResetTuxRoot2 ();
 //	ResetTuxJoints2 ();
 
@@ -125,8 +125,6 @@ void QuitTool () {
 
 void ToolsKeys (unsigned int key, bool special, bool release, int x, int y) {
 	int keyfact;
-
-//	PrintInt (key);	
 	if (finalstage) {
 		if (key == SDLK_y || key == SDLK_j) {
 			TestChar.SaveCharNodes ();
@@ -139,13 +137,35 @@ void ToolsKeys (unsigned int key, bool special, bool release, int x, int y) {
 
 		int type = action->type[curr_act];	
 		switch (key) {
+			case 27: case SDLK_q: QuitTool (); break;
 			case SDLK_n: TestChar.PrintNode(curr_node); break;
-			case SDLK_a: TestChar.PrintAction(curr_node); break;
+			case SDLK_9: TestChar.PrintAction(curr_node); break;
 			case SDLK_s: TestChar.SaveCharNodes (); charchanged = false; break;
 			case SDLK_c: ScreenshotN (); break;
-			case 27: QuitTool (); break;
-			case SDLK_q: QuitTool (); break;
 			case SDLK_m: TestChar.useMaterials = !TestChar.useMaterials; break;
+			case SDLK_h: TestChar.useHighlighting = !TestChar.useHighlighting; break;
+			case SDLK_8: TestChar.PrintNode (6); break;
+			case SDLK_r: TestChar.RefreshNode (curr_node); break;
+			case SDLK_1: 
+				xrotation = 0;
+				yrotation = 0;
+				zrotation = 0;
+				break;
+			case SDLK_2: 
+				xrotation = -60;
+				yrotation = 180;
+				zrotation = 15;
+				break;
+			case SDLK_3: 
+				xrotation = 0;
+				yrotation = 180;
+				zrotation = 0;
+				break;
+			case SDLK_4: 
+				xrotation = 0;
+				yrotation = -80;
+				zrotation = 0;
+				break;
 			case SDLK_u: if (action != NULL) {
 					RecallAction (action);
 					TestChar.RefreshNode (curr_node);
@@ -186,7 +206,6 @@ void ToolsKeys (unsigned int key, bool special, bool release, int x, int y) {
 					StoreAction (action);
 				}
 				break;
-			case SDLK_r: TestChar.RefreshNode (curr_node); break;
 			case SDLK_PAGEDOWN: if (curr_act < lastact) curr_act++; break; 
 			case SDLK_PAGEUP: if (curr_act > 0) curr_act--; break; 
 			case 257: case SDLK_x:
@@ -218,6 +237,16 @@ void ToolsKeys (unsigned int key, bool special, bool release, int x, int y) {
 					charchanged = true;
 				}
 				break;
+			case SDLK_a: 
+				if (type == 4) {
+					action->vec[curr_act].x += (0.02 * keyfact); 
+					action->vec[curr_act].y += (0.02 * keyfact); 
+					action->vec[curr_act].z += (0.02 * keyfact); 
+					TestChar.RefreshNode (curr_node);
+					charchanged = true;
+				}
+				break;
+		
 			case SDLK_PLUS: // zoom in
 				zposition += 0.1;
 				xposition -= 0.03;
@@ -306,13 +335,6 @@ void ToolsInit (void) {
 	base = (int)((param.y_resolution - 200) / 18); 
 	Winsys.KeyRepeat (true);
 	InitToolLight ();
-	switch (g_game.toolmode) {
-		case NONE: break;
-		case TUXSHAPE: break;
-		case KEYFRAME: break;
-		case TREEGEN: break;
-		case LEARN: break;
-	}
 	firstnode = 1;
 	lastnode = TestChar.GetNumNodes () -1;
 	curr_node = firstnode;
@@ -327,56 +349,53 @@ void ToolsLoop (double timestep) {
 	check_gl_error();
 	set_gl_options (TUX);
     ClearRenderContext (colDDBackgr);
-		switch (g_game.toolmode) {
-			case TUXSHAPE: TuxshapeMonitor (); break;
-			case KEYFRAME: break;
-			case TREEGEN: break;
-			case NONE: break;
-			case LEARN: break;
+
+	TestChar.highlight_node = TestChar.GetNodeName (curr_node);
+	TuxshapeMonitor (); 
+
+	SetupGuiDisplay ();
+	set_gl_options (TEXFONT);
+
+	FT.SetFont ("normal");
+	FT.SetSize (16);
+
+	int xl, yt;
+	for (int i=0; i<=lastnode; i++) {
+		if (i != curr_node) {
+			FT.SetColor (colLGrey); 
+			FT.SetFont ("normal");
+		} else {
+			FT.SetColor (colYellow);
+			FT.SetFont ("bold");
 		}
+		xl = ITrunc (i, base) * 100 + 20;
+		yt = IFrac (i, base) * 18 + 60;
+		FT.DrawString (xl, yt, TestChar.GetNodeJoint (i));		
+	}
 
-		SetupGuiDisplay ();
-		set_gl_options (TEXFONT);
-
-		FT.SetFont ("normal");
-		FT.SetSize (16);
-
-		int xl, yt;
-		for (int i=0; i<=lastnode; i++) {
-			if (i != curr_node) {
-				FT.SetColor (colLGrey); 
-				FT.SetFont ("normal");
-			} else {
-				FT.SetColor (colYellow);
-				FT.SetFont ("bold");
-			}
-			xl = ITrunc (i, base) * 100 + 20;
-			yt = IFrac (i, base) * 18 + 60;
-			FT.DrawString (xl, yt, TestChar.GetNodeName (i));		
-		}
-
-		int num = action->num;
-		int type;
-		if (num > 0) {
-			for (int i=0; i<num; i++) {
-				is_visible = false;
-				if (i == curr_act) FT.SetColor (colYellow); 
-				else FT.SetColor (colLGrey); 
-				type = action->type[i];
-				yt = param.y_resolution - 120 + i * 18;
-				switch (type) {
-					case 0: DrawActionVec ("trans", yt, action->vec[i]); break;
-					case 1: DrawActionFloat ("x-rot", yt, action->dval[i]); break;
-					case 2: DrawActionFloat ("y-rot", yt, action->dval[i]); break;
-					case 3: DrawActionFloat ("z-rot", yt, action->dval[i]); break;
-					case 4: DrawActionVec ("scale", yt, action->vec[i]); break;
-					case 5: DrawActionFloat ("vis", yt, action->dval[i]); 
-						is_visible = true;
-						break;
-					default: break;
-				}
+	int num = action->num;
+	int type;
+	if (num > 0) {
+		for (int i=0; i<num; i++) {
+			is_visible = false;
+			if (i == curr_act) FT.SetColor (colYellow); 
+			else FT.SetColor (colLGrey); 
+			type = action->type[i];
+			yt = param.y_resolution - 120 + i * 18;
+			switch (type) {
+				case 0: DrawActionVec ("trans", yt, action->vec[i]); break;
+				case 1: DrawActionFloat ("x-rot", yt, action->dval[i]); break;
+				case 2: DrawActionFloat ("y-rot", yt, action->dval[i]); break;
+				case 3: DrawActionFloat ("z-rot", yt, action->dval[i]); break;
+				case 4: DrawActionVec ("scale", yt, action->vec[i]); break;
+				case 5: DrawActionFloat ("vis", yt, action->dval[i]); 
+					is_visible = true;
+					break;
+				default: break;
 			}
 		}
+	}
+
 	if (is_visible) FT.SetColor (colYellow); else FT.SetColor (colLGrey);
 	FT.DrawString (20, 20, action->name);
 
@@ -397,204 +416,3 @@ void RegisterToolFuncs () {
  		ToolsKeys, ToolsMouse, ToolsMotion, NULL, NULL);
 }
 
-/*
-// --------------------------------------------------------------------
-//			MakeSPModel
-//			Functions to convert .OBJ t0 .LST
-// --------------------------------------------------------------------
-
-TIndex3 Vec3_Idx3 (const TVector3 &v) {
-	TIndex3 res;
-	res.i = (int) v.x - 1;
-	res.j = (int) v.y - 1;
-	res.k = (int) v.z - 1;
-	return res;
-} 
-
-void MakeSPModel (int smooth, int mat) {
-	TVector3 vert[1000];
-	int numVert = 0;
-	TVector3 nmls[3000];
-	int numNmls = 0;
-	TVector2 coords[3000];
-	int numCoords = 0;
-	struct TTTri {TIndex3 elem[3];};
-	TTTri tri[400];		
-	int numTri = 0;
-	struct TTQuad {TIndex3 elem[4];};
-	TTQuad quad[400];		
-	int numQuad = 0;
-
-	CSPList list (1000, 1);
-	int pos, cnt, i;
-	string ss;
-	string line;
-
-	string modeldir = cfg.develop_dir;
-	modeldir += SEP;
-	modeldir += "model";
-
-	// read the .obj file:
-	if (list.Load (modeldir, "testmodel.obj")) {
-
-		// pass 1: read the vertices, normals and texl coords
-		for (i=0; i<list.Count(); i++) {
-			line = list.Line (i);
-
-			pos = SPosN (line, "v ");
-			if (pos >= 0) {
-				SDeleteN (line, pos, 2);
-				SInsertN (line, pos, "[v] ");
-				vert[numVert] = SPVector3N (line, "v");
-				numVert++;
-			}
-
-			pos = SPosN (line, "vn ");
-			if (pos >= 0) {
-				SDeleteN (line, pos, 3);
-				SInsertN (line, pos, "[vn] ");
-				nmls[numNmls] = SPVector3N (line, "vn");
-				numNmls++;
-			}
-
-			pos = SPosN (line, "vt ");
-			if (pos >= 0) {
-				SDeleteN (line, pos, 3);
-				SInsertN (line, pos, "[vt] ");
-				coords[numCoords] = SPVector2N (line, "vt");
-				numCoords++;
-			}
-		}
-
-
-		// pass 2 - read the faces
-		for (i=0; i<list.Count(); i++) {
-			line = list.Line (i);
-			pos = SPosN (line, "f ");
-			if (pos >= 0) {
-				cnt = 0;
-				do {
-					pos = SPosN (line, " ");
-					if (pos >= 0) {
-						SDeleteN (line, pos, 1);
-						ss = "["+ Int_StrN (cnt) +"]";			
-						SInsertN (line, pos, ss);
-						cnt++;
-					}	
-				} while (pos >= 0);
-
-				do {
-					pos = SPosN (line, "/");
-					if (pos >= 0) {
-						SDeleteN (line, pos, 1);
-						SInsertN (line, pos, " ");
-					}					
-				} while (pos >= 0);
-
-				if (cnt == 3) {
-					tri[numTri].elem[0] = Vec3_Idx3 (SPVector3N (line, "0"));
-					tri[numTri].elem[1] = Vec3_Idx3 (SPVector3N (line, "1"));
-					tri[numTri].elem[2] = Vec3_Idx3 (SPVector3N (line, "2"));
-					numTri++;
-				}
-				if (cnt == 4) {
-					quad[numQuad].elem[0] = Vec3_Idx3 (SPVector3N (line, "0"));
-					quad[numQuad].elem[1] = Vec3_Idx3 (SPVector3N (line, "1"));
-					quad[numQuad].elem[2] = Vec3_Idx3 (SPVector3N (line, "2"));
-					quad[numQuad].elem[3] = Vec3_Idx3 (SPVector3N (line, "3"));
-					numQuad++;
-				}
-
-				line += "[cnt]";
-				line += Int_StrN (cnt);
-			}
-		}
-	} else {
-		Message ("could not load obj file");
-		return;
-	}
-
-
-	// generate the SP file:
-	CSPList list2 (1000);
-
-	string s;
-	list2.Add ("# model description generated from .obj file");
-	list2.Add ("");
-	s = "*[S] 0 [vertices] ";
-	s += Int_StrN (numVert);
-	s += " [triangles] ";
-	s += Int_StrN (numTri);
-	s += " [quads] ";
-	s += Int_StrN (numQuad);
-	s += " [tex] 1 [mat] ";
-	s += Int_StrN (mat);
-	s += " [smooth] ";
-	s += Int_StrN (smooth);
-	list2.Add (s);
-	list2.Add ("");
-	list2.Add ("# Vertices:");
-	for (int i=0; i<numVert; i++) {
-		s = "*[S] 1 ";
-		SPAddVec3N (s, "v", vert[i], 5);
-		list2.Add (s);
-	}
-
-	TIndex3 idx[4];
-	TIndex3 idx3;
-	TIndex4 idx4;
-
-	list2.Add ("");
-	list2.Add ("# Triangles:");
-	for (i=0; i<numTri; i++) {
-		for (int j=0; j<3; j++) {
-			idx[j] = tri[i].elem[j];
-		}		
-		s = "*[S] 2 ";
-		idx3.i = idx[0].i;
-		idx3.j = idx[1].i;
-		idx3.k = idx[2].i;
-		SPAddIndx3N  (s, "v", idx3);
-		SPAddVec2N (s, "t1", coords[idx[0].j], 2);
-		SPAddVec2N (s, "t2", coords[idx[1].j], 2);
-		SPAddVec2N (s, "t3", coords[idx[2].j], 2);		
-		list2.Add (s);
-		if (smooth == 1) {
-			s = " ";
-			SPAddVec3N (s, "n1", nmls[idx[0].k], 2);
-			SPAddVec3N (s, "n2", nmls[idx[1].k], 2);
-			SPAddVec3N (s, "n3", nmls[idx[2].k], 2);		
-			list2.Add (s);
-		}
-	}
-
-
-	list2.Add ("");
-	list2.Add ("# Quads:");
-	for (i=0; i<numQuad; i++) {
-		for (int j=0; j<4; j++) idx[j] = quad[i].elem[j];
-		s = "*[S] 3 ";
-		idx4.i = idx[0].i;
-		idx4.j = idx[1].i;
-		idx4.k = idx[2].i;
-		idx4.l = idx[3].i;
-		SPAddIndx4N  (s, "v", idx4);
-		SPAddVec2N (s, "t1", coords[idx[0].j], 2);
-		SPAddVec2N (s, "t2", coords[idx[1].j], 2);
-		SPAddVec2N (s, "t3", coords[idx[2].j], 2);		
-		SPAddVec2N (s, "t4", coords[idx[3].j], 2);				
-		list2.Add (s);
-		if (smooth == 1) {
-			s = " ";
-			SPAddVec3N (s, "n1", nmls[idx[0].k], 2);
-			SPAddVec3N (s, "n2", nmls[idx[1].k], 2);
-			SPAddVec3N (s, "n3", nmls[idx[2].k], 2);		
-			SPAddVec3N (s, "n4", nmls[idx[3].k], 2);				
-			list2.Add (s);
-		}
-	}
-
-	list2.Print();
-	list2.Save (modeldir, "testmodel.lst");
-}
-*/

@@ -176,6 +176,7 @@ typedef struct {
 	int treesize;
 	int treevar;
 	int argument;
+	string arg_str;
 
 	// course and race params 
 	int cup_id;

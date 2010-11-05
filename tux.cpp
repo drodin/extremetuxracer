@@ -42,7 +42,7 @@ still shaped with spheres.
 #endif 
 
 TCharMaterial TuxDefMat = {{0.5, 0.5, 0.5, 1.0}, {0.0, 0.0, 0.0, 1.0}, 0.0};
-
+TCharMaterial Highlight = {{0.8, 0.15, 0.15, 1.0}, {0.0, 0.0, 0.0, 1.0}, 0.0};
 CCharShape TestChar;
 
 CCharShape::CCharShape () {
@@ -61,6 +61,9 @@ CCharShape::CCharShape () {
 	useActions = false;
 	newActions = false;
 	useMaterials = true;
+	useHighlighting = false;
+	highlighted = false;
+	highlight_node = -1;
 }
 
 CCharShape::~CCharShape () {}
@@ -93,9 +96,13 @@ bool CCharShape::GetNode (int node_name, TCharNode **node) {
 
 void CCharShape::CreateRootNode () {
     TCharNode *node = new TCharNode;
-    node->parent = NULL;
+	node->node_name = 0;
+	node->parent = NULL;
+	node->parent_name = 99;
     node->next = NULL;
+	node->next_name = 99;
     node->child = NULL;
+	node->child_name = 99;
     node->mat = NULL;
     node->joint = "root";
     node->render_shadow = false;
@@ -119,15 +126,18 @@ bool CCharShape::CreateCharNode
 		return false;
 	}
     TCharNode *node = new TCharNode;
-    node->parent = parent;
-    node->next  = NULL;
-    node->child = NULL;
-    node->mat   = NULL;
-	node->parent_name = parent_name; 
 	node->node_name = node_name;
+    node->parent = parent;
+	node->parent_name = parent_name; 
+    node->next  = NULL;
+	node->next_name = 99;
+    node->child = NULL;
+	node->child_name = 99;
+
+    node->mat   = NULL;
 	node->node_idx = numNodes; 
 	node->visible = false;
-		node->render_shadow = shadow;
+	node->render_shadow = shadow;
     node->joint = joint;
 	
     MakeIdentityMatrix (node->trans);
@@ -137,21 +147,25 @@ bool CCharShape::CreateCharNode
 	Nodes[numNodes] = node;
 	Index[node_name] = numNodes;
 
+/// -------------------------------------------------------------------
 	if (parent->child == NULL) {
 		parent->child = node;
+		parent->child_name = node_name;
 	} else {
-		for (parent = parent->child; parent->next != NULL; parent = parent->next) {} 
+ 		for (parent = parent->child; parent->next != NULL; parent = parent->next) {} 
 		parent->next = node;
+		parent->next_name = node_name;
 	} 
+/// -------------------------------------------------------------------
 
 	if (useActions) {
 		Actions[numNodes] = new TCharAction;
 		Actions[numNodes]->num = 0;
 		Actions[numNodes]->name = name;
 		Actions[numNodes]->order = order;
-		Actions[numNodes]->mat = "";
-		
+		Actions[numNodes]->mat = "";		
 	}
+
 	numNodes++;
     return true;
 } 
@@ -393,24 +407,33 @@ GLuint CCharShape::GetDisplayList (int divisions) {
     return display_lists[idx];
 }
 
-void CCharShape::DrawNodes (TCharNode *node, TCharMaterial *mat) {
+void CCharShape::DrawNodes (TCharNode *node) {
     TCharNode *child;
     glPushMatrix();
     glMultMatrixd ((double *) node->trans);
 
-    if (node->mat != NULL) mat = node->mat;
+	if (node->node_name == highlight_node) highlighted = true;
+	TCharMaterial *mat; 
+	if (highlighted && useHighlighting) {
+		mat = &Highlight;
+	} else {
+		if (node->mat != NULL && useMaterials) mat = node->mat; 
+		else mat = &TuxDefMat;
+	}
+
     if (node->visible == true) {
-		if (useMaterials) set_material (mat->diffuse, mat->specular, mat->exp);
-			else set_material (TuxDefMat.diffuse, TuxDefMat.specular, TuxDefMat.exp);
+		set_material (mat->diffuse, mat->specular, mat->exp);
 		if (USE_CHAR_DISPLAY_LIST) glCallList (GetDisplayList (node->divisions));
 			else DrawCharSphere (node->divisions);
     } 
-
+// -------------- recursive loop -------------------------------------
     child = node->child;
     while (child != NULL) {
-        DrawNodes (child, mat);
+        DrawNodes (child);
+		if (child->node_name == highlight_node) highlighted = false;
         child = child->next;
     } 
+// -------------------------------------------------------------------
     glPopMatrix();
 } 
 
@@ -423,9 +446,10 @@ void CCharShape::Draw () {
 	glEnable (GL_NORMALIZE);
 	
 	if (!GetNode (0, &node)) return;
-	DrawNodes (node, &TuxDefMat);
+	DrawNodes (node);
 	glDisable (GL_NORMALIZE);
 	if (param.perf_level > 2 && g_game.argument == 0) DrawShadow ();
+ 	highlighted = false;
 } 
 
 // --------------------------------------------------------------------
@@ -794,12 +818,17 @@ void CCharShape::DrawShadow () {
 //				testing and tools
 // --------------------------------------------------------------------
 
-string CCharShape::GetNodeName (int idx) {
+string CCharShape::GetNodeJoint (int idx) {
 	if (idx < 0 || idx >= numNodes) return "";
 	TCharNode *node = Nodes[idx];
 	if (node == NULL) return "";
 	if (node->joint.size() > 0) return node->joint;
 	else return Int_StrN (node->node_name);
+}
+
+int CCharShape::GetNodeName (int idx) {
+	if (idx < 0 || idx >= numNodes) return -1;
+	return Nodes[idx]->node_name;
 }
 
 void CCharShape::RefreshNode (int idx) {
@@ -910,8 +939,10 @@ void CCharShape::PrintAction (int idx) {
 
 void CCharShape::PrintNode (int idx) {
 	TCharNode *node = Nodes[idx];
-	PrintInt (node->node_name);
-	PrintInt (node->parent_name);
+	PrintInt ("node: ",node->node_name);
+	PrintInt ("parent: ", node->parent_name);
+	PrintInt ("child: ", node->child_name);
+	PrintInt ("next: ", node->next_name);
 }
 
 void CCharShape::SaveCharNodes () {

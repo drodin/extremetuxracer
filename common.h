@@ -57,7 +57,7 @@ TColor3 MakeColor3 (double r, double g, double b);
 // terminal. Only used for development. 
 
 void	PrintInt (const int val);
-void	PrintInt (char *s, const int val);
+void	PrintInt (string s, const int val);
 void	PrintStr (const char *val);
 void	PrintString (string s);
 void	PrintFloat (const float val);

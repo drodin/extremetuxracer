@@ -12,7 +12,7 @@
 *[node] 72 [par] 2 [order] 45 [scale] 0.95 1.00 0.80 [vis] 10 [mat] blackcol [name] black part of the body [shad] 1
 *[node] 73 [par] 2 [order] 045 [trans] -0.00 0.00 0.17 [scale] 0.84 0.90 0.70 [vis] 10 [mat] whitecol [name] white part of the body
 *[node] 3 [par] 1 [order] 0 [trans] 0.00 0.40 0.05 [name] breast
-*[node] 4 [par] 3 [order] 4 [scale] 0.72 0.72 0.72 [name] breast
+*[node] 4 [par] 3 [order] 4 [scale] 0.74 0.74 0.74 [name] breast
 *[node] 74 [par] 4 [order] 45 [scale] 0.95 1.00 0.80 [vis] 10 [mat] blackcol [name] black part of the breast
 *[node] 75 [par] 4 [order] 045 [trans] 0.00 0.00 0.17 [scale] 0.80 0.90 0.70 [vis] 10 [mat] whitecol [name] white part of the breast
 *[node] 5 [par] 1 [order] 02 [trans] 0.00 0.90 0.07 [rot] 0.00 90.00 0.00 [name] neck and head

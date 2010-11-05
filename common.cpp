@@ -67,11 +67,8 @@ void PrintInt (const int val) {
 	printf ("Integer: %i \n", val );
 }
 
-void PrintInt (char *s, const int val) {
-	char ss[128];
-	strcpy (ss, s);
-	strcat (ss," %i \n");
-	printf (ss, val);
+void PrintInt (string s, const int val) {
+	cout << s << val << endl;
 }
 
 void PrintStr (const char *val) {
