@@ -251,6 +251,10 @@ void ToolsKeys (unsigned int key, bool special, bool release, int x, int y) {
 				zposition += 0.1;
 				xposition -= 0.03;
 				break;
+			case SDLK_EQUALS: // zoom in (for qwerty)
+				zposition += 0.1;
+				xposition -= 0.03;
+				break;
 			case SDLK_MINUS: // zoom out
 				zposition -= 0.1;
 				xposition += 0.03;
