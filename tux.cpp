@@ -51,7 +51,10 @@ CCharShape::CCharShape () {
 		Actions[i] = NULL;
 		Index[i] = -1;
 	}
-	for (int i=0; i<MAX_CHAR_MAT; i++) Matlines[i] = "";
+	for (int i=0; i<MAX_CHAR_MAT; i++) {
+		Matlines[i] = "";
+		Materials[i] = NULL;
+	}
 	NodeIndex = "";
 	MaterialIndex = "";
 	numNodes = 0;
@@ -318,6 +321,39 @@ void CCharShape::ResetJoints () {
     ResetNode ("head");
 }
 
+void CCharShape::Reset () {
+	for (int i=0; i<MAX_CHAR_NODES; i++) {
+		if (Nodes[i] != NULL) {
+			free (Nodes[i]); 
+			Nodes[i] = NULL;
+		}
+		if (Actions[i] != NULL) {
+			free (Actions[i]); 
+			Actions[i] = NULL;
+		}
+		Index[i] = -1;
+	}
+	for (int i=0; i<MAX_CHAR_MAT; i++) {
+		Matlines[i] = "";
+		if (Materials[i] != NULL) {
+			free (Materials[i]); 
+			Materials[i] = NULL;
+		}
+	}
+	NodeIndex = "";
+	MaterialIndex = "";
+	numNodes = 0;
+	numMaterials = 0;
+	numMatlines = 0;
+
+	useActions = true;
+	newActions = false;
+	useMaterials = true;
+	useHighlighting = false;
+	highlighted = false;
+	highlight_node = -1;
+}
+ 
 // --------------------------------------------------------------------
 //				materials
 // --------------------------------------------------------------------
@@ -945,9 +981,9 @@ void CCharShape::PrintNode (int idx) {
 	PrintInt ("next: ", node->next_name);
 }
 
-void CCharShape::SaveCharNodes () {
+void CCharShape::SaveCharNodes (string filename) {
 	CSPList list (MAX_CHAR_NODES + 10);
-	string line, order;
+	string line, order, joint;
 	TCharNode *node;
 	TCharAction *act;
 	int  i, ii, aa;
@@ -995,8 +1031,13 @@ void CCharShape::SaveCharNodes () {
 		if (node->render_shadow) line += " [shad] 1";
 		
 		list.Add (line);
+		if (i<numNodes-3) {
+			if (node->visible && !Nodes[i+1]->visible) list.Add ("");
+			joint = Nodes[i+2]->joint;
+			if (joint.size() > 0) list.Add ("# " + joint);
+		}
 	}	
-	list.Save (param.char_dir, "test.lst");
+	list.Save (param.char_dir, filename);
 }
 
 // ********************************************************************

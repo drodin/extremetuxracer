@@ -177,6 +177,7 @@ typedef struct {
 	int treevar;
 	int argument;
 	string arg_str;
+	int loopdelay;
 
 	// course and race params 
 	int cup_id;

@@ -64,6 +64,7 @@ void InitGame (int argc, char **argv) {
 	g_game.force_treemap = 0;
 	g_game.treesize = 3;
 	g_game.treevar = 3;
+	g_game.loopdelay = 1;
 }
 
 // ====================================================================

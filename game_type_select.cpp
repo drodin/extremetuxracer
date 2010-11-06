@@ -97,6 +97,7 @@ static void GameSelectInit (void) {
 	AddTextButton (Trans.Text(43), CENTER, top + dist * 4, 4, FIT);
 	AddTextButton (Trans.Text(5), CENTER, top + dist * 5, 5, FIT);
 	Music.Play (param.menu_music, -1);
+	g_game.loopdelay = 20;
 }
 
 static void GameSelectLoop (double time_step) {

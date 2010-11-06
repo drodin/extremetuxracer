@@ -164,6 +164,7 @@ void RaceSelectInit (void) {
 	AddTextButton (Trans.Text(13), xleft + 300, ytop + 280, 6, -1);
 	AddTextButton (Trans.Text(8), xleft + 100, ytop + 280, 7, -1);
 	curr_focus = 0;
+	g_game.loopdelay = 20;
 }
 
 void RaceSelectLoop (double timestep){

@@ -294,7 +294,7 @@ void CWinsys::EventLoop () {
 		PollEvent ();
 	    if (ModePending()) ChangeMode ();
 		CallLoopFunction ();
-		SDL_Delay (1);
+		SDL_Delay (g_game.loopdelay);
     }
 }
 

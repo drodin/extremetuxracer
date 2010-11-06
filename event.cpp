@@ -151,6 +151,7 @@ void EventInit () {
 	AddTextButton (Trans.Text(15), CENTER, ytop + ecup->num_races * 35 + 160, 2, -1);
 	Music.Play (param.menu_music, -1);
 	if (ready < 1) curr_focus = 0; else curr_focus = 2;
+	g_game.loopdelay = 20;
 }
 
 int resultlevel (int num, int numraces) {

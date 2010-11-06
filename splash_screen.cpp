@@ -111,6 +111,7 @@ void SplashInit (void) {
 	AddTextButton ("Enter", -1, ytop + 280, 1, -1);
 
 	curr_focus = 0;
+	g_game.loopdelay = 20;
 }
 
 void SplashLoop (double timestep ){

@@ -33,6 +33,7 @@ static bool shift;
 static int base = 24;
 static bool finalstage = false;
 static bool charchanged = false;
+static bool must_render = true;
 
 static float tdef_amb[]  = {0.45, 0.53, 0.75, 1.0};    
 static float tdef_diff[] = {1.0, 0.9, 1.0, 1.0};    
@@ -48,6 +49,8 @@ static int lastact;
 static int curr_act = 0;
 
 static TCharAction *action;
+
+void ToolsInit (void);
 
 void DrawQuad (float x, float y, float w, float h,
 		float scrheight, TColor col, int frame) {
@@ -81,7 +84,7 @@ void SetToolLight () {
 	glEnable  (GL_LIGHTING);
 }
 
-static int loopcount = 0;
+static int drawcount = 0;
 void TuxshapeMonitor () {
 	glPushMatrix ();
  	SetToolLight ();
@@ -94,9 +97,11 @@ void TuxshapeMonitor () {
 //	ResetTuxRoot2 ();
 //	ResetTuxJoints2 ();
 
-	if (loopcount > 0) TestChar.Draw ();
+	if (drawcount > 0) TestChar.Draw ();
 	glPopMatrix ();
-	loopcount++;
+	drawcount++;
+	if (drawcount > 3) must_render = false;
+	g_game.loopdelay = 10;
 }
 
 static TCharAction Undo;
@@ -107,7 +112,6 @@ void StoreAction (TCharAction *act) {
 		Undo.vec[i] = act->vec[i];
 		Undo.dval[i] = act->dval[i];
 	}
-
 }
 
 void RecallAction (TCharAction *act) {
@@ -125,9 +129,12 @@ void QuitTool () {
 
 void ToolsKeys (unsigned int key, bool special, bool release, int x, int y) {
 	int keyfact;
+
+	must_render = true;
+
 	if (finalstage) {
 		if (key == SDLK_y || key == SDLK_j) {
-			TestChar.SaveCharNodes ();
+			TestChar.SaveCharNodes (g_game.arg_str);
 			Winsys.Quit();
 		} else if (key == SDLK_n) Winsys.Quit ();
 	} else {
@@ -140,19 +147,23 @@ void ToolsKeys (unsigned int key, bool special, bool release, int x, int y) {
 			case 27: case SDLK_q: QuitTool (); break;
 			case SDLK_n: TestChar.PrintNode(curr_node); break;
 			case SDLK_9: TestChar.PrintAction(curr_node); break;
-			case SDLK_s: TestChar.SaveCharNodes (); charchanged = false; break;
+			case SDLK_s: TestChar.SaveCharNodes (g_game.arg_str); charchanged = false; break;
 			case SDLK_c: ScreenshotN (); break;
 			case SDLK_m: TestChar.useMaterials = !TestChar.useMaterials; break;
 			case SDLK_h: TestChar.useHighlighting = !TestChar.useHighlighting; break;
 			case SDLK_8: TestChar.PrintNode (6); break;
-			case SDLK_r: TestChar.RefreshNode (curr_node); break;
+			case SDLK_r: 
+				TestChar.Reset (); 
+				TestChar.Load (param.char_dir, g_game.arg_str, true);
+				ToolsInit ();
+				break;
 			case SDLK_1: 
 				xrotation = 0;
 				yrotation = 0;
 				zrotation = 0;
 				break;
 			case SDLK_2: 
-				xrotation = -60;
+				xrotation = -50;
 				yrotation = 180;
 				zrotation = 15;
 				break;
@@ -269,6 +280,7 @@ static bool rotactive = false;
 static bool moveactive = false;
 
 static void ToolsMouse (int button, int state, int x, int y) {
+	must_render = true;
 	if (!finalstage) {
 		if (button == 1) {
 			if (state < 1) { 
@@ -307,6 +319,7 @@ static void ToolsMouse (int button, int state, int x, int y) {
 static void ToolsMotion (int x, int y) {
 	int diffx, diffy;
 	float diffposx, diffposy;
+	must_render = true;
 	if (rotactive) {
 		diffx = x - startx;
 		diffy = y - starty;
@@ -348,7 +361,7 @@ void ToolsInit (void) {
 	StoreAction (action);
 }
 
-void ToolsLoop (double timestep) {
+void RenderTools () {
 	bool is_visible = false;
 	check_gl_error();
 	set_gl_options (TUX);
@@ -411,6 +424,10 @@ void ToolsLoop (double timestep) {
 
 	Reshape (param.x_resolution, param.y_resolution);
     Winsys.SwapBuffers();
+}
+
+void ToolsLoop (double timestep) {
+	if (must_render) RenderTools ();
 } 
 
 void ToolsTerm () {}

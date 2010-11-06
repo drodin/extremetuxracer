@@ -133,6 +133,7 @@ public:
 	void ResetJoints ();
 
 	// global functions
+	void Reset ();
 	void Draw ();
 	void DrawShadow ();
 	bool Load (string dir, string filename, bool with_actions);
@@ -157,7 +158,7 @@ public:
 	void   PrintAction (int idx);	
 	void   PrintNode (int idx);
 	void   RefreshNode (int idx);
-	void   SaveCharNodes ();
+	void   SaveCharNodes (string filename);
 };
 
 #define MAX_CHARACTERS 16

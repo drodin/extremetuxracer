@@ -10,17 +10,22 @@
 *[node] 1 [par] 0 [order] 4 [scale] 0.35 0.35 0.35 [name] complete figure
 *[node] 2 [par] 1 [order] 4 [scale] 0.90 0.90 0.90 [name] body
 *[node] 72 [par] 2 [order] 45 [scale] 0.95 1.00 0.80 [vis] 10 [mat] blackcol [name] black part of the body [shad] 1
-*[node] 73 [par] 2 [order] 045 [trans] -0.00 0.00 0.17 [scale] 0.84 0.90 0.70 [vis] 10 [mat] whitecol [name] white part of the body
+*[node] 73 [par] 2 [order] 045 [trans] 0.00 0.00 0.17 [scale] 0.80 0.90 0.70 [vis] 10 [mat] whitecol [name] white part of the body
+
 *[node] 3 [par] 1 [order] 0 [trans] 0.00 0.40 0.05 [name] breast
-*[node] 4 [par] 3 [order] 4 [scale] 0.74 0.74 0.74 [name] breast
+*[node] 4 [par] 3 [order] 4 [scale] 0.72 0.72 0.72 [name] breast
 *[node] 74 [par] 4 [order] 45 [scale] 0.95 1.00 0.80 [vis] 10 [mat] blackcol [name] black part of the breast
 *[node] 75 [par] 4 [order] 045 [trans] 0.00 0.00 0.17 [scale] 0.80 0.90 0.70 [vis] 10 [mat] whitecol [name] white part of the breast
+
+# neck
 *[node] 5 [par] 1 [order] 02 [trans] 0.00 0.90 0.07 [rot] 0.00 90.00 0.00 [name] neck and head
 *[node] 6 [par] 5 [joint] neck [name] joint for neck
 *[node] 7 [par] 6 [order] 2 [rot] 0.00 -90.00 0.00 [name] neck and head
-*[node] 8 [par] 7 [order] 4 [scale] 0.47 0.50 0.45 [name] neck
-*[node] 9 [par] 8 [order] 5 [vis] 9 [mat] blackcol [name] black part of the neck [shad] 1
+*[node] 8 [par] 7 [order] 4 [scale] 0.45 0.50 0.45 [name] neck
+*[node] 9 [par] 8 [order] 5 [vis] 10 [mat] blackcol [name] black part of the neck [shad] 1
 *[node] 10 [par] 8 [order] 045 [trans] 0.00 -0.08 0.35 [scale] 0.80 0.90 0.70 [vis] 10 [mat] whitecol [name] white part of the neck
+
+# head
 *[node] 11 [par] 7 [order] 02 [trans] 0.00 0.30 0.07 [rot] 0.00 90.00 0.00 [name] head
 *[node] 12 [par] 11 [joint] head [name] joint for head
 *[node] 14 [par] 12 [order] 02 [trans] 0.00 0.20 0.00 [rot] 0.00 -90.00 0.00 [name] head
@@ -31,39 +36,57 @@
 *[node] 19 [par] 14 [order] 023145 [trans] -0.13 -0.03 0.38 [scale] 0.10 0.13 0.03 [vis] 4 [rot] 5.00 -18.00 -5.00 [mat] whitecol [name] right eye
 *[node] 20 [par] 14 [order] 023145 [trans] 0.12 -0.05 0.40 [scale] 0.05 0.07 0.03 [vis] 2 [rot] 5.00 18.00 5.00 [mat] iriscol [name] left iris
 *[node] 21 [par] 14 [order] 023145 [trans] -0.12 -0.05 0.40 [scale] 0.05 0.07 0.03 [vis] 2 [rot] 5.00 -18.00 -5.00 [mat] iriscol [name] right iris
+
+# left_shldr
 *[node] 22 [par] 3 [order] 2031 [trans] -0.56 0.30 0.00 [rot] 90.00 180.00 45.00 [name] left arm
 *[node] 23 [par] 22 [joint] left_shldr [name] joint for left shoulder
 *[node] 24 [par] 23 [order] 01 [trans] -0.22 0.00 0.00 [rot] -90.00 0.00 0.00 [name] left arm
 *[node] 25 [par] 24 [order] 45 [scale] 0.34 0.10 0.20 [vis] 5 [mat] blackcol [name] left upper arm [shad] 1
+
+# joint
 *[node] 30 [par] 24 [order] 031 [trans] -0.23 0.00 0.00 [rot] 90.00 0.00 20.00 [name] left forearm and hand
 *[node] 31 [par] 30 [joint] joint [name] joint for left_elbow
 *[node] 32 [par] 31 [order] 01 [trans] -0.19 0.00 0.00 [rot] -90.00 0.00 0.00 [name] left forearm and hand
 *[node] 33 [par] 32 [order] 45 [scale] 0.30 0.07 0.15 [vis] 5 [mat] blackcol [name] left forearm [shad] 1
+
+# left_hand
 *[node] 38 [par] 32 [order] 031 [trans] -0.24 0.00 0.00 [rot] 90.00 0.00 20.00 [name] left hand
 *[node] 39 [par] 38 [joint] left_hand [name] joint for left hand
 *[node] 40 [par] 39 [order] 01 [trans] -0.10 0.00 0.00 [rot] -90.00 0.00 0.00 [name] left hand
 *[node] 41 [par] 40 [order] 45 [scale] 0.12 0.05 0.12 [vis] 3 [mat] blackcol [name] left hand [shad] 1
+
+# right_shldr
 *[node] 26 [par] 3 [order] 031 [trans] -0.56 0.30 0.00 [rot] -90.00 0.00 45.00 [name] right arm
 *[node] 27 [par] 26 [joint] right_shldr [name] joint for right shoulder
 *[node] 28 [par] 27 [order] 01 [trans] -0.22 0.00 0.00 [rot] 90.00 0.00 0.00 [name] right arm
 *[node] 29 [par] 28 [order] 45 [scale] 0.34 0.10 0.20 [vis] 5 [mat] blackcol [name] right upper arm [shad] 1
+
+# right_elbow
 *[node] 34 [par] 28 [order] 031 [trans] -0.23 0.00 0.00 [rot] -90.00 0.00 20.00 [name] rigth forearm and hand
 *[node] 35 [par] 34 [joint] right_elbow [name] joint for right elbow
 *[node] 36 [par] 35 [order] 01 [trans] -0.19 0.00 0.00 [rot] 90.00 0.00 0.00 [name] right forearm and hand
 *[node] 37 [par] 36 [order] 45 [scale] 0.30 0.07 0.15 [vis] 5 [mat] blackcol [name] right forearm [shad] 1
+
+# right_hand
 *[node] 42 [par] 36 [order] 031 [trans] -0.24 0.00 0.00 [rot] -90.00 0.00 20.00 [name] right hand
 *[node] 43 [par] 42 [joint] right_hand [name] joint for right hand
 *[node] 44 [par] 43 [order] 01 [trans] -0.10 0.00 0.00 [rot] 90.00 0.00 0.00 [name] right hand
 *[node] 45 [par] 44 [order] 45 [scale] 0.12 0.05 0.12 [vis] 3 [mat] blackcol [name] right hand [shad] 1
+
+# left_hip
 *[node] 46 [par] 1 [order] 209 [trans] -0.28 -0.80 0.00 [rot] 0.00 180.00 110.00 [name] left leg
 *[node] 47 [par] 46 [joint] left_hip [name] joint for left leg
 *[node] 48 [par] 47 [order] 02 [trans] 0.00 -0.10 0.00 [rot] 0.00 -110.00 0.00 [name] left leg
 *[node] 49 [par] 48 [order] 45 [scale] 0.07 0.30 0.07 [vis] 3 [mat] beakcol [name] left highbone [shad] 1
 *[node] 50 [par] 48 [order] 045 [trans] 0.00 0.05 0.00 [scale] 0.09 0.18 0.09 [vis] 3 [mat] blackcol [name] left hip
+
+# left_knee
 *[node] 56 [par] 48 [order] 02 [trans] 0.00 -0.21 0.00 [rot] 0.00 90.00 0.00 [name] left lower leg and foot
 *[node] 57 [par] 56 [joint] left_knee [name] joint for left knee
 *[node] 58 [par] 57 [order] 02 [trans] 0.00 -0.13 0.00 [rot] 0.00 -90.00 0.00 [name] left lower leg and foot
 *[node] 59 [par] 58 [order] 45 [scale] 0.06 0.18 0.06 [vis] 3 [mat] beakcol [name] left lower leg
+
+# left_ankle
 *[node] 64 [par] 58 [order] 02 [trans] 0.00 -0.18 0.00 [rot] 0.00 -50.00 0.00 [name] left foot
 *[node] 65 [par] 64 [joint] left_ankle [name] joint for left ankle
 *[node] 76 [par] 65 [order] 04 [trans] -0.13 0.00 0.00 [scale] 1.10 1.00 1.30 [name] left foot
@@ -71,15 +94,21 @@
 *[node] 78 [par] 76 [order] 0245 [trans] -0.07 0.00 0.10 [scale] 0.27 0.07 0.11 [vis] 8 [rot] 0.00 30.00 0.00 [mat] beakcol [name] toe at left foot [shad] 1
 *[node] 79 [par] 76 [order] 0245 [trans] -0.07 0.00 -0.10 [scale] 0.27 0.07 0.11 [vis] 8 [rot] 0.00 -30.00 0.00 [mat] beakcol [name] toe at left foot [shad] 1
 *[node] 80 [par] 76 [order] 045 [trans] -0.08 0.00 0.00 [scale] 0.27 0.07 0.10 [vis] 8 [mat] beakcol [name] toe at left foot [shad] 1
+
+# right_hip
 *[node] 51 [par] 1 [order] 02 [trans] -0.28 -0.80 0.00 [rot] 0.00 -110.00 0.00 [name] right leg
 *[node] 52 [par] 51 [joint] right_hip [name] joint for right leg
 *[node] 53 [par] 52 [order] 02 [trans] 0.00 -0.10 0.00 [rot] 0.00 110.00 0.00 [name] right leg
 *[node] 54 [par] 53 [order] 45 [scale] 0.07 0.30 0.07 [vis] 3 [mat] beakcol [name] right highbone [shad] 1
 *[node] 55 [par] 53 [order] 045 [trans] 0.00 0.05 0.00 [scale] 0.09 0.18 0.09 [vis] 3 [mat] blackcol [name] right hip
+
+# right_knee
 *[node] 60 [par] 53 [order] 02 [trans] 0.00 -0.21 0.00 [rot] 0.00 -90.00 0.00 [name] right lower leg and foot
 *[node] 61 [par] 60 [joint] right_knee [name] joint for right knee
 *[node] 62 [par] 61 [order] 02 [trans] 0.00 -0.13 0.00 [rot] 0.00 90.00 0.00 [name] right lower leg and foot
 *[node] 63 [par] 62 [order] 45 [scale] 0.06 0.18 0.06 [vis] 3 [mat] beakcol [name] right lower leg
+
+# right_ankle
 *[node] 66 [par] 62 [order] 02 [trans] 0.00 -0.18 0.00 [rot] 0.00 50.00 0.00 [name] right foot
 *[node] 67 [par] 66 [joint] right_ankle [name] joint for right ankle
 *[node] 81 [par] 67 [order] 04 [trans] -0.13 0.00 0.00 [scale] 1.10 1.00 1.30 [name] right foot
@@ -87,6 +116,8 @@
 *[node] 83 [par] 81 [order] 0245 [trans] -0.07 0.00 0.10 [scale] 0.27 0.07 0.11 [vis] 8 [rot] 0.00 30.00 0.00 [mat] beakcol [name] toe at right foot [shad] 1
 *[node] 84 [par] 81 [order] 0245 [trans] -0.07 0.00 -0.10 [scale] 0.27 0.07 0.11 [vis] 8 [rot] 0.00 -30.00 0.00 [mat] beakcol [name] toe at right foot [shad] 1
 *[node] 85 [par] 81 [order] 045 [trans] -0.08 0.00 0.00 [scale] 0.27 0.07 0.10 [vis] 8 [mat] beakcol [name] toe at right foot [shad] 1
+
+# tail
 *[node] 68 [par] 1 [order] 01 [trans] 0.00 -0.40 -0.50 [rot] -60.00 0.00 0.00 [name] tail
 *[node] 69 [par] 68 [joint] tail [name] joint for tail
 *[node] 70 [par] 69 [order] 0 [trans] 0.00 0.15 0.00 [name] tail
