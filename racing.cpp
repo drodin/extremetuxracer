@@ -173,6 +173,7 @@ void racing_init (void) {
 	
 	g_game.fps = 0;
 	g_game.timesteps = 0;
+	g_game.finish = false;
 }
 
 // -------------------- sound -----------------------------------------
@@ -248,6 +249,24 @@ void CalcSteeringControls (CControl *ctrl, double time_step) {
     }
 }
 
+void CalcFinishControls (CControl *ctrl, double timestep, bool airborne) {
+	TVector3 movdir = ctrl->cvel;
+	double speed = NormVectorN (movdir);
+	double dir_angle = atan (movdir.x / movdir.z) * 57.3;
+
+	if (fabs (dir_angle) > 5 && speed > 5) {
+		ctrl->turn_fact = dir_angle / 20;
+		if (ctrl->turn_fact < -1) ctrl->turn_fact = -1;
+		if (ctrl->turn_fact > 1) ctrl->turn_fact = 1;
+		ctrl->turn_animation += ctrl->turn_fact * 2 * timestep;
+	} else {
+		ctrl->turn_fact = 0;
+		if  (timestep < ROLL_DECAY) {
+	    	ctrl->turn_animation *= 1.0 - timestep / ROLL_DECAY;
+		} else ctrl->turn_animation = 0.0;
+	}
+}
+
 // ----------------------- trick --------------------------------------
 void CalcTrickControls (CControl *ctrl, double time_step, bool airborne) {
 	if (airborne) {
@@ -288,7 +307,8 @@ void racing_loop (double time_step){
 	Music.Update ();    
 
 	if (tricking) CalcTrickControls (ctrl, time_step, airborne);
-	CalcSteeringControls (ctrl, time_step);
+	if (!g_game.finish) CalcSteeringControls (ctrl, time_step);
+		else CalcFinishControls (ctrl, time_step, airborne);
 	PlayTerrainSound (ctrl, airborne);
 
 //  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -317,7 +337,7 @@ void racing_loop (double time_step){
 	
 	Reshape (param.x_resolution, param.y_resolution);
     Winsys.SwapBuffers ();
-    g_game.time += time_step;
+	if (g_game.finish == false) g_game.time += time_step;
 } 
 
 // ---------------------------------- term ------------------

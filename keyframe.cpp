@@ -21,10 +21,10 @@ GNU General Public License for more details.
 #include "spx.h"
 #include "game_ctrl.h"
 
-CKeyframe TuxStart;		// keyframe before starting
-CKeyframe TuxFailure;	// in challenge mode: race was not successful
-CKeyframe TuxSuccess;	// in challenge mode: successful
-CKeyframe TuxFinal;		// in training mode after reaching the finish line
+CKeyframe TuxStart;
+CKeyframe TuxLostrace;
+CKeyframe TuxWonrace;
+CKeyframe TuxFinish;
 CKeyframe TuxTest;
 
 CKeyframe::CKeyframe () {
@@ -40,11 +40,13 @@ double CKeyframe::interp (double frac, double v1, double v2) {
     return frac * v1 + (1.0 - frac) * v2;
 } 
 
-void CKeyframe::Init (TVector3 ref_pos) {
+void CKeyframe::Init (TVector3 ref_position, double height_correction) {
+	if (!loaded) return;
 	CCharShape *shape = Char.GetShape (g_game.char_id);
     shape->ResetNode ("head");
     shape->ResetNode ("neck");
-	refpos = ref_pos;
+	refpos = ref_position;
+	heightcorr = height_correction;
 	active = true;
 	keyidx = 0;
 	keytime = 0;
@@ -53,9 +55,13 @@ void CKeyframe::Init (TVector3 ref_pos) {
 void CKeyframe::Reset () {
 	loaded = false;
 	active = false;
+	loadedfile = "";
+	keytime = 0;
+	numFrames = 0;
 }
 
 void CKeyframe::Load (string filename) {
+	if (loaded && loadedfile == filename) return;
 	CSPList list (1000);
 	int i;
 	string line;
@@ -85,6 +91,7 @@ void CKeyframe::Load (string filename) {
 			numFrames++;
 		}
 		loaded = true;
+		loadedfile = filename;
 	} else {
 		MessageN ("keyframe not found:", filename);
 		loaded = false;
@@ -135,6 +142,7 @@ void CKeyframe::InterpolateKeyframe (int idx, double frac) {
 }
 
 void CKeyframe::Update (double timestep, CControl *ctrl) {
+	if (!loaded) return;
     double frac;
     TVector3 pos;
 	CCharShape *shape = Char.GetShape (g_game.char_id);
@@ -158,17 +166,18 @@ void CKeyframe::Update (double timestep, CControl *ctrl) {
     pos.z = interp (frac, frames[keyidx].pos.z, frames[keyidx+1].pos.z) + refpos.z;
     pos.y = interp (frac, frames[keyidx].pos.y, frames[keyidx+1].pos.y);
     pos.y += Course.FindYCoord (pos.x, pos.z);
-    Players.GetControl(0)->SetTuxPosition (pos);
 
 	shape->ResetRoot ();
 	shape->ResetJoints ();
 
-    double disp_y = pos.y + TUX_Y_CORR; 
+    Players.GetControl(0)->cpos = pos;
+    double disp_y = pos.y + TUX_Y_CORR + heightcorr; 
     shape->ResetNode (0);
-
     shape->TranslateNode (0, MakeVector (pos.x, disp_y, pos.z));
 	InterpolateKeyframe (keyidx, frac);
 }
+
+
 
 void CKeyframe::TestUpdate (double timestep) {
     double frac;

@@ -1,3 +1,9 @@
-*[width]60.0[length]560.0[play_width]30.0[play_length]550.0
+*[width]60.0[length]604.0[play_width]30.0[play_length]550.0
 [startx]30.00[starty]3.1[angle]30.00[scale]8.00
 [theme]calm
+[env] tuxracer
+[use_keyframe] 1
+[wonrace_keyframe] tux_joice.lst
+[lostrace_keyframe] tux_sad.lst
+[finish_keyframe] tux_wait.lst
+[finish_brake] 15.0

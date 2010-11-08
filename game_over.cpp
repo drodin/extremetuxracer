@@ -31,8 +31,10 @@ GNU General Public License for more details.
 #include "spx.h"
 #include "game_ctrl.h"
 #include "translation.h"
+#include "keyframe.h"
 
 static TVector2 cursor_pos = {0, 0 };
+static CKeyframe *final_frame;
 
 void CalcScore (CControl *ctrl){
     double par_time;
@@ -158,6 +160,20 @@ void GameOverInit (void) {
 			Music.PlayTheme (g_game.theme_id, MUS_WONRACE);
 		}
 	}
+
+
+	if (g_game.raceaborted || !g_game.use_keyframe) {
+		final_frame = NULL;
+	} else {
+		if (g_game.game_type == CUPRACING) {
+			if (g_game.race_result < 0) final_frame = &TuxLostrace; 
+				else final_frame = &TuxWonrace;
+		} else final_frame = &TuxFinish;
+		if (!g_game.raceaborted) {
+			CControl *ctrl = Players.GetControl (0);
+			final_frame->Init (ctrl->cpos, -0.15);
+		}
+	}
 }
 
 void GameOverLoop (double time_step) {
@@ -171,13 +187,13 @@ void GameOverLoop (double time_step) {
 
 	ClearRenderContext ();
     Env.SetupFog ();
-    ctrl->UpdatePlayerPos (0);
     update_view (ctrl, 0); 
+ 	if (final_frame != NULL) final_frame->Update (time_step, ctrl);
 
     SetupViewFrustum (ctrl);
     Env.DrawSkybox (ctrl->viewpos);
     Env.DrawFog ();
-	Env.SetupLight ();	// and fog
+	Env.SetupLight ();
 
     RenderCourse ();
     DrawTrackmarks ();
@@ -191,7 +207,9 @@ void GameOverLoop (double time_step) {
 
     set_gl_options (GUI); 
 	SetupGuiDisplay ();
-    GameOverMessage ();
+	if (final_frame != NULL) {
+		if (!final_frame->active) GameOverMessage ();
+	} else GameOverMessage ();
 	DrawHud (ctrl);
     Reshape (width, height);
     Winsys.SwapBuffers ();

@@ -1,3 +1,9 @@
-*[width]90.0[length]480.0[play_width]55.0[play_length]470.0
+*[width]90.0[length]520.0[play_width]55.0[play_length]470.0
 [startx]45.00[starty]3.50[angle]25.00[scale]7.00
-[theme]spunky
+[env] tuxracer
+[use_keyframe] 1
+[start_keyframe] tux_walk.lst
+[wonrace_keyframe] tux_joice.lst
+[lostrace_keyframe] tux_sad.lst
+[finish_keyframe] tux_wait.lst
+[finish_brake] 15.0

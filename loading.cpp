@@ -66,7 +66,6 @@ void LoadingLoop (double time_step) {
 	Course.LoadCourse (g_game.course_id);
 	g_game.location_id = Course.GetEnv ();
 	Env.LoadEnvironment (g_game.location_id, g_game.light_id);
-	TuxStart.Load ("tux_walk.lst"); 	
     Winsys.SetMode (INTRO);
 } 
 

@@ -45,6 +45,7 @@ private:
 	int numFrames;
 	TKeyframe frames[MAX_KEY_FRAMES];
 	TVector3 refpos;
+	double heightcorr;
 	int keyidx;
 
 	double interp (double frac, double v1, double v2);
@@ -55,7 +56,8 @@ public:
 
 	bool active;
 	bool loaded;
-	void Init (TVector3 ref_pos);
+	string loadedfile;
+	void Init (TVector3 ref_position, double height_correction);
 	void Reset ();
 	void Update (double timestep, CControl *ctrl);
 	void TestUpdate (double timestep);
@@ -63,10 +65,9 @@ public:
 };
 
 extern CKeyframe TuxStart;
-extern CKeyframe TuxFailure;
-extern CKeyframe TuxSuccess;
-extern CKeyframe TuxFinal;
+extern CKeyframe TuxLostrace;
+extern CKeyframe TuxWonrace;
+extern CKeyframe TuxFinish;
 extern CKeyframe TuxTest;
-
 
 #endif

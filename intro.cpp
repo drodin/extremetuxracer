@@ -51,7 +51,7 @@ void intro_init(void) {
     ctrl->cpos.x = start_pt.x;
     ctrl->cpos.z = start_pt.y;
 
-	TuxStart.Init (ctrl->cpos);
+	TuxStart.Init (ctrl->cpos, -0.05);
 
 	// reset of result values
     g_game.herring = 0;

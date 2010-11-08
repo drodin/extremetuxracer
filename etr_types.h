@@ -178,6 +178,9 @@ typedef struct {
 	int argument;
 	string arg_str;
 	int loopdelay;
+	bool finish;
+	bool use_keyframe;
+	double finish_brake;
 
 	// course and race params 
 	int cup_id;
