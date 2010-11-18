@@ -891,7 +891,8 @@ void quadsquare::Render (const quadcornerdata& cd, GLubyte *vnc_array) {
 					DrawTris();
 				}
 			}
-			
+
+/*			
 			if (param.perf_level > 1) {
 				glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
 				for (i=0; i<VertexArrayCounter; i++) {
@@ -901,6 +902,7 @@ void quadsquare::Render (const quadcornerdata& cd, GLubyte *vnc_array) {
 				}
 				DrawEnvmapTris();
 			}		
+*/
 		}
     }
     glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );

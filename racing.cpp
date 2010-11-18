@@ -315,7 +315,8 @@ void racing_loop (double time_step){
 	ctrl->UpdatePlayerPos (time_step); 
 //  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-    update_view (ctrl, time_step);
+	if (g_game.finish) IncCameraDistance (time_step);
+	update_view (ctrl, time_step);
 	UpdateTrackmarks (ctrl);
 
     SetupViewFrustum (ctrl);

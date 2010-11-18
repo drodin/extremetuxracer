@@ -18,6 +18,8 @@ GNU General Public License for more details.
 #define GAME_CTRL_H
 
 #include "bh.h"
+#include "tux.h"
+#include "keyframe.h"
 
 #define MAX_RACES2 256
 #define MAX_CUPS2 64
@@ -108,5 +110,38 @@ public:
 };
 
 extern CPlayers Players;
+
+// -------------------------------- characters ------------------------
+#define MAX_CHARACTERS 16
+
+typedef struct {
+	int type;
+	string name;
+	string dir;
+	GLuint preview;
+	CCharShape *shape;
+	CKeyframe frames[NUM_FRAME_TYPES];
+	bool finishframesok;
+} TCharacter;
+
+class CCharacter {
+private:
+	int curr_character; 
+public:
+	CCharacter ();
+	~CCharacter ();
+
+	TCharacter CharList [MAX_CHARACTERS];
+	int numCharacters;
+
+	void Draw (int idx);
+	CCharShape *GetShape (int idx);
+	void LoadCharacterList ();
+
+	CKeyframe *GetKeyframe (int idx, TFrameType type);
+};
+
+extern CCharacter Char;
+
 
 #endif

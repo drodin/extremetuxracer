@@ -3,7 +3,4 @@
 [theme]calm
 [env] tuxracer
 [use_keyframe] 1
-[wonrace_keyframe] tux_joice.lst
-[lostrace_keyframe] tux_sad.lst
-[finish_keyframe] tux_wait.lst
 [finish_brake] 15.0

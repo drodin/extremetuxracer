@@ -28,6 +28,8 @@ GNU General Public License for more details.
 #include "particles.h"
 #include "game_ctrl.h"
 
+static CKeyframe *startframe;
+
 void IntroKeys (unsigned int key, bool special, bool release, int x, int y);
 
 void abort_intro (CControl *ctrl) {
@@ -51,7 +53,12 @@ void intro_init(void) {
     ctrl->cpos.x = start_pt.x;
     ctrl->cpos.z = start_pt.y;
 
-	TuxStart.Init (ctrl->cpos, -0.05);
+	startframe = Char.GetKeyframe (g_game.char_id, START);
+	if (startframe->loaded) {
+//		startframe->Init (ctrl->cpos, -0.05);
+		CCharShape *sh = Char.GetShape (g_game.char_id);
+		startframe->Init (ctrl->cpos, -0.05, sh);
+	}
 
 	// reset of result values
     g_game.herring = 0;
@@ -65,7 +72,9 @@ void intro_init(void) {
     ctrl->cvel = MakeVector (0, 0, 0);
     clear_particles();
     set_view_mode (ctrl, ABOVE);
-    update_view (ctrl, EPS); 
+	SetCameraDistance (4.0);
+	SetStationaryCamera (false);
+	update_view (ctrl, EPS); 
 
     num_items = Course.numNocoll;
     item_locs = Course.NocollArr;
@@ -86,15 +95,15 @@ void intro_init(void) {
 void intro_loop (double time_step) {
 	int width, height;
 	CControl *ctrl = Players.GetControl (0);
-
     width = param.x_resolution;
     height = param.y_resolution;
     check_gl_error();
 
-	if (TuxStart.active) TuxStart.Update (time_step, ctrl);
-	else Winsys.SetMode (RACING);
-    ClearRenderContext ();
+	if (startframe->active) {
+		startframe->Update (time_step, ctrl);
+	} else Winsys.SetMode (RACING);
 
+	ClearRenderContext ();
 	Env.SetupFog ();
 
     update_view (ctrl, time_step);

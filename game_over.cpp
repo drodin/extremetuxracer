@@ -161,20 +161,21 @@ void GameOverInit (void) {
 		}
 	}
 
-
 	if (g_game.raceaborted || !g_game.use_keyframe) {
 		final_frame = NULL;
 	} else {
 		if (g_game.game_type == CUPRACING) {
-			if (g_game.race_result < 0) final_frame = &TuxLostrace; 
-				else final_frame = &TuxWonrace;
-		} else final_frame = &TuxFinish;
+			if (g_game.race_result < 0) final_frame = Char.GetKeyframe (g_game.char_id, LOSTRACE); 
+				else final_frame = Char.GetKeyframe (g_game.char_id, WONRACE);
+		} else final_frame = Char.GetKeyframe (g_game.char_id, FINISH);
 		if (!g_game.raceaborted) {
 			CControl *ctrl = Players.GetControl (0);
-			final_frame->Init (ctrl->cpos, -0.15);
+			final_frame->Init (ctrl->cpos, -0.18);
 		}
 	}
+	SetStationaryCamera (true);
 }
+
 
 void GameOverLoop (double time_step) {
     CControl *ctrl = Players.GetControl (0);
@@ -187,8 +188,10 @@ void GameOverLoop (double time_step) {
 
 	ClearRenderContext ();
     Env.SetupFog ();
-    update_view (ctrl, 0); 
- 	if (final_frame != NULL) final_frame->Update (time_step, ctrl);
+
+	update_view (ctrl, 0); 
+
+	if (final_frame != NULL) final_frame->Update (time_step, ctrl);
 
     SetupViewFrustum (ctrl);
     Env.DrawSkybox (ctrl->viewpos);

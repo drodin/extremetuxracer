@@ -125,6 +125,7 @@ typedef struct {
 typedef enum {
     NO_MODE,
     SPLASH,
+	REGIST,
     GAME_TYPE_SELECT,
     EVENT_SELECT,
 	EVENT,
@@ -163,6 +164,14 @@ typedef enum {
     NUM_VIEW_MODES
 } TViewMode;
 
+typedef enum {
+	START,
+	FINISH,
+	WONRACE,
+	LOSTRACE,
+	NUM_FRAME_TYPES
+} TFrameType;
+
 typedef struct {	
     TGameMode mode;              
     TGameMode prev_mode;         
@@ -176,7 +185,9 @@ typedef struct {
 	int treesize;
 	int treevar;
 	int argument;
-	string arg_str;
+	string group_arg;
+	string dir_arg;
+	string file_arg;
 	int loopdelay;
 	bool finish;
 	bool use_keyframe;

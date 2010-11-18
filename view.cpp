@@ -21,7 +21,6 @@ GNU General Public License for more details.
 
 #define MIN_CAMERA_HEIGHT  1.5
 #define ABSOLUTE_MIN_CAMERA_HEIGHT  0.3
-#define CAMERA_DISTANCE 4.0
 #define CAMERA_ANGLE_ABOVE_SLOPE 10
 #define PLAYER_ANGLE_IN_CAMERA 20
 #define MAX_CAMERA_PITCH 40
@@ -32,6 +31,28 @@ GNU General Public License for more details.
 #define MAX_INTERPOLATION_VALUE 0.3
 #define BASELINE_INTERPOLATION_SPEED 4.5
 #define NO_INTERPOLATION_SPEED 2.0
+#define CAMERA_DISTANCE_INCREMENT 2
+
+static TMatrix stationary_matrix;
+static bool is_stationary = false;
+static bool shall_stationary = false;
+
+void SetStationaryCamera (bool stat) {
+	if (stat == false) {
+		is_stationary = false;
+		shall_stationary = false;
+	} else {
+		shall_stationary = true;
+	}
+}
+
+static double camera_distance = 4.0;
+void IncCameraDistance (double timestep) {
+	camera_distance += timestep * CAMERA_DISTANCE_INCREMENT;
+}
+
+void SetCameraDistance (double val) {camera_distance = val;}
+
 
 void set_view_mode (CControl *ctrl, TViewMode mode) {ctrl->viewmode = mode;} 
 TViewMode get_view_mode (CControl *ctrl) {return ctrl->viewmode; } 
@@ -113,8 +134,7 @@ void interpolate_view_frame (TVector3 up1, TVector3 dir1,
     p_dir2->z = -cob_mat2[2][2];
 }
 
-
-void setup_view_matrix (CControl *ctrl) {
+void setup_view_matrix (CControl *ctrl, bool save_mat) {
     TVector3 view_x, view_y, view_z;
     TMatrix view_mat;
     TVector3 viewpt_in_view_frame;
@@ -157,7 +177,13 @@ void setup_view_matrix (CControl *ctrl) {
     view_mat[3][1] = -viewpt_in_view_frame.y;
     view_mat[3][2] = -viewpt_in_view_frame.z;
     
-    glLoadIdentity();
+	if (save_mat) {
+		int xx, yy;
+		for (xx=0; xx<4; xx++) {
+			for (yy=0; yy<4; yy++) stationary_matrix[xx][yy] = view_mat[xx][yy];
+		}
+	}
+    glLoadIdentity();	
 	glMultMatrixd ((double*) view_mat);
 }
 
@@ -173,7 +199,7 @@ TVector3 MakeViewVector () {
 			    course_angle -
 			    CAMERA_ANGLE_ABOVE_SLOPE + 
 			    PLAYER_ANGLE_IN_CAMERA)));
-	res = ScaleVector (CAMERA_DISTANCE, res);
+ 	res = ScaleVector (camera_distance, res);
 	return res;
 }
 
@@ -191,6 +217,12 @@ void update_view (CControl *ctrl, double dt) {
     double speed;
     TVector3 vel_cpy;
     double time_constant_mult;
+
+	if (is_stationary) {
+		glLoadIdentity();	
+		glMultMatrixd ((double*) stationary_matrix);
+		return;
+	}
 
     vel_cpy = ctrl->cvel;
     speed = NormVector (&vel_cpy);
@@ -227,7 +259,7 @@ void update_view (CControl *ctrl, double dt) {
 	    	for (i=0; i<2; i++) {
 				view_pt = interpolate_view_pos (ctrl->cpos, ctrl->cpos, 
 						MAX_CAMERA_PITCH, ctrl->viewpos, 
-						view_pt, CAMERA_DISTANCE, dt,
+						view_pt, camera_distance, dt,
 						BEHIND_ORBIT_TIME_CONSTANT * 
 						time_constant_mult);
 	    	}
@@ -277,7 +309,7 @@ void update_view (CControl *ctrl, double dt) {
 	    	for  (i=0; i<2; i++) {
 				view_pt = interpolate_view_pos (ctrl->plyr_pos, ctrl->cpos, 
 					  MAX_CAMERA_PITCH, ctrl->viewpos, 
-					  view_pt, CAMERA_DISTANCE, dt,
+					  view_pt, camera_distance, dt,
 					  FOLLOW_ORBIT_TIME_CONSTANT *
 					  time_constant_mult);
 	  		}
@@ -332,9 +364,15 @@ void update_view (CControl *ctrl, double dt) {
     ctrl->viewup = up_dir;
     ctrl->plyr_pos = ctrl->cpos;
     ctrl->view_init = true;
-    // Am Schluss eird die Viewmatrix an gl bergeben
-	setup_view_matrix (ctrl);
+
+	if (shall_stationary) {
+		setup_view_matrix (ctrl, true);
+		is_stationary = true;
+	} else {
+		setup_view_matrix (ctrl, false);
+	}
 } 
+
 
 // --------------------------------------------------------------------
 //					viewfrustum

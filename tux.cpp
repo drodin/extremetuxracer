@@ -146,7 +146,7 @@ bool CCharShape::CreateCharNode
     MakeIdentityMatrix (node->trans);
     MakeIdentityMatrix (node->invtrans);
 
-	SPAddIntN (NodeIndex, joint, node_name);
+	if (joint.size() > 0) SPAddIntN (NodeIndex, joint, node_name);
 	Nodes[numNodes] = node;
 	Index[node_name] = numNodes;
 
@@ -867,6 +867,13 @@ int CCharShape::GetNodeName (int idx) {
 	return Nodes[idx]->node_name;
 }
 
+int CCharShape::GetNodeName (string node_trivialname) {
+	int node_name = SPIntN (NodeIndex, node_trivialname, -1);
+//	if (node_name < 0) return false;
+	return node_name;
+}
+
+
 void CCharShape::RefreshNode (int idx) {
 	if (idx < 0 || idx >= numNodes) return;
     TMatrix TempMatrix;
@@ -981,7 +988,7 @@ void CCharShape::PrintNode (int idx) {
 	PrintInt ("next: ", node->next_name);
 }
 
-void CCharShape::SaveCharNodes (string filename) {
+void CCharShape::SaveCharNodes (string dir, string filename) {
 	CSPList list (MAX_CHAR_NODES + 10);
 	string line, order, joint;
 	TCharNode *node;
@@ -1037,76 +1044,7 @@ void CCharShape::SaveCharNodes (string filename) {
 			if (joint.size() > 0) list.Add ("# " + joint);
 		}
 	}	
-	list.Save (param.char_dir, filename);
+	list.Save (dir, filename);
 }
 
-// ********************************************************************
-//				Character Administration
-// ********************************************************************
-
-CCharacter Char;
-
-CCharacter::CCharacter () {
-	for (int i=0; i<MAX_CHARACTERS; i++) {
-		CharList[i].name = "";
-		CharList[i].dir = "";
-		CharList[i].preview = 0;
-		CharList[i].shape = NULL;
-	}
-	numCharacters = 0;
-	curr_character = 0;
-}
-
-CCharacter::~CCharacter () {}
-
-static string char_type_index = "[spheres]0[3d]1";
-
-void CCharacter::LoadCharacterList () {
-	CSPList list (MAX_CHARACTERS+2);
-	string line, typestr, charpath, previewfile;
-	int i;
-	GLuint texid;
-
-	if (!list.Load (param.char_dir, "characters.lst")) {
-		Message ("could not load characters.lst");
-		return;
-	}
-
-	numCharacters = 0;
-	for (i=0; i<list.Count(); i++) {
-		line = list.Line (i);
-		CharList[i].name = SPStrN (line, "name", "");
-		CharList[i].dir = SPStrN (line, "dir", "");
-		typestr = SPStrN (line, "type", "unknown");
-		CharList[i].type = SPIntN (char_type_index, typestr, -1);
-
-		charpath = param.char_dir + SEP + CharList[i].dir;
-		if (DirExists (charpath.c_str())) {
-			previewfile = charpath + SEP + "preview.png";
-			texid = Tex.LoadMipmapTexture (previewfile.c_str(), 0);
-			if (texid < 1) {
-				Message ("could not load previewfile of character");					
-				texid = Tex.TexID (NO_PREVIEW);
-			}
-			CharList[i].preview = texid;
-
-			CharList[i].shape = new CCharShape;
-			if (CharList[i].shape->Load (charpath, "shape.lst", false) == false) {
-				free (CharList[i].shape);
-				CharList[i].shape = NULL;
-				Message ("could not load character shape");
-			} else numCharacters++;
-		}
-	}
-}
-
-void CCharacter::Draw (int idx) {
-	if (idx < 0 || idx >= numCharacters) return;
-	CharList[idx].shape->Draw ();
-}
-
-CCharShape *CCharacter::GetShape (int idx) {
-	if (idx < 0 || idx >= numCharacters) return NULL;
-	return CharList[idx].shape;
-}
 

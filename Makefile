@@ -8,8 +8,8 @@ game_over.o paused.o reset.o game_type_select.o event_select.o \
 race_select.o credits.o loading.o course.o keyframe.o env.o event.o \
 spx.o common.o course_render.o game_ctrl.o physics.o \
 track_marks.o hud.o view.o gui.o translation.o tools.o \
-quadtree.o font.o ft_font.o textures.o help.o\
-
+quadtree.o font.o ft_font.o textures.o help.o regist.o tool_frame.o \
+tool_char.o 
 
 CFLAGS = -Wall -O2 -I/usr/include/freetype2
 LDFLAGS = -lglut -lGL -lGLU -lSDL -lSDL_image -lSDL_mixer -lfreetype 
@@ -19,6 +19,15 @@ $(BIN) : $(OBJ)
 
 # mmmm.o : mmmm.cpp mmmm.h
 #	$(CC) -c mmmm.cpp $(CFLAGS)
+
+tool_char.o : tool_char.cpp tool_char.h
+	$(CC) -c tool_char.cpp $(CFLAGS)
+
+tool_frame.o : tool_frame.cpp tool_frame.h
+	$(CC) -c tool_frame.cpp $(CFLAGS)
+
+regist.o : regist.cpp regist.h
+	$(CC) -c regist.cpp $(CFLAGS)
 
 tools.o : tools.cpp tools.h
 	$(CC) -c tools.cpp $(CFLAGS)

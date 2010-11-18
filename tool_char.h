@@ -15,34 +15,19 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 ---------------------------------------------------------------------*/
 
-#ifndef VIEW_H
-#define VIEW_H
+#ifndef TOOL_CHAR_H
+#define TOOL_CHAR_H
 
 #include "bh.h"
 #include "tux.h"
 
-void set_view_mode (CControl *ctrl, TViewMode mode);
-TViewMode get_view_mode (CControl *ctrl);
-void update_view (CControl *ctrl, double dt);
+void InitCharTools ();
+void CharKeys (unsigned int key, bool special, bool release, int x, int y);
+void CharMouse (int button, int state, int x, int y);
+void CharMotion (int x, int y);
+void RenderChar (double timestep);
+void StoreAction (TCharAction *act);
 
-void SetStationaryCamera (bool stat); // 0 follow, 1 stationary
-void IncCameraDistance (double timestep);
-void SetCameraDistance (double val);
+#endif 
 
-// ------------- viewfrustum ------------------------------------------
 
-typedef enum {
-    NoClip,
-    SomeClip,
-    NotVisible
-} clip_result_t;
-
-void SetupViewFrustum (CControl *ctrl);
-clip_result_t clip_aabb_to_view_frustum (TVector3 min, TVector3 max );
-
-TPlane get_far_clip_plane();
-TPlane get_left_clip_plane();
-TPlane get_right_clip_plane();
-TPlane get_bottom_clip_plane();
-
-#endif

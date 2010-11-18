@@ -56,10 +56,6 @@ typedef struct {
 	double starty;
 	int env;
 	int music_theme;
-	string start_frame;
-	string finish_frame;
-	string wonrace_frame;
-	string lostrace_frame;
  	bool use_keyframe;
 	double finish_brake;
 } TCourse;					   

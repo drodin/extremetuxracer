@@ -28,7 +28,6 @@ GNU General Public License for more details.
 #define MIN_SPHERE_DIV 3
 #define MAX_SPHERE_DIV 16 
 
-
 typedef struct {
     TColor diffuse;
     TColor specular;
@@ -71,14 +70,12 @@ private:
 	TCharNode *Nodes[MAX_CHAR_NODES];
 	TCharAction *Actions[MAX_CHAR_NODES];
 	int Index[MAX_CHAR_NODES];
-	string NodeIndex;
 	int numNodes;
 	bool useActions;
 	bool newActions;
 	TCharMaterial *Materials [MAX_CHAR_MAT];
 	int numMaterials;
 	string MaterialIndex;
-	string file_name;
 	string Matlines[MAX_CHAR_MAT];
 	int numMatlines;
 
@@ -121,6 +118,8 @@ public:
 	~CCharShape ();
 	bool useMaterials;
 	bool useHighlighting;
+	string NodeIndex;
+	string file_name;
 
 	// nodes 
 	bool ResetNode (int node_name);
@@ -150,6 +149,7 @@ public:
 	int    highlight_node;
 
 	int    GetNodeName (int idx);
+	int    GetNodeName (string node_trivialname);
 	string GetNodeJoint (int idx);
 	int    GetNumNodes ();
 	string GetNodeFullname (int idx);
@@ -158,35 +158,11 @@ public:
 	void   PrintAction (int idx);	
 	void   PrintNode (int idx);
 	void   RefreshNode (int idx);
-	void   SaveCharNodes (string filename);
+	void   SaveCharNodes (string dir, string filename);
 };
 
-#define MAX_CHARACTERS 16
-
-typedef struct {
-	int type;
-	string name;
-	string dir;
-	GLuint preview;
-	CCharShape *shape;
-} TCharacter;
-
-class CCharacter {
-private:
-	int curr_character; 
-public:
-	CCharacter ();
-	~CCharacter ();
-
-	TCharacter CharList [MAX_CHARACTERS];
-	int numCharacters;
-
-	void Draw (int idx);
-	CCharShape *GetShape (int idx);
-	void LoadCharacterList ();
-};
-
-extern CCharShape TestChar;
-extern CCharacter Char;
+// only for char tools, the characters for playing are in
+// CCharacter (game_ctrl)
+extern CCharShape TestChar; 
 
 #endif

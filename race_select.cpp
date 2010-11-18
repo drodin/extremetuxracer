@@ -112,8 +112,8 @@ static void RaceSelectMouseFunc (int button, int state, int x, int y ){
 			case 3: if (curr_wind < lastWind) curr_wind++; else curr_wind = 0; break;
 			case 4: if (curr_mirror < lastMirror) curr_mirror++; else curr_mirror = 0; break;
 			case 5: if (curr_random < lastRandom) curr_random++; else curr_random = 0; break;
-			case 7: SetRaceConditions (); break;
-			case 8: Winsys.SetMode (GAME_TYPE_SELECT); break;
+			case 6: SetRaceConditions (); break;
+			case 7: Winsys.SetMode (GAME_TYPE_SELECT); break;
 		}
 	}
 }

@@ -37,19 +37,22 @@ GNU General Public License for more details.
 #include "help.h"
 #include "tools.h"
 #include "tux.h"
+#include "regist.h"
+#include "keyframe.h"
 
 TGameData g_game;
 
 void InitGame (int argc, char **argv) {
 	g_game.toolmode = NONE;
-
 	g_game.argument = 0;
-	string group;
-	if (argc == 3) {
-		group = argv[1];
-		if (group == "--char") g_game.argument = 1;
-		g_game.arg_str = argv[2];
-	}
+	if (argc == 4) {
+		g_game.group_arg = argv[1];
+		if (g_game.group_arg == "--char") g_game.argument = 1;
+		g_game.dir_arg = argv[2];
+		g_game.file_arg = argv[3];
+	} 
+
+
 
 	g_game.secs_since_start = 0;
 	g_game.course_id = 0;
@@ -89,6 +92,7 @@ int main( int argc, char **argv ) {
 
 	// register loop functions
     splash_screen_register();
+	regist_register ();
     intro_register();
     racing_register();
     game_over_register();
@@ -119,7 +123,6 @@ int main( int argc, char **argv ) {
 	switch (g_game.argument) {
 		case 0: Winsys.SetMode (SPLASH); break;
 		case 1: 
-			if (TestChar.Load (param.char_dir, g_game.arg_str, true) == false) Winsys.Quit();
 			g_game.toolmode = TUXSHAPE; 
 			Winsys.SetMode (TOOLS); 
 			break;

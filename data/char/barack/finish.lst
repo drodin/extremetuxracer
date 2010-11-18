@@ -1,0 +1,11 @@
+*[time] 0.2 [pos] 0.00 0.00 0.00 [yaw] 180 [pitch] 109 [neck] -50 [head] -8 [hip] -30 -30
+*[time] 0.2 [pos] 0.00 0.10 0.00 [yaw] 180 [pitch] 90 [neck] -50 [hip] -20 -20 [knee] -20 -20
+*[time] 0.2 [pos] 0.00 0.20 0.00 [yaw] 180 [pitch] 70 [neck] -18 [hip] -30 -30 [knee] -40 -40
+*[time] 0.2 [pos] 0.00 0.20 0.00 [yaw] 180 [pitch] 70 [neck] -26 [hip] -30 -30 [knee] -50 -50
+*[time] 0.3 [pos] 0.00 0.20 0.00 [yaw] 180 [pitch] 70 [neck] -26 [arm] -59 59 [hip] -30 -30 [knee] -50 -50
+*[time] 0.3 [pos] 0.00 0.20 0.00 [yaw] 180 [pitch] 70 [neck] -26 [hip] -30 -30 [knee] -50 -50
+*[time] 0.3 [pos] 0.00 0.35 0.00 [yaw] 180 [pitch] 1
+*[time] 0.3 [pos] 0.00 0.35 0.00 [yaw] 135 [pitch] 1 [roll] 9 [hip] 30 0
+*[time] 0.3 [pos] 0.00 0.35 0.00 [yaw] 90 [pitch] 1 [hip] 3 0
+*[time] 0.3 [pos] 0.00 0.35 0.00 [yaw] 45 [pitch] 1 [roll] -10 [hip] 3 42
+*[time] 0.3 [pos] 0.00 0.35 0.00 [yaw] 5 [pitch] 1 [hip] 3 0

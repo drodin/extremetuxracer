@@ -19,6 +19,74 @@ GNU General Public License for more details.
 #define TOOLS_H_
 
 #include "bh.h"
+#include "env.h"
+
+class CCamera {
+private:
+	GLfloat xview;  // x-Position der Kamera
+	GLfloat yview;  // Y-Position der Kamera
+	GLfloat zview;  // z-Position der Kamera
+	GLfloat vhead;  // heading - Rundumsicht
+	GLfloat vpitch; // pitch - Drehung nach oben/unten
+
+	void XMove (GLfloat step);
+	void YMove (GLfloat step);
+	void ZMove (GLfloat step);
+	void RotateHead (GLfloat step);
+	void RotatePitch (GLfloat step);
+public:
+	CCamera ();
+
+	bool fore;
+	bool back;
+	bool left;
+	bool right;
+	bool up;
+	bool down;
+	bool headleft;
+	bool headright;
+	bool pitchup;
+	bool pitchdown;
+	void Update (float timestep);
+};
+
+// ---------------------------------------------------------------
+// CGluCamera works with gluLookAt but is reduced to a simple 
+// go-around-camera that ist strictly focused on an object in
+// identity position (0,0,0).
+class CGluCamera {
+private:
+public:
+	CGluCamera ();
+	double distance;
+	double angle;
+	void Update (double timestep);
+
+	bool turnright;
+	bool turnleft;
+	bool nearer;
+	bool farther;
+};
+
+extern CGluCamera GluCamera;
+
+// --------------------------------------------------------------------
+
+void ToolsInit (void);
+void SetToolLight ();
+void QuitTool ();
+void SetToolMode (int newmode);
+bool ToolsFinalStage ();
+void SetCharChanged (bool val);
+void SetFrameChanged (bool val);
+bool CharHasChanged ();
+bool FrameHasChanged ();
+void SaveToolCharacter ();
+void SaveToolFrame ();
+void ReloadToolCharacter ();
+void DrawChanged ();
+
+
 
 void RegisterToolFuncs ();
 

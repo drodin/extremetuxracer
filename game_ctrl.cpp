@@ -19,6 +19,7 @@ GNU General Public License for more details.
 #include "course.h"
 #include "env.h"
 #include "audio.h"
+#include "textures.h"
 
 CEvents Events;
 
@@ -237,7 +238,95 @@ CControl *CPlayers::GetControl (int player) {
 	return &plyr[player].ctrl;
 }
 
+// ********************************************************************
+//				Character Administration
+// ********************************************************************
 
+CCharacter Char;
+
+CCharacter::CCharacter () {
+	for (int i=0; i<MAX_CHARACTERS; i++) {
+		CharList[i].name = "";
+		CharList[i].dir = "";
+		CharList[i].preview = 0;
+		CharList[i].shape = NULL;
+	}
+	numCharacters = 0;
+	curr_character = 0;
+}
+
+CCharacter::~CCharacter () {}
+
+static string char_type_index = "[spheres]0[3d]1";
+
+void CCharacter::LoadCharacterList () {
+	CSPList list (MAX_CHARACTERS+2);
+	string line, typestr, charpath, previewfile;
+	int i;
+	GLuint texid;
+
+	if (!list.Load (param.char_dir, "characters.lst")) {
+		Message ("could not load characters.lst");
+		return;
+	}
+
+	numCharacters = 0;
+	TCharacter *ch;
+	for (i=0; i<list.Count(); i++) {
+		line = list.Line (i);
+		CharList[i].name = SPStrN (line, "name", "");
+		CharList[i].dir = SPStrN (line, "dir", "");
+		typestr = SPStrN (line, "type", "unknown");
+		CharList[i].type = SPIntN (char_type_index, typestr, -1);
+
+		charpath = param.char_dir + SEP + CharList[i].dir;
+		if (DirExists (charpath.c_str())) {
+			previewfile = charpath + SEP + "preview.png";
+			texid = Tex.LoadMipmapTexture (previewfile.c_str(), 0);
+			if (texid < 1) {
+				Message ("could not load previewfile of character");					
+				texid = Tex.TexID (NO_PREVIEW);
+			}
+			
+			ch = &CharList[i];
+			ch->preview = texid;
+
+			ch->shape = new CCharShape;
+			if (ch->shape->Load (charpath, "shape.lst", false) == false) {
+				free (ch->shape);
+				ch->shape = NULL;
+				Message ("could not load character shape");
+			} else numCharacters++;
+			
+
+
+			ch->frames[0].Load (charpath, "start.lst"); 
+			ch->finishframesok = true;
+			ch->frames[1].Load (charpath, "finish.lst"); 
+			if (ch->frames[1].loaded == false) ch->finishframesok = false;
+			ch->frames[2].Load (charpath, "wonrace.lst"); 
+			if (ch->frames[2].loaded == false) ch->finishframesok = false;
+			ch->frames[3].Load (charpath, "lostrace.lst"); 
+			if (ch->frames[3].loaded == false) ch->finishframesok = false;
+		}
+	}
+}
+
+void CCharacter::Draw (int idx) {
+	if (idx < 0 || idx >= numCharacters) return;
+	CharList[idx].shape->Draw ();
+}
+
+CCharShape *CCharacter::GetShape (int idx) {
+	if (idx < 0 || idx >= numCharacters) return NULL;
+	return CharList[idx].shape;
+}
+
+CKeyframe *CCharacter::GetKeyframe (int idx, TFrameType type) {
+	if (type < 0 || type >= NUM_FRAME_TYPES) return NULL;
+	if (idx < 0 || idx >= numCharacters) return NULL;
+	return &CharList[idx].frames[type];
+}
 
 
 

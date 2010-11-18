@@ -19,55 +19,62 @@ GNU General Public License for more details.
 #define KEYFRAME_H
 
 #include "bh.h"
+#include "tux.h"
 
 #define MAX_KEY_FRAMES 128
+#define MAX_FRAME_VALUES 32
 
 typedef struct {
-    TVector3 pos;
-    double	time;
-    double	yaw;      
-    double	pitch;    
-    double	l_shldr;
-    double	r_shldr;
-    double	l_hip;
-    double	r_hip;
-	double	l_knee;
-	double	r_knee;
-	double	l_ankle;
-	double	r_ankle;
-	double	neck;
-	double	head;
-} TKeyframe; 
+	double val[MAX_FRAME_VALUES];
+} TKeyframe2;
 
 class CKeyframe {
 private:
 	double keytime;
-	int numFrames;
-	TKeyframe frames[MAX_KEY_FRAMES];
+	TKeyframe2 *frames[MAX_KEY_FRAMES];
 	TVector3 refpos;
 	double heightcorr;
 	int keyidx;
+	string loadedfile;
+	TKeyframe2 clipboard;
 
 	double interp (double frac, double v1, double v2);
-	void InterpolateKeyframe (int idx, double frac);
+	void InterpolateKeyframe (int idx, double frac, CCharShape *shape);
+
+	// test and editing
+	void ResetFrame2 (TKeyframe2 *frame);
 public:
 	CKeyframe ();
 	~CKeyframe ();
+	int numFrames;
+	string jointname;
+	bool loaded;
 
 	bool active;
-	bool loaded;
-	string loadedfile;
 	void Init (TVector3 ref_position, double height_correction);
+	void Init (TVector3 ref_position, double height_correction, CCharShape *shape);
+	void InitTest (TVector3 ref_position, CCharShape *shape);
 	void Reset ();
 	void Update (double timestep, CControl *ctrl);
-	void TestUpdate (double timestep);
-	void Load (string filename);
+	void UpdateTest (double timestep, CCharShape *shape);
+	bool Load (string dir, string filename);
+	void CalcKeyframe (int idx, CCharShape *shape, TVector3 refpos);
+
+	// test and editing
+	TKeyframe2 *GetFrame (int idx);
+	string GetHighlightName (int idx);
+	string GetJointName (int idx);
+	int GetNumJoints ();
+	void SaveTest (string dir, string filename);
+	void CopyFrame (int prim_idx, int sec_idx);
+	void AddFrame ();
+	int  DeleteFrame (int idx);
+	void InsertFrame (int idx);
+	void CopyToClipboard (int idx);
+	void PasteFromClipboard (int idx);
+	void ClearFrame (int idx);
 };
 
-extern CKeyframe TuxStart;
-extern CKeyframe TuxLostrace;
-extern CKeyframe TuxWonrace;
-extern CKeyframe TuxFinish;
-extern CKeyframe TuxTest;
+extern CKeyframe TestFrame;
 
 #endif

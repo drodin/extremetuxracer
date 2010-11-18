@@ -15,34 +15,26 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 ---------------------------------------------------------------------*/
 
-#ifndef VIEW_H
-#define VIEW_H
+#ifndef TOOL_FRAME_H
+#define TOOL_FRAME_H
 
 #include "bh.h"
-#include "tux.h"
 
-void set_view_mode (CControl *ctrl, TViewMode mode);
-TViewMode get_view_mode (CControl *ctrl);
-void update_view (CControl *ctrl, double dt);
+void InitFrameTools ();
+void SingleFrameKeys (unsigned int key, bool special, bool release, int x, int y);
+void SingleFrameMouse (int button, int state, int x, int y);
+void SingleFrameMotion (int x, int y);
+void RenderSingleFrame (double timestep);
 
-void SetStationaryCamera (bool stat); // 0 follow, 1 stationary
-void IncCameraDistance (double timestep);
-void SetCameraDistance (double val);
+// --------------------------------------------------------------------
+//				frame sequence
+// --------------------------------------------------------------------
 
-// ------------- viewfrustum ------------------------------------------
+void SequenceKeys (unsigned int key, bool special, bool release, int x, int y);
+void SequenceMouse (int button, int state, int x, int y);
+void SequenceMotion (int x, int y);
+void RenderSequence (double timestep);
 
-typedef enum {
-    NoClip,
-    SomeClip,
-    NotVisible
-} clip_result_t;
+#endif 
 
-void SetupViewFrustum (CControl *ctrl);
-clip_result_t clip_aabb_to_view_frustum (TVector3 min, TVector3 max );
 
-TPlane get_far_clip_plane();
-TPlane get_left_clip_plane();
-TPlane get_right_clip_plane();
-TPlane get_bottom_clip_plane();
-
-#endif

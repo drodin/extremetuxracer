@@ -20,6 +20,8 @@ GNU General Public License for more details.
 #include "tux.h"
 #include "audio.h"
 #include "particles.h"
+#include "game_ctrl.h"
+#include "view.h"
 
 CControl::CControl () {}
 
@@ -224,7 +226,6 @@ void CControl::AdjustPosition (TPlane surf_plane, double dist_from_surface) {
     }
 }
 
-
 void CControl::SetTuxPosition (double speed) {
 	CCharShape *shape = Char.GetShape (g_game.char_id);
 	double playWidth, playLength;
@@ -244,6 +245,7 @@ void CControl::SetTuxPosition (double speed) {
 			if (g_game.use_keyframe) {
 				g_game.finish = true;
 				finish_speed = speed;
+//				SetStationaryCamera (true);
 			} else Winsys.SetMode (GAME_OVER);
 		} 
 /// -----------------------------------------------------------

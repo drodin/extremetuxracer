@@ -829,10 +829,6 @@ bool CCourse::LoadCourseList () {
 			CourseList[i].starty = SPFloatN (line, "starty", 5);
 			CourseList[i].env = Env.GetEnvIdx (SPStrN (line, "env", "etr"));
 			CourseList[i].music_theme = Music.GetThemeIdx (SPStrN (line, "theme", "normal"));
-			CourseList[i].start_frame = SPStrN (line, "start_keyframe", "tux_walk.lst");
-			CourseList[i].finish_frame = SPStrN (line, "finish_keyframe", "");
-			CourseList[i].wonrace_frame = SPStrN (line, "wonrace_keyframe", "");
-			CourseList[i].lostrace_frame = SPStrN (line, "lostrace_keyframe", "");
 			CourseList[i].use_keyframe = SPIntN (line, "use_keyframe", 0);
 			CourseList[i].finish_brake = SPFloatN (line, "finish_brake", 20);
 			paramlist.Clear ();	// the list is used several times
@@ -886,14 +882,8 @@ bool CCourse::LoadCourse (int idx) {
 	env = CourseList[idx].env;
 	music_theme = CourseList[idx].music_theme;
 
-	TuxStart.Load (CourseList[idx].start_frame);
 	g_game.use_keyframe = CourseList[idx].use_keyframe;
 	g_game.finish_brake = CourseList[idx].finish_brake;
-	if (g_game.use_keyframe) {
-		TuxLostrace.Load (CourseList[idx].lostrace_frame);
-		TuxWonrace.Load (CourseList[idx].wonrace_frame);
-		TuxFinish.Load (CourseList[idx].finish_frame);
-	}
 
 	if (!LoadElevMap ()) {
 		Message ("could not load course elev map");
