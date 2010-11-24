@@ -30,21 +30,33 @@ GNU General Public License for more details.
 #include "translation.h"
 
 static TVector2 cursor_pos = {0, 0};
-
 static int curr_focus = 0;
 static TCharacter *CharList;
 static int curr_character = 0;
 static int last_character;
 static int xleft, ytop;
+static int curr_player = 0;
+static int last_player;
 
-void ChangeCharSelectionN (int focus, int dir) {
+void QuitRegistration () {
+	Players.ResetControls ();
+	Players.AllocControl (curr_player);
+	g_game.player_id = curr_player;
+
+	g_game.char_id = curr_character;
+	Winsys.SetMode (GAME_TYPE_SELECT);
+}
+
+void ChangeRegistSelection (int focus, int dir) {
 	if (dir == 0) {
 		switch (focus) {
-			case 0:	if (curr_character > 0) curr_character--; break;
+			case 0:	if (curr_player > 0) curr_player--; break;
+			case 1:	if (curr_character > 0) curr_character--; break;
 		}
 	} else {
 		switch (focus) {
-			case 0:	if (curr_character < last_character) curr_character++; break;
+			case 0:	if (curr_player < last_player) curr_player++; break;
+			case 1:	if (curr_character < last_character) curr_character++; break;
 		}
 	}
 }
@@ -54,12 +66,15 @@ void RegistKeys (unsigned int key, bool special, bool release, int x, int y) {
 	switch (key) {
 		case 27: Winsys.Quit (); break;
 		case 13: 
-			g_game.char_id = curr_character; 
-			Winsys.SetMode (GAME_TYPE_SELECT); 
+			if (curr_focus == 3) {
+				Winsys.SetMode (NEWPLAYER);
+			} else QuitRegistration ();	break;
+		case SDLK_TAB: 
+			curr_focus++; 
+			if (curr_focus > 3) curr_focus = 0; 
 			break;
-		case SDLK_TAB: if (curr_focus < 1) curr_focus++; else curr_focus = 0; break;
-		case SDLK_DOWN: ChangeCharSelectionN (curr_focus, 1); break;
-		case SDLK_UP: ChangeCharSelectionN (curr_focus, 0); break;
+		case SDLK_DOWN: ChangeRegistSelection (curr_focus, 1); break;
+		case SDLK_UP: ChangeRegistSelection (curr_focus, 0); break;
 	}
 }
 
@@ -68,12 +83,10 @@ void RegistMouseFunc (int button, int state, int x, int y) {
 	if (state == 1) {
 		GetFocus (x, y, &foc, &dir);
 		switch (foc) {
-			case 0: ChangeCharSelectionN (foc, dir); break;
-			case 1: 
-				g_game.char_id = curr_character; 
-				Winsys.SetMode (GAME_TYPE_SELECT); 
-				break;
-			case 8: Winsys.SetMode (GAME_TYPE_SELECT); break;
+			case 0: ChangeRegistSelection (foc, dir); break;
+			case 1: ChangeRegistSelection (foc, dir); break;
+			case 2: QuitRegistration (); break;
+			case 3: Winsys.SetMode (NEWPLAYER); break;
 		}
 	}
 }
@@ -102,14 +115,20 @@ void RegistInit (void) {
 	xleft = (param.x_resolution - 500) / 2;
 	ytop = AutoYPos (230);
 	ResetWidgets ();
-	AddArrow (xleft + 470, ytop, 0, 0);
-	AddArrow (xleft + 470, ytop+18, 1, 0);
-	AddTextButton ("Enter", -1, ytop + 280, 1, -1);
+	AddArrow (xleft + 210, ytop, 0, 0);
+	AddArrow (xleft + 210, ytop+18, 1, 0);
+	AddArrow (xleft + 470, ytop, 0, 1);
+	AddArrow (xleft + 470, ytop+18, 1, 1);
+	AddTextButton ("Enter", -1, ytop + 240, 2, -1);
+	AddTextButton ("Register a new player", -1, ytop + 290, 3, -1);
 
 	curr_focus = 0;
 	g_game.loopdelay = 10;
-		CharList = Char.CharList;
-		last_character = Char.numCharacters - 1;
+	CharList = Char.CharList;
+	last_character = Char.numCharacters - 1;
+	last_player = Players.numPlayers - 1;
+	if (g_game.prev_mode == NEWPLAYER) curr_player = last_player; 
+		else curr_player = g_game.start_player;
 }
 
 void RegistLoop (double timestep ){
@@ -136,27 +155,30 @@ void RegistLoop (double timestep ){
 	FT.DrawString (xleft, ytop-40, "Select your player name:");
 	FT.DrawString (xleft+260, ytop-40, "Select a character:");
 
-	// char selection
+	// player selection
 	if (curr_focus == 0) col = colDYell; else col = colWhite;
-	DrawFrameX (xleft+260, ytop-4, 200, 44, 3, colMBackgr, col, 1.0);
 	if (param.use_papercut_font > 0) FT.SetSize (28); else FT.SetSize (22);
-	FT.SetColor (colDYell);
+	DrawFrameX (xleft, ytop-4, 200, 44, 3, colMBackgr, col, 1.0);
+	FT.SetColor (col);
+	FT.DrawString (xleft+20, ytop, Players.GetName (curr_player));
+	Tex.DrawDirectFrame (Players.GetAvatarID (curr_player), 
+		xleft + 30, ytop + 65, 128, 128, 3, colWhite);
+
+	// char selection
+	if (curr_focus == 1) col = colDYell; else col = colWhite;
+	DrawFrameX (xleft+260, ytop-4, 200, 44, 3, colMBackgr, col, 1.0);
+	FT.SetColor (col);
 	FT.DrawString (xleft+280, ytop, CharList[curr_character].name);
 	Tex.DrawDirectFrame (CharList[curr_character].preview, xleft + 300, ytop + 65, 
 		128, 128, 3, colWhite);
 
-	// player selection
-	if (curr_focus == 2) col = colDYell; else col = colWhite;
-	DrawFrameX (xleft, ytop-4, 200, 44, 3, colMBackgr, col, 1.0);
-	FT.DrawString (xleft+20, ytop, "Little Bear");
-	Tex.DrawDirectFrame (Tex.TexID (44), xleft + 30, ytop + 65, 
-		128, 128, 3, colWhite);
-
 	FT.SetColor (colWhite);
-	FT.DrawString (-1, ytop+240, "Register a new player");
-	PrintArrow (0, (curr_character > 0));	
-	PrintArrow (1, (curr_character < last_character));
+	PrintArrow (0, (curr_player > 0));	
+ 	PrintArrow (1, (curr_player < last_player));
+	PrintArrow (2, (curr_character > 0));	
+	PrintArrow (3, (curr_character < last_character));
 	PrintTextButton (0, curr_focus);
+	PrintTextButton (1, curr_focus);
 
 	if (param.ice_cursor) DrawCursor ();
     Winsys.SwapBuffers();
@@ -167,5 +189,5 @@ void RegistTerm () {
 
 void regist_register() {
 	Winsys.SetModeFuncs (REGIST,  RegistInit,  RegistLoop,  RegistTerm,
- 		 RegistKeys,  RegistMouseFunc,  RegistMotionFunc, NULL, NULL);
+ 		 RegistKeys,  RegistMouseFunc,  RegistMotionFunc, NULL, NULL, NULL);
 }

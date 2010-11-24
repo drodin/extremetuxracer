@@ -21,6 +21,10 @@ GNU General Public License for more details.
 #include "audio.h"
 #include "textures.h"
 
+// --------------------------------------------------------------------
+//				administration of events and cups
+// --------------------------------------------------------------------
+
 CEvents Events;
 
 CEvents::CEvents () {
@@ -164,7 +168,7 @@ bool CEvents::IsUnlocked (int event, int cup) {
 }
 
 // --------------------------------------------------------------------
-//				player
+//				player administration
 // --------------------------------------------------------------------
 
 CPlayers Players;
@@ -173,47 +177,87 @@ CPlayers::CPlayers () {
 	int i;
 	for (i=0; i<MAX_PLAYERS; i++) {
 		plyr[i].name = "";
+		plyr[i].avatar = "";
+		plyr[i].ctrl = NULL;
+		plyr[i].texid = 0;
 		plyr[i].funlocked = "";
-//		plyr[i].score = "";
 	}
-	numPlayers = 1;
 	currPlayer = 0;
+	AvatarIndex = "";
+	numAvatars = 0;
+	for (i=0; i<MAX_AVATARS; i++) {
+		avatars[i].filename = "";
+		avatars[i].texid = 0;
+	}
 }
 
 CPlayers::~CPlayers () {}
 
-void CPlayers::LoadParams () {
-	CSPList list(MAX_PLAYERS);
-	string line;
-
-	numPlayers = 1;
-	plyr[0].funlocked = "";
-	plyr[0].name = "Racer";
-
-	string playerfile = param.config_dir + SEP + "players";
-	if (FileExists (playerfile.c_str()) == false) {
-		Players.SaveParams ();
-		return; 
+void CPlayers::AddPlayer (string name, string avatar) {
+	if (numPlayers >= MAX_PLAYERS) {
+		Message ("maximum of players reached");
+		return;
 	}
-	if (list.Load (playerfile) == false) {
-		Players.SaveParams ();
-		return; 
-	}
-	for (int i=0; i<list.Count(); i++) {
-		line = list.Line(i);
-		plyr[i].name = SPStrN (line, "name", "Unknown");
-		plyr[i].funlocked = SPStrN (line, "unlocked", "");
-	}
+	plyr[numPlayers].name = name;
+	plyr[numPlayers].avatar = avatar;
+	plyr[numPlayers].texid = SPIntN (AvatarIndex, plyr[numPlayers].avatar, 0);
+	plyr[numPlayers].funlocked = "";
+	numPlayers++;
 }
 
-void CPlayers::SaveParams () {
+void CPlayers::SetDefaultPlayers () {
+	plyr[0].funlocked = "";
+	plyr[0].name = "Racer";
+	plyr[0].avatar = "avatar01.png";
+	plyr[0].texid = SPIntN (AvatarIndex, plyr[0].avatar, 0);
+
+	plyr[1].funlocked = "";
+	plyr[1].name = "Bunny";
+	plyr[1].avatar = "avatar02.png";
+	plyr[1].texid = SPIntN (AvatarIndex, plyr[1].avatar, 0);
+	numPlayers = 2;
+}
+
+bool CPlayers::LoadPlayers () {
+	CSPList list(MAX_PLAYERS);
+	string line;
+	int active;
+
+	if (FileExists (param.config_dir, "players") == false) {
+		SetDefaultPlayers ();
+		return false; 
+	}
+
+	if (list.Load (param.config_dir, "players") == false) {
+		SetDefaultPlayers ();
+		return false; 
+	}
+
+	numPlayers = 0;
+	g_game.start_player = 0;
+	for (int i=0; i<list.Count(); i++) {
+		line = list.Line(i);
+		plyr[numPlayers].name = SPStrN (line, "name", "unknown");
+		plyr[numPlayers].funlocked = SPStrN (line, "unlocked", "");
+		plyr[numPlayers].avatar = SPStrN (line, "avatar", "");
+		plyr[numPlayers].texid = SPIntN (AvatarIndex, plyr[numPlayers].avatar, 0);
+		active = SPIntN (line, "active", 0);
+		if (active > 0) g_game.start_player = numPlayers;
+		numPlayers++;
+	}
+	return true;
+}
+
+void CPlayers::SavePlayers () {
 	string playerfile = param.config_dir + SEP + "players";
 	CSPList list(MAX_PLAYERS);
 	string item = "";
 	for (int i=0; i<numPlayers; i++) {
-		item = "[name]" + plyr[i].name;
-		item += "[unlocked]";
-		item += plyr[i].funlocked;
+		item = "*[name]" + plyr[i].name;
+		item +="[avatar]" + plyr[i].avatar;
+		item += "[unlocked]" + plyr[i].funlocked;
+		if (i == g_game.player_id) item += "[active]1";
+			else item += "[active]0";
 		list.Add (item);
 	}
 	list.Save (playerfile);
@@ -229,13 +273,82 @@ void CPlayers::AddPassedCup (string cup) {
 	plyr[currPlayer].funlocked += cup;
 }
 
-CControl *CPlayers::GetControl () {
-	return &plyr[currPlayer].ctrl;
+CControl *CPlayers::GetCtrl () {
+	return plyr[currPlayer].ctrl;
 }
 
-CControl *CPlayers::GetControl (int player) {
+CControl *CPlayers::GetCtrl (int player) {
 	if (player < 0 || player >= numPlayers) return NULL;
-	return &plyr[player].ctrl;
+	return plyr[player].ctrl;
+}
+
+string CPlayers::GetName (int player) {
+	if (player < 0 || player >= numPlayers) return "";
+	return plyr[player].name;
+}
+
+void CPlayers::ResetControls () {
+	for (int i=0; i<MAX_PLAYERS; i++) {
+		if (plyr[i].ctrl != NULL) {
+			free (plyr[i].ctrl);
+			plyr[i].ctrl = NULL;
+		}
+	}
+}
+
+// called in module regist.cpp:
+void CPlayers::AllocControl (int player) {
+	if (player < 0 || player >= numPlayers) return;
+	if (plyr[player].ctrl != NULL) return;
+	plyr[player].ctrl = new (CControl);
+}
+
+// ----------------------- avatars ------------------------------------
+
+void CPlayers::LoadAvatars () {
+	CSPList list (MAX_AVATARS);
+	int i;
+	string line, filename;
+	GLuint texid;
+
+	if (!list.Load (param.player_dir, "avatars.lst")) {
+		Message ("could not load avators.lst");
+		return;
+	}
+
+	AvatarIndex = "";
+	numAvatars = 0;
+	for (i=0; i<list.Count(); i++) {
+		line = list.Line (i);
+		filename = SPStrN (line, "file", "unknown");
+		texid = Tex.LoadTexture (param.player_dir, filename);
+		if (texid > 0) {
+			avatars[numAvatars].filename = filename;
+			avatars[numAvatars].texid = texid;
+			AvatarIndex += "[" + filename + "]";
+			AvatarIndex += Int_StrN (texid);
+			numAvatars++;
+		}
+	}
+}
+
+GLuint CPlayers::GetAvatarID (int player) {
+	if (player < 0 || player >= numPlayers) return 0;
+	return plyr[player].texid;
+}
+
+GLuint CPlayers::GetAvatarID (string filename) {
+	return SPIntN (AvatarIndex, filename, 0);
+}
+
+GLuint CPlayers::GetDirectAvatarID (int avatar) {
+	if (avatar < 0 || avatar >= numAvatars) return 0;
+	return avatars[avatar].texid;
+}
+
+string CPlayers::GetDirectAvatarName (int avatar) {
+	if (avatar < 0 || avatar >= numAvatars) return "";
+	return avatars[avatar].filename;
 }
 
 // ********************************************************************
@@ -297,8 +410,6 @@ void CCharacter::LoadCharacterList () {
 				ch->shape = NULL;
 				Message ("could not load character shape");
 			} else numCharacters++;
-			
-
 
 			ch->frames[0].Load (charpath, "start.lst"); 
 			ch->finishframesok = true;

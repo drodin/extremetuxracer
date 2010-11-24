@@ -111,6 +111,7 @@ public:
 	~CTexture ();
 	int LoadTexture (const char *filename);
 	int LoadTexture (const char *dir, const char *filename);
+	int LoadTexture (const string dir, const string filename);
 	int LoadMipmapTexture (const char *filename, bool repeatable);
 	int LoadMipmapTexture (const char *dir, const char *filename, bool repeatable);
 	void LoadTextureList ();

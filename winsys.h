@@ -28,6 +28,7 @@ typedef void (*TMotionFuncN)  (int x, int y);
 typedef void (*TKeybFuncN)    (unsigned int key, bool special, bool release, int x, int y);
 typedef void (*TJAxisFuncN)   (int axis, double value);
 typedef void (*TJButtFuncN)   (int button, int state);
+typedef void (*TKeybFuncS)    (SDL_keysym sym, bool release);
 
 typedef struct {
 	TInitFuncN   init; 
@@ -38,6 +39,7 @@ typedef struct {
 	TMotionFuncN motion;
 	TJAxisFuncN  jaxis;
 	TJButtFuncN  jbutt;
+	TKeybFuncS   keyb_spec;
 } TModeFuncsN;
 
 class CWinsys {
@@ -84,7 +86,7 @@ public:
 	void SetModeFuncs (
 			TGameMode mode, TInitFuncN init, TLoopFuncN loop, TTermFuncN term,
 			TKeybFuncN keyb, TMouseFuncN mouse, TMotionFuncN motion,
- 			TJAxisFuncN jaxis, TJButtFuncN jbutt);
+ 			TJAxisFuncN jaxis, TJButtFuncN jbutt, TKeybFuncS keyb_spec);
 	void EventLoop ();
 	void SetMode (TGameMode mode) {new_mode = mode;}
 	bool ModePending ();

@@ -20,15 +20,15 @@ GNU General Public License for more details.
 
 #include "bh.h"
 
+#define MAX_PADDLING_SPEED (60.0 / 3.6)   // original 60
+#define PADDLE_FACT 1.0 // original 1.0
+
 #define EARTH_GRAV 9.81 
 #define JUMP_FORCE_DURATION 0.20
-#define MAX_PADDLING_SPEED (60.0 / 3.6)   // original 60
 #define TUX_MASS 20				
 #define MIN_TUX_SPEED 1.4 
 #define INIT_TUX_SPEED 3.0
 #define COLL_TOLERANCE 0.1		
-#define MAG_SQD(vec) ((vec).x * (vec).x + \
-       (vec).y * (vec).y + (vec).z * (vec).z )
 
 #define MAX_SURF_PEN 0.2		
 #define TUX_Y_CORR 0.36			

@@ -277,6 +277,7 @@ void InitConfig (char *arg0) {
 	param.music_dir = param.data_dir + SEP + "music";
 	param.font_dir = param.data_dir + SEP + "fonts";
 	param.trans_dir = param.data_dir + SEP + "translations";
+	param.player_dir = param.data_dir + SEP + "players";
 	param.configfile = param.config_dir + SEP + "options";
 
 	param.ui_snow = true;
@@ -598,6 +599,6 @@ void GameConfigTerm (void) {
 
 void RegisterGameConfig () {
 	Winsys.SetModeFuncs (GAME_CONFIG, GameConfigInit, GameConfigLoop, GameConfigTerm,
- 		GameConfigKeys, GameConfigMouseFunc, GameConfigMotionFunc, NULL, NULL);
+ 		GameConfigKeys, GameConfigMouseFunc, GameConfigMotionFunc, NULL, NULL, NULL);
 }
 

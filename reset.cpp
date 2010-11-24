@@ -43,7 +43,7 @@ void reset_init (void) {
 
 void reset_loop (double time_step) {
     int width, height;
-	CControl *ctrl = Players.GetControl (0);
+	CControl *ctrl = Players.GetCtrl (g_game.player_id);
     double elapsed_time = Winsys.ClockTime () - reset_start_time;
     double course_width, course_length;
     static bool tux_visible = true; 
@@ -136,7 +136,7 @@ void reset_loop (double time_step) {
 
 void reset_register() {
 	Winsys.SetModeFuncs 
-		(RESET, reset_init, reset_loop, NULL, NULL, NULL, NULL, NULL, NULL);
+		(RESET, reset_init, reset_loop, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 }
 
 

@@ -298,7 +298,7 @@ void CKeyframe::Update (double timestep, CControl *ctrl) {
 	shape->ResetRoot ();
 	shape->ResetJoints ();
 
-    Players.GetControl(0)->cpos = pos;
+    Players.GetCtrl (g_game.player_id)->cpos = pos;
     double disp_y = pos.y + TUX_Y_CORR + heightcorr; 
     shape->ResetNode (0);
     shape->TranslateNode (0, MakeVector (pos.x, disp_y, pos.z));

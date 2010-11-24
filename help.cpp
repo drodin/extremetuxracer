@@ -98,5 +98,5 @@ void HelpTerm () {
 
 void RegisterKeyInfo () {
 	Winsys.SetModeFuncs (HELP, HelpInit, HelpLoop, HelpTerm,
- 		HelpKeys, HelpMouseFunc, HelpMotionFunc, NULL, NULL);
+ 		HelpKeys, HelpMouseFunc, HelpMotionFunc, NULL, NULL, NULL);
 }

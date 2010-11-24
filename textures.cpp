@@ -173,6 +173,10 @@ int CTexture::LoadTexture (const char *dir, const char *filename) {
 	return LoadTexture (path.c_str());
 }
 
+int CTexture::LoadTexture (const string dir, const string filename) {
+	return LoadTexture (dir.c_str(), filename.c_str ());
+}
+
 int CTexture::LoadMipmapTexture (const char *filename, bool repeatable) {
     CImage texImage;
 	GLuint texid;

@@ -42,7 +42,7 @@ void RenderCourse () {
     setup_course_tex_gen ();
     glTexEnvf (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
     set_material (colWhite, colBlack, 1.0);
-	CControl *ctrl = Players.GetControl (0);
+	CControl *ctrl = Players.GetCtrl (g_game.player_id);
     UpdateQuadtree (ctrl->viewpos, param.course_detail_level);
     RenderQuadtree ();
 }
@@ -66,7 +66,7 @@ void DrawTrees() {
     double  	itemHeight;
     int       	item_type = -1;
 	TObjectType	*object_types = Course.ObjTypes;
-	CControl *ctrl = Players.GetControl (0);
+	CControl *ctrl = Players.GetCtrl (g_game.player_id);
 
 	set_gl_options (TREES); 
 

@@ -94,7 +94,7 @@ void GameOverMotionFunc  (int x, int y) {
 void GameOverMessage () {
 	int hh = param.y_resolution;
 	char buff[64];
-    CControl *ctrl = Players.GetControl (0);
+    CControl *ctrl = Players.GetCtrl (g_game.player_id);
 	int fheight = 75;
 	int fwidth = 500;
 	char s[128];
@@ -169,7 +169,7 @@ void GameOverInit (void) {
 				else final_frame = Char.GetKeyframe (g_game.char_id, WONRACE);
 		} else final_frame = Char.GetKeyframe (g_game.char_id, FINISH);
 		if (!g_game.raceaborted) {
-			CControl *ctrl = Players.GetControl (0);
+			CControl *ctrl = Players.GetCtrl (g_game.player_id);
 			final_frame->Init (ctrl->cpos, -0.18);
 		}
 	}
@@ -178,7 +178,7 @@ void GameOverInit (void) {
 
 
 void GameOverLoop (double time_step) {
-    CControl *ctrl = Players.GetControl (0);
+    CControl *ctrl = Players.GetCtrl (g_game.player_id);
     int width, height;
     width = param.x_resolution;
     height = param.y_resolution;
@@ -224,7 +224,7 @@ void GameOverTerm () {
 
 void game_over_register() {
 	Winsys.SetModeFuncs (GAME_OVER, GameOverInit, GameOverLoop, GameOverTerm,
- 		GameOverKeys, mouse_cb, GameOverMotionFunc, NULL, NULL);
+ 		GameOverKeys, mouse_cb, GameOverMotionFunc, NULL, NULL, NULL);
 }
 
 

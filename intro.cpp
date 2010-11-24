@@ -46,7 +46,7 @@ void intro_init(void) {
     int i, num_items;
     TItem *item_locs;
 
-    CControl *ctrl = Players.GetControl (0);
+    CControl *ctrl = Players.GetCtrl (g_game.player_id);
     TVector2 start_pt = Course.GetStartPoint ();
 	ctrl->orientation_initialized = false;
     ctrl->view_init = false;
@@ -94,7 +94,7 @@ void intro_init(void) {
 
 void intro_loop (double time_step) {
 	int width, height;
-	CControl *ctrl = Players.GetControl (0);
+	CControl *ctrl = Players.GetCtrl (g_game.player_id);
     width = param.x_resolution;
     height = param.y_resolution;
     check_gl_error();
@@ -136,7 +136,7 @@ void IntroTerm () {
 // -----------------------------------------------------------------------
 
 void IntroKeys (unsigned int key, bool special, bool release, int x, int y) {
-	CControl *ctrl = Players.GetControl (0);
+	CControl *ctrl = Players.GetCtrl (g_game.player_id);
     if (release) return;
     abort_intro (ctrl);
 }
@@ -144,6 +144,6 @@ void IntroKeys (unsigned int key, bool special, bool release, int x, int y) {
 
 void intro_register() {
 	Winsys.SetModeFuncs (INTRO, intro_init, intro_loop, IntroTerm,
- 		IntroKeys, NULL, NULL, NULL, NULL);
+ 		IntroKeys, NULL, NULL, NULL, NULL, NULL);
 }
 

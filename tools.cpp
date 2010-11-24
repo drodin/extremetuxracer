@@ -267,6 +267,6 @@ void ToolsTerm () {}
 
 void RegisterToolFuncs () {
 	Winsys.SetModeFuncs (TOOLS, ToolsInit, ToolsLoop, ToolsTerm,
- 		ToolsKeys, ToolsMouse, ToolsMotion, NULL, NULL);
+ 		ToolsKeys, ToolsMouse, ToolsMotion, NULL, NULL, NULL);
 }
 

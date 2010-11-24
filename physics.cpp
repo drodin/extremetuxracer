@@ -396,7 +396,7 @@ TVector3 CControl::CalcPaddleForce (double speed) {
 				* min(1.0, ff.frict_coeff / IDEAL_PADD_FRIC)), ff.frictdir);
 		}
     } else paddleforce = MakeVector (0, 0, 0);
-	return ScaleVector (1.0, paddleforce); // normally 1.0
+	return ScaleVector (PADDLE_FACT, paddleforce);
 }
 
 TVector3 CControl::CalcGravitationForce () {

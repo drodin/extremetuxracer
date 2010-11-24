@@ -127,6 +127,7 @@ void CWinsys::Init (int *argc, char **argv) {
     SDL_WM_SetCaption ("","");
 	KeyRepeat (false);
 	if (USE_JOYSTICK) InitJoystick ();
+//	SDL_EnableUNICODE (1);
 }
 
 void CWinsys::KeyRepeat (bool repeat) {
@@ -147,7 +148,7 @@ void CWinsys::Quit () {
 	if (joystick_active) SDL_JoystickClose (joystick);	
 	Audio.Close ();
 	SDL_Quit ();
-	Players.SaveParams ();
+	Players.SavePlayers ();
     exit (0);
 }
 
@@ -169,15 +170,16 @@ void CWinsys::PrintJoystickInfo () {
 void CWinsys::SetModeFuncs (
 		TGameMode mode, TInitFuncN init, TLoopFuncN loop, TTermFuncN term,
 		TKeybFuncN keyb, TMouseFuncN mouse, TMotionFuncN motion,
-		TJAxisFuncN jaxis, TJButtFuncN jbutt) {
-    modefuncs[mode].init   = init;
-   	modefuncs[mode].loop   = loop;
-    modefuncs[mode].term   = term;
-    modefuncs[mode].keyb   = keyb;
-   	modefuncs[mode].mouse  = mouse;
-    modefuncs[mode].motion = motion;
-    modefuncs[mode].jaxis  = jaxis;
-    modefuncs[mode].jbutt  = jbutt;
+		TJAxisFuncN jaxis, TJButtFuncN jbutt, TKeybFuncS keyb_spec) {
+    modefuncs[mode].init      = init;
+   	modefuncs[mode].loop      = loop;
+    modefuncs[mode].term      = term;
+    modefuncs[mode].keyb      = keyb;
+   	modefuncs[mode].mouse     = mouse;
+    modefuncs[mode].motion    = motion;
+    modefuncs[mode].jaxis     = jaxis;
+    modefuncs[mode].jbutt     = jbutt;
+    modefuncs[mode].keyb_spec = keyb_spec;
 }
 
 void CWinsys::IdleFunc () {}
@@ -186,8 +188,17 @@ bool CWinsys::ModePending () {
 	return g_game.mode != new_mode;
 }
 
+/*
+typedef struct{
+  Uint8 scancode;
+  SDLKey sym;
+  SDLMod mod;
+  Uint16 unicode;
+} SDL_keysym;*/
+
 void CWinsys::PollEvent () {
     SDL_Event event; 
+	SDL_keysym sym;
     unsigned int key, axis;
     int x, y;
 	float val;
@@ -202,6 +213,9 @@ void CWinsys::PollEvent () {
 					SDL_GetMouseState (&x, &y);
 					key = event.key.keysym.sym; 
 					(modefuncs[g_game.mode].keyb) (key, key >= 256, false, x, y);
+				} else if (modefuncs[g_game.mode].keyb_spec) {
+					sym = event.key.keysym;
+					(modefuncs[g_game.mode].keyb_spec) (sym, false);
 				}
 				break;
 	
@@ -210,6 +224,9 @@ void CWinsys::PollEvent () {
 					SDL_GetMouseState (&x, &y);
 					key = event.key.keysym.sym; 
 					(modefuncs[g_game.mode].keyb)  (key, key >= 256, true, x, y);
+				} else if (modefuncs[g_game.mode].keyb_spec) {
+					sym = event.key.keysym;
+					(modefuncs[g_game.mode].keyb_spec) (sym, true);
 				}
 				break;
 	

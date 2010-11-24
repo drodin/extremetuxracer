@@ -75,7 +75,7 @@ void LoadingTerm () {
 
 void loading_register() {
 	Winsys.SetModeFuncs (LOADING, LoadingInit, LoadingLoop, LoadingTerm,
-		NULL, NULL, NULL, NULL, NULL);
+		NULL, NULL, NULL, NULL, NULL, NULL);
 }
 
 

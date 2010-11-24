@@ -84,29 +84,51 @@ extern CEvents Events;
 //				player
 // --------------------------------------------------------------------
 
-#define MAX_PLAYERS 8
+#define MAX_PLAYERS 16
+#define MAX_AVATARS 32
 
 typedef struct {
 	string name;
-	CControl ctrl;
+	CControl *ctrl;
 	string funlocked;
+	GLuint texid;
+	string avatar;
 } TPlayer;
+
+typedef struct {
+	string filename;
+	GLuint texid;
+} TAvatar;
 
 class CPlayers {
 private:
 	TPlayer plyr[MAX_PLAYERS];
-	int numPlayers;
  	int currPlayer;
+ 	void SetDefaultPlayers ();
+	string AvatarIndex;
+	TAvatar avatars[MAX_AVATARS];
 public:
 	CPlayers ();
 	~CPlayers ();
+	int numPlayers;
+	int numAvatars;
 
 	string GetCurrUnlocked ();
 	void AddPassedCup (string cup);
-	void LoadParams ();
-	void SaveParams ();
-	CControl *GetControl (); // current player
-	CControl *GetControl (int player); 	
+	void AddPlayer (string name, string avatar);
+	bool LoadPlayers ();
+	void SavePlayers ();
+	CControl *GetCtrl (); // current player
+	CControl *GetCtrl (int player); 	
+	string GetName (int player);
+	void ResetControls ();
+	void AllocControl (int player);
+	void LoadAvatars ();
+	
+	GLuint GetAvatarID (int player);
+	GLuint GetAvatarID (string filename);
+	GLuint GetDirectAvatarID (int avatar);
+	string GetDirectAvatarName (int avatar);
 };
 
 extern CPlayers Players;

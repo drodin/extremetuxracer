@@ -414,6 +414,10 @@ float CFont::GetTextWidth (const char *text) {
 	return urx - llx;
 }
 
+float CFont::GetTextWidth (const string text) {
+	return GetTextWidth (text.c_str());
+}
+
 float CFont::GetTextWidth (const wchar_t *text) {
 	if (numFonts < 1)  { return 0.0; }
 	if (curr_font < 0 || curr_font >= numFonts) { return 0.0; }

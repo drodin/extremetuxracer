@@ -238,5 +238,5 @@ void RaceSelectTerm () {}
 
 void RaceSelectRegister () {
 	Winsys.SetModeFuncs (RACE_SELECT, RaceSelectInit, RaceSelectLoop, RaceSelectTerm,
- 		RaceSelectKeys, RaceSelectMouseFunc, RaceSelectMotionFunc, NULL, NULL);
+ 		RaceSelectKeys, RaceSelectMouseFunc, RaceSelectMotionFunc, NULL, NULL, NULL);
 }

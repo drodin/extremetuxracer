@@ -69,7 +69,8 @@ void SplashLoop (double timestep ){
 	Env.LoadEnvironmentList ();
 	Course.LoadCourseList ();
 	Events.LoadEventList ();
-	Players.LoadParams ();
+	Players.LoadAvatars (); // before LoadPlayers !!!
+	Players.LoadPlayers ();
 
 	SDL_Delay (100);
 	Winsys.SetMode (REGIST);
@@ -80,5 +81,5 @@ void SplashTerm () {
 
 void splash_screen_register() {
 	Winsys.SetModeFuncs (SPLASH, SplashInit, SplashLoop, SplashTerm,
-	NULL, NULL, NULL, NULL, NULL);
+	NULL, NULL, NULL, NULL, NULL, NULL);
 }

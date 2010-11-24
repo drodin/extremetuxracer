@@ -74,6 +74,7 @@ public:
 	void  GetTextSize  (const char *text, float &x, float &y);
 	void  GetTextSize  (const char *text, float &x, float &y, const string &fontname, float size);
 	float GetTextWidth (const char *text);
+	float GetTextWidth (const string text);
 	float GetTextWidth (const wchar_t *text);
 	float GetTextWidth (const char *text, const string &fontname, float size);
 	float GetTextWidth (const wchar_t *text, const string &fontname, float size);

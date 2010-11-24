@@ -856,7 +856,7 @@ void CCourse::ResetCourse () {
 }
 
 bool CCourse::LoadCourse (int idx) {
-	CControl *ctrl = Players.GetControl (0);
+	CControl *ctrl = Players.GetCtrl (g_game.player_id);
 
 	if (idx < 0 || idx >= numCourses) {
 		Message ("wrong course index");
@@ -938,7 +938,7 @@ void CCourse::MirrorCourseData () {
     double tmp;
     char tmp_terrain;
     TVector3 tmp_vec;
-	CControl *ctrl = Players.GetControl (0);
+	CControl *ctrl = Players.GetCtrl (g_game.player_id);
 
 	for (y=0; y<ny; y++) {
 		for (x=0; x<nx/2; x++) {

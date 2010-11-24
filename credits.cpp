@@ -203,7 +203,7 @@ void CreditsTerm () {
 
 void credits_register() {
 	Winsys.SetModeFuncs (CREDITS, CreditsInit, CreditsLoop, CreditsTerm,
- 		CreditsKeys, CreditsMouseFunc, CreditsMotionFunc, NULL, NULL);
+ 		CreditsKeys, CreditsMouseFunc, CreditsMotionFunc, NULL, NULL, NULL);
 }
 
 

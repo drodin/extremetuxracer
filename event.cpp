@@ -130,7 +130,7 @@ void UpdateCupRacing () {
 	}
 	if (ready == 1) {
 		Players.AddPassedCup (ecup->cup);
-		Players.SaveParams ();
+		Players.SavePlayers ();
 	}
 }
 
@@ -246,6 +246,6 @@ void EventTerm () {
 
 void event_register() {
 	Winsys.SetModeFuncs (EVENT, EventInit, EventLoop, EventTerm,
- 		EventKeys, EventMouseFunc, EventMotionFunc, NULL, NULL);
+ 		EventKeys, EventMouseFunc, EventMotionFunc, NULL, NULL, NULL);
 }
 

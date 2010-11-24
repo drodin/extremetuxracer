@@ -64,7 +64,7 @@ void PausedSetupDisplay () {
 void paused_init (void) {}
 
 void paused_loop (double time_step) {
-    CControl *ctrl = Players.GetControl (0);
+    CControl *ctrl = Players.GetCtrl (g_game.player_id);
     int width, height;
     width = param.x_resolution;
     height = param.y_resolution;
@@ -101,5 +101,5 @@ void paused_loop (double time_step) {
 
 void paused_register() {
 	Winsys.SetModeFuncs (PAUSED, paused_init, paused_loop, NULL,
- 		PausedKeys, PausedMouseFunc, NULL, NULL, NULL);
+ 		PausedKeys, PausedMouseFunc, NULL, NULL, NULL, NULL);
 }

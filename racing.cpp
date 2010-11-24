@@ -77,15 +77,15 @@ void RacingKeys (unsigned int key, bool special, bool release, int x, int y) {
 
 		// view changing
 		case SDLK_1: if (!release) {
-			set_view_mode (Players.GetControl (0), ABOVE);
+			set_view_mode (Players.GetCtrl (g_game.player_id), ABOVE);
 			param.view_mode = ABOVE;
 		} break;	
 		case SDLK_2: if (!release) {
-			set_view_mode (Players.GetControl (0), FOLLOW);
+			set_view_mode (Players.GetCtrl (g_game.player_id), FOLLOW);
 			param.view_mode = FOLLOW;
 		} break;	
 		case SDLK_3: if (!release) {
-			set_view_mode (Players.GetControl (0), BEHIND);
+			set_view_mode (Players.GetCtrl (g_game.player_id), BEHIND);
 			param.view_mode = BEHIND;
 		} break;	
 		
@@ -118,7 +118,7 @@ void RacingJoyButton (int button, int state) {
 }
 
 void CalcJumpEnergy (double time_step){
-    CControl *ctrl = Players.GetControl (0);
+    CControl *ctrl = Players.GetCtrl (g_game.player_id);
 
 	if  (ctrl->jump_charging) {
 		ctrl->jump_amt = min (MAX_JUMP_AMT, g_game.time - charge_start_time);
@@ -147,7 +147,7 @@ void SetSoundVolumes () {
 
 // ---------------------------- init ----------------------------------
 void racing_init (void) {
-    CControl *ctrl = Players.GetControl (0);
+    CControl *ctrl = Players.GetCtrl (g_game.player_id);
 
     if (param.view_mode < 0 || param.view_mode >= NUM_VIEW_MODES) {
 		param.view_mode = ABOVE;
@@ -297,7 +297,7 @@ void CalcTrickControls (CControl *ctrl, double time_step, bool airborne) {
 // ====================================================================
 
 void racing_loop (double time_step){
-    CControl *ctrl = Players.GetControl (0);
+    CControl *ctrl = Players.GetCtrl (g_game.player_id);
 	double ycoord = Course.FindYCoord (ctrl->cpos.x, ctrl->cpos.z);
 	bool airborne = (bool) (ctrl->cpos.y > (ycoord + JUMP_MAX_START_HEIGHT));
 
@@ -349,5 +349,5 @@ static void racing_term() {
 
 void racing_register(){
 	Winsys.SetModeFuncs (RACING, racing_init, racing_loop, racing_term,
- 		RacingKeys, NULL, NULL, RacingJoyAxis, RacingJoyButton);
+ 		RacingKeys, NULL, NULL, RacingJoyAxis, RacingJoyButton, NULL);
 }

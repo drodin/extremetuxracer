@@ -207,6 +207,14 @@ bool FileExists (const char *filename) {
     } else return true;
 }
 
+bool FileExists (const string filename) {
+	return FileExists (filename.c_str());
+}
+
+bool FileExists (const string dir, const string filename) {
+	return FileExists (dir + SEP + filename);
+}
+
 bool DirExists (const char *dirname) {
     DIR *xdir;
     if ((xdir = opendir (dirname)) == 0) 

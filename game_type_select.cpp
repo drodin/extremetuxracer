@@ -138,6 +138,6 @@ static void GameSelectTerm (void) {
 
 void game_type_select_register () {
 	Winsys.SetModeFuncs (GAME_TYPE_SELECT, GameSelectInit, GameSelectLoop, GameSelectTerm,
- 		GameSelectKeys, GameSelectMouseFunc, GameSelectMotionFunc, NULL, NULL);
+ 		GameSelectKeys, GameSelectMouseFunc, GameSelectMotionFunc, NULL, NULL, NULL);
 }
 

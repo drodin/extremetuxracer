@@ -39,6 +39,8 @@ GNU General Public License for more details.
 #   define M_PI 3.1415926535
 #endif
 
+#define MAG_SQD(vec) ((vec).x * (vec).x + (vec).y * (vec).y + (vec).z * (vec).z )
+
 #ifndef EPS
 #	define EPS 1.0e-13
 #endif
@@ -50,6 +52,7 @@ GNU General Public License for more details.
 #define MAX_ROLL_ANGLE 30
 #define BRAKING_ROLL_ANGLE 55
 #define BUFF_LEN 1024
+
 
 typedef double scalar_t;
 
@@ -126,6 +129,7 @@ typedef enum {
     NO_MODE,
     SPLASH,
 	REGIST,
+	NEWPLAYER,
     GAME_TYPE_SELECT,
     EVENT_SELECT,
 	EVENT,
@@ -194,6 +198,8 @@ typedef struct {
 	double finish_brake;
 
 	// course and race params 
+	int player_id;
+	int start_player;
 	int cup_id;
 	int race_id;
 	int numraces;

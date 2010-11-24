@@ -200,6 +200,6 @@ void EventSelectTerm () {
 
 void event_select_register() {
 	Winsys.SetModeFuncs (EVENT_SELECT, EventSelectInit, EventSelectLoop, EventSelectTerm,
- 		EventSelectKeys, EventSelectMouseFunc, EventSelectMotionFunc, NULL, NULL);
+ 		EventSelectKeys, EventSelectMouseFunc, EventSelectMotionFunc, NULL, NULL, NULL);
 }
 
