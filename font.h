@@ -47,6 +47,7 @@ public:
 	CFont ();
 	~CFont ();
 
+	void Clear ();
 	int  LoadFont (string name, const char *dir, const char *filename);
 	int  LoadFont (string name, const char *path);
 	bool LoadFontlist ();

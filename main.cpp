@@ -40,6 +40,7 @@ GNU General Public License for more details.
 #include "regist.h"
 #include "keyframe.h"
 #include "newplayer.h"
+#include "score.h"
 
 TGameData g_game;
 
@@ -111,6 +112,7 @@ int main( int argc, char **argv ) {
 	RegisterKeyInfo ();
 	RegisterToolFuncs ();
 	NewPlayerRegister ();
+	RegisterScoreFunctions ();
 
 	// theses resources must or should be loaded before splashscreen starts
  	Course.MakeStandardPolyhedrons ();

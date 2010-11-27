@@ -208,7 +208,8 @@ const FTLibrary &FTLibrary::Instance () {
 }
 
 FTLibrary::~FTLibrary () {
-    if (library != 0)  {
+//	PrintStr ("desctructor FTLibrary");
+	if (library != 0)  {
         FT_Done_FreeType (*library);
         delete library;
         library= 0;
@@ -240,10 +241,11 @@ FTFace::FTFace (const char* fontFilePath)
 
     err = FT_New_Face (*FTLibrary::Instance().GetLibrary(), fontFilePath, DEFAULT_FACE_INDEX, ftFace);
     if (err) {
-        delete ftFace;
+		Message ("error FT_New_Face");
+		delete ftFace;
         ftFace = 0;
     } else {
-        numGlyphs = (*ftFace)->num_glyphs;
+		numGlyphs = (*ftFace)->num_glyphs;
         hasKerningTable = FT_HAS_KERNING((*ftFace));
     }
 }
@@ -265,8 +267,8 @@ FTFace::FTFace (const unsigned char *pBufferBytes, size_t bufferSizeInBytes)
 }
 
 FTFace::~FTFace() {
-    if (ftFace) {
-        FT_Done_Face (*ftFace);
+	if (ftFace) {
+		FT_Done_Face (*ftFace);
         delete ftFace;
         ftFace = 0;
     }

@@ -143,6 +143,7 @@ typedef enum {
     CREDITS,
 	GAME_CONFIG,
 	HELP,
+	SCORE,
 	TOOLS,
     NUM_GAME_MODES
 } TGameMode;

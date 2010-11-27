@@ -31,7 +31,7 @@ GNU General Public License for more details.
 #define NMLPOINT(x,y) MakeVector (XCD(x), ELEV(x,y), ZCD(y) )
 
 
-#define MAX_COURSES 164
+#define MAX_COURSES 64
 #define MAX_TERR_TYPES 64
 #define MAX_COLL 12192
 #define MAX_NOCOLL 8192

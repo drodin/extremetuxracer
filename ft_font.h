@@ -423,7 +423,6 @@ public:
     FT_GlyphSlot Glyph(unsigned int index, FT_Int load_flags);
     unsigned int GlyphCount() const { return numGlyphs;}
     FT_Error Error() const { return err; }
-        
 private:
     FT_Face* ftFace;
     FTSize charSize;

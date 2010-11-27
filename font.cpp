@@ -117,13 +117,15 @@ CFont::CFont () {
 	curr_size   = 20;	// default size: 20 px
 }
 
-CFont::~CFont () {
+void CFont::Clear () {
 	for (int i=0; i<MAX_FONTS; i++) {
 		if (fonts[i] != NULL) delete (fonts[i]);
 	}
 	numFonts = 0;
 	fontindex = "";
-}	
+}
+
+CFont::~CFont () {}	
 
 // --------------------------------------------------------------------
 //				private
@@ -192,6 +194,7 @@ void CFont::UnicodeStr (wchar_t *buff, const char *string) {
 int CFont::LoadFont (string name, const char *path) {
 	if (numFonts >= MAX_FONTS) return -1;	
 	fonts[numFonts] = new FTGLPixmapFont (path);
+//	fonts[numFonts] = new FTGLTextureFont (path);
 	if (fonts[numFonts]->Error()) {
 		Message ("Failed to open font");
 		return -1;

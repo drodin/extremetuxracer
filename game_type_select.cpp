@@ -39,7 +39,8 @@ void QuitGameType (int sc) {
 		case 2: Winsys.SetMode (GAME_CONFIG); break;
 		case 3: Winsys.SetMode (CREDITS); break;
 		case 4: Winsys.SetMode (HELP); break;
-		case 5: Winsys.Quit (); break;
+		case 5: Winsys.SetMode (SCORE); break;
+		case 6: Winsys.Quit (); break;
 	};
 }
 
@@ -85,7 +86,7 @@ void GameSelectMotionFunc (int x, int y) {
 static void GameSelectInit (void) {
 	Winsys.ShowCursor (!param.ice_cursor);    
 	init_ui_snow (); 
-	scope = 0;
+	scope = 1;
 	
 	ResetWidgets ();
 	double top = (double)(param.y_resolution * 0.4);
@@ -95,9 +96,10 @@ static void GameSelectInit (void) {
 	AddTextButton (Trans.Text(3), CENTER, top + dist * 2, 2, FIT);
 	AddTextButton (Trans.Text(4), CENTER, top + dist * 3, 3, FIT);
 	AddTextButton (Trans.Text(43), CENTER, top + dist * 4, 4, FIT);
-	AddTextButton (Trans.Text(5), CENTER, top + dist * 5, 5, FIT);
+	AddTextButton ("Highscore list", CENTER, top + dist * 5, 5, FIT);
+	AddTextButton (Trans.Text(5), CENTER, top + dist * 6, 6, FIT);
 	Music.Play (param.menu_music, -1);
-	g_game.loopdelay = 20;
+	g_game.loopdelay = 10;
 }
 
 static void GameSelectLoop (double time_step) {
@@ -127,6 +129,7 @@ static void GameSelectLoop (double time_step) {
 	PrintTextButton (3, scope);
 	PrintTextButton (4, scope);
 	PrintTextButton (5, scope);
+	PrintTextButton (6, scope);
 
 	if (param.ice_cursor) DrawCursor ();
 	Reshape (ww, hh);

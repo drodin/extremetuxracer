@@ -37,6 +37,7 @@ static int last_character;
 static int xleft, ytop;
 static int curr_player = 0;
 static int last_player;
+static int old_last;
 
 void QuitRegistration () {
 	Players.ResetControls ();
@@ -67,6 +68,7 @@ void RegistKeys (unsigned int key, bool special, bool release, int x, int y) {
 		case 27: Winsys.Quit (); break;
 		case 13: 
 			if (curr_focus == 3) {
+				old_last = last_player;
 				Winsys.SetMode (NEWPLAYER);
 			} else QuitRegistration ();	break;
 		case SDLK_TAB: 
@@ -86,7 +88,7 @@ void RegistMouseFunc (int button, int state, int x, int y) {
 			case 0: ChangeRegistSelection (foc, dir); break;
 			case 1: ChangeRegistSelection (foc, dir); break;
 			case 2: QuitRegistration (); break;
-			case 3: Winsys.SetMode (NEWPLAYER); break;
+			case 3: old_last = last_player; Winsys.SetMode (NEWPLAYER); break;
 		}
 	}
 }
@@ -127,8 +129,9 @@ void RegistInit (void) {
 	CharList = Char.CharList;
 	last_character = Char.numCharacters - 1;
 	last_player = Players.numPlayers - 1;
-	if (g_game.prev_mode == NEWPLAYER) curr_player = last_player; 
-		else curr_player = g_game.start_player;
+	if (g_game.prev_mode == NEWPLAYER && old_last != last_player) {
+		curr_player = last_player; 
+	} else curr_player = g_game.start_player;
 }
 
 void RegistLoop (double timestep ){

@@ -20,6 +20,7 @@ GNU General Public License for more details.
 #include "audio.h"
 #include "game_ctrl.h"
 #include "font.h"
+#include "score.h"
 
 #define USE_JOYSTICK true
 
@@ -147,8 +148,10 @@ void CWinsys::SetFonttype () {
 void CWinsys::Quit () {
 	if (joystick_active) SDL_JoystickClose (joystick);	
 	Audio.Close ();
-	SDL_Quit ();
+	FT.Clear ();
 	Players.SavePlayers ();
+	Score.SaveHighScore ();
+	SDL_Quit ();
     exit (0);
 }
 

@@ -28,6 +28,7 @@ GNU General Public License for more details.
 #include "font.h"
 #include "game_ctrl.h"
 #include "translation.h"
+#include "score.h"
 
 static int xleft, ytop;
 
@@ -68,6 +69,7 @@ void SplashLoop (double timestep ){
 	Course.LoadTerrainTypes ();
 	Env.LoadEnvironmentList ();
 	Course.LoadCourseList ();
+	Score.LoadHighScore (); // after LoadCourseList !!!
 	Events.LoadEventList ();
 	Players.LoadAvatars (); // before LoadPlayers !!!
 	Players.LoadPlayers ();

@@ -32,19 +32,10 @@ GNU General Public License for more details.
 #include "game_ctrl.h"
 #include "translation.h"
 #include "keyframe.h"
+#include "score.h"
 
 static TVector2 cursor_pos = {0, 0 };
 static CKeyframe *final_frame;
-
-void CalcScore (CControl *ctrl){
-    double par_time;
-	double w, l;
-	
-	Course.GetDimensions (&w, &l);
-	par_time = l * 0.03;
-    g_game.score = max (0, (int)(100 * (par_time - g_game.time) 
-		+ 200 * g_game.herring) );
-}
 
 void QuitGameOver () {
     if (g_game.game_type == PRACTICING) {
@@ -63,23 +54,6 @@ static void mouse_cb (int button, int state, int x, int y) {
 	QuitGameOver ();
 }
 
-void CalcRaceResult () {
-	g_game.race_result = -1;
-	if (g_game.time <= g_game.time_req.x && 
-		g_game.herring >= g_game.herring_req.i) g_game.race_result = 0;
-	if (g_game.time <= g_game.time_req.y && 
-		g_game.herring >= g_game.herring_req.j) g_game.race_result = 1;
-	if (g_game.time <= g_game.time_req.z && 
-		g_game.herring >= g_game.herring_req.k) g_game.race_result = 2;
-
-	double ll, ww;
-	Course.GetDimensions (&ww, &ll);
-	double herringpt = g_game.herring * 10;
-	double timept = ll - (g_game.time * 10);
-	g_game.score = (int)(herringpt + timept);
-	if (g_game.score < 0) g_game.score = 0;
-}
-
 void GameOverMotionFunc  (int x, int y) {
     TVector2 old_pos;
     
@@ -94,7 +68,6 @@ void GameOverMotionFunc  (int x, int y) {
 void GameOverMessage () {
 	int hh = param.y_resolution;
 	char buff[64];
-    CControl *ctrl = Players.GetCtrl (g_game.player_id);
 	int fheight = 75;
 	int fwidth = 500;
 	char s[128];
@@ -104,7 +77,6 @@ void GameOverMessage () {
 
 	if (!g_game.raceaborted) {
 		if (g_game.game_type == PRACTICING) {
-			CalcScore (ctrl);
 			sprintf (buff, "%d", g_game.score);
 			strcpy (s, "Score:  ");
 			strcat (s, buff);
@@ -146,7 +118,7 @@ void GameOverMessage () {
 // =========================================================================
 void GameOverInit (void) {
 	Sound.HaltAll ();
-	CalcRaceResult ();
+
 	if (g_game.game_type == CUPRACING) {
 		if (g_game.race_result >= 0) {
 			Music.PlayTheme (g_game.theme_id, MUS_WONRACE);
@@ -161,13 +133,17 @@ void GameOverInit (void) {
 		}
 	}
 
+	if (!g_game.raceaborted) Score.CalcRaceResult ();
+
 	if (g_game.raceaborted || !g_game.use_keyframe) {
 		final_frame = NULL;
 	} else {
 		if (g_game.game_type == CUPRACING) {
-			if (g_game.race_result < 0) final_frame = Char.GetKeyframe (g_game.char_id, LOSTRACE); 
+			if (g_game.race_result < 0) final_frame = 
+				Char.GetKeyframe (g_game.char_id, LOSTRACE); 
 				else final_frame = Char.GetKeyframe (g_game.char_id, WONRACE);
 		} else final_frame = Char.GetKeyframe (g_game.char_id, FINISH);
+
 		if (!g_game.raceaborted) {
 			CControl *ctrl = Players.GetCtrl (g_game.player_id);
 			final_frame->Init (ctrl->cpos, -0.18);
