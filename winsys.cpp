@@ -125,7 +125,7 @@ void CWinsys::Init (int *argc, char **argv) {
 	SetupVideoMode ();
 	Reshape (param.x_resolution, param.y_resolution);
 
-    SDL_WM_SetCaption ("","");
+    SDL_WM_SetCaption ("Extreme Tux Racer","ETR");
 	KeyRepeat (false);
 	if (USE_JOYSTICK) InitJoystick ();
 //	SDL_EnableUNICODE (1);
