@@ -76,6 +76,9 @@ void InitGame (int argc, char **argv) {
 // 					main
 // ====================================================================
 
+#if defined ( OS_WIN32_MINGW )
+	#undef main
+#endif
 int main( int argc, char **argv ) {
 	// ****************************************************************
 	printf ("\n----------- Extreme Tux Racer " VERSION " ----------------");

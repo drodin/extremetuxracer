@@ -11,8 +11,8 @@ track_marks.o hud.o view.o gui.o translation.o tools.o \
 quadtree.o font.o ft_font.o textures.o help.o regist.o tool_frame.o \
 tool_char.o newplayer.o score.o
 
-CFLAGS = -Wall -O2 -DOS_LINUX -I/usr/include/freetype2
-LDFLAGS = -lglut -lGL -lGLU -lSDL -lSDL_image -lSDL_mixer -lfreetype 
+CFLAGS = -Wall -O2 -DOS_WIN32_MINGW -mwindows -I/usr/include/freetype2
+LDFLAGS = -lfreeglut -lopengl32 -lGLU32 -lSDL -lSDL_image -lSDL_mixer -lfreetype
 
 $(BIN) : $(OBJ)
 	g++ -o $(BIN) $(OBJ) $(LDFLAGS) $(CFLAGS)

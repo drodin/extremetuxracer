@@ -40,7 +40,7 @@ GNU General Public License for more details.
 //			includes
 // --------------------------------------------------------------------
 
-#define OS_LINUX
+// #define OS_LINUX
 // #define OS_WIN32_MINGW
 // #define OS_WIN32_NATIVE
 // #define OS_WIN32_MSC
