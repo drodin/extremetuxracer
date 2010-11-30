@@ -102,7 +102,7 @@ GNU General Public License for more details.
 
 #define PROG_NAME "ETR"
 #define PACKAGE "etr"
-#define VERSION "0.5.5"
+#define VERSION "0.5"
 #define WINDOW_TITLE "Extreme Tux Racer " VERSION
 #define PROG_DIR "/usr/local/games/etr-bh"
 

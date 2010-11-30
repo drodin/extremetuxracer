@@ -43,7 +43,7 @@ private:
 public:
 	CScore ();
 	void SetScorelist (int list_idx);
-	void AddScore (int list_idx, TScore score);
+	int AddScore (int list_idx, TScore score);
 	TScoreList *GetScorelist (int list_idx);
 	void PrintScorelist (int list_idx);
 	bool SaveHighScore ();

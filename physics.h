@@ -112,11 +112,13 @@ public:
     bool view_init;              
 	// main:
 	TVector3 cpos;          
-    TVector3 cvel;                    
+    TVector3 cvel;    
+	TVector3 last_pos;
     TVector3 cnet_force;        
     TVector3 cdirection;        
 	TQuaternion corientation;        
-
+	double way;
+	
     bool orientation_initialized;  
     TVector3 plane_nml;              
 	// steering:

@@ -21,6 +21,7 @@ GNU General Public License for more details.
 #include "spx.h"
 #include "particles.h"
 #include "font.h"
+#include "course.h"
 
 
 #define SECONDS_IN_MINUTE 60
@@ -353,6 +354,27 @@ void DrawFps () {
 	}
 }
 
+void DrawPercentBar (float fact, float x, float y) {
+	Tex.BindTex (T_ENERGY_MASK);
+	glColor4f (1.0, 1.0, 1.0, 1.0);
+	glBegin (GL_QUADS);
+		glTexCoord2f (0, 0); glVertex2f (x, y);
+	    glTexCoord2f (1, 0); glVertex2f (x+32, y);
+	    glTexCoord2f (1, fact); glVertex2f (x+32, y+fact*128);
+	    glTexCoord2f (0, fact); glVertex2f (x, y+fact*128);
+	glEnd();
+}
+
+void DrawCoursePosition (CControl *ctrl) {
+	double pl, pw;
+	Course.GetPlayDimensions (&pw, &pl);
+	double fact = ctrl->cpos.z / pl;
+	if (fact > 1.0) fact = 1.0;
+    glEnable (GL_TEXTURE_2D );
+	Tex.Draw (T_MASK_OUTLINE, param.x_resolution - 48, param.y_resolution - 280, 1.0);
+	DrawPercentBar (-fact, param.x_resolution - 48, 280-128);
+}
+
 // -------------------------------------------------------
 void DrawHud (CControl *ctrl) {
     TVector3 vel;
@@ -370,6 +392,7 @@ void DrawHud (CControl *ctrl) {
     draw_herring_count (g_game.herring);
     DrawSpeed (speed * 3.6);
 	DrawFps ();
+	DrawCoursePosition (ctrl);
 	if (g_game.wind_id > 0) DrawWind2 (Wind.Angle (), Wind.Speed (), ctrl);
 }
 

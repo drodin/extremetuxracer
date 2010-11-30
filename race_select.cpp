@@ -161,8 +161,8 @@ void RaceSelectInit (void) {
 	AddIconButton (xleft + buttoffs + 160, ytop + 55, 4, Tex.TexID (MIRROR_BUTT), 32); 
 	AddIconButton (xleft + buttoffs + 210, ytop + 55, 5, Tex.TexID (RANDOM_BUTT), 32); 
 
-	AddTextButton (Trans.Text(13), xleft + 300, ytop + 280, 6, -1);
-	AddTextButton (Trans.Text(8), xleft + 100, ytop + 280, 7, -1);
+	AddTextButton (Trans.Text(13), xleft + 300, ytop + 320, 6, -1);
+	AddTextButton (Trans.Text(8), xleft + 100, ytop + 320, 7, -1);
 	curr_focus = 0;
 	g_game.loopdelay = 20;
 }
@@ -205,6 +205,8 @@ void RaceSelectLoop (double timestep){
 	for (int i=0; i<CourseList[curr_course].num_lines; i++) {
 		FT.DrawString (xleft+220, ytop+105+i*16, CourseList[curr_course].desc[i]);
 	}
+
+	FT.DrawString (-1, ytop+260, "Author:  " + CourseList[curr_course].author); 
 
 	PrintArrow (0, (curr_course > 0));	
 	PrintArrow (1, (curr_course < lastCourse));

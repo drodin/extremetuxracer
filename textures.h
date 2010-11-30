@@ -45,7 +45,8 @@ GNU General Public License for more details.
 #define MOUSECURSOR 22
 #define SNOW_PART 23
 #define ENV_MAP 24
-#define NO_PREVIEW 26
+#define T_ENERGY_MASK 25
+#define T_MASK_OUTLINE 26
 #define NUMERIC_FONT 27
 #define MIRROR_BUTT 28
 #define CHAR_BUTT 29

@@ -18,6 +18,11 @@ GNU General Public License for more details.
 
 #include "mathlib.h"
 
+double VectorLength (const TVector3 &v) {
+	return sqrt (v.x * v.x + v.y * v.y + v.z * v.z);
+}
+
+
 TVector3 MakeVector (double x, double y, double z){
     TVector3 result;
     result.x = x;

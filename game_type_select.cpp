@@ -58,10 +58,10 @@ void GameSelectKeys (unsigned int key, bool special, bool release, int x, int y)
 	switch (key) {
 		case SDLK_u: param.ui_snow = !param.ui_snow; break;	
 		case 27: Winsys.Quit (); break;
-		case 274: if (scope < 5) scope++; break;
+		case 274: if (scope < 6) scope++; break;
 		case 273: if (scope > 0) scope--; break;
 		case 13: QuitGameType (scope); break;
-		case SDLK_TAB: scope++; if (scope > 4) scope = 0; break;
+		case SDLK_TAB: scope++; if (scope > 6) scope = 0; break;
 	}	
 }
 

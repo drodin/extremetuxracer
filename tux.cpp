@@ -616,7 +616,19 @@ void CCharShape::AdjustOrientation (CControl *ctrl, double dtime,
     new_x = MakeVector (cob_mat[0][0], cob_mat[0][1], cob_mat[0][2]); 
     RotateAboutVectorMatrix (rot_mat, new_x, ctrl->flip_factor * 360);
     MultiplyMatrices (cob_mat, rot_mat, cob_mat);
-    TransposeMatrix (cob_mat, inv_cob_mat);
+
+    /* Trick rotations 0.61
+    new_y = make_vector( cob_mat[1][0], cob_mat[1][1], cob_mat[1][2] ); 
+    make_rotation_about_vector_matrix( rot_mat, new_y, 
+				       ( plyr->control.barrel_roll_factor * 360 ) );
+    multiply_matrices( cob_mat, rot_mat, cob_mat );
+    new_x = make_vector( cob_mat[0][0], cob_mat[0][1], cob_mat[0][2] ); 
+    make_rotation_about_vector_matrix( rot_mat, new_x, 
+				       plyr->control.flip_factor * 360 );
+    multiply_matrices( cob_mat, rot_mat, cob_mat );
+	*/
+
+	TransposeMatrix (cob_mat, inv_cob_mat);
 	TransformNode (0, cob_mat, inv_cob_mat); 
 }
 

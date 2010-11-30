@@ -1,4 +1,4 @@
-*[width]90.0[length]520.0[play_width]85.0[play_length] 470.0
+*[width]90.0[length]520.0[play_width]85.0[play_length] 470.0 #470
 [startx]45.00[starty]3.50[angle]25.00[scale]7.00
 [env] tuxracer
 [use_keyframe] 1

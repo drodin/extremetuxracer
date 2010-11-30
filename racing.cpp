@@ -45,7 +45,7 @@ static bool stick_charging;
 static bool key_braking;
 static bool stick_braking;
 static double charge_start_time;
-static bool tricking;
+static bool trick_modifier;
 
 static bool sky = true;
 static bool fog = true;
@@ -63,7 +63,7 @@ void RacingKeys (unsigned int key, bool special, bool release, int x, int y) {
 		case 276: left_turn = !release; break;	
 		case 275: right_turn = !release; break;	
 		case 32:  key_charging = !release; break;
-		case SDLK_t: tricking = !release; break;		
+		case SDLK_t: trick_modifier = !release; break;		
 
 		// mode changing and other actions
 		case 27:  if (!release) { 
@@ -153,7 +153,7 @@ void racing_init (void) {
 		param.view_mode = ABOVE;
     }
     set_view_mode (ctrl, (TViewMode)param.view_mode);
-    left_turn = right_turn = tricking = false;
+    left_turn = right_turn = trick_modifier = false;
 
     ctrl->turn_fact = 0.0;
     ctrl->turn_animation = 0.0;
@@ -268,8 +268,9 @@ void CalcFinishControls (CControl *ctrl, double timestep, bool airborne) {
 }
 
 // ----------------------- trick --------------------------------------
+
 void CalcTrickControls (CControl *ctrl, double time_step, bool airborne) {
-	if (airborne) {
+	if (airborne && trick_modifier) {
 		if (left_turn) ctrl->roll_left = true;
 		if (right_turn) ctrl->roll_right = true;
 		if (key_paddling) ctrl->front_flip = true;
@@ -306,7 +307,8 @@ void racing_loop (double time_step){
 	Env.SetupFog ();
 	Music.Update ();    
 
-	if (tricking) CalcTrickControls (ctrl, time_step, airborne);
+	CalcTrickControls (ctrl, time_step, airborne);
+
 	if (!g_game.finish) CalcSteeringControls (ctrl, time_step);
 		else CalcFinishControls (ctrl, time_step, airborne);
 	PlayTerrainSound (ctrl, airborne);

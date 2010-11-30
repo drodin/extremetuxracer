@@ -231,10 +231,11 @@ void SaveConfigFile () {
 	liste.Add ("");
 
 	AddComment (liste, "Select the music:");
+	AddComment (liste, "(the racing music is defined by a music theme)");
 	AddItem (&liste, "menu_music", param.menu_music);
 	AddItem (&liste, "credits_music", param.credits_music);
 	AddItem (&liste, "config_music", param.config_music);
-	liste.Save (param.configfile);		
+	liste.Save (param.configfile);	
 }
 
 // --------------------------------------------------------------------
@@ -328,6 +329,8 @@ void SetConfig () {
 		if (screenchanged) {
 			param.res_type = curr_res;
 			param.fullscreen = curr_fullscreen;
+
+			Winsys.Init ();
 			Winsys.SetupVideoMode ();
 		}
 		param.music_volume = curr_mus_vol;

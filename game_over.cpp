@@ -36,6 +36,7 @@ GNU General Public License for more details.
 
 static TVector2 cursor_pos = {0, 0 };
 static CKeyframe *final_frame;
+static int highscore_pos = 999;
 
 void QuitGameOver () {
     if (g_game.game_type == PRACTICING) {
@@ -65,53 +66,115 @@ void GameOverMotionFunc  (int x, int y) {
     }
 }
 
-void GameOverMessage () {
-	int hh = param.y_resolution;
-	char buff[64];
-	int fheight = 75;
+void DrawMessageFrame (float x, float y, float w, float h, int line, 
+		TColor backcol, TColor framecol, float transp) {
+
+	float yy = param.y_resolution - y - h; 
+	if (x < 0) 	x = (param.x_resolution - w) / 2;
+
+	glPushMatrix();
+	glDisable (GL_TEXTURE_2D);
+    
+	glColor4f (framecol.r, framecol.g, framecol.b, transp); 
+	glTranslatef (x, yy, 0);
+	glBegin (GL_QUADS );
+	    glVertex2f (0, 0 );
+	    glVertex2f (w, 0 );
+	    glVertex2f (w, h );
+	    glVertex2f (0, h );
+	glEnd();
+
+	glColor4f (backcol.r, backcol.g, backcol.b, transp);
+	glBegin (GL_QUADS );
+	    glVertex2f (0 + line, 0 + line );
+	    glVertex2f (w - line, 0 + line );
+	    glVertex2f (w - line, h - line );
+	    glVertex2f (0 + line, h - line );
+	glEnd();
+
+	glEnable (GL_TEXTURE_2D);
+    glPopMatrix();
+}
+
+
+void GameOverMessage (CControl *ctrl) {
 	int fwidth = 500;
-	char s[128];
 
-	DrawFrameX (CENTER, hh-90, fwidth, fheight, 2, colWhite, colSky, 0.4);
+	string line;
+	float leftframe = (param.x_resolution - fwidth) / 2;
+	float topframe = 80;
+
+	TColor backcol = MakeColor (1, 1, 1, 1);
+	TColor framecol = MakeColor (0.7, 0.7, 1, 1);
+
 	if (param.use_papercut_font > 0) FT.SetSize (28); else FT.SetSize (22);
+	if (g_game.raceaborted) {
+		DrawMessageFrame (leftframe, topframe, fwidth, 100, 4, backcol, framecol, 0.5);
+		FT.SetColor (colDBlue);
+		FT.DrawString (CENTER, topframe+30, Trans.Text(25));
+	} else {
+		DrawMessageFrame (leftframe, topframe, fwidth, 210, 4, backcol, framecol, 0.5);
+		string line;
 
-	if (!g_game.raceaborted) {
-		if (g_game.game_type == PRACTICING) {
-			sprintf (buff, "%d", g_game.score);
-			strcpy (s, "Score:  ");
-			strcat (s, buff);
-			FT.SetColor (colDBlue);
-			FT.DrawText (CENTER, hh-90+18, s);
-		} else if (g_game.game_type == TRAINING) {
+		if (param.use_papercut_font > 0) FT.SetSize (20); else FT.SetSize (14);
+		if (g_game.race_result >= 0 || g_game.game_type != CUPRACING) FT.SetColor (colDBlue);
+			else FT.SetColor (colDRed);
 
-		} else if (g_game.game_type == CUPRACING) {
-			if (g_game.race_result < 0) FT.SetColor (colRed); 
-				else FT.SetColor (colDBlue);
+		line = "Score:  ";
+		FT.DrawString (leftframe+80, topframe+15, line);
+		line = Int_StrN (g_game.score);
+		line += "  pts";
+		FT.DrawString (leftframe+240, topframe+15, line);
 
+		line = "Herring:  ";
+		FT.DrawString (leftframe+80, topframe+40, line);
+		line = Int_StrN (g_game.herring);
+		if (g_game.game_type == CUPRACING) {
+			line += "  (";
+			line += Int_StrN (g_game.herring_req.i);
+			line += ")";
+		}
+		FT.DrawString (leftframe+240, topframe+40, line);
+
+		line = "Time:  ";
+		FT.DrawString (leftframe+80, topframe+65, line);
+		line = Float_StrN (g_game.time, 2);
+		line += "  s";
+		if (g_game.game_type == CUPRACING) {
+			line += "  (";
+			line += Float_StrN (g_game.time_req.x, 2);
+			line += ")";
+		}
+		FT.DrawString (leftframe+240, topframe+65, line);
+		
+		line = "Path length:  ";
+		FT.DrawString (leftframe+80, topframe+90, line);
+		line = Float_StrN (ctrl->way, 2);
+		line += "  m";
+		FT.DrawString (leftframe+240, topframe+90, line);
+			
+		line = "Average speed:  ";
+		FT.DrawString (leftframe+80, topframe+115, line);		
+		line = Float_StrN (ctrl->way / g_game.time * 3.6, 2);
+		line += "  km/h"; 
+		FT.DrawString (leftframe+240, topframe+115, line);		
+
+		if (param.use_papercut_font > 0) FT.SetSize (28); else FT.SetSize (22);
+		if (g_game.game_type == CUPRACING) {
 			switch (g_game.race_result) {
-				case -1: 
-					FT.DrawString (CENTER, hh-90+8, Trans.Text(21));
-					break;
-				case 0: 
-					FT.DrawString (CENTER, hh-90+4, Trans.Text(22));
-					FT.DrawString (CENTER, hh-90+36,  Trans.Text(26) + 
-						"  " + Int_StrN (g_game.score) + " " + Trans.Text(27));
-					break;
-				case 1: 
-					FT.DrawString (CENTER, hh-90+4, Trans.Text(23));
-					FT.DrawString (CENTER, hh-90+36, Trans.Text(26) +
-						+ "  " + Int_StrN (g_game.score) +" " + Trans.Text(27));
-					break;
-				case 2: 
-					FT.DrawString (CENTER, hh-90+4,  Trans.Text(24));
-					FT.DrawString (CENTER, hh-90+36, Trans.Text (26) +
-						+ "  " + Int_StrN (g_game.score) + " " + Trans.Text(27));
-					break;
+				case -1: FT.DrawString (CENTER, topframe+150, Trans.Text(21)); break;
+				case 0: FT.DrawString (CENTER, topframe+150, Trans.Text(22)); break;
+				case 1: FT.DrawString (CENTER, topframe+150, Trans.Text(23)); break;
+				case 2: FT.DrawString (CENTER, topframe+150,  Trans.Text(24)); break;
+			}
+		} else {
+			if (highscore_pos < 5) {
+				line = "Position ";
+				line += Int_StrN (highscore_pos + 1);
+				line += " in highscore list";
+				FT.DrawString (CENTER, topframe+150, line);
 			}
 		}
-	} else {
-		FT.SetColor (colDBlue);
-		FT.DrawString (CENTER, hh-90+18, Trans.Text(25));
 	}
 }
 
@@ -133,7 +196,7 @@ void GameOverInit (void) {
 		}
 	}
 
-	if (!g_game.raceaborted) Score.CalcRaceResult ();
+	if (!g_game.raceaborted) highscore_pos = Score.CalcRaceResult ();
 
 	if (g_game.raceaborted || !g_game.use_keyframe) {
 		final_frame = NULL;
@@ -187,8 +250,8 @@ void GameOverLoop (double time_step) {
     set_gl_options (GUI); 
 	SetupGuiDisplay ();
 	if (final_frame != NULL) {
-		if (!final_frame->active) GameOverMessage ();
-	} else GameOverMessage ();
+		if (!final_frame->active) GameOverMessage (ctrl);
+	} else GameOverMessage (ctrl);
 	DrawHud (ctrl);
     Reshape (width, height);
     Winsys.SwapBuffers ();

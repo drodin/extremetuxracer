@@ -775,6 +775,7 @@ bool CCourse::LoadCourseList () {
 	for (i=0; i<MAX_COURSES; i++) {
 		CourseList[i].name = "";
 		CourseList[i].dir = "";		
+		CourseList[i].author = "";
 	}
 
 	CSPList list (128);
@@ -789,6 +790,7 @@ bool CCourse::LoadCourseList () {
 		line = list.Line (i);
 		CourseList[i].name = SPStrN (line, "name", "noname");
 		CourseList[i].dir = SPStrN (line, "dir", "nodir");
+		CourseList[i].author = SPStrN (line, "author", "unknown");
 
 		desc = SPStrN (line, "desc", "");		
 		if (param.use_papercut_font > 0) FT.SetSize (18); else FT.SetSize (12);
@@ -808,7 +810,7 @@ bool CCourse::LoadCourseList () {
 			texid = Tex.LoadMipmapTexture (previewfile.c_str(), 0);
 			if (texid < 1) {
 				Message ("couldn't load previewfile");					
-				texid = Tex.TexID (NO_PREVIEW);
+//				texid = Tex.TexID (NO_PREVIEW);
 			}
 			CourseList[i].preview = texid;
 

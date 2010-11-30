@@ -29,6 +29,8 @@
 * [id] 22 [name] mouse_cursor [file] mouse_cursor.png [repeat] 0
 * [id] 23 [name] snow_particle [file] snowparticles.png [repeat] 0
 * [id] 24 [name] terrain_envmap [file] envmap.png [repeat] 0
+* [id] 25 [name] energy_mask [file] energymask.png [repeat] 0
+* [id] 26 [name] mask_outline [file] mask_outline2.png [repeat] 0
 
 * [id] 27 [name] ziff032 [file] ziff032.png [repeat] 0
 * [id] 28 [name] mirror_butt [file] mirror_butt.png [repeat] 0

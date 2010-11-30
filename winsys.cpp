@@ -112,7 +112,8 @@ void CWinsys::InitJoystick () {
 	joystick_active = true;
 }
 
-void CWinsys::Init (int *argc, char **argv) {
+//void CWinsys::Init (int *argc, char **argv) {
+void CWinsys::Init () {
     Uint32 sdl_flags = SDL_INIT_VIDEO | SDL_INIT_NOPARACHUTE | SDL_INIT_TIMER;
     if (SDL_Init (sdl_flags) < 0) Message ("Could not initialize SDL");
     SDL_GL_SetAttribute (SDL_GL_DOUBLEBUFFER, 1);
@@ -125,7 +126,7 @@ void CWinsys::Init (int *argc, char **argv) {
 	SetupVideoMode ();
 	Reshape (param.x_resolution, param.y_resolution);
 
-    SDL_WM_SetCaption ("Extreme Tux Racer","ETR");
+    SDL_WM_SetCaption (WINDOW_TITLE, "ETR");
 	KeyRepeat (false);
 	if (USE_JOYSTICK) InitJoystick ();
 //	SDL_EnableUNICODE (1);
@@ -147,6 +148,7 @@ void CWinsys::SetFonttype () {
 
 void CWinsys::Quit () {
 	if (joystick_active) SDL_JoystickClose (joystick);	
+	SaveMessages ();
 	Audio.Close ();
 	FT.Clear ();
 	Players.SavePlayers ();

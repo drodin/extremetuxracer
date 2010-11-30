@@ -75,7 +75,7 @@ public:
 	~CWinsys ();
 
 	// sdl window
-	void Init (int *argc, char **argv);
+	void Init ();
 	void SetupVideoMode ();
 	void KeyRepeat (bool repeat);
 	void SetFonttype ();

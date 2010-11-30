@@ -47,11 +47,13 @@ void CControl::Init () {
 	jump_charging = false;
 	cpos.y = Course.FindYCoord (cpos.x, cpos.z);
 	cvel = init_vel;
+	last_pos = cpos;
 	cnet_force = MakeVector (0, 0, 0);
 	orientation_initialized = false;
 	plane_nml = nml;
 	cdirection = init_vel;
 	cairborne = false;
+	way = 0.0;
 
 	// tricks
 	front_flip = false;
@@ -623,11 +625,16 @@ void CControl::SolveOdeSystem (double timestep) {
 		CheckItemCollection (new_pos);
 	}
 	ode_time_step = h;
-	cvel = new_vel; 
-    cpos = new_pos;
-    cnet_force = new_f;
+	cnet_force = new_f;
 
-    free (x);
+	cvel = new_vel; 
+	last_pos = cpos;
+	cpos = new_pos;
+    
+	float step = VectorLength (SubtractVectors (cpos, last_pos));
+	way += step;
+
+	free (x);
     free (y);
     free (z);
     free (vx);

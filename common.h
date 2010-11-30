@@ -32,6 +32,7 @@ extern const TColor colYellow;
 extern const TColor colLYell;
 extern const TColor colOrange;
 extern const TColor colRed;
+extern const TColor colDRed;
 extern const TColor colGrey;
 extern const TColor colLGrey;
 extern const TColor colDGrey;
@@ -103,6 +104,7 @@ bool    DirExistsWin (const char *dirname);
 void    Message (const char *msg, const char *desc);
 void    Message (const char *msg);
 void	MessageN (string a, string b);
+void	SaveMessages ();
 
 // --------------------------------------------------------------------
 //				other stuff

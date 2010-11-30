@@ -42,9 +42,9 @@ void CScore::ResetScorelist (int list_idx) {
 	list->numScores = 0;
 }
 
-void CScore::AddScore (int list_idx, TScore score) {
-	if (list_idx < 0 || list_idx >= MAX_COURSES) return;
-	if (score.points < 1) return;
+int CScore::AddScore (int list_idx, TScore score) {
+	if (list_idx < 0 || list_idx >= MAX_COURSES) return 999;
+	if (score.points < 1) return 999;
 
 	TScoreList *list = &Scorelist[list_idx];
 	int num = list->numScores;
@@ -70,8 +70,10 @@ void CScore::AddScore (int list_idx, TScore score) {
 		list->scores[pos] = score;
 		list->numScores++;
 	}
+	return pos;
 }
 
+// for testing:
 void CScore::PrintScorelist (int list_idx) {
 	if (list_idx < 0 || list_idx >= MAX_COURSES) return;
 	TScoreList *list = &Scorelist[list_idx];
@@ -162,7 +164,6 @@ bool CScore::LoadHighScore () {
 	return true;
 }
 
-// immmer in init
 int CScore::CalcRaceResult () {
 	g_game.race_result = -1;
 	if (g_game.time <= g_game.time_req.x && 
@@ -183,9 +184,9 @@ int CScore::CalcRaceResult () {
 	TempScore.herrings = g_game.herring;
 	TempScore.time = g_game.time;
 	TempScore.player = Players.GetName (g_game.player_id);
-	AddScore (g_game.course_id, TempScore);
+//	AddScore (g_game.course_id, TempScore);
 
-	return g_game.race_result;
+	return AddScore (g_game.course_id, TempScore);
 }
 
 // --------------------------------------------------------------------
@@ -219,15 +220,7 @@ void ScoreKeys (unsigned int key, bool special, bool release, int x, int y) {
 		case SDLK_RIGHT: ChangeScoreSelection (curr_focus, 1); break;
 		case SDLK_s: Score.SaveHighScore (); break;
 		case SDLK_l: Score.LoadHighScore (); break;
-
-	// for testing:
-		case SDLK_F12: 
-			aaa.player = Players.GetName (g_game.player_id);
-			aaa.points = IRandom (1, 10000);
-			aaa.herrings = IRandom (15, 70);
-			aaa.time = XRandom (20, 160);
-			Score.AddScore (curr_course, aaa);
-			break;		
+		case 13: Winsys.SetMode (GAME_TYPE_SELECT); break;
 	}
 }
 
@@ -235,7 +228,8 @@ void ScoreMouseFunc (int button, int state, int x, int y) {
 	int foc, dir;
 	if (state == 1) {
 		GetFocus (x, y, &foc, &dir);
-		ChangeScoreSelection (foc, dir);
+		if (curr_focus == 0) ChangeScoreSelection (foc, dir);
+		else if (curr_focus == 1) Winsys.SetMode (GAME_TYPE_SELECT); 
 	}
 }
 
@@ -262,7 +256,7 @@ void ScoreInit (void) {
 	Music.Play (param.menu_music, -1);
 
 	xleft = (param.x_resolution - 500) / 2;
-	ytop = AutoYPos (150);
+	ytop = AutoYPos (130);
 
 	CourseList = Course.CourseList;
 	lastCourse = Course.numCourses - 1;
@@ -271,6 +265,7 @@ void ScoreInit (void) {
 	ResetWidgets ();
 	AddArrow (xleft + 470, ytop+80, 0, 0);
 	AddArrow (xleft + 470, ytop+98, 1, 0);
+	AddTextButton ("Back", CENTER, ytop+400, 1, FIT);
 
 	g_game.loopdelay = 1;
 }
@@ -331,6 +326,8 @@ void ScoreLoop (double timestep ){
 			}
 		}
 	} else Message ("score list out of range");
+
+	PrintTextButton (0, curr_focus);
 
 	if (param.ice_cursor) DrawCursor ();
     Winsys.SwapBuffers();

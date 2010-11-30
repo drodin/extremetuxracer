@@ -28,6 +28,8 @@ const TVector3 GravVec = {0.0, -1.0, 0.0};
 //			vector and matrix
 // --------------------------------------------------------------------
 
+double      VectorLength (const TVector3 &v);
+
 TVector3	MakeVector (double x, double y, double z);
 TVector2	MakeVector2 (double x, double y);
 TVector3	MakeVector3 (double x, double y, double z);

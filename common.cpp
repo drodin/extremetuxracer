@@ -16,6 +16,7 @@ GNU General Public License for more details.
 ---------------------------------------------------------------------*/
 
 #include "common.h"
+#include "spx.h"
 
 // --------------------------------------------------------------------
 //				color utils
@@ -26,10 +27,11 @@ const TColor colDYell =		{1.0, 0.8, 0.0, 1.0};
 const TColor colYellow =	{1.0, 1.0, 0.0, 1.0};
 const TColor colLYell = 	{1.0, 1.0, 0.4, 1.0};
 const TColor colOrange =	{1.0, 0.5, 0.0, 1.0};
-const TColor colRed   =		{1.0, 0.0, 0.0, 1.0};
-const TColor colGrey  =		{0.5, 0.5, 0.5, 1.0};
-const TColor colLGrey  =	{0.7, 0.7, 0.7, 1.0};
-const TColor colDGrey  =	{0.3, 0.3, 0.3, 1.0};
+const TColor colRed =		{1.0, 0.0, 0.0, 1.0};
+const TColor colDRed =		{0.8, 0.0, 0.0, 1.0};
+const TColor colGrey =		{0.5, 0.5, 0.5, 1.0};
+const TColor colLGrey =		{0.7, 0.7, 0.7, 1.0};
+const TColor colDGrey =		{0.3, 0.3, 0.3, 1.0};
 const TColor colBlack =		{0.0, 0.0, 0.0, 1.0};	
 const TColor colBlue =		{0.0, 0.0, 1.0, 1.0};	
 const TColor colLBlue =		{0.5, 0.7, 0.9, 1.0};	
@@ -169,16 +171,28 @@ void PrintQuaternion (TQuaternion q) {
 //				message utils
 // --------------------------------------------------------------------
 
+static CSPList msg_list (100);
+
+void InitMessages () {}
+
+void SaveMessages () {
+	msg_list.Save (param.config_dir, "messages");
+}
+
 void Message (const char *msg, const char *desc) {
 	if (strlen(msg)<1 && strlen(desc)<1) {
 		printf (" \n");
 		return;
 	}
+
+	string aa = msg;
+	string bb = desc;
 	char item[128];
 	strcpy (item, msg);
 	strcat (item, "  ");
 	strcat (item, desc);
 	printf ("%s \n", item);
+	msg_list.Add (aa + bb);
 }
 
 void Message (const char *msg) {
@@ -189,10 +203,12 @@ void Message (const char *msg) {
 	char item[128];
 	strcpy (item, msg);
 	printf ("%s \n", item);
+	msg_list.Add (msg);
 }
 
 void MessageN (string a, string b) {
 	cout << a << " " << b << endl;
+	msg_list.Add (a + b);
 }
  
 // --------------------------------------------------------------------

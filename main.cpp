@@ -54,8 +54,6 @@ void InitGame (int argc, char **argv) {
 		g_game.file_arg = argv[3];
 	} 
 
-
-
 	g_game.secs_since_start = 0;
 	g_game.player_id = 0;
 	g_game.start_player = 0;
@@ -86,7 +84,7 @@ int main( int argc, char **argv ) {
 	srand (time (NULL));
 	InitConfig (argv[0]);
 	InitGame (argc, argv);
-	Winsys.Init (&argc, argv);
+	Winsys.Init ();
     InitOpenglExtensions ();
 
 	// for checking the joystick and the OpgenGL version (the info is

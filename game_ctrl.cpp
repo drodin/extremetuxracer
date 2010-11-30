@@ -398,7 +398,7 @@ void CCharacter::LoadCharacterList () {
 			texid = Tex.LoadMipmapTexture (previewfile.c_str(), 0);
 			if (texid < 1) {
 				Message ("could not load previewfile of character");					
-				texid = Tex.TexID (NO_PREVIEW);
+//				texid = Tex.TexID (NO_PREVIEW);
 			}
 			
 			ch = &CharList[i];

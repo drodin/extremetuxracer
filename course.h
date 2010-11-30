@@ -43,6 +43,7 @@ GNU General Public License for more details.
 typedef struct {
 	string name;
 	string dir;
+	string author;
 	string desc[MAX_DESCRIPTION_LINES];
 	int num_lines;
 	GLuint preview;
