@@ -244,6 +244,7 @@ void InitConfig (char *arg0) {
 	// the progdir is always the current dir
 	param.config_dir = "config";
 	param.data_dir = "data";
+	param.configfile = param.config_dir + SEP + "options.txt";
 #else
 	char buff[256];
 	if (strcmp (arg0, "./etr") == 0) { 		// start from work directory
@@ -262,6 +263,7 @@ void InitConfig (char *arg0) {
     if (!DirExists (param.config_dir.c_str()))
 		mkdir (param.config_dir.c_str(), 0775); 
 	param.data_dir = param.prog_dir + SEP + "data";
+	param.configfile = param.config_dir + SEP + "options";
 #endif
 
 	param.screenshot_dir = param.data_dir + SEP + "screenshots";
@@ -278,7 +280,6 @@ void InitConfig (char *arg0) {
 	param.font_dir = param.data_dir + SEP + "fonts";
 	param.trans_dir = param.data_dir + SEP + "translations";
 	param.player_dir = param.data_dir + SEP + "players";
-	param.configfile = param.config_dir + SEP + "options";
 
 	param.ui_snow = true;
 	param.view_mode = 1;
