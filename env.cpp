@@ -214,7 +214,16 @@ void CEnvironment::LoadLight () {
 
 void CEnvironment::DrawSkybox (TVector3 pos) {
  	set_gl_options (SKY);
-  
+	double aa, bb;
+	
+#if defined (OS_LINUX)
+	aa = 0.0;
+	bb = 1.0;
+#else
+	aa = 0.005;
+	bb = 9.995;
+#endif
+
 	glColor4f (1.0, 1.0, 1.0, 1.0);
 	glTexEnvf (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
 	glPushMatrix();
@@ -223,28 +232,28 @@ void CEnvironment::DrawSkybox (TVector3 pos) {
 	// front
 	glBindTexture (GL_TEXTURE_2D, Skybox[0]);
 	glBegin(GL_QUADS);
-		glTexCoord2f (0.0, 0.0); glVertex3f (-1, -1, -1);
-		glTexCoord2f (1.0, 0.0); glVertex3f ( 1, -1, -1);
-		glTexCoord2f (1.0, 1.0); glVertex3f ( 1,  1, -1);
-		glTexCoord2f (0.0, 1.0); glVertex3f (-1,  1, -1);
+		glTexCoord2f (aa, aa); glVertex3f (-1, -1, -1);
+		glTexCoord2f (bb, aa); glVertex3f ( 1, -1, -1);
+		glTexCoord2f (bb, bb); glVertex3f ( 1,  1, -1);
+		glTexCoord2f (aa, bb); glVertex3f (-1,  1, -1);
 	glEnd();
 	
 	// left
 	glBindTexture (GL_TEXTURE_2D, Skybox[1]);
 	glBegin(GL_QUADS);
-		glTexCoord2f (0.0, 0.0); glVertex3f (-1, -1,  1);
-		glTexCoord2f (1.0, 0.0); glVertex3f (-1, -1, -1);
-		glTexCoord2f (1.0, 1.0); glVertex3f (-1,  1, -1);
-		glTexCoord2f (0.0, 1.0); glVertex3f (-1,  1,  1);
+		glTexCoord2f (aa, aa); glVertex3f (-1, -1,  1);
+		glTexCoord2f (bb, aa); glVertex3f (-1, -1, -1);
+		glTexCoord2f (bb, bb); glVertex3f (-1,  1, -1);
+		glTexCoord2f (aa, bb); glVertex3f (-1,  1,  1);
 	glEnd();
 	
 	// right
 	glBindTexture (GL_TEXTURE_2D, Skybox[2]);
 	glBegin(GL_QUADS);
-		glTexCoord2f (0.0, 0.0); glVertex3f (1, -1, -1);
-		glTexCoord2f (1.0, 0.0); glVertex3f (1, -1,  1);
-		glTexCoord2f (1.0, 1.0); glVertex3f (1,  1,  1);
-		glTexCoord2f (0.0, 1.0); glVertex3f (1,  1, -1);
+		glTexCoord2f (aa, aa); glVertex3f (1, -1, -1);
+		glTexCoord2f (bb, aa); glVertex3f (1, -1,  1);
+		glTexCoord2f (bb, bb); glVertex3f (1,  1,  1);
+		glTexCoord2f (aa, bb); glVertex3f (1,  1, -1);
 	glEnd();
 
 	// normally, the following textures are unvisible
@@ -253,28 +262,28 @@ void CEnvironment::DrawSkybox (TVector3 pos) {
 		// top
 		glBindTexture (GL_TEXTURE_2D, Skybox[3]);
 		glBegin(GL_QUADS);
-			glTexCoord2f (0.0, 0.0); glVertex3f (-1, 1, -1);
-			glTexCoord2f (1.0, 0.0); glVertex3f ( 1, 1, -1);
-			glTexCoord2f (1.0, 1.0); glVertex3f ( 1, 1,  1);
-			glTexCoord2f (0.0, 1.0); glVertex3f (-1, 1,  1);
+			glTexCoord2f (aa, aa); glVertex3f (-1, 1, -1);
+			glTexCoord2f (bb, aa); glVertex3f ( 1, 1, -1);
+			glTexCoord2f (bb, bb); glVertex3f ( 1, 1,  1);
+			glTexCoord2f (aa, bb); glVertex3f (-1, 1,  1);
 		glEnd();
 		
 		// bottom
 		glBindTexture (GL_TEXTURE_2D, Skybox[4]);
 		glBegin(GL_QUADS);
-			glTexCoord2f (0.0, 0.0); glVertex3f (-1, -1,  1);
-			glTexCoord2f (1.0, 0.0); glVertex3f ( 1, -1,  1);
-			glTexCoord2f (1.0, 1.0); glVertex3f ( 1, -1, -1);
-			glTexCoord2f (0.0, 1.0); glVertex3f (-1, -1, -1);
+			glTexCoord2f (aa, aa); glVertex3f (-1, -1,  1);
+			glTexCoord2f (bb, aa); glVertex3f ( 1, -1,  1);
+			glTexCoord2f (bb, bb); glVertex3f ( 1, -1, -1);
+			glTexCoord2f (aa, bb); glVertex3f (-1, -1, -1);
 		glEnd();
 		
 		// back
 		glBindTexture (GL_TEXTURE_2D, Skybox[5]);
 		glBegin(GL_QUADS);
-			glTexCoord2f (0.0, 0.0); glVertex3f ( 1, -1, 1);
-			glTexCoord2f (1.0, 0.0); glVertex3f (-1, -1, 1);
-			glTexCoord2f (1.0, 1.0); glVertex3f (-1,  1, 1);
-			glTexCoord2f (0.0, 1.0); glVertex3f ( 1,  1, 1);
+			glTexCoord2f (aa, aa); glVertex3f ( 1, -1, 1);
+			glTexCoord2f (bb, aa); glVertex3f (-1, -1, 1);
+			glTexCoord2f (bb, bb); glVertex3f (-1,  1, 1);
+			glTexCoord2f (aa, bb); glVertex3f ( 1,  1, 1);
 		glEnd();
 	}	
 	glPopMatrix();

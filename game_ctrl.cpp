@@ -225,11 +225,13 @@ bool CPlayers::LoadPlayers () {
 
 	if (FileExists (param.config_dir, "players") == false) {
 		SetDefaultPlayers ();
+		Message ("file 'players' does not exist, set default players");
 		return false; 
 	}
 
 	if (list.Load (param.config_dir, "players") == false) {
 		SetDefaultPlayers ();
+		Message ("coule not load players list, set default players");
 		return false; 
 	}
 
@@ -244,6 +246,11 @@ bool CPlayers::LoadPlayers () {
 		active = SPIntN (line, "active", 0);
 		if (active > 0) g_game.start_player = numPlayers;
 		numPlayers++;
+	}
+	if (numPlayers < 1) {
+		SetDefaultPlayers ();
+		Message ("player file doesn't contain a player, set default players");
+		return false;
 	}
 	return true;
 }

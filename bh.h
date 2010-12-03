@@ -40,11 +40,6 @@ GNU General Public License for more details.
 //			includes
 // --------------------------------------------------------------------
 
-// #define OS_LINUX
-// #define OS_WIN32_MINGW
-// #define OS_WIN32_NATIVE
-// #define OS_WIN32_MSC
-
 #include <math.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -94,6 +89,14 @@ GNU General Public License for more details.
 	#include <direct.h>
 	#include <windows.h>
 	#define SEP "\\"
+#elif defined ( OS_MAC )
+	#include <unistd.h>
+	#include <sys/types.h>
+	#include <pwd.h>
+	#include <dirent.h>
+	#include <sys/time.h>
+	#include <GL/glx.h>
+	#define SEP "/"
 #endif
 
 // --------------------------------------------------------------------
@@ -102,7 +105,7 @@ GNU General Public License for more details.
 
 #define PROG_NAME "ETR"
 #define PACKAGE "etr"
-#define VERSION "0.5"
+#define VERSION "0.6"
 #define WINDOW_TITLE "Extreme Tux Racer " VERSION
 #define PROG_DIR "/usr/local/games/etr-bh"
 

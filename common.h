@@ -98,9 +98,6 @@ bool    DirExistsWin (const char *dirname);
 //				message utils
 // --------------------------------------------------------------------
 
-// at the moment the messages are written on the terminal.
-// It's intended to write them in a file, so the user can see what was wrong
-// and perhaps report errors
 void    Message (const char *msg, const char *desc);
 void    Message (const char *msg);
 void	MessageN (string a, string b);

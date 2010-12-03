@@ -63,7 +63,7 @@ void InitOpenglExtensions () {
 
 	#if defined (HAVE_SDL)
     	get_gl_proc = (get_gl_proc_fptr_t) SDL_GL_GetProcAddress;
-	#elif defined (WIN32)
+	#elif defined (OS_WIN32_NATIVE)
     	get_gl_proc = (get_gl_proc_fptr_t) wglGetProcAddress;
 	#else
     	get_gl_proc = NULL;

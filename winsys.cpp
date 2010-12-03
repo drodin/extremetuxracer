@@ -51,6 +51,7 @@ CWinsys::CWinsys () {
 
 CWinsys::~CWinsys () {}
 
+/*
 void CWinsys::GetDefaultVideoMode () {
     Uint32 video_flags = SDL_OPENGL; 
     if (param.fullscreen) video_flags |= SDL_FULLSCREEN;
@@ -60,13 +61,12 @@ void CWinsys::GetDefaultVideoMode () {
 	auto_x_resolution = surf->w;
 	auto_y_resolution = surf->h;
 }
-
+*/
 void CWinsys::SetupVideoMode () {
     int bpp = 0;
     int width = 640; 
 	int height = 480;
     Uint32 video_flags = SDL_OPENGL;
-//	if (param.resizable) video_flags |= SDL_RESIZABLE; 
     if (param.fullscreen) video_flags |= SDL_FULLSCREEN;
 
     switch (param.bpp_mode ) {
@@ -112,7 +112,6 @@ void CWinsys::InitJoystick () {
 	joystick_active = true;
 }
 
-//void CWinsys::Init (int *argc, char **argv) {
 void CWinsys::Init () {
     Uint32 sdl_flags = SDL_INIT_VIDEO | SDL_INIT_NOPARACHUTE | SDL_INIT_TIMER;
     if (SDL_Init (sdl_flags) < 0) Message ("Could not initialize SDL");
@@ -122,7 +121,7 @@ void CWinsys::Init () {
 	    SDL_GL_SetAttribute (SDL_GL_STENCIL_SIZE, 8);
 	#endif
 	
-	GetDefaultVideoMode ();
+//	GetDefaultVideoMode ();
 	SetupVideoMode ();
 	Reshape (param.x_resolution, param.y_resolution);
 

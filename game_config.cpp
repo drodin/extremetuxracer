@@ -241,7 +241,7 @@ void SaveConfigFile () {
 // --------------------------------------------------------------------
 
 void InitConfig (char *arg0) {
-#if defined (WIN32)
+#if defined (OS_WIN32_MINGW)
 	// the progdir is always the current dir
 	param.config_dir = "config";
 	param.data_dir = "data";
@@ -330,8 +330,11 @@ void SetConfig () {
 			param.res_type = curr_res;
 			param.fullscreen = curr_fullscreen;
 
-			Winsys.Init ();
-			Winsys.SetupVideoMode ();
+			#if defined (OS_WIN32_MINGW)
+				
+			#elif defined (OS_LINUX)
+				Winsys.SetupVideoMode ();
+			#endif
 		}
 		param.music_volume = curr_mus_vol;
 		Music.SetVolume (param.music_volume);

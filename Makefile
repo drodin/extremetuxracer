@@ -1,7 +1,38 @@
+# This universal Makefile is prepared for different platforms. 
+# Please comment out the related flags. The platforms are:
+# 
+# OS_Linux 
+# OS_Win32_MINGW - Windows, for compiling with mingw (unix-like code)
+# OS_WIN32_NATIVE - Windows, for native windows compilers like visual c++
+# OS_MAC
+
+# ----------------- Linux ---------------------------------------------
+CFLAGS = -Wall -O2 -DOS_LINUX -I/usr/include/freetype2
+LDFLAGS = -lGL -lGLU -lSDL -lSDL_image -lSDL_mixer -lfreetype 
+
+# ----------------- Windows with mingw --------------------------------
+# CFLAGS = -Wall -O2 -DOS_WIN32_MINGW -mwindows -I/usr/include/freetype2
+# LDFLAGS = -lfreeglut -lopengl32 -lGLU32 -lSDL -lSDL_image -lSDL_mixer -lfreetype
+
+# ----------------- Windows, erins mingw environment ;-) --------------
+# CFLAGS = -Wall -O2 -DOS_WIN32_MINGW -Ic:/mingw/include/freetype2
+# LDFLAGS = -Lc:/mingw/lib/sdl -lmingw32 -mwindows -lSDLmain -lSDL -lopengl32 -lglu32 \
+# -l:SDL_image.lib -l:SDL_mixer.lib -lfreetype
+
+# ----------------- Windows native ------------------------------------
+# CFLAGS = -Wall -O2 -DOS_WIN32_NATIVE .....
+# LDFLAGS = .....
+
+# ----------------- Windows with Microsoft compiler -------------------
+# CFLAGS = -Wall -O2 -DOS_WIN32_MSC .....
+# LDFLAGS = .....
+
+# ----------------- MAC OS --------------------------------------------
+# CFLAGS = -Wall -O2 -DOS_MAC .....
+# LDFLAGS = .....
 
 CC = g++
 BIN = etr
-
 OBJ = main.o game_config.o ogl.o tux.o audio.o winsys.o \
 particles.o mathlib.o splash_screen.o intro.o racing.o \
 game_over.o paused.o reset.o game_type_select.o event_select.o \
@@ -11,12 +42,10 @@ track_marks.o hud.o view.o gui.o translation.o tools.o \
 quadtree.o font.o ft_font.o textures.o help.o regist.o tool_frame.o \
 tool_char.o newplayer.o score.o
 
-CFLAGS = -Wall -O2 -DOS_LINUX -I/usr/include/freetype2
-LDFLAGS = -lglut -lGL -lGLU -lSDL -lSDL_image -lSDL_mixer -lfreetype 
-
 $(BIN) : $(OBJ)
 	g++ -o $(BIN) $(OBJ) $(LDFLAGS) $(CFLAGS)
 
+# use this template and rename it if you want to add a module
 # mmmm.o : mmmm.cpp mmmm.h
 #	$(CC) -c mmmm.cpp $(CFLAGS)
 
