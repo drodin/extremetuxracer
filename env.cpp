@@ -221,7 +221,7 @@ void CEnvironment::DrawSkybox (TVector3 pos) {
 	bb = 1.0;
 #else
 	aa = 0.005;
-	bb = 9.995;
+	bb = 0.995;
 #endif
 
 	glColor4f (1.0, 1.0, 1.0, 1.0);
