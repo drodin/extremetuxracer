@@ -51,6 +51,8 @@ GNU General Public License for more details.
 #define MIRROR_BUTT 28
 #define CHAR_BUTT 29
 #define RANDOM_BUTT 30
+#define T_YELLHERRING 31
+#define T_TIME 32
 #define STARS 33
 #define HERRING_ICON2 34
 #define SPEED_KNOB 35
@@ -116,6 +118,7 @@ public:
 	int LoadMipmapTexture (const char *filename, bool repeatable);
 	int LoadMipmapTexture (const char *dir, const char *filename, bool repeatable);
 	void LoadTextureList ();
+	void FreeTextureList ();
 
 	GLuint TexID (int idx);
 	GLuint TexID (string name);

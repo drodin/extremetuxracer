@@ -77,6 +77,7 @@ typedef struct {TVector3 nml; double d;}			TPlane;
 typedef struct {int num_vertices; int *vertices;} 	TPolygon;
 typedef struct {double radius; int divisions;}		TSphere;
 typedef struct {TVector3 pt; TVector3 vec;}			TRay;
+typedef struct {int width, height;}				TScreenRes;
 
 typedef struct {
     int num_vertices;

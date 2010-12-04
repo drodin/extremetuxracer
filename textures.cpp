@@ -219,6 +219,7 @@ void CTexture::LoadTextureList () {
 	int rep, id;
 	string texfile, line, name;
 
+	TextureIndex = "";
 	CSPList list (200);
 	if (list.Load (param.tex_dir, "textures.lst")) {
 		for (int i=0; i<list.Count(); i++) {
@@ -239,6 +240,15 @@ void CTexture::LoadTextureList () {
 			} else Message ("wrong texture id in textures.lst");	
 	}
 	} else Message ("failed to load common textures");
+}
+
+void CTexture::FreeTextureList () {
+	for (int i=0; i<MAX_COMMON_TEX; i++) {
+		if (CommonTex[i] > 0) {
+			glDeleteTextures (1, &CommonTex[i]);
+			CommonTex[i] = 0;
+		}
+	}
 }
 
 GLuint CTexture::TexID (int idx) {

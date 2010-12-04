@@ -21,6 +21,7 @@ GNU General Public License for more details.
 #include "game_ctrl.h"
 #include "font.h"
 #include "score.h"
+#include "textures.h"
 
 #define USE_JOYSTICK true
 
@@ -45,52 +46,72 @@ CWinsys::CWinsys () {
 	numJoysticks = 0;
 	joystick_active = false;
 
-	auto_x_resolution = 640;
-	auto_y_resolution = 480;
+ 	resolution[0] = MakeRes (0, 0);
+	resolution[1] = MakeRes (800, 600);
+	resolution[2] = MakeRes (1024, 768);
+	resolution[3] = MakeRes (1152, 864);
+	resolution[4] = MakeRes (1280, 960);
+	resolution[5] = MakeRes (1280, 1024);
+	resolution[6] = MakeRes (1360, 768);
+	resolution[7] = MakeRes (1400, 1050);
+	resolution[8] = MakeRes (1440, 900);
+	resolution[9] = MakeRes (1680, 1050);
 }
 
 CWinsys::~CWinsys () {}
 
-/*
-void CWinsys::GetDefaultVideoMode () {
-    Uint32 video_flags = SDL_OPENGL; 
-    if (param.fullscreen) video_flags |= SDL_FULLSCREEN;
-
-	if ((screen = SDL_SetVideoMode (0, 0, 0, video_flags)) == NULL) return;
-	SDL_Surface *surf = SDL_GetVideoSurface ();
-	auto_x_resolution = surf->w;
-	auto_y_resolution = surf->h;
+TScreenRes CWinsys::MakeRes (int width, int height) {
+	TScreenRes res;
+	res.width = width;
+	res.height = height;
+	return res;
 }
-*/
-void CWinsys::SetupVideoMode () {
+
+TScreenRes CWinsys::GetResolution (int idx) {
+	if (idx < 0 || idx >= NUM_RESOLUTIONS) return MakeRes (800, 600);
+	return resolution[idx];
+}
+
+string CWinsys::GetResName (int idx) {
+	string line;
+	if (idx < 0 || idx >= NUM_RESOLUTIONS) return "800 x 600";
+	if (idx == 0) return ("auto");
+	line = Int_StrN (resolution[idx].width);
+	line += " x " + Int_StrN (resolution[idx].height);
+	return line;
+}
+
+void CWinsys::SetupVideoMode (TScreenRes resolution) {
     int bpp = 0;
-    int width = 640; 
-	int height = 480;
     Uint32 video_flags = SDL_OPENGL;
     if (param.fullscreen) video_flags |= SDL_FULLSCREEN;
-
-    switch (param.bpp_mode ) {
+	switch (param.bpp_mode ) {
 		case 0:	bpp = 0; break;
 		case 1:	bpp = 16; break;
 		case 2:	bpp = 32; break;
-    default: param.bpp_mode = 0; bpp = 0;
+		default: param.bpp_mode = 0; bpp = 0;
     }
 
-	int type = param.res_type;
-	if (type > 2 || type < 0) type = 0;
-	switch (type) {
-		case 0: 
-			width = auto_x_resolution;
-			height = auto_y_resolution;
-			break;
-		case 1: width = 800; height = 600; break;
-		case 2: width = 1024; height = 768; break;
+	if ((screen = SDL_SetVideoMode 
+		(resolution.width, resolution.height, bpp, video_flags)) == NULL) {
+		Message ("couldn't initialize video",  SDL_GetError()); 
+		Message ("set to 800 x 600");
+		screen = SDL_SetVideoMode (800, 600, bpp, video_flags);
+		param.res_type = 1;
+		SaveConfigFile ();
 	}
-	if ((screen = SDL_SetVideoMode (width, height, bpp, video_flags)) == NULL) {
-		Message ("Couldn't initialize video",  SDL_GetError()); 	
+	SDL_Surface *surf = SDL_GetVideoSurface ();
+	param.x_resolution = surf->w;
+	param.y_resolution = surf->h;
+	if (resolution.width == 0 && resolution.height == 0) {
+		auto_x_resolution = param.x_resolution;
+		auto_y_resolution = param.y_resolution;
 	}
-	param.x_resolution = width;
-	param.y_resolution = height;
+}
+
+void CWinsys::SetupVideoMode (int idx) {
+	if (idx < 0 || idx >= NUM_RESOLUTIONS) SetupVideoMode (MakeRes (800, 600));
+	else SetupVideoMode (resolution[idx]);
 }
 
 void CWinsys::InitJoystick () {
@@ -121,11 +142,10 @@ void CWinsys::Init () {
 	    SDL_GL_SetAttribute (SDL_GL_STENCIL_SIZE, 8);
 	#endif
 	
-//	GetDefaultVideoMode ();
-	SetupVideoMode ();
+	SetupVideoMode (GetResolution (param.res_type));
 	Reshape (param.x_resolution, param.y_resolution);
 
-    SDL_WM_SetCaption (WINDOW_TITLE, "ETR");
+    SDL_WM_SetCaption (WINDOW_TITLE, WINDOW_TITLE);
 	KeyRepeat (false);
 	if (USE_JOYSTICK) InitJoystick ();
 //	SDL_EnableUNICODE (1);
@@ -145,8 +165,15 @@ void CWinsys::SetFonttype () {
 	}
 }
 
-void CWinsys::Quit () {
+void CWinsys::CloseJoystick () {
 	if (joystick_active) SDL_JoystickClose (joystick);	
+}
+
+void CWinsys::Quit () {
+	CloseJoystick ();
+	Tex.FreeTextureList ();
+	Course.FreeCourseList ();
+	Course.ResetCourse ();
 	SaveMessages ();
 	Audio.Close ();
 	FT.Clear ();
@@ -271,7 +298,7 @@ void CWinsys::PollEvent () {
 				case SDL_VIDEORESIZE:
 					param.x_resolution = event.resize.w;
 					param.y_resolution = event.resize.h;
-					SetupVideoMode ();
+					SetupVideoMode (param.res_type);
 					Reshape (event.resize.w, event.resize.h);
 				break;
 			

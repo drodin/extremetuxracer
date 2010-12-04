@@ -182,6 +182,8 @@ void GameOverMessage (CControl *ctrl) {
 void GameOverInit (void) {
 	Sound.HaltAll ();
 
+	if (!g_game.raceaborted) highscore_pos = Score.CalcRaceResult ();
+
 	if (g_game.game_type == CUPRACING) {
 		if (g_game.race_result >= 0) {
 			Music.PlayTheme (g_game.theme_id, MUS_WONRACE);
@@ -196,7 +198,6 @@ void GameOverInit (void) {
 		}
 	}
 
-	if (!g_game.raceaborted) highscore_pos = Score.CalcRaceResult ();
 
 	if (g_game.raceaborted || !g_game.use_keyframe) {
 		final_frame = NULL;

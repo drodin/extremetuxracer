@@ -119,7 +119,6 @@ private:
 	int			env;
 	int			music_theme;
 
-	void 		ResetCourse ();
 	void 		FreeTerrainTextures ();
 	void 		FreeObjectTextures ();
 	void 		CalcNormals ();
@@ -153,8 +152,10 @@ public:
 	TVector3 	*nmls;
 	GLubyte		*vnc_array;
 
+	void ResetCourse ();
  	int  GetCourseIdx (string dir);
 	bool LoadCourseList ();
+	void FreeCourseList ();
 	bool LoadCourse (int idx);
 	bool LoadTerrainTypes ();
 	bool LoadObjectTypes ();

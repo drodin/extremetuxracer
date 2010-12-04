@@ -24,6 +24,7 @@ GNU General Public License for more details.
 
 const TColor colWhite =		{1.0, 1.0, 1.0, 1.0};
 const TColor colDYell =		{1.0, 0.8, 0.0, 1.0};
+const TColor colDDYell =	{0.8, 0.6, 0.0, 1.0};
 const TColor colYellow =	{1.0, 1.0, 0.0, 1.0};
 const TColor colLYell = 	{1.0, 1.0, 0.4, 1.0};
 const TColor colOrange =	{1.0, 0.5, 0.0, 1.0};

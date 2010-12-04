@@ -89,7 +89,7 @@ static void GameSelectInit (void) {
 	scope = 1;
 	
 	ResetWidgets ();
-	double top = (double)(param.y_resolution * 0.4);
+	int top = (int)(param.y_resolution * 0.4);
 	double dist = AutoDistance ();
 	AddTextButton (Trans.Text(1), CENTER, top, 0, FIT);
 	AddTextButton (Trans.Text(2), CENTER, top + dist, 1, FIT);

@@ -60,6 +60,7 @@ CCharShape::CCharShape () {
 	numNodes = 0;
 	numMaterials = 0;
 	numMatlines = 0;
+	numDisplayLists = 0;
 
 	useActions = false;
 	newActions = false;
@@ -197,7 +198,7 @@ bool CCharShape::TranslateNode (int node_name, TVector3 vec) {
     return true;
 }
 
-bool CCharShape::RotateNode (int node_name, double axis, double angle) {
+bool CCharShape::RotateNode (int node_name, int axis, double angle) {
 	TCharNode *node;
     TMatrix rotMatrix;
 	char caxis = '0';
@@ -222,7 +223,7 @@ bool CCharShape::RotateNode (int node_name, double axis, double angle) {
     return true;
 }
 
-bool CCharShape::RotateNode (string node_trivialname, double axis, double angle) {
+bool CCharShape::RotateNode (string node_trivialname, int axis, double angle) {
 	int node_name = SPIntN (NodeIndex, node_trivialname, -1);
 	if (node_name < 0) return false;
 	return RotateNode (node_name, axis, angle);
@@ -420,17 +421,15 @@ void CCharShape::DrawCharSphere (int num_divisions) {
 
 GLuint CCharShape::GetDisplayList (int divisions) {
     static bool initialized = false;
-    static int num_display_lists;
     static GLuint *display_lists = NULL;
     int base_divisions;
     int i, idx;
-
     if  (!initialized) {
 		initialized = true;
 		base_divisions = param.tux_sphere_divisions;
-		num_display_lists = MAX_SPHERE_DIV - MIN_SPHERE_DIV + 1;
-		display_lists = (GLuint*) malloc (sizeof(GLuint) * num_display_lists);
-		for (i=0; i<num_display_lists; i++) display_lists[i] = 0;
+		numDisplayLists = MAX_SPHERE_DIV - MIN_SPHERE_DIV + 1;
+		display_lists = (GLuint*) malloc (sizeof(GLuint) * numDisplayLists);
+		for (i=0; i<numDisplayLists; i++) display_lists[i] = 0;
     }
 
     idx = divisions - MIN_SPHERE_DIV;
@@ -459,8 +458,13 @@ void CCharShape::DrawNodes (TCharNode *node) {
 
     if (node->visible == true) {
 		set_material (mat->diffuse, mat->specular, mat->exp);
-		if (USE_CHAR_DISPLAY_LIST) glCallList (GetDisplayList (node->divisions));
-			else DrawCharSphere (node->divisions);
+	
+		#if defined (OS_LINUX)
+			if (USE_CHAR_DISPLAY_LIST) glCallList (GetDisplayList (node->divisions));
+				else DrawCharSphere (node->divisions);
+		#else 
+			DrawCharSphere (node->divisions);
+		#endif
     } 
 // -------------- recursive loop -------------------------------------
     child = node->child;

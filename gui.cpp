@@ -130,7 +130,7 @@ void AddTextButton (const char *text, int x, int y, int focus, double ftsize) {
 	if (x == CENTER) x = (int)((param.x_resolution - len) / 2);
 	TextButtons[numTextButtons].x = x;
 	int offs = (int)(ftsize / 5);
-	AddMouseRect (x-20, y+offs, (int)len + 40, ftsize+offs, focus, 0, 
+	AddMouseRect (x-20, y+offs, (int)len + 40, (int)(ftsize+offs), focus, 0, 
 		numTextButtons, W_TEXTBUTTON);
 	numTextButtons++;	
 }
@@ -188,7 +188,7 @@ void PrintIconButton (int nr, int focus, int state) {
 	if (focus == IconButtons[nr].focus) framecol = colDYell;
 	if (nr >= numIconButtons) return;
 
-	int size = IconButtons[nr].size;
+	int size = (int)IconButtons[nr].size;
 	int line = 3;
 	int framesize = size + 2 * line; 
  	int t = param.y_resolution - IconButtons[nr].y;

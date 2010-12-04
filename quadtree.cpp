@@ -238,6 +238,7 @@ float quadsquare::RecomputeError(const quadcornerdata& cd)
 	if (y > MaxY) MaxY = y;
     }
 	
+	
     e = fabs(Vertex[1].Y - (cd.Verts[0].Y + cd.Verts[3].Y) * 0.5);
     if (e > maxerror) maxerror = e;
     Error[0] = e;
@@ -892,7 +893,7 @@ void quadsquare::Render (const quadcornerdata& cd, GLubyte *vnc_array) {
 				}
 			}
 
-			
+/*			
 			if (param.perf_level > 1) {
 				glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
 				for (i=0; i<VertexArrayCounter; i++) {
@@ -902,7 +903,7 @@ void quadsquare::Render (const quadcornerdata& cd, GLubyte *vnc_array) {
 				}
 				DrawEnvmapTris();
 			}		
-
+*/
 		}
     }
     glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );

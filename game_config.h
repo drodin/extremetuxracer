@@ -83,6 +83,7 @@ typedef struct {
 } TParam;
 
 void InitConfig (char *arg0);
+void SaveConfigFile ();
 
 extern TParam param;
 

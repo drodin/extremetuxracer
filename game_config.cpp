@@ -23,6 +23,8 @@ GNU General Public License for more details.
 #include "textures.h"
 #include "font.h"
 #include "translation.h"
+#include "course.h"
+#include "game_ctrl.h"
 
 TParam param;
 
@@ -68,7 +70,7 @@ void LoadConfigFile () {
 
 void SetConfigDefaults () {
 	param.fullscreen = true;
-	param.res_type = 2; // 0=auto / 1=800x600 / 2=1024x768
+	param.res_type = 0; // 0=auto / 1=800x600 / 2=1024x768 ...
  	param.perf_level = 3;	// detail level
 	param.language = 0;
 	param.sound_volume = 100;
@@ -125,8 +127,10 @@ void SaveConfigFile () {
 	AddIntItem (&liste, "fullscreen", param.fullscreen);
 	liste.Add ("");
 
-	AddComment (liste, "Screen resolution [0...2]");
-	AddComment (liste, "0 = auto (default resolution), 1 = 800x600, 2 = 1024x768");
+	AddComment (liste, "Screen resolution [0...9]");
+	AddComment (liste, "0 = auto, 1 = 800x600, 2 = 1024x768");
+	AddComment (liste, "3 = 1152x864, 4 = 1280x960, 5 = 1280x1024");
+	AddComment (liste, "6 = 1360x768, 7 = 1400x1050, 8 = 1440x900, 9=1680x1050");
 	AddIntItem (&liste, "res_type", param.res_type);
 	liste.Add ("");
 
@@ -304,11 +308,11 @@ void InitConfig (char *arg0) {
 //			configuration screen
 // ********************************************************************
 
-#define NUM_RES 3
+//#define NUM_RES 10
 //#define NUM_LANG 1
 
 static TVector2 cursor_pos = {0, 0};
-static string resolution[NUM_RES];
+static string res_names[NUM_RESOLUTIONS];
 //static string languages[NUM_LANG];
 static int xleft, ytop;
 
@@ -331,11 +335,27 @@ void SetConfig () {
 			param.fullscreen = curr_fullscreen;
 
 			#if defined (OS_WIN32_MINGW)
+				Winsys.CloseJoystick ();
+				Tex.FreeTextureList ();
+				Course.FreeCourseList ();
+				Char.FreeCharacterPreviews (); // they are not reloaded !!!
 				
+				Audio.Close ();
+				SDL_Quit ();
+				Winsys.Init ();
+				Tex.LoadTextureList ();
+				Course.LoadCourseList ();
+				Course.ResetCourse ();
+
+				g_game.course_id = 0;
+				g_game.cup_id = 0;
+				g_game.race_id = 0;
+
 			#elif defined (OS_LINUX)
-				Winsys.SetupVideoMode ();
+				Winsys.SetupVideoMode (curr_res);
 			#endif
 		}
+
 		param.music_volume = curr_mus_vol;
 		Music.SetVolume (param.music_volume);
 		param.sound_volume = curr_sound_vol;
@@ -352,8 +372,8 @@ void SetConfig () {
 
 void ChangeRes (int val) {
 	curr_res += val;
-	if (curr_res < 0) curr_res = 2;
-	if (curr_res > 2) curr_res = 0;
+	if (curr_res < 0) curr_res = 0;
+	if (curr_res >= NUM_RESOLUTIONS) curr_res = NUM_RESOLUTIONS-1;
 	paramchanged = true; 
 	screenchanged = true;
 }
@@ -430,18 +450,18 @@ void GameConfigKeys (unsigned int key, bool special, bool release, int x, int y)
 void ChangeConfigSelection (int focus, int dir) {
 	if (dir == 0) {
 		switch (focus) {
-			case 1: ChangeRes (-1); break;
+			case 1: ChangeRes (1); break;
 			case 2: ChangeMusVol (1); break;
 			case 3: ChangeSoundVol (1); break;
-			case 4: ChangeDetail (-1); break;
+			case 4: ChangeDetail (1); break;
 			case 5: ChangeLanguage (-1); break;
 		}
 	} else {
 		switch (focus) {
-			case 1: ChangeRes (1); break;
+			case 1: ChangeRes (-1); break;
 			case 2: ChangeMusVol (-1); break;
 			case 3: ChangeSoundVol (-1); break;
-			case 4: ChangeDetail (1); break;
+			case 4: ChangeDetail (-1); break;
 			case 5: ChangeLanguage (1); break;
 		}
 	}
@@ -494,10 +514,8 @@ void GameConfigInit (void) {
 	SDL_Surface *surf = 0;
 	surf = SDL_GetVideoSurface ();
 
- 	resolution[0] = "auto";
-	resolution[1] = "800 x 600";
-	resolution[2] = "1024 x 768";
-
+	 for (int i=0; i<NUM_RESOLUTIONS; i++) res_names[i] = Winsys.GetResName (i);
+ 
 	xleft = (param.x_resolution - 400) / 2;
 	ytop = AutoYPos (150);
 	ResetWidgets ();
@@ -570,20 +588,20 @@ void GameConfigLoop (double time_step) {
 
 	if (param.use_papercut_font > 0) FT.SetSize (20); else FT.SetSize (14);
 	FT.SetColor (colWhite);
-	FT.DrawString (xleft+240, ytop + 40, resolution[curr_res]);
+	FT.DrawString (xleft+240, ytop + 40, res_names[curr_res]);
 	FT.DrawString (xleft+240, ytop + 76, Int_StrN (curr_mus_vol));
 	FT.DrawString (xleft+240, ytop + 112, Int_StrN (curr_sound_vol));
 	FT.DrawString (xleft+240, ytop + 148, Int_StrN (curr_detail_level));
 	FT.DrawString (xleft+240, ytop + 184, LangList[curr_language].language);
 
-	PrintArrow (0, (curr_res > 0));	
-	PrintArrow (1, (curr_res < (NUM_RES-1)));
+	PrintArrow (0, (curr_res < (NUM_RESOLUTIONS-1)));
+	PrintArrow (1, (curr_res > 0));	
 	PrintArrow (2, (curr_mus_vol < 120));
 	PrintArrow (3, (curr_mus_vol > 0));	
 	PrintArrow (4, (curr_sound_vol < 120));
 	PrintArrow (5, (curr_sound_vol > 0));	
-	PrintArrow (6, (curr_detail_level > 1));	
-	PrintArrow (7, (curr_detail_level < 3));
+	PrintArrow (6, (curr_detail_level < 3));
+	PrintArrow (7, (curr_detail_level > 1));	
 	PrintArrow (8, (curr_language > 0));	
  	PrintArrow (9, (curr_language < lastLang));
 	

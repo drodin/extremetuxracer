@@ -78,11 +78,12 @@ static void draw_time(){
 		Tex.DrawNumStr (timestr.c_str(), 20, 10, 1, colWhite);
 		Tex.DrawNumStr (hundrstr.c_str(), 136, 10, 0.7, colWhite);
 	} else {
+		Tex.Draw (T_TIME, 10, 12, 1);
 		FT.SetColor (colDYell);
 		FT.SetSize (32);
-		FT.DrawString (115,6,hundrstr);
+		FT.DrawString (160, 6, hundrstr);
 		FT.SetSize (42);
-		FT.DrawString (20,10,timestr);
+		FT.DrawString (70, 10, timestr);
 	}
 }
 
@@ -96,7 +97,7 @@ static void draw_herring_count (int herring_count){
 	} else {
 		FT.SetColor (colDYell);
 		FT.DrawString ( param.x_resolution - 90, 10, hcountstr);
-		Tex.Draw (HERRING_ICON, param.x_resolution-160, -12, 1);
+		Tex.Draw (T_YELLHERRING, param.x_resolution-160, 12, 1);
 	}
 }
 
@@ -239,7 +240,7 @@ void DrawSpeed (double speed) {
 		Tex.DrawNumStr (speedstr.c_str(), 
 			param.x_resolution - 85, param.y_resolution-74, 1, colWhite);
 	} else {
-		FT.SetColor (colBlue);
+		FT.SetColor (colDDYell);
 		FT.DrawString (param.x_resolution-82, param.y_resolution-80, speedstr);
 	}
 }

@@ -776,6 +776,7 @@ bool CCourse::LoadCourseList () {
 		CourseList[i].name = "";
 		CourseList[i].dir = "";		
 		CourseList[i].author = "";
+		CourseList[i].preview = 0;
 	}
 
 	CSPList list (128);
@@ -839,6 +840,12 @@ bool CCourse::LoadCourseList () {
 	}
 	list.MakeIndex (CourseIndex, "dir");
 	return true;
+}
+
+void CCourse::FreeCourseList () {
+	for (int i=0; i<MAX_COURSES; i++) {
+		if (CourseList[i].preview > 0) glDeleteTextures (1, &CourseList[i].preview);
+	}
 }
 
 //  ===================================================================

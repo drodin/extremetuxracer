@@ -20,6 +20,8 @@ GNU General Public License for more details.
 
 #include "bh.h"
 
+#define NUM_RESOLUTIONS 10
+
 typedef void (*TInitFuncN)    (void);
 typedef void (*TLoopFuncN)    (double time_step);
 typedef void (*TTermFuncN)    (void);
@@ -58,10 +60,11 @@ private:
 	void InitJoystick ();
 
 	// sdl window
+ 	TScreenRes resolution[NUM_RESOLUTIONS];
 	int auto_x_resolution;
 	int auto_y_resolution;
 	SDL_Surface *screen;
-	void GetDefaultVideoMode ();
+	TScreenRes MakeRes (int width, int height);
 
 	// modes and loop
 	TModeFuncsN modefuncs [NUM_GAME_MODES];
@@ -75,14 +78,18 @@ public:
 	~CWinsys ();
 
 	// sdl window
+	TScreenRes GetResolution (int idx);
+	string GetResName (int idx);
 	void Init ();
-	void SetupVideoMode ();
+	void SetupVideoMode (TScreenRes resolution);
+	void SetupVideoMode (int idx);
 	void KeyRepeat (bool repeat);
 	void SetFonttype ();
 	void PrintJoystickInfo ();
 	void ShowCursor (bool visible) {SDL_ShowCursor (visible);}
 	void SwapBuffers () {SDL_GL_SwapBuffers ();}
 	void Quit ();
+	void CloseJoystick ();
 	void SetModeFuncs (
 			TGameMode mode, TInitFuncN init, TLoopFuncN loop, TTermFuncN term,
 			TKeybFuncN keyb, TMouseFuncN mouse, TMotionFuncN motion,

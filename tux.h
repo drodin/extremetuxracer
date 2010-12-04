@@ -78,6 +78,7 @@ private:
 	string MaterialIndex;
 	string Matlines[MAX_CHAR_MAT];
 	int numMatlines;
+	int numDisplayLists;
 
 	// nodes 
 	int GetNodeIdx (int node_name);
@@ -125,8 +126,8 @@ public:
 	bool ResetNode (int node_name);
 	bool ResetNode (string node_trivialname);
 	bool TranslateNode (int node_name, TVector3 vec);
-	bool RotateNode (int node_name, double axis, double angle);
-	bool RotateNode (string node_trivialname, double axis, double angle);
+	bool RotateNode (int node_name, int axis, double angle);
+	bool RotateNode (string node_trivialname, int axis, double angle);
 	void ScaleNode (int node_name, TVector3 vec);
 	void ResetRoot ();
 	void ResetJoints ();

@@ -28,6 +28,7 @@ using namespace std;
 
 extern const TColor colWhite;
 extern const TColor colDYell;
+extern const TColor colDDYell;
 extern const TColor colYellow;
 extern const TColor colLYell;
 extern const TColor colOrange;

@@ -430,6 +430,15 @@ void CCharacter::LoadCharacterList () {
 	}
 }
 
+void CCharacter::FreeCharacterPreviews () {
+	for (int i=0; i<MAX_CHARACTERS; i++) {
+		if (CharList[i].preview > 0) {
+			glDeleteTextures (1, &CharList[i].preview);
+			CharList[i].preview = 0;
+		}
+	}
+}
+
 void CCharacter::Draw (int idx) {
 	if (idx < 0 || idx >= numCharacters) return;
 	CharList[idx].shape->Draw ();
