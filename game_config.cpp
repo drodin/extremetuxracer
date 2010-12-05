@@ -317,40 +317,50 @@ static string res_names[NUM_RESOLUTIONS];
 static int xleft, ytop;
 
 static bool curr_fullscreen = false;
+static bool prev_fullscreen;
 static int  curr_res = 0;
+static int  prev_res;
 static int  curr_focus = 0;
 static int  curr_mus_vol = 20;
 static int  curr_sound_vol = 100;
 static int  curr_detail_level = 5;
 static int  curr_language = 0;
-static bool screenchanged = false;
 static bool paramchanged = false;
 static TLang *LangList;
 static int lastLang = 0;
 
+void RestartSDL () {
+	Winsys.CloseJoystick ();
+	Tex.FreeTextureList ();
+	Course.FreeCourseList ();
+	Char.FreeCharacterPreviews (); // they are not reloaded !!!
+
+	Sound.FreeSounds ();
+	Music.FreeMusics ();
+	Audio.Close ();
+	SDL_Quit ();
+	Winsys.Init ();
+ 	Audio.Open ();
+	Sound.LoadSoundList ();
+	Music.LoadMusicList ();
+	Music.SetVolume (param.music_volume);
+	Tex.LoadTextureList ();
+	Course.LoadCourseList ();
+	Course.ResetCourse ();
+
+	g_game.course_id = 0;
+	g_game.cup_id = 0;
+	g_game.race_id = 0;
+}
+
 void SetConfig () {
 	if (paramchanged) {	
-		if (screenchanged) {
+		if (curr_res != prev_res || curr_fullscreen != prev_fullscreen) {
 			param.res_type = curr_res;
 			param.fullscreen = curr_fullscreen;
 
 			#if defined (OS_WIN32_MINGW)
-				Winsys.CloseJoystick ();
-				Tex.FreeTextureList ();
-				Course.FreeCourseList ();
-				Char.FreeCharacterPreviews (); // they are not reloaded !!!
-				
-				Audio.Close ();
-				SDL_Quit ();
-				Winsys.Init ();
-				Tex.LoadTextureList ();
-				Course.LoadCourseList ();
-				Course.ResetCourse ();
-
-				g_game.course_id = 0;
-				g_game.cup_id = 0;
-				g_game.race_id = 0;
-
+//				RestartSDL ();
 			#elif defined (OS_LINUX)
 				Winsys.SetupVideoMode (curr_res);
 			#endif
@@ -375,13 +385,11 @@ void ChangeRes (int val) {
 	if (curr_res < 0) curr_res = 0;
 	if (curr_res >= NUM_RESOLUTIONS) curr_res = NUM_RESOLUTIONS-1;
 	paramchanged = true; 
-	screenchanged = true;
 }
 
 void ToggleFullscreen () {
 	curr_fullscreen = !curr_fullscreen; 
 	paramchanged = true; 
-	screenchanged = true; 
 }
 
 void ChangeMusVol (int val) {
@@ -519,12 +527,13 @@ void GameConfigInit (void) {
 	xleft = (param.x_resolution - 400) / 2;
 	ytop = AutoYPos (150);
 	ResetWidgets ();
-	screenchanged = false;
 	paramchanged = false;
 
 	// read the start params:
 	curr_res = param.res_type;
+	prev_res = param.res_type;
 	curr_fullscreen = param.fullscreen;
+	prev_fullscreen = param.fullscreen;
 	curr_mus_vol = param.music_volume;
 	curr_sound_vol = param.sound_volume;
 	curr_detail_level = param.perf_level;
@@ -608,10 +617,24 @@ void GameConfigLoop (double time_step) {
 	PrintTextButton (0, curr_focus);
 	PrintTextButton (1, curr_focus);
 
-	FT.SetColor (colWhite);
-	if (param.use_papercut_font > 0) FT.SetSize (20); else FT.SetSize (14);
-	FT.DrawString (xleft, ytop+240, Trans.Text(41));
- 	FT.DrawString (xleft, ytop+262, Trans.Text(42));
+	#if defined (OS_WIN32_MINGW)
+		if (curr_res != prev_res || curr_fullscreen != prev_fullscreen) {
+			FT.SetColor (colDYell);
+			if (param.use_papercut_font > 0) FT.SetSize (24); else FT.SetSize (18);
+			FT.DrawString (-1, ytop + 240, "The video adjustments have changed,");
+			FT.DrawString (-1, ytop + 270, "You need to restart the game");
+		} else {
+			FT.SetColor (colLGrey);
+			if (param.use_papercut_font > 0) FT.SetSize (18); else FT.SetSize (14);
+			FT.DrawString (-1, ytop+240, Trans.Text(41));
+			FT.DrawString (-1, ytop+262, Trans.Text(42));
+		}
+	#else 
+		FT.SetColor (colWhite);
+		if (param.use_papercut_font > 0) FT.SetSize (20); else FT.SetSize (14);
+		FT.DrawString (xleft, ytop+240, Trans.Text(41));
+		FT.DrawString (xleft, ytop+262, Trans.Text(42));
+	#endif
 
 	if (param.ice_cursor) DrawCursor ();
 	Reshape (ww, hh);

@@ -36,7 +36,7 @@ void CAudio::Open () {
 	    Message ("Couldn't initialize SDL Audio", SDL_GetError());
 		return;
 	}
-   	Uint16 format = AUDIO_S16SYS;	
+	Uint16 format = AUDIO_S16SYS;	
     int channels = 2;				
 	if (Mix_OpenAudio (param.audio_freq, format, channels, param.audio_buffer_size) < 0)
 		Message ("Couldn't open SDL_mixer", Mix_GetError());
@@ -65,7 +65,7 @@ bool CAudio::CheckOpen() {
 
 CSound::CSound () {
 	for (int i=0; i<MAX_SOUNDS; i++) {
-		sounds[i] = 0;
+		sounds[i] = NULL;
 		active_arr[i] = false;
 	}
 	SoundIndex = ""; 
@@ -109,6 +109,22 @@ void CSound::LoadSoundList () {
 	}
 }
 
+void CSound::FreeSounds () {
+	for (int i=0; i<numSounds; i++) {
+		if (sounds[i] != NULL) {
+			if (sounds[i]->chunk != NULL) free (sounds[i]->chunk);
+			free (sounds[i]);
+//			sounds[i] = NULL;
+		}
+	}
+	for (int i=0; i<MAX_SOUNDS; i++) {
+		sounds[i] = NULL;
+		active_arr[i] = false;
+	}
+	SoundIndex = ""; 
+	numSounds = 0;
+}
+
 int CSound::GetSoundIdx (string name) {
     if (Audio.IsOpen == false) return -1;
 	return SPIntN (SoundIndex, name, -1);
@@ -131,7 +147,7 @@ void CSound::SetVolume (string name, int volume) {
 // ------------------- play -------------------------------------------
 
 void CSound::Play (int soundid, int loop) {
-    if (!Audio.IsOpen) return;
+	if (!Audio.IsOpen) return;
 	if (soundid < 0 || soundid >= numSounds) return;
 	if (active_arr[soundid] == true) return;
 	TSound *sound = sounds[soundid];
@@ -203,7 +219,7 @@ void Hook () {
 }
 
 CMusic::CMusic () {
-	for (int i=0; i<MAX_MUSICS; i++) musics[i] = 0;
+	for (int i=0; i<MAX_MUSICS; i++) musics[i] = NULL;
 	MusicIndex = ""; 
 	numMusics = 0;
 
@@ -275,6 +291,28 @@ void CMusic::LoadMusicList () {
  			numThemes++;
 		}
 	} else Message ("could not load racing_themes.lst");
+}
+
+void CMusic::FreeMusics () {
+	for (int i=0; i<numMusics; i++) {
+		if (musics[i] != NULL) {
+			if (musics[i]->piece != NULL) free (musics[i]->piece);
+			free (musics[i]);
+		}
+	}
+
+	for (int i=0; i<MAX_MUSICS; i++) musics[i] = NULL;
+	MusicIndex = ""; 
+	numMusics = 0;
+	for (int i=0; i<MAX_THEMES; i++) {
+		for (int j=0; j<3; j++) themes[i][j] = -1;
+	}
+	ThemesIndex = "";
+	numThemes = 0;
+
+	curr_musid = -1;
+	curr_volume = 10;
+	is_playing = false;
 }
 
 int CMusic::GetMusicIdx (string name) {

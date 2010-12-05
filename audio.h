@@ -73,6 +73,8 @@ public:
 	void Halt (int soundid);
 	void Halt (string name);
 	void HaltAll ();
+	
+	void FreeSounds ();
 };
 
 // --------------------------------------------------------------------
@@ -123,6 +125,7 @@ public:
 	bool PlayTheme (int theme, int situation);
 	void Refresh (string name);
 	void Halt ();
+	void FreeMusics ();
 };
 
 // --------------------------------------------------------------------

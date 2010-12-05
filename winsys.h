@@ -57,7 +57,6 @@ private:
 	SDL_Joystick *joystick;	
 	int numJoysticks;
 	bool joystick_active;
-	void InitJoystick ();
 
 	// sdl window
  	TScreenRes resolution[NUM_RESOLUTIONS];
@@ -89,6 +88,7 @@ public:
 	void ShowCursor (bool visible) {SDL_ShowCursor (visible);}
 	void SwapBuffers () {SDL_GL_SwapBuffers ();}
 	void Quit ();
+	void InitJoystick ();
 	void CloseJoystick ();
 	void SetModeFuncs (
 			TGameMode mode, TInitFuncN init, TLoopFuncN loop, TTermFuncN term,
