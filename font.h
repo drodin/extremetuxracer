@@ -39,6 +39,7 @@ private:
 	int    curr_font;
 	TColor curr_col;
 	float  curr_size;
+	float  curr_fact;		// the length factor
 
 	wchar_t *UnicodeStr  (const char* s);
 	void     UnicodeStr  (wchar_t* buff, const char* string);
@@ -61,6 +62,10 @@ public:
 	void SetSize    (float size);
 	void SetFont    (string fontname);
 
+	// auto
+	int AutoSizeN     (int rel_val);	// rel_val = relative size, return: autosize
+	int AutoDistanceN (int rel_val);	// rel_val = relative dist
+	
 	// draw
 	void DrawText   (float x, float y, const char *text);		// normal char*
 	void DrawText   (float x, float y, const wchar_t *text);	// wide char*

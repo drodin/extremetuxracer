@@ -42,7 +42,6 @@ static int lastCourse;
 static TVector2 cursor_pos = {0, 0};
 
 static TCourse *CourseList;
-static int xleft, ytop;
 
 void SetRaceConditions (void) {
 	if (curr_random > 0) {
@@ -140,6 +139,11 @@ static void RaceSelectKeys
 }
 
 // --------------------------------------------------------------------
+static TArea area;
+static int framewidth, frameheight, frametop;
+static int prevtop, prevwidth, prevheight;
+static int icontop, iconsize, iconspace, iconleft, iconsumwidth;
+static int boxleft, boxwidth;
 
 void RaceSelectInit (void) {
 	Winsys.ShowCursor (!param.ice_cursor);    
@@ -148,21 +152,37 @@ void RaceSelectInit (void) {
 	CourseList = Course.CourseList;
 	lastCourse = Course.numCourses - 1;
 
-	xleft = (param.x_resolution - 500) / 2;
-	ytop = AutoYPos (170);
+	framewidth = 550 * param.scale;
+	frameheight = 50 * param.scale;
+	frametop = AutoYPosN (30);
+	
+	area = AutoAreaN (30, 80, framewidth);
+	prevtop = AutoYPosN (50);
+	prevheight = 144 * param.scale;
+	prevwidth = 192 * param.scale;
+	boxwidth = framewidth - prevwidth - 20;
+	boxleft = area.right - boxwidth;
+	icontop = AutoYPosN (40);
+	iconsize = 32 * param.scale;
+	iconspace = (int)((iconsize+6) * 1.5);
+	iconsumwidth = iconspace * 4 + iconsize;
+	iconleft = (param.x_resolution - iconsumwidth) / 2;
+
 	ResetWidgets ();
-	AddArrow (xleft + 470, ytop, 0, 0);
-	AddArrow (xleft + 470, ytop+18, 1, 0);
+	AddArrow (area.left + framewidth + 8, frametop, 0, 0);
+	AddArrow (area.left + framewidth + 8, frametop+18, 1, 0);
 
-	int buttoffs = 80; // defines x position of first button
-	AddIconButton (xleft + buttoffs + 10, ytop + 55, 1, Tex.TexID (LIGHT_BUTT), 32); 
-	AddIconButton (xleft + buttoffs + 60, ytop + 55, 2, Tex.TexID (SNOW_BUTT), 32); 
-	AddIconButton (xleft + buttoffs + 110, ytop + 55, 3, Tex.TexID (WIND_BUTT), 32); 
-	AddIconButton (xleft + buttoffs + 160, ytop + 55, 4, Tex.TexID (MIRROR_BUTT), 32); 
-	AddIconButton (xleft + buttoffs + 210, ytop + 55, 5, Tex.TexID (RANDOM_BUTT), 32); 
+	AddIconButton (iconleft, icontop, 1, Tex.TexID (LIGHT_BUTT), iconsize); 
+	AddIconButton (iconleft + iconspace, icontop, 2, Tex.TexID (SNOW_BUTT), iconsize); 
+	AddIconButton (iconleft + iconspace*2, icontop, 3, Tex.TexID (WIND_BUTT), iconsize); 
+	AddIconButton (iconleft + iconspace*3, icontop, 4, Tex.TexID (MIRROR_BUTT), iconsize); 
+	AddIconButton (iconleft + iconspace*4, icontop, 5, Tex.TexID (RANDOM_BUTT), iconsize); 
 
-	AddTextButton (Trans.Text(13), xleft + 300, ytop + 320, 6, -1);
-	AddTextButton (Trans.Text(8), xleft + 100, ytop + 320, 7, -1);
+	int siz = FT.AutoSizeN (5);
+	AddTextButton (Trans.Text(13), area.left+50, AutoYPosN (80), 6, siz);
+	double len = FT.GetTextWidth (Trans.Text(8));
+	AddTextButton (Trans.Text(8), area.right-len-50, AutoYPosN (80), 7, siz);
+
 	curr_focus = 0;
 	g_game.loopdelay = 20;
 }
@@ -184,29 +204,35 @@ void RaceSelectLoop (double timestep){
 		draw_ui_snow ();
 	}
 
-	Tex.Draw (T_TITLE_SMALL, -1, 20, 1.0);
+	Tex.Draw (T_TITLE_SMALL, CENTER, AutoYPosN (5), 1.0);
 	Tex.Draw (BOTTOM_LEFT, 0, hh-256, 1);
 	Tex.Draw (BOTTOM_RIGHT, ww-256, hh-256, 1);
 	Tex.Draw (TOP_LEFT, 0, 0, 1);
 	Tex.Draw (TOP_RIGHT, ww-256, 0, 1);
-	
+
+//	DrawFrameX (area.left, area.top, area.right-area.left, area.bottom - area.top, 
+//			0, colMBackgr, colBlack, 0.2);
+
 	// course selection
 	if (curr_focus == 0) col = colDYell; else col = colWhite;
-	DrawFrameX (xleft, ytop-4, 460, 44, 3, colMBackgr, col, 1.0);
-	if (param.use_papercut_font > 0) FT.SetSize (28); else FT.SetSize (22);
+	DrawFrameX (area.left, frametop, framewidth, frameheight, 3, colMBackgr, col, 1.0);
+	FT.AutoSizeN (4);
 	FT.SetColor (colDYell);
-	FT.DrawString (xleft+20, ytop, CourseList[curr_course].name);
-	
-	Tex.DrawDirectFrame (CourseList[curr_course].preview, xleft + 3, ytop + 105, 
-		192, 144, 3, colWhite);
-	DrawFrameX (xleft+210, ytop+102, 250, 150, 3, colBackgr, colWhite, 1.0);
-	if (param.use_papercut_font > 0) FT.SetSize (18); else FT.SetSize (12);
-	FT.SetColor (colWhite);
-	for (int i=0; i<CourseList[curr_course].num_lines; i++) {
-		FT.DrawString (xleft+220, ytop+105+i*16, CourseList[curr_course].desc[i]);
-	}
+	FT.DrawString (area.left+20, frametop, CourseList[curr_course].name);
 
-	FT.DrawString (-1, ytop+260, "Author:  " + CourseList[curr_course].author); 
+	Tex.DrawDirectFrame (CourseList[curr_course].preview, 
+		area.left + 3, prevtop, prevwidth, prevheight, 3, colWhite);
+
+
+	DrawFrameX (area.right-boxwidth, prevtop-3, boxwidth, prevheight+6, 3, colBackgr, colWhite, 1.0);
+	FT.AutoSizeN (2);
+	FT.SetColor (colWhite);
+	int dist = FT.AutoDistanceN (0);
+	for (int i=0; i<CourseList[curr_course].num_lines; i++) {
+		FT.DrawString (boxleft+8, prevtop+i*dist, CourseList[curr_course].desc[i]);
+	}
+	
+	FT.DrawString (CENTER, prevtop + prevheight + 10, "Author:  " + CourseList[curr_course].author); 
 
 	PrintArrow (0, (curr_course > 0));	
 	PrintArrow (1, (curr_course < lastCourse));
@@ -220,7 +246,7 @@ void RaceSelectLoop (double timestep){
 	PrintTextButton (0, curr_focus);
 	PrintTextButton (1, curr_focus);
 
-	if (param.use_papercut_font > 0) FT.SetSize (28); else FT.SetSize (20);
+	FT.AutoSizeN (4);
 	string forcetrees = "Load trees.png";
 	string sizevar = "Size: ";
 	sizevar += Int_StrN (g_game.treesize);
@@ -228,9 +254,11 @@ void RaceSelectLoop (double timestep){
 	sizevar += Int_StrN (g_game.treevar);
 	if (g_game.force_treemap) {
 		FT.SetColor (colYellow);
-		FT.DrawString (-1, ytop + 340, forcetrees);
-		FT.DrawString (-1, ytop + 380, sizevar);
+		FT.DrawString (CENTER, AutoYPosN (85), forcetrees);
+ 		FT.DrawString (CENTER, AutoYPosN (90), sizevar);
 	}
+
+
 
 	if (param.ice_cursor) DrawCursor ();
     SDL_GL_SwapBuffers ();

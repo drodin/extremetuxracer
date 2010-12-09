@@ -25,7 +25,6 @@ GNU General Public License for more details.
 #include "game_ctrl.h"
 #include "translation.h"
 
-static int xleft, ytop;
 static int curr_focus = 0;
 static TVector2 cursor_pos = {0, 0};
 static string name;
@@ -42,7 +41,7 @@ static int last_avatar = 0;
 void DrawCrsr (float x, float y, int pos, double timestep) {
 	if (crsrvisible) {
 		float w = 3;
-		float h = 26;
+		float h = 26*param.scale;
 		TColor col = MakeColor (1, 1, 0, 1);
 		float scrheight = param.y_resolution;
 
@@ -196,23 +195,35 @@ void NewPlayerMotionFunc (int x, int y ){
     }
 }
 
+static TArea area;
+static int framewidth, frameheight, frametop;
+static int prevleft, prevtop, prevwidth, prevoffs;
+
 void NewPlayerInit (void) {  
 	Winsys.KeyRepeat (true);
 	Winsys.ShowCursor (!param.ice_cursor);    
 	init_ui_snow (); 
 	Music.Play (param.menu_music, -1);
 
-	xleft = (param.x_resolution - 400) / 2;
-	ytop = AutoYPos (200);
 	g_game.loopdelay = 10;
 	name = "";	
 	posit = 0;
+	framewidth = 400 * param.scale;
+	frameheight = 50 * param.scale;
+	frametop = AutoYPosN (38);
+	area = AutoAreaN (30, 80, framewidth);
+	prevleft = area.left;
+	prevtop = AutoYPosN (52);
+	prevwidth = 75 * param.scale;
+	prevoffs = 80;
 
 	ResetWidgets ();
-	AddArrow (xleft + 340, ytop+165, 0, 0);
-	AddArrow (xleft + 340, ytop+183, 1, 0);
-	AddTextButton (Trans.Text(8), xleft + 100, ytop + 280, 1, -1);
-	AddTextButton (Trans.Text(15), xleft + 300, ytop + 280, 2, -1);
+	AddArrow (area.left + prevwidth + prevoffs + 8, prevtop, 0, 0);
+	AddArrow (area.left + prevwidth + prevoffs + 8, prevtop +prevwidth -18, 1, 0);
+	int siz = FT.AutoSizeN (5);
+	AddTextButton (Trans.Text(8), area.left+50, AutoYPosN (70), 1, siz);
+	double len = FT.GetTextWidth (Trans.Text(15));
+	AddTextButton (Trans.Text(15), area.right-len-50, AutoYPosN (70), 2, siz);
 
 	last_avatar = Players.numAvatars - 1;
 	curr_focus = 0;
@@ -232,26 +243,29 @@ void NewPlayerLoop (double timestep ){
 	update_ui_snow (timestep);
 	draw_ui_snow();
 
+//	DrawFrameX (area.left, area.top, area.right-area.left, area.bottom - area.top, 
+//			0, colMBackgr, col, 0.2);
+
 	Tex.Draw (BOTTOM_LEFT, 0, hh - 256, 1);
 	Tex.Draw (BOTTOM_RIGHT, ww-256, hh-256, 1);
 	Tex.Draw (TOP_LEFT, 0, 0, 1);
 	Tex.Draw (TOP_RIGHT, ww-256, 0, 1);
-	Tex.Draw (T_TITLE_SMALL, -1, 20, 1.0);
+	Tex.Draw (T_TITLE_SMALL, CENTER, AutoYPosN (5), param.scale);
 
 	FT.SetColor (colWhite);
-	if (param.use_papercut_font > 0) FT.SetSize (28); else FT.SetSize (20);
-	FT.DrawString (-1, ytop, "Enter a name for the new player:");
-	if (param.use_papercut_font > 0) FT.SetSize (24); else FT.SetSize (16);
-	FT.DrawString (xleft + 70, ytop+160, "Select an avatar:");
+	FT.AutoSizeN (4);
+	FT.DrawString (CENTER, AutoYPosN (30), "Enter a name for the new player and select an avatar:");
 
-	DrawFrameX (xleft, ytop+60, 400, 44, 3, colMBackgr, colWhite, 1.0);
-	FT.DrawString (xleft+20, ytop+64, name);
+	DrawFrameX (area.left, frametop, framewidth, frameheight, 3, colMBackgr, colWhite, 1.0);
+	FT.AutoSizeN (5);
+	FT.DrawString (area.left+20, frametop, name);
  	CalcCursorPos ();
-	DrawCrsr (xleft+20+curposit+1, ytop+69, 0, timestep);
+	DrawCrsr (area.left+20+curposit+1, frametop+9, 0, timestep);
 
 	if (curr_focus == 0) col = colDYell; else col = colWhite;
 	Tex.DrawDirectFrame (Players.GetDirectAvatarID (curr_avatar), 
-			xleft+250, ytop + 145, 75, 75, 2, col);
+			prevleft + prevoffs, prevtop, prevwidth, prevwidth, 2, col);
+
 
 	FT.SetColor (colWhite);
 	PrintArrow (0, (curr_avatar > 0));	
@@ -264,7 +278,7 @@ void NewPlayerLoop (double timestep ){
 } 
 
 void NewPlayerTerm () {
-	Winsys.SetFonttype ();
+//	Winsys.SetFonttype ();
 }
 
 void NewPlayerRegister() {

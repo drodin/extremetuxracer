@@ -45,8 +45,6 @@ typedef struct {
 	string  trans_dir;
 	string  player_dir;
 	string  configfile;
-	int 	x_resolution;
-	int 	y_resolution;
 
 	// ------------------------------------
 	// main config params:
@@ -71,15 +69,22 @@ typedef struct {
 	int		use_papercut_font;
 	bool	ice_cursor;
 	bool	full_skybox;
+	int		restart_on_res_change;  // only Windows
+	int     use_quad_scale; 		// scaling type for menus
+	
 	string  menu_music;
 	string  credits_music;
 	string  config_music;
 
-	// toggle params, not saved in options file
+	// these params are not saved in options file
     bool	ui_snow;
     bool	display_fps;
 	bool	show_hud;
     int		view_mode;
+
+	int 	x_resolution;
+	int 	y_resolution;
+	double	scale;		// scale factor for screen, see 'use_quad_scale'
 } TParam;
 
 void InitConfig (char *arg0);

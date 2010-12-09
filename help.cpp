@@ -51,9 +51,9 @@ void HelpInit (void) {
 	init_ui_snow (); 
 	Music.Play (param.credits_music, -1);
 
-	xleft1 = 20; 
+	xleft1 = 40; 
 	xleft2 = (int)(param.x_resolution / 2) + 20;
-	ytop = 30;
+	ytop = AutoYPosN (15);
 }
 
 void HelpLoop (double timestep ){
@@ -68,26 +68,27 @@ void HelpLoop (double timestep ){
 		draw_ui_snow();
     }
 
-	double offs = AutoFtSize (25);
-	FT.SetSize (AutoFtSize (28));
+	FT.AutoSizeN (4);
 	FT.SetColor (colWhite);
-	FT.DrawString (xleft1, ytop, Trans.Text (57));
-	FT.SetSize (AutoFtSize (22));
-	FT.DrawString (xleft1+20, ytop + 50, Trans.Text(44));
-	FT.DrawString (xleft1+20, ytop + 50 + offs, Trans.Text(45));
-	FT.DrawString (xleft1+20, ytop + 50 + offs * 2, Trans.Text(46));
-	FT.DrawString (xleft1+20, ytop + 50 + offs * 3, Trans.Text(47));
-	FT.DrawString (xleft1+20, ytop + 50 + offs * 4, Trans.Text(48));
-	FT.DrawString (xleft1+20, ytop + 50 + offs * 5, Trans.Text(49));
-	FT.DrawString (xleft1+20, ytop + 50 + offs * 6, Trans.Text(50));
-	FT.DrawString (xleft1+20, ytop + 50 + offs * 7, Trans.Text(51));
-	FT.DrawString (xleft1+20, ytop + 50 + offs * 8,Trans.Text(52));
-	FT.DrawString (xleft1+20, ytop + 50 + offs * 9, Trans.Text(53));
-	FT.DrawString (xleft1+20, ytop + 50 + offs * 10, Trans.Text(54));
-	FT.DrawString (xleft1+20, ytop + 50 + offs * 11, Trans.Text(55));
-	FT.DrawString (xleft1+20, ytop + 50 + offs * 12, Trans.Text(56));
-		
+	FT.DrawString (xleft1, AutoYPosN (5), Trans.Text (57));
 
+	FT.AutoSizeN (3);
+	int offs = FT.AutoDistanceN (2);
+	FT.DrawString (xleft1, ytop, Trans.Text(44));
+	FT.DrawString (xleft1, ytop + offs, Trans.Text(45));
+	FT.DrawString (xleft1, ytop + offs * 2, Trans.Text(46));
+	FT.DrawString (xleft1, ytop + offs * 3, Trans.Text(47));
+	FT.DrawString (xleft1, ytop + offs * 4, Trans.Text(48));
+	FT.DrawString (xleft1, ytop + offs * 5, Trans.Text(49));
+	FT.DrawString (xleft1, ytop + offs * 6, Trans.Text(50));
+	FT.DrawString (xleft1, ytop + offs * 7, Trans.Text(51));
+	FT.DrawString (xleft1, ytop + offs * 8,Trans.Text(52));
+	FT.DrawString (xleft1, ytop + offs * 9, Trans.Text(53));
+	FT.DrawString (xleft1, ytop + offs * 10, Trans.Text(54));
+	FT.DrawString (xleft1, ytop + offs * 11, Trans.Text(55));
+	FT.DrawString (xleft1, ytop + offs * 12, Trans.Text(56));
+		
+	FT.DrawString (CENTER, AutoYPosN (90), "Press any key to return to the main menu");
     Winsys.SwapBuffers();
 
 } 

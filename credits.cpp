@@ -25,6 +25,7 @@ GNU General Public License for more details.
 
 #define TOP_Y 160
 #define BOTT_Y 64
+#define OFFS_SCALE_FACTOR 1.2
 
 static TCredits CreditList[MAX_CREDITS];
 static int numCredits = 0;
@@ -38,7 +39,8 @@ void LoadCreditList () {
 	CSPList list(MAX_CREDITS);
 
 	string creditfile;
-	int i, offset;
+	int i;
+	double offset;
 	string item;
 	string line;
 
@@ -51,8 +53,8 @@ void LoadCreditList () {
 		line = list.Line(i);
 		CreditList[i].text = SPStrN (line, "text", "");
 
-		offset = SPIntN (line, "offs", 0);
-		if (i>0) CreditList[i].offs = CreditList[i-1].offs + offset;
+		offset = SPFloatN (line, "offs", 0) * OFFS_SCALE_FACTOR * param.scale;
+		if (i>0) CreditList[i].offs = CreditList[i-1].offs + (int)offset;
 		else CreditList[i].offs = offset;
 
 		CreditList[i].col = SPIntN (line, "col", 0);
@@ -62,21 +64,21 @@ void LoadCreditList () {
 }
 
 void DrawCreditsText (double time_step){
-    int w = param.x_resolution;
-    int h = param.y_resolution;
+    double w = (double)param.x_resolution;
+    double h = (double)param.y_resolution;
 	double offs = 0.0;
 	int i;
 	TColor col;
 	if (moving) y_offset += time_step * 30;
 
-
+	
 	for (i=0; i < numCredits; i++) {
 		offs = h - 100 - y_offset + CreditList[i].offs;
 
 		if (CreditList[i].col == 0) col = colWhite;
 		else col = colDYell;
 		FT.SetColor (col);
-		FT.SetSize (CreditList[i].size);
+		FT.AutoSizeN (CreditList[i].size);
 		FT.DrawString (-1, (int)offs, CreditList[i].text);
 	}
 
@@ -191,7 +193,7 @@ void CreditsLoop (double time_step) {
 	Tex.Draw (BOTTOM_RIGHT, ww-256, hh-256, 1);
 	Tex.Draw (TOP_LEFT, 0, 0, 1);
 	Tex.Draw (TOP_RIGHT, ww-256, 0, 1);
- 	Tex.Draw (T_TITLE_SMALL, -1, AutoYPos (10), 1);
+ 	Tex.Draw (T_TITLE_SMALL, CENTER, AutoYPosN (5), param.scale);
 	
 
 	Reshape (ww, hh);

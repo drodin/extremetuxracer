@@ -26,9 +26,6 @@ GNU General Public License for more details.
 #define MAX_ICONBUTTONS 8
 #define MAX_CHECKBOXES 16
 
-#define CENTER -1
-#define FIT -1
-
 typedef enum {
 	W_ARROW,
 	W_TEXTBUTTON,
@@ -83,6 +80,8 @@ void AddArrow (int x, int y, int dir, int focus);
 void PrintArrow (int nr, bool active);
 void AddTextButton (const char *text, int x, int y, int focus, double ftsize);
 void AddTextButton (const string text, int x, int y, int focus, double ftsize);
+void AddTextButtonN (const char *text, int x, int y, int focus, int rel_ftsize);
+void AddTextButtonN (const string text, int x, int y, int focus, int rel_ftsize);
 void PrintTextButton (int nr, int focus);
 void AddIconButton (int x, int y, int focus, GLuint texid, double size);
 void PrintIconButton (int nr, int focus, int state);
@@ -96,12 +95,9 @@ void DrawBonus (int x, int y, int max, int num);
 void DrawBonusExt (int y, int numraces, int num);
 void DrawCursor ();
 
-double AutoFtSize ();
-double AutoFtSize (double basesize);
-int AutoXSize (int size);
-int AutoYSize (int size);
-int AutoXPos (int x);
-int AutoYPos (int y);
-double AutoDistance ();
+// --------------------------------------------------------------------
+
+int AutoYPosN (double percent);
+TArea AutoAreaN (double top_perc, double bott_perc, int w);
 
 #endif

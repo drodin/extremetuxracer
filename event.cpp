@@ -36,7 +36,6 @@ static TRace2 *eraces[MAX_RACES_PER_CUP];
 static int ecourseidx[MAX_RACES_PER_CUP];	
 static int curr_race = 0;
 static int curr_bonus = 0;
-static int xleft, ytop, ytop2;
 static TVector2 cursor_pos = {0, 0};
 
 void StartRace () {
@@ -136,19 +135,35 @@ void UpdateCupRacing () {
 
 // --------------------------------------------------------------------
 
+static TArea area;
+static int messtop, messtop2;
+static int bonustop, framewidth, frametop, framebottom;
+static int dist, texsize;
+
 void EventInit () {
 	Winsys.ShowCursor (!param.ice_cursor);    
-	xleft = (param.x_resolution - 500) / 2;
-	ytop = AutoYPos (210);
-	ytop2 = ytop + 80;
 
 	if (g_game.prev_mode == GAME_OVER) UpdateCupRacing ();
 		else InitCupRacing ();
 
+	framewidth = 500;
+	frametop = AutoYPosN (45);
+	area = AutoAreaN (30, 80, framewidth);
+	messtop = AutoYPosN (50);
+	messtop2 = AutoYPosN (60);
+	bonustop = AutoYPosN (35);
+	texsize = 32 * param.scale;
+	if (texsize < 32) texsize = 32;
+	dist = texsize + 2 * 4;
+	framebottom = frametop + ecup->num_races * dist + 10;
+
 	ResetWidgets ();
-	AddTextButton (Trans.Text(13), xleft + 300, ytop + ecup->num_races * 35 + 160, 0, -1);
-	AddTextButton (Trans.Text(8), xleft + 100, ytop + ecup->num_races * 35 + 160, 1, -1);
-	AddTextButton (Trans.Text(15), CENTER, ytop + ecup->num_races * 35 + 160, 2, -1);
+	int siz = FT.AutoSizeN (5);
+	AddTextButton (Trans.Text(8), area.left + 100, AutoYPosN (80), 1, siz);
+	double len = FT.GetTextWidth (Trans.Text(13));
+	AddTextButton (Trans.Text(13), area.right -len - 100, AutoYPosN (80), 0, siz);
+	AddTextButton (Trans.Text(15), CENTER, AutoYPosN (80), 2, siz);
+	
 	Music.Play (param.menu_music, -1);
 	if (ready < 1) curr_focus = 0; else curr_focus = 2;
 	g_game.loopdelay = 20;
@@ -178,59 +193,65 @@ void EventLoop (double timestep) {
 		update_ui_snow (timestep);
 		draw_ui_snow ();
 	}
-	Tex.Draw (T_TITLE_SMALL, -1, 20, 1.0);
+	Tex.Draw (T_TITLE_SMALL, CENTER, AutoYPosN (5), param.scale);
 	Tex.Draw (BOTTOM_LEFT, 0, hh-256, 1);
 	Tex.Draw (BOTTOM_RIGHT, ww-256, hh-256, 1);
 	Tex.Draw (TOP_LEFT, 0, 0, 1);
 	Tex.Draw (TOP_RIGHT, ww-256, 0, 1);
 
+//	DrawFrameX (area.left, area.top, area.right-area.left, area.bottom - area.top, 
+//			0, colMBackgr, colBlack, 0.2);
+
 	if (ready == 0) {			// cup not finished
-		FT.SetSize (AutoFtSize());
+		FT.AutoSizeN (6);
 		FT.SetColor (colWhite);
-		FT.DrawString (CENTER, ytop - 60, ecup->name);
+		FT.DrawString (CENTER, AutoYPosN (25), ecup->name);
 
-		DrawBonusExt (ytop+20, ecup->num_races, curr_bonus);
+		DrawBonusExt (bonustop, ecup->num_races, curr_bonus);
 
-		// race list:
-		DrawFrameX (xleft, ytop2, 500, ecup->num_races * 35 + 20, 3, colBackgr, colWhite, 1);
+		DrawFrameX (area.left, frametop, framewidth, 
+			ecup->num_races * dist + 20, 3, colBackgr, colWhite, 1);
+
 		for (i=0; i<ecup->num_races; i++) {
 			if (i == curr_race) col = colDYell; else col = colWhite;
-			if (param.use_papercut_font > 0) FT.SetSize (20); else FT.SetSize (15);
+			FT.AutoSizeN (3);
 				
-			y = ytop2 + 10 + i * 35;
+			y = frametop + 10 + i * dist;
 			FT.SetColor (col);
-			FT.DrawString (xleft + 29, y, Course.CourseList[ecourseidx[i]].name);
-			Tex.Draw (CHECKBOX, xleft + 440, y, 1.0);
-			if (curr_race > i) Tex.Draw (CHECKMARK, xleft + 444, y + 4, 0.8);
+			FT.DrawString (area.left + 29, y, Course.CourseList[ecourseidx[i]].name);
+			Tex.Draw (CHECKBOX, area.right -54, y, texsize, texsize);
+			if (curr_race > i) Tex.Draw (CHECKMARK, area.right-50, y + 4, 0.8);
 		}			
 
-		FT.SetColor (colWhite);
+		FT.AutoSizeN (3);
+		int ddd = FT.AutoDistanceN (1);
+		FT.SetColor (colDBlue);
 		info = Trans.Text(11);
 		info += "   " + Int_StrN (eraces[curr_race]->herrings.i);
 		info += "   " + Int_StrN (eraces[curr_race]->herrings.j);
 		info += "   " + Int_StrN (eraces[curr_race]->herrings.k);
-		FT.DrawString (xleft+30, ytop2 + ecup->num_races * 35 + 25, info);
+		FT.DrawString (CENTER, framebottom+15, info);
 
 		info = Trans.Text(12);
 		info += "   " + Float_StrN (eraces[curr_race]->time.x, 0);
 		info += "   " + Float_StrN (eraces[curr_race]->time.y, 0);
 		info += "   " + Float_StrN (eraces[curr_race]->time.z, 0);
 		info += "  " + Trans.Text(14);
-		FT.DrawString (xleft+280, ytop2 + ecup->num_races * 35 + 25, info);
+		FT.DrawString (CENTER, framebottom+15+ddd, info);
 
 	} else if (ready == 1) {		// cup successfully finished
+		FT.AutoSizeN (5);
 		FT.SetColor (colWhite);
-		FT.DrawString (CENTER, ytop-20, Trans.Text(16));
-		DrawBonusExt (ytop+60, ecup->num_races, curr_bonus);
+		FT.DrawString (CENTER, messtop, Trans.Text(16));
+		DrawBonusExt (bonustop, ecup->num_races, curr_bonus);
 		int res = resultlevel(curr_bonus, ecup->num_races);
-		if (param.use_papercut_font > 0) FT.SetSize (28); else FT.SetSize (20);
-		FT.DrawString (CENTER, ytop + 120, Trans.Text(17) + "  "+Int_StrN (res));
+		FT.DrawString (CENTER, messtop2, Trans.Text(17) + "  "+Int_StrN (res));
 	} else if (ready == 2) {		// cup finished but failed
-		FT.SetColor (colRed);
-		FT.DrawString (CENTER, ytop-20, Trans.Text(18));
-		DrawBonusExt (ytop+60, ecup->num_races, curr_bonus);
-		if (param.use_papercut_font > 0) FT.SetSize (28); else FT.SetSize (20);
-		FT.DrawString (CENTER, ytop + 120, Trans.Text(19));
+		FT.AutoSizeN (5);
+		FT.SetColor (colLRed);
+		FT.DrawString (CENTER, messtop, Trans.Text(18));
+		DrawBonusExt (bonustop, ecup->num_races, curr_bonus);
+		FT.DrawString (CENTER, messtop2, Trans.Text(19));
 	}
 	if (ready < 1) {
 		PrintTextButton (0, curr_focus);

@@ -195,7 +195,6 @@ int CScore::CalcRaceResult () {
 
 static int curr_focus = 0;
 static TVector2 cursor_pos = {0, 0};
-static int xleft, ytop;
 static TCourse *CourseList;
 static int lastCourse = 0;
 static int curr_course = 0;
@@ -249,23 +248,38 @@ void ScoreMotionFunc (int x, int y ){
     }
 }
 
+static TArea area;
+static int framewidth, frameheight, frametop;
+static int linedist, listtop;
+static int dd1, dd2, dd3, dd4;
+
 void ScoreInit (void) {  
 	Winsys.ShowCursor (!param.ice_cursor);    
 	Winsys.KeyRepeat (true);
 	init_ui_snow (); 
 	Music.Play (param.menu_music, -1);
 
-	xleft = (param.x_resolution - 500) / 2;
-	ytop = AutoYPos (130);
+	framewidth = 550 * param.scale;
+	frameheight = 50 * param.scale;
+	frametop = AutoYPosN (32);
+	area = AutoAreaN (30, 80, framewidth);
+	FT.AutoSizeN (3);
+	linedist = FT.AutoDistanceN (1);
+	listtop = AutoYPosN (44);
+	dd1 = 50 * param.scale;
+	dd2 = 115 * param.scale;
+	dd3 = 250 * param.scale;
+	dd4 = 375 * param.scale;
 
 	CourseList = Course.CourseList;
 	lastCourse = Course.numCourses - 1;
 	curr_course = g_game.course_id;
 
 	ResetWidgets ();
-	AddArrow (xleft + 470, ytop+80, 0, 0);
-	AddArrow (xleft + 470, ytop+98, 1, 0);
-	AddTextButton ("Back", CENTER, ytop+400, 1, FIT);
+	AddArrow (area.right + 8, frametop, 0, 0);
+	AddArrow (area.right + 8, frametop + 18, 1, 0);
+	int siz = FT.AutoSizeN (5);
+	AddTextButton ("Back", CENTER, AutoYPosN (80), 1, siz);
 
 	g_game.loopdelay = 1;
 }
@@ -289,16 +303,19 @@ void ScoreLoop (double timestep ){
 	Tex.Draw (BOTTOM_RIGHT, ww-256, hh-256, 1);
 	Tex.Draw (TOP_LEFT, 0, 0, 1);
 	Tex.Draw (TOP_RIGHT, ww-256, 0, 1);
-	Tex.Draw (T_TITLE_SMALL, -1, 20, 1.0);
+	Tex.Draw (T_TITLE_SMALL, CENTER, AutoYPosN (5), param.scale);
 
-	if (param.use_papercut_font > 0) FT.SetSize (42); else FT.SetSize (33);
-	FT.SetColor (colWhite);
-	FT.DrawString (-1, ytop, "Highscore list");
+//	DrawFrameX (area.left, area.top, area.right-area.left, area.bottom - area.top, 
+//			0, colMBackgr, colBlack, 0.2);
 
-	DrawFrameX (xleft, ytop+76, 460, 44, 3, colMBackgr, colDYell, 1.0);
-	if (param.use_papercut_font > 0) FT.SetSize (28); else FT.SetSize (22);
+	FT.AutoSizeN (7);
 	FT.SetColor (colWhite);
-	FT.DrawString (xleft+20, ytop+80, CourseList[curr_course].name);
+	FT.DrawString (CENTER, AutoYPosN (22), "Highscore list");
+
+	DrawFrameX (area.left, frametop, framewidth, frameheight, 3, colMBackgr, colDYell, 1.0);
+	FT.AutoSizeN (5);
+	FT.SetColor (colWhite);
+	FT.DrawString (area.left+20, frametop, CourseList[curr_course].name);
 
 	PrintArrow (0, (curr_course > 0));	
 	PrintArrow (1, (curr_course < lastCourse));
@@ -307,21 +324,22 @@ void ScoreLoop (double timestep ){
 	string line;
 	int y;
 
+
 	FT.SetColor (colWhite);
 	if (list != NULL) {
-		if (param.use_papercut_font > 0) FT.SetSize (22); else FT.SetSize (16);
+		FT.AutoSizeN (3);
 		if (list->numScores < 1) {
-			FT.DrawString (-1, ytop + 140, "No entries for this race");
+			FT.DrawString (CENTER, area.top + 140, "No entries for this race");
 		} else {
 			if (list->numScores > MAX_SCORES) list->numScores = MAX_SCORES;
 			for (int i=0; i<list->numScores; i++) {
-				y = ytop + i*30 + 140;
-				FT.DrawString (xleft, y, ordinals[i]);
-				FT.DrawString (xleft+50, y, Int_StrN (list->scores[i].points));
-				FT.DrawString (xleft + 115, y, list->scores[i].player);
-				FT.DrawString (xleft + 250, y, 
+				y = listtop + i*linedist;
+				FT.DrawString (area.left, y, ordinals[i]);
+				FT.DrawString (area.left + dd1, y, Int_StrN (list->scores[i].points));
+				FT.DrawString (area.left + dd2, y, list->scores[i].player);
+				FT.DrawString (area.left + dd3, y, 
 					Int_StrN (list->scores[i].herrings) + "  herrings");
-				FT.DrawString (xleft + 375, y, 
+				FT.DrawString (area.left + dd4, y, 
 					Float_StrN (list->scores[i].time, 1) + "  sec");
 			}
 		}

@@ -794,8 +794,8 @@ bool CCourse::LoadCourseList () {
 		CourseList[i].author = SPStrN (line, "author", "unknown");
 
 		desc = SPStrN (line, "desc", "");		
-		if (param.use_papercut_font > 0) FT.SetSize (18); else FT.SetSize (12);
-		FT.MakeLineList (desc.c_str(), &desclist, 220);
+		FT.AutoSizeN (2);
+		FT.MakeLineList (desc.c_str(), &desclist, 300 * param.scale);
 		cnt = desclist.Count ();
 		if (cnt > MAX_DESCRIPTION_LINES) cnt = MAX_DESCRIPTION_LINES;
 		CourseList[i].num_lines = cnt;

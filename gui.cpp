@@ -77,53 +77,14 @@ void AddArrow (int x, int y, int dir, int focus) {
 	numArrows++;
 }
 
-double AutoFtSize () {
-	if (param.use_papercut_font > 0) {
-		return ((double)param.x_resolution / 800 * 32); 
-	} else {
-		return ((double)param.x_resolution / 800 * 24); 
-	}
-}
-
-double AutoFtSize (double basesize) {
-	if (param.use_papercut_font > 0) {
-		return ((double)param.x_resolution / 800 * basesize); 
-	} else {
-		return ((double)param.x_resolution / 800 * basesize * 0.75); 
-	}
-}
-
-int AutoXSize (int size) {
-	double sz = (double)param.x_resolution / 800 * size + 0.0001;
-	return (int)sz; 
-}
-
-int AutoYSize (int size) {
-	double sz = (double)param.y_resolution / 600 * size + 0.0001;
-	return (int)sz; 
-}
-
-int AutoXPos (int x) {
-	double sz = (double)param.x_resolution / 800 * x + 0.0001;
-	return (int)sz; 
-}
-
-int AutoYPos (int y) {
-	double sz = (double)param.y_resolution / 600 * y + 0.0001;
-	return (int)sz; 
-}
-
-double AutoDistance () {
-	return ((double)param.y_resolution / 600 * 40); 
-}
-
 void AddTextButton (const char *text, int x, int y, int focus, double ftsize) {
 	if (numTextButtons >= MAX_TEXTBUTTONS) return;	
 	TextButtons[numTextButtons].y = y;	
 	TextButtons[numTextButtons].text = text;	
 	TextButtons[numTextButtons].focus = focus;	
 
-	if (ftsize < 0) ftsize = AutoFtSize ();
+	if (ftsize < 0) ftsize = FT.AutoSizeN (4);
+	
 	TextButtons[numTextButtons].ftsize = ftsize;	
 	FT.SetSize (ftsize);
 	double len = FT.GetTextWidth (text);
@@ -137,6 +98,16 @@ void AddTextButton (const char *text, int x, int y, int focus, double ftsize) {
 
 void AddTextButton (const string text, int x, int y, int focus, double ftsize) {
 	AddTextButton (text.c_str(), x, y, focus, ftsize);
+}
+
+void AddTextButtonN (const char *text, int x, int y, int focus, int rel_ftsize) {
+	double siz = FT.AutoSizeN (rel_ftsize);
+	AddTextButton (text, y, y, focus, siz);
+}
+
+void AddTextButtonN (const string text, int x, int y, int focus, int rel_ftsize) {
+	double siz = FT.AutoSizeN (rel_ftsize);
+	AddTextButton (text, y, y, focus, siz);
 }
 
 void PrintTextButton (int nr, int focus) {
@@ -461,6 +432,29 @@ void DrawBonusExt (int y, int numraces, int num) {
 		}
 	}
 }
+
+// ------------------ new ---------------------------------------------
+
+int AutoYPosN (double percent) {
+	double hh = (double)param.y_resolution;
+	double po = hh * percent / 100;
+	return (int)(po);
+}
+
+TArea AutoAreaN (double top_perc, double bott_perc, int w) {
+	TArea res;
+	res.top = AutoYPosN (top_perc);
+	res.bottom = AutoYPosN (bott_perc);
+ 	if (w > param.x_resolution) w = param.x_resolution;
+	double left = (param.x_resolution - w) / 2;
+	res.left = (int) left;
+	res.right = param.x_resolution - res.left;
+	return res;
+}
+
+
+
+
 
 
 

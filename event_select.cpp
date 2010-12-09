@@ -29,7 +29,6 @@ GNU General Public License for more details.
 static TEvent2 *EventList;
 static int last_event;
 static int curr_event = 0;
-static int xleft, ytop, ytop2;
 static int curr_focus = 0;
 static TCup2 *CupList;
 static int curr_cup = 0;
@@ -114,6 +113,8 @@ void EventSelectMotionFunc (int x, int y ){
 }
 
 // --------------------------------------------------------------------
+static TArea area;
+static int framewidth, frameheight, frametop1, frametop2;
 
 void EventSelectInit () {
 	Winsys.ShowCursor (!param.ice_cursor);    
@@ -123,17 +124,24 @@ void EventSelectInit () {
 	CupList = Events.CupList;
 	curr_cup = 0;
 	last_cup = EventList[curr_event].num_cups - 1;
+	curr_focus = 1;
 
-	xleft = (param.x_resolution - 500) / 2;
-	ytop = AutoYPos (210);
-	ytop2 = AutoYPos (320);
+	framewidth = 500 * param.scale;
+	frameheight = 50 * param.scale;
+	area = AutoAreaN (30, 80, framewidth);
+	frametop1 = AutoYPosN (35);
+	frametop2 = AutoYPosN (50);
+
 	ResetWidgets ();
-	AddArrow (xleft + 470, ytop, 0, 0);
-	AddArrow (xleft + 470, ytop+18, 1, 0);
-	AddArrow (xleft + 470, ytop2, 0, 1);
-	AddArrow (xleft + 470, ytop2+18, 1, 1);
-	AddTextButton (Trans.Text (9), xleft + 300, ytop + 200, 2, -1);
-	AddTextButton (Trans.Text (8), xleft + 100, ytop + 200, 3, -1);
+	AddArrow (area.right+8, frametop1, 0, 0);
+	AddArrow (area.right+8, frametop1+18, 1, 0);
+	AddArrow (area.right+8, frametop2, 0, 1);
+	AddArrow (area.right+8, frametop2+18, 1, 1);
+
+	int siz = FT.AutoSizeN (5);
+	AddTextButton (Trans.Text(9), area.left+50, AutoYPosN (70), 2, siz);
+	double len = FT.GetTextWidth (Trans.Text(8));
+	AddTextButton (Trans.Text(8), area.right-len-50, AutoYPosN (70), 3, siz);
 
 	Events.MakeUnlockList (Players.GetCurrUnlocked());
 	Music.Play (param.menu_music, -1);
@@ -156,38 +164,42 @@ void EventSelectLoop (double timestep) {
 		draw_ui_snow ();
 	}
 
-	Tex.Draw (T_TITLE_SMALL, -1, 20, 1.0);
+	Tex.Draw (T_TITLE_SMALL, CENTER, AutoYPosN (5), param.scale);
 	Tex.Draw (BOTTOM_LEFT, 0, hh-256, 1);
 	Tex.Draw (BOTTOM_RIGHT, ww-256, hh-256, 1);
 	Tex.Draw (TOP_LEFT, 0, 0, 1);
 	Tex.Draw (TOP_RIGHT, ww-256, 0, 1);
+	
+//	DrawFrameX (area.left, area.top, area.right-area.left, area.bottom - area.top, 
+//			0, colMBackgr, colBlack, 0.2);
 
-	if (param.use_papercut_font > 0) FT.SetSize (20); else FT.SetSize (15);
+	FT.AutoSizeN (3);
 	FT.SetColor (colWhite);
-	FT.DrawString (xleft, ytop-40, Trans.Text (6));
-	FT.DrawString (xleft, ytop2-40, Trans.Text (7));
+	FT.DrawString (area.left, AutoYPosN (30), Trans.Text (6));
+	FT.DrawString (area.left,AutoYPosN (45), Trans.Text (7));
 	if (Events.IsUnlocked (curr_event, curr_cup) == false) {
 		FT.SetColor (colLGrey);
-		FT.DrawString (CENTER, ytop2+60, Trans.Text (10));
+ 		FT.DrawString (CENTER, AutoYPosN (58), Trans.Text (10));
 	}
 
-	if (param.use_papercut_font > 0) FT.SetSize (28); else FT.SetSize (22);
+	FT.AutoSizeN (4);
 
 	if (curr_focus == 0) col = colDYell; else col = colWhite;
-	DrawFrameX (xleft, ytop-4, 460, 44, 3, colMBackgr, col, 1.0);
+	DrawFrameX (area.left, frametop1, framewidth, frameheight, 3, colMBackgr, col, 1.0);
 	FT.SetColor (colDYell);
-	FT.DrawString (xleft+20, ytop, EventList[curr_event].name);
+	FT.DrawString (area.left + 20, frametop1, EventList[curr_event].name);
 
 	if (curr_focus == 1) col = colDYell; else col = colWhite;
-	DrawFrameX (xleft, ytop2-4, 460, 44, 3, colMBackgr, col, 1.0);
+	DrawFrameX (area.left, frametop2, framewidth, frameheight, 3, colMBackgr, col, 1.0);
 	if (Events.IsUnlocked (curr_event, curr_cup)) FT.SetColor (colDYell); 
 		else FT.SetColor (colLGrey);
-	FT.DrawString (xleft+20, ytop2, Events.GetCupTrivialName (curr_event, curr_cup));
+	FT.DrawString (area.left + 20, frametop2, Events.GetCupTrivialName (curr_event, curr_cup));
 
 	PrintArrow (0, (curr_event > 0));	
 	PrintArrow (1, (curr_event < last_event));
 	PrintArrow (2, (curr_cup > 0));	
 	PrintArrow (3, (curr_cup < last_cup));
+
 	if (Events.IsUnlocked (curr_event, curr_cup)) PrintTextButton (0, curr_focus);
 	PrintTextButton (1, curr_focus);
 

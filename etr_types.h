@@ -53,6 +53,8 @@ GNU General Public License for more details.
 #define BRAKING_ROLL_ANGLE 55
 #define BUFF_LEN 1024
 
+#define CENTER -1
+#define FIT -1
 
 typedef double scalar_t;
 
@@ -125,6 +127,13 @@ typedef struct {
 	int width;
 	int height;
 } TRect;
+
+typedef struct {
+	int left;
+	int right;
+	int top;
+	int bottom;
+} TArea;
 
 typedef enum {
     NO_MODE,

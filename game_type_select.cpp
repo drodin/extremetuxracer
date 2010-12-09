@@ -37,9 +37,9 @@ void QuitGameType (int sc) {
 		case 0: Winsys.SetMode (EVENT_SELECT); break;
 		case 1: EnterPractice (); break;
 		case 2: Winsys.SetMode (GAME_CONFIG); break;
-		case 3: Winsys.SetMode (CREDITS); break;
+		case 5: Winsys.SetMode (CREDITS); break;
 		case 4: Winsys.SetMode (HELP); break;
-		case 5: Winsys.SetMode (SCORE); break;
+		case 3: Winsys.SetMode (SCORE); break;
 		case 6: Winsys.Quit (); break;
 	};
 }
@@ -62,6 +62,7 @@ void GameSelectKeys (unsigned int key, bool special, bool release, int x, int y)
 		case 273: if (scope > 0) scope--; break;
 		case 13: QuitGameType (scope); break;
 		case SDLK_TAB: scope++; if (scope > 6) scope = 0; break;
+		case SDLK_w: Music.FreeMusics (); break;
 	}	
 }
 
@@ -89,15 +90,17 @@ static void GameSelectInit (void) {
 	scope = 1;
 	
 	ResetWidgets ();
-	int top = (int)(param.y_resolution * 0.4);
-	double dist = AutoDistance ();
-	AddTextButton (Trans.Text(1), CENTER, top, 0, FIT);
-	AddTextButton (Trans.Text(2), CENTER, top + dist, 1, FIT);
-	AddTextButton (Trans.Text(3), CENTER, top + dist * 2, 2, FIT);
-	AddTextButton (Trans.Text(4), CENTER, top + dist * 3, 3, FIT);
-	AddTextButton (Trans.Text(43), CENTER, top + dist * 4, 4, FIT);
-	AddTextButton ("Highscore list", CENTER, top + dist * 5, 5, FIT);
-	AddTextButton (Trans.Text(5), CENTER, top + dist * 6, 6, FIT);
+	int top = AutoYPosN (40);
+	int siz = FT.AutoSizeN (6);
+	int dist = FT.AutoDistanceN (2);
+	AddTextButton (Trans.Text(1), CENTER, top, 0, siz);
+	AddTextButton (Trans.Text(2), CENTER, top + dist, 1, siz);
+	AddTextButton (Trans.Text(3), CENTER, top + dist * 2, 2, siz);
+	AddTextButton (Trans.Text(4), CENTER, top + dist * 5, 5, siz);
+	AddTextButton (Trans.Text(43), CENTER, top + dist * 4, 4, siz);
+	AddTextButton ("Highscore list", CENTER, top + dist * 3, 3, siz);
+	AddTextButton (Trans.Text(5), CENTER, top + dist * 6, 6, siz);
+
 	Music.Play (param.menu_music, -1);
 	g_game.loopdelay = 10;
 }
@@ -117,7 +120,7 @@ static void GameSelectLoop (double time_step) {
 		draw_ui_snow();
     }
 
-	Tex.Draw (T_TITLE, -1, 20, 0.8);
+	Tex.Draw (T_TITLE, CENTER, AutoYPosN (5), param.scale);
 	Tex.Draw (BOTTOM_LEFT, 0, hh-256, 1);
 	Tex.Draw (BOTTOM_RIGHT, ww-256, hh-256, 1);
 	Tex.Draw (TOP_LEFT, 0, 0, 1);

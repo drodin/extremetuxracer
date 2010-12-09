@@ -32,6 +32,7 @@ extern const TColor colDDYell;
 extern const TColor colYellow;
 extern const TColor colLYell;
 extern const TColor colOrange;
+extern const TColor colLRed;
 extern const TColor colRed;
 extern const TColor colDRed;
 extern const TColor colGrey;

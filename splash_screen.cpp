@@ -30,36 +30,44 @@ GNU General Public License for more details.
 #include "translation.h"
 #include "score.h"
 
-static int xleft, ytop;
+void SplashKeys (unsigned int key, bool special, bool release, int x, int y) {
+	if (release) return;
+	switch (key) {
+		case 27: Winsys.Quit (); break;
+		case 13: Winsys.SetMode (REGIST); break;
+	}
+}
+
 
 void SplashInit (void) {  
 	Winsys.ShowCursor (!param.ice_cursor);    
 	init_ui_snow (); 
 	Music.Play (param.menu_music, -1);
-
-	xleft = (param.x_resolution - 500) / 2;
-	ytop = AutoYPos (230);
 	g_game.loopdelay = 10;
 }
 
+static string fontnam[6] = {"normal", "italic", "bold", "outline", "pc20", "pcoutline"};
+
 void SplashLoop (double timestep ){
-	int top;
 	Music.Update ();    
 	check_gl_error();
     ClearRenderContext ();
     set_gl_options (GUI);
     SetupGuiDisplay ();
 
-	Tex.Draw (TEXLOGO, -1, 60, 1);
+
+//	FT.SetFont ("normal");
+	Tex.Draw (TEXLOGO, CENTER, 60, param.scale);
 	FT.SetColor (colDYell);
-	FT.SetSize (AutoFtSize ());
-	top = AutoYPos (350);
+	FT.AutoSizeN (6);
+	int top = AutoYPosN (60);
+	int dist = FT.AutoDistanceN (3);
 	FT.DrawText (CENTER, top, "Loading resources,");
-	FT.DrawText (CENTER, top + AutoDistance(), "please wait ...");
+	FT.DrawText (CENTER, top+dist, "please wait ...");
+
 
 	if (param.ice_cursor) DrawCursor ();
     Winsys.SwapBuffers();
-
 
 	Trans.LoadLanguages ();
 	Trans.LoadTranslations (param.language);
@@ -74,7 +82,7 @@ void SplashLoop (double timestep ){
 	Players.LoadAvatars (); // before LoadPlayers !!!
 	Players.LoadPlayers ();
 
-	SDL_Delay (100);
+	SDL_Delay (10);
 	Winsys.SetMode (REGIST);
 } 
 
@@ -83,5 +91,5 @@ void SplashTerm () {
 
 void splash_screen_register() {
 	Winsys.SetModeFuncs (SPLASH, SplashInit, SplashLoop, SplashTerm,
-	NULL, NULL, NULL, NULL, NULL, NULL);
+	SplashKeys, NULL, NULL, NULL, NULL, NULL);
 }

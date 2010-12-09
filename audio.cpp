@@ -46,6 +46,8 @@ void CAudio::Open () {
 
 void CAudio::Close () {
 	if (IsOpen) {
+		Music.FreeMusics ();
+		Sound.FreeSounds ();
 		Mix_CloseAudio();
 		IsOpen = false;
 	}
@@ -65,7 +67,7 @@ bool CAudio::CheckOpen() {
 
 CSound::CSound () {
 	for (int i=0; i<MAX_SOUNDS; i++) {
-		sounds[i] = NULL;
+		sounds[i].chunk = NULL;
 		active_arr[i] = false;
 	}
 	SoundIndex = ""; 
@@ -75,15 +77,12 @@ CSound::CSound () {
 int CSound::LoadChunk (const char *name, const char *filename) {
     if (Audio.IsOpen == false) return -1;
 	if (numSounds >= MAX_SOUNDS) return -1; 
-	Mix_Chunk *load = Mix_LoadWAV (filename);
-	if (load == NULL) return -1;
+	sounds[numSounds].chunk = Mix_LoadWAV (filename);
+	if (sounds[numSounds].chunk == NULL) return -1;
+	sounds[numSounds].channel = -1;				// default: no channel
+	sounds[numSounds].loop_count = 0;				// default: playing once
 
-	sounds[numSounds] = new TSound;
-	sounds[numSounds]->chunk = load;
-	sounds[numSounds]->channel = -1;				// default: no channel
-	sounds[numSounds]->loop_count = 0;				// default: playing once
-
-	Mix_VolumeChunk (sounds[numSounds]->chunk, param.sound_volume);
+	Mix_VolumeChunk (sounds[numSounds].chunk, param.sound_volume);
 	SoundIndex = SoundIndex + "[" + name + "]" + Int_StrN (numSounds);
 	numSounds++;
 	return numSounds-1;
@@ -110,15 +109,12 @@ void CSound::LoadSoundList () {
 }
 
 void CSound::FreeSounds () {
-	for (int i=0; i<numSounds; i++) {
-		if (sounds[i] != NULL) {
-			if (sounds[i]->chunk != NULL) free (sounds[i]->chunk);
-			free (sounds[i]);
-//			sounds[i] = NULL;
-		}
-	}
+	HaltAll ();
+	for (int i=0; i<numSounds; i++)
+		if (sounds[i].chunk != NULL) Mix_FreeChunk (sounds[i].chunk);
+
 	for (int i=0; i<MAX_SOUNDS; i++) {
-		sounds[i] = NULL;
+		sounds[i].chunk = NULL;
 		active_arr[i] = false;
 	}
 	SoundIndex = ""; 
@@ -135,9 +131,8 @@ void CSound::SetVolume (int soundid, int volume) {
 	if (soundid < 0 || soundid >= numSounds) return;
 
 	volume = MIN (MIX_MAX_VOLUME, MAX (0, volume));
-	TSound *sound = sounds[soundid];
-	if (sound->chunk == NULL) return;
-	Mix_VolumeChunk (sound->chunk, volume);
+	if (sounds[soundid].chunk == NULL) return;
+	Mix_VolumeChunk (sounds[soundid].chunk, volume);
 }
 
 void CSound::SetVolume (string name, int volume) {
@@ -150,11 +145,10 @@ void CSound::Play (int soundid, int loop) {
 	if (!Audio.IsOpen) return;
 	if (soundid < 0 || soundid >= numSounds) return;
 	if (active_arr[soundid] == true) return;
-	TSound *sound = sounds[soundid];
-	if (sound->chunk == NULL) return;
+	if (sounds[soundid].chunk == NULL) return;
 
-    sound->channel = Mix_PlayChannel (-1, sound->chunk, loop);
-    sound->loop_count = loop;
+    sounds[soundid].channel = Mix_PlayChannel (-1, sounds[soundid].chunk, loop);
+    sounds[soundid].loop_count = loop;
 	if (loop < 0) active_arr[soundid] = true;
 }
 
@@ -166,13 +160,12 @@ void CSound::Play (int soundid, int loop, int volume) {
     if (!Audio.IsOpen) return;
 	if (soundid < 0 || soundid >= numSounds) return;
 	if (active_arr[soundid] == true) return;
-	TSound *sound = sounds[soundid];
-	if (sound->chunk == NULL) return;
+	if (sounds[soundid].chunk == NULL) return;
 
 	volume = MIN (MIX_MAX_VOLUME, MAX (0, volume));
-    Mix_VolumeChunk (sound->chunk, volume);  
-    sound->channel = Mix_PlayChannel (-1, sound->chunk, loop);
-    sound->loop_count = loop;
+    Mix_VolumeChunk (sounds[soundid].chunk, volume);  
+    sounds[soundid].channel = Mix_PlayChannel (-1, sounds[soundid].chunk, loop);
+    sounds[soundid].loop_count = loop;
 	if (loop < 0) active_arr[soundid] = true;
 }
 
@@ -183,14 +176,13 @@ void CSound::Play (string name, int loop, int volume) {
 void CSound::Halt (int soundid) {
     if (!Audio.IsOpen) return;
 	if (soundid < 0 || soundid >= numSounds) return;
-	TSound *sound = sounds[soundid];
-	if (sound->chunk == NULL) return;
+	if (sounds[soundid].chunk == NULL) return;
 
 	// loop_count must be -1 (endless loop) for halt 
-	if (sound->loop_count < 0) {
-		Mix_HaltChannel (sound->channel);
-	    sound->loop_count = 0;
-   		sound->channel = -1;
+	if (sounds[soundid].loop_count < 0) {
+		Mix_HaltChannel (sounds[soundid].channel);
+	    sounds[soundid].loop_count = 0;
+   		sounds[soundid].channel = -1;
 		active_arr[soundid] = false;
 	}
 }
@@ -203,8 +195,8 @@ void CSound::HaltAll () {
     if (!Audio.IsOpen) return;
 	Mix_HaltChannel (-1);
 	for (int i=0; i<numSounds; i++) {
-		sounds[i]->loop_count = 0;
-		sounds[i]->channel = -1;
+		sounds[i].loop_count = 0;
+		sounds[i].channel = -1;
 		active_arr[i] = false;
 	}
 }
@@ -238,14 +230,11 @@ CMusic::CMusic () {
 int CMusic::LoadPiece (const char *name, const char *filename) {
     if (!Audio.IsOpen) return -1;
 	if (numMusics >= MAX_MUSICS) return -1; 
-	Mix_Music *load = Mix_LoadMUS (filename);
-	if (load == 0) {
-		Message ("could not load", filename);
+	musics[numMusics] = Mix_LoadMUS (filename);
+	if (musics[numMusics] == NULL) {
+		Message ("could not load music", filename);
 		return -1;
 	}
-	musics[numMusics] = new TMusic;
-	musics[numMusics]->piece = load;
-
 	MusicIndex = MusicIndex + "[" + name + "]" + Int_StrN (numMusics);
 	numMusics++;
 	return numMusics-1;
@@ -294,16 +283,12 @@ void CMusic::LoadMusicList () {
 }
 
 void CMusic::FreeMusics () {
-	for (int i=0; i<numMusics; i++) {
-		if (musics[i] != NULL) {
-			if (musics[i]->piece != NULL) free (musics[i]->piece);
-			free (musics[i]);
-		}
-	}
-
+	Halt ();
+	for (int i=0; i<numMusics; i++) if (musics[i] != NULL) Mix_FreeMusic (musics[i]);
 	for (int i=0; i<MAX_MUSICS; i++) musics[i] = NULL;
 	MusicIndex = ""; 
 	numMusics = 0;
+
 	for (int i=0; i<MAX_THEMES; i++) {
 		for (int j=0; j<3; j++) themes[i][j] = -1;
 	}
@@ -342,11 +327,11 @@ void CMusic::Update () {
 bool CMusic::Play (int musid, int loop) {
     if (!Audio.IsOpen) return false;
 	if (musid < 0 || musid >= numMusics) return false;
-	TMusic *music = musics[musid];
-	if (music->piece == NULL) return false;
+	Mix_Music *music = musics[musid];
+	if (music == NULL) return false;
 	if (musid != curr_musid) {
 		Halt ();
-		Mix_PlayMusic (music->piece, loop);
+		Mix_PlayMusic (music, loop);
 		curr_musid = musid;
 		loop_count = loop;
 	}
@@ -361,13 +346,12 @@ bool CMusic::Play (string name, int loop) {
 bool CMusic::Play (int musid, int loop, int volume) {
     if (!Audio.IsOpen) return false;
 	if (musid < 0 || musid >= numMusics) return false;
-	TMusic *music = musics[musid];
-	if (music->piece == NULL) return false;
+	Mix_Music *music = musics[musid];
 
 	int vol = MIN (MIX_MAX_VOLUME, MAX (0, volume));
 	if (musid != curr_musid) {
 		Halt ();
-		Mix_PlayMusic (music->piece, loop);
+		Mix_PlayMusic (music, loop);
 		Mix_VolumeMusic (vol);
 		curr_musid = musid;
 		loop_count = loop;

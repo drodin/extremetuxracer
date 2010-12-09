@@ -18,6 +18,7 @@ GNU General Public License for more details.
 
 #include "font.h"
 #include "spx.h"
+#include "gui.h"
 
 #define USE_UNICODE true
 
@@ -267,6 +268,25 @@ void CFont::SetSize (float size) {
 void CFont::SetFont (string fontname) {
 	int idx = SPIntN (fontindex, fontname, -1);
 	curr_font = idx;
+	
+	if (fontname == "pc20") curr_fact = 1.25;
+		else curr_fact = 1.0;
+}
+
+// -------------------- auto ------------------------------------------
+
+int CFont::AutoSizeN (int rel_val) {
+	double size = (rel_val + 2) * 4;
+	size *= curr_fact;
+	size *= param.scale;
+	SetSize (size);
+	return (int)size;
+}
+
+int CFont::AutoDistanceN (int rel_val) {
+	double fact = (rel_val + 5) * 0.2;
+	double dist = curr_size * fact;
+	return (int) dist;
 }
 
 // -------------------- draw (x, y, text) -----------------------------
@@ -470,4 +490,5 @@ void CFont::MakeLineList (const char *source, CSPList *line_list, float width) {
 	do { last = MakeLine (last+1, &wordlist, line_list, width); } 
 	while (last < wordlist.Count()-1);
 }
+
 

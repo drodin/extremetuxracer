@@ -64,6 +64,7 @@ private:
 	int auto_y_resolution;
 	SDL_Surface *screen;
 	TScreenRes MakeRes (int width, int height);
+	double CalcScreenScale ();
 
 	// modes and loop
 	TModeFuncsN modefuncs [NUM_GAME_MODES];
@@ -82,6 +83,7 @@ public:
 	void Init ();
 	void SetupVideoMode (TScreenRes resolution);
 	void SetupVideoMode (int idx);
+	void SetupVideoMode (int width, int height);
 	void KeyRepeat (bool repeat);
 	void SetFonttype ();
 	void PrintJoystickInfo ();

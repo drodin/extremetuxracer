@@ -25,6 +25,7 @@ GNU General Public License for more details.
 #include "env.h"
 #include "keyframe.h"
 #include "translation.h"
+#include "gui.h"
 
 // ====================================================================
 void LoadingInit (void) {
@@ -49,16 +50,17 @@ void LoadingLoop (double time_step) {
 		draw_ui_snow ();
     }
 
-	Tex.Draw (TEXLOGO, -1, 40, 0.7);
+	Tex.Draw (TEXLOGO, CENTER, 40, 0.7);
 	Tex.Draw (BOTTOM_LEFT, 0, hh-256, 1);
 	Tex.Draw (BOTTOM_RIGHT, ww-256, hh-256, 1);
 	Tex.Draw (TOP_LEFT, 0, 0, 1);
 	Tex.Draw (TOP_RIGHT, ww-256, 0, 1);
 	
 	FT.SetColor (colDYell);
-	FT.DrawString (-1, 240, msg);		
+	FT.AutoSizeN (5);
+	FT.DrawString (CENTER, AutoYPosN (60), msg);		
 	FT.SetColor (colWhite);
-	FT.DrawString (-1, 320, Trans.Text (30));		
+	FT.DrawString (CENTER, AutoYPosN (70), Trans.Text (30));		
 	Winsys.SwapBuffers ();
 
 	SDL_Delay (100);

@@ -39,7 +39,7 @@ public:
 //				class CSound
 // --------------------------------------------------------------------
 
-#define MAX_SOUNDS 64
+#define MAX_SOUNDS 32
 
 typedef struct {
     Mix_Chunk *chunk;  
@@ -50,7 +50,7 @@ typedef struct {
 
 class CSound {
 private:
-	TSound *sounds[MAX_SOUNDS];
+	TSound sounds[MAX_SOUNDS];
 	int numSounds;
 	string SoundIndex;
 	bool active_arr[MAX_SOUNDS];
@@ -88,14 +88,9 @@ public:
 #define MAX_MUSICS 32
 #define MAX_THEMES 16
 
-typedef struct {
-    Mix_Music *piece;  
-	// perhaps we need more params ...
-} TMusic;
-
 class CMusic {
 private:
-	TMusic *musics[MAX_MUSICS];
+	Mix_Music *musics[MAX_MUSICS];
 	int numMusics;
 	string MusicIndex;		
 

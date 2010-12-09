@@ -81,6 +81,13 @@ string CWinsys::GetResName (int idx) {
 	return line;
 }
 
+double CWinsys::CalcScreenScale () {
+	double hh = (double)param.y_resolution;
+	if (hh < 768) return 0.78; 
+	else if (hh == 768) return 1.0;
+	else return (hh / 768);
+}
+
 void CWinsys::SetupVideoMode (TScreenRes resolution) {
     int bpp = 0;
     Uint32 video_flags = SDL_OPENGL;
@@ -91,9 +98,8 @@ void CWinsys::SetupVideoMode (TScreenRes resolution) {
 		case 2:	bpp = 32; break;
 		default: param.bpp_mode = 0; bpp = 0;
     }
-
 	if ((screen = SDL_SetVideoMode 
-		(resolution.width, resolution.height, bpp, video_flags)) == NULL) {
+	(resolution.width, resolution.height, bpp, video_flags)) == NULL) {
 		Message ("couldn't initialize video",  SDL_GetError()); 
 		Message ("set to 800 x 600");
 		screen = SDL_SetVideoMode (800, 600, bpp, video_flags);
@@ -107,11 +113,17 @@ void CWinsys::SetupVideoMode (TScreenRes resolution) {
 		auto_x_resolution = param.x_resolution;
 		auto_y_resolution = param.y_resolution;
 	}
+ 	param.scale = CalcScreenScale ();
+	if (param.use_quad_scale) param.scale = sqrt (param.scale);
 }
 
 void CWinsys::SetupVideoMode (int idx) {
 	if (idx < 0 || idx >= NUM_RESOLUTIONS) SetupVideoMode (MakeRes (800, 600));
 	else SetupVideoMode (resolution[idx]);
+}
+
+void CWinsys::SetupVideoMode (int width, int height) {
+	SetupVideoMode (MakeRes (width, height));
 }
 
 void CWinsys::InitJoystick () {
@@ -175,7 +187,7 @@ void CWinsys::Quit () {
 	Course.FreeCourseList ();
 	Course.ResetCourse ();
 	SaveMessages ();
-	Audio.Close ();
+	Audio.Close ();		// frees music and sound as well
 	FT.Clear ();
 	Players.SavePlayers ();
 	Score.SaveHighScore ();

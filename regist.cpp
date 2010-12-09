@@ -34,7 +34,7 @@ static int curr_focus = 0;
 static TCharacter *CharList;
 static int curr_character = 0;
 static int last_character;
-static int xleft, ytop;
+//static int xleft, ytop;
 static int curr_player = 0;
 static int last_player;
 static int old_last;
@@ -109,20 +109,31 @@ void RegistMotionFunc (int x, int y ){
     }
 }
 
+static int framewidth, frameheight, arrowwidth, sumwidth;
+static TArea area;
+static double scale, texsize;
+
 void RegistInit (void) {  
 	Winsys.ShowCursor (!param.ice_cursor);    
 	init_ui_snow (); 
 	Music.Play (param.menu_music, -1);
 
-	xleft = (param.x_resolution - 500) / 2;
-	ytop = AutoYPos (230);
+	scale = param.scale;
+	framewidth = (int)(scale * 280);
+	frameheight = (int)(scale * 50);
+	arrowwidth = 50;
+	sumwidth = framewidth * 2 + arrowwidth * 2;
+	area = AutoAreaN (30, 80, sumwidth);
+	texsize = 128 * scale;
+
 	ResetWidgets ();
-	AddArrow (xleft + 210, ytop, 0, 0);
-	AddArrow (xleft + 210, ytop+18, 1, 0);
-	AddArrow (xleft + 470, ytop, 0, 1);
-	AddArrow (xleft + 470, ytop+18, 1, 1);
-	AddTextButton ("Enter", -1, ytop + 240, 2, -1);
-	AddTextButton ("Register a new player", -1, ytop + 290, 3, -1);
+	AddArrow (area.left + framewidth + 8, area.top, 0, 0);
+	AddArrow (area.left + framewidth + 8, area.top + 18, 1, 0);
+	AddArrow (area.left + framewidth * 2 + arrowwidth + 8, area.top, 0, 1);
+	AddArrow (area.left + framewidth * 2 + arrowwidth + 8, area.top + 18, 1, 1);
+	int siz = FT.AutoSizeN (5);
+	AddTextButton ("Enter", CENTER, AutoYPosN (62), 2, siz);
+	AddTextButton ("Register a new player", CENTER, AutoYPosN (70), 3, siz);
 
 	curr_focus = 0;
 	g_game.loopdelay = 10;
@@ -151,35 +162,43 @@ void RegistLoop (double timestep ){
 	Tex.Draw (BOTTOM_RIGHT, ww-256, hh-256, 1);
 	Tex.Draw (TOP_LEFT, 0, 0, 1);
 	Tex.Draw (TOP_RIGHT, ww-256, 0, 1);
-	Tex.Draw (T_TITLE_SMALL, -1, 20, 1.0);
+	Tex.Draw (T_TITLE_SMALL, CENTER, AutoYPosN (5), scale);
 
-	if (param.use_papercut_font > 0) FT.SetSize (20); else FT.SetSize (15);
+//	DrawFrameX (area.left, area.top, area.right-area.left, area.bottom - area.top, 
+//			0, colMBackgr, col, 0.2);
+
+	FT.AutoSizeN (3);
 	FT.SetColor (colWhite);
-	FT.DrawString (xleft, ytop-40, "Select your player name:");
-	FT.DrawString (xleft+260, ytop-40, "Select a character:");
+	int top = AutoYPosN (24);
+	FT.DrawString (area.left, top, "Select your player name:");
+	FT.DrawString (area.left + framewidth + arrowwidth, top, "Select a character:");
 
-	// player selection
+	FT.AutoSizeN (4);
 	if (curr_focus == 0) col = colDYell; else col = colWhite;
-	if (param.use_papercut_font > 0) FT.SetSize (28); else FT.SetSize (22);
-	DrawFrameX (xleft, ytop-4, 200, 44, 3, colMBackgr, col, 1.0);
+	DrawFrameX (area.left, area.top, framewidth, frameheight, 3, colMBackgr, col, 1.0);
 	FT.SetColor (col);
-	FT.DrawString (xleft+20, ytop, Players.GetName (curr_player));
+	FT.DrawString (area.left + 20, area.top, Players.GetName (curr_player));
 	Tex.DrawDirectFrame (Players.GetAvatarID (curr_player), 
-		xleft + 30, ytop + 65, 128, 128, 3, colWhite);
+		area.left + 60, AutoYPosN (40), texsize, texsize, 3, colWhite);
 
-	// char selection
 	if (curr_focus == 1) col = colDYell; else col = colWhite;
-	DrawFrameX (xleft+260, ytop-4, 200, 44, 3, colMBackgr, col, 1.0);
+	DrawFrameX (area.left + framewidth + arrowwidth, area.top, 
+		framewidth, frameheight, 3, colMBackgr, col, 1.0);
 	FT.SetColor (col);
-	FT.DrawString (xleft+280, ytop, CharList[curr_character].name);
-	Tex.DrawDirectFrame (CharList[curr_character].preview, xleft + 300, ytop + 65, 
-		128, 128, 3, colWhite);
+	FT.DrawString (area.left + framewidth + arrowwidth + 20, 
+		area.top, CharList[curr_character].name);
+	Tex.DrawDirectFrame (CharList[curr_character].preview, 
+		area.right - texsize - 60 - arrowwidth, 
+		AutoYPosN (40), texsize, texsize, 3, colWhite);
+
 
 	FT.SetColor (colWhite);
 	PrintArrow (0, (curr_player > 0));	
- 	PrintArrow (1, (curr_player < last_player));
+
+	PrintArrow (1, (curr_player < last_player));
 	PrintArrow (2, (curr_character > 0));	
 	PrintArrow (3, (curr_character < last_character));
+
 	PrintTextButton (0, curr_focus);
 	PrintTextButton (1, curr_focus);
 

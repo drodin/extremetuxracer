@@ -14,6 +14,27 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 ---------------------------------------------------------------------*/
 
+/* 
+If you want to add a new option, do this:
+First add the option to the TParam struct (game_config.h).
+
+Then edit the below functions:
+
+- LoadConfigFile. Use
+	SPIntN for integer and boolean values
+	SPStrN for strings.
+	The first value is always 'line', the second defines the tag within the
+	brackets [ ], and the last value is the default.
+	
+- SetConfigDefaults. These values are used as long as no options file exists.
+	It's a good idea to use the same values as the defaults in LoadConfigFile.
+	
+- SaveConfigFile. See the other entries; it should be self-explanatory.
+	If an options file exists, you will have to change any value at runtime
+	on the configuration screen to overwrite the file. Then you will see the 
+	new entry.
+*/
+
 #include "game_config.h"
 #include "spx.h"
 #include "particles.h"
@@ -61,6 +82,8 @@ void LoadConfigFile () {
 		param.full_skybox = SPIntN (line, "full_skybox", false);
 		param.audio_freq = SPIntN (line, "audio_freq", 22050);
 		param.audio_buffer_size = SPIntN (line, "audio_buffer_size", 512);
+		param.restart_on_res_change = SPIntN (line, "restart_on_res_change", 0);
+		param.use_quad_scale = SPIntN (line, "use_quad_scale", 0);
 
 		param.menu_music = SPStrN (line, "menu_music", "start_1");
 		param.credits_music = SPStrN (line, "credits_music", "credits_1");
@@ -76,6 +99,8 @@ void SetConfigDefaults () {
 	param.sound_volume = 100;
 	param.music_volume = 20;
 
+	// ---------------------------------------
+	
 	param.forward_clip_distance = 75;
 	param.backward_clip_distance = 20;
 	param.fov = 60;
@@ -90,6 +115,8 @@ void SetConfigDefaults () {
 	param.use_papercut_font = 1;
 	param.ice_cursor = true;
 	param.full_skybox = false;
+	param.restart_on_res_change = 0;
+	param.use_quad_scale = 0;
 
 	param.menu_music = "start_1";
 	param.credits_music = "credits_1";
@@ -239,6 +266,22 @@ void SaveConfigFile () {
 	AddItem (&liste, "menu_music", param.menu_music);
 	AddItem (&liste, "credits_music", param.credits_music);
 	AddItem (&liste, "config_music", param.config_music);
+	liste.Add ("");
+
+	AddComment (liste, "Restart if the resolution has been changed [0...1]");
+	AddComment (liste, "Only for Windows users: if the game crashes after");
+	AddComment (liste, "changing the resolution you should set this option to 1.");
+	AddComment (liste, "Then you will have to restart for the new resolution.");
+	AddIntItem (&liste, "restart_on_res_change", param.restart_on_res_change);
+	liste.Add ("");
+
+	AddComment (liste, "Use sqare root of scale factors for menu screens [0...1]");
+	AddComment (liste, "Exprimental: these factors reduce the effect of screen scaling.");
+	AddComment (liste, "The widgets are closer to their default sizes.");
+	AddIntItem (&liste, "use_quad_scale", param.use_quad_scale);
+	liste.Add ("");
+
+	// ---------------------------------------
 	liste.Save (param.configfile);	
 }
 
@@ -308,13 +351,11 @@ void InitConfig (char *arg0) {
 //			configuration screen
 // ********************************************************************
 
-//#define NUM_RES 10
 //#define NUM_LANG 1
 
 static TVector2 cursor_pos = {0, 0};
 static string res_names[NUM_RESOLUTIONS];
 //static string languages[NUM_LANG];
-static int xleft, ytop;
 
 static bool curr_fullscreen = false;
 static bool prev_fullscreen;
@@ -330,24 +371,28 @@ static TLang *LangList;
 static int lastLang = 0;
 
 void RestartSDL () {
-	Winsys.CloseJoystick ();
-	Tex.FreeTextureList ();
-	Course.FreeCourseList ();
-	Char.FreeCharacterPreviews (); // they are not reloaded !!!
+	// first close the resources that must be restored when
+	// starting a new VideoMode. That are all resourcse controlled
+	// by SDL or OpenGL
+	Winsys.CloseJoystick ();		// controlled by SDL
+	Tex.FreeTextureList ();			// textures are controlled by OpenGL
+	Course.FreeCourseList ();		// contains the preview textures
+	Char.FreeCharacterPreviews ();	// they are not reloaded !!!
+	Audio.Close ();					// frees music and sound as well (SDL_mixer)
+	SDL_Quit ();					// SDL main
 
-	Sound.FreeSounds ();
-	Music.FreeMusics ();
-	Audio.Close ();
-	SDL_Quit ();
-	Winsys.Init ();
- 	Audio.Open ();
-	Sound.LoadSoundList ();
-	Music.LoadMusicList ();
+	// second restore the freed resources
+	Winsys.Init ();					// includes SetVideoMode 
+ 	Audio.Open ();					// clear, it has been closed before
+	Sound.LoadSoundList ();			// all sounds must loaded again
+	Music.LoadMusicList (); 		// same with music pieces
+	Tex.LoadTextureList ();			// common textures
+	Course.LoadCourseList ();		// only for the previews
+	Course.ResetCourse ();			// the current course must be freed and reset
+
+	// and some start settings which refer to the restored resources,
+	// probably it's not necessary.
 	Music.SetVolume (param.music_volume);
-	Tex.LoadTextureList ();
-	Course.LoadCourseList ();
-	Course.ResetCourse ();
-
 	g_game.course_id = 0;
 	g_game.cup_id = 0;
 	g_game.race_id = 0;
@@ -356,16 +401,22 @@ void RestartSDL () {
 void SetConfig () {
 	if (paramchanged) {	
 		if (curr_res != prev_res || curr_fullscreen != prev_fullscreen) {
+			// these changes require a new VideoMode
 			param.res_type = curr_res;
 			param.fullscreen = curr_fullscreen;
 
 			#if defined (OS_WIN32_MINGW)
-//				RestartSDL ();
+				// on windows we need to free and restore a lot of resources
+				if (!param.restart_on_res_change) RestartSDL ();
 			#elif defined (OS_LINUX)
-				Winsys.SetupVideoMode (curr_res);
+				// on linux the resources seem to be kept at new VideoMode
+				if (curr_res > 0) Winsys.SetupVideoMode (curr_res);
+				else RestartSDL ();
 			#endif
 		}
-
+		
+		// the followind config params don't require a new VideoMode
+		// they only must stored in the param structure (and saved)
 		param.music_volume = curr_mus_vol;
 		Music.SetVolume (param.music_volume);
 		param.sound_volume = curr_sound_vol;
@@ -511,6 +562,10 @@ void GameConfigMotionFunc (int x, int y) {
 
 // ------------------ Init --------------------------------------------
 
+static TArea area;
+static int framewidth, frameheight;
+static int dd, rightpos;
+
 void GameConfigInit (void) {
 	Winsys.ShowCursor (!param.ice_cursor);    
 	Winsys.KeyRepeat (true);
@@ -522,11 +577,8 @@ void GameConfigInit (void) {
 	SDL_Surface *surf = 0;
 	surf = SDL_GetVideoSurface ();
 
-	 for (int i=0; i<NUM_RESOLUTIONS; i++) res_names[i] = Winsys.GetResName (i);
+	for (int i=0; i<NUM_RESOLUTIONS; i++) res_names[i] = Winsys.GetResName (i);
  
-	xleft = (param.x_resolution - 400) / 2;
-	ytop = AutoYPos (150);
-	ResetWidgets ();
 	paramchanged = false;
 
 	// read the start params:
@@ -540,19 +592,31 @@ void GameConfigInit (void) {
 	curr_language = param.language;
 	if (curr_language > lastLang) curr_language = lastLang;
 
-	AddCheckbox (xleft, ytop, 0, 400, Trans.Text(31));
-	AddArrow (xleft + 400 - 32, ytop+36, 0, 1);
-	AddArrow (xleft + 400 - 32, ytop+36+18, 1, 1);
-	AddArrow (xleft + 400 - 32, ytop+72, 0, 2);
-	AddArrow (xleft + 400 - 32, ytop+72+18, 1, 2);
-	AddArrow (xleft + 400 - 32, ytop+108, 0, 3);
-	AddArrow (xleft + 400 - 32, ytop+108+18, 1, 3);
-	AddArrow (xleft + 400 - 32, ytop+144, 0, 4);
-	AddArrow (xleft + 400 - 32, ytop+144+18, 1, 4);
-	AddArrow (xleft + 400 - 32, ytop+180, 0, 5);
-	AddArrow (xleft + 400 - 32, ytop+180+18, 1, 5);	
-	AddTextButton (Trans.Text(28), xleft+70, ytop+320, 6, -1);
-	AddTextButton (Trans.Text(15), xleft+300, ytop+320, 7, -1);
+	framewidth = 550 * param.scale;
+	frameheight = 50 * param.scale;
+	area = AutoAreaN (30, 80, framewidth);
+	FT.AutoSizeN (4);
+	dd = FT.AutoDistanceN (3);
+	if (dd < 36) dd = 36;
+	rightpos = area.right -48;
+
+	ResetWidgets ();
+	AddCheckbox (area.left, area.top, 0, framewidth-16, Trans.Text(31));
+	AddArrow (rightpos, area.top+dd*1, 0, 1);
+	AddArrow (rightpos, area.top+dd*1+18, 1, 1);
+	AddArrow (rightpos, area.top+dd*2, 0, 2);
+	AddArrow (rightpos, area.top+dd*2+18, 1, 2);
+	AddArrow (rightpos, area.top+dd*3, 0, 3);
+	AddArrow (rightpos, area.top+dd*3+18, 1, 3);
+	AddArrow (rightpos, area.top+dd*4, 0, 4);
+	AddArrow (rightpos, area.top+dd*4+18, 1, 4);
+	AddArrow (rightpos, area.top+dd*5, 0, 5);
+	AddArrow (rightpos, area.top+dd*5+18, 1, 5);	
+
+	int siz = FT.AutoSizeN (5);
+	AddTextButton (Trans.Text(28), area.left+50, AutoYPosN (80), 6, siz);
+	double len = FT.GetTextWidth (Trans.Text(8));
+	AddTextButton (Trans.Text(15), area.right-len-50, AutoYPosN (80), 7, siz);
 
 	curr_focus = 0;
 	Music.Play (param.config_music, -1);
@@ -575,33 +639,35 @@ void GameConfigLoop (double time_step) {
 		draw_ui_snow();
     }
 
-	Tex.Draw (T_TITLE_SMALL, -1, 20, 1.0);
+	Tex.Draw (T_TITLE_SMALL, CENTER, AutoYPosN (5), 1.0);
 	Tex.Draw (BOTTOM_LEFT, 0, hh-256, 1);
 	Tex.Draw (BOTTOM_RIGHT, ww-256, hh-256, 1);
 	Tex.Draw (TOP_LEFT, 0, 0, 1);
 	Tex.Draw (TOP_RIGHT, ww-256, 0, 1);
 
-	if (param.use_papercut_font > 0) FT.SetSize (28); else FT.SetSize (22);
+//	DrawFrameX (area.left, area.top, area.right-area.left, area.bottom - area.top, 
+//			0, colMBackgr, colBlack, 0.2);
+
+	FT.AutoSizeN (4);
 	PrintCheckbox (0, curr_focus, curr_fullscreen);
 
 	if (curr_focus == 1) FT.SetColor (colDYell); else FT.SetColor (colWhite);
-	FT.DrawString (xleft, ytop + 36, Trans.Text(32));
+	FT.DrawString (area.left, area.top + dd, Trans.Text(32));
 	if (curr_focus == 2) FT.SetColor (colDYell); else FT.SetColor (colWhite);
-	FT.DrawString (xleft, ytop + 72, Trans.Text(33));
+	FT.DrawString (area.left, area.top + dd*2, Trans.Text(33));
 	if (curr_focus == 3) FT.SetColor (colDYell); else FT.SetColor (colWhite);
-	FT.DrawString (xleft, ytop + 108, Trans.Text(34));
+	FT.DrawString (area.left, area.top + dd*3, Trans.Text(34));
 	if (curr_focus == 4) FT.SetColor (colDYell); else FT.SetColor (colWhite);
-	FT.DrawString (xleft, ytop + 144, Trans.Text(36));
+	FT.DrawString (area.left, area.top + dd*4, Trans.Text(36));
 	if (curr_focus == 5) FT.SetColor (colDYell); else FT.SetColor (colWhite);
-	FT.DrawString (xleft, ytop + 180, Trans.Text(35));
+	FT.DrawString (area.left, area.top + dd*5, Trans.Text(35));
 
-	if (param.use_papercut_font > 0) FT.SetSize (20); else FT.SetSize (14);
 	FT.SetColor (colWhite);
-	FT.DrawString (xleft+240, ytop + 40, res_names[curr_res]);
-	FT.DrawString (xleft+240, ytop + 76, Int_StrN (curr_mus_vol));
-	FT.DrawString (xleft+240, ytop + 112, Int_StrN (curr_sound_vol));
-	FT.DrawString (xleft+240, ytop + 148, Int_StrN (curr_detail_level));
-	FT.DrawString (xleft+240, ytop + 184, LangList[curr_language].language);
+	FT.DrawString (area.left+240, area.top + dd, res_names[curr_res]);
+	FT.DrawString (area.left+240, area.top + dd*2, Int_StrN (curr_mus_vol));
+	FT.DrawString (area.left+240, area.top + dd*3, Int_StrN (curr_sound_vol));
+	FT.DrawString (area.left+240, area.top + dd*4, Int_StrN (curr_detail_level));
+	FT.DrawString (area.left+240, area.top + dd*5, LangList[curr_language].language);
 
 	PrintArrow (0, (curr_res < (NUM_RESOLUTIONS-1)));
 	PrintArrow (1, (curr_res > 0));	
@@ -618,22 +684,23 @@ void GameConfigLoop (double time_step) {
 	PrintTextButton (1, curr_focus);
 
 	#if defined (OS_WIN32_MINGW)
-		if (curr_res != prev_res || curr_fullscreen != prev_fullscreen) {
+		if ((curr_res != prev_res || curr_fullscreen != prev_fullscreen) &&
+		param.restart_on_res_change) {
 			FT.SetColor (colDYell);
-			if (param.use_papercut_font > 0) FT.SetSize (24); else FT.SetSize (18);
-			FT.DrawString (-1, ytop + 240, "The video adjustments have changed,");
-			FT.DrawString (-1, ytop + 270, "You need to restart the game");
+			FT.AutoSizeN (4);
+			FT.DrawString (CENTER, AutoYPosN (68), "The video adjustments have changed,");
+			FT.DrawString (CENTER, AutoYPosN (72), "You need to restart the game");
 		} else {
 			FT.SetColor (colLGrey);
-			if (param.use_papercut_font > 0) FT.SetSize (18); else FT.SetSize (14);
-			FT.DrawString (-1, ytop+240, Trans.Text(41));
-			FT.DrawString (-1, ytop+262, Trans.Text(42));
+			FT.AutoSizeN (3);
+			FT.DrawString (CENTER, AutoYPosN (68), Trans.Text(41));
+			FT.DrawString (CENTER, AutoYPosN (72), Trans.Text(42));
 		}
 	#else 
 		FT.SetColor (colWhite);
-		if (param.use_papercut_font > 0) FT.SetSize (20); else FT.SetSize (14);
-		FT.DrawString (xleft, ytop+240, Trans.Text(41));
-		FT.DrawString (xleft, ytop+262, Trans.Text(42));
+		FT.AutoSizeN (3);
+		FT.DrawString (CENTER, AutoYPosN (68), Trans.Text(41));
+		FT.DrawString (CENTER, AutoYPosN (72), Trans.Text(42));
 	#endif
 
 	if (param.ice_cursor) DrawCursor ();
