@@ -106,10 +106,12 @@ void	MessageN (string a, string b);
 void	SaveMessages ();
 
 // --------------------------------------------------------------------
-//				other stuff
+//				date and time
 // --------------------------------------------------------------------
 
 void GetTimeComponents (double time, int *min, int *sec, int *hundr);
+void GetTestTime ();
+string GetTimeString1 ();
 
 #endif 
 

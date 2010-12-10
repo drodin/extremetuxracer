@@ -148,6 +148,10 @@ public:
 extern CTexture Tex;
 
 void ScreenshotN ();
+void PPMScreenshot ();
+void TGAScreenshot ();
+void TGAScreenshot2 (const char *destFile);
+void BMPScreenshot (const char *destFile);
 
 
 #endif

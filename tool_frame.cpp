@@ -20,6 +20,7 @@ GNU General Public License for more details.
 #include "ogl.h"
 #include "keyframe.h"
 #include "font.h"
+#include "textures.h"
 
 static int curr_frame = 0;
 static int curr_joint = 0;
@@ -130,6 +131,7 @@ void SingleFrameKeys (unsigned int key, bool special, bool release, int x, int y
 			break;
 		case SDLK_p: if (curr_frame>0) 
 			TestFrame.CopyFrame (curr_frame-1, curr_frame); break;
+		case SDLK_F10: ScreenshotN (); break;
 
 		case SDLK_1: GluCamera.angle = 0; break;
 		case SDLK_2: GluCamera.angle = 45; break;

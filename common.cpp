@@ -261,12 +261,6 @@ bool DirExistsWin (const char *dirname) {
     return true;
 }
 
-void GetTimeComponents (double time, int *min, int *sec, int *hundr) {
-    *min = (int) (time / 60);
-    *sec = ((int) time) % 60;
-    *hundr = ((int) (time * 100 + 0.5) ) % 100;
-}
-
 void DrawStdSphere (int num_divisions) {
     double theta, phi, d_theta, d_phi, eps, twopi;
     double x, y, z;
@@ -351,5 +345,57 @@ void DrawStdSphere (int num_divisions) {
         } 
     } 
 } 
+
+// --------------------------------------------------------------------
+//				date and time
+// --------------------------------------------------------------------
+
+void GetTimeComponents (double time, int *min, int *sec, int *hundr) {
+    *min = (int) (time / 60);
+    *sec = ((int) time) % 60;
+    *hundr = ((int) (time * 100 + 0.5) ) % 100;
+}
+
+/*
+   struct tm {
+     int tm_sec;  
+     int tm_min;  
+     int tm_hour;	// 0..23
+	 int tm_mday;	// day in month 1..31
+	 int tm_mon;	// 0..11
+     int tm_year;	// year (sice 1900)
+     int tm_wday;	// weekday 0..6, start with sunday
+     int tm_yday;   // day in the year
+     int tm_isdst;  // not zero in case of US sommertime converting 
+   };
+*/ 
+
+void GetTestTime () {
+	time_t rawtime;			// seconds since 1. January 1970
+	struct tm * timeinfo;	// see above
+
+	time (&rawtime);
+	timeinfo = localtime (&rawtime);
+	PrintInt (timeinfo->tm_year + 1900);
+	PrintStr (asctime (timeinfo));
+}
+
+string GetTimeString1 () {
+	string line;
+	time_t rawtime;	
+	struct tm * timeinfo;
+
+	time (&rawtime);
+	timeinfo = localtime (&rawtime);
+//	line = Int_StrN (timeinfo->tm_year-100);
+	line = Int_StrN (timeinfo->tm_mon + 1);
+	line += "_" + Int_StrN (timeinfo->tm_mday);
+	line += "_" + Int_StrN (timeinfo->tm_hour);
+	line += Int_StrN (timeinfo->tm_min);
+	line += Int_StrN (timeinfo->tm_sec);
+	return line;
+}
+
+
 
 

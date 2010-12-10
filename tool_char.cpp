@@ -139,6 +139,7 @@ void CharKeys (unsigned int key, bool special, bool release, int x, int y) {
 	switch (key) {
 		case SDLK_TAB: SetToolMode (1); break;
 		case SDLK_ESCAPE: case SDLK_q: QuitTool (); break;
+		case SDLK_F10: ScreenshotN (); break;
 		case SDLK_s: SaveToolCharacter ();  break;
 		case SDLK_c: ScreenshotN (); break;
 		case SDLK_m: TestChar.useMaterials = !TestChar.useMaterials; break;

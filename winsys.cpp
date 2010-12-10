@@ -189,7 +189,7 @@ void CWinsys::Quit () {
 	SaveMessages ();
 	Audio.Close ();		// frees music and sound as well
 	FT.Clear ();
-	Players.SavePlayers ();
+	if (g_game.argument < 1) Players.SavePlayers ();
 	Score.SaveHighScore ();
 	SDL_Quit ();
     exit (0);
@@ -357,6 +357,5 @@ void CWinsys::EventLoop () {
 		SDL_Delay (g_game.loopdelay);
     }
 }
-
 
 

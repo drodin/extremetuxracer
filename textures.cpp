@@ -18,7 +18,7 @@ GNU General Public License for more details.
 #include "textures.h"
 #include "spx.h"
 #include <fstream>
-
+#include "course.h"
 // --------------------------------------------------------------------
 //				class CImage
 // --------------------------------------------------------------------
@@ -480,6 +480,10 @@ void CTexture::DrawNumStr (const char *s, int x, int y, float size, TColor col) 
 // --------------------------------------------------------------------
 
 void ScreenshotN () {
+	TGAScreenshot ();
+} 
+
+void PPMScreenshot () {
 	CImage image;
 
 	string path = param.screenshot_dir;
@@ -490,33 +494,126 @@ void ScreenshotN () {
 
 	image.LoadFrameBuffer ();
 	image.WritePPM (path.c_str());
-} 
+}
 
+typedef struct {
+    char tfType;
+    char tfColorMapType;
+    char tfImageType;
+    char tfColorMapSpec[5];
+    short tfOrigX;
+    short tfOrigY;
+    short tfWidth;
+    short tfHeight;
+    char tfBpp;
+    char tfImageDes;
+} TTgaHeader;
 
+void TGAScreenshot () {
+	int W = param.x_resolution;
+	int H = param.y_resolution;
 
+	string path = param.screenshot_dir;
+	path += SEP;
+	path += Course.CourseList[g_game.course_id].dir;
+	path += "_";
+	path += GetTimeString1 ();
+	path += ".tga";
 
+	FILE   *out = fopen (path.c_str(), "w");
+	char   pixel_data [3 * W * H];
+	short  TGAhead[] = {0, 2, 0, 0, 0, 0, W, H, 24};
 
+	glReadBuffer (GL_FRONT);
+	glReadPixels (0, 0, W, H, GL_BGR, GL_UNSIGNED_BYTE, pixel_data);
+	fwrite (&TGAhead, sizeof (TGAhead), 1, out);
+	fwrite (pixel_data, 3 * W * H, 1, out);
+	fclose (out); 
+}
 
+void TGAScreenshot2 (const char *destFile) {
+	int W = param.x_resolution;
+	int H = param.y_resolution;
+	TTgaHeader header;
 
+	header.tfType = 0;
+    header.tfColorMapType = 0;
+    header.tfImageType = 2;
+    for (int i=0; i<5; i++) header.tfColorMapSpec[i] = 0;
+    header.tfOrigX = 0;
+    header.tfOrigY = 0;
+    header.tfWidth = param.x_resolution;
+    header.tfHeight = param.y_resolution;
+    header.tfBpp = 24;
+    header.tfImageDes = 0;
 
+	FILE   *out = fopen (destFile, "w");
+	char   pixel_data [3 * W * H];
 
+	glReadBuffer (GL_FRONT);
+	glReadPixels (0, 0, W, H, GL_BGR, GL_UNSIGNED_BYTE, pixel_data);
+	fwrite (&header, sizeof (TTgaHeader), 1, out);
+	fwrite (pixel_data, 3 * W * H, 1, out);
+	fclose (out); 
+}
 
+typedef struct {
+	unsigned short bfType;
+	unsigned long bfSize;
+	unsigned short bfReserved1;
+	unsigned short bfReserved2;
+	unsigned long bfOffBits;
+} TBmpHeader;
 
+typedef struct {
+	unsigned long biSize;
+	long biWidth;
+	long biHeight;
+	unsigned short biPlanes;
+	unsigned short biBitCount;
+	unsigned long biCompression;
+	unsigned long biSizeImage;
+	long biXPelsPerMeter;
+	long biYPelsPerMeter;
+	unsigned long biClrUsed;
+	unsigned long biClrImportant;
+} TBmpInfoHeader;
 
+void BMPScreenshot (const char *destFile) {
+	int W = param.x_resolution;
+	int H = param.y_resolution;
+	TBmpHeader header;
+	TBmpInfoHeader info;
 
+	header.bfType = 19778;
+	header.bfReserved1 = 0;
+	header.bfReserved2 = 0;
+	header.bfOffBits = 14 + 40;
+	
+	info.biSize = 40;
+	info.biWidth = W;
+	info.biHeight = H;
+	info.biPlanes = 1;
+	info.biBitCount = 24;
+	info.biCompression = 0;
+	info.biSizeImage = W * H * 3;  // bitCount div 8
+	info.biSizeImage = 0;
+	info.biXPelsPerMeter = 0;
+	info.biYPelsPerMeter= 0;
+	info.biClrUsed = 0;
+	info.biClrImportant = 0;
 
+	header.bfSize = header.bfOffBits + info.biSizeImage;
 
+	FILE   *out = fopen (destFile, "w");
+	char   pixel_data [4 * W * H];
 
-
-
-
-
-
-
-
-
-
-
-
+	glReadBuffer (GL_FRONT);
+	glReadPixels (0, 0, W, H, GL_RGB, GL_UNSIGNED_BYTE, pixel_data);
+	fwrite (&header, 14, 1, out);
+	fwrite (&info, 40, 1, out);
+	fwrite (pixel_data, 3 * W * H, 1, out);
+	fclose (out); 
+}
 
 

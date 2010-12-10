@@ -79,6 +79,7 @@ void InitGame (int argc, char **argv) {
 #if defined ( OS_WIN32_MINGW )
 	#undef main
 #endif
+
 int main( int argc, char **argv ) {
 	// ****************************************************************
 	printf ("\n----------- Extreme Tux Racer " VERSION " ----------------");
@@ -94,6 +95,7 @@ int main( int argc, char **argv ) {
 	// written on the console):
 	//	Winsys.PrintJoystickInfo ();
 	//	PrintGLInfo ();
+
 
 	// register loop functions
     splash_screen_register();
