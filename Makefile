@@ -40,14 +40,18 @@ race_select.o credits.o loading.o course.o keyframe.o env.o event.o \
 spx.o common.o course_render.o game_ctrl.o physics.o \
 track_marks.o hud.o view.o gui.o translation.o tools.o \
 quadtree.o font.o ft_font.o textures.o help.o regist.o tool_frame.o \
-tool_char.o newplayer.o score.o
+tool_char.o newplayer.o score.o ogl_test.o
 
 $(BIN) : $(OBJ)
 	g++ -o $(BIN) $(OBJ) $(LDFLAGS) $(CFLAGS)
 
 # use this template and rename it if you want to add a module
+
 # mmmm.o : mmmm.cpp mmmm.h
 #	$(CC) -c mmmm.cpp $(CFLAGS)
+
+ogl_test.o : ogl_test.cpp ogl_test.h
+	$(CC) -c ogl_test.cpp $(CFLAGS)
 
 score.o : score.cpp score.h
 	$(CC) -c score.cpp $(CFLAGS)

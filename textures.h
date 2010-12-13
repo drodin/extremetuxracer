@@ -68,6 +68,42 @@ GNU General Public License for more details.
 #define WORD_SPACE 6
 #define LETTER_SPACE -3
 
+#define BF_TYPE 0x4D42             // "MB" 
+
+typedef struct {
+    char tfType;
+    char tfColorMapType;
+    char tfImageType;
+    char tfColorMapSpec[5];
+    short tfOrigX;
+    short tfOrigY;
+    short tfWidth;
+    short tfHeight;
+    char tfBpp;
+    char tfImageDes;
+} TTgaHeader;
+
+typedef struct {
+    unsigned short  bfType;           // identifier of bmp formae 
+    unsigned long   bfSize;           // size of file, including the headers  
+    unsigned short  bfReserved1;      // reserved, always 0 
+    unsigned short  bfReserved2;      // reserved, always 0 
+    unsigned long   bfOffBits;        // offset to bitmap data 
+} TBmpHeader;
+
+typedef struct {
+    unsigned long   biSize;           // size of info header, normally 40
+    long            biWidth;          // width
+    long            biHeight;         // height
+    unsigned short  biPlanes;         // number of color planes, normally 1 
+    unsigned short  biBitCount;       // Number of bits per pixel (8 * depth) 
+    unsigned long   biCompression;    // type of compression, normally 0 = no compr.
+    unsigned long   biSizeImage;      // size of data  
+    long            biXPelsPerMeter;  // normally 0
+    long            biYPelsPerMeter;  // normally 0 
+    unsigned long   biClrUsed;        // normally 0
+    unsigned long   biClrImportant;   // normally 0 
+} TBmpInfo;
 
 
 // --------------------------------------------------------------------
@@ -76,21 +112,36 @@ GNU General Public License for more details.
 
 class CImage {
 private:
-	bool status;
 public:
     CImage ();
 	~CImage ();
-	bool LoadPng (const char *filepath, bool mirroring);
-	bool LoadPng (const char *dir, const char *filepath, bool mirroring);
-	void WritePPM (const char *filepath);
-	void WritePPM (const char *dir, const char *filename);
-	bool LoadFrameBuffer ();
-		
-    int nx;	
+
+	unsigned char *data;
+	int nx;	
     int ny; 
     int depth;
     int pitch;
-    unsigned char *data;
+
+	void DisposeData ();
+
+	// load:
+	bool LoadPng (const char *filepath, bool mirroring);
+	bool LoadPng (const char *dir, const char *filepath, bool mirroring);
+
+	// write:
+	bool ReadFrameBuffer_PPM ();
+	void ReadFrameBuffer_TGA ();
+	void ReadFrameBuffer_BMP ();
+	void WritePPM (const char *filepath);
+	void WritePPM (const char *dir, const char *filename);
+	void WriteTGA (const char *filepath);
+	void WriteTGA (const char *dir, const char *filename);
+	
+	// versions with explicite header
+	void WriteTGA_H (const char *filepath);
+	void WriteTGA_H (const char *dir, const char *filename);
+	void WriteBMP (const char *filepath);
+	void WriteBMP (const char *dir, const char *filename);
 };
 
 // --------------------------------------------------------------------
@@ -148,8 +199,6 @@ public:
 extern CTexture Tex;
 
 void ScreenshotN ();
-void PPMScreenshot ();
-void TGAScreenshot ();
 void TGAScreenshot2 (const char *destFile);
 void BMPScreenshot (const char *destFile);
 

@@ -155,6 +155,7 @@ typedef enum {
 	HELP,
 	SCORE,
 	TOOLS,
+	OGLTEST,
     NUM_GAME_MODES
 } TGameMode;
 

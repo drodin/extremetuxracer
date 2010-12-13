@@ -88,6 +88,18 @@ double CWinsys::CalcScreenScale () {
 	else return (hh / 768);
 }
 
+/*
+typedef struct SDL_Surface {
+    Uint32 flags;                           // Read-only 
+    SDL_PixelFormat *format;                // Read-only 
+    int w, h;                               // Read-only 
+    Uint16 pitch;                           // Read-only 
+    void *pixels;                           // Read-write 
+    SDL_Rect clip_rect;                     // Read-only 
+    int refcount;                           // Read-mostly
+} SDL_Surface;
+*/
+
 void CWinsys::SetupVideoMode (TScreenRes resolution) {
     int bpp = 0;
     Uint32 video_flags = SDL_OPENGL;
@@ -358,4 +370,7 @@ void CWinsys::EventLoop () {
     }
 }
 
+unsigned char *CWinsys::GetSurfaceData () {
+	return (unsigned char*)screen->pixels;
+}
 

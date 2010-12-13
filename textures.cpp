@@ -24,11 +24,18 @@ GNU General Public License for more details.
 // --------------------------------------------------------------------
 
 CImage::CImage () { 
-	status = false; 
+	data = NULL;
 }
 
 CImage::~CImage () {
-	if (status) free (data);
+	DisposeData ();
+}
+
+void CImage::DisposeData () {
+	if (data != NULL) {
+		free (data);
+		data = NULL;
+	}
 }
 
 bool CImage::LoadPng (const char *filepath, bool mirroring) {
@@ -45,6 +52,7 @@ bool CImage::LoadPng (const char *filepath, bool mirroring) {
 	ny    = sdlImage->h;
 	depth = sdlImage->format->BytesPerPixel;
 	pitch = sdlImage->pitch;
+	DisposeData ();
 	data  = (unsigned char *) malloc (pitch * ny * sizeof (unsigned char));
 
    	if (SDL_MUSTLOCK (sdlImage)) {
@@ -56,8 +64,6 @@ bool CImage::LoadPng (const char *filepath, bool mirroring) {
 
 	sdlData = (unsigned char *) sdlImage->pixels;
 
-	// Um die Texturkoordinaten im gleichen Drehsinn wie die Vertexkoordinaten 
-	// eingeben zu können, kann das Bild in y-Richtung gespiegelt werden.
 	if (mirroring) {
 		for (int y=0; y<ny; y++) {
 			for (int x=0; x<pitch; x++) {
@@ -74,8 +80,6 @@ bool CImage::LoadPng (const char *filepath, bool mirroring) {
 
 	if (SDL_MUSTLOCK (sdlImage)) SDL_UnlockSurface (sdlImage);
 	SDL_FreeSurface (sdlImage);
-
-	status = true;	
 	return true;
 }
 
@@ -86,8 +90,56 @@ bool CImage::LoadPng (const char *dir, const char *filename, bool mirroring) {
 	return LoadPng (path.c_str(), mirroring);
 }
 
+// ------------------ read framebuffer --------------------------------
+
+bool CImage::ReadFrameBuffer_PPM () {
+	int viewport[4];
+	glGetIntegerv (GL_VIEWPORT, viewport);
+	
+	nx = viewport[2];
+	ny = viewport[3];
+	depth = 3;
+
+	DisposeData ();
+	data = new unsigned char [nx * ny * depth];
+	
+	glReadBuffer (GL_FRONT);
+	
+	for (int i=0; i<viewport[3]; i++){
+		glReadPixels (viewport[0], viewport[1] + viewport[3] - 1 - i,
+			viewport[2], 1, GL_RGB, GL_UNSIGNED_BYTE, data + viewport[2] * i * 3);
+	}
+	
+	return true;
+}
+
+void CImage::ReadFrameBuffer_TGA () {
+	nx = param.x_resolution;
+	ny = param.y_resolution;
+	depth = 3;
+
+	DisposeData ();
+	data = new unsigned char [nx * ny * depth];
+
+	glReadBuffer (GL_FRONT);
+	glReadPixels (0, 0, nx, ny, GL_BGR, GL_UNSIGNED_BYTE, data);	
+}
+
+void CImage::ReadFrameBuffer_BMP () {
+	nx = param.x_resolution;
+	ny = param.y_resolution;
+	depth = 4;
+
+	DisposeData ();
+	data = new unsigned char [nx * ny * depth];
+	glReadBuffer (GL_FRONT);
+	glReadPixels (0, 0, nx, ny, GL_BGRA, GL_UNSIGNED_BYTE, data);	
+}
+
+// ---------------------------
+
 void CImage::WritePPM (const char *filepath) {
-	if (!status) return;
+	if (data == NULL) return;
 	std::ofstream file;
 	file.open (filepath);
 
@@ -107,23 +159,123 @@ void CImage::WritePPM (const char *dir, const char *filename) {
 	WritePPM (path.c_str());
 }
 
-bool CImage::LoadFrameBuffer () {
-	int viewport[4];
-	glGetIntegerv (GL_VIEWPORT, viewport);
-	glReadBuffer (GL_FRONT);
-	
-	nx = viewport[2];
-	ny = viewport[3];
-	depth = 3;
-	data = new unsigned char [nx * ny * depth];
-	
-	for (int i=0; i<viewport[3]; i++){
-		glReadPixels (viewport[0], viewport[1] + viewport[3] - 1 - i,
-			viewport[2], 1, GL_RGB, GL_UNSIGNED_BYTE, data + viewport[2] * i * 3);
+void CImage::WriteTGA (const char *filepath) {
+	if (data == NULL) return;
+	FILE *out = fopen (filepath, "w");
+	short TGAhead[] = {0, 2, 0, 0, 0, 0, nx, ny, 24};
+
+	fwrite (&TGAhead, sizeof (TGAhead), 1, out);
+	fwrite (data, 3 * nx * ny, 1, out);
+	fclose (out); 
+}
+
+void CImage::WriteTGA (const char *dir, const char *filename) {
+	string path = dir;
+	path += SEP;
+	path += filename;
+	WriteTGA (path.c_str());
+}
+
+void CImage::WriteTGA_H (const char *filepath) {
+	if (data == NULL) return;
+	TTgaHeader header;
+
+	header.tfType = 0;
+    header.tfColorMapType = 0;
+    header.tfImageType = 2;
+    for (int i=0; i<5; i++) header.tfColorMapSpec[i] = 0;
+    header.tfOrigX = 0;
+    header.tfOrigY = 0;
+    header.tfWidth = param.x_resolution;
+    header.tfHeight = param.y_resolution;
+    header.tfBpp = 24;
+    header.tfImageDes = 0;
+
+	FILE   *out = fopen (filepath, "w");
+	fwrite (&header, sizeof (TTgaHeader), 1, out);
+	fwrite (data, 3 * nx * ny, 1, out);
+	fclose (out); 
+}
+
+void CImage::WriteTGA_H (const char *dir, const char *filename) {
+	string path = dir;
+	path += SEP;
+	path += filename;
+	WriteTGA_H (path.c_str());
+}
+
+void CImage::WriteBMP (const char *filepath) {
+	if (data == NULL) return;
+	TBmpInfo info;
+    FILE *fp;       
+    int  infosize; 
+	unsigned int bitsize;   
+
+	info.biSize = 40;
+	info.biWidth = nx;
+	info.biHeight = ny;
+	info.biPlanes = 1;
+	info.biBitCount = 8 * depth;
+	info.biCompression = 0;
+	info.biSizeImage = nx * ny * depth; 
+	info.biXPelsPerMeter = 0;
+	info.biYPelsPerMeter= 0;
+	info.biClrUsed = 0;
+	info.biClrImportant = 0;
+
+    if ((fp = fopen (filepath, "wb")) == NULL) {
+		Message ("could not open bmp file", filepath);
+		return;
 	}
 
-	status = true;
-	return true;
+	int imgsize = info.biSizeImage;
+	int width = info.biWidth;
+	int height = info.biHeight;
+	int bitcnt = info.biBitCount; // 24 or 32
+
+	// (width * bitcnt + 7) / 8 = width * depth
+    if (imgsize == 0) bitsize = (width * bitcnt + 7) / 8 * height;
+    else bitsize = imgsize;
+
+    infosize = info.biSize; // 40
+	if (infosize != 40 || info.biCompression != 0) {
+		Message ("wrong bmp header");
+		return;
+	}
+
+    write_word  (fp, 0x4D42); 
+    write_dword (fp, sizeof (TBmpHeader) + infosize + bitsize);    
+    write_word  (fp, 0);        
+    write_word  (fp, 0);        
+    write_dword (fp, 18 + infosize);
+
+    write_dword (fp, info.biSize);
+    write_long  (fp, info.biWidth);
+    write_long  (fp, info.biHeight);
+    write_word  (fp, info.biPlanes);
+    write_word  (fp, info.biBitCount);
+    write_dword (fp, info.biCompression);
+    write_dword (fp, info.biSizeImage);
+    write_long  (fp, info.biXPelsPerMeter);
+    write_long  (fp, info.biYPelsPerMeter);
+    write_dword (fp, info.biClrUsed);
+    write_dword (fp, info.biClrImportant);
+
+    if (fwrite (data, 1, bitsize, fp) != bitsize) {
+		Message ("error on writing bmp data");
+        fclose (fp);
+        return;
+    }
+
+    fclose(fp);
+    return;
+}
+
+void CImage::WriteBMP (const char *dir, const char *filename) {
+	string path = dir;
+	path += SEP;
+	path += filename;
+	WriteBMP (path.c_str());
 }
 
 // --------------------------------------------------------------------
@@ -163,6 +315,7 @@ int CTexture::LoadTexture (const char *filename) {
 		(GL_TEXTURE_2D, 0, texImage.depth, texImage.nx,
 		texImage.ny, 0, format, GL_UNSIGNED_BYTE, texImage.data);
 
+	texImage.DisposeData();
     return texid;    
 }
 
@@ -204,7 +357,8 @@ int CTexture::LoadMipmapTexture (const char *filename, bool repeatable) {
 	gluBuild2DMipmaps 
 		(GL_TEXTURE_2D, texImage.depth, texImage.nx,
 		texImage.ny, format, GL_UNSIGNED_BYTE, texImage.data);
-
+	
+	texImage.DisposeData();
     return texid;    
 }
 
@@ -479,141 +633,126 @@ void CTexture::DrawNumStr (const char *s, int x, int y, float size, TColor col) 
 //				screenshot
 // --------------------------------------------------------------------
 
+// 0 ppm, 1 tga, 2 tga_header, 3 bmp
+#define SCREENSHOT_PROC 3
+
 void ScreenshotN () {
-	TGAScreenshot ();
-} 
-
-void PPMScreenshot () {
 	CImage image;
-
-	string path = param.screenshot_dir;
-	path += SEP;
-	path += "shot_";
-	path += Int_StrN (IRandom (0, 999999), 6);
-	path += ".ppm";
-
-	image.LoadFrameBuffer ();
-	image.WritePPM (path.c_str());
-}
-
-typedef struct {
-    char tfType;
-    char tfColorMapType;
-    char tfImageType;
-    char tfColorMapSpec[5];
-    short tfOrigX;
-    short tfOrigY;
-    short tfWidth;
-    short tfHeight;
-    char tfBpp;
-    char tfImageDes;
-} TTgaHeader;
-
-void TGAScreenshot () {
-	int W = param.x_resolution;
-	int H = param.y_resolution;
-
 	string path = param.screenshot_dir;
 	path += SEP;
 	path += Course.CourseList[g_game.course_id].dir;
 	path += "_";
 	path += GetTimeString1 ();
-	path += ".tga";
+	int type = SCREENSHOT_PROC;
 
-	FILE   *out = fopen (path.c_str(), "w");
-	char   pixel_data [3 * W * H];
-	short  TGAhead[] = {0, 2, 0, 0, 0, 0, W, H, 24};
+	switch (type) {
+		case 0:
+			path += ".ppm";
+			image.ReadFrameBuffer_PPM ();
+			image.WritePPM (path.c_str());
+			image.DisposeData ();
+			break;
+		case 1:
+			path += ".tga";
+			image.ReadFrameBuffer_TGA ();
+			image.WriteTGA (path.c_str());
+			image.DisposeData ();
+			break;
+		case 2:
+			path += ".tga";
+			image.ReadFrameBuffer_TGA ();
+			image.WriteTGA_H (path.c_str());
+			image.DisposeData ();
+			break;
+		case 3:
+			path += ".bmp";
+			image.ReadFrameBuffer_BMP ();
+			image.WriteBMP (path.c_str());
+			image.DisposeData ();
+			break;
+	}
+} 
 
-	glReadBuffer (GL_FRONT);
-	glReadPixels (0, 0, W, H, GL_BGR, GL_UNSIGNED_BYTE, pixel_data);
-	fwrite (&TGAhead, sizeof (TGAhead), 1, out);
-	fwrite (pixel_data, 3 * W * H, 1, out);
-	fclose (out); 
+// --------------- code from Michael Sweet (see BMP_Sources) ----------
+// This is a raw function and not integrated in CImage yet.
+GLubyte *LoadBitmap (const char *filename, TBmpInfo *info) {
+    FILE *fp;      
+    GLubyte *bits;
+    GLubyte *ptr; 
+    GLubyte temp; 
+    int x, y;   
+    int length; 
+    unsigned int bitsize;
+    int infosize; 
+    TBmpHeader header;   
+
+    if ((fp = fopen (filename, "rb")) == NULL) {
+		Message ("could not open bitmap");
+		return (NULL);
+	}
+
+    header.bfType      = read_word (fp);
+    header.bfSize      = read_dword (fp);
+    header.bfReserved1 = read_word (fp);
+    header.bfReserved2 = read_word (fp);
+    header.bfOffBits   = read_dword (fp);
+
+    if (header.bfType != BF_TYPE) {
+        fclose(fp);
+		Message ("LoadBitmap: wrong header type");
+        return (NULL);
+    }
+
+    infosize = header.bfOffBits - 18;
+
+    info->biSize          = read_dword(fp);
+    info->biWidth         = read_long(fp);
+    info->biHeight        = read_long(fp);
+    info->biPlanes        = read_word(fp);
+    info->biBitCount      = read_word(fp);
+    info->biCompression   = read_dword(fp);
+    info->biSizeImage     = read_dword(fp);
+    info->biXPelsPerMeter = read_long(fp);
+    info->biYPelsPerMeter = read_long(fp);
+    info->biClrUsed       = read_dword(fp);
+    info->biClrImportant  = read_dword(fp);
+
+    if (infosize > 40) {
+        fclose(fp);
+        return (NULL);
+    }
+
+	int size = info->biSizeImage;
+	int width = info->biWidth;
+	int height = info->biHeight;
+	int bitcnt = info->biBitCount;
+
+	bitsize = size;
+//	if (bitsize == 0) bitsize = (width * bitcnt + 7) / 8 *  abs (height);
+	if (bitsize == 0) bitsize = width * bitcnt * height;
+
+	bits = new unsigned char [bitsize];
+
+    if (bits == NULL) {
+        fclose(fp);
+        return (NULL);
+    }
+
+    if (fread (bits, 1, bitsize, fp) < bitsize) {
+        free(bits);
+        fclose(fp);
+        return (NULL);
+    }
+
+    length = (info->biWidth * 3 + 3) & ~3;
+    for (y = 0; y < info->biHeight; y ++) {
+        for (ptr = bits + y * length, x = info->biWidth; x > 0; x --, ptr += 3) {
+			temp   = ptr[0];
+			ptr[0] = ptr[2];
+			ptr[2] = temp;
+	    }
+	}
+
+    fclose(fp);
+    return (bits);
 }
-
-void TGAScreenshot2 (const char *destFile) {
-	int W = param.x_resolution;
-	int H = param.y_resolution;
-	TTgaHeader header;
-
-	header.tfType = 0;
-    header.tfColorMapType = 0;
-    header.tfImageType = 2;
-    for (int i=0; i<5; i++) header.tfColorMapSpec[i] = 0;
-    header.tfOrigX = 0;
-    header.tfOrigY = 0;
-    header.tfWidth = param.x_resolution;
-    header.tfHeight = param.y_resolution;
-    header.tfBpp = 24;
-    header.tfImageDes = 0;
-
-	FILE   *out = fopen (destFile, "w");
-	char   pixel_data [3 * W * H];
-
-	glReadBuffer (GL_FRONT);
-	glReadPixels (0, 0, W, H, GL_BGR, GL_UNSIGNED_BYTE, pixel_data);
-	fwrite (&header, sizeof (TTgaHeader), 1, out);
-	fwrite (pixel_data, 3 * W * H, 1, out);
-	fclose (out); 
-}
-
-typedef struct {
-	unsigned short bfType;
-	unsigned long bfSize;
-	unsigned short bfReserved1;
-	unsigned short bfReserved2;
-	unsigned long bfOffBits;
-} TBmpHeader;
-
-typedef struct {
-	unsigned long biSize;
-	long biWidth;
-	long biHeight;
-	unsigned short biPlanes;
-	unsigned short biBitCount;
-	unsigned long biCompression;
-	unsigned long biSizeImage;
-	long biXPelsPerMeter;
-	long biYPelsPerMeter;
-	unsigned long biClrUsed;
-	unsigned long biClrImportant;
-} TBmpInfoHeader;
-
-void BMPScreenshot (const char *destFile) {
-	int W = param.x_resolution;
-	int H = param.y_resolution;
-	TBmpHeader header;
-	TBmpInfoHeader info;
-
-	header.bfType = 19778;
-	header.bfReserved1 = 0;
-	header.bfReserved2 = 0;
-	header.bfOffBits = 14 + 40;
-	
-	info.biSize = 40;
-	info.biWidth = W;
-	info.biHeight = H;
-	info.biPlanes = 1;
-	info.biBitCount = 24;
-	info.biCompression = 0;
-	info.biSizeImage = W * H * 3;  // bitCount div 8
-	info.biSizeImage = 0;
-	info.biXPelsPerMeter = 0;
-	info.biYPelsPerMeter= 0;
-	info.biClrUsed = 0;
-	info.biClrImportant = 0;
-
-	header.bfSize = header.bfOffBits + info.biSizeImage;
-
-	FILE   *out = fopen (destFile, "w");
-	char   pixel_data [4 * W * H];
-
-	glReadBuffer (GL_FRONT);
-	glReadPixels (0, 0, W, H, GL_RGB, GL_UNSIGNED_BYTE, pixel_data);
-	fwrite (&header, 14, 1, out);
-	fwrite (&info, 40, 1, out);
-	fwrite (pixel_data, 3 * W * H, 1, out);
-	fclose (out); 
-}
-
-

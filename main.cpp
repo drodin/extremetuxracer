@@ -41,6 +41,7 @@ GNU General Public License for more details.
 #include "keyframe.h"
 #include "newplayer.h"
 #include "score.h"
+#include "ogl_test.h"
 
 TGameData g_game;
 
@@ -49,10 +50,13 @@ void InitGame (int argc, char **argv) {
 	g_game.argument = 0;
 	if (argc == 4) {
 		g_game.group_arg = argv[1];
-		if (g_game.group_arg == "--char") g_game.argument = 1;
+		if (g_game.group_arg == "--char") g_game.argument = 4;
 		g_game.dir_arg = argv[2];
 		g_game.file_arg = argv[3];
-	} 
+	} else if (argc == 2) {
+		g_game.group_arg = argv[1];
+		if (g_game.group_arg == "9") g_game.argument = 9;
+	}
 
 	g_game.secs_since_start = 0;
 	g_game.player_id = 0;
@@ -90,12 +94,10 @@ int main( int argc, char **argv ) {
 	InitGame (argc, argv);
 	Winsys.Init ();
     InitOpenglExtensions ();
-
 	// for checking the joystick and the OpgenGL version (the info is
 	// written on the console):
 	//	Winsys.PrintJoystickInfo ();
 	//	PrintGLInfo ();
-
 
 	// register loop functions
     splash_screen_register();
@@ -116,7 +118,8 @@ int main( int argc, char **argv ) {
 	RegisterToolFuncs ();
 	NewPlayerRegister ();
 	RegisterScoreFunctions ();
-
+	RegisterTestFuncs ();
+	
 	// theses resources must or should be loaded before splashscreen starts
  	Course.MakeStandardPolyhedrons ();
 	Tex.LoadTextureList ();
@@ -131,10 +134,11 @@ int main( int argc, char **argv ) {
 
 	switch (g_game.argument) {
 		case 0: Winsys.SetMode (SPLASH); break;
-		case 1: 
+		case 4: 
 			g_game.toolmode = TUXSHAPE; 
 			Winsys.SetMode (TOOLS); 
 			break;
+		case 9: Winsys.SetMode (OGLTEST); break;
 	}
 
  	Winsys.EventLoop ();

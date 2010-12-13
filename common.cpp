@@ -396,6 +396,57 @@ string GetTimeString1 () {
 	return line;
 }
 
+// --------------------------------------------------------------------
+//				FILE, read and write
+// --------------------------------------------------------------------
+
+unsigned short read_word (FILE *fp) {
+    unsigned char b0, b1;
+    b0 = getc(fp);
+    b1 = getc(fp);
+    return ((b1 << 8) | b0);
+}
+
+unsigned int read_dword (FILE *fp) {
+    unsigned char b0, b1, b2, b3;
+    b0 = getc(fp);
+    b1 = getc(fp);
+    b2 = getc(fp);
+    b3 = getc(fp);
+
+    return ((((((b3 << 8) | b2) << 8) | b1) << 8) | b0);
+}
+
+int read_long (FILE *fp) {
+    unsigned char b0, b1, b2, b3;
+
+    b0 = getc(fp);
+    b1 = getc(fp);
+    b2 = getc(fp);
+    b3 = getc(fp);
+
+    return ((int)(((((b3 << 8) | b2) << 8) | b1) << 8) | b0);
+}
+
+
+int write_word (FILE *fp, unsigned short w) {
+    putc (w, fp);
+    return (putc (w >> 8, fp));
+}
+
+int write_dword(FILE *fp, unsigned int dw) {
+    putc (dw, fp);
+    putc (dw >> 8, fp);
+    putc (dw >> 16, fp);
+    return (putc (dw >> 24, fp));
+}
+
+int write_long (FILE *fp, int  l) {
+    putc (l, fp);
+    putc (l >> 8, fp);
+    putc (l >> 16, fp);
+    return (putc (l >> 24, fp));
+}
 
 
 

@@ -113,6 +113,14 @@ void GetTimeComponents (double time, int *min, int *sec, int *hundr);
 void GetTestTime ();
 string GetTimeString1 ();
 
+unsigned short read_word (FILE *fp);
+unsigned int   read_dword (FILE *fp);
+int            read_long (FILE *fp);
+
+int            write_word (FILE *fp, unsigned short w);
+int            write_dword (FILE *fp, unsigned int dw);
+int            write_long (FILE *fp, int l);
+
 #endif 
 
 
