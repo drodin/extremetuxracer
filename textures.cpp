@@ -25,6 +25,10 @@ GNU General Public License for more details.
 
 CImage::CImage () { 
 	data = NULL;
+	nx = 0;	
+    ny = 0; 
+    depth = 0;
+    pitch = 0;
 }
 
 CImage::~CImage () {
@@ -101,7 +105,7 @@ bool CImage::ReadFrameBuffer_PPM () {
 	depth = 3;
 
 	DisposeData ();
-	data = new unsigned char [nx * ny * depth];
+	data  = (unsigned char *) malloc (pitch * ny * sizeof (unsigned char));
 	
 	glReadBuffer (GL_FRONT);
 	
@@ -119,7 +123,7 @@ void CImage::ReadFrameBuffer_TGA () {
 	depth = 3;
 
 	DisposeData ();
-	data = new unsigned char [nx * ny * depth];
+	data  = (unsigned char *) malloc (pitch * ny * sizeof (unsigned char));
 
 	glReadBuffer (GL_FRONT);
 	glReadPixels (0, 0, nx, ny, GL_BGR, GL_UNSIGNED_BYTE, data);	
@@ -131,7 +135,7 @@ void CImage::ReadFrameBuffer_BMP () {
 	depth = 4;
 
 	DisposeData ();
-	data = new unsigned char [nx * ny * depth];
+	data  = (unsigned char *) malloc (pitch * ny * sizeof (unsigned char));
 	glReadBuffer (GL_FRONT);
 	glReadPixels (0, 0, nx, ny, GL_BGRA, GL_UNSIGNED_BYTE, data);	
 }
@@ -673,6 +677,7 @@ void ScreenshotN () {
 	}
 } 
 
+/*
 // --------------- code from Michael Sweet (see BMP_Sources) ----------
 // This is a raw function and not integrated in CImage yet.
 GLubyte *LoadBitmap (const char *filename, TBmpInfo *info) {
@@ -756,3 +761,4 @@ GLubyte *LoadBitmap (const char *filename, TBmpInfo *info) {
     fclose(fp);
     return (bits);
 }
+*/

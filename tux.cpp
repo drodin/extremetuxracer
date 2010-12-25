@@ -383,8 +383,9 @@ void CCharShape::CreateMaterial (const char *line) {
 	spec = SPVector3N (lin, "spec", MakeVector (0,0,0));
 	exp = SPFloatN (lin, "exp", 50);
 
-	TCharMaterial *matPtr = (TCharMaterial *) malloc (sizeof (TCharMaterial));
 
+/*
+	TCharMaterial *matPtr = (TCharMaterial *) malloc (sizeof (TCharMaterial));
     matPtr->diffuse.r = diff.x;
     matPtr->diffuse.g = diff.y;
     matPtr->diffuse.b = diff.z;
@@ -394,15 +395,23 @@ void CCharShape::CreateMaterial (const char *line) {
     matPtr->specular.b = spec.z;
     matPtr->specular.a = 1.0;
     matPtr->exp = exp;
+*/
+	Materials[numMaterials] = (TCharMaterial *) malloc (sizeof (TCharMaterial));
+    Materials[numMaterials]->diffuse.r = diff.x;
+    Materials[numMaterials]->diffuse.g = diff.y;
+    Materials[numMaterials]->diffuse.b = diff.z;
+    Materials[numMaterials]->diffuse.a = 1.0;
+    Materials[numMaterials]->specular.r = spec.x;
+    Materials[numMaterials]->specular.g = spec.y;
+    Materials[numMaterials]->specular.b = spec.z;
+    Materials[numMaterials]->specular.a = 1.0;
+    Materials[numMaterials]->exp = exp;
 
-	TCharMaterial *test;
-    if (GetMaterial (matName, &test)) {
-		free (matPtr);
-	} else {
-		SPAddIntN (MaterialIndex, matName, numMaterials);
-		Materials[numMaterials] = matPtr;
-		numMaterials++;
-	}
+
+
+	SPAddIntN (MaterialIndex, matName, numMaterials);
+//	Materials[numMaterials] = matPtr;
+	numMaterials++;
 }
 
 // --------------------------------------------------------------------

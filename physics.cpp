@@ -23,7 +23,35 @@ GNU General Public License for more details.
 #include "game_ctrl.h"
 #include "view.h"
 
-CControl::CControl () {}
+CControl::CControl () {
+	minSpeed = 0;
+	minFrictspeed = 0;
+	turn_fact = 0;
+	turn_animation = 0;
+	is_braking = false;
+	jump_amt = 0;
+	is_paddling = false;
+	jumping = false;
+	jump_charging = false;
+	last_pos = cpos;
+	cnet_force = MakeVector (0, 0, 0);
+	orientation_initialized = false;
+	cairborne = false;
+	way = 0.0;
+	front_flip = false;
+	back_flip = false;
+	roll_left = false;
+	roll_right = false;
+	roll_factor = 0;
+	flip_factor = 0;
+		
+	ode_time_step = -1;
+    jump_start_time = 0;
+    begin_jump = false;
+	paddle_time = 0;
+    view_init = false;              
+	finish_speed = 0;
+}
 
 CControl::~CControl () {}
 

@@ -96,14 +96,14 @@ void CSound::LoadSoundList () {
 	}
 	CSPList list(200);
 	string name, soundfile, path, line;
-	int soundid;
+//	int soundid = 0;
 	if (list.Load (param.sounds_dir, "sounds.lst")) { 
 		for (int i=0; i<list.Count(); i++) {
 			line = list.Line(i);
 			name = SPStrN (line, "name", "");		
 			soundfile = SPStrN (line, "file", "");		
 			path = MakePathStr (param.sounds_dir, soundfile);
-			soundid = LoadChunk (name.c_str(), path.c_str());
+			LoadChunk (name.c_str(), path.c_str());
 		}
 	}
 }
@@ -223,6 +223,7 @@ CMusic::CMusic () {
 
 	curr_musid = -1;
 	curr_volume = 10;
+	loop_count = 0;
 	is_playing = false;
 //	Mix_HookMusicFinished (Hook);	
 }
@@ -248,14 +249,14 @@ void CMusic::LoadMusicList () {
 	// --- music ---
 	CSPList list(200);
 	string name, musicfile, path, line, item;
-	int musid;
+//	int musid = 0;
 	if (list.Load (param.music_dir, "music.lst")) { 
 		for (int i=0; i<list.Count(); i++) {
 			line = list.Line(i);
 			name = SPStrN (line, "name", "");		
 			musicfile = SPStrN (line, "file", "");		
 			path = MakePathStr (param.music_dir, musicfile);
-			musid = LoadPiece (name.c_str(), path.c_str());
+			LoadPiece (name.c_str(), path.c_str());
 		}
 	} else {
 		Message ("could not load music.lst");

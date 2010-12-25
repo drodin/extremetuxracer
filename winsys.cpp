@@ -56,6 +56,15 @@ CWinsys::CWinsys () {
 	resolution[7] = MakeRes (1400, 1050);
 	resolution[8] = MakeRes (1440, 900);
 	resolution[9] = MakeRes (1680, 1050);
+	
+	auto_x_resolution = 800;
+	auto_y_resolution = 600;
+
+	clock_time = 0;
+	cur_time = 0;
+	lasttick = 0;
+	elapsed_time = 0;
+	remain_ticks = 0;
 }
 
 CWinsys::~CWinsys () {}

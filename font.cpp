@@ -116,6 +116,8 @@ CFont::CFont () {
 	curr_col.b = 0.0;
 	curr_col.a = 1.0;	// default: no transparency
 	curr_size   = 20;	// default size: 20 px
+	curr_fact   = 0;
+	curr_font   = 0;
 }
 
 void CFont::Clear () {

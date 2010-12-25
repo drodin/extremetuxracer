@@ -183,6 +183,7 @@ CPlayers::CPlayers () {
 		plyr[i].funlocked = "";
 	}
 	currPlayer = 0;
+	numPlayers = 1;
 	AvatarIndex = "";
 	numAvatars = 0;
 	for (i=0; i<MAX_AVATARS; i++) {

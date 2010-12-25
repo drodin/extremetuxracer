@@ -50,6 +50,8 @@ CKeyframe::CKeyframe () {
 	numFrames = 0;
 	active = false;
 	loaded = false;
+	heightcorr = 0;
+	keyidx = 0;
 }
 
 CKeyframe::~CKeyframe () {}

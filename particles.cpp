@@ -993,6 +993,15 @@ CWind::CWind () {
 	windy = false;
 	CurrTime = 0.0;
 	WVector = MakeVector (0, 0, 0);
+	
+	SpeedMode = 0;
+	AngleMode = 0;
+	WSpeed = 0;
+	WAngle = 0;
+	DestSpeed = 0;
+	DestAngle = 0;
+	WindChange = 0;
+	AngleChange = 0;
 }
 
 CWind::~CWind () {}

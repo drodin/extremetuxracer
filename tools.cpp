@@ -89,6 +89,10 @@ void CCamera::Update (float timestep) {
 CGluCamera::CGluCamera () {
  	angle = 0.0;
 	distance = 3.0;
+	turnright = false;
+	turnleft = false;
+	nearer = false;
+	farther = false;
 }
 
 void CGluCamera::Update (double timestep) {
