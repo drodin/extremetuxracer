@@ -1,0 +1,139 @@
+Extreme Tux Racer - Courses, Cups and Events...
+by Reinhard Niehoff, edited by Kristian Picon
+
+----------------------------------------------------
+The new course format 
+----------------------------------------------------
+
+It's not really new, there are only some minor changes from 
+ETR 0.4. The 3 maps (elev.png, terrain.png and trees.png) are the same 
+as in ETR. The preview is a bit larger now (192 x 144). I've taken all 
+preview shots without huds, but that's a matter of taste.  
+
+The most significant change is the new format for course description. 
+Up to now the params were listed in the file course.tcl. Now we use 
+an SP list for this purpose. The syntax differs but the content is 
+almost the same: course dimensions, start point, angle and scale are 
+the same as of this writing. But there are some additional entries: 
+
+    [env] etr
+
+With this environment entry you select the location, not the weather 
+or time of day. Currently there are 2 locations, each with the 
+well-known 4 lightings (sunny, foggy, evening, night). Without this entry 
+the location will fall back to standard (tuxracer).
+
+There is also:
+
+    [start_keyframe] tux_jump.lst
+    [success_keyframe] tux_joice.lst
+    [failure_keyframe] tux_sad.lst
+    [final_keyframe] tux_wait.lst
+
+These entries are not used yet since there is only the start keyframe 
+implemented. In future versions there will be some keyframes for the 
+finish stage, too.
+	
+----------------------------------------------------
+trees.png or items.lst?
+----------------------------------------------------
+
+In trees.png each tree or other object is marked as a colored dot. 
+This bitmap corresponds to the other bitmaps (elev.png for the height 
+and terrain.png for the textures). The advantage of the trees.png is 
+that the objects can be positioned in a fast and easy way. However, the bitmap 
+can store only the position, no information about scale, rotation, 
+collision, sound etc. For more particular description of the objects 
+ETR uses the text file items.lst. This method has a disadvantage, 
+too. It's very difficult and fiddly to edit this file, specifically
+the positioning of objects is almost impossible. 
+
+ETR can read both the trees.png and the items.lst. This facilitates 
+the procedure considerably. It is best to position items in two steps. First 
+you should create or edit trees.png with all objects. Then, you can edit
+and complete the entries in items.lst, if desirable or necessary. 
+
+How do trees.png and items.lst work together? In ETR the items.lst 
+has priority. If this file can be found, it is loaded and used while
+trees.png is ignored. If items.lst doesn't exist, ETR loads
+trees.png instead, generates an items list, and saves this list immediately. 
+Sometimes you may want to use trees.png even though an items list is present. 
+In this case you can type "t" on the race_select screen. But watch out! 
+The existing items.lst will be overwritten, that can be fatal if the list 
+already contains a lot of manual changes. It's strongly advised that one 
+backup the items list after having edited it manually. 
+
+Another aspect: 
+Trees should have different sizes, otherwise they look boring and too synthetic. 
+When Tuxracer reads the trees.png it scales the trees at random (height 
+and diameter). You can find these values in the automatically generated 
+items.lst. If you are not content with the appearance you should use the 
+trees.png again (see hint above). The range of size variation and the basic 
+size can be adjusted on the race_select screen (press "c" and "v", see the 
+End User Documentation in the guide file for more info). 
+
+In future versions, the items list will contain more information: scale, 
+rotation, exact position, etc. Then an entry in items.lst can look like this:
+
+	[pos] 23.5 0.0 -135.9 [scale] 3.4 1.9 2.1 [rotation] -15 27 -22 
+
+Notice that the y-position is 0.0. This value is not used since it can 
+be exactly calculated when the course is loaded. 
+
+--------------------------------------------------
+What about rotation in current version?
+--------------------------------------------------
+
+The rotation can't be adjusted and is not done at random like the scaling. 
+Nevertheless all trees are a bit rotated (1°). Which is necessary to avoid 
+flickering if 2 trees are at same z-postion and close together. The 
+flickering is a result of parallel intersection of textures. 
+
+--------------------------------------------------
+Defining courses and events
+--------------------------------------------------
+
+You must tell ETR 0.5.5 that a course exists. That's different from 0.4 and 
+PPRacer where the course directory is scanned by TCL. The course list 
+(courses.lst) has an extremely simple structure:
+
+	*[name] Twisty Slope [dir] twisty_slope
+	[desc] Tight twists make grabbing herring difficult. Hard turns ...
+
+	*[name] ...
+
+A (little) advantage is that you can specify the order of the courses on 
+the race_select screen. Or you can deactivate a course by commenting out the 
+entry.
+
+The event list (events.lst) is a bit more complex, but still easier than the list in 
+ETR 0.4 or PPRacer. The list consists of 3 parts, the first is where the
+races are:
+
+	*[struct] 0 [race] race_bunnyhill [course] bunny_hill [light] sunny [snow] 0 [wind] 0
+	[herring] 20 22 23 [time] 37 34 30
+
+	*[struct] 0 [race] race_twistyslope [course] twisty_slope [light] night [snow] 0 [wind] 0
+	[herring] 21 23 24 [time] 43 39 34
+
+This is essentially the same as the course list, but completed with information 
+about the weather conditions and the race challenges. A course may be used
+multiple times and redefined with different conditions. 
+
+The second part contains the cups:
+
+    *[struct] 1 [cup] canadian [name] Canadian Cup 
+    [num] 3 [1] race_bunnyhill [2] race_twistyslope [3] race_bumpyride
+    [desc] The classic Tuxracer cup for beginners. Learn to paddle ...
+
+The cup entries access one or more races (see second line). Additional 
+there is a description that appears on the event_select screen. 
+
+The third and last part contains the events. The following entry 
+describes the only event in the current program:
+
+    *[struct] 2 [event] classics [name] Tux Racer Classics
+    [num] 2 [1] canadian [2] swiss 
+
+--
+Good luck with your course creation!

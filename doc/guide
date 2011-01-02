@@ -1,0 +1,104 @@
+Extreme Tux Racer - End User Documentation
+by Reinhard Niehoff, edited by Kristian Picon
+
+-------------------------------------------
+Important keys
+-------------------------------------------
+
+1, 2, 3 - different camera modes (standard is 2)
+
+f - hide or show fps display as part of the hud (heads-up display)
+s - screenshot (in folder "screenshots")
+h - hide or show hud
+u - toggle snowflakes on menu screens
+
+There are some special functions which might be relevant for newcomers 
+who are interested in the compoments of the scenery. You can toggle 
+the following elements:
+
+F5 - skybox
+F6 - fog
+F7 - terrain
+F8 - trees and objects
+
+For generating the item list by parsing the trees.png file the
+following keys might be helpful:
+
+t - sets priority to trees.png and generates an items.lst
+c - value of size of trees (1 ... 5)
+v - value for size variation (1 ... 5)
+
+-------------------------------------------
+The configuration screen
+-------------------------------------------
+
+The most important adjustments can be done at runtime at the 
+config screen. Most options should be self-explanatory. 
+"Auto" for resolution means that the program uses the same values 
+as set in the basic computer configuration. That's not convenient
+in windowed mode since it ignores the menu/task bar on the screen.
+
+There are 3 levels of detail:
+
+1 - for very slow computers (no trackmarks, particles etc.)
+2 - most details are shown but on an lower level
+3 - best appearance, today's computers should have no problems with this
+
+The adjustments are entered and stored in the file "options". 
+Editing this file is possible, but not necessary.
+
+# 0 = framed window | 1 = fullscreen
+[fullscreen] 1
+
+# resolution type: 0 = auto | 1 = 800 x 600 | 2 = 1024 * 768
+[res_type] 0	
+
+# level of details 1 ... 3
+[detail_level] 3
+
+# maximal values are 120
+[sound_volume] 60
+[music_volume] 30
+
+-------------------------------------
+The options file
+-------------------------------------
+
+The following adjustments must be done by editing the options file, 
+they don't appear on the config screen. The file is not commented
+yet, that will be done in a future version.
+
+# Index to a language list
+[language] 0
+
+# the distances where the course clipping begins
+[forward_clip_distance] 75
+[backward_clip_distance] 20
+
+# field of view, similar to the focal length at a camera lens
+[fov] 60
+
+# color depth, 0 = auto, 1 = 16, 2 = 32
+[bpp_mode] 1
+
+# some performance parameters
+[tree_detail_distance] 20
+[tux_sphere_divisions] 10
+[tux_shadow_sphere_div] 3
+
+# This parameter should be obsolete soon. It's the distance where
+# the trees are not drawn crosswise but as simple plane textures.
+[course_detail_level] 75
+
+# You can choose between 2 font styles: 0 Helvetica, 1 Papercut
+# If the value is 2, the huds are drawn with Papercut, too
+[use_papercut_font] 1
+
+# Cursor style: 0 normal alrrow cursor, 1 icicle
+[ice_cursor] 1
+
+# Normally the sky is drawn with 6 textures (a cube). In the Tuxracer scene
+# are only 3 textures visible (left, front, right). So it's faster to draw
+# only the visible textures. In addition, it spares resources. 
+# If set to 1, all 6 textures will be drawn (they have to exist!).
+[full_skybox] 0

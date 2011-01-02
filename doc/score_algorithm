@@ -1,0 +1,14 @@
+You may want to know how the score points are calculated. Sometimes you have to decide between a shorter time or an additional herring. For this reason, I've tried to make the algorithm as transparent as possible. 
+
+The basis rule is clear and easy: 
+
+1 herring - 10 points
+1 second gain of time - 10 points (with resolution 0.1 second - 1 point)
+Score is the sum of herring points and time points.
+
+The herring points are calculated absolutely, starting with 0. For the time points we need a reference value; the difference between this value and the reached time is the result. Apparently the reference value must be high enough so that we don't get negative results. Additionally the reference should depend from the course length: the larger the course the higher the value. In the algorithm the reference is proportional to the course length, divided by 10.
+
+Example: The course "Bunny Hill" is 520 units long, thus the reference time value is 52. If you reach the finish line after 31.3 seconds, you get (52 - 31.3) * 10 = 207 time points. With 21 herrings the score is 417.
+
+This algorithm seems to be rough and inexact, and it doesn't allow to compare the results of different courses. That's right, but the courses differ too much. All attempts to make the race results comparable can't be successful. You would have to work with weighted values for time and herrings, so that the user won't be able to evaluate the situation when racing.
+
