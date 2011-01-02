@@ -13,14 +13,11 @@
 *[struct] 0 [race] race_bumpyride [course] bumpy_ride  [light] sunny [snow] 0 [wind] 0 
 [herring] 13 16 17 [time] 35 31 28
 
-*[struct] 0 [race] race_exploremountains [course] explore_mountains [light] evening [snow] 0 [wind] 0
+*[struct] 0 [race] race_frozenriver [course] frozen_river [light] evening [snow] 0 [wind] 0
 [herring] 40 48 52 [time] 160 150 146
 
-*[struct] 0 [race] race_frozenlakes [course] frozen_lakes [light] sunny [snow] 1 [wind] 0
+*[struct] 0 [race] race_pathofdaggers [course] path_of_daggers [light] sunny [snow] 1 [wind] 0
 [herring] 34 38 42 [time] 149 132 128
-
-*[struct] 0 [race] race_challengeone [course] challenge_one [light] night [snow] 0 [wind] 0
-[herring] 60 60 60 [time] 140 140 140
 
 # ---------------------------------------------------------------------
 # cups [struct] 1:
@@ -30,11 +27,11 @@
 
 *[struct] 1 [cup] canadian [name] Canadian Cup 
 [num] 3 [1] race_bunnyhill [2] race_twistyslope [3] race_bumpyride
-[desc] The classic Tuxracer cup for beginners. Learn to paddle and to find the best track
+[desc] The classic Tux Racer cup for beginners. Learn to paddle and to find the best track.
 
 *[struct] 1 [cup] swiss [name] Swiss Cup 
-[num] 3 [1] race_exploremountains [2] race_frozenlakes [3] race_challengeone
-[desc] A cup with three different races. Keep care not to get stuck.
+[num] 2 [1] race_frozenriver [2] race_pathofdaggers
+[desc] Two slightly more challenging courses that shipped with the original Tux Racer. 
 
 # ---------------------------------------------------------------------
 # events [struct] 2:
