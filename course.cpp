@@ -483,6 +483,7 @@ void CCourse::LoadItemList () {
 
 // --------------------	LoadObjectMap ---------------------------------
 
+
 int GetObject (unsigned char pixel[]) {
 	int r = pixel[0];
 	int g = pixel[1];

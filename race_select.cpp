@@ -179,9 +179,9 @@ void RaceSelectInit (void) {
 	AddIconButton (iconleft + iconspace*4, icontop, 5, Tex.TexID (RANDOM_BUTT), iconsize); 
 
 	int siz = FT.AutoSizeN (5);
-	AddTextButton (Trans.Text(13), area.left+50, AutoYPosN (80), 6, siz);
-	double len = FT.GetTextWidth (Trans.Text(8));
-	AddTextButton (Trans.Text(8), area.right-len-50, AutoYPosN (80), 7, siz);
+	double len1 = FT.GetTextWidth (Trans.Text(13));
+	AddTextButton (Trans.Text(13), area.right-len1-50, AutoYPosN (80), 6, siz);
+ 	AddTextButton (Trans.Text(8), area.left + 50, AutoYPosN (80), 7, siz);
 
 	curr_focus = 0;
 	g_game.loopdelay = 20;

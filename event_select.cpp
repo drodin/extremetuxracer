@@ -139,9 +139,10 @@ void EventSelectInit () {
 	AddArrow (area.right+8, frametop2+18, 1, 1);
 
 	int siz = FT.AutoSizeN (5);
-	AddTextButton (Trans.Text(9), area.left+50, AutoYPosN (70), 2, siz);
-	double len = FT.GetTextWidth (Trans.Text(8));
-	AddTextButton (Trans.Text(8), area.right-len-50, AutoYPosN (70), 3, siz);
+
+	double len = FT.GetTextWidth (Trans.Text(9));
+	AddTextButton (Trans.Text(9), area.right-len-50, AutoYPosN (70), 2, siz);
+	AddTextButton (Trans.Text(8), area.left+50, AutoYPosN (70), 3, siz);
 
 	Events.MakeUnlockList (Players.GetCurrUnlocked());
 	Music.Play (param.menu_music, -1);

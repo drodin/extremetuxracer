@@ -105,7 +105,7 @@ bool CImage::ReadFrameBuffer_PPM () {
 	depth = 3;
 
 	DisposeData ();
-	data  = (unsigned char *) malloc (pitch * ny * sizeof (unsigned char));
+	data  = (unsigned char *) malloc (nx * ny * depth * sizeof (unsigned char));
 	
 	glReadBuffer (GL_FRONT);
 	
@@ -123,7 +123,7 @@ void CImage::ReadFrameBuffer_TGA () {
 	depth = 3;
 
 	DisposeData ();
-	data  = (unsigned char *) malloc (pitch * ny * sizeof (unsigned char));
+	data  = (unsigned char *) malloc (nx * ny * depth * sizeof (unsigned char));
 
 	glReadBuffer (GL_FRONT);
 	glReadPixels (0, 0, nx, ny, GL_BGR, GL_UNSIGNED_BYTE, data);	
@@ -135,7 +135,7 @@ void CImage::ReadFrameBuffer_BMP () {
 	depth = 4;
 
 	DisposeData ();
-	data  = (unsigned char *) malloc (pitch * ny * sizeof (unsigned char));
+	data  = (unsigned char *) malloc (nx * ny * depth * sizeof (unsigned char));
 	glReadBuffer (GL_FRONT);
 	glReadPixels (0, 0, nx, ny, GL_BGRA, GL_UNSIGNED_BYTE, data);	
 }
@@ -248,10 +248,10 @@ void CImage::WriteBMP (const char *filepath) {
 	}
 
     write_word  (fp, 0x4D42); 
-    write_dword (fp, sizeof (TBmpHeader) + infosize + bitsize);    
+    write_dword (fp, 14 + infosize + bitsize);    
     write_word  (fp, 0);        
     write_word  (fp, 0);        
-    write_dword (fp, 18 + infosize);
+    write_dword (fp, 54);
 
     write_dword (fp, info.biSize);
     write_long  (fp, info.biWidth);
@@ -677,88 +677,3 @@ void ScreenshotN () {
 	}
 } 
 
-/*
-// --------------- code from Michael Sweet (see BMP_Sources) ----------
-// This is a raw function and not integrated in CImage yet.
-GLubyte *LoadBitmap (const char *filename, TBmpInfo *info) {
-    FILE *fp;      
-    GLubyte *bits;
-    GLubyte *ptr; 
-    GLubyte temp; 
-    int x, y;   
-    int length; 
-    unsigned int bitsize;
-    int infosize; 
-    TBmpHeader header;   
-
-    if ((fp = fopen (filename, "rb")) == NULL) {
-		Message ("could not open bitmap");
-		return (NULL);
-	}
-
-    header.bfType      = read_word (fp);
-    header.bfSize      = read_dword (fp);
-    header.bfReserved1 = read_word (fp);
-    header.bfReserved2 = read_word (fp);
-    header.bfOffBits   = read_dword (fp);
-
-    if (header.bfType != BF_TYPE) {
-        fclose(fp);
-		Message ("LoadBitmap: wrong header type");
-        return (NULL);
-    }
-
-    infosize = header.bfOffBits - 18;
-
-    info->biSize          = read_dword(fp);
-    info->biWidth         = read_long(fp);
-    info->biHeight        = read_long(fp);
-    info->biPlanes        = read_word(fp);
-    info->biBitCount      = read_word(fp);
-    info->biCompression   = read_dword(fp);
-    info->biSizeImage     = read_dword(fp);
-    info->biXPelsPerMeter = read_long(fp);
-    info->biYPelsPerMeter = read_long(fp);
-    info->biClrUsed       = read_dword(fp);
-    info->biClrImportant  = read_dword(fp);
-
-    if (infosize > 40) {
-        fclose(fp);
-        return (NULL);
-    }
-
-	int size = info->biSizeImage;
-	int width = info->biWidth;
-	int height = info->biHeight;
-	int bitcnt = info->biBitCount;
-
-	bitsize = size;
-//	if (bitsize == 0) bitsize = (width * bitcnt + 7) / 8 *  abs (height);
-	if (bitsize == 0) bitsize = width * bitcnt * height;
-
-	bits = new unsigned char [bitsize];
-
-    if (bits == NULL) {
-        fclose(fp);
-        return (NULL);
-    }
-
-    if (fread (bits, 1, bitsize, fp) < bitsize) {
-        free(bits);
-        fclose(fp);
-        return (NULL);
-    }
-
-    length = (info->biWidth * 3 + 3) & ~3;
-    for (y = 0; y < info->biHeight; y ++) {
-        for (ptr = bits + y * length, x = info->biWidth; x > 0; x --, ptr += 3) {
-			temp   = ptr[0];
-			ptr[0] = ptr[2];
-			ptr[2] = temp;
-	    }
-	}
-
-    fclose(fp);
-    return (bits);
-}
-*/

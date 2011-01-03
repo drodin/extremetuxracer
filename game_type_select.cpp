@@ -87,7 +87,7 @@ void GameSelectMotionFunc (int x, int y) {
 static void GameSelectInit (void) {
 	Winsys.ShowCursor (!param.ice_cursor);    
 	init_ui_snow (); 
-	scope = 1;
+	scope = 0;
 	
 	ResetWidgets ();
 	int top = AutoYPosN (40);
