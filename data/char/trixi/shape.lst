@@ -15,10 +15,11 @@
 
 # material
 *[material] 1 [mat] whitecol [diff] 0.78 0.78 0.78 [spec] 0.2 0.2 0.2 [exp] 50.0
-*[material] 1 [mat] blackcol [diff] 0.8 0.3 0.3 [spec] 0.5 0.5 0.5 [exp] 20.0
+*[material] 1 [mat] blackcol [diff] 0.86 0.2 0.74 [spec] 0.5 0.5 0.5 [exp] 20.0
 #*[material] 1 [mat] beakcol [diff] 0.64 0.54 0.06 [spec] 0.4 0.4 0.4 [exp] 5.0
 *[material] 1 [mat] beakcol [diff] 0.74 0.44 0.06 [spec] 0.4 0.4 0.4 [exp] 5.0
 *[material] 1 [mat] iriscol [diff] 0.01 0.01 0.41 [spec] 0.4 0.4 0.4 [exp] 90.0
+*[material] 1 [mat] bowcol [diff] 0.89 0.06 0.06 [spec] 0.4 0.4 0.4 [exp] 90.0
 
 # -----------------------------------------------------------------------------------
 
@@ -200,6 +201,11 @@
 *[node] 70 [par] 69 [order] 0 [trans] 0 0.15 0 [name] tail
 *[node] 71 [par] 70 [order] 45 [vis] 2 [scale] 0.2 0.3 0.1 
 	[mat] blackcol [shad] 1 [name] tail
+
+# bow
+*[node] 72 [par] 14 [order] 04 [trans] 0.00 -0.06 0.06 [scale] 1.16 1.16 1.16 [mat] bowcol [name] bow
+*[node] 73 [par] 72 [order] 0345 [trans] 0.06 0.44 0.00 [scale] 0.22 0.12 0.06 [vis] 3 [rot] 0.00 0.00 43.00 [mat] bowcol [shad] 1
+*[node] 74 [par] 72 [order] 0345 [trans] -0.06 0.44 0.00 [scale] 0.22 0.12 0.06 [vis] 3 [rot] 0.00 0.00 -43.00 [mat] bowcol [shad] 1
 
 
 
