@@ -372,8 +372,8 @@ void DrawCoursePosition (CControl *ctrl) {
 	double fact = ctrl->cpos.z / pl;
 	if (fact > 1.0) fact = 1.0;
     glEnable (GL_TEXTURE_2D );
-	Tex.Draw (T_MASK_OUTLINE, param.x_resolution - 48, param.y_resolution - 280, 1.0);
 	DrawPercentBar (-fact, param.x_resolution - 48, 280-128);
+	Tex.Draw (T_MASK_OUTLINE, param.x_resolution - 48, param.y_resolution - 280, 1.0);
 }
 
 // -------------------------------------------------------

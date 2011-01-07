@@ -1,4 +1,4 @@
-*[time] 0.2 [pos] 0.00 0.00 0.00 [yaw] 180 [pitch] -1009 [neck] -50 [head] -8 [hip] -30 -30
+*[time] 0.2 [pos] 0.00 0.00 0.00 [yaw] 180 [pitch] 109 [neck] -50 [head] -8 [hip] -30 -30
 *[time] 0.2 [pos] 0.00 0.10 0.00 [yaw] 180 [pitch] 90 [neck] -50 [hip] -20 -20 [knee] -20 -20
 *[time] 0.2 [pos] 0.00 0.20 0.00 [yaw] 180 [pitch] 70 [neck] -18 [hip] -30 -30 [knee] -40 -40
 *[time] 0.2 [pos] 0.00 0.20 0.00 [yaw] 180 [pitch] 70 [neck] -26 [hip] -30 -30 [knee] -50 -50
