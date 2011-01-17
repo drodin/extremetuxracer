@@ -5,12 +5,16 @@
 *[material] 1 [mat] blackcol [diff] 0.1 0.1 0.1 [spec] 0.5 0.5 0.5 [exp] 20.0
 *[material] 1 [mat] beakcol [diff] 0.64 0.54 0.06 [spec] 0.4 0.4 0.4 [exp] 5.0
 *[material] 1 [mat] iriscol [diff] 0.01 0.01 0.41 [spec] 0.4 0.4 0.4 [exp] 90.0
+*[material] 1 [mat] whitecol [diff] 0.78 0.78 0.78 [spec] 0.2 0.2 0.2 [exp] 50.0
+*[material] 1 [mat] blackcol [diff] 0.1 0.1 0.1 [spec] 0.5 0.5 0.5 [exp] 20.0
+*[material] 1 [mat] beakcol [diff] 0.64 0.54 0.06 [spec] 0.4 0.4 0.4 [exp] 5.0
+*[material] 1 [mat] iriscol [diff] 0.01 0.01 0.41 [spec] 0.4 0.4 0.4 [exp] 90.0
 
 # Nodes:
 *[node] 1 [par] 0 [order] 4 [scale] 0.35 0.35 0.35 [name] complete figure
 *[node] 2 [par] 1 [order] 4 [scale] 0.90 0.90 0.90 [name] body
 *[node] 72 [par] 2 [order] 45 [scale] 0.95 1.00 0.80 [vis] 10 [mat] blackcol [name] black part of the body [shad] 1
-*[node] 73 [par] 2 [order] 045 [trans] 0.04 0.00 0.17 [scale] 0.80 0.90 0.70 [vis] 10 [mat] whitecol [name] white part of the body
+*[node] 73 [par] 2 [order] 045 [trans] -0.00 0.00 0.17 [scale] 0.80 0.90 0.70 [vis] 10 [mat] whitecol [name] white part of the body
 
 *[node] 3 [par] 1 [order] 0 [trans] 0.00 0.40 0.05 [name] breast
 *[node] 4 [par] 3 [order] 4 [scale] 0.72 0.72 0.72 [name] breast

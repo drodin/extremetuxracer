@@ -71,6 +71,9 @@ static void draw_time(){
 	secstr = Int_StrN (sec, 2);
 	hundrstr = Int_StrN (hundr, 2);
 
+
+
+
 	timestr += ":";
 	timestr += secstr;
 
@@ -78,6 +81,16 @@ static void draw_time(){
 		Tex.DrawNumStr (timestr.c_str(), 20, 10, 1, colWhite);
 		Tex.DrawNumStr (hundrstr.c_str(), 136, 10, 0.7, colWhite);
 	} else {
+		
+/*		
+	glEnable (GL_LINE_SMOOTH);
+	glEnable (GL_BLEND);
+	glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glHint (GL_LINE_SMOOTH_HINT, GL_DONT_CARE);
+	glLineWidth (1.5);
+*/
+	glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_NEAREST);
+		
 		Tex.Draw (T_TIME, 10, 12, 1);
 		FT.SetColor (colDYell);
 		FT.SetSize (32);
@@ -89,7 +102,9 @@ static void draw_time(){
 
 static void draw_herring_count (int herring_count){
 	string hcountstr;
-	
+
+
+
 	hcountstr = Int_StrN (herring_count, 3);
 	if (param.use_papercut_font < 2) {
 		Tex.DrawNumStr (hcountstr.c_str(), param.x_resolution - 90, 10, 1, colWhite);

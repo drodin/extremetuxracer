@@ -32,7 +32,7 @@
 * [id] 25 [name] energy_mask [file] energymask2.png [repeat] 0
 * [id] 26 [name] mask_outline [file] mask_outline2.png [repeat] 0
 
-* [id] 27 [name] ziff032 [file] ziff032.png [repeat] 0
+* [id] 27 [name] ziff032 [file] ziff032.png [repeat] 1
 * [id] 28 [name] mirror_butt [file] mirror_butt.png [repeat] 0
 * [id] 30 [name] random_butt [file] random_butt.png [repeat] 0
 * [id] 31 [name] herring_icon2 [file] herringicon3.png [repeat] 0
