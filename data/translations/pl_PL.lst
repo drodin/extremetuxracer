@@ -23,35 +23,51 @@
 *[idx] 15 [engl] Ok [trans] OK
 *[idx] 16 [engl] Congratulations! You won the cup! 
 	[trans] Wygrałeś ten puchar!
-*[idx] 17 [engl] You have reached level [trans] 
-*[idx] 18 [engl] Sorry, you didn't advance [trans]
+*[idx] 17 [engl] You have reached level [trans] Osiągnąłeś poziom 
+*[idx] 18 [engl] Sorry, you didn't advance [trans] Niestety, nie przeszedłeś dalej
 *[idx] 19 [engl] You don't have any lives left [trans] Nie masz już możliwych szansz.
 *[idx] 20 [engl] Select a race [trans] Wybierz trasę
 
-*[idx] 21 [engl] Failed, -1 Tuxlive [trans] 
-*[idx] 22 [engl] Success, +/- 0 Tuxlive [trans]
-*[idx] 23 [engl] Success, +1 Tuxlive [trans]
-*[idx] 24 [engl] Success, +2 Tuxlive [trans]
+*[idx] 21 [engl] Failed, -1 Tuxlive [trans] Porażka, -1 życie
+*[idx] 22 [engl] Success, +/- 0 Tuxlive [trans] Sukces, +/- 0 żyć
+*[idx] 23 [engl] Success, +1 Tuxlive [trans] Sukces, +1 żyć
+*[idx] 24 [engl] Success, +2 Tuxlive [trans] Sukces, +2 życia
 *[idx] 25 [engl] Race aborted [trans] Wyścig przerwany
 *[idx] 26 [engl] Score: [trans] Wynik:
-*[idx] 27 [engl] points [trans]
+*[idx] 27 [engl] points [trans] pkt
 
 *[idx] 28 [engl] Cancel [trans] Anuluj
 *[idx] 29 [engl] Loading [trans] Ładowanie
-*[idx] 30 [engl] Please wait... [trans] roszę Czekać...
+*[idx] 30 [engl] Please wait... [trans] Proszę Czekać...
 
 *[idx] 31 [engl] Fullscreen: [trans] Pełny ekran:
 *[idx] 32 [engl] Resolution: [trans] Rozdzielczość:
-*[idx] 33 [engl] Music volume: [trans]
-*[idx] 34 [engl] Sound volume: [trans]
+*[idx] 33 [engl] Music volume: [trans] Głośność muzyki:
+*[idx] 34 [engl] Sound volume: [trans] Głośność dźwięków:
 *[idx] 35 [engl] Language: [trans] Język:
-*[idx] 36 [engl] Level of detail: [trans] 
+*[idx] 36 [engl] Level of detail: [trans] Poziom szczegółów: 
 *[idx] 37 [engl] Contributed by: [trans] Stworzona przez:
 *[idx] 38 [engl] Event: [trans] Rozgrywki:
 *[idx] 39 [engl] Cup: [trans] Puchar:
 *[idx] 40 [engl] Race Over [trans] Koniec wyścigu
 
 *[idx] 41 [engl] For more configuration options, please edit the 
-	[trans] 
+	[trans] Zaawansowane opcje konfiguracji znajdują się w
 *[idx] 42 [engl] file 'options.lst' and read the documentation. 
-	[trans] 
+	[trans] pliku 'options.lst' - szczegóły w dokumentacji
+
+*[idx] 43 [engl] Help [trans] Pomoc
+*[idx] 44 [engl] 1, 2, 3 - change view mode [trans] 1, 2, 3 - zmiana trybu kamery
+*[idx] 45 [engl] F - hide/show fps display [trans] F - pokaż/ukryj FPS
+*[idx] 46 [engl] H - hide/show hud display [trans] H - pokaż/ukry HUD
+*[idx] 47 [engl] S - screenshot [trans] S - zrzut ekranu
+*[idx] 48 [engl] U - toggle ui snow [trans] U - włącz/wyłącz śnieg
+*[idx] 49 [engl] P - set pause mode [trans] P - pauza
+*[idx] 50 [engl] T - trick [trans] T - triki
+*[idx] 51 [engl] ESC - abort Race [trans] ESC - przerwij wyścig
+*[idx] 52 [engl] SPACE - jump [trans] SPACJA - skok
+*[idx] 53 [engl] CRSR Left - turn left [trans] STRZAŁKA w lewo - skręt w lewo
+*[idx] 54 [engl] CRSR Right - turn right [trans] STRZAŁKA w prawo - skręt w prawo
+*[idx] 55 [engl] CRSR Up - accelerate [trans] STRZAŁKA w górę - przyśpieszanie
+*[idx] 56 [engl] CRSR down - brake [trans] STRZAŁKA w dół - hamowanie
+*[idx] 57 [engl] Keyboard Functions [trans] Klawisze Funkcyjne
