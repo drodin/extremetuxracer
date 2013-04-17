@@ -43,7 +43,7 @@ CFLAGS="$CFLAGS $SDL_CFLAGS"
 LIBS="$LIBS $SDL_LIBS"
 
 # TODO: Proper checks instead of hardcoding
-LDFLAGS="$LDFLAGS -lGL -lGLU -lSDL_image -lSDL_mixer"
+LIBS="$LIBS -lGL -lGLU -lSDL_image -lSDL_mixer"
 
 AC_CONFIG_FILES([Makefile])
 AC_OUTPUT
