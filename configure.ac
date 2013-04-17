@@ -38,8 +38,12 @@ esac
 AC_FUNC_MALLOC
 AC_CHECK_FUNCS([floor getcwd memmove memset mkdir pow sqrt strchr])
 
+AM_PATH_SDL([1.0.0])
+CFLAGS="$CFLAGS $SDL_CFLAGS"
+LIBS="$LIBS $SDL_LIBS"
+
 # TODO: Proper checks instead of hardcoding
-LDFLAGS="$LDFLAGS -lGL -lGLU -lSDL -lSDL_image -lSDL_mixer"
+LDFLAGS="$LDFLAGS -lGL -lGLU -lSDL_image -lSDL_mixer"
 
 AC_CONFIG_FILES([Makefile])
 AC_OUTPUT
