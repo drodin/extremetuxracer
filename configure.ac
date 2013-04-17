@@ -18,7 +18,7 @@ AC_PROG_CC
 AC_CHECK_FT2
 
 CXXFLAGS="$CXXFLAGS $FT2_CFLAGS"
-LDFLAGS="$LDFLAGS $FT2_LIBS"
+LIBS="$LIBS $FT2_LIBS"
 
 # Checks for header files.
 AC_CHECK_HEADERS([float.h limits.h stdlib.h string.h sys/time.h unistd.h])
