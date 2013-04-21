@@ -91,11 +91,6 @@ bool	FileExists (const string filename);
 bool	FileExists (const string dir, const string filename);
 bool    DirExists (const char *dirname);
 
-// the following functions should work on Windows, too
-// though they are not particularly for Window
-bool	FileExistsWin (const char *filename);
-bool    DirExistsWin (const char *dirname);
-
 // --------------------------------------------------------------------
 //				message utils
 // --------------------------------------------------------------------

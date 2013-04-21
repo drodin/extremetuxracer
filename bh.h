@@ -80,9 +80,12 @@ GNU General Public License for more details.
 	#include <io.h>
 	#include <direct.h>
 	#include <windows.h>
-	#pragma warning (disable:4244)	
-	#pragma warning (disable:4305)	
-	#pragma warning (disable:4761)	
+	#include "glext.h"
+	#pragma warning (disable:4244)
+	#pragma warning (disable:4305)
+	#pragma warning (disable:4761)
+	#define getcwd _getcwd
+	#define chdir _chdir
 	#define SEP "\\"
 #elif defined ( OS_WIN32_NATIVE )
 	#include <io.h>

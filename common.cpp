@@ -233,22 +233,16 @@ bool FileExists (const string dir, const string filename) {
 	return FileExists (dir + SEP + filename);
 }
 
+#ifndef OS_WIN32_MSC
 bool DirExists (const char *dirname) {
-    DIR *xdir;
+	DIR *xdir;
     if ((xdir = opendir (dirname)) == 0) 
 		return ((errno != ENOENT) && (errno != ENOTDIR));
     if (closedir (xdir) != 0) Message ("Couldn't close directory", dirname);
     return true;
 }
-
-bool FileExistsWin (const char *filename) {
-	FILE *xfile = fopen (filename, "r");
-    if (xfile == NULL) return false;
-	if (fclose (xfile) != 0) Message ("error closing file", filename);
-	return true;
-}
-
-bool DirExistsWin (const char *dirname) {
+#else
+bool DirExists (const char *dirname) {
     char curdir[1000];
     if (getcwd (curdir, 1000) == 0)
 		Message ("DirExistsWin: getcwd failed");
@@ -260,6 +254,7 @@ bool DirExistsWin (const char *dirname) {
 	}
     return true;
 }
+#endif
 
 void DrawStdSphere (int num_divisions) {
     double theta, phi, d_theta, d_phi, eps, twopi;

@@ -288,7 +288,7 @@ void SaveConfigFile () {
 // --------------------------------------------------------------------
 
 void InitConfig (char *arg0) {
-#if defined (OS_WIN32_MINGW)
+#if defined (OS_WIN32_MINGW) || defined (OS_WIN32_MSC)
 	// the progdir is always the current dir
 	param.config_dir = "config";
 	param.data_dir = "data";
