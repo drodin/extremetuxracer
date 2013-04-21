@@ -165,12 +165,11 @@ void CImage::WritePPM (const char *dir, const char *filename) {
 
 void CImage::WriteTGA (const char *filepath) {
 	if (data == NULL) return;
-	FILE *out = fopen (filepath, "w");
+	std::ofstream out(filepath, std::ios_base::out|std::ios_base::binary);
 	short TGAhead[] = {0, 2, 0, 0, 0, 0, nx, ny, 24};
 
-	fwrite (&TGAhead, sizeof (TGAhead), 1, out);
-	fwrite (data, 3 * nx * ny, 1, out);
-	fclose (out); 
+	out.write(reinterpret_cast<char*>(&TGAhead), sizeof(TGAhead));
+	out.write(reinterpret_cast<char*>(data), 3 * nx * ny);
 }
 
 void CImage::WriteTGA (const char *dir, const char *filename) {
@@ -195,10 +194,9 @@ void CImage::WriteTGA_H (const char *filepath) {
     header.tfBpp = 24;
     header.tfImageDes = 0;
 
-	FILE   *out = fopen (filepath, "w");
-	fwrite (&header, sizeof (TTgaHeader), 1, out);
-	fwrite (data, 3 * nx * ny, 1, out);
-	fclose (out); 
+	std::ofstream out(filepath, std::ios_base::out|std::ios_base::binary);
+	out.write(reinterpret_cast<char*>(&header), sizeof(TTgaHeader));
+	out.write(reinterpret_cast<char*>(data), 3 * nx * ny);
 }
 
 void CImage::WriteTGA_H (const char *dir, const char *filename) {

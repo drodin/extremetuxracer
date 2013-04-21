@@ -92,10 +92,7 @@ void PrintDouble (const double val) {
 }
 
 void PrintFloat (char *s, const float val) {
-	char ss[128];
-	strcpy (ss, s);
-	strcat (ss," %.4f \n");
-	printf (ss, val);
+	printf("%s %.4f\n", s, val);
 }
 
 void PrintFloat8 (const float val) {
@@ -137,10 +134,7 @@ void PrintIndex4 (TIndex4 idx) {
 }
 
 void PrintVector (char *s, const TVector3 v) {
-	char ss[128];
-	strcpy (ss, s);
-	strcat (ss, " %.4f  %.4f  %.4f \n");
-	printf (ss, v.x, v.y, v.z); 
+	printf ("%s %.4f  %.4f  %.4f\n", s, v.x, v.y, v.z); 
 }
 
 void PrintMatrix (TMatrix mat) {
@@ -189,11 +183,7 @@ void Message (const char *msg, const char *desc) {
 
 	string aa = msg;
 	string bb = desc;
-	char item[128];
-	strcpy (item, msg);
-	strcat (item, "  ");
-	strcat (item, desc);
-	printf ("%s \n", item);
+	printf ("%s  %s\n", msg, desc);
 	msg_list.Add (aa + bb);
 }
 
@@ -202,9 +192,7 @@ void Message (const char *msg) {
 		printf (" \n");
 		return;
 	}
-	char item[128];
-	strcpy (item, msg);
-	printf ("%s \n", item);
+	printf ("%s\n", msg);
 	msg_list.Add (msg);
 }
 

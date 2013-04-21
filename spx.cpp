@@ -66,7 +66,7 @@ void STrimLeftN (string &s) {
 
 void STrimRightN (string &s) {
 	int i = s.size() -1;
-	while ((s[i] == ' ' || s[i] == '\t') && i >= 0) i--;
+	while (i >= 0 && (s[i] == ' ' || s[i] == '\t')) i--;
 	s.erase (i+1);	
 }
 
