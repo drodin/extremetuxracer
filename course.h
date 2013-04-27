@@ -35,7 +35,6 @@ GNU General Public License for more details.
 #define MAX_TERR_TYPES 64
 #define MAX_COLL 12192
 #define MAX_NOCOLL 8192
-#define MAX_OBJECTS 16000
 #define MAX_OBJECT_TYPES 128
 #define MAX_POLY 128
 #define MAX_DESCRIPTION_LINES 8

@@ -48,7 +48,6 @@ TVector2 Str_Vector2N (const string &s);
 TVector3 Str_Vector3N (const string &s, const TVector3 def);
 TVector3 Str_Vector3N (const string &s);
 TVector4 Str_Vector4N (const string &s, const TVector4 def);
-TTuple4  Str_Tuple4N  (const string &s);
 TColor   Str_ColorN   (const string &s, const TColor def);
 TColor3  Str_Color3N  (const string &s, const TColor3 def);
 void     Str_ArrN     (const string &s, float *arr, int count, float def);
@@ -71,7 +70,6 @@ TVector3 SPVector3N   (string &s, const string &tag, const TVector3 def);
 TIndex3  SPIndex3N    (string &s, const string &tag, const TIndex3 def);
 TVector2 SPVector2N   (string &s, const string &tag);
 TVector3 SPVector3N   (string &s, const string &tag);
-TTuple4  SPTuple4N    (string &s, const string &tag);
 TVector4 SPVector4N   (string &s, const string &tag, const TVector4 def);
 TColor   SPColorN     (string &s, const string &tag, const TColor def);
 TColor3  SPColor3N    (string &s, const string &tag, const TColor3 def);
@@ -81,10 +79,7 @@ int      SPEnumN      (string &s, const string &tag, int def);
 
 // ----- compatibility ------------------------------------------------
 void     Int_CharN    (char *s, const int val);
-void     Int_CharN    (char *s, const int val, const int cnt);
-char    *NewStrN      (const char *s);
 void     SPCharN      (string &s, const string &tag, char *result);
-char    *SPNewCharN   (string &s, const string &tag);
 
 // ----- making SP strings --------------------------------------------
 void     SPAddIntN    (string &s, const string &tag, const int val);
@@ -113,8 +108,7 @@ private:
 	int *fflag;
 	int fnewlineflag;
 public:
-	CSPList (int maxlines);
-	CSPList (int maxlines, int newlineflag);
+	CSPList (int maxlines, int newlineflag = 0);
 	~CSPList ();
 
 	string Line (int idx);

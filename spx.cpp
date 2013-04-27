@@ -19,8 +19,8 @@ GNU General Public License for more details.
 #include <sstream>
 #include <iomanip>
 #include <iostream>
+#include <fstream>
 
-static char cbuffer[4096];
 static string EnumStr;
 
 void SetEnum (string s) { EnumStr = s;}
@@ -192,23 +192,6 @@ TVector3 Str_Vector3N (const string &s) {
 	else return MakeVector (x, y, z);
 }
 
-TTuple4 MakeTuple4 (double a, double b, double c, double d) {
-	TTuple4 res;
-	res.a = a;
-	res.b = b;
-	res.c = c;
-	res.d = d;
-	return res;
-}
-
-TTuple4 Str_Tuple4N (const string &s) {
-	float a, b, c, d;
-	istringstream is(s);
-	is >> a >> b >> c >> d;
-	if (is.fail()) return MakeTuple4 (0, 0, 0, 0);
-	else return MakeTuple4 (a, b, c, d);
-}
-
 TVector4 Str_Vector4N (const string &s, const TVector4 def) {
 	float x, y, z, w;
 	istringstream is(s);
@@ -339,10 +322,6 @@ TVector3 SPVector3N (string &s, const string &tag) {
 	return (Str_Vector3N (SPItemN (s, tag)));
 }
 
-TTuple4 SPTuple4N (string &s, const string &tag) {
-	return (Str_Tuple4N (SPItemN (s, tag)));
-}
-
 TVector4 SPVector4N (string &s, const string &tag, const TVector4 def) {
 	return (Str_Vector4N (SPItemN (s, tag), def));
 }
@@ -373,37 +352,10 @@ int SPPosN (string &s, const string &tag) {
 
 // --------------------------------------------------------------------
 // 			compatibility
-// --------------------------------------------------------------------
-
-void SInsertO (char *s, int pos, const char *str) {
-	char buff[5012];
-	int lng = strlen (s);
-	if (pos > lng) pos = lng;
-	if (pos == lng) {
-		strcat (s, str);	
-	} else {
-		memmove (buff, s+pos, lng-pos+1);
-		s[pos] = '\0';
-		strcat (s, str);
-		strcat (s, buff);
-	}
-}
+// -------------------------------------------------------------------
 
 void Int_CharN (char *s, const int val) {
 	sprintf (s, "%i", val);
-}
-
-void Int_CharN (char *s, const int val, const int cnt) {
-	sprintf (s, "%i", val);
-	while (strlen (s) < (unsigned int)cnt) SInsertO (s, 0, "0");
-}
-
-char *NewStrN (const char *s) {
-    char *dest;
-    dest = (char *) malloc (sizeof(char) * (strlen(s) + 1));
-    if (dest == 0) Message ("malloc failed","");
-    strcpy (dest, s);
-    return dest;
 }
 
 void SPCharN (string &s, const string &tag, char *result) {
@@ -411,13 +363,6 @@ void SPCharN (string &s, const string &tag, char *result) {
 	if (item.size() < 1) return;
 	STrimN (item);
 	strcpy (result, item.c_str());
-}
-
-char *SPNewCharN (string &s, const string &tag) {
-	string item = SPItemN (s, tag);
-	if (item.size() < 1) return 0;
-	STrimN (item);
-	return NewStrN (item.c_str());
 }
 
 // ------------------ add ---------------------------------------------
@@ -535,14 +480,6 @@ void SPSetStrN (string &s, const string &tag, const string &val) {
 // --------------------------------------------------------------------
 
 
-CSPList::CSPList (int maxlines) {
-	fmax = maxlines;
-	flines = new string [maxlines];
-	fflag = new int [maxlines];
-	fcount = 0;
-	fnewlineflag = 0;
-}
-
 CSPList::CSPList (int maxlines, int newlineflag) {
 	fmax = maxlines;
 	flines = new string [maxlines];
@@ -552,7 +489,7 @@ CSPList::CSPList (int maxlines, int newlineflag) {
 }
 
 CSPList::~CSPList () {
-	if (flines != 0) delete []flines;
+	delete []flines;
 	delete []fflag;
 }
 
@@ -611,20 +548,17 @@ char lastchar (const string s) {
 }
 
 bool CSPList::Load (const string &filepath) {
-	FILE *tempfile;
+	std::ifstream tempfile(filepath.c_str());
 	string line;
 	bool valid;
 	bool fwdflag;
 
 	bool backflag = false;
-	tempfile = fopen (filepath.c_str(), "r");
-	if (tempfile == 0) {
+	if (!tempfile) {
 		Message ("CSPList::Load - unable to open","");
 		return false;
 	} else {
-	    while (fgets (cbuffer, 4000, tempfile)) {
-			line = cbuffer;
-			STrimN (line);
+		while (getline(tempfile, line)) {
 
 			// delete new line char if in string
 			int npos = line.rfind ('\n');
@@ -637,7 +571,7 @@ bool CSPList::Load (const string &filepath) {
 			if (valid) {
 				if (fcount < fmax) {
 					if (fnewlineflag == 0) {
-						if (cbuffer[0] == '*' || fcount < 1) Add (line);
+						if (line[0] == '*' || fcount < 1) Add (line);
 						else Append (line, fcount-1);
 					} else if (fnewlineflag == 1) {
 						if (lastchar (line) == '\\') {
@@ -657,8 +591,7 @@ bool CSPList::Load (const string &filepath) {
 					return false;
 				}
 			}
-    	}
-		fclose (tempfile); 
+		}
 		return true;
 	}
 }

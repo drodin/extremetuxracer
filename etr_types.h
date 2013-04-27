@@ -18,9 +18,6 @@ GNU General Public License for more details.
 #ifndef ETR_TYPES_H
 #define ETR_TYPES_H
 
-#define COURSE_VERTEX(x,y) MakeVector ( (double)(x)/(nx-1.)*course_width, \
-                       ELEV((x),(y)), -(double)(y)/(ny-1.)*course_length ) 
-
 #ifndef MIN
 #	define MIN(x,y) ((x)<(y)?(x):(y))
 #endif
@@ -51,12 +48,9 @@ GNU General Public License for more details.
 #define TUX_WIDTH 0.45 			
 #define MAX_ROLL_ANGLE 30
 #define BRAKING_ROLL_ANGLE 55
-#define BUFF_LEN 1024
 
 #define CENTER -1
 #define FIT -1
-
-typedef double scalar_t;
 
 typedef struct {double x, y;}			TVector2;
 typedef struct {double x, y, z;}		TVector3;
@@ -68,11 +62,8 @@ typedef struct {int i, j, k, l;}		TIndex4;
 
 typedef struct {double r, g, b, a;}		TColor;
 typedef struct {double r, g, b;}		TColor3;
-typedef struct {double x, y, z;}		TTuple;
-typedef struct {double a, b, c, d;}		TTuple4;
 
-typedef double							TMatrix[4][4]; 
-typedef double							TMatrixGL[16];
+typedef double							TMatrix[4][4];
 typedef struct {double x, y, z, w;}		TQuaternion;
 
 typedef struct {TVector3 nml; double d;}			TPlane;

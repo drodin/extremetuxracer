@@ -148,17 +148,6 @@ void PrintMatrix (TMatrix mat) {
 	printf ("\n");
 }
 
-void PrintMatrixGL (TMatrixGL glmat) {
-	printf ("\n");
-	for (int i=0; i<4; i++) {
-		for (int j=0; j<4; j++) 
-			if (glmat[i*4+j]<0) printf ("  %.2f", glmat[i*4+j]);
-			else printf ("   %.2f", glmat[i*4+j]);
-		printf ("\n");
-	}
-	printf ("\n");
-}
-
 void PrintQuaternion (TQuaternion q) {
 	printf ("Quaternion: %.4f  %.4f  %.4f  %.4f\n", q.x, q.y, q.z, q.w); 
 }

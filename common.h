@@ -76,7 +76,6 @@ void	PrintVector2 (const TVector2 v);
 void	PrintVector (char *s, const TVector3 v);
 
 void	PrintMatrix (TMatrix mat);
-void	PrintMatrixGL (TMatrixGL glmat);
 void	PrintQuaternion (TQuaternion q);
 
 void	PrintIndex3 (TIndex3 idx);

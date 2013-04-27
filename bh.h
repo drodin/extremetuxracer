@@ -110,7 +110,6 @@ GNU General Public License for more details.
 #define PACKAGE "etr"
 #define VERSION "0.6"
 #define WINDOW_TITLE "Extreme Tux Racer " VERSION
-#define PROG_DIR "/usr/local/games/etr-bh"
 
 using namespace std;
 
