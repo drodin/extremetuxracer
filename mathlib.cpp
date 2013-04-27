@@ -653,9 +653,6 @@ void backsb (double *matrix, int n, double *soln){
 // ***************************************************************************
 // ***************************************************************************
 
-#define MAG_SQD2(vec) ((vec).x * (vec).x + \
-       (vec).y * (vec).y + (vec).z * (vec).z )
-
 bool IntersectPolygon (TPolygon p, TVector3 *v) {
     TRay ray; 
     TVector3 nml, edge_nml, edge_vec;
@@ -690,12 +687,12 @@ bool IntersectPolygon (TPolygon p, TVector3 *v) {
 		t = - DotProduct (*((TVector3 *) v0), edge_vec);
 
 		if  (t < 0) {
-			distsq = MAG_SQD2 (*v0);
+			distsq = MAG_SQD (*v0);
 		} else if  (t > edge_len) {
-			distsq = MAG_SQD2 (*v1);
+			distsq = MAG_SQD (*v1);
 		} else {
 			*v0 = AddVectors (*v0, ScaleVector (t, edge_vec));
-			distsq = MAG_SQD2 (*v0);
+			distsq = MAG_SQD (*v0);
 		}
 
 		if  (distsq <= 1) return true;

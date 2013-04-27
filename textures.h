@@ -162,7 +162,6 @@ private:
 	void DrawNumChr (char c, int x, int y, int w, int h, TColor col);
 public:
     CTexture ();
-	~CTexture ();
 	int LoadTexture (const char *filename);
 	int LoadTexture (const char *dir, const char *filename);
 	int LoadTexture (const string dir, const string filename);

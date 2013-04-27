@@ -289,11 +289,8 @@ CTexture Tex;
 CTexture::CTexture () {
 	for (int i=0; i<MAX_COMMON_TEX; i++) CommonTex[i] = 0;
 	numTextures = 0;
-	TextureIndex = "";	
 	forientation = OR_TOP;
 }
-
-CTexture::~CTexture () {}
 
 int CTexture::LoadTexture (const char *filename) {
     CImage texImage;

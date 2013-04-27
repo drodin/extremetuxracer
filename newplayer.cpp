@@ -103,9 +103,6 @@ void QuitAndAddPlayer () {
 	Winsys.SetMode (REGIST);
 }
 
-// NewPlayerKeys not used any longer, see NewPlayerKeySpec instead
-void NewPlayerKeys (unsigned int key, bool special, bool release, int x, int y) {}
-
 void ChangeAvatarSelection (int focus, int dir) {
 	if (dir == 0) {
 		switch (focus) {
