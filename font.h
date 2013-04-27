@@ -46,7 +46,6 @@ private:
 
 public:
 	CFont ();
-	~CFont ();
 
 	void Clear ();
 	int  LoadFont (string name, const char *dir, const char *filename);

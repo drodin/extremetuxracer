@@ -157,8 +157,6 @@ private:
 	void SetStartParams (CControl *ctrl);
 	void CurtainVec (float angle, float zdist, float &x, float &z);
 public:
-	CCurtain ();
-	~CCurtain ();
 	void Init (CControl *ctrl);
 	void Update (float timestep, CControl *ctrl);
 	void Draw (CControl *ctrl);
@@ -208,7 +206,6 @@ private:
 	void CalcDestAngle ();
 public:
 	CWind ();
-	~CWind ();
 
 	void Update (float timestep);
 	void Init (int wind_id);

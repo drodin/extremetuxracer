@@ -70,11 +70,10 @@ CSound::CSound () {
 		sounds[i].chunk = NULL;
 		active_arr[i] = false;
 	}
-	SoundIndex = ""; 
 	numSounds = 0;
 }
 
-int CSound::LoadChunk (const char *name, const char *filename) {
+int CSound::LoadChunk (const std::string& name, const char *filename) {
     if (Audio.IsOpen == false) return -1;
 	if (numSounds >= MAX_SOUNDS) return -1; 
 	sounds[numSounds].chunk = Mix_LoadWAV (filename);
@@ -103,7 +102,7 @@ void CSound::LoadSoundList () {
 			name = SPStrN (line, "name", "");		
 			soundfile = SPStrN (line, "file", "");		
 			path = MakePathStr (param.sounds_dir, soundfile);
-			LoadChunk (name.c_str(), path.c_str());
+			LoadChunk (name, path.c_str());
 		}
 	}
 }
@@ -212,13 +211,11 @@ void Hook () {
 
 CMusic::CMusic () {
 	for (int i=0; i<MAX_MUSICS; i++) musics[i] = NULL;
-	MusicIndex = ""; 
 	numMusics = 0;
 
 	for (int i=0; i<MAX_THEMES; i++) {
 		for (int j=0; j<3; j++) themes[i][j] = -1;
 	}
-	ThemesIndex = "";
 	numThemes = 0;
 
 	curr_musid = -1;

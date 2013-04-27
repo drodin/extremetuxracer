@@ -78,7 +78,6 @@ private:
 	string GetDir (int location, int light);
 public:
 	CEnvironment ();
-	~CEnvironment ();
 	bool LoadEnvironmentList ();
 	bool LoadEnvironment (int loc, int light);
 	void DrawSkybox (TVector3 pos);

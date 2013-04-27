@@ -29,14 +29,9 @@ CEvents Events;
 
 CEvents::CEvents () {
 	numRaces = 0;
-	RaceIndex = "";
 	numCups = 0;
-	CupIndex = "";
 	numEvents = 0;
-	EventIndex = "";
 }
-
-CEvents::~CEvents () {}
 
 bool CEvents::LoadEventList () {
 	CSPList list(256);
@@ -174,25 +169,17 @@ bool CEvents::IsUnlocked (int event, int cup) {
 CPlayers Players;
 
 CPlayers::CPlayers () {
-	int i;
-	for (i=0; i<MAX_PLAYERS; i++) {
-		plyr[i].name = "";
-		plyr[i].avatar = "";
+	for (int i=0; i<MAX_PLAYERS; i++) {
 		plyr[i].ctrl = NULL;
 		plyr[i].texid = 0;
-		plyr[i].funlocked = "";
 	}
 	currPlayer = 0;
 	numPlayers = 1;
-	AvatarIndex = "";
 	numAvatars = 0;
-	for (i=0; i<MAX_AVATARS; i++) {
-		avatars[i].filename = "";
+	for (int i=0; i<MAX_AVATARS; i++) {
 		avatars[i].texid = 0;
 	}
 }
-
-CPlayers::~CPlayers () {}
 
 void CPlayers::AddPlayer (string name, string avatar) {
 	if (numPlayers >= MAX_PLAYERS) {
@@ -367,16 +354,12 @@ CCharacter Char;
 
 CCharacter::CCharacter () {
 	for (int i=0; i<MAX_CHARACTERS; i++) {
-		CharList[i].name = "";
-		CharList[i].dir = "";
 		CharList[i].preview = 0;
 		CharList[i].shape = NULL;
 	}
 	numCharacters = 0;
 	curr_character = 0;
 }
-
-CCharacter::~CCharacter () {}
 
 static string char_type_index = "[spheres]0[3d]1";
 

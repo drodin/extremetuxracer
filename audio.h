@@ -27,7 +27,6 @@ class CAudio {
 private:
 public:
 	CAudio ();
-	~CAudio () {}
 	
 	void Open ();
 	void Close ();
@@ -55,10 +54,9 @@ private:
 	string SoundIndex;
 	bool active_arr[MAX_SOUNDS];
 public:
-	CSound (); 
-	~CSound () {}
+	CSound ();
 
-	int  LoadChunk (const char *name, const char *filename);
+	int  LoadChunk (const std::string& name, const char *filename);
 	void LoadSoundList ();
 	int  GetSoundIdx (string name);
 
@@ -102,8 +100,7 @@ private:
 	int curr_musid;			// ID of current music piece
 	int curr_volume;
 public:
-	CMusic (); 
-	~CMusic () {}
+	CMusic ();
 	bool is_playing;
 
 	int  LoadPiece (const char *name, const char *filename); 

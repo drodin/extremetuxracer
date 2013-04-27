@@ -29,8 +29,6 @@ GNU General Public License for more details.
 
 CScore Score;
 
-CScore::CScore () {}
-
 void CScore::ResetScorelist (int list_idx) {
 	TScoreList *list = &Scorelist[list_idx];
 	for (int i=0; i<MAX_SCORES; i++) {

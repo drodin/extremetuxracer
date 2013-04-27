@@ -67,8 +67,6 @@ CWinsys::CWinsys () {
 	remain_ticks = 0;
 }
 
-CWinsys::~CWinsys () {}
-
 TScreenRes CWinsys::MakeRes (int width, int height) {
 	TScreenRes res;
 	res.width = width;

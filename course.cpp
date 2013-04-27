@@ -46,9 +46,6 @@ CCourse::CCourse () {
 
 	curr_course = -1;
 	numObjects = 0;
-	CourseIndex = "";
-	ObjectIndex = "";
-	PolyIndex = "";
 }
 
 TVector2 CCourse::GetStartPoint () { 

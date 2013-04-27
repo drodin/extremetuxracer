@@ -37,17 +37,14 @@ static float def_partcol[] = {0.8, 0.8, 0.9, 0.0};
 CEnvironment Env;
 
 CEnvironment::CEnvironment () {
-	int i;
 	EnvID = -1;
-	for (i=0; i<MAX_LOCATIONS; i++) locs[i].name = "";
 	numLocs = 0;
-	EnvDir = "";
 	LightIndex = "[sunny]0[cloudy]1[evening]2[night]3";
 	lightcond[0].name = "sunny";
 	lightcond[1].name = "cloudy";
 	lightcond[2].name = "evening";
 	lightcond[3].name = "night";
-	for (i=0; i<6; i++) Skybox[i] = 0;
+	for (int i=0; i<6; i++) Skybox[i] = 0;
 
 	default_light.is_on = true;
 	for (int i=0; i<4; i++) { 
@@ -67,8 +64,6 @@ CEnvironment::CEnvironment () {
 		default_fog.part_color[i] =  def_partcol[i];
 	}
 }
-
-CEnvironment::~CEnvironment () {}
 
 void CEnvironment::ResetSkybox () {
 	for (int i=0; i<6; i++) {

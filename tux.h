@@ -116,7 +116,6 @@ private:
 	void AddAction (int node_name, int type, TVector3 vec, double val);
 public:
 	CCharShape ();
-	~CCharShape ();
 	bool useMaterials;
 	bool useHighlighting;
 	string NodeIndex;

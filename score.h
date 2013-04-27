@@ -41,7 +41,6 @@ private:
 	void ResetScorelist (int list_idx);
 	TScore TempScore;
 public:
-	CScore ();
 	void SetScorelist (int list_idx);
 	int AddScore (int list_idx, TScore score);
 	TScoreList *GetScorelist (int list_idx);

@@ -100,7 +100,6 @@ private:
 	void     SolveOdeSystem (double timestep);
 public:
 	CControl ();
-	~CControl ();
 	
 	// view:
 	TViewMode viewmode;                

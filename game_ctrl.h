@@ -60,7 +60,6 @@ private:
 	bool Unlocked [MAX_EVENTS2][MAX_CUPS_PER_EVENT+1];
 public:
 	CEvents ();
-	~CEvents ();
 	TRace2 RaceList[MAX_RACES2];
 	int numRaces;
 	TCup2 CupList[MAX_CUPS2];
@@ -109,7 +108,6 @@ private:
 	TAvatar avatars[MAX_AVATARS];
 public:
 	CPlayers ();
-	~CPlayers ();
 	int numPlayers;
 	int numAvatars;
 
@@ -151,7 +149,6 @@ private:
 	int curr_character; 
 public:
 	CCharacter ();
-	~CCharacter ();
 
 	TCharacter CharList [MAX_CHARACTERS];
 	int numCharacters;

@@ -52,11 +52,8 @@ CCharShape::CCharShape () {
 		Index[i] = -1;
 	}
 	for (int i=0; i<MAX_CHAR_MAT; i++) {
-		Matlines[i] = "";
 		Materials[i] = NULL;
 	}
-	NodeIndex = "";
-	MaterialIndex = "";
 	numNodes = 0;
 	numMaterials = 0;
 	numMatlines = 0;
@@ -69,8 +66,6 @@ CCharShape::CCharShape () {
 	highlighted = false;
 	highlight_node = -1;
 }
-
-CCharShape::~CCharShape () {}
 
 // --------------------------------------------------------------------
 //				nodes

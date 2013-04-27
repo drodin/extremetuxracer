@@ -812,9 +812,6 @@ void UpdateChanges (double timestep) {
 
 static CCurtain Curtain; 
 
-CCurtain::CCurtain () {}
-CCurtain::~CCurtain () {}
-
 void CCurtain::CurtainVec (float angle, float zdist, float &x, float &z) {
 	x = zdist  * sin (angle * 3.14159 / 180);
 	if (angle > 90 || angle < -90) z = sqrt (zdist * zdist - x * x);
@@ -1003,8 +1000,6 @@ CWind::CWind () {
 	WindChange = 0;
 	AngleChange = 0;
 }
-
-CWind::~CWind () {}
 
 void CWind::SetParams (int grade) {
 	float min_base_speed = 0; 

@@ -75,7 +75,6 @@ private:
 	void CallLoopFunction ();
 public:
 	CWinsys ();
-	~CWinsys ();
 
 	// sdl window
 	TScreenRes GetResolution (int idx);

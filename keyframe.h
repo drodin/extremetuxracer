@@ -45,7 +45,6 @@ private:
 	void ResetFrame2 (TKeyframe2 *frame);
 public:
 	CKeyframe ();
-	~CKeyframe ();
 	int numFrames;
 	string jointname;
 	bool loaded;

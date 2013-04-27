@@ -54,8 +54,6 @@ CKeyframe::CKeyframe () {
 	keyidx = 0;
 }
 
-CKeyframe::~CKeyframe () {}
-
 double CKeyframe::interp (double frac, double v1, double v2) {
     return frac * v1 + (1.0 - frac) * v2;
 } 

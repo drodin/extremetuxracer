@@ -21,15 +21,8 @@ GNU General Public License for more details.
 CTranslation Trans;
 
 CTranslation::CTranslation () {
-	int i;
-	for (i=0; i<MAX_LANGUAGES; i++) {
-		languages[i].lang = "";
-		languages[i].language = "";
-	}
 	numLanguages = 0;
-	LangIndex = "";
 	languages_ok = false;
-	for (i=0; i<MAX_COMMON_TEXTS; i++) texts[i] = "";
 }
 // if anything is wrong with an translation, the program will fall back
 // to these defaults (only the wrong items)
@@ -162,5 +155,3 @@ void CTranslation::LoadTranslations (int langidx) {
 		} 
 	}
 }
-
-

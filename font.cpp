@@ -27,7 +27,7 @@ GNU General Public License for more details.
 // CFont::MakeLineList. This bundle of functions generates
 // a SPList from a textstring and adapts the lines to the textbox
 
-void MakeWordList (CSPList *wordlist, const char *s) {
+static void MakeWordList (CSPList *wordlist, const char *s) {
 	char dest[2000];
 	char val[16];
 	dest[0]=0;
@@ -67,11 +67,11 @@ void MakeWordList (CSPList *wordlist, const char *s) {
 	}
 }
 
-float GetWordLng (const char *word) {
+static float GetWordLng (const char *word) {
 	return FT.GetTextWidth (word) + 4;		// +4: some space reserve at EOL
 }
 
-int MakeLine (int first, CSPList *wordlist, CSPList *linelist, float width) {
+static int MakeLine (int first, CSPList *wordlist, CSPList *linelist, float width) {
 	if (first >= wordlist->Count()) return 999;
 	float wordlng;
 
@@ -107,7 +107,6 @@ CFont FT;
 CFont::CFont () {
 	for (int i=0; i<MAX_FONTS; i++) fonts[i] = NULL;
 	numFonts = 0;
-	fontindex = "";
 	forientation = OR_TOP;
 
 	// setting default values
@@ -127,8 +126,6 @@ void CFont::Clear () {
 	numFonts = 0;
 	fontindex = "";
 }
-
-CFont::~CFont () {}	
 
 // --------------------------------------------------------------------
 //				private
