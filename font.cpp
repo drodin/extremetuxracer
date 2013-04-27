@@ -19,6 +19,7 @@ GNU General Public License for more details.
 #include "font.h"
 #include "spx.h"
 #include "gui.h"
+#include <deque>
 
 #define USE_UNICODE true
 
@@ -27,71 +28,46 @@ GNU General Public License for more details.
 // CFont::MakeLineList. This bundle of functions generates
 // a SPList from a textstring and adapts the lines to the textbox
 
-static void MakeWordList (CSPList *wordlist, const char *s) {
-	char dest[2000];
-	char val[16];
-	dest[0]=0;
-	int ch = 0;
-	int wd = 1;
-	dest[ch] = '['; ch++;
-	dest[ch] = '0'; ch++;
-	dest[ch] = ']'; ch++;
-
-	for (unsigned int i=0; i<strlen(s); i++) {
-		if (s[i] == ' ') {
-			Int_CharN (val, wd); 
-			wd++;
-			dest[ch] = '['; 
-			ch++;
-			for (unsigned int j=0; j<strlen(val); j++) {
-				dest[ch] = val[j]; 
-				ch++;
-			} 
-			dest[ch] = ']'; 
-			ch++;
-		} else {
-			dest[ch] = s[i]; 
-			ch++;
+static void MakeWordList (deque<string>& wordlist, const char *s) {
+	size_t start = 0;
+	for(size_t i = 0; s[i] != '\0'; i++) {
+		if(s[i] == ' ')
+		{
+			if(i != start)
+				wordlist.push_back(string(s+start, i-start) + ' ');
+			while(s[i+1] == ' ')
+				i++;
+			start = i+1;
 		}
 	}
-	dest[ch] = 0;
-
-	string entry, istr;
-	string dest2 (dest);
-//	string *dest2 = new string (dest);
-	for (int i=0; i<wd; i++) {
-		istr = Int_StrN (i);
-		entry = SPStrN (dest2, istr, "");	
-		entry += ' ';
-		wordlist->Add (entry);
-	}
+	if(s[start] != '0')
+		wordlist.push_back(string(s+start) + ' ');
 }
 
 static float GetWordLng (const char *word) {
 	return FT.GetTextWidth (word) + 4;		// +4: some space reserve at EOL
 }
 
-static int MakeLine (int first, CSPList *wordlist, CSPList *linelist, float width) {
-	if (first >= wordlist->Count()) return 999;
-	float wordlng;
+static int MakeLine (int first, const deque<string>& wordlist, CSPList *linelist, float width) {
+	if (first >= wordlist.size()) return wordlist.size()-1;
 
 	int last = first-1;
 	float lng = 0;
 
-	wordlng = GetWordLng (wordlist->LineC(first));
+	float wordlng = GetWordLng (wordlist[first].c_str());
 	bool ready = false;
 	do {
 		last++;
 		lng += wordlng;
-		if (last >= wordlist->Count()-1) ready = true;
+		if (last >= wordlist.size()-1) ready = true;
 		if (!ready) {
-			wordlng = GetWordLng (wordlist->LineC (last+1));
+			wordlng = GetWordLng (wordlist[last+1].c_str());
 			if (!ready && lng + wordlng >= width) ready = true;  
 		}
 	} while (!ready);
 
-	string line = "";
-	for (int j=first; j<=last; j++) line += wordlist->Line(j);
+	string line;
+	for (int j=first; j<=last; j++) line += wordlist[j];
 	linelist->Add (line);
 	return last;
 }
@@ -131,14 +107,13 @@ void CFont::Clear () {
 //				private
 // --------------------------------------------------------------------
 
-wchar_t *CFont::UnicodeStr (const char *s) {
-	wchar_t ch;
-	int len = strlen (s);
-	wchar_t *res = new wchar_t [len+1];
-	int j=0;
+wstring CFont::UnicodeStr (const char *s) {
+	size_t len = strlen (s);
+	wstring res;
+	res.resize(len);
 		
-	for (int i=0; i < len; ++i, ++j ) {
-		ch = ((const unsigned char *)s)[i];
+	for (size_t i=0, j=0; i < len; ++i, ++j) {
+		wchar_t ch = ((const unsigned char *)s)[i];
 		if (ch >= 0xF0) {
 			ch  =  (wchar_t) (s[i] & 0x07)   << 18;
 			ch |=  (wchar_t) (s[++i] & 0x3F) << 12;
@@ -156,35 +131,7 @@ wchar_t *CFont::UnicodeStr (const char *s) {
 				}
 				res[j] = ch;
 	}
-	res[j] = 0;
 	return res;
-}
-
-void CFont::UnicodeStr (wchar_t *buff, const char *string) {
-	wchar_t ch;
-	int len = strlen(string);
-	int j=0;
-		
-	for (int i=0; i < len; ++i, ++j ) {
-		ch = ((const unsigned char *)string)[i];
-		if ( ch >= 0xF0 ) {
-			ch  =  (wchar_t)(string[i]&0x07)   << 18;
-			ch |=  (wchar_t)(string[++i]&0x3F) << 12;
-			ch |=  (wchar_t)(string[++i]&0x3F) << 6;
-			ch |=  (wchar_t)(string[++i]&0x3F);
-		} else
-		if ( ch >= 0xE0 ) {
-			ch  =  (wchar_t)(string[i]&0x0F)   << 12;
-			ch |=  (wchar_t)(string[++i]&0x3F) << 6;
-			ch |=  (wchar_t)(string[++i]&0x3F);
-		} else
-		if ( ch >= 0xC0 ) {
-			ch  =  (wchar_t)(string[i]&0x1F) << 6;
-			ch |=  (wchar_t)(string[++i]&0x3F);
-		}
-		buff[j] = ch;
-	}
-	buff[j] = 0;
 }
 
 // --------------------------------------------------------------------
@@ -309,7 +256,7 @@ void CFont::DrawText (float x, float y, const char *text) {
 		glRasterPos2i ((int)left, (int)y);
 	}
 
-	if (USE_UNICODE) fonts[curr_font]->Render (UnicodeStr (text));
+	if (USE_UNICODE) fonts[curr_font]->Render (UnicodeStr (text).c_str());
 		else fonts[curr_font]->Render (text);
 	glPopMatrix();
 }
@@ -363,7 +310,7 @@ void CFont::DrawText
 		glRasterPos2i ((int)left, (int)y);
 	}
 
-	if (USE_UNICODE) fonts[temp_font]->Render (UnicodeStr (text));
+	if (USE_UNICODE) fonts[temp_font]->Render (UnicodeStr (text).c_str());
 		else fonts[temp_font]->Render (text);
 	glPopMatrix();
 }
@@ -406,7 +353,7 @@ void CFont::GetTextSize (const char *text, float &x, float &y) {
 
 	float llx, lly, llz, urx, ury, urz;
 	fonts[curr_font]->FaceSize ((int)curr_size);
-	if (USE_UNICODE) fonts[curr_font]->BBox (UnicodeStr(text), llx, lly, llz, urx, ury, urz);
+	if (USE_UNICODE) fonts[curr_font]->BBox (UnicodeStr(text).c_str(), llx, lly, llz, urx, ury, urz);
 		else fonts[curr_font]->BBox (text, llx, lly, llz, urx, ury, urz);
 	x = urx - llx;
 	y = ury - lly;
@@ -419,7 +366,7 @@ void CFont::GetTextSize (const char *text, float &x, float &y, const string &fon
 
 	float llx, lly, llz, urx, ury, urz;
 	fonts[temp_font]->FaceSize ((int)size);
-	if (USE_UNICODE) fonts[temp_font]->BBox (UnicodeStr(text), llx, lly, llz, urx, ury, urz);
+	if (USE_UNICODE) fonts[temp_font]->BBox (UnicodeStr(text).c_str(), llx, lly, llz, urx, ury, urz);
 		else fonts[temp_font]->BBox (text, llx, lly, llz, urx, ury, urz);
 	x = urx - llx;
 	y = ury - lly;
@@ -431,7 +378,7 @@ float CFont::GetTextWidth (const char *text) {
 
 	float llx, lly, llz, urx, ury, urz;
 	fonts[curr_font]->FaceSize ((int)curr_size);
-	if (USE_UNICODE) fonts[curr_font]->BBox (UnicodeStr (text), llx, lly, llz, urx, ury, urz);
+	if (USE_UNICODE) fonts[curr_font]->BBox (UnicodeStr (text).c_str(), llx, lly, llz, urx, ury, urz);
 		else fonts[curr_font]->BBox (text, llx, lly, llz, urx, ury, urz);
 	return urx - llx;
 }
@@ -457,7 +404,7 @@ float CFont::GetTextWidth (const char *text, const string &fontname, float size)
 
 	float llx, lly, llz, urx, ury, urz;
 	fonts[temp_font]->FaceSize ((int)size);
-	if (USE_UNICODE) fonts[temp_font]->BBox (UnicodeStr (text), llx, lly, llz, urx, ury, urz);
+	if (USE_UNICODE) fonts[temp_font]->BBox (UnicodeStr (text).c_str(), llx, lly, llz, urx, ury, urz);
 		else fonts[temp_font]->BBox (text, llx, lly, llz, urx, ury, urz);
 	return urx - llx;
 }
@@ -482,12 +429,11 @@ void CFont::SetOrientation (int orientation) {
 }
 
 void CFont::MakeLineList (const char *source, CSPList *line_list, float width) {
-	CSPList wordlist(1000);
-	MakeWordList (&wordlist, source);
+	deque<string> wordlist;
+	MakeWordList (wordlist, source);
 
 	int last = -1;
-	do { last = MakeLine (last+1, &wordlist, line_list, width); } 
-	while (last < wordlist.Count()-1);
+	do { last = MakeLine (last+1, wordlist, line_list, width); } 
+	while (last < wordlist.size()-1);
 }
-
 

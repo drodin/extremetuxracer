@@ -41,8 +41,7 @@ private:
 	float  curr_size;
 	float  curr_fact;		// the length factor
 
-	wchar_t *UnicodeStr  (const char* s);
-	void     UnicodeStr  (wchar_t* buff, const char* string);
+	wstring UnicodeStr  (const char* s);
 
 public:
 	CFont ();
