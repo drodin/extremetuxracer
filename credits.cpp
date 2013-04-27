@@ -71,9 +71,11 @@ void DrawCreditsText (double time_step){
 	TColor col;
 	if (moving) y_offset += time_step * 30;
 
-	
+
 	for (i=0; i < numCredits; i++) {
 		offs = h - 100 - y_offset + CreditList[i].offs;
+		if (offs > h || offs < 0.0) // Draw only visible lines
+			continue;
 
 		if (CreditList[i].col == 0) col = colWhite;
 		else col = colDYell;
@@ -154,11 +156,11 @@ static void CreditsMouseFunc (int button, int state, int x, int y ){
 }
 
 void CreditsMotionFunc (int x, int y ){
-    TVector2 old_pos;
-	
-	if (Winsys.ModePending ()) return; 	    
+	if (Winsys.ModePending ())
+		return;
+
     y = param.y_resolution - y;
-    old_pos = cursor_pos;
+    TVector2 old_pos = cursor_pos;
     cursor_pos = MakeVector2 (x, y);
 
     if (old_pos.x != x || old_pos.y != y) {
@@ -207,5 +209,4 @@ void credits_register() {
 	Winsys.SetModeFuncs (CREDITS, CreditsInit, CreditsLoop, CreditsTerm,
  		CreditsKeys, CreditsMouseFunc, CreditsMotionFunc, NULL, NULL, NULL);
 }
-
 
