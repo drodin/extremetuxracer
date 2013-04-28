@@ -71,7 +71,7 @@ void PrintInt (const int val) {
 	printf ("Integer: %i \n", val );
 }
 
-void PrintInt (string s, const int val) {
+void PrintInt (const string& s, const int val) {
 	cout << s << val << endl;
 }
 
@@ -79,7 +79,7 @@ void PrintStr (const char *val) {
 	printf ("%s \n", val);
 }
 
-void PrintString (string s) {
+void PrintString (const string& s) {
 	cout << s << endl;
 }
 
@@ -109,31 +109,31 @@ void PrintPointer (void *p) {
 	else printf ("Pointer: %p \n", &p);
 }
 
-void PrintVector4 (const TVector4 v) {
+void PrintVector4 (const TVector4& v) {
 	printf ("%.2f  %.2f  %.2f  %.2f \n", v.x, v.y, v.z, v.w); 
 }
 
-void PrintColor (const TColor v) {
+void PrintColor (const TColor& v) {
 	printf ("%.2f  %.2f  %.2f  %.2f \n", v.r, v.g, v.b, v.a); 
 }
 
-void PrintVector2 (const TVector2 v) {
+void PrintVector2 (const TVector2& v) {
 	printf ("%.2f  %.2f \n", v.x, v.y); 
 }
 
-void PrintVector (const TVector3 v) {
+void PrintVector (const TVector3& v) {
 	printf ("%.4f  %.4f  %.4f \n", v.x, v.y, v.z); 
 }
 
-void PrintIndex3 (TIndex3 idx) {
+void PrintIndex3 (const TIndex3& idx) {
 	printf ("%i %i %i \n", idx.i, idx.j, idx.k);
 }
 
-void PrintIndex4 (TIndex4 idx) {
+void PrintIndex4 (const TIndex4& idx) {
 	printf ("%i %i %i %i \n", idx.i, idx.j, idx.k, idx.l);
 }
 
-void PrintVector (char *s, const TVector3 v) {
+void PrintVector (char *s, const TVector3& v) {
 	printf ("%s %.4f  %.4f  %.4f\n", s, v.x, v.y, v.z); 
 }
 
@@ -148,7 +148,7 @@ void PrintMatrix (TMatrix mat) {
 	printf ("\n");
 }
 
-void PrintQuaternion (TQuaternion q) {
+void PrintQuaternion (const TQuaternion& q) {
 	printf ("Quaternion: %.4f  %.4f  %.4f  %.4f\n", q.x, q.y, q.z, q.w); 
 }
 
@@ -185,7 +185,7 @@ void Message (const char *msg) {
 	msg_list.Add (msg);
 }
 
-void MessageN (string a, string b) {
+void MessageN (const string& a, const string& b) {
 	cout << a << " " << b << endl;
 	msg_list.Add (a + b);
 }
@@ -202,11 +202,11 @@ bool FileExists (const char *filename) {
     } else return true;
 }
 
-bool FileExists (const string filename) {
+bool FileExists (const string& filename) {
 	return FileExists (filename.c_str());
 }
 
-bool FileExists (const string dir, const string filename) {
+bool FileExists (const string& dir, const string& filename) {
 	return FileExists (dir + SEP + filename);
 }
 

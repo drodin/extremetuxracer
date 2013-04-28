@@ -67,9 +67,9 @@ public:
 	TEvent2 EventList[MAX_EVENTS2];
 	int numEvents;
 	bool LoadEventList ();
-	int GetRaceIdx (string race);
-	int GetCupIdx (string cup);
-	int GetEventIdx (string event);
+	int GetRaceIdx (const string& race);
+	int GetCupIdx (const string& cup);
+	int GetEventIdx (const string& event);
 	string GetCup (int event, int cup);
 	string GetCupTrivialName (int event, int cup);
 
@@ -112,8 +112,8 @@ public:
 	int numAvatars;
 
 	string GetCurrUnlocked ();
-	void AddPassedCup (string cup);
-	void AddPlayer (string name, string avatar);
+	void AddPassedCup (const string& cup);
+	void AddPlayer (const string& name, const string& avatar);
 	bool LoadPlayers ();
 	void SavePlayers ();
 	CControl *GetCtrl (); // current player
@@ -124,7 +124,7 @@ public:
 	void LoadAvatars ();
 	
 	GLuint GetAvatarID (int player);
-	GLuint GetAvatarID (string filename);
+	GLuint GetAvatarID (const string& filename);
 	GLuint GetDirectAvatarID (int avatar);
 	string GetDirectAvatarName (int avatar);
 };

@@ -31,7 +31,7 @@ public:
 	
 	void Open ();
 	void Close ();
-	bool CheckOpen ();
+	static bool CheckOpen ();
 	bool IsOpen;
 };
 

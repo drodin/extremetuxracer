@@ -61,7 +61,7 @@ void LoadConfigFile () {
 	for (int i=0; i<list.Count(); i++) {
 		line = list.Line(i);
 
-		param.fullscreen = SPIntN (line, "fullscreen", 0);
+		param.fullscreen = SPIntN (line, "fullscreen", 0) != 0;
 		param.res_type = SPIntN (line, "res_type", 0);
 		param.perf_level = SPIntN (line, "detail_level", 0);
 		param.language = SPIntN (line, "language", 0);
@@ -78,8 +78,8 @@ void LoadConfigFile () {
 		param.course_detail_level = SPIntN (line, "course_detail_level", 75);
 
 		param.use_papercut_font = SPIntN (line, "use_papercut_font", true);
-		param.ice_cursor = SPIntN (line, "ice_cursor", true);
-		param.full_skybox = SPIntN (line, "full_skybox", false);
+		param.ice_cursor = SPIntN (line, "ice_cursor", 1) != 0;
+		param.full_skybox = SPIntN (line, "full_skybox", 0) != 0;
 		param.audio_freq = SPIntN (line, "audio_freq", 22050);
 		param.audio_buffer_size = SPIntN (line, "audio_buffer_size", 512);
 		param.restart_on_res_change = SPIntN (line, "restart_on_res_change", 0);
@@ -130,7 +130,6 @@ void AddItem (CSPList *list, string tag, string content) {
 }
 
 void AddIntItem (CSPList *list, string tag, int val) {
-	tag = tag;
 	string vs = Int_StrN (val);
 	AddItem (list, tag, vs);
 }

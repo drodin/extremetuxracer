@@ -1233,7 +1233,7 @@ static int get_root_level (int nx, int nz)
     return max (xlev, zlev);
 }
 
-static void TVector3o_float_array (float dest[3], TVector3 src)
+static void TVector3o_float_array (float dest[3], const TVector3& src)
 {
     dest[0] = src.x;
     dest[1] = src.y;
@@ -1242,7 +1242,7 @@ static void TVector3o_float_array (float dest[3], TVector3 src)
 
 
 void InitQuadtree (double *elevation, int nx, int nz, 
-double scalex, double scalez, TVector3 view_pos, double detail){
+double scalex, double scalez, const TVector3& view_pos, double detail){
     HeightMapInfo hm;
     int i;
 
@@ -1280,7 +1280,7 @@ double scalex, double scalez, TVector3 view_pos, double detail){
     }
 }
 
-void UpdateQuadtree (TVector3 view_pos, float detail){
+void UpdateQuadtree (const TVector3& view_pos, float detail){
     float ViewerLoc[3];
     TVector3o_float_array (ViewerLoc, view_pos);
     root->Update (root_corner_data, ViewerLoc, detail);

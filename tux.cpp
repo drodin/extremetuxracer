@@ -116,8 +116,8 @@ void CCharShape::CreateRootNode () {
 }
 
 bool CCharShape::CreateCharNode 
-		(int parent_name, int node_name, const string joint, 
-		string name, string order, bool shadow) {
+		(int parent_name, int node_name, const string& joint, 
+		const string& name, const string& order, bool shadow) {
 
 	TCharNode *parent = GetNode (parent_name);
 	if (parent == NULL) { 
@@ -169,7 +169,7 @@ bool CCharShape::CreateCharNode
     return true;
 } 
 
-void CCharShape::AddAction (int node_name, int type, TVector3 vec, double val) {
+void CCharShape::AddAction (int node_name, int type, const TVector3& vec, double val) {
 	int idx = GetNodeIdx (node_name);
 	if (idx < 0) return;
 	TCharAction *act = Actions[idx];
@@ -179,7 +179,7 @@ void CCharShape::AddAction (int node_name, int type, TVector3 vec, double val) {
 	act->num++;
 }
 
-bool CCharShape::TranslateNode (int node_name, TVector3 vec) {
+bool CCharShape::TranslateNode (int node_name, const TVector3& vec) {
     TCharNode *node;
     TMatrix TransMatrix;
 
@@ -218,13 +218,13 @@ bool CCharShape::RotateNode (int node_name, int axis, double angle) {
     return true;
 }
 
-bool CCharShape::RotateNode (string node_trivialname, int axis, double angle) {
+bool CCharShape::RotateNode (const string& node_trivialname, int axis, double angle) {
 	int node_name = SPIntN (NodeIndex, node_trivialname, -1);
 	if (node_name < 0) return false;
 	return RotateNode (node_name, axis, angle);
 }
 
-void CCharShape::ScaleNode (int node_name, TVector3 vec) {
+void CCharShape::ScaleNode (int node_name, const TVector3& vec) {
     TCharNode *node;
     TMatrix matrix;
 
@@ -264,7 +264,7 @@ bool CCharShape::VisibleNode (int node_name, float level) {
 	return true;
 }
 
-bool CCharShape::MaterialNode (int node_name, string mat_name) {
+bool CCharShape::MaterialNode (int node_name, const string& mat_name) {
     TCharMaterial *mat;
     TCharNode *node;
 	int idx = GetNodeIdx (node_name);
@@ -284,7 +284,7 @@ bool CCharShape::ResetNode (int node_name) {
 	return true;
 }
 
-bool CCharShape::ResetNode (string node_trivialname) {
+bool CCharShape::ResetNode (const string& node_trivialname) {
 	int node_name = SPIntN (NodeIndex, node_trivialname, -1);
 	if (node_name < 0) return false;
 	return ResetNode (node_name);
@@ -368,15 +368,12 @@ bool CCharShape::GetMaterial (const char *mat_name, TCharMaterial **mat) {
 
 void CCharShape::CreateMaterial (const char *line) {
 	char matName[32];
-	TVector3 diff = {0,0,0}; 
-	TVector3 spec = {0,0,0};
-	float exp = 100;
 
 	string lin = line;	
 	SPCharN (lin, "mat", matName);
-	diff = SPVector3N (lin, "diff", MakeVector (0,0,0));
-	spec = SPVector3N (lin, "spec", MakeVector (0,0,0));
-	exp = SPFloatN (lin, "exp", 50);
+	TVector3 diff = SPVector3N (lin, "diff", MakeVector (0,0,0));
+	TVector3 spec = SPVector3N (lin, "spec", MakeVector (0,0,0));
+	float exp = SPFloatN (lin, "exp", 50);
 
 
 /*
@@ -499,7 +496,7 @@ void CCharShape::Draw () {
 
 // --------------------------------------------------------------------
 
-bool CCharShape::Load (string dir, string filename, bool with_actions) {
+bool CCharShape::Load (const string& dir, const string& filename, bool with_actions) {
 	CSPList list (500);
 	int i, ii, act;
 	string line, order, name, mat_name, fullname;
@@ -564,7 +561,7 @@ bool CCharShape::Load (string dir, string filename, bool with_actions) {
 	return true;
 }
 
-TVector3 CCharShape::AdjustRollvector (CControl *ctrl, TVector3 vel, TVector3 zvec) {
+TVector3 CCharShape::AdjustRollvector (CControl *ctrl, TVector3 vel, const TVector3& zvec) {
     TMatrix rot_mat; 
     vel = ProjectToPlane (zvec, vel);
     NormVector (&vel);
@@ -577,7 +574,7 @@ TVector3 CCharShape::AdjustRollvector (CControl *ctrl, TVector3 vel, TVector3 zv
 }
 
 void CCharShape::AdjustOrientation (CControl *ctrl, double dtime,
-		 double dist_from_surface, TVector3 surf_nml) {
+		 double dist_from_surface, const TVector3& surf_nml) {
     TVector3 new_x, new_y, new_z; 
     TMatrix cob_mat, inv_cob_mat;
     TMatrix rot_mat;
@@ -632,7 +629,7 @@ void CCharShape::AdjustOrientation (CControl *ctrl, double dtime,
 
 void CCharShape::AdjustJoints (double turnFact, bool isBraking, 
 			double paddling_factor, double speed,
-			TVector3 net_force, double flap_factor) {
+			const TVector3& net_force, double flap_factor) {
     double turning_angle[2] = {0, 0};
     double paddling_angle = 0;
     double ext_paddling_angle = 0; 
@@ -684,7 +681,7 @@ void CCharShape::AdjustJoints (double turnFact, bool isBraking,
 // --------------------------------------------------------------------
 
 bool CCharShape::CheckPolyhedronCollision (TCharNode *node, TMatrix modelMatrix, 
-		TMatrix invModelMatrix, TPolyhedron ph) {
+		TMatrix invModelMatrix, const TPolyhedron& ph) {
 
     TMatrix newModelMatrix, newInvModelMatrix;
     TCharNode *child;
@@ -711,7 +708,7 @@ bool CCharShape::CheckPolyhedronCollision (TCharNode *node, TMatrix modelMatrix,
     return false;
 }
 
-bool CCharShape::CheckCollision (TPolyhedron ph) {
+bool CCharShape::CheckCollision (const TPolyhedron& ph) {
     TCharNode *node;
     TMatrix mat, invmat;
 
@@ -722,7 +719,7 @@ bool CCharShape::CheckCollision (TPolyhedron ph) {
     return CheckPolyhedronCollision (node, mat, invmat, ph);
 } 
 
-bool CCharShape::Collision (TVector3 pos, TPolyhedron ph) {
+bool CCharShape::Collision (const TVector3& pos, const TPolyhedron& ph) {
 	ResetNode (0);
 	TranslateNode (0, MakeVector (pos.x, pos.y, pos.z));	
 	return CheckCollision (ph);
@@ -877,7 +874,7 @@ int CCharShape::GetNodeName (int idx) {
 	return Nodes[idx]->node_name;
 }
 
-int CCharShape::GetNodeName (string node_trivialname) {
+int CCharShape::GetNodeName (const string& node_trivialname) {
 	int node_name = SPIntN (NodeIndex, node_trivialname, -1);
 //	if (node_name < 0) return false;
 	return node_name;
@@ -998,7 +995,7 @@ void CCharShape::PrintNode (int idx) {
 	PrintInt ("next: ", node->next_name);
 }
 
-void CCharShape::SaveCharNodes (string dir, string filename) {
+void CCharShape::SaveCharNodes (const string& dir, const string& filename) {
 	CSPList list (MAX_CHAR_NODES + 10);
 	string line, order, joint;
 	TCharNode *node;

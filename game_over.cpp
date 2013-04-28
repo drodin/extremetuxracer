@@ -100,7 +100,6 @@ void DrawMessageFrame (float x, float y, float w, float h, int line,
 void GameOverMessage (CControl *ctrl) {
 	int fwidth = 500;
 
-	string line;
 	float leftframe = (param.x_resolution - fwidth) / 2;
 	float topframe = 80;
 

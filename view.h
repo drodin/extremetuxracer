@@ -38,7 +38,7 @@ typedef enum {
 } clip_result_t;
 
 void SetupViewFrustum (CControl *ctrl);
-clip_result_t clip_aabb_to_view_frustum (TVector3 min, TVector3 max );
+clip_result_t clip_aabb_to_view_frustum (const TVector3& min, const TVector3& max );
 
 TPlane get_far_clip_plane();
 TPlane get_left_clip_plane();

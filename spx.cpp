@@ -33,35 +33,35 @@ char *NewStr (const char *s) {
     return dest;
 }
 
-string MakePathStr (string src, string add) {
+string MakePathStr (const string& src, const string& add) {
 	string res = src;
 	res += SEP;
 	res += add;
 	return res;
 }
 
-void SInsertN (string &s, unsigned int pos, const string ins) {
+void SInsertN (string &s, size_t pos, const string& ins) {
 	if (pos > s.size()) pos = s.size();
 	s.insert (pos, ins);
 }
 
-void SDeleteN (string &s, unsigned int pos, int count) {
+void SDeleteN (string &s, size_t pos, size_t count) {
 	if (pos > s.size()) pos = s.size();
 	s.erase (pos, count);
 }
 
-int SPosN (const string &s, const string find) {
+size_t SPosN (const string &s, const string& find) {
 	return s.find (find);
 }
 
 void STrimLeftN (string &s) {
-	int i = 0;
+	size_t i = 0;
 	while (s[i] == ' ' || s[i] == '\t') i++;
 	if (i > 0) SDeleteN (s, 0, i);
 }
 
 void STrimRightN (string &s) {
-	int i = s.size() -1;
+	size_t i = s.size() -1;
 	while (i >= 0 && (s[i] == ' ' || s[i] == '\t')) i--;
 	s.erase (i+1);	
 }
@@ -107,7 +107,7 @@ string Float_StrN (const float val, const int count) {
 	return os.str();
 }
 
-string Vector_StrN (const TVector3 v, const int count) {
+string Vector_StrN (const TVector3& v, const int count) {
 	string res = Float_StrN (v.x, count);
 	res += " " + Float_StrN (v.y, count);
 	res += " " + Float_StrN (v.z, count);
@@ -148,7 +148,7 @@ float Str_FloatN (const string &s, const float def) {
 	if (is.fail()) return def; else return val;
 }
 
-TVector2 Str_Vector2N (const string &s, const TVector2 def) {
+TVector2 Str_Vector2N (const string &s, const TVector2 &def) {
 	float x, y;
 	istringstream is(s);
 	is >> x >> y;
@@ -164,7 +164,7 @@ TVector2 Str_Vector2N (const string &s) {
 	else return MakeVector2 (x, y);
 }
 
-TVector3 Str_Vector3N (const string &s, const TVector3 def) {
+TVector3 Str_Vector3N (const string &s, const TVector3 &def) {
 	float x, y, z;
 	istringstream is(s);
 	is >> x >> y >> z;
@@ -172,7 +172,7 @@ TVector3 Str_Vector3N (const string &s, const TVector3 def) {
 	else return MakeVector (x, y, z);
 }
 
-TIndex3 Str_Index3N (const string &s, const TIndex3 def) {
+TIndex3 Str_Index3N (const string &s, const TIndex3 &def) {
 	int i, j, k;
 	istringstream is(s);
 	is >> i >> j >> k;
@@ -188,7 +188,7 @@ TVector3 Str_Vector3N (const string &s) {
 	else return MakeVector (x, y, z);
 }
 
-TVector4 Str_Vector4N (const string &s, const TVector4 def) {
+TVector4 Str_Vector4N (const string &s, const TVector4 &def) {
 	float x, y, z, w;
 	istringstream is(s);
 	is >> x >> y >> z >> w;
@@ -196,7 +196,7 @@ TVector4 Str_Vector4N (const string &s, const TVector4 def) {
 	else return MakeVector4 (x, y, z, w);
 }
 
-TColor Str_ColorN (const string &s, const TColor def) {
+TColor Str_ColorN (const string &s, const TColor &def) {
 	float r, g, b, a;
 	istringstream is(s);
 	is >> r >> g >> b >> a;
@@ -204,7 +204,7 @@ TColor Str_ColorN (const string &s, const TColor def) {
 	else return MakeColor (r, g, b, a);
 }
 
-TColor3 Str_Color3N (const string &s, const TColor3 def) {
+TColor3 Str_Color3N (const string &s, const TColor3 &def) {
 	float r, g, b;
 	istringstream is(s);
 	is >> r >> g >> b;
@@ -233,16 +233,16 @@ string Bool_StrN (const bool val) {
 // --------------------------------------------------------------------
 
 string SPItemN (const string &s, const string &tag) {
-	int i = 0;
-	unsigned int ii = 0;
+	size_t i = 0;
+	size_t ii = 0;
 	string item = "";
 	if (s.size() == 0 || tag.size() == 0) return item;
 
 	string tg = "[" + tag + "]";
 	i = SPosN (s, tg);
-	if (i < 0) return item;
+	if (i == string::npos) return item;
 	ii = i + tg.size();
-	while (s[ii] != '[' && s[ii] != '#' && ii < s.size()) {
+	while (ii < s.size() && s[ii] != '[' && s[ii] != '#') {
 		item += s[ii];
 		ii++;
 	}
@@ -250,23 +250,23 @@ string SPItemN (const string &s, const string &tag) {
 }
 
 void SPItemN (const string &s, const string &tag, string &item) {
-	int i = 0;
-	unsigned int ii = 0;
+	size_t i = 0;
+	size_t ii = 0;
 
 	item = "";
 	if (s.size() == 0 || tag.size() == 0) return;
 
 	string tg = "[" + tag + "]";
 	i = SPosN (s, tg);
-	if (i < 0) return;
+	if (i == string::npos) return;
 	ii = i + tg.size();
-	while (s[ii] != '[' && s[ii] != '#' && ii < s.size()) {
+	while (ii < s.size() && s[ii] != '[' && s[ii] != '#') {
 		item += s[ii];
 		ii++;
 	}
 }
 
-string SPStrN (const string &s, const string &tag, const string def) {
+string SPStrN (const string &s, const string &tag, const string& def) {
 	string item = SPItemN (s, tag);
 	if (item.size() < 1) return def;
 	STrimN (item);
@@ -291,7 +291,7 @@ float SPFloatN (const string &s, const string &tag, const float def) {
 	return (Str_FloatN (SPItemN (s, tag), def));
 }
 
-TVector2 SPVector2N (const string &s, const string &tag, const TVector2 def) {
+TVector2 SPVector2N (const string &s, const string &tag, const TVector2& def) {
 	return (Str_Vector2N (SPItemN (s, tag), def));
 }
 
@@ -299,11 +299,11 @@ TVector2 SPVector2N (const string &s, const string &tag) {
 	return (Str_Vector2N (SPItemN (s, tag)));
 }
 
-TVector3 SPVector3N (const string &s, const string &tag, const TVector3 def) {
+TVector3 SPVector3N (const string &s, const string &tag, const TVector3& def) {
 	return (Str_Vector3N (SPItemN (s, tag), def));
 }
 
-TIndex3 SPIndex3N (const string &s, const string &tag, const TIndex3 def) {
+TIndex3 SPIndex3N (const string &s, const string &tag, const TIndex3& def) {
 	return (Str_Index3N (SPItemN (s, tag), def));
 }
 
@@ -311,15 +311,15 @@ TVector3 SPVector3N (const string &s, const string &tag) {
 	return (Str_Vector3N (SPItemN (s, tag)));
 }
 
-TVector4 SPVector4N (const string &s, const string &tag, const TVector4 def) {
+TVector4 SPVector4N (const string &s, const string &tag, const TVector4& def) {
 	return (Str_Vector4N (SPItemN (s, tag), def));
 }
 
-TColor SPColorN (const string &s, const string &tag, const TColor def) {
+TColor SPColorN (const string &s, const string &tag, const TColor& def) {
 	return (Str_ColorN (SPItemN (s, tag), def));
 }
 
-TColor3 SPColor3N (const string &s, const string &tag, const TColor3 def) {
+TColor3 SPColor3N (const string &s, const string &tag, const TColor3& def) {
 	return (Str_Color3N (SPItemN (s, tag), def));
 }
 
@@ -329,12 +329,11 @@ void SPArrN (const string &s, const string &tag, float *arr, int count, float de
 
 bool SPExistsN  (const string &s, const string &tag) {
 	string tg = "[" + tag + "]";
-	int i = SPosN (s, tg);
-	if (i < 0) return false;
-	return true;
+	size_t i = SPosN (s, tg);
+	return i != string::npos;
 }
 
-int SPPosN (const string &s, const string &tag) {
+size_t SPPosN (const string &s, const string &tag) {
 	string tg = "[" + tag + "]";
 	return SPosN (s, tg);
 }
@@ -373,7 +372,7 @@ void SPAddStrN (string &s, const string &tag, const string &val) {
 	s += val;
 }
 
-void SPAddVec2N (string &s, const string &tag, const TVector2 val, int count) {
+void SPAddVec2N (string &s, const string &tag, const TVector2 &val, int count) {
 	s += "[";
 	s += tag;
 	s += "]";
@@ -383,7 +382,7 @@ void SPAddVec2N (string &s, const string &tag, const TVector2 val, int count) {
 	s += Float_StrN (val.y, count);
 }
 
-void SPAddVec3N (string &s, const string &tag, const TVector3 val, int count) {
+void SPAddVec3N (string &s, const string &tag, const TVector3 &val, int count) {
 	s += "[";
 	s += tag;
 	s += "]";
@@ -395,7 +394,7 @@ void SPAddVec3N (string &s, const string &tag, const TVector3 val, int count) {
 	s += Float_StrN (val.z, count);
 }
 
-void SPAddIndx3N  (string &s, const string &tag, const TIndex3 val) {
+void SPAddIndx3N  (string &s, const string &tag, const TIndex3 &val) {
 	s += "[";
 	s += tag;
 	s += "]";
@@ -407,7 +406,7 @@ void SPAddIndx3N  (string &s, const string &tag, const TIndex3 val) {
 	s += Int_StrN (val.k);
 }
 
-void SPAddIndx4N  (string &s, const string &tag, const TIndex4 val) {
+void SPAddIndx4N  (string &s, const string &tag, const TIndex4 &val) {
 	s += '[';
 	s += tag;
 	s += ']';
@@ -431,31 +430,31 @@ void SPAddBoolN (string &s, const string &tag, const bool val) {
 // --------------------------------------------------------------------
 
 void SPSetIntN (string &s, const string &tag, const int val) {
-	int pos = SPPosN (s, tag);
-	if (pos >= 0) {
-		int ipos = pos + tag.size() + 2;
+	size_t pos = SPPosN (s, tag);
+	if (pos != string::npos) {
+		size_t ipos = pos + tag.size() + 2;
 		string item = SPItemN (s, tag);
-		if (item.size() > 0) SDeleteN (s, ipos, item.size()); 
+		if (item.size() != string::npos) SDeleteN (s, ipos, item.size()); 
 		SInsertN (s, ipos, Int_StrN (val));
 	} else SPAddIntN (s, tag, val);
 }
 
 void SPSetFloatN (string &s, const string &tag, const float val, int count) {
-	int pos = SPPosN (s, tag);
-	if (pos >= 0) {
-		int ipos = pos + tag.size() + 2;
+	size_t pos = SPPosN (s, tag);
+	if (pos != string::npos) {
+		size_t ipos = pos + tag.size() + 2;
 		string item = SPItemN (s, tag);
-		if (item.size() > 0) SDeleteN (s, ipos, item.size()); 
+		if (item.size() != string::npos) SDeleteN (s, ipos, item.size()); 
 		SInsertN (s, ipos, Float_StrN (val, count));
 	} else SPAddFloatN (s, tag, val, count);
 }
 
 void SPSetStrN (string &s, const string &tag, const string &val) {
-	int pos = SPPosN (s, tag);
-	if (pos >= 0) {
-		int ipos = pos + tag.size() + 2;
+	size_t pos = SPPosN (s, tag);
+	if (pos != string::npos) {
+		size_t ipos = pos + tag.size() + 2;
 		string item = SPItemN (s, tag);
-		if (item.size() > 0) SDeleteN (s, ipos, item.size()); 
+		if (item.size() != string::npos) SDeleteN (s, ipos, item.size()); 
 		SInsertN (s, ipos, val);
 	} else SPAddStrN (s, tag, val);
 }
@@ -494,14 +493,14 @@ void CSPList::Clear () {
 	fcount = 0; 
 }
 
-void CSPList::Add (string line) {
+void CSPList::Add (const string& line) {
 	if (fcount < fmax) {
 		flines[fcount] = line; 	
 		fcount++;
 	}
 }
 
-void CSPList::Add (string line, int flag) {
+void CSPList::Add (const string& line, int flag) {
 	if (fcount < fmax) {
 		flines[fcount] = line; 	
 		fflag[fcount] = flag;
@@ -509,7 +508,7 @@ void CSPList::Add (string line, int flag) {
 	}
 }
 
-void CSPList::Append (string line, int idx) {
+void CSPList::Append (const string& line, int idx) {
 	if (idx < 0 || idx >= fcount) return;
 	flines[idx] += line;
 }
@@ -528,7 +527,7 @@ void CSPList::Print () {
 	for (int i=0; i<fcount; i++) cout << flines[i] << endl;
 }
 
-char lastchar (const string s) {
+char lastchar (const string &s) {
 	return s[s.length()-1];
 }
 
@@ -546,7 +545,7 @@ bool CSPList::Load (const string &filepath) {
 		while (getline(tempfile, line)) {
 
 			// delete new line char if in string
-			int npos = line.rfind ('\n');
+			size_t npos = line.rfind ('\n');
 			if (npos >= 0) SDeleteN (line, npos, 1);
 
 			valid = true;
@@ -581,7 +580,7 @@ bool CSPList::Load (const string &filepath) {
 	}
 }
 
-bool CSPList::Load (string dir, string filename) {
+bool CSPList::Load (const string& dir, const string& filename) {
 	return Load (dir + SEP + filename);
 }
 
@@ -603,7 +602,7 @@ bool CSPList::Save (const string &filepath) {
 	}
 }
 
-bool CSPList::Save (string dir, string filename) {
+bool CSPList::Save (const string& dir, const string& filename) {
 	return Save (dir + SEP + filename);
 }
 
@@ -624,5 +623,3 @@ void CSPList::MakeIndex (string &index, const string &tag) {
 		}
 	}
 }
-
-

@@ -237,6 +237,7 @@ void CImage::WriteBMP (const char *filepath) {
     infosize = info.biSize; // 40
 	if (infosize != 40 || info.biCompression != 0) {
 		Message ("wrong bmp header");
+		fclose(fp);
 		return;
 	}
 

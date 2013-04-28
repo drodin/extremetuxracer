@@ -426,7 +426,7 @@ void SetupViewFrustum (CControl *ctrl) {
     }
 }
 
-clip_result_t clip_aabb_to_view_frustum (TVector3 min, TVector3 max) {
+clip_result_t clip_aabb_to_view_frustum (const TVector3& min, const TVector3& max) {
     TVector3 n, p;
     int i;
     bool intersect = false;

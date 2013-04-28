@@ -77,24 +77,24 @@ private:
 	TForce ff;
 	double finish_speed;
 
-	bool     CheckTreeCollisions (TVector3 pos, TVector3 *tree_loc, double *tree_diam);
-	void     AdjustTreeCollision (TVector3 pos, TVector3 *vel);
-	void     CheckItemCollection (TVector3 pos);
+	bool     CheckTreeCollisions (const TVector3& pos, TVector3 *tree_loc, double *tree_diam);
+	void     AdjustTreeCollision (const TVector3& pos, TVector3 *vel);
+	void     CheckItemCollection (const TVector3& pos);
 
 	TVector3 CalcRollNormal (double speed);
 	TVector3 CalcAirForce ();
 	TVector3 CalcSpringForce ();
 	TVector3 CalcNormalForce ();
 	TVector3 CalcJumpForce ();
-	TVector3 CalcFrictionForce (double speed, TVector3 nmlforce);
+	TVector3 CalcFrictionForce (double speed, const TVector3& nmlforce);
 	TVector3 CalcPaddleForce (double speed);
 	TVector3 CalcBrakeForce (double speed);
 	TVector3 CalcGravitationForce ();
-	TVector3 CalcNetForce (TVector3 pos, TVector3 vel);
-	TVector3 CalcFinishForce (TVector3 pos, TVector3 vel);
+	TVector3 CalcNetForce (const TVector3& pos, const TVector3& vel);
+	TVector3 CalcFinishForce (const TVector3& pos, const TVector3& vel);
 
-	void     AdjustVelocity (TPlane surf_plane);
-	void     AdjustPosition (TPlane surf_plane, double dist_from_surface);
+	void     AdjustVelocity (const TPlane& surf_plane);
+	void     AdjustPosition (const TPlane& surf_plane, double dist_from_surface);
 	void     SetTuxPosition (double speed);
 	double   AdjustTimeStep (double h, TVector3 vel);
 	void     SolveOdeSystem (double timestep);

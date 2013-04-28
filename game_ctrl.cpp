@@ -109,15 +109,15 @@ bool CEvents::LoadEventList () {
 	return true;
 }
 
-int CEvents::GetRaceIdx (string race) {
+int CEvents::GetRaceIdx (const string& race) {
 	return SPIntN (RaceIndex, race, 0);
 }
 
-int CEvents::GetCupIdx (string cup) {
+int CEvents::GetCupIdx (const string& cup) {
 	return SPIntN (CupIndex, cup, 0);
 }
 
-int CEvents::GetEventIdx (string event) {
+int CEvents::GetEventIdx (const string& event) {
 	return SPIntN (EventIndex, event, 0);
 }
 
@@ -136,7 +136,7 @@ string CEvents::GetCupTrivialName (int event, int cup) {
 }
 
 void CEvents::MakeUnlockList (string unlockstr) {
-	int event, cup, passed;
+	int event, cup;
 	string cp;
 	for (event=0; event<numEvents; event++) {
 		for (cup=0; cup<EventList[event].num_cups; cup++) {
@@ -146,9 +146,9 @@ void CEvents::MakeUnlockList (string unlockstr) {
 	for (event=0; event<numEvents; event++) {
 		for (cup=0; cup<EventList[event].num_cups; cup++) {
 			cp = GetCup (event, cup);
-			passed = SPosN (unlockstr, cp);
+			bool passed = SPosN (unlockstr, cp) != string::npos;
 			if (cup < 1) Unlocked[event][0] = true;
-			if (passed >= 0) {
+			if (passed) {
 				Unlocked[event][cup] = true;
 				Unlocked[event][cup+1] = true;
 			}
@@ -181,7 +181,7 @@ CPlayers::CPlayers () {
 	}
 }
 
-void CPlayers::AddPlayer (string name, string avatar) {
+void CPlayers::AddPlayer (const string& name, const string& avatar) {
 	if (numPlayers >= MAX_PLAYERS) {
 		Message ("maximum of players reached");
 		return;
@@ -262,7 +262,7 @@ string CPlayers::GetCurrUnlocked (){
 	return plyr[currPlayer].funlocked;
 }
 
-void CPlayers::AddPassedCup (string cup) {
+void CPlayers::AddPassedCup (const string& cup) {
 	if (SPIntN (plyr[currPlayer].funlocked, cup, -1) > 0) return;
 	plyr[currPlayer].funlocked += " ";
 	plyr[currPlayer].funlocked += cup;
@@ -332,7 +332,7 @@ GLuint CPlayers::GetAvatarID (int player) {
 	return plyr[player].texid;
 }
 
-GLuint CPlayers::GetAvatarID (string filename) {
+GLuint CPlayers::GetAvatarID (const string& filename) {
 	return SPIntN (AvatarIndex, filename, 0);
 }
 

@@ -111,7 +111,7 @@ void RacingJoyAxis (int axis, double value) {
 
 void RacingJoyButton (int button, int state) {
 	if (button == 0) {
-		key_charging = (bool) state;
+		key_charging = state != 0;
 	} else if (button == 1) {
 //		key_charging = (bool) state;
 	}

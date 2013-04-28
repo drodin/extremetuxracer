@@ -48,13 +48,13 @@ void init_glfloat_array( int num, GLfloat arr[], ... );
 void InitOpenglExtensions();
 void PrintGLInfo();
 
-void set_material (TColor diffuse_colour, 
-		TColor specular_colour,
+void set_material (const TColor& diffuse_colour, 
+		const TColor& specular_colour,
 		double specular_exp );
 
 void set_gl_options (TRenderMode mode);
 void ClearRenderContext ();
-void ClearRenderContext (TColor col);
+void ClearRenderContext (const TColor& col);
 void SetupGuiDisplay ();
 void Reshape (int w, int h);
 

@@ -50,13 +50,13 @@ public:
 	bool loaded;
 
 	bool active;
-	void Init (TVector3 ref_position, double height_correction);
-	void Init (TVector3 ref_position, double height_correction, CCharShape *shape);
-	void InitTest (TVector3 ref_position, CCharShape *shape);
+	void Init (const TVector3& ref_position, double height_correction);
+	void Init (const TVector3& ref_position, double height_correction, CCharShape *shape);
+	void InitTest (const TVector3& ref_position, CCharShape *shape);
 	void Reset ();
 	void Update (double timestep, CControl *ctrl);
 	void UpdateTest (double timestep, CCharShape *shape);
-	bool Load (string dir, string filename);
+	bool Load (const string& dir, const string& filename);
 	void CalcKeyframe (int idx, CCharShape *shape, TVector3 refpos);
 
 	// test and editing
@@ -64,7 +64,7 @@ public:
 	string GetHighlightName (int idx);
 	string GetJointName (int idx);
 	int GetNumJoints ();
-	void SaveTest (string dir, string filename);
+	void SaveTest (const string& dir, const string& filename);
 	void CopyFrame (int prim_idx, int sec_idx);
 	void AddFrame ();
 	int  DeleteFrame (int idx);

@@ -152,7 +152,7 @@ public:
 	GLubyte		*vnc_array;
 
 	void ResetCourse ();
- 	int  GetCourseIdx (string dir);
+ 	int  GetCourseIdx (const string& dir);
 	bool LoadCourseList ();
 	void FreeCourseList ();
 	bool LoadCourse (int idx);
@@ -170,8 +170,8 @@ public:
 	double GetBaseHeight (double distance);
 	double GetMaxHeight (double distance);
 	int GetEnv ();
-	TVector2 GetStartPoint ();
-	void SetStartPoint (TVector2 p);
+	const TVector2& GetStartPoint () const;
+	void SetStartPoint (const TVector2& p);
 	TPolyhedron	GetPoly (int type);
 	void MirrorCourse ();
 

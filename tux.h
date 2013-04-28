@@ -86,10 +86,10 @@ private:
 	bool GetNode (int node_name, TCharNode **node);
 	void CreateRootNode ();
 	bool CreateCharNode 
-		(int parent_name, int node_name, const string joint, 
-		string name, string order, bool shadow);
+		(int parent_name, int node_name, const string& joint, 
+		const string& name, const string& order, bool shadow);
 	bool VisibleNode (int node_name, float level);
-	bool MaterialNode (int node_name, string mat_name);
+	bool MaterialNode (int node_name, const string& mat_name);
 	bool TransformNode (int node_name, TMatrix mat, TMatrix invmat);
 
 	// material
@@ -100,12 +100,12 @@ private:
 	void DrawCharSphere (int num_divisions);
 	GLuint GetDisplayList (int divisions);
 	void DrawNodes (TCharNode *node);
-	TVector3 AdjustRollvector (CControl *ctrl, TVector3 vel, TVector3 zvec);
+	TVector3 AdjustRollvector (CControl *ctrl, TVector3 vel, const TVector3& zvec);
 
 	// collision
 	bool CheckPolyhedronCollision (TCharNode *node, TMatrix modelMatrix, 
-		TMatrix invModelMatrix, TPolyhedron ph);
-	bool CheckCollision (TPolyhedron ph);
+		TMatrix invModelMatrix, const TPolyhedron& ph);
+	bool CheckCollision (const TPolyhedron& ph);
 
 	// shadow
 	void DrawShadowVertex (double x, double y, double z, TMatrix mat);
@@ -113,7 +113,7 @@ private:
 	void TraverseDagForShadow (TCharNode *node, TMatrix mat);
 
 	// testing and developing
-	void AddAction (int node_name, int type, TVector3 vec, double val);
+	void AddAction (int node_name, int type, const TVector3& vec, double val);
 public:
 	CCharShape ();
 	bool useMaterials;
@@ -123,11 +123,11 @@ public:
 
 	// nodes 
 	bool ResetNode (int node_name);
-	bool ResetNode (string node_trivialname);
-	bool TranslateNode (int node_name, TVector3 vec);
+	bool ResetNode (const string& node_trivialname);
+	bool TranslateNode (int node_name, const TVector3& vec);
 	bool RotateNode (int node_name, int axis, double angle);
-	bool RotateNode (string node_trivialname, int axis, double angle);
-	void ScaleNode (int node_name, TVector3 vec);
+	bool RotateNode (const string& node_trivialname, int axis, double angle);
+	void ScaleNode (int node_name, const TVector3& vec);
 	void ResetRoot ();
 	void ResetJoints ();
 
@@ -135,21 +135,21 @@ public:
 	void Reset ();
 	void Draw ();
 	void DrawShadow ();
-	bool Load (string dir, string filename, bool with_actions);
+	bool Load (const string& dir, const string& filename, bool with_actions);
 
 	void AdjustOrientation (CControl *ctrl, double dtime,
-		double dist_from_surface, TVector3 surf_nml);
+		double dist_from_surface, const TVector3& surf_nml);
 	void AdjustJoints (double turnFact, bool isBraking, 
 		double paddling_factor, double speed,
-		TVector3 net_force, double flap_factor);
-	bool Collision (TVector3 pos, TPolyhedron ph);
+		const TVector3& net_force, double flap_factor);
+	bool Collision (const TVector3& pos, const TPolyhedron& ph);
 
 	// testing and tools
 	bool   highlighted;
 	int    highlight_node;
 
 	int    GetNodeName (int idx);
-	int    GetNodeName (string node_trivialname);
+	int    GetNodeName (const string& node_trivialname);
 	string GetNodeJoint (int idx);
 	int    GetNumNodes ();
 	string GetNodeFullname (int idx);
@@ -158,7 +158,7 @@ public:
 	void   PrintAction (int idx);	
 	void   PrintNode (int idx);
 	void   RefreshNode (int idx);
-	void   SaveCharNodes (string dir, string filename);
+	void   SaveCharNodes (const string& dir, const string& filename);
 };
 
 // only for char tools, the characters for playing are in

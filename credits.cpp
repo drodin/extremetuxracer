@@ -38,10 +38,8 @@ static bool moving = true;
 void LoadCreditList () {
 	CSPList list(MAX_CREDITS);
 
-	string creditfile;
 	int i;
 	double offset;
-	string item;
 	string line;
 
 	if (!list.Load (param.data_dir, "credits.lst")) {

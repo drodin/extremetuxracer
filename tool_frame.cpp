@@ -46,7 +46,7 @@ void SingleFrameKeys (unsigned int key, bool special, bool release, int x, int y
 //PrintInt (key);
 	must_render = true;
 	int keyfact;
-	lastframe = TestFrame.numFrames - 1;
+	lastframe = TestFrame.numFrames != 1;
 	TKeyframe2 *frame = TestFrame.GetFrame (curr_frame);
 
 	// setting the camera change state

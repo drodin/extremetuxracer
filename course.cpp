@@ -48,11 +48,11 @@ CCourse::CCourse () {
 	numObjects = 0;
 }
 
-TVector2 CCourse::GetStartPoint () { 
+const TVector2& CCourse::GetStartPoint () const { 
 	return start_pt; 
 }
 
-void CCourse::SetStartPoint (TVector2 p)	{ 
+void CCourse::SetStartPoint (const TVector2& p)	{ 
 	start_pt = p; 
 }
 
@@ -100,7 +100,7 @@ TPolyhedron	CCourse::GetPoly (int type) {
 	return PolyArr[ObjTypes[type].poly]; 
 }
 
-int CCourse::GetCourseIdx (string dir) {
+int CCourse::GetCourseIdx (const string& dir) {
 	return SPIntN (CourseIndex, dir, 0);
 }
 
@@ -422,7 +422,6 @@ void CCourse::LoadItemList () {
 	CSPList list (16000);
 	int i, x, z, type;
 	double height, diam, xx, zz;
-	string ObjectsFile;
 	string line;
 	string name;
 	bool coll;
@@ -636,18 +635,18 @@ bool CCourse::LoadObjectTypes () {
 	    ObjTypes[i].name = SPStrN (line, "name", "");
 	    ObjTypes[i].texture = ObjTypes[i].name;
 
-		ObjTypes[i].drawable = SPIntN (line, "draw", 1);
+		ObjTypes[i].drawable = SPIntN (line, "draw", 1) != 0;
 		if (ObjTypes[i].drawable) {
 			ObjTypes[i].texture = SPStrN (line, "texture", "");
 		}
-		ObjTypes[i].collectable = SPIntN (line, "snap", -1);
+		ObjTypes[i].collectable = SPIntN (line, "snap", -1) != 0;
 		if (ObjTypes[i].collectable == 0) {
 			ObjTypes[i].collectable = -1;
 		}
 
-		ObjTypes[i].collidable = SPIntN (line, "coll", 0);
-		ObjTypes[i].reset_point = SPIntN (line, "reset", 0);
-		ObjTypes[i].use_normal = SPIntN (line, "usenorm", 0);
+		ObjTypes[i].collidable = SPIntN (line, "coll", 0) != 0;
+		ObjTypes[i].reset_point = SPIntN (line, "reset", 0) != 0;
+		ObjTypes[i].use_normal = SPIntN (line, "usenorm", 0) != 0;
 
 		if (ObjTypes[i].use_normal) {
 			ObjTypes[i].normal = SPVector3N (line, "norm", MakeVector (0, 1, 0));
@@ -764,7 +763,7 @@ bool CCourse::LoadTerrainMap () {
 // --------------------------------------------------------------------
 
 bool CCourse::LoadCourseList () {
-	string listfile, previewfile, paramfile, coursepath;
+	string previewfile, paramfile, coursepath;
 	string line, desc;
 	int i, ll, cnt;
 	GLuint texid;
@@ -830,7 +829,7 @@ bool CCourse::LoadCourseList () {
 			CourseList[i].starty = SPFloatN (line, "starty", 5);
 			CourseList[i].env = Env.GetEnvIdx (SPStrN (line, "env", "etr"));
 			CourseList[i].music_theme = Music.GetThemeIdx (SPStrN (line, "theme", "normal"));
-			CourseList[i].use_keyframe = SPIntN (line, "use_keyframe", 0);
+			CourseList[i].use_keyframe = SPIntN (line, "use_keyframe", 0) != 0;
 			CourseList[i].finish_brake = SPFloatN (line, "finish_brake", 20);
 			paramlist.Clear ();	// the list is used several times
 		}

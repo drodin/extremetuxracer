@@ -40,7 +40,7 @@ void CScore::ResetScorelist (int list_idx) {
 	list->numScores = 0;
 }
 
-int CScore::AddScore (int list_idx, TScore score) {
+int CScore::AddScore (int list_idx, const TScore& score) {
 	if (list_idx < 0 || list_idx >= MAX_COURSES) return 999;
 	if (score.points < 1) return 999;
 
@@ -319,7 +319,6 @@ void ScoreLoop (double timestep ){
 	PrintArrow (1, (curr_course < lastCourse));
 
 	TScoreList *list = Score.GetScorelist (curr_course);
-	string line;
 	int y;
 
 

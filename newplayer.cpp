@@ -28,9 +28,9 @@ GNU General Public License for more details.
 static int curr_focus = 0;
 static TVector2 cursor_pos = {0, 0};
 static string name;
-static int posit;
+static size_t posit;
 static float curposit;
-static int maxlng = 32;
+static size_t maxlng = 32;
 static bool crsrvisible = true;
 static float crsrtime = 0;
 static int curr_avatar = 0;
@@ -62,10 +62,8 @@ void DrawCrsr (float x, float y, int pos, double timestep) {
 	}
 }
 
-int len (const string s) {return s.size(); }
-
 void CalcCursorPos () {
-	int le = len (name);
+	size_t le = name.size();
 	if (posit == 0) curposit = 0;
 	if (posit > le) posit = le;
 	string temp = name.substr (0, posit);
@@ -73,13 +71,13 @@ void CalcCursorPos () {
 }
 
 void NameInsert (string ss) {
-	int le = len (name);
+	size_t le = name.size();
 	if (posit > le) posit = le;
 	name.insert (posit, ss);	
 }
 
 void NameInsert (char *ss) {
-	int le = len (name);
+	size_t le = name.size();
 	if (posit > le) posit = le;
 	name.insert (posit, ss);	
 }
@@ -91,8 +89,8 @@ void NameInsert (char c) {
 	NameInsert (temp);
 }
 
-void NameDelete (int po) {
-	int le = len (name);
+void NameDelete (size_t po) {
+	size_t le = name.size();
 	if (po > le) po = le; 
 	name.erase (po, 1);
 }
@@ -132,29 +130,29 @@ void NewPlayerKeySpec (SDL_keysym sym, bool release) {
 	crsrvisible = true;
 
 	if (islower (key)) {
-		if (len (name) < maxlng) {
+		if (name.size() < maxlng) {
 			if (mod & KMOD_SHIFT) NameInsert (toupper (key));
 			else NameInsert (key);
 			posit++;
 		}
 	} else if (isdigit (key)) {
-		if (len (name) < maxlng) {
+		if (name.size() < maxlng) {
 			NameInsert (key);
 			posit++;
 		}
 	} else {
 		switch (key) {
-			case 127: if (posit < len(name)) NameDelete (posit); break;
+			case 127: if (posit < name.size()) NameDelete (posit); break;
 			case 8: if (posit > 0) NameDelete (posit-1); posit--; break;
 			case 27: Winsys.SetMode (REGIST); break;
 			case 13: 
 				if (curr_focus == 1) Winsys.SetMode (REGIST);
 				else QuitAndAddPlayer (); 
 				break;
-			case SDLK_RIGHT: if (posit < len(name)) posit++; break;
+			case SDLK_RIGHT: if (posit < name.size()) posit++; break;
 			case SDLK_LEFT: if (posit > 0) posit--; break;
 			case 278: posit = 0; break;
-			case 279: posit = len (name); break;
+			case 279: posit = name.size(); break;
 			
 			case 32: NameInsert (32); posit++; break;
 			case SDLK_UP: if (curr_avatar>0) curr_avatar--; break;

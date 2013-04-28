@@ -37,22 +37,22 @@ TVector4	MakeVector4 (float x, float y, float z, float w);
 TIndex2		MakeIndex2 (int i, int j);
 TIndex3		MakeIndex3 (int i, int j, int k);
 
-TVector3	ScaleVector (double s, TVector3 v);
-TVector3	AddVectors (TVector3 v1, TVector3 v2);
-TVector3	SubtractVectors (TVector3 v1, TVector3 v2);
+TVector3	ScaleVector (double s, const TVector3& v);
+TVector3	AddVectors (const TVector3& v1, const TVector3& v2);
+TVector3	SubtractVectors (const TVector3& v1, const TVector3& v2);
 double		NormVector (TVector3 *v);
 double		NormVectorN (TVector3 &v);	// new version with reference
 
-double		DotProduct (TVector3 v1, TVector3 v2);
-TVector3	CrossProduct (TVector3 u, TVector3 v);
+double		DotProduct (const TVector3& v1, const TVector3& v2);
+TVector3	CrossProduct (const TVector3& u, const TVector3& v);
 
-TVector3	ProjectToPlane (TVector3 nml, TVector3 v);
-TVector3	TransformVector (TMatrix mat, TVector3 v);
-TVector3	TransformNormal (TVector3 n, TMatrix mat);	// not used ?
-TVector3	TransformPoint (TMatrix mat, TVector3 p);
+TVector3	ProjectToPlane (const TVector3& nml, const TVector3& v);
+TVector3	TransformVector (TMatrix mat, const TVector3& v);
+TVector3	TransformNormal (const TVector3& n, TMatrix mat);	// not used ?
+TVector3	TransformPoint (TMatrix mat, const TVector3& p);
 TPlane		MakePlane (double nx, double ny, double nz, double d);
 bool		IntersectPlanes (TPlane s1, TPlane s2, TPlane s3, TVector3 *p);
-double		DistanceToPlane (TPlane plane, TVector3 pt);
+double		DistanceToPlane (TPlane plane, const TVector3& pt);
 
 void MakeIdentityMatrix (TMatrix h);
 void MakeRotationMatrix (TMatrix mat, double angle, char axis);
@@ -61,27 +61,27 @@ void MakeScalingMatrix (TMatrix mat, double x, double y, double z);
 
 void MultiplyMatrices (TMatrix ret, TMatrix mat1, TMatrix mat2);
 void TransposeMatrix (TMatrix mat, TMatrix trans);
-void MakeBasisMat (TMatrix mat,	TVector3 w1, TVector3 w2, TVector3 w3);
-void MakeBasismatrix_Inv (TMatrix mat, TMatrix invMat, TVector3 w1, TVector3 w2, TVector3 w3);
-void RotateAboutVectorMatrix (TMatrix mat, TVector3 u, double angle);
+void MakeBasisMat (TMatrix mat,	const TVector3& w1, const TVector3& w2, const TVector3& w3);
+void MakeBasismatrix_Inv (TMatrix mat, TMatrix invMat, const TVector3& w1, const TVector3& w2, const TVector3& w3);
+void RotateAboutVectorMatrix (TMatrix mat, const TVector3& u, double angle);
 
 TQuaternion MakeQuaternion (double x, double y, double z, double w);
-TQuaternion AddQuaternions (TQuaternion q, TQuaternion r);		// not used?
-TQuaternion MultiplyQuaternions (TQuaternion q, TQuaternion r);	// not used?
+TQuaternion AddQuaternions (const TQuaternion& q, const TQuaternion& r);		// not used?
+TQuaternion MultiplyQuaternions (const TQuaternion& q, const TQuaternion& r);	// not used?
 TQuaternion ScaleQuaternion (double s, TQuaternion q);
-TQuaternion ConjugateQuaternion (TQuaternion q);
-void 		MakeMatrixFromQuaternion (TMatrix mat, TQuaternion q);
+TQuaternion ConjugateQuaternion (const TQuaternion& q);
+void 		MakeMatrixFromQuaternion (TMatrix mat, const TQuaternion& q);
 TQuaternion MakeQuaternionFromMatrix (TMatrix mat);
-TQuaternion MakeRotationQuaternion (TVector3 s, TVector3 t);
-TQuaternion InterpolateQuaternions (TQuaternion q, TQuaternion r, double t);
-TVector3	RotateVector (TQuaternion q, TVector3 v);
+TQuaternion MakeRotationQuaternion (const TVector3& s, const TVector3& t);
+TQuaternion InterpolateQuaternions (const TQuaternion& q, TQuaternion r, double t);
+TVector3	RotateVector (const TQuaternion& q, const TVector3& v);
 
-bool		IntersectPolygon (TPolygon p, TVector3 *v);
-bool		IntersectPolyhedron (TPolyhedron p);
-TVector3	MakeNormal (TPolygon p, TVector3 *v);
-TPolyhedron	CopyPolyhedron (TPolyhedron ph);
-void		FreePolyhedron (TPolyhedron ph) ;
-void		TransPolyhedron (TMatrix mat, TPolyhedron ph);
+bool		IntersectPolygon (const TPolygon& p, TVector3 *v);
+bool		IntersectPolyhedron (const TPolyhedron& p);
+TVector3	MakeNormal (const TPolygon& p, TVector3 *v);
+TPolyhedron	CopyPolyhedron (const TPolyhedron& ph);
+void		FreePolyhedron (const TPolyhedron& ph) ;
+void		TransPolyhedron (TMatrix mat, const TPolyhedron& ph);
 
 // --------------------------------------------------------------------
 //				ode solver

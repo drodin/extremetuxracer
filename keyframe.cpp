@@ -43,7 +43,7 @@ int numJoints = 19;
 CKeyframe TestFrame;
 
 CKeyframe::CKeyframe () {
-	for (int i=0; i<=MAX_KEY_FRAMES; i++) {
+	for (int i=0; i<MAX_KEY_FRAMES; i++) {
 		frames[i] = NULL;
 	}
 	keytime = 0;
@@ -58,7 +58,7 @@ double CKeyframe::interp (double frac, double v1, double v2) {
     return frac * v1 + (1.0 - frac) * v2;
 } 
 
-void CKeyframe::Init (TVector3 ref_position, double height_correction) {
+void CKeyframe::Init (const TVector3& ref_position, double height_correction) {
 	if (!loaded) return;
 	CCharShape *shape = Char.GetShape (g_game.char_id);
     shape->ResetNode ("head");
@@ -70,7 +70,7 @@ void CKeyframe::Init (TVector3 ref_position, double height_correction) {
 	keytime = 0;
 }
 
-void CKeyframe::Init (TVector3 ref_position, double height_correction, CCharShape *shape) {
+void CKeyframe::Init (const TVector3& ref_position, double height_correction, CCharShape *shape) {
 	if (!loaded) return;
     shape->ResetNode ("head");
     shape->ResetNode ("neck");
@@ -82,7 +82,7 @@ void CKeyframe::Init (TVector3 ref_position, double height_correction, CCharShap
 
 }
 
-void CKeyframe::InitTest (TVector3 ref_position, CCharShape *shape) {
+void CKeyframe::InitTest (const TVector3& ref_position, CCharShape *shape) {
 	if (!loaded) return;
     shape->ResetNode ("head");
     shape->ResetNode ("neck");
@@ -108,7 +108,7 @@ void CKeyframe::Reset () {
 	}
 }
 
-bool CKeyframe::Load (string dir, string filename) {
+bool CKeyframe::Load (const string& dir, const string& filename) {
 	if (loaded && loadedfile == filename) return true;
 	CSPList list (1000);
 	int i;
@@ -358,7 +358,7 @@ int CKeyframe::GetNumJoints () {
 	return numJoints;
 }
 
-void CKeyframe::SaveTest (string dir, string filename) {
+void CKeyframe::SaveTest (const string& dir, const string& filename) {
 	CSPList list (100);
 	string line;
 	TKeyframe2 *frame;

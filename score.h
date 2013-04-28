@@ -42,7 +42,7 @@ private:
 	TScore TempScore;
 public:
 	void SetScorelist (int list_idx);
-	int AddScore (int list_idx, TScore score);
+	int AddScore (int list_idx, const TScore& score);
 	TScoreList *GetScorelist (int list_idx);
 	void PrintScorelist (int list_idx);
 	bool SaveHighScore ();

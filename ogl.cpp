@@ -141,7 +141,7 @@ void PrintGLInfo (){
     }
 }
 
-void set_material (TColor diffuse_colour, TColor specular_colour, double specular_exp) {
+void set_material (const TColor& diffuse_colour, const TColor& specular_colour, double specular_exp) {
 	GLfloat mat_amb_diff[4];
 	GLfloat mat_specular[4];
 
@@ -170,7 +170,7 @@ void ClearRenderContext () {
 	glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 }
 
-void ClearRenderContext (TColor col) {
+void ClearRenderContext (const TColor& col) {
 	glDepthMask (GL_TRUE);
 	glClearColor (col.r, col.g, col.b, col.a);
 	glClearStencil (0);

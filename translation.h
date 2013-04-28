@@ -48,9 +48,9 @@ public:
 	CTranslation ();
 
 	void LoadLanguages ();
-	int GetLangIdx (string lang);
+	int GetLangIdx (const string& lang);
 	string GetLanguage (int idx);
-	string GetLanguage (string lang);
+	string GetLanguage (const string& lang);
 	void SetDefaultTranslations ();
 	string Text (int idx);
 	void LoadTranslations (int langidx);

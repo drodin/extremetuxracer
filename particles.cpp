@@ -210,7 +210,7 @@ void draw_ui_snow (void) {
     }
 } 
 
-void reset_ui_snow_cursor_pos (TVector2 pos) {
+void reset_ui_snow_cursor_pos (const TVector2& pos) {
     double xres, yres;
 
     xres = param.x_resolution;
@@ -220,7 +220,7 @@ void reset_ui_snow_cursor_pos (TVector2 pos) {
     push_position_initialized = true;
 }
 
-void push_ui_snow (TVector2 pos) {
+void push_ui_snow (const TVector2& pos) {
     double xres, yres;
 
     xres = param.x_resolution;
@@ -230,7 +230,7 @@ void push_ui_snow (TVector2 pos) {
     push_position_initialized = true;
 }
 
-void make_ui_snow (TVector2 pos) {
+void make_ui_snow (const TVector2& pos) {
     double xres, yres;
 
     xres = param.x_resolution;
@@ -331,7 +331,7 @@ void draw_billboard (CControl *ctrl,
     glEnd ();
 }
 
-void create_new_particles (TVector3 loc, TVector3 vel, int num)  {
+void create_new_particles (const TVector3& loc, TVector3 vel, int num)  {
     Particle *newp;
     int i;
     double speed;
@@ -453,7 +453,7 @@ double adjust_particle_count (double particles) {
     } else return particles;
 }
 
-void generate_particles (CControl *ctrl, double dtime, TVector3 pos, double speed) {
+void generate_particles (CControl *ctrl, double dtime, const TVector3& pos, double speed) {
     TVector3 left_part_pt, right_part_pt;
     double brake_particles;
     double turn_particles;
@@ -984,10 +984,11 @@ void CCurtain::Init (CControl *ctrl) {
 
 CWind Wind;
 
-CWind::CWind () {
+CWind::CWind ()
+	: WVector(MakeVector(0, 0, 0))
+{
 	windy = false;
 	CurrTime = 0.0;
-	WVector = MakeVector (0, 0, 0);
 	
 	SpeedMode = 0;
 	AngleMode = 0;

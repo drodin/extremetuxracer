@@ -99,7 +99,7 @@ string CTranslation::Text (int idx) {
 void CTranslation::LoadLanguages () {
 	CSPList list (MAX_LANGUAGES);
 	int i;
-	string line, lang, language;
+	string line;
 
 	languages_ok = false;
 	if (!list.Load (param.trans_dir, "languages.lst")) {
@@ -119,7 +119,7 @@ void CTranslation::LoadLanguages () {
 	if (numLanguages > 0) languages_ok = true;
 }
 
-int CTranslation::GetLangIdx (string lang) {
+int CTranslation::GetLangIdx (const string& lang) {
 	return SPIntN (LangIndex, lang, 0);
 }
 
@@ -128,7 +128,7 @@ string CTranslation::GetLanguage (int idx) {
 	return languages[idx].language;
 }
 
-string CTranslation::GetLanguage (string lang) {
+string CTranslation::GetLanguage (const string& lang) {
 	return GetLanguage (GetLangIdx (lang));
 }
 

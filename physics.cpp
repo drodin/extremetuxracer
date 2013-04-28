@@ -23,7 +23,9 @@ GNU General Public License for more details.
 #include "game_ctrl.h"
 #include "view.h"
 
-CControl::CControl () {
+CControl::CControl () :
+	cnet_force(MakeVector(0, 0, 0))
+{
 	minSpeed = 0;
 	minFrictspeed = 0;
 	turn_fact = 0;
@@ -34,7 +36,6 @@ CControl::CControl () {
 	jumping = false;
 	jump_charging = false;
 	last_pos = cpos;
-	cnet_force = MakeVector (0, 0, 0);
 	orientation_initialized = false;
 	cairborne = false;
 	way = 0.0;
@@ -96,7 +97,7 @@ void CControl::Init () {
 //					collision
 // --------------------------------------------------------------------
 
-bool CControl::CheckTreeCollisions (TVector3 pos, TVector3 *tree_loc, double *tree_diam){
+bool CControl::CheckTreeCollisions (const TVector3& pos, TVector3 *tree_loc, double *tree_diam){
 	CCharShape *shape = Char.GetShape (g_game.char_id);
     double diam = 0.0; 
     double height;
@@ -168,7 +169,7 @@ bool CControl::CheckTreeCollisions (TVector3 pos, TVector3 *tree_loc, double *tr
     return hit;
 } 
 
-void CControl::AdjustTreeCollision (TVector3 pos, TVector3 *vel){
+void CControl::AdjustTreeCollision (const TVector3& pos, TVector3 *vel){
     TVector3 treeNml;
     TVector3 treeLoc;
     double tree_diam;
@@ -196,7 +197,7 @@ void CControl::AdjustTreeCollision (TVector3 pos, TVector3 *vel){
     } 
 }
 
-void CControl::CheckItemCollection (TVector3 pos) {
+void CControl::CheckItemCollection (const TVector3& pos) {
     static TVector3 last_collision_pos = {-999, -999, -999};
     TVector3 dist_vec = SubtractVectors (pos, last_collision_pos);
     if (MAG_SQD (dist_vec) < COLL_TOLERANCE) return;
@@ -233,7 +234,7 @@ void CControl::CheckItemCollection (TVector3 pos) {
 //				position and velocity  ***
 // --------------------------------------------------------------------
 
-void CControl::AdjustVelocity (TPlane surf_plane) {
+void CControl::AdjustVelocity (const TPlane& surf_plane) {
     double speed = NormVector (&cvel);
     speed = max (minSpeed, speed);
 
@@ -247,7 +248,7 @@ void CControl::AdjustVelocity (TPlane surf_plane) {
 	}
 }
 
-void CControl::AdjustPosition (TPlane surf_plane, double dist_from_surface) {
+void CControl::AdjustPosition (const TPlane& surf_plane, double dist_from_surface) {
     if  (dist_from_surface < -MAX_SURF_PEN) {
 		double displace = -MAX_SURF_PEN - dist_from_surface;
 		cpos = AddVectors (cpos, ScaleVector (displace, surf_plane.nml));
@@ -361,7 +362,7 @@ TVector3 CControl::CalcJumpForce () {
 	return ScaleVector (1.0, jumpforce); // normally 1.0
 }
 
-TVector3 CControl::CalcFrictionForce (double speed, TVector3 nmlforce) {
+TVector3 CControl::CalcFrictionForce (double speed, const TVector3& nmlforce) {
 	TVector3 frictforce;
 	double fric_f_mag; 			
 	TMatrix fric_rot_mat; 		
@@ -440,7 +441,7 @@ TVector3 CControl::CalcGravitationForce () {
 	return gravforce;
 }
 
-TVector3 CControl::CalcNetForce (TVector3 pos, TVector3 vel) {
+TVector3 CControl::CalcNetForce (const TVector3& pos, const TVector3& vel) {
 	// pos and vel are temporary, see ODE solver
 	TVector3 netforce;
     TVector3 nmlforce;      		

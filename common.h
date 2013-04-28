@@ -60,34 +60,34 @@ TColor3 MakeColor3 (double r, double g, double b);
 // terminal. Only used for development. 
 
 void	PrintInt (const int val);
-void	PrintInt (string s, const int val);
+void	PrintInt (const string& s, const int val);
 void	PrintStr (const char *val);
-void	PrintString (string s);
+void	PrintString (const string& s);
 void	PrintFloat (const float val);
 void	PrintDouble (const double val);
 void	PrintFloat8 (const float val);
 void	PrintFloat (char *s, const float val);
 void	PrintBool (const bool val);
 void	PrintPointer (void *p);
-void	PrintVector (const TVector3 v);
-void	PrintVector4 (const TVector4 v);
-void    PrintColor (const TColor);
-void	PrintVector2 (const TVector2 v);
-void	PrintVector (char *s, const TVector3 v);
+void	PrintVector (const TVector3& v);
+void	PrintVector4 (const TVector4& v);
+void    PrintColor (const TColor& c);
+void	PrintVector2 (const TVector2& v);
+void	PrintVector (char *s, const TVector3& v);
 
 void	PrintMatrix (TMatrix mat);
-void	PrintQuaternion (TQuaternion q);
+void	PrintQuaternion (const TQuaternion& q);
 
-void	PrintIndex3 (TIndex3 idx);
-void	PrintIndex4 (TIndex4 idx);
+void	PrintIndex3 (const TIndex3& idx);
+void	PrintIndex4 (const TIndex4& idx);
 
 // --------------------------------------------------------------------
 //				file utils
 // --------------------------------------------------------------------
 
 bool    FileExists (const char *filename);
-bool	FileExists (const string filename);
-bool	FileExists (const string dir, const string filename);
+bool	FileExists (const string& filename);
+bool	FileExists (const string& dir, const string& filename);
 bool    DirExists (const char *dirname);
 
 // --------------------------------------------------------------------
@@ -96,7 +96,7 @@ bool    DirExists (const char *dirname);
 
 void    Message (const char *msg, const char *desc);
 void    Message (const char *msg);
-void	MessageN (string a, string b);
+void	MessageN (const string& a, const string& b);
 void	SaveMessages ();
 
 // --------------------------------------------------------------------
