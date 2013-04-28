@@ -18,31 +18,28 @@ GNU General Public License for more details.
 #include "gui.h"
 #include "textures.h"
 #include "font.h"
+#include <list>
+#include <vector>
 
 #define CURSOR_SIZE 10
 
 static int cursor_x = -100;
 static int cursor_y = -100;
 
-static TMouseRect MouseArr[MAX_MOUSERECTS];
-static int numMouseRect = 0;
-static TArrow Arrows[MAX_ARROWS];
-static int numArrows = 0;
+static list<TMouseRect> MouseRects;
+static vector<TArrow> Arrows;
 static int selArrow = -1;
 static int selType = -1;
-static TTextButton TextButtons[MAX_TEXTBUTTONS];
-static int numTextButtons = 0;
-static TIconButton IconButtons[MAX_ICONBUTTONS];
-static int numIconButtons = 0;
-static TCheckbox Checkboxes[MAX_CHECKBOXES];
-static int numCheckboxes = 0;
+static vector<TTextButton> TextButtons;
+static vector<TIconButton> IconButtons;
+static vector<TCheckbox> Checkboxes;
 
 void ResetWidgets () {
-	numMouseRect = 0;
-	numArrows = 0;
-	numTextButtons = 0;
-	numIconButtons = 0;
-	numCheckboxes = 0;
+	MouseRects.clear();
+	Arrows.clear();
+	TextButtons.clear();
+	IconButtons.clear();
+	Checkboxes.clear();
 }
 
 void DrawCursor () {
@@ -51,113 +48,101 @@ void DrawCursor () {
 }
 
 void AddMouseRect (int left, int top, int width, int height,
-		int focus, int dir, int arrnr, TWidgetType type) {
-	TRect r;
-	
-	if (numMouseRect >= MAX_MOUSERECTS) return;
-	r.left = left;
-	r.top = top;
-	r.width = width;
-	r.height = height;
-	MouseArr[numMouseRect].rect = r;
-	MouseArr[numMouseRect].focus = focus;
-	MouseArr[numMouseRect].dir = dir;
-	MouseArr[numMouseRect].arrnr = arrnr;
-	MouseArr[numMouseRect].type = type;
-	numMouseRect++;
+		int focus, int dir, size_t arrnr, TWidgetType type) {
+	MouseRects.push_back(TMouseRect());
+	MouseRects.back().rect.left = left;
+	MouseRects.back().rect.top = top;
+	MouseRects.back().rect.width = width;
+	MouseRects.back().rect.height = height;
+	MouseRects.back().focus = focus;
+	MouseRects.back().dir = dir;
+	MouseRects.back().arrnr = arrnr;
+	MouseRects.back().type = type;
 }
 
 void AddArrow (int x, int y, int dir, int focus) {
-	if (numArrows >= MAX_ARROWS) return;
-	Arrows[numArrows].x = x;
-	Arrows[numArrows].y = y;
-	Arrows[numArrows].dir = dir;
-	Arrows[numArrows].focus = focus;
-	AddMouseRect (x, y, 32, 16, focus, dir, numArrows, W_ARROW);
-	numArrows++;
+	Arrows.push_back(TArrow());
+	Arrows.back().x = x;
+	Arrows.back().y = y;
+	Arrows.back().dir = dir;
+	Arrows.back().focus = focus;
+	AddMouseRect (x, y, 32, 16, focus, dir, Arrows.size()-1, W_ARROW);
 }
 
-void AddTextButton (const char *text, int x, int y, int focus, double ftsize) {
-	if (numTextButtons >= MAX_TEXTBUTTONS) return;	
-	TextButtons[numTextButtons].y = y;	
-	TextButtons[numTextButtons].text = text;	
-	TextButtons[numTextButtons].focus = focus;	
+void AddTextButton (const string& text, int x, int y, int focus, double ftsize) {
+	TextButtons.push_back(TTextButton());
+	TextButtons.back().y = y;
+	TextButtons.back().text = text;
+	TextButtons.back().focus = focus;
 
 	if (ftsize < 0) ftsize = FT.AutoSizeN (4);
 	
-	TextButtons[numTextButtons].ftsize = ftsize;	
+	TextButtons.back().ftsize = ftsize;	
 	FT.SetSize (ftsize);
 	double len = FT.GetTextWidth (text);
 	if (x == CENTER) x = (int)((param.x_resolution - len) / 2);
-	TextButtons[numTextButtons].x = x;
+	TextButtons.back().x = x;
 	int offs = (int)(ftsize / 5);
 	AddMouseRect (x-20, y+offs, (int)len + 40, (int)(ftsize+offs), focus, 0, 
-		numTextButtons, W_TEXTBUTTON);
-	numTextButtons++;	
+		TextButtons.size()-1, W_TEXTBUTTON);
 }
 
-void AddTextButton (const string text, int x, int y, int focus, double ftsize) {
-	AddTextButton (text.c_str(), x, y, focus, ftsize);
-}
-
-void AddTextButtonN (const char *text, int x, int y, int focus, int rel_ftsize) {
+void AddTextButtonN (const string& text, int x, int y, int focus, int rel_ftsize) {
 	double siz = FT.AutoSizeN (rel_ftsize);
-	AddTextButton (text, y, y, focus, siz);
-}
-
-void AddTextButtonN (const string text, int x, int y, int focus, int rel_ftsize) {
-	double siz = FT.AutoSizeN (rel_ftsize);
-	AddTextButton (text, y, y, focus, siz);
+	AddTextButton (text, x, y, focus, siz);
 }
 
 void PrintTextButton (int nr, int focus) {
-	TColor col = colWhite;
-	if (focus == TextButtons[nr].focus) col = colDYell;
-	if (nr >= numTextButtons) return;
+	if (nr >= TextButtons.size()) return;
 
-	FT.SetColor (col);
+	if (focus == TextButtons[nr].focus)
+		FT.SetColor (colDYell);
+	else
+		FT.SetColor (colWhite);
 	FT.SetSize (TextButtons[nr].ftsize);
 	FT.DrawString (TextButtons[nr].x, TextButtons[nr].y, TextButtons[nr].text);
 }
 
-void AddCheckbox (int x, int y, int focus, int width, const string tag) {
-	if (numCheckboxes >= MAX_CHECKBOXES) return;	
-	Checkboxes[numCheckboxes].x = x;
-	Checkboxes[numCheckboxes].y = y;
-	Checkboxes[numCheckboxes].focus = focus;
-	Checkboxes[numCheckboxes].width = width;
-	Checkboxes[numCheckboxes].tag = tag;
-	AddMouseRect (x+width-32, y, 32, 32, focus, 0, numCheckboxes, W_CHECKBOX);
-	numCheckboxes++;
+void AddCheckbox (int x, int y, int focus, int width, const string& tag) {
+	Checkboxes.push_back(TCheckbox());
+	Checkboxes.back().x = x;
+	Checkboxes.back().y = y;
+	Checkboxes.back().focus = focus;
+	Checkboxes.back().width = width;
+	Checkboxes.back().tag = tag;
+	AddMouseRect (x+width-32, y, 32, 32, focus, 0, Checkboxes.size()-1, W_CHECKBOX);
 }
 
 void PrintCheckbox (int nr, int focus, bool state) {
-	TColor col = colWhite;
+	if (nr >= Checkboxes.size()) return;
+
 	TCheckbox *box = &Checkboxes[nr];
-	if (focus == box->focus) col = colDYell;
-	if (nr >= numCheckboxes) return;
 	Tex.Draw (CHECKBOX, box->x + box->width - 32, box->y, 1.0);
-	if (state) Tex.Draw (CHECKMARK_SMALL, box->x + box->width - 32, box->y, 1.0);
-	FT.SetColor (col);
+	if (state)
+		Tex.Draw (CHECKMARK_SMALL, box->x + box->width - 32, box->y, 1.0);
+	if (focus == box->focus)
+		FT.SetColor (colDYell);
+	else
+		FT.SetColor (colWhite);
 	FT.DrawString (box->x, box->y, box->tag);
 }
 
 void AddIconButton (int x, int y, int focus, GLuint texid, double size) {
-	if (numIconButtons >= MAX_ICONBUTTONS) return;	
-	IconButtons[numIconButtons].x = x;	
-	IconButtons[numIconButtons].y = y;	
-	IconButtons[numIconButtons].focus = focus;	
-	IconButtons[numIconButtons].texid = texid;	
-	IconButtons[numIconButtons].size = size;	
-	AddMouseRect (x, y, 32, 32, focus, 0, numIconButtons, W_ICONBUTTON);
-	numIconButtons++;
+	IconButtons.push_back(TIconButton());
+	IconButtons.back().x = x;
+	IconButtons.back().y = y;
+	IconButtons.back().focus = focus;
+	IconButtons.back().texid = texid;
+	IconButtons.back().size = size;	
+	AddMouseRect (x, y, 32, 32, focus, 0, IconButtons.size()-1, W_ICONBUTTON);
 }
 
 void PrintIconButton (int nr, int focus, int state) {
 	if (state < 0 || state >= 4) return;
+	if (nr >= IconButtons.size()) return;
+
 	TColor framecol = colWhite;
 	if (focus == IconButtons[nr].focus) framecol = colDYell;
-	if (nr >= numIconButtons) return;
 
 	int size = (int)IconButtons[nr].size;
 	int line = 3;
@@ -249,31 +234,29 @@ void DrawArrow (int x, int y, int dir, bool active, int sel) {
 // nr is the index in arrowarray Arrows
 void PrintArrow (int nr, bool active) {
 	int sel = 0;
-	if (nr >= numArrows) return;
+	if (nr >= Arrows.size()) return;
 	if ((nr == selArrow) && (selType == W_ARROW) && active) sel = 1;
 	DrawArrow (Arrows[nr].x, Arrows[nr].y, Arrows[nr].dir, active, sel);		
 }
 
-bool Inside (int x, int y, int idx) {
-	if (idx >= numMouseRect) return false;
-	if (x >= MouseArr[idx].rect.left 
-		&& x <= MouseArr[idx].rect.left + MouseArr[idx].rect.width
-		&& y >= MouseArr[idx].rect.top
-		&& y <= MouseArr[idx].rect.top + MouseArr[idx].rect.height) {
+static bool Inside (int x, int y, const TMouseRect& Rect) {
+	if (x >= Rect.rect.left
+		&& x <= Rect.rect.left + Rect.rect.width
+		&& y >= Rect.rect.top
+		&& y <= Rect.rect.top + Rect.rect.height) {
 		return true;
 	} else return false;
 }
 
 void GetFocus (int x, int y, int *focus, int *dir) {
-	int i;
 	cursor_x = x;
 	cursor_y = y;
-	for (i=0; i<numMouseRect; i++) {
-		if (Inside (x,y,i)) {
-			*focus = MouseArr[i].focus;
-			*dir = MouseArr[i].dir;
-			selArrow = MouseArr[i].arrnr;
-			selType = MouseArr[i].type;
+	for (list<TMouseRect>::const_iterator i = MouseRects.begin(); i != MouseRects.end(); ++i) {
+		if (Inside (x, y, *i)) {
+			*focus = i->focus;
+			*dir = i->dir;
+			selArrow = i->arrnr;
+			selType = i->type;
 			return;
 		}
 	}
@@ -284,7 +267,7 @@ void GetFocus (int x, int y, int *focus, int *dir) {
 }
 
 void DrawFrameX (int x, int y, int w, int h, int line, 
-		TColor backcol, TColor framecol, double transp) {
+		const TColor& backcol, const TColor& framecol, double transp) {
 	double yy = param.y_resolution - y - h;
  
 	if (x < 0) x = (param.x_resolution -w) / 2;
@@ -451,10 +434,3 @@ TArea AutoAreaN (double top_perc, double bott_perc, int w) {
 	res.right = param.x_resolution - res.left;
 	return res;
 }
-
-
-
-
-
-
-

@@ -20,76 +20,68 @@ GNU General Public License for more details.
 
 #include "bh.h"
 
-#define MAX_MOUSERECTS 32
-#define MAX_ARROWS 16
-#define MAX_TEXTBUTTONS 16
-#define MAX_ICONBUTTONS 8
-#define MAX_CHECKBOXES 16
-
-typedef enum {
+enum TWidgetType {
 	W_ARROW,
 	W_TEXTBUTTON,
 	W_ICONBUTTON,
 	W_CHECKBOX
-} TWidgetType;
+};
 
-typedef struct {
+struct TMouseRect {
 	TRect rect;
 	int focus;
 	int dir;
-	int arrnr;
+	size_t arrnr;
 	TWidgetType type;
-} TMouseRect;
+};
 
-typedef struct {
+struct TArrow {
 	int x;
 	int y;
 	int dir;
 	int focus;
-} TArrow;
+};
 
-typedef struct {
+struct TTextButton {
 	int x;
 	int y;
 	int font;
  	string text;
 	int focus;
 	double ftsize;	// font height
-} TTextButton;
+};
 
-typedef struct {
+struct TIconButton {
 	int x;
 	int y;
 	int focus;
 	double size;
 	GLuint texid;
-} TIconButton;
+};
 
-typedef struct {
+struct TCheckbox {
 	int x;
 	int y;
 	int focus;
 	int width;
 	string tag;
-} TCheckbox;
+};
 
 void GetFocus (int x, int y, int *focus, int *dir);
 void ResetWidgets ();
 
 void AddArrow (int x, int y, int dir, int focus);
 void PrintArrow (int nr, bool active);
-void AddTextButton (const char *text, int x, int y, int focus, double ftsize);
-void AddTextButton (const string text, int x, int y, int focus, double ftsize);
-void AddTextButtonN (const char *text, int x, int y, int focus, int rel_ftsize);
-void AddTextButtonN (const string text, int x, int y, int focus, int rel_ftsize);
+void AddTextButton (const string& text, int x, int y, int focus, double ftsize);
+void AddTextButtonN (const string& text, int x, int y, int focus, int rel_ftsize);
 void PrintTextButton (int nr, int focus);
 void AddIconButton (int x, int y, int focus, GLuint texid, double size);
 void PrintIconButton (int nr, int focus, int state);
-void AddCheckbox (int x, int y, int focus, int width, const string tag);
+void AddCheckbox (int x, int y, int focus, int width, const string& tag);
 void PrintCheckbox (int nr, int focus, bool state);
 
 void DrawFrameX (int x, int y, int w, int h, int line, 
-			TColor backcol, TColor framecol, double transp);
+			const TColor& backcol, const TColor& framecol, double transp);
 void DrawLevel (int x, int y, int level, double fact);
 void DrawBonus (int x, int y, int max, int num);
 void DrawBonusExt (int y, int numraces, int num);
