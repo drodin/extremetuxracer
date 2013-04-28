@@ -121,12 +121,10 @@ int main( int argc, char **argv ) {
 	RegisterTestFuncs ();
 	
 	// theses resources must or should be loaded before splashscreen starts
- 	Course.MakeStandardPolyhedrons ();
 	Tex.LoadTextureList ();
 	FT.LoadFontlist ();
 	Winsys.SetFonttype ();
 	Audio.Open ();
-	Sound.LoadSoundList ();
 	Music.LoadMusicList ();
 	Music.SetVolume (param.music_volume);
 

@@ -46,8 +46,6 @@ void SplashInit (void) {
 	g_game.loopdelay = 10;
 }
 
-static string fontnam[6] = {"normal", "italic", "bold", "outline", "pc20", "pcoutline"};
-
 void SplashLoop (double timestep ){
 	Music.Update ();    
 	check_gl_error();
@@ -65,12 +63,11 @@ void SplashLoop (double timestep ){
 	FT.DrawText (CENTER, top, "Loading resources,");
 	FT.DrawText (CENTER, top+dist, "please wait ...");
 
-
-	if (param.ice_cursor) DrawCursor ();
     Winsys.SwapBuffers();
-
 	Trans.LoadLanguages ();
 	Trans.LoadTranslations (param.language);
+	Course.MakeStandardPolyhedrons ();
+	Sound.LoadSoundList ();
 	LoadCreditList ();
 	Char.LoadCharacterList ();
 	Course.LoadObjectTypes (); 
@@ -82,7 +79,6 @@ void SplashLoop (double timestep ){
 	Players.LoadAvatars (); // before LoadPlayers !!!
 	Players.LoadPlayers ();
 
-	SDL_Delay (10);
 	Winsys.SetMode (REGIST);
 } 
 
