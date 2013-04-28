@@ -577,7 +577,7 @@ void CTexture::DrawFrame (string name, int x, int y, double w, double h, int fra
 	DrawDirectFrame (TexID (name), x, y, w, h, frame, col);
 }
 
-void CTexture::SetOrientation (int orientation) {
+void CTexture::SetOrientation (Orientation orientation) {
 	forientation = orientation;
 }
 
@@ -623,7 +623,7 @@ void CTexture::DrawNumStr (const char *s, int x, int y, float size, TColor col) 
 	int qw = (int)(22 * size);
 	int qh = (int)(32 * size);
 
-	for (int i=0; i<int(strlen(s)); i++) {
+	for (int i=0; s[i] != '\0'; i++) {
 		DrawNumChr (s[i], x + i*qw, y, qw, qh, col); 
 	}
 }

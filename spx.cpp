@@ -21,10 +21,6 @@ GNU General Public License for more details.
 #include <iostream>
 #include <fstream>
 
-static string EnumStr;
-
-void SetEnum (string s) { EnumStr = s;}
-
 // --------------------------------------------------------------------
 //					elementary string functions
 // --------------------------------------------------------------------
@@ -54,7 +50,7 @@ void SDeleteN (string &s, unsigned int pos, int count) {
 	s.erase (pos, count);
 }
 
-int SPosN (string &s, const string find) {
+int SPosN (const string &s, const string find) {
 	return s.find (find);
 }
 
@@ -236,7 +232,7 @@ string Bool_StrN (const bool val) {
 //				SP functions for parsing lines
 // --------------------------------------------------------------------
 
-string SPItemN (string &s, const string &tag) {
+string SPItemN (const string &s, const string &tag) {
 	int i = 0;
 	unsigned int ii = 0;
 	string item = "";
@@ -253,7 +249,7 @@ string SPItemN (string &s, const string &tag) {
  	return item;
 }
 
-void SPItemN (string &s, const string &tag, string &item) {
+void SPItemN (const string &s, const string &tag, string &item) {
 	int i = 0;
 	unsigned int ii = 0;
 
@@ -270,82 +266,75 @@ void SPItemN (string &s, const string &tag, string &item) {
 	}
 }
 
-string SPStrN (string &s, const string &tag, const string def) {
+string SPStrN (const string &s, const string &tag, const string def) {
 	string item = SPItemN (s, tag);
 	if (item.size() < 1) return def;
 	STrimN (item);
 	return item;
 }
 
-int SPIntN (string &s, const string &tag, const int def) {
+int SPIntN (const string &s, const string &tag, const int def) {
 	return (Str_IntN (SPItemN (s, tag), def));
 }
 
-int SPEnumN (string &s, const string &tag, int def) {
-	string item = SPItemN (s, tag);	
-	STrimN (item);
-	if (item.size() < 1) return def;
-	return SPIntN (EnumStr, item, def);;
-}
-
-bool SPBoolN (string &s, const string &tag, const bool def) {
+bool SPBoolN (const string &s, const string &tag, const bool def) {
 	return (Str_BoolN (SPItemN (s, tag), def));
 }
 
-bool SPBoolNX (string &s, const string &tag, const bool def) {
+bool SPBoolNX (const string &s, const string &tag, const bool def) {
 	string item = SPItemN (s, tag);
 	STrimN (item);
 	return Str_BoolNX (item, def);
 }
 
-float SPFloatN (string &s, const string &tag, const float def) {
+float SPFloatN (const string &s, const string &tag, const float def) {
 	return (Str_FloatN (SPItemN (s, tag), def));
 }
 
-TVector2 SPVector2N (string &s, const string &tag, const TVector2 def) {
+TVector2 SPVector2N (const string &s, const string &tag, const TVector2 def) {
 	return (Str_Vector2N (SPItemN (s, tag), def));
 }
 
-TVector2 SPVector2N (string &s, const string &tag) {
+TVector2 SPVector2N (const string &s, const string &tag) {
 	return (Str_Vector2N (SPItemN (s, tag)));
 }
 
-TVector3 SPVector3N (string &s, const string &tag, const TVector3 def) {
+TVector3 SPVector3N (const string &s, const string &tag, const TVector3 def) {
 	return (Str_Vector3N (SPItemN (s, tag), def));
 }
 
-TIndex3 SPIndex3N (string &s, const string &tag, const TIndex3 def) {
+TIndex3 SPIndex3N (const string &s, const string &tag, const TIndex3 def) {
 	return (Str_Index3N (SPItemN (s, tag), def));
 }
 
-TVector3 SPVector3N (string &s, const string &tag) {
+TVector3 SPVector3N (const string &s, const string &tag) {
 	return (Str_Vector3N (SPItemN (s, tag)));
 }
 
-TVector4 SPVector4N (string &s, const string &tag, const TVector4 def) {
+TVector4 SPVector4N (const string &s, const string &tag, const TVector4 def) {
 	return (Str_Vector4N (SPItemN (s, tag), def));
 }
 
-TColor SPColorN (string &s, const string &tag, const TColor def) {
+TColor SPColorN (const string &s, const string &tag, const TColor def) {
 	return (Str_ColorN (SPItemN (s, tag), def));
 }
 
-TColor3 SPColor3N (string &s, const string &tag, const TColor3 def) {
+TColor3 SPColor3N (const string &s, const string &tag, const TColor3 def) {
 	return (Str_Color3N (SPItemN (s, tag), def));
 }
 
-void SPArrN (string &s, const string &tag, float *arr, int count, float def) {
+void SPArrN (const string &s, const string &tag, float *arr, int count, float def) {
 	Str_ArrN (SPItemN (s, tag), arr, count, def);
 }
 
-bool SPExistsN  (string &s, const string &tag) {
+bool SPExistsN  (const string &s, const string &tag) {
 	string tg = "[" + tag + "]";
 	int i = SPosN (s, tg);
 	if (i < 0) return false;
 	return true;
 }
 
-int SPPosN (string &s, const string &tag) {
+int SPPosN (const string &s, const string &tag) {
 	string tg = "[" + tag + "]";
 	return SPosN (s, tg);
 }
@@ -354,11 +343,7 @@ int SPPosN (string &s, const string &tag) {
 // 			compatibility
 // -------------------------------------------------------------------
 
-void Int_CharN (char *s, const int val) {
-	sprintf (s, "%i", val);
-}
-
-void SPCharN (string &s, const string &tag, char *result) {
+void SPCharN (const string &s, const string &tag, char *result) {
 	string item = SPItemN (s, tag);
 	if (item.size() < 1) return;
 	STrimN (item);

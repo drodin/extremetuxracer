@@ -157,7 +157,7 @@ private:
 	GLuint CommonTex [MAX_COMMON_TEX];
 	int numTextures;
 	string TextureIndex;
-	int forientation;
+	Orientation forientation;
 	
 	void DrawNumChr (char c, int x, int y, int w, int h, TColor col);
 public:
@@ -191,7 +191,7 @@ public:
 	void DrawFrame (int idx, int x, int y, double w, double h, int frame, TColor col);
 	void DrawFrame (string name, int x, int y, double w, double h, int frame, TColor col);
 
-	void SetOrientation (int orientation);
+	void SetOrientation (Orientation orientation);
 	void DrawNumStr (const char *s, int x, int y, float size, TColor col);
 };
 

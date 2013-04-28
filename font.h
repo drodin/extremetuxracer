@@ -20,8 +20,8 @@ GNU General Public License for more details.
 #define FONT_H
 
 #include "bh.h"
-#include "ft_font.h"
 #include "spx.h"
+#include <vector>
 
 // --------------------------------------------------------------------
 //		CFont
@@ -29,62 +29,71 @@ GNU General Public License for more details.
 
 #define MAX_FONTS 36
 
+class FTFont;
+
+
 class CFont {
 private:
-	FTFont *fonts[MAX_FONTS];
-	int numFonts;
+	vector<FTFont*> fonts;
 	string fontindex;
-	int forientation;
+	Orientation forientation;
 
 	int    curr_font;
 	TColor curr_col;
 	float  curr_size;
 	float  curr_fact;		// the length factor
 
-	wstring UnicodeStr  (const char* s);
+	static wstring UnicodeStr(const char* s);
+	void DrawText(float x, float y, const char *text, int font, float size) const;
+	void DrawText(float x, float y, const wchar_t *text, int font, float size) const;
+	void GetTextSize(const char *text, float &x, float &y, int font, float size) const;
+	void GetTextSize(const wchar_t *text, float &x, float &y, int font, float size) const;
 
 public:
 	CFont ();
+	~CFont ();
 
 	void Clear ();
-	int  LoadFont (string name, const char *dir, const char *filename);
-	int  LoadFont (string name, const char *path);
+	int  LoadFont (const string& name, const char *dir, const char *filename);
+	int  LoadFont (const string& name, const char *path);
 	bool LoadFontlist ();
-	int  GetFontIdx (const string &name);
+	int  GetFontIdx (const string &name) const;
 
 	// properties
- 	void SetProps   (const string &fontname, float size, TColor col);
+ 	void SetProps   (const string &fontname, float size, const TColor& col);
 	void SetProps   (const string &fontname, float size);
 	void SetColor   (float r, float g, float b, float a);
-	void SetColor   (TColor col);
+	void SetColor   (const TColor& col);
 	void SetSize    (float size);
-	void SetFont    (string fontname);
+	void SetFont    (const string& fontname);
 
 	// auto
 	int AutoSizeN     (int rel_val);	// rel_val = relative size, return: autosize
 	int AutoDistanceN (int rel_val);	// rel_val = relative dist
 	
 	// draw
-	void DrawText   (float x, float y, const char *text);		// normal char*
-	void DrawText   (float x, float y, const wchar_t *text);	// wide char*
-	void DrawString (float x, float y, const string &s);		// string class
+	void DrawText   (float x, float y, const char *text) const;		// normal char*
+	void DrawText   (float x, float y, const wchar_t *text) const;	// wide char*
+	void DrawString (float x, float y, const string &s) const;		// string class
+	void DrawString (float x, float y, const wstring &s) const;		// wstring class
 
 
-	void DrawText   (float x, float y, const char *text, const string &fontname, float size);
-	void DrawText   (float x, float y, const wchar_t *text, const string &fontname, float size);
-	void DrawString (float x, float y, const string &s, const string &fontname, float size);
+	void DrawText   (float x, float y, const char *text, const string &fontname, float size) const;
+	void DrawText   (float x, float y, const wchar_t *text, const string &fontname, float size) const;
+	void DrawString (float x, float y, const string &s, const string &fontname, float size) const;
+	void DrawString (float x, float y, const wstring &s, const string &fontname, float size) const;
 
 	// metrics
-	void  GetTextSize  (const char *text, float &x, float &y);
-	void  GetTextSize  (const char *text, float &x, float &y, const string &fontname, float size);
-	float GetTextWidth (const char *text);
-	float GetTextWidth (const string text);
-	float GetTextWidth (const wchar_t *text);
-	float GetTextWidth (const char *text, const string &fontname, float size);
-	float GetTextWidth (const wchar_t *text, const string &fontname, float size);
+	void  GetTextSize  (const char *text, float &x, float &y) const;
+	void  GetTextSize  (const char *text, float &x, float &y, const string &fontname, float size) const;
+	float GetTextWidth (const char *text) const;
+	float GetTextWidth (const string& text) const;
+	float GetTextWidth (const wchar_t *text) const;
+	float GetTextWidth (const char *text, const string &fontname, float size) const;
+	float GetTextWidth (const wchar_t *text, const string &fontname, float size) const;
 
-	float CenterX        (const char *text);
-	void  SetOrientation (int orientation);
+	float CenterX        (const char *text) const;
+	void  SetOrientation (Orientation orientation);
 
 	void MakeLineList (const char *source, CSPList *dest, float width);
 };

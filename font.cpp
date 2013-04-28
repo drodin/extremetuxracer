@@ -17,11 +17,12 @@ GNU General Public License for more details.
 ---------------------------------------------------------------------*/
 
 #include "font.h"
+#include "ft_font.h"
 #include "spx.h"
 #include "gui.h"
 #include <deque>
 
-#define USE_UNICODE true
+#define USE_UNICODE 1
 
 // --------------------------------------------------------------------
 // First some common function used for textboxes and called by
@@ -34,42 +35,40 @@ static void MakeWordList (deque<string>& wordlist, const char *s) {
 		if(s[i] == ' ')
 		{
 			if(i != start)
-				wordlist.push_back(string(s+start, i-start) + ' ');
+				wordlist.push_back(string(s+start, i-start));
 			while(s[i+1] == ' ')
 				i++;
 			start = i+1;
 		}
 	}
 	if(s[start] != '0')
-		wordlist.push_back(string(s+start) + ' ');
+		wordlist.push_back(string(s+start));
 }
 
-static float GetWordLng (const char *word) {
-	return FT.GetTextWidth (word) + 4;		// +4: some space reserve at EOL
-}
-
-static int MakeLine (int first, const deque<string>& wordlist, CSPList *linelist, float width) {
+static size_t MakeLine (size_t first, const deque<string>& wordlist, CSPList *linelist, float width) {
 	if (first >= wordlist.size()) return wordlist.size()-1;
 
-	int last = first-1;
+	size_t last = first;
 	float lng = 0;
 
-	float wordlng = GetWordLng (wordlist[first].c_str());
-	bool ready = false;
-	do {
-		last++;
+	float spacelng = FT.GetTextWidth("a a") - FT.GetTextWidth("aa");;
+	while(last < wordlist.size()) {
+		float wordlng = FT.GetTextWidth(wordlist[last].c_str());
 		lng += wordlng;
-		if (last >= wordlist.size()-1) ready = true;
-		if (!ready) {
-			wordlng = GetWordLng (wordlist[last+1].c_str());
-			if (!ready && lng + wordlng >= width) ready = true;  
-		}
-	} while (!ready);
+		lng += spacelng;
+		if (lng >= width && first != last) // If first == last, we write beyond line
+			break;
+		last++;
+	}
 
 	string line;
-	for (int j=first; j<=last; j++) line += wordlist[j];
+	for (size_t j=first; j<last; j++) {
+		line += wordlist[j];
+		if(j < last)
+			line += ' ';
+	}
 	linelist->Add (line);
-	return last;
+	return last-1;
 }
 
 
@@ -81,8 +80,6 @@ static int MakeLine (int first, const deque<string>& wordlist, CSPList *linelist
 CFont FT;	
 
 CFont::CFont () {
-	for (int i=0; i<MAX_FONTS; i++) fonts[i] = NULL;
-	numFonts = 0;
 	forientation = OR_TOP;
 
 	// setting default values
@@ -95,11 +92,14 @@ CFont::CFont () {
 	curr_font   = 0;
 }
 
+CFont::~CFont() {
+	Clear();
+}
+
 void CFont::Clear () {
-	for (int i=0; i<MAX_FONTS; i++) {
-		if (fonts[i] != NULL) delete (fonts[i]);
-	}
-	numFonts = 0;
+	for(size_t i = 0; i < fonts.size(); i++)
+		delete fonts[i];
+	fonts.clear();
 	fontindex = "";
 }
 
@@ -138,23 +138,21 @@ wstring CFont::UnicodeStr (const char *s) {
 //					public
 // --------------------------------------------------------------------
 
-int CFont::LoadFont (string name, const char *path) {
-	if (numFonts >= MAX_FONTS) return -1;	
-	fonts[numFonts] = new FTGLPixmapFont (path);
-//	fonts[numFonts] = new FTGLTextureFont (path);
-	if (fonts[numFonts]->Error()) {
+int CFont::LoadFont (const string& name, const char *path) {
+	fonts.push_back(new FTGLPixmapFont (path));
+//	fonts.push_back(new FTGLTextureFont (path));
+	if (fonts.back()->Error()) {
 		Message ("Failed to open font");
 		return -1;
 	}
-	fonts[numFonts]->FaceSize (18);
-	fonts[numFonts]->CharMap (ft_encoding_unicode);
+	fonts.back()->FaceSize (18);
+	fonts.back()->CharMap (ft_encoding_unicode);
 
-	fontindex = fontindex + "[" + name + "]" + Int_StrN (numFonts);	
-	numFonts++;
-	return numFonts-1;
+	fontindex = fontindex + "[" + name + "]" + Int_StrN (fonts.size()-1);
+	return (int)fonts.size()-1;
 }
 
-int CFont::LoadFont (string name, const char *dir, const char *filename) {
+int CFont::LoadFont (const string& name, const char *dir, const char *filename) {
 	string path = dir;
 	path += SEP;
 	path += filename;
@@ -162,17 +160,14 @@ int CFont::LoadFont (string name, const char *dir, const char *filename) {
 }
 
 bool CFont::LoadFontlist () {
-	string fontfile, name, line;
-	int ftidx = -1;
-
 	CSPList list(MAX_FONTS);
 	if (!list.Load ( param.font_dir, "fonts.lst")) return false;
 	for (int i=0; i<list.Count(); i++) {
-		line = list.Line(i);
-		fontfile = SPStrN (line, "file", "");
-		name = SPStrN (line, "name", "");
+		string line = list.Line(i);
+		string fontfile = SPStrN (line, "file", "");
+		string name = SPStrN (line, "name", "");
 
-		ftidx = LoadFont (name, param.font_dir.c_str(), fontfile.c_str());		
+		int ftidx = LoadFont (name, param.font_dir.c_str(), fontfile.c_str());		
 		if (ftidx < 0) {
 			Message ("couldn't load font", name.c_str());
 		}
@@ -180,14 +175,13 @@ bool CFont::LoadFontlist () {
 	return true;
 }
 
-int CFont::GetFontIdx (const string &name) {
+int CFont::GetFontIdx (const string &name) const {
 	int idx = SPIntN (fontindex, name, -1);
 	return idx;
 }
 
-void CFont::SetProps (const string &fontname, float size, TColor col) {
-	if (fontname.size() > 0) curr_font = GetFontIdx (fontname);
-	if (size > 0) curr_size = size;
+void CFont::SetProps (const string &fontname, float size, const TColor& col) {
+	SetProps(fontname, size);
 	curr_col  = col;	
 }
 
@@ -203,7 +197,7 @@ void CFont::SetColor (float r, float g, float b, float a) {
 	curr_col.a = a;
 }	
 
-void CFont::SetColor (TColor col) { 
+void CFont::SetColor (const TColor& col) { 
 	curr_col = col; 
 }
 
@@ -211,7 +205,7 @@ void CFont::SetSize (float size) {
 	curr_size = size; 
 }
 
-void CFont::SetFont (string fontname) {
+void CFont::SetFont (const string& fontname) {
 	int idx = SPIntN (fontindex, fontname, -1);
 	curr_font = idx;
 	
@@ -237,15 +231,14 @@ int CFont::AutoDistanceN (int rel_val) {
 
 // -------------------- draw (x, y, text) -----------------------------
 
-void CFont::DrawText (float x, float y, const char *text) {
-	float left;
-	if (numFonts < 1) return;
-	if (curr_font < 0 || curr_font >= numFonts) return;
+void CFont::DrawText(float x, float y, const char *text, int font, float size) const {
+	if (font < 0 || font >= fonts.size()) return;
 
 	glPushMatrix();
-	fonts[curr_font]->FaceSize ((int)curr_size);
+	fonts[font]->FaceSize ((int)size);
 	glColor4f (curr_col.r, curr_col.g, curr_col.b, curr_col.a);
 	
+	float left;
 	if (x >= 0) left = x; 
 	else left = (param.x_resolution - GetTextWidth (text)) / 2;
 	if (left < 0) left = 0;
@@ -256,20 +249,18 @@ void CFont::DrawText (float x, float y, const char *text) {
 		glRasterPos2i ((int)left, (int)y);
 	}
 
-	if (USE_UNICODE) fonts[curr_font]->Render (UnicodeStr (text).c_str());
-		else fonts[curr_font]->Render (text);
+	fonts[font]->Render (text);
 	glPopMatrix();
 }
 
-void CFont::DrawText (float x, float y, const wchar_t *text) {
-	float left;
-	if (numFonts < 1) return;
-	if (curr_font < 0 || curr_font >= numFonts) return;
+void CFont::DrawText(float x, float y, const wchar_t *text, int font, float size) const {
+	if (font < 0 || font >= fonts.size()) return;
 
 	glPushMatrix();
-	fonts[curr_font]->FaceSize ((int)curr_size);
+	fonts[font]->FaceSize ((int)size);
 	glColor4f (curr_col.r, curr_col.g, curr_col.b, curr_col.a);
-
+	
+	float left;
 	if (x >= 0) left = x; 
 	else left = (param.x_resolution - GetTextWidth (text)) / 2;
 	if (left < 0) left = 0;
@@ -280,151 +271,125 @@ void CFont::DrawText (float x, float y, const wchar_t *text) {
 		glRasterPos2i ((int)left, (int)y);
 	}
 
-	fonts[curr_font]->Render (text);
+	fonts[font]->Render (text);
 	glPopMatrix();
 }
 
-void CFont::DrawString (float x, float y, const string &s) {
+void CFont::DrawText (float x, float y, const char *text) const {
+#if USE_UNICODE
+	DrawString(x, y, UnicodeStr(text));
+#else
+	DrawText(x, y, text, curr_font);
+#endif
+}
+
+void CFont::DrawText (float x, float y, const wchar_t *text) const {
+	DrawText(x, y, text, curr_font, curr_size);
+}
+
+void CFont::DrawString (float x, float y, const string &s) const {
 	DrawText (x, y, s.c_str());
 }
 
-void CFont::DrawText 
-		(float x, float y, const char *text, const string &fontname, float size) {
-	float left;
-	if (numFonts < 1) return;
+void CFont::DrawString (float x, float y, const wstring &s) const {
+	DrawText (x, y, s.c_str());
+}
+
+void CFont::DrawText(float x, float y, const char *text, const string &fontname, float size) const {
 	int temp_font = GetFontIdx (fontname);
-	if (temp_font < 0 || temp_font >= numFonts) return;
-
-	glPushMatrix();
-	fonts[temp_font]->FaceSize ((int)size);
-	glColor4f (curr_col.r, curr_col.g, curr_col.b, curr_col.a);
-
-	if (x >= 0) left = x; 
-	else left = (param.x_resolution - GetTextWidth (text, fontname, size)) / 2;
-	if (left < 0) left = 0;
-
-
-	if (forientation == OR_TOP) {
-		glRasterPos2i ((int)left, (int)(param.y_resolution - size - y));
-	} else {
-		glRasterPos2i ((int)left, (int)y);
-	}
-
-	if (USE_UNICODE) fonts[temp_font]->Render (UnicodeStr (text).c_str());
-		else fonts[temp_font]->Render (text);
-	glPopMatrix();
+#if USE_UNICODE
+	DrawText(x, y, UnicodeStr(text).c_str(), temp_font, size);
+#else
+	DrawText(x, y, text, temp_font, size);
+#endif
 }
 
 void CFont::DrawText 
-		(float x, float y, const wchar_t *text, const string &fontname, float size) {
-	float left;
-	if (numFonts < 1) return;
+		(float x, float y, const wchar_t *text, const string &fontname, float size) const {
 	int temp_font = GetFontIdx (fontname);
-	if (temp_font < 0 || temp_font >= numFonts) return;
-
-	glPushMatrix();
-	fonts[temp_font]->FaceSize ((int)size);
-	glColor4f (curr_col.r, curr_col.g, curr_col.b, curr_col.a);
-
-	if (x >= 0) left = x; 
-	else left = (param.x_resolution - GetTextWidth (text, fontname, size)) / 2;
-	if (left < 0) left = 0;
-
-	if (forientation == OR_TOP) {
-		glRasterPos2i ((int)left, (int)(param.y_resolution - size - y));
-	} else {
-		glRasterPos2i ((int)left, (int)y);
-	}
-
-	fonts[temp_font]->Render (text);
-	glPopMatrix();
+	DrawText(x, y, text, temp_font, size);
 }
 
 void CFont::DrawString (
-		float x, float y, const string &s, const string &fontname, float size) {
+		float x, float y, const string &s, const string &fontname, float size) const {
+	DrawText (x, y, s.c_str(), fontname, size);
+}
+
+void CFont::DrawString (
+		float x, float y, const wstring &s, const string &fontname, float size) const {
 	DrawText (x, y, s.c_str(), fontname, size);
 }
 
 // --------------------- metrics --------------------------------------
 
-void CFont::GetTextSize (const char *text, float &x, float &y) {
-	if (numFonts < 1)  { x = 0; y = 0; return; }
-	if (curr_font < 0 || curr_font >= numFonts) { x = 0; y = 0; return; }
+void CFont::GetTextSize (const wchar_t *text, float &x, float &y, int font, float size) const {
+	if (font < 0 || font >= fonts.size()) { x = 0; y = 0; return; }
 
 	float llx, lly, llz, urx, ury, urz;
-	fonts[curr_font]->FaceSize ((int)curr_size);
-	if (USE_UNICODE) fonts[curr_font]->BBox (UnicodeStr(text).c_str(), llx, lly, llz, urx, ury, urz);
-		else fonts[curr_font]->BBox (text, llx, lly, llz, urx, ury, urz);
+	fonts[font]->FaceSize ((int)size);
+	fonts[font]->BBox (text, llx, lly, llz, urx, ury, urz);
 	x = urx - llx;
 	y = ury - lly;
 }
 
-void CFont::GetTextSize (const char *text, float &x, float &y, const string &fontname, float size) {
-	if (numFonts < 1)  { x = 0; y = 0; return; }
+void CFont::GetTextSize (const char *text, float &x, float &y, int font, float size) const {
+#if USE_UNICODE
+	GetTextSize(UnicodeStr(text).c_str(), x, y, font, size);
+#else
+	if (font < 0 || font >= fonts.size()) { x = 0; y = 0; return; }
+
+	float llx, lly, llz, urx, ury, urz;
+	fonts[font]->FaceSize ((int)size);
+	fonts[font]->BBox (text, llx, lly, llz, urx, ury, urz);
+	x = urx - llx;
+	y = ury - lly;
+#endif
+}
+
+void CFont::GetTextSize (const char *text, float &x, float &y) const {
+	GetTextSize(text, x, y, curr_font, curr_size);
+}
+
+void CFont::GetTextSize (const char *text, float &x, float &y, const string &fontname, float size) const {
 	int temp_font = GetFontIdx (fontname);
-	if (temp_font < 0 || temp_font >= numFonts) { x = 0; y = 0; return; }
-
-	float llx, lly, llz, urx, ury, urz;
-	fonts[temp_font]->FaceSize ((int)size);
-	if (USE_UNICODE) fonts[temp_font]->BBox (UnicodeStr(text).c_str(), llx, lly, llz, urx, ury, urz);
-		else fonts[temp_font]->BBox (text, llx, lly, llz, urx, ury, urz);
-	x = urx - llx;
-	y = ury - lly;
+	GetTextSize(text, x, y, temp_font, size);
 }
 
-float CFont::GetTextWidth (const char *text) {
-	if (numFonts < 1)  { return 0.0; }
-	if (curr_font < 0 || curr_font >= numFonts) { return 0.0; }
-
-	float llx, lly, llz, urx, ury, urz;
-	fonts[curr_font]->FaceSize ((int)curr_size);
-	if (USE_UNICODE) fonts[curr_font]->BBox (UnicodeStr (text).c_str(), llx, lly, llz, urx, ury, urz);
-		else fonts[curr_font]->BBox (text, llx, lly, llz, urx, ury, urz);
-	return urx - llx;
+float CFont::GetTextWidth (const char *text) const {
+	float x, y;
+	GetTextSize(text, x, y, curr_font, curr_size);
+	return x;
 }
 
-float CFont::GetTextWidth (const string text) {
+float CFont::GetTextWidth (const string& text) const {
 	return GetTextWidth (text.c_str());
 }
 
-float CFont::GetTextWidth (const wchar_t *text) {
-	if (numFonts < 1)  { return 0.0; }
-	if (curr_font < 0 || curr_font >= numFonts) { return 0.0; }
-
-	float llx, lly, llz, urx, ury, urz;
-	fonts[curr_font]->FaceSize ((int)curr_size);
-	fonts[curr_font]->BBox (text, llx, lly, llz, urx, ury, urz);
-	return urx - llx;
+float CFont::GetTextWidth (const wchar_t *text) const {
+	float x, y;
+	GetTextSize(text, x, y, curr_font, curr_size);
+	return x;
 }
 
-float CFont::GetTextWidth (const char *text, const string &fontname, float size) {
-	if (numFonts < 1) return 0.0; 
+float CFont::GetTextWidth (const char *text, const string &fontname, float size) const {
 	int temp_font = GetFontIdx (fontname);
-	if (temp_font < 0 || temp_font >= numFonts) return 0.0;
-
-	float llx, lly, llz, urx, ury, urz;
-	fonts[temp_font]->FaceSize ((int)size);
-	if (USE_UNICODE) fonts[temp_font]->BBox (UnicodeStr (text).c_str(), llx, lly, llz, urx, ury, urz);
-		else fonts[temp_font]->BBox (text, llx, lly, llz, urx, ury, urz);
-	return urx - llx;
+	float x, y;
+	GetTextSize(text, x, y, temp_font, size);
+	return x;
 }
 
-float CFont::GetTextWidth (const wchar_t *text, const string &fontname, float size) {
-	if (numFonts < 1) return 0.0; 
+float CFont::GetTextWidth (const wchar_t *text, const string &fontname, float size) const {
 	int temp_font = GetFontIdx (fontname);
-	if (temp_font < 0 || temp_font >= numFonts) return 0.0;
-
-	float llx, lly, llz, urx, ury, urz;
-	fonts[temp_font]->FaceSize ((int)size);
-	fonts[temp_font]->BBox (text, llx, lly, llz, urx, ury, urz);
-	return urx - llx;
+	float x, y;
+	GetTextSize(text, x, y, temp_font, size);
+	return x;
 }
 
-float CFont::CenterX (const char *text) {
-	return (param.x_resolution - GetTextWidth (text)) / 2;
+float CFont::CenterX (const char *text) const {
+	return (param.x_resolution - GetTextWidth (text)) / 2.0;
 }
 
-void CFont::SetOrientation (int orientation) {
+void CFont::SetOrientation (Orientation orientation) {
 	forientation = orientation;
 }
 
@@ -432,8 +397,6 @@ void CFont::MakeLineList (const char *source, CSPList *line_list, float width) {
 	deque<string> wordlist;
 	MakeWordList (wordlist, source);
 
-	int last = -1;
-	do { last = MakeLine (last+1, wordlist, line_list, width); } 
-	while (last < wordlist.size()-1);
+	for(size_t last = 0; last < wordlist.size(); )
+		last = MakeLine(last, wordlist, line_list, width)+1;
 }
-

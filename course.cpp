@@ -793,7 +793,7 @@ bool CCourse::LoadCourseList () {
 
 		desc = SPStrN (line, "desc", "");		
 		FT.AutoSizeN (2);
-		FT.MakeLineList (desc.c_str(), &desclist, 300 * param.scale);
+		FT.MakeLineList (desc.c_str(), &desclist, 335 * param.scale - 16.0);
 		cnt = desclist.Count ();
 		if (cnt > MAX_DESCRIPTION_LINES) cnt = MAX_DESCRIPTION_LINES;
 		CourseList[i].num_lines = cnt;

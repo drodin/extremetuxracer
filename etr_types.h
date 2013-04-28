@@ -42,8 +42,10 @@ GNU General Public License for more details.
 #	define EPS 1.0e-13
 #endif
 
-#define OR_TOP 0			// top-orientated menu widgets
-#define OR_BOTTOM 1			// bottom-orientated
+enum Orientation {
+	OR_TOP = 0,			// top-orientated menu widgets
+	OR_BOTTOM = 1		// bottom-orientated
+};
 
 #define TUX_WIDTH 0.45 			
 #define MAX_ROLL_ANGLE 30

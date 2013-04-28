@@ -27,7 +27,7 @@ char	*NewStr (const char *s);
 string   MakePathStr  (string src, string add);
 void     SInsertN     (string &s, unsigned int pos, const string ins);
 void     SDeleteN     (string &s, unsigned int pos, int count);
-int      SPosN        (string &s, const string find);
+int      SPosN        (const string &s, const string find);
 void     STrimLeftN   (string &s);
 void     STrimRightN  (string &s);
 void     STrimN       (string &s);
@@ -55,31 +55,29 @@ string   Bool_StrN    (const bool val);
 TIndex3  Str_Index3N  (const string &s, const TIndex3 def);
 
 // ----- SP functions for parsing lines --------------------------------
-bool     SPExistsN    (string &s, const string &tag);
-int      SPPosN       (string &s, const string &tag);
+bool     SPExistsN    (const string &s, const string &tag);
+int      SPPosN       (const string &s, const string &tag);
 
-string   SPItemN      (string &s, const string &tag);
-void     SPItemN      (string &s, const string &tag, string &item);
-string   SPStrN       (string &s, const string &tag, const string def);
-int      SPIntN       (string &s, const string &tag, const int def);
-bool     SPBoolN      (string &s, const string &tag, const bool def);
-bool     SPBoolNX     (string &s, const string &tag, const bool def);
-float    SPFloatN     (string &s, const string &tag, const float def);
-TVector2 SPVector2N   (string &s, const string &tag, const TVector2 def);
-TVector3 SPVector3N   (string &s, const string &tag, const TVector3 def);
-TIndex3  SPIndex3N    (string &s, const string &tag, const TIndex3 def);
-TVector2 SPVector2N   (string &s, const string &tag);
-TVector3 SPVector3N   (string &s, const string &tag);
-TVector4 SPVector4N   (string &s, const string &tag, const TVector4 def);
-TColor   SPColorN     (string &s, const string &tag, const TColor def);
-TColor3  SPColor3N    (string &s, const string &tag, const TColor3 def);
-TColor3  SPColor3N    (string &s, const string &tag);
-void     SPArrN       (string &s, const string &tag, float *arr, int count, float def);
-int      SPEnumN      (string &s, const string &tag, int def);
+string   SPItemN      (const string &s, const string &tag);
+void     SPItemN      (const string &s, const string &tag, string &item);
+string   SPStrN       (const string &s, const string &tag, const string def);
+int      SPIntN       (const string &s, const string &tag, const int def);
+bool     SPBoolN      (const string &s, const string &tag, const bool def);
+bool     SPBoolNX     (const string &s, const string &tag, const bool def);
+float    SPFloatN     (const string &s, const string &tag, const float def);
+TVector2 SPVector2N   (const string &s, const string &tag, const TVector2 def);
+TVector3 SPVector3N   (const string &s, const string &tag, const TVector3 def);
+TIndex3  SPIndex3N    (const string &s, const string &tag, const TIndex3 def);
+TVector2 SPVector2N   (const string &s, const string &tag);
+TVector3 SPVector3N   (const string &s, const string &tag);
+TVector4 SPVector4N   (const string &s, const string &tag, const TVector4 def);
+TColor   SPColorN     (const string &s, const string &tag, const TColor def);
+TColor3  SPColor3N    (const string &s, const string &tag, const TColor3 def);
+TColor3  SPColor3N    (const string &s, const string &tag);
+void     SPArrN       (const string &s, const string &tag, float *arr, int count, float def);
 
 // ----- compatibility ------------------------------------------------
-void     Int_CharN    (char *s, const int val);
-void     SPCharN      (string &s, const string &tag, char *result);
+void     SPCharN      (const string &s, const string &tag, char *result);
 
 // ----- making SP strings --------------------------------------------
 void     SPAddIntN    (string &s, const string &tag, const int val);
@@ -129,8 +127,4 @@ public:
 	void MakeIndex (string &index, const string &tag);
 };
 
-void SetEnum (string s);
-
 #endif
-
-
