@@ -18,6 +18,7 @@ GNU General Public License for more details.
 #define AUDIO_H
 
 #include "bh.h"
+#include <vector>
 
 // --------------------------------------------------------------------
 //				class CAudio
@@ -38,38 +39,33 @@ public:
 //				class CSound
 // --------------------------------------------------------------------
 
-#define MAX_SOUNDS 32
-
 typedef struct {
     Mix_Chunk *chunk;  
     int channel;
 	double vol_fact;
     int loop_count;
+	bool active;
 } TSound;
 
 class CSound {
 private:
-	TSound sounds[MAX_SOUNDS];
-	int numSounds;
+	vector<TSound> sounds;
 	string SoundIndex;
-	bool active_arr[MAX_SOUNDS];
 public:
-	CSound ();
-
-	int  LoadChunk (const std::string& name, const char *filename);
+	size_t LoadChunk (const std::string& name, const char *filename);
 	void LoadSoundList ();
-	int  GetSoundIdx (string name);
+	int  GetSoundIdx (const string& name) const;
 
 	void SetVolume (int soundid, int volume);
-	void SetVolume (string name, int volume);
+	void SetVolume (const string& name, int volume);
 
 	void Play (int soundid, int loop);
-	void Play (string name, int loop); // -1 infinite, 0 once, 1 twice ...
+	void Play (const string& name, int loop); // -1 infinite, 0 once, 1 twice ...
 	void Play (int soundid, int loop, int volume);
-	void Play (string name, int loop, int volume); 
+	void Play (const string& name, int loop, int volume); 
 
 	void Halt (int soundid);
-	void Halt (string name);
+	void Halt (const string& name);
 	void HaltAll ();
 	
 	void FreeSounds ();
@@ -83,17 +79,13 @@ public:
 #define MUS_WONRACE 1
 #define MUS_LOSTRACE 2
 
-#define MAX_MUSICS 32
-#define MAX_THEMES 16
-
 class CMusic {
 private:
-	Mix_Music *musics[MAX_MUSICS];
-	int numMusics;
+	vector<Mix_Music*> musics;
 	string MusicIndex;		
 
-	int themes[MAX_THEMES][3];
-	int numThemes;
+	struct Situation {int situation[3];};
+	vector<Situation> themes;
 	string ThemesIndex;
 
 	int loop_count;			// we need only 1 variable for all pieces
@@ -103,19 +95,19 @@ public:
 	CMusic ();
 	bool is_playing;
 
-	int  LoadPiece (const char *name, const char *filename); 
+	size_t LoadPiece (const char *name, const char *filename);
 	void LoadMusicList ();
-	int  GetMusicIdx (string name);
-	int  GetThemeIdx (string theme);
+	int  GetMusicIdx (const string& name) const;
+	int  GetThemeIdx (const string& theme) const;
 
 	void SetVolume (int volume);
 	void Update ();
 	bool Play (int musid, int loop);
-	bool Play (string name, int loop);
+	bool Play (const string& name, int loop);
 	bool Play (int musid, int loop, int volume);
-	bool Play (string name, int loop, int volume);
+	bool Play (const string& name, int loop, int volume);
 	bool PlayTheme (int theme, int situation);
-	void Refresh (string name);
+	void Refresh (const string& name);
 	void Halt ();
 	void FreeMusics ();
 };
