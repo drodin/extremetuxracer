@@ -61,6 +61,7 @@ bool CImage::LoadPng (const char *filepath, bool mirroring) {
 
    	if (SDL_MUSTLOCK (sdlImage)) {
    	    if (SDL_LockSurface (sdlImage) < 0) {
+			SDL_FreeSurface (sdlImage);
 	   		Message ("mustlock error");
 			return false;
 		};
@@ -70,16 +71,10 @@ bool CImage::LoadPng (const char *filepath, bool mirroring) {
 
 	if (mirroring) {
 		for (int y=0; y<ny; y++) {
-			for (int x=0; x<pitch; x++) {
-				data [y * pitch + x] = sdlData [(ny-1-y) * pitch + x];	
-			}
+			memcpy(data + y*pitch, sdlData + (ny-1-y)*pitch, pitch);
 		}
 	} else {
-		for (int y=0; y<ny; y++) {
-			for (int x=0; x<pitch; x++) {
-				data [y * pitch + x] = sdlData [y * pitch + x];	
-			}
-		}
+		memcpy(data, sdlData, ny*pitch);
 	}
 
 	if (SDL_MUSTLOCK (sdlImage)) SDL_UnlockSurface (sdlImage);
@@ -287,16 +282,18 @@ void CImage::WriteBMP (const char *dir, const char *filename) {
 CTexture Tex;
 
 CTexture::CTexture () {
-	for (int i=0; i<MAX_COMMON_TEX; i++) CommonTex[i] = 0;
-	numTextures = 0;
 	forientation = OR_TOP;
 }
 
-int CTexture::LoadTexture (const char *filename) {
+CTexture::~CTexture () {
+	FreeTextureList();
+}
+
+int CTexture::LoadTexture (const string& filename) {
     CImage texImage;
 	GLuint texid;
 
-	if (texImage.LoadPng (filename, true) == false) return 0;
+	if (texImage.LoadPng (filename.c_str(), true) == false) return 0;
 	glGenTextures (1, &texid);
 	glBindTexture (GL_TEXTURE_2D, texid);		
     glPixelStorei (GL_UNPACK_ALIGNMENT, 4); 
@@ -318,22 +315,15 @@ int CTexture::LoadTexture (const char *filename) {
     return texid;    
 }
 
-int CTexture::LoadTexture (const char *dir, const char *filename) {
-	string path = dir;
-	path += SEP;
-	path += filename;
-	return LoadTexture (path.c_str());
+int CTexture::LoadTexture (const string& dir, const string& filename) {
+	return LoadTexture(dir + SEP + filename);
 }
 
-int CTexture::LoadTexture (const string dir, const string filename) {
-	return LoadTexture (dir.c_str(), filename.c_str ());
-}
-
-int CTexture::LoadMipmapTexture (const char *filename, bool repeatable) {
+int CTexture::LoadMipmapTexture (const string& filename, bool repeatable) {
     CImage texImage;
 	GLuint texid;
 
-	if (texImage.LoadPng (filename, true) == false) return 0;
+	if (texImage.LoadPng (filename.c_str(), true) == false) return 0;
 	glGenTextures (1, &texid);
 	glBindTexture (GL_TEXTURE_2D, texid);		
     glPixelStorei (GL_UNPACK_ALIGNMENT, 4);
@@ -361,65 +351,60 @@ int CTexture::LoadMipmapTexture (const char *filename, bool repeatable) {
     return texid;    
 }
 
-int CTexture::LoadMipmapTexture (const char *dir, const char *filename, bool repeatable) {
-	string path = dir;
-	path += SEP;
-	path += filename;
-	return LoadMipmapTexture (path.c_str(), repeatable);
+int CTexture::LoadMipmapTexture (const string& dir, const string& filename, bool repeatable) {
+	return LoadMipmapTexture(dir + SEP + filename, repeatable);
 }
 
 void CTexture::LoadTextureList () {
-	int rep, id;
-	string texfile, line, name;
-
 	TextureIndex = "";
 	CSPList list (200);
 	if (list.Load (param.tex_dir, "textures.lst")) {
 		for (int i=0; i<list.Count(); i++) {
-			line = list.Line (i);
-			name = SPStrN (line, "name", "");		
-			id = SPIntN (line, "id", 0);
-			texfile = SPStrN (line, "file", "");
-			rep = SPIntN (line, "repeat", 0);
-			if (id >= 0 && id < MAX_COMMON_TEX) {
-				if (rep>0) CommonTex[id] = 
-					LoadMipmapTexture (param.tex_dir.c_str(), texfile.c_str(), rep);
+			string line = list.Line (i);
+			string name = SPStrN (line, "name", "");
+			int id = SPIntN (line, "id", -1);
+			CommonTex.resize(max(CommonTex.size(), id+1));
+			string texfile = SPStrN (line, "file", "");
+			bool rep = SPIntN (line, "repeat", 0) != 0;
+			if (id >= 0) {
+				if (rep) CommonTex[id] =
+					LoadMipmapTexture (param.tex_dir, texfile, rep);
 				else CommonTex[id] = 
-					LoadTexture (param.tex_dir.c_str(), texfile.c_str());
+					LoadTexture (param.tex_dir, texfile);
 				if (CommonTex[id] > 0) {
 					TextureIndex = TextureIndex + "[" + name + "]" + Int_StrN (CommonTex[id]);
-					numTextures++;
 				}
 			} else Message ("wrong texture id in textures.lst");	
-	}
+		}
 	} else Message ("failed to load common textures");
 }
 
 void CTexture::FreeTextureList () {
-	for (int i=0; i<MAX_COMMON_TEX; i++) {
+	for (int i=0; i<CommonTex.size(); i++) {
 		if (CommonTex[i] > 0) {
 			glDeleteTextures (1, &CommonTex[i]);
-			CommonTex[i] = 0;
 		}
 	}
+	TextureIndex = "";
+	CommonTex.clear();
 }
 
-GLuint CTexture::TexID (int idx) {
-	if (idx >= MAX_COMMON_TEX || idx < 0) return 0;
+GLuint CTexture::TexID (int idx) const {
+	if (idx >= CommonTex.size() || idx < 0) return 0;
 	return CommonTex[idx];
 }
 
-GLuint CTexture::TexID (string name) {
+GLuint CTexture::TexID (const string& name) const {
 	return SPIntN (TextureIndex, name, 0);
 }
 
 bool CTexture::BindTex (int idx) {
-	if (idx < 0 || idx >= MAX_COMMON_TEX) return false;
+	if (idx < 0 || idx >= CommonTex.size()) return false;
 	glBindTexture (GL_TEXTURE_2D, CommonTex[idx]);
 	return true;
 }
 
-bool CTexture::BindTex (string name) {
+bool CTexture::BindTex (const string& name) {
 	GLuint id = SPIntN (TextureIndex, name, 0);
 	if (id == 0) return false;
 	glBindTexture (GL_TEXTURE_2D, id);
@@ -451,7 +436,7 @@ void CTexture::Draw (int idx) {
 	DrawDirect (TexID (idx));
 }
 
-void CTexture::Draw (string name) {
+void CTexture::Draw (const string& name) {
 	DrawDirect (TexID (name));
 }
 
@@ -493,7 +478,7 @@ void CTexture::Draw (int idx, int x, int y, float size) {
 	DrawDirect (TexID (idx), x, y, size);
 }
 
-void CTexture::Draw (string name, int x, int y, float size) {
+void CTexture::Draw (const string& name, int x, int y, float size) {
 	DrawDirect (TexID (name), x, y, size);
 }
 
@@ -531,11 +516,11 @@ void CTexture::Draw (int idx, int x, int y, int width, int height) {
 	DrawDirect (TexID (idx), x, y, width, height);
 }
 
-void CTexture::Draw (string name, int x, int y, int width, int height) {
+void CTexture::Draw (const string& name, int x, int y, int width, int height) {
 	DrawDirect (TexID (name), x, y, width, height);
 }
 
-void CTexture::DrawDirectFrame (GLuint texid, int x, int y, double w, double h, int frame, TColor col) {
+void CTexture::DrawDirectFrame (GLuint texid, int x, int y, double w, double h, int frame, const TColor& col) {
     GLint ww = GLint (w);
 	GLint hh = GLint (h);
 	GLint xx = x;
@@ -569,11 +554,11 @@ void CTexture::DrawDirectFrame (GLuint texid, int x, int y, double w, double h, 
 	glEnd();
 }
 
-void CTexture::DrawFrame (int idx, int x, int y, double w, double h, int frame, TColor col) {
+void CTexture::DrawFrame (int idx, int x, int y, double w, double h, int frame, const TColor& col) {
 	DrawDirectFrame (TexID (idx), x, y, w, h, frame, col);
 }
 
-void CTexture::DrawFrame (string name, int x, int y, double w, double h, int frame, TColor col) {
+void CTexture::DrawFrame (const string& name, int x, int y, double w, double h, int frame, const TColor& col) {
 	DrawDirectFrame (TexID (name), x, y, w, h, frame, col);
 }
 
@@ -583,16 +568,20 @@ void CTexture::SetOrientation (Orientation orientation) {
 
 // -------------------------- numeric strings -------------------------
 
-void CTexture::DrawNumChr (char c, int x, int y, int w, int h, TColor col) {
-	static string numidxstr = "[0]0[1]1[2]2[3]3[4]4[5]5[6]6[7]7[8]8[9]9[:]10[ ]11";
-    float texleft, texright, texw;
-	char chrname[2]; 	
+void CTexture::DrawNumChr (char c, int x, int y, int w, int h, const TColor& col) {
+	int idx;
+	if(isdigit(c)) {
+		char chrname[2] = {c, '\0'};
+		idx = atoi(chrname);
+	}
+	else if(c == ':')
+		idx = 10;
+	else if(c == ' ')
+		idx = 11;
+	else
+		return;
+
     TVector2 bl, tr;
-	chrname[0]= c;
-	chrname[1]= 0;
-
-	int idx = SPIntN (numidxstr, chrname, 11);	
-
 	// quad coords
 	bl.x = x;
 	bl.y = param.y_resolution - y - h;
@@ -600,9 +589,9 @@ void CTexture::DrawNumChr (char c, int x, int y, int w, int h, TColor col) {
 	tr.y = param.y_resolution - y;
 
 	// texture coords
-	texw = 22.0 / 256.0;
-	texleft = idx * texw;
-	texright = (idx + 1) * texw;
+	float texw = 22.0 / 256.0;
+	float texleft = idx * texw;
+	float texright = (idx + 1) * texw;
 
 	glColor4f (col.r, col.g, col.b, col.a);
 	glBegin (GL_QUADS);
@@ -613,7 +602,7 @@ void CTexture::DrawNumChr (char c, int x, int y, int w, int h, TColor col) {
 	glEnd();
 } 
 
-void CTexture::DrawNumStr (const char *s, int x, int y, float size, TColor col) {
+void CTexture::DrawNumStr (const char *s, int x, int y, float size, const TColor& col) {
 	if (!BindTex ("ziff032")) {
 		Message ("DrawNumStr: missing texture");
 		return;
@@ -623,7 +612,7 @@ void CTexture::DrawNumStr (const char *s, int x, int y, float size, TColor col) 
 	int qw = (int)(22 * size);
 	int qh = (int)(32 * size);
 
-	for (int i=0; s[i] != '\0'; i++) {
+	for (size_t i=0; s[i] != '\0'; i++) {
 		DrawNumChr (s[i], x + i*qw, y, qw, qh, col); 
 	}
 }
@@ -670,5 +659,4 @@ void ScreenshotN () {
 			image.DisposeData ();
 			break;
 	}
-} 
-
+}

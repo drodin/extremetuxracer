@@ -450,7 +450,7 @@ void CCourse::LoadItemList () {
 		type = SPIntN (ObjectIndex, name, 0);
 		if (ObjTypes[type].texid < 1 && ObjTypes[type].drawable) {
 			terrpath = param.obj_dir + SEP + ObjTypes[type].texture;
-			ObjTypes[type].texid = Tex.LoadMipmapTexture (terrpath.c_str(), 0);
+			ObjTypes[type].texid = Tex.LoadMipmapTexture (terrpath, 0);
 		}
 		coll = ObjTypes[type].collidable;
 		if (coll == 1) {
@@ -549,7 +549,7 @@ bool CCourse::LoadObjectMap () {
 				zz = -(ny - y) / (double)(ny - 1.0) * length;
 				if (ObjTypes[type].texid < 1 && ObjTypes[type].drawable) {
 					terrpath = param.obj_dir + SEP + ObjTypes[type].texture;
-					ObjTypes[type].texid = Tex.LoadMipmapTexture (terrpath.c_str(), 0);
+					ObjTypes[type].texid = Tex.LoadMipmapTexture (terrpath, 0);
 				}
 				
 				// set random height and diam - see constants above
@@ -750,7 +750,7 @@ bool CCourse::LoadTerrainMap () {
 			terrain[arridx] = terr;	
 			if (TerrList[terr].texid < 1) {
 				terrpath = param.terr_dir + SEP + TerrList[terr].texture;
-				texid = Tex.LoadMipmapTexture (terrpath.c_str(), 1);
+				texid = Tex.LoadMipmapTexture (terrpath, 1);
 				TerrList[terr].texid = texid;
 			}
 		} 
@@ -806,7 +806,7 @@ bool CCourse::LoadCourseList () {
 		if (DirExists (coursepath.c_str())) {
 			// preview
 			previewfile = coursepath + SEP + "preview.png";
-			texid = Tex.LoadMipmapTexture (previewfile.c_str(), 0);
+			texid = Tex.LoadMipmapTexture (previewfile, 0);
 			if (texid < 1) {
 				Message ("couldn't load previewfile");					
 //				texid = Tex.TexID (NO_PREVIEW);

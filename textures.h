@@ -19,8 +19,7 @@ GNU General Public License for more details.
 #define TEXTURES_H
 
 #include "bh.h"
-
-#define MAX_COMMON_TEX 128
+#include <vector>
 
 #define TEXLOGO 0
 #define SNOW_START 1
@@ -154,45 +153,44 @@ public:
 
 class CTexture {
 private:
-	GLuint CommonTex [MAX_COMMON_TEX];
-	int numTextures;
+	vector<GLuint> CommonTex;
 	string TextureIndex;
 	Orientation forientation;
 	
-	void DrawNumChr (char c, int x, int y, int w, int h, TColor col);
+	void DrawNumChr (char c, int x, int y, int w, int h, const TColor& col);
 public:
     CTexture ();
-	int LoadTexture (const char *filename);
-	int LoadTexture (const char *dir, const char *filename);
-	int LoadTexture (const string dir, const string filename);
-	int LoadMipmapTexture (const char *filename, bool repeatable);
-	int LoadMipmapTexture (const char *dir, const char *filename, bool repeatable);
+	~CTexture ();
+	int LoadTexture (const string& filename);
+	int LoadTexture (const string& dir, const string& filename);
+	int LoadMipmapTexture (const string& filename, bool repeatable);
+	int LoadMipmapTexture (const string& dir, const string& filename, bool repeatable);
 	void LoadTextureList ();
 	void FreeTextureList ();
 
-	GLuint TexID (int idx);
-	GLuint TexID (string name);
+	GLuint TexID (int idx) const;
+	GLuint TexID (const string& name) const;
 	bool BindTex (int idx);
-	bool BindTex (string name);
+	bool BindTex (const string& name);
 
 	void DrawDirect (GLuint texid);
 	void Draw (int idx);
-	void Draw (string name);
+	void Draw (const string& name);
 
 	void DrawDirect (GLuint texid, int x, int y, float size);
 	void Draw (int idx, int x, int y, float size);
-	void Draw (string name, int x, int y, float size);
+	void Draw (const string& name, int x, int y, float size);
 
 	void DrawDirect (GLuint texid, int x, int y, float width, float height);
 	void Draw (int idx, int x, int y, int width, int height);
-	void Draw (string name, int x, int y, int width, int height);
+	void Draw (const string& name, int x, int y, int width, int height);
 
-	void DrawDirectFrame (GLuint texid, int x, int y, double w, double h, int frame, TColor col);
-	void DrawFrame (int idx, int x, int y, double w, double h, int frame, TColor col);
-	void DrawFrame (string name, int x, int y, double w, double h, int frame, TColor col);
+	void DrawDirectFrame (GLuint texid, int x, int y, double w, double h, int frame, const TColor& col);
+	void DrawFrame (int idx, int x, int y, double w, double h, int frame, const TColor& col);
+	void DrawFrame (const string& name, int x, int y, double w, double h, int frame, const TColor& col);
 
 	void SetOrientation (Orientation orientation);
-	void DrawNumStr (const char *s, int x, int y, float size, TColor col);
+	void DrawNumStr (const char *s, int x, int y, float size, const TColor& col);
 };
 
 extern CTexture Tex;

@@ -386,7 +386,7 @@ void CCharacter::LoadCharacterList () {
 		charpath = param.char_dir + SEP + CharList[i].dir;
 		if (DirExists (charpath.c_str())) {
 			previewfile = charpath + SEP + "preview.png";
-			texid = Tex.LoadMipmapTexture (previewfile.c_str(), 0);
+			texid = Tex.LoadMipmapTexture (previewfile, 0);
 			if (texid < 1) {
 				Message ("could not load previewfile of character");					
 //				texid = Tex.TexID (NO_PREVIEW);
