@@ -19,8 +19,7 @@ GNU General Public License for more details.
 #define ENV_H
 
 #include "bh.h"
-
-#define MAX_LOCATIONS 32
+#include <vector>
 
 typedef struct {
 	string name;
@@ -52,8 +51,7 @@ class CEnvironment {
 private:
 	int EnvID;
 	GLuint Skybox[6];
-	TLocInfo locs [MAX_LOCATIONS];
-	int numLocs;
+	vector<TLocInfo> locs;
 	TLightCond lightcond[4];
 	TLight default_light;
 	TLight lights[4];
@@ -80,13 +78,13 @@ public:
 	CEnvironment ();
 	bool LoadEnvironmentList ();
 	bool LoadEnvironment (int loc, int light);
-	void DrawSkybox (TVector3 pos);
+	void DrawSkybox (const TVector3& pos);
 	void SetupLight ();
 	void SetupFog ();
 	void DrawFog ();
 	TColor ParticleColor ();
-	int GetEnvIdx (const string tag);
-	int GetLightIdx (const string tag);
+	int GetEnvIdx (const string& tag);
+	int GetLightIdx (const string& tag);
 };
 
 extern CEnvironment Env;

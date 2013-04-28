@@ -27,18 +27,17 @@ GNU General Public License for more details.
 //					defaults
 // --------------------------------------------------------------------
 
-static float def_amb[]     = {0.45, 0.53, 0.75, 1.0};    
-static float def_diff[]    = {1.0, 0.9, 1.0, 1.0};    
-static float def_spec[]    = {0.6, 0.6, 0.6, 1.0};    
-static float def_pos[]     = {1, 2, 2, 0.0};    
-static float def_fogcol[]  = {0.9, 0.9, 1.0, 0.0};
-static float def_partcol[] = {0.8, 0.8, 0.9, 0.0};
+static const float def_amb[]     = {0.45, 0.53, 0.75, 1.0};
+static const float def_diff[]    = {1.0, 0.9, 1.0, 1.0};
+static const float def_spec[]    = {0.6, 0.6, 0.6, 1.0};
+static const float def_pos[]     = {1, 2, 2, 0.0};
+static const float def_fogcol[]  = {0.9, 0.9, 1.0, 0.0};
+static const float def_partcol[] = {0.8, 0.8, 0.9, 0.0};
 
 CEnvironment Env;
 
 CEnvironment::CEnvironment () {
 	EnvID = -1;
-	numLocs = 0;
 	LightIndex = "[sunny]0[cloudy]1[evening]2[night]3";
 	lightcond[0].name = "sunny";
 	lightcond[1].name = "cloudy";
@@ -135,27 +134,23 @@ void CEnvironment::Reset () {
 }
 
 bool CEnvironment::LoadEnvironmentList () {
-	int i;
-	string line;
-
 	CSPList list (32, true);
 	if (!list.Load (param.env_dir2, "environment.lst")) {
 		Message ("could not load environment.lst");
 		return false;
 	}
 
-	numLocs = 0;
-	for (i=0; i<list.Count(); i++) {
-		line = list.Line (i);
+	locs.resize(list.Count());
+	for (int i=0; i<list.Count(); i++) {
+		string line = list.Line (i);
 		locs[i].name = SPStrN (line, "location", "");
-		numLocs++;
 	}
 	list.MakeIndex (EnvIndex, "location");
 	return true;
 }
 
 string CEnvironment::GetDir (int location, int light) {
-	if (location < 0 || location >= numLocs) return "";
+	if (location < 0 || location >= locs.size()) return "";
 	if (light < 0 || light >= 4) return "";
 	string res = 
 		param.env_dir2 + SEP + 
@@ -164,32 +159,29 @@ string CEnvironment::GetDir (int location, int light) {
 }
 
 void CEnvironment::LoadSkybox () {
-	Skybox[0] = Tex.LoadTexture (EnvDir.c_str(), "front.png");
-	Skybox[1] = Tex.LoadTexture (EnvDir.c_str(), "left.png");
-	Skybox[2] = Tex.LoadTexture (EnvDir.c_str(), "right.png");
+	Skybox[0] = Tex.LoadTexture (EnvDir, "front.png");
+	Skybox[1] = Tex.LoadTexture (EnvDir, "left.png");
+	Skybox[2] = Tex.LoadTexture (EnvDir, "right.png");
 	if (param.full_skybox) {
-		Skybox[3] = Tex.LoadTexture (EnvDir.c_str(), "top.png");
-		Skybox[4] = Tex.LoadTexture (EnvDir.c_str(), "bottom.png");
-		Skybox[5] = Tex.LoadTexture (EnvDir.c_str(), "back.png");
+		Skybox[3] = Tex.LoadTexture (EnvDir, "top.png");
+		Skybox[4] = Tex.LoadTexture (EnvDir, "bottom.png");
+		Skybox[5] = Tex.LoadTexture (EnvDir, "back.png");
 	}
 }
 
 void CEnvironment::LoadLight () {
 	string idxstr = "[fog]-1[0]0[1]1[2]2[3]3[4]4[5]5[6]6";
-	string line;
-	string item;
-	int i, idx;	
 
 	CSPList list(24);
-	if (!list.Load (EnvDir.c_str(), "light.lst")) {
+	if (!list.Load (EnvDir, "light.lst")) {
 		Message ("could not load light file", "");
 		return;
 	}
 
-	for (i=0; i<list.Count(); i++) {
-		line = list.Line(i);
-		item = SPStrN (line, "light", "none");
-		idx = SPIntN (idxstr, item, -1);
+	for (int i=0; i<list.Count(); i++) {
+		string line = list.Line(i);
+		string item = SPStrN (line, "light", "none");
+		int idx = SPIntN (idxstr, item, -1);
 		if (idx < 0) {
 			fog.is_on = SPBoolN (line, "fog", true);
 			fog.start = SPFloatN (line, "fogstart", 20);
@@ -207,7 +199,7 @@ void CEnvironment::LoadLight () {
 	}
 }
 
-void CEnvironment::DrawSkybox (TVector3 pos) {
+void CEnvironment::DrawSkybox (const TVector3& pos) {
  	set_gl_options (SKY);
 	double aa, bb;
 	
@@ -285,14 +277,15 @@ void CEnvironment::DrawSkybox (TVector3 pos) {
 }
 
 void CEnvironment::DrawFog () {
+	if (!fog.is_on)
+		return;
+
     TPlane bottom_plane, top_plane;
     TVector3 left, right, vpoint;
     TVector3 topleft, topright;
     TVector3 bottomleft = NullVec; 
 	TVector3 bottomright = NullVec;
     float height;
-
-	if (!fog.is_on) return;
 
 	// the clipping planes are calculated by view frustum (view.cpp)
 	leftclip = get_left_clip_plane ();
@@ -363,7 +356,7 @@ void CEnvironment::DrawFog () {
 
 
 bool CEnvironment::LoadEnvironment (int loc, int light) {
-	if (loc < 0 || loc >= numLocs) loc = 0;
+	if (loc < 0 || loc >= locs.size()) loc = 0;
 	if (light < 0 || light >= 4) light = 0;
 	// remember: with (example) 3 locations and 4 lights there
 	// are 12 different environments
@@ -371,7 +364,7 @@ bool CEnvironment::LoadEnvironment (int loc, int light) {
 
 	if (env_id == EnvID) {
 		Message ("same environment");
-		return true;
+		return false;
 	}
 
 	// Set directory. The dir is used several times.
@@ -399,18 +392,10 @@ TColor CEnvironment::ParticleColor () {
 	return res;
 }
 
-int CEnvironment::GetEnvIdx (const string tag) {
+int CEnvironment::GetEnvIdx (const string& tag) {
 	return SPIntN (EnvIndex, tag, 0);
 }
 
-int CEnvironment::GetLightIdx (const string tag) {
+int CEnvironment::GetLightIdx (const string& tag) {
 	return SPIntN (LightIndex, tag, 0);
 }
-
-
-
-
-
-
-
-
