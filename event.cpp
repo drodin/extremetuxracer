@@ -92,14 +92,13 @@ void EventMouseFunc (int button, int state, int x, int y ) {
 	} else Winsys.SetMode (EVENT_SELECT);
 }
 
-void EventMotionFunc (int x, int y ){
-	TVector2 old_pos;
+void EventMotionFunc (int x, int y ) {
  	int dir, foc;
 	if (Winsys.ModePending ()) return;
 	GetFocus (x, y, &foc, &dir); // necessary for drawing the cursor
 	if (foc >= 0) curr_focus = foc;
 	y = param.y_resolution - y;
-    old_pos = cursor_pos;
+    TVector2 old_pos = cursor_pos;
     cursor_pos = MakeVector2 (x, y);
 
     if  (old_pos.x != x || old_pos.y != y) {
@@ -181,7 +180,6 @@ void EventLoop (double timestep) {
  	int i;
 	TColor col;
 	int y;
-	string info;
 
 	check_gl_error();
 	set_gl_options (GUI );
@@ -226,7 +224,7 @@ void EventLoop (double timestep) {
 		FT.AutoSizeN (3);
 		int ddd = FT.AutoDistanceN (1);
 		FT.SetColor (colDBlue);
-		info = Trans.Text(11);
+		string info = Trans.Text(11);
 		info += "   " + Int_StrN (eraces[curr_race]->herrings.i);
 		info += "   " + Int_StrN (eraces[curr_race]->herrings.j);
 		info += "   " + Int_StrN (eraces[curr_race]->herrings.k);

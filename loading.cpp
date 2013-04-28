@@ -63,8 +63,6 @@ void LoadingLoop (double time_step) {
 	FT.DrawString (CENTER, AutoYPosN (70), Trans.Text (30));		
 	Winsys.SwapBuffers ();
 
-	SDL_Delay (100);
-
 	Course.LoadCourse (g_game.course_id);
 	g_game.location_id = Course.GetEnv ();
 	Env.LoadEnvironment (g_game.location_id, g_game.light_id);

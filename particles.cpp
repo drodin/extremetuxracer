@@ -189,7 +189,6 @@ void draw_ui_snow (void) {
 	Tex.BindTex (SNOW_PART);
     glColor4f(part_col[0], part_col[1], part_col[2], part_col[3]);
 	part_col[3] = 0.3;  
-    glPushMatrix();
 	for  (i=0; i<num_snowparticles; i++) {
 	    pt = &particles[i].pt;
 	    size = particles[i].size;
@@ -209,7 +208,6 @@ void draw_ui_snow (void) {
 		glEnd();
 	    glPopMatrix();
     }
-    glPopMatrix();
 } 
 
 void reset_ui_snow_cursor_pos (TVector2 pos) {

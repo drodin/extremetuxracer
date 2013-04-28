@@ -28,18 +28,17 @@ static int xleft1, xleft2, ytop;
 static TVector2 cursor_pos = {0, 0};
 				  
 void HelpKeys (unsigned int key, bool special, bool release, int x, int y) {
-	if (key == 27) Winsys.SetMode (GAME_TYPE_SELECT);
+	if (key == SDLK_ESCAPE) Winsys.SetMode (GAME_TYPE_SELECT);
 }
 
 void HelpMouseFunc (int button, int state, int x, int y) {
 	if (state == 1) Winsys.SetMode (GAME_TYPE_SELECT);
 }
 
-void HelpMotionFunc (int x, int y ){
-    TVector2 old_pos;
+void HelpMotionFunc (int x, int y) {
 	if (Winsys.ModePending ()) return; 
     y = param.y_resolution - y;
-    old_pos = cursor_pos;
+    TVector2 old_pos = cursor_pos;
     cursor_pos = MakeVector2 (x, y);
     if  (old_pos.x != x || old_pos.y != y) {
 		if (param.ui_snow) push_ui_snow (cursor_pos);
@@ -90,7 +89,6 @@ void HelpLoop (double timestep ){
 		
 	FT.DrawString (CENTER, AutoYPosN (90), "Press any key to return to the main menu");
     Winsys.SwapBuffers();
-
 } 
 
 void HelpTerm () {

@@ -91,7 +91,6 @@ void DrawTrackmarks (void) {
     track_quad_t *q, *qnext;
 
     TColor track_colour = colWhite;
-    if (param.perf_level < 3) return;
 	set_gl_options (TRACK_MARKS); 
 
     glColor4f (0, 0, 0, 1);
