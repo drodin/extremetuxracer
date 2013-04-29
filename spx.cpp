@@ -62,7 +62,7 @@ void STrimLeftN (string &s) {
 
 void STrimRightN (string &s) {
 	size_t i = s.size() -1;
-	while (i >= 0 && (s[i] == ' ' || s[i] == '\t')) i--;
+	while (i != string::npos && (s[i] == ' ' || s[i] == '\t')) i--;
 	s.erase (i+1);	
 }
 
