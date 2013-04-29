@@ -21,9 +21,9 @@ GNU General Public License for more details.
 CTranslation Trans;
 
 CTranslation::CTranslation () {
-	numLanguages = 0;
 	languages_ok = false;
 }
+
 // if anything is wrong with an translation, the program will fall back
 // to these defaults (only the wrong items)
 void CTranslation::SetDefaultTranslations () {
@@ -88,18 +88,15 @@ void CTranslation::SetDefaultTranslations () {
 	texts[55] = "CRSR Up - accelerate";
 	texts[56] = "CRSR down - brake";
 	texts[57] = "Keyboard functions";
-
 }
 
-string CTranslation::Text (int idx) {
+string CTranslation::Text (int idx) const {
 	if (idx < 0 || idx >= MAX_COMMON_TEXTS) return "";
 	return texts[idx];
 }
 
 void CTranslation::LoadLanguages () {
 	CSPList list (MAX_LANGUAGES);
-	int i;
-	string line;
 
 	languages_ok = false;
 	if (!list.Load (param.trans_dir, "languages.lst")) {
@@ -107,49 +104,45 @@ void CTranslation::LoadLanguages () {
 		return;
 	}
 
-	numLanguages = 0;
-	for (i=0; i<list.Count(); i++) {
-		line = list.Line(i);
-		languages[numLanguages].lang = SPStrN (line, "lang", "en_GB"); 
-		languages[numLanguages].language = SPStrN (line, "language", "English"); 
-		LangIndex += "[" + languages[numLanguages].lang + "]";
-		LangIndex += Int_StrN (numLanguages);
-		numLanguages++;
+	languages.resize(list.Count());
+	for (int i=0; i<list.Count(); i++) {
+		string line = list.Line(i);
+		languages[i].lang = SPStrN (line, "lang", "en_GB");
+		languages[i].language = SPStrN (line, "language", "English");
+		LangIndex += "[" + languages[i].lang + "]";
+		LangIndex += Int_StrN (i);
 	}
-	if (numLanguages > 0) languages_ok = true;
+	if (languages.size() > 0) languages_ok = true;
 }
 
-int CTranslation::GetLangIdx (const string& lang) {
+int CTranslation::GetLangIdx (const string& lang) const {
 	return SPIntN (LangIndex, lang, 0);
 }
 
-string CTranslation::GetLanguage (int idx) {
-	if (idx < 0 || idx >= numLanguages) return "error";
+string CTranslation::GetLanguage (int idx) const {
+	if (idx < 0 || idx >= languages.size()) return "error";
 	return languages[idx].language;
 }
 
-string CTranslation::GetLanguage (const string& lang) {
+string CTranslation::GetLanguage (const string& lang) const {
 	return GetLanguage (GetLangIdx (lang));
 }
 
 void CTranslation::LoadTranslations (int langidx) {
-	CSPList list(MAX_COMMON_TEXTS + 3);
-	int i, idx;
-	string line;
-
 	SetDefaultTranslations ();
 	if (!languages_ok) return;
-	if (langidx < 0 || langidx >= numLanguages) return;
+	if (langidx < 0 || langidx >= languages.size()) return;
 
-	string filename = languages[langidx].lang + ".lst";;
+	CSPList list(MAX_COMMON_TEXTS + 3);
+	string filename = languages[langidx].lang + ".lst";
 	if (!list.Load (param.trans_dir, filename)) {
 		Message ("could not load translations list:", filename.c_str());
 		return;
 	}
 
-	for (i=0; i<list.Count(); i++) {
-		line = list.Line(i);
-		idx = SPIntN (line, "idx", -1);
+	for (int i=0; i<list.Count(); i++) {
+		string line = list.Line(i);
+		int idx = SPIntN (line, "idx", -1);
 		if (idx >= 0 && idx < MAX_COMMON_TEXTS) {
 			texts[idx] = SPStrN (line, "trans", texts[idx]);
 		} 

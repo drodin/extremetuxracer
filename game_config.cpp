@@ -570,8 +570,8 @@ void GameConfigInit (void) {
 	Winsys.KeyRepeat (true);
 	init_ui_snow (); 
 
-	LangList = Trans.languages;
-	lastLang = Trans.numLanguages - 1;
+	LangList = &Trans.languages[0];
+	lastLang = Trans.languages.size() - 1;
 
 	for (int i=0; i<NUM_RESOLUTIONS; i++) res_names[i] = Winsys.GetResName (i);
  
