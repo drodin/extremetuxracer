@@ -65,9 +65,8 @@ void paused_init (void) {}
 
 void paused_loop (double time_step) {
     CControl *ctrl = Players.GetCtrl (g_game.player_id);
-    int width, height;
-    width = param.x_resolution;
-    height = param.y_resolution;
+    int width = param.x_resolution;
+    int height = param.y_resolution;
     check_gl_error();
 
 	Music.Update ();

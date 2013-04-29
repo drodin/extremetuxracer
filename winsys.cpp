@@ -80,10 +80,9 @@ TScreenRes CWinsys::GetResolution (int idx) {
 }
 
 string CWinsys::GetResName (int idx) {
-	string line;
 	if (idx < 0 || idx >= NUM_RESOLUTIONS) return "800 x 600";
 	if (idx == 0) return ("auto");
-	line = Int_StrN (resolution[idx].width);
+	string line = Int_StrN (resolution[idx].width);
 	line += " x " + Int_StrN (resolution[idx].height);
 	return line;
 }
@@ -250,20 +249,10 @@ bool CWinsys::ModePending () {
 	return g_game.mode != new_mode;
 }
 
-/*
-typedef struct{
-  Uint8 scancode;
-  SDLKey sym;
-  SDLMod mod;
-  Uint16 unicode;
-} SDL_keysym;*/
-
 void CWinsys::PollEvent () {
-    SDL_Event event; 
-	SDL_keysym sym;
+    SDL_Event event;
     unsigned int key, axis;
     int x, y;
-	float val;
 
 	while (SDL_PollEvent (&event)) {
 		if (ModePending()) {
@@ -276,8 +265,7 @@ void CWinsys::PollEvent () {
 					key = event.key.keysym.sym; 
 					(modefuncs[g_game.mode].keyb) (key, key >= 256, false, x, y);
 				} else if (modefuncs[g_game.mode].keyb_spec) {
-					sym = event.key.keysym;
-					(modefuncs[g_game.mode].keyb_spec) (sym, false);
+					(modefuncs[g_game.mode].keyb_spec) (event.key.keysym, false);
 				}
 				break;
 	
@@ -287,8 +275,7 @@ void CWinsys::PollEvent () {
 					key = event.key.keysym.sym; 
 					(modefuncs[g_game.mode].keyb)  (key, key >= 256, true, x, y);
 				} else if (modefuncs[g_game.mode].keyb_spec) {
-					sym = event.key.keysym;
-					(modefuncs[g_game.mode].keyb_spec) (sym, true);
+					(modefuncs[g_game.mode].keyb_spec) (event.key.keysym, true);
 				}
 				break;
 	
@@ -310,7 +297,7 @@ void CWinsys::PollEvent () {
 				if (joystick_active) {
 					axis = event.jaxis.axis;
 					if (modefuncs[g_game.mode].jaxis && axis < 2) {
-						val = (float)event.jaxis.value / 32768;
+						float val = (float)event.jaxis.value / 32768;
 							(modefuncs[g_game.mode].jaxis) (axis, val);
 					}
 				}
@@ -359,13 +346,13 @@ void CWinsys::ChangeMode () {
 }
 
 void CWinsys::CallLoopFunction () {
-		cur_time = SDL_GetTicks() * 1.e-3;
-		g_game.time_step = cur_time - clock_time;
-		if (g_game.time_step < 0.0001) g_game.time_step = 0.0001;
-		clock_time = cur_time;
+	cur_time = SDL_GetTicks() * 1.e-3;
+	g_game.time_step = cur_time - clock_time;
+	if (g_game.time_step < 0.0001) g_game.time_step = 0.0001;
+	clock_time = cur_time;
 
-		if (modefuncs[g_game.mode].loop != 0) 
-			(modefuncs[g_game.mode].loop) (g_game.time_step);	
+	if (modefuncs[g_game.mode].loop != 0) 
+		(modefuncs[g_game.mode].loop) (g_game.time_step);	
 }
 
 void CWinsys::EventLoop () {
@@ -380,4 +367,3 @@ void CWinsys::EventLoop () {
 unsigned char *CWinsys::GetSurfaceData () {
 	return (unsigned char*)screen->pixels;
 }
-

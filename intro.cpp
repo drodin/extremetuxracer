@@ -43,9 +43,6 @@ void abort_intro (CControl *ctrl) {
 
 // =================================================================
 void intro_init(void) {
-    int i, num_items;
-    TItem *item_locs;
-
     CControl *ctrl = Players.GetCtrl (g_game.player_id);
     TVector2 start_pt = Course.GetStartPoint ();
 	ctrl->orientation_initialized = false;
@@ -76,9 +73,9 @@ void intro_init(void) {
 	SetStationaryCamera (false);
 	update_view (ctrl, EPS); 
 
-    num_items = Course.numNocoll;
-    item_locs = Course.NocollArr;
-    for (i = 0; i < num_items; i++) {
+    int num_items = Course.numNocoll;
+    TItem* item_locs = Course.NocollArr;
+    for (int i = 0; i < num_items; i++) {
 		if (item_locs[i].collectable != -1) {
 		    item_locs[i].collectable = 1;
 		}
@@ -93,10 +90,9 @@ void intro_init(void) {
 }
 
 void intro_loop (double time_step) {
-	int width, height;
 	CControl *ctrl = Players.GetCtrl (g_game.player_id);
-    width = param.x_resolution;
-    height = param.y_resolution;
+    int width = param.x_resolution;
+    int height = param.y_resolution;
     check_gl_error();
 
 	if (startframe->active) {
@@ -146,4 +142,3 @@ void intro_register() {
 	Winsys.SetModeFuncs (INTRO, intro_init, intro_loop, IntroTerm,
  		IntroKeys, NULL, NULL, NULL, NULL, NULL);
 }
-

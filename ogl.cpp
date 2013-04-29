@@ -38,18 +38,16 @@ gl_value_t gl_values[] = {
     { "stencil bits", GL_STENCIL_BITS, GL_INT } };
 
 void check_gl_error() {
-    GLenum error;
-    error = glGetError();
+    GLenum error = glGetError();
     if (error != GL_NO_ERROR) {
 		Message ("OpenGL Error: ", "");
     }
 }
 
 void init_glfloat_array (int num, GLfloat arr[], ...) {
-    int i;
     va_list args;
     va_start (args, arr);
-    for (i=0; i<num; i++) arr[i] = va_arg(args, double);
+    for (int i=0; i<num; i++) arr[i] = va_arg(args, double);
     va_end (args);
 }
 

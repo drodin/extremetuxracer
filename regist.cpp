@@ -94,7 +94,6 @@ void RegistMouseFunc (int button, int state, int x, int y) {
 }
 
 void RegistMotionFunc (int x, int y ){
-    TVector2 old_pos;
  	int sc, dir;
 	if (Winsys.ModePending ()) return; 
 
@@ -102,7 +101,7 @@ void RegistMotionFunc (int x, int y ){
 	if (sc >= 0) curr_focus = sc;
 	y = param.y_resolution - y;
 
-    old_pos = cursor_pos;
+    TVector2 old_pos = cursor_pos;
     cursor_pos = MakeVector2 (x, y);
     if  (old_pos.x != x || old_pos.y != y) {
 		if (param.ui_snow) push_ui_snow (cursor_pos);

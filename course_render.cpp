@@ -51,36 +51,25 @@ void RenderCourse () {
 //				DrawTrees
 // --------------------------------------------------------------------
 void DrawTrees() {
-    TCollidable	*treeLocs;
-    int       	numTrees;
-    TItem    	*itemLocs;
-    int       	numItems;
-	double  	treeRadius;
-    double  	treeHeight;
-    int       	i;
-    TVector3  	normal;
-    double  	fwd_clip_limit, bwd_clip_limit;
     int			tree_type = -1;
-    double  	itemRadius;
-    double  	itemHeight;
     int       	item_type = -1;
 	TObjectType	*object_types = Course.ObjTypes;
 	CControl *ctrl = Players.GetCtrl (g_game.player_id);
 
 	set_gl_options (TREES); 
 
-    fwd_clip_limit = param.forward_clip_distance;
-    bwd_clip_limit = param.backward_clip_distance;
+    double fwd_clip_limit = param.forward_clip_distance;
+    double bwd_clip_limit = param.backward_clip_distance;
 
     glTexEnvf (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
     set_material (colWhite, colBlack, 1.0);
 
 
 //	-------------- trees ------------------------
-    treeLocs = Course.CollArr;
-    numTrees = Course.numColl;
+    TCollidable* treeLocs = Course.CollArr;
+    int numTrees = Course.numColl;
 
-    for (i = 0; i< numTrees; i++) {
+    for (int i = 0; i< numTrees; i++) {
 		if (clip_course) {
 			if (ctrl->viewpos.z - treeLocs[i].pt.z > fwd_clip_limit) continue;
 		    if (treeLocs[i].pt.z - ctrl->viewpos.z > bwd_clip_limit) continue;
@@ -95,9 +84,9 @@ void DrawTrees() {
         glTranslatef (treeLocs[i].pt.x, treeLocs[i].pt.y, treeLocs[i].pt.z);
 		if (param.perf_level > 1) glRotatef (1, 0, 1, 0);
 
-        treeRadius = treeLocs[i].diam / 2.0;
-        treeHeight = treeLocs[i].height;
-		normal = MakeVector (0, 0, 1);
+        double treeRadius = treeLocs[i].diam / 2.0;
+        double treeHeight = treeLocs[i].height;
+		TVector3 normal = MakeVector (0, 0, 1);
 		glNormal3f (normal.x, normal.y, normal.z);
 /*		// slower but better method of setting the normals
 		normal = SubtractVectors (ctrl->viewpos, treeLocs[i].pt);
@@ -129,10 +118,10 @@ void DrawTrees() {
 	}
 	
 //  items -----------------------------
-	itemLocs = Course.NocollArr;
-    numItems = Course.numNocoll;
+	TItem* itemLocs = Course.NocollArr;
+    int numItems = Course.numNocoll;
 
-    for (i = 0; i< numItems; i++) {
+    for (int i = 0; i< numItems; i++) {
 		if (itemLocs[i].collectable == 0 || itemLocs[i].drawable == false) continue;
 		if (clip_course) {
 		    if (ctrl->viewpos.z - itemLocs[i].pt.z > fwd_clip_limit) continue;
@@ -146,9 +135,10 @@ void DrawTrees() {
         
 		glPushMatrix();
 		    glTranslatef (itemLocs[i].pt.x, itemLocs[i].pt.y,  itemLocs[i].pt.z);
-		    itemRadius = itemLocs[i].diam / 2;
-		    itemHeight = itemLocs[i].height;
+		    double itemRadius = itemLocs[i].diam / 2;
+		    double itemHeight = itemLocs[i].height;
 
+			TVector3 normal;
 		    if (object_types[item_type].use_normal) {
 				normal = object_types[item_type].normal;
 		    } else {
@@ -172,5 +162,3 @@ void DrawTrees() {
         glPopMatrix();
     } 
 } 
-
-

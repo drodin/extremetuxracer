@@ -139,8 +139,7 @@ void CImage::ReadFrameBuffer_BMP () {
 
 void CImage::WritePPM (const char *filepath) {
 	if (data == NULL) return;
-	std::ofstream file;
-	file.open (filepath);
+	std::ofstream file(filepath);
 
 	file << "P6\n# A Raw PPM file"
 		 << "\n# width\n" << nx

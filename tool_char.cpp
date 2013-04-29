@@ -62,16 +62,14 @@ void InitCharTools () {
 }
 
 void StoreAction (TCharAction *act) {
-	int i;
-	for (i=0; i<=act->num; i++) {
+	for (int i=0; i<=act->num; i++) {
 		Undo.vec[i] = act->vec[i];
 		Undo.dval[i] = act->dval[i];
 	}
 }
 
 void RecallAction (TCharAction *act) {
-	int i;
-	for (i=0; i<=act->num; i++) {
+	for (int i=0; i<=act->num; i++) {
 		act->vec[i] = Undo.vec[i];
 		act->dval[i] = Undo.dval[i];
 	}

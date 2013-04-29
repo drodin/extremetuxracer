@@ -212,7 +212,6 @@ bool CCharShape::RotateNode (int node_name, int axis, double angle) {
     MultiplyMatrices (node->trans, node->trans, rotMatrix);
 	MakeRotationMatrix (rotMatrix, -angle, caxis);
 	MultiplyMatrices (node->invtrans, rotMatrix, node->invtrans);
-	TVector3 vvv = MakeVector (angle, 0, 0);
 
 	if (newActions && useActions) AddAction (node_name, axis, NullVec, angle);	
     return true;
@@ -355,8 +354,7 @@ void CCharShape::Reset () {
 // --------------------------------------------------------------------
 
 bool CCharShape::GetMaterial (const char *mat_name, TCharMaterial **mat) {
-	int idx;
-	idx = SPIntN (MaterialIndex, mat_name, -1);
+	int idx = SPIntN (MaterialIndex, mat_name, -1);
 	if (idx >= 0 && idx < numMaterials) {
 		*mat = Materials[idx];
 		return true;
@@ -423,17 +421,15 @@ void CCharShape::DrawCharSphere (int num_divisions) {
 GLuint CCharShape::GetDisplayList (int divisions) {
     static bool initialized = false;
     static GLuint *display_lists = NULL;
-    int base_divisions;
-    int i, idx;
     if  (!initialized) {
 		initialized = true;
-		base_divisions = param.tux_sphere_divisions;
+		int base_divisions = param.tux_sphere_divisions;
 		numDisplayLists = MAX_SPHERE_DIV - MIN_SPHERE_DIV + 1;
 		display_lists = (GLuint*) malloc (sizeof(GLuint) * numDisplayLists);
-		for (i=0; i<numDisplayLists; i++) display_lists[i] = 0;
+		for (int i=0; i<numDisplayLists; i++) display_lists[i] = 0;
     }
 
-    idx = divisions - MIN_SPHERE_DIV;
+    int idx = divisions - MIN_SPHERE_DIV;
     if  (display_lists[idx] == 0) {
 		display_lists[idx] = glGenLists (1);
 		glNewList (display_lists[idx], GL_COMPILE);
@@ -498,12 +494,6 @@ void CCharShape::Draw () {
 
 bool CCharShape::Load (const string& dir, const string& filename, bool with_actions) {
 	CSPList list (500);
-	int i, ii, act;
-	string line, order, name, mat_name, fullname;
-	TVector3 scale, trans, rot;
-	double visible;
-	bool shadow;
-	int node_name, parent_name;
 
 	useActions = with_actions;
 	CreateRootNode ();
@@ -515,13 +505,13 @@ bool CCharShape::Load (const string& dir, const string& filename, bool with_acti
 		return false;
 	}
 
-	for (i=0; i<list.Count(); i++) {
-		line = list.Line (i);
-		node_name = SPIntN (line, "node", -1); 
-		parent_name = SPIntN (line, "par", -1);		
-		mat_name = SPStrN (line, "mat", "");
-		name = SPStrN (line, "joint", "");	
-		fullname = SPStrN (line, "name", "");
+	for (int i=0; i<list.Count(); i++) {
+		string line = list.Line (i);
+		int node_name = SPIntN (line, "node", -1); 
+		int parent_name = SPIntN (line, "par", -1);		
+		string mat_name = SPStrN (line, "mat", "");
+		string name = SPStrN (line, "joint", "");	
+		string fullname = SPStrN (line, "name", "");
 
 		if (SPIntN (line, "material", 0) > 0) {
 			CreateMaterial (line.c_str());
@@ -530,26 +520,28 @@ bool CCharShape::Load (const string& dir, const string& filename, bool with_acti
 				numMatlines++;
 			}
 		} else {
-			visible = SPFloatN (line, "vis", -1.0);	
-			shadow = SPBoolN (line, "shad", false);
-			order = SPStrN (line, "order", "");
+			double visible = SPFloatN (line, "vis", -1.0);	
+			bool shadow = SPBoolN (line, "shad", false);
+			string order = SPStrN (line, "order", "");
  			CreateCharNode (parent_name, node_name, name, fullname, order, shadow);					
-			rot = SPVector3N (line, "rot", NullVec);
+			TVector3 rot = SPVector3N (line, "rot", NullVec);
 			MaterialNode (node_name, mat_name);
-			for (ii=0; ii<(int)order.size(); ii++) {
-				act = order.at(ii)-48;	
+			for (int ii=0; ii<(int)order.size(); ii++) {
+				int act = order.at(ii)-48;	
 				switch (act) {
-					case 0:
-						trans = SPVector3N (line, "trans", MakeVector (0,0,0));
+					case 0: {
+						TVector3 trans = SPVector3N (line, "trans", MakeVector (0,0,0));
 						TranslateNode (node_name, trans);
 						break;
+					}
 					case 1: RotateNode (node_name, 1, rot.x); break;
 					case 2: RotateNode (node_name, 2, rot.y); break;
 					case 3: RotateNode (node_name, 3, rot.z); break;
-					case 4:
-						scale = SPVector3N (line, "scale", MakeVector (1,1,1));
+					case 4: {
+						TVector3 scale = SPVector3N (line, "scale", MakeVector (1,1,1));
 						ScaleNode (node_name, scale);
 						break;
+					}
 					case 5: VisibleNode (node_name, visible); break;
 					case 9: RotateNode (node_name, 2, rot.z); break;
 					default: break;
@@ -575,10 +567,9 @@ TVector3 CCharShape::AdjustRollvector (CControl *ctrl, TVector3 vel, const TVect
 
 void CCharShape::AdjustOrientation (CControl *ctrl, double dtime,
 		 double dist_from_surface, const TVector3& surf_nml) {
-    TVector3 new_x, new_y, new_z; 
+    TVector3 new_y, new_z; 
     TMatrix cob_mat, inv_cob_mat;
     TMatrix rot_mat;
-    TQuaternion new_orient;
     double time_constant;
     static TVector3 minus_z_vec = { 0, 0, -1};
     static TVector3 y_vec = { 0, 1, 0 };
@@ -596,9 +587,9 @@ void CCharShape::AdjustOrientation (CControl *ctrl, double dtime,
 		NormVector(&new_y);
     }
 
-    new_x = CrossProduct (new_y, new_z);
+    TVector3 new_x = CrossProduct (new_y, new_z);
     MakeBasismatrix_Inv (cob_mat, inv_cob_mat, new_x, new_y, new_z);
-    new_orient = MakeQuaternionFromMatrix (cob_mat);
+    TQuaternion new_orient = MakeQuaternionFromMatrix (cob_mat);
 
     if (!ctrl->orientation_initialized) {
 		ctrl->orientation_initialized = true;
@@ -685,14 +676,13 @@ bool CCharShape::CheckPolyhedronCollision (TCharNode *node, TMatrix modelMatrix,
 
     TMatrix newModelMatrix, newInvModelMatrix;
     TCharNode *child;
-    TPolyhedron newph;
     bool hit = false;
 
     MultiplyMatrices (newModelMatrix, modelMatrix, node->trans);
     MultiplyMatrices (newInvModelMatrix, node->invtrans, invModelMatrix);
 
     if  (node->visible) {
-        newph = CopyPolyhedron (ph);
+        TPolyhedron newph = CopyPolyhedron (ph);
         TransPolyhedron (newInvModelMatrix, newph);
         hit = IntersectPolyhedron (newph);
         FreePolyhedron (newph);
@@ -730,14 +720,10 @@ bool CCharShape::Collision (const TVector3& pos, const TPolyhedron& ph) {
 // --------------------------------------------------------------------
 
 void CCharShape::DrawShadowVertex (double x, double y, double z, TMatrix mat) {
-    TVector3 pt;
-    double old_y;
-    TVector3 nml;
-
-    pt = MakeVector (x, y, z);
+    TVector3 pt = MakeVector (x, y, z);
     pt = TransformPoint (mat, pt);
-    old_y = pt.y;
-    nml = Course.FindCourseNormal (pt.x, pt.z);
+    double old_y = pt.y;
+    TVector3 nml = Course.FindCourseNormal (pt.x, pt.z);
     pt.y = Course.FindYCoord (pt.x, pt.z) + SHADOW_HEIGHT;
     if  (pt.y > old_y) pt.y = old_y;
     glNormal3f (nml.x, nml.y, nml.z);
@@ -895,13 +881,10 @@ void CCharShape::RefreshNode (int idx) {
 	MakeIdentityMatrix (node->trans);
 	MakeIdentityMatrix (node->invtrans);
 
-	int type;
-	TVector3 vec;
-	double dval;
 	for (int i=0; i<act->num; i++) {
-		type = act->type[i];
-		vec = act->vec[i];
-		dval = act->dval[i];
+		int type = act->type[i];
+		TVector3 vec = act->vec[i];
+		double dval = act->dval[i];
 
 		switch (type) {
 			case 0: 
@@ -997,36 +980,30 @@ void CCharShape::PrintNode (int idx) {
 
 void CCharShape::SaveCharNodes (const string& dir, const string& filename) {
 	CSPList list (MAX_CHAR_NODES + 10);
-	string line, order, joint;
-	TCharNode *node;
-	TCharAction *act;
-	int  i, ii, aa;
-	TVector3 rotation;
-	bool rotflag;
 
 	list.Add ("# Generated by Tuxracer tools");
 	list.Add ("");
 	if (numMatlines > 0) {
 		list.Add ("# Materials:");
-		for (i=0; i<numMatlines; i++) list.Add (Matlines[i]);
+		for (int i=0; i<numMatlines; i++) list.Add (Matlines[i]);
 		list.Add ("");
 	}
 
 	list.Add ("# Nodes:");
-	for (i=1; i<numNodes; i++) {
-		node = Nodes[i];
-		act = Actions[i];
+	for (int i=1; i<numNodes; i++) {
+		TCharNode* node = Nodes[i];
+		TCharAction* act = Actions[i];
 		if (node->parent_name >= node->node_name) Message ("wrong parent index");
-		line = "*[node] " + Int_StrN (node->node_name);
+		string line = "*[node] " + Int_StrN (node->node_name);
 		line += " [par] " + Int_StrN (node->parent_name); 
-		order = act->order;
-		rotation = NullVec;
-		rotflag = false;
+		string order = act->order;
+		TVector3 rotation = NullVec;
+		bool rotflag = false;
 
 		if (order.size() > 0) {
 			line += " [order] " + order;
-			for (ii=0; ii<(int)order.size(); ii++) {
-				aa = order.at(ii)-48;	
+			for (int ii=0; ii<(int)order.size(); ii++) {
+				int aa = order.at(ii)-48;	
 				switch (aa) {
 					case 0: line += " [trans] " + Vector_StrN (act->vec[ii], 2); break;
 					case 4: line += " [scale] " + Vector_StrN (act->vec[ii], 2); break;
@@ -1047,11 +1024,9 @@ void CCharShape::SaveCharNodes (const string& dir, const string& filename) {
 		list.Add (line);
 		if (i<numNodes-3) {
 			if (node->visible && !Nodes[i+1]->visible) list.Add ("");
-			joint = Nodes[i+2]->joint;
+			const string& joint = Nodes[i+2]->joint;
 			if (joint.size() > 0) list.Add ("# " + joint);
 		}
 	}	
 	list.Save (dir, filename);
 }
-
-

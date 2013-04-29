@@ -64,14 +64,13 @@ quadsquare::quadsquare (quadcornerdata* pcd) {
     pcd->Square = this;
 	Static = false;
 
-    int	i;
-    for (i = 0; i < 4; i++) {
+    for (int i = 0; i < 4; i++) {
 		Child[i] = (quadsquare*) NULL;
     }
 
     EnabledFlags = 0;
 	
-    for (i = 0; i < 2; i++) SubEnabledCount[i] = 0;
+    for (int i = 0; i < 2; i++) SubEnabledCount[i] = 0;
 	
     Vertex[0].Y = 0.25 * (pcd->Verts[0].Y 
 		+ pcd->Verts[1].Y + pcd->Verts[2].Y + pcd->Verts[3].Y);
@@ -80,14 +79,14 @@ quadsquare::quadsquare (quadcornerdata* pcd) {
     Vertex[3].Y = 0.5 * (pcd->Verts[1].Y + pcd->Verts[2].Y);
     Vertex[4].Y = 0.5 * (pcd->Verts[2].Y + pcd->Verts[3].Y);
 
-    for (i = 0; i < 2; i++) Error[i] = 0;
-    for (i = 0; i < 4; i++) {
+    for (int i = 0; i < 2; i++) Error[i] = 0;
+    for (int i = 0; i < 4; i++) {
 		Error[i+2] = fabs((Vertex[0].Y + pcd->Verts[i].Y) 
 		- (Vertex[i+1].Y + Vertex[((i+1)&3) + 1].Y)) * 0.25;
     }
 
     MinY = MaxY = pcd->Verts[0].Y;
-	    for (i = 1; i < 4; i++) {
+	for (int i = 1; i < 4; i++) {
 		float y = pcd->Verts[i].Y;
 		if (y < MinY) MinY = y;
 		if (y > MaxY) MaxY = y;
@@ -95,7 +94,7 @@ quadsquare::quadsquare (quadcornerdata* pcd) {
 
     if  (pcd->Parent == NULL ) {
 		TTerrType *TerrList = Course.TerrList;
-		for (i=0; i<Course.numTerr; i++) {
+		for (int i=0; i<Course.numTerr; i++) {
 			TexId[i] = TerrList[i].texid;
 			if (TexId[i] < 0) TexId[i] = 0;
 		}
@@ -104,10 +103,8 @@ quadsquare::quadsquare (quadcornerdata* pcd) {
 }
 
 quadsquare::~quadsquare(){
-    int	i;
-    for (i = 0; i < 4; i++) {
+    for (int i = 0; i < 4; i++) {
 		if (Child[i]) delete Child[i];
-		Child[i] = (quadsquare*) NULL;
     }
 }
 
@@ -161,31 +158,31 @@ float quadsquare::GetHeight(const quadcornerdata &cd, float x, float z) {
 
     float	s00, s01, s10, s11;
     switch (index) {
-    default:
-    case 0:
-	s00 = Vertex[2].Y;
-	s01 = cd.Verts[0].Y;
-	s10 = Vertex[0].Y;
-	s11 = Vertex[1].Y;
-	break;
-    case 1:
-	s00 = cd.Verts[1].Y;
-	s01 = Vertex[2].Y;
-	s10 = Vertex[3].Y;
-	s11 = Vertex[0].Y;
-	break;
-    case 2:
-	s00 = Vertex[3].Y;
-	s01 = Vertex[0].Y;
-	s10 = cd.Verts[2].Y;
-	s11 = Vertex[4].Y;
-	break;
-    case 3:
-	s00 = Vertex[0].Y;
-	s01 = Vertex[1].Y;
-	s10 = Vertex[4].Y;
-	s11 = cd.Verts[3].Y;
-	break;
+	default:
+	case 0:
+		s00 = Vertex[2].Y;
+		s01 = cd.Verts[0].Y;
+		s10 = Vertex[0].Y;
+		s11 = Vertex[1].Y;
+		break;
+	case 1:
+		s00 = cd.Verts[1].Y;
+		s01 = Vertex[2].Y;
+		s10 = Vertex[3].Y;
+		s11 = Vertex[0].Y;
+		break;
+	case 2:
+		s00 = Vertex[3].Y;
+		s01 = Vertex[0].Y;
+		s10 = cd.Verts[2].Y;
+		s11 = Vertex[4].Y;
+		break;
+	case 3:
+		s00 = Vertex[0].Y;
+		s01 = Vertex[1].Y;
+		s10 = Vertex[4].Y;
+		s11 = cd.Verts[3].Y;
+		break;
     }
 
     return (s00 * (1-lx) + s01 * lx) * (1 - lz) + (s10 * (1-lx) + s11 * lx) * lz;
@@ -397,13 +394,12 @@ float quadsquare::RecomputeError(const quadcornerdata& cd)
 
 void quadsquare::ResetTree()
 {
-    int	i;
-    for (i = 0; i < 4; i++) {
+    for (int i = 0; i < 4; i++) {
 	if (Child[i]) {
 	    Child[i]->ResetTree();
 	    if (Child[i]->Static == false) {
-		delete Child[i];
-		Child[i] = 0;
+			delete Child[i];
+			Child[i] = 0;
 	    }
 	}
     }
@@ -418,9 +414,8 @@ void quadsquare::StaticCullData(const quadcornerdata& cd, float ThresholdDetail)
 {
     ResetTree();
     if (Dirty) RecomputeError(cd);
-    int	level;
-    for (level = 0; level <= cd.Level; level++) {
-	StaticCullAux(cd, ThresholdDetail, level);
+    for (int level = 0; level <= cd.Level; level++) {
+		StaticCullAux(cd, ThresholdDetail, level);
     }
 }
 
@@ -428,11 +423,11 @@ void quadsquare::StaticCullData(const quadcornerdata& cd, float ThresholdDetail)
 void quadsquare::StaticCullAux(const quadcornerdata& cd, 
 float ThresholdDetail, int TargetLevel)
 {
-    int	i, j;
     quadcornerdata	q;
 
     if (cd.Level > TargetLevel) {
-	for (j = 0; j < 4; j++) {
+	for (int j = 0; j < 4; j++) {
+		int i;
 	    if (j < 2) i = 1 - j;
 	    else i = j;
 
@@ -470,7 +465,7 @@ float ThresholdDetail, int TargetLevel)
     }
 
     bool	StaticChildren = false;
-    for (i = 0; i < 4; i++) {
+    for (int i = 0; i < 4; i++) {
 	if (Child[i]) {
 	    StaticChildren = true;
 	    if (Child[i]->Dirty) Dirty = true;
@@ -479,7 +474,7 @@ float ThresholdDetail, int TargetLevel)
 
     if (StaticChildren == false && cd.Parent != NULL) {
 	bool	NecessaryEdges = false;
-	for (i = 0; i < 4; i++) {
+	for (int i = 0; i < 4; i++) {
 	    float diff = fabs(Vertex[i+1].Y - (cd.Verts[i].Y 
 			+ cd.Verts[(i+3)&3].Y) * 0.5);
 	    if (diff > 0.00001) {

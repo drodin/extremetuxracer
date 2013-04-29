@@ -197,31 +197,17 @@ void break_track_marks (void) {
 //                      add_track_mark
 // --------------------------------------------------------------------
 void add_track_mark (CControl *ctrl, int *id) {
-    TVector3 width_vector;
-    TVector3 left_vector;
-    TVector3 right_vector;
-    double magnitude;
-    track_quad_t *q, *qprev, *qprevprev;
-    TVector3 vel;
-    double speed;
-    TVector3 left_wing, right_wing;
-    double left_y, right_y;
-    double dist_from_surface;
-    TPlane surf_plane;
-    double comp_depth;
-    double tex_end;
-    double dist_from_last_mark;
-    TVector3 vector_from_last_mark;
+    if (param.perf_level < 3)
+		return;
+
 	TTerrType *TerrList = Course.TerrList;
 
-    if (param.perf_level < 3) return;
+    track_quad_t* q = &track_marks.quads[track_marks.current_mark%MAX_TRACK_MARKS];
+    track_quad_t* qprev = &track_marks.quads[(track_marks.current_mark-1)%MAX_TRACK_MARKS];
+    track_quad_t* qprevprev = &track_marks.quads[(track_marks.current_mark-2)%MAX_TRACK_MARKS];
 
-    q = &track_marks.quads[track_marks.current_mark%MAX_TRACK_MARKS];
-    qprev = &track_marks.quads[(track_marks.current_mark-1)%MAX_TRACK_MARKS];
-    qprevprev = &track_marks.quads[(track_marks.current_mark-2)%MAX_TRACK_MARKS];
-
-    vector_from_last_mark = SubtractVectors (ctrl->cpos, track_marks.last_mark_pos);
-    dist_from_last_mark = NormVector (&vector_from_last_mark);
+    TVector3 vector_from_last_mark = SubtractVectors (ctrl->cpos, track_marks.last_mark_pos);
+    double dist_from_last_mark = NormVector (&vector_from_last_mark);
 	
 	*id = Course.GetTerrainIdx (ctrl->cpos.x, ctrl->cpos.z, 0.5);
 	if (*id < 1) {
@@ -234,36 +220,36 @@ void add_track_mark (CControl *ctrl, int *id) {
 		return;
 	} 
     
-	vel = ctrl->cvel;
-    speed = NormVector (&vel);
+	TVector3 vel = ctrl->cvel;
+    double speed = NormVector (&vel);
     if (speed < SPEED_TO_START_TRENCH) {
 		break_track_marks();
 		return;
     }
 
-    width_vector = CrossProduct (ctrl->cdirection, MakeVector (0, 1, 0));
-    magnitude = NormVector (&width_vector);
+    TVector3 width_vector = CrossProduct (ctrl->cdirection, MakeVector (0, 1, 0));
+    double magnitude = NormVector (&width_vector);
     if  (magnitude == 0) {
 		break_track_marks();
 		return;
     }
 
-    left_vector = ScaleVector (TRACK_WIDTH/2.0, width_vector);
-    right_vector = ScaleVector (-TRACK_WIDTH/2.0, width_vector);
-    left_wing =  SubtractVectors (ctrl->cpos, left_vector);
-    right_wing = SubtractVectors (ctrl->cpos, right_vector);
-    left_y = Course.FindYCoord (left_wing.x, left_wing.z);
-    right_y = Course.FindYCoord (right_wing.x, right_wing.z);
+    TVector3 left_vector = ScaleVector (TRACK_WIDTH/2.0, width_vector);
+    TVector3 right_vector = ScaleVector (-TRACK_WIDTH/2.0, width_vector);
+    TVector3 left_wing =  SubtractVectors (ctrl->cpos, left_vector);
+    TVector3 right_wing = SubtractVectors (ctrl->cpos, right_vector);
+    double left_y = Course.FindYCoord (left_wing.x, left_wing.z);
+    double right_y = Course.FindYCoord (right_wing.x, right_wing.z);
     
 	if (fabs(left_y-right_y) > MAX_TRACK_DEPTH) {
 		break_track_marks();
 		return;
     }
 
-    surf_plane = Course.GetLocalCoursePlane (ctrl->cpos);
-    dist_from_surface = DistanceToPlane (surf_plane, ctrl->cpos);
+    TPlane surf_plane = Course.GetLocalCoursePlane (ctrl->cpos);
+    double dist_from_surface = DistanceToPlane (surf_plane, ctrl->cpos);
 	// comp_depth = get_compression_depth(Snow);
-	comp_depth = 0.1;
+	double comp_depth = 0.1;
     if  (dist_from_surface >= (2 * comp_depth)) {
 		break_track_marks();
 		return;
@@ -294,7 +280,7 @@ void add_track_mark (CControl *ctrl, int *id) {
 		q->v4 = MakeVector (right_wing.x, right_y + TRACK_HEIGHT, right_wing.z);
 		q->n3 = Course.FindCourseNormal (q->v3.x, q->v3.z);
 		q->n4 = Course.FindCourseNormal (q->v4.x, q->v4.z);
-		tex_end = speed*g_game.time_step/TRACK_WIDTH;
+		double tex_end = speed*g_game.time_step/TRACK_WIDTH;
 		if (q->track_type == TRACK_HEAD) {
 		    q->t3= MakeVector2 (0.0, 1.0);
 		    q->t4= MakeVector2 (1.0, 1.0);

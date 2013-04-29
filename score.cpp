@@ -46,7 +46,6 @@ int CScore::AddScore (int list_idx, const TScore& score) {
 
 	TScoreList *list = &Scorelist[list_idx];
 	int num = list->numScores;
-	int i;
 	int pos = 0;
 	int lastpos = num-1;
 	int val = score.points;
@@ -59,12 +58,12 @@ int CScore::AddScore (int list_idx, const TScore& score) {
 		if (pos == lastpos) {
 			list->scores[pos] = score;
 		} else if (pos < lastpos) {
-			for (i=lastpos; i>pos; i--) list->scores[i] = list->scores[i-1];
+			for (int i=lastpos; i>pos; i--) list->scores[i] = list->scores[i-1];
 			list->scores[pos] = score;
 		}
 	} else {
 		while (val <= list->scores[pos].points && pos < num) pos++;
-		for (i=num; i>pos; i--) list->scores[i] = list->scores[i-1];
+		for (int i=num; i>pos; i--) list->scores[i] = list->scores[i-1];
 		list->scores[pos] = score;
 		list->numScores++;
 	}
@@ -75,13 +74,12 @@ int CScore::AddScore (int list_idx, const TScore& score) {
 void CScore::PrintScorelist (int list_idx) {
 	if (list_idx < 0 || list_idx >= MAX_COURSES) return;
 	TScoreList *list = &Scorelist[list_idx];
-	string line;
 
 	if (list->numScores < 1) {
 		PrintString ("no entries in this score list");
 	} else {
 		for (int i=0; i<list->numScores; i++) {
-			line = "player: " + list->scores[i].player;
+			string line = "player: " + list->scores[i].player;
 			line += " points: " + Int_StrN (list->scores[i].points);
 			line += " herrings: " + Int_StrN (list->scores[i].herrings);
 			line += " time: " + Float_StrN (list->scores[i].time, 2);
@@ -102,23 +100,15 @@ TScoreList *CScore::GetScorelist (int list_idx) {
 
 bool CScore::SaveHighScore () {
 	CSPList splist (520);
-	string line;
-	int li, sc, num;
-	string coursedir;
 
-	TCourse *courselist = Course.CourseList;
-	TScoreList *lst;
-	TScore score;
-	
-	for (li=0; li<MAX_COURSES; li++) {
-		lst = &Scorelist[li];
+	for (int li=0; li<MAX_COURSES; li++) {
+		TScoreList* lst = &Scorelist[li];
 		if (lst != NULL) {
-			coursedir = courselist[li].dir;
-			num = lst->numScores;
+			int num = lst->numScores;
 			if (num > 0) {
-				for (sc=0; sc<num; sc++) {
-					score = lst->scores[sc];
-					line = "*[course] " + courselist[li].dir;
+				for (int sc=0; sc<num; sc++) {
+					TScore score = lst->scores[sc];
+					string line = "*[course] " + Course.CourseList[li].dir;
 					line += " [plyr] " + score.player;
 					line += " [pts] " + Int_StrN (score.points);
 					line += " [herr] " + Int_StrN (score.herrings);
@@ -137,20 +127,18 @@ bool CScore::SaveHighScore () {
 
 bool CScore::LoadHighScore () {
 	CSPList list (520);
-	string line, course;
-	int i, cidx;
 	TScore score;
 	
 	if (!list.Load (param.config_dir, "highscore")) {
 		Message ("could not load highscore list");
 		return false;
 	}
-	for (i=0; i<MAX_COURSES; i++) ResetScorelist (i);
+	for (int i=0; i<MAX_COURSES; i++) ResetScorelist (i);
 
-	for (i=0; i<list.Count(); i++) {
-		line = list.Line (i);
-		course = SPStrN (line, "course", "unknown");
-		cidx = Course.GetCourseIdx (course);
+	for (int i=0; i<list.Count(); i++) {
+		string line = list.Line (i);
+		string course = SPStrN (line, "course", "unknown");
+		int cidx = Course.GetCourseIdx (course);
 
 		score.player = SPStrN (line, "plyr", "unknown");
 		score.points = SPIntN (line, "pts", 0);
@@ -231,7 +219,6 @@ void ScoreMouseFunc (int button, int state, int x, int y) {
 }
 
 void ScoreMotionFunc (int x, int y ){
-    TVector2 old_pos;
  	int sc, dir;
 	if (Winsys.ModePending ()) return; 
 
@@ -239,7 +226,7 @@ void ScoreMotionFunc (int x, int y ){
 	if (sc >= 0) curr_focus = sc;
 	y = param.y_resolution - y;
 
-    old_pos = cursor_pos;
+    TVector2 old_pos = cursor_pos;
     cursor_pos = MakeVector2 (x, y);
     if  (old_pos.x != x || old_pos.y != y) {
 		if (param.ui_snow) push_ui_snow (cursor_pos);
@@ -319,8 +306,6 @@ void ScoreLoop (double timestep ){
 	PrintArrow (1, (curr_course < lastCourse));
 
 	TScoreList *list = Score.GetScorelist (curr_course);
-	int y;
-
 
 	FT.SetColor (colWhite);
 	if (list != NULL) {
@@ -330,7 +315,7 @@ void ScoreLoop (double timestep ){
 		} else {
 			if (list->numScores > MAX_SCORES) list->numScores = MAX_SCORES;
 			for (int i=0; i<list->numScores; i++) {
-				y = listtop + i*linedist;
+				int y = listtop + i*linedist;
 				FT.DrawString (area.left, y, ordinals[i]);
 				FT.DrawString (area.left + dd1, y, Int_StrN (list->scores[i].points));
 				FT.DrawString (area.left + dd2, y, list->scores[i].player);
@@ -354,6 +339,3 @@ void RegisterScoreFunctions () {
 	Winsys.SetModeFuncs (SCORE,  ScoreInit,  ScoreLoop,  ScoreTerm,
  		 ScoreKeys,  ScoreMouseFunc,  ScoreMotionFunc, NULL, NULL, NULL);
 }
-
-
-

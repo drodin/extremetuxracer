@@ -111,18 +111,14 @@ void CKeyframe::Reset () {
 bool CKeyframe::Load (const string& dir, const string& filename) {
 	if (loaded && loadedfile == filename) return true;
 	CSPList list (1000);
-	int i;
-	string line;
-	TVector2 pp;
 	numFrames = 0;
-	TVector3 posit;
 
 	if (list.Load (dir, filename)) {
-		for (i=0; i<list.Count(); i++) {
-			line = list.Line (i);
+		for (int i=0; i<list.Count(); i++) {
+			string line = list.Line (i);
 			frames[numFrames] = new (TKeyframe2);
 			frames[numFrames]->val[0] = SPFloatN (line, "time", 0);		
-			posit = SPVector3N (line, "pos", MakeVector (0, 0, 0));
+			TVector3 posit = SPVector3N (line, "pos", MakeVector (0, 0, 0));
 			frames[numFrames]->val[1] = posit.x;
 			frames[numFrames]->val[2] = posit.y;
 			frames[numFrames]->val[3] = posit.z;
@@ -131,7 +127,7 @@ bool CKeyframe::Load (const string& dir, const string& filename) {
 			frames[numFrames]->val[6] = SPFloatN (line, "roll", 0);
 			frames[numFrames]->val[7] = SPFloatN (line, "neck", 0);
 			frames[numFrames]->val[8] = SPFloatN (line, "head", 0);
-			pp = SPVector2N (line, "sh", MakeVector2 (0, 0));
+			TVector2 pp = SPVector2N (line, "sh", MakeVector2 (0, 0));
 			frames[numFrames]->val[9] = pp.x;
 			frames[numFrames]->val[10] = pp.y;
 			pp = SPVector2N (line, "arm", MakeVector2 (0, 0));
@@ -163,7 +159,6 @@ bool CKeyframe::Load (const string& dir, const string& filename) {
 // that will be implemented later
 
 void CKeyframe::InterpolateKeyframe (int idx, double frac, CCharShape *shape) {
-
 	double vv;
     vv = interp (frac, frames[idx]->val[4], frames[idx+1]->val[4]);
     shape->RotateNode ("root", 2, vv);
@@ -271,11 +266,8 @@ void CKeyframe::CalcKeyframe (int idx, CCharShape *shape, TVector3 refpos) {
 
 void CKeyframe::Update (double timestep, CControl *ctrl) {
 	if (!loaded) return;
-    double frac;
-    TVector3 pos;
-	CCharShape *shape = Char.GetShape (g_game.char_id);
-
 	if (!active) return;
+
     keytime += timestep;
 	if (keytime >= frames[keyidx]->val[0]) {
 		keyidx++;
@@ -286,6 +278,10 @@ void CKeyframe::Update (double timestep, CControl *ctrl) {
 		active = false;
         return;
     } 
+
+    double frac;
+    TVector3 pos;
+	CCharShape *shape = Char.GetShape (g_game.char_id);
 
     if  (fabs (frames[keyidx]->val[0]) < 0.0001) frac = 1.0;
 	else frac = (frames[keyidx]->val[0] - keytime) / frames[keyidx]->val[0];
@@ -306,10 +302,8 @@ void CKeyframe::Update (double timestep, CControl *ctrl) {
 }
 
 void CKeyframe::UpdateTest (double timestep, CCharShape *shape) {
-    double frac;
-    TVector3 pos;
-
 	if (!active) return;
+
     keytime += timestep;
 	if (keytime >= frames[keyidx]->val[0]) {
 		keyidx++;
@@ -319,7 +313,10 @@ void CKeyframe::UpdateTest (double timestep, CCharShape *shape) {
     if  (keyidx >= numFrames-1 || numFrames < 2) {
 		active = false;
         return;
-    } 
+    }
+
+    double frac;
+    TVector3 pos;
 
     if  (fabs (frames[keyidx]->val[0]) < 0.0001) frac = 1.0;
 	else frac = (frames[keyidx]->val[0] - keytime) / frames[keyidx]->val[0];
@@ -360,13 +357,10 @@ int CKeyframe::GetNumJoints () {
 
 void CKeyframe::SaveTest (const string& dir, const string& filename) {
 	CSPList list (100);
-	string line;
-	TKeyframe2 *frame;
-	double ll, rr;
 
 	for (int i=0; i<numFrames; i++) {
-		frame = frames[i];
-		line = "*[time] " + Float_StrN (frame->val[0], 1);
+		TKeyframe2* frame = frames[i];
+		string line = "*[time] " + Float_StrN (frame->val[0], 1);
 		line += " [pos] " + Float_StrN (frame->val[1], 2);
 		line += " " + Float_StrN (frame->val[2], 2);
 		line += " " + Float_StrN (frame->val[3], 2);
@@ -376,8 +370,8 @@ void CKeyframe::SaveTest (const string& dir, const string& filename) {
 		if (frame->val[7] != 0) line += " [neck] " + Float_StrN (frame->val[7], 0);
 		if (frame->val[8] != 0) line += " [head] " + Float_StrN (frame->val[8], 0);
 
-		ll = frame->val[9];
-		rr = frame->val[10];
+		double ll = frame->val[9];
+		double rr = frame->val[10];
 		if (ll != 0 || rr != 0) 
 			line += " [sh] " + Float_StrN (ll, 0) + " " + Float_StrN (rr, 0);
 
@@ -465,5 +459,3 @@ void CKeyframe::ClearFrame (int idx) {
 	if (idx < 0 || idx >= numFrames) return;
 	ResetFrame2 (frames[idx]);
 }
-
-

@@ -57,23 +57,22 @@ void LoadCreditList () {
 	}
 }
 
-void DrawCreditsText (double time_step){
+void DrawCreditsText (double time_step) {
     double w = (double)param.x_resolution;
     double h = (double)param.y_resolution;
 	double offs = 0.0;
-	int i;
-	TColor col;
 	if (moving) y_offset += time_step * 30;
 
 
-	for (i=0; i < numCredits; i++) {
+	for (int i=0; i < numCredits; i++) {
 		offs = h - 100 - y_offset + CreditList[i].offs;
 		if (offs > h || offs < 0.0) // Draw only visible lines
 			continue;
 
-		if (CreditList[i].col == 0) col = colWhite;
-		else col = colDYell;
-		FT.SetColor (col);
+		if (CreditList[i].col == 0)
+			FT.SetColor (colWhite);
+		else
+			FT.SetColor (colDYell);
 		FT.AutoSizeN (CreditList[i].size);
 		FT.DrawString (-1, (int)offs, CreditList[i].text);
 	}
@@ -203,4 +202,3 @@ void credits_register() {
 	Winsys.SetModeFuncs (CREDITS, CreditsInit, CreditsLoop, CreditsTerm,
  		CreditsKeys, CreditsMouseFunc, CreditsMotionFunc, NULL, NULL, NULL);
 }
-
