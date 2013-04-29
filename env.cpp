@@ -36,9 +36,10 @@ static const float def_partcol[] = {0.8, 0.8, 0.9, 0.0};
 
 CEnvironment Env;
 
-CEnvironment::CEnvironment () {
+CEnvironment::CEnvironment ()
+	: LightIndex("[sunny]0[cloudy]1[evening]2[night]3")
+{
 	EnvID = -1;
-	LightIndex = "[sunny]0[cloudy]1[evening]2[night]3";
 	lightcond[0].name = "sunny";
 	lightcond[1].name = "cloudy";
 	lightcond[2].name = "evening";

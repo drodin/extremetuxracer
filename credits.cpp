@@ -38,20 +38,16 @@ static bool moving = true;
 void LoadCreditList () {
 	CSPList list(MAX_CREDITS);
 
-	int i;
-	double offset;
-	string line;
-
 	if (!list.Load (param.data_dir, "credits.lst")) {
 		Message ("could not load credits list");
 		return;
 	}
 
-	for (i=0; i<list.Count(); i++) {
-		line = list.Line(i);
+	for (int i=0; i<list.Count(); i++) {
+		string line = list.Line(i);
 		CreditList[i].text = SPStrN (line, "text", "");
 
-		offset = SPFloatN (line, "offs", 0) * OFFS_SCALE_FACTOR * param.scale;
+		double offset = SPFloatN (line, "offs", 0) * OFFS_SCALE_FACTOR * param.scale;
 		if (i>0) CreditList[i].offs = CreditList[i-1].offs + (int)offset;
 		else CreditList[i].offs = offset;
 

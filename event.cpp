@@ -177,9 +177,6 @@ int resultlevel (int num, int numraces) {
 void EventLoop (double timestep) {
 	int ww = param.x_resolution;
 	int hh = param.y_resolution;
- 	int i;
-	TColor col;
-	int y;
 
 	check_gl_error();
 	set_gl_options (GUI );
@@ -210,12 +207,14 @@ void EventLoop (double timestep) {
 		DrawFrameX (area.left, frametop, framewidth, 
 			ecup->num_races * dist + 20, 3, colBackgr, colWhite, 1);
 
-		for (i=0; i<ecup->num_races; i++) {
-			if (i == curr_race) col = colDYell; else col = colWhite;
+		for (int i=0; i<ecup->num_races; i++) {
 			FT.AutoSizeN (3);
 				
-			y = frametop + 10 + i * dist;
-			FT.SetColor (col);
+			int y = frametop + 10 + i * dist;
+			if (i == curr_race)
+				FT.SetColor (colDYell);
+			else
+				FT.SetColor (colWhite);
 			FT.DrawString (area.left + 29, y, Course.CourseList[ecourseidx[i]].name);
 			Tex.Draw (CHECKBOX, area.right -54, y, texsize, texsize);
 			if (curr_race > i) Tex.Draw (CHECKMARK, area.right-50, y + 4, 0.8);

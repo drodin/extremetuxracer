@@ -60,7 +60,6 @@ void DrawTrees() {
     int       	i;
     TVector3  	normal;
     double  	fwd_clip_limit, bwd_clip_limit;
-	double		fwd_tree_detail_limit;
     int			tree_type = -1;
     double  	itemRadius;
     double  	itemHeight;
@@ -72,7 +71,6 @@ void DrawTrees() {
 
     fwd_clip_limit = param.forward_clip_distance;
     bwd_clip_limit = param.backward_clip_distance;
-    fwd_tree_detail_limit = param.tree_detail_distance;
 
     glTexEnvf (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
     set_material (colWhite, colBlack, 1.0);

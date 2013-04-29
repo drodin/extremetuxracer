@@ -420,13 +420,7 @@ bool CCourse::LoadElevMap () {
 
 void CCourse::LoadItemList () {
 	CSPList list (16000);
-	int i, x, z, type;
-	double height, diam, xx, zz;
-	string line;
-	string name;
-	bool coll;
-	string terrpath;
-	
+
     numColl = 0;
     numNocoll = 0;
     numObjects = 0;
@@ -436,22 +430,22 @@ void CCourse::LoadItemList () {
 		return;
 	}
 
-	for (i=0; i<list.Count(); i++) {
-		line = list.Line (i);
-		x = SPIntN (line, "x", 0);
-		z = SPIntN (line, "z", 0);
-		height = SPFloatN (line, "height", 1);		
-		diam = SPFloatN (line, "diam", 1);		
-		xx = (nx - x) / (double)(nx - 1.0) * width;
-		zz = -(ny - z) / (double)(ny - 1.0) * length;
+	for (int i=0; i<list.Count(); i++) {
+		string line = list.Line (i);
+		int x = SPIntN (line, "x", 0);
+		int z = SPIntN (line, "z", 0);
+		double height = SPFloatN (line, "height", 1);
+		double diam = SPFloatN (line, "diam", 1);
+		double xx = (nx - x) / (double)(nx - 1.0) * width;
+		double zz = -(ny - z) / (double)(ny - 1.0) * length;
 
-		name = SPStrN (line, "name", "");
-		type = SPIntN (ObjectIndex, name, 0);
+		string name = SPStrN (line, "name", "");
+		int type = SPIntN (ObjectIndex, name, 0);
 		if (ObjTypes[type].texid < 1 && ObjTypes[type].drawable) {
-			terrpath = param.obj_dir + SEP + ObjTypes[type].texture;
+			string terrpath = param.obj_dir + SEP + ObjTypes[type].texture;
 			ObjTypes[type].texid = Tex.LoadMipmapTexture (terrpath, 0);
 		}
-		coll = ObjTypes[type].collidable;
+		bool coll = ObjTypes[type].collidable;
 		if (coll == 1) {
 		    CollArr[numColl].pt.x = xx;
 		    CollArr[numColl].pt.z = zz;
@@ -763,13 +757,9 @@ bool CCourse::LoadTerrainMap () {
 // --------------------------------------------------------------------
 
 bool CCourse::LoadCourseList () {
-	string previewfile, paramfile, coursepath;
-	string line, desc;
-	int i, ll, cnt;
-	GLuint texid;
 	CSPList desclist (12);
 
-	for (i=0; i<MAX_COURSES; i++) {
+	for (int i=0; i<MAX_COURSES; i++) {
 		CourseList[i].name = "";
 		CourseList[i].dir = "";		
 		CourseList[i].author = "";
@@ -784,28 +774,28 @@ bool CCourse::LoadCourseList () {
 		return false;
 	}
 
-	for (i=0; i<list.Count(); i++) {
-		line = list.Line (i);
+	for (int i=0; i<list.Count(); i++) {
+		string line = list.Line (i);
 		CourseList[i].name = SPStrN (line, "name", "noname");
 		CourseList[i].dir = SPStrN (line, "dir", "nodir");
 		CourseList[i].author = SPStrN (line, "author", "unknown");
 
-		desc = SPStrN (line, "desc", "");		
+		string desc = SPStrN (line, "desc", "");
 		FT.AutoSizeN (2);
 		FT.MakeLineList (desc.c_str(), &desclist, 335 * param.scale - 16.0);
-		cnt = desclist.Count ();
+		int cnt = desclist.Count ();
 		if (cnt > MAX_DESCRIPTION_LINES) cnt = MAX_DESCRIPTION_LINES;
 		CourseList[i].num_lines = cnt;
-		for (ll=0; ll<cnt; ll++) {
+		for (int ll=0; ll<cnt; ll++) {
 			CourseList[i].desc[ll] = desclist.Line (ll);
 		}
 		desclist.Clear ();
 	
-		coursepath = param.common_course_dir + SEP + CourseList[i].dir;
+		string coursepath = param.common_course_dir + SEP + CourseList[i].dir;
 		if (DirExists (coursepath.c_str())) {
 			// preview
-			previewfile = coursepath + SEP + "preview.png";
-			texid = Tex.LoadMipmapTexture (previewfile, 0);
+			string previewfile = coursepath + SEP + "preview.png";
+			GLuint texid = Tex.LoadMipmapTexture (previewfile, 0);
 			if (texid < 1) {
 				Message ("couldn't load previewfile");					
 //				texid = Tex.TexID (NO_PREVIEW);
@@ -813,7 +803,7 @@ bool CCourse::LoadCourseList () {
 			CourseList[i].preview = texid;
 
 			// params
-			paramfile = coursepath + SEP + "course.dim";
+			string paramfile = coursepath + SEP + "course.dim";
 			if (!paramlist.Load (paramfile)) {
 				Message ("could not load course.dim");
 			}
@@ -1028,10 +1018,8 @@ void CCourse::FindBarycentricCoords (double x, double z, TIndex2 *idx0,
 		TIndex2 *idx1, TIndex2 *idx2, double *u, double *v) {
     double xidx, yidx;
     int x0, x1, y0, y1;
-    double dx, ex, dz, ez, qx, qz, invdet; 
-    double *elevation;
+    double dx, ex, dz, ez, qx, qz, invdet;
 
-    elevation = Course.elevation;
     GetIndicesForPoint (x, z, &x0, &y0, &x1, &y1);
     xidx = x / width * ((double) nx - 1.);
     yidx = -z / length * ((double) ny - 1.);

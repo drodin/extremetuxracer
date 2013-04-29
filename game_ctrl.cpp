@@ -208,8 +208,6 @@ void CPlayers::SetDefaultPlayers () {
 
 bool CPlayers::LoadPlayers () {
 	CSPList list(MAX_PLAYERS);
-	string line;
-	int active;
 
 	if (FileExists (param.config_dir, "players") == false) {
 		SetDefaultPlayers ();
@@ -226,12 +224,12 @@ bool CPlayers::LoadPlayers () {
 	numPlayers = 0;
 	g_game.start_player = 0;
 	for (int i=0; i<list.Count(); i++) {
-		line = list.Line(i);
+		string line = list.Line(i);
 		plyr[numPlayers].name = SPStrN (line, "name", "unknown");
 		plyr[numPlayers].funlocked = SPStrN (line, "unlocked", "");
 		plyr[numPlayers].avatar = SPStrN (line, "avatar", "");
 		plyr[numPlayers].texid = SPIntN (AvatarIndex, plyr[numPlayers].avatar, 0);
-		active = SPIntN (line, "active", 0);
+		int active = SPIntN (line, "active", 0);
 		if (active > 0) g_game.start_player = numPlayers;
 		numPlayers++;
 	}

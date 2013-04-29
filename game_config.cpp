@@ -573,9 +573,6 @@ void GameConfigInit (void) {
 	LangList = Trans.languages;
 	lastLang = Trans.numLanguages - 1;
 
-	SDL_Surface *surf = 0;
-	surf = SDL_GetVideoSurface ();
-
 	for (int i=0; i<NUM_RESOLUTIONS; i++) res_names[i] = Winsys.GetResName (i);
  
 	paramchanged = false;
