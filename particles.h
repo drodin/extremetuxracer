@@ -19,6 +19,7 @@ GNU General Public License for more details.
 #define PARTICLES_H
 
 #include "bh.h"
+#include <vector>
 
 // --------------------------------------------------------------------
 //					snow for menu screens
@@ -45,18 +46,17 @@ void generate_particles (CControl *ctrl, double dtime, const TVector3& pos, doub
 //					snow flakes for short distances
 // --------------------------------------------------------------------
 
-#define MAX_FLAKEAREAS 6
-
-typedef struct {
+struct TFlake {
     TVector3 pt;
     float   size;
     TVector3 vel;
     TVector2 tex_min;
     TVector2 tex_max;
-} TFlake;
 
-typedef struct {
-	int num_flakes;
+	void Draw(const TPlane& lp, const TPlane& rp, bool rotate_flake, float dir_angle) const;
+};
+
+struct TFlakeArea {
 	float xrange;
 	float ytop;
 	float yrange;
@@ -74,19 +74,9 @@ typedef struct {
 	float front;
 	float back;
 
-	TFlake *flakes;
-} TFlakeArea;
+	vector<TFlake> flakes;
 
-class CFlakes {
-private:
-	TVector3 snow_lastpos;
-	TFlakeArea areas[MAX_FLAKEAREAS];
-	int numAreas;
-	void MakeSnowFlake (int ar, int i);
-	void GenerateSnowFlakes (CControl *ctrl);
-	void UpdateAreas (CControl *ctrl);
-	void DrawArea (int ar, CControl *ctrl);
-	void CreateArea (
+	TFlakeArea(
 		int num_flakes, 
 		float xrange,
 		float ytop,
@@ -97,13 +87,22 @@ private:
 		float maxSize,
 		float speed,
 		bool  rotate);
+	void Draw(CControl* ctrl) const;
+	void Update(float timestep, float xcoeff, float ycoeff, float zcoeff);
+};
+
+class CFlakes {
+private:
+	TVector3 snow_lastpos;
+	vector<TFlakeArea> areas;
+	void MakeSnowFlake (size_t ar, size_t i);
+	void GenerateSnowFlakes (CControl *ctrl);
+	void UpdateAreas (CControl *ctrl);
 public:
-	CFlakes ();
-	~CFlakes ();
 	void Init (int grade, CControl *ctrl);
 	void Reset ();
 	void Update (double timestep, CControl *ctrl);
-	void Draw (CControl *ctrl);
+	void Draw (CControl *ctrl) const;
 };
 
 // --------------------------------------------------------------------
@@ -117,35 +116,30 @@ public:
 
 #define MAX_CURTAIN_COLS 16
 #define MAX_CURTAIN_ROWS 8
-#define MAX_CURTAINS 6
 
-typedef struct {
+struct TCurtainElement {
     TVector3 pt;
 	float angle;
 	float height;
 	float zrandom;
-} TCurtainElement;
+};
 
-class CCurtain {
-private:
-	TCurtainElement curtains[MAX_CURTAINS][MAX_CURTAIN_COLS][MAX_CURTAIN_ROWS];
+struct TCurtain {
+	TCurtainElement curtains[MAX_CURTAIN_COLS][MAX_CURTAIN_ROWS];
+	int chg[MAX_CURTAIN_ROWS];	// for each row
 
-	int numCols[MAX_CURTAINS];
-	int numRows[MAX_CURTAINS];
-	float zdist[MAX_CURTAINS];
-	float size[MAX_CURTAINS];
-	float speed[MAX_CURTAINS];
-	float angledist[MAX_CURTAINS];
-	float startangle[MAX_CURTAINS];
-	float lastangle[MAX_CURTAINS];
-	float minheight[MAX_CURTAINS];
-	bool enabled[MAX_CURTAINS];
-	int texture[MAX_CURTAINS];
-
-	int chg[MAX_CURTAINS][MAX_CURTAIN_ROWS];	// for each row
-
-	void GenerateCurtain (
-		int nr,	
+	unsigned int numCols;
+	unsigned int numRows;
+	float zdist;
+	float size;
+	float speed;
+	float angledist;
+	float startangle;
+	float lastangle;
+	float minheight;
+	int texture;
+	
+	TCurtain(
 		int num_rows,
 		float z_dist,
 		float tex_size,
@@ -153,9 +147,19 @@ private:
 		float start_angle,
 		float min_height,
 		int curt_texture);
+	void SetStartParams(CControl* ctrl);
+	void Draw() const;
+	void Update(float timestep, const TVector3& drift, CControl* ctrl);
+
+private:
+	static void CurtainVec (float angle, float zdist, float &x, float &z);
+};
+
+class CCurtain {
+private:
+	vector<TCurtain> curtains;
 
 	void SetStartParams (CControl *ctrl);
-	void CurtainVec (float angle, float zdist, float &x, float &z);
 public:
 	void Init (CControl *ctrl);
 	void Update (float timestep, CControl *ctrl);
@@ -167,7 +171,7 @@ public:
 //					wind
 // --------------------------------------------------------------------
 
-typedef struct {
+struct TWindParams {
 	float minSpeed;
 	float maxSpeed;
 	float minChange;
@@ -181,7 +185,7 @@ typedef struct {
 	float topSpeed;
 	float topProbability;
 	float nullProbability;
-} TWindParams;
+};
 
 class CWind {
 private:
@@ -209,9 +213,9 @@ public:
 
 	void Update (float timestep);
 	void Init (int wind_id);
-	bool Windy () { return windy; }
-	float Angle () { return WAngle; }
-	float Speed () { return WSpeed; }
+	bool Windy () const { return windy; }
+	float Angle () const { return WAngle; }
+	float Speed () const { return WSpeed; }
 	const TVector3& WindDrift () const { return WVector; }
 };
 
