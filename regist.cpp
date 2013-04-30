@@ -37,7 +37,7 @@ static size_t last_character;
 //static int xleft, ytop;
 static size_t curr_player = 0;
 static size_t last_player;
-static int old_last;
+static size_t old_last;
 
 void QuitRegistration () {
 	Players.ResetControls ();

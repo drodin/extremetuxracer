@@ -32,20 +32,12 @@ GNU General Public License for more details.
 CCourse Course;
 
 CCourse::CCourse () {
-	numCourses = 0;
-	numTerr = 0;
-	numObjTypes = 0;
-	numColl = 0;
- 	numNocoll = 0;
-	numPolys = 0;
-
 	terrain = NULL;
 	elevation = NULL;
 	nmls = NULL;
 	vnc_array = NULL;
 
 	curr_course = -1;
-	numObjects = 0;
 }
 
 const TVector2& CCourse::GetStartPoint () const { 
@@ -56,7 +48,7 @@ void CCourse::SetStartPoint (const TVector2& p)	{
 	start_pt = p; 
 }
 
-double CCourse::GetBaseHeight (double distance){
+double CCourse::GetBaseHeight (double distance) const {
     double slope = tan (ANGLES_TO_RADIANS (course_angle));
     double base_height;
     
@@ -65,175 +57,174 @@ double CCourse::GetBaseHeight (double distance){
     return base_height;
 }
 
-double CCourse::GetMaxHeight (double distance){
+double CCourse::GetMaxHeight (double distance) const {
     return GetBaseHeight (distance) + elev_scale;
 }
 
-double CCourse::GetCourseAngle () {
+double CCourse::GetCourseAngle () const {
 	return course_angle; 
 } 
 
-double CCourse::GetCourseDescent () { 
+double CCourse::GetCourseDescent () const { 
 	return course_descent; 
 }
 
-void CCourse::GetDimensions (double *w, double *l) {
+void CCourse::GetDimensions (double *w, double *l) const {
     *w = width;
     *l = length;
 } 
 
-void CCourse::GetPlayDimensions (double *pw, double *pl) {
+void CCourse::GetPlayDimensions (double *pw, double *pl) const {
     *pw = play_width;
     *pl = play_length;
 } 
 
-void CCourse::GetDivisions (int *x, int *y) {
+void CCourse::GetDivisions (int *x, int *y) const {
     *x = nx;
     *y = ny;
 } 
 
-void CCourse::GetGLArrays (GLubyte **vnc_arr) {
+void CCourse::GetGLArrays (GLubyte **vnc_arr) const {
 	*vnc_arr = vnc_array;
 }
 
-TPolyhedron	CCourse::GetPoly (int type) { 
+const TPolyhedron& CCourse::GetPoly (int type) const { 
 	return PolyArr[ObjTypes[type].poly]; 
 }
 
-int CCourse::GetCourseIdx (const string& dir) {
+int CCourse::GetCourseIdx (const string& dir) const {
 	return SPIntN (CourseIndex, dir, 0);
 }
 
 void CCourse::CalcNormals () {
-    int x, y;
-    TVector3 p0, p1, p2;
-    TVector3 n, nml, v1, v2;
+    TVector3 p1, p2;
+    TVector3 n, v1, v2;
 
-	for (y=0; y<ny; y++) {
-        for  (x=0; x<nx; x++) {
-            nml = MakeVector (0.0, 0.0, 0.0);
-            p0 = MakeVector (XCD(x), ELEV(x,y), ZCD(y));
+	for (int y=0; y<ny; y++) {
+        for  (int x=0; x<nx; x++) {
+            TVector3 nml = MakeVector (0.0, 0.0, 0.0);
+            TVector3 p0 = MakeVector (XCD(x), ELEV(x,y), ZCD(y));
 
-	    if  ((x + y) % 2 == 0) {
-		if  (x > 0 && y > 0) {
-		    p1 = NMLPOINT(x,  y-1);
-		    p2 = NMLPOINT(x-1,y-1);
-		    v1 = SubtractVectors (p1, p0);
-		    v2 = SubtractVectors (p2, p0);
-		    n = CrossProduct (v2, v1);
+			if  ((x + y) % 2 == 0) {
+				if  (x > 0 && y > 0) {
+					p1 = NMLPOINT(x,  y-1);
+					p2 = NMLPOINT(x-1,y-1);
+					v1 = SubtractVectors (p1, p0);
+					v2 = SubtractVectors (p2, p0);
+					n = CrossProduct (v2, v1);
 
-		    NormVector (&n);
-		    nml = AddVectors (nml, n);
+					NormVector (&n);
+					nml = AddVectors (nml, n);
 
-		    p1 = NMLPOINT (x-1, y-1);
-		    p2 = NMLPOINT (x-1, y);
-		    v1 = SubtractVectors (p1, p0);
-		    v2 = SubtractVectors (p2, p0);
-		    n = CrossProduct (v2, v1);
+					p1 = NMLPOINT (x-1, y-1);
+					p2 = NMLPOINT (x-1, y);
+					v1 = SubtractVectors (p1, p0);
+					v2 = SubtractVectors (p2, p0);
+					n = CrossProduct (v2, v1);
 
-		    NormVector (&n);
-		    nml = AddVectors (nml, n);
-		} 
-		if  (x > 0 && y < ny-1) {
-		    p1 = NMLPOINT(x-1,y);
-		    p2 = NMLPOINT(x-1,y+1);
-		    v1 = SubtractVectors (p1, p0);
-		    v2 = SubtractVectors (p2, p0);
-		    n = CrossProduct (v2, v1);
+					NormVector (&n);
+					nml = AddVectors (nml, n);
+				} 
+				if  (x > 0 && y < ny-1) {
+					p1 = NMLPOINT(x-1,y);
+					p2 = NMLPOINT(x-1,y+1);
+					v1 = SubtractVectors (p1, p0);
+					v2 = SubtractVectors (p2, p0);
+					n = CrossProduct (v2, v1);
 
-		    NormVector (&n);
-		    nml = AddVectors (nml, n);
+					NormVector (&n);
+					nml = AddVectors (nml, n);
 
-		    p1 = NMLPOINT(x-1,y+1);
-		    p2 = NMLPOINT(x  ,y+1);
-		    v1 = SubtractVectors (p1, p0);
-		    v2 = SubtractVectors (p2, p0);
-		    n = CrossProduct (v2, v1);
+					p1 = NMLPOINT(x-1,y+1);
+					p2 = NMLPOINT(x  ,y+1);
+					v1 = SubtractVectors (p1, p0);
+					v2 = SubtractVectors (p2, p0);
+					n = CrossProduct (v2, v1);
 
-		    NormVector (&n);
-		    nml = AddVectors (nml, n);
-		} 
-		if  (x < nx-1 && y > 0) {
-		    p1 = NMLPOINT(x+1,y);
-		    p2 = NMLPOINT(x+1,y-1);
-		    v1 = SubtractVectors (p1, p0);
-		    v2 = SubtractVectors (p2, p0);
-		    n = CrossProduct (v2, v1);
+					NormVector (&n);
+					nml = AddVectors (nml, n);
+				} 
+				if  (x < nx-1 && y > 0) {
+					p1 = NMLPOINT(x+1,y);
+					p2 = NMLPOINT(x+1,y-1);
+					v1 = SubtractVectors (p1, p0);
+					v2 = SubtractVectors (p2, p0);
+					n = CrossProduct (v2, v1);
 
-		    NormVector (&n);
-		    nml = AddVectors (nml, n);
+					NormVector (&n);
+					nml = AddVectors (nml, n);
 
-		    p1 = NMLPOINT(x+1,y-1);
-		    p2 = NMLPOINT(x  ,y-1);
-		    v1 = SubtractVectors (p1, p0);
-		    v2 = SubtractVectors (p2, p0);
-		    n = CrossProduct (v2, v1);
+					p1 = NMLPOINT(x+1,y-1);
+					p2 = NMLPOINT(x  ,y-1);
+					v1 = SubtractVectors (p1, p0);
+					v2 = SubtractVectors (p2, p0);
+					n = CrossProduct (v2, v1);
 
-		    NormVector (&n);
-		    nml = AddVectors (nml, n);
-		} 
-		if  (x < nx-1 && y < ny-1) {
-		    p1 = NMLPOINT(x+1,y);
-		    p2 = NMLPOINT(x+1,y+1);
-		    v1 = SubtractVectors (p1, p0);
-		    v2 = SubtractVectors (p2, p0);
-		    n = CrossProduct (v1, v2);
+					NormVector (&n);
+					nml = AddVectors (nml, n);
+				} 
+				if  (x < nx-1 && y < ny-1) {
+					p1 = NMLPOINT(x+1,y);
+					p2 = NMLPOINT(x+1,y+1);
+					v1 = SubtractVectors (p1, p0);
+					v2 = SubtractVectors (p2, p0);
+					n = CrossProduct (v1, v2);
 
-		    NormVector (&n);
-		    nml = AddVectors (nml, n);
+					NormVector (&n);
+					nml = AddVectors (nml, n);
 
-		    p1 = NMLPOINT(x+1,y+1);
-		    p2 = NMLPOINT(x  ,y+1);
-		    v1 = SubtractVectors (p1, p0);
-		    v2 = SubtractVectors (p2, p0);
-		    n = CrossProduct (v1, v2);
+					p1 = NMLPOINT(x+1,y+1);
+					p2 = NMLPOINT(x  ,y+1);
+					v1 = SubtractVectors (p1, p0);
+					v2 = SubtractVectors (p2, p0);
+					n = CrossProduct (v1, v2);
 
-		    NormVector (&n);
-		    nml = AddVectors (nml, n);
+					NormVector (&n);
+					nml = AddVectors (nml, n);
 
-		} 
-	    } else {
-		if  (x > 0 && y > 0) {
-		    p1 = NMLPOINT(x,  y-1);
-		    p2 = NMLPOINT(x-1,y);
-		    v1 = SubtractVectors (p1, p0);
-		    v2 = SubtractVectors (p2, p0);
-		    n = CrossProduct (v2, v1);
+				} 
+			} else {
+				if  (x > 0 && y > 0) {
+					p1 = NMLPOINT(x,  y-1);
+					p2 = NMLPOINT(x-1,y);
+					v1 = SubtractVectors (p1, p0);
+					v2 = SubtractVectors (p2, p0);
+					n = CrossProduct (v2, v1);
 
-		    NormVector (&n);
-		    nml = AddVectors (nml, n);
-		} 
-		if  (x > 0 && y < ny-1) {
-		    p1 = NMLPOINT(x-1,y);
-		    p2 = NMLPOINT(x  ,y+1);
-		    v1 = SubtractVectors (p1, p0);
-		    v2 = SubtractVectors (p2, p0);
-		    n = CrossProduct (v2, v1);
+					NormVector (&n);
+					nml = AddVectors (nml, n);
+				} 
+				if  (x > 0 && y < ny-1) {
+					p1 = NMLPOINT(x-1,y);
+					p2 = NMLPOINT(x  ,y+1);
+					v1 = SubtractVectors (p1, p0);
+					v2 = SubtractVectors (p2, p0);
+					n = CrossProduct (v2, v1);
 
-		    NormVector (&n);
-		    nml = AddVectors (nml, n);
-		} 
-		if  (x < nx-1 && y > 0) {
-		    p1 = NMLPOINT(x+1,y);
-		    p2 = NMLPOINT(x  ,y-1);
-		    v1 = SubtractVectors (p1, p0);
-		    v2 = SubtractVectors (p2, p0);
-		    n = CrossProduct (v2, v1);
+					NormVector (&n);
+					nml = AddVectors (nml, n);
+				} 
+				if  (x < nx-1 && y > 0) {
+					p1 = NMLPOINT(x+1,y);
+					p2 = NMLPOINT(x  ,y-1);
+					v1 = SubtractVectors (p1, p0);
+					v2 = SubtractVectors (p2, p0);
+					n = CrossProduct (v2, v1);
 
-		    NormVector (&n);
-		    nml = AddVectors (nml, n);
-		} 
-		if  (x < nx-1 && y < ny-1) {
-		    p1 = NMLPOINT(x+1,y);
-		    p2 = NMLPOINT(x  ,y+1);
-		    v1 = SubtractVectors (p1, p0);
-		    v2 = SubtractVectors (p2, p0);
-		    n = CrossProduct (v1, v2);
+					NormVector (&n);
+					nml = AddVectors (nml, n);
+				} 
+				if  (x < nx-1 && y < ny-1) {
+					p1 = NMLPOINT(x+1,y);
+					p2 = NMLPOINT(x  ,y+1);
+					v1 = SubtractVectors (p1, p0);
+					v2 = SubtractVectors (p2, p0);
+					n = CrossProduct (v1, v2);
 
-		    NormVector (&n);
-		    nml = AddVectors (nml, n);
-		} 
-	    }
+					NormVector (&n);
+					nml = AddVectors (nml, n);
+				} 
+			}
             NormVector (&nml);
 			nmls [x + nx * y] = nml;
             continue;
@@ -254,10 +245,7 @@ void CCourse::MakeCourseNormals () {
 // --------------------------------------------------------------------
 
 void CCourse::FillGlArrays() {
-    int x,y;
     TVector3 *normals = nmls;
-    TVector3 nml;
-    int idx;
 
     glDisableClientState (GL_VERTEX_ARRAY);
     glDisableClientState (GL_NORMAL_ARRAY);
@@ -265,15 +253,15 @@ void CCourse::FillGlArrays() {
 
     vnc_array = (GLubyte*) malloc (STRIDE_GL_ARRAY * nx * ny);
 
-    for (x=0; x<nx; x++) {
-		for (y=0; y<ny; y++) {
-			idx = STRIDE_GL_ARRAY * (y * nx + x);
+    for (int x=0; x<nx; x++) {
+		for (int y=0; y<ny; y++) {
+			int idx = STRIDE_GL_ARRAY * (y * nx + x);
 		
 			FLOATVAL(0) = (GLfloat)x / (nx-1.0) * width;
 			FLOATVAL(1) = elevation[(x) + nx*(y)]; 
 			FLOATVAL(2) = -(GLfloat)y / (ny-1.0) * length;
 	
-			nml = normals[ x + y * nx ];
+			const TVector3& nml = normals[ x + y * nx ];
 			FLOATVAL(4) = nml.x;
 			FLOATVAL(5) = nml.y;
 			FLOATVAL(6) = nml.z;
@@ -299,8 +287,8 @@ void CCourse::FillGlArrays() {
 }
 
 void CCourse::MakeStandardPolyhedrons () {
-	int i;
-	
+	PolyArr.resize(2);
+
 	// polyhedron "none"
 	PolyArr[0].num_vertices = 0;
 	PolyArr[0].num_polygons = 0;
@@ -319,7 +307,7 @@ void CCourse::MakeStandardPolyhedrons () {
 
 	PolyArr[1].num_polygons = 8;
 	PolyArr[1].polygons = (TPolygon*) malloc (sizeof(TPolygon) * 8);
-	for (i=0; i<PolyArr[1].num_polygons; i++) {
+	for (size_t i=0; i<PolyArr[1].num_polygons; i++) {
 		PolyArr[1].polygons[i].num_vertices = 3;	
 		PolyArr[1].polygons[i].vertices = (int*) malloc (sizeof(int) * 3);
 	}	
@@ -356,11 +344,10 @@ void CCourse::MakeStandardPolyhedrons () {
 	PolyArr[1].polygons[7].vertices[2] = 3;	
 
 	PolyIndex = "[none]0[tree]1";
-	numPolys = 2;
 }
 
 void CCourse::FreeTerrainTextures () {
-	for (int i=0; i<numTerr; i++) {
+	for (size_t i=0; i<TerrList.size(); i++) {
 		if (TerrList[i].texid > 0) {
 			glDeleteTextures (1, &TerrList[i].texid);
 			TerrList[i].texid = 0;
@@ -369,7 +356,7 @@ void CCourse::FreeTerrainTextures () {
 }
 
 void CCourse::FreeObjectTextures () {
-	for (int i=0; i<numObjTypes; i++) {
+	for (size_t i=0; i<ObjTypes.size(); i++) {
 		if (ObjTypes[i].texid > 0) {
 			glDeleteTextures (1, &ObjTypes[i].texid);
 			ObjTypes[i].texid = 0;
@@ -383,8 +370,6 @@ void CCourse::FreeObjectTextures () {
 
 bool CCourse::LoadElevMap () {
 	CImage img;
-    double slope;
-    int x, y, pad;
 
 	if (!img.LoadPng (CourseDir.c_str(), "elev.png", true)) {
 		Message ("unable to open elev.png");
@@ -400,10 +385,10 @@ bool CCourse::LoadElevMap () {
 		return false;
     }
 
-    slope = tan (ANGLES_TO_RADIANS (course_angle));
-    pad = 0;   
-    for (y=0; y<ny; y++) {
-        for (x=0; x<nx; x++) {
+    double slope = tan (ANGLES_TO_RADIANS (course_angle));
+    int pad = 0;   
+    for (int y=0; y<ny; y++) {
+        for (int x=0; x<nx; x++) {
 			elevation [(nx-1-x) + nx * (ny-1-y)] =     
 				((img.data [(x+nx*y) * img.depth + pad] 
 			    - base_height_value) / 255.0) * elev_scale
@@ -421,15 +406,13 @@ bool CCourse::LoadElevMap () {
 void CCourse::LoadItemList () {
 	CSPList list (16000);
 
-    numColl = 0;
-    numNocoll = 0;
-    numObjects = 0;
-
 	if (!list.Load (CourseDir, "items.lst")) {
 		Message ("could not load items list");
 		return;
 	}
 
+	CollArr.clear();
+	NocollArr.clear();
 	for (int i=0; i<list.Count(); i++) {
 		string line = list.Line (i);
 		int x = SPIntN (line, "x", 0);
@@ -447,26 +430,24 @@ void CCourse::LoadItemList () {
 		}
 		bool coll = ObjTypes[type].collidable;
 		if (coll == 1) {
-		    CollArr[numColl].pt.x = xx;
-		    CollArr[numColl].pt.z = zz;
-		    CollArr[numColl].pt.y = FindYCoord (xx, zz);
-		    CollArr[numColl].height = height;
-		    CollArr[numColl].diam = diam;
-		    CollArr[numColl].tree_type = type;
-		    numColl++;
-		    numObjects++;	
+			CollArr.push_back(TCollidable());
+		    CollArr.back().pt.x = xx;
+		    CollArr.back().pt.z = zz;
+		    CollArr.back().pt.y = FindYCoord (xx, zz);
+		    CollArr.back().height = height;
+		    CollArr.back().diam = diam;
+		    CollArr.back().tree_type = type;
 		} else if (coll == 0) {
-		    NocollArr[numNocoll].pt.x = xx;
-		    NocollArr[numNocoll].pt.z = zz;
-		    NocollArr[numNocoll].pt.y = FindYCoord (xx, zz);
-			NocollArr[numNocoll].height = height; 
-		    NocollArr[numNocoll].diam = diam;
-		    NocollArr[numNocoll].item_type = type;
-			NocollArr[numNocoll].collectable = ObjTypes[type].collectable;
-			NocollArr[numNocoll].drawable = ObjTypes[type].drawable;
-			ObjTypes[type].num_items++; 
-			numNocoll++;
-			numObjects++;
+			NocollArr.push_back(TItem());
+		    NocollArr.back().pt.x = xx;
+		    NocollArr.back().pt.z = zz;
+		    NocollArr.back().pt.y = FindYCoord (xx, zz);
+			NocollArr.back().height = height; 
+		    NocollArr.back().diam = diam;
+		    NocollArr.back().item_type = type;
+			NocollArr.back().collectable = ObjTypes[type].collectable;
+			NocollArr.back().drawable = ObjTypes[type].drawable;
+			ObjTypes[type].num_items++;
 		}		
 	}
 }
@@ -511,37 +492,29 @@ void CalcRandomTrees (double baseheight, double basediam, double &height, double
 
 bool CCourse::LoadObjectMap () {
     CImage treeImg;
-    int x,y;
-    int pad;
-	string terrpath;
-	string itemfile;
-	int type, imgidx;
-	double xx, zz, height, diam;
-	bool coll;
-	CSPList savelist (10000);
-	string line;
 	
 	if (!treeImg.LoadPng (CourseDir.c_str(), "trees.png", true)) {
 		Message ("unable to open trees.png");
 		return false;
 	}
 	
-	pad = 0;
+	int pad = 0;
     int cnt = 0;
+	double height, diam;
+	CSPList savelist (10000);
 		
-    numColl = 0;
-    numNocoll = 0;
-    numObjects = 0;
-	for (y=0; y<ny; y++) {
-        for (x=0; x<nx; x++) {
-            imgidx = (x + nx * y) * treeImg.depth + pad;
-			type = GetObject (&treeImg.data[imgidx]);
+	CollArr.clear();
+	NocollArr.clear();
+	for (int y=0; y<ny; y++) {
+        for (int x=0; x<nx; x++) {
+            int imgidx = (x + nx * y) * treeImg.depth + pad;
+			int type = GetObject (&treeImg.data[imgidx]);
 			if (type >= 0) {
 				cnt++;
-				xx = (nx - x) / (double)(nx - 1.0) * width;
-				zz = -(ny - y) / (double)(ny - 1.0) * length;
+				double xx = (nx - x) / (double)(nx - 1.0) * width;
+				double zz = -(ny - y) / (double)(ny - 1.0) * length;
 				if (ObjTypes[type].texid < 1 && ObjTypes[type].drawable) {
-					terrpath = param.obj_dir + SEP + ObjTypes[type].texture;
+					string terrpath = param.obj_dir + SEP + ObjTypes[type].texture;
 					ObjTypes[type].texid = Tex.LoadMipmapTexture (terrpath, 0);
 				}
 				
@@ -562,33 +535,31 @@ bool CCourse::LoadObjectMap () {
 					break;
 				}
 				
-				coll = ObjTypes[type].collidable;
+				bool coll = ObjTypes[type].collidable;
 				if (coll == 1) {
-				    CollArr[numColl].pt.x = xx;
-				    CollArr[numColl].pt.z = zz;
-			    	CollArr[numColl].pt.y = FindYCoord (xx, zz);
-				    CollArr[numColl].height = height;
-				    CollArr[numColl].diam = diam;
-				    CollArr[numColl].tree_type = type;
-				    numColl++;
-			    	numObjects++;
+					CollArr.push_back(TCollidable());
+				    CollArr.back().pt.x = xx;
+				    CollArr.back().pt.z = zz;
+			    	CollArr.back().pt.y = FindYCoord (xx, zz);
+				    CollArr.back().height = height;
+				    CollArr.back().diam = diam;
+				    CollArr.back().tree_type = type;
 				} 
 				else if (coll == 0) {
-				    NocollArr[numNocoll].pt.x = xx;
-				    NocollArr[numNocoll].pt.z = zz;
-			    	NocollArr[numNocoll].pt.y = FindYCoord (xx, zz);
-				    NocollArr[numNocoll].height = height; 
-				    NocollArr[numNocoll].diam = diam;
-				    NocollArr[numNocoll].item_type = type;
-					NocollArr[numNocoll].collectable = ObjTypes[type].collectable;
-					NocollArr[numNocoll].drawable = ObjTypes[type].drawable;
-					ObjTypes[type].num_items++; 
-					numNocoll++;
-					numObjects++;
+					NocollArr.push_back(TItem());
+				    NocollArr.back().pt.x = xx;
+				    NocollArr.back().pt.z = zz;
+			    	NocollArr.back().pt.y = FindYCoord (xx, zz);
+				    NocollArr.back().height = height; 
+				    NocollArr.back().diam = diam;
+				    NocollArr.back().item_type = type;
+					NocollArr.back().collectable = ObjTypes[type].collectable;
+					NocollArr.back().drawable = ObjTypes[type].drawable;
+					ObjTypes[type].num_items++;
 				}		
 		    	
 				if (SaveItemsFlag) {
-					line = "*[name]";
+					string line = "*[name]";
 					line += ObjTypes[type].name;
  					SPSetIntN (line, "x", x);
 					SPSetIntN (line, "z", y);
@@ -601,7 +572,7 @@ bool CCourse::LoadObjectMap () {
         pad += (nx * treeImg.depth) % 4;
 	} 
 	if (SaveItemsFlag) {
-		itemfile = CourseDir + SEP + "items.lst";
+		string itemfile = CourseDir + SEP + "items.lst";
 		savelist.Save (itemfile);
 	}
 	return true;
@@ -612,20 +583,17 @@ bool CCourse::LoadObjectMap () {
 // --------------------------------------------------------------------
 
 bool CCourse::LoadObjectTypes () {
-	int i;
-	string line;
 	CSPList list (MAX_OBJECT_TYPES+10);
-
-	for (i=0; i<MAX_OBJECT_TYPES; i++) ObjTypes[i].texid = 0;
-	numObjTypes = 0;
 
 	if (!list.Load (param.obj_dir, "object_types.lst")) {
 		Message ("could not load object types");
 		return false;
 	}
 
-	for (i=0; i<list.Count(); i++) {
-		line = list.Line (i);
+	ObjTypes.resize(list.Count());
+
+	for (int i=0; i<list.Count(); i++) {
+		string line = list.Line (i);
 	    ObjTypes[i].name = SPStrN (line, "name", "");
 	    ObjTypes[i].texture = ObjTypes[i].name;
 
@@ -647,7 +615,6 @@ bool CCourse::LoadObjectTypes () {
 			NormVector (&(ObjTypes[i].normal));
 		}
 		ObjTypes[i].poly = 1;
-		numObjTypes++;
 	}
 	list.MakeIndex (ObjectIndex, "name");
 	return true;
@@ -657,9 +624,8 @@ bool CCourse::LoadObjectTypes () {
 //						Terrain
 // ====================================================================
 
-int CCourse::GetTerrain (unsigned char pixel[]) {
-	int i;
-	for (i=0; i<numTerr; i++) {
+int CCourse::GetTerrain (unsigned char pixel[]) const {
+	for (int i=0; i<TerrList.size(); i++) {
 		if (abs(pixel[0]-(int)(TerrList[i].col.r)) < 30 
 			&& abs(pixel[1]-(int)(TerrList[i].col.g)) < 30 
 			&& abs(pixel[2]-(int)(TerrList[i].col.b)) < 30) {
@@ -674,20 +640,16 @@ int CCourse::GetTerrain (unsigned char pixel[]) {
 // --------------------------------------------------------------------
 
 bool CCourse::LoadTerrainTypes () {
-	int i;
-	string line;
 	CSPList list(MAX_TERR_TYPES +10);
-	
-	for (i=0; i<MAX_TERR_TYPES; i++) TerrList[i].texid = 0;
-	numTerr = 0;
 
 	if (!list.Load (param.terr_dir, "terrains.lst")) {
 		Message ("could not load terrain types");
 		return false;
 	}
 	
-	for (i=0; i<list.Count(); i++) {
-		line = list.Line(i);
+	TerrList.resize(list.Count());
+	for (int i=0; i<list.Count(); i++) {
+		string line = list.Line(i);
 		TerrList[i].texture = SPStrN (line, "texture", "");
 		TerrList[i].sound = SPStrN (line, "sound", "");
 		TerrList[i].starttex = SPIntN (line, "starttex", -1);
@@ -704,7 +666,6 @@ bool CCourse::LoadTerrainTypes () {
 			TerrList[i].shiny = false;
 		}
 		TerrList[i].vol_type = SPIntN (line, "vol_type", 1);
-		numTerr++;
 	}
 	return true;
 }
@@ -715,12 +676,6 @@ bool CCourse::LoadTerrainTypes () {
 
 bool CCourse::LoadTerrainMap () {
     CImage terrImage;
-    int   x,y;
-    int   pad;
-    int   arridx, imgidx;
-	int   terr;
-	GLuint texid;
-	string terrpath;
 		
 	if (!terrImage.LoadPng (CourseDir.c_str(), "terrain.png", true)) {
 		Message ("unable to open terrain.png");
@@ -734,16 +689,16 @@ bool CCourse::LoadTerrainMap () {
     if (terrain == NULL) {
 		Message ("malloc failed in LoadTerrainMap", "");
     }
-	pad = 0;
-	for (y=0; y<ny; y++) {
-        for (x=0; x<nx; x++) {
-            imgidx = (x+nx*y) * terrImage.depth + pad;
-			arridx = (nx-1-x) + nx * (ny-1-y);
-			terr = GetTerrain (&terrImage.data[imgidx]);	
+	int pad = 0;
+	for (int y=0; y<ny; y++) {
+        for (int x=0; x<nx; x++) {
+            int imgidx = (x+nx*y) * terrImage.depth + pad;
+			int arridx = (nx-1-x) + nx * (ny-1-y);
+			int terr = GetTerrain (&terrImage.data[imgidx]);	
 			terrain[arridx] = terr;	
 			if (TerrList[terr].texid < 1) {
-				terrpath = param.terr_dir + SEP + TerrList[terr].texture;
-				texid = Tex.LoadMipmapTexture (terrpath, 1);
+				string terrpath = param.terr_dir + SEP + TerrList[terr].texture;
+				GLuint texid = Tex.LoadMipmapTexture (terrpath, 1);
 				TerrList[terr].texid = texid;
 			}
 		} 
@@ -757,23 +712,17 @@ bool CCourse::LoadTerrainMap () {
 // --------------------------------------------------------------------
 
 bool CCourse::LoadCourseList () {
-	CSPList desclist (12);
-
-	for (int i=0; i<MAX_COURSES; i++) {
-		CourseList[i].name = "";
-		CourseList[i].dir = "";		
-		CourseList[i].author = "";
-		CourseList[i].preview = 0;
-	}
-
 	CSPList list (128);
-	CSPList paramlist (48);
 
 	if (!list.Load (param.common_course_dir, "courses.lst")) {
 		Message ("could not load courses.lst");
 		return false;
 	}
 
+	CSPList desclist (12);
+	CSPList paramlist (48);
+
+	CourseList.resize(list.Count());
 	for (int i=0; i<list.Count(); i++) {
 		string line = list.Line (i);
 		CourseList[i].name = SPStrN (line, "name", "noname");
@@ -823,14 +772,13 @@ bool CCourse::LoadCourseList () {
 			CourseList[i].finish_brake = SPFloatN (line, "finish_brake", 20);
 			paramlist.Clear ();	// the list is used several times
 		}
-		numCourses = i + 1;
 	}
 	list.MakeIndex (CourseIndex, "dir");
 	return true;
 }
 
 void CCourse::FreeCourseList () {
-	for (int i=0; i<MAX_COURSES; i++) {
+	for (int i=0; i<CourseList.size(); i++) {
 		if (CourseList[i].preview > 0) glDeleteTextures (1, &CourseList[i].preview);
 	}
 }
@@ -851,10 +799,8 @@ void CCourse::ResetCourse () {
 	curr_course = -1;
 }
 
-bool CCourse::LoadCourse (int idx) {
-	CControl *ctrl = Players.GetCtrl (g_game.player_id);
-
-	if (idx < 0 || idx >= numCourses) {
+bool CCourse::LoadCourse (size_t idx) {
+	if (idx < 0 || idx >= CourseList.size()) {
 		Message ("wrong course index");
 		curr_course = -1;
 		return false;
@@ -897,6 +843,7 @@ bool CCourse::LoadCourse (int idx) {
 	// ................................................................
 	string itemfile = CourseDir + SEP + "items.lst";
 	bool itemsexists = (FileExists (itemfile.c_str()));
+	CControl *ctrl = Players.GetCtrl (g_game.player_id);
 
 	if (itemsexists && !g_game.force_treemap) {
 		SaveItemsFlag = false;	
@@ -921,7 +868,7 @@ bool CCourse::LoadCourse (int idx) {
 	return true;
 }
 
-int CCourse::GetEnv () {
+int CCourse::GetEnv () const {
 	return env;
 }
 
@@ -930,40 +877,30 @@ int CCourse::GetEnv () {
 // --------------------------------------------------------------------
 
 void CCourse::MirrorCourseData () {
-    int x, y, i, idx1, idx2;
-    double tmp;
-    char tmp_terrain;
-    TVector3 tmp_vec;
-	CControl *ctrl = Players.GetCtrl (g_game.player_id);
-
-	for (y=0; y<ny; y++) {
-		for (x=0; x<nx/2; x++) {
-			tmp = ELEV(x,y);
+	for (int y=0; y<ny; y++) {
+		for (int x=0; x<nx/2; x++) {
+			double tmp = ELEV(x,y);
 			ELEV(x,y) = ELEV(nx-1-x, y);
 			ELEV(nx-1-x,y) = tmp;
 
-			idx1 = (x+1) + nx*(y);
-			idx2 = (nx-1-x) + nx*(y);
-			tmp_terrain = terrain[idx1];
-			terrain[idx1] = terrain[idx2];
-			terrain[idx2] = tmp_terrain;
+			int idx1 = (x+1) + nx*(y);
+			int idx2 = (nx-1-x) + nx*(y);
+			swap(terrain[idx1], terrain[idx2]);
 
 			idx1 = (x) + nx*(y);
 			idx2 = (nx-1-x) + nx*(y);
-			tmp_vec = nmls[idx1];
-			nmls[idx1] = nmls[idx2];
-			nmls[idx2] = tmp_vec;
+			swap(nmls[idx1], nmls[idx2]);
 			nmls[idx1].x *= -1;
 			nmls[idx2].x *= -1;
 		}
     }
 
-    for  (i=0; i<numColl; i++) {
+    for  (int i=0; i<CollArr.size(); i++) {
 		CollArr[i].pt.x = width - CollArr[i].pt.x; 
 		CollArr[i].pt.y = FindYCoord (CollArr[i].pt.x, CollArr[i].pt.z);
     }
 
-    for  (i=0; i<numNocoll; i++) {
+    for  (int i=0; i<NocollArr.size(); i++) {
 		NocollArr[i].pt.x = width - NocollArr[i].pt.x; 
 		NocollArr[i].pt.y = FindYCoord (NocollArr[i].pt.x, NocollArr[i].pt.z);
     }
@@ -972,8 +909,9 @@ void CCourse::MirrorCourseData () {
 
     ResetQuadtree ();
     if  (nx > 0 && ny > 0) {
-	InitQuadtree (elevation, nx, ny, width/(nx-1), 
-		- length/(ny-1), ctrl->viewpos, param.course_detail_level);
+		CControl *ctrl = Players.GetCtrl (g_game.player_id);
+		InitQuadtree (elevation, nx, ny, width/(nx-1), 
+			- length/(ny-1), ctrl->viewpos, param.course_detail_level);
     }
 
     start_pt.x = width - start_pt.x;
@@ -989,7 +927,7 @@ void CCourse::MirrorCourse () {
 // ********************************************************************
 
 void CCourse::GetIndicesForPoint 
-		(double x, double z, int *x0, int *y0, int *x1, int *y1){
+		(double x, double z, int *x0, int *y0, int *x1, int *y1) const {
 
 	double xidx = x / width * ((double) nx - 1.);
 	double yidx = -z / length *  ((double) ny - 1.);
@@ -1015,7 +953,7 @@ void CCourse::GetIndicesForPoint
 }
 
 void CCourse::FindBarycentricCoords (double x, double z, TIndex2 *idx0, 
-		TIndex2 *idx1, TIndex2 *idx2, double *u, double *v) {
+		TIndex2 *idx1, TIndex2 *idx2, double *u, double *v) const {
     double xidx, yidx;
     int x0, x1, y0, y1;
     double dx, ex, dz, ez, qx, qz, invdet;
@@ -1058,14 +996,14 @@ void CCourse::FindBarycentricCoords (double x, double z, TIndex2 *idx0,
     *v = (qz * dx - qx * dz) * invdet;
 }
 
-double CCourse::GetMinYCoord() {
+double CCourse::GetMinYCoord() const {
 	return (-length * tan (ANGLES_TO_RADIANS (course_angle)));
 } 
 
 #define COURSE_VERTX(x,y) MakeVector ( (double)(x)/(nx-1.)*width, \
                        ELEV((x),(y)), -(double)(y)/(ny-1.)*length ) 
 
-TVector3 CCourse::FindCourseNormal (double x, double z) {
+TVector3 CCourse::FindCourseNormal (double x, double z) const {
 
     double *elevation = Course.elevation;
     int x0, x1, y0, y1;
@@ -1102,7 +1040,7 @@ TVector3 CCourse::FindCourseNormal (double x, double z) {
     return interp_nml;
 }
 
-double CCourse::FindYCoord (double x, double z) {
+double CCourse::FindYCoord (double x, double z) const {
     static double last_x, last_z, last_y;
     static bool cache_full = false;
 
@@ -1127,13 +1065,13 @@ double CCourse::FindYCoord (double x, double z) {
     return ycoord;
 } 
 
-void CCourse::GetSurfaceType (double x, double z, double weights[]) {
+void CCourse::GetSurfaceType (double x, double z, double weights[]) const {
     TIndex2 idx0, idx1, idx2;
     double u, v;
     FindBarycentricCoords (x, z, &idx0, &idx1, &idx2, &u, &v);
 
 	char *terrain = Course.terrain;
-    for (int i=0; i<Course.numTerr; i++) {
+    for (int i=0; i<Course.TerrList.size(); i++) {
 		weights[i] = 0;
 		if (terrain [idx0.i + nx*idx0.j ] == i) weights[i] += u;
 		if (terrain [idx1.i + nx*idx1.j ] == i) weights[i] += v;
@@ -1141,32 +1079,26 @@ void CCourse::GetSurfaceType (double x, double z, double weights[]) {
     }
 } 
 
-int CCourse::GetTerrainIdx (double x, double z, double level) {
+int CCourse::GetTerrainIdx (double x, double z, double level) const {
     TIndex2 idx0, idx1, idx2;
     double u, v;
     FindBarycentricCoords (x, z, &idx0, &idx1, &idx2, &u, &v);
 	char *terrain = Course.terrain;
     
-	double weights[MAX_TERR_TYPES];
-	for (int i=0; i<Course.numTerr; i++) {
-		weights[i] = 0;
-		if (terrain [idx0.i + nx*idx0.j] == i) weights[i] += u;
-		if (terrain [idx1.i + nx*idx1.j] == i) weights[i] += v;
-		if (terrain [idx2.i + nx*idx2.j] == i) weights[i] += 1.0 - u - v;
-     	if (weights[i] > level) return (i);
+	for (int i=0; i<Course.TerrList.size(); i++) {
+		double wheight = 0.0;
+		if (terrain [idx0.i + nx*idx0.j] == i) wheight += u;
+		if (terrain [idx1.i + nx*idx1.j] == i) wheight += v;
+		if (terrain [idx2.i + nx*idx2.j] == i) wheight += 1.0 - u - v;
+     	if (wheight > level) return (i);
 	}
 	return -1;
 } 
 
-TPlane CCourse::GetLocalCoursePlane (TVector3 pt) {
+TPlane CCourse::GetLocalCoursePlane (TVector3 pt) const {
     TPlane plane;
 	pt.y = FindYCoord (pt.x, pt.z);
     plane.nml = FindCourseNormal (pt.x, pt.z);
     plane.d = - (plane.nml.x * pt.x +  plane.nml.y * pt.y +  plane.nml.z * pt.z);
     return plane;
 }
-
-
-
-
-

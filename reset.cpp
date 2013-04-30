@@ -50,7 +50,7 @@ void reset_loop (double time_step) {
     static int tux_visible_count = 0;
 	TObjectType	*object_types;
     TItem *item_locs;
-    int first_reset, last_reset, num_item_types;
+    size_t first_reset, last_reset, num_item_types;
     int best_loc;
 
     width = param.x_resolution;
@@ -70,9 +70,9 @@ void reset_loop (double time_step) {
     DrawTrees ();
 
     if ((elapsed_time > BLINK_IN_PLACE_TIME) && (!position_reset)) {
-		object_types = Course.ObjTypes;
-		item_locs  = Course.NocollArr;
-		num_item_types = Course.numObjTypes;
+		object_types = &Course.ObjTypes[0];
+		item_locs  = &Course.NocollArr[0];
+		num_item_types = Course.ObjTypes.size();
 		first_reset = 0;
 		last_reset = 0;
 		for (int i = 0; i < num_item_types; i++) {
@@ -90,10 +90,10 @@ void reset_loop (double time_step) {
 		    ctrl->cpos.z = min(ctrl->cpos.z + 10, -1.0);
 		} else {
 		    best_loc = -1;
-		    for (int i = first_reset; i <= last_reset; i++) {
+		    for (size_t i = first_reset; i <= last_reset; i++) {
 				if (item_locs[i].pt.z > ctrl->cpos.z) { 
 				    if (best_loc == -1 || item_locs[i].pt.z < item_locs[best_loc].pt.z) {
-						best_loc = i;
+						best_loc = (int)i;
 				    } // if
 				} // if
 		    } // for

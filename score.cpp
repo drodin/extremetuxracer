@@ -182,8 +182,8 @@ int CScore::CalcRaceResult () {
 static int curr_focus = 0;
 static TVector2 cursor_pos = {0, 0};
 static TCourse *CourseList;
-static int lastCourse = 0;
-static int curr_course = 0;
+static size_t lastCourse = 0;
+static size_t curr_course = 0;
 
 void ChangeScoreSelection (int focus, int dir) {
 	if (dir == 0) {
@@ -238,7 +238,7 @@ static int framewidth, frameheight, frametop;
 static int linedist, listtop;
 static int dd1, dd2, dd3, dd4;
 
-void ScoreInit (void) {  
+void ScoreInit (void) {
 	Winsys.ShowCursor (!param.ice_cursor);    
 	Winsys.KeyRepeat (true);
 	init_ui_snow (); 
@@ -256,8 +256,8 @@ void ScoreInit (void) {
 	dd3 = 250 * param.scale;
 	dd4 = 375 * param.scale;
 
-	CourseList = Course.CourseList;
-	lastCourse = Course.numCourses - 1;
+	CourseList = &Course.CourseList[0];
+	lastCourse = Course.CourseList.size() - 1;
 	curr_course = g_game.course_id;
 
 	ResetWidgets ();

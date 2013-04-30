@@ -167,7 +167,7 @@ void SaveConfigFile () {
 
 	AddComment (liste, "Language code [0...]");
 	AddComment (liste, "0 = English etc.");
-	AddIntItem (&liste, "language", param.language);
+	AddIntItem (&liste, "language", (int)param.language);
 	liste.Add ("");
 
 	AddComment (liste, "Sound volume [0...120]");

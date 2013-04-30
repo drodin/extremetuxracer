@@ -75,7 +75,7 @@ struct quadsquare {
     static double ScaleX, ScaleZ;
     static int RowSize, NumRows;
     static char *Terrain;
-    static GLuint TexId[MAX_TERR_TYPES];
+    static vector<GLuint> TexId;
     static GLuint EnvmapTexId;
 
     static GLuint *VertexArrayIndices;

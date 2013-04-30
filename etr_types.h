@@ -205,14 +205,14 @@ typedef struct {
 	double finish_brake;
 
 	// course and race params 
-	int player_id;
+	size_t player_id;
 	size_t start_player;
 	TCup2* cup;
-	int race_id;
+	size_t race_id;
 	int numraces;
 	int mirror_id;                           
-	int char_id;                           
-	int course_id;
+	size_t char_id;
+	size_t course_id;
 	int location_id;
 	int light_id;
 	int snow_id;

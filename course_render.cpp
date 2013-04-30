@@ -53,7 +53,7 @@ void RenderCourse () {
 void DrawTrees() {
     int			tree_type = -1;
     int       	item_type = -1;
-	TObjectType	*object_types = Course.ObjTypes;
+	TObjectType	*object_types = &Course.ObjTypes[0];
 	CControl *ctrl = Players.GetCtrl (g_game.player_id);
 
 	set_gl_options (TREES); 
@@ -66,8 +66,8 @@ void DrawTrees() {
 
 
 //	-------------- trees ------------------------
-    TCollidable* treeLocs = Course.CollArr;
-    int numTrees = Course.numColl;
+    TCollidable* treeLocs = &Course.CollArr[0];
+    size_t numTrees = Course.CollArr.size();
 
     for (int i = 0; i< numTrees; i++) {
 		if (clip_course) {
@@ -118,8 +118,8 @@ void DrawTrees() {
 	}
 	
 //  items -----------------------------
-	TItem* itemLocs = Course.NocollArr;
-    int numItems = Course.numNocoll;
+	TItem* itemLocs = &Course.NocollArr[0];
+	size_t numItems = Course.NocollArr.size();
 
     for (int i = 0; i< numItems; i++) {
 		if (itemLocs[i].collectable == 0 || itemLocs[i].drawable == false) continue;

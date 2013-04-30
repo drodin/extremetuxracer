@@ -73,8 +73,8 @@ void intro_init(void) {
 	SetStationaryCamera (false);
 	update_view (ctrl, EPS); 
 
-    int num_items = Course.numNocoll;
-    TItem* item_locs = Course.NocollArr;
+    size_t num_items = Course.NocollArr.size();
+    TItem* item_locs = &Course.NocollArr[0];
     for (int i = 0; i < num_items; i++) {
 		if (item_locs[i].collectable != -1) {
 		    item_locs[i].collectable = 1;

@@ -415,7 +415,7 @@ void generate_particles (CControl *ctrl, double dtime, const TVector3& pos, doub
     double surf_y;
     double left_particles, right_particles;
     TMatrix rot_mat;
-	TTerrType *TerrList = Course.TerrList;
+	TTerrType *TerrList = &Course.TerrList[0];
 
     surf_y = Course.FindYCoord (pos.x, pos.z);
 

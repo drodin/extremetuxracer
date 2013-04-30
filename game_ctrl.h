@@ -108,10 +108,10 @@ public:
 	bool LoadPlayers ();
 	void SavePlayers ();
 	CControl *GetCtrl (); // current player
-	CControl *GetCtrl (int player); 	
-	string GetName (int player) const;
+	CControl *GetCtrl (size_t player); 	
+	string GetName (size_t player) const;
 	void ResetControls ();
-	void AllocControl (int player);
+	void AllocControl (size_t player);
 	void LoadAvatars ();
 	size_t numAvatars() const { return avatars.size(); }
 	size_t numPlayers() const { return plyr.size(); }

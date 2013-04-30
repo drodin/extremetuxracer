@@ -53,7 +53,7 @@ typedef void (*make_tri_func_t)(int a, int b, int c, int terrain);
 	if (flags & 8) tri_func(0, 8, 7, terrain); \
     }
 
-GLuint quadsquare::TexId[MAX_TERR_TYPES];
+vector<GLuint> quadsquare::TexId;
 GLuint quadsquare::EnvmapTexId;
 GLuint *quadsquare::VertexArrayIndices = (GLuint*) NULL;
 GLuint quadsquare::VertexArrayCounter;
@@ -93,8 +93,9 @@ quadsquare::quadsquare (quadcornerdata* pcd) {
     }
 
     if  (pcd->Parent == NULL ) {
-		TTerrType *TerrList = Course.TerrList;
-		for (int i=0; i<Course.numTerr; i++) {
+		TTerrType *TerrList = &Course.TerrList[0];
+		TexId.resize(Course.TerrList.size());
+		for (int i=0; i<TexId.size(); i++) {
 			TexId[i] = TerrList[i].texid;
 			if (TexId[i] < 0) TexId[i] = 0;
 		}
@@ -216,9 +217,8 @@ float quadsquare::RecomputeError(const quadcornerdata& cd)
     float terrain_error;
     float	maxerror = 0;
     float	e;
-	int numTerr;
 	
-	numTerr = Course.numTerr;
+	size_t numTerr = Course.TerrList.size();
 	if (cd.ChildIndex & 1) {
 	e = fabs(Vertex[0].Y - (cd.Verts[1].Y + cd.Verts[3].Y) * 0.5);
     } else {
@@ -829,10 +829,9 @@ void quadsquare::Render (const quadcornerdata& cd, GLubyte *vnc_array) {
     unsigned int i, j;
     int nx, ny;
     Course.GetDivisions (&nx, &ny );
-	unsigned int numTerrains;
-	TTerrType *TerrList = Course.TerrList;
+	TTerrType *TerrList = &Course.TerrList[0];
 
-	numTerrains = Course.numTerr;
+	size_t numTerrains = Course.TerrList.size();
 //	fog_on = is_fog_on ();
 	fog_on = true;
     for (j=0; j<numTerrains; j++) {

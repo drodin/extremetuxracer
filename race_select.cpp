@@ -37,8 +37,8 @@ static int curr_mirror = 0;
 static int lastMirror = 1;
 static int curr_random = 0;
 static int lastRandom = 1;
-static int curr_course = 0;
-static int lastCourse;
+static size_t curr_course = 0;
+static size_t lastCourse;
 static TVector2 cursor_pos = {0, 0};
 
 static TCourse *CourseList;
@@ -148,8 +148,8 @@ void RaceSelectInit (void) {
 	Winsys.ShowCursor (!param.ice_cursor);    
 	Music.Play (param.menu_music, -1);
 	
-	CourseList = Course.CourseList;
-	lastCourse = Course.numCourses - 1;
+	CourseList = &Course.CourseList[0];
+	lastCourse = Course.CourseList.size() - 1;
 
 	framewidth = 550 * param.scale;
 	frameheight = 50 * param.scale;

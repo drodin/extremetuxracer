@@ -34,7 +34,7 @@ void LoadingInit (void) {
 }
 
 void LoadingLoop (double time_step) {
- 	TCourse *CourseList = Course.CourseList;
+ 	TCourse *CourseList = &Course.CourseList[0];
 	int ww = param.x_resolution;
     int hh = param.y_resolution;
 	string msg = Trans.Text(29);	

@@ -200,7 +200,7 @@ void add_track_mark (CControl *ctrl, int *id) {
     if (param.perf_level < 3)
 		return;
 
-	TTerrType *TerrList = Course.TerrList;
+	TTerrType *TerrList = &Course.TerrList[0];
 
     track_quad_t* q = &track_marks.quads[track_marks.current_mark%MAX_TRACK_MARKS];
     track_quad_t* qprev = &track_marks.quads[(track_marks.current_mark-1)%MAX_TRACK_MARKS];
@@ -298,7 +298,7 @@ void add_track_mark (CControl *ctrl, int *id) {
 
 void UpdateTrackmarks (CControl *ctrl) {
 	int trackid;
-	TTerrType *TerrList = Course.TerrList;
+	TTerrType *TerrList = &Course.TerrList[0];
 
 	if (param.perf_level < 3) return;	
 	add_track_mark (ctrl, &trackid);

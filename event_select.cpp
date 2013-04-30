@@ -97,14 +97,13 @@ void EventSelectMouseFunc (int button, int state, int x, int y ) {
 }
 
 void EventSelectMotionFunc (int x, int y ){
-	TVector2 old_pos;
  	int foc, dir;
 	if (Winsys.ModePending ()) return;
 	GetFocus (x, y, &foc, &dir);
 	if (foc >= 0) curr_focus = foc;
 	   
 	y = param.y_resolution - y;
-    old_pos = cursor_pos;
+    TVector2 old_pos = cursor_pos;
     cursor_pos = MakeVector2 (x, y);
 
     if  (old_pos.x != x || old_pos.y != y) {

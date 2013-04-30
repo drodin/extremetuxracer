@@ -120,8 +120,8 @@ bool CControl::CheckTreeCollisions (const TVector3& pos, TVector3 *tree_loc, dou
 		} else return false;
     }
 
-	TCollidable *trees = Course.CollArr;
-    int num_trees = Course.numColl;
+	TCollidable *trees = &Course.CollArr[0];
+    size_t num_trees = Course.CollArr.size();
     int tree_type = trees[0].tree_type;
     TPolyhedron ph = Course.GetPoly (tree_type);
 
@@ -201,8 +201,8 @@ void CControl::CheckItemCollection (const TVector3& pos) {
     TVector3 dist_vec = SubtractVectors (pos, last_collision_pos);
     if (MAG_SQD (dist_vec) < COLL_TOLERANCE) return;
 
-    TItem *items = Course.NocollArr;
-    int num_items = Course.numNocoll;
+    TItem *items = &Course.NocollArr[0];
+    size_t num_items = Course.NocollArr.size();
 
     for (int i=0; i<num_items; i++) {
 		if (items[i].collectable != 1) continue;
@@ -449,11 +449,11 @@ TVector3 CControl::CalcNetForce (const TVector3& pos, const TVector3& vel) {
     double speed = NormVector (&ff.frictdir);
     ff.frictdir = ScaleVector (-1.0, ff.frictdir);
 
-    double surfweights[MAX_TERR_TYPES];
-	Course.GetSurfaceType (ff.pos.x, ff.pos.z, surfweights);
-	TTerrType *TerrList = Course.TerrList;
+    vector<double> surfweights(Course.TerrList.size());
+	Course.GetSurfaceType (ff.pos.x, ff.pos.z, &surfweights[0]);
+	TTerrType *TerrList = &Course.TerrList[0];
 	ff.frict_coeff = ff.comp_depth = 0;	
-    for (int i=0; i<Course.numTerr; i++) {
+    for (int i=0; i<Course.TerrList.size(); i++) {
 		ff.frict_coeff += surfweights[i] * TerrList[i].friction;
 		ff.comp_depth += surfweights[i] * TerrList[i].depth;
 	}
