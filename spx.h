@@ -19,6 +19,7 @@ GNU General Public License for more details.
 
 #include "bh.h"
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -76,9 +77,6 @@ TColor3  SPColor3N    (const string &s, const string &tag, const TColor3& def);
 TColor3  SPColor3N    (const string &s, const string &tag);
 void     SPArrN       (const string &s, const string &tag, float *arr, int count, float def);
 
-// ----- compatibility ------------------------------------------------
-void     SPCharN      (const string &s, const string &tag, char *result);
-
 // ----- making SP strings --------------------------------------------
 void     SPAddIntN    (string &s, const string &tag, const int val);
 void     SPAddFloatN  (string &s, const string &tag, const float val, int count);
@@ -100,30 +98,26 @@ void     SPSetStrN    (string &s, const string &tag, const string &val);
 
 class CSPList  {
 private:
-	string *flines;
-	int fmax;
-	int fcount;
-	int *fflag;
+	vector<pair<string, int>> flines;
+	size_t fmax;
 	int fnewlineflag;
 public:
-	CSPList (int maxlines, int newlineflag = 0);
-	~CSPList ();
+	CSPList (size_t maxlines, int newlineflag = 0);
 
-	string Line (int idx);
-	const char *LineC (int idx);
-	int  Count ();
+	string Line (size_t idx) const;
+	size_t  Count () const;
 	void Clear ();
 	void Add (const string& line);
 	void Add (const string& line, int flag);
-	void Append (const string& line, int idx);
-	void Print ();
+	void Append (const string& line, size_t idx);
+	void Print () const;
 	bool Load (const string &filepath);
 	bool Load (const string& dir, const string& filename);
-	bool Save (const string &filepath);
-	bool Save (const string& dir, const string& filename);
+	bool Save (const string &filepath) const;
+	bool Save (const string& dir, const string& filename) const;
 
-	int Flag (int idx);
-	void SetFlag (int idx, int flag); 
+	int Flag (size_t idx) const;
+	void SetFlag (size_t idx, int flag); 
 	void MakeIndex (string &index, const string &tag);
 };
 

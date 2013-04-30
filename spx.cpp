@@ -338,17 +338,6 @@ size_t SPPosN (const string &s, const string &tag) {
 	return SPosN (s, tg);
 }
 
-// --------------------------------------------------------------------
-// 			compatibility
-// -------------------------------------------------------------------
-
-void SPCharN (const string &s, const string &tag, char *result) {
-	string item = SPItemN (s, tag);
-	if (item.size() < 1) return;
-	STrimN (item);
-	strcpy (result, item.c_str());
-}
-
 // ------------------ add ---------------------------------------------
 
 void SPAddIntN (string &s, const string &tag, const int val) {
@@ -464,67 +453,51 @@ void SPSetStrN (string &s, const string &tag, const string &val) {
 // --------------------------------------------------------------------
 
 
-CSPList::CSPList (int maxlines, int newlineflag) {
+CSPList::CSPList (size_t maxlines, int newlineflag) {
 	fmax = maxlines;
-	flines = new string [maxlines];
-	fflag = new int [maxlines];
-	fcount = 0;
 	fnewlineflag = newlineflag;
 }
 
-CSPList::~CSPList () {
-	delete []flines;
-	delete []fflag;
+string CSPList::Line (size_t idx) const {
+	if (idx < 0 || idx >= flines.size()) return "";
+	return flines[idx].first;
 }
 
-string CSPList::Line (int idx) {
-	if (idx < 0 || idx >= fcount) return "";
-	return flines[idx];
-}
-
-const char *CSPList::LineC (int idx) {
-	if (idx < 0 || idx >= fcount) return "";
-	return flines[idx].c_str();
-}
-
-int CSPList::Count () { return fcount; }
+size_t CSPList::Count () const { return flines.size(); }
 
 void CSPList::Clear () { 
-	fcount = 0; 
+	flines.clear(); 
 }
 
 void CSPList::Add (const string& line) {
-	if (fcount < fmax) {
-		flines[fcount] = line; 	
-		fcount++;
+	if (flines.size() < fmax) {
+		flines.push_back(make_pair(line, 0));
 	}
 }
 
 void CSPList::Add (const string& line, int flag) {
-	if (fcount < fmax) {
-		flines[fcount] = line; 	
-		fflag[fcount] = flag;
-		fcount++;
+	if (flines.size() < fmax) {
+		flines.push_back(make_pair(line, flag));
 	}
 }
 
-void CSPList::Append (const string& line, int idx) {
-	if (idx < 0 || idx >= fcount) return;
-	flines[idx] += line;
+void CSPList::Append (const string& line, size_t idx) {
+	if (idx < 0 || idx >= flines.size()) return;
+	flines[idx].first += line;
 }
 
-void CSPList::SetFlag (int idx, int flag) {
-	if (idx < 0 || idx >= fcount) return;
-	fflag[idx] = flag;
+void CSPList::SetFlag (size_t idx, int flag) {
+	if (idx < 0 || idx >= flines.size()) return;
+	flines[idx].second= flag;
 }
 
-int CSPList::Flag (int idx) {
-	if (idx < 0 || idx >= fcount) return 0;
-	return fflag[idx];
+int CSPList::Flag (size_t idx) const {
+	if (idx < 0 || idx >= flines.size()) return 0;
+	return flines[idx].second;
 }
 
-void CSPList::Print () {
-	for (int i=0; i<fcount; i++) cout << flines[i] << endl;
+void CSPList::Print () const {
+	for (int i=0; i<flines.size(); i++) cout << flines[i].first << endl;
 }
 
 char lastchar (const string &s) {
@@ -534,8 +507,6 @@ char lastchar (const string &s) {
 bool CSPList::Load (const string &filepath) {
 	std::ifstream tempfile(filepath.c_str());
 	string line;
-	bool valid;
-	bool fwdflag;
 
 	bool backflag = false;
 	if (!tempfile) {
@@ -548,16 +519,17 @@ bool CSPList::Load (const string &filepath) {
 			size_t npos = line.rfind ('\n');
 			if (npos >= 0) SDeleteN (line, npos, 1);
 
-			valid = true;
+			bool valid = true;
 			if (line.size() < 1) valid = false;	// empty line
 			if (line[0] == '#') valid = false;	// comment line
 			
 			if (valid) {
-				if (fcount < fmax) {
+				if (flines.size() < fmax) {
 					if (fnewlineflag == 0) {
-						if (line[0] == '*' || fcount < 1) Add (line);
-						else Append (line, fcount-1);
+						if (line[0] == '*' || flines.size() < 1) Add (line);
+						else Append (line, flines.size()-1);
 					} else if (fnewlineflag == 1) {
+						bool fwdflag;
 						if (lastchar (line) == '\\') {
 							SDeleteN (line, line.length()-1, 1);
 							fwdflag = true;
@@ -566,7 +538,7 @@ bool CSPList::Load (const string &filepath) {
 						}
 
 						if (backflag == false) Add (line);
-						else Append (line, fcount-1);
+						else Append (line, flines.size()-1);
 
 						backflag = fwdflag;
 					}
@@ -584,35 +556,29 @@ bool CSPList::Load (const string& dir, const string& filename) {
 	return Load (dir + SEP + filename);
 }
 
-bool CSPList::Save (const string &filepath) {
-	FILE *tempfile;
-	string line;
-
-	tempfile = fopen (filepath.c_str(), "w");
-	if (tempfile == 0) {
+bool CSPList::Save (const string &filepath) const {
+	std::ofstream tempfile(filepath.c_str());
+	if (!tempfile) {
 		Message ("CSPList::Save - unable to open","");
 		return false;
 	} else {
-		for (int i=0; i<fcount; i++) {
-			line = flines[i] + '\n';
-			fputs (line.c_str(), tempfile);
+		for (int i=0; i<flines.size(); i++) {
+			tempfile << flines[i].first << '\n';
 		}
-		fclose (tempfile);
 		return true;
 	}
 }
 
-bool CSPList::Save (const string& dir, const string& filename) {
+bool CSPList::Save (const string& dir, const string& filename) const {
 	return Save (dir + SEP + filename);
 }
 
 void CSPList::MakeIndex (string &index, const string &tag) {
 	index = "";
-	string item;
 	int idx = 0;
 
-	for (int i=0; i<fcount; i++) {
-		item = SPItemN (flines[i], tag);
+	for (int i=0; i<flines.size(); i++) {
+		string item = SPItemN (flines[i].first, tag);
 		STrimN (item);
 		if (item.size() > 0) {
 			index += "[";

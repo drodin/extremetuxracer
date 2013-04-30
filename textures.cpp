@@ -613,7 +613,7 @@ void CTexture::DrawNumStr (const char *s, int x, int y, float size, const TColor
 	int qh = (int)(32 * size);
 
 	for (size_t i=0; s[i] != '\0'; i++) {
-		DrawNumChr (s[i], x + i*qw, y, qw, qh, col); 
+		DrawNumChr (s[i], x + (int)i*qw, y, qw, qh, col); 
 	}
 }
 

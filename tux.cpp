@@ -365,27 +365,13 @@ bool CCharShape::GetMaterial (const char *mat_name, TCharMaterial **mat) {
 }
 
 void CCharShape::CreateMaterial (const char *line) {
-	char matName[32];
-
 	string lin = line;	
-	SPCharN (lin, "mat", matName);
 	TVector3 diff = SPVector3N (lin, "diff", MakeVector (0,0,0));
 	TVector3 spec = SPVector3N (lin, "spec", MakeVector (0,0,0));
 	float exp = SPFloatN (lin, "exp", 50);
+	std::string mat = SPItemN (lin, "mat");
+	STrimN(mat);
 
-
-/*
-	TCharMaterial *matPtr = (TCharMaterial *) malloc (sizeof (TCharMaterial));
-    matPtr->diffuse.r = diff.x;
-    matPtr->diffuse.g = diff.y;
-    matPtr->diffuse.b = diff.z;
-    matPtr->diffuse.a = 1.0;
-    matPtr->specular.r = spec.x;
-    matPtr->specular.g = spec.y;
-    matPtr->specular.b = spec.z;
-    matPtr->specular.a = 1.0;
-    matPtr->exp = exp;
-*/
 	Materials[numMaterials] = (TCharMaterial *) malloc (sizeof (TCharMaterial));
     Materials[numMaterials]->diffuse.r = diff.x;
     Materials[numMaterials]->diffuse.g = diff.y;
@@ -397,10 +383,7 @@ void CCharShape::CreateMaterial (const char *line) {
     Materials[numMaterials]->specular.a = 1.0;
     Materials[numMaterials]->exp = exp;
 
-
-
-	SPAddIntN (MaterialIndex, matName, numMaterials);
-//	Materials[numMaterials] = matPtr;
+	SPAddIntN (MaterialIndex, mat, numMaterials);
 	numMaterials++;
 }
 
