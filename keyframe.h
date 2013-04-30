@@ -19,10 +19,11 @@ GNU General Public License for more details.
 #define KEYFRAME_H
 
 #include "bh.h"
-#include "tux.h"
 #include <vector>
 
 #define MAX_FRAME_VALUES 32
+
+class CCharShape;
 
 struct TKeyframe2 {
 	double val[MAX_FRAME_VALUES];

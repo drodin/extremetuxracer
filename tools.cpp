@@ -23,6 +23,7 @@ GNU General Public License for more details.
 #include "keyframe.h"
 #include "tool_frame.h"
 #include "tool_char.h"
+#include "env.h"
 
 CGluCamera GluCamera;
 

@@ -40,22 +40,18 @@ GNU General Public License for more details.
 //			includes
 // --------------------------------------------------------------------
 
-#include <math.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <errno.h>
-#include <time.h>
-#include <ctype.h>
-#include <string.h>
-#include <limits.h>
-#include <stdarg.h>
-#include <float.h>
+#include <cstdint>
+#include <climits>
+#include <cfloat>
+#include <cstddef>
+#include <string>
 #include <sys/stat.h>
 
-#include <map>
-#include <list>
-#include <string>
-#include <iostream>
+#include <cmath>
+#include <cstdlib>
+#include <cstdio>
+#include <ctime>
+#include <cstring>
 
 #include <GL/gl.h>
 #include <GL/glu.h>

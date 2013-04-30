@@ -18,7 +18,7 @@ GNU General Public License for more details.
 #define SCORE_H
 
 #include "bh.h"
-#include "course.h"
+#include <vector>
 
 #define MAX_SCORES 8
 

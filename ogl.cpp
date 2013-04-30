@@ -17,6 +17,7 @@ GNU General Public License for more details.
 
 #include "ogl.h"
 #include "spx.h"
+#include <cstdarg>
 
 typedef struct {
     char name[40];

@@ -500,10 +500,6 @@ void CSPList::Print () const {
 	for (int i=0; i<flines.size(); i++) cout << flines[i].first << endl;
 }
 
-char lastchar (const string &s) {
-	return s[s.length()-1];
-}
-
 bool CSPList::Load (const string &filepath) {
 	std::ifstream tempfile(filepath.c_str());
 	string line;
@@ -530,7 +526,7 @@ bool CSPList::Load (const string &filepath) {
 						else Append (line, flines.size()-1);
 					} else if (fnewlineflag == 1) {
 						bool fwdflag;
-						if (lastchar (line) == '\\') {
+						if (line[line.length()-1] == '\\') {
 							SDeleteN (line, line.length()-1, 1);
 							fwdflag = true;
 						} else {

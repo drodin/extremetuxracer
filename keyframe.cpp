@@ -18,6 +18,7 @@ GNU General Public License for more details.
 #include "keyframe.h"
 #include "course.h"
 #include "spx.h"
+#include "tux.h"
 #include "game_ctrl.h"
 
 static const int numJoints = 19;

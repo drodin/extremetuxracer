@@ -20,7 +20,6 @@ GNU General Public License for more details.
 #include "bh.h"
 
 #define CONFIG_DIR ".etr"
-#define CONFIG_FILE "options"
 #define PLAYER_FILE "players"
 
 using namespace std;

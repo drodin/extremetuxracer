@@ -19,7 +19,6 @@ GNU General Public License for more details.
 #define TOOLS_H_
 
 #include "bh.h"
-#include "env.h"
 
 class CCamera {
 private:

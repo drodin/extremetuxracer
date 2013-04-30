@@ -26,6 +26,8 @@ GNU General Public License for more details.
 #include "font.h"
 #include "game_ctrl.h"
 #include "translation.h"
+#include "course.h"
+#include "spx.h"
 
 CScore Score;
 

@@ -25,6 +25,7 @@ GNU General Public License for more details.
 #include "gui.h"
 #include "font.h"
 #include "translation.h"
+#include "spx.h"
 
 static int curr_focus = 0;
 static int curr_light = 0;

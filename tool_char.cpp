@@ -21,6 +21,8 @@ GNU General Public License for more details.
 #include "keyframe.h"
 #include "font.h"
 #include "textures.h"
+#include "spx.h"
+#include "tux.h"
 
 static int firstnode = 0;
 static int lastnode;

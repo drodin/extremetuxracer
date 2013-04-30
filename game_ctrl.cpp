@@ -20,6 +20,7 @@ GNU General Public License for more details.
 #include "env.h"
 #include "audio.h"
 #include "textures.h"
+#include "tux.h"
 
 // --------------------------------------------------------------------
 //				administration of events and cups

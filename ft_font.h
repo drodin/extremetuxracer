@@ -22,7 +22,6 @@ module.
 #include "bh.h"
 
 #include <ft2build.h>
-#include <stdlib.h>
 #include FT_OUTLINE_H
 
 typedef double FTGL_DOUBLE;
@@ -185,6 +184,8 @@ class FTGL_EXPORT FTVector {
 
 template <typename FT_LIST_ITEM_TYPE>
 class FTGL_EXPORT FTList {
+		FTList(const FTList&);
+		FTList& operator=(const FTList&);
     public:
         typedef FT_LIST_ITEM_TYPE value_type;
         typedef value_type& reference;

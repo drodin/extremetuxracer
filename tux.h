@@ -28,13 +28,13 @@ GNU General Public License for more details.
 #define MIN_SPHERE_DIV 3
 #define MAX_SPHERE_DIV 16 
 
-typedef struct {
+struct TCharMaterial {
     TColor diffuse;
     TColor specular;
     float exp;
-} TCharMaterial;
+};
 
-typedef struct {
+struct TCharAction {
 	int num;
 	int type[MAX_ACTIONS];
 	TVector3 vec[MAX_ACTIONS];
@@ -42,7 +42,7 @@ typedef struct {
 	string name;
 	string order;
 	string mat;
-} TCharAction;		
+};		
 
 typedef struct NodeStruct {
     struct NodeStruct *parent;

@@ -19,7 +19,8 @@ GNU General Public License for more details.
 #define TOOL_CHAR_H
 
 #include "bh.h"
-#include "tux.h"
+
+struct TCharAction;
 
 void InitCharTools ();
 void CharKeys (unsigned int key, bool special, bool release, int x, int y);

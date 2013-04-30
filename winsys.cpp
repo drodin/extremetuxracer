@@ -22,6 +22,8 @@ GNU General Public License for more details.
 #include "font.h"
 #include "score.h"
 #include "textures.h"
+#include "spx.h"
+#include "course.h"
 
 #define USE_JOYSTICK true
 

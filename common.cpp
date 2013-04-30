@@ -17,6 +17,8 @@ GNU General Public License for more details.
 
 #include "common.h"
 #include "spx.h"
+#include <iostream>
+#include <cerrno>
 
 // --------------------------------------------------------------------
 //				color utils

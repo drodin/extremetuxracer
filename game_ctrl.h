@@ -18,7 +18,6 @@ GNU General Public License for more details.
 #define GAME_CTRL_H
 
 #include "bh.h"
-#include "tux.h"
 #include "keyframe.h"
 
 #define MAX_RACES_PER_CUP 6
@@ -126,6 +125,8 @@ extern CPlayers Players;
 
 // -------------------------------- characters ------------------------
 #define MAX_CHARACTERS 16
+
+class CCharShape;
 
 struct TCharacter {
 	int type;

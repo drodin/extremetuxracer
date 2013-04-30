@@ -17,8 +17,9 @@ GNU General Public License for more details.
 
 #include "textures.h"
 #include "spx.h"
-#include <fstream>
 #include "course.h"
+#include <fstream>
+#include <cctype>
 // --------------------------------------------------------------------
 //				class CImage
 // --------------------------------------------------------------------

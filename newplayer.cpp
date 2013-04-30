@@ -24,6 +24,7 @@ GNU General Public License for more details.
 #include "font.h"
 #include "game_ctrl.h"
 #include "translation.h"
+#include <cctype>
 
 static int curr_focus = 0;
 static TVector2 cursor_pos = {0, 0};
