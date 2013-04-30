@@ -22,7 +22,7 @@ GNU General Public License for more details.
 #include "font.h"
 #include "textures.h"
 
-static int curr_frame = 0;
+static size_t curr_frame = 0;
 static int curr_joint = 0;
 static int last_joint = 0;
 static TVector3 ref_position = MakeVector (0, 0, 0);
@@ -37,7 +37,7 @@ static bool keyrun = false;
 
 void InitFrameTools () {
 	framebase = (int)((param.y_resolution - 350) / 18); 
-	if (TestFrame.numFrames < 1) TestFrame.AddFrame ();
+	if (TestFrame.numFrames() < 1) TestFrame.AddFrame ();
 	curr_joint = 0;
 	last_joint = TestFrame.GetNumJoints () -1;
 }
@@ -46,7 +46,7 @@ void SingleFrameKeys (unsigned int key, bool special, bool release, int x, int y
 //PrintInt (key);
 	must_render = true;
 	int keyfact;
-	lastframe = TestFrame.numFrames != 1;
+	lastframe = TestFrame.numFrames() != 1;
 	TKeyframe2 *frame = TestFrame.GetFrame (curr_frame);
 
 	// setting the camera change state
@@ -88,7 +88,7 @@ void SingleFrameKeys (unsigned int key, bool special, bool release, int x, int y
 			curr_frame = TestFrame.DeleteFrame (curr_frame); 
 			SetFrameChanged (true);
 			break;
-		case SDLK_PAGEDOWN: if (curr_frame < TestFrame.numFrames-1) curr_frame++; break;
+		case SDLK_PAGEDOWN: if (curr_frame < TestFrame.numFrames()-1) curr_frame++; break;
 		case SDLK_PAGEUP: if (curr_frame > 0) curr_frame--; break;
 		case SDLK_UP: if (curr_joint > 0) curr_joint--; break;
 		case SDLK_DOWN: if (curr_joint < last_joint) curr_joint++; break;
@@ -208,7 +208,7 @@ void RenderSingleFrame (double timestep) {
 	FT.SetFont ("normal");
 	FT.SetSize (16);
 	int xl, yt;
-	for (int i=0; i<TestFrame.numFrames; i++) {
+	for (int i=0; i<TestFrame.numFrames(); i++) {
 		if (i != curr_frame) {
 			FT.SetColor (colLGrey); 
 			FT.SetFont ("normal");

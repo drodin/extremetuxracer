@@ -20,18 +20,18 @@ GNU General Public License for more details.
 
 #include "bh.h"
 #include "tux.h"
+#include <vector>
 
-#define MAX_KEY_FRAMES 128
 #define MAX_FRAME_VALUES 32
 
-typedef struct {
+struct TKeyframe2 {
 	double val[MAX_FRAME_VALUES];
-} TKeyframe2;
+};
 
 class CKeyframe {
 private:
 	double keytime;
-	TKeyframe2 *frames[MAX_KEY_FRAMES];
+	vector<TKeyframe2> frames;
 	TVector3 refpos;
 	double heightcorr;
 	int keyidx;
@@ -39,13 +39,12 @@ private:
 	TKeyframe2 clipboard;
 
 	double interp (double frac, double v1, double v2);
-	void InterpolateKeyframe (int idx, double frac, CCharShape *shape);
+	void InterpolateKeyframe (size_t idx, double frac, CCharShape *shape);
 
 	// test and editing
 	void ResetFrame2 (TKeyframe2 *frame);
 public:
 	CKeyframe ();
-	int numFrames;
 	string jointname;
 	bool loaded;
 
@@ -57,21 +56,22 @@ public:
 	void Update (double timestep, CControl *ctrl);
 	void UpdateTest (double timestep, CCharShape *shape);
 	bool Load (const string& dir, const string& filename);
-	void CalcKeyframe (int idx, CCharShape *shape, TVector3 refpos);
+	void CalcKeyframe (size_t idx, CCharShape *shape, TVector3 refpos);
 
 	// test and editing
-	TKeyframe2 *GetFrame (int idx);
-	string GetHighlightName (int idx);
-	string GetJointName (int idx);
-	int GetNumJoints ();
+	TKeyframe2 *GetFrame (size_t idx);
+	static string GetHighlightName (size_t idx);
+	static string GetJointName (size_t idx);
+	int GetNumJoints () const;
 	void SaveTest (const string& dir, const string& filename);
-	void CopyFrame (int prim_idx, int sec_idx);
+	void CopyFrame (size_t prim_idx, size_t sec_idx);
 	void AddFrame ();
-	int  DeleteFrame (int idx);
-	void InsertFrame (int idx);
-	void CopyToClipboard (int idx);
-	void PasteFromClipboard (int idx);
-	void ClearFrame (int idx);
+	size_t  DeleteFrame (size_t idx);
+	void InsertFrame (size_t idx);
+	void CopyToClipboard (size_t idx);
+	void PasteFromClipboard (size_t idx);
+	void ClearFrame (size_t idx);
+	size_t numFrames() const { return frames.size(); }
 };
 
 extern CKeyframe TestFrame;
