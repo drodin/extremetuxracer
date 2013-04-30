@@ -21,30 +21,27 @@ GNU General Public License for more details.
 #include "course.h"
 
 #define MAX_SCORES 8
-// MAX_SCORE_LISTS = MAX_COURSES = 64
 
-typedef struct {
+struct TScore {
 	string player;
 	int points;
 	int herrings;
 	double time;
-} TScore;
+};
 
-typedef struct {
+struct TScoreList {
 	TScore scores[MAX_SCORES];
 	int numScores;
-} TScoreList;
+};
 
 class CScore {
 private:
-	TScoreList Scorelist[MAX_COURSES];
-	void ResetScorelist (int list_idx);
+	vector<TScoreList> Scorelist;
 	TScore TempScore;
 public:
-	void SetScorelist (int list_idx);
-	int AddScore (int list_idx, const TScore& score);
-	TScoreList *GetScorelist (int list_idx);
-	void PrintScorelist (int list_idx);
+	int AddScore (size_t list_idx, const TScore& score);
+	TScoreList *GetScorelist (size_t list_idx);
+	void PrintScorelist (size_t list_idx);
 	bool SaveHighScore ();
 	bool LoadHighScore ();
 	int CalcRaceResult ();

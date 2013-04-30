@@ -29,19 +29,8 @@ GNU General Public License for more details.
 
 CScore Score;
 
-void CScore::ResetScorelist (int list_idx) {
-	TScoreList *list = &Scorelist[list_idx];
-	for (int i=0; i<MAX_SCORES; i++) {
-		list->scores[i].player = "";
-		list->scores[i].points = 0;
-		list->scores[i].herrings = 0;
-		list->scores[i].time = 0.0;
-	}
-	list->numScores = 0;
-}
-
-int CScore::AddScore (int list_idx, const TScore& score) {
-	if (list_idx < 0 || list_idx >= MAX_COURSES) return 999;
+int CScore::AddScore (size_t list_idx, const TScore& score) {
+	if (list_idx < 0 || list_idx >= Scorelist.size()) return 999;
 	if (score.points < 1) return 999;
 
 	TScoreList *list = &Scorelist[list_idx];
@@ -71,8 +60,8 @@ int CScore::AddScore (int list_idx, const TScore& score) {
 }
 
 // for testing:
-void CScore::PrintScorelist (int list_idx) {
-	if (list_idx < 0 || list_idx >= MAX_COURSES) return;
+void CScore::PrintScorelist (size_t list_idx) {
+	if (list_idx < 0 || list_idx >= Scorelist.size()) return;
 	TScoreList *list = &Scorelist[list_idx];
 
 	if (list->numScores < 1) {
@@ -88,20 +77,15 @@ void CScore::PrintScorelist (int list_idx) {
 	}
 }
 
-void CScore::SetScorelist (int list_idx) {
-	if (list_idx < 0 || list_idx >= MAX_COURSES) return;
-	ResetScorelist (list_idx);
-}
-
-TScoreList *CScore::GetScorelist (int list_idx) {
-	if (list_idx < 0 || list_idx >= MAX_COURSES) return NULL;
+TScoreList *CScore::GetScorelist (size_t list_idx) {
+	if (list_idx < 0 || list_idx >= Scorelist.size()) return NULL;
 	return &Scorelist[list_idx];
 }
 
 bool CScore::SaveHighScore () {
-	CSPList splist (520);
+	CSPList splist ((int)Scorelist.size()*MAX_SCORES);
 
-	for (int li=0; li<MAX_COURSES; li++) {
+	for (size_t li=0; li<Scorelist.size(); li++) {
 		TScoreList* lst = &Scorelist[li];
 		if (lst != NULL) {
 			int num = lst->numScores;
@@ -127,14 +111,15 @@ bool CScore::SaveHighScore () {
 
 bool CScore::LoadHighScore () {
 	CSPList list (520);
-	TScore score;
 	
 	if (!list.Load (param.config_dir, "highscore")) {
 		Message ("could not load highscore list");
 		return false;
 	}
-	for (int i=0; i<MAX_COURSES; i++) ResetScorelist (i);
 
+	TScore score;
+
+	Scorelist.resize(list.Count());
 	for (int i=0; i<list.Count(); i++) {
 		string line = list.Line (i);
 		string course = SPStrN (line, "course", "unknown");
