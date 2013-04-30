@@ -148,7 +148,7 @@ int CFont::LoadFont (const string& name, const char *path) {
 	fonts.back()->FaceSize (18);
 	fonts.back()->CharMap (ft_encoding_unicode);
 
-	fontindex = fontindex + "[" + name + "]" + Int_StrN (fonts.size()-1);
+	fontindex = fontindex + "[" + name + "]" + Int_StrN ((int)fonts.size()-1);
 	return (int)fonts.size()-1;
 }
 

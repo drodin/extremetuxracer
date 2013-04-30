@@ -255,7 +255,7 @@ void GetFocus (int x, int y, int *focus, int *dir) {
 		if (Inside (x, y, *i)) {
 			*focus = i->focus;
 			*dir = i->dir;
-			selArrow = i->arrnr;
+			selArrow = (int)i->arrnr;
 			selType = i->type;
 			return;
 		}

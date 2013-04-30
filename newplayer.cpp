@@ -33,8 +33,8 @@ static float curposit;
 static size_t maxlng = 32;
 static bool crsrvisible = true;
 static float crsrtime = 0;
-static int curr_avatar = 0;
-static int last_avatar = 0;
+static size_t curr_avatar = 0;
+static size_t last_avatar = 0;
 
 #define CRSR_PERIODE 0.4
 
@@ -220,7 +220,7 @@ void NewPlayerInit (void) {
 	double len = FT.GetTextWidth (Trans.Text(15));
 	AddTextButton (Trans.Text(15), area.right-len-50, AutoYPosN (70), 2, siz);
 
-	last_avatar = Players.numAvatars - 1;
+	last_avatar = Players.numAvatars() - 1;
 	curr_focus = 0;
 }
 

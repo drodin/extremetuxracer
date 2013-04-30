@@ -32,8 +32,6 @@ GNU General Public License for more details.
 static int ready = 0; 						// indicates if last race is done
 static int curr_focus = 0;
 static TCup2 *ecup = 0;						
-static TRace2 *eraces[MAX_RACES_PER_CUP];	
-static int ecourseidx[MAX_RACES_PER_CUP];	
 static int curr_race = 0;
 static int curr_bonus = 0;
 static TVector2 cursor_pos = {0, 0};
@@ -44,13 +42,13 @@ void StartRace () {
 		return;
 	}
 	g_game.mirror_id = 0;
-	g_game.course_id = eraces[curr_race]->course;
-	g_game.theme_id = eraces[curr_race]->music_theme;
-	g_game.light_id = eraces[curr_race]->light;
-	g_game.snow_id = eraces[curr_race]->snow;
-	g_game.wind_id = eraces[curr_race]->wind;
-	g_game.herring_req = eraces[curr_race]->herrings;
-	g_game.time_req = eraces[curr_race]->time;
+	g_game.course_id = ecup->races[curr_race]->course;
+	g_game.theme_id = ecup->races[curr_race]->music_theme;
+	g_game.light_id = ecup->races[curr_race]->light;
+	g_game.snow_id = ecup->races[curr_race]->snow;
+	g_game.wind_id = ecup->races[curr_race]->wind;
+	g_game.herring_req = ecup->races[curr_race]->herrings;
+	g_game.time_req = ecup->races[curr_race]->time;
 	g_game.numraces = ecup->num_races;
 	g_game.game_type = CUPRACING;
 	Winsys.SetMode (LOADING); 
@@ -107,11 +105,7 @@ void EventMotionFunc (int x, int y ) {
 }
 
 void InitCupRacing () {
-	ecup = &Events.CupList[g_game.cup_id];
-	for (int i=0; i<ecup->num_races; i++) {
-		eraces[i] = &Events.RaceList[ecup->races[i]];	// pointer to race struct
-		ecourseidx[i] = eraces[i]->course;				// idx of course list
-	}
+	ecup = g_game.cup;
 	curr_race = 0;
 	curr_bonus = ecup->num_races;
 	ready = 0;
@@ -215,7 +209,7 @@ void EventLoop (double timestep) {
 				FT.SetColor (colDYell);
 			else
 				FT.SetColor (colWhite);
-			FT.DrawString (area.left + 29, y, Course.CourseList[ecourseidx[i]].name);
+			FT.DrawString (area.left + 29, y, Course.CourseList[ecup->races[i]->course].name);
 			Tex.Draw (CHECKBOX, area.right -54, y, texsize, texsize);
 			if (curr_race > i) Tex.Draw (CHECKMARK, area.right-50, y + 4, 0.8);
 		}			
@@ -224,15 +218,15 @@ void EventLoop (double timestep) {
 		int ddd = FT.AutoDistanceN (1);
 		FT.SetColor (colDBlue);
 		string info = Trans.Text(11);
-		info += "   " + Int_StrN (eraces[curr_race]->herrings.i);
-		info += "   " + Int_StrN (eraces[curr_race]->herrings.j);
-		info += "   " + Int_StrN (eraces[curr_race]->herrings.k);
+		info += "   " + Int_StrN (ecup->races[curr_race]->herrings.i);
+		info += "   " + Int_StrN (ecup->races[curr_race]->herrings.j);
+		info += "   " + Int_StrN (ecup->races[curr_race]->herrings.k);
 		FT.DrawString (CENTER, framebottom+15, info);
 
 		info = Trans.Text(12);
-		info += "   " + Float_StrN (eraces[curr_race]->time.x, 0);
-		info += "   " + Float_StrN (eraces[curr_race]->time.y, 0);
-		info += "   " + Float_StrN (eraces[curr_race]->time.z, 0);
+		info += "   " + Float_StrN (ecup->races[curr_race]->time.x, 0);
+		info += "   " + Float_StrN (ecup->races[curr_race]->time.y, 0);
+		info += "   " + Float_StrN (ecup->races[curr_race]->time.z, 0);
 		info += "  " + Trans.Text(14);
 		FT.DrawString (CENTER, framebottom+15+ddd, info);
 

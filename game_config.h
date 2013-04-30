@@ -51,7 +51,7 @@ typedef struct {
 	bool	fullscreen;  
 	int		res_type;
 	int		perf_level;
-	int		language;
+	size_t	language;
     int		sound_volume;
     int		music_volume;
 

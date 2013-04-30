@@ -90,7 +90,7 @@ void CTranslation::SetDefaultTranslations () {
 	texts[57] = "Keyboard functions";
 }
 
-string CTranslation::Text (int idx) const {
+string CTranslation::Text (size_t idx) const {
 	if (idx < 0 || idx >= MAX_COMMON_TEXTS) return "";
 	return texts[idx];
 }
@@ -115,11 +115,11 @@ void CTranslation::LoadLanguages () {
 	if (languages.size() > 0) languages_ok = true;
 }
 
-int CTranslation::GetLangIdx (const string& lang) const {
+size_t CTranslation::GetLangIdx (const string& lang) const {
 	return SPIntN (LangIndex, lang, 0);
 }
 
-string CTranslation::GetLanguage (int idx) const {
+string CTranslation::GetLanguage (size_t idx) const {
 	if (idx < 0 || idx >= languages.size()) return "error";
 	return languages[idx].language;
 }
@@ -128,7 +128,7 @@ string CTranslation::GetLanguage (const string& lang) const {
 	return GetLanguage (GetLangIdx (lang));
 }
 
-void CTranslation::LoadTranslations (int langidx) {
+void CTranslation::LoadTranslations (size_t langidx) {
 	SetDefaultTranslations ();
 	if (!languages_ok) return;
 	if (langidx < 0 || langidx >= languages.size()) return;

@@ -364,10 +364,10 @@ static int  curr_focus = 0;
 static int  curr_mus_vol = 20;
 static int  curr_sound_vol = 100;
 static int  curr_detail_level = 5;
-static int  curr_language = 0;
+static size_t  curr_language = 0;
 static bool paramchanged = false;
 static TLang *LangList;
-static int lastLang = 0;
+static size_t lastLang = 0;
 
 void RestartSDL () {
 	// first close the resources that must be restored when
@@ -393,7 +393,7 @@ void RestartSDL () {
 	// probably it's not necessary.
 	Music.SetVolume (param.music_volume);
 	g_game.course_id = 0;
-	g_game.cup_id = 0;
+	g_game.cup = 0;
 	g_game.race_id = 0;
 }
 

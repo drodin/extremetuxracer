@@ -32,11 +32,11 @@ GNU General Public License for more details.
 static TVector2 cursor_pos = {0, 0};
 static int curr_focus = 0;
 static TCharacter *CharList;
-static int curr_character = 0;
-static int last_character;
+static size_t curr_character = 0;
+static size_t last_character;
 //static int xleft, ytop;
-static int curr_player = 0;
-static int last_player;
+static size_t curr_player = 0;
+static size_t last_player;
 static int old_last;
 
 void QuitRegistration () {
@@ -136,9 +136,9 @@ void RegistInit (void) {
 
 	curr_focus = 0;
 	g_game.loopdelay = 10;
-	CharList = Char.CharList;
-	last_character = Char.numCharacters - 1;
-	last_player = Players.numPlayers - 1;
+	CharList = &Char.CharList[0];
+	last_character = Char.CharList.size() - 1;
+	last_player = Players.numPlayers() - 1;
 	if (g_game.prev_mode == NEWPLAYER && old_last != last_player) {
 		curr_player = last_player; 
 	} else curr_player = g_game.start_player;

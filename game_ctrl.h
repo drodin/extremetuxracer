@@ -21,13 +21,10 @@ GNU General Public License for more details.
 #include "tux.h"
 #include "keyframe.h"
 
-#define MAX_RACES2 256
-#define MAX_CUPS2 64
-#define MAX_EVENTS2 16
 #define MAX_RACES_PER_CUP 6
 #define MAX_CUPS_PER_EVENT 12
 
-typedef struct {
+struct TRace2 {
 	string race;
 	int course;
 	int light;
@@ -36,45 +33,41 @@ typedef struct {
 	TIndex3 herrings;
 	TVector3 time;
 	int music_theme;
-} TRace2;
+};
 
-typedef struct {
+struct TCup2 {
 	string cup;
 	string name;
 	string desc;
 	int num_races;
-	int races[MAX_RACES_PER_CUP];
-} TCup2;
+	TRace2* races[MAX_RACES_PER_CUP];
+	bool Unlocked;
+};
 
-typedef struct {
+struct TEvent2 {
 	string name;
 	int num_cups;
-	int cups[MAX_CUPS_PER_EVENT];
-} TEvent2;
+	TCup2* cups[MAX_CUPS_PER_EVENT];
+};
 
 class CEvents {
 private:
 	string RaceIndex;
 	string CupIndex;
 	string EventIndex;
-	bool Unlocked [MAX_EVENTS2][MAX_CUPS_PER_EVENT+1];
 public:
-	CEvents ();
-	TRace2 RaceList[MAX_RACES2];
-	int numRaces;
-	TCup2 CupList[MAX_CUPS2];
-	int numCups;
-	TEvent2 EventList[MAX_EVENTS2];
-	int numEvents;
+	vector<TRace2> RaceList;
+	vector<TCup2> CupList;
+	vector<TEvent2> EventList;
 	bool LoadEventList ();
-	int GetRaceIdx (const string& race);
-	int GetCupIdx (const string& cup);
-	int GetEventIdx (const string& event);
-	string GetCup (int event, int cup);
-	string GetCupTrivialName (int event, int cup);
+	int GetRaceIdx (const string& race) const;
+	int GetCupIdx (const string& cup) const;
+	int GetEventIdx (const string& event) const;
+	string GetCup (size_t event, size_t cup) const;
+	string GetCupTrivialName (size_t event, size_t cup) const;
 
 	void MakeUnlockList (string unlockstr);
-	bool IsUnlocked (int event, int cup);
+	bool IsUnlocked (size_t event, size_t cup) const;
 };
 
 extern CEvents Events;
@@ -86,13 +79,13 @@ extern CEvents Events;
 #define MAX_PLAYERS 16
 #define MAX_AVATARS 32
 
-typedef struct {
+struct TPlayer {
 	string name;
 	CControl *ctrl;
 	string funlocked;
 	GLuint texid;
 	string avatar;
-} TPlayer;
+};
 
 typedef struct {
 	string filename;
@@ -101,15 +94,13 @@ typedef struct {
 
 class CPlayers {
 private:
-	TPlayer plyr[MAX_PLAYERS];
+	vector<TPlayer> plyr;
  	int currPlayer;
  	void SetDefaultPlayers ();
 	string AvatarIndex;
-	TAvatar avatars[MAX_AVATARS];
+	vector<TAvatar> avatars;
 public:
 	CPlayers ();
-	int numPlayers;
-	int numAvatars;
 
 	string GetCurrUnlocked ();
 	void AddPassedCup (const string& cup);
@@ -118,15 +109,17 @@ public:
 	void SavePlayers ();
 	CControl *GetCtrl (); // current player
 	CControl *GetCtrl (int player); 	
-	string GetName (int player);
+	string GetName (int player) const;
 	void ResetControls ();
 	void AllocControl (int player);
 	void LoadAvatars ();
+	size_t numAvatars() const { return avatars.size(); }
+	size_t numPlayers() const { return plyr.size(); }
 	
-	GLuint GetAvatarID (int player);
-	GLuint GetAvatarID (const string& filename);
-	GLuint GetDirectAvatarID (int avatar);
-	string GetDirectAvatarName (int avatar);
+	GLuint GetAvatarID (size_t player) const;
+	GLuint GetAvatarID (const string& filename) const;
+	GLuint GetDirectAvatarID (size_t avatar) const;
+	string GetDirectAvatarName (size_t avatar) const;
 };
 
 extern CPlayers Players;
@@ -134,7 +127,7 @@ extern CPlayers Players;
 // -------------------------------- characters ------------------------
 #define MAX_CHARACTERS 16
 
-typedef struct {
+struct TCharacter {
 	int type;
 	string name;
 	string dir;
@@ -142,7 +135,7 @@ typedef struct {
 	CCharShape *shape;
 	CKeyframe frames[NUM_FRAME_TYPES];
 	bool finishframesok;
-} TCharacter;
+};
 
 class CCharacter {
 private:
@@ -150,15 +143,14 @@ private:
 public:
 	CCharacter ();
 
-	TCharacter CharList [MAX_CHARACTERS];
-	int numCharacters;
+	vector<TCharacter> CharList;
 
-	void Draw (int idx);
-	CCharShape *GetShape (int idx);
+	void Draw (size_t idx);
+	CCharShape *GetShape (size_t idx);
 	void LoadCharacterList ();
  	void FreeCharacterPreviews ();
 
-	CKeyframe *GetKeyframe (int idx, TFrameType type);
+	CKeyframe *GetKeyframe (size_t idx, TFrameType type);
 };
 
 extern CCharacter Char;

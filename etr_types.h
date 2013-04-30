@@ -181,6 +181,8 @@ typedef enum {
 	NUM_FRAME_TYPES
 } TFrameType;
 
+struct TCup2;
+
 typedef struct {	
     TGameMode mode;              
     TGameMode prev_mode;         
@@ -204,8 +206,8 @@ typedef struct {
 
 	// course and race params 
 	int player_id;
-	int start_player;
-	int cup_id;
+	size_t start_player;
+	TCup2* cup;
 	int race_id;
 	int numraces;
 	int mirror_id;                           

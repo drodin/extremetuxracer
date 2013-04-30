@@ -46,12 +46,12 @@ public:
 	CTranslation ();
 
 	void LoadLanguages ();
-	int GetLangIdx (const string& lang) const;
-	string GetLanguage (int idx) const;
+	size_t GetLangIdx (const string& lang) const;
+	string GetLanguage (size_t idx) const;
 	string GetLanguage (const string& lang) const;
 	void SetDefaultTranslations ();
-	string Text (int idx) const;
-	void LoadTranslations (int langidx);
+	string Text (size_t idx) const;
+	void LoadTranslations (size_t langidx);
 };
 
 extern CTranslation Trans;

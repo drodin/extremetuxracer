@@ -27,17 +27,17 @@ GNU General Public License for more details.
 #include "translation.h"
 
 static TEvent2 *EventList;
-static int last_event;
-static int curr_event = 0;
+static size_t last_event;
+static size_t curr_event = 0;
 static int curr_focus = 0;
 static TCup2 *CupList;
-static int curr_cup = 0;
-static int last_cup;
+static size_t curr_cup = 0;
+static size_t last_cup;
 static TVector2 cursor_pos = {0, 0};
 
 void EnterEvent () {
 	g_game.game_type = CUPRACING;
-	g_game.cup_id = EventList[curr_event].cups[curr_cup];
+	g_game.cup = EventList[curr_event].cups[curr_cup];
 	g_game.race_id = 0;
 	Winsys.SetMode (EVENT);
 }
@@ -118,10 +118,10 @@ static int framewidth, frameheight, frametop1, frametop2;
 
 void EventSelectInit () {
 	Winsys.ShowCursor (!param.ice_cursor);    
-	EventList = Events.EventList;
+	EventList = &Events.EventList[0];
 	curr_event = 0;
-	last_event = Events.numEvents - 1;
-	CupList = Events.CupList;
+	last_event = Events.EventList.size() - 1;
+	CupList = &Events.CupList[0];
 	curr_cup = 0;
 	last_cup = EventList[curr_event].num_cups - 1;
 	curr_focus = 1;
