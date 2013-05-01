@@ -34,7 +34,7 @@
 
 *[idx] 28 [engl] Cancel [trans] Abbrechen
 *[idx] 29 [engl] Loading [trans] Laden
-*[idx] 30 [engl] Please wait... [trans] bitte warten...
+*[idx] 30 [engl] Please wait... [trans] Bitte warten...
 
 *[idx] 31 [engl] Fullscreen: [trans] Vollbild:
 *[idx] 32 [engl] Resolution: [trans] Auflösung:
@@ -61,10 +61,8 @@
 *[idx] 50 [engl] T - trick [trans] T - Tricks
 *[idx] 51 [engl] ESC - abort Race [trans] ESC - Rennen abbrechen
 *[idx] 52 [engl] SPACE - jump [trans] Leertaste - Sprung
-*[idx] 53 [engl] CRSR Left - turn left [trans] CRSR links - nach links steuern
-*[idx] 54 [engl] CRSR Right - turn right [trans] CRSR rechts - nach rechts steuern
-*[idx] 55 [engl] CRSR Up - accelerate [trans] CRSR oben - beschleunigen
-*[idx] 56 [engl] CRSR down - brake [trans] CRSR unten - bremsen
+*[idx] 53 [engl] CRSR Left - turn left [trans] Pfeil links - nach links steuern
+*[idx] 54 [engl] CRSR Right - turn right [trans] Pfeil rechts - nach rechts steuern
+*[idx] 55 [engl] CRSR Up - accelerate [trans] Pfeil oben - beschleunigen
+*[idx] 56 [engl] CRSR down - brake [trans] Pfeil unten - bremsen
 *[idx] 57 [engl] Keyboard functions [trans] Tastatur-Befehle
-
-
