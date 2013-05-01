@@ -91,7 +91,7 @@ void CTranslation::SetDefaultTranslations () {
 }
 
 string CTranslation::Text (size_t idx) const {
-	if (idx < 0 || idx >= MAX_COMMON_TEXTS) return "";
+	if (idx >= MAX_COMMON_TEXTS) return "";
 	return texts[idx];
 }
 
@@ -120,7 +120,7 @@ size_t CTranslation::GetLangIdx (const string& lang) const {
 }
 
 string CTranslation::GetLanguage (size_t idx) const {
-	if (idx < 0 || idx >= languages.size()) return "error";
+	if (idx >= languages.size()) return "error";
 	return languages[idx].language;
 }
 
@@ -131,7 +131,7 @@ string CTranslation::GetLanguage (const string& lang) const {
 void CTranslation::LoadTranslations (size_t langidx) {
 	SetDefaultTranslations ();
 	if (!languages_ok) return;
-	if (langidx < 0 || langidx >= languages.size()) return;
+	if (langidx >= languages.size()) return;
 
 	CSPList list(MAX_COMMON_TEXTS + 3);
 	string filename = languages[langidx].lang + ".lst";

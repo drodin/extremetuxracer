@@ -382,17 +382,17 @@ void CCharacter::FreeCharacterPreviews () {
 }
 
 void CCharacter::Draw (size_t idx) {
-	if (idx < 0 || idx >= CharList.size()) return;
+	if (idx >= CharList.size()) return;
 	CharList[idx].shape->Draw ();
 }
 
 CCharShape *CCharacter::GetShape (size_t idx) {
-	if (idx < 0 || idx >= CharList.size()) return NULL;
+	if (idx >= CharList.size()) return NULL;
 	return CharList[idx].shape;
 }
 
 CKeyframe *CCharacter::GetKeyframe (size_t idx, TFrameType type) {
 	if (type < 0 || type >= NUM_FRAME_TYPES) return NULL;
-	if (idx < 0 || idx >= CharList.size()) return NULL;
+	if (idx >= CharList.size()) return NULL;
 	return &CharList[idx].frames[type];
 }

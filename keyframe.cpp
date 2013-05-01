@@ -322,17 +322,17 @@ void CKeyframe::ResetFrame2 (TKeyframe2 *frame) {
 }
 
 TKeyframe2 *CKeyframe::GetFrame (size_t idx) {
-	if (idx < 0 || idx >= frames.size()) return NULL;
+	if (idx >= frames.size()) return NULL;
 	return &frames[idx];
 }
 
 string CKeyframe::GetJointName (size_t idx) {
-	if (idx < 0 || idx >= numJoints) return "";
+	if (idx >= numJoints) return "";
 	return jointnames[idx];
 }
 
 string CKeyframe::GetHighlightName (size_t idx) {
-	if (idx < 0 || idx >= numJoints) return "";
+	if (idx >= numJoints) return "";
 	return highlightnames[idx];
 }
 
@@ -399,7 +399,7 @@ void CKeyframe::AddFrame () {
 size_t CKeyframe::DeleteFrame (size_t idx) {
 	if (frames.size() < 2) return idx;
 	size_t lastframe = frames.size()-1;
-	if (idx < 0 || idx > lastframe) return 0;
+	if (idx > lastframe) return 0;
 	
 	if (idx == lastframe) {
 		frames.pop_back();
@@ -414,7 +414,7 @@ size_t CKeyframe::DeleteFrame (size_t idx) {
 
 void CKeyframe::InsertFrame (size_t idx) {
 	size_t lastframe = frames.size()-1;
-	if (idx < 0 || idx > lastframe) return;
+	if (idx > lastframe) return;
 
 	frames.push_back(TKeyframe2());
 	
@@ -423,16 +423,16 @@ void CKeyframe::InsertFrame (size_t idx) {
 }	
 
 void CKeyframe::CopyToClipboard (size_t idx) {
-	if (idx < 0 || idx >= frames.size()) return;
+	if (idx >= frames.size()) return;
 	memcpy(clipboard.val, frames[idx].val, MAX_FRAME_VALUES*sizeof(*frames[idx].val));
 }
 
 void CKeyframe::PasteFromClipboard (size_t idx) {
-	if (idx < 0 || idx >= frames.size()) return;
+	if (idx >= frames.size()) return;
 	memcpy(frames[idx].val, clipboard.val, MAX_FRAME_VALUES*sizeof(*frames[idx].val));
 }
 
 void CKeyframe::ClearFrame (size_t idx) {
-	if (idx < 0 || idx >= frames.size()) return;
+	if (idx >= frames.size()) return;
 	ResetFrame2 (&frames[idx]);
 }

@@ -32,7 +32,7 @@ GNU General Public License for more details.
 CScore Score;
 
 int CScore::AddScore (size_t list_idx, const TScore& score) {
-	if (list_idx < 0 || list_idx >= Scorelist.size()) return 999;
+	if (list_idx >= Scorelist.size()) return 999;
 	if (score.points < 1) return 999;
 
 	TScoreList *list = &Scorelist[list_idx];
@@ -63,7 +63,7 @@ int CScore::AddScore (size_t list_idx, const TScore& score) {
 
 // for testing:
 void CScore::PrintScorelist (size_t list_idx) {
-	if (list_idx < 0 || list_idx >= Scorelist.size()) return;
+	if (list_idx >= Scorelist.size()) return;
 	TScoreList *list = &Scorelist[list_idx];
 
 	if (list->numScores < 1) {
@@ -80,7 +80,7 @@ void CScore::PrintScorelist (size_t list_idx) {
 }
 
 TScoreList *CScore::GetScorelist (size_t list_idx) {
-	if (list_idx < 0 || list_idx >= Scorelist.size()) return NULL;
+	if (list_idx >= Scorelist.size()) return NULL;
 	return &Scorelist[list_idx];
 }
 

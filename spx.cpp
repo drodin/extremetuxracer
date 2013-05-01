@@ -459,7 +459,7 @@ CSPList::CSPList (size_t maxlines, int newlineflag) {
 }
 
 string CSPList::Line (size_t idx) const {
-	if (idx < 0 || idx >= flines.size()) return "";
+	if (idx >= flines.size()) return "";
 	return flines[idx].first;
 }
 
@@ -482,17 +482,17 @@ void CSPList::Add (const string& line, int flag) {
 }
 
 void CSPList::Append (const string& line, size_t idx) {
-	if (idx < 0 || idx >= flines.size()) return;
+	if (idx >= flines.size()) return;
 	flines[idx].first += line;
 }
 
 void CSPList::SetFlag (size_t idx, int flag) {
-	if (idx < 0 || idx >= flines.size()) return;
+	if (idx >= flines.size()) return;
 	flines[idx].second= flag;
 }
 
 int CSPList::Flag (size_t idx) const {
-	if (idx < 0 || idx >= flines.size()) return 0;
+	if (idx >= flines.size()) return 0;
 	return flines[idx].second;
 }
 

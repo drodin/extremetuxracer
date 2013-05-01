@@ -800,7 +800,7 @@ void CCourse::ResetCourse () {
 }
 
 bool CCourse::LoadCourse (size_t idx) {
-	if (idx < 0 || idx >= CourseList.size()) {
+	if (idx >= CourseList.size()) {
 		Message ("wrong course index");
 		curr_course = -1;
 		return false;

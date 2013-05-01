@@ -42,7 +42,7 @@ struct TCourse {
 	string dir;
 	string author;
 	string desc[MAX_DESCRIPTION_LINES];
-	int num_lines;
+	size_t num_lines;
 	GLuint preview;
 	double width;
 	double length;

@@ -70,7 +70,7 @@ TColor3 MakeColor3 (double r, double g, double b) {
 // --------------------------------------------------------------------
 
 void PrintInt (const int val) {
-	printf ("Integer: %i \n", val );
+	printf ("Integer: %i\n", val );
 }
 
 void PrintInt (const string& s, const int val) {
@@ -78,7 +78,7 @@ void PrintInt (const string& s, const int val) {
 }
 
 void PrintStr (const char *val) {
-	printf ("%s \n", val);
+	printf ("%s\n", val);
 }
 
 void PrintString (const string& s) {
@@ -86,11 +86,11 @@ void PrintString (const string& s) {
 }
 
 void PrintFloat (const float val) {
-	printf ("%.3f \n", val);
+	printf ("%.3f\n", val);
 }
 
 void PrintDouble (const double val) {
-	printf ("%.3f \n", val);
+	printf ("%.3f\n", val);
 }
 
 void PrintFloat (char *s, const float val) {
@@ -98,7 +98,7 @@ void PrintFloat (char *s, const float val) {
 }
 
 void PrintFloat8 (const float val) {
-	printf ("%.8f \n", val);
+	printf ("%.8f\n", val);
 }
 
 void PrintBool (const bool val) {
@@ -108,31 +108,31 @@ void PrintBool (const bool val) {
 
 void PrintPointer (void *p) {
 	if (p == NULL) printf ("Pointer: NULL\n");
-	else printf ("Pointer: %p \n", &p);
+	else printf ("Pointer: %p\n", &p);
 }
 
 void PrintVector4 (const TVector4& v) {
-	printf ("%.2f  %.2f  %.2f  %.2f \n", v.x, v.y, v.z, v.w); 
+	printf ("%.2f  %.2f  %.2f  %.2f\n", v.x, v.y, v.z, v.w); 
 }
 
 void PrintColor (const TColor& v) {
-	printf ("%.2f  %.2f  %.2f  %.2f \n", v.r, v.g, v.b, v.a); 
+	printf ("%.2f  %.2f  %.2f  %.2f\n", v.r, v.g, v.b, v.a); 
 }
 
 void PrintVector2 (const TVector2& v) {
-	printf ("%.2f  %.2f \n", v.x, v.y); 
+	printf ("%.2f  %.2f\n", v.x, v.y); 
 }
 
 void PrintVector (const TVector3& v) {
-	printf ("%.4f  %.4f  %.4f \n", v.x, v.y, v.z); 
+	printf ("%.4f  %.4f  %.4f\n", v.x, v.y, v.z); 
 }
 
 void PrintIndex3 (const TIndex3& idx) {
-	printf ("%i %i %i \n", idx.i, idx.j, idx.k);
+	printf ("%i %i %i\n", idx.i, idx.j, idx.k);
 }
 
 void PrintIndex4 (const TIndex4& idx) {
-	printf ("%i %i %i %i \n", idx.i, idx.j, idx.k, idx.l);
+	printf ("%i %i %i %i\n", idx.i, idx.j, idx.k, idx.l);
 }
 
 void PrintVector (char *s, const TVector3& v) {
@@ -168,7 +168,7 @@ void SaveMessages () {
 
 void Message (const char *msg, const char *desc) {
 	if (strlen(msg)<1 && strlen(desc)<1) {
-		printf (" \n");
+		printf ("\n");
 		return;
 	}
 
@@ -180,7 +180,7 @@ void Message (const char *msg, const char *desc) {
 
 void Message (const char *msg) {
 	if (strlen(msg)<1) {
-		printf (" \n");
+		printf ("\n");
 		return;
 	}
 	printf ("%s\n", msg);
@@ -355,14 +355,13 @@ void GetTestTime () {
 }
 
 string GetTimeString1 () {
-	string line;
 	time_t rawtime;	
 	struct tm * timeinfo;
 
 	time (&rawtime);
 	timeinfo = localtime (&rawtime);
 //	line = Int_StrN (timeinfo->tm_year-100);
-	line = Int_StrN (timeinfo->tm_mon + 1);
+	string line = Int_StrN (timeinfo->tm_mon + 1);
 	line += "_" + Int_StrN (timeinfo->tm_mday);
 	line += "_" + Int_StrN (timeinfo->tm_hour);
 	line += Int_StrN (timeinfo->tm_min);
@@ -374,53 +373,14 @@ string GetTimeString1 () {
 //				FILE, read and write
 // --------------------------------------------------------------------
 
-unsigned short read_word (FILE *fp) {
-    unsigned char b0, b1;
-    b0 = getc(fp);
-    b1 = getc(fp);
-    return ((b1 << 8) | b0);
+size_t write_word (FILE *fp, uint16_t w) {
+	return fwrite(&w, 2, 1, fp);
 }
 
-unsigned int read_dword (FILE *fp) {
-    unsigned char b0, b1, b2, b3;
-    b0 = getc(fp);
-    b1 = getc(fp);
-    b2 = getc(fp);
-    b3 = getc(fp);
-
-    return ((((((b3 << 8) | b2) << 8) | b1) << 8) | b0);
+size_t write_dword(FILE *fp, uint32_t dw) {
+	return fwrite(&dw, 4, 1, fp);
 }
 
-int read_long (FILE *fp) {
-    unsigned char b0, b1, b2, b3;
-
-    b0 = getc(fp);
-    b1 = getc(fp);
-    b2 = getc(fp);
-    b3 = getc(fp);
-
-    return ((int)(((((b3 << 8) | b2) << 8) | b1) << 8) | b0);
+size_t write_long (FILE *fp, int32_t l) {
+	return fwrite(&l, 4, 1, fp);
 }
-
-
-int write_word (FILE *fp, unsigned short w) {
-    putc (w, fp);
-    return (putc (w >> 8, fp));
-}
-
-int write_dword(FILE *fp, unsigned int dw) {
-    putc (dw, fp);
-    putc (dw >> 8, fp);
-    putc (dw >> 16, fp);
-    return (putc (dw >> 24, fp));
-}
-
-int write_long (FILE *fp, int  l) {
-    putc (l, fp);
-    putc (l >> 8, fp);
-    putc (l >> 16, fp);
-    return (putc (l >> 24, fp));
-}
-
-
-
