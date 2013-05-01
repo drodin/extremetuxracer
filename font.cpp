@@ -19,7 +19,6 @@ GNU General Public License for more details.
 #include "font.h"
 #include "ft_font.h"
 #include "spx.h"
-#include "gui.h"
 #include <deque>
 
 #define USE_UNICODE 1

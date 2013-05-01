@@ -19,7 +19,6 @@ GNU General Public License for more details.
 #include "particles.h"
 #include "audio.h"
 #include "ogl.h"
-#include "textures.h"
 #include "font.h"
 #include "gui.h"
 #include "translation.h"

@@ -23,8 +23,6 @@ GNU General Public License for more details.
 #include "track_marks.h"
 #include "spx.h"
 #include "quadtree.h"
-#include "course_render.h"
-#include "keyframe.h"
 #include "env.h"
 #include "game_ctrl.h"
 #include "font.h"

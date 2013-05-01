@@ -22,7 +22,6 @@ GNU General Public License for more details.
 #include "textures.h"
 #include "gui.h"
 #include "course.h"
-#include "env.h"
 #include "spx.h"
 #include "font.h"
 #include "game_ctrl.h"

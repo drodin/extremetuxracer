@@ -20,12 +20,10 @@ GNU General Public License for more details.
 #include "ogl.h"
 #include "view.h"
 #include "course_render.h"
-#include "tux.h"
 #include "env.h"
 #include "hud.h"
 #include "course.h"
 #include "track_marks.h"
-#include "particles.h"
 #include "game_ctrl.h"
 
 #define BLINK_IN_PLACE_TIME 0.5

@@ -1,8 +1,6 @@
 #include "textures.h"
 #include "course.h"
 #include "ogl.h"
-#include "course_render.h"
-#include "env.h"
 
 #include "quadtree.h"
 

@@ -21,7 +21,6 @@ GNU General Public License for more details.
 #include "particles.h"
 #include "audio.h"
 #include "ogl.h"
-#include "course.h"
 #include "textures.h"
 #include "game_ctrl.h"
 #include "translation.h"

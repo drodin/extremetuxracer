@@ -31,11 +31,6 @@ typedef enum {
     Center
 } vertex_loc_t;
 
-typedef unsigned short uint16;
-typedef unsigned int uint32;
-typedef short int16;
-typedef int int32;
-
 struct HeightMapInfo {
     double *Data;
     int	XOrigin, ZOrigin;

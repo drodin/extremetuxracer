@@ -17,10 +17,7 @@ GNU General Public License for more details.
 
 #include "track_marks.h"
 #include "ogl.h"
-#include "tux.h"
 #include "textures.h"
-#include "course_render.h"
-#include "env.h"
 #include "course.h"
 
 #define TRACK_WIDTH  0.7

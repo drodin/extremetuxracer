@@ -18,7 +18,6 @@ GNU General Public License for more details.
 #include "env.h"
 #include "ogl.h"
 #include "textures.h"
-#include "particles.h"
 #include "spx.h"
 #include "view.h"
 #include "course.h"

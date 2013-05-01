@@ -21,7 +21,6 @@ GNU General Public License for more details.
 #include "audio.h"
 #include "particles.h"
 #include "game_ctrl.h"
-#include "view.h"
 
 CControl::CControl () :
 	cnet_force(MakeVector(0, 0, 0))

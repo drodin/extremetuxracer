@@ -23,7 +23,6 @@ GNU General Public License for more details.
 #include "particles.h"
 #include "course.h"
 #include "env.h"
-#include "keyframe.h"
 #include "translation.h"
 #include "gui.h"
 

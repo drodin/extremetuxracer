@@ -18,7 +18,6 @@ GNU General Public License for more details.
 #include "tool_char.h"
 #include "tools.h"
 #include "ogl.h"
-#include "keyframe.h"
 #include "font.h"
 #include "textures.h"
 #include "spx.h"

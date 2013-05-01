@@ -20,7 +20,6 @@ GNU General Public License for more details.
 #include "ogl.h"
 #include "view.h"
 #include "course_render.h"
-#include "tux.h"
 #include "env.h"
 #include "hud.h"
 #include "track_marks.h"

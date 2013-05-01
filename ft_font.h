@@ -38,31 +38,6 @@ typedef float  FTGL_FLOAT;
 #ifndef FT_RENDER_MODE_NORMAL
     #define FT_RENDER_MODE_NORMAL ft_render_mode_normal
 #endif
-  
-#ifdef WIN32
-    #define  WIN32_LEAN_AND_MEAN
-    #include <windows.h>
-
-    #ifndef __gl_h_
-        #include <GL/gl.h>
-        #include <GL/glu.h>
-    #endif
-#else
-    #ifndef __gl_h_
-        #ifdef __APPLE_CC__
-            #include <OpenGL/gl.h>
-            #include <OpenGL/glu.h>
-        #else
-            #include <GL/gl.h>
-            #include <GL/glu.h>
-        #endif                
-
-    #endif
-
-    #ifndef APIENTRY
-        #define APIENTRY
-    #endif
-#endif
 
 #ifdef _MSC_VER // MS Visual C++ 
     #pragma warning(disable : 4251 )
