@@ -25,6 +25,7 @@ GNU General Public License for more details.
 #include "translation.h"
 #include "course.h"
 #include "spx.h"
+#include "game_type_select.h"
 
 CScore Score;
 
@@ -178,33 +179,32 @@ void ChangeScoreSelection (int focus, int dir) {
 }
 
 static TScore aaa;
-void ScoreKeys (unsigned int key, bool special, bool release, int x, int y) {
+void CScore::Keyb (unsigned int key, bool special, bool release, int x, int y) {
 	if (release) return;
 	switch (key) {
-		case 27: Winsys.SetMode (GAME_TYPE_SELECT); break;
-		case SDLK_q: Winsys.Quit (); break;
+		case 27: State::manager.RequestEnterState (GameTypeSelect); break;
+		case SDLK_q: State::manager.RequestQuit(); break;
 		case SDLK_DOWN: ChangeScoreSelection (curr_focus, 1); break;
 		case SDLK_UP: ChangeScoreSelection (curr_focus, 0); break;
 		case SDLK_LEFT: ChangeScoreSelection (curr_focus, 0); break;
 		case SDLK_RIGHT: ChangeScoreSelection (curr_focus, 1); break;
 		case SDLK_s: Score.SaveHighScore (); break;
 		case SDLK_l: Score.LoadHighScore (); break;
-		case 13: Winsys.SetMode (GAME_TYPE_SELECT); break;
+		case 13: State::manager.RequestEnterState (GameTypeSelect); break;
 	}
 }
 
-void ScoreMouseFunc (int button, int state, int x, int y) {
+void CScore::Mouse (int button, int state, int x, int y) {
 	int foc, dir;
 	if (state == 1) {
 		GetFocus (x, y, &foc, &dir);
 		if (curr_focus == 0) ChangeScoreSelection (foc, dir);
-		else if (curr_focus == 1) Winsys.SetMode (GAME_TYPE_SELECT); 
+		else if (curr_focus == 1) State::manager.RequestEnterState (GameTypeSelect); 
 	}
 }
 
-void ScoreMotionFunc (int x, int y ){
+void CScore::Motion (int x, int y ){
  	int sc, dir;
-	if (Winsys.ModePending ()) return; 
 
 	GetFocus (x, y, &sc, &dir);
 	if (sc >= 0) curr_focus = sc;
@@ -222,7 +222,7 @@ static int framewidth, frameheight, frametop;
 static int linedist, listtop;
 static int dd1, dd2, dd3, dd4;
 
-void ScoreInit (void) {
+void CScore::Enter() {
 	Winsys.ShowCursor (!param.ice_cursor);    
 	Winsys.KeyRepeat (true);
 	init_ui_snow (); 
@@ -256,7 +256,7 @@ void ScoreInit (void) {
 const string ordinals[10] = 
 	{"1:st", "2:nd", "3:rd", "4:th", "5:th", "6:th", "7:th", "8:th", "9:th", "10:th"};
 
-void ScoreLoop (double timestep ){
+void CScore::Loop (double timestep ){
 	int ww = param.x_resolution;
 	int hh = param.y_resolution;
 	
@@ -315,11 +315,4 @@ void ScoreLoop (double timestep ){
 
 	if (param.ice_cursor) DrawCursor ();
     Winsys.SwapBuffers();
-} 
-
-void ScoreTerm () {}
-
-void RegisterScoreFunctions () {
-	Winsys.SetModeFuncs (SCORE,  ScoreInit,  ScoreLoop,  ScoreTerm,
- 		 ScoreKeys,  ScoreMouseFunc,  ScoreMotionFunc, NULL, NULL, NULL);
 }

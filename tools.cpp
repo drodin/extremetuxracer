@@ -111,6 +111,8 @@ void CGluCamera::Update (double timestep) {
 //				tools
 // --------------------------------------------------------------------
 
+CTools Tools;
+
 static bool finalstage = false;
 static bool charchanged = false;
 static bool framechanged = false;
@@ -166,7 +168,7 @@ void SetToolLight () {
 }
 
 void QuitTool () {
-	if (!charchanged && !framechanged) Winsys.Quit ();
+	if (!charchanged && !framechanged) State::manager.RequestQuit();
 	else finalstage = true;
 }
 
@@ -212,18 +214,18 @@ void SaveToolFrame () {
  	framechanged = false;
 }
 
-void ToolsInit (void) {
+void CTools::Enter() {
 	char_dir = param.char_dir + SEP + g_game.dir_arg;
 	char_file = "shape.lst";
 	frame_file = g_game.file_arg;
 
 	if (TestChar.Load (char_dir, char_file, true) == false) {
 		Message ("could not load 'shape.lst'");
-		Winsys.Quit();
+		Winsys.Terminate();
 	}
 	if (TestFrame.Load (char_dir, frame_file) == false) {
 		Message ("could not load 'frame.lst'");
-		Winsys.Quit();
+		Winsys.Terminate();
 	}
 	charchanged = false;
 	framechanged = false;
@@ -236,7 +238,7 @@ void ToolsInit (void) {
  	g_game.loopdelay = 1;
 }
 
-void ToolsKeys (unsigned int key, bool special, bool release, int x, int y) {
+void CTools::Keyb(unsigned int key, bool special, bool release, int x, int y) {
 		switch (tool_mode) {
 			case 0: CharKeys (key, special, release, x, y); break;
 			case 1: SingleFrameKeys (key, special, release, x, y); break;
@@ -244,7 +246,7 @@ void ToolsKeys (unsigned int key, bool special, bool release, int x, int y) {
 		}
 }
 
-void ToolsMouse (int button, int state, int x, int y) {
+void CTools::Mouse(int button, int state, int x, int y) {
 	switch (tool_mode) {
 		case 0: CharMouse (button, state, x, y); break;
 		case 1: SingleFrameMouse (button, state, x, y); break;
@@ -252,7 +254,7 @@ void ToolsMouse (int button, int state, int x, int y) {
 	}
 }
 
-void ToolsMotion (int x, int y) {
+void CTools::Motion(int x, int y) {
 	switch (tool_mode) {
 		case 0: CharMotion (x, y); break;
 		case 1: SingleFrameMotion (x, y); break;
@@ -260,18 +262,10 @@ void ToolsMotion (int x, int y) {
 	}
 }
 
-void ToolsLoop (double timestep) {
+void CTools::Loop(double timestep) {
 	switch (tool_mode) {
 		case 0: RenderChar (timestep); break;
 		case 1: RenderSingleFrame (timestep); break;
 		case 2: RenderSequence (timestep); break;
 	}
-} 
-
-void ToolsTerm () {}
-
-void RegisterToolFuncs () {
-	Winsys.SetModeFuncs (TOOLS, ToolsInit, ToolsLoop, ToolsTerm,
- 		ToolsKeys, ToolsMouse, ToolsMotion, NULL, NULL, NULL);
 }
-

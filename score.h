@@ -34,10 +34,16 @@ struct TScoreList {
 	int numScores;
 };
 
-class CScore {
+class CScore : public State {
 private:
 	vector<TScoreList> Scorelist;
 	TScore TempScore;
+	
+	void Enter();
+	void Loop(double time_step);
+	void Keyb(unsigned int key, bool special, bool release, int x, int y);
+	void Mouse(int button, int state, int x, int y);
+	void Motion(int x, int y);
 public:
 	int AddScore (size_t list_idx, const TScore& score);
 	TScoreList *GetScorelist (size_t list_idx);
@@ -51,6 +57,5 @@ extern CScore Score;
 
 // --------------------------------------------------------------------
 
-void RegisterScoreFunctions ();
 
 #endif

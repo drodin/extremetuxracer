@@ -22,33 +22,9 @@ GNU General Public License for more details.
 
 #define NUM_RESOLUTIONS 10
 
-typedef void (*TInitFuncN)    (void);
-typedef void (*TLoopFuncN)    (double time_step);
-typedef void (*TTermFuncN)    (void);
-typedef void (*TMouseFuncN)   (int button, int state, int x, int y);
-typedef void (*TMotionFuncN)  (int x, int y);
-typedef void (*TKeybFuncN)    (unsigned int key, bool special, bool release, int x, int y);
-typedef void (*TJAxisFuncN)   (int axis, double value);
-typedef void (*TJButtFuncN)   (int button, int state);
-typedef void (*TKeybFuncS)    (SDL_keysym sym, bool release);
-
-typedef struct {
-	TInitFuncN   init; 
-	TLoopFuncN   loop; 
-	TTermFuncN   term;
-	TKeybFuncN   keyb;
-	TMouseFuncN  mouse;
-	TMotionFuncN motion;
-	TJAxisFuncN  jaxis;
-	TJButtFuncN  jbutt;
-	TKeybFuncS   keyb_spec;
-} TModeFuncsN;
-
 class CWinsys {
 private:
 	// time
-	float clock_time;
-	float cur_time;
 	float lasttick;
 	float elapsed_time;
 	int remain_ticks;
@@ -65,14 +41,6 @@ private:
 	SDL_Surface *screen;
 	TScreenRes MakeRes (int width, int height);
 	double CalcScreenScale ();
-
-	// modes and loop
-	TModeFuncsN modefuncs [NUM_GAME_MODES];
-	TGameMode new_mode;
-	void IdleFunc ();
-	void PollEvent ();
-	void ChangeMode ();
-	void CallLoopFunction ();
 public:
 	CWinsys ();
 
@@ -89,15 +57,10 @@ public:
 	void ShowCursor (bool visible) {SDL_ShowCursor (visible);}
 	void SwapBuffers () {SDL_GL_SwapBuffers ();}
 	void Quit ();
+	void Terminate ();
 	void InitJoystick ();
 	void CloseJoystick ();
-	void SetModeFuncs (
-			TGameMode mode, TInitFuncN init, TLoopFuncN loop, TTermFuncN term,
-			TKeybFuncN keyb, TMouseFuncN mouse, TMotionFuncN motion,
- 			TJAxisFuncN jaxis, TJButtFuncN jbutt, TKeybFuncS keyb_spec);
-	void EventLoop ();
-	void SetMode (TGameMode mode) {new_mode = mode;}
-	bool ModePending ();
+	bool joystick_isActive() const { return joystick_active; }
 	double ClockTime () {return SDL_GetTicks() * 1.e-3; } 
 //	SDL_Surface *GetSurfaceData ();
 	unsigned char *GetSurfaceData ();

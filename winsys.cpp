@@ -31,17 +31,6 @@ CWinsys Winsys;
 
 CWinsys::CWinsys () {
 	screen = NULL;
-	for (int i=0; i<NUM_GAME_MODES; i++) {
-		modefuncs[i].init   = NULL;
-		modefuncs[i].loop   = NULL;
-		modefuncs[i].term   = NULL;
-		modefuncs[i].keyb   = NULL;
-		modefuncs[i].mouse  = NULL;
-		modefuncs[i].motion = NULL;
-		modefuncs[i].jaxis  = NULL;
-		modefuncs[i].jbutt  = NULL;
-	}
-	new_mode = NO_MODE;
 	lasttick = 0;
 
 	joystick = NULL;
@@ -62,8 +51,6 @@ CWinsys::CWinsys () {
 	auto_x_resolution = 800;
 	auto_y_resolution = 600;
 
-	clock_time = 0;
-	cur_time = 0;
 	lasttick = 0;
 	elapsed_time = 0;
 	remain_ticks = 0;
@@ -212,7 +199,11 @@ void CWinsys::Quit () {
 	if (g_game.argument < 1) Players.SavePlayers ();
 	Score.SaveHighScore ();
 	SDL_Quit ();
-    exit (0);
+}
+
+void CWinsys::Terminate () {
+	Quit();
+	exit(0);
 }
 
 void CWinsys::PrintJoystickInfo () {
@@ -226,144 +217,6 @@ void CWinsys::PrintJoystickInfo () {
 	printf ("Joystick has %d button%s\n", num_buttons, num_buttons == 1 ? "" : "s");
 	int num_axes = SDL_JoystickNumAxes (joystick);
 	printf ("Joystick has %d ax%ss\n\n", num_axes, num_axes == 1 ? "i" : "e");
-}
-
-// ------------ modes -------------------------------------------------
-
-void CWinsys::SetModeFuncs (
-		TGameMode mode, TInitFuncN init, TLoopFuncN loop, TTermFuncN term,
-		TKeybFuncN keyb, TMouseFuncN mouse, TMotionFuncN motion,
-		TJAxisFuncN jaxis, TJButtFuncN jbutt, TKeybFuncS keyb_spec) {
-    modefuncs[mode].init      = init;
-   	modefuncs[mode].loop      = loop;
-    modefuncs[mode].term      = term;
-    modefuncs[mode].keyb      = keyb;
-   	modefuncs[mode].mouse     = mouse;
-    modefuncs[mode].motion    = motion;
-    modefuncs[mode].jaxis     = jaxis;
-    modefuncs[mode].jbutt     = jbutt;
-    modefuncs[mode].keyb_spec = keyb_spec;
-}
-
-void CWinsys::IdleFunc () {}
-
-bool CWinsys::ModePending () {
-	return g_game.mode != new_mode;
-}
-
-void CWinsys::PollEvent () {
-    SDL_Event event;
-    unsigned int key, axis;
-    int x, y;
-
-	while (SDL_PollEvent (&event)) {
-		if (ModePending()) {
-			IdleFunc ();
-    	} else {
-			switch (event.type) {
-				case SDL_KEYDOWN:
-				if (modefuncs[g_game.mode].keyb) {
-					SDL_GetMouseState (&x, &y);
-					key = event.key.keysym.sym; 
-					(modefuncs[g_game.mode].keyb) (key, key >= 256, false, x, y);
-				} else if (modefuncs[g_game.mode].keyb_spec) {
-					(modefuncs[g_game.mode].keyb_spec) (event.key.keysym, false);
-				}
-				break;
-	
-				case SDL_KEYUP:
-				if (modefuncs[g_game.mode].keyb) {
-					SDL_GetMouseState (&x, &y);
-					key = event.key.keysym.sym; 
-					(modefuncs[g_game.mode].keyb)  (key, key >= 256, true, x, y);
-				} else if (modefuncs[g_game.mode].keyb_spec) {
-					(modefuncs[g_game.mode].keyb_spec) (event.key.keysym, true);
-				}
-				break;
-	
-				case SDL_MOUSEBUTTONDOWN:
-				case SDL_MOUSEBUTTONUP:
-				if (modefuncs[g_game.mode].mouse) {
-					(modefuncs[g_game.mode].mouse) 
-						(event.button.button, event.button.state,
-						event.button.x, event.button.y);
-				}
-				break;
-	
-				case SDL_MOUSEMOTION:
-					if (modefuncs[g_game.mode].motion) 
-					(modefuncs[g_game.mode].motion) (event.motion.x, event.motion.y);
-				break;
-
-				case SDL_JOYAXISMOTION:  
-				if (joystick_active) {
-					axis = event.jaxis.axis;
-					if (modefuncs[g_game.mode].jaxis && axis < 2) {
-						float val = (float)event.jaxis.value / 32768;
-							(modefuncs[g_game.mode].jaxis) (axis, val);
-					}
-				}
-				break; 
-
-				case SDL_JOYBUTTONDOWN:  
-				case SDL_JOYBUTTONUP:  
-				if (joystick_active) {
-					if (modefuncs[g_game.mode].jbutt) {
-						(modefuncs[g_game.mode].jbutt) 
-							(event.jbutton.button, event.jbutton.state);
-					}
-				}
-				break;
-
-				case SDL_VIDEORESIZE:
-					param.x_resolution = event.resize.w;
-					param.y_resolution = event.resize.h;
-					SetupVideoMode (param.res_type);
-					Reshape (event.resize.w, event.resize.h);
-				break;
-			
-				case SDL_QUIT: 
-					Quit ();
-				break;
-			}
-    	}
-	}
-}
-
-void CWinsys::ChangeMode () {
-	// this function is called when new_mode is set
-	// terminate function of previous mode
-	if (g_game.mode >= 0 &&  modefuncs[g_game.mode].term != 0) 
-	    (modefuncs[g_game.mode].term) ();
-	g_game.prev_mode = g_game.mode;
-
-	// init function of new mode
-	if (modefuncs[new_mode].init != 0) {
-		(modefuncs[new_mode].init) ();
-		clock_time = SDL_GetTicks() * 1.e-3;
-	}
-
-	g_game.mode = new_mode;
-	// new mode is now the current mode.
-}
-
-void CWinsys::CallLoopFunction () {
-	cur_time = SDL_GetTicks() * 1.e-3;
-	g_game.time_step = cur_time - clock_time;
-	if (g_game.time_step < 0.0001) g_game.time_step = 0.0001;
-	clock_time = cur_time;
-
-	if (modefuncs[g_game.mode].loop != 0) 
-		(modefuncs[g_game.mode].loop) (g_game.time_step);	
-}
-
-void CWinsys::EventLoop () {
-    while (true) {
-		PollEvent ();
-	    if (ModePending()) ChangeMode ();
-		CallLoopFunction ();
-		SDL_Delay (g_game.loopdelay);
-    }
 }
 
 unsigned char *CWinsys::GetSurfaceData () {

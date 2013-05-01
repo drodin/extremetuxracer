@@ -20,6 +20,13 @@ GNU General Public License for more details.
 #ifndef LOADING_H
 #define LOADING_H
 
-void loading_register ();
+class CLoading : public State {
+	void Enter();
+	void Loop(double time_step);
+	void Exit();
+public:
+};
+
+extern CLoading Loading;
 
 #endif

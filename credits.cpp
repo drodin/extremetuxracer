@@ -22,20 +22,21 @@ GNU General Public License for more details.
 #include "font.h"
 #include "gui.h"
 #include "spx.h"
+#include "game_type_select.h"
 
 #define TOP_Y 160
 #define BOTT_Y 64
 #define OFFS_SCALE_FACTOR 1.2
 
-static TCredits CreditList[MAX_CREDITS];
-static int numCredits = 0;
+CCredits Credits;
+
 
 static TVector2 cursor_pos = {0, 0};
 static double y_offset = 0;
 static TColor bgcol;
 static bool moving = true;
 
-void LoadCreditList () {
+void CCredits::LoadCreditList () {
 	CSPList list(MAX_CREDITS);
 
 	if (!list.Load (param.data_dir, "credits.lst")) {
@@ -57,7 +58,7 @@ void LoadCreditList () {
 	}
 }
 
-void DrawCreditsText (double time_step) {
+void CCredits::DrawCreditsText (double time_step) {
     double w = (double)param.x_resolution;
     double h = (double)param.y_resolution;
 	double offs = 0.0;
@@ -106,7 +107,7 @@ void DrawCreditsText (double time_step) {
 	if (offs < TOP_Y) y_offset = 0;
 }
 
-void DrawBackLogo (int x, int y, double size) {
+static void DrawBackLogo (int x, int y, double size) {
 	GLint w, h;
 	GLfloat width, height, top, bott, left, right;
 
@@ -135,23 +136,20 @@ void DrawBackLogo (int x, int y, double size) {
 	glEnd();
 }
 
-void CreditsKeys (unsigned int key, bool special, bool release, int x, int y){
+void CCredits::Keyb (unsigned int key, bool special, bool release, int x, int y){
 	if (release) return;
 	switch (key) {
 		case 109: moving = !moving; break;
 		case 9: param.ui_snow = !param.ui_snow; break;
-		default: Winsys.SetMode (GAME_TYPE_SELECT); 
+		default: State::manager.RequestEnterState (GameTypeSelect); 
 	}
 }
 
-static void CreditsMouseFunc (int button, int state, int x, int y ){
-	if (state == 1) Winsys.SetMode (GAME_TYPE_SELECT); 
+void CCredits::Mouse (int button, int state, int x, int y ){
+	if (state == 1) State::manager.RequestEnterState (GameTypeSelect); 
 }
 
-void CreditsMotionFunc (int x, int y ){
-	if (Winsys.ModePending ())
-		return;
-
+void CCredits::Motion(int x, int y ) {
     y = param.y_resolution - y;
     TVector2 old_pos = cursor_pos;
     cursor_pos = MakeVector2 (x, y);
@@ -161,14 +159,14 @@ void CreditsMotionFunc (int x, int y ){
     }
 }
 
-void CreditsInit () {
+void CCredits::Enter() {
 	Music.Play (param.credits_music, -1);
 	y_offset = 0;
 	moving = true;
 	bgcol = colBackgr;
 }
 
-void CreditsLoop (double time_step) {
+void CCredits::Loop(double time_step) {
 	int ww = param.x_resolution;
 	int hh = param.y_resolution;
 	
@@ -193,12 +191,4 @@ void CreditsLoop (double time_step) {
 
 	Reshape (ww, hh);
     Winsys.SwapBuffers();
-}
-
-void CreditsTerm () {
-}
-
-void credits_register() {
-	Winsys.SetModeFuncs (CREDITS, CreditsInit, CreditsLoop, CreditsTerm,
- 		CreditsKeys, CreditsMouseFunc, CreditsMotionFunc, NULL, NULL, NULL);
 }

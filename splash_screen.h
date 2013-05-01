@@ -20,6 +20,13 @@ GNU General Public License for more details.
 
 #include "bh.h"
 
-void splash_screen_register();
+class CSplashScreen : public State {
+	void Enter();
+	void Loop(double time_step);
+	void Keyb(unsigned int key, bool special, bool release, int x, int y);
+public:
+};
+
+extern CSplashScreen SplashScreen;
 
 #endif

@@ -15,6 +15,7 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 ---------------------------------------------------------------------*/
 
+#include "intro.h"
 #include "audio.h"
 #include "course_render.h"
 #include "ogl.h"
@@ -25,14 +26,14 @@ GNU General Public License for more details.
 #include "track_marks.h"
 #include "particles.h"
 #include "game_ctrl.h"
+#include "racing.h"
 
+CIntro Intro;
 static CKeyframe *startframe;
-
-void IntroKeys (unsigned int key, bool special, bool release, int x, int y);
 
 void abort_intro (CControl *ctrl) {
 	TVector2 start_pt = Course.GetStartPoint ();
-    Winsys.SetMode (RACING);
+    State::manager.RequestEnterState (Racing);
     ctrl->orientation_initialized = false;
     ctrl->view_init = false;
     ctrl->cpos.x = start_pt.x;
@@ -40,7 +41,7 @@ void abort_intro (CControl *ctrl) {
 }
 
 // =================================================================
-void intro_init(void) {
+void CIntro::Enter() {
     CControl *ctrl = Players.GetCtrl (g_game.player_id);
     TVector2 start_pt = Course.GetStartPoint ();
 	ctrl->orientation_initialized = false;
@@ -87,7 +88,7 @@ void intro_init(void) {
 	g_game.loopdelay = 1;
 }
 
-void intro_loop (double time_step) {
+void CIntro::Loop (double time_step) {
 	CControl *ctrl = Players.GetCtrl (g_game.player_id);
     int width = param.x_resolution;
     int height = param.y_resolution;
@@ -95,7 +96,7 @@ void intro_loop (double time_step) {
 
 	if (startframe->active) {
 		startframe->Update (time_step, ctrl);
-	} else Winsys.SetMode (RACING);
+	} else State::manager.RequestEnterState (Racing);
 
 	ClearRenderContext ();
 	Env.SetupFog ();
@@ -124,19 +125,10 @@ void intro_loop (double time_step) {
 
 } 
 
-void IntroTerm () {
-}
-
 // -----------------------------------------------------------------------
 
-void IntroKeys (unsigned int key, bool special, bool release, int x, int y) {
+void CIntro::Keyb (unsigned int key, bool special, bool release, int x, int y) {
 	CControl *ctrl = Players.GetCtrl (g_game.player_id);
     if (release) return;
     abort_intro (ctrl);
-}
-
-
-void intro_register() {
-	Winsys.SetModeFuncs (INTRO, intro_init, intro_loop, IntroTerm,
- 		IntroKeys, NULL, NULL, NULL, NULL, NULL);
 }

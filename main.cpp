@@ -98,27 +98,6 @@ int main( int argc, char **argv ) {
 	// written on the console):
 	//	Winsys.PrintJoystickInfo ();
 	//	PrintGLInfo ();
-
-	// register loop functions
-    splash_screen_register();
-	regist_register ();
-    intro_register();
-    racing_register();
-    game_over_register();
-    paused_register();
-    reset_register();
-    game_type_select_register();
-	RegisterGameConfig ();
-    event_select_register();
-	event_register ();
-    RaceSelectRegister();
-    credits_register();
-    loading_register();
-	RegisterKeyInfo ();
-	RegisterToolFuncs ();
-	NewPlayerRegister ();
-	RegisterScoreFunctions ();
-	RegisterTestFuncs ();
 	
 	// theses resources must or should be loaded before splashscreen starts
 	Tex.LoadTextureList ();
@@ -128,18 +107,17 @@ int main( int argc, char **argv ) {
 	Music.LoadMusicList ();
 	Music.SetVolume (param.music_volume);
 
-	g_game.mode = NO_MODE;
-
 	switch (g_game.argument) {
-		case 0: Winsys.SetMode (SPLASH); break;
+		case 0: State::manager.Run(SplashScreen); break;
 		case 4: 
 			g_game.toolmode = TUXSHAPE; 
-			Winsys.SetMode (TOOLS); 
+			State::manager.Run(Tools);
 			break;
-		case 9: Winsys.SetMode (OGLTEST); break;
+		case 9: State::manager.Run(OglTest); break;
 	}
 
- 	Winsys.EventLoop ();
+	Winsys.Quit();
+
     return 0;
 } 
 

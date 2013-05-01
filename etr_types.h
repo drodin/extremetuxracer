@@ -129,30 +129,6 @@ typedef struct {
 } TArea;
 
 typedef enum {
-    NO_MODE,
-    SPLASH,
-	REGIST,
-	NEWPLAYER,
-    GAME_TYPE_SELECT,
-    EVENT_SELECT,
-	EVENT,
-    RACE_SELECT,
-    LOADING,
-    INTRO,
-    RACING,
-    GAME_OVER,
-    PAUSED,
-    RESET,
-    CREDITS,
-	GAME_CONFIG,
-	HELP,
-	SCORE,
-	TOOLS,
-	OGLTEST,
-    NUM_GAME_MODES
-} TGameMode;
-
-typedef enum {
 	NONE,
 	TUXSHAPE,
 	KEYFRAME,
@@ -183,9 +159,7 @@ typedef enum {
 
 struct TCup2;
 
-typedef struct {	
-    TGameMode mode;              
-    TGameMode prev_mode;         
+typedef struct {
 	TToolMode toolmode;
 	double time_step;            
     double secs_since_start;  

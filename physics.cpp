@@ -21,6 +21,7 @@ GNU General Public License for more details.
 #include "audio.h"
 #include "particles.h"
 #include "game_ctrl.h"
+#include "game_over.h"
 
 CControl::CControl () :
 	cnet_force(MakeVector(0, 0, 0))
@@ -241,7 +242,7 @@ void CControl::AdjustVelocity (const TPlane& surf_plane) {
 	} else {
 /// --------------- finish ------------------------------------
 		cvel = ScaleVector (speed, cvel);
-		if (speed < 3) Winsys.SetMode (GAME_OVER);
+		if (speed < 3) State::manager.RequestEnterState (GameOver);
 /// -----------------------------------------------------------
 	}
 }
@@ -273,7 +274,7 @@ void CControl::SetTuxPosition (double speed) {
 				g_game.finish = true;
 				finish_speed = speed;
 //				SetStationaryCamera (true);
-			} else Winsys.SetMode (GAME_OVER);
+			} else State::manager.RequestEnterState (GameOver);
 		} 
 /// -----------------------------------------------------------
 	}

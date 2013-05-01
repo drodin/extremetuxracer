@@ -326,8 +326,6 @@ static float averagefps = 0;
 static float sumTime = 0;
 
 void DrawFps () {
-	if (g_game.mode != RACING) return;
-
 	if (numFrames >= maxFrames) {
 		averagefps = 1 / sumTime * maxFrames;
 		numFrames = 0;

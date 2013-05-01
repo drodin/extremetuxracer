@@ -21,15 +21,29 @@ GNU General Public License for more details.
 
 #define MAX_CREDITS 64
 
-typedef struct {
+struct TCredits {
 	string text;
 	int offs;
 	int font;
 	double size;
 	int col;
-} TCredits;
+};
 
-void credits_register();
-void LoadCreditList ();
+class CCredits : public State {
+	TCredits CreditList[MAX_CREDITS];
+	int numCredits;
+
+	void DrawCreditsText(double time_step);
+	void Enter();
+	void Loop(double time_step);
+	void Keyb(unsigned int key, bool special, bool release, int x, int y);
+	void Mouse(int button, int state, int x, int y);
+	void Motion(int x, int y);
+public:
+	CCredits() : numCredits(0) {}
+	void LoadCreditList();
+};
+
+extern CCredits Credits;
 
 #endif

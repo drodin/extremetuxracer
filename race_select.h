@@ -20,8 +20,15 @@ GNU General Public License for more details.
 
 #include "bh.h"
 
-void RaceSelectRegister ();
+class CRaceSelect : public State {
+	void Enter();
+	void Loop(double time_step);
+	void Keyb(unsigned int key, bool special, bool release, int x, int y);
+	void Mouse(int button, int state, int x, int y);
+	void Motion(int x, int y);
+public:
+};
+
+extern CRaceSelect RaceSelect;
 
 #endif 
-
-

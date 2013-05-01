@@ -70,9 +70,9 @@ void SingleFrameKeys (unsigned int key, bool special, bool release, int x, int y
 			if (ToolsFinalStage ()) {
 				SaveToolCharacter ();
 				SaveToolFrame ();
-				Winsys.Quit();
+				State::manager.RequestQuit();
 			} break;
-		case SDLK_n: if (ToolsFinalStage ()) Winsys.Quit (); break;
+		case SDLK_n: if (ToolsFinalStage ()) State::manager.RequestQuit(); break;
 
 		case 27: case SDLK_q: QuitTool (); break;
 		case SDLK_s: SaveToolFrame (); break;

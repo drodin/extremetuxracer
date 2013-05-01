@@ -24,6 +24,10 @@ GNU General Public License for more details.
 #include "textures.h"
 #include "game_ctrl.h"
 #include "translation.h"
+#include "event.h"
+#include "game_type_select.h"
+
+CEventSelect EventSelect;
 
 static TEvent2 *EventList;
 static size_t last_event;
@@ -38,7 +42,7 @@ void EnterEvent () {
 	g_game.game_type = CUPRACING;
 	g_game.cup = EventList[curr_event].cups[curr_cup];
 	g_game.race_id = 0;
-	Winsys.SetMode (EVENT);
+	State::manager.RequestEnterState(Event);
 }
 
 void ChangeEventSelection (int focus, int dir) {
@@ -61,16 +65,16 @@ void ChangeCupSelection (int focus, int dir) {
 	if (dir != 0 && curr_cup < last_cup) curr_cup++;
 }
 
-void EventSelectKeys (unsigned int key, bool special, bool release, int x, int y) {
+void CEventSelect::Keyb (unsigned int key, bool special, bool release, int x, int y) {
     if (release) return;
 	switch (key) {
-		case 27: Winsys.SetMode (GAME_TYPE_SELECT); break;
+		case 27: State::manager.RequestEnterState (GameTypeSelect); break;
 		case SDLK_TAB: if (curr_focus < 3) curr_focus++; else curr_focus = 0; 
 			if (Events.IsUnlocked (curr_event, curr_cup) == false && curr_focus == 2)
 			curr_focus = 3;
 			break;
-		case SDLK_q: Winsys.Quit (); break;
-		case 13: if (curr_focus == 3) Winsys.SetMode (GAME_TYPE_SELECT);
+		case SDLK_q: State::manager.RequestQuit(); break;
+		case 13: if (curr_focus == 3) State::manager.RequestEnterState (GameTypeSelect);
 			else if (Events.IsUnlocked (curr_event, curr_cup)) EnterEvent(); break;
 		case SDLK_DOWN: 
 			if (curr_focus == 0) ChangeEventSelection (curr_focus, 1); 
@@ -82,7 +86,7 @@ void EventSelectKeys (unsigned int key, bool special, bool release, int x, int y
 	}
 }
 
-void EventSelectMouseFunc (int button, int state, int x, int y ) {
+void CEventSelect::Mouse (int button, int state, int x, int y ) {
 	int foc, dir;
 	if (state == 1) {
 		GetFocus (x, y, &foc, &dir);
@@ -90,14 +94,13 @@ void EventSelectMouseFunc (int button, int state, int x, int y ) {
 			case 0: ChangeEventSelection (foc, dir); break;
 			case 1: ChangeCupSelection (foc, dir); break;
 			case 2: if (Events.IsUnlocked (curr_event, curr_cup)) EnterEvent(); break;
-			case 3: Winsys.SetMode (GAME_TYPE_SELECT); break;
+			case 3: State::manager.RequestEnterState (GameTypeSelect); break;
 		}
 	}
 }
 
-void EventSelectMotionFunc (int x, int y ){
+void CEventSelect::Motion (int x, int y ){
  	int foc, dir;
-	if (Winsys.ModePending ()) return;
 	GetFocus (x, y, &foc, &dir);
 	if (foc >= 0) curr_focus = foc;
 	   
@@ -114,7 +117,7 @@ void EventSelectMotionFunc (int x, int y ){
 static TArea area;
 static int framewidth, frameheight, frametop1, frametop2;
 
-void EventSelectInit () {
+void CEventSelect::Enter () {
 	Winsys.ShowCursor (!param.ice_cursor);    
 	EventList = &Events.EventList[0];
 	curr_event = 0;
@@ -147,7 +150,7 @@ void EventSelectInit () {
 	g_game.loopdelay = 20;
 }
 
-void EventSelectLoop (double timestep) {
+void CEventSelect::Loop (double timestep) {
 	int ww = param.x_resolution;
 	int hh = param.y_resolution;
 	TColor col;
@@ -205,12 +208,3 @@ void EventSelectLoop (double timestep) {
 	if (param.ice_cursor) DrawCursor ();
     SDL_GL_SwapBuffers ();
 }
-
-void EventSelectTerm () {
-}
-
-void event_select_register() {
-	Winsys.SetModeFuncs (EVENT_SELECT, EventSelectInit, EventSelectLoop, EventSelectTerm,
- 		EventSelectKeys, EventSelectMouseFunc, EventSelectMotionFunc, NULL, NULL, NULL);
-}
-

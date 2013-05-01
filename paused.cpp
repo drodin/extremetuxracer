@@ -26,24 +26,27 @@ GNU General Public License for more details.
 #include "particles.h"
 #include "textures.h"
 #include "game_ctrl.h"
+#include "racing.h"
+
+CPaused Paused;
 
 static bool sky = true;
 static bool fog = true;
 static bool terr = true;
 
-void PausedKeys (unsigned int key, bool special, bool release, int x, int y) {
+void CPaused::Keyb (unsigned int key, bool special, bool release, int x, int y) {
     if (release) return;
 	switch (key) {
 		case SDLK_s: ScreenshotN (); break;
 		case SDLK_F5: sky = !sky; break;
 		case SDLK_F6: fog = !fog; break;
 		case SDLK_F7: terr = !terr; break;
-		default: Winsys.SetMode (RACING);
+		default: State::manager.RequestEnterState (Racing);
 	}
 }
 
-static void PausedMouseFunc (int button, int state, int x, int y){
-    Winsys.SetMode (RACING);
+void CPaused::Mouse (int button, int state, int x, int y){
+    State::manager.RequestEnterState (Racing);
 }
 
 void PausedSetupDisplay () {
@@ -60,9 +63,7 @@ void PausedSetupDisplay () {
 
 // ====================================================================
 
-void paused_init (void) {}
-
-void paused_loop (double time_step) {
+void CPaused::Loop (double time_step) {
     CControl *ctrl = Players.GetCtrl (g_game.player_id);
     int width = param.x_resolution;
     int height = param.y_resolution;
@@ -96,8 +97,3 @@ void paused_loop (double time_step) {
     Reshape (width, height);
     Winsys.SwapBuffers ();
 } 
-
-void paused_register() {
-	Winsys.SetModeFuncs (PAUSED, paused_init, paused_loop, NULL,
- 		PausedKeys, PausedMouseFunc, NULL, NULL, NULL, NULL);
-}

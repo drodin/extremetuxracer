@@ -21,6 +21,7 @@ GNU General Public License for more details.
 #include "course.h"
 #include "view.h"
 #include "env.h"
+#include "game_over.h"
 #include <list>
 
 // ====================================================================
@@ -677,7 +678,7 @@ void CFlakes::Update (double timestep, CControl *ctrl) {
 
 	float zdiff = ctrl->cpos.z - snow_lastpos.z;
 	float ydiff = 0.f;
-	if (g_game.mode != GAME_OVER) {
+	if (State::manager.CurrentState() != &GameOver) {
 		ydiff = ctrl->cpos.y - snow_lastpos.y;
 	}
 

@@ -20,6 +20,16 @@ GNU General Public License for more details.
 
 #include "bh.h"
 
-void racing_register();
+class CRacing : public State {
+	void Enter();
+	void Loop(double time_step);
+	void Keyb(unsigned int key, bool special, bool release, int x, int y);
+	void Jaxis(int axis, double value);
+	void Jbutt(int button, int state);
+	void Exit();
+public:
+};
+
+extern CRacing Racing;
 
 #endif

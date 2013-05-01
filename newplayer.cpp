@@ -24,7 +24,10 @@ GNU General Public License for more details.
 #include "font.h"
 #include "game_ctrl.h"
 #include "translation.h"
+#include "regist.h"
 #include <cctype>
+
+CNewPlayer NewPlayer;
 
 static int curr_focus = 0;
 static TVector2 cursor_pos = {0, 0};
@@ -99,7 +102,7 @@ void NameDelete (size_t po) {
 void QuitAndAddPlayer () {
 	if (name.size () > 0)
 		Players.AddPlayer (name, Players.GetDirectAvatarName (curr_avatar));
-	Winsys.SetMode (REGIST);
+	State::manager.RequestEnterState (Regist);
 }
 
 void ChangeAvatarSelection (int focus, int dir) {
@@ -122,7 +125,7 @@ typedef struct{
   Uint16 unicode;
 } SDL_keysym;*/
 
-void NewPlayerKeySpec (SDL_keysym sym, bool release) {
+void CNewPlayer::Keyb_spec (SDL_keysym sym, bool release) {
 	if (release) return;
 	unsigned int key = sym.sym;
 	unsigned int mod = sym.mod;
@@ -145,9 +148,9 @@ void NewPlayerKeySpec (SDL_keysym sym, bool release) {
 		switch (key) {
 			case 127: if (posit < name.size()) NameDelete (posit); break;
 			case 8: if (posit > 0) NameDelete (posit-1); posit--; break;
-			case 27: Winsys.SetMode (REGIST); break;
+			case 27: State::manager.RequestEnterState (Regist); break;
 			case 13: 
-				if (curr_focus == 1) Winsys.SetMode (REGIST);
+				if (curr_focus == 1) State::manager.RequestEnterState (Regist);
 				else QuitAndAddPlayer (); 
 				break;
 			case SDLK_RIGHT: if (posit < name.size()) posit++; break;
@@ -163,22 +166,21 @@ void NewPlayerKeySpec (SDL_keysym sym, bool release) {
 	}
 }
 
-void NewPlayerMouseFunc (int button, int state, int x, int y) {
+void CNewPlayer::Mouse (int button, int state, int x, int y) {
 	int foc, dir;
 	if (state == 1) {
 		GetFocus (x, y, &foc, &dir);
 		switch (foc) {
 			case 0: ChangeAvatarSelection (foc, dir); break;
-			case 1: Winsys.SetMode (REGIST); break;
+			case 1: State::manager.RequestEnterState (Regist); break;
 			case 2: QuitAndAddPlayer(); break;
 		}
 	}
 }
 
-void NewPlayerMotionFunc (int x, int y ){
+void CNewPlayer::Motion (int x, int y ){
     TVector2 old_pos;
  	int sc, dir;
-	if (Winsys.ModePending ()) return; 
 
 	GetFocus (x, y, &sc, &dir);
 	if (sc >= 0) curr_focus = sc;
@@ -195,7 +197,7 @@ static TArea area;
 static int framewidth, frameheight, frametop;
 static int prevleft, prevtop, prevwidth, prevoffs;
 
-void NewPlayerInit (void) {  
+void CNewPlayer::Enter() {  
 	Winsys.KeyRepeat (true);
 	Winsys.ShowCursor (!param.ice_cursor);    
 	init_ui_snow (); 
@@ -225,7 +227,7 @@ void NewPlayerInit (void) {
 	curr_focus = 0;
 }
 
-void NewPlayerLoop (double timestep ){
+void CNewPlayer::Loop(double timestep ){
 	int ww = param.x_resolution;
 	int hh = param.y_resolution;
 	TColor col;
@@ -271,13 +273,4 @@ void NewPlayerLoop (double timestep ){
 
 	if (param.ice_cursor) DrawCursor ();
     Winsys.SwapBuffers();
-} 
-
-void NewPlayerTerm () {
-//	Winsys.SetFonttype ();
-}
-
-void NewPlayerRegister() {
-	Winsys.SetModeFuncs (NEWPLAYER, NewPlayerInit, NewPlayerLoop, NewPlayerTerm,
-	NULL, NewPlayerMouseFunc, NewPlayerMotionFunc, NULL, NULL, NewPlayerKeySpec);
 }

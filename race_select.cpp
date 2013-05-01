@@ -26,6 +26,10 @@ GNU General Public License for more details.
 #include "font.h"
 #include "translation.h"
 #include "spx.h"
+#include "game_type_select.h"
+#include "loading.h"
+
+CRaceSelect RaceSelect;
 
 static int curr_focus = 0;
 static int curr_light = 0;
@@ -60,7 +64,7 @@ void SetRaceConditions (void) {
 	g_game.course_id = curr_course;
 	g_game.theme_id = CourseList[curr_course].music_theme;
 	g_game.game_type = PRACTICING;
-	Winsys.SetMode (LOADING); 
+	State::manager.RequestEnterState (Loading); 
 }
 
 void ChangeSelection (int focus, int dir) {
@@ -85,9 +89,8 @@ void ChangeSelection (int focus, int dir) {
 	}
 }
 
-static void RaceSelectMotionFunc (int x, int y) {
+void CRaceSelect::Motion (int x, int y) {
  	int sc, dir;
-	if (Winsys.ModePending ()) return;
 	
 	GetFocus (x, y, &sc, &dir);
 	if (sc >= 0) curr_focus = sc;
@@ -100,7 +103,7 @@ static void RaceSelectMotionFunc (int x, int y) {
     }
 }
 
-static void RaceSelectMouseFunc (int button, int state, int x, int y ){
+void CRaceSelect::Mouse (int button, int state, int x, int y ){
 	int foc, dir;
 	if (state == 1) {
 		GetFocus (x, y, &foc, &dir);
@@ -112,16 +115,15 @@ static void RaceSelectMouseFunc (int button, int state, int x, int y ){
 			case 4: if (curr_mirror < lastMirror) curr_mirror++; else curr_mirror = 0; break;
 			case 5: if (curr_random < lastRandom) curr_random++; else curr_random = 0; break;
 			case 6: SetRaceConditions (); break;
-			case 7: Winsys.SetMode (GAME_TYPE_SELECT); break;
+			case 7: State::manager.RequestEnterState (GameTypeSelect); break;
 		}
 	}
 }
 
-static void RaceSelectKeys 
-		(unsigned int key, bool special, bool release, int x, int y) {
+void CRaceSelect::Keyb(unsigned int key, bool special, bool release, int x, int y) {
 	if (release) return;
 	switch (key) {
-		case 27: Winsys.SetMode (GAME_TYPE_SELECT); break;
+		case 27: State::manager.RequestEnterState (GameTypeSelect); break;
 		case SDLK_TAB: if (curr_focus < 7) curr_focus++; else curr_focus = 0; break;
 		case SDLK_DOWN: ChangeSelection (curr_focus, 1); break;
 		case SDLK_UP: ChangeSelection (curr_focus, 0); break;
@@ -133,7 +135,7 @@ static void RaceSelectKeys
 				if (g_game.treesize > 5) g_game.treesize = 1; break;
 		case SDLK_v: g_game.treevar++; 
 				if (g_game.treevar > 5) g_game.treevar = 1; break;
-		case 13: if (curr_focus == 8) Winsys.SetMode (GAME_TYPE_SELECT);
+		case 13: if (curr_focus == 8) State::manager.RequestEnterState (GameTypeSelect);
 				 else SetRaceConditions ();	break;
 	}
 }
@@ -145,7 +147,7 @@ static int prevtop, prevwidth, prevheight;
 static int icontop, iconsize, iconspace, iconleft, iconsumwidth;
 static int boxleft, boxwidth;
 
-void RaceSelectInit (void) {
+void CRaceSelect::Enter() {
 	Winsys.ShowCursor (!param.ice_cursor);    
 	Music.Play (param.menu_music, -1);
 	
@@ -187,7 +189,7 @@ void RaceSelectInit (void) {
 	g_game.loopdelay = 20;
 }
 
-void RaceSelectLoop (double timestep){
+void CRaceSelect::Loop(double timestep){
 	int ww = param.x_resolution;
 	int hh = param.y_resolution;
 	TColor col;
@@ -262,11 +264,4 @@ void RaceSelectLoop (double timestep){
 
 	if (param.ice_cursor) DrawCursor ();
     SDL_GL_SwapBuffers ();
-} 
-
-void RaceSelectTerm () {}
-
-void RaceSelectRegister () {
-	Winsys.SetModeFuncs (RACE_SELECT, RaceSelectInit, RaceSelectLoop, RaceSelectTerm,
- 		RaceSelectKeys, RaceSelectMouseFunc, RaceSelectMotionFunc, NULL, NULL, NULL);
 }

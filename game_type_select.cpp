@@ -22,29 +22,37 @@ GNU General Public License for more details.
 #include "gui.h"
 #include "particles.h"
 #include "font.h"
+#include "credits.h"
 #include "translation.h"
+#include "event_select.h"
+#include "race_select.h"
+#include "config_screen.h"
+#include "help.h"
+#include "score.h"
+
+CGameTypeSelect GameTypeSelect;
 
 static int scope = 0;
 static TVector2 cursor_pos = {0, 0};
 
 void EnterPractice () {
 	g_game.game_type = PRACTICING;	
-	Winsys.SetMode (RACE_SELECT);
+	State::manager.RequestEnterState (RaceSelect);
 }
 
 void QuitGameType (int sc) {
 	switch (sc) {
-		case 0: Winsys.SetMode (EVENT_SELECT); break;
+		case 0: State::manager.RequestEnterState (EventSelect); break;
 		case 1: EnterPractice (); break;
-		case 2: Winsys.SetMode (GAME_CONFIG); break;
-		case 5: Winsys.SetMode (CREDITS); break;
-		case 4: Winsys.SetMode (HELP); break;
-		case 3: Winsys.SetMode (SCORE); break;
-		case 6: Winsys.Quit (); break;
+		case 2: State::manager.RequestEnterState (GameConfig); break;
+		case 5: State::manager.RequestEnterState(Credits); break;
+		case 4: State::manager.RequestEnterState (Help); break;
+		case 3: State::manager.RequestEnterState (Score); break;
+		case 6: State::manager.RequestQuit(); break;
 	};
 }
 
-static void GameSelectMouseFunc (int button, int state, int x, int y) {
+void CGameTypeSelect::Mouse (int button, int state, int x, int y) {
 	int focus, dr;
 	if (state == 1) {
 		GetFocus (x, y, &focus, &dr);
@@ -52,12 +60,12 @@ static void GameSelectMouseFunc (int button, int state, int x, int y) {
 	}
 }
 
-void GameSelectKeys (unsigned int key, bool special, bool release, int x, int y) {
+void CGameTypeSelect::Keyb (unsigned int key, bool special, bool release, int x, int y) {
     if (release) return;
 
 	switch (key) {
 		case SDLK_u: param.ui_snow = !param.ui_snow; break;	
-		case 27: Winsys.Quit (); break;
+		case 27: State::manager.RequestQuit(); break;
 		case 274: if (scope < 6) scope++; break;
 		case 273: if (scope > 0) scope--; break;
 		case 13: QuitGameType (scope); break;
@@ -66,11 +74,10 @@ void GameSelectKeys (unsigned int key, bool special, bool release, int x, int y)
 	}	
 }
 
-void GameSelectMotionFunc (int x, int y) {
+void CGameTypeSelect::Motion (int x, int y) {
     TVector2 old_pos;
  	int sc, dir;
     
-	if (Winsys.ModePending()) return;
 	GetFocus (x, y, &sc, &dir);
 	if (sc >= 0) scope = sc;
 	y = param.y_resolution - y;
@@ -84,7 +91,7 @@ void GameSelectMotionFunc (int x, int y) {
 
 // ====================================================================
 
-static void GameSelectInit (void) {
+void CGameTypeSelect::Enter () {
 	Winsys.ShowCursor (!param.ice_cursor);    
 	init_ui_snow (); 
 	scope = 0;
@@ -105,7 +112,7 @@ static void GameSelectInit (void) {
 	g_game.loopdelay = 10;
 }
 
-static void GameSelectLoop (double time_step) {
+void CGameTypeSelect::Loop (double time_step) {
 	int ww = param.x_resolution;
 	int hh = param.y_resolution;
 
@@ -138,12 +145,3 @@ static void GameSelectLoop (double time_step) {
 	Reshape (ww, hh);
 	Winsys.SwapBuffers ();
 }
-
-static void GameSelectTerm (void) {
-}
-
-void game_type_select_register () {
-	Winsys.SetModeFuncs (GAME_TYPE_SELECT, GameSelectInit, GameSelectLoop, GameSelectTerm,
- 		GameSelectKeys, GameSelectMouseFunc, GameSelectMotionFunc, NULL, NULL, NULL);
-}
-

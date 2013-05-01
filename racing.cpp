@@ -15,6 +15,7 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 ---------------------------------------------------------------------*/
 
+#include "racing.h"
 #include "audio.h"
 #include "course_render.h"
 #include "ogl.h"
@@ -26,11 +27,16 @@ GNU General Public License for more details.
 #include "particles.h"
 #include "textures.h"
 #include "game_ctrl.h"
+#include "game_over.h"
+#include "paused.h"
+#include "reset.h"
 
 #define TURN_DECAY 0.5 
 #define MAX_JUMP_AMT 1.0
 #define ROLL_DECAY 0.2
 #define JUMP_MAX_START_HEIGHT 0.30
+
+CRacing Racing;
 
 static bool right_turn;
 static bool left_turn;
@@ -53,7 +59,7 @@ static bool trees = true;
 static int newsound = -1;
 static int lastsound = -1;
 
-void RacingKeys (unsigned int key, bool special, bool release, int x, int y) {
+void CRacing::Keyb (unsigned int key, bool special, bool release, int x, int y) {
 	switch (key) {
 		// steering flipflops
 		case 273: key_paddling = !release; break;	
@@ -67,10 +73,10 @@ void RacingKeys (unsigned int key, bool special, bool release, int x, int y) {
 		case 27:  if (!release) { 
 			g_game.raceaborted = true;
 			g_game.race_result = -1;
-			Winsys.SetMode (GAME_OVER);
+			State::manager.RequestEnterState (GameOver);
 		} break;	
-		case SDLK_p: if (!release) Winsys.SetMode (PAUSED); break;			
-		case SDLK_r: if (!release) Winsys.SetMode (RESET); break;				
+		case SDLK_p: if (!release) State::manager.RequestEnterState (Paused); break;			
+		case SDLK_r: if (!release) State::manager.RequestEnterState (Reset); break;				
 		case SDLK_s: if (!release) ScreenshotN (); break;
 
 		// view changing
@@ -97,7 +103,7 @@ void RacingKeys (unsigned int key, bool special, bool release, int x, int y) {
 	}
 }
 
-void RacingJoyAxis (int axis, double value) {
+void CRacing::Jaxis (int axis, double value) {
 	if (axis == 0) { 	// left and right
 		stick_turn = ((value < -0.2) || (value > 0.2));
 		if (stick_turn) stick_turnfact = value; else stick_turnfact = 0.0;
@@ -107,7 +113,7 @@ void RacingJoyAxis (int axis, double value) {
 	}
 }
 
-void RacingJoyButton (int button, int state) {
+void CRacing::Jbutt (int button, int state) {
 	if (button == 0) {
 		key_charging = state != 0;
 	} else if (button == 1) {
@@ -144,7 +150,7 @@ void SetSoundVolumes () {
 }
 
 // ---------------------------- init ----------------------------------
-void racing_init (void) {
+void CRacing::Enter (void) {
     CControl *ctrl = Players.GetCtrl (g_game.player_id);
 
     if (param.view_mode < 0 || param.view_mode >= NUM_VIEW_MODES) {
@@ -163,7 +169,7 @@ void racing_init (void) {
 	lastsound = -1;
 	newsound = -1;
 
-    if (g_game.prev_mode != PAUSED) ctrl->Init ();
+	if (State::manager.PreviousState() != &Paused) ctrl->Init ();
     g_game.raceaborted = false;
 
 	SetSoundVolumes ();
@@ -294,7 +300,7 @@ void CalcTrickControls (CControl *ctrl, double time_step, bool airborne) {
 //					loop
 // ====================================================================
 
-void racing_loop (double time_step){
+void CRacing::Loop (double time_step){
     CControl *ctrl = Players.GetCtrl (g_game.player_id);
 	double ycoord = Course.FindYCoord (ctrl->cpos.x, ctrl->cpos.z);
 	bool airborne = (bool) (ctrl->cpos.y > (ycoord + JUMP_MAX_START_HEIGHT));
@@ -341,12 +347,7 @@ void racing_loop (double time_step){
 } 
 
 // ---------------------------------- term ------------------
-static void racing_term() {
+void CRacing::Exit() {
 	Sound.HaltAll ();
     break_track_marks ();
-}
-
-void racing_register(){
-	Winsys.SetModeFuncs (RACING, racing_init, racing_loop, racing_term,
- 		RacingKeys, NULL, NULL, RacingJoyAxis, RacingJoyButton, NULL);
 }

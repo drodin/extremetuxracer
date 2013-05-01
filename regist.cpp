@@ -24,6 +24,10 @@ GNU General Public License for more details.
 #include "font.h"
 #include "game_ctrl.h"
 #include "translation.h"
+#include "game_type_select.h"
+#include "newplayer.h"
+
+CRegist Regist;
 
 static TVector2 cursor_pos = {0, 0};
 static int curr_focus = 0;
@@ -41,7 +45,7 @@ void QuitRegistration () {
 	g_game.player_id = curr_player;
 
 	g_game.char_id = curr_character;
-	Winsys.SetMode (GAME_TYPE_SELECT);
+	State::manager.RequestEnterState (GameTypeSelect);
 }
 
 void ChangeRegistSelection (int focus, int dir) {
@@ -58,14 +62,14 @@ void ChangeRegistSelection (int focus, int dir) {
 	}
 }
 				  
-void RegistKeys (unsigned int key, bool special, bool release, int x, int y) {
+void CRegist::Keyb (unsigned int key, bool special, bool release, int x, int y) {
 	if (release) return;
 	switch (key) {
-		case 27: Winsys.Quit (); break;
+		case 27: State::manager.RequestQuit(); break;
 		case 13: 
 			if (curr_focus == 3) {
 				old_last = last_player;
-				Winsys.SetMode (NEWPLAYER);
+				State::manager.RequestEnterState (NewPlayer);
 			} else QuitRegistration ();	break;
 		case SDLK_TAB: 
 			curr_focus++; 
@@ -76,7 +80,7 @@ void RegistKeys (unsigned int key, bool special, bool release, int x, int y) {
 	}
 }
 
-void RegistMouseFunc (int button, int state, int x, int y) {
+void CRegist::Mouse (int button, int state, int x, int y) {
 	int foc, dir;
 	if (state == 1) {
 		GetFocus (x, y, &foc, &dir);
@@ -84,14 +88,13 @@ void RegistMouseFunc (int button, int state, int x, int y) {
 			case 0: ChangeRegistSelection (foc, dir); break;
 			case 1: ChangeRegistSelection (foc, dir); break;
 			case 2: QuitRegistration (); break;
-			case 3: old_last = last_player; Winsys.SetMode (NEWPLAYER); break;
+			case 3: old_last = last_player; State::manager.RequestEnterState (NewPlayer); break;
 		}
 	}
 }
 
-void RegistMotionFunc (int x, int y ){
+void CRegist::Motion (int x, int y ){
  	int sc, dir;
-	if (Winsys.ModePending ()) return; 
 
 	GetFocus (x, y, &sc, &dir);
 	if (sc >= 0) curr_focus = sc;
@@ -108,7 +111,7 @@ static int framewidth, frameheight, arrowwidth, sumwidth;
 static TArea area;
 static double scale, texsize;
 
-void RegistInit (void) {  
+void CRegist::Enter (void) {  
 	Winsys.ShowCursor (!param.ice_cursor);    
 	init_ui_snow (); 
 	Music.Play (param.menu_music, -1);
@@ -135,12 +138,12 @@ void RegistInit (void) {
 	CharList = &Char.CharList[0];
 	last_character = Char.CharList.size() - 1;
 	last_player = Players.numPlayers() - 1;
-	if (g_game.prev_mode == NEWPLAYER && old_last != last_player) {
+	if (State::manager.PreviousState() == &NewPlayer && old_last != last_player) {
 		curr_player = last_player; 
 	} else curr_player = g_game.start_player;
 }
 
-void RegistLoop (double timestep ){
+void CRegist::Loop (double timestep ){
 	int ww = param.x_resolution;
 	int hh = param.y_resolution;
 	Music.Update ();    
@@ -200,11 +203,3 @@ void RegistLoop (double timestep ){
 	if (param.ice_cursor) DrawCursor ();
     Winsys.SwapBuffers();
 } 
-
-void RegistTerm () {
-}
-
-void regist_register() {
-	Winsys.SetModeFuncs (REGIST,  RegistInit,  RegistLoop,  RegistTerm,
- 		 RegistKeys,  RegistMouseFunc,  RegistMotionFunc, NULL, NULL, NULL);
-}

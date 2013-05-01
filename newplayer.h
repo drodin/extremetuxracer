@@ -20,6 +20,15 @@ GNU General Public License for more details.
 
 #include "bh.h"
 
-void NewPlayerRegister ();
+class CNewPlayer : public State {
+	void Enter();
+	void Loop(double time_step);
+	void Keyb_spec(SDL_keysym sym, bool release);
+	void Mouse(int button, int state, int x, int y);
+	void Motion(int x, int y);
+public:
+};
+
+extern CNewPlayer NewPlayer;
 
 #endif

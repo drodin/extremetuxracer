@@ -26,6 +26,12 @@ GNU General Public License for more details.
 #include "font.h"
 #include "game_ctrl.h"
 #include "translation.h"
+#include "event_select.h"
+#include "game_over.h"
+#include "game_config.h"
+#include "loading.h"
+
+CEvent Event;
 
 // ready: 0 - racing  1 - ready with success  2 - ready with failure
 static int ready = 0; 						// indicates if last race is done
@@ -37,7 +43,7 @@ static TVector2 cursor_pos = {0, 0};
 
 void StartRace () {
 	if (ready > 0) {
-		Winsys.SetMode (EVENT_SELECT);
+		State::manager.RequestEnterState (EventSelect);
 		return;
 	}
 	g_game.mirror_id = 0;
@@ -50,18 +56,18 @@ void StartRace () {
 	g_game.time_req = ecup->races[curr_race]->time;
 	g_game.numraces = ecup->num_races;
 	g_game.game_type = CUPRACING;
-	Winsys.SetMode (LOADING); 
+	State::manager.RequestEnterState (Loading); 
 }
 
-void EventKeys (unsigned int key, bool special, bool release, int x, int y) {
+void CEvent::Keyb (unsigned int key, bool special, bool release, int x, int y) {
     if (release) return;
 	switch (key) {
 	case 13: 
 		if (curr_focus < 1 && ready < 1) StartRace (); 
-		else Winsys.SetMode (EVENT_SELECT);
+		else State::manager.RequestEnterState (EventSelect);
 		break;
 	case 27:
-		Winsys.SetMode (EVENT_SELECT);
+		State::manager.RequestEnterState (EventSelect);
 		break;
 	case SDLK_TAB:
 		if (ready > 0) {
@@ -76,7 +82,7 @@ void EventKeys (unsigned int key, bool special, bool release, int x, int y) {
 	}
 }
 
-void EventMouseFunc (int button, int state, int x, int y ) {
+void CEvent::Mouse (int button, int state, int x, int y ) {
 	int foc, dr;
 	if (state != 1) return;
 
@@ -84,14 +90,13 @@ void EventMouseFunc (int button, int state, int x, int y ) {
 	if (ready < 1) {
 		if (foc >= 0) {
 			if (foc == 0) StartRace ();
-			else Winsys.SetMode (EVENT_SELECT);
+			else State::manager.RequestEnterState (EventSelect);
 		}
-	} else Winsys.SetMode (EVENT_SELECT);
+	} else State::manager.RequestEnterState (EventSelect);
 }
 
-void EventMotionFunc (int x, int y ) {
+void CEvent::Motion (int x, int y ) {
  	int dir, foc;
-	if (Winsys.ModePending ()) return;
 	GetFocus (x, y, &foc, &dir); // necessary for drawing the cursor
 	if (foc >= 0) curr_focus = foc;
 	y = param.y_resolution - y;
@@ -132,10 +137,10 @@ static int messtop, messtop2;
 static int bonustop, framewidth, frametop, framebottom;
 static int dist, texsize;
 
-void EventInit () {
+void CEvent::Enter () {
 	Winsys.ShowCursor (!param.ice_cursor);    
 
-	if (g_game.prev_mode == GAME_OVER) UpdateCupRacing ();
+	if (State::manager.PreviousState() == &GameOver) UpdateCupRacing ();
 		else InitCupRacing ();
 
 	framewidth = 500;
@@ -167,7 +172,7 @@ int resultlevel (int num, int numraces) {
 	return q + 1;
 } 
 
-void EventLoop (double timestep) {
+void CEvent::Loop (double timestep) {
 	int ww = param.x_resolution;
 	int hh = param.y_resolution;
 
@@ -251,12 +256,3 @@ void EventLoop (double timestep) {
 	if (param.ice_cursor) DrawCursor ();
     SDL_GL_SwapBuffers ();
 }
-
-void EventTerm () {
-}
-
-void event_register() {
-	Winsys.SetModeFuncs (EVENT, EventInit, EventLoop, EventTerm,
- 		EventKeys, EventMouseFunc, EventMotionFunc, NULL, NULL, NULL);
-}
-

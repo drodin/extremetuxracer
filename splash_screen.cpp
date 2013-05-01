@@ -29,24 +29,27 @@ GNU General Public License for more details.
 #include "game_ctrl.h"
 #include "translation.h"
 #include "score.h"
+#include "regist.h"
 
-void SplashKeys (unsigned int key, bool special, bool release, int x, int y) {
+CSplashScreen SplashScreen;
+
+void CSplashScreen::Keyb(unsigned int key, bool special, bool release, int x, int y) {
 	if (release) return;
 	switch (key) {
-		case 27: Winsys.Quit (); break;
-		case 13: Winsys.SetMode (REGIST); break;
+		case 27: State::manager.RequestQuit(); break;
+		case 13: State::manager.RequestEnterState (Regist); break;
 	}
 }
 
 
-void SplashInit (void) {  
+void CSplashScreen::Enter() {  
 	Winsys.ShowCursor (!param.ice_cursor);    
 	init_ui_snow (); 
 	Music.Play (param.menu_music, -1);
 	g_game.loopdelay = 10;
 }
 
-void SplashLoop (double timestep ){
+void CSplashScreen::Loop(double timestep) {
 	Music.Update ();    
 	check_gl_error();
     ClearRenderContext ();
@@ -68,7 +71,7 @@ void SplashLoop (double timestep ){
 	Trans.LoadTranslations (param.language);
 	Course.MakeStandardPolyhedrons ();
 	Sound.LoadSoundList ();
-	LoadCreditList ();
+	Credits.LoadCreditList ();
 	Char.LoadCharacterList ();
 	Course.LoadObjectTypes (); 
 	Course.LoadTerrainTypes ();
@@ -79,13 +82,5 @@ void SplashLoop (double timestep ){
 	Players.LoadAvatars (); // before LoadPlayers !!!
 	Players.LoadPlayers ();
 
-	Winsys.SetMode (REGIST);
+	State::manager.RequestEnterState (Regist);
 } 
-
-void SplashTerm () {
-}
-
-void splash_screen_register() {
-	Winsys.SetModeFuncs (SPLASH, SplashInit, SplashLoop, SplashTerm,
-	SplashKeys, NULL, NULL, NULL, NULL, NULL);
-}

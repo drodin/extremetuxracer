@@ -22,20 +22,22 @@ GNU General Public License for more details.
 #include "font.h"
 #include "gui.h"
 #include "translation.h"
+#include "game_type_select.h"
+
+CHelp Help;
 
 static int xleft1, xleft2, ytop;
 static TVector2 cursor_pos = {0, 0};
 				  
-void HelpKeys (unsigned int key, bool special, bool release, int x, int y) {
-	if (key == SDLK_ESCAPE) Winsys.SetMode (GAME_TYPE_SELECT);
+void CHelp::Keyb(unsigned int key, bool special, bool release, int x, int y) {
+	if (key == SDLK_ESCAPE) State::manager.RequestEnterState (GameTypeSelect);
 }
 
-void HelpMouseFunc (int button, int state, int x, int y) {
-	if (state == 1) Winsys.SetMode (GAME_TYPE_SELECT);
+void CHelp::Mouse(int button, int state, int x, int y) {
+	if (state == 1) State::manager.RequestEnterState (GameTypeSelect);
 }
 
-void HelpMotionFunc (int x, int y) {
-	if (Winsys.ModePending ()) return; 
+void CHelp::Motion(int x, int y) {
     y = param.y_resolution - y;
     TVector2 old_pos = cursor_pos;
     cursor_pos = MakeVector2 (x, y);
@@ -44,7 +46,7 @@ void HelpMotionFunc (int x, int y) {
     }
 }
 
-void HelpInit (void) {  
+void CHelp::Enter() {  
 	Winsys.ShowCursor (false);
 	init_ui_snow (); 
 	Music.Play (param.credits_music, -1);
@@ -54,7 +56,7 @@ void HelpInit (void) {
 	ytop = AutoYPosN (15);
 }
 
-void HelpLoop (double timestep ){
+void CHelp::Loop(double timestep ){
 	Music.Update ();    
 	check_gl_error();
     ClearRenderContext ();
@@ -90,11 +92,6 @@ void HelpLoop (double timestep ){
     Winsys.SwapBuffers();
 } 
 
-void HelpTerm () {
+void CHelp::Exit() {
 	Music.Halt();
-}
-
-void RegisterKeyInfo () {
-	Winsys.SetModeFuncs (HELP, HelpInit, HelpLoop, HelpTerm,
- 		HelpKeys, HelpMouseFunc, HelpMotionFunc, NULL, NULL, NULL);
 }

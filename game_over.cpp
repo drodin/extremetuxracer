@@ -15,6 +15,7 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 ---------------------------------------------------------------------*/
 
+#include "game_over.h"
 #include "audio.h"
 #include "ogl.h"
 #include "view.h"
@@ -29,6 +30,10 @@ GNU General Public License for more details.
 #include "game_ctrl.h"
 #include "translation.h"
 #include "score.h"
+#include "race_select.h"
+#include "event.h"
+
+CGameOver GameOver;
 
 static TVector2 cursor_pos = {0, 0 };
 static CKeyframe *final_frame;
@@ -36,25 +41,24 @@ static int highscore_pos = 999;
 
 void QuitGameOver () {
     if (g_game.game_type == PRACTICING) {
-		Winsys.SetMode (RACE_SELECT);
+		State::manager.RequestEnterState (RaceSelect);
 	} else {
-		Winsys.SetMode (EVENT);
+		State::manager.RequestEnterState (Event);
 	}
 }
 
-void GameOverKeys (unsigned int key, bool special, bool release, int x, int y) {
+void CGameOver::Keyb (unsigned int key, bool special, bool release, int x, int y) {
 	if (release) return;
 	if (key == 13 || key == 27) QuitGameOver ();
 }
 
-static void mouse_cb (int button, int state, int x, int y) {
+void CGameOver::Mouse (int button, int state, int x, int y) {
 	QuitGameOver ();
 }
 
-void GameOverMotionFunc  (int x, int y) {
+void CGameOver::Motion  (int x, int y) {
     TVector2 old_pos;
     
-	if (Winsys.ModePending ()) return;
     y = param.y_resolution - y;
     old_pos = cursor_pos;
     cursor_pos = MakeVector2 (x, y); 
@@ -174,7 +178,7 @@ void GameOverMessage (CControl *ctrl) {
 }
 
 // =========================================================================
-void GameOverInit (void) {
+void CGameOver::Enter() {
 	Sound.HaltAll ();
 
 	if (!g_game.raceaborted) highscore_pos = Score.CalcRaceResult ();
@@ -212,7 +216,7 @@ void GameOverInit (void) {
 }
 
 
-void GameOverLoop (double time_step) {
+void CGameOver::Loop(double time_step) {
     CControl *ctrl = Players.GetCtrl (g_game.player_id);
     int width, height;
     width = param.x_resolution;
@@ -251,15 +255,4 @@ void GameOverLoop (double time_step) {
 	DrawHud (ctrl);
     Reshape (width, height);
     Winsys.SwapBuffers ();
-} 
-
-void GameOverTerm () {
 }
-
-
-void game_over_register() {
-	Winsys.SetModeFuncs (GAME_OVER, GameOverInit, GameOverLoop, GameOverTerm,
- 		GameOverKeys, mouse_cb, GameOverMotionFunc, NULL, NULL, NULL);
-}
-
-

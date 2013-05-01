@@ -25,21 +25,24 @@ GNU General Public License for more details.
 #include "course.h"
 #include "track_marks.h"
 #include "game_ctrl.h"
+#include "racing.h"
 
 #define BLINK_IN_PLACE_TIME 0.5
 #define TOTAL_RESET_TIME 1.0
+
+CReset Reset;
 
 static double reset_start_time;
 static bool position_reset;
 
 
 //=====================================================================
-void reset_init (void) {
+void CReset::Enter() {
     reset_start_time = Winsys.ClockTime ();
     position_reset = false;
 }
 
-void reset_loop (double time_step) {
+void CReset::Loop(double time_step) {
     int width, height;
 	CControl *ctrl = Players.GetCtrl (g_game.player_id);
     double elapsed_time = Winsys.ClockTime () - reset_start_time;
@@ -128,13 +131,6 @@ void reset_loop (double time_step) {
     g_game.time += time_step;
 
     if (elapsed_time > TOTAL_RESET_TIME) {
-		Winsys.SetMode (RACING);
+		State::manager.RequestEnterState (Racing);
     }
-} 
-
-void reset_register() {
-	Winsys.SetModeFuncs 
-		(RESET, reset_init, reset_loop, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 }
-
-

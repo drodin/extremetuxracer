@@ -71,7 +71,6 @@ extern CGluCamera GluCamera;
 
 // --------------------------------------------------------------------
 
-void ToolsInit (void);
 void SetToolLight ();
 void QuitTool ();
 void SetToolMode (int newmode);
@@ -86,7 +85,16 @@ void ReloadToolCharacter ();
 void DrawChanged ();
 
 
+class CTools : public State {
+	void Loop(double time_step);
+	void Keyb(unsigned int key, bool special, bool release, int x, int y);
+	void Mouse(int button, int state, int x, int y);
+	void Motion(int x, int y);
+public:
+	void Enter();
+};
 
-void RegisterToolFuncs ();
+extern CTools Tools;
+
 
 #endif

@@ -20,6 +20,8 @@ GNU General Public License for more details.
 #include "font.h"
 #include "env.h"
 
+COglTest OglTest;
+
 static float tedef_amb[]  = {0.45, 0.53, 0.75, 1.0};    
 static float tedef_diff[] = {1.0, 0.9, 1.0, 1.0};    
 static float tedef_spec[] = {0.6, 0.6, 0.6, 1.0};    
@@ -47,26 +49,20 @@ void SetTestLight () {
 }
 
 
-void TestKeys (unsigned int key, bool special, bool release, int x, int y) {
+void COglTest::Keyb(unsigned int key, bool special, bool release, int x, int y) {
 	if (release) return;
 	switch (key) {
-		case 27: Winsys.Quit (); break;
+		case 27: State::manager.RequestQuit(); break;
 	}
 }
 
-void TestMouse (int button, int state, int x, int y) {
-}
-
-void TestMotion (int x, int y) {
-}
-
-void TestInit (void) {
+void COglTest::Enter() {
 	InitTestLight ();
 	Winsys.KeyRepeat (true);
  	g_game.loopdelay = 1;
 }
 
-void TestLoop (double timestep) {
+void COglTest::Loop(double timestep) {
 	check_gl_error();
 
 	// ------------- 3d scenery ---------------------------------------
@@ -94,27 +90,4 @@ void TestLoop (double timestep) {
 	FT.DrawString (CENTER, 10, "Test screen");
 	Reshape (param.x_resolution, param.y_resolution);
     Winsys.SwapBuffers ();
-} 
-
-void TestTerm () {}
-
-
-
-void RegisterTestFuncs () {
-	Winsys.SetModeFuncs (OGLTEST, TestInit, TestLoop, TestTerm,
- 		TestKeys, TestMouse, TestMotion, NULL, NULL, NULL);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -20,6 +20,12 @@ GNU General Public License for more details.
 
 #include "bh.h"
 
-void reset_register();
+class CReset : public State {
+	void Enter();
+	void Loop(double time_step);
+public:
+};
+
+extern CReset Reset;
 
 #endif

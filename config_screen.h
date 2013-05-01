@@ -1,7 +1,6 @@
 /* --------------------------------------------------------------------
 EXTREME TUXRACER
 
-Copyright (C) 1999-2001 Jasmin F. Patry (Tuxracer)
 Copyright (C) 2010 Extreme Tuxracer Team
 
 This program is free software; you can redistribute it and/or
@@ -15,12 +14,12 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 ---------------------------------------------------------------------*/
 
-#ifndef HELP_H
-#define HELP_H
+#ifndef GAME_CONFIG_SCREEN_H
+#define GAME_CONFIG_SCREEN_H
 
 #include "bh.h"
 
-class CHelp : public State {
+class CGameConfig : public State {
 	void Enter();
 	void Loop(double time_step);
 	void Keyb(unsigned int key, bool special, bool release, int x, int y);
@@ -30,6 +29,6 @@ class CHelp : public State {
 public:
 };
 
-extern CHelp Help;
+extern CGameConfig GameConfig;
 
-#endif
+#endif 

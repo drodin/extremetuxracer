@@ -91,11 +91,4 @@ void SaveConfigFile ();
 
 extern TParam param;
 
-// ********************************************************************
-//			configuration screen
-// ********************************************************************
-
-void RegisterGameConfig ();
-
 #endif 
-

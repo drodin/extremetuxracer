@@ -25,14 +25,17 @@ GNU General Public License for more details.
 #include "env.h"
 #include "translation.h"
 #include "gui.h"
+#include "intro.h"
+
+CLoading Loading;
 
 // ====================================================================
-void LoadingInit (void) {
+void CLoading::Enter() {
 	Winsys.ShowCursor (false);    
     Music.Play ("loading", -1);
 }
 
-void LoadingLoop (double time_step) {
+void CLoading::Loop(double time_step) {
  	TCourse *CourseList = &Course.CourseList[0];
 	int ww = param.x_resolution;
     int hh = param.y_resolution;
@@ -65,16 +68,9 @@ void LoadingLoop (double time_step) {
 	Course.LoadCourse (g_game.course_id);
 	g_game.location_id = Course.GetEnv ();
 	Env.LoadEnvironment (g_game.location_id, g_game.light_id);
-    Winsys.SetMode (INTRO);
+    State::manager.RequestEnterState (Intro);
 } 
 
-void LoadingTerm () {
+void CLoading::Exit() {
 	Music.Halt ();
 }
-
-void loading_register() {
-	Winsys.SetModeFuncs (LOADING, LoadingInit, LoadingLoop, LoadingTerm,
-		NULL, NULL, NULL, NULL, NULL, NULL);
-}
-
-

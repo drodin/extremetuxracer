@@ -122,8 +122,8 @@ void CharKeys (unsigned int key, bool special, bool release, int x, int y) {
 		if (key == SDLK_y || key == SDLK_j) {
 			SaveToolCharacter ();
 			SaveToolFrame ();
-			Winsys.Quit();
-		} else if (key == SDLK_n) Winsys.Quit ();
+			State::manager.RequestQuit();
+		} else if (key == SDLK_n) State::manager.RequestQuit();
 		return;
 	}
 
@@ -146,7 +146,7 @@ void CharKeys (unsigned int key, bool special, bool release, int x, int y) {
 		case SDLK_r: 
 			TestChar.Reset (); 
 			ReloadToolCharacter ();
-			ToolsInit ();
+			Tools.Enter ();
 			break;
 		case SDLK_u: if (action != NULL) {
 				RecallAction (action);
