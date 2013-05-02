@@ -3,6 +3,7 @@ bin_PROGRAMS = etr
 etr_SOURCES =		\
 	audio.cpp	\
 	common.cpp	\
+	config_screen.cpp \
 	course.cpp	\
 	course_render.cpp \
 	credits.cpp	\
@@ -37,6 +38,7 @@ etr_SOURCES =		\
 	score.cpp	\
 	splash_screen.cpp \
 	spx.cpp		\
+	states.cpp	\
 	textures.cpp	\
 	tool_char.cpp	\
 	tool_frame.cpp	\
@@ -51,6 +53,7 @@ noinst_HEADERS =	\
 	audio.h		\
 	bh.h		\
 	common.h	\
+	config_screen.h	\
 	course.h	\
 	course_render.h	\
 	credits.h	\
@@ -85,6 +88,7 @@ noinst_HEADERS =	\
 	score.h		\
 	splash_screen.h	\
 	spx.h		\
+	states.h	\
 	textures.h	\
 	tool_char.h	\
 	tool_frame.h	\
