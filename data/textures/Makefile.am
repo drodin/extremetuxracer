@@ -38,4 +38,8 @@ pkgdata_DATA = \
 	widgets.png	\
 	snow1.png	\
 	snow2.png	\
-	snow3.png
+	snow3.png	\
+	herringicon.png	\
+	gaugeoutline.png	\
+	gaugeenergymask.png	\
+	gaugespeedmask.png

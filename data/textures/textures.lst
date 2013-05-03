@@ -11,10 +11,10 @@
 * [id] 4 [name] menu_title [file] menu_title.png [repeat] 0
 * [id] 5 [name] menu_title_small [file] menu_title_small.png [repeat] 0
 
-* [id] 7 [name] herring_icon [file] herringicon4.png [repeat] 0
-* [id] 8 [name] gauge_outline [file] gaugeoutline2.png [repeat] 0
-* [id] 9 [name] gauge_energy_mask [file] gaugeenergymask2.png [repeat] 0
-* [id] 10 [name] gauge_speed_mask [file] gaugespeedmask3.png [repeat] 0
+* [id] 7 [name] herring_icon [file] herringicon.png [repeat] 0
+* [id] 8 [name] gauge_outline [file] gaugeoutline.png [repeat] 0
+* [id] 9 [name] gauge_energy_mask [file] gaugeenergymask.png [repeat] 0
+* [id] 10 [name] gauge_speed_mask [file] gaugespeedmask.png [repeat] 0
 * [id] 11 [name] listbox_arrows [file] listbox_arrows.png [repeat] 0
 * [id] 12 [name] speedmeter [file] speedmeter.png [repeat] 0
 
