@@ -48,7 +48,6 @@ void CHelp::Motion(int x, int y) {
 
 void CHelp::Enter() {  
 	Winsys.ShowCursor (false);
-	init_ui_snow (); 
 	Music.Play (param.credits_music, -1);
 
 	xleft1 = 40; 

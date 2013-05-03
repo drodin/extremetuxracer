@@ -92,8 +92,7 @@ void CGameTypeSelect::Motion (int x, int y) {
 // ====================================================================
 
 void CGameTypeSelect::Enter () {
-	Winsys.ShowCursor (!param.ice_cursor);    
-	init_ui_snow (); 
+	Winsys.ShowCursor (!param.ice_cursor);
 	scope = 0;
 	
 	ResetWidgets ();

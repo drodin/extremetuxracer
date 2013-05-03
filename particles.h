@@ -25,12 +25,10 @@ GNU General Public License for more details.
 //					snow for menu screens
 // --------------------------------------------------------------------
 
-void init_ui_snow (void );
+void init_ui_snow ();
 void update_ui_snow (double time_step);
 void push_ui_snow (const TVector2& pos );
-void draw_ui_snow (void );
-void make_ui_snow (const TVector2& pos );
-void reset_ui_snow_cursor_pos (const TVector2& pos );
+void draw_ui_snow ();
 
 // --------------------------------------------------------------------
 //					snow particles during race

@@ -112,8 +112,7 @@ static TArea area;
 static double scale, texsize;
 
 void CRegist::Enter (void) {  
-	Winsys.ShowCursor (!param.ice_cursor);    
-	init_ui_snow (); 
+	Winsys.ShowCursor (!param.ice_cursor);
 	Music.Play (param.menu_music, -1);
 
 	scale = param.scale;

@@ -261,7 +261,6 @@ static int dd, rightpos;
 void CGameConfig::Enter() {
 	Winsys.ShowCursor (!param.ice_cursor);    
 	Winsys.KeyRepeat (true);
-	init_ui_snow (); 
 
 	LangList = &Trans.languages[0];
 	lastLang = Trans.languages.size() - 1;

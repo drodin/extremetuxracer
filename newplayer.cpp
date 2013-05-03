@@ -199,8 +199,7 @@ static int prevleft, prevtop, prevwidth, prevoffs;
 
 void CNewPlayer::Enter() {  
 	Winsys.KeyRepeat (true);
-	Winsys.ShowCursor (!param.ice_cursor);    
-	init_ui_snow (); 
+	Winsys.ShowCursor (!param.ice_cursor);
 	Music.Play (param.menu_music, -1);
 
 	g_game.loopdelay = 10;

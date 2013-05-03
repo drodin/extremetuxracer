@@ -225,7 +225,6 @@ static int dd1, dd2, dd3, dd4;
 void CScore::Enter() {
 	Winsys.ShowCursor (!param.ice_cursor);    
 	Winsys.KeyRepeat (true);
-	init_ui_snow (); 
 	Music.Play (param.menu_music, -1);
 
 	framewidth = 550 * param.scale;

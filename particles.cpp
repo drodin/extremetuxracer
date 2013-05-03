@@ -28,8 +28,8 @@ GNU General Public License for more details.
 //					gui particles 2D
 // ====================================================================
 
-#define MAX_num_snowparticles 10000
-#define BASE_num_snowparticles 800 
+#define MAX_num_snowparticles 4000
+#define BASE_num_snowparticles 1000
 #define GRAVITY_FACTOR 0.015    
 #define BASE_VELOCITY 0.05
 #define VELOCITY_RANGE 0.02
@@ -137,7 +137,7 @@ void TGuiParticle::Update(double time_step, double push_timestep, const TVector2
 	}
 }
 
-void init_ui_snow (void) {
+void init_ui_snow () {
 	for (int i=0; i<BASE_num_snowparticles; i++)
 		particles_2d.push_back(TGuiParticle( frand(), frand()));
     push_position = MakeVector2 (0.0, 0.0);
@@ -163,9 +163,13 @@ void update_ui_snow (double time_step) {
 		p->Update(time_step, push_timestep, push_vector);
     }
 
+	if(frand() < time_step*20.0*(MAX_num_snowparticles - particles_2d.size())/1000.0) {
+		particles_2d.push_back(TGuiParticle(frand(), 1));
+	}
+
     for (list<TGuiParticle>::iterator p = particles_2d.begin(); p != particles_2d.end();) {
 		if (p->pt.y < -0.05) {
-			if  (particles_2d.size() > BASE_num_snowparticles && frand() > 0.5) {
+			if  (particles_2d.size() > BASE_num_snowparticles && frand() > 0.2) {
 				p = particles_2d.erase(p);
 			} else {
 				p->pt.x = frand();
@@ -189,7 +193,7 @@ void update_ui_snow (double time_step) {
     }
 } 
 
-void draw_ui_snow (void) {
+void draw_ui_snow () {
     double xres = param.x_resolution;
     double yres = param.y_resolution;
 	
@@ -200,24 +204,12 @@ void draw_ui_snow (void) {
 	for (list<TGuiParticle>::const_iterator i = particles_2d.begin(); i != particles_2d.end(); ++i) {
 		i->Draw(xres, yres);
     }
-} 
-
-void reset_ui_snow_cursor_pos (const TVector2& pos) {
-    push_position = MakeVector2 (pos.x/(double)param.x_resolution, pos.y/(double)param.y_resolution);
-    last_push_position = push_position;
-    push_position_initialized = true;
 }
 
 void push_ui_snow (const TVector2& pos) {
     push_position = MakeVector2 (pos.x/(double)param.x_resolution, pos.y/(double)param.y_resolution);
     if  (!push_position_initialized) last_push_position = push_position;
     push_position_initialized = true;
-}
-
-void make_ui_snow (const TVector2& pos) {
-    if  (particles_2d.size() < MAX_num_snowparticles) {
-		particles_2d.push_back(TGuiParticle(pos.x/param.x_resolution, pos.y/param.y_resolution));
-    }
 }
 
 // ====================================================================
