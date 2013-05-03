@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.61])
-AC_INIT([etr], [VERSION], [BUG-REPORT-ADDRESS])
+AC_INIT([etr], [0.6], [BUG-REPORT-ADDRESS])
 AC_CONFIG_SRCDIR([gui.cpp])
 AC_CONFIG_HEADERS([config.h])
 
