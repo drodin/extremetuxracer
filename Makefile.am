@@ -1,3 +1,5 @@
+SUBDIRS = data
+
 bin_PROGRAMS = etr
 
 etr_SOURCES =		\

@@ -1,0 +1,10 @@
+
+pkgdatadir = $(datadir)/$(PACKAGE)/courses/tux_at_home
+
+pkgdata_DATA = \
+	course.dim	\
+	items.lst	\
+	elev.png	\
+	preview.png	\
+	terrain.png	\
+	trees.png
