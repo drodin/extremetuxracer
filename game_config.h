@@ -26,7 +26,7 @@ using namespace std;
 
 typedef struct {
 	// defined at runtime:
-	string	prog_dir;
+  //	string	prog_dir;
 	string	config_dir;
     string	data_dir;
     string	common_course_dir;

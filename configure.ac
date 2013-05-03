@@ -42,6 +42,8 @@ AM_PATH_SDL([1.0.0])
 CFLAGS="$CFLAGS $SDL_CFLAGS"
 LIBS="$LIBS $SDL_LIBS"
 
+CPPFLAGS="${CPPFLAGS} -DETR_DATA_DIR=\\\"$datadir\\\""
+
 # TODO: Proper checks instead of hardcoding
 LIBS="$LIBS -lGL -lGLU -lSDL_image -lSDL_mixer"
 
