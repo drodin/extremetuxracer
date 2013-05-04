@@ -24,6 +24,7 @@ GNU General Public License for more details.
 #ifndef MAX
 #	define MAX(x,y) ((x)>(y)?(x):(y))
 #endif
+#define clamp(minimum, x, maximum) (max(min(x, maximum), minimum))
 
 #ifndef ROUND_TO_NEAREST
 #   define ROUND_TO_NEAREST(x) ((int) ((x)+0.5))

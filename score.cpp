@@ -119,7 +119,7 @@ bool CScore::LoadHighScore () {
 
 	TScore score;
 
-	Scorelist.resize(list.Count());
+	Scorelist.resize(Course.CourseList.size());
 	for (int i=0; i<list.Count(); i++) {
 		string line = list.Line (i);
 		string course = SPStrN (line, "course", "unknown");
@@ -130,7 +130,7 @@ bool CScore::LoadHighScore () {
 		score.herrings = SPIntN (line, "herr", 0);
 		score.time = SPFloatN (line, "time", 0);
 			
-		Score.AddScore (cidx, score);
+		AddScore (cidx, score);
 	}
 	return true;
 }
@@ -164,30 +164,17 @@ int CScore::CalcRaceResult () {
 //				score screen
 // --------------------------------------------------------------------
 
-static int curr_focus = 0;
 static TVector2 cursor_pos = {0, 0};
 static TCourse *CourseList;
-static size_t lastCourse = 0;
-static size_t curr_course = 0;
+static TUpDown* course;
+static TWidget* textbutton;
 
-void ChangeScoreSelection (int focus, int dir) {
-	if (dir == 0) {
-		if (curr_course > 0) curr_course--;
-	} else {
-		if (curr_course < lastCourse) curr_course++;
-	}
-}
-
-static TScore aaa;
 void CScore::Keyb (unsigned int key, bool special, bool release, int x, int y) {
+	KeyGUI(key, release);
 	if (release) return;
 	switch (key) {
 		case 27: State::manager.RequestEnterState (GameTypeSelect); break;
 		case SDLK_q: State::manager.RequestQuit(); break;
-		case SDLK_DOWN: ChangeScoreSelection (curr_focus, 1); break;
-		case SDLK_UP: ChangeScoreSelection (curr_focus, 0); break;
-		case SDLK_LEFT: ChangeScoreSelection (curr_focus, 0); break;
-		case SDLK_RIGHT: ChangeScoreSelection (curr_focus, 1); break;
 		case SDLK_s: Score.SaveHighScore (); break;
 		case SDLK_l: Score.LoadHighScore (); break;
 		case 13: State::manager.RequestEnterState (GameTypeSelect); break;
@@ -195,19 +182,15 @@ void CScore::Keyb (unsigned int key, bool special, bool release, int x, int y) {
 }
 
 void CScore::Mouse (int button, int state, int x, int y) {
-	int foc, dir;
 	if (state == 1) {
-		GetFocus (x, y, &foc, &dir);
-		if (curr_focus == 0) ChangeScoreSelection (foc, dir);
-		else if (curr_focus == 1) State::manager.RequestEnterState (GameTypeSelect); 
+		TWidget* clicked = ClickGUI(x, y);
+		if (clicked == textbutton)
+			State::manager.RequestEnterState (GameTypeSelect); 
 	}
 }
 
 void CScore::Motion (int x, int y ){
- 	int sc, dir;
-
-	GetFocus (x, y, &sc, &dir);
-	if (sc >= 0) curr_focus = sc;
+	MouseMoveGUI(x, y);
 	y = param.y_resolution - y;
 
     TVector2 old_pos = cursor_pos;
@@ -240,14 +223,11 @@ void CScore::Enter() {
 	dd4 = 375 * param.scale;
 
 	CourseList = &Course.CourseList[0];
-	lastCourse = Course.CourseList.size() - 1;
-	curr_course = g_game.course_id;
 
-	ResetWidgets ();
-	AddArrow (area.right + 8, frametop, 0, 0);
-	AddArrow (area.right + 8, frametop + 18, 1, 0);
+	ResetGUI ();
+	course = AddUpDown(area.right + 8, frametop, 0, (int)Course.CourseList.size()-1, 0);
 	int siz = FT.AutoSizeN (5);
-	AddTextButton ("Back", CENTER, AutoYPosN (80), 1, siz);
+	textbutton = AddTextButton ("Back", CENTER, AutoYPosN (80), siz);
 
 	g_game.loopdelay = 1;
 }
@@ -283,12 +263,9 @@ void CScore::Loop (double timestep ){
 	DrawFrameX (area.left, frametop, framewidth, frameheight, 3, colMBackgr, colDYell, 1.0);
 	FT.AutoSizeN (5);
 	FT.SetColor (colWhite);
-	FT.DrawString (area.left+20, frametop, CourseList[curr_course].name);
+	FT.DrawString (area.left+20, frametop, CourseList[course->GetValue()].name);
 
-	PrintArrow (0, (curr_course > 0));	
-	PrintArrow (1, (curr_course < lastCourse));
-
-	TScoreList *list = Score.GetScorelist (curr_course);
+	TScoreList *list = Score.GetScorelist (course->GetValue());
 
 	FT.SetColor (colWhite);
 	if (list != NULL) {
@@ -310,8 +287,7 @@ void CScore::Loop (double timestep ){
 		}
 	} else Message ("score list out of range");
 
-	PrintTextButton (0, curr_focus);
+	DrawGUI();
 
-	if (param.ice_cursor) DrawCursor ();
     Winsys.SwapBuffers();
 }

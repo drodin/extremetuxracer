@@ -35,11 +35,12 @@ CEvent Event;
 
 // ready: 0 - racing  1 - ready with success  2 - ready with failure
 static int ready = 0; 						// indicates if last race is done
-static int curr_focus = 0;
+static TWidget* curr_focus = 0;
 static TCup2 *ecup = 0;						
 static int curr_race = 0;
 static int curr_bonus = 0;
 static TVector2 cursor_pos = {0, 0};
+static TWidget* textbuttons[3];
 
 void StartRace () {
 	if (ready > 0) {
@@ -63,7 +64,7 @@ void CEvent::Keyb (unsigned int key, bool special, bool release, int x, int y) {
     if (release) return;
 	switch (key) {
 	case 13: 
-		if (curr_focus < 1 && ready < 1) StartRace (); 
+		if (curr_focus == textbuttons[0] && ready < 1) StartRace (); 
 		else State::manager.RequestEnterState (EventSelect);
 		break;
 	case 27:
@@ -71,34 +72,32 @@ void CEvent::Keyb (unsigned int key, bool special, bool release, int x, int y) {
 		break;
 	case SDLK_TAB:
 		if (ready > 0) {
-			curr_focus = 2;
+			curr_focus = textbuttons[2];
 		} else {
-			if (curr_focus < 1) curr_focus = 1; else curr_focus = 0;
+			if (curr_focus == textbuttons[0]) curr_focus = textbuttons[1]; else curr_focus = textbuttons[0];
 		}
 		break;
-	case SDLK_LEFT: if (curr_focus < 1) curr_focus = 1; break; 
-	case SDLK_RIGHT: if (curr_focus == 1) curr_focus = 0; break; 
+	case SDLK_LEFT: if (curr_focus == textbuttons[0]) curr_focus = textbuttons[1]; break; 
+	case SDLK_RIGHT: if (curr_focus == textbuttons[1]) curr_focus = textbuttons[0]; break; 
 	case SDLK_u: param.ui_snow = !param.ui_snow; break;
 	}
 }
 
-void CEvent::Mouse (int button, int state, int x, int y ) {
-	int foc, dr;
+void CEvent::Mouse (int button, int state, int x, int y) {
 	if (state != 1) return;
 
-	GetFocus (x, y, &foc, &dr);
+	TWidget* clicked = ClickGUI(x, y);
 	if (ready < 1) {
-		if (foc >= 0) {
-			if (foc == 0) StartRace ();
-			else State::manager.RequestEnterState (EventSelect);
-		}
+		if(clicked == textbuttons[0])
+			StartRace ();
+		else
+			State::manager.RequestEnterState (EventSelect);
 	} else State::manager.RequestEnterState (EventSelect);
 }
 
-void CEvent::Motion (int x, int y ) {
- 	int dir, foc;
-	GetFocus (x, y, &foc, &dir); // necessary for drawing the cursor
-	if (foc >= 0) curr_focus = foc;
+void CEvent::Motion (int x, int y) {
+	TWidget* foc = MouseMoveGUI(x, y);
+	if (foc != 0) curr_focus = foc;
 	y = param.y_resolution - y;
     TVector2 old_pos = cursor_pos;
     cursor_pos = MakeVector2 (x, y);
@@ -154,15 +153,15 @@ void CEvent::Enter () {
 	dist = texsize + 2 * 4;
 	framebottom = frametop + ecup->num_races * dist + 10;
 
-	ResetWidgets ();
+	ResetGUI ();
 	int siz = FT.AutoSizeN (5);
-	AddTextButton (Trans.Text(8), area.left + 100, AutoYPosN (80), 1, siz);
+	textbuttons[1] = AddTextButton (Trans.Text(8), area.left + 100, AutoYPosN (80), siz);
 	double len = FT.GetTextWidth (Trans.Text(13));
-	AddTextButton (Trans.Text(13), area.right -len - 100, AutoYPosN (80), 0, siz);
-	AddTextButton (Trans.Text(15), CENTER, AutoYPosN (80), 2, siz);
+	textbuttons[0] = AddTextButton (Trans.Text(13), area.right -len - 100, AutoYPosN (80), siz);
+	textbuttons[2] = AddTextButton (Trans.Text(15), CENTER, AutoYPosN (80), siz);
 	
 	Music.Play (param.menu_music, -1);
-	if (ready < 1) curr_focus = 0; else curr_focus = 2;
+	if (ready < 1) curr_focus = textbuttons[0]; else curr_focus = textbuttons[2];
 	g_game.loopdelay = 20;
 }
 
@@ -248,11 +247,11 @@ void CEvent::Loop (double timestep) {
 		DrawBonusExt (bonustop, ecup->num_races, curr_bonus);
 		FT.DrawString (CENTER, messtop2, Trans.Text(19));
 	}
-	if (ready < 1) {
-		PrintTextButton (0, curr_focus);
-		PrintTextButton (1, curr_focus);
-	} else PrintTextButton (2, curr_focus);
 
-	if (param.ice_cursor) DrawCursor ();
+	textbuttons[0]->SetVisible(ready < 1);
+	textbuttons[1]->SetVisible(ready < 1);
+	textbuttons[2]->SetVisible(!(ready < 1));
+
+	DrawGUI ();
     SDL_GL_SwapBuffers ();
 }

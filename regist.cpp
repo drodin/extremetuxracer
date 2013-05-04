@@ -30,74 +30,48 @@ GNU General Public License for more details.
 CRegist Regist;
 
 static TVector2 cursor_pos = {0, 0};
-static int curr_focus = 0;
 static TCharacter *CharList;
-static size_t curr_character = 0;
-static size_t last_character;
-//static int xleft, ytop;
-static size_t curr_player = 0;
-static size_t last_player;
+static TWidget* textbuttons[2];
+static TUpDown* player;
+static TUpDown* character;
 static size_t old_last;
 
 void QuitRegistration () {
 	Players.ResetControls ();
-	Players.AllocControl (curr_player);
-	g_game.player_id = curr_player;
+	Players.AllocControl (player->GetValue());
+	g_game.player_id = player->GetValue();
 
-	g_game.char_id = curr_character;
+	g_game.char_id = character->GetValue();
 	State::manager.RequestEnterState (GameTypeSelect);
-}
-
-void ChangeRegistSelection (int focus, int dir) {
-	if (dir == 0) {
-		switch (focus) {
-			case 0:	if (curr_player > 0) curr_player--; break;
-			case 1:	if (curr_character > 0) curr_character--; break;
-		}
-	} else {
-		switch (focus) {
-			case 0:	if (curr_player < last_player) curr_player++; break;
-			case 1:	if (curr_character < last_character) curr_character++; break;
-		}
-	}
 }
 				  
 void CRegist::Keyb (unsigned int key, bool special, bool release, int x, int y) {
+	TWidget* focussed = KeyGUI(key, release);
 	if (release) return;
 	switch (key) {
 		case 27: State::manager.RequestQuit(); break;
 		case 13: 
-			if (curr_focus == 3) {
-				old_last = last_player;
+			if (focussed == textbuttons[1]) {
+				old_last = player->GetValue();
 				State::manager.RequestEnterState (NewPlayer);
 			} else QuitRegistration ();	break;
-		case SDLK_TAB: 
-			curr_focus++; 
-			if (curr_focus > 3) curr_focus = 0; 
-			break;
-		case SDLK_DOWN: ChangeRegistSelection (curr_focus, 1); break;
-		case SDLK_UP: ChangeRegistSelection (curr_focus, 0); break;
 	}
 }
 
 void CRegist::Mouse (int button, int state, int x, int y) {
-	int foc, dir;
 	if (state == 1) {
-		GetFocus (x, y, &foc, &dir);
-		switch (foc) {
-			case 0: ChangeRegistSelection (foc, dir); break;
-			case 1: ChangeRegistSelection (foc, dir); break;
-			case 2: QuitRegistration (); break;
-			case 3: old_last = last_player; State::manager.RequestEnterState (NewPlayer); break;
+		TWidget* focussed = ClickGUI(x, y);
+		if(focussed == textbuttons[0])
+			QuitRegistration ();
+		else if(focussed == textbuttons[1]) {
+			old_last = player->GetValue();
+			State::manager.RequestEnterState (NewPlayer);
 		}
 	}
 }
 
-void CRegist::Motion (int x, int y ){
- 	int sc, dir;
-
-	GetFocus (x, y, &sc, &dir);
-	if (sc >= 0) curr_focus = sc;
+void CRegist::Motion (int x, int y) {
+	MouseMoveGUI(x, y);
 	y = param.y_resolution - y;
 
     TVector2 old_pos = cursor_pos;
@@ -123,26 +97,22 @@ void CRegist::Enter (void) {
 	area = AutoAreaN (30, 80, sumwidth);
 	texsize = 128 * scale;
 
-	ResetWidgets ();
-	AddArrow (area.left + framewidth + 8, area.top, 0, 0);
-	AddArrow (area.left + framewidth + 8, area.top + 18, 1, 0);
-	AddArrow (area.left + framewidth * 2 + arrowwidth + 8, area.top, 0, 1);
-	AddArrow (area.left + framewidth * 2 + arrowwidth + 8, area.top + 18, 1, 1);
+	ResetGUI ();
+	player = AddUpDown(area.left + framewidth + 8, area.top, 0, (int)Players.numPlayers() - 1, 0);
+	character = AddUpDown(area.left + framewidth * 2 + arrowwidth + 8, area.top, 0, (int)Char.CharList.size() - 1, 0);
 	int siz = FT.AutoSizeN (5);
-	AddTextButton ("Enter", CENTER, AutoYPosN (62), 2, siz);
-	AddTextButton ("Register a new player", CENTER, AutoYPosN (70), 3, siz);
+	textbuttons[0] = AddTextButton ("Enter", CENTER, AutoYPosN (62), siz);
+	textbuttons[1] = AddTextButton ("Register a new player", CENTER, AutoYPosN (70), siz);
 
-	curr_focus = 0;
 	g_game.loopdelay = 10;
 	CharList = &Char.CharList[0];
-	last_character = Char.CharList.size() - 1;
-	last_player = Players.numPlayers() - 1;
-	if (State::manager.PreviousState() == &NewPlayer && old_last != last_player) {
-		curr_player = last_player; 
-	} else curr_player = g_game.start_player;
+	if (State::manager.PreviousState() == &NewPlayer)
+		player->SetValue((int)old_last);
+	else
+		player->SetValue((int)g_game.start_player);
 }
 
-void CRegist::Loop (double timestep ){
+void CRegist::Loop (double timestep) {
 	int ww = param.x_resolution;
 	int hh = param.y_resolution;
 	Music.Update ();    
@@ -171,34 +141,26 @@ void CRegist::Loop (double timestep ){
 	FT.DrawString (area.left + framewidth + arrowwidth, top, "Select a character:");
 
 	FT.AutoSizeN (4);
-	if (curr_focus == 0) col = colDYell; else col = colWhite;
+	if (player->focussed()) col = colDYell; else col = colWhite;
 	DrawFrameX (area.left, area.top, framewidth, frameheight, 3, colMBackgr, col, 1.0);
 	FT.SetColor (col);
-	FT.DrawString (area.left + 20, area.top, Players.GetName (curr_player));
-	Tex.DrawDirectFrame (Players.GetAvatarID (curr_player), 
+	FT.DrawString (area.left + 20, area.top, Players.GetName (player->GetValue()));
+	Tex.DrawDirectFrame (Players.GetAvatarID (player->GetValue()), 
 		area.left + 60, AutoYPosN (40), texsize, texsize, 3, colWhite);
 
-	if (curr_focus == 1) col = colDYell; else col = colWhite;
+	if (character->focussed()) col = colDYell; else col = colWhite;
 	DrawFrameX (area.left + framewidth + arrowwidth, area.top, 
 		framewidth, frameheight, 3, colMBackgr, col, 1.0);
 	FT.SetColor (col);
 	FT.DrawString (area.left + framewidth + arrowwidth + 20, 
-		area.top, CharList[curr_character].name);
-	Tex.DrawDirectFrame (CharList[curr_character].preview, 
+		area.top, CharList[character->GetValue()].name);
+	Tex.DrawDirectFrame (CharList[character->GetValue()].preview, 
 		area.right - texsize - 60 - arrowwidth, 
 		AutoYPosN (40), texsize, texsize, 3, colWhite);
 
 
 	FT.SetColor (colWhite);
-	PrintArrow (0, (curr_player > 0));	
+	DrawGUI();
 
-	PrintArrow (1, (curr_player < last_player));
-	PrintArrow (2, (curr_character > 0));	
-	PrintArrow (3, (curr_character < last_character));
-
-	PrintTextButton (0, curr_focus);
-	PrintTextButton (1, curr_focus);
-
-	if (param.ice_cursor) DrawCursor ();
     Winsys.SwapBuffers();
 } 

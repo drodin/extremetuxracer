@@ -20,65 +20,121 @@ GNU General Public License for more details.
 
 #include "bh.h"
 
-enum TWidgetType {
-	W_ARROW,
-	W_TEXTBUTTON,
-	W_ICONBUTTON,
-	W_CHECKBOX
+
+class TWidget {
+protected:
+	TRect mouseRect;
+	TVector2 position;
+	bool active;
+	bool visible;
+public:
+	bool focus;
+	
+	TWidget(int x, int y, int width, int height);
+	virtual void Draw() const = 0;
+	virtual bool Click(int x, int y);
+	virtual void Key(unsigned int key, bool released) {}
+	virtual void MouseMove(int x, int y);
+	bool focussed() const { return focus; }
+	void SetActive(bool a) { active = a; if(!a) focus = false; }
+	void SetVisible(bool v) { visible = v; if(!v) focus = false; }
+	bool GetActive() const { return active; }
+	bool GetVisible() const { return visible; }
 };
 
-struct TMouseRect {
-	TRect rect;
-	int focus;
-	int dir;
-	size_t arrnr;
-	TWidgetType type;
-};
-
-struct TArrow {
-	int x;
-	int y;
-	int dir;
-	int focus;
-};
-
-struct TTextButton {
-	int x;
-	int y;
-	int font;
+class TTextButton : public TWidget {
  	string text;
-	int focus;
 	double ftsize;	// font height
+public:
+	TTextButton(int x, int y, const string& text_, double ftsize_);
+	void Draw() const;
 };
+TTextButton* AddTextButton (const string& text, int x, int y, double ftsize);
+TTextButton* AddTextButtonN (const string& text, int x, int y, int rel_ftsize);
 
-struct TIconButton {
-	int x;
-	int y;
-	int focus;
-	double size;
-	GLuint texid;
-};
-
-struct TCheckbox {
-	int x;
-	int y;
-	int focus;
+class TCheckbox : public TWidget {
 	int width;
 	string tag;
+public:
+	bool checked;
+
+	TCheckbox(int x, int y, int width_, const string& tag_)
+		: TWidget(x, y, 32, 32)
+		, width(width_)
+		, tag(tag_)
+		, checked(false)
+	{
+		mouseRect.left = x+width-32;
+	}
+	void Draw() const;
+	bool Click(int x, int y);
+	void Key(unsigned int key, bool released);
 };
+TCheckbox* AddCheckbox (int x, int y, int width, const string& tag);
 
-void GetFocus (int x, int y, int *focus, int *dir);
-void ResetWidgets ();
+class TIconButton : public TWidget {
+	double size;
+	GLuint texid;
+	int maximum;
+	int value;
+public:
+	TIconButton(int x, int y, GLuint texid_, double size_, int max_, int value_)
+		: TWidget(x, y, 32, 32)
+		, texid(texid_)
+		, size(size_)
+		, maximum(max_)
+		, value(value_)
+	{}
+	int GetValue() const { return value; }
+	void Draw() const;
+	bool Click(int x, int y);
+	void Key(unsigned int key, bool released);
+};
+TIconButton* AddIconButton (int x, int y, GLuint texid, double size, int maximum, int value);
 
-void AddArrow (int x, int y, int dir, int focus);
-void PrintArrow (int nr, bool active);
-void AddTextButton (const string& text, int x, int y, int focus, double ftsize);
-void AddTextButtonN (const string& text, int x, int y, int focus, int rel_ftsize);
-void PrintTextButton (int nr, int focus);
-void AddIconButton (int x, int y, int focus, GLuint texid, double size);
-void PrintIconButton (int nr, int focus, int state);
-void AddCheckbox (int x, int y, int focus, int width, const string& tag);
-void PrintCheckbox (int nr, int focus, bool state);
+class TArrow : public TWidget {
+public:
+	TArrow(int x, int y, bool down_)
+		: TWidget(x, y, 32, 16)
+		, down(down_)
+	{}
+	bool down;
+	int sel;
+	void Draw() const;
+};
+TArrow* AddArrow(int x, int y, bool down);
+
+class TUpDown : public TWidget {
+	TArrow up;
+	TArrow down;
+	int value;
+	int minimum;
+	int maximum;
+public:
+	TUpDown(int x, int y, int min_, int max_, int value_, int distance);
+	int GetValue() const { return value; }
+	void SetValue(int value_);
+	void SetMinimum(int min_);
+	void SetMaximum(int max_);
+	void Draw() const;
+	bool Click(int x, int y);
+	void Key(unsigned int key, bool released);
+	void MouseMove(int x, int y);
+};
+TUpDown* AddUpDown(int x, int y, int minimum, int maximum, int value, int distance = 2);
+
+// --------------------------------------------------------------------
+
+void DrawGUI();
+TWidget* ClickGUI(int x, int y);
+TWidget* MouseMoveGUI(int x, int y);
+TWidget* KeyGUI(unsigned int key, bool released);
+void SetFocus(TWidget* widget);
+void IncreaseFocus();
+void DecreaseFocus();
+void ResetGUI();
+
+// --------------------------------------------------------------------
 
 void DrawFrameX (int x, int y, int w, int h, int line, 
 			const TColor& backcol, const TColor& framecol, double transp);

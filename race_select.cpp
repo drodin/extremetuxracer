@@ -31,69 +31,37 @@ GNU General Public License for more details.
 
 CRaceSelect RaceSelect;
 
-static int curr_focus = 0;
-static int curr_light = 0;
-static int lastLight = 3;
-static int curr_snow = 0;
-static int lastSnow = 3;
-static int curr_wind = 0;
-static int lastWind = 3;
-static int curr_mirror = 0;
-static int lastMirror = 1;
-static int curr_random = 0;
-static int lastRandom = 1;
-static size_t curr_course = 0;
-static size_t lastCourse;
 static TVector2 cursor_pos = {0, 0};
+static TUpDown* course;
+static TIconButton* light;
+static TIconButton* snow;
+static TIconButton* wind;
+static TIconButton* mirror;
+static TIconButton* random;
+static TWidget* textbuttons[2];
 
 static TCourse *CourseList;
 
 void SetRaceConditions (void) {
-	if (curr_random > 0) {
-		g_game.mirror_id = IRandom (0, lastMirror);
-		g_game.light_id = IRandom (0, lastLight);
-		g_game.snow_id = IRandom (0, lastSnow);
-		g_game.wind_id = IRandom (0, lastWind);
-		curr_random = 0;
+	if (random->GetValue() > 0) {
+		g_game.mirror_id = IRandom (0, 1);
+		g_game.light_id = IRandom (0, 3);
+		g_game.snow_id = IRandom (0, 3);
+		g_game.wind_id = IRandom (0, 3);
 	} else {
-		g_game.mirror_id = curr_mirror;
-		g_game.light_id = curr_light;
-		g_game.snow_id = curr_snow;
-		g_game.wind_id = curr_wind;
+		g_game.mirror_id = mirror->GetValue();
+		g_game.light_id = light->GetValue();
+		g_game.snow_id = snow->GetValue();
+		g_game.wind_id = wind->GetValue();
 	}
-	g_game.course_id = curr_course;
-	g_game.theme_id = CourseList[curr_course].music_theme;
+	g_game.course_id = course->GetValue();
+	g_game.theme_id = CourseList[course->GetValue()].music_theme;
 	g_game.game_type = PRACTICING;
 	State::manager.RequestEnterState (Loading); 
 }
 
-void ChangeSelection (int focus, int dir) {
-	if (dir == 0) {
-		switch (focus) {
-			case 0:	if (curr_course > 0) curr_course--; break;
-			case 1: if (curr_light > 0) curr_light--; break;
-			case 2: if (curr_snow > 0) curr_snow--; break;
-			case 3: if (curr_wind > 0) curr_wind--; break;	
-			case 4: if (curr_mirror > 0) curr_mirror--; break;	
-			case 5: if (curr_random > 0) curr_random--; break;	
-		}
-	} else {
-		switch (focus) {
-			case 0:	if (curr_course < lastCourse) curr_course++; break;
-			case 1: if (curr_light < lastLight) curr_light++; break;
-			case 2: if (curr_snow < lastSnow) curr_snow++; break;
-			case 3: if (curr_wind < lastWind) curr_wind++; break;	
-			case 4: if (curr_mirror < lastMirror) curr_mirror++; break;	
-			case 5: if (curr_random < lastRandom) curr_random++; break;	
-		}
-	}
-}
-
 void CRaceSelect::Motion (int x, int y) {
- 	int sc, dir;
-	
-	GetFocus (x, y, &sc, &dir);
-	if (sc >= 0) curr_focus = sc;
+	MouseMoveGUI(x, y);
 	y = param.y_resolution - y;
 
     TVector2 old_pos = cursor_pos;
@@ -104,39 +72,31 @@ void CRaceSelect::Motion (int x, int y) {
 }
 
 void CRaceSelect::Mouse (int button, int state, int x, int y ){
-	int foc, dir;
 	if (state == 1) {
-		GetFocus (x, y, &foc, &dir);
-		switch (foc) {
-			case 0: ChangeSelection (foc, dir); break;
-			case 1: if (curr_light < lastLight) curr_light++; else curr_light = 0; break;
-			case 2: if (curr_snow < lastSnow) curr_snow++; else curr_snow = 0; break;
-			case 3: if (curr_wind < lastWind) curr_wind++; else curr_wind = 0; break;
-			case 4: if (curr_mirror < lastMirror) curr_mirror++; else curr_mirror = 0; break;
-			case 5: if (curr_random < lastRandom) curr_random++; else curr_random = 0; break;
-			case 6: SetRaceConditions (); break;
-			case 7: State::manager.RequestEnterState (GameTypeSelect); break;
-		}
+		ClickGUI(x, y);
+
+		if(textbuttons[0]->focussed())
+			SetRaceConditions ();
+		else if(textbuttons[0]->focussed())
+			State::manager.RequestEnterState (GameTypeSelect);
 	}
 }
 
 void CRaceSelect::Keyb(unsigned int key, bool special, bool release, int x, int y) {
 	if (release) return;
+	KeyGUI(key, release);
 	switch (key) {
 		case 27: State::manager.RequestEnterState (GameTypeSelect); break;
-		case SDLK_TAB: if (curr_focus < 7) curr_focus++; else curr_focus = 0; break;
-		case SDLK_DOWN: ChangeSelection (curr_focus, 1); break;
-		case SDLK_UP: ChangeSelection (curr_focus, 0); break;
-		case SDLK_LEFT: ChangeSelection (curr_focus, 0); break;
-		case SDLK_RIGHT: ChangeSelection (curr_focus, 1); break;
 		case SDLK_u: param.ui_snow = !param.ui_snow; break;
 		case SDLK_t: g_game.force_treemap = !g_game.force_treemap; break;
 		case SDLK_c: g_game.treesize++; 
 				if (g_game.treesize > 5) g_game.treesize = 1; break;
 		case SDLK_v: g_game.treevar++; 
 				if (g_game.treevar > 5) g_game.treevar = 1; break;
-		case 13: if (curr_focus == 8) State::manager.RequestEnterState (GameTypeSelect);
-				 else SetRaceConditions ();	break;
+		case 13: if (textbuttons[1]->focussed())
+					 State::manager.RequestEnterState (GameTypeSelect);
+				 else if(textbuttons[0]->focussed())
+					 SetRaceConditions ();	break;
 	}
 }
 
@@ -152,7 +112,6 @@ void CRaceSelect::Enter() {
 	Music.Play (param.menu_music, -1);
 	
 	CourseList = &Course.CourseList[0];
-	lastCourse = Course.CourseList.size() - 1;
 
 	framewidth = 550 * param.scale;
 	frameheight = 50 * param.scale;
@@ -170,22 +129,21 @@ void CRaceSelect::Enter() {
 	iconsumwidth = iconspace * 4 + iconsize;
 	iconleft = (param.x_resolution - iconsumwidth) / 2;
 
-	ResetWidgets ();
-	AddArrow (area.left + framewidth + 8, frametop, 0, 0);
-	AddArrow (area.left + framewidth + 8, frametop+18, 1, 0);
+	ResetGUI ();
 
-	AddIconButton (iconleft, icontop, 1, Tex.TexID (LIGHT_BUTT), iconsize); 
-	AddIconButton (iconleft + iconspace, icontop, 2, Tex.TexID (SNOW_BUTT), iconsize); 
-	AddIconButton (iconleft + iconspace*2, icontop, 3, Tex.TexID (WIND_BUTT), iconsize); 
-	AddIconButton (iconleft + iconspace*3, icontop, 4, Tex.TexID (MIRROR_BUTT), iconsize); 
-	AddIconButton (iconleft + iconspace*4, icontop, 5, Tex.TexID (RANDOM_BUTT), iconsize); 
+	course = AddUpDown(area.left + framewidth + 8, frametop, 0, (int)Course.CourseList.size() - 1, 0);
+	
+	light = AddIconButton (iconleft, icontop, Tex.TexID (LIGHT_BUTT), iconsize, 3, g_game.light_id); 
+	snow = AddIconButton (iconleft + iconspace, icontop, Tex.TexID (SNOW_BUTT), iconsize, 3, g_game.snow_id); 
+	wind = AddIconButton (iconleft + iconspace*2, icontop, Tex.TexID (WIND_BUTT), iconsize, 3, g_game.wind_id); 
+	mirror = AddIconButton (iconleft + iconspace*3, icontop, Tex.TexID (MIRROR_BUTT), iconsize, 1, g_game.mirror_id); 
+	random = AddIconButton (iconleft + iconspace*4, icontop, Tex.TexID (RANDOM_BUTT), iconsize, 1, 0); 
 
 	int siz = FT.AutoSizeN (5);
 	double len1 = FT.GetTextWidth (Trans.Text(13));
-	AddTextButton (Trans.Text(13), area.right-len1-50, AutoYPosN (80), 6, siz);
- 	AddTextButton (Trans.Text(8), area.left + 50, AutoYPosN (80), 7, siz);
+	textbuttons[0] = AddTextButton (Trans.Text(13), area.right-len1-50, AutoYPosN (80), siz);
+ 	textbuttons[1] = AddTextButton (Trans.Text(8), area.left + 50, AutoYPosN (80), siz);
 
-	curr_focus = 0;
 	g_game.loopdelay = 20;
 }
 
@@ -216,13 +174,13 @@ void CRaceSelect::Loop(double timestep){
 //			0, colMBackgr, colBlack, 0.2);
 
 	// course selection
-	if (curr_focus == 0) col = colDYell; else col = colWhite;
+	if (course->focussed()) col = colDYell; else col = colWhite;
 	DrawFrameX (area.left, frametop, framewidth, frameheight, 3, colMBackgr, col, 1.0);
 	FT.AutoSizeN (4);
 	FT.SetColor (colDYell);
-	FT.DrawString (area.left+20, frametop, CourseList[curr_course].name);
+	FT.DrawString (area.left+20, frametop, CourseList[course->GetValue()].name);
 
-	Tex.DrawDirectFrame (CourseList[curr_course].preview, 
+	Tex.DrawDirectFrame (CourseList[course->GetValue()].preview, 
 		area.left + 3, prevtop, prevwidth, prevheight, 3, colWhite);
 
 
@@ -230,23 +188,11 @@ void CRaceSelect::Loop(double timestep){
 	FT.AutoSizeN (2);
 	FT.SetColor (colWhite);
 	int dist = FT.AutoDistanceN (0);
-	for (int i=0; i<CourseList[curr_course].num_lines; i++) {
-		FT.DrawString (boxleft+8, prevtop+i*dist, CourseList[curr_course].desc[i]);
+	for (int i=0; i<CourseList[course->GetValue()].num_lines; i++) {
+		FT.DrawString (boxleft+8, prevtop+i*dist, CourseList[course->GetValue()].desc[i]);
 	}
 	
-	FT.DrawString (CENTER, prevtop + prevheight + 10, "Author:  " + CourseList[curr_course].author); 
-
-	PrintArrow (0, (curr_course > 0));	
-	PrintArrow (1, (curr_course < lastCourse));
-
-	PrintIconButton (0, curr_focus, curr_light);
-	PrintIconButton (1, curr_focus, curr_snow);
-	PrintIconButton (2, curr_focus, curr_wind);
-	PrintIconButton (3, curr_focus, curr_mirror);
-	PrintIconButton (4, curr_focus, curr_random);
-
-	PrintTextButton (0, curr_focus);
-	PrintTextButton (1, curr_focus);
+	FT.DrawString (CENTER, prevtop + prevheight + 10, "Author:  " + CourseList[course->GetValue()].author);
 
 	FT.AutoSizeN (4);
 	string forcetrees = "Load trees.png";
@@ -260,8 +206,7 @@ void CRaceSelect::Loop(double timestep){
  		FT.DrawString (CENTER, AutoYPosN (90), sizevar);
 	}
 
+	DrawGUI();
 
-
-	if (param.ice_cursor) DrawCursor ();
     SDL_GL_SwapBuffers ();
 }

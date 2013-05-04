@@ -29,7 +29,6 @@ GNU General Public License for more details.
 
 CNewPlayer NewPlayer;
 
-static int curr_focus = 0;
 static TVector2 cursor_pos = {0, 0};
 static string name;
 static size_t posit;
@@ -37,8 +36,8 @@ static float curposit;
 static size_t maxlng = 32;
 static bool crsrvisible = true;
 static float crsrtime = 0;
-static size_t curr_avatar = 0;
-static size_t last_avatar = 0;
+static TUpDown* avatar;
+static TWidget* textbuttons[2];
 
 #define CRSR_PERIODE 0.4
 
@@ -101,20 +100,8 @@ void NameDelete (size_t po) {
 
 void QuitAndAddPlayer () {
 	if (name.size () > 0)
-		Players.AddPlayer (name, Players.GetDirectAvatarName (curr_avatar));
+		Players.AddPlayer (name, Players.GetDirectAvatarName(avatar->GetValue()));
 	State::manager.RequestEnterState (Regist);
-}
-
-void ChangeAvatarSelection (int focus, int dir) {
-	if (dir == 0) {
-		switch (focus) {
-			case 0:	if (curr_avatar > 0) curr_avatar--; break;
-		}
-	} else {
-		switch (focus) {
-			case 0:	if (curr_avatar < last_avatar) curr_avatar++; break;
-		}
-	}
 }
 
 /*
@@ -133,6 +120,8 @@ void CNewPlayer::Keyb_spec (SDL_keysym sym, bool release) {
 	crsrtime = 0;
 	crsrvisible = true;
 
+	KeyGUI(key, release);
+
 	if (islower (key)) {
 		if (name.size() < maxlng) {
 			if (mod & KMOD_SHIFT) NameInsert (toupper (key));
@@ -150,43 +139,34 @@ void CNewPlayer::Keyb_spec (SDL_keysym sym, bool release) {
 			case 8: if (posit > 0) NameDelete (posit-1); posit--; break;
 			case 27: State::manager.RequestEnterState (Regist); break;
 			case 13: 
-				if (curr_focus == 1) State::manager.RequestEnterState (Regist);
+				if (textbuttons[0]->focussed()) State::manager.RequestEnterState (Regist);
 				else QuitAndAddPlayer (); 
 				break;
 			case SDLK_RIGHT: if (posit < name.size()) posit++; break;
 			case SDLK_LEFT: if (posit > 0) posit--; break;
 			case 278: posit = 0; break;
 			case 279: posit = name.size(); break;
-			
 			case 32: NameInsert (32); posit++; break;
-			case SDLK_UP: if (curr_avatar>0) curr_avatar--; break;
-			case SDLK_DOWN: if (curr_avatar<last_avatar) curr_avatar++; break;
-			case SDLK_TAB: curr_focus++; if (curr_focus>2) curr_focus =0; break;
 		}
 	}
 }
 
 void CNewPlayer::Mouse (int button, int state, int x, int y) {
-	int foc, dir;
 	if (state == 1) {
-		GetFocus (x, y, &foc, &dir);
-		switch (foc) {
-			case 0: ChangeAvatarSelection (foc, dir); break;
-			case 1: State::manager.RequestEnterState (Regist); break;
-			case 2: QuitAndAddPlayer(); break;
-		}
+		TWidget* clicked = ClickGUI(x, y);
+
+		if(clicked == textbuttons[0])
+			State::manager.RequestEnterState (Regist);
+		else if(clicked == textbuttons[2])
+			QuitAndAddPlayer();
 	}
 }
 
-void CNewPlayer::Motion (int x, int y ){
-    TVector2 old_pos;
- 	int sc, dir;
-
-	GetFocus (x, y, &sc, &dir);
-	if (sc >= 0) curr_focus = sc;
+void CNewPlayer::Motion (int x, int y) {
+	MouseMoveGUI(x, y);
 	y = param.y_resolution - y;
 
-    old_pos = cursor_pos;
+    TVector2 old_pos = cursor_pos;
     cursor_pos = MakeVector2 (x, y);
     if  (old_pos.x != x || old_pos.y != y) {
 		if (param.ui_snow) push_ui_snow (cursor_pos);
@@ -214,16 +194,13 @@ void CNewPlayer::Enter() {
 	prevwidth = 75 * param.scale;
 	prevoffs = 80;
 
-	ResetWidgets ();
-	AddArrow (area.left + prevwidth + prevoffs + 8, prevtop, 0, 0);
-	AddArrow (area.left + prevwidth + prevoffs + 8, prevtop +prevwidth -18, 1, 0);
-	int siz = FT.AutoSizeN (5);
-	AddTextButton (Trans.Text(8), area.left+50, AutoYPosN (70), 1, siz);
-	double len = FT.GetTextWidth (Trans.Text(15));
-	AddTextButton (Trans.Text(15), area.right-len-50, AutoYPosN (70), 2, siz);
+	ResetGUI();
 
-	last_avatar = Players.numAvatars() - 1;
-	curr_focus = 0;
+	avatar = AddUpDown (area.left + prevwidth + prevoffs + 8, prevtop, 0, (int)Players.numAvatars() - 1, 0, prevwidth - 34);
+	int siz = FT.AutoSizeN (5);
+	textbuttons[0] = AddTextButton (Trans.Text(8), area.left+50, AutoYPosN (70), siz);
+	double len = FT.GetTextWidth (Trans.Text(15));
+	textbuttons[1] = AddTextButton (Trans.Text(15), area.right-len-50, AutoYPosN (70), siz);
 }
 
 void CNewPlayer::Loop(double timestep ){
@@ -259,17 +236,12 @@ void CNewPlayer::Loop(double timestep ){
  	CalcCursorPos ();
 	DrawCrsr (area.left+20+curposit+1, frametop+9, 0, timestep);
 
-	if (curr_focus == 0) col = colDYell; else col = colWhite;
-	Tex.DrawDirectFrame (Players.GetDirectAvatarID (curr_avatar), 
+	if (avatar->focussed()) col = colDYell; else col = colWhite;
+	Tex.DrawDirectFrame (Players.GetDirectAvatarID (avatar->GetValue()), 
 			prevleft + prevoffs, prevtop, prevwidth, prevwidth, 2, col);
 
 
 	FT.SetColor (colWhite);
-	PrintArrow (0, (curr_avatar > 0));	
- 	PrintArrow (1, (curr_avatar < last_avatar));
-	PrintTextButton (0, curr_focus);
-	PrintTextButton (1, curr_focus);
-
-	if (param.ice_cursor) DrawCursor ();
+	DrawGUI();
     Winsys.SwapBuffers();
 }

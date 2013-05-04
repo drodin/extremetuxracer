@@ -21,147 +21,130 @@ GNU General Public License for more details.
 #include <list>
 #include <vector>
 
+
 #define CURSOR_SIZE 10
 
 static int cursor_x = -100;
 static int cursor_y = -100;
 
-static list<TMouseRect> MouseRects;
-static vector<TArrow> Arrows;
-static int selArrow = -1;
-static int selType = -1;
-static vector<TTextButton> TextButtons;
-static vector<TIconButton> IconButtons;
-static vector<TCheckbox> Checkboxes;
+static vector<TWidget*> Widgets;
 
-void ResetWidgets () {
-	MouseRects.clear();
-	Arrows.clear();
-	TextButtons.clear();
-	IconButtons.clear();
-	Checkboxes.clear();
+static bool Inside (int x, int y, const TRect& Rect) {
+	return (x >= Rect.left
+		&& x <= Rect.left + Rect.width
+		&& y >= Rect.top
+		&& y <= Rect.top + Rect.height);
 }
 
-void DrawCursor () {
-	Tex.Draw (MOUSECURSOR, cursor_x, cursor_y, 
-		CURSOR_SIZE  * (double)param.x_resolution / 14000);
+TWidget::TWidget(int x, int y, int width, int height)
+	: active(true)
+	, visible(true)
+	, focus(false)
+{
+	mouseRect.top = y;
+	mouseRect.left = x;
+	mouseRect.height = height;
+	mouseRect.width = width;
+	position.x = x;
+	position.y = y;
 }
 
-void AddMouseRect (int left, int top, int width, int height,
-		int focus, int dir, size_t arrnr, TWidgetType type) {
-	MouseRects.push_back(TMouseRect());
-	MouseRects.back().rect.left = left;
-	MouseRects.back().rect.top = top;
-	MouseRects.back().rect.width = width;
-	MouseRects.back().rect.height = height;
-	MouseRects.back().focus = focus;
-	MouseRects.back().dir = dir;
-	MouseRects.back().arrnr = arrnr;
-	MouseRects.back().type = type;
+bool TWidget::Click(int x, int y) {
+	return active && visible && Inside(x, y, mouseRect);
 }
 
-void AddArrow (int x, int y, int dir, int focus) {
-	Arrows.push_back(TArrow());
-	Arrows.back().x = x;
-	Arrows.back().y = y;
-	Arrows.back().dir = dir;
-	Arrows.back().focus = focus;
-	AddMouseRect (x, y, 32, 16, focus, dir, Arrows.size()-1, W_ARROW);
+void TWidget::MouseMove(int x, int y) {
+	focus = active && visible && Inside(x, y, mouseRect);
 }
 
-void AddTextButton (const string& text, int x, int y, int focus, double ftsize) {
-	TextButtons.push_back(TTextButton());
-	TextButtons.back().y = y;
-	TextButtons.back().text = text;
-	TextButtons.back().focus = focus;
-
+TTextButton::TTextButton(int x, int y, const string& text_, double ftsize_)
+	: TWidget(x, y, 0, 0)
+	, text(text_)
+	, ftsize(ftsize_)
+{
 	if (ftsize < 0) ftsize = FT.AutoSizeN (4);
-	
-	TextButtons.back().ftsize = ftsize;	
-	FT.SetSize (ftsize);
+
 	double len = FT.GetTextWidth (text);
-	if (x == CENTER) x = (int)((param.x_resolution - len) / 2);
-	TextButtons.back().x = x;
+	if (x == CENTER) position.x = (int)((param.x_resolution - len) / 2);
 	int offs = (int)(ftsize / 5);
-	AddMouseRect (x-20, y+offs, (int)len + 40, (int)(ftsize+offs), focus, 0, 
-		TextButtons.size()-1, W_TEXTBUTTON);
+	mouseRect.left = position.x-20;
+	mouseRect.top = position.y+offs;
+	mouseRect.width = len+40;
+	mouseRect.height = ftsize+offs;
 }
 
-void AddTextButtonN (const string& text, int x, int y, int focus, int rel_ftsize) {
+void TTextButton::Draw() const {
+	if (focus)
+		FT.SetColor (colDYell);
+	else
+		FT.SetColor (colWhite);
+	FT.SetSize (ftsize);
+	FT.DrawString (position.x, position.y, text);
+}
+
+TTextButton* AddTextButton (const string& text, int x, int y, double ftsize) {
+	Widgets.push_back(new TTextButton(x, y, text, ftsize));
+	return static_cast<TTextButton*>(Widgets.back());
+}
+
+TTextButton* AddTextButtonN (const string& text, int x, int y, int rel_ftsize) {
 	double siz = FT.AutoSizeN (rel_ftsize);
-	AddTextButton (text, x, y, focus, siz);
+	return AddTextButton (text, x, y, siz);
 }
 
-void PrintTextButton (int nr, int focus) {
-	if (nr >= TextButtons.size()) return;
-
-	if (focus == TextButtons[nr].focus)
+void TCheckbox::Draw () const {
+	Tex.Draw (CHECKBOX, position.x + width - 32, position.y, 1.0);
+	if (checked)
+		Tex.Draw (CHECKMARK_SMALL, position.x + width - 32, position.y, 1.0);
+	if (focus == focus)
 		FT.SetColor (colDYell);
 	else
 		FT.SetColor (colWhite);
-	FT.SetSize (TextButtons[nr].ftsize);
-	FT.DrawString (TextButtons[nr].x, TextButtons[nr].y, TextButtons[nr].text);
+	FT.DrawString (position.x, position.y, tag);
 }
 
-void AddCheckbox (int x, int y, int focus, int width, const string& tag) {
-	Checkboxes.push_back(TCheckbox());
-	Checkboxes.back().x = x;
-	Checkboxes.back().y = y;
-	Checkboxes.back().focus = focus;
-	Checkboxes.back().width = width;
-	Checkboxes.back().tag = tag;
-	AddMouseRect (x+width-32, y, 32, 32, focus, 0, Checkboxes.size()-1, W_CHECKBOX);
+bool TCheckbox::Click(int x, int y) {
+	if(active && visible && Inside(x, y, mouseRect)) {
+		checked = !checked;
+		return true;
+	}
+	return false;
 }
 
-void PrintCheckbox (int nr, int focus, bool state) {
-	if (nr >= Checkboxes.size()) return;
+void TCheckbox::Key(unsigned int key, bool released) {
+	if(released) return;
 
-	TCheckbox *box = &Checkboxes[nr];
-	Tex.Draw (CHECKBOX, box->x + box->width - 32, box->y, 1.0);
-	if (state)
-		Tex.Draw (CHECKMARK_SMALL, box->x + box->width - 32, box->y, 1.0);
-	if (focus == box->focus)
-		FT.SetColor (colDYell);
-	else
-		FT.SetColor (colWhite);
-	FT.DrawString (box->x, box->y, box->tag);
+	if(key == SDLK_SPACE || key == SDLK_RIGHT || key == SDLK_LEFT) {
+		checked = !checked;
+	}
 }
 
-void AddIconButton (int x, int y, int focus, GLuint texid, double size) {
-	IconButtons.push_back(TIconButton());
-	IconButtons.back().x = x;
-	IconButtons.back().y = y;
-	IconButtons.back().focus = focus;
-	IconButtons.back().texid = texid;
-	IconButtons.back().size = size;	
-	AddMouseRect (x, y, 32, 32, focus, 0, IconButtons.size()-1, W_ICONBUTTON);
+TCheckbox* AddCheckbox (int x, int y, int width, const string& tag) {
+	Widgets.push_back(new TCheckbox(x, y, width, tag));
+	return static_cast<TCheckbox*>(Widgets.back());
 }
 
-void PrintIconButton (int nr, int focus, int state) {
-	if (state < 0 || state >= 4) return;
-	if (nr >= IconButtons.size()) return;
-
+void TIconButton::Draw () const {
 	TColor framecol = colWhite;
-	if (focus == IconButtons[nr].focus) framecol = colDYell;
+	if (focus) framecol = colDYell;
 
-	int size = (int)IconButtons[nr].size;
 	int line = 3;
 	int framesize = size + 2 * line; 
- 	int t = param.y_resolution - IconButtons[nr].y;
+ 	int t = param.y_resolution - position.y;
 	int y = t - size;
-	int x = IconButtons[nr].x;
+	int x = position.x;
 	int r = x + size;
 
-	DrawFrameX (IconButtons[nr].x-line, IconButtons[nr].y-line, 
+	DrawFrameX (position.x-line, position.y-line, 
 				framesize, framesize, line, colBlack, framecol, 1.0);
 
 	glEnable (GL_TEXTURE_2D);
 	glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glBindTexture (GL_TEXTURE_2D, IconButtons[nr].texid);
+	glBindTexture (GL_TEXTURE_2D, texid);
     glColor4f (1.0, 1.0, 1.0, 1.0);
 
 	glBegin (GL_QUADS);
-	switch (state) {
+	switch (value) {
 		case 0:
 			glTexCoord2f (0, 0.5); glVertex2f (x,y);
 			glTexCoord2f (0.5, 0.5); glVertex2f (r,y);
@@ -190,7 +173,36 @@ void PrintIconButton (int nr, int focus, int state) {
 	glEnd ();
 }
 
-void DrawArrow (int x, int y, int dir, bool active, int sel) {
+bool TIconButton::Click(int x, int y) {
+	if(Inside(x, y, mouseRect)) {
+		value++;
+		if(value > maximum)
+			value = 0;
+		return true;
+	}
+	return false;
+}
+
+void TIconButton::Key(unsigned int key, bool released) {
+	if(released) return;
+
+	if(key == SDLK_DOWN || key == SDLK_LEFT) { // Arrow down/left
+		value--;
+		if(value < 0)
+			value = maximum;
+	} else if(key == SDLK_UP || key == SDLK_RIGHT) { // Arrow up/right
+		value++;
+		if(value > maximum)
+			value = 0;
+	}
+}
+
+TIconButton* AddIconButton(int x, int y, GLuint texid, double size, int maximum, int value) {
+	Widgets.push_back(new TIconButton(x, y, texid, size, maximum, value));
+	return static_cast<TIconButton*>(Widgets.back());
+}
+
+void TArrow::Draw() const {
 	double textl[6] = {0.5, 0.0, 0.5, 0.5, 0.0, 0.5};		
 	double textr[6] = {1.0, 0.5, 1.0, 1.0, 0.5, 1.0};
 	double texbl[6] = {0.25, 0.25, 0.75, 0.00, 0.00, 0.50};
@@ -198,13 +210,18 @@ void DrawArrow (int x, int y, int dir, bool active, int sel) {
     double texleft, texright, textop, texbottom;
     TVector2 bl, tr;
 
-	int type;	 
-	if (active) type = 3 * dir + 1 + sel; else type = 3 * dir;
+	int type = 0;
+	if (active)
+		type = 1;// + sel;
+	if(focus)
+		type++;
+	if(down)
+		type += 3;
 	
-	bl.x = x;
-	bl.y = param.y_resolution - y - 16;
-	tr.x = x + 32;
-	tr.y = param.y_resolution - y;
+	bl.x = position.x;
+	bl.y = param.y_resolution - position.y - 16;
+	tr.x = position.x + 32;
+	tr.y = param.y_resolution - position.y;
 		
 	texleft = textl[type];
 	texright = textr[type];
@@ -228,43 +245,95 @@ void DrawArrow (int x, int y, int dir, bool active, int sel) {
 	glEnd();
 }
 
-
-// active is true if the arrow can be clicked on. If the value has reached the end
-// of range, active must be set to false
-// nr is the index in arrowarray Arrows
-void PrintArrow (int nr, bool active) {
-	int sel = 0;
-	if (nr >= Arrows.size()) return;
-	if ((nr == selArrow) && (selType == W_ARROW) && active) sel = 1;
-	DrawArrow (Arrows[nr].x, Arrows[nr].y, Arrows[nr].dir, active, sel);		
+TArrow* AddArrow(int x, int y, bool down) {
+	Widgets.push_back(new TArrow(x, y, down));
+	return static_cast<TArrow*>(Widgets.back());
 }
 
-static bool Inside (int x, int y, const TMouseRect& Rect) {
-	if (x >= Rect.rect.left
-		&& x <= Rect.rect.left + Rect.rect.width
-		&& y >= Rect.rect.top
-		&& y <= Rect.rect.top + Rect.rect.height) {
+
+TUpDown::TUpDown(int x, int y, int min_, int max_, int value_, int distance)
+	: TWidget(x, y, 32, 32+distance)
+	, up(x, y+16+distance, true)
+	, down(x, y, false)
+	, value(value_)
+	, minimum(min_)
+	, maximum(max_)
+{
+	up.SetActive(value < maximum);
+	down.SetActive(value > minimum);
+}
+
+void TUpDown::Draw() const {
+	up.Draw();
+	down.Draw();
+}
+
+bool TUpDown::Click(int x, int y) {
+	if(active && visible && up.Click(x, y)) {
+		value++;
+		down.SetActive(true);
+		if(value == maximum)
+			up.SetActive(false);
 		return true;
-	} else return false;
+	}
+	if(active && visible && down.Click(x, y)) {
+		up.SetActive(true);
+		value--;
+		if(value == minimum)
+			down.SetActive(false);
+		return true;
+	}
+	return false;
 }
 
-void GetFocus (int x, int y, int *focus, int *dir) {
-	cursor_x = x;
-	cursor_y = y;
-	for (list<TMouseRect>::const_iterator i = MouseRects.begin(); i != MouseRects.end(); ++i) {
-		if (Inside (x, y, *i)) {
-			*focus = i->focus;
-			*dir = i->dir;
-			selArrow = (int)i->arrnr;
-			selType = i->type;
-			return;
+void TUpDown::Key(unsigned int key, bool released) {
+	if(released) return;
+
+	if(key == SDLK_UP || key == SDLK_RIGHT) { // Arrow down/left
+		if(value > minimum) {
+			value--;
+			up.SetActive(true);
+			if(value == minimum)
+				down.SetActive(false);
+		}
+	} else if(key == SDLK_DOWN || key == SDLK_LEFT) { // Arrow up/right
+		if(value < maximum) {
+			value++;
+			down.SetActive(true);
+			if(value == maximum)
+				up.SetActive(false);
 		}
 	}
-	*focus = -1;
-	*dir = -1;
-	selArrow = -1;
-	selType = -1;
 }
+
+void TUpDown::MouseMove(int x, int y) {
+	focus = active && visible &&Inside(x, y, mouseRect);
+	up.MouseMove(x, y);
+	down.MouseMove(x, y);
+}
+
+void TUpDown::SetValue(int value_) {
+	value = clamp(minimum, value_, maximum);
+	up.SetActive(value < maximum);
+	down.SetActive(value > minimum);
+}
+void TUpDown::SetMinimum(int min_) {
+	minimum = min_; value = clamp(minimum, value, maximum);
+	up.SetActive(value < maximum);
+	down.SetActive(value > minimum);
+}
+void TUpDown::SetMaximum(int max_) {
+	maximum = max_; value = clamp(minimum, value, maximum);
+	up.SetActive(value < maximum);
+	down.SetActive(value > minimum);
+}
+
+TUpDown* AddUpDown(int x, int y, int minimum, int maximum, int value, int distance) {
+	Widgets.push_back(new TUpDown(x, y, minimum, maximum, value, distance));
+	return static_cast<TUpDown*>(Widgets.back());
+}
+
+// ------------------ Elementary drawing ---------------------------------------------
 
 void DrawFrameX (int x, int y, int w, int h, int line, 
 		const TColor& backcol, const TColor& framecol, double transp) {
@@ -414,6 +483,127 @@ void DrawBonusExt (int y, int numraces, int num) {
 			glEnd();
 		}
 	}
+}
+
+void DrawCursor () {
+	Tex.Draw (MOUSECURSOR, cursor_x, cursor_y, 
+		CURSOR_SIZE  * (double)param.x_resolution / 14000);
+}
+
+
+// ------------------ Main GUI functions ---------------------------------------------
+
+void DrawGUI() {
+	for(size_t i = 0; i < Widgets.size(); i++)
+		if(Widgets[i]->GetVisible())
+			Widgets[i]->Draw();
+	if(param.ice_cursor)
+		DrawCursor ();
+}
+
+TWidget* ClickGUI(int x, int y) {
+	TWidget* clicked = NULL;
+	for(size_t i = 0; i < Widgets.size(); i++)
+		if(Widgets[i]->Click(x, y))
+			clicked = Widgets[i];
+	return clicked;
+}
+
+static int focussed = -1;
+TWidget* MouseMoveGUI(int x, int y) {
+	if(cursor_x != x || cursor_y != y) {
+		focussed = -1;
+		for(int i = 0; i < Widgets.size(); i++) {
+			Widgets[i]->MouseMove(x, y);
+			if(Widgets[i]->focussed())
+				focussed = i;
+		}
+		cursor_x = x;
+		cursor_y = y;
+	}
+	if(focussed == -1)
+		return 0;
+	
+	return Widgets[focussed];
+}
+
+TWidget* KeyGUI(unsigned int key, bool released) {
+	if(!released) {
+		switch (key) {
+			case SDLK_TAB:
+				IncreaseFocus();
+				break;
+			default:
+				break;
+		}
+	}
+	if(focussed == -1)
+		return 0;
+	Widgets[focussed]->Key(key, released);
+	return Widgets[focussed];
+}
+
+void SetFocus(TWidget* widget) {
+	if(!widget)
+		focussed = -1;
+	else
+		for(int i = 0; i < Widgets.size(); i++)
+			if(Widgets[i] == widget) {
+				focussed = i;
+				break;
+			}
+}
+
+void IncreaseFocus() {
+	if(focussed >= 0)
+		Widgets[focussed]->focus = false;
+
+	focussed++;
+	if(focussed >= Widgets.size())
+		focussed = 0;
+	int end = focussed;
+	// Select only active widgets
+	do {
+		if(Widgets[focussed]->GetActive())
+			break;
+		
+		focussed++;
+		if(focussed >= Widgets.size())
+			focussed = 0;
+	} while(end != focussed);
+
+	if(focussed >= 0)
+		Widgets[focussed]->focus = true;
+}
+void DecreaseFocus() {
+	if(focussed >= 0)
+		Widgets[focussed]->focus = false;
+
+	if(focussed > 0)
+		focussed--;
+	else
+		focussed = (int)Widgets.size()-1;
+	int end = focussed;
+	// Select only active widgets
+	do {
+		if(Widgets[focussed]->GetActive())
+			break;
+		
+		if(focussed > 0)
+			focussed--;
+		else
+			focussed = (int)Widgets.size()-1;
+	} while(end != focussed);
+
+	if(focussed >= 0)
+		Widgets[focussed]->focus = true;
+}
+
+void ResetGUI () {
+	for(size_t i = 0; i < Widgets.size(); i++)
+		delete Widgets[i];
+	Widgets.clear();
+	focussed = 0;
 }
 
 // ------------------ new ---------------------------------------------

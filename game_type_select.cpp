@@ -32,56 +32,56 @@ GNU General Public License for more details.
 
 CGameTypeSelect GameTypeSelect;
 
-static int scope = 0;
 static TVector2 cursor_pos = {0, 0};
+static TTextButton* textbuttons[7];
 
 void EnterPractice () {
 	g_game.game_type = PRACTICING;	
 	State::manager.RequestEnterState (RaceSelect);
 }
 
-void QuitGameType (int sc) {
-	switch (sc) {
-		case 0: State::manager.RequestEnterState (EventSelect); break;
-		case 1: EnterPractice (); break;
-		case 2: State::manager.RequestEnterState (GameConfig); break;
-		case 5: State::manager.RequestEnterState(Credits); break;
-		case 4: State::manager.RequestEnterState (Help); break;
-		case 3: State::manager.RequestEnterState (Score); break;
-		case 6: State::manager.RequestQuit(); break;
-	};
+void QuitGameType () {
+	if(textbuttons[0]->focussed())
+		State::manager.RequestEnterState (EventSelect);
+	if(textbuttons[1]->focussed())
+		EnterPractice ();
+	if(textbuttons[2]->focussed())
+		State::manager.RequestEnterState (GameConfig);
+	if(textbuttons[3]->focussed())
+		State::manager.RequestEnterState (Score);
+	if(textbuttons[4]->focussed())
+		State::manager.RequestEnterState (Help);
+	if(textbuttons[5]->focussed())
+		State::manager.RequestEnterState (Credits);
+	if(textbuttons[6]->focussed())
+		State::manager.RequestQuit();
 }
 
 void CGameTypeSelect::Mouse (int button, int state, int x, int y) {
-	int focus, dr;
 	if (state == 1) {
-		GetFocus (x, y, &focus, &dr);
-		QuitGameType (focus);
+		ClickGUI(x, y);
+		QuitGameType();
 	}
 }
 
 void CGameTypeSelect::Keyb (unsigned int key, bool special, bool release, int x, int y) {
     if (release) return;
 
+	KeyGUI(key, release);
 	switch (key) {
 		case SDLK_u: param.ui_snow = !param.ui_snow; break;	
 		case 27: State::manager.RequestQuit(); break;
-		case 274: if (scope < 6) scope++; break;
-		case 273: if (scope > 0) scope--; break;
-		case 13: QuitGameType (scope); break;
-		case SDLK_TAB: scope++; if (scope > 6) scope = 0; break;
-		case SDLK_w: Music.FreeMusics (); break;
+		case 274: IncreaseFocus(); break;
+		case 273: DecreaseFocus(); break;
+		case 13: QuitGameType(); break;
+		case SDLK_w: Music.FreeMusics(); break;
 	}	
 }
 
 void CGameTypeSelect::Motion (int x, int y) {
-    TVector2 old_pos;
- 	int sc, dir;
-    
-	GetFocus (x, y, &sc, &dir);
-	if (sc >= 0) scope = sc;
+	MouseMoveGUI(x, y);
 	y = param.y_resolution - y;
-    old_pos = cursor_pos;
+	TVector2 old_pos = cursor_pos;
     cursor_pos = MakeVector2 (x, y);
 
     if  (old_pos.x != x || old_pos.y != y) {
@@ -93,19 +93,18 @@ void CGameTypeSelect::Motion (int x, int y) {
 
 void CGameTypeSelect::Enter () {
 	Winsys.ShowCursor (!param.ice_cursor);
-	scope = 0;
-	
-	ResetWidgets ();
+
+	ResetGUI ();
 	int top = AutoYPosN (40);
 	int siz = FT.AutoSizeN (6);
 	int dist = FT.AutoDistanceN (2);
-	AddTextButton (Trans.Text(1), CENTER, top, 0, siz);
-	AddTextButton (Trans.Text(2), CENTER, top + dist, 1, siz);
-	AddTextButton (Trans.Text(3), CENTER, top + dist * 2, 2, siz);
-	AddTextButton (Trans.Text(4), CENTER, top + dist * 5, 5, siz);
-	AddTextButton (Trans.Text(43), CENTER, top + dist * 4, 4, siz);
-	AddTextButton ("Highscore list", CENTER, top + dist * 3, 3, siz);
-	AddTextButton (Trans.Text(5), CENTER, top + dist * 6, 6, siz);
+	textbuttons[0] = AddTextButton (Trans.Text(1), CENTER, top, siz);
+	textbuttons[1] = AddTextButton (Trans.Text(2), CENTER, top + dist, siz);
+	textbuttons[2] = AddTextButton (Trans.Text(3), CENTER, top + dist * 2, siz);
+	textbuttons[3] = AddTextButton ("Highscore list", CENTER, top + dist * 3, siz);
+	textbuttons[4] = AddTextButton (Trans.Text(43), CENTER, top + dist * 4, siz);
+	textbuttons[5] = AddTextButton (Trans.Text(4), CENTER, top + dist * 5, siz);
+	textbuttons[6] = AddTextButton (Trans.Text(5), CENTER, top + dist * 6, siz);
 
 	Music.Play (param.menu_music, -1);
 	g_game.loopdelay = 10;
@@ -132,15 +131,8 @@ void CGameTypeSelect::Loop (double time_step) {
 	Tex.Draw (TOP_LEFT, 0, 0, 1);
 	Tex.Draw (TOP_RIGHT, ww-256, 0, 1);
 
-	PrintTextButton (0, scope);
-	PrintTextButton (1, scope);
-	PrintTextButton (2, scope);
-	PrintTextButton (3, scope);
-	PrintTextButton (4, scope);
-	PrintTextButton (5, scope);
-	PrintTextButton (6, scope);
+	DrawGUI();
 
-	if (param.ice_cursor) DrawCursor ();
 	Reshape (ww, hh);
 	Winsys.SwapBuffers ();
 }
