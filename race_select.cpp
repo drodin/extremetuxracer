@@ -77,7 +77,7 @@ void CRaceSelect::Mouse (int button, int state, int x, int y ){
 
 		if(textbuttons[0]->focussed())
 			SetRaceConditions ();
-		else if(textbuttons[0]->focussed())
+		else if(textbuttons[1]->focussed())
 			State::manager.RequestEnterState (GameTypeSelect);
 	}
 }
