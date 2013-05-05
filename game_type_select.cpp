@@ -101,7 +101,7 @@ void CGameTypeSelect::Enter () {
 	textbuttons[0] = AddTextButton (Trans.Text(1), CENTER, top, siz);
 	textbuttons[1] = AddTextButton (Trans.Text(2), CENTER, top + dist, siz);
 	textbuttons[2] = AddTextButton (Trans.Text(3), CENTER, top + dist * 2, siz);
-	textbuttons[3] = AddTextButton ("Highscore list", CENTER, top + dist * 3, siz);
+	textbuttons[3] = AddTextButton (Trans.Text(62), CENTER, top + dist * 3, siz);
 	textbuttons[4] = AddTextButton (Trans.Text(43), CENTER, top + dist * 4, siz);
 	textbuttons[5] = AddTextButton (Trans.Text(4), CENTER, top + dist * 5, siz);
 	textbuttons[6] = AddTextButton (Trans.Text(5), CENTER, top + dist * 6, siz);

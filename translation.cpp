@@ -88,6 +88,17 @@ void CTranslation::SetDefaultTranslations () {
 	texts[55] = "CRSR Up - accelerate";
 	texts[56] = "CRSR down - brake";
 	texts[57] = "Keyboard functions";
+
+	texts[58] = "Select your player name:";
+	texts[59] = "Select a character:";
+	texts[60] = "Enter";
+	texts[61] = "Register a new player";
+
+	texts[62] = "Highscore list";
+	texts[63] = "No entries for this race";
+	texts[64] = "Back";
+
+	texts[65] = "Press any key to return to the main menu";
 }
 
 string CTranslation::Text (size_t idx) const {

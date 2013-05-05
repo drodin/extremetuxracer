@@ -227,7 +227,7 @@ void CScore::Enter() {
 	ResetGUI ();
 	course = AddUpDown(area.right + 8, frametop, 0, (int)Course.CourseList.size()-1, 0);
 	int siz = FT.AutoSizeN (5);
-	textbutton = AddTextButton ("Back", CENTER, AutoYPosN (80), siz);
+	textbutton = AddTextButton (Trans.Text(64), CENTER, AutoYPosN (80), siz);
 
 	g_game.loopdelay = 1;
 }
@@ -258,7 +258,7 @@ void CScore::Loop (double timestep ){
 
 	FT.AutoSizeN (7);
 	FT.SetColor (colWhite);
-	FT.DrawString (CENTER, AutoYPosN (22), "Highscore list");
+	FT.DrawString (CENTER, AutoYPosN (22), Trans.Text(62));
 
 	DrawFrameX (area.left, frametop, framewidth, frameheight, 3, colMBackgr, colDYell, 1.0);
 	FT.AutoSizeN (5);
@@ -271,7 +271,7 @@ void CScore::Loop (double timestep ){
 	if (list != NULL) {
 		FT.AutoSizeN (3);
 		if (list->numScores < 1) {
-			FT.DrawString (CENTER, area.top + 140, "No entries for this race");
+			FT.DrawString (CENTER, area.top + 140, Trans.Text(63));
 		} else {
 			if (list->numScores > MAX_SCORES) list->numScores = MAX_SCORES;
 			for (int i=0; i<list->numScores; i++) {

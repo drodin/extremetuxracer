@@ -38,7 +38,7 @@
 
 *[idx] 31 [engl] Fullscreen: [trans] Vollbild:
 *[idx] 32 [engl] Resolution: [trans] Auflösung:
-*[idx] 33 [engl] Music volume: [trans] Musiklautstäre:
+*[idx] 33 [engl] Music volume: [trans] Musiklautstärke:
 *[idx] 34 [engl] Sound volume: [trans] Geräuschlautstärke:
 *[idx] 35 [engl] Language: [trans] Sprache:
 *[idx] 36 [engl] Level of detail: [trans] Darstellung:
@@ -66,3 +66,13 @@
 *[idx] 55 [engl] CRSR Up - accelerate [trans] Pfeil oben - beschleunigen
 *[idx] 56 [engl] CRSR down - brake [trans] Pfeil unten - bremsen
 *[idx] 57 [engl] Keyboard functions [trans] Tastatur-Befehle
+*[idx] 65 [engl] Press any key to return to the main menu [trans] Beliebige Taste drücken, um ins Hauptmenü zurückzukehren
+
+*[idx] 58 [engl] Select your player name: [trans] Wähle deinen Spieler-Namen:
+*[idx] 59 [engl] Select a character: [trans] Wähle einen Charakter:
+*[idx] 60 [engl] Enter [trans] Weiter
+*[idx] 61 [engl] Register a new player [trans] Neuen Spieler registrieren
+
+*[idx] 62 [engl] Highscore list [trans] Punkteliste
+*[idx] 63 [engl] No entries for this race [trans] Keine Einträge für dieses Rennen
+*[idx] 64 [engl] Back [trans] Zurück

@@ -87,7 +87,7 @@ void CHelp::Loop(double timestep ){
 	FT.DrawString (xleft1, ytop + offs * 11, Trans.Text(55));
 	FT.DrawString (xleft1, ytop + offs * 12, Trans.Text(56));
 		
-	FT.DrawString (CENTER, AutoYPosN (90), "Press any key to return to the main menu");
+	FT.DrawString (CENTER, AutoYPosN (90), Trans.Text(65));
     Winsys.SwapBuffers();
 } 
 
