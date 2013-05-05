@@ -97,10 +97,12 @@ void State::Manager::PollEvent() {
 					break;
 
 				case SDL_VIDEORESIZE:
-					param.x_resolution = event.resize.w;
-					param.y_resolution = event.resize.h;
-					Winsys.SetupVideoMode (param.res_type);
-					Reshape(event.resize.w, event.resize.h);
+					if(param.x_resolution != event.resize.w || param.y_resolution != event.resize.h) {
+						param.x_resolution = event.resize.w;
+						param.y_resolution = event.resize.h;
+						Winsys.SetupVideoMode (param.res_type);
+						Reshape(event.resize.w, event.resize.h);
+					}
 					break;
 			
 				case SDL_QUIT:
