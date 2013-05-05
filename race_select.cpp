@@ -95,8 +95,8 @@ void CRaceSelect::Keyb(unsigned int key, bool special, bool release, int x, int 
 				if (g_game.treevar > 5) g_game.treevar = 1; break;
 		case 13: if (textbuttons[1]->focussed())
 					 State::manager.RequestEnterState (GameTypeSelect);
-				 else if(textbuttons[0]->focussed())
-					 SetRaceConditions ();	break;
+				 else
+					 SetRaceConditions (); break;
 	}
 }
 
@@ -131,7 +131,7 @@ void CRaceSelect::Enter() {
 
 	ResetGUI ();
 
-	course = AddUpDown(area.left + framewidth + 8, frametop, 0, (int)Course.CourseList.size() - 1, 0);
+	course = AddUpDown(area.left + framewidth + 8, frametop, 0, (int)Course.CourseList.size() - 1, g_game.course_id);
 	
 	light = AddIconButton (iconleft, icontop, Tex.TexID (LIGHT_BUTT), iconsize, 3, g_game.light_id); 
 	snow = AddIconButton (iconleft + iconspace, icontop, Tex.TexID (SNOW_BUTT), iconsize, 3, g_game.snow_id); 
