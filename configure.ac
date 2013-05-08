@@ -47,6 +47,9 @@ CPPFLAGS="${CPPFLAGS} -DETR_DATA_DIR=\\\"$datadir\\\""
 # TODO: Proper checks instead of hardcoding
 LIBS="$LIBS -lGL -lGLU -lSDL_image -lSDL_mixer"
 
+# Request c++11 compatibility
+CXXFLAGS="${CXXFLAGS} -std=c++11"
+
 AC_CONFIG_FILES([
         Makefile
         data/Makefile
