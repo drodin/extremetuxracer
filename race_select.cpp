@@ -37,13 +37,13 @@ static TIconButton* light;
 static TIconButton* snow;
 static TIconButton* wind;
 static TIconButton* mirror;
-static TIconButton* random;
+static TIconButton* random_btn;
 static TWidget* textbuttons[2];
 
 static TCourse *CourseList;
 
 void SetRaceConditions (void) {
-	if (random->GetValue() > 0) {
+	if (random_btn->GetValue() > 0) {
 		g_game.mirror_id = IRandom (0, 1);
 		g_game.light_id = IRandom (0, 3);
 		g_game.snow_id = IRandom (0, 3);
@@ -137,7 +137,7 @@ void CRaceSelect::Enter() {
 	snow = AddIconButton (iconleft + iconspace, icontop, Tex.TexID (SNOW_BUTT), iconsize, 3, g_game.snow_id); 
 	wind = AddIconButton (iconleft + iconspace*2, icontop, Tex.TexID (WIND_BUTT), iconsize, 3, g_game.wind_id); 
 	mirror = AddIconButton (iconleft + iconspace*3, icontop, Tex.TexID (MIRROR_BUTT), iconsize, 1, g_game.mirror_id); 
-	random = AddIconButton (iconleft + iconspace*4, icontop, Tex.TexID (RANDOM_BUTT), iconsize, 1, 0); 
+	random_btn = AddIconButton (iconleft + iconspace*4, icontop, Tex.TexID (RANDOM_BUTT), iconsize, 1, 0); 
 
 	int siz = FT.AutoSizeN (5);
 	double len1 = FT.GetTextWidth (Trans.Text(13));

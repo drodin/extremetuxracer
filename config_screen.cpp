@@ -108,8 +108,11 @@ void SetConfig () {
 				if (!param.restart_on_res_change) RestartSDL ();
 			#elif defined (OS_LINUX)
 				// on linux the resources seem to be kept at new VideoMode
-				if (curr_res > 0) Winsys.SetupVideoMode (curr_res);
-				else RestartSDL ();
+				if (param.res_type > 0) {
+                                  Winsys.SetupVideoMode(param.res_type);
+                                } else {
+                                  RestartSDL();
+                                }
 			#endif
 		}
 		
