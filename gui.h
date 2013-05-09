@@ -29,7 +29,7 @@ protected:
 	bool visible;
 public:
 	bool focus;
-	
+
 	TWidget(int x, int y, int width, int height);
 	virtual void Draw() const = 0;
 	virtual bool Click(int x, int y);
@@ -136,7 +136,7 @@ void ResetGUI();
 
 // --------------------------------------------------------------------
 
-void DrawFrameX (int x, int y, int w, int h, int line, 
+void DrawFrameX (int x, int y, int w, int h, int line,
 			const TColor& backcol, const TColor& framecol, double transp);
 void DrawLevel (int x, int y, int level, double fact);
 void DrawBonus (int x, int y, int max, size_t num);

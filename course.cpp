@@ -1080,7 +1080,7 @@ void CCourse::GetSurfaceType (double x, double z, double weights[]) const {
     }
 }
 
-size_t CCourse::GetTerrainIdx (double x, double z, double level) const {
+int CCourse::GetTerrainIdx (double x, double z, double level) const {
     TIndex2 idx0, idx1, idx2;
     double u, v;
     FindBarycentricCoords (x, z, &idx0, &idx1, &idx2, &u, &v);
@@ -1091,7 +1091,7 @@ size_t CCourse::GetTerrainIdx (double x, double z, double level) const {
 		if (terrain [idx0.i + nx*idx0.j] == i) wheight += u;
 		if (terrain [idx1.i + nx*idx1.j] == i) wheight += v;
 		if (terrain [idx2.i + nx*idx2.j] == i) wheight += 1.0 - u - v;
-     	if (wheight > level) return (i);
+		if (wheight > level) return (int)i;
 	}
 	return -1;
 }

@@ -129,13 +129,13 @@ void TIconButton::Draw () const {
 	if (focus) framecol = colDYell;
 
 	int line = 3;
-	int framesize = size + 2 * line; 
+	int framesize = size + 2 * line;
  	int t = param.y_resolution - position.y;
 	int y = t - size;
 	int x = position.x;
 	int r = x + size;
 
-	DrawFrameX (position.x-line, position.y-line, 
+	DrawFrameX (position.x-line, position.y-line,
 				framesize, framesize, line, colBlack, framecol, 1.0);
 
 	glEnable (GL_TEXTURE_2D);
@@ -203,44 +203,43 @@ TIconButton* AddIconButton(int x, int y, GLuint texid, double size, int maximum,
 }
 
 void TArrow::Draw() const {
-	double textl[6] = {0.5, 0.0, 0.5, 0.5, 0.0, 0.5};		
-	double textr[6] = {1.0, 0.5, 1.0, 1.0, 0.5, 1.0};
-	double texbl[6] = {0.25, 0.25, 0.75, 0.00, 0.00, 0.50};
-	double texbr[6] = {0.50, 0.50, 1.00, 0.25, 0.25, 0.75};
-    double texleft, texright, textop, texbottom;
+	static const double textl[6] = {0.5, 0.0, 0.5, 0.5, 0.0, 0.5};
+	static const double textr[6] = {1.0, 0.5, 1.0, 1.0, 0.5, 1.0};
+	static const double texbl[6] = {0.25, 0.25, 0.75, 0.00, 0.00, 0.50};
+	static const double texbr[6] = {0.50, 0.50, 1.00, 0.25, 0.25, 0.75};
     TVector2 bl, tr;
 
 	int type = 0;
 	if (active)
-		type = 1;// + sel;
+		type = 1;
 	if(focus)
 		type++;
 	if(down)
 		type += 3;
-	
+
 	bl.x = position.x;
 	bl.y = param.y_resolution - position.y - 16;
 	tr.x = position.x + 32;
 	tr.y = param.y_resolution - position.y;
-		
-	texleft = textl[type];
-	texright = textr[type];
-	texbottom = texbl[type];	
-	textop = texbr[type];
-	
+
+	double texleft = textl[type];
+	double texright = textr[type];
+	double texbottom = texbl[type];
+	double textop = texbr[type];
+
 	glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable (GL_TEXTURE_2D );
 	Tex.BindTex (LB_ARROWS);
 	glColor4f (1.0, 1.0, 1.0, 1.0);
-	
+
 	glBegin( GL_QUADS );
-	    glTexCoord2f (texleft, texbottom); 
+		glTexCoord2f (texleft, texbottom);
 		glVertex2f (bl.x, bl.y );
-	    glTexCoord2f (texright, texbottom); 
+		glTexCoord2f (texright, texbottom);
 		glVertex2f (tr.x, bl.y );
-	    glTexCoord2f (texright, textop); 
+		glTexCoord2f (texright, textop);
 		glVertex2f (tr.x, tr.y );
-	    glTexCoord2f (texleft, textop); 
+		glTexCoord2f (texleft, textop);
 		glVertex2f (bl.x, tr.y );
 	glEnd();
 }
@@ -335,15 +334,15 @@ TUpDown* AddUpDown(int x, int y, int minimum, int maximum, int value, int distan
 
 // ------------------ Elementary drawing ---------------------------------------------
 
-void DrawFrameX (int x, int y, int w, int h, int line, 
+void DrawFrameX (int x, int y, int w, int h, int line,
 		const TColor& backcol, const TColor& framecol, double transp) {
 	double yy = param.y_resolution - y - h;
- 
+
 	if (x < 0) x = (param.x_resolution -w) / 2;
 	glPushMatrix();
 	glDisable (GL_TEXTURE_2D);
-    
-	glColor4f (framecol.r, framecol.g, framecol.b, transp); 
+
+	glColor4f (framecol.r, framecol.g, framecol.b, transp);
 	glTranslatef (x, yy, 0);
 	glBegin (GL_QUADS );
 	    glVertex2f (0, 0 );
@@ -366,39 +365,36 @@ void DrawFrameX (int x, int y, int w, int h, int line,
 
 void DrawLevel (int x, int y, int level, double fact) {
     TVector2 bl, tr;
-	double lev[4] = {0.0, 0.75, 0.5, 0.25}; 
-	double bott, top;
-	
+	static const double lev[4] = {0.0, 0.75, 0.5, 0.25};
+
 	bl.x = x;
 	bl.y = param.y_resolution - y - 32;
 	tr.x = x + 95;
 	tr.y = param.y_resolution - y;
 
-	bott = lev[level];
-	top = bott + 0.25;
-	
+	double bott = lev[level];
+	double top = bott + 0.25;
+
 	glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable (GL_TEXTURE_2D);
 	Tex.BindTex (STARS);
 	glColor4f (1.0, 1.0, 1.0, 1.0);
-	
+
 	glBegin( GL_QUADS );
-	    glTexCoord2f (0, bott); 
+	    glTexCoord2f (0, bott);
 		glVertex2f (bl.x, bl.y );
-	    glTexCoord2f (0.75, bott); 
+	    glTexCoord2f (0.75, bott);
 		glVertex2f (tr.x, bl.y );
-	    glTexCoord2f (0.75, top); 
+	    glTexCoord2f (0.75, top);
 		glVertex2f (tr.x, tr.y );
-	    glTexCoord2f (0, top); 
+	    glTexCoord2f (0, top);
 		glVertex2f (bl.x, tr.y );
 	glEnd();
 }
 
 void DrawBonus (int x, int y, int max, size_t num) {
     TVector2 bl, tr;
-	double bott, top;
-	int i;
-		
+
 	bl.y = param.y_resolution - y - 32;
 	tr.y = param.y_resolution - y;
 
@@ -407,43 +403,41 @@ void DrawBonus (int x, int y, int max, size_t num) {
 	Tex.BindTex (TUXBONUS);
 	glColor4f (1.0, 1.0, 1.0, 1.0);
 
-	for (i=0; i<max; i++) {
+	for (int i=0; i<max; i++) {
 		bl.x = x + i * 40;
 		tr.x = bl.x + 32;
-	
-		if (i<num) bott = 0.5; else bott = 0.0;
-		top = bott + 0.5;
-		
+
+		double bott = 0.0;
+		if (i<num) bott = 0.5;
+		double top = bott + 0.5;
+
 		glBegin( GL_QUADS );
-		    glTexCoord2f (0, bott); 
+		    glTexCoord2f (0, bott);
 			glVertex2f (bl.x, bl.y );
-		    glTexCoord2f (1, bott); 
+		    glTexCoord2f (1, bott);
 			glVertex2f (tr.x, bl.y );
-	    	glTexCoord2f (1, top); 
+	    	glTexCoord2f (1, top);
 			glVertex2f (tr.x, tr.y );
-		    glTexCoord2f (0, top); 
+		    glTexCoord2f (0, top);
 			glVertex2f (bl.x, tr.y );
 		glEnd();
 	}
 }
 
 void DrawBonusExt (int y, size_t numraces, size_t num) {
-    TVector2 bl, tr;
-	double bott, top;
-	int i;
-
-	TColor col1 = MakeColor (0.3, 0.5, 0.7, 1);
-	TColor col2 = MakeColor (0.45, 0.65, 0.85, 1);
-	TColor col3 = MakeColor (0.6, 0.8, 1.0, 1);
-	TColor gold = MakeColor (1, 1, 0, 1);
-
-	int lleft[3];
-	int majr, minr;
-
-	int maxtux = numraces * 3;
+	size_t maxtux = numraces * 3;
 	if (num > maxtux) return;
 
-	int framewidth = numraces * 40 + 8;
+    TVector2 bl, tr;
+
+	//TColor col1 = MakeColor (0.3, 0.5, 0.7, 1);
+	TColor col2 = MakeColor (0.45, 0.65, 0.85, 1);
+	//TColor col3 = MakeColor (0.6, 0.8, 1.0, 1);
+	//TColor gold = MakeColor (1, 1, 0, 1);
+
+	int lleft[3];
+
+	int framewidth = (int)numraces * 40 + 8;
 	int totalwidth = framewidth * 3 + 8;
 	int xleft = (param.x_resolution - totalwidth) / 2;
 	lleft[0] = xleft;
@@ -462,9 +456,9 @@ void DrawBonusExt (int y, size_t numraces, size_t num) {
 	Tex.BindTex (TUXBONUS);
 	glColor4f (1.0, 1.0, 1.0, 1.0);
 
-	for (i=0; i<maxtux; i++) {
-		majr = (int)(i/numraces);
-		minr = i - majr * numraces;
+	for (int i=0; i<(int)maxtux; i++) {
+		int majr = (int)(i/numraces);
+		int minr = i - majr * (int)numraces;
 		if (majr > 2) majr = 2;
 		bl.x = lleft[majr] + minr * 40 + 6;
 		tr.x = bl.x + 32;
@@ -473,8 +467,8 @@ void DrawBonusExt (int y, size_t numraces, size_t num) {
 		// if (i<num) bott = 0.5; else bott = 0.0;
 		// top = bott + 0.5;
 		if (i<num) {
-			bott = 0.5;
-			top = 1.0;
+			double bott = 0.5;
+			double top = 1.0;
 			glBegin (GL_QUADS);
 				glTexCoord2f (0, bott); glVertex2f (bl.x, bl.y);
 				glTexCoord2f (1, bott); glVertex2f (tr.x, bl.y);
@@ -486,7 +480,7 @@ void DrawBonusExt (int y, size_t numraces, size_t num) {
 }
 
 void DrawCursor () {
-	Tex.Draw (MOUSECURSOR, cursor_x, cursor_y, 
+	Tex.Draw (MOUSECURSOR, cursor_x, cursor_y,
 		CURSOR_SIZE  * (double)param.x_resolution / 14000);
 }
 
@@ -523,7 +517,7 @@ TWidget* MouseMoveGUI(int x, int y) {
 	}
 	if(focussed == -1)
 		return 0;
-	
+
 	return Widgets[focussed];
 }
 
@@ -566,7 +560,7 @@ void IncreaseFocus() {
 	do {
 		if(Widgets[focussed]->GetActive())
 			break;
-		
+
 		focussed++;
 		if(focussed >= Widgets.size())
 			focussed = 0;
@@ -588,7 +582,7 @@ void DecreaseFocus() {
 	do {
 		if(Widgets[focussed]->GetActive())
 			break;
-		
+
 		if(focussed > 0)
 			focussed--;
 		else

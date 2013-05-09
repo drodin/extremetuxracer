@@ -34,7 +34,6 @@ static TCharacter *CharList;
 static TWidget* textbuttons[2];
 static TUpDown* player;
 static TUpDown* character;
-static size_t old_last;
 
 void QuitRegistration () {
 	Players.ResetControls ();
@@ -44,15 +43,15 @@ void QuitRegistration () {
 	g_game.char_id = character->GetValue();
 	State::manager.RequestEnterState (GameTypeSelect);
 }
-				  
+
 void CRegist::Keyb (unsigned int key, bool special, bool release, int x, int y) {
 	TWidget* focussed = KeyGUI(key, release);
 	if (release) return;
 	switch (key) {
 		case 27: State::manager.RequestQuit(); break;
-		case 13: 
+		case 13:
 			if (focussed == textbuttons[1]) {
-				old_last = player->GetValue();
+				g_game.player_id = player->GetValue();
 				State::manager.RequestEnterState (NewPlayer);
 			} else QuitRegistration ();	break;
 	}
@@ -64,7 +63,7 @@ void CRegist::Mouse (int button, int state, int x, int y) {
 		if(focussed == textbuttons[0])
 			QuitRegistration ();
 		else if(focussed == textbuttons[1]) {
-			old_last = player->GetValue();
+			g_game.player_id = player->GetValue();
 			State::manager.RequestEnterState (NewPlayer);
 		}
 	}
@@ -85,7 +84,7 @@ static int framewidth, frameheight, arrowwidth, sumwidth;
 static TArea area;
 static double scale, texsize;
 
-void CRegist::Enter (void) {  
+void CRegist::Enter (void) {
 	Winsys.ShowCursor (!param.ice_cursor);
 	Music.Play (param.menu_music, -1);
 
@@ -98,7 +97,7 @@ void CRegist::Enter (void) {
 	texsize = 128 * scale;
 
 	ResetGUI ();
-	player = AddUpDown(area.left + framewidth + 8, area.top, 0, (int)Players.numPlayers() - 1, 0);
+	player = AddUpDown(area.left + framewidth + 8, area.top, 0, (int)Players.numPlayers() - 1, (int)g_game.start_player);
 	character = AddUpDown(area.left + framewidth * 2 + arrowwidth + 8, area.top, 0, (int)Char.CharList.size() - 1, 0);
 	int siz = FT.AutoSizeN (5);
 	textbuttons[0] = AddTextButton (Trans.Text(60), CENTER, AutoYPosN (62), siz);
@@ -106,22 +105,18 @@ void CRegist::Enter (void) {
 
 	g_game.loopdelay = 10;
 	CharList = &Char.CharList[0];
-	if (State::manager.PreviousState() == &NewPlayer)
-		player->SetValue((int)old_last);
-	else
-		player->SetValue((int)g_game.start_player);
 }
 
 void CRegist::Loop (double timestep) {
 	int ww = param.x_resolution;
 	int hh = param.y_resolution;
-	Music.Update ();    
+	Music.Update ();
 	check_gl_error();
     ClearRenderContext ();
     set_gl_options (GUI);
     SetupGuiDisplay ();
 	TColor col;
-		
+
 	update_ui_snow (timestep);
 	draw_ui_snow();
 
@@ -131,7 +126,7 @@ void CRegist::Loop (double timestep) {
 	Tex.Draw (TOP_RIGHT, ww-256, 0, 1);
 	Tex.Draw (T_TITLE_SMALL, CENTER, AutoYPosN (5), scale);
 
-//	DrawFrameX (area.left, area.top, area.right-area.left, area.bottom - area.top, 
+//	DrawFrameX (area.left, area.top, area.right-area.left, area.bottom - area.top,
 //			0, colMBackgr, col, 0.2);
 
 	FT.AutoSizeN (3);
@@ -145,17 +140,17 @@ void CRegist::Loop (double timestep) {
 	DrawFrameX (area.left, area.top, framewidth, frameheight, 3, colMBackgr, col, 1.0);
 	FT.SetColor (col);
 	FT.DrawString (area.left + 20, area.top, Players.GetName (player->GetValue()));
-	Tex.DrawDirectFrame (Players.GetAvatarID (player->GetValue()), 
+	Tex.DrawDirectFrame (Players.GetAvatarID (player->GetValue()),
 		area.left + 60, AutoYPosN (40), texsize, texsize, 3, colWhite);
 
 	if (character->focussed()) col = colDYell; else col = colWhite;
-	DrawFrameX (area.left + framewidth + arrowwidth, area.top, 
+	DrawFrameX (area.left + framewidth + arrowwidth, area.top,
 		framewidth, frameheight, 3, colMBackgr, col, 1.0);
 	FT.SetColor (col);
-	FT.DrawString (area.left + framewidth + arrowwidth + 20, 
+	FT.DrawString (area.left + framewidth + arrowwidth + 20,
 		area.top, CharList[character->GetValue()].name);
-	Tex.DrawDirectFrame (CharList[character->GetValue()].preview, 
-		area.right - texsize - 60 - arrowwidth, 
+	Tex.DrawDirectFrame (CharList[character->GetValue()].preview,
+		area.right - texsize - 60 - arrowwidth,
 		AutoYPosN (40), texsize, texsize, 3, colWhite);
 
 
@@ -163,4 +158,4 @@ void CRegist::Loop (double timestep) {
 	DrawGUI();
 
     Winsys.SwapBuffers();
-} 
+}

@@ -169,7 +169,7 @@ public:
 	TVector3 FindCourseNormal (double x, double z) const;
 	double FindYCoord (double x, double z) const;
 	void GetSurfaceType (double x, double z, double weights[]) const;
-	size_t GetTerrainIdx (double x, double z, double level) const;
+	int GetTerrainIdx (double x, double z, double level) const;
 	TPlane GetLocalCoursePlane (TVector3 pt) const;
 };
 

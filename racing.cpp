@@ -201,7 +201,7 @@ void PlayTerrainSound (CControl *ctrl, bool airborne) {
 		terridx = Course.GetTerrainIdx (ctrl->cpos.x, ctrl->cpos.z, 0.5);
 		if (terridx >= 0) {
 			string tsound = TerrList[terridx].sound;
-			newsound = Sound.GetSoundIdx (tsound);
+			newsound = (int)Sound.GetSoundIdx (tsound);
 		} else newsound = -1;
 	} else newsound = -1;
  	if ((newsound != lastsound) && (lastsound >= 0)) Sound.Halt (lastsound);

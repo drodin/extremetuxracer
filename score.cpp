@@ -120,10 +120,10 @@ bool CScore::LoadHighScore () {
 	TScore score;
 
 	Scorelist.resize(Course.CourseList.size());
-	for (int i=0; i<list.Count(); i++) {
+	for (size_t i=0; i<list.Count(); i++) {
 		string line = list.Line (i);
 		string course = SPStrN (line, "course", "unknown");
-		int cidx = Course.GetCourseIdx (course);
+		size_t cidx = Course.GetCourseIdx (course);
 
 		score.player = SPStrN (line, "plyr", "unknown");
 		score.points = SPIntN (line, "pts", 0);
