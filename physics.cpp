@@ -509,12 +509,12 @@ void CControl::SolveOdeSystem (double timestep) {
 	double t = 0;
     double tfinal = timestep;
 
-    TOdeData *x = solver.NewOdeData();
-    TOdeData *y  = solver.NewOdeData();
-    TOdeData *z  = solver.NewOdeData();
-    TOdeData *vx = solver.NewOdeData();
-    TOdeData *vy = solver.NewOdeData();
-    TOdeData *vz = solver.NewOdeData();
+    TOdeData *x = new TOdeData;
+    TOdeData *y  = new TOdeData;
+    TOdeData *z  = new TOdeData;
+    TOdeData *vx = new TOdeData;
+    TOdeData *vy = new TOdeData;
+    TOdeData *vz = new TOdeData;
 
     TVector3 new_pos = cpos;
     TVector3 new_vel = cvel;
@@ -647,12 +647,12 @@ void CControl::SolveOdeSystem (double timestep) {
 	float step = VectorLength (SubtractVectors (cpos, last_pos));
 	way += step;
 
-	free (x);
-    free (y);
-    free (z);
-    free (vx);
-    free (vy);
-    free (vz);
+	delete x;
+	delete y;
+	delete z;
+	delete vx;
+	delete vy;
+	delete vz;
 }
 
 // --------------------------------------------------------------------

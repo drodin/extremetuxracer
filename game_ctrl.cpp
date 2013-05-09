@@ -256,7 +256,7 @@ string CPlayers::GetName (size_t player) const {
 void CPlayers::ResetControls () {
 	for (int i=0; i<plyr.size(); i++) {
 		if (plyr[i].ctrl != NULL) {
-			free (plyr[i].ctrl);
+			delete plyr[i].ctrl;
 			plyr[i].ctrl = NULL;
 		}
 	}
@@ -266,7 +266,7 @@ void CPlayers::ResetControls () {
 void CPlayers::AllocControl (size_t player) {
 	if (player < 0 || player >= plyr.size()) return;
 	if (plyr[player].ctrl != NULL) return;
-	plyr[player].ctrl = new (CControl);
+	plyr[player].ctrl = new CControl;
 }
 
 // ----------------------- avatars ------------------------------------
@@ -355,7 +355,7 @@ void CCharacter::LoadCharacterList () {
 
 			ch->shape = new CCharShape;
 			if (ch->shape->Load (charpath, "shape.lst", false) == false) {
-				free (ch->shape);
+				delete ch->shape;
 				ch->shape = NULL;
 				Message ("could not load character shape");
 			}

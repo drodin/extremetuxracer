@@ -716,13 +716,13 @@ TVector3 MakeNormal (const TPolygon& p, TVector3 *v) {
 
 TPolyhedron CopyPolyhedron (const TPolyhedron& ph) {
     TPolyhedron newph = ph;
-    newph.vertices = (TVector3 *) malloc (sizeof(TVector3) * ph.num_vertices);
-    for (int i=0; i<ph.num_vertices; i++) newph.vertices[i] = ph.vertices[i];
+	newph.vertices = new TVector3[ph.num_vertices];
+	copy_n(ph.vertices, ph.num_vertices, newph.vertices);
     return newph;
 } 
 
 void FreePolyhedron (const TPolyhedron& ph) {
-    free(ph.vertices);
+    delete[] ph.vertices;
 } 
 
 void TransPolyhedron (TMatrix mat, const TPolyhedron& ph) {
@@ -745,27 +745,18 @@ const double ode23_coeff_mat[][4] = {
 const double ode23_error_mat[] = {-5./72., 1./12., 1./9., -1./8. };
 const double ode23_time_step_exp = 1./3.;
 
-TOdeData* ode23_NewOdeData() {
-    TOdeData23 *data;
-    data = (TOdeData23*)malloc(sizeof(TOdeData23));
-    return (TOdeData*) data;
-}
-
 int ode23_NumEstimates() {return 4; }
 
-void ode23_InitOdeData (TOdeData *p, double init_val, double h) {
-    TOdeData23 *data = (TOdeData23*)p;
+void ode23_InitOdeData (TOdeData *data, double init_val, double h) {
     data->init_val = init_val;
     data->h = h;
 }
 
-double ode23_NextTime(TOdeData *p, int step) {
-    TOdeData23 *data = (TOdeData23*)p;
+double ode23_NextTime(TOdeData *data, int step) {
     return ode23_time_step_mat[step] * data->h;
 }
 
-double ode23_NextValue (TOdeData *p, int step) {
-    TOdeData23 *data = (TOdeData23*)p;
+double ode23_NextValue (TOdeData *data, int step) {
     double val = data->init_val;
 
     for  (int i=0; i<step; i++)
@@ -773,13 +764,11 @@ double ode23_NextValue (TOdeData *p, int step) {
     return val;
 }
 
-void ode23_UpdateEstimate(TOdeData *p, int step, double val) {
-    TOdeData23 *data = (TOdeData23*)p;
+void ode23_UpdateEstimate(TOdeData *data, int step, double val) {
     data->k[step] = data->h * val;
 }
 
-double ode23_FinalEstimate(TOdeData *p) {
-    TOdeData23 *data = (TOdeData23*)p;
+double ode23_FinalEstimate(TOdeData *data) {
     double val = data->init_val;
 
     for (int i=0; i<3; i++)
@@ -787,8 +776,7 @@ double ode23_FinalEstimate(TOdeData *p) {
     return val;
 }
 
-double ode23_EstimateError(TOdeData *p){
-    TOdeData23 *data = (TOdeData23*)p;
+double ode23_EstimateError(TOdeData *data){
     double err=0.;
 
     for  (int i=0; i<4; i++)
@@ -800,9 +788,8 @@ double ode23_TimestepExponent(){
     return ode23_time_step_exp;
 }
 
-TOdeSolver NewOdeSolver23(){
+TOdeSolver NewOdeSolver23() {
     TOdeSolver s; 
-    s.NewOdeData = ode23_NewOdeData;
     s.NumEstimates = ode23_NumEstimates;
     s.InitOdeData = ode23_InitOdeData;
     s.NextTime = ode23_NextTime;

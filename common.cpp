@@ -70,7 +70,7 @@ TColor3 MakeColor3 (double r, double g, double b) {
 // --------------------------------------------------------------------
 
 void PrintInt (const int val) {
-	printf ("Integer: %i\n", val );
+	cout << "Integer: " << val << '\n';
 }
 
 void PrintInt (const string& s, const int val) {
@@ -78,7 +78,7 @@ void PrintInt (const string& s, const int val) {
 }
 
 void PrintStr (const char *val) {
-	printf ("%s\n", val);
+	cout << val << '\n';
 }
 
 void PrintString (const string& s) {
@@ -86,72 +86,84 @@ void PrintString (const string& s) {
 }
 
 void PrintFloat (const float val) {
-	printf ("%.3f\n", val);
+	cout.precision(4);
+	cout << val << '\n';
 }
 
 void PrintDouble (const double val) {
-	printf ("%.3f\n", val);
+	cout.precision(4);
+	cout << val << '\n';
 }
 
 void PrintFloat (char *s, const float val) {
-	printf("%s %.4f\n", s, val);
+	cout.precision(5);
+	cout << s << ' ' << val << '\n';
 }
 
 void PrintFloat8 (const float val) {
-	printf ("%.8f\n", val);
+	cout.precision(9);
+	cout << val << '\n';
 }
 
 void PrintBool (const bool val) {
-	if (val == true) printf ("bool: true\n");
-	else printf ("bool: false\n");
+	if (val == true) cout <<"bool: true\n";
+	else cout << "bool: false\n";
 }
 
 void PrintPointer (void *p) {
-	if (p == NULL) printf ("Pointer: NULL\n");
-	else printf ("Pointer: %p\n", &p);
+	if (p == NULL) cout << "Pointer: NULL\n";
+	else cout << "Pointer: " << p << '\n';
 }
 
 void PrintVector4 (const TVector4& v) {
-	printf ("%.2f  %.2f  %.2f  %.2f\n", v.x, v.y, v.z, v.w); 
+	cout.precision(3);
+	cout << v.x << "  " << v.y << "  " << v.z << "  " << v.w << '\n';
 }
 
 void PrintColor (const TColor& v) {
-	printf ("%.2f  %.2f  %.2f  %.2f\n", v.r, v.g, v.b, v.a); 
+	cout.precision(3);
+	cout << v.r << "  " << v.g << "  " << v.b << '\n';
 }
 
 void PrintVector2 (const TVector2& v) {
-	printf ("%.2f  %.2f\n", v.x, v.y); 
+	cout.precision(3);
+	cout << v.x << "  " << v.y << '\n';
 }
 
 void PrintVector (const TVector3& v) {
-	printf ("%.4f  %.4f  %.4f\n", v.x, v.y, v.z); 
+	cout.precision(5);
+	cout << v.x << "  " << v.y << "  " << v.z << '\n';
 }
 
 void PrintIndex3 (const TIndex3& idx) {
-	printf ("%i %i %i\n", idx.i, idx.j, idx.k);
+	cout << idx.i << ' ' << idx.j << ' ' << idx.k << '\n';
 }
 
 void PrintIndex4 (const TIndex4& idx) {
-	printf ("%i %i %i %i\n", idx.i, idx.j, idx.k, idx.l);
+	cout << idx.i << ' ' << idx.j << ' ' << idx.k << ' ' << idx.l << '\n';
 }
 
 void PrintVector (char *s, const TVector3& v) {
-	printf ("%s %.4f  %.4f  %.4f\n", s, v.x, v.y, v.z); 
+	cout << s << ' ';
+	PrintVector(v);
 }
 
 void PrintMatrix (TMatrix mat) {
-	printf ("\n");
+	cout << '\n';
+	cout.precision(3);
 	for (int i=0; i<4; i++) {
-		for (int j=0; j<4; j++) 
-			if (mat[i][j]<0) printf ("  %.2f", mat[i][j]);
-			else printf ("   %.2f", mat[i][j]);
-		printf ("\n");
+		for (int j=0; j<4; j++) {
+			if (mat[i][j]>=0) cout << ' ';
+			cout << "  " << mat[i][j];
+		}
+		cout << '\n';
 	}
-	printf ("\n");
+	cout << '\n';
 }
 
 void PrintQuaternion (const TQuaternion& q) {
-	printf ("Quaternion: %.4f  %.4f  %.4f  %.4f\n", q.x, q.y, q.z, q.w); 
+	cout.precision(5);
+	cout << "Quaternion: " << q.x << "  " << q.y << "  " << q.z << "  " << q.w << '\n';
 }
 
 // --------------------------------------------------------------------
@@ -168,27 +180,27 @@ void SaveMessages () {
 
 void Message (const char *msg, const char *desc) {
 	if (strlen(msg)<1 && strlen(desc)<1) {
-		printf ("\n");
+		cout << '\n';
 		return;
 	}
 
 	string aa = msg;
 	string bb = desc;
-	printf ("%s  %s\n", msg, desc);
+	cout << aa << "  " << bb << '\n';
 	msg_list.Add (aa + bb);
 }
 
 void Message (const char *msg) {
 	if (strlen(msg)<1) {
-		printf ("\n");
+		cout << '\n';
 		return;
 	}
-	printf ("%s\n", msg);
+	cout << msg << '\n';
 	msg_list.Add (msg);
 }
 
 void MessageN (const string& a, const string& b) {
-	cout << a << " " << b << endl;
+	cout << a << ' ' << b << endl;
 	msg_list.Add (a + b);
 }
  

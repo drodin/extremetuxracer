@@ -42,6 +42,7 @@ GNU General Public License for more details.
 #include "newplayer.h"
 #include "score.h"
 #include "ogl_test.h"
+#include <iostream>
 
 TGameData g_game;
 
@@ -86,8 +87,8 @@ void InitGame (int argc, char **argv) {
 
 int main( int argc, char **argv ) {
 	// ****************************************************************
-	printf ("\n----------- Extreme Tux Racer " VERSION " ----------------");
-    printf ("\n----------- (C) 2010 Extreme Tuxracer Team  --------\n\n ");
+	cout << "\n----------- Extreme Tux Racer " VERSION " ----------------";
+    cout << "\n----------- (C) 2010 Extreme Tuxracer Team  --------\n\n";
 
 	srand (time (NULL));
 	InitConfig (argv[0]);

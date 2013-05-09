@@ -319,11 +319,11 @@ void CCharShape::ResetJoints () {
 void CCharShape::Reset () {
 	for (int i=0; i<MAX_CHAR_NODES; i++) {
 		if (Nodes[i] != NULL) {
-			free (Nodes[i]); 
+			delete Nodes[i];
 			Nodes[i] = NULL;
 		}
 		if (Actions[i] != NULL) {
-			free (Actions[i]); 
+			delete Actions[i];
 			Actions[i] = NULL;
 		}
 		Index[i] = -1;
@@ -331,7 +331,7 @@ void CCharShape::Reset () {
 	for (int i=0; i<MAX_CHAR_MAT; i++) {
 		Matlines[i] = "";
 		if (Materials[i] != NULL) {
-			free (Materials[i]); 
+			delete Materials[i];
 			Materials[i] = NULL;
 		}
 	}
@@ -372,7 +372,7 @@ void CCharShape::CreateMaterial (const char *line) {
 	std::string mat = SPItemN (lin, "mat");
 	STrimN(mat);
 
-	Materials[numMaterials] = (TCharMaterial *) malloc (sizeof (TCharMaterial));
+	Materials[numMaterials] = new TCharMaterial;
     Materials[numMaterials]->diffuse.r = diff.x;
     Materials[numMaterials]->diffuse.g = diff.y;
     Materials[numMaterials]->diffuse.b = diff.z;
@@ -408,7 +408,7 @@ GLuint CCharShape::GetDisplayList (int divisions) {
 		initialized = true;
 		int base_divisions = param.tux_sphere_divisions;
 		numDisplayLists = MAX_SPHERE_DIV - MIN_SPHERE_DIV + 1;
-		display_lists = (GLuint*) malloc (sizeof(GLuint) * numDisplayLists);
+		display_lists = new GLuint[numDisplayLists];
 		for (int i=0; i<numDisplayLists; i++) display_lists[i] = 0;
     }
 

@@ -26,10 +26,13 @@ GNU General Public License for more details.
 // --------------------------------------------------------------------
 
 char *NewStr (const char *s) {
-    char *dest;
-    dest = (char *) malloc (sizeof(char) * (strlen(s) + 1));
-    if (dest == NULL) printf ("malloc failed\n");
-    strcpy (dest, s);
+	char *dest = NULL;
+	try {
+		dest = new char[strlen(s) + 1];
+	} catch(...) {
+		cout << "malloc failed\n";
+	}
+	strcpy (dest, s);
     return dest;
 }
 

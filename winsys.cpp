@@ -24,6 +24,7 @@ GNU General Public License for more details.
 #include "textures.h"
 #include "spx.h"
 #include "course.h"
+#include <iostream>
 
 #define USE_JOYSTICK true
 
@@ -153,7 +154,7 @@ void CWinsys::InitJoystick () {
 }
 
 void CWinsys::Init () {
-    Uint32 sdl_flags = SDL_INIT_VIDEO | SDL_INIT_NOPARACHUTE | SDL_INIT_TIMER;
+	Uint32 sdl_flags = SDL_INIT_VIDEO | SDL_INIT_NOPARACHUTE | SDL_INIT_TIMER;
     if (SDL_Init (sdl_flags) < 0) Message ("Could not initialize SDL");
     SDL_GL_SetAttribute (SDL_GL_DOUBLEBUFFER, 1);
 
@@ -214,9 +215,9 @@ void CWinsys::PrintJoystickInfo () {
 	PrintStr ("");
 	PrintStr (SDL_JoystickName (0));
 	int num_buttons = SDL_JoystickNumButtons (joystick);
-	printf ("Joystick has %d button%s\n", num_buttons, num_buttons == 1 ? "" : "s");
+	cout << "Joystick has " << num_buttons << " button" << (num_buttons == 1 ? "" : "s") << '\n';
 	int num_axes = SDL_JoystickNumAxes (joystick);
-	printf ("Joystick has %d ax%ss\n\n", num_axes, num_axes == 1 ? "i" : "e");
+	cout << "Joystick has " << num_axes << " ax" << (num_axes == 1 ? "i" : "e") << "s\n\n";
 }
 
 unsigned char *CWinsys::GetSurfaceData () {

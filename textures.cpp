@@ -38,7 +38,7 @@ CImage::~CImage () {
 
 void CImage::DisposeData () {
 	if (data != NULL) {
-		free (data);
+		delete[] data;
 		data = NULL;
 	}
 }
@@ -58,7 +58,7 @@ bool CImage::LoadPng (const char *filepath, bool mirroring) {
 	depth = sdlImage->format->BytesPerPixel;
 	pitch = sdlImage->pitch;
 	DisposeData ();
-	data  = (unsigned char *) malloc (pitch * ny * sizeof (unsigned char));
+	data  = new unsigned char[pitch * ny];
 
    	if (SDL_MUSTLOCK (sdlImage)) {
    	    if (SDL_LockSurface (sdlImage) < 0) {
@@ -101,8 +101,8 @@ bool CImage::ReadFrameBuffer_PPM () {
 	depth = 3;
 
 	DisposeData ();
-	data  = (unsigned char *) malloc (nx * ny * depth * sizeof (unsigned char));
-	
+	data  = new unsigned char[nx * ny * depth];
+
 	glReadBuffer (GL_FRONT);
 	
 	for (int i=0; i<viewport[3]; i++){
@@ -119,7 +119,7 @@ void CImage::ReadFrameBuffer_TGA () {
 	depth = 3;
 
 	DisposeData ();
-	data  = (unsigned char *) malloc (nx * ny * depth * sizeof (unsigned char));
+	data  = new unsigned char[nx * ny * depth];
 
 	glReadBuffer (GL_FRONT);
 	glReadPixels (0, 0, nx, ny, GL_BGR, GL_UNSIGNED_BYTE, data);	
@@ -131,7 +131,7 @@ void CImage::ReadFrameBuffer_BMP () {
 	depth = 4;
 
 	DisposeData ();
-	data  = (unsigned char *) malloc (nx * ny * depth * sizeof (unsigned char));
+	data  = new unsigned char[nx * ny * depth];
 	glReadBuffer (GL_FRONT);
 	glReadPixels (0, 0, nx, ny, GL_BGRA, GL_UNSIGNED_BYTE, data);	
 }

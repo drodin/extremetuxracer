@@ -233,8 +233,11 @@ void CCourse::CalcNormals () {
 
 void CCourse::MakeCourseNormals () {
     if (nmls != NULL) free (nmls);
-    nmls = (TVector3 *) malloc (sizeof(TVector3) * nx * ny); 
-    if (nmls == NULL) Message ("malloc failed" , "");
+	try {
+		nmls = new TVector3[nx * ny];
+	} catch(...) {
+		Message ("Allocation failed in MakeCourseNormals" , "");
+	}
 	CalcNormals ();	
 } 
 
@@ -249,7 +252,7 @@ void CCourse::FillGlArrays() {
     glDisableClientState (GL_NORMAL_ARRAY);
     glDisableClientState (GL_COLOR_ARRAY);
 
-    vnc_array = (GLubyte*) malloc (STRIDE_GL_ARRAY * nx * ny);
+	vnc_array = new GLubyte[STRIDE_GL_ARRAY * nx * ny];
 
     for (int x=0; x<nx; x++) {
 		for (int y=0; y<ny; y++) {
@@ -295,7 +298,7 @@ void CCourse::MakeStandardPolyhedrons () {
 
 	// poyhedron "tree"	
 	PolyArr[1].num_vertices = 6;
-	PolyArr[1].vertices = (TVector3*) malloc (sizeof(TVector3) * 6);
+	PolyArr[1].vertices = new TVector3[6];
 	PolyArr[1].vertices[0] = MakeVector (0, 0, 0);
 	PolyArr[1].vertices[1] = MakeVector (0, 0.15, 0.5);
 	PolyArr[1].vertices[2] = MakeVector (0.5, 0.15, 0);
@@ -304,10 +307,10 @@ void CCourse::MakeStandardPolyhedrons () {
 	PolyArr[1].vertices[5] = MakeVector (0, 1, 0);
 
 	PolyArr[1].num_polygons = 8;
-	PolyArr[1].polygons = (TPolygon*) malloc (sizeof(TPolygon) * 8);
+	PolyArr[1].polygons = new TPolygon[8];
 	for (size_t i=0; i<PolyArr[1].num_polygons; i++) {
 		PolyArr[1].polygons[i].num_vertices = 3;	
-		PolyArr[1].polygons[i].vertices = (int*) malloc (sizeof(int) * 3);
+		PolyArr[1].polygons[i].vertices = new int[3];
 	}	
 	PolyArr[1].polygons[0].vertices[0] = 0;	
 	PolyArr[1].polygons[0].vertices[1] = 1;	
@@ -375,11 +378,11 @@ bool CCourse::LoadElevMap () {
 	}
 
     nx = img.nx;
-    ny = img.ny;   
-	elevation = (double *) malloc (sizeof (double) * nx * ny);
-
-    if (elevation == NULL) {
-		Message ("malloc failed in LoadElevMap");
+    ny = img.ny;
+	try {
+		elevation = new double[nx * ny];
+	} catch(...) {
+		Message ("Allocation failed in LoadElevMap");
 		return false;
     }
 
@@ -683,9 +686,10 @@ bool CCourse::LoadTerrainMap () {
 		Message ("wrong terrain size", "");
     }
 
-	terrain = (char *) malloc (sizeof (char) * nx * ny);
-    if (terrain == NULL) {
-		Message ("malloc failed in LoadTerrainMap", "");
+	try {
+		terrain = new char[nx * ny];
+	} catch(...) {
+		Message ("Allocation failed in LoadTerrainMap", "");
     }
 	int pad = 0;
 	for (int y=0; y<ny; y++) {
@@ -787,7 +791,7 @@ void CCourse::FreeCourseList () {
 
 void CCourse::ResetCourse () {
 	if (nmls != NULL) {free (nmls); nmls = NULL;}
-	if (vnc_array != NULL) {free (vnc_array); vnc_array = NULL;}
+	if (vnc_array != NULL) {delete[] vnc_array; vnc_array = NULL;}
 	if (elevation != NULL) {free (elevation); elevation = NULL;}
 	if (terrain != NULL) {free (terrain); terrain = NULL;}
 
