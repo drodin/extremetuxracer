@@ -17,6 +17,7 @@ GNU General Public License for more details.
 ---------------------------------------------------------------------*/
 
 #include "mathlib.h"
+#include <algorithm>
 
 double VectorLength (const TVector3 &v) {
 	return sqrt (MAG_SQD(v));

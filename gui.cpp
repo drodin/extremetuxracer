@@ -394,7 +394,7 @@ void DrawLevel (int x, int y, int level, double fact) {
 	glEnd();
 }
 
-void DrawBonus (int x, int y, int max, int num) {
+void DrawBonus (int x, int y, int max, size_t num) {
     TVector2 bl, tr;
 	double bott, top;
 	int i;
@@ -427,7 +427,7 @@ void DrawBonus (int x, int y, int max, int num) {
 	}
 }
 
-void DrawBonusExt (int y, int numraces, int num) {
+void DrawBonusExt (int y, size_t numraces, size_t num) {
     TVector2 bl, tr;
 	double bott, top;
 	int i;

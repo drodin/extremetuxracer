@@ -184,7 +184,6 @@ typedef struct {
 	size_t start_player;
 	TCup2* cup;
 	size_t race_id;
-	size_t numraces;
 	bool mirror_id;
 	size_t char_id;
 	size_t course_id;
@@ -192,7 +191,7 @@ typedef struct {
 	int light_id;
 	int snow_id;
 	int wind_id;
-	int theme_id;
+	size_t theme_id;
 
 	// requirements
 	TIndex3 herring_req;	// 3 levels of needed herrings

@@ -96,7 +96,7 @@ void CEventSelect::Enter () {
 
 	ResetGUI();
 	event = AddUpDown(area.right+8, frametop1, 0, (int)Events.EventList.size() - 1, 0);
-	cup = AddUpDown(area.right+8, frametop2, 0, EventList[0].num_cups - 1, 0);
+	cup = AddUpDown(area.right+8, frametop2, 0, (int)EventList[0].cups.size() - 1, 0);
 
 	int siz = FT.AutoSizeN (5);
 

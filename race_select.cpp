@@ -44,12 +44,12 @@ static TCourse *CourseList;
 
 void SetRaceConditions (void) {
 	if (random_btn->GetValue() > 0) {
-		g_game.mirror_id = (bool)IRandom (0, 1);
+		g_game.mirror_id = IRandom (0, 1) != 0;
 		g_game.light_id = IRandom (0, 3);
 		g_game.snow_id = IRandom (0, 3);
 		g_game.wind_id = IRandom (0, 3);
 	} else {
-		g_game.mirror_id = (bool)mirror->GetValue();
+		g_game.mirror_id = mirror->GetValue() != 0;
 		g_game.light_id = light->GetValue();
 		g_game.snow_id = snow->GetValue();
 		g_game.wind_id = wind->GetValue();

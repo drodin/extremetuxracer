@@ -139,8 +139,8 @@ void ResetGUI();
 void DrawFrameX (int x, int y, int w, int h, int line, 
 			const TColor& backcol, const TColor& framecol, double transp);
 void DrawLevel (int x, int y, int level, double fact);
-void DrawBonus (int x, int y, int max, int num);
-void DrawBonusExt (int y, int numraces, int num);
+void DrawBonus (int x, int y, int max, size_t num);
+void DrawBonusExt (int y, size_t numraces, size_t num);
 void DrawCursor ();
 
 // --------------------------------------------------------------------

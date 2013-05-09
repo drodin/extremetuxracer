@@ -31,4 +31,4 @@ public:
 
 extern CEvent Event;
 
-#endif 
+#endif

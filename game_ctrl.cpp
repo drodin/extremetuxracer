@@ -66,7 +66,7 @@ bool CEvents::LoadEventList () {
 			CupList.back().name = SPStrN (line, "name", "unknown");
 			CupList.back().desc = SPStrN (line, "desc", "unknown");
 			int num = SPIntN (line, "num", 0);
-			CupList.back().num_races = num;
+			CupList.back().races.resize(num);
 			for (int ii=0; ii<num; ii++) {
 				string race = SPStrN (line, Int_StrN (ii+1), "");
 				CupList.back().races[ii] = &RaceList[GetRaceIdx(race)];
@@ -83,7 +83,7 @@ bool CEvents::LoadEventList () {
 			EventList.push_back(TEvent2());
 			EventList.back().name = SPStrN (line, "name", "unknown");
 			int num = SPIntN (line, "num", 0);
-			EventList.back().num_cups = num;
+			EventList.back().cups.resize(num);
 			for (int ii=0; ii<num; ii++) {
 				string cup = SPStrN (line, Int_StrN (ii+1), "");
 				EventList.back().cups[ii] = &CupList[GetCupIdx(cup)];
@@ -95,44 +95,44 @@ bool CEvents::LoadEventList () {
 	return true;
 }
 
-int CEvents::GetRaceIdx (const string& race) const {
-	return SPIntN (RaceIndex, race, 0);
+size_t CEvents::GetRaceIdx (const string& race) const {
+	return (size_t)SPIntN (RaceIndex, race, 0);
 }
 
-int CEvents::GetCupIdx (const string& cup) const {
-	return SPIntN (CupIndex, cup, 0);
+size_t CEvents::GetCupIdx (const string& cup) const {
+	return (size_t)SPIntN (CupIndex, cup, 0);
 }
 
-int CEvents::GetEventIdx (const string& event) const {
-	return SPIntN (EventIndex, event, 0);
+size_t CEvents::GetEventIdx (const string& event) const {
+	return (size_t)SPIntN (EventIndex, event, 0);
 }
 
 string CEvents::GetCup (size_t event, size_t cup) const {
-	if (event < 0 || event >= EventList.size()) return "error";
-	if (cup < 0 || cup >= EventList[event].num_cups) return "error";
+	if (event >= EventList.size()) return "error";
+	if (cup >= EventList[event].cups.size()) return "error";
 	return EventList[event].cups[cup]->cup;
 }
 
 string CEvents::GetCupTrivialName (size_t event, size_t cup) const {
-	if (event < 0 || event >= EventList.size()) return "error";
-	if (cup < 0 || cup >= EventList[event].num_cups) return "error";
+	if (event >= EventList.size()) return "error";
+	if (cup >= EventList[event].cups.size()) return "error";
 	return EventList[event].cups[cup]->name;
 }
 
 void CEvents::MakeUnlockList (string unlockstr) {
-	for (int event=0; event<EventList.size(); event++) {
-		for (int cup=0; cup<EventList[event].num_cups; cup++) {
+	for (size_t event=0; event<EventList.size(); event++) {
+		for (size_t cup=0; cup<EventList[event].cups.size(); cup++) {
 			EventList[event].cups[cup]->Unlocked = false;
 		}
 	}
-	for (int event=0; event<EventList.size(); event++) {
-		for (int cup=0; cup<EventList[event].num_cups; cup++) {
+	for (size_t event=0; event<EventList.size(); event++) {
+		for (size_t cup=0; cup<EventList[event].cups.size(); cup++) {
 			string cp = GetCup (event, cup);
 			bool passed = SPosN (unlockstr, cp) != string::npos;
 			if (cup < 1) EventList[event].cups[0]->Unlocked = true;
 			if (passed) {
 				EventList[event].cups[cup]->Unlocked = true;
-				if(cup+1 < EventList[event].num_cups)
+				if(cup+1 < EventList[event].cups.size())
 					EventList[event].cups[cup+1]->Unlocked = true;
 			}
 		}
@@ -140,8 +140,8 @@ void CEvents::MakeUnlockList (string unlockstr) {
 }
 
 bool CEvents::IsUnlocked (size_t event, size_t cup) const {
-	if (event < 0 || event >= EventList.size()) return false;
-	if (cup < 0 || cup >= EventList[event].num_cups) return false;
+	if (event >= EventList.size()) return false;
+	if (cup >= EventList[event].cups.size()) return false;
 	return EventList[event].cups[cup]->Unlocked;
 }
 
@@ -185,13 +185,13 @@ bool CPlayers::LoadPlayers () {
 	if (FileExists (param.config_dir, "players") == false) {
 		SetDefaultPlayers ();
 		Message ("file 'players' does not exist, set default players");
-		return false; 
+		return false;
 	}
 
 	if (list.Load (param.config_dir, "players") == false) {
 		SetDefaultPlayers ();
 		Message ("coule not load players list, set default players");
-		return false; 
+		return false;
 	}
 
 	g_game.start_player = 0;
@@ -214,7 +214,7 @@ bool CPlayers::LoadPlayers () {
 	return true;
 }
 
-void CPlayers::SavePlayers () {
+void CPlayers::SavePlayers () const {
 	string playerfile = param.config_dir + SEP + "players";
 	CSPList list(MAX_PLAYERS);
 	string item = "";
@@ -229,7 +229,7 @@ void CPlayers::SavePlayers () {
 	list.Save (playerfile);
 }
 
-string CPlayers::GetCurrUnlocked (){
+string CPlayers::GetCurrUnlocked () const {
 	return plyr[currPlayer].funlocked;
 }
 
@@ -239,11 +239,11 @@ void CPlayers::AddPassedCup (const string& cup) {
 	plyr[currPlayer].funlocked += cup;
 }
 
-CControl *CPlayers::GetCtrl () {
+CControl *CPlayers::GetCtrl () const {
 	return plyr[currPlayer].ctrl;
 }
 
-CControl *CPlayers::GetCtrl (size_t player) {
+CControl *CPlayers::GetCtrl (size_t player) const {
 	if (player < 0 || player >= plyr.size()) return NULL;
 	return plyr[player].ctrl;
 }
@@ -319,10 +319,6 @@ string CPlayers::GetDirectAvatarName (size_t avatar) const {
 
 CCharacter Char;
 
-CCharacter::CCharacter () {
-	curr_character = 0;
-}
-
 static string char_type_index = "[spheres]0[3d]1";
 
 void CCharacter::LoadCharacterList () {
@@ -346,10 +342,10 @@ void CCharacter::LoadCharacterList () {
 			string previewfile = charpath + SEP + "preview.png";
 			GLuint texid = Tex.LoadMipmapTexture (previewfile, 0);
 			if (texid < 1) {
-				Message ("could not load previewfile of character");					
+				Message ("could not load previewfile of character");
 //				texid = Tex.TexID (NO_PREVIEW);
 			}
-			
+
 			TCharacter* ch = &CharList[i];
 			ch->preview = texid;
 
@@ -360,13 +356,13 @@ void CCharacter::LoadCharacterList () {
 				Message ("could not load character shape");
 			}
 
-			ch->frames[0].Load (charpath, "start.lst"); 
+			ch->frames[0].Load (charpath, "start.lst");
 			ch->finishframesok = true;
-			ch->frames[1].Load (charpath, "finish.lst"); 
+			ch->frames[1].Load (charpath, "finish.lst");
 			if (ch->frames[1].loaded == false) ch->finishframesok = false;
-			ch->frames[2].Load (charpath, "wonrace.lst"); 
+			ch->frames[2].Load (charpath, "wonrace.lst");
 			if (ch->frames[2].loaded == false) ch->finishframesok = false;
-			ch->frames[3].Load (charpath, "lostrace.lst"); 
+			ch->frames[3].Load (charpath, "lostrace.lst");
 			if (ch->frames[3].loaded == false) ch->finishframesok = false;
 		}
 	}

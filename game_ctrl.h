@@ -20,8 +20,6 @@ GNU General Public License for more details.
 #include "bh.h"
 #include "keyframe.h"
 
-#define MAX_RACES_PER_CUP 6
-#define MAX_CUPS_PER_EVENT 12
 
 struct TRace2 {
 	string race;
@@ -38,15 +36,13 @@ struct TCup2 {
 	string cup;
 	string name;
 	string desc;
-	int num_races;
-	TRace2* races[MAX_RACES_PER_CUP];
+	vector<TRace2*> races;
 	bool Unlocked;
 };
 
 struct TEvent2 {
 	string name;
-	int num_cups;
-	TCup2* cups[MAX_CUPS_PER_EVENT];
+	vector<TCup2*> cups;
 };
 
 class CEvents {
@@ -59,9 +55,9 @@ public:
 	vector<TCup2> CupList;
 	vector<TEvent2> EventList;
 	bool LoadEventList ();
-	int GetRaceIdx (const string& race) const;
-	int GetCupIdx (const string& cup) const;
-	int GetEventIdx (const string& event) const;
+	size_t GetRaceIdx (const string& race) const;
+	size_t GetCupIdx (const string& cup) const;
+	size_t GetEventIdx (const string& event) const;
 	string GetCup (size_t event, size_t cup) const;
 	string GetCupTrivialName (size_t event, size_t cup) const;
 
@@ -86,35 +82,35 @@ struct TPlayer {
 	string avatar;
 };
 
-typedef struct {
+struct TAvatar {
 	string filename;
 	GLuint texid;
-} TAvatar;
+};
 
 class CPlayers {
 private:
 	vector<TPlayer> plyr;
- 	int currPlayer;
- 	void SetDefaultPlayers ();
+	size_t currPlayer;
+	void SetDefaultPlayers ();
 	string AvatarIndex;
 	vector<TAvatar> avatars;
 public:
 	CPlayers ();
 
-	string GetCurrUnlocked ();
+	string GetCurrUnlocked () const;
 	void AddPassedCup (const string& cup);
 	void AddPlayer (const string& name, const string& avatar);
 	bool LoadPlayers ();
-	void SavePlayers ();
-	CControl *GetCtrl (); // current player
-	CControl *GetCtrl (size_t player); 	
+	void SavePlayers () const;
+	CControl *GetCtrl () const; // current player
+	CControl *GetCtrl (size_t player) const;
 	string GetName (size_t player) const;
 	void ResetControls ();
 	void AllocControl (size_t player);
 	void LoadAvatars ();
 	size_t numAvatars() const { return avatars.size(); }
 	size_t numPlayers() const { return plyr.size(); }
-	
+
 	GLuint GetAvatarID (size_t player) const;
 	GLuint GetAvatarID (const string& filename) const;
 	GLuint GetDirectAvatarID (size_t avatar) const;
@@ -139,11 +135,7 @@ struct TCharacter {
 };
 
 class CCharacter {
-private:
-	int curr_character; 
 public:
-	CCharacter ();
-
 	vector<TCharacter> CharList;
 
 	void Draw (size_t idx);
