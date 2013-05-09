@@ -19,11 +19,11 @@ GNU General Public License for more details.
 #include "spx.h"
 #include <cstdarg>
 
-typedef struct {
+struct gl_value_t {
     char name[40];
     GLenum value;
     GLenum type;
-} gl_value_t;
+};
 
 gl_value_t gl_values[] = {
     { "maximum lights", GL_MAX_LIGHTS, GL_INT },

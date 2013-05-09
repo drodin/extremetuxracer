@@ -48,122 +48,122 @@ enum Orientation {
 	OR_BOTTOM = 1		// bottom-orientated
 };
 
-#define TUX_WIDTH 0.45 			
+#define TUX_WIDTH 0.45
 #define MAX_ROLL_ANGLE 30
 #define BRAKING_ROLL_ANGLE 55
 
 #define CENTER -1
 #define FIT -1
 
-typedef struct {double x, y;}			TVector2;
-typedef struct {double x, y, z;}		TVector3;
-typedef struct {double x, y, z, w;} 	TVector4;
+struct TVector2		{ double x, y; };
+struct TVector3		{ double x, y, z; };
+struct TVector4		{ double x, y, z, w; };
 
-typedef struct {int i, j;}				TIndex2;
-typedef struct {int i, j, k;}			TIndex3;
-typedef struct {int i, j, k, l;}		TIndex4;
+struct TIndex2		{ int i, j; };
+struct TIndex3		{ int i, j, k; };
+struct TIndex4		{ int i, j, k, l; };
 
-typedef struct {double r, g, b, a;}		TColor;
-typedef struct {double r, g, b;}		TColor3;
+struct TColor		{ double r, g, b, a; };
+struct TColor3		{ double r, g, b; };
 
-typedef double							TMatrix[4][4];
-typedef struct {double x, y, z, w;}		TQuaternion;
+typedef double TMatrix[4][4];
+struct TQuaternion	{ double x, y, z, w; };
 
-typedef struct {TVector3 nml; double d;}			TPlane;
-typedef struct {int num_vertices; int *vertices;} 	TPolygon;
-typedef struct {double radius; int divisions;}		TSphere;
-typedef struct {TVector3 pt; TVector3 vec;}			TRay;
-typedef struct {int width, height;}				TScreenRes;
+struct TPlane		{ TVector3 nml; double d; };
+struct TPolygon		{ int num_vertices; int *vertices; };
+struct TSphere		{ double radius; int divisions; };
+struct TRay			{ TVector3 pt; TVector3 vec; };
+struct TScreenRes	{ int width, height; };
 
-typedef struct {
+struct TPolyhedron {
     size_t num_vertices;
     size_t num_polygons;
     TVector3 *vertices;
     TPolygon *polygons;
-} TPolyhedron;
+};
 
-typedef struct {
+struct TMaterial {
     TColor diffuse;
     TColor specular_colour;
     double specular_exp;
-} TMaterial;
+};
 
-typedef struct {
+struct key_frame_t {
     double time;
     TVector3 pos;
-    double yaw;      
-    double pitch;    
+    double yaw;
+    double pitch;
     double l_shldr;
     double r_shldr;
     double l_hip;
     double r_hip;
-} key_frame_t; 
+};
 
-typedef struct {
+struct TCollidable {
 	TVector3 pt;
     double height;
     double diam;
     int tree_type;
-} TCollidable;
+};
 
-typedef struct {
+struct TItem {
 	TVector3 pt;
     double height;
     double diam;
     int item_type;
     int collectable;
     bool drawable;
-} TItem; 
+};
 
-typedef struct {
+struct TRect {
 	int left;
 	int top;
 	int width;
 	int height;
-} TRect;
+};
 
-typedef struct {
+struct TArea {
 	int left;
 	int right;
 	int top;
 	int bottom;
-} TArea;
+};
 
-typedef enum {
+enum TToolMode {
 	NONE,
 	TUXSHAPE,
 	KEYFRAME,
 	TREEGEN,
 	LEARN,
-} TToolMode;
+};
 
-typedef enum {
+enum TGameType {
 	PRACTICING,
 	CUPRACING,
 	TRAINING
-} TGameType;
+};
 
-typedef enum {
+enum TViewMode {
     BEHIND,
     FOLLOW,
     ABOVE,
     NUM_VIEW_MODES
-} TViewMode;
+};
 
-typedef enum {
+enum TFrameType {
 	START,
 	FINISH,
 	WONRACE,
 	LOSTRACE,
 	NUM_FRAME_TYPES
-} TFrameType;
+};
 
 struct TCup2;
 
-typedef struct {
+struct TGameData {
 	TToolMode toolmode;
-	double time_step;            
-    double secs_since_start;  
+	double time_step;
+    double secs_since_start;
 	double fps;
 	int timesteps;
 	TGameType game_type;
@@ -179,7 +179,7 @@ typedef struct {
 	bool use_keyframe;
 	double finish_brake;
 
-	// course and race params 
+	// course and race params
 	size_t player_id;
 	size_t start_player;
 	TCup2* cup;
@@ -202,7 +202,7 @@ typedef struct {
 	int score;				// reached score
 	int herring;			// catched herrings during the race
 	int race_result;		// tuxlifes, only for a single race, see game_ctrl
-    bool raceaborted;     
-} TGameData;
+    bool raceaborted;
+};
 
 #endif

@@ -30,10 +30,10 @@ An name convention:
 #define MAX_COMMON_TEXTS 128
 
 
-typedef struct {
+struct TLang {
 	string lang;
 	string language;
-} TLang;
+};
 
 class CTranslation {
 private:

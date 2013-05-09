@@ -141,7 +141,7 @@ bool CEnvironment::LoadEnvironmentList () {
 	}
 
 	locs.resize(list.Count());
-	for (int i=0; i<list.Count(); i++) {
+	for (size_t i=0; i<list.Count(); i++) {
 		string line = list.Line (i);
 		locs[i].name = SPStrN (line, "location", "");
 	}

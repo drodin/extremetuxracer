@@ -69,7 +69,7 @@ GNU General Public License for more details.
 
 #define BF_TYPE 0x4D42             // "MB" 
 
-typedef struct {
+struct TTgaHeader {
     char tfType;
     char tfColorMapType;
     char tfImageType;
@@ -80,17 +80,17 @@ typedef struct {
     short tfHeight;
     char tfBpp;
     char tfImageDes;
-} TTgaHeader;
+};
 
-typedef struct {
+struct TBmpHeader {
     unsigned short  bfType;           // identifier of bmp formae 
     unsigned long   bfSize;           // size of file, including the headers  
     unsigned short  bfReserved1;      // reserved, always 0 
     unsigned short  bfReserved2;      // reserved, always 0 
     unsigned long   bfOffBits;        // offset to bitmap data 
-} TBmpHeader;
+};
 
-typedef struct {
+struct TBmpInfo {
     unsigned long   biSize;           // size of info header, normally 40
     long            biWidth;          // width
     long            biHeight;         // height
@@ -102,7 +102,7 @@ typedef struct {
     long            biYPelsPerMeter;  // normally 0 
     unsigned long   biClrUsed;        // normally 0
     unsigned long   biClrImportant;   // normally 0 
-} TBmpInfo;
+};
 
 
 // --------------------------------------------------------------------

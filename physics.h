@@ -58,7 +58,7 @@ GNU General Public License for more details.
 #define FIN_AIR_BRAKE 20
 #define FIN_BRAKE 12
 
-typedef struct {
+struct TForce {
 	TVector3 surfnml;
 	TVector3 rollnml;
 	TVector3 pos;
@@ -69,7 +69,7 @@ typedef struct {
 	double comp_depth;
 	double surfdistance;
     double compression;	
-} TForce;
+};
 
 class CControl {
 private:

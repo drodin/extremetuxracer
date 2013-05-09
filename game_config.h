@@ -24,7 +24,7 @@ GNU General Public License for more details.
 
 using namespace std;
 
-typedef struct {
+struct TParam {
 	// defined at runtime:
   //	string	prog_dir;
 	string	config_dir;
@@ -84,7 +84,7 @@ typedef struct {
 	int 	x_resolution;
 	int 	y_resolution;
 	double	scale;		// scale factor for screen, see 'use_quad_scale'
-} TParam;
+};
 
 void InitConfig (char *arg0);
 void SaveConfigFile ();

@@ -31,28 +31,28 @@ GNU General Public License for more details.
 #define MAX_TRACK_DEPTH 0.7
 
 
-typedef enum track_types_t {
+enum track_types_t {
     TRACK_HEAD,
     TRACK_MARK,
     TRACK_TAIL,
     NUM_TRACK_TYPES
-} track_types_t;
+};
 
-typedef struct track_quad_t {
+struct track_quad_t {
     TVector3 v1, v2, v3, v4;
     TVector2 t1, t2, t3, t4;
     TVector3 n1, n2, n3, n4;
     track_types_t track_type;
     double alpha;
-} track_quad_t;
+};
 
-typedef struct track_marks_t {
+struct track_marks_t {
     track_quad_t quads[MAX_TRACK_MARKS];
     int current_mark;
     int next_mark;
     double last_mark_time;
     TVector3 last_mark_pos;
-} track_marks_t;
+};
 
 static track_marks_t track_marks;
 static bool continuing_track;

@@ -21,15 +21,15 @@ GNU General Public License for more details.
 #include "bh.h"
 #include <vector>
 
-typedef struct {
+struct TLocInfo {
 	string name;
-} TLocInfo;
+};
 
-typedef struct {
+struct TLightCond {
 	string name;
-} TLightCond;
+};
 
-typedef struct {
+struct TFog {
     bool is_on;
 	GLint mode;
     float start;
@@ -37,15 +37,15 @@ typedef struct {
 	float height;
     float color[4];
 	float part_color[4]; 
-} TFog;
+};
 
-typedef struct {
+struct TLight{
 	bool is_on;
 	float ambient[4];
 	float diffuse[4];
 	float specular[4];
 	float position[4];	
-} TLight;
+};
 
 class CEnvironment {
 private:

@@ -87,22 +87,22 @@ void		TransPolyhedron (TMatrix mat, const TPolyhedron& ph);
 //				ode solver
 // --------------------------------------------------------------------
 
-typedef struct {
+struct TOdeData {
     double k[4];
     double init_val;
     double h;
-} TOdeData;
+};
 
-typedef int 		(*PNumEstimates) ();
-typedef void 		(*PInitOdeData) (TOdeData *, double init_val, double h);
-typedef double 		(*PNextTime) (TOdeData *, int step);
-typedef double 		(*PNextValue) (TOdeData *, int step);
-typedef void 		(*PUpdateEstimate) (TOdeData *, int step, double val);
-typedef double 		(*PFinalEstimate) (TOdeData *);
-typedef double 		(*PEstimateError) (TOdeData *);
-typedef double 		(*PTimestepExponent) ();
+typedef int			(*PNumEstimates) ();
+typedef void		(*PInitOdeData) (TOdeData *, double init_val, double h);
+typedef double		(*PNextTime) (TOdeData *, int step);
+typedef double		(*PNextValue) (TOdeData *, int step);
+typedef void		(*PUpdateEstimate) (TOdeData *, int step, double val);
+typedef double		(*PFinalEstimate) (TOdeData *);
+typedef double		(*PEstimateError) (TOdeData *);
+typedef double		(*PTimestepExponent) ();
 
-typedef struct {
+struct TOdeSolver {
     PNumEstimates		NumEstimates;
     PInitOdeData		InitOdeData;
     PNextTime			NextTime;
@@ -111,7 +111,7 @@ typedef struct {
     PFinalEstimate		FinalEstimate;
     PEstimateError		EstimateError;
     PTimestepExponent	TimestepExponent;
-} TOdeSolver;
+};
 
 TOdeSolver NewOdeSolver23 ();
 

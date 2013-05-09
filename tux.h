@@ -44,10 +44,10 @@ struct TCharAction {
 	string mat;
 };		
 
-typedef struct NodeStruct {
-    struct NodeStruct *parent;
-    struct NodeStruct *next;
-    struct NodeStruct *child;
+struct TCharNode {
+    TCharNode *parent;
+    TCharNode *next;
+    TCharNode *child;
 
 	int node_idx;		// number in node_array
 	int node_name;		// int identifier of node itself
@@ -63,7 +63,7 @@ typedef struct NodeStruct {
 	int divisions;
     TCharMaterial *mat;
     bool render_shadow;
-} TCharNode;
+};
 
 class CCharShape {
 private:
