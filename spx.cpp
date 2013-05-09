@@ -25,17 +25,6 @@ GNU General Public License for more details.
 //					elementary string functions
 // --------------------------------------------------------------------
 
-char *NewStr (const char *s) {
-	char *dest = NULL;
-	try {
-		dest = new char[strlen(s) + 1];
-	} catch(...) {
-		cout << "malloc failed\n";
-	}
-	strcpy (dest, s);
-    return dest;
-}
-
 string MakePathStr (const string& src, const string& add) {
 	string res = src;
 	res += SEP;

@@ -88,9 +88,6 @@ void InitOpenglExtensions () {
 }
 
 void PrintGLInfo (){
-    char *extensions;
-    char *p, *oldp;
-    int i;
     GLint int_val;
     GLfloat float_val;
     GLboolean boolean_val;
@@ -99,22 +96,22 @@ void PrintGLInfo (){
     Message ("Gl vendor: ", (char*)glGetString (GL_VENDOR));
     Message ("Gl renderer: ", (char*)glGetString (GL_RENDERER));
     Message ("Gl version: ", (char*)glGetString (GL_VERSION));
-    extensions = NewStr ((char*) glGetString (GL_EXTENSIONS));
+    string extensions = (char*)glGetString (GL_EXTENSIONS);
     Message ("", "");
 	Message ("Gl extensions:", "");
 	Message ("", "");
-	
-    oldp = extensions;
-    while ((p=strchr(oldp,' '))) {
-		*p='\0';
-		Message (oldp,"");
-		oldp = p+1;
-    }
-    if (*oldp) Message (oldp,"");
 
-    free (extensions);
+	size_t oldpos = 0;
+	size_t pos;
+    while ((pos = extensions.find(' ', oldpos)) != string::npos) {
+		string s = extensions.substr(oldpos, pos-oldpos);
+		Message(s.c_str(), "");
+		oldpos = pos+1;
+    }
+	Message(extensions.substr(oldpos).c_str(), "");
+
 	Message ("", "");
-    for (i=0; i<(int)(sizeof(gl_values)/sizeof(gl_values[0])); i++) {
+    for (int i=0; i<(int)(sizeof(gl_values)/sizeof(gl_values[0])); i++) {
 		switch (gl_values[i].type) {
 			case GL_INT:
 	    	glGetIntegerv (gl_values[i].value, &int_val);

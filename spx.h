@@ -24,7 +24,6 @@ GNU General Public License for more details.
 using namespace std;
 
 // ----- elementary string functions ----------------------------------
-char	*NewStr (const char *s);
 string   MakePathStr  (const string& src, const string& add);
 void     SInsertN     (string &s, size_t pos, const string& ins);
 void     SDeleteN     (string &s, size_t pos, size_t count);
