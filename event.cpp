@@ -47,7 +47,7 @@ void StartRace () {
 		State::manager.RequestEnterState (EventSelect);
 		return;
 	}
-	g_game.mirror_id = 0;
+	g_game.mirror_id = false;
 	g_game.course_id = ecup->races[curr_race]->course;
 	g_game.theme_id = ecup->races[curr_race]->music_theme;
 	g_game.light_id = ecup->races[curr_race]->light;
@@ -253,5 +253,5 @@ void CEvent::Loop (double timestep) {
 	textbuttons[2]->SetVisible(!(ready < 1));
 
 	DrawGUI ();
-    SDL_GL_SwapBuffers ();
+    Winsys.SwapBuffers();
 }

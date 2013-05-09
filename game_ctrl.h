@@ -25,13 +25,13 @@ GNU General Public License for more details.
 
 struct TRace2 {
 	string race;
-	int course;
+	size_t course;
 	int light;
 	int snow;
 	int wind;
 	TIndex3 herrings;
 	TVector3 time;
-	int music_theme;
+	size_t music_theme;
 };
 
 struct TCup2 {

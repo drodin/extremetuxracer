@@ -36,8 +36,8 @@ void CAudio::Open () {
 	    Message ("Couldn't initialize SDL Audio", SDL_GetError());
 		return;
 	}
-	Uint16 format = AUDIO_S16SYS;	
-    int channels = 2;				
+	Uint16 format = AUDIO_S16SYS;
+    int channels = 2;
 	if (Mix_OpenAudio (param.audio_freq, format, channels, param.audio_buffer_size) < 0)
 		Message ("Couldn't open SDL_mixer", Mix_GetError());
 	IsOpen = CheckOpen ();
@@ -85,11 +85,11 @@ void CSound::LoadSoundList () {
 		return;
 	}
 	CSPList list(200);
-	if (list.Load (param.sounds_dir, "sounds.lst")) { 
-		for (int i=0; i<list.Count(); i++) {
+	if (list.Load (param.sounds_dir, "sounds.lst")) {
+		for (size_t i=0; i<list.Count(); i++) {
 			string line = list.Line(i);
-			string name = SPStrN (line, "name", "");		
-			string soundfile = SPStrN (line, "file", "");		
+			string name = SPStrN (line, "name", "");
+			string soundfile = SPStrN (line, "file", "");
 			string path = MakePathStr (param.sounds_dir, soundfile);
 			LoadChunk (name, path.c_str());
 		}
@@ -98,20 +98,20 @@ void CSound::LoadSoundList () {
 
 void CSound::FreeSounds () {
 	HaltAll ();
-	for (int i=0; i<sounds.size(); i++)
+	for (size_t i=0; i<sounds.size(); i++)
 		if (sounds[i].chunk != NULL) Mix_FreeChunk (sounds[i].chunk);
 	sounds.clear();
 	SoundIndex = "";
 }
 
-int CSound::GetSoundIdx (const string& name) const {
+size_t CSound::GetSoundIdx (const string& name) const {
     if (Audio.IsOpen == false) return -1;
 	return SPIntN (SoundIndex, name, -1);
 }
 
-void CSound::SetVolume (int soundid, int volume) {
+void CSound::SetVolume (size_t soundid, int volume) {
     if (Audio.IsOpen == false) return;
-	if (soundid < 0 || soundid >= sounds.size()) return;
+	if (soundid >= sounds.size()) return;
 
 	volume = MIN (MIX_MAX_VOLUME, MAX (0, volume));
 	if (sounds[soundid].chunk == NULL) return;
@@ -124,9 +124,9 @@ void CSound::SetVolume (const string& name, int volume) {
 
 // ------------------- play -------------------------------------------
 
-void CSound::Play (int soundid, int loop) {
+void CSound::Play (size_t soundid, int loop) {
 	if (!Audio.IsOpen) return;
-	if (soundid < 0 || soundid >= sounds.size()) return;
+	if (soundid >= sounds.size()) return;
 	if (sounds[soundid].active == true) return;
 	if (sounds[soundid].chunk == NULL) return;
 
@@ -139,14 +139,14 @@ void CSound::Play (const string& name, int loop) {
 	Play (GetSoundIdx (name), loop);
 }
 
-void CSound::Play (int soundid, int loop, int volume) {
+void CSound::Play (size_t soundid, int loop, int volume) {
     if (!Audio.IsOpen) return;
-	if (soundid < 0 || soundid >= sounds.size()) return;
+	if (soundid >= sounds.size()) return;
 	if (sounds[soundid].active == true) return;
 	if (sounds[soundid].chunk == NULL) return;
 
 	volume = MIN (MIX_MAX_VOLUME, MAX (0, volume));
-    Mix_VolumeChunk (sounds[soundid].chunk, volume);  
+    Mix_VolumeChunk (sounds[soundid].chunk, volume);
     sounds[soundid].channel = Mix_PlayChannel (-1, sounds[soundid].chunk, loop);
     sounds[soundid].loop_count = loop;
 	if (loop < 0) sounds[soundid].active = true;
@@ -156,12 +156,12 @@ void CSound::Play (const string& name, int loop, int volume) {
 	Play (GetSoundIdx (name), loop, volume);
 }
 
-void CSound::Halt (int soundid) {
+void CSound::Halt (size_t soundid) {
     if (!Audio.IsOpen) return;
-	if (soundid < 0 || soundid >= sounds.size()) return;
+	if (soundid >= sounds.size()) return;
 	if (sounds[soundid].chunk == NULL) return;
 
-	// loop_count must be -1 (endless loop) for halt 
+	// loop_count must be -1 (endless loop) for halt
 	if (sounds[soundid].loop_count < 0) {
 		Mix_HaltChannel (sounds[soundid].channel);
 	    sounds[soundid].loop_count = 0;
@@ -198,7 +198,7 @@ CMusic::CMusic () {
 	curr_volume = 10;
 	loop_count = 0;
 	is_playing = false;
-//	Mix_HookMusicFinished (Hook);	
+//	Mix_HookMusicFinished (Hook);
 }
 
 size_t CMusic::LoadPiece (const char *name, const char *filename) {
@@ -220,8 +220,8 @@ void CMusic::LoadMusicList () {
 	}
 	// --- music ---
 	CSPList list(200);
-	if (list.Load (param.music_dir, "music.lst")) { 
-		for (int i=0; i<list.Count(); i++) {
+	if (list.Load (param.music_dir, "music.lst")) {
+		for (size_t i=0; i<list.Count(); i++) {
 			string line = list.Line(i);
 			string name = SPStrN (line, "name", "");
 			string musicfile = SPStrN (line, "file", "");
@@ -236,12 +236,12 @@ void CMusic::LoadMusicList () {
 	// --- racing themes ---
 	list.Clear();
 	ThemesIndex = "";
-	if (list.Load (param.music_dir, "racing_themes.lst")) { 
+	if (list.Load (param.music_dir, "racing_themes.lst")) {
 		themes.resize(list.Count());
-		for (int i=0; i<list.Count(); i++) {
+		for (size_t i=0; i<list.Count(); i++) {
 			string line = list.Line(i);
 			string name = SPStrN (line, "name", "");
-			ThemesIndex = ThemesIndex + "[" + name + "]" + Int_StrN (i);
+			ThemesIndex = ThemesIndex + "[" + name + "]" + Int_StrN ((int)i);
 			string item = SPStrN (line, "race", "race_1");
 			themes[i].situation[0] = GetMusicIdx (item);
 			item = SPStrN (line, "wonrace", "wonrace_1");
@@ -254,7 +254,7 @@ void CMusic::LoadMusicList () {
 
 void CMusic::FreeMusics () {
 	Halt ();
-	for (int i=0; i<musics.size(); i++)
+	for (size_t i=0; i<musics.size(); i++)
 		if (musics[i] != NULL)
 			Mix_FreeMusic (musics[i]);
 	musics.clear();
@@ -268,12 +268,12 @@ void CMusic::FreeMusics () {
 	is_playing = false;
 }
 
-int CMusic::GetMusicIdx (const string& name) const {
+size_t CMusic::GetMusicIdx (const string& name) const {
     if (Audio.IsOpen == false) return -1;
 	return SPIntN (MusicIndex, name, -1);
 }
 
-int CMusic::GetThemeIdx (const string& theme) const {
+size_t CMusic::GetThemeIdx (const string& theme) const {
     if (Audio.IsOpen == false) return -1;
 	return SPIntN (ThemesIndex, theme, -1);
 }
@@ -285,22 +285,22 @@ void CMusic::SetVolume (int volume) {
 }
 
 // If the piece is played in a loop, the volume adjustment gets lost.
-// probably a bug in SDL_mixer. Help: we have to refresh the volume 
+// probably a bug in SDL_mixer. Help: we have to refresh the volume
 // in each (!) frame.
 
 void CMusic::Update () {
 	Mix_VolumeMusic (curr_volume);
 }
 
-bool CMusic::Play (int musid, int loop) {
+bool CMusic::Play (size_t musid, int loop) {
     if (!Audio.IsOpen) return false;
-	if (musid < 0 || musid >= musics.size()) return false;
+	if (musid >= musics.size()) return false;
 	Mix_Music *music = musics[musid];
 	if (music == NULL) return false;
 	if (musid != curr_musid) {
 		Halt ();
 		Mix_PlayMusic (music, loop);
-		curr_musid = musid;
+		curr_musid = (int)musid;
 		loop_count = loop;
 	}
 	Mix_VolumeMusic (curr_volume);
@@ -311,9 +311,9 @@ bool CMusic::Play (const string& name, int loop) {
 	return Play (GetMusicIdx (name), loop);
 }
 
-bool CMusic::Play (int musid, int loop, int volume) {
+bool CMusic::Play (size_t musid, int loop, int volume) {
     if (!Audio.IsOpen) return false;
-	if (musid < 0 || musid >= musics.size()) return false;
+	if (musid >= musics.size()) return false;
 	Mix_Music *music = musics[musid];
 
 	int vol = MIN (MIX_MAX_VOLUME, MAX (0, volume));
@@ -321,7 +321,7 @@ bool CMusic::Play (int musid, int loop, int volume) {
 		Halt ();
 		Mix_PlayMusic (music, loop);
 		Mix_VolumeMusic (vol);
-		curr_musid = musid;
+		curr_musid = (int)musid;
 		loop_count = loop;
 	}
 	return true;
@@ -331,15 +331,15 @@ bool CMusic::Play (const string& name, int loop, int volume) {
 	return Play (GetMusicIdx (name), loop, volume);
 }
 
-bool CMusic::PlayTheme (int theme, int situation)  {
-	if (theme < 0 || theme >= themes.size()) return false; 
-	if (situation < 0 || situation >= 3) return false; 
-	int musid = themes [theme].situation[situation];
+bool CMusic::PlayTheme (size_t theme, int situation)  {
+	if (theme >= themes.size()) return false;
+	if (situation < 0 || situation >= 3) return false;
+	size_t musid = themes [theme].situation[situation];
 	return Play (musid, -1);
 }
 
 void CMusic::Refresh (const string& name) {
-	Play (name, -1);	
+	Play (name, -1);
 }
 
 void CMusic::Halt () {

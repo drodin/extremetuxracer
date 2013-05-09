@@ -160,6 +160,5 @@ void CEventSelect::Loop (double timestep) {
 	textbuttons[0]->SetActive(Events.IsUnlocked (event->GetValue(), cup->GetValue()));
 	DrawGUI();
 
-	if (param.ice_cursor) DrawCursor ();
-    SDL_GL_SwapBuffers ();
+	Winsys.SwapBuffers();
 }

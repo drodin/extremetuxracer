@@ -26,7 +26,7 @@ GNU General Public License for more details.
     i*sizeof(GLubyte)))
 #define STRIDE_GL_ARRAY (8 * sizeof(GLfloat) + 4 * sizeof(GLubyte))
 #define ELEV(x,y) (elevation[(x) + nx*(y)] )
-#define NORM_INTERPOL 0.05		
+#define NORM_INTERPOL 0.05
 #define XCD(x) ((double)(x) / (nx-1.0) * width)
 #define ZCD(y) (-(double)(y) / (ny-1.0) * length)
 #define NMLPOINT(x,y) MakeVector (XCD(x), ELEV(x,y), ZCD(y) )
@@ -53,7 +53,7 @@ struct TCourse {
 	double startx;
 	double starty;
 	int env;
-	int music_theme;
+	size_t music_theme;
  	bool use_keyframe;
 	double finish_brake;
 };
@@ -61,9 +61,9 @@ struct TCourse {
 struct TTerrType {
 	string texture;
 	string sound;
-	GLuint	texid;
+	GLuint texid;
 	TColor3 col;
-	
+
 	double friction;
 	double depth;
 	int vol_type;
@@ -78,20 +78,18 @@ struct TTerrType {
 struct TObjectType {
 	string		name;
 	string		texture;
-	GLuint 		texid;
+	GLuint		texid;
 	bool		collidable;
     double		above_ground;
     int			collectable;
     bool		drawable;
     bool		reset_point;
     bool		use_normal;
-    TVector3	normal;			
-    int  		num_objects;	
-    int			num_trees;
+    TVector3	normal;
     int			num_items;
     int			poly;
 };
-			
+
 class CCourse {
 private:
 	size_t		curr_course;
@@ -101,29 +99,28 @@ private:
 	string		CourseDir;
 	bool		SaveItemsFlag;
 
-	int    		nx;
+	int			nx;
 	int			ny;
-	double 		width;
+	double		width;
 	double		length;
-	double  	play_width;
+	double		play_width;
 	double		play_length;
-	double 		course_angle;
+	double		course_angle;
 	double		course_descent;
 	double		elev_scale;
 	TVector2	start_pt;
 	int			base_height_value;
 	int			env;
-	int			music_theme;
 
-	void 		FreeTerrainTextures ();
-	void 		FreeObjectTextures ();
-	void 		CalcNormals ();
-	void 		MakeCourseNormals ();
-	bool 		LoadElevMap ();
-	void 		LoadItemList ();
-	bool 		LoadObjectMap ();
-	bool 		LoadTerrainMap ();
-	int  		GetTerrain (unsigned char pixel[]) const;
+	void		FreeTerrainTextures ();
+	void		FreeObjectTextures ();
+	void		CalcNormals ();
+	void		MakeCourseNormals ();
+	bool		LoadElevMap ();
+	void		LoadItemList ();
+	bool		LoadObjectMap ();
+	bool		LoadTerrainMap ();
+	int			GetTerrain (unsigned char pixel[]) const;
 
 	void		MirrorCourseData ();
 public:
@@ -138,11 +135,11 @@ public:
 
 	char		*terrain;
 	double		*elevation;
-	TVector3 	*nmls;
+	TVector3	*nmls;
 	GLubyte		*vnc_array;
 
 	void ResetCourse ();
- 	int  GetCourseIdx (const string& dir) const;
+ 	size_t GetCourseIdx (const string& dir) const;
 	bool LoadCourseList ();
 	void FreeCourseList ();
 	bool LoadCourse (size_t idx);
@@ -166,13 +163,13 @@ public:
 	void MirrorCourse ();
 
 	void GetIndicesForPoint (double x, double z, int *x0, int *y0, int *x1, int *y1) const;
-	void FindBarycentricCoords (double x, double z, 
+	void FindBarycentricCoords (double x, double z,
 		TIndex2 *idx0, TIndex2 *idx1, TIndex2 *idx2, double *u, double *v) const;
 	double GetMinYCoord() const;
 	TVector3 FindCourseNormal (double x, double z) const;
 	double FindYCoord (double x, double z) const;
 	void GetSurfaceType (double x, double z, double weights[]) const;
-	int  GetTerrainIdx (double x, double z, double level) const;
+	size_t GetTerrainIdx (double x, double z, double level) const;
 	TPlane GetLocalCoursePlane (TVector3 pt) const;
 };
 

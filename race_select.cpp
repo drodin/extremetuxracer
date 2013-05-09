@@ -44,12 +44,12 @@ static TCourse *CourseList;
 
 void SetRaceConditions (void) {
 	if (random_btn->GetValue() > 0) {
-		g_game.mirror_id = IRandom (0, 1);
+		g_game.mirror_id = (bool)IRandom (0, 1);
 		g_game.light_id = IRandom (0, 3);
 		g_game.snow_id = IRandom (0, 3);
 		g_game.wind_id = IRandom (0, 3);
 	} else {
-		g_game.mirror_id = mirror->GetValue();
+		g_game.mirror_id = (bool)mirror->GetValue();
 		g_game.light_id = light->GetValue();
 		g_game.snow_id = snow->GetValue();
 		g_game.wind_id = wind->GetValue();
@@ -131,12 +131,12 @@ void CRaceSelect::Enter() {
 
 	ResetGUI ();
 
-	course = AddUpDown(area.left + framewidth + 8, frametop, 0, (int)Course.CourseList.size() - 1, g_game.course_id);
+	course = AddUpDown(area.left + framewidth + 8, frametop, 0, (int)Course.CourseList.size() - 1, (int)g_game.course_id);
 	
 	light = AddIconButton (iconleft, icontop, Tex.TexID (LIGHT_BUTT), iconsize, 3, g_game.light_id); 
 	snow = AddIconButton (iconleft + iconspace, icontop, Tex.TexID (SNOW_BUTT), iconsize, 3, g_game.snow_id); 
 	wind = AddIconButton (iconleft + iconspace*2, icontop, Tex.TexID (WIND_BUTT), iconsize, 3, g_game.wind_id); 
-	mirror = AddIconButton (iconleft + iconspace*3, icontop, Tex.TexID (MIRROR_BUTT), iconsize, 1, g_game.mirror_id); 
+	mirror = AddIconButton (iconleft + iconspace*3, icontop, Tex.TexID (MIRROR_BUTT), iconsize, 1, (int)g_game.mirror_id); 
 	random_btn = AddIconButton (iconleft + iconspace*4, icontop, Tex.TexID (RANDOM_BUTT), iconsize, 1, 0); 
 
 	int siz = FT.AutoSizeN (5);
@@ -208,5 +208,5 @@ void CRaceSelect::Loop(double timestep){
 
 	DrawGUI();
 
-    SDL_GL_SwapBuffers ();
+    Winsys.SwapBuffers();
 }

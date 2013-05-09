@@ -63,7 +63,7 @@ void InitGame (int argc, char **argv) {
 	g_game.player_id = 0;
 	g_game.start_player = 0;
 	g_game.course_id = 0;
-	g_game.mirror_id = 0;
+	g_game.mirror_id = false;
 	g_game.char_id = 0;
 	g_game.location_id = 0;
 	g_game.light_id = 0;

@@ -76,8 +76,8 @@ typedef struct {TVector3 pt; TVector3 vec;}			TRay;
 typedef struct {int width, height;}				TScreenRes;
 
 typedef struct {
-    int num_vertices;
-    int num_polygons;
+    size_t num_vertices;
+    size_t num_polygons;
     TVector3 *vertices;
     TPolygon *polygons;
 } TPolyhedron;
@@ -184,8 +184,8 @@ typedef struct {
 	size_t start_player;
 	TCup2* cup;
 	size_t race_id;
-	int numraces;
-	int mirror_id;                           
+	size_t numraces;
+	bool mirror_id;
 	size_t char_id;
 	size_t course_id;
 	int location_id;

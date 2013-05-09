@@ -28,7 +28,7 @@ class CAudio {
 private:
 public:
 	CAudio ();
-	
+
 	void Open ();
 	void Close ();
 	static bool CheckOpen ();
@@ -39,13 +39,12 @@ public:
 //				class CSound
 // --------------------------------------------------------------------
 
-typedef struct {
-    Mix_Chunk *chunk;  
+struct TSound {
+    Mix_Chunk *chunk;
     int channel;
-	double vol_fact;
     int loop_count;
 	bool active;
-} TSound;
+};
 
 class CSound {
 private:
@@ -54,20 +53,20 @@ private:
 public:
 	size_t LoadChunk (const std::string& name, const char *filename);
 	void LoadSoundList ();
-	int  GetSoundIdx (const string& name) const;
+	size_t GetSoundIdx (const string& name) const;
 
-	void SetVolume (int soundid, int volume);
+	void SetVolume (size_t soundid, int volume);
 	void SetVolume (const string& name, int volume);
 
-	void Play (int soundid, int loop);
+	void Play (size_t soundid, int loop);
 	void Play (const string& name, int loop); // -1 infinite, 0 once, 1 twice ...
-	void Play (int soundid, int loop, int volume);
-	void Play (const string& name, int loop, int volume); 
+	void Play (size_t soundid, int loop, int volume);
+	void Play (const string& name, int loop, int volume);
 
-	void Halt (int soundid);
+	void Halt (size_t soundid);
 	void Halt (const string& name);
 	void HaltAll ();
-	
+
 	void FreeSounds ();
 };
 
@@ -82,9 +81,9 @@ public:
 class CMusic {
 private:
 	vector<Mix_Music*> musics;
-	string MusicIndex;		
+	string MusicIndex;
 
-	struct Situation {int situation[3];};
+	struct Situation {size_t situation[3];};
 	vector<Situation> themes;
 	string ThemesIndex;
 
@@ -97,16 +96,16 @@ public:
 
 	size_t LoadPiece (const char *name, const char *filename);
 	void LoadMusicList ();
-	int  GetMusicIdx (const string& name) const;
-	int  GetThemeIdx (const string& theme) const;
+	size_t GetMusicIdx (const string& name) const;
+	size_t GetThemeIdx (const string& theme) const;
 
 	void SetVolume (int volume);
 	void Update ();
-	bool Play (int musid, int loop);
+	bool Play (size_t musid, int loop);
 	bool Play (const string& name, int loop);
-	bool Play (int musid, int loop, int volume);
+	bool Play (size_t musid, int loop, int volume);
 	bool Play (const string& name, int loop, int volume);
-	bool PlayTheme (int theme, int situation);
+	bool PlayTheme (size_t theme, int situation);
 	void Refresh (const string& name);
 	void Halt ();
 	void FreeMusics ();
