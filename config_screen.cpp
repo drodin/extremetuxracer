@@ -106,13 +106,13 @@ void SetConfig () {
 			#if defined (OS_WIN32_MINGW)
 				// on windows we need to free and restore a lot of resources
 				if (!param.restart_on_res_change) RestartSDL ();
-			#elif defined (OS_LINUX)
+			#else
 				// on linux the resources seem to be kept at new VideoMode
 				if (param.res_type > 0) {
-                                  Winsys.SetupVideoMode(param.res_type);
-                                } else {
-                                  RestartSDL();
-                                }
+					Winsys.SetupVideoMode(param.res_type);
+				} else {
+					RestartSDL();
+				}
 			#endif
 		}
 		
