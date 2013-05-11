@@ -286,7 +286,6 @@ TTexture::~TTexture() {
 
 bool TTexture::Load(const string& filename) {
     CImage texImage;
-	name = filename;
 
 	if (texImage.LoadPng (filename.c_str(), true) == false)
 		return false;
@@ -315,7 +314,6 @@ bool TTexture::Load(const string& dir, const string& filename) {
 }
 
 bool TTexture::LoadMipmap(const string& filename, bool repeatable) {
-	name = filename;
     CImage texImage;
 	if (texImage.LoadPng (filename.c_str(), true) == false)
 		return false;

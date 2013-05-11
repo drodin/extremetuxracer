@@ -157,7 +157,6 @@ class TTexture {
 	TTexture& operator=(const TTexture&);
 
 	GLuint id;
-	string name;
 public:
 
 	TTexture() : id(0) {}
