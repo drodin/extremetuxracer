@@ -20,6 +20,7 @@ GNU General Public License for more details.
 
 #include "bh.h"
 #include <vector>
+#include <map>
 
 class TTexture;
 
@@ -39,7 +40,7 @@ struct TFog {
     float end;
 	float height;
     float color[4];
-	float part_color[4]; 
+	float part_color[4];
 };
 
 struct TLight{
@@ -47,12 +48,12 @@ struct TLight{
 	float ambient[4];
 	float diffuse[4];
 	float specular[4];
-	float position[4];	
+	float position[4];
 };
 
 class CEnvironment {
 private:
-	int EnvID;
+	size_t EnvID;
 	TTexture* Skybox;
 	vector<TLocInfo> locs;
 	TLightCond lightcond[4];
@@ -66,8 +67,8 @@ private:
 	TPlane farclip;
 	TPlane bottomclip;
 
-	string EnvIndex;
-	string LightIndex;
+	map<string, size_t> EnvIndex;
+	map<string, size_t> LightIndex;
 
 	void ResetSkybox ();
 	void LoadSkybox ();
@@ -76,18 +77,18 @@ private:
 	void ResetFog ();
 	string EnvDir;
 	void Reset ();
-	string GetDir (int location, int light);
+	string GetDir (size_t location, size_t light) const;
 public:
 	CEnvironment ();
 	bool LoadEnvironmentList ();
-	bool LoadEnvironment (int loc, int light);
+	bool LoadEnvironment (size_t loc, size_t light);
 	void DrawSkybox (const TVector3& pos);
 	void SetupLight ();
 	void SetupFog ();
 	void DrawFog ();
 	TColor ParticleColor ();
-	int GetEnvIdx (const string& tag);
-	int GetLightIdx (const string& tag);
+	size_t GetEnvIdx (const string& tag) const;
+	size_t GetLightIdx (const string& tag) const;
 };
 
 extern CEnvironment Env;

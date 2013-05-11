@@ -133,7 +133,7 @@ void CRaceSelect::Enter() {
 
 	course = AddUpDown(area.left + framewidth + 8, frametop, 0, (int)Course.CourseList.size() - 1, (int)g_game.course_id);
 	
-	light = AddIconButton (iconleft, icontop, Tex.GetTexture (LIGHT_BUTT), iconsize, 3, g_game.light_id); 
+	light = AddIconButton (iconleft, icontop, Tex.GetTexture (LIGHT_BUTT), iconsize, 3, (int)g_game.light_id);
 	snow = AddIconButton (iconleft + iconspace, icontop, Tex.GetTexture (SNOW_BUTT), iconsize, 3, g_game.snow_id); 
 	wind = AddIconButton (iconleft + iconspace*2, icontop, Tex.GetTexture (WIND_BUTT), iconsize, 3, g_game.wind_id); 
 	mirror = AddIconButton (iconleft + iconspace*3, icontop, Tex.GetTexture (MIRROR_BUTT), iconsize, 1, (int)g_game.mirror_id); 
@@ -147,7 +147,7 @@ void CRaceSelect::Enter() {
 	g_game.loopdelay = 20;
 }
 
-void CRaceSelect::Loop(double timestep){
+void CRaceSelect::Loop(double timestep) {
 	int ww = param.x_resolution;
 	int hh = param.y_resolution;
 	TColor col;

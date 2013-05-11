@@ -103,14 +103,14 @@ struct TCollidable {
 	TVector3 pt;
     double height;
     double diam;
-    int tree_type;
+    size_t tree_type;
 };
 
 struct TItem {
 	TVector3 pt;
     double height;
     double diam;
-    int item_type;
+    size_t item_type;
     int collectable;
     bool drawable;
 };
@@ -187,8 +187,8 @@ struct TGameData {
 	bool mirror_id;
 	size_t char_id;
 	size_t course_id;
-	int location_id;
-	int light_id;
+	size_t location_id;
+	size_t light_id;
 	int snow_id;
 	int wind_id;
 	size_t theme_id;

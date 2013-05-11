@@ -122,10 +122,10 @@ bool CControl::CheckTreeCollisions (const TVector3& pos, TVector3 *tree_loc, dou
 
 	TCollidable *trees = &Course.CollArr[0];
     size_t num_trees = Course.CollArr.size();
-    int tree_type = trees[0].tree_type;
+    size_t tree_type = trees[0].tree_type;
     TPolyhedron ph = Course.GetPoly (tree_type);
 
-    for (int i=0; i<num_trees; i++) {
+    for (size_t i=0; i<num_trees; i++) {
         diam = trees[i].diam;
         height = trees[i].height;
         loc = trees[i].pt;

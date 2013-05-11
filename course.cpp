@@ -86,12 +86,12 @@ void CCourse::GetGLArrays (GLubyte **vnc_arr) const {
 	*vnc_arr = vnc_array;
 }
 
-const TPolyhedron& CCourse::GetPoly (int type) const {
+const TPolyhedron& CCourse::GetPoly (size_t type) const {
 	return PolyArr[ObjTypes[type].poly];
 }
 
 size_t CCourse::GetCourseIdx (const string& dir) const {
-	return SPIntN (CourseIndex, dir, 0);
+	return CourseIndex.at(dir);
 }
 
 void CCourse::CalcNormals () {
@@ -344,7 +344,8 @@ void CCourse::MakeStandardPolyhedrons () {
 	PolyArr[1].polygons[7].vertices[1] = 5;
 	PolyArr[1].polygons[7].vertices[2] = 3;
 
-	PolyIndex = "[none]0[tree]1";
+	PolyIndex["none"] = 0;
+	PolyIndex["tree"] = 1;
 }
 
 void CCourse::FreeTerrainTextures () {
@@ -420,7 +421,7 @@ void CCourse::LoadItemList () {
 		double zz = -(ny - z) / (double)(ny - 1.0) * length;
 
 		string name = SPStrN (line, "name", "");
-		int type = SPIntN (ObjectIndex, name, 0);
+		size_t type = ObjectIndex[name];
 		if (ObjTypes[type].texture == NULL && ObjTypes[type].drawable) {
 			string terrpath = param.obj_dir + SEP + ObjTypes[type].textureFile;
 			ObjTypes[type].texture = new TTexture();
@@ -868,7 +869,7 @@ bool CCourse::LoadCourse (size_t idx) {
 	return true;
 }
 
-int CCourse::GetEnv () const {
+size_t CCourse::GetEnv () const {
 	return env;
 }
 

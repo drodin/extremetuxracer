@@ -27,7 +27,7 @@ class TTexture;
 struct TRace2 {
 	string race;
 	size_t course;
-	int light;
+	size_t light;
 	int snow;
 	int wind;
 	TIndex3 herrings;
@@ -50,9 +50,9 @@ struct TEvent2 {
 
 class CEvents {
 private:
-	string RaceIndex;
-	string CupIndex;
-	string EventIndex;
+	map<string, size_t> RaceIndex;
+	map<string, size_t> CupIndex;
+	map<string, size_t> EventIndex;
 public:
 	vector<TRace2> RaceList;
 	vector<TCup2> CupList;

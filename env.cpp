@@ -36,13 +36,14 @@ static const float def_partcol[] = {0.8, 0.8, 0.9, 0.0};
 CEnvironment Env;
 
 CEnvironment::CEnvironment ()
-	: LightIndex("[sunny]0[cloudy]1[evening]2[night]3")
 {
 	EnvID = -1;
 	lightcond[0].name = "sunny";
 	lightcond[1].name = "cloudy";
 	lightcond[2].name = "evening";
 	lightcond[3].name = "night";
+	for(size_t i = 0; i < 4; i++)
+		LightIndex[lightcond[i].name] = i;
 	Skybox = NULL;
 
 	default_light.is_on = true;
@@ -147,9 +148,9 @@ bool CEnvironment::LoadEnvironmentList () {
 	return true;
 }
 
-string CEnvironment::GetDir (int location, int light) {
-	if (location < 0 || location >= locs.size()) return "";
-	if (light < 0 || light >= 4) return "";
+string CEnvironment::GetDir (size_t location, size_t light) const {
+	if (location >= locs.size()) return "";
+	if (light >= 4) return "";
 	string res = 
 		param.env_dir2 + SEP + 
 		locs[location].name + SEP + lightcond[light].name;
@@ -354,12 +355,12 @@ void CEnvironment::DrawFog () {
 }
 
 
-bool CEnvironment::LoadEnvironment (int loc, int light) {
-	if (loc < 0 || loc >= locs.size()) loc = 0;
-	if (light < 0 || light >= 4) light = 0;
+bool CEnvironment::LoadEnvironment (size_t loc, size_t light) {
+	if (loc >= locs.size()) loc = 0;
+	if (light >= 4) light = 0;
 	// remember: with (example) 3 locations and 4 lights there
 	// are 12 different environments
-	int env_id = loc * 100 + light;
+	size_t env_id = loc * 100 + light;
 
 	if (env_id == EnvID) {
 		Message ("same environment");
@@ -391,10 +392,10 @@ TColor CEnvironment::ParticleColor () {
 	return res;
 }
 
-int CEnvironment::GetEnvIdx (const string& tag) {
-	return SPIntN (EnvIndex, tag, 0);
+size_t CEnvironment::GetEnvIdx (const string& tag) const {
+	return EnvIndex.at(tag);
 }
 
-int CEnvironment::GetLightIdx (const string& tag) {
-	return SPIntN (LightIndex, tag, 0);
+size_t CEnvironment::GetLightIdx (const string& tag) const {
+	return LightIndex.at(tag);
 }

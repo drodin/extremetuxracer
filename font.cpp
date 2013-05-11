@@ -99,7 +99,7 @@ void CFont::Clear () {
 	for(size_t i = 0; i < fonts.size(); i++)
 		delete fonts[i];
 	fonts.clear();
-	fontindex = "";
+	fontindex.clear();
 }
 
 // --------------------------------------------------------------------
@@ -147,7 +147,7 @@ int CFont::LoadFont (const string& name, const char *path) {
 	fonts.back()->FaceSize (18);
 	fonts.back()->CharMap (ft_encoding_unicode);
 
-	fontindex = fontindex + "[" + name + "]" + Int_StrN ((int)fonts.size()-1);
+	fontindex[name] = fonts.size()-1;
 	return (int)fonts.size()-1;
 }
 
@@ -174,9 +174,8 @@ bool CFont::LoadFontlist () {
 	return true;
 }
 
-int CFont::GetFontIdx (const string &name) const {
-	int idx = SPIntN (fontindex, name, -1);
-	return idx;
+size_t CFont::GetFontIdx (const string &name) const {
+	return fontindex.at(name);
 }
 
 void CFont::SetProps (const string &fontname, float size, const TColor& col) {
@@ -185,7 +184,7 @@ void CFont::SetProps (const string &fontname, float size, const TColor& col) {
 }
 
 void CFont::SetProps (const string &fontname, float size) {
-	if (fontname.size() > 0) curr_font = GetFontIdx (fontname);
+	if (fontname.size() > 0) curr_font = (int)GetFontIdx (fontname);
 	if (size > 0) curr_size = size;
 }
 
@@ -205,8 +204,11 @@ void CFont::SetSize (float size) {
 }
 
 void CFont::SetFont (const string& fontname) {
-	int idx = SPIntN (fontindex, fontname, -1);
-	curr_font = idx;
+	try {
+		curr_font = (int)fontindex[fontname];
+	} catch(...) {
+		curr_font = -1;
+	}
 	
 	if (fontname == "pc20") curr_fact = 1.25;
 		else curr_fact = 1.0;
@@ -230,7 +232,7 @@ int CFont::AutoDistanceN (int rel_val) {
 
 // -------------------- draw (x, y, text) -----------------------------
 
-void CFont::DrawText(float x, float y, const char *text, int font, float size) const {
+void CFont::DrawText(float x, float y, const char *text, size_t font, float size) const {
 	if (font < 0 || font >= fonts.size()) return;
 
 	glPushMatrix();
@@ -252,7 +254,7 @@ void CFont::DrawText(float x, float y, const char *text, int font, float size) c
 	glPopMatrix();
 }
 
-void CFont::DrawText(float x, float y, const wchar_t *text, int font, float size) const {
+void CFont::DrawText(float x, float y, const wchar_t *text, size_t font, float size) const {
 	if (font < 0 || font >= fonts.size()) return;
 
 	glPushMatrix();
@@ -295,7 +297,7 @@ void CFont::DrawString (float x, float y, const wstring &s) const {
 }
 
 void CFont::DrawText(float x, float y, const char *text, const string &fontname, float size) const {
-	int temp_font = GetFontIdx (fontname);
+	size_t temp_font = GetFontIdx (fontname);
 #if USE_UNICODE
 	DrawText(x, y, UnicodeStr(text).c_str(), temp_font, size);
 #else
@@ -305,7 +307,7 @@ void CFont::DrawText(float x, float y, const char *text, const string &fontname,
 
 void CFont::DrawText 
 		(float x, float y, const wchar_t *text, const string &fontname, float size) const {
-	int temp_font = GetFontIdx (fontname);
+	size_t temp_font = GetFontIdx (fontname);
 	DrawText(x, y, text, temp_font, size);
 }
 
@@ -321,7 +323,7 @@ void CFont::DrawString (
 
 // --------------------- metrics --------------------------------------
 
-void CFont::GetTextSize (const wchar_t *text, float &x, float &y, int font, float size) const {
+void CFont::GetTextSize (const wchar_t *text, float &x, float &y, size_t font, float size) const {
 	if (font < 0 || font >= fonts.size()) { x = 0; y = 0; return; }
 
 	float llx, lly, llz, urx, ury, urz;
@@ -331,7 +333,7 @@ void CFont::GetTextSize (const wchar_t *text, float &x, float &y, int font, floa
 	y = ury - lly;
 }
 
-void CFont::GetTextSize (const char *text, float &x, float &y, int font, float size) const {
+void CFont::GetTextSize (const char *text, float &x, float &y, size_t font, float size) const {
 #if USE_UNICODE
 	GetTextSize(UnicodeStr(text).c_str(), x, y, font, size);
 #else
@@ -350,7 +352,7 @@ void CFont::GetTextSize (const char *text, float &x, float &y) const {
 }
 
 void CFont::GetTextSize (const char *text, float &x, float &y, const string &fontname, float size) const {
-	int temp_font = GetFontIdx (fontname);
+	size_t temp_font = GetFontIdx (fontname);
 	GetTextSize(text, x, y, temp_font, size);
 }
 
@@ -371,14 +373,14 @@ float CFont::GetTextWidth (const wchar_t *text) const {
 }
 
 float CFont::GetTextWidth (const char *text, const string &fontname, float size) const {
-	int temp_font = GetFontIdx (fontname);
+	size_t temp_font = GetFontIdx (fontname);
 	float x, y;
 	GetTextSize(text, x, y, temp_font, size);
 	return x;
 }
 
 float CFont::GetTextWidth (const wchar_t *text, const string &fontname, float size) const {
-	int temp_font = GetFontIdx (fontname);
+	size_t temp_font = GetFontIdx (fontname);
 	float x, y;
 	GetTextSize(text, x, y, temp_font, size);
 	return x;

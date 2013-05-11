@@ -20,6 +20,7 @@ GNU General Public License for more details.
 
 #include "bh.h"
 #include <vector>
+#include <map>
 
 #define FLOATVAL(i) (*(GLfloat*)(vnc_array+idx+(i)*sizeof(GLfloat)))
 #define BYTEVAL(i) (*(GLubyte*)(vnc_array+idx+8*sizeof(GLfloat) +\
@@ -54,7 +55,7 @@ struct TCourse {
 	double scale;
 	double startx;
 	double starty;
-	int env;
+	size_t env;
 	size_t music_theme;
  	bool use_keyframe;
 	double finish_brake;
@@ -95,9 +96,9 @@ struct TObjectType {
 class CCourse {
 private:
 	size_t		curr_course;
-	string		CourseIndex;
-	string		ObjectIndex;
-	string		PolyIndex;
+	map<string, size_t> CourseIndex;
+	map<string, size_t> ObjectIndex;
+	map<string, size_t> PolyIndex;
 	string		CourseDir;
 	bool		SaveItemsFlag;
 
@@ -112,7 +113,7 @@ private:
 	double		elev_scale;
 	TVector2	start_pt;
 	int			base_height_value;
-	int			env;
+	size_t		env;
 
 	void		FreeTerrainTextures ();
 	void		FreeObjectTextures ();
@@ -158,10 +159,10 @@ public:
 	double GetCourseDescent () const;
 	double GetBaseHeight (double distance) const;
 	double GetMaxHeight (double distance) const;
-	int GetEnv () const;
+	size_t GetEnv () const;
 	const TVector2& GetStartPoint () const;
 	void SetStartPoint (const TVector2& p);
-	const TPolyhedron& GetPoly (int type) const;
+	const TPolyhedron& GetPoly (size_t type) const;
 	void MirrorCourse ();
 
 	void GetIndicesForPoint (double x, double z, int *x0, int *y0, int *x1, int *y1) const;

@@ -561,18 +561,15 @@ bool CSPList::Save (const string& dir, const string& filename) const {
 	return Save (dir + SEP + filename);
 }
 
-void CSPList::MakeIndex (string &index, const string &tag) {
-	index = "";
-	int idx = 0;
+void CSPList::MakeIndex (map<string, size_t>& index, const string &tag) {
+	index.clear();
+	size_t idx = 0;
 
-	for (int i=0; i<flines.size(); i++) {
+	for (size_t i=0; i<flines.size(); i++) {
 		string item = SPItemN (flines[i].first, tag);
 		STrimN (item);
 		if (item.size() > 0) {
-			index += "[";
-			index += item;			
-			index += "]";
-			index += Int_StrN (idx);
+			index[item] = idx;
 			idx++;
 		}
 	}

@@ -21,6 +21,7 @@ GNU General Public License for more details.
 
 #include "bh.h"
 #include <vector>
+#include <map>
 
 // --------------------------------------------------------------------
 //		CFont
@@ -35,7 +36,7 @@ class CSPList;
 class CFont {
 private:
 	vector<FTFont*> fonts;
-	string fontindex;
+	map<string, size_t> fontindex;
 	Orientation forientation;
 
 	int    curr_font;
@@ -44,10 +45,10 @@ private:
 	float  curr_fact;		// the length factor
 
 	static wstring UnicodeStr(const char* s);
-	void DrawText(float x, float y, const char *text, int font, float size) const;
-	void DrawText(float x, float y, const wchar_t *text, int font, float size) const;
-	void GetTextSize(const char *text, float &x, float &y, int font, float size) const;
-	void GetTextSize(const wchar_t *text, float &x, float &y, int font, float size) const;
+	void DrawText(float x, float y, const char *text, size_t font, float size) const;
+	void DrawText(float x, float y, const wchar_t *text, size_t font, float size) const;
+	void GetTextSize(const char *text, float &x, float &y, size_t font, float size) const;
+	void GetTextSize(const wchar_t *text, float &x, float &y, size_t font, float size) const;
 
 public:
 	CFont ();
@@ -57,10 +58,10 @@ public:
 	int  LoadFont (const string& name, const char *dir, const char *filename);
 	int  LoadFont (const string& name, const char *path);
 	bool LoadFontlist ();
-	int  GetFontIdx (const string &name) const;
+	size_t GetFontIdx (const string &name) const;
 
 	// properties
- 	void SetProps   (const string &fontname, float size, const TColor& col);
+	void SetProps   (const string &fontname, float size, const TColor& col);
 	void SetProps   (const string &fontname, float size);
 	void SetColor   (float r, float g, float b, float a);
 	void SetColor   (const TColor& col);
@@ -101,4 +102,3 @@ public:
 extern CFont FT;
 
 #endif
-

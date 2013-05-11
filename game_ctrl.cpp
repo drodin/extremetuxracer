@@ -96,15 +96,15 @@ bool CEvents::LoadEventList () {
 }
 
 size_t CEvents::GetRaceIdx (const string& race) const {
-	return (size_t)SPIntN (RaceIndex, race, 0);
+	return RaceIndex.at(race);
 }
 
 size_t CEvents::GetCupIdx (const string& cup) const {
-	return (size_t)SPIntN (CupIndex, cup, 0);
+	return CupIndex.at(cup);
 }
 
 size_t CEvents::GetEventIdx (const string& event) const {
-	return (size_t)SPIntN (EventIndex, event, 0);
+	return EventIndex.at(event);
 }
 
 string CEvents::GetCup (size_t event, size_t cup) const {

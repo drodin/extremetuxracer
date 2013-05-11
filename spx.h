@@ -20,6 +20,7 @@ GNU General Public License for more details.
 #include "bh.h"
 #include <string>
 #include <vector>
+#include <map>
 
 using namespace std;
 
@@ -117,7 +118,7 @@ public:
 
 	int Flag (size_t idx) const;
 	void SetFlag (size_t idx, int flag); 
-	void MakeIndex (string &index, const string &tag);
+	void MakeIndex (map<string, size_t>& index, const string &tag);
 };
 
 #endif

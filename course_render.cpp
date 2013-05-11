@@ -51,10 +51,10 @@ void RenderCourse () {
 //				DrawTrees
 // --------------------------------------------------------------------
 void DrawTrees() {
-    int			tree_type = -1;
-    int       	item_type = -1;
-	TObjectType	*object_types = &Course.ObjTypes[0];
-	CControl *ctrl = Players.GetCtrl (g_game.player_id);
+    size_t			tree_type = -1;
+    size_t			item_type = -1;
+	TObjectType*	object_types = &Course.ObjTypes[0];
+	CControl*		ctrl = Players.GetCtrl (g_game.player_id);
 
 	set_gl_options (TREES); 
 
