@@ -23,16 +23,16 @@ GNU General Public License for more details.
 
 static const int numJoints = 19;
 
-// The jointnames are shown on the tools screen and define the 
-// possible rotations. A joint can be rotated around 3 axis, so 
-// a joint can contain up to 3 joinnames. 
+// The jointnames are shown on the tools screen and define the
+// possible rotations. A joint can be rotated around 3 axis, so
+// a joint can contain up to 3 joinnames.
 static const string jointnames[numJoints] =
 	{"time","pos.x","pos.y","pos.z","yaw","pitch","roll","neck","head",
 	"l_shldr","r_shldr","l_arm","r_arm",
 	"l_hip","r_hip","l_knee","r_knee","l_ankle","r_ankle"};
 
 // The highlightnames must be official joint identifiers, defined in
-// the character description. They are used to find the port nodes 
+// the character description. They are used to find the port nodes
 // for highlighting
 static const string highlightnames[numJoints] =
 	{"","","","","","","","neck","head",
@@ -51,7 +51,7 @@ CKeyframe::CKeyframe () {
 
 double CKeyframe::interp (double frac, double v1, double v2) {
     return frac * v1 + (1.0 - frac) * v2;
-} 
+}
 
 void CKeyframe::Init (const TVector3& ref_position, double height_correction) {
 	if (!loaded) return;
@@ -137,7 +137,7 @@ bool CKeyframe::Load (const string& dir, const string& filename) {
 		MessageN ("keyframe not found:", filename);
 		loaded = false;
 		return false;
-	}	
+	}
 }
 
 // there are more possibilities for rotating the parts of the body,
@@ -262,7 +262,7 @@ void CKeyframe::Update (double timestep, CControl *ctrl) {
     if  (keyidx >= frames.size()-1 || frames.size() < 2) {
 		active = false;
         return;
-    } 
+    }
 
     double frac;
     TVector3 pos;
@@ -280,7 +280,7 @@ void CKeyframe::Update (double timestep, CControl *ctrl) {
 	shape->ResetJoints ();
 
     Players.GetCtrl (g_game.player_id)->cpos = pos;
-    double disp_y = pos.y + TUX_Y_CORR + heightcorr; 
+    double disp_y = pos.y + TUX_Y_CORR + heightcorr;
     shape->ResetNode (0);
     shape->TranslateNode (0, MakeVector (pos.x, disp_y, pos.z));
 	InterpolateKeyframe (keyidx, frac, shape);
@@ -294,7 +294,7 @@ void CKeyframe::UpdateTest (double timestep, CCharShape *shape) {
 		keyidx++;
 		keytime = 0;
 	}
-	
+
     if  (keyidx >= frames.size()-1 || frames.size() < 2) {
 		active = false;
         return;
@@ -316,12 +316,12 @@ void CKeyframe::UpdateTest (double timestep, CCharShape *shape) {
 	InterpolateKeyframe (keyidx, frac, shape);
 }
 
-void CKeyframe::ResetFrame2 (TKeyframe2 *frame) {
+void CKeyframe::ResetFrame2 (TKeyframe *frame) {
 	for (int i=1; i<32; i++) frame->val[i] = 0.0;
 	frame->val[0] = 0.5; // time
 }
 
-TKeyframe2 *CKeyframe::GetFrame (size_t idx) {
+TKeyframe *CKeyframe::GetFrame (size_t idx) {
 	if (idx >= frames.size()) return NULL;
 	return &frames[idx];
 }
@@ -344,7 +344,7 @@ void CKeyframe::SaveTest (const string& dir, const string& filename) {
 	CSPList list (100);
 
 	for (size_t i=0; i<frames.size(); i++) {
-		TKeyframe2* frame = &frames[i];
+		TKeyframe* frame = &frames[i];
 		string line = "*[time] " + Float_StrN (frame->val[0], 1);
 		line += " [pos] " + Float_StrN (frame->val[1], 2);
 		line += " " + Float_StrN (frame->val[2], 2);
@@ -357,27 +357,27 @@ void CKeyframe::SaveTest (const string& dir, const string& filename) {
 
 		double ll = frame->val[9];
 		double rr = frame->val[10];
-		if (ll != 0 || rr != 0) 
+		if (ll != 0 || rr != 0)
 			line += " [sh] " + Float_StrN (ll, 0) + " " + Float_StrN (rr, 0);
 
 		ll = frame->val[11];
 		rr = frame->val[12];
-		if (ll != 0 || rr != 0) 
+		if (ll != 0 || rr != 0)
 			line += " [arm] " + Float_StrN (ll, 0) + " " + Float_StrN (rr, 0);
 
 		ll = frame->val[13];
 		rr = frame->val[14];
-		if (ll != 0 || rr != 0) 
+		if (ll != 0 || rr != 0)
 			line += " [hip] " + Float_StrN (ll, 0) + " " + Float_StrN (rr, 0);
 
 		ll = frame->val[15];
 		rr = frame->val[16];
-		if (ll != 0 || rr != 0) 
+		if (ll != 0 || rr != 0)
 			line += " [knee] " + Float_StrN (ll, 0) + " " + Float_StrN (rr, 0);
 
 		ll = frame->val[17];
 		rr = frame->val[18];
-		if (ll != 0 || rr != 0) 
+		if (ll != 0 || rr != 0)
 			line += " [ankle] " + Float_StrN (ll, 0) + " " + Float_StrN (rr, 0);
 
 		list.Add (line);
@@ -386,13 +386,13 @@ void CKeyframe::SaveTest (const string& dir, const string& filename) {
 }
 
 void CKeyframe::CopyFrame (size_t prim_idx, size_t sec_idx) {
-	TKeyframe2 *ppp = &frames[prim_idx];
-	TKeyframe2 *sss = &frames[sec_idx];
+	TKeyframe *ppp = &frames[prim_idx];
+	TKeyframe *sss = &frames[sec_idx];
 	memcpy(sss->val, ppp->val, MAX_FRAME_VALUES*sizeof(*sss->val));
 }
 
 void CKeyframe::AddFrame () {
-	frames.push_back(TKeyframe2());
+	frames.push_back(TKeyframe());
 	ResetFrame2 (&frames.back());
 }
 
@@ -400,11 +400,11 @@ size_t CKeyframe::DeleteFrame (size_t idx) {
 	if (frames.size() < 2) return idx;
 	size_t lastframe = frames.size()-1;
 	if (idx > lastframe) return 0;
-	
+
 	if (idx == lastframe) {
 		frames.pop_back();
 		return frames.size()-1;
-	
+
 	} else {
 		for (size_t i=idx; i<lastframe-1; i++) CopyFrame (i+1, i);
 		frames.pop_back();
@@ -416,11 +416,11 @@ void CKeyframe::InsertFrame (size_t idx) {
 	size_t lastframe = frames.size()-1;
 	if (idx > lastframe) return;
 
-	frames.push_back(TKeyframe2());
-	
+	frames.push_back(TKeyframe());
+
 	for (size_t i=frames.size()-1; i>idx; i--) CopyFrame (i-1, i);
 	ResetFrame2 (&frames[idx]);
-}	
+}
 
 void CKeyframe::CopyToClipboard (size_t idx) {
 	if (idx >= frames.size()) return;

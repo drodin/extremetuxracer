@@ -61,13 +61,13 @@ struct TCharNode {
 	size_t next_name;
 
     string joint;
-	bool visible;
     TMatrix trans;
 	TMatrix invtrans;
 	double radius;
 	int divisions;
     TCharMaterial *mat;
     bool render_shadow;
+	bool visible;
 };
 
 class CCharShape {

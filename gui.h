@@ -55,8 +55,8 @@ TTextButton* AddTextButton (const string& text, int x, int y, double ftsize);
 TTextButton* AddTextButtonN (const string& text, int x, int y, int rel_ftsize);
 
 class TCheckbox : public TWidget {
-	int width;
 	string tag;
+	int width;
 public:
 	bool checked;
 

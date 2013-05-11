@@ -38,7 +38,7 @@ static bool lastframe = 0;
 static bool keyrun = false;
 
 void InitFrameTools () {
-	framebase = (int)((param.y_resolution - 350) / 18); 
+	framebase = (int)((param.y_resolution - 350) / 18);
 	if (TestFrame.numFrames() < 1) TestFrame.AddFrame ();
 	curr_joint = 0;
 	last_joint = TestFrame.GetNumJoints () -1;
@@ -49,7 +49,7 @@ void SingleFrameKeys (unsigned int key, bool special, bool release, int x, int y
 	must_render = true;
 	int keyfact;
 	lastframe = TestFrame.numFrames() != 1;
-	TKeyframe2 *frame = TestFrame.GetFrame (curr_frame);
+	TKeyframe *frame = TestFrame.GetFrame (curr_frame);
 
 	// setting the camera change state
 	if (key == SDLK_F1) {GluCamera.turnright = !release; return;}
@@ -78,16 +78,16 @@ void SingleFrameKeys (unsigned int key, bool special, bool release, int x, int y
 		case SDLK_s: SaveToolFrame (); break;
 		case SDLK_TAB: SetToolMode (0); break;
 
-		case SDLK_a: 
-			TestFrame.AddFrame (); 
+		case SDLK_a:
+			TestFrame.AddFrame ();
 			SetFrameChanged (true);
 			break;
-		case 277: 
-			TestFrame.InsertFrame (curr_frame); 
+		case 277:
+			TestFrame.InsertFrame (curr_frame);
 			SetFrameChanged (true);
 			break;
-		case 127: 
-			curr_frame = TestFrame.DeleteFrame (curr_frame); 
+		case 127:
+			curr_frame = TestFrame.DeleteFrame (curr_frame);
 			SetFrameChanged (true);
 			break;
 		case SDLK_PAGEDOWN: if (curr_frame < TestFrame.numFrames()-1) curr_frame++; break;
@@ -95,43 +95,43 @@ void SingleFrameKeys (unsigned int key, bool special, bool release, int x, int y
 		case SDLK_UP: if (curr_joint > 0) curr_joint--; break;
 		case SDLK_DOWN: if (curr_joint < last_joint) curr_joint++; break;
 		case SDLK_RIGHT:
-				if (curr_joint < 4) frame->val[curr_joint] += 0.05; 					
+				if (curr_joint < 4) frame->val[curr_joint] += 0.05;
 				else frame->val[curr_joint] += 1;
 				SetFrameChanged (true);
 				break;
-		case SDLK_LEFT: 
-				if (curr_joint < 4) frame->val[curr_joint] -= 0.05; 					
+		case SDLK_LEFT:
+				if (curr_joint < 4) frame->val[curr_joint] -= 0.05;
 				else frame->val[curr_joint] -= 1;
 				SetFrameChanged (true);
 				break;
-		case SDLK_0: 
+		case SDLK_0:
 			frame->val[curr_joint] = 0.0;
 			SetFrameChanged (true);
 			break;
 		case 32:
-			if (curr_joint < 4) frame->val[curr_joint] += 0.05 * keyfact; 					
+			if (curr_joint < 4) frame->val[curr_joint] += 0.05 * keyfact;
 			else frame->val[curr_joint] += 1 * keyfact;
 			SetFrameChanged (true);
 			break;
 
-		case 13:			
-			TestFrame.InitTest (ref_position, &TestChar); 
+		case 13:
+			TestFrame.InitTest (ref_position, &TestChar);
 			SetToolMode (2);
 			must_render = true;
 			break;
 
 		case SDLK_m: TestChar.useMaterials = !TestChar.useMaterials; break;
 		case SDLK_h: TestChar.useHighlighting = !TestChar.useHighlighting; break;
-		case SDLK_c: 
-			if (control) TestFrame.CopyToClipboard (curr_frame); 
+		case SDLK_c:
+			if (control) TestFrame.CopyToClipboard (curr_frame);
 			else TestFrame.ClearFrame (curr_frame);
 			SetFrameChanged (true);
 			break;
-		case SDLK_v: 
-			if (control) TestFrame.PasteFromClipboard (curr_frame); 
+		case SDLK_v:
+			if (control) TestFrame.PasteFromClipboard (curr_frame);
 			SetFrameChanged (true);
 			break;
-		case SDLK_p: if (curr_frame>0) 
+		case SDLK_p: if (curr_frame>0)
 			TestFrame.CopyFrame (curr_frame-1, curr_frame); break;
 		case SDLK_F10: ScreenshotN (); break;
 
@@ -160,13 +160,13 @@ void SingleFrameMouse (int button, int state, int x, int y) {
 void SingleFrameMotion (int x, int y) {
 }
 
-void PrintFrameParams (int ytop, TKeyframe2 *frame) {
+void PrintFrameParams (int ytop, TKeyframe *frame) {
 	int y, x;
 	int offs = 18;
-	
+
 	for (int i=0; i<=last_joint; i++) {
-		if (i == curr_joint) FT.SetColor (colYellow); 
-		else FT.SetColor (colLGrey); 
+		if (i == curr_joint) FT.SetColor (colYellow);
+		else FT.SetColor (colLGrey);
 
 		x = ITrunc (i, jointbase) * 140 + 20;
 		y = IFrac (i, jointbase) * offs + ytop;
@@ -212,7 +212,7 @@ void RenderSingleFrame (double timestep) {
 	int xl, yt;
 	for (int i=0; i<TestFrame.numFrames(); i++) {
 		if (i != curr_frame) {
-			FT.SetColor (colLGrey); 
+			FT.SetColor (colLGrey);
 			FT.SetFont ("normal");
 		} else {
 			FT.SetColor (colYellow);
@@ -220,11 +220,11 @@ void RenderSingleFrame (double timestep) {
 		}
 		xl = ITrunc (i, framebase) * 100 + 20;
 		yt = IFrac (i, framebase) * 18 + 20;
-		FT.DrawString (xl, yt, Int_StrN (i));		
+		FT.DrawString (xl, yt, Int_StrN (i));
 	}
 
 	FT.SetFont ("normal");
-	FT.SetColor (colLGrey); 
+	FT.SetColor (colLGrey);
 	PrintFrameParams (param.y_resolution - 330, TestFrame.GetFrame (curr_frame));
 
 	if (ToolsFinalStage ()) {

@@ -25,32 +25,32 @@ GNU General Public License for more details.
 
 #define EARTH_GRAV 9.81  /* ok, why not 10.0 ? */
 #define JUMP_FORCE_DURATION 0.20
-#define TUX_MASS 20				
-#define MIN_TUX_SPEED 1.4 
+#define TUX_MASS 20
+#define MIN_TUX_SPEED 1.4
 #define INIT_TUX_SPEED 3.0
-#define COLL_TOLERANCE 0.1		
+#define COLL_TOLERANCE 0.1
 
-#define MAX_SURF_PEN 0.2		
-#define TUX_Y_CORR 0.36			
-#define IDEAL_ROLL_SPEED 6.0	
-#define IDEAL_ROLL_FRIC 0.35	
+#define MAX_SURF_PEN 0.2
+#define TUX_Y_CORR 0.36
+#define IDEAL_ROLL_SPEED 6.0
+#define IDEAL_ROLL_FRIC 0.35
 #define WIND_FACTOR 1.5
 
-#define MIN_FRICT_SPEED 2.8		
-#define MAX_FRICT_FORCE 800		
+#define MIN_FRICT_SPEED 2.8
+#define MAX_FRICT_FORCE 800
 #define MAX_TURN_ANGLE 45
-#define MAX_TURN_PERP 400		
-#define MAX_TURN_PEN 0.15		
-#define PADDLING_DURATION 0.40  
-#define IDEAL_PADD_FRIC 0.35	
-#define MAX_PADD_FORCE 122.5	
+#define MAX_TURN_PERP 400
+#define MAX_TURN_PEN 0.15
+#define PADDLING_DURATION 0.40
+#define IDEAL_PADD_FRIC 0.35
+#define MAX_PADD_FORCE 122.5
 #define BRAKE_FORCE 200
 
 #define MIN_TIME_STEP 0.01
 #define MAX_TIME_STEP 0.10
-#define MAX_STEP_DIST 0.20		
-#define MAX_POS_ERR 0.005		
-#define MAX_VEL_ERR	0.05		
+#define MAX_STEP_DIST 0.20
+#define MAX_POS_ERR 0.005
+#define MAX_VEL_ERR	0.05
 
 // constants for finish stage
 #define FIN_AIR_GRAV 500
@@ -68,13 +68,13 @@ struct TForce {
 	double frict_coeff;
 	double comp_depth;
 	double surfdistance;
-    double compression;	
+    double compression;
 };
 
 class CControl {
 private:
-	double ode_time_step;
 	TForce ff;
+	double ode_time_step;
 	double finish_speed;
 
 	bool     CheckTreeCollisions (const TVector3& pos, TVector3 *tree_loc, double *tree_diam);
@@ -100,45 +100,45 @@ private:
 	void     SolveOdeSystem (double timestep);
 public:
 	CControl ();
-	
+
 	// view:
-	TViewMode viewmode;                
-    TVector3 viewpos;                     
-    TVector3 plyr_pos;                
-    TVector3 viewdir;                    
-    TVector3 viewup;                     
-    TMatrix view_mat;         
-    bool view_init;              
+	TViewMode viewmode;
+    TVector3 viewpos;
+    TVector3 plyr_pos;
+    TVector3 viewdir;
+    TVector3 viewup;
+    TMatrix view_mat;
+    bool view_init;
 	// main:
-	TVector3 cpos;          
-    TVector3 cvel;    
+	TVector3 cpos;
+    TVector3 cvel;
 	TVector3 last_pos;
-    TVector3 cnet_force;        
-    TVector3 cdirection;        
-	TQuaternion corientation;        
+    TVector3 cnet_force;
+    TVector3 cdirection;
+	TQuaternion corientation;
 	double way;
-	
-    bool orientation_initialized;  
-    TVector3 plane_nml;              
+
+    bool orientation_initialized;
+    TVector3 plane_nml;
 	// steering:
-    double turn_fact;              
-    double turn_animation;         
+    double turn_fact;
+    double turn_animation;
 	double paddle_time;
-    bool   is_paddling;              
-    bool   is_braking;               
+    double jump_amt;
+    double jump_start_time;
+    bool   is_paddling;
+    bool   is_braking;
     bool   begin_jump;
     bool   jumping;
     bool   jump_charging;
-    double jump_amt;
-    double jump_start_time;
 	// trick:
-    double roll_factor;
-    double flip_factor;
     bool   front_flip;
     bool   back_flip;
-    bool   cairborne;           
+    bool   cairborne;
     bool   roll_left;
     bool   roll_right;
+    double roll_factor;
+    double flip_factor;
 	// pseudo constants:
 	double minSpeed;
 	double minFrictspeed;
@@ -158,7 +158,7 @@ public:
 // void  CheckItemCollection (TVector3 pos)
 
 // ----------------- position and vlelocity ---------------------------
-// double AdjustVelocity (TVector3 *vel, TVector3 pos, TPlane surf_plane, 
+// double AdjustVelocity (TVector3 *vel, TVector3 pos, TPlane surf_plane,
 // 	   double dist_from_surface)
 // void   AdjustPosition (TVector3 *pos, TPlane surf_plane, double dist_from_surface)
 // void   SetTuxPosition (TVector3 new_pos)

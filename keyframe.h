@@ -25,31 +25,30 @@ GNU General Public License for more details.
 
 class CCharShape;
 
-struct TKeyframe2 {
+struct TKeyframe {
 	double val[MAX_FRAME_VALUES];
 };
 
 class CKeyframe {
 private:
-	double keytime;
-	vector<TKeyframe2> frames;
+	vector<TKeyframe> frames;
 	TVector3 refpos;
+	string loadedfile;
+	TKeyframe clipboard;
+	double keytime;
 	double heightcorr;
 	int keyidx;
-	string loadedfile;
-	TKeyframe2 clipboard;
 
 	double interp (double frac, double v1, double v2);
 	void InterpolateKeyframe (size_t idx, double frac, CCharShape *shape);
 
 	// test and editing
-	void ResetFrame2 (TKeyframe2 *frame);
+	void ResetFrame2 (TKeyframe *frame);
 public:
 	CKeyframe ();
-	string jointname;
 	bool loaded;
-
 	bool active;
+
 	void Init (const TVector3& ref_position, double height_correction);
 	void Init (const TVector3& ref_position, double height_correction, CCharShape *shape);
 	void InitTest (const TVector3& ref_position, CCharShape *shape);
@@ -60,7 +59,7 @@ public:
 	void CalcKeyframe (size_t idx, CCharShape *shape, TVector3 refpos);
 
 	// test and editing
-	TKeyframe2 *GetFrame (size_t idx);
+	TKeyframe *GetFrame (size_t idx);
 	static string GetHighlightName (size_t idx);
 	static string GetJointName (size_t idx);
 	int GetNumJoints () const;
