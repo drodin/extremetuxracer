@@ -120,14 +120,13 @@ void CTranslation::LoadLanguages () {
 		string line = list.Line(i);
 		languages[i].lang = SPStrN (line, "lang", "en_GB");
 		languages[i].language = SPStrN (line, "language", "English");
-		LangIndex += "[" + languages[i].lang + "]";
-		LangIndex += Int_StrN (i);
+		LangIndex[languages[i].lang] = i;
 	}
 	if (languages.size() > 0) languages_ok = true;
 }
 
 size_t CTranslation::GetLangIdx (const string& lang) const {
-	return SPIntN (LangIndex, lang, 0);
+	return LangIndex.at(lang);
 }
 
 string CTranslation::GetLanguage (size_t idx) const {

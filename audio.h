@@ -19,6 +19,7 @@ GNU General Public License for more details.
 
 #include "bh.h"
 #include <vector>
+#include <map>
 
 // --------------------------------------------------------------------
 //				class CAudio
@@ -49,7 +50,7 @@ struct TSound {
 class CSound {
 private:
 	vector<TSound> sounds;
-	string SoundIndex;
+	map<string, size_t> SoundIndex;
 public:
 	size_t LoadChunk (const std::string& name, const char *filename);
 	void LoadSoundList ();
@@ -81,11 +82,11 @@ public:
 class CMusic {
 private:
 	vector<Mix_Music*> musics;
-	string MusicIndex;
+	map<string, size_t> MusicIndex;
 
 	struct Situation {size_t situation[3];};
 	vector<Situation> themes;
-	string ThemesIndex;
+	map<string, size_t> ThemesIndex;
 
 	int loop_count;			// we need only 1 variable for all pieces
 	int curr_musid;			// ID of current music piece

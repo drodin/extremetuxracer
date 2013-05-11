@@ -74,7 +74,7 @@ size_t CSound::LoadChunk (const std::string& name, const char *filename) {
 	sounds.back().loop_count = 0;				// default: playing once
 
 	Mix_VolumeChunk (sounds.back().chunk, param.sound_volume);
-	SoundIndex = SoundIndex + "[" + name + "]" + Int_StrN ((int)sounds.size()-1);
+	SoundIndex[name] = sounds.size()-1;
 	return sounds.size()-1;
 }
 
@@ -101,12 +101,16 @@ void CSound::FreeSounds () {
 	for (size_t i=0; i<sounds.size(); i++)
 		if (sounds[i].chunk != NULL) Mix_FreeChunk (sounds[i].chunk);
 	sounds.clear();
-	SoundIndex = "";
+	SoundIndex.clear();
 }
 
 size_t CSound::GetSoundIdx (const string& name) const {
     if (Audio.IsOpen == false) return -1;
-	return SPIntN (SoundIndex, name, -1);
+	try {
+		return SoundIndex.at(name);
+	} catch(...) {
+		return -1;
+	}
 }
 
 void CSound::SetVolume (size_t soundid, int volume) {
@@ -208,7 +212,7 @@ size_t CMusic::LoadPiece (const char *name, const char *filename) {
 		Message ("could not load music", filename);
 		return -1;
 	}
-	MusicIndex = MusicIndex + "[" + name + "]" + Int_StrN ((int)musics.size());
+	MusicIndex[name] = musics.size();
 	musics.push_back(m);
 	return musics.size()-1;
 }
@@ -235,13 +239,13 @@ void CMusic::LoadMusicList () {
 
 	// --- racing themes ---
 	list.Clear();
-	ThemesIndex = "";
+	ThemesIndex.clear();
 	if (list.Load (param.music_dir, "racing_themes.lst")) {
 		themes.resize(list.Count());
 		for (size_t i=0; i<list.Count(); i++) {
 			string line = list.Line(i);
 			string name = SPStrN (line, "name", "");
-			ThemesIndex = ThemesIndex + "[" + name + "]" + Int_StrN ((int)i);
+			ThemesIndex[name] = i;
 			string item = SPStrN (line, "race", "race_1");
 			themes[i].situation[0] = GetMusicIdx (item);
 			item = SPStrN (line, "wonrace", "wonrace_1");
@@ -258,10 +262,10 @@ void CMusic::FreeMusics () {
 		if (musics[i] != NULL)
 			Mix_FreeMusic (musics[i]);
 	musics.clear();
-	MusicIndex = "";
+	MusicIndex.clear();
 
 	themes.clear();
-	ThemesIndex = "";
+	ThemesIndex.clear();
 
 	curr_musid = -1;
 	curr_volume = 10;
@@ -270,12 +274,20 @@ void CMusic::FreeMusics () {
 
 size_t CMusic::GetMusicIdx (const string& name) const {
     if (Audio.IsOpen == false) return -1;
-	return SPIntN (MusicIndex, name, -1);
+	try {
+		return MusicIndex.at(name);
+	} catch(...) {
+		return -1;
+	}
 }
 
 size_t CMusic::GetThemeIdx (const string& theme) const {
     if (Audio.IsOpen == false) return -1;
-	return SPIntN (ThemesIndex, theme, -1);
+	try {
+		return ThemesIndex.at(theme);
+	} catch(...) {
+		return -1;
+	}
 }
 
 void CMusic::SetVolume (int volume) {

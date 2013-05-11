@@ -24,6 +24,7 @@ An name convention:
 #define TRANSLATION_H
 
 #include "bh.h"
+#include <map>
 #include <vector>
 
 #define MAX_LANGUAGES 32
@@ -38,7 +39,7 @@ struct TLang {
 class CTranslation {
 private:
 	string texts[MAX_COMMON_TEXTS];
-	string LangIndex;
+	map<string, size_t> LangIndex;
 	bool languages_ok;
 public:
 	vector<TLang> languages;

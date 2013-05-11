@@ -159,7 +159,7 @@ void CPlayers::AddPlayer (const string& name, const string& avatar) {
 	plyr.push_back(TPlayer());
 	plyr.back().name = name;
 	plyr.back().avatar = avatar;
-	plyr.back().texture = GetAvatarTexture(SPIntN (AvatarIndex, plyr.back().avatar, 0));
+	plyr.back().texture = GetAvatarTexture(AvatarIndex[plyr.back().avatar]);
 	plyr.back().funlocked = "";
 	plyr.back().ctrl = NULL;
 }
@@ -169,13 +169,13 @@ void CPlayers::SetDefaultPlayers () {
 	plyr[0].funlocked = "";
 	plyr[0].name = "Racer";
 	plyr[0].avatar = "avatar01.png";
-	plyr[0].texture = GetAvatarTexture(SPIntN (AvatarIndex, plyr[0].avatar, 0));
+	plyr[0].texture = GetAvatarTexture(AvatarIndex[plyr[0].avatar]);
 	plyr[0].ctrl = NULL;
 
 	plyr[1].funlocked = "";
 	plyr[1].name = "Bunny";
 	plyr[1].avatar = "avatar02.png";
-	plyr[1].texture = GetAvatarTexture(SPIntN (AvatarIndex, plyr[1].avatar, 0));
+	plyr[1].texture = GetAvatarTexture(AvatarIndex[plyr[1].avatar]);
 	plyr[1].ctrl = NULL;
 }
 
@@ -201,7 +201,7 @@ bool CPlayers::LoadPlayers () {
 		plyr[i].name = SPStrN (line, "name", "unknown");
 		plyr[i].funlocked = SPStrN (line, "unlocked", "");
 		plyr[i].avatar = SPStrN (line, "avatar", "");
-		plyr[i].texture = GetAvatarTexture(SPIntN (AvatarIndex, plyr[i].avatar, 0));
+		plyr[i].texture = GetAvatarTexture(AvatarIndex[plyr[i].avatar]);
 		plyr[i].ctrl = NULL;
 		int active = SPIntN (line, "active", 0);
 		if (active > 0) g_game.start_player = plyr.size()-1;
@@ -279,7 +279,7 @@ void CPlayers::LoadAvatars () {
 		return;
 	}
 
-	AvatarIndex = "";
+	AvatarIndex.clear();
 	for (int i=0; i<list.Count(); i++) {
 		string line = list.Line (i);
 		string filename = SPStrN (line, "file", "unknown");
@@ -288,8 +288,7 @@ void CPlayers::LoadAvatars () {
 			avatars.push_back(TAvatar());
 			avatars.back().filename = filename;
 			avatars.back().texture = texture;
-			AvatarIndex += "[" + filename + "]";
-			AvatarIndex += Int_StrN ((int)avatars.size()-1);
+			AvatarIndex[filename] = avatars.size()-1;
 		} else 
 			delete texture;
 	}

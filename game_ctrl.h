@@ -19,6 +19,7 @@ GNU General Public License for more details.
 
 #include "bh.h"
 #include "keyframe.h"
+#include <map>
 
 
 class TTexture;
@@ -94,7 +95,7 @@ private:
 	vector<TPlayer> plyr;
 	size_t currPlayer;
 	void SetDefaultPlayers ();
-	string AvatarIndex;
+	map<string, size_t> AvatarIndex;
 	vector<TAvatar> avatars;
 public:
 	CPlayers ();
