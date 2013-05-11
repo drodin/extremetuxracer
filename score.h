@@ -32,6 +32,7 @@ struct TScore {
 struct TScoreList {
 	TScore scores[MAX_SCORES];
 	int numScores;
+	TScoreList() : numScores(0) {}
 };
 
 class CScore : public State {
