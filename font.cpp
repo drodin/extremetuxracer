@@ -233,7 +233,7 @@ int CFont::AutoDistanceN (int rel_val) {
 // -------------------- draw (x, y, text) -----------------------------
 
 void CFont::DrawText(float x, float y, const char *text, size_t font, float size) const {
-	if (font < 0 || font >= fonts.size()) return;
+	if (font >= fonts.size()) return;
 
 	glPushMatrix();
 	fonts[font]->FaceSize ((int)size);
@@ -255,7 +255,7 @@ void CFont::DrawText(float x, float y, const char *text, size_t font, float size
 }
 
 void CFont::DrawText(float x, float y, const wchar_t *text, size_t font, float size) const {
-	if (font < 0 || font >= fonts.size()) return;
+	if (font >= fonts.size()) return;
 
 	glPushMatrix();
 	fonts[font]->FaceSize ((int)size);
@@ -324,7 +324,7 @@ void CFont::DrawString (
 // --------------------- metrics --------------------------------------
 
 void CFont::GetTextSize (const wchar_t *text, float &x, float &y, size_t font, float size) const {
-	if (font < 0 || font >= fonts.size()) { x = 0; y = 0; return; }
+	if (font >= fonts.size()) { x = 0; y = 0; return; }
 
 	float llx, lly, llz, urx, ury, urz;
 	fonts[font]->FaceSize ((int)size);
@@ -337,7 +337,7 @@ void CFont::GetTextSize (const char *text, float &x, float &y, size_t font, floa
 #if USE_UNICODE
 	GetTextSize(UnicodeStr(text).c_str(), x, y, font, size);
 #else
-	if (font < 0 || font >= fonts.size()) { x = 0; y = 0; return; }
+	if (font >= fonts.size()) { x = 0; y = 0; return; }
 
 	float llx, lly, llz, urx, ury, urz;
 	fonts[font]->FaceSize ((int)size);

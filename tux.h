@@ -19,6 +19,8 @@ GNU General Public License for more details.
 #define TUX_H
 
 #include "bh.h"
+#include <map>
+#include <vector>
 
 #define MAX_ACTIONS 8
 #define	MAX_CHAR_NODES 256
@@ -26,39 +28,42 @@ GNU General Public License for more details.
 
 #define USE_CHAR_DISPLAY_LIST true
 #define MIN_SPHERE_DIV 3
-#define MAX_SPHERE_DIV 16 
+#define MAX_SPHERE_DIV 16
 
 struct TCharMaterial {
     TColor diffuse;
     TColor specular;
     float exp;
+	string matline;
 };
 
 struct TCharAction {
-	int num;
+	size_t num;
 	int type[MAX_ACTIONS];
 	TVector3 vec[MAX_ACTIONS];
  	double dval[MAX_ACTIONS];
 	string name;
 	string order;
 	string mat;
-};		
+};
 
 struct TCharNode {
     TCharNode *parent;
     TCharNode *next;
     TCharNode *child;
 
-	int node_idx;		// number in node_array
-	int node_name;		// int identifier of node itself
-	int parent_name;	// int identifier of parent
-	int child_name;
-	int next_name;
+	TCharAction* action;
+
+	size_t node_idx;	// number in node_array
+	size_t node_name;	// int identifier of node itself
+	size_t parent_name;	// int identifier of parent
+	size_t child_name;
+	size_t next_name;
 
     string joint;
 	bool visible;
     TMatrix trans;
-	TMatrix invtrans;   
+	TMatrix invtrans;
 	double radius;
 	int divisions;
     TCharMaterial *mat;
@@ -68,42 +73,38 @@ struct TCharNode {
 class CCharShape {
 private:
 	TCharNode *Nodes[MAX_CHAR_NODES];
-	TCharAction *Actions[MAX_CHAR_NODES];
-	int Index[MAX_CHAR_NODES];
-	int numNodes;
+	size_t Index[MAX_CHAR_NODES];
+	size_t numNodes;
 	bool useActions;
 	bool newActions;
-	TCharMaterial *Materials [MAX_CHAR_MAT];
-	int numMaterials;
-	string MaterialIndex;
-	string Matlines[MAX_CHAR_MAT];
-	int numMatlines;
-	int numDisplayLists;
+	vector<TCharMaterial> Materials;
+	map<string, size_t> MaterialIndex;
+	size_t numDisplayLists;
 
-	// nodes 
-	int GetNodeIdx (int node_name);
-	TCharNode *GetNode (int node_name);
-	bool GetNode (int node_name, TCharNode **node);
+	// nodes
+	size_t GetNodeIdx (size_t node_name) const;
+	TCharNode *GetNode (size_t node_name);
+	bool GetNode (size_t node_name, TCharNode **node);
 	void CreateRootNode ();
-	bool CreateCharNode 
-		(int parent_name, int node_name, const string& joint, 
+	bool CreateCharNode
+		(int parent_name, size_t node_name, const string& joint,
 		const string& name, const string& order, bool shadow);
-	bool VisibleNode (int node_name, float level);
-	bool MaterialNode (int node_name, const string& mat_name);
-	bool TransformNode (int node_name, TMatrix mat, TMatrix invmat);
+	bool VisibleNode (size_t node_name, float level);
+	bool MaterialNode (size_t node_name, const string& mat_name);
+	bool TransformNode (size_t node_name, TMatrix mat, TMatrix invmat);
 
 	// material
-	bool GetMaterial (const char *mat_name, TCharMaterial **mat);
-	void CreateMaterial (const char *line);
+	bool GetMaterial (const string& mat_name, TCharMaterial **mat);
+	void CreateMaterial (const string& line);
 
-	// drawing 
+	// drawing
 	void DrawCharSphere (int num_divisions);
 	GLuint GetDisplayList (int divisions);
 	void DrawNodes (TCharNode *node);
 	TVector3 AdjustRollvector (CControl *ctrl, TVector3 vel, const TVector3& zvec);
 
 	// collision
-	bool CheckPolyhedronCollision (TCharNode *node, TMatrix modelMatrix, 
+	bool CheckPolyhedronCollision (TCharNode *node, TMatrix modelMatrix,
 		TMatrix invModelMatrix, const TPolyhedron& ph);
 	bool CheckCollision (const TPolyhedron& ph);
 
@@ -113,21 +114,20 @@ private:
 	void TraverseDagForShadow (TCharNode *node, TMatrix mat);
 
 	// testing and developing
-	void AddAction (int node_name, int type, const TVector3& vec, double val);
+	void AddAction (size_t node_name, int type, const TVector3& vec, double val);
 public:
 	CCharShape ();
 	bool useMaterials;
 	bool useHighlighting;
-	string NodeIndex;
-	string file_name;
+	map<string, size_t> NodeIndex;
 
-	// nodes 
-	bool ResetNode (int node_name);
+	// nodes
+	bool ResetNode (size_t node_name);
 	bool ResetNode (const string& node_trivialname);
-	bool TranslateNode (int node_name, const TVector3& vec);
-	bool RotateNode (int node_name, int axis, double angle);
+	bool TranslateNode (size_t node_name, const TVector3& vec);
+	bool RotateNode (size_t node_name, int axis, double angle);
 	bool RotateNode (const string& node_trivialname, int axis, double angle);
-	void ScaleNode (int node_name, const TVector3& vec);
+	void ScaleNode (size_t node_name, const TVector3& vec);
 	void ResetRoot ();
 	void ResetJoints ();
 
@@ -139,30 +139,30 @@ public:
 
 	void AdjustOrientation (CControl *ctrl, double dtime,
 		double dist_from_surface, const TVector3& surf_nml);
-	void AdjustJoints (double turnFact, bool isBraking, 
+	void AdjustJoints (double turnFact, bool isBraking,
 		double paddling_factor, double speed,
 		const TVector3& net_force, double flap_factor);
 	bool Collision (const TVector3& pos, const TPolyhedron& ph);
 
 	// testing and tools
 	bool   highlighted;
-	int    highlight_node;
+	size_t highlight_node;
 
-	int    GetNodeName (int idx);
-	int    GetNodeName (const string& node_trivialname);
-	string GetNodeJoint (int idx);
-	int    GetNumNodes ();
-	string GetNodeFullname (int idx);
-	int    GetNumActs (int idx);
-	TCharAction *GetAction (int idx);
-	void   PrintAction (int idx);	
-	void   PrintNode (int idx);
-	void   RefreshNode (int idx);
+	size_t GetNodeName (size_t idx) const;
+	size_t GetNodeName (const string& node_trivialname) const;
+	string GetNodeJoint (size_t idx) const;
+	size_t GetNumNodes () const;
+	string GetNodeFullname (size_t idx) const;
+	size_t GetNumActs (size_t idx) const;
+	TCharAction *GetAction (size_t idx) const;
+	void   PrintAction (size_t idx) const;
+	void   PrintNode (size_t idx) const;
+	void   RefreshNode (size_t idx);
 	void   SaveCharNodes (const string& dir, const string& filename);
 };
 
 // only for char tools, the characters for playing are in
 // CCharacter (game_ctrl)
-extern CCharShape TestChar; 
+extern CCharShape TestChar;
 
 #endif

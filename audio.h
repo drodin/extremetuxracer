@@ -106,7 +106,7 @@ public:
 	bool Play (const string& name, int loop);
 	bool Play (size_t musid, int loop, int volume);
 	bool Play (const string& name, int loop, int volume);
-	bool PlayTheme (size_t theme, int situation);
+	bool PlayTheme (size_t theme, size_t situation);
 	void Refresh (const string& name);
 	void Halt ();
 	void FreeMusics ();

@@ -343,9 +343,9 @@ bool CMusic::Play (const string& name, int loop, int volume) {
 	return Play (GetMusicIdx (name), loop, volume);
 }
 
-bool CMusic::PlayTheme (size_t theme, int situation)  {
+bool CMusic::PlayTheme (size_t theme, size_t situation)  {
 	if (theme >= themes.size()) return false;
-	if (situation < 0 || situation >= 3) return false;
+	if (situation >= 3) return false;
 	size_t musid = themes [theme].situation[situation];
 	return Play (musid, -1);
 }

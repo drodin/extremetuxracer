@@ -23,12 +23,12 @@ GNU General Public License for more details.
 #include "spx.h"
 #include "tux.h"
 
-static int firstnode = 0;
-static int lastnode;
-static int curr_node = 0;
-static int firstact = 0;
-static int lastact;
-static int curr_act = 0;
+static size_t firstnode = 0;
+static size_t lastnode;
+static size_t curr_node = 0;
+static size_t firstact = 0;
+static size_t lastact;
+static size_t curr_act = 0;
 
 static float xposition = 0;
 static float yposition = 0;
@@ -245,7 +245,7 @@ void CharMotion (int x, int y) {
 	}
 }
 
-void DrawActionVec (int nr, string s, int y, TVector3 v) {
+void DrawActionVec (size_t nr, string s, int y, TVector3 v) {
 	FT.SetColor (colLGrey);
 	FT.DrawString (20, y, s);
 	if (nr == curr_act) {
@@ -269,7 +269,7 @@ void DrawActionVec (int nr, string s, int y, TVector3 v) {
 	}
 }
 
-void DrawActionFloat (int nr, string s, int y, float f) {
+void DrawActionFloat (size_t nr, string s, int y, float f) {
 	FT.SetColor (colLGrey);
 	FT.DrawString (20, y, s);
 	if (nr == curr_act) FT.SetColor (colYellow); else FT.SetColor (colLGrey);
@@ -328,13 +328,13 @@ void RenderChar (double timestep) {
 		FT.DrawString (xl, yt, TestChar.GetNodeJoint (i));		
 	}
 
-	int num = action->num;
+	size_t num = action->num;
 	int type;
 	if (num > 0) {
-		for (int i=0; i<num; i++) {
+		for (size_t i=0; i<num; i++) {
 			is_visible = false;
 			type = action->type[i];
-			yt = param.y_resolution - 120 + i * 18;
+			yt = param.y_resolution - 120 + (int)i * 18;
 			switch (type) {
 				case 0: DrawActionVec (i, "trans", yt, action->vec[i]); break;
 				case 1: DrawActionFloat (i, "x-rot", yt, action->dval[i]); break;

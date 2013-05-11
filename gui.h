@@ -101,7 +101,6 @@ public:
 		, down(down_)
 	{}
 	bool down;
-	int sel;
 	void Draw() const;
 };
 TArrow* AddArrow(int x, int y, bool down);

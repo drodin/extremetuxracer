@@ -244,12 +244,12 @@ CControl *CPlayers::GetCtrl () const {
 }
 
 CControl *CPlayers::GetCtrl (size_t player) const {
-	if (player < 0 || player >= plyr.size()) return NULL;
+	if (player >= plyr.size()) return NULL;
 	return plyr[player].ctrl;
 }
 
 string CPlayers::GetName (size_t player) const {
-	if (player < 0 || player >= plyr.size()) return "";
+	if (player >= plyr.size()) return "";
 	return plyr[player].name;
 }
 
@@ -264,7 +264,7 @@ void CPlayers::ResetControls () {
 
 // called in module regist.cpp:
 void CPlayers::AllocControl (size_t player) {
-	if (player < 0 || player >= plyr.size()) return;
+	if (player >= plyr.size()) return;
 	if (plyr[player].ctrl != NULL) return;
 	plyr[player].ctrl = new CControl;
 }

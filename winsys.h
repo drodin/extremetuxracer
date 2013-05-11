@@ -45,11 +45,11 @@ public:
 	CWinsys ();
 
 	// sdl window
-	TScreenRes GetResolution (int idx);
-	string GetResName (int idx);
+	TScreenRes GetResolution (size_t idx);
+	string GetResName (size_t idx);
 	void Init ();
 	void SetupVideoMode (TScreenRes resolution);
-	void SetupVideoMode (int idx);
+	void SetupVideoMode (size_t idx);
 	void SetupVideoMode (int width, int height);
 	void KeyRepeat (bool repeat);
 	void SetFonttype ();

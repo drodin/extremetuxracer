@@ -64,13 +64,13 @@ TScreenRes CWinsys::MakeRes (int width, int height) {
 	return res;
 }
 
-TScreenRes CWinsys::GetResolution (int idx) {
-	if (idx < 0 || idx >= NUM_RESOLUTIONS) return MakeRes (800, 600);
+TScreenRes CWinsys::GetResolution (size_t idx) {
+	if (idx >= NUM_RESOLUTIONS) return MakeRes (800, 600);
 	return resolution[idx];
 }
 
-string CWinsys::GetResName (int idx) {
-	if (idx < 0 || idx >= NUM_RESOLUTIONS) return "800 x 600";
+string CWinsys::GetResName (size_t idx) {
+	if (idx >= NUM_RESOLUTIONS) return "800 x 600";
 	if (idx == 0) return ("auto");
 	string line = Int_StrN (resolution[idx].width);
 	line += " x " + Int_StrN (resolution[idx].height);
@@ -125,8 +125,8 @@ void CWinsys::SetupVideoMode (TScreenRes resolution) {
 	if (param.use_quad_scale) param.scale = sqrt (param.scale);
 }
 
-void CWinsys::SetupVideoMode (int idx) {
-	if (idx < 0 || idx >= NUM_RESOLUTIONS) SetupVideoMode (MakeRes (800, 600));
+void CWinsys::SetupVideoMode (size_t idx) {
+	if (idx >= NUM_RESOLUTIONS) SetupVideoMode (MakeRes (800, 600));
 	else SetupVideoMode (resolution[idx]);
 }
 

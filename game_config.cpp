@@ -148,7 +148,7 @@ void SaveConfigFile () {
 	AddComment (liste, "0 = auto, 1 = 800x600, 2 = 1024x768");
 	AddComment (liste, "3 = 1152x864, 4 = 1280x960, 5 = 1280x1024");
 	AddComment (liste, "6 = 1360x768, 7 = 1400x1050, 8 = 1440x900, 9=1680x1050");
-	AddIntItem (&liste, "res_type", param.res_type);
+	AddIntItem (&liste, "res_type", (int)param.res_type);
 	liste.Add ("");
 
 	AddComment (liste, "Level of details [1...3]");

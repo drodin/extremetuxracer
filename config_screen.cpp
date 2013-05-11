@@ -199,7 +199,7 @@ void CGameConfig::Enter() {
 	fullscreen = AddCheckbox (area.left, area.top, framewidth-16, Trans.Text(31));
 	fullscreen->checked = param.fullscreen;
 	
-	resolution = AddUpDown(rightpos, area.top+dd*1, 0, NUM_RESOLUTIONS-1, param.res_type);
+	resolution = AddUpDown(rightpos, area.top+dd*1, 0, NUM_RESOLUTIONS-1, (int)param.res_type);
 	mus_vol = AddUpDown(rightpos, area.top+dd*2, 0, 120, param.music_volume);
 	sound_vol = AddUpDown(rightpos, area.top+dd*3, 0, 120, param.sound_volume);
 	detail_level = AddUpDown(rightpos, area.top+dd*4, 1, 3, param.perf_level);
