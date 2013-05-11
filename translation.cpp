@@ -56,7 +56,7 @@ void CTranslation::SetDefaultTranslations () {
 	texts[26] = "Score:";
 	texts[27] = "points";
 
-	texts[28] = "Cancel"; 
+	texts[28] = "Cancel";
 	texts[29] = "Loading";
 	texts[30] = "Please wait ...";
 	texts[31] = "Fullscreen:";
@@ -69,7 +69,7 @@ void CTranslation::SetDefaultTranslations () {
 	texts[38] = "Event:";
 	texts[39] = "Cup:";
 	texts[40] = "Race Over";
-	
+
 	texts[41] = "For more configuration options, please edit the";
 	texts[42] = "file 'options.lst' and read the documentation.";
 
@@ -99,6 +99,8 @@ void CTranslation::SetDefaultTranslations () {
 	texts[64] = "Back";
 
 	texts[65] = "Press any key to return to the main menu";
+
+	texts[66] = "Enter a name for the new player and select an avatar:";
 }
 
 string CTranslation::Text (size_t idx) const {
@@ -155,6 +157,6 @@ void CTranslation::LoadTranslations (size_t langidx) {
 		int idx = SPIntN (line, "idx", -1);
 		if (idx >= 0 && idx < MAX_COMMON_TEXTS) {
 			texts[idx] = SPStrN (line, "trans", texts[idx]);
-		} 
+		}
 	}
 }

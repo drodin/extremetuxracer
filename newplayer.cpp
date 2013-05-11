@@ -76,13 +76,13 @@ void CalcCursorPos () {
 void NameInsert (string ss) {
 	size_t le = name.size();
 	if (posit > le) posit = le;
-	name.insert (posit, ss);	
+	name.insert (posit, ss);
 }
 
 void NameInsert (char *ss) {
 	size_t le = name.size();
 	if (posit > le) posit = le;
-	name.insert (posit, ss);	
+	name.insert (posit, ss);
 }
 
 void NameInsert (char c) {
@@ -94,7 +94,7 @@ void NameInsert (char c) {
 
 void NameDelete (size_t po) {
 	size_t le = name.size();
-	if (po > le) po = le; 
+	if (po > le) po = le;
 	name.erase (po, 1);
 }
 
@@ -138,9 +138,9 @@ void CNewPlayer::Keyb_spec (SDL_keysym sym, bool release) {
 			case 127: if (posit < name.size()) NameDelete (posit); break;
 			case 8: if (posit > 0) NameDelete (posit-1); posit--; break;
 			case 27: State::manager.RequestEnterState (Regist); break;
-			case 13: 
+			case 13:
 				if (textbuttons[0]->focussed()) State::manager.RequestEnterState (Regist);
-				else QuitAndAddPlayer (); 
+				else QuitAndAddPlayer ();
 				break;
 			case SDLK_RIGHT: if (posit < name.size()) posit++; break;
 			case SDLK_LEFT: if (posit > 0) posit--; break;
@@ -157,7 +157,7 @@ void CNewPlayer::Mouse (int button, int state, int x, int y) {
 
 		if(clicked == textbuttons[0])
 			State::manager.RequestEnterState (Regist);
-		else if(clicked == textbuttons[2])
+		else if(clicked == textbuttons[1])
 			QuitAndAddPlayer();
 	}
 }
@@ -177,13 +177,13 @@ static TArea area;
 static int framewidth, frameheight, frametop;
 static int prevleft, prevtop, prevwidth, prevoffs;
 
-void CNewPlayer::Enter() {  
+void CNewPlayer::Enter() {
 	Winsys.KeyRepeat (true);
 	Winsys.ShowCursor (!param.ice_cursor);
 	Music.Play (param.menu_music, -1);
 
 	g_game.loopdelay = 10;
-	name = "";	
+	name = "";
 	posit = 0;
 	framewidth = 400 * param.scale;
 	frameheight = 50 * param.scale;
@@ -208,7 +208,7 @@ void CNewPlayer::Loop(double timestep ){
 	int hh = param.y_resolution;
 	TColor col;
 
-	Music.Update ();    
+	Music.Update ();
 	check_gl_error();
     ClearRenderContext ();
     set_gl_options (GUI);
@@ -217,7 +217,7 @@ void CNewPlayer::Loop(double timestep ){
 	update_ui_snow (timestep);
 	draw_ui_snow();
 
-//	DrawFrameX (area.left, area.top, area.right-area.left, area.bottom - area.top, 
+//	DrawFrameX (area.left, area.top, area.right-area.left, area.bottom - area.top,
 //			0, colMBackgr, col, 0.2);
 
 	Tex.Draw (BOTTOM_LEFT, 0, hh - 256, 1);
@@ -228,7 +228,7 @@ void CNewPlayer::Loop(double timestep ){
 
 	FT.SetColor (colWhite);
 	FT.AutoSizeN (4);
-	FT.DrawString (CENTER, AutoYPosN (30), "Enter a name for the new player and select an avatar:");
+	FT.DrawString (CENTER, AutoYPosN (30), Trans.Text(66));
 
 	DrawFrameX (area.left, frametop, framewidth, frameheight, 3, colMBackgr, colWhite, 1.0);
 	FT.AutoSizeN (5);
