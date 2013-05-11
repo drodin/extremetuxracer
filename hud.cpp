@@ -56,10 +56,10 @@ GNU General Public License for more details.
 #define NUM_FPS_FRAMES 10 
 #define CIRCLE_DIVISIONS 10
 
-static GLfloat energy_background_color[] = { 0.2, 0.2, 0.2, 0.0 };
-static GLfloat energy_foreground_color[] = { 0.54, 0.59, 1.00, 0.5 };
-static GLfloat speedbar_background_color[] = { 0.2, 0.2, 0.2, 0.0 };
-static GLfloat hud_white[] = { 1.0, 1.0, 1.0, 1.0 };
+static const GLfloat energy_background_color[] = { 0.2, 0.2, 0.2, 0.0 };
+static const GLfloat energy_foreground_color[] = { 0.54, 0.59, 1.00, 0.5 };
+static const GLfloat speedbar_background_color[] = { 0.2, 0.2, 0.2, 0.0 };
+static const GLfloat hud_white[] = { 1.0, 1.0, 1.0, 1.0 };
 
 static const TColor text_colour = {0, 0, 0, 1};
 

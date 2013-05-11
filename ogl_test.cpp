@@ -22,10 +22,10 @@ GNU General Public License for more details.
 
 COglTest OglTest;
 
-static float tedef_amb[]  = {0.45, 0.53, 0.75, 1.0};    
-static float tedef_diff[] = {1.0, 0.9, 1.0, 1.0};    
-static float tedef_spec[] = {0.6, 0.6, 0.6, 1.0};    
-static float tedef_pos[]  = {1, 2, 2, 0.0};    
+static const float tedef_amb[]  = {0.45, 0.53, 0.75, 1.0};    
+static const float tedef_diff[] = {1.0, 0.9, 1.0, 1.0};    
+static const float tedef_spec[] = {0.6, 0.6, 0.6, 1.0};    
+static const float tedef_pos[]  = {1, 2, 2, 0.0};    
 static TLight testlight;
 
 

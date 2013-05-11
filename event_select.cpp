@@ -58,12 +58,12 @@ void CEventSelect::Keyb (unsigned int key, bool special, bool release, int x, in
 
 void CEventSelect::Mouse (int button, int state, int x, int y ) {
 	if (state == 1) {
-		ClickGUI(x, y);
-		if (textbuttons[0]->focussed()) {
+		TWidget* clicked = ClickGUI(x, y);
+		if (textbuttons[0] == clicked) {
 			if (Events.IsUnlocked (event->GetValue(), cup->GetValue()))
 				EnterEvent();
 		}
-		else if (textbuttons[1]->focussed())
+		else if (textbuttons[1] == clicked)
 			State::manager.RequestEnterState (GameTypeSelect);
 	}
 }

@@ -25,7 +25,7 @@ struct gl_value_t {
     GLenum type;
 };
 
-gl_value_t gl_values[] = {
+static const gl_value_t gl_values[] = {
     { "maximum lights", GL_MAX_LIGHTS, GL_INT },
     { "modelview stack depth", GL_MAX_MODELVIEW_STACK_DEPTH, GL_INT },
     { "projection stack depth", GL_MAX_PROJECTION_STACK_DEPTH, GL_INT },

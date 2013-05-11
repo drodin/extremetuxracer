@@ -25,7 +25,7 @@ GNU General Public License for more details.
 #include "game_ctrl.h"
 
 #define TEX_SCALE 6
-static bool clip_course = true;
+static const bool clip_course = true;
 
 void setup_course_tex_gen () {
     static GLfloat xplane[4] = {1.0 / TEX_SCALE, 0.0, 0.0, 0.0 };

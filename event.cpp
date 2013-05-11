@@ -86,12 +86,11 @@ void CEvent::Mouse (int button, int state, int x, int y) {
 	if (state != 1) return;
 
 	TWidget* clicked = ClickGUI(x, y);
-	if (ready < 1) {
-		if(clicked == textbuttons[0])
+	if(clicked == textbuttons[0]) {
+		if (ready < 1)
 			StartRace ();
-		else
-			State::manager.RequestEnterState (EventSelect);
-	} else State::manager.RequestEnterState (EventSelect);
+	} else if(clicked == textbuttons[1])
+		State::manager.RequestEnterState (EventSelect);
 }
 
 void CEvent::Motion (int x, int y) {
