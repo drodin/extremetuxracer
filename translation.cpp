@@ -101,6 +101,9 @@ void CTranslation::SetDefaultTranslations () {
 	texts[65] = "Press any key to return to the main menu";
 
 	texts[66] = "Enter a name for the new player and select an avatar:";
+
+	texts[67] = "Loading resources,";
+	texts[68] = "please wait ...";
 }
 
 string CTranslation::Text (size_t idx) const {
@@ -125,6 +128,9 @@ void CTranslation::LoadLanguages () {
 		LangIndex[languages[i].lang] = i;
 	}
 	if (languages.size() > 0) languages_ok = true;
+
+	if(param.language == string::npos)
+		param.language = GetSystemDefaultLangIdx();
 }
 
 size_t CTranslation::GetLangIdx (const string& lang) const {
@@ -158,5 +164,28 @@ void CTranslation::LoadTranslations (size_t langidx) {
 		if (idx >= 0 && idx < MAX_COMMON_TEXTS) {
 			texts[idx] = SPStrN (line, "trans", texts[idx]);
 		}
+	}
+}
+
+string CTranslation::GetSystemDefaultLang() {
+#ifdef _WIN32
+	wchar_t buf[10] = {0};
+	GetUserDefaultLocaleName(buf, 10);
+	char buf2[10] = {0};
+	WideCharToMultiByte(CP_ACP, 0, buf, -1, buf2, 10, NULL, NULL);
+	string ret = buf2;
+	while(ret.find('-') != string::npos)
+		ret[ret.find('-')] = '_';
+	return ret;
+#else
+	return "";
+#endif
+}
+
+size_t CTranslation::GetSystemDefaultLangIdx() const {
+	try {
+		return GetLangIdx(GetSystemDefaultLang());
+	} catch(...) {
+		return 0;
 	}
 }

@@ -55,7 +55,8 @@ void CSplashScreen::Loop(double timestep) {
     ClearRenderContext ();
     set_gl_options (GUI);
     SetupGuiDisplay ();
-
+	Trans.LoadLanguages ();
+	Trans.LoadTranslations (param.language); // Before first texts are being displayed
 
 //	FT.SetFont ("normal");
 	Tex.Draw (TEXLOGO, CENTER, 60, param.scale);
@@ -63,12 +64,10 @@ void CSplashScreen::Loop(double timestep) {
 	FT.AutoSizeN (6);
 	int top = AutoYPosN (60);
 	int dist = FT.AutoDistanceN (3);
-	FT.DrawText (CENTER, top, "Loading resources,");
-	FT.DrawText (CENTER, top+dist, "please wait ...");
+	FT.DrawString (CENTER, top, Trans.Text(67));
+	FT.DrawString (CENTER, top+dist, Trans.Text(68));
 
     Winsys.SwapBuffers();
-	Trans.LoadLanguages ();
-	Trans.LoadTranslations (param.language);
 	Course.MakeStandardPolyhedrons ();
 	Sound.LoadSoundList ();
 	Credits.LoadCreditList ();

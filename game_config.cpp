@@ -37,20 +37,20 @@ Then edit the below functions:
 
 #include "game_config.h"
 #include "spx.h"
+#include "translation.h"
 
 TParam param;
 
 
 void LoadConfigFile () {
 	CSPList list(4);
-	string line;
 	if (!list.Load (param.configfile)) {
 		Message ("Could not load 'options'");
 		return;
 	}
 
-	for (int i=0; i<list.Count(); i++) {
-		line = list.Line(i);
+	for (size_t i=0; i<list.Count(); i++) {
+		string line = list.Line(i);
 
 		param.fullscreen = SPIntN (line, "fullscreen", 0) != 0;
 		param.res_type = SPIntN (line, "res_type", 0);
@@ -85,8 +85,8 @@ void LoadConfigFile () {
 void SetConfigDefaults () {
 	param.fullscreen = true;
 	param.res_type = 0; // 0=auto / 1=800x600 / 2=1024x768 ...
- 	param.perf_level = 3;	// detail level
-	param.language = 0;
+	param.perf_level = 3;	// detail level
+	param.language = string::npos; // If language is set to npos, ETR will try to load default system language
 	param.sound_volume = 100;
 	param.music_volume = 20;
 
@@ -115,17 +115,17 @@ void SetConfigDefaults () {
 }
 
 
-void AddItem (CSPList *list, string tag, string content) {
+void AddItem (CSPList &list, const string& tag, const string& content) {
 	string item = "  [" +tag + "] " + content;
-	list->Add (item);
+	list.Add (item);
 }
 
-void AddIntItem (CSPList *list, string tag, int val) {
+void AddIntItem (CSPList &list, const string& tag, int val) {
 	string vs = Int_StrN (val);
 	AddItem (list, tag, vs);
 }
 
-void AddComment (CSPList &list, string comment)  {
+void AddComment (CSPList &list, const string& comment)  {
 	string line;
 	line = "# " + comment;
 	list.Add (line);
@@ -141,33 +141,33 @@ void SaveConfigFile () {
 	liste.Add ("");
 
 	AddComment (liste, "Full-screen mode [0...1]");
-	AddIntItem (&liste, "fullscreen", param.fullscreen);
+	AddIntItem (liste, "fullscreen", param.fullscreen);
 	liste.Add ("");
 
 	AddComment (liste, "Screen resolution [0...9]");
 	AddComment (liste, "0 = auto, 1 = 800x600, 2 = 1024x768");
 	AddComment (liste, "3 = 1152x864, 4 = 1280x960, 5 = 1280x1024");
 	AddComment (liste, "6 = 1360x768, 7 = 1400x1050, 8 = 1440x900, 9=1680x1050");
-	AddIntItem (&liste, "res_type", (int)param.res_type);
+	AddIntItem (liste, "res_type", (int)param.res_type);
 	liste.Add ("");
 
 	AddComment (liste, "Level of details [1...3]");
 	AddComment (liste, "1 = best performance, 3 = best appearance");
-	AddIntItem (&liste, "detail_level", param.perf_level);
+	AddIntItem (liste, "detail_level", param.perf_level);
 	liste.Add ("");
 
 	AddComment (liste, "Language code [0...]");
 	AddComment (liste, "0 = English etc.");
-	AddIntItem (&liste, "language", (int)param.language);
+	AddIntItem (liste, "language", (int)param.language);
 	liste.Add ("");
 
 	AddComment (liste, "Sound volume [0...120]");
 	AddComment (liste, "Sounds are the terrain effects or the pickup noise.");
-	AddIntItem (&liste, "sound_volume", param.sound_volume);
+	AddIntItem (liste, "sound_volume", param.sound_volume);
 	liste.Add ("");
 
 	AddComment (liste, "Volume of the background music [0...120]");
-    AddIntItem (&liste, "music_volume", param.music_volume);
+    AddIntItem (liste, "music_volume", param.music_volume);
 	liste.Add ("");
 
 	liste.Add ("# ------------------------------------------------------------------");
@@ -180,95 +180,95 @@ void SaveConfigFile () {
 	AddComment (liste, "is rendered. Larger values mean that more of the course is");
 	AddComment (liste, "rendered, resulting in slower performance. Decreasing this ");
 	AddComment (liste, "value is an effective way to improve framerates.");
-	AddIntItem (&liste, "forward_clip_distance", param.forward_clip_distance);
+	AddIntItem (liste, "forward_clip_distance", param.forward_clip_distance);
 	liste.Add ("");
 
 	AddComment (liste, "Backward clipping distance");
 	AddComment (liste, "Some objects aren't yet clipped to the view frustum, ");
 	AddComment (liste, "so this value is used to control how far up the course these ");
 	AddComment (liste, "objects are drawn.");
-	AddIntItem (&liste, "backward_clip_distance", param.backward_clip_distance);
+	AddIntItem (liste, "backward_clip_distance", param.backward_clip_distance);
 	liste.Add ("");
 
 	AddComment (liste, "Field of View of the camera");
-	AddIntItem (&liste, "fov", param.fov);
+	AddIntItem (liste, "fov", param.fov);
 	liste.Add ("");
 
 	AddComment (liste, "Bpp mode - bits per pixel [0...2]");
 	AddComment (liste, "Controls the color depth of the OpenGL window");
 	AddComment (liste, "0 = use current bpp setting of operating system,");
 	AddComment (liste, "1 = 16 bpp, 2 = 32 bpp");
-	AddIntItem (&liste, "bpp_mode", param.bpp_mode);
+	AddIntItem (liste, "bpp_mode", param.bpp_mode);
 	liste.Add ("");
 
 	AddComment (liste, "Tree detail distance");
 	AddComment (liste, "Controls how far up the course the trees are drawn crosswise.");
-	AddIntItem (&liste, "tree_detail_distance", param.tree_detail_distance);
+	AddIntItem (liste, "tree_detail_distance", param.tree_detail_distance);
 	liste.Add ("");
 
 	AddComment (liste, "Tux sphere divisions");
 	AddComment (liste, "Controls how detailled the character is drawn");
-	AddIntItem (&liste, "tux_sphere_divisions", param.tux_sphere_divisions);
+	AddIntItem (liste, "tux_sphere_divisions", param.tux_sphere_divisions);
 	liste.Add ("");
 
 	AddComment (liste, "Tux shadow sphere divisions");
 	AddComment (liste, "The same but for the shadow of the character");
-	AddIntItem (&liste, "tux_shadow_sphere_div", param.tux_shadow_sphere_divisions);
+	AddIntItem (liste, "tux_shadow_sphere_div", param.tux_shadow_sphere_divisions);
 	liste.Add ("");
 
 	AddComment (liste, "Detail level of the course");
 	AddComment (liste, "This param is used for the quadtree and controls the");
 	AddComment (liste, "LOD of the algorithm. ");	
-	AddIntItem (&liste, "course_detail_level", param.course_detail_level);
+	AddIntItem (liste, "course_detail_level", param.course_detail_level);
 	liste.Add ("");
 
 	AddComment (liste, "Font type [0...2]");
 	AddComment (liste, "0 = always arial-like font,");
 	AddComment (liste, "1 = papercut font on the menu screens");
 	AddComment (liste, "2 = papercut font for the hud display, too");
-	AddIntItem (&liste, "use_papercut_font", param.use_papercut_font);
+	AddIntItem (liste, "use_papercut_font", param.use_papercut_font);
 	liste.Add ("");
 
 	AddComment (liste, "Cursor type [0...1]");
 	AddComment (liste, "0 = normal cursor (arrow), 1 = icicle");
-	AddIntItem (&liste, "ice_cursor", param.ice_cursor);
+	AddIntItem (liste, "ice_cursor", param.ice_cursor);
 	liste.Add ("");
 
 	AddComment (liste, "Draw full skybox [0...1]");
 	AddComment (liste, "A normal skybox consists of 6 textures. In Tuxracer");
 	AddComment (liste, "3 textures are invisible (top, bottom and back).");	
 	AddComment (liste, "These textures needn't be drawn.");	
-	AddIntItem (&liste, "full_skybox", param.full_skybox);
+	AddIntItem (liste, "full_skybox", param.full_skybox);
 	liste.Add ("");
 
 	AddComment (liste, "Audio frequency");
 	AddComment (liste, "Typical values are 11025, 22050 ...");
-	AddIntItem (&liste, "audio_freq", param.audio_freq);
+	AddIntItem (liste, "audio_freq", param.audio_freq);
 	liste.Add ("");
 
 	AddComment (liste, "Size of audio buffer");
 	AddComment (liste, "Typical values are 512, 1024, 2048 ...");
-	AddIntItem (&liste, "audio_buffer_size", param.audio_buffer_size);
+	AddIntItem (liste, "audio_buffer_size", param.audio_buffer_size);
 	liste.Add ("");
 
 	AddComment (liste, "Select the music:");
 	AddComment (liste, "(the racing music is defined by a music theme)");
-	AddItem (&liste, "menu_music", param.menu_music);
-	AddItem (&liste, "credits_music", param.credits_music);
-	AddItem (&liste, "config_music", param.config_music);
+	AddItem (liste, "menu_music", param.menu_music);
+	AddItem (liste, "credits_music", param.credits_music);
+	AddItem (liste, "config_music", param.config_music);
 	liste.Add ("");
 
 	AddComment (liste, "Restart if the resolution has been changed [0...1]");
 	AddComment (liste, "Only for Windows users: if the game crashes after");
 	AddComment (liste, "changing the resolution you should set this option to 1.");
 	AddComment (liste, "Then you will have to restart for the new resolution.");
-	AddIntItem (&liste, "restart_on_res_change", param.restart_on_res_change);
+	AddIntItem (liste, "restart_on_res_change", param.restart_on_res_change);
 	liste.Add ("");
 
 	AddComment (liste, "Use sqare root of scale factors for menu screens [0...1]");
 	AddComment (liste, "Exprimental: these factors reduce the effect of screen scaling.");
 	AddComment (liste, "The widgets are closer to their default sizes.");
-	AddIntItem (&liste, "use_quad_scale", param.use_quad_scale);
+	AddIntItem (liste, "use_quad_scale", param.use_quad_scale);
 	liste.Add ("");
 
 	// ---------------------------------------

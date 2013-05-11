@@ -53,6 +53,8 @@ public:
 	void SetDefaultTranslations ();
 	string Text (size_t idx) const;
 	void LoadTranslations (size_t langidx);
+	static string GetSystemDefaultLang();
+	size_t GetSystemDefaultLangIdx() const;
 };
 
 extern CTranslation Trans;
