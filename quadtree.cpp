@@ -51,8 +51,7 @@ typedef void (*make_tri_func_t)(int a, int b, int c, int terrain);
 	if (flags & 8) tri_func(0, 8, 7, terrain); \
     }
 
-vector<GLuint> quadsquare::TexId;
-GLuint quadsquare::EnvmapTexId;
+TTexture* quadsquare::EnvmapTexture = NULL;
 GLuint *quadsquare::VertexArrayIndices = (GLuint*) NULL;
 GLuint quadsquare::VertexArrayCounter;
 GLuint quadsquare::VertexArrayMinIdx;
@@ -91,13 +90,7 @@ quadsquare::quadsquare (quadcornerdata* pcd) {
     }
 
     if  (pcd->Parent == NULL ) {
-		TTerrType *TerrList = &Course.TerrList[0];
-		TexId.resize(Course.TerrList.size());
-		for (int i=0; i<TexId.size(); i++) {
-			TexId[i] = TerrList[i].texid;
-			if (TexId[i] < 0) TexId[i] = 0;
-		}
-		EnvmapTexId = Tex.TexID (ENV_MAP);
+		EnvmapTexture = Tex.GetTexture (ENV_MAP);
 	}
 }
 
@@ -799,18 +792,16 @@ void quadsquare::DrawTris() {
 
 void quadsquare::DrawEnvmapTris() 
 {
-    if  (VertexArrayCounter > 0 && EnvmapTexId != 0 ) {
-	
-	glTexGeni (GL_S, GL_TEXTURE_GEN_MODE, GL_SPHERE_MAP );
-	glTexGeni (GL_T, GL_TEXTURE_GEN_MODE, GL_SPHERE_MAP );
+    if  (VertexArrayCounter > 0 && EnvmapTexture != NULL ) {
+		glTexGeni (GL_S, GL_TEXTURE_GEN_MODE, GL_SPHERE_MAP );
+		glTexGeni (GL_T, GL_TEXTURE_GEN_MODE, GL_SPHERE_MAP );
 
-	glBindTexture (GL_TEXTURE_2D, EnvmapTexId );
+		EnvmapTexture->Bind();
 
-	DrawTris();
+		DrawTris();
 
-	glTexGeni (GL_S, GL_TEXTURE_GEN_MODE, GL_OBJECT_LINEAR );
-	glTexGeni (GL_T, GL_TEXTURE_GEN_MODE, GL_OBJECT_LINEAR );
-
+		glTexGeni (GL_S, GL_TEXTURE_GEN_MODE, GL_OBJECT_LINEAR );
+		glTexGeni (GL_T, GL_TEXTURE_GEN_MODE, GL_OBJECT_LINEAR );
     } 
 }
 
@@ -824,7 +815,6 @@ void quadsquare::InitArrayCounters()
 void quadsquare::Render (const quadcornerdata& cd, GLubyte *vnc_array) {
     VNCArray = vnc_array;
     bool fog_on;
-    unsigned int i, j;
     int nx, ny;
     Course.GetDivisions (&nx, &ny );
 	TTerrType *TerrList = &Course.TerrList[0];
@@ -832,13 +822,13 @@ void quadsquare::Render (const quadcornerdata& cd, GLubyte *vnc_array) {
 	size_t numTerrains = Course.TerrList.size();
 //	fog_on = is_fog_on ();
 	fog_on = true;
-    for (j=0; j<numTerrains; j++) {
-		if (TerrList[j].texid > 0) {		
+    for (size_t j=0; j<numTerrains; j++) {
+		if (TerrList[j].texture != NULL) {
 			InitArrayCounters();
-			RenderAux (cd, SomeClip, j);
+			RenderAux (cd, SomeClip, (int)j);
 			if (VertexArrayCounter == 0) continue;
 	
-			glBindTexture (GL_TEXTURE_2D, TexId[j] );
+			Course.TerrList[j].texture->Bind();
 			DrawTris ();
 				
 			if (TerrList[j].shiny && param.perf_level > 1) {
@@ -857,27 +847,27 @@ void quadsquare::Render (const quadcornerdata& cd, GLubyte *vnc_array) {
 		
 		if (VertexArrayCounter != 0 ) {
 			glDisable (GL_FOG );
-			for (i=0; i<VertexArrayCounter; i++) {
+			for (GLuint i=0; i<VertexArrayCounter; i++) {
 				colorval (VertexArrayIndices[i], 0 ) = 0;
 				colorval (VertexArrayIndices[i], 1 ) = 0;
 				colorval (VertexArrayIndices[i], 2 ) = 0;
 				colorval (VertexArrayIndices[i], 3 ) = 255;
 			}
-			glBindTexture (GL_TEXTURE_2D, TexId[0] );
+			Course.TerrList[0].texture->Bind();
 			DrawTris();
 			if (fog_on) glEnable (GL_FOG );
 			glBlendFunc  (GL_SRC_ALPHA, GL_ONE );
-			for (i=0; i<VertexArrayCounter; i++) {
+			for (GLuint i=0; i<VertexArrayCounter; i++) {
 				colorval (VertexArrayIndices[i], 0 ) = 255;
 				colorval (VertexArrayIndices[i], 1 ) = 255;
 				colorval (VertexArrayIndices[i], 2 ) = 255;
 			}
 	
-			for (j=0; j<numTerrains; j++) {
-				if (TerrList[j].texid > 0) {		
-					glBindTexture (GL_TEXTURE_2D, TexId[j] );
+			for (size_t j=0; j<numTerrains; j++) {
+				if (TerrList[j].texture > 0) {
+					Course.TerrList[j].texture->Bind();
 
-					for (i=0; i<VertexArrayCounter; i++) {
+					for (GLuint i=0; i<VertexArrayCounter; i++) {
 						colorval (VertexArrayIndices[i], 3 ) = 
 						(Terrain[VertexArrayIndices[i]] == (char)j ) ? 255 : 0;
 					}
@@ -1283,8 +1273,3 @@ void RenderQuadtree(){
     Course.GetGLArrays (&vnc_array);
     root->Render (root_corner_data, vnc_array);
 }
-
-
-
-
-

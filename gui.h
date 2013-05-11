@@ -20,6 +20,8 @@ GNU General Public License for more details.
 
 #include "bh.h"
 
+class TTexture;
+
 
 class TWidget {
 protected:
@@ -74,13 +76,13 @@ TCheckbox* AddCheckbox (int x, int y, int width, const string& tag);
 
 class TIconButton : public TWidget {
 	double size;
-	GLuint texid;
+	TTexture* texture;
 	int maximum;
 	int value;
 public:
-	TIconButton(int x, int y, GLuint texid_, double size_, int max_, int value_)
+	TIconButton(int x, int y, TTexture* texture_, double size_, int max_, int value_)
 		: TWidget(x, y, 32, 32)
-		, texid(texid_)
+		, texture(texture_)
 		, size(size_)
 		, maximum(max_)
 		, value(value_)
@@ -90,7 +92,7 @@ public:
 	bool Click(int x, int y);
 	void Key(unsigned int key, bool released);
 };
-TIconButton* AddIconButton (int x, int y, GLuint texid, double size, int maximum, int value);
+TIconButton* AddIconButton (int x, int y, TTexture* texture, double size, int maximum, int value);
 
 class TArrow : public TWidget {
 public:

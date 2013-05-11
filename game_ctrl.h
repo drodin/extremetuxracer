@@ -21,6 +21,8 @@ GNU General Public License for more details.
 #include "keyframe.h"
 
 
+class TTexture;
+
 struct TRace2 {
 	string race;
 	size_t course;
@@ -74,17 +76,17 @@ extern CEvents Events;
 #define MAX_PLAYERS 16
 #define MAX_AVATARS 32
 
+struct TAvatar {
+	string filename;
+	TTexture* texture;
+};
+
 struct TPlayer {
 	string name;
 	CControl *ctrl;
 	string funlocked;
-	GLuint texid;
+	TTexture* texture;
 	string avatar;
-};
-
-struct TAvatar {
-	string filename;
-	GLuint texid;
 };
 
 class CPlayers {
@@ -111,9 +113,7 @@ public:
 	size_t numAvatars() const { return avatars.size(); }
 	size_t numPlayers() const { return plyr.size(); }
 
-	GLuint GetAvatarID (size_t player) const;
-	GLuint GetAvatarID (const string& filename) const;
-	GLuint GetDirectAvatarID (size_t avatar) const;
+	TTexture* GetAvatarTexture (size_t avatar) const;
 	string GetDirectAvatarName (size_t avatar) const;
 };
 
@@ -128,7 +128,7 @@ struct TCharacter {
 	int type;
 	string name;
 	string dir;
-	GLuint preview;
+	TTexture* preview;
 	CCharShape *shape;
 	CKeyframe frames[NUM_FRAME_TYPES];
 	bool finishframesok;

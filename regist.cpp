@@ -140,7 +140,7 @@ void CRegist::Loop (double timestep) {
 	DrawFrameX (area.left, area.top, framewidth, frameheight, 3, colMBackgr, col, 1.0);
 	FT.SetColor (col);
 	FT.DrawString (area.left + 20, area.top, Players.GetName (player->GetValue()));
-	Tex.DrawDirectFrame (Players.GetAvatarID (player->GetValue()),
+	Players.GetAvatarTexture(player->GetValue())->DrawFrame(
 		area.left + 60, AutoYPosN (40), texsize, texsize, 3, colWhite);
 
 	if (character->focussed()) col = colDYell; else col = colWhite;
@@ -149,9 +149,10 @@ void CRegist::Loop (double timestep) {
 	FT.SetColor (col);
 	FT.DrawString (area.left + framewidth + arrowwidth + 20,
 		area.top, CharList[character->GetValue()].name);
-	Tex.DrawDirectFrame (CharList[character->GetValue()].preview,
-		area.right - texsize - 60 - arrowwidth,
-		AutoYPosN (40), texsize, texsize, 3, colWhite);
+	if(CharList[character->GetValue()].preview != NULL)
+		CharList[character->GetValue()].preview->DrawFrame(
+			area.right - texsize - 60 - arrowwidth,
+			AutoYPosN (40), texsize, texsize, 3, colWhite);
 
 
 	FT.SetColor (colWhite);

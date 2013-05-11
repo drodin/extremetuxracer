@@ -140,7 +140,7 @@ void TIconButton::Draw () const {
 
 	glEnable (GL_TEXTURE_2D);
 	glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glBindTexture (GL_TEXTURE_2D, texid);
+	texture->Bind();
     glColor4f (1.0, 1.0, 1.0, 1.0);
 
 	glBegin (GL_QUADS);
@@ -197,8 +197,8 @@ void TIconButton::Key(unsigned int key, bool released) {
 	}
 }
 
-TIconButton* AddIconButton(int x, int y, GLuint texid, double size, int maximum, int value) {
-	Widgets.push_back(new TIconButton(x, y, texid, size, maximum, value));
+TIconButton* AddIconButton(int x, int y, TTexture* texture, double size, int maximum, int value) {
+	Widgets.push_back(new TIconButton(x, y, texture, size, maximum, value));
 	return static_cast<TIconButton*>(Widgets.back());
 }
 

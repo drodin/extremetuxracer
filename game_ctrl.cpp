@@ -159,7 +159,7 @@ void CPlayers::AddPlayer (const string& name, const string& avatar) {
 	plyr.push_back(TPlayer());
 	plyr.back().name = name;
 	plyr.back().avatar = avatar;
-	plyr.back().texid = SPIntN (AvatarIndex, plyr.back().avatar, 0);
+	plyr.back().texture = GetAvatarTexture(SPIntN (AvatarIndex, plyr.back().avatar, 0));
 	plyr.back().funlocked = "";
 	plyr.back().ctrl = NULL;
 }
@@ -169,13 +169,13 @@ void CPlayers::SetDefaultPlayers () {
 	plyr[0].funlocked = "";
 	plyr[0].name = "Racer";
 	plyr[0].avatar = "avatar01.png";
-	plyr[0].texid = SPIntN (AvatarIndex, plyr[0].avatar, 0);
+	plyr[0].texture = GetAvatarTexture(SPIntN (AvatarIndex, plyr[0].avatar, 0));
 	plyr[0].ctrl = NULL;
 
 	plyr[1].funlocked = "";
 	plyr[1].name = "Bunny";
 	plyr[1].avatar = "avatar02.png";
-	plyr[1].texid = SPIntN (AvatarIndex, plyr[1].avatar, 0);
+	plyr[1].texture = GetAvatarTexture(SPIntN (AvatarIndex, plyr[1].avatar, 0));
 	plyr[1].ctrl = NULL;
 }
 
@@ -201,7 +201,7 @@ bool CPlayers::LoadPlayers () {
 		plyr[i].name = SPStrN (line, "name", "unknown");
 		plyr[i].funlocked = SPStrN (line, "unlocked", "");
 		plyr[i].avatar = SPStrN (line, "avatar", "");
-		plyr[i].texid = SPIntN (AvatarIndex, plyr[i].avatar, 0);
+		plyr[i].texture = GetAvatarTexture(SPIntN (AvatarIndex, plyr[i].avatar, 0));
 		plyr[i].ctrl = NULL;
 		int active = SPIntN (line, "active", 0);
 		if (active > 0) g_game.start_player = plyr.size()-1;
@@ -283,33 +283,25 @@ void CPlayers::LoadAvatars () {
 	for (int i=0; i<list.Count(); i++) {
 		string line = list.Line (i);
 		string filename = SPStrN (line, "file", "unknown");
-		GLuint texid = Tex.LoadTexture (param.player_dir, filename);
-		if (texid > 0) {
+		TTexture* texture = new TTexture();
+		if (texture && texture->Load(param.player_dir, filename)) {
 			avatars.push_back(TAvatar());
 			avatars.back().filename = filename;
-			avatars.back().texid = texid;
+			avatars.back().texture = texture;
 			AvatarIndex += "[" + filename + "]";
-			AvatarIndex += Int_StrN (texid);
-		}
+			AvatarIndex += Int_StrN ((int)avatars.size()-1);
+		} else 
+			delete texture;
 	}
 }
 
-GLuint CPlayers::GetAvatarID (size_t player) const {
-	if (player < 0 || player >= plyr.size()) return 0;
-	return plyr[player].texid;
-}
-
-GLuint CPlayers::GetAvatarID (const string& filename) const {
-	return SPIntN (AvatarIndex, filename, 0);
-}
-
-GLuint CPlayers::GetDirectAvatarID (size_t avatar) const {
-	if (avatar < 0 || avatar >= avatars.size()) return 0;
-	return avatars[avatar].texid;
+TTexture* CPlayers::GetAvatarTexture (size_t avatar) const {
+	if (avatar >= avatars.size()) return 0;
+	return avatars[avatar].texture;
 }
 
 string CPlayers::GetDirectAvatarName (size_t avatar) const {
-	if (avatar < 0 || avatar >= avatars.size()) return "";
+	if (avatar >= avatars.size()) return "";
 	return avatars[avatar].filename;
 }
 
@@ -340,14 +332,14 @@ void CCharacter::LoadCharacterList () {
 		string charpath = param.char_dir + SEP + CharList[i].dir;
 		if (DirExists (charpath.c_str())) {
 			string previewfile = charpath + SEP + "preview.png";
-			GLuint texid = Tex.LoadMipmapTexture (previewfile, 0);
-			if (texid < 1) {
+
+			TCharacter* ch = &CharList[i];
+			ch->preview = new TTexture();
+			if (!ch->preview->LoadMipmap(previewfile, 0)) {
 				Message ("could not load previewfile of character");
 //				texid = Tex.TexID (NO_PREVIEW);
 			}
 
-			TCharacter* ch = &CharList[i];
-			ch->preview = texid;
 
 			ch->shape = new CCharShape;
 			if (ch->shape->Load (charpath, "shape.lst", false) == false) {
@@ -370,10 +362,7 @@ void CCharacter::LoadCharacterList () {
 
 void CCharacter::FreeCharacterPreviews () {
 	for (int i=0; i<CharList.size(); i++) {
-		if (CharList[i].preview > 0) {
-			glDeleteTextures (1, &CharList[i].preview);
-			CharList[i].preview = 0;
-		}
+		delete CharList[i].preview;
 	}
 }
 

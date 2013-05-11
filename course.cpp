@@ -349,19 +349,15 @@ void CCourse::MakeStandardPolyhedrons () {
 
 void CCourse::FreeTerrainTextures () {
 	for (size_t i=0; i<TerrList.size(); i++) {
-		if (TerrList[i].texid > 0) {
-			glDeleteTextures (1, &TerrList[i].texid);
-			TerrList[i].texid = 0;
-		}
+		delete TerrList[i].texture;
+		TerrList[i].texture = NULL;
 	}
 }
 
 void CCourse::FreeObjectTextures () {
 	for (size_t i=0; i<ObjTypes.size(); i++) {
-		if (ObjTypes[i].texid > 0) {
-			glDeleteTextures (1, &ObjTypes[i].texid);
-			ObjTypes[i].texid = 0;
-		}
+		delete ObjTypes[i].texture;
+		ObjTypes[i].texture = NULL;
 	}
 }
 
@@ -425,9 +421,10 @@ void CCourse::LoadItemList () {
 
 		string name = SPStrN (line, "name", "");
 		int type = SPIntN (ObjectIndex, name, 0);
-		if (ObjTypes[type].texid < 1 && ObjTypes[type].drawable) {
-			string terrpath = param.obj_dir + SEP + ObjTypes[type].texture;
-			ObjTypes[type].texid = Tex.LoadMipmapTexture (terrpath, 0);
+		if (ObjTypes[type].texture == NULL && ObjTypes[type].drawable) {
+			string terrpath = param.obj_dir + SEP + ObjTypes[type].textureFile;
+			ObjTypes[type].texture = new TTexture();
+			ObjTypes[type].texture->LoadMipmap(terrpath, 0);
 		}
 		bool coll = ObjTypes[type].collidable;
 		if (coll == 1) {
@@ -514,9 +511,10 @@ bool CCourse::LoadObjectMap () {
 				cnt++;
 				double xx = (nx - x) / (double)(nx - 1.0) * width;
 				double zz = -(ny - y) / (double)(ny - 1.0) * length;
-				if (ObjTypes[type].texid < 1 && ObjTypes[type].drawable) {
-					string terrpath = param.obj_dir + SEP + ObjTypes[type].texture;
-					ObjTypes[type].texid = Tex.LoadMipmapTexture (terrpath, 0);
+				if (ObjTypes[type].texture == NULL && ObjTypes[type].drawable) {
+					string terrpath = param.obj_dir + SEP + ObjTypes[type].textureFile;
+					ObjTypes[type].texture = new TTexture();
+					ObjTypes[type].texture->LoadMipmap(terrpath, 0);
 				}
 
 				// set random height and diam - see constants above
@@ -596,11 +594,12 @@ bool CCourse::LoadObjectTypes () {
 	for (size_t i=0; i<list.Count(); i++) {
 		string line = list.Line (i);
 	    ObjTypes[i].name = SPStrN (line, "name", "");
-	    ObjTypes[i].texture = ObjTypes[i].name;
+		ObjTypes[i].textureFile = ObjTypes[i].name;
+		ObjTypes[i].texture = NULL;
 
 		ObjTypes[i].drawable = SPIntN (line, "draw", 1) != 0;
 		if (ObjTypes[i].drawable) {
-			ObjTypes[i].texture = SPStrN (line, "texture", "");
+			ObjTypes[i].textureFile = SPStrN (line, "texture", "");
 		}
 		ObjTypes[i].collectable = SPIntN (line, "snap", -1) != 0;
 		if (ObjTypes[i].collectable == 0) {
@@ -651,7 +650,7 @@ bool CCourse::LoadTerrainTypes () {
 	TerrList.resize(list.Count());
 	for (size_t i=0; i<list.Count(); i++) {
 		string line = list.Line(i);
-		TerrList[i].texture = SPStrN (line, "texture", "");
+		TerrList[i].textureFile = SPStrN (line, "texture", "");
 		TerrList[i].sound = SPStrN (line, "sound", "");
 		TerrList[i].starttex = SPIntN (line, "starttex", -1);
 		TerrList[i].tracktex = SPIntN (line, "tracktex", -1);
@@ -661,6 +660,7 @@ bool CCourse::LoadTerrainTypes () {
 		TerrList[i].depth = SPFloatN (line, "depth", 0.01);
 		TerrList[i].particles = SPIntN (line, "part", 0);
 		TerrList[i].trackmarks = SPIntN (line, "trackmarks", 0);
+		TerrList[i].texture = NULL;
 		if (SPIntN (line, "shiny", 0) > 0) {
 			TerrList[i].shiny = true;
 		} else {
@@ -698,10 +698,9 @@ bool CCourse::LoadTerrainMap () {
 			int arridx = (nx-1-x) + nx * (ny-1-y);
 			int terr = GetTerrain (&terrImage.data[imgidx]);
 			terrain[arridx] = terr;
-			if (TerrList[terr].texid < 1) {
-				string terrpath = param.terr_dir + SEP + TerrList[terr].texture;
-				GLuint texid = Tex.LoadMipmapTexture (terrpath, 1);
-				TerrList[terr].texid = texid;
+			if (TerrList[terr].texture == NULL) {
+				TerrList[terr].texture = new TTexture();
+				TerrList[terr].texture->LoadMipmap(param.terr_dir, TerrList[terr].textureFile, 1);
 			}
 		}
         pad += (nx * terrImage.depth) % 4;
@@ -746,12 +745,11 @@ bool CCourse::LoadCourseList () {
 		if (DirExists (coursepath.c_str())) {
 			// preview
 			string previewfile = coursepath + SEP + "preview.png";
-			GLuint texid = Tex.LoadMipmapTexture (previewfile, 0);
-			if (texid < 1) {
+			CourseList[i].preview = new TTexture();
+			if (!CourseList[i].preview->LoadMipmap(previewfile, 0)) {
 				Message ("couldn't load previewfile");
 //				texid = Tex.TexID (NO_PREVIEW);
 			}
-			CourseList[i].preview = texid;
 
 			// params
 			string paramfile = coursepath + SEP + "course.dim";
@@ -781,8 +779,9 @@ bool CCourse::LoadCourseList () {
 
 void CCourse::FreeCourseList () {
 	for (size_t i=0; i<CourseList.size(); i++) {
-		if (CourseList[i].preview > 0) glDeleteTextures (1, &CourseList[i].preview);
+		delete CourseList[i].preview;
 	}
+	CourseList.clear();
 }
 
 //  ===================================================================

@@ -37,13 +37,15 @@ GNU General Public License for more details.
 #define MAX_OBJECT_TYPES 128
 #define MAX_DESCRIPTION_LINES 8
 
+class TTexture;
+
 struct TCourse {
 	string name;
 	string dir;
 	string author;
 	string desc[MAX_DESCRIPTION_LINES];
 	size_t num_lines;
-	GLuint preview;
+	TTexture* preview;
 	double width;
 	double length;
 	double play_width;
@@ -59,9 +61,9 @@ struct TCourse {
 };
 
 struct TTerrType {
-	string texture;
+	string textureFile;
+	TTexture* texture;
 	string sound;
-	GLuint texid;
 	TColor3 col;
 
 	double friction;
@@ -77,8 +79,8 @@ struct TTerrType {
 
 struct TObjectType {
 	string		name;
-	string		texture;
-	GLuint		texid;
+	string		textureFile;
+	TTexture*	texture;
 	bool		collidable;
     double		above_ground;
     int			collectable;

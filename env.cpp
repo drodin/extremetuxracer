@@ -43,7 +43,7 @@ CEnvironment::CEnvironment ()
 	lightcond[1].name = "cloudy";
 	lightcond[2].name = "evening";
 	lightcond[3].name = "night";
-	for (int i=0; i<6; i++) Skybox[i] = 0;
+	Skybox = NULL;
 
 	default_light.is_on = true;
 	for (int i=0; i<4; i++) { 
@@ -65,10 +65,8 @@ CEnvironment::CEnvironment ()
 }
 
 void CEnvironment::ResetSkybox () {
-	for (int i=0; i<6; i++) {
-		if (Skybox[i] != 0) glDeleteTextures (1, &Skybox[i]);
-		Skybox[i] = 0;
-	}
+	delete[] Skybox;
+	Skybox = NULL;
 }
 
 void CEnvironment::SetupLight () {
@@ -159,13 +157,14 @@ string CEnvironment::GetDir (int location, int light) {
 }
 
 void CEnvironment::LoadSkybox () {
-	Skybox[0] = Tex.LoadTexture (EnvDir, "front.png");
-	Skybox[1] = Tex.LoadTexture (EnvDir, "left.png");
-	Skybox[2] = Tex.LoadTexture (EnvDir, "right.png");
+	Skybox = new TTexture[param.full_skybox?6:3];
+	Skybox[0].Load(EnvDir, "front.png");
+	Skybox[1].Load(EnvDir, "left.png");
+	Skybox[2].Load(EnvDir, "right.png");
 	if (param.full_skybox) {
-		Skybox[3] = Tex.LoadTexture (EnvDir, "top.png");
-		Skybox[4] = Tex.LoadTexture (EnvDir, "bottom.png");
-		Skybox[5] = Tex.LoadTexture (EnvDir, "back.png");
+		Skybox[3].Load(EnvDir, "top.png");
+		Skybox[4].Load(EnvDir, "bottom.png");
+		Skybox[5].Load(EnvDir, "back.png");
 	}
 }
 
@@ -217,7 +216,7 @@ void CEnvironment::DrawSkybox (const TVector3& pos) {
 	glTranslatef (pos.x, pos.y, pos.z);
 	
 	// front
-	glBindTexture (GL_TEXTURE_2D, Skybox[0]);
+	Skybox[0].Bind();
 	glBegin(GL_QUADS);
 		glTexCoord2f (aa, aa); glVertex3f (-1, -1, -1);
 		glTexCoord2f (bb, aa); glVertex3f ( 1, -1, -1);
@@ -226,7 +225,7 @@ void CEnvironment::DrawSkybox (const TVector3& pos) {
 	glEnd();
 	
 	// left
-	glBindTexture (GL_TEXTURE_2D, Skybox[1]);
+	Skybox[1].Bind();
 	glBegin(GL_QUADS);
 		glTexCoord2f (aa, aa); glVertex3f (-1, -1,  1);
 		glTexCoord2f (bb, aa); glVertex3f (-1, -1, -1);
@@ -235,7 +234,7 @@ void CEnvironment::DrawSkybox (const TVector3& pos) {
 	glEnd();
 	
 	// right
-	glBindTexture (GL_TEXTURE_2D, Skybox[2]);
+	Skybox[2].Bind();
 	glBegin(GL_QUADS);
 		glTexCoord2f (aa, aa); glVertex3f (1, -1, -1);
 		glTexCoord2f (bb, aa); glVertex3f (1, -1,  1);
@@ -247,7 +246,7 @@ void CEnvironment::DrawSkybox (const TVector3& pos) {
 	// see game_config.cpp (param.full_skybox)
 	if (param.full_skybox) {
 		// top
-		glBindTexture (GL_TEXTURE_2D, Skybox[3]);
+		Skybox[3].Bind();
 		glBegin(GL_QUADS);
 			glTexCoord2f (aa, aa); glVertex3f (-1, 1, -1);
 			glTexCoord2f (bb, aa); glVertex3f ( 1, 1, -1);
@@ -256,7 +255,7 @@ void CEnvironment::DrawSkybox (const TVector3& pos) {
 		glEnd();
 		
 		// bottom
-		glBindTexture (GL_TEXTURE_2D, Skybox[4]);
+		Skybox[4].Bind();
 		glBegin(GL_QUADS);
 			glTexCoord2f (aa, aa); glVertex3f (-1, -1,  1);
 			glTexCoord2f (bb, aa); glVertex3f ( 1, -1,  1);
@@ -265,7 +264,7 @@ void CEnvironment::DrawSkybox (const TVector3& pos) {
 		glEnd();
 		
 		// back
-		glBindTexture (GL_TEXTURE_2D, Skybox[5]);
+		Skybox[5].Bind();
 		glBegin(GL_QUADS);
 			glTexCoord2f (aa, aa); glVertex3f ( 1, -1, 1);
 			glTexCoord2f (bb, aa); glVertex3f (-1, -1, 1);

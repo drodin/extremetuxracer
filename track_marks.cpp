@@ -82,7 +82,7 @@ void init_track_marks (void) {
 void DrawTrackmarks (void) {
 	if (param.perf_level < 3) return;	
 
-    GLuint texid[NUM_TRACK_TYPES];
+    TTexture* textures[NUM_TRACK_TYPES];
     int current_quad, num_quads;
     int first_quad;
     track_quad_t *q, *qnext;
@@ -92,9 +92,9 @@ void DrawTrackmarks (void) {
 
     glColor4f (0, 0, 0, 1);
 	
-	texid[TRACK_HEAD] = Tex.TexID (trackid1);
-	texid[TRACK_MARK] = Tex.TexID (trackid2);
-	texid[TRACK_TAIL] = Tex.TexID (trackid3);
+	textures[TRACK_HEAD] = Tex.GetTexture (trackid1);
+	textures[TRACK_MARK] = Tex.GetTexture (trackid2);
+	textures[TRACK_TAIL] = Tex.GetTexture (trackid3);
 
 	glTexEnvf (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
     set_material (colWhite, colBlack, 1.0);
@@ -108,7 +108,7 @@ void DrawTrackmarks (void) {
 
 		track_colour.a = q->alpha;
 		set_material (track_colour, colBlack, 1.0);
-		glBindTexture (GL_TEXTURE_2D, texid[q->track_type]);
+		textures[q->track_type]->Bind();
 
 		if ((q->track_type == TRACK_HEAD) || (q->track_type == TRACK_TAIL)) { 
 			glBegin(GL_QUADS);

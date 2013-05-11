@@ -237,8 +237,8 @@ void CNewPlayer::Loop(double timestep ){
 	DrawCrsr (area.left+20+curposit+1, frametop+9, 0, timestep);
 
 	if (avatar->focussed()) col = colDYell; else col = colWhite;
-	Tex.DrawDirectFrame (Players.GetDirectAvatarID (avatar->GetValue()), 
-			prevleft + prevoffs, prevtop, prevwidth, prevwidth, 2, col);
+	Players.GetAvatarTexture(avatar->GetValue())->DrawFrame(
+		prevleft + prevoffs, prevtop, prevwidth, prevwidth, 2, col);
 
 
 	FT.SetColor (colWhite);

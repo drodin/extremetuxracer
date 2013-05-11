@@ -133,11 +133,11 @@ void CRaceSelect::Enter() {
 
 	course = AddUpDown(area.left + framewidth + 8, frametop, 0, (int)Course.CourseList.size() - 1, (int)g_game.course_id);
 	
-	light = AddIconButton (iconleft, icontop, Tex.TexID (LIGHT_BUTT), iconsize, 3, g_game.light_id); 
-	snow = AddIconButton (iconleft + iconspace, icontop, Tex.TexID (SNOW_BUTT), iconsize, 3, g_game.snow_id); 
-	wind = AddIconButton (iconleft + iconspace*2, icontop, Tex.TexID (WIND_BUTT), iconsize, 3, g_game.wind_id); 
-	mirror = AddIconButton (iconleft + iconspace*3, icontop, Tex.TexID (MIRROR_BUTT), iconsize, 1, (int)g_game.mirror_id); 
-	random_btn = AddIconButton (iconleft + iconspace*4, icontop, Tex.TexID (RANDOM_BUTT), iconsize, 1, 0); 
+	light = AddIconButton (iconleft, icontop, Tex.GetTexture (LIGHT_BUTT), iconsize, 3, g_game.light_id); 
+	snow = AddIconButton (iconleft + iconspace, icontop, Tex.GetTexture (SNOW_BUTT), iconsize, 3, g_game.snow_id); 
+	wind = AddIconButton (iconleft + iconspace*2, icontop, Tex.GetTexture (WIND_BUTT), iconsize, 3, g_game.wind_id); 
+	mirror = AddIconButton (iconleft + iconspace*3, icontop, Tex.GetTexture (MIRROR_BUTT), iconsize, 1, (int)g_game.mirror_id); 
+	random_btn = AddIconButton (iconleft + iconspace*4, icontop, Tex.GetTexture (RANDOM_BUTT), iconsize, 1, 0); 
 
 	int siz = FT.AutoSizeN (5);
 	double len1 = FT.GetTextWidth (Trans.Text(13));
@@ -180,9 +180,8 @@ void CRaceSelect::Loop(double timestep){
 	FT.SetColor (colDYell);
 	FT.DrawString (area.left+20, frametop, CourseList[course->GetValue()].name);
 
-	Tex.DrawDirectFrame (CourseList[course->GetValue()].preview, 
-		area.left + 3, prevtop, prevwidth, prevheight, 3, colWhite);
-
+	if(CourseList[course->GetValue()].preview)
+		CourseList[course->GetValue()].preview->DrawFrame(area.left + 3, prevtop, prevwidth, prevheight, 3, colWhite);
 
 	DrawFrameX (area.right-boxwidth, prevtop-3, boxwidth, prevheight+6, 3, colBackgr, colWhite, 1.0);
 	FT.AutoSizeN (2);

@@ -77,7 +77,7 @@ void DrawTrees() {
 
 		if (treeLocs[i].tree_type != tree_type) {
 		    tree_type = treeLocs[i].tree_type;
-		    glBindTexture (GL_TEXTURE_2D, object_types[tree_type].texid);
+			object_types[tree_type].texture->Bind();
 		}
 
         glPushMatrix();
@@ -125,12 +125,12 @@ void DrawTrees() {
 		if (itemLocs[i].collectable == 0 || itemLocs[i].drawable == false) continue;
 		if (clip_course) {
 		    if (ctrl->viewpos.z - itemLocs[i].pt.z > fwd_clip_limit) continue;
-		    if (itemLocs[i].pt.z - ctrl->viewpos.z > bwd_clip_limit)	continue;
+		    if (itemLocs[i].pt.z - ctrl->viewpos.z > bwd_clip_limit) continue;
 		}
 	
 		if (itemLocs[i].item_type != item_type) {
 		    item_type = itemLocs[i].item_type;
-		    glBindTexture (GL_TEXTURE_2D, object_types[item_type].texid);
+			object_types[item_type].texture->Bind();
 		}
         
 		glPushMatrix();

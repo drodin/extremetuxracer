@@ -21,6 +21,9 @@ GNU General Public License for more details.
 #include "bh.h"
 #include <vector>
 
+class TTexture;
+
+
 struct TLocInfo {
 	string name;
 };
@@ -50,7 +53,7 @@ struct TLight{
 class CEnvironment {
 private:
 	int EnvID;
-	GLuint Skybox[6];
+	TTexture* Skybox;
 	vector<TLocInfo> locs;
 	TLightCond lightcond[4];
 	TLight default_light;

@@ -20,6 +20,7 @@ GNU General Public License for more details.
 
 #include "bh.h"
 #include <vector>
+#include <map>
 
 #define TEXLOGO 0
 #define SNOW_START 1
@@ -67,7 +68,7 @@ GNU General Public License for more details.
 #define WORD_SPACE 6
 #define LETTER_SPACE -3
 
-#define BF_TYPE 0x4D42             // "MB" 
+#define BF_TYPE 0x4D42             // "MB"
 
 struct TTgaHeader {
     char tfType;
@@ -83,25 +84,25 @@ struct TTgaHeader {
 };
 
 struct TBmpHeader {
-    unsigned short  bfType;           // identifier of bmp formae 
-    unsigned long   bfSize;           // size of file, including the headers  
-    unsigned short  bfReserved1;      // reserved, always 0 
-    unsigned short  bfReserved2;      // reserved, always 0 
-    unsigned long   bfOffBits;        // offset to bitmap data 
+    unsigned short  bfType;           // identifier of bmp format
+    unsigned long   bfSize;           // size of file, including the headers
+    unsigned short  bfReserved1;      // reserved, always 0
+    unsigned short  bfReserved2;      // reserved, always 0
+    unsigned long   bfOffBits;        // offset to bitmap data
 };
 
 struct TBmpInfo {
     unsigned long   biSize;           // size of info header, normally 40
     long            biWidth;          // width
     long            biHeight;         // height
-    unsigned short  biPlanes;         // number of color planes, normally 1 
-    unsigned short  biBitCount;       // Number of bits per pixel (8 * depth) 
+    unsigned short  biPlanes;         // number of color planes, normally 1
+    unsigned short  biBitCount;       // Number of bits per pixel (8 * depth)
     unsigned long   biCompression;    // type of compression, normally 0 = no compr.
-    unsigned long   biSizeImage;      // size of data  
+    unsigned long   biSizeImage;      // size of data
     long            biXPelsPerMeter;  // normally 0
-    long            biYPelsPerMeter;  // normally 0 
+    long            biYPelsPerMeter;  // normally 0
     unsigned long   biClrUsed;        // normally 0
-    unsigned long   biClrImportant;   // normally 0 
+    unsigned long   biClrImportant;   // normally 0
 };
 
 
@@ -116,8 +117,8 @@ public:
 	~CImage ();
 
 	unsigned char *data;
-	int nx;	
-    int ny; 
+	int nx;
+    int ny;
     int depth;
     int pitch;
 
@@ -135,7 +136,7 @@ public:
 	void WritePPM (const char *dir, const char *filename);
 	void WriteTGA (const char *filepath);
 	void WriteTGA (const char *dir, const char *filename);
-	
+
 	// versions with explicite header
 	void WriteTGA_H (const char *filepath);
 	void WriteTGA_H (const char *dir, const char *filename);
@@ -151,41 +152,55 @@ public:
 #define TEX_NUMERIC_FONT 1
 #define TEX_LOGO 2
 
+class TTexture {
+	TTexture(const TTexture&);
+	TTexture& operator=(const TTexture&);
+
+	GLuint id;
+	string name;
+public:
+
+	TTexture() : id(0) {}
+	~TTexture();
+	bool Load(const string& filename);
+	bool Load(const string& dir, const string& filename);
+	bool LoadMipmap(const string& filename, bool repeatable);
+	bool LoadMipmap(const string& dir, const string& filename, bool repeatable);
+
+	void Bind();
+	void Draw();
+	void Draw(int x, int y, float size, Orientation orientation);
+	void Draw(int x, int y, float width, float height, Orientation orientation);
+	void DrawFrame(int x, int y, double w, double h, int frame, const TColor& col);
+};
+
 class CTexture {
 private:
-	vector<GLuint> CommonTex;
-	string TextureIndex;
+	vector<TTexture*> CommonTex;
+	map<string, TTexture*> Index;
 	Orientation forientation;
-	
+
 	void DrawNumChr (char c, int x, int y, int w, int h, const TColor& col);
 public:
     CTexture ();
 	~CTexture ();
-	int LoadTexture (const string& filename);
-	int LoadTexture (const string& dir, const string& filename);
-	int LoadMipmapTexture (const string& filename, bool repeatable);
-	int LoadMipmapTexture (const string& dir, const string& filename, bool repeatable);
 	void LoadTextureList ();
 	void FreeTextureList ();
 
-	GLuint TexID (int idx) const;
-	GLuint TexID (const string& name) const;
+	TTexture* GetTexture (int idx) const;
+	TTexture* GetTexture (const string& name) const;
 	bool BindTex (int idx);
 	bool BindTex (const string& name);
 
-	void DrawDirect (GLuint texid);
 	void Draw (int idx);
 	void Draw (const string& name);
 
-	void DrawDirect (GLuint texid, int x, int y, float size);
 	void Draw (int idx, int x, int y, float size);
 	void Draw (const string& name, int x, int y, float size);
 
-	void DrawDirect (GLuint texid, int x, int y, float width, float height);
 	void Draw (int idx, int x, int y, int width, int height);
 	void Draw (const string& name, int x, int y, int width, int height);
 
-	void DrawDirectFrame (GLuint texid, int x, int y, double w, double h, int frame, const TColor& col);
 	void DrawFrame (int idx, int x, int y, double w, double h, int frame, const TColor& col);
 	void DrawFrame (const string& name, int x, int y, double w, double h, int frame, const TColor& col);
 

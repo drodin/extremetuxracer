@@ -25,6 +25,9 @@ algorithm should be replaced with a more convenient quadtree algorithm.
 #include "bh.h"
 #include "view.h"
 
+class TTexture;
+
+
 typedef enum {
     East,
     South,
@@ -70,8 +73,7 @@ struct quadsquare {
     static double ScaleX, ScaleZ;
     static int RowSize, NumRows;
     static char *Terrain;
-    static vector<GLuint> TexId;
-    static GLuint EnvmapTexId;
+    static TTexture* EnvmapTexture;
 
     static GLuint *VertexArrayIndices;
     static GLuint VertexArrayCounter;
