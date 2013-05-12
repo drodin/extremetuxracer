@@ -42,10 +42,26 @@ AM_PATH_SDL([1.0.0])
 CFLAGS="$CFLAGS $SDL_CFLAGS"
 LIBS="$LIBS $SDL_LIBS"
 
+AC_CHECK_HEADER([SDL_image.h], [],
+[AC_MSG_ERROR([SDL_image.h not found])])
+
+AC_CHECK_LIB([SDL_image], [IMG_Load], [],
+[AC_MSG_ERROR([SDL_image library not found])])
+
+LIBS="$LIBS -lSDL_image"
+
+AC_CHECK_HEADER([SDL_mixer.h], [],
+[AC_MSG_ERROR([SDL_mixer.h not found])])
+
+AC_CHECK_LIB([SDL_mixer], [Mix_OpenAudio], [],
+[AC_MSG_ERROR([SDL_mixer library not found])])
+
+LIBS="$LIBS -lSDL_mixer"
+
 CPPFLAGS="${CPPFLAGS} -DETR_DATA_DIR=\\\"$datadir\\\""
 
 # TODO: Proper checks instead of hardcoding
-LIBS="$LIBS -lGL -lGLU -lSDL_image -lSDL_mixer"
+LIBS="$LIBS -lGL -lGLU"
 
 # Request c++11 compatibility
 CXXFLAGS="${CXXFLAGS} -std=c++11"
