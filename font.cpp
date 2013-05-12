@@ -52,7 +52,7 @@ static size_t MakeLine (size_t first, const deque<string>& wordlist, CSPList *li
 
 	float spacelng = FT.GetTextWidth("a a") - FT.GetTextWidth("aa");;
 	while(last < wordlist.size()) {
-		float wordlng = FT.GetTextWidth(wordlist[last].c_str());
+		float wordlng = FT.GetTextWidth(wordlist[last]);
 		lng += wordlng;
 		lng += spacelng;
 		if (lng >= width && first != last) // If first == last, we write beyond line

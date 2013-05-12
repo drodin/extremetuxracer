@@ -335,7 +335,7 @@ void InitConfig (char *arg0) {
 	param.display_fps = false;
 	param.show_hud = true;
 
-	if (FileExists (param.configfile.c_str())) {
+	if (FileExists (param.configfile)) {
 //		SetConfigDefaults ();
 		LoadConfigFile ();
 	} else {
@@ -343,7 +343,7 @@ void InitConfig (char *arg0) {
 		SaveConfigFile ();
 	}
 	string playerfile = param.config_dir + SEP + PLAYER_FILE;
-	if (FileExists (playerfile.c_str())) {
+	if (FileExists (playerfile)) {
 	} else {
 	}
 }

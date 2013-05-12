@@ -843,7 +843,7 @@ bool CCourse::LoadCourse (size_t idx) {
 
 	// ................................................................
 	string itemfile = CourseDir + SEP + "items.lst";
-	bool itemsexists = (FileExists (itemfile.c_str()));
+	bool itemsexists = (FileExists (itemfile));
 	CControl *ctrl = Players.GetCtrl (g_game.player_id);
 
 	if (itemsexists && !g_game.force_treemap) {
