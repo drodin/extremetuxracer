@@ -1,5 +1,5 @@
 
-pkgdatadir = $(datadir)/$(PACKAGE)/char/barack
+pkgdatadir = $(datadir)/$(PACKAGE)/char/beastie
 
 pkgdata_DATA = \
 	preview.png	\

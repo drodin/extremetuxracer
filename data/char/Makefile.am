@@ -1,5 +1,5 @@
 
-SUBDIRS = barack boris samuel trixi tux
+SUBDIRS = beastie boris samuel trixi tux
 
 pkgdatadir = $(datadir)/$(PACKAGE)/char
 

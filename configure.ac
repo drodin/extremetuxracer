@@ -70,7 +70,7 @@ AC_CONFIG_FILES([
         Makefile
         data/Makefile
         data/char/Makefile
-        data/char/barack/Makefile
+        data/char/beastie/Makefile
         data/char/boris/Makefile
         data/char/samuel/Makefile
         data/char/trixi/Makefile
