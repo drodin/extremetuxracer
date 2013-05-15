@@ -45,7 +45,7 @@ void DrawCrsr (float x, float y, int pos, double timestep) {
 	if (crsrvisible) {
 		float w = 3;
 		float h = 26*param.scale;
-		TColor col = MakeColor (1, 1, 0, 1);
+		const TColor& col = colYellow;
 		float scrheight = param.y_resolution;
 
 		glDisable (GL_TEXTURE_2D);

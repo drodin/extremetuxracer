@@ -36,10 +36,10 @@ const TColor colDRed =		{0.8, 0.0, 0.0, 1.0};
 const TColor colGrey =		{0.5, 0.5, 0.5, 1.0};
 const TColor colLGrey =		{0.7, 0.7, 0.7, 1.0};
 const TColor colDGrey =		{0.3, 0.3, 0.3, 1.0};
-const TColor colBlack =		{0.0, 0.0, 0.0, 1.0};	
-const TColor colBlue =		{0.0, 0.0, 1.0, 1.0};	
-const TColor colLBlue =		{0.5, 0.7, 1.0, 1.0};	
-const TColor colDBlue =		{0.0, 0.0, 0.6, 1.0};	
+const TColor colBlack =		{0.0, 0.0, 0.0, 1.0};
+const TColor colBlue =		{0.0, 0.0, 1.0, 1.0};
+const TColor colLBlue =		{0.5, 0.7, 1.0, 1.0};
+const TColor colDBlue =		{0.0, 0.0, 0.6, 1.0};
 const TColor colLBackgr =	{0.5, 0.7, 0.9, 1.0};
 const TColor colBackgr =	{0.4, 0.6, 0.8, 1.0};
 const TColor colMBackgr =	{0.35, 0.5, 0.7, 1.0};
@@ -203,7 +203,7 @@ void Message (const string& a, const string& b) {
 	cout << a << ' ' << b << endl;
 	msg_list.Add (a + b);
 }
- 
+
 // --------------------------------------------------------------------
 //				file utils
 // --------------------------------------------------------------------
@@ -227,7 +227,7 @@ bool FileExists (const string& dir, const string& filename) {
 #ifndef OS_WIN32_MSC
 bool DirExists (const char *dirname) {
 	DIR *xdir;
-    if ((xdir = opendir (dirname)) == 0) 
+    if ((xdir = opendir (dirname)) == 0)
 		return ((errno != ENOENT) && (errno != ENOTDIR));
     if (closedir (xdir) != 0) Message ("Couldn't close directory", dirname);
     return true;
@@ -242,91 +242,6 @@ bool DirExists (const char *dirname) {
 }
 #endif
 
-void DrawStdSphere (int num_divisions) {
-    double theta, phi, d_theta, d_phi, eps, twopi;
-    double x, y, z;
-    int div = num_divisions;
-    eps = 1e-15;
-    twopi = M_PI * 2.0;
-    d_theta = d_phi = M_PI / div;
-    for  (phi = 0.0; phi + eps < M_PI; phi += d_phi) {
-	double cos_theta, sin_theta;
-	double sin_phi, cos_phi;
-	double sin_phi_d_phi, cos_phi_d_phi;
-	sin_phi = sin (phi);
-	cos_phi = cos (phi);
-	sin_phi_d_phi = sin (phi + d_phi);
-	cos_phi_d_phi = cos (phi + d_phi);
-	if  (phi <= eps) {
-		glBegin (GL_TRIANGLE_FAN);
-        	glNormal3f (0.0, 0.0, 1.0); 
-        	glVertex3f (0.0, 0.0, 1.0);
-			for  (theta = 0.0; theta + eps < twopi; theta += d_theta) {
-				sin_theta = sin (theta);
-				cos_theta = cos (theta);
-				x = cos_theta * sin_phi_d_phi;
-				y = sin_theta * sin_phi_d_phi;
-				z = cos_phi_d_phi;
-				glNormal3f (x, y, z); 
-				glVertex3f (x, y, z);
-			} 
-			x = sin_phi_d_phi;
-			y = 0.0;
-			z = cos_phi_d_phi;
-			glNormal3f (x, y, z);
-			glVertex3f (x, y, z);
-		glEnd ();
-
-	} else if  (phi + d_phi + eps >= M_PI) {
-            glBegin (GL_TRIANGLE_FAN);
-                glNormal3f (0.0, 0.0, -1.0);
-                glVertex3f (0.0, 0.0, -1.0);
-                for  (theta = twopi; theta - eps > 0; theta -= d_theta) {
-		    sin_theta = sin (theta);
-		    cos_theta = cos (theta);
-                    x = cos_theta * sin_phi;
-                    y = sin_theta * sin_phi;
-                    z = cos_phi;
-                    glNormal3f (x, y, z);
-                    glVertex3f (x, y, z);
-                } 
-                x = sin_phi;
-                y = 0.0;
-                z = cos_phi;
-                glNormal3f (x, y, z);
-                glVertex3f (x, y, z);
-            glEnd();
-        } else {
-            glBegin (GL_TRIANGLE_STRIP);
-                for  (theta = 0.0; theta + eps < twopi; theta += d_theta) {
-		    sin_theta = sin (theta);
-		    cos_theta = cos (theta);
-                    x = cos_theta * sin_phi;
-                    y = sin_theta * sin_phi;
-                    z = cos_phi;
-                    glNormal3f (x, y, z);
-                    glVertex3f (x, y, z);
-                    x = cos_theta * sin_phi_d_phi;
-                    y = sin_theta * sin_phi_d_phi;
-                    z = cos_phi_d_phi;
-                    glNormal3f (x, y, z);
-                    glVertex3f (x, y, z);
-                } 
-                x = sin_phi;
-                y = 0.0;
-                z = cos_phi;
-                glNormal3f (x, y, z);
-                glVertex3f (x, y, z);
-                x = sin_phi_d_phi;
-                y = 0.0;
-                z = cos_phi_d_phi;
-                glNormal3f (x, y, z);
-                glVertex3f (x, y, z);
-            glEnd();
-        } 
-    } 
-} 
-
 // --------------------------------------------------------------------
 //				date and time
 // --------------------------------------------------------------------
@@ -336,20 +251,6 @@ void GetTimeComponents (double time, int *min, int *sec, int *hundr) {
     *sec = ((int) time) % 60;
     *hundr = ((int) (time * 100 + 0.5) ) % 100;
 }
-
-/*
-   struct tm {
-     int tm_sec;  
-     int tm_min;  
-     int tm_hour;	// 0..23
-	 int tm_mday;	// day in month 1..31
-	 int tm_mon;	// 0..11
-     int tm_year;	// year (sice 1900)
-     int tm_wday;	// weekday 0..6, start with sunday
-     int tm_yday;   // day in the year
-     int tm_isdst;  // not zero in case of US sommertime converting 
-   };
-*/ 
 
 void GetTestTime () {
 	time_t rawtime;			// seconds since 1. January 1970
@@ -362,7 +263,7 @@ void GetTestTime () {
 }
 
 string GetTimeString1 () {
-	time_t rawtime;	
+	time_t rawtime;
 	struct tm * timeinfo;
 
 	time (&rawtime);

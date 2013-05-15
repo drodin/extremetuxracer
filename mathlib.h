@@ -21,14 +21,14 @@ GNU General Public License for more details.
 
 #include "bh.h"
 
-const TVector3 NullVec = {0.0, 0.0, 0.0};
-const TVector3 GravVec = {0.0, -1.0, 0.0};
+static const TVector3 NullVec = {0.0, 0.0, 0.0};
+static const TVector3 GravVec = {0.0, -1.0, 0.0};
 
 // --------------------------------------------------------------------
 //			vector and matrix
 // --------------------------------------------------------------------
 
-double      VectorLength (const TVector3 &v);
+double		VectorLength (const TVector3 &v);
 
 TVector3	MakeVector (double x, double y, double z);
 TVector2	MakeVector2 (double x, double y);
@@ -69,7 +69,7 @@ TQuaternion AddQuaternions (const TQuaternion& q, const TQuaternion& r);		// not
 TQuaternion MultiplyQuaternions (const TQuaternion& q, const TQuaternion& r);	// not used?
 TQuaternion ScaleQuaternion (double s, TQuaternion q);
 TQuaternion ConjugateQuaternion (const TQuaternion& q);
-void 		MakeMatrixFromQuaternion (TMatrix mat, const TQuaternion& q);
+void		MakeMatrixFromQuaternion (TMatrix mat, const TQuaternion& q);
 TQuaternion MakeQuaternionFromMatrix (TMatrix mat);
 TQuaternion MakeRotationQuaternion (const TVector3& s, const TVector3& t);
 TQuaternion InterpolateQuaternions (const TQuaternion& q, TQuaternion r, double t);

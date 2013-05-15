@@ -58,24 +58,24 @@ void CGameOver::Mouse (int button, int state, int x, int y) {
 
 void CGameOver::Motion  (int x, int y) {
     TVector2 old_pos;
-    
+
     y = param.y_resolution - y;
     old_pos = cursor_pos;
-    cursor_pos = MakeVector2 (x, y); 
+    cursor_pos = MakeVector2 (x, y);
     if  (old_pos.x != x || old_pos.y != y)  {
     }
 }
 
-void DrawMessageFrame (float x, float y, float w, float h, int line, 
+void DrawMessageFrame (float x, float y, float w, float h, int line,
 		TColor backcol, TColor framecol, float transp) {
 
-	float yy = param.y_resolution - y - h; 
+	float yy = param.y_resolution - y - h;
 	if (x < 0) 	x = (param.x_resolution - w) / 2;
 
 	glPushMatrix();
 	glDisable (GL_TEXTURE_2D);
-    
-	glColor4f (framecol.r, framecol.g, framecol.b, transp); 
+
+	glColor4f (framecol.r, framecol.g, framecol.b, transp);
 	glTranslatef (x, yy, 0);
 	glBegin (GL_QUADS );
 	    glVertex2f (0, 0 );
@@ -103,8 +103,8 @@ void GameOverMessage (CControl *ctrl) {
 	float leftframe = (param.x_resolution - fwidth) / 2;
 	float topframe = 80;
 
-	TColor backcol = MakeColor (1, 1, 1, 1);
-	TColor framecol = MakeColor (0.7, 0.7, 1, 1);
+	const TColor& backcol = colWhite;
+	const TColor framecol = {0.7, 0.7, 1, 1};
 
 	if (param.use_papercut_font > 0) FT.SetSize (28); else FT.SetSize (22);
 	if (g_game.raceaborted) {
@@ -145,18 +145,18 @@ void GameOverMessage (CControl *ctrl) {
 			line += ")";
 		}
 		FT.DrawString (leftframe+240, topframe+65, line);
-		
+
 		line = "Path length:  ";
 		FT.DrawString (leftframe+80, topframe+90, line);
 		line = Float_StrN (ctrl->way, 2);
 		line += "  m";
 		FT.DrawString (leftframe+240, topframe+90, line);
-			
+
 		line = "Average speed:  ";
-		FT.DrawString (leftframe+80, topframe+115, line);		
+		FT.DrawString (leftframe+80, topframe+115, line);
 		line = Float_StrN (ctrl->way / g_game.time * 3.6, 2);
-		line += "  km/h"; 
-		FT.DrawString (leftframe+240, topframe+115, line);		
+		line += "  km/h";
+		FT.DrawString (leftframe+240, topframe+115, line);
 
 		if (param.use_papercut_font > 0) FT.SetSize (28); else FT.SetSize (22);
 		if (g_game.game_type == CUPRACING) {
@@ -202,8 +202,8 @@ void CGameOver::Enter() {
 		final_frame = NULL;
 	} else {
 		if (g_game.game_type == CUPRACING) {
-			if (g_game.race_result < 0) final_frame = 
-				Char.GetKeyframe (g_game.char_id, LOSTRACE); 
+			if (g_game.race_result < 0) final_frame =
+				Char.GetKeyframe (g_game.char_id, LOSTRACE);
 				else final_frame = Char.GetKeyframe (g_game.char_id, WONRACE);
 		} else final_frame = Char.GetKeyframe (g_game.char_id, FINISH);
 
@@ -228,7 +228,7 @@ void CGameOver::Loop(double time_step) {
 	ClearRenderContext ();
     Env.SetupFog ();
 
-	update_view (ctrl, 0); 
+	update_view (ctrl, 0);
 
 	if (final_frame != NULL) final_frame->Update (time_step, ctrl);
 
@@ -244,10 +244,10 @@ void CGameOver::Loop(double time_step) {
 	UpdateWind (time_step, ctrl);
 	UpdateSnow (time_step, ctrl);
 	DrawSnow (ctrl);
-	
+
 	Char.Draw (g_game.char_id);
 
-    set_gl_options (GUI); 
+    set_gl_options (GUI);
 	SetupGuiDisplay ();
 	if (final_frame != NULL) {
 		if (!final_frame->active) GameOverMessage (ctrl);

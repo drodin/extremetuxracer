@@ -40,7 +40,7 @@ struct TFog {
     float end;
 	float height;
     float color[4];
-	float part_color[4];
+	TColor part_color;
 };
 
 struct TLight{
@@ -62,7 +62,7 @@ private:
 	TFog fog;
 	TFog default_fog;
 
-	TPlane leftclip; 
+	TPlane leftclip;
 	TPlane rightclip;
 	TPlane farclip;
 	TPlane bottomclip;
@@ -86,7 +86,7 @@ public:
 	void SetupLight ();
 	void SetupFog ();
 	void DrawFog ();
-	TColor ParticleColor ();
+	const TColor& ParticleColor () const { return fog.part_color; }
 	size_t GetEnvIdx (const string& tag) const;
 	size_t GetLightIdx (const string& tag) const;
 };

@@ -30,7 +30,6 @@ struct TParam {
 	string	config_dir;
     string	data_dir;
     string	common_course_dir;
-	string	common_cup_dir;
     string	obj_dir;
     string	terr_dir;
     string	char_dir;
@@ -40,14 +39,13 @@ struct TParam {
 	string  music_dir;
 	string	screenshot_dir;
 	string	font_dir;
-	string  keyframe_dir;
 	string  trans_dir;
 	string  player_dir;
 	string  configfile;
 
 	// ------------------------------------
 	// main config params:
-	bool	fullscreen;  
+	bool	fullscreen;
 	size_t	res_type;
 	int		perf_level;
 	size_t	language;
@@ -68,9 +66,9 @@ struct TParam {
 	int		use_papercut_font;
 	bool	ice_cursor;
 	bool	full_skybox;
-	int		restart_on_res_change;  // only Windows
-	int     use_quad_scale; 		// scaling type for menus
-	
+	int		restart_on_res_change;	// only Windows
+	int     use_quad_scale;			// scaling type for menus
+
 	string  menu_music;
 	string  credits_music;
 	string  config_music;
@@ -91,4 +89,4 @@ void SaveConfigFile ();
 
 extern TParam param;
 
-#endif 
+#endif

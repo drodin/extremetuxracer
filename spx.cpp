@@ -219,7 +219,7 @@ string SPItemN (const string &s, const string &tag) {
 
 string SPStrN (const string &s, const string &tag, const string& def) {
 	string item = SPItemN (s, tag);
-	if (item.size() < 1) return def;
+	if (item.empty()) return def;
 	STrimN (item);
 	return item;
 }
@@ -457,13 +457,13 @@ bool CSPList::Load (const string &filepath) {
 			if (npos >= 0) SDeleteN (line, npos, 1);
 
 			bool valid = true;
-			if (line.size() < 1) valid = false;	// empty line
-			if (line[0] == '#') valid = false;	// comment line
-		
+			if (line.empty()) valid = false;	// empty line
+			else if (line[0] == '#') valid = false;	// comment line
+
 			if (valid) {
 				if (flines.size() < fmax) {
 					if (!fnewlineflag) {
-						if (line[0] == '*' || flines.size() < 1) Add (line);
+						if (line[0] == '*' || flines.empty()) Add (line);
 						else Append (line, flines.size()-1);
 					} else {
 						bool fwdflag;
@@ -517,7 +517,7 @@ void CSPList::MakeIndex (map<string, size_t>& index, const string &tag) {
 	for (size_t i=0; i<flines.size(); i++) {
 		string item = SPItemN (flines[i].first, tag);
 		STrimN (item);
-		if (item.size() > 0) {
+		if (!item.empty()) {
 			index[item] = idx;
 			idx++;
 		}

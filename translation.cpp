@@ -127,7 +127,7 @@ void CTranslation::LoadLanguages () {
 		languages[i].language = SPStrN (line, "language", "English");
 		LangIndex[languages[i].lang] = i;
 	}
-	if (languages.size() > 0) languages_ok = true;
+	if (!languages.empty()) languages_ok = true;
 
 	if(param.language == string::npos)
 		param.language = GetSystemDefaultLangIdx();

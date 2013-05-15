@@ -76,7 +76,7 @@ static size_t MakeLine (size_t first, const deque<string>& wordlist, CSPList *li
 //				CFont
 // --------------------------------------------------------------------
 
-CFont FT;	
+CFont FT;
 
 CFont::CFont () {
 	forientation = OR_TOP;
@@ -110,7 +110,7 @@ wstring CFont::UnicodeStr (const char *s) {
 	size_t len = strlen (s);
 	wstring res;
 	res.resize(len);
-		
+
 	for (size_t i=0, j=0; i < len; ++i, ++j) {
 		wchar_t ch = ((const unsigned char *)s)[i];
 		if (ch >= 0xF0) {
@@ -166,7 +166,7 @@ bool CFont::LoadFontlist () {
 		string fontfile = SPStrN (line, "file", "");
 		string name = SPStrN (line, "name", "");
 
-		int ftidx = LoadFont (name, param.font_dir.c_str(), fontfile.c_str());		
+		int ftidx = LoadFont (name, param.font_dir.c_str(), fontfile.c_str());
 		if (ftidx < 0) {
 			Message ("couldn't load font", name);
 		}
@@ -180,11 +180,11 @@ size_t CFont::GetFontIdx (const string &name) const {
 
 void CFont::SetProps (const string &fontname, float size, const TColor& col) {
 	SetProps(fontname, size);
-	curr_col  = col;	
+	curr_col  = col;
 }
 
 void CFont::SetProps (const string &fontname, float size) {
-	if (fontname.size() > 0) curr_font = (int)GetFontIdx (fontname);
+	if (!fontname.empty()) curr_font = (int)GetFontIdx (fontname);
 	if (size > 0) curr_size = size;
 }
 
@@ -193,14 +193,14 @@ void CFont::SetColor (float r, float g, float b, float a) {
 	curr_col.g = g;
 	curr_col.b = b;
 	curr_col.a = a;
-}	
-
-void CFont::SetColor (const TColor& col) { 
-	curr_col = col; 
 }
 
-void CFont::SetSize (float size) { 
-	curr_size = size; 
+void CFont::SetColor (const TColor& col) {
+	curr_col = col;
+}
+
+void CFont::SetSize (float size) {
+	curr_size = size;
 }
 
 void CFont::SetFont (const string& fontname) {
@@ -209,7 +209,7 @@ void CFont::SetFont (const string& fontname) {
 	} catch(...) {
 		curr_font = -1;
 	}
-	
+
 	if (fontname == "pc20") curr_fact = 1.25;
 		else curr_fact = 1.0;
 }
@@ -238,9 +238,9 @@ void CFont::DrawText(float x, float y, const char *text, size_t font, float size
 	glPushMatrix();
 	fonts[font]->FaceSize ((int)size);
 	glColor4f (curr_col.r, curr_col.g, curr_col.b, curr_col.a);
-	
+
 	float left;
-	if (x >= 0) left = x; 
+	if (x >= 0) left = x;
 	else left = (param.x_resolution - GetTextWidth (text)) / 2;
 	if (left < 0) left = 0;
 
@@ -260,9 +260,9 @@ void CFont::DrawText(float x, float y, const wchar_t *text, size_t font, float s
 	glPushMatrix();
 	fonts[font]->FaceSize ((int)size);
 	glColor4f (curr_col.r, curr_col.g, curr_col.b, curr_col.a);
-	
+
 	float left;
-	if (x >= 0) left = x; 
+	if (x >= 0) left = x;
 	else left = (param.x_resolution - GetTextWidth (text)) / 2;
 	if (left < 0) left = 0;
 
@@ -305,7 +305,7 @@ void CFont::DrawText(float x, float y, const char *text, const string &fontname,
 #endif
 }
 
-void CFont::DrawText 
+void CFont::DrawText
 		(float x, float y, const wchar_t *text, const string &fontname, float size) const {
 	size_t temp_font = GetFontIdx (fontname);
 	DrawText(x, y, text, temp_font, size);

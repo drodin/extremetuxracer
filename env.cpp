@@ -31,7 +31,7 @@ static const float def_diff[]    = {1.0, 0.9, 1.0, 1.0};
 static const float def_spec[]    = {0.6, 0.6, 0.6, 1.0};
 static const float def_pos[]     = {1, 2, 2, 0.0};
 static const float def_fogcol[]  = {0.9, 0.9, 1.0, 0.0};
-static const float def_partcol[] = {0.8, 0.8, 0.9, 0.0};
+static const TColor def_partcol  = {0.8, 0.8, 0.9, 0.0};
 
 CEnvironment Env;
 
@@ -47,7 +47,7 @@ CEnvironment::CEnvironment ()
 	Skybox = NULL;
 
 	default_light.is_on = true;
-	for (int i=0; i<4; i++) { 
+	for (int i=0; i<4; i++) {
 		default_light.ambient[i]  = def_amb[i];
 		default_light.diffuse[i]  = def_diff[i];
 		default_light.specular[i] = def_spec[i];
@@ -59,10 +59,9 @@ CEnvironment::CEnvironment ()
 	default_fog.start = 20.0;
 	default_fog.end = 70.0;
 	default_fog.height = 0;
-	for (int i=0; i<4; i++) { 
+	for (int i=0; i<4; i++)
 		default_fog.color[i] =  def_fogcol[i];
-		default_fog.part_color[i] =  def_partcol[i];
-	}
+	default_fog.part_color =  def_partcol;
 }
 
 void CEnvironment::ResetSkybox () {
@@ -122,8 +121,8 @@ void CEnvironment::ResetLight () {
 	glDisable (GL_LIGHT3);
 }
 
-void CEnvironment::ResetFog () { 
-	fog = default_fog; 
+void CEnvironment::ResetFog () {
+	fog = default_fog;
 }
 
 void CEnvironment::Reset () {
@@ -151,8 +150,8 @@ bool CEnvironment::LoadEnvironmentList () {
 string CEnvironment::GetDir (size_t location, size_t light) const {
 	if (location >= locs.size()) return "";
 	if (light >= 4) return "";
-	string res = 
-		param.env_dir2 + SEP + 
+	string res =
+		param.env_dir2 + SEP +
 		locs[location].name + SEP + lightcond[light].name;
 	return res;
 }
@@ -178,7 +177,7 @@ void CEnvironment::LoadLight () {
 		return;
 	}
 
-	for (int i=0; i<list.Count(); i++) {
+	for (size_t i=0; i<list.Count(); i++) {
 		string line = list.Line(i);
 		string item = SPStrN (line, "light", "none");
 		int idx = SPIntN (idxstr, item, -1);
@@ -188,7 +187,7 @@ void CEnvironment::LoadLight () {
 			fog.end = SPFloatN (line, "fogend", param.forward_clip_distance);
 			fog.height = SPFloatN (line, "fogheight", 0);
 			SPArrN (line, "fogcol", fog.color, 4, 1);
-			SPArrN (line, "partcol", fog.part_color, 4, 1);
+			fog.part_color = SPColorN (line, "partcol", def_partcol);
 		} else if (idx < 4){
 			lights[idx].is_on = true;
 			SPArrN (line, "amb", lights[idx].ambient, 4, 1);
@@ -200,9 +199,9 @@ void CEnvironment::LoadLight () {
 }
 
 void CEnvironment::DrawSkybox (const TVector3& pos) {
- 	set_gl_options (SKY);
+	set_gl_options (SKY);
 	double aa, bb;
-	
+
 #if defined (OS_LINUX)
 	aa = 0.0;
 	bb = 1.0;
@@ -215,7 +214,7 @@ void CEnvironment::DrawSkybox (const TVector3& pos) {
 	glTexEnvf (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
 	glPushMatrix();
 	glTranslatef (pos.x, pos.y, pos.z);
-	
+
 	// front
 	Skybox[0].Bind();
 	glBegin(GL_QUADS);
@@ -224,7 +223,7 @@ void CEnvironment::DrawSkybox (const TVector3& pos) {
 		glTexCoord2f (bb, bb); glVertex3f ( 1,  1, -1);
 		glTexCoord2f (aa, bb); glVertex3f (-1,  1, -1);
 	glEnd();
-	
+
 	// left
 	Skybox[1].Bind();
 	glBegin(GL_QUADS);
@@ -233,7 +232,7 @@ void CEnvironment::DrawSkybox (const TVector3& pos) {
 		glTexCoord2f (bb, bb); glVertex3f (-1,  1, -1);
 		glTexCoord2f (aa, bb); glVertex3f (-1,  1,  1);
 	glEnd();
-	
+
 	// right
 	Skybox[2].Bind();
 	glBegin(GL_QUADS);
@@ -254,7 +253,7 @@ void CEnvironment::DrawSkybox (const TVector3& pos) {
 			glTexCoord2f (bb, bb); glVertex3f ( 1, 1,  1);
 			glTexCoord2f (aa, bb); glVertex3f (-1, 1,  1);
 		glEnd();
-		
+
 		// bottom
 		Skybox[4].Bind();
 		glBegin(GL_QUADS);
@@ -263,7 +262,7 @@ void CEnvironment::DrawSkybox (const TVector3& pos) {
 			glTexCoord2f (bb, bb); glVertex3f ( 1, -1, -1);
 			glTexCoord2f (aa, bb); glVertex3f (-1, -1, -1);
 		glEnd();
-		
+
 		// back
 		Skybox[5].Bind();
 		glBegin(GL_QUADS);
@@ -272,7 +271,7 @@ void CEnvironment::DrawSkybox (const TVector3& pos) {
 			glTexCoord2f (bb, bb); glVertex3f (-1,  1, 1);
 			glTexCoord2f (aa, bb); glVertex3f ( 1,  1, 1);
 		glEnd();
-	}	
+	}
 	glPopMatrix();
 }
 
@@ -283,7 +282,7 @@ void CEnvironment::DrawFog () {
     TPlane bottom_plane, top_plane;
     TVector3 left, right, vpoint;
     TVector3 topleft, topright;
-    TVector3 bottomleft = NullVec; 
+    TVector3 bottomleft = NullVec;
 	TVector3 bottomright = NullVec;
     float height;
 
@@ -314,7 +313,7 @@ void CEnvironment::DrawFog () {
     if (!IntersectPlanes (top_plane,    farclip, rightclip, &topright)) return;
     if (!IntersectPlanes (bottomclip,   farclip, leftclip,  &bottomleft)) return;
     if (!IntersectPlanes (bottomclip,   farclip, rightclip, &bottomright)) return;
-    
+
 	TVector3 leftvec  = SubtractVectors (topleft, left);
     TVector3 rightvec = SubtractVectors (topright, right);
 
@@ -322,7 +321,7 @@ void CEnvironment::DrawFog () {
 
 	set_gl_options (FOG_PLANE);
     glEnable (GL_FOG);
-	
+
 	// only the alpha channel is used
 	float bottom_dens[4]     = {0, 0, 0, 1.0};
 	float top_dens[4]        = {0, 0, 0, 0.9};
@@ -339,13 +338,13 @@ void CEnvironment::DrawFog () {
 	    glColor4fv (top_dens);
     	glVertex3f (topleft.x, topleft.y, topleft.z);
     	glVertex3f (topright.x, topright.y, topright.z);
-	
+
 	    glColor4fv (leftright_dens);
     	vpoint = AddVectors (topleft, leftvec);
 	    glVertex3f (vpoint.x, vpoint.y, vpoint.z);
     	vpoint = AddVectors (topright, rightvec);
 	    glVertex3f (vpoint.x, vpoint.y, vpoint.z);
-		
+
 	    glColor4fv (top_bottom_dens);
 	    vpoint = AddVectors (topleft, ScaleVector (3.0, leftvec));
     	glVertex3f (vpoint.x, vpoint.y, vpoint.z);
@@ -370,26 +369,17 @@ bool CEnvironment::LoadEnvironment (size_t loc, size_t light) {
 	// Set directory. The dir is used several times.
 	EnvDir = GetDir (loc, light);
 
-	// Load skybox. If the sky can't be loaded for any reason, the 
+	// Load skybox. If the sky can't be loaded for any reason, the
 	// texture id's are set to 0 and the sky will not be drawn.
 	// There is no error handlung, you see the result on the screen.
 	ResetSkybox ();
 	LoadSkybox ();
 
-	// Load light conditions. 
+	// Load light conditions.
 	ResetFog ();
 	ResetLight ();
 	LoadLight ();
 	return true;
-}
-
-TColor CEnvironment::ParticleColor () {
-	TColor res;
-	res.r = fog.part_color[0];
-	res.g = fog.part_color[1];
-	res.b = fog.part_color[2];
-	res.a = fog.part_color[3];
-	return res;
 }
 
 size_t CEnvironment::GetEnvIdx (const string& tag) const {

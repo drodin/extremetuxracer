@@ -14,7 +14,7 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 ---------------------------------------------------------------------*/
 
-/* 
+/*
 If you want to add a new option, do this:
 First add the option to the TParam struct (game_config.h).
 
@@ -25,13 +25,13 @@ Then edit the below functions:
 	SPStrN for strings.
 	The first value is always 'line', the second defines the tag within the
 	brackets [ ], and the last value is the default.
-	
+
 - SetConfigDefaults. These values are used as long as no options file exists.
 	It's a good idea to use the same values as the defaults in LoadConfigFile.
-	
+
 - SaveConfigFile. See the other entries; it should be self-explanatory.
 	If an options file exists, you will have to change any value at runtime
-	on the configuration screen to overwrite the file. Then you will see the 
+	on the configuration screen to overwrite the file. Then you will see the
 	new entry.
 */
 
@@ -79,7 +79,7 @@ void LoadConfigFile () {
 		param.menu_music = SPStrN (line, "menu_music", "start_1");
 		param.credits_music = SPStrN (line, "credits_music", "credits_1");
 		param.config_music = SPStrN (line, "config_music", "options_1");
-	}		
+	}
 }
 
 void SetConfigDefaults () {
@@ -91,7 +91,7 @@ void SetConfigDefaults () {
 	param.music_volume = 20;
 
 	// ---------------------------------------
-	
+
 	param.forward_clip_distance = 75;
 	param.backward_clip_distance = 20;
 	param.fov = 60;
@@ -133,7 +133,7 @@ void AddComment (CSPList &list, const string& comment)  {
 
 void SaveConfigFile () {
 	CSPList liste (512);
-	
+
 	liste.Add ("# ------------------------------------------------------------------");
 	liste.Add ("#   The first group of params can be adjusted ");
 	liste.Add ("#   on the configuration screen, too");
@@ -218,7 +218,7 @@ void SaveConfigFile () {
 
 	AddComment (liste, "Detail level of the course");
 	AddComment (liste, "This param is used for the quadtree and controls the");
-	AddComment (liste, "LOD of the algorithm. ");	
+	AddComment (liste, "LOD of the algorithm. ");
 	AddIntItem (liste, "course_detail_level", param.course_detail_level);
 	liste.Add ("");
 
@@ -236,8 +236,8 @@ void SaveConfigFile () {
 
 	AddComment (liste, "Draw full skybox [0...1]");
 	AddComment (liste, "A normal skybox consists of 6 textures. In Tuxracer");
-	AddComment (liste, "3 textures are invisible (top, bottom and back).");	
-	AddComment (liste, "These textures needn't be drawn.");	
+	AddComment (liste, "3 textures are invisible (top, bottom and back).");
+	AddComment (liste, "These textures needn't be drawn.");
 	AddIntItem (liste, "full_skybox", param.full_skybox);
 	liste.Add ("");
 
@@ -272,7 +272,7 @@ void SaveConfigFile () {
 	liste.Add ("");
 
 	// ---------------------------------------
-	liste.Save (param.configfile);	
+	liste.Save (param.configfile);
 }
 
 // --------------------------------------------------------------------
@@ -319,11 +319,9 @@ void InitConfig (char *arg0) {
 	param.obj_dir = param.data_dir + SEP + "objects";
 	param.env_dir2 = param.data_dir + SEP + "env";
 	param.char_dir = param.data_dir + SEP + "char";
-	param.keyframe_dir = param.char_dir + SEP + "keyframes";
 	param.terr_dir = param.data_dir + SEP + "terrains";
 	param.tex_dir = param.data_dir + SEP + "textures";
 	param.common_course_dir = param.data_dir + SEP + "courses";
-	param.common_cup_dir = param.data_dir + SEP + "cups";
 	param.sounds_dir = param.data_dir + SEP + "sounds";
 	param.music_dir = param.data_dir + SEP + "music";
 	param.font_dir = param.data_dir + SEP + "fonts";
