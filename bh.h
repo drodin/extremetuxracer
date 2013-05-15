@@ -22,18 +22,18 @@ GNU General Public License for more details.
 //		compiler flags
 // --------------------------------------------------------------------
 
-#define HAVE_SDL 
+#define HAVE_SDL
 #define HAVE_SDL_MIXER
 #define HAVE_SDL_IMAGE
 #define HAVE_SDL_JOYSTICK
-#define STDC_HEADERS 		
-#define TIME_WITH_SYS_TIME	
-#define HAVE_GETCWD 
-#define HAVE_GETTIMEOFDAY 
-#define HAVE_STRDUP 
-#define HAVE_GL_GLEXT_H 
-#define HAVE_GL_GLX_H 
-#define HAVE_SYS_TIME_H 
+#define STDC_HEADERS
+#define TIME_WITH_SYS_TIME
+#define HAVE_GETCWD
+#define HAVE_GETTIMEOFDAY
+#define HAVE_STRDUP
+#define HAVE_GL_GLEXT_H
+#define HAVE_GL_GLX_H
+#define HAVE_SYS_TIME_H
 #define USE_STENCIL_BUFFER
 
 // --------------------------------------------------------------------
@@ -60,7 +60,22 @@ GNU General Public License for more details.
 #include "SDL/SDL_image.h"
 #include "SDL/SDL_mixer.h"
 
-#if defined ( OS_LINUX )
+#ifdef _WIN32 // Windows platform
+	#ifdef _MSC_VER // MSVC compiler
+		#include <windows.h>
+		#include "glext.h"
+		#define OS_WIN32_MSC
+		#pragma warning (disable:4244)
+		#pragma warning (disable:4305)
+		#define SEP "\\"
+		#undef DrawText
+	#else // Assume MinGW compiler
+		#include <dirent.h>
+		#include <GL/glext.h>
+		#define OS_WIN32_MINGW
+		#define SEP "/"
+	#endif
+#else // Assume Unix platform (Linux, Mac OS X, BSD, ...)
 	#include <unistd.h>
 	#include <sys/types.h>
 	#include <pwd.h>
@@ -68,29 +83,11 @@ GNU General Public License for more details.
 	#include <sys/time.h>
 	#include <GL/glx.h>
 	#define SEP "/"
-#elif defined ( OS_WIN32_MINGW )
-	#define SEP "/"
-	#include <dirent.h>
-	#include <GL/glext.h>
-#elif defined ( OS_WIN32_MSC )
-	#include <windows.h>
-	#include "glext.h"
-	#pragma warning (disable:4244)
-	#pragma warning (disable:4305)
-	#define SEP "\\"
-#elif defined ( OS_WIN32_NATIVE )
-	#include <io.h>
-	#include <direct.h>
-	#include <windows.h>
-	#define SEP "\\"
-#elif defined ( OS_MAC )
-	#include <unistd.h>
-	#include <sys/types.h>
-	#include <pwd.h>
-	#include <dirent.h>
-	#include <sys/time.h>
-	#include <GL/glx.h>
-	#define SEP "/"
+	#ifdef __APPLE__
+		#define OS_MAC
+	#elif defined(__linux__)
+		#define OS_LINUX
+	#endif
 #endif
 
 // --------------------------------------------------------------------
