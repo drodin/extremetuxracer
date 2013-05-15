@@ -90,7 +90,7 @@ void DrawTrees() {
 		glNormal3f (normal.x, normal.y, normal.z);
 /*		// slower but better method of setting the normals
 		normal = SubtractVectors (ctrl->viewpos, treeLocs[i].pt);
-		NormVector (&normal);
+		NormVector (normal);
 		glNormal3f (normal.x, normal.y, normal.z); */
 
 		glBegin (GL_QUADS);
@@ -144,11 +144,11 @@ void DrawTrees() {
 		    } else {
 //				normal = MakeVector (0, 0, 1);
 				normal = SubtractVectors (ctrl->viewpos, itemLocs[i].pt);
-				NormVector (&normal);
+				NormVector (normal);
 		    }
 		    glNormal3f (normal.x, normal.y, normal.z);
 		    normal.y = 0.0;
-		    NormVector (&normal);
+		    NormVector (normal);
 		    glBegin (GL_QUADS);
 				glTexCoord2f (0., 0.);
 				glVertex3f (-itemRadius*normal.z, 0.0,  itemRadius*normal.x);

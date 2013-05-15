@@ -168,7 +168,7 @@ bool CFont::LoadFontlist () {
 
 		int ftidx = LoadFont (name, param.font_dir.c_str(), fontfile.c_str());		
 		if (ftidx < 0) {
-			Message ("couldn't load font", name.c_str());
+			Message ("couldn't load font", name);
 		}
 	}
 	return true;

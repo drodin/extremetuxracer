@@ -68,8 +68,8 @@ TVector3 interpolate_view_pos (TVector3 ctrl_pos1, TVector3 ctrl_pos2,
     TVector3 vec1 = SubtractVectors (pos1, ctrl_pos1);
     TVector3 vec2 = SubtractVectors (pos2, ctrl_pos2);
 
-    NormVector (&vec1);
-    NormVector (&vec2);
+    NormVector (vec1);
+    NormVector (vec2);
 
     TQuaternion q1 = MakeRotationQuaternion (y_vec, vec1);
     TQuaternion q2 = MakeRotationQuaternion (y_vec, vec2);
@@ -80,7 +80,7 @@ TVector3 interpolate_view_pos (TVector3 ctrl_pos1, TVector3 ctrl_pos2,
     double theta = RADIANS_TO_ANGLES (M_PI/2 - acos (DotProduct (vec2, y_vec)));
     if (theta > max_vec_angle) {
 		TVector3 axis = CrossProduct (y_vec, vec2);
-		NormVector (&axis);
+		NormVector (axis);
 		TMatrix rot_mat;
 		RotateAboutVectorMatrix (rot_mat, axis, theta-max_vec_angle);
 		vec2 = TransformVector (rot_mat, vec2);
@@ -96,17 +96,17 @@ void interpolate_view_frame (TVector3 up1, TVector3 dir1,
     TMatrix cob_mat2, inv_cob_mat2;
 
     TVector3 z1 = ScaleVector (-1.0, dir1);
-    NormVector (&z1);
+    NormVector (z1);
     TVector3 y1 = ProjectToPlane (z1, up1);
-    NormVector (&y1);
+    NormVector (y1);
     TVector3 x1 = CrossProduct (y1, z1);
 
     MakeBasismatrix_Inv (cob_mat1, inv_cob_mat1, x1, y1, z1);
     TQuaternion q1 = MakeQuaternionFromMatrix (cob_mat1);
     TVector3 z2 = ScaleVector (-1.0, *p_dir2);
-    NormVector (&z2);
+    NormVector (z2);
     TVector3 y2 = ProjectToPlane (z2, *p_up2);
-    NormVector (&y2);
+    NormVector (y2);
     TVector3 x2 = CrossProduct (y2, z2);
 
     MakeBasismatrix_Inv (cob_mat2, inv_cob_mat2, x2, y2, z2);
@@ -130,9 +130,9 @@ void setup_view_matrix (CControl *ctrl, bool save_mat) {
     TVector3 view_z = ScaleVector (-1, ctrl->viewdir);
     TVector3 view_x = CrossProduct (ctrl->viewup, view_z);
     TVector3 view_y = CrossProduct (view_z, view_x);
-    NormVector (&view_z);
-    NormVector (&view_x);
-    NormVector (&view_y);
+    NormVector (view_z);
+    NormVector (view_x);
+    NormVector (view_y);
 
     MakeIdentityMatrix (ctrl->view_mat);
 
@@ -209,7 +209,7 @@ void update_view (CControl *ctrl, double dt) {
     TQuaternion rot_quat;
 
     TVector3 vel_cpy = ctrl->cvel;
-    double speed = NormVector (&vel_cpy);
+    double speed = NormVector (vel_cpy);
     double time_constant_mult = 1.0 /
 	min (1.0, max (0.0, 
 	   (speed - NO_INTERPOLATION_SPEED) /
@@ -218,7 +218,7 @@ void update_view (CControl *ctrl, double dt) {
     TVector3 up_dir = MakeVector (0, 1, 0);
 
     TVector3 vel_dir = ctrl->cvel;
-    NormVector (&vel_dir);
+    NormVector (vel_dir);
     course_angle = Course.GetCourseAngle();
 
     switch (ctrl->viewmode) {
@@ -228,7 +228,7 @@ void update_view (CControl *ctrl, double dt) {
 		y_vec = MakeVector (0.0, 1.0, 0.0);
 		mz_vec = MakeVector (0.0, 0.0, -1.0);
 		vel_proj = ProjectToPlane (y_vec, vel_dir);
-		NormVector (&vel_proj);
+		NormVector (vel_proj);
 		rot_quat = MakeRotationQuaternion (mz_vec, vel_proj);
 		view_vec = RotateVector (rot_quat, view_vec);
 		view_pt = AddVectors (ctrl->cpos, view_vec);
@@ -255,7 +255,7 @@ void update_view (CControl *ctrl, double dt) {
 
 		view_vec = SubtractVectors (view_pt, ctrl->cpos);
 		axis = CrossProduct (y_vec, view_vec);
-		NormVector (&axis);
+		NormVector (axis);
 		RotateAboutVectorMatrix (rot_mat, axis, PLAYER_ANGLE_IN_CAMERA);
 		view_dir = ScaleVector (-1.0, TransformVector (rot_mat, view_vec));
 
@@ -277,7 +277,7 @@ void update_view (CControl *ctrl, double dt) {
 		mz_vec = MakeVector (0.0, 0.0, -1.0);
 		
 		vel_proj = ProjectToPlane (y_vec, vel_dir);
-		NormVector (&vel_proj);
+		NormVector (vel_proj);
 		rot_quat = MakeRotationQuaternion (mz_vec, vel_proj);
 		view_vec = RotateVector (rot_quat, view_vec);
 		view_pt = AddVectors (ctrl->cpos, view_vec);
@@ -302,7 +302,7 @@ void update_view (CControl *ctrl, double dt) {
 
 		view_vec = SubtractVectors (view_pt, ctrl->cpos);
 		axis = CrossProduct (y_vec, view_vec);
-		NormVector (&axis);
+		NormVector (axis);
 		RotateAboutVectorMatrix (rot_mat, axis,
 					   PLAYER_ANGLE_IN_CAMERA);
 		view_dir = ScaleVector (-1.0, 

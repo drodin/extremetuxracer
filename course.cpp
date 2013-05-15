@@ -111,7 +111,7 @@ void CCourse::CalcNormals () {
 					v2 = SubtractVectors (p2, p0);
 					n = CrossProduct (v2, v1);
 
-					NormVector (&n);
+					NormVector (n);
 					nml = AddVectors (nml, n);
 
 					p1 = NMLPOINT (x-1, y-1);
@@ -120,7 +120,7 @@ void CCourse::CalcNormals () {
 					v2 = SubtractVectors (p2, p0);
 					n = CrossProduct (v2, v1);
 
-					NormVector (&n);
+					NormVector (n);
 					nml = AddVectors (nml, n);
 				}
 				if  (x > 0 && y < ny-1) {
@@ -130,7 +130,7 @@ void CCourse::CalcNormals () {
 					v2 = SubtractVectors (p2, p0);
 					n = CrossProduct (v2, v1);
 
-					NormVector (&n);
+					NormVector (n);
 					nml = AddVectors (nml, n);
 
 					p1 = NMLPOINT(x-1,y+1);
@@ -139,7 +139,7 @@ void CCourse::CalcNormals () {
 					v2 = SubtractVectors (p2, p0);
 					n = CrossProduct (v2, v1);
 
-					NormVector (&n);
+					NormVector (n);
 					nml = AddVectors (nml, n);
 				}
 				if  (x < nx-1 && y > 0) {
@@ -149,7 +149,7 @@ void CCourse::CalcNormals () {
 					v2 = SubtractVectors (p2, p0);
 					n = CrossProduct (v2, v1);
 
-					NormVector (&n);
+					NormVector (n);
 					nml = AddVectors (nml, n);
 
 					p1 = NMLPOINT(x+1,y-1);
@@ -158,7 +158,7 @@ void CCourse::CalcNormals () {
 					v2 = SubtractVectors (p2, p0);
 					n = CrossProduct (v2, v1);
 
-					NormVector (&n);
+					NormVector (n);
 					nml = AddVectors (nml, n);
 				}
 				if  (x < nx-1 && y < ny-1) {
@@ -168,7 +168,7 @@ void CCourse::CalcNormals () {
 					v2 = SubtractVectors (p2, p0);
 					n = CrossProduct (v1, v2);
 
-					NormVector (&n);
+					NormVector (n);
 					nml = AddVectors (nml, n);
 
 					p1 = NMLPOINT(x+1,y+1);
@@ -177,7 +177,7 @@ void CCourse::CalcNormals () {
 					v2 = SubtractVectors (p2, p0);
 					n = CrossProduct (v1, v2);
 
-					NormVector (&n);
+					NormVector (n);
 					nml = AddVectors (nml, n);
 
 				}
@@ -189,7 +189,7 @@ void CCourse::CalcNormals () {
 					v2 = SubtractVectors (p2, p0);
 					n = CrossProduct (v2, v1);
 
-					NormVector (&n);
+					NormVector (n);
 					nml = AddVectors (nml, n);
 				}
 				if  (x > 0 && y < ny-1) {
@@ -199,7 +199,7 @@ void CCourse::CalcNormals () {
 					v2 = SubtractVectors (p2, p0);
 					n = CrossProduct (v2, v1);
 
-					NormVector (&n);
+					NormVector (n);
 					nml = AddVectors (nml, n);
 				}
 				if  (x < nx-1 && y > 0) {
@@ -209,7 +209,7 @@ void CCourse::CalcNormals () {
 					v2 = SubtractVectors (p2, p0);
 					n = CrossProduct (v2, v1);
 
-					NormVector (&n);
+					NormVector (n);
 					nml = AddVectors (nml, n);
 				}
 				if  (x < nx-1 && y < ny-1) {
@@ -219,11 +219,11 @@ void CCourse::CalcNormals () {
 					v2 = SubtractVectors (p2, p0);
 					n = CrossProduct (v1, v2);
 
-					NormVector (&n);
+					NormVector (n);
 					nml = AddVectors (nml, n);
 				}
 			}
-            NormVector (&nml);
+            NormVector (nml);
 			nmls [x + nx * y] = nml;
             continue;
 
@@ -613,7 +613,7 @@ bool CCourse::LoadObjectTypes () {
 
 		if (ObjTypes[i].use_normal) {
 			ObjTypes[i].normal = SPVector3N (line, "norm", MakeVector (0, 1, 0));
-			NormVector (&(ObjTypes[i].normal));
+			NormVector ((ObjTypes[i].normal));
 		}
 		ObjTypes[i].poly = 1;
 	}
@@ -1028,7 +1028,7 @@ TVector3 CCourse::FindCourseNormal (double x, double z) const {
 
 	TVector3 tri_nml = CrossProduct (
 	SubtractVectors (p1, p0), SubtractVectors (p2, p0));
-    NormVector (&tri_nml);
+    NormVector (tri_nml);
 
 	double min_bary = min (u, min (v, 1. - u - v));
 	double interp_factor = min (min_bary / NORM_INTERPOL, 1.0);
@@ -1036,7 +1036,7 @@ TVector3 CCourse::FindCourseNormal (double x, double z) const {
  	TVector3 interp_nml = AddVectors (
 	ScaleVector (interp_factor, tri_nml),
 	ScaleVector (1.-interp_factor, smooth_nml));
-    NormVector (&interp_nml);
+    NormVector (interp_nml);
 
     return interp_nml;
 }

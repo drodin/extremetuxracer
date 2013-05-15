@@ -96,7 +96,7 @@ bool    DirExists (const char *dirname);
 
 void    Message (const char *msg, const char *desc);
 void    Message (const char *msg);
-void	MessageN (const string& a, const string& b);
+void	Message (const string& a, const string& b);
 void	SaveMessages ();
 
 // --------------------------------------------------------------------

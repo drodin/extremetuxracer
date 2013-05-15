@@ -178,9 +178,9 @@ void CControl::AdjustTreeCollision (const TVector3& pos, TVector3 *vel){
         treeNml.x = pos.x - treeLoc.x;
         treeNml.y = 0;
         treeNml.z = pos.z - treeLoc.z; 
-        NormVector (&treeNml);
+        NormVector (treeNml);
 
-        double speed = NormVector (vel);
+        double speed = NormVector (*vel);
         speed *= 0.8;  // original 0.7
 
         double costheta = DotProduct (*vel, treeNml);
@@ -189,7 +189,7 @@ void CControl::AdjustTreeCollision (const TVector3& pos, TVector3 *vel){
 			*vel = AddVectors (
 				//ScaleVector (-2 * DotProduct (*vel, treeNml), treeNml), *vel);
 				ScaleVector (-factor * costheta, treeNml), *vel);
-		    NormVector (vel);
+		    NormVector (*vel);
    	    } 
 		speed = max (speed, minSpeed);
         *vel = ScaleVector (speed, *vel);
@@ -234,7 +234,7 @@ void CControl::CheckItemCollection (const TVector3& pos) {
 // --------------------------------------------------------------------
 
 void CControl::AdjustVelocity (const TPlane& surf_plane) {
-    double speed = NormVector (&cvel);
+    double speed = NormVector (cvel);
     speed = max (minSpeed, speed);
 
 	if (g_game.finish == false) {
@@ -289,7 +289,7 @@ void CControl::SetTuxPosition (double speed) {
 
 TVector3 CControl::CalcRollNormal (double speed) {
 	TVector3 vel = ProjectToPlane (ff.surfnml, ff.vel);
-	NormVector (&vel);
+	NormVector (vel);
 
 	double roll_angle = MAX_ROLL_ANGLE;
     if (is_braking) roll_angle = BRAKING_ROLL_ANGLE;
@@ -311,7 +311,7 @@ TVector3 CControl::CalcAirForce () {
 	if (g_game.wind_id > 0)
 		windvec = AddVectors (windvec, ScaleVector (WIND_FACTOR, Wind.WindDrift ()));
 	
-	double windspeed = NormVector (&windvec);
+	double windspeed = NormVector (windvec);
 	double re = 34600 * windspeed;    
 	int tablesize = sizeof (airdrag) / sizeof (airdrag[0]);
 	double interpol = LinearInterp (airlog, airdrag, log10 (re), tablesize);
@@ -368,7 +368,7 @@ TVector3 CControl::CalcFrictionForce (double speed, const TVector3& nmlforce) {
     
 	if ((cairborne == false && speed > minFrictspeed) || g_game.finish) {
 		TVector3 tmp_nml_f = nmlforce;
-		fric_f_mag = NormVector (&tmp_nml_f) * ff.frict_coeff;
+		fric_f_mag = NormVector (tmp_nml_f) * ff.frict_coeff;
 		fric_f_mag = MIN (MAX_FRICT_FORCE, fric_f_mag);
 		frictforce = ScaleVector (fric_f_mag, ff.frictdir);
 
@@ -446,7 +446,7 @@ TVector3 CControl::CalcNetForce (const TVector3& pos, const TVector3& vel) {
 	ff.vel = vel;
 
 	ff.frictdir = ff.vel;
-    double speed = NormVector (&ff.frictdir);
+    double speed = NormVector (ff.frictdir);
     ff.frictdir = ScaleVector (-1.0, ff.frictdir);
 
     vector<double> surfweights(Course.TerrList.size());
@@ -489,7 +489,7 @@ TVector3 CControl::CalcNetForce (const TVector3& pos, const TVector3& vel) {
 // --------------------------------------------------------------------
 
 double CControl::AdjustTimeStep (double h, TVector3 vel) {
-    double speed = NormVector (&vel);
+    double speed = NormVector (vel);
     h = max (h, MIN_TIME_STEP);
     h = min (h, MAX_STEP_DIST / speed);
     h = min (h, MAX_TIME_STEP);
@@ -622,7 +622,7 @@ void CControl::SolveOdeSystem (double timestep) {
 	
 		t = t + h;
 		TVector3 tmp_vel = new_vel; 
-		speed = NormVector (&tmp_vel);
+		speed = NormVector (tmp_vel);
 		if (param.perf_level > 2) generate_particles (this, h, new_pos, speed);
 
 		new_f = CalcNetForce (new_pos, new_vel);
@@ -685,7 +685,7 @@ void CControl::UpdatePlayerPos (double timestep) {
     TVector3 temp_vel = cvel;
     AdjustVelocity (surf_plane);
     AdjustPosition (surf_plane, dist_from_surface);
-    speed = NormVector (&temp_vel);
+    speed = NormVector (temp_vel);
     SetTuxPosition (speed);	// speed only to set finish_speed
 	shape->AdjustOrientation (this, timestep, dist_from_surface, surf_nml);
 

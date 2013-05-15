@@ -457,7 +457,7 @@ bool CCharShape::Load (const string& dir, const string& filename, bool with_acti
 	newActions = true;
 
  	if (!list.Load (dir, filename)) {
-		Message ("could not load character", filename.c_str());
+		Message ("could not load character", filename);
 		return false;
 	}
 
@@ -508,7 +508,7 @@ bool CCharShape::Load (const string& dir, const string& filename, bool with_acti
 TVector3 CCharShape::AdjustRollvector (CControl *ctrl, TVector3 vel, const TVector3& zvec) {
     TMatrix rot_mat;
     vel = ProjectToPlane (zvec, vel);
-    NormVector (&vel);
+    NormVector (vel);
     if (ctrl->is_braking) {
 		RotateAboutVectorMatrix (rot_mat, vel, ctrl->turn_fact * BRAKING_ROLL_ANGLE);
     } else {
@@ -527,15 +527,15 @@ void CCharShape::AdjustOrientation (CControl *ctrl, double dtime,
 
     if  (dist_from_surface > 0) {
 		new_y = ScaleVector (1, ctrl->cvel);
-		NormVector (&new_y);
+		NormVector (new_y);
 		new_z = ProjectToPlane (new_y, MakeVector(0, -1, 0));
-		NormVector (&new_z);
+		NormVector (new_z);
 		new_z = AdjustRollvector (ctrl, ctrl->cvel, new_z);
     } else {
 		new_z = ScaleVector (-1, surf_nml);
 		new_z = AdjustRollvector (ctrl, ctrl->cvel, new_z);
 		new_y = ProjectToPlane (surf_nml, ScaleVector (1, ctrl->cvel));
-		NormVector(&new_y);
+		NormVector(new_y);
     }
 
     TVector3 new_x = CrossProduct (new_y, new_z);

@@ -293,7 +293,7 @@ void DrawWind2 (float dir, float speed, CControl *ctrl) {
 
 	// direction indicator
 	TVector3 movdir = ctrl->cvel;
-	NormVectorN (movdir);
+	NormVector (movdir);
 	float dir_angle = atan (movdir.x / movdir.z) * 57.3;
 
 	glPushMatrix ();
@@ -377,7 +377,7 @@ void DrawHud (CControl *ctrl) {
 		return;
 
 	TVector3 vel = ctrl->cvel;
-	double speed = NormVector (&vel);
+	double speed = NormVector (vel);
     SetupGuiDisplay ();
 
     draw_gauge (speed * 3.6, ctrl->jump_amt);

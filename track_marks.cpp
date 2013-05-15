@@ -204,7 +204,7 @@ void add_track_mark (CControl *ctrl, int *id) {
     track_quad_t* qprevprev = &track_marks.quads[(track_marks.current_mark-2)%MAX_TRACK_MARKS];
 
     TVector3 vector_from_last_mark = SubtractVectors (ctrl->cpos, track_marks.last_mark_pos);
-    double dist_from_last_mark = NormVector (&vector_from_last_mark);
+    double dist_from_last_mark = NormVector (vector_from_last_mark);
 	
 	*id = Course.GetTerrainIdx (ctrl->cpos.x, ctrl->cpos.z, 0.5);
 	if (*id < 1) {
@@ -218,14 +218,14 @@ void add_track_mark (CControl *ctrl, int *id) {
 	} 
     
 	TVector3 vel = ctrl->cvel;
-    double speed = NormVector (&vel);
+    double speed = NormVector (vel);
     if (speed < SPEED_TO_START_TRENCH) {
 		break_track_marks();
 		return;
     }
 
     TVector3 width_vector = CrossProduct (ctrl->cdirection, MakeVector (0, 1, 0));
-    double magnitude = NormVector (&width_vector);
+    double magnitude = NormVector (width_vector);
     if  (magnitude == 0) {
 		break_track_marks();
 		return;

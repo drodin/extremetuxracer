@@ -199,7 +199,7 @@ void Message (const char *msg) {
 	msg_list.Add (msg);
 }
 
-void MessageN (const string& a, const string& b) {
+void Message (const string& a, const string& b) {
 	cout << a << ' ' << b << endl;
 	msg_list.Add (a + b);
 }

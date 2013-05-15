@@ -40,8 +40,7 @@ TIndex3		MakeIndex3 (int i, int j, int k);
 TVector3	ScaleVector (double s, const TVector3& v);
 TVector3	AddVectors (const TVector3& v1, const TVector3& v2);
 TVector3	SubtractVectors (const TVector3& v1, const TVector3& v2);
-double		NormVector (TVector3 *v);
-double		NormVectorN (TVector3 &v);	// new version with reference
+double		NormVector (TVector3 &v);
 
 double		DotProduct (const TVector3& v1, const TVector3& v2);
 TVector3	CrossProduct (const TVector3& u, const TVector3& v);

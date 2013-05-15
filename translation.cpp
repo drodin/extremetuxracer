@@ -154,7 +154,7 @@ void CTranslation::LoadTranslations (size_t langidx) {
 	CSPList list(MAX_COMMON_TEXTS + 3);
 	string filename = languages[langidx].lang + ".lst";
 	if (!list.Load (param.trans_dir, filename)) {
-		Message ("could not load translations list:", filename.c_str());
+		Message ("could not load translations list:", filename);
 		return;
 	}
 

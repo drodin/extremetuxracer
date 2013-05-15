@@ -134,7 +134,7 @@ bool CKeyframe::Load (const string& dir, const string& filename) {
 		loadedfile = filename;
 		return true;
 	} else {
-		MessageN ("keyframe not found:", filename);
+		Message ("keyframe not found:", filename);
 		loaded = false;
 		return false;
 	}

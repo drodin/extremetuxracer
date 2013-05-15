@@ -100,20 +100,11 @@ TVector3 ProjectToPlane (const TVector3& nml, const TVector3& v){
     TVector3 nmlComp = ScaleVector (dotProd, nml);
 
     return SubtractVectors (v, nmlComp);
-} 
-
-double NormVector (TVector3 *v) {
-    double denom = 1;
-	
-	if (v->x == 0 && v->y == 0 && v->z == 0) return 0.0;
-	denom = sqrt (v->x * v->x + v->y * v->y + v->z * v->z);
-	*v = ScaleVector (1.0 / denom, *v);
-	return denom;
 }
 
-double NormVectorN (TVector3 &v) {
+double NormVector (TVector3 &v) {
 	if (v.x == 0 && v.y == 0 && v.z == 0) return 0.0;
-	float denom = sqrt (v.x * v.x + v.y * v.y + v.z * v.z);
+	double denom = sqrt (v.x * v.x + v.y * v.y + v.z * v.z);
 	v = ScaleVector (1.0 / denom, v);
 	return denom;
 }
@@ -486,7 +477,7 @@ TQuaternion MakeRotationQuaternion (const TVector3& s, const TVector3& t){
     double cosphi, sinphi;
 
     TVector3 u = CrossProduct (s, t);
-    sin2phi = NormVector (&u);
+    sin2phi = NormVector (u);
 
     if  (sin2phi < EPS) {
 	res = MakeQuaternion (0., 0., 0., 1.);
@@ -665,7 +656,7 @@ bool IntersectPolygon (const TPolygon& p, TVector3 *v) {
 		v1 = &v[p.vertices[ (i+1) % p.num_vertices ]]; 
 
 		TVector3 edge_vec = SubtractVectors (*v1, *v0);
-		edge_len = NormVector (&edge_vec);
+		edge_len = NormVector (edge_vec);
 
 		t = - DotProduct (*((TVector3 *) v0), edge_vec);
 
@@ -710,7 +701,7 @@ TVector3 MakeNormal (const TPolygon& p, TVector3 *v) {
     TVector3 v2 = SubtractVectors (v[p.vertices[p.num_vertices-1]], v[p.vertices[0]]);
     TVector3 normal = CrossProduct (v1, v2);
 
-    old_len = NormVector (&normal);
+    old_len = NormVector (normal);
     return normal;
 } 
 

@@ -294,7 +294,7 @@ void Particle::draw_billboard (CControl *ctrl, double width, double height, bool
     if  (use_world_y_axis) {
 		y_vec = MakeVector (0, 1, 0);
 		x_vec = ProjectToPlane (y_vec, x_vec);
-		NormVector (&x_vec);
+		NormVector (x_vec);
 		z_vec = CrossProduct (x_vec, y_vec);
     } else {
 		y_vec.x = ctrl->view_mat[1][0];
@@ -327,7 +327,7 @@ void Particle::draw_billboard (CControl *ctrl, double width, double height, bool
 }
 
 void create_new_particles (const TVector3& loc, TVector3 vel, int num)  {
-    double speed = NormVector (&vel);
+    double speed = NormVector (vel);
 
     if  (particles.size() + num > MAX_PARTICLES) {
 		Message ("maximum number of particles exceeded", "");

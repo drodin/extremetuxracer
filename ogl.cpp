@@ -105,10 +105,10 @@ void PrintGLInfo (){
 	size_t pos;
     while ((pos = extensions.find(' ', oldpos)) != string::npos) {
 		string s = extensions.substr(oldpos, pos-oldpos);
-		Message(s.c_str(), "");
+		Message(s, "");
 		oldpos = pos+1;
     }
-	Message(extensions.substr(oldpos).c_str(), "");
+	Message(extensions.substr(oldpos), "");
 
 	Message ("", "");
     for (int i=0; i<(int)(sizeof(gl_values)/sizeof(gl_values[0])); i++) {
@@ -116,19 +116,19 @@ void PrintGLInfo (){
 			case GL_INT:
 	    	glGetIntegerv (gl_values[i].value, &int_val);
 		    ss = Int_StrN (int_val);
-			Message (gl_values[i].name, ss.c_str());
+			Message (gl_values[i].name, ss);
 		    break;
 
 			case GL_FLOAT:
 		    glGetFloatv (gl_values[i].value, &float_val);
     		ss = Float_StrN (float_val, 2);
-			Message (gl_values[i].name, ss.c_str());
+			Message (gl_values[i].name, ss);
 		    break;
 
 			case GL_UNSIGNED_BYTE:
 	    	glGetBooleanv (gl_values[i].value, &boolean_val);
 		    ss = Int_StrN (boolean_val);
-			Message (gl_values[i].name, ss.c_str());
+			Message (gl_values[i].name, ss);
 		    break;
 
 			default:
