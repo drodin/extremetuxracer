@@ -73,14 +73,10 @@ GNU General Public License for more details.
 	#include <dirent.h>
 	#include <GL/glext.h>
 #elif defined ( OS_WIN32_MSC )
-	#include <io.h>
-	#include <direct.h>
 	#include <windows.h>
 	#include "glext.h"
 	#pragma warning (disable:4244)
 	#pragma warning (disable:4305)
-	#define getcwd _getcwd
-	#define chdir _chdir
 	#define SEP "\\"
 #elif defined ( OS_WIN32_NATIVE )
 	#include <io.h>

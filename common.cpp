@@ -234,16 +234,11 @@ bool DirExists (const char *dirname) {
 }
 #else
 bool DirExists (const char *dirname) {
-    char curdir[1000];
-    if (getcwd (curdir, 1000) == 0)
-		Message ("DirExistsWin: getcwd failed");
+	DWORD typ = GetFileAttributesA(dirname);
+	if(typ == INVALID_FILE_ATTRIBUTES)
+		return false; // Doesn't exist
 
-    if (chdir (dirname) == -1) return false;
-    if (chdir (curdir) == -1) {
-		Message ("Couldn't access directory", curdir);
-		return false;
-	}
-    return true;
+	return (typ & FILE_ATTRIBUTE_DIRECTORY) != 0; // Is directory?
 }
 #endif
 
