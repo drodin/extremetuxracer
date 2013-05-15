@@ -44,17 +44,18 @@ void CCredits::LoadCreditList () {
 		return;
 	}
 
-	for (int i=0; i<list.Count(); i++) {
+	for (size_t i=0; i<list.Count(); i++) {
 		string line = list.Line(i);
-		CreditList[i].text = SPStrN (line, "text", "");
+		TCredits credit;
+		credit.text = SPStrN (line, "text", "");
 
 		double offset = SPFloatN (line, "offs", 0) * OFFS_SCALE_FACTOR * param.scale;
-		if (i>0) CreditList[i].offs = CreditList[i-1].offs + (int)offset;
-		else CreditList[i].offs = offset;
+		if (i>0) credit.offs = CreditList.back().offs + (int)offset;
+		else credit.offs = offset;
 
-		CreditList[i].col = SPIntN (line, "col", 0);
-		CreditList[i].size = SPFloatN (line, "size", 1.0);
-		numCredits = i + 1;
+		credit.col = SPIntN (line, "col", 0);
+		credit.size = SPFloatN (line, "size", 1.0);
+		CreditList.push_back(credit);
 	}
 }
 
@@ -65,17 +66,17 @@ void CCredits::DrawCreditsText (double time_step) {
 	if (moving) y_offset += time_step * 30;
 
 
-	for (int i=0; i < numCredits; i++) {
-		offs = h - 100 - y_offset + CreditList[i].offs;
+	for (list<TCredits>::const_iterator i = CreditList.begin(); i != CreditList.end(); ++i) {
+		offs = h - 100 - y_offset + i->offs;
 		if (offs > h || offs < 0.0) // Draw only visible lines
 			continue;
 
-		if (CreditList[i].col == 0)
+		if (i->col == 0)
 			FT.SetColor (colWhite);
 		else
 			FT.SetColor (colDYell);
-		FT.AutoSizeN (CreditList[i].size);
-		FT.DrawString (-1, (int)offs, CreditList[i].text);
+		FT.AutoSizeN (i->size);
+		FT.DrawString (-1, (int)offs, i->text);
 	}
 
 
@@ -93,7 +94,7 @@ void CCredits::DrawCreditsText (double time_step) {
 
     glColor4dv ((double*)&bgcol);
     glRectf (0, h - TOP_Y, w, h );
-    
+
 	glBegin( GL_QUADS );
 		glVertex2f (w, h - TOP_Y );
 		glVertex2f (0, h - TOP_Y );
@@ -101,7 +102,7 @@ void CCredits::DrawCreditsText (double time_step) {
 		glVertex2f (0, h - TOP_Y - 30 );
 		glVertex2f (w, h - TOP_Y - 30 );
     glEnd();
-    
+
 	glColor4f (1, 1, 1, 1 );
     glEnable (GL_TEXTURE_2D);
 	if (offs < TOP_Y) y_offset = 0;
@@ -141,12 +142,12 @@ void CCredits::Keyb (unsigned int key, bool special, bool release, int x, int y)
 	switch (key) {
 		case 109: moving = !moving; break;
 		case 9: param.ui_snow = !param.ui_snow; break;
-		default: State::manager.RequestEnterState (GameTypeSelect); 
+		default: State::manager.RequestEnterState (GameTypeSelect);
 	}
 }
 
 void CCredits::Mouse (int button, int state, int x, int y ){
-	if (state == 1) State::manager.RequestEnterState (GameTypeSelect); 
+	if (state == 1) State::manager.RequestEnterState (GameTypeSelect);
 }
 
 void CCredits::Motion(int x, int y ) {
@@ -169,8 +170,8 @@ void CCredits::Enter() {
 void CCredits::Loop(double time_step) {
 	int ww = param.x_resolution;
 	int hh = param.y_resolution;
-	
-	Music.Update ();    
+
+	Music.Update ();
 	check_gl_error();
     ClearRenderContext ();
     set_gl_options (GUI);
@@ -186,8 +187,8 @@ void CCredits::Loop(double time_step) {
 	Tex.Draw (BOTTOM_RIGHT, ww-256, hh-256, 1);
 	Tex.Draw (TOP_LEFT, 0, 0, 1);
 	Tex.Draw (TOP_RIGHT, ww-256, 0, 1);
- 	Tex.Draw (T_TITLE_SMALL, CENTER, AutoYPosN (5), param.scale);
-	
+	Tex.Draw (T_TITLE_SMALL, CENTER, AutoYPosN (5), param.scale);
+
 
 	Reshape (ww, hh);
     Winsys.SwapBuffers();

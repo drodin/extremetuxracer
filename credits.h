@@ -18,6 +18,7 @@ GNU General Public License for more details.
 #define CREDITS_H
 
 #include "bh.h"
+#include <list>
 
 #define MAX_CREDITS 64
 
@@ -30,8 +31,7 @@ struct TCredits {
 };
 
 class CCredits : public State {
-	TCredits CreditList[MAX_CREDITS];
-	int numCredits;
+	list<TCredits> CreditList;
 
 	void DrawCreditsText(double time_step);
 	void Enter();
@@ -40,7 +40,6 @@ class CCredits : public State {
 	void Mouse(int button, int state, int x, int y);
 	void Motion(int x, int y);
 public:
-	CCredits() : numCredits(0) {}
 	void LoadCreditList();
 };
 
