@@ -16,7 +16,7 @@ GNU General Public License for more details.
 ---------------------------------------------------------------------*/
 
 #ifndef OGL_TEST_H
-#define OGL_TEST_H_
+#define OGL_TEST_H
 
 #include "bh.h"
 

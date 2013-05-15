@@ -48,7 +48,7 @@ CWinsys::CWinsys () {
 	resolution[7] = MakeRes (1400, 1050);
 	resolution[8] = MakeRes (1440, 900);
 	resolution[9] = MakeRes (1680, 1050);
-	
+
 	auto_x_resolution = 800;
 	auto_y_resolution = 600;
 
@@ -79,22 +79,10 @@ string CWinsys::GetResName (size_t idx) {
 
 double CWinsys::CalcScreenScale () {
 	double hh = (double)param.y_resolution;
-	if (hh < 768) return 0.78; 
+	if (hh < 768) return 0.78;
 	else if (hh == 768) return 1.0;
 	else return (hh / 768);
 }
-
-/*
-typedef struct SDL_Surface {
-    Uint32 flags;                           // Read-only 
-    SDL_PixelFormat *format;                // Read-only 
-    int w, h;                               // Read-only 
-    Uint16 pitch;                           // Read-only 
-    void *pixels;                           // Read-write 
-    SDL_Rect clip_rect;                     // Read-only 
-    int refcount;                           // Read-mostly
-} SDL_Surface;
-*/
 
 void CWinsys::SetupVideoMode (TScreenRes resolution) {
     int bpp = 0;
@@ -106,9 +94,9 @@ void CWinsys::SetupVideoMode (TScreenRes resolution) {
 		case 2:	bpp = 32; break;
 		default: param.bpp_mode = 0; bpp = 0;
     }
-	if ((screen = SDL_SetVideoMode 
+	if ((screen = SDL_SetVideoMode
 	(resolution.width, resolution.height, bpp, video_flags)) == NULL) {
-		Message ("couldn't initialize video",  SDL_GetError()); 
+		Message ("couldn't initialize video",  SDL_GetError());
 		Message ("set to 800 x 600");
 		screen = SDL_SetVideoMode (800, 600, bpp, video_flags);
 		param.res_type = 1;
@@ -142,8 +130,8 @@ void CWinsys::InitJoystick () {
 	numJoysticks = SDL_NumJoysticks ();
 	if (numJoysticks < 1) {
 		joystick = NULL;
-		return;		
-	}	
+		return;
+	}
 	SDL_JoystickEventState (SDL_ENABLE);
 	joystick = SDL_JoystickOpen (0);	// first stick with number 0
     if (joystick == NULL) {
@@ -161,7 +149,7 @@ void CWinsys::Init () {
 	#if defined (USE_STENCIL_BUFFER)
 	    SDL_GL_SetAttribute (SDL_GL_STENCIL_SIZE, 8);
 	#endif
-	
+
 	SetupVideoMode (GetResolution (param.res_type));
 	Reshape (param.x_resolution, param.y_resolution);
 
@@ -172,7 +160,7 @@ void CWinsys::Init () {
 }
 
 void CWinsys::KeyRepeat (bool repeat) {
-	if (repeat) 
+	if (repeat)
 		SDL_EnableKeyRepeat (SDL_DEFAULT_REPEAT_DELAY, SDL_DEFAULT_REPEAT_INTERVAL);
 	else SDL_EnableKeyRepeat (0, 0);
 }
@@ -186,7 +174,7 @@ void CWinsys::SetFonttype () {
 }
 
 void CWinsys::CloseJoystick () {
-	if (joystick_active) SDL_JoystickClose (joystick);	
+	if (joystick_active) SDL_JoystickClose (joystick);
 }
 
 void CWinsys::Quit () {

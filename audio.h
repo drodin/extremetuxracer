@@ -75,16 +75,19 @@ public:
 //				class CMusic
 // --------------------------------------------------------------------
 
-#define MUS_RACING 0
-#define MUS_WONRACE 1
-#define MUS_LOSTRACE 2
+enum ESituation {
+	MUS_RACING = 0,
+	MUS_WONRACE = 1,
+	MUS_LOSTRACE = 2,
+	SITUATION_COUNT
+};
 
 class CMusic {
 private:
 	vector<Mix_Music*> musics;
 	map<string, size_t> MusicIndex;
 
-	struct Situation {size_t situation[3];};
+	struct Situation {size_t situation[SITUATION_COUNT];};
 	vector<Situation> themes;
 	map<string, size_t> ThemesIndex;
 
@@ -106,7 +109,7 @@ public:
 	bool Play (const string& name, int loop);
 	bool Play (size_t musid, int loop, int volume);
 	bool Play (const string& name, int loop, int volume);
-	bool PlayTheme (size_t theme, size_t situation);
+	bool PlayTheme (size_t theme, ESituation situation);
 	void Refresh (const string& name);
 	void Halt ();
 	void FreeMusics ();

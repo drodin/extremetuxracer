@@ -25,7 +25,6 @@ module.
 #include FT_OUTLINE_H
 
 typedef double FTGL_DOUBLE;
-typedef float  FTGL_FLOAT;
 
 #ifndef FT_OPEN_MEMORY
     #define FT_OPEN_MEMORY (FT_Open_Flags)1

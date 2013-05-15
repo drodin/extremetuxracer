@@ -16,7 +16,7 @@ GNU General Public License for more details.
 ---------------------------------------------------------------------*/
 
 #ifndef TOOLS_H
-#define TOOLS_H_
+#define TOOLS_H
 
 #include "bh.h"
 

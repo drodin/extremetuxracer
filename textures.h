@@ -60,13 +60,10 @@ GNU General Public License for more details.
 #define CHECKBOX 37
 #define CHECKMARK_SMALL 38
 #define CHECKMARK 39
-
 #define T_WIDGETS 40
 #define T_SNOW1 41
 #define T_SNOW2 42
 #define T_SNOW3 43
-#define WORD_SPACE 6
-#define LETTER_SPACE -3
 
 #define BF_TYPE 0x4D42             // "MB"
 
@@ -147,10 +144,6 @@ public:
 // --------------------------------------------------------------------
 //				class CTexture
 // --------------------------------------------------------------------
-
-#define TEX_WIDGETS 0
-#define TEX_NUMERIC_FONT 1
-#define TEX_LOGO 2
 
 class TTexture {
 	TTexture(const TTexture&);

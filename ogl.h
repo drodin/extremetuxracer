@@ -23,7 +23,7 @@ GNU General Public License for more details.
 #define FAR_CLIP_FUDGE_AMOUNT 5
 #define NEAR_CLIP_DIST 0.1
 
-typedef enum {
+enum TRenderMode {
     GUI,
     GAUGE_BARS,
     TEXFONT,
@@ -35,7 +35,7 @@ typedef enum {
     SKY,
     FOG_PLANE,
     TRACK_MARKS,
-} TRenderMode;
+};
 
 
 #undef GL_EXT_compiled_vertex_array

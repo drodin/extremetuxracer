@@ -104,14 +104,6 @@ void QuitAndAddPlayer () {
 	State::manager.RequestEnterState (Regist);
 }
 
-/*
-typedef struct{
-  Uint8 scancode;
-  SDLKey sym;
-  SDLMod mod;
-  Uint16 unicode;
-} SDL_keysym;*/
-
 void CNewPlayer::Keyb_spec (SDL_keysym sym, bool release) {
 	if (release) return;
 	unsigned int key = sym.sym;

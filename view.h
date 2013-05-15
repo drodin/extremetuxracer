@@ -30,11 +30,11 @@ void SetCameraDistance (double val);
 
 // ------------- viewfrustum ------------------------------------------
 
-typedef enum {
+enum clip_result_t {
     NoClip,
     SomeClip,
     NotVisible
-} clip_result_t;
+};
 
 void SetupViewFrustum (CControl *ctrl);
 clip_result_t clip_aabb_to_view_frustum (const TVector3& min, const TVector3& max );
