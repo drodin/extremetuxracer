@@ -489,7 +489,7 @@ void CTexture::LoadTextureList () {
 	FreeTextureList();
 	CSPList list (200);
 	if (list.Load (param.tex_dir, "textures.lst")) {
-		for (int i=0; i<list.Count(); i++) {
+		for (size_t i=0; i<list.Count(); i++) {
 			string line = list.Line (i);
 			string name = SPStrN (line, "name", "");
 			int id = SPIntN (line, "id", -1);
@@ -517,7 +517,7 @@ void CTexture::FreeTextureList () {
 	Index.clear();
 }
 
-TTexture* CTexture::GetTexture (int idx) const {
+TTexture* CTexture::GetTexture (size_t idx) const {
 	if (idx >= CommonTex.size() || idx < 0) return NULL;
 	return CommonTex[idx];
 }
@@ -526,7 +526,7 @@ TTexture* CTexture::GetTexture (const string& name) const {
 	return Index.at(name);
 }
 
-bool CTexture::BindTex (int idx) {
+bool CTexture::BindTex (size_t idx) {
 	if (idx < 0 || idx >= CommonTex.size()) return false;
 	CommonTex[idx]->Bind();
 	return true;
@@ -543,7 +543,7 @@ bool CTexture::BindTex (const string& name) {
 
 // ---------------------------- Draw ----------------------------------
 
-void CTexture::Draw (int idx) {
+void CTexture::Draw (size_t idx) {
 	CommonTex[idx]->Draw();
 }
 
@@ -551,7 +551,7 @@ void CTexture::Draw (const string& name) {
 	Index[name]->Draw();
 }
 
-void CTexture::Draw (int idx, int x, int y, float size) {
+void CTexture::Draw (size_t idx, int x, int y, float size) {
 	CommonTex[idx]->Draw(x, y, size, forientation);
 }
 
@@ -559,7 +559,7 @@ void CTexture::Draw (const string& name, int x, int y, float size) {
 	Index[name]->Draw(x, y, size, forientation);
 }
 
-void CTexture::Draw (int idx, int x, int y, int width, int height) {
+void CTexture::Draw (size_t idx, int x, int y, int width, int height) {
 	CommonTex[idx]->Draw (x, y, width, height, forientation);
 }
 
@@ -567,7 +567,7 @@ void CTexture::Draw (const string& name, int x, int y, int width, int height) {
 	Index[name]->Draw (x, y, width, height, forientation);
 }
 
-void CTexture::DrawFrame (int idx, int x, int y, double w, double h, int frame, const TColor& col) {
+void CTexture::DrawFrame (size_t idx, int x, int y, double w, double h, int frame, const TColor& col) {
 	CommonTex[idx]->DrawFrame (x, y, w, h, frame, col);
 }
 

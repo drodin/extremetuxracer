@@ -210,7 +210,7 @@ void RenderSingleFrame (double timestep) {
 	FT.SetFont ("normal");
 	FT.SetSize (16);
 	int xl, yt;
-	for (int i=0; i<TestFrame.numFrames(); i++) {
+	for (size_t i=0; i<TestFrame.numFrames(); i++) {
 		if (i != curr_frame) {
 			FT.SetColor (colLGrey);
 			FT.SetFont ("normal");
@@ -218,9 +218,9 @@ void RenderSingleFrame (double timestep) {
 			FT.SetColor (colYellow);
 			FT.SetFont ("bold");
 		}
-		xl = ITrunc (i, framebase) * 100 + 20;
-		yt = IFrac (i, framebase) * 18 + 20;
-		FT.DrawString (xl, yt, Int_StrN (i));
+		xl = ITrunc ((int)i, framebase) * 100 + 20;
+		yt = IFrac ((int)i, framebase) * 18 + 20;
+		FT.DrawString (xl, yt, Int_StrN ((int)i));
 	}
 
 	FT.SetFont ("normal");

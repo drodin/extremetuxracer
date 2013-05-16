@@ -74,7 +74,7 @@ void CIntro::Enter() {
 
     size_t num_items = Course.NocollArr.size();
     TItem* item_locs = &Course.NocollArr[0];
-    for (int i = 0; i < num_items; i++) {
+    for (size_t i = 0; i < num_items; i++) {
 		if (item_locs[i].collectable != -1) {
 		    item_locs[i].collectable = 1;
 		}

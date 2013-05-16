@@ -204,7 +204,7 @@ void CControl::CheckItemCollection (const TVector3& pos) {
     TItem *items = &Course.NocollArr[0];
     size_t num_items = Course.NocollArr.size();
 
-    for (int i=0; i<num_items; i++) {
+    for (size_t i=0; i<num_items; i++) {
 		if (items[i].collectable != 1) continue;
 
 		double diam = items[i].diam;
@@ -453,7 +453,7 @@ TVector3 CControl::CalcNetForce (const TVector3& pos, const TVector3& vel) {
 	Course.GetSurfaceType (ff.pos.x, ff.pos.z, &surfweights[0]);
 	TTerrType *TerrList = &Course.TerrList[0];
 	ff.frict_coeff = ff.comp_depth = 0;	
-    for (int i=0; i<Course.TerrList.size(); i++) {
+    for (size_t i=0; i<Course.TerrList.size(); i++) {
 		ff.frict_coeff += surfweights[i] * TerrList[i].friction;
 		ff.comp_depth += surfweights[i] * TerrList[i].depth;
 	}

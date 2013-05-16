@@ -687,7 +687,7 @@ bool IntersectPolygon (const TPolygon& p, TVector3 *v) {
 
 bool IntersectPolyhedron (const TPolyhedron& p) {
     bool hit = false;
-    for (int i=0; i<p.num_polygons; i++) {
+    for (size_t i=0; i<p.num_polygons; i++) {
         hit = IntersectPolygon (p.polygons[i], p.vertices);
         if  (hit == true) break;
     } 
@@ -718,7 +718,7 @@ void FreePolyhedron (const TPolyhedron& ph) {
 } 
 
 void TransPolyhedron (TMatrix mat, const TPolyhedron& ph) {
-    for (int i=0; i<ph.num_vertices; i++)
+    for (size_t i=0; i<ph.num_vertices; i++)
         ph.vertices[i] = TransformPoint (mat, ph.vertices[i]);
 } 
 

@@ -544,7 +544,7 @@ void TFlakeArea::Draw (CControl *ctrl) const {
 }
 
 void TFlakeArea::Update(float timestep, float xcoeff, float ycoeff, float zcoeff) {
-	for (int i=0; i<flakes.size(); i++) {
+	for (size_t i=0; i<flakes.size(); i++) {
 		flakes[i].pt.x += xcoeff;
 		flakes[i].pt.y += flakes[i].vel.y * timestep + ycoeff;
 		flakes[i].pt.z += zcoeff;

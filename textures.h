@@ -179,21 +179,21 @@ public:
 	void LoadTextureList ();
 	void FreeTextureList ();
 
-	TTexture* GetTexture (int idx) const;
+	TTexture* GetTexture (size_t idx) const;
 	TTexture* GetTexture (const string& name) const;
-	bool BindTex (int idx);
+	bool BindTex (size_t idx);
 	bool BindTex (const string& name);
 
-	void Draw (int idx);
+	void Draw (size_t idx);
 	void Draw (const string& name);
 
-	void Draw (int idx, int x, int y, float size);
+	void Draw (size_t idx, int x, int y, float size);
 	void Draw (const string& name, int x, int y, float size);
 
-	void Draw (int idx, int x, int y, int width, int height);
+	void Draw (size_t idx, int x, int y, int width, int height);
 	void Draw (const string& name, int x, int y, int width, int height);
 
-	void DrawFrame (int idx, int x, int y, double w, double h, int frame, const TColor& col);
+	void DrawFrame (size_t idx, int x, int y, double w, double h, int frame, const TColor& col);
 	void DrawFrame (const string& name, int x, int y, double w, double h, int frame, const TColor& col);
 
 	void SetOrientation (Orientation orientation);

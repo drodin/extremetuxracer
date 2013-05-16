@@ -121,7 +121,7 @@ void CTranslation::LoadLanguages () {
 	}
 
 	languages.resize(list.Count());
-	for (int i=0; i<list.Count(); i++) {
+	for (size_t i=0; i<list.Count(); i++) {
 		string line = list.Line(i);
 		languages[i].lang = SPStrN (line, "lang", "en_GB");
 		languages[i].language = SPStrN (line, "language", "English");
@@ -158,7 +158,7 @@ void CTranslation::LoadTranslations (size_t langidx) {
 		return;
 	}
 
-	for (int i=0; i<list.Count(); i++) {
+	for (size_t i=0; i<list.Count(); i++) {
 		string line = list.Line(i);
 		int idx = SPIntN (line, "idx", -1);
 		if (idx >= 0 && idx < MAX_COMMON_TEXTS) {

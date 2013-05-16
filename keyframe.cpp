@@ -102,7 +102,7 @@ bool CKeyframe::Load (const string& dir, const string& filename) {
 
 	if (list.Load (dir, filename)) {
 		frames.resize(list.Count());
-		for (int i=0; i<list.Count(); i++) {
+		for (size_t i=0; i<list.Count(); i++) {
 			string line = list.Line (i);
 			frames[i].val[0] = SPFloatN (line, "time", 0);
 			TVector3 posit = SPVector3N (line, "pos", MakeVector (0, 0, 0));

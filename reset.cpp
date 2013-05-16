@@ -76,7 +76,7 @@ void CReset::Loop(double time_step) {
 		num_item_types = Course.ObjTypes.size();
 		first_reset = 0;
 		last_reset = 0;
-		for (int i = 0; i < num_item_types; i++) {
+		for (size_t i = 0; i < num_item_types; i++) {
 		    if (object_types[i].reset_point == true) {
 				last_reset = first_reset + object_types[i].num_items - 1;
 				break;

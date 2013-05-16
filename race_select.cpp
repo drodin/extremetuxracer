@@ -187,7 +187,7 @@ void CRaceSelect::Loop(double timestep) {
 	FT.AutoSizeN (2);
 	FT.SetColor (colWhite);
 	int dist = FT.AutoDistanceN (0);
-	for (int i=0; i<CourseList[course->GetValue()].num_lines; i++) {
+	for (size_t i=0; i<CourseList[course->GetValue()].num_lines; i++) {
 		FT.DrawString (boxleft+8, prevtop+i*dist, CourseList[course->GetValue()].desc[i]);
 	}
 	

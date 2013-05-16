@@ -199,8 +199,6 @@ quadsquare*	quadsquare::GetNeighbor(int dir, const quadcornerdata& cd)
 float quadsquare::RecomputeError(const quadcornerdata& cd)
 {
     int	i;
-    int j;
-    int t;
     int	half = 1 << cd.Level;
     int	whole = half << 1;
     float terrain_error;
@@ -332,12 +330,12 @@ float quadsquare::RecomputeError(const quadcornerdata& cd)
 
     int *terrain_count = new int[(int)numTerr];
 
-    for (t=0; t<numTerr; t++) {
+    for (size_t t=0; t<numTerr; t++) {
 	terrain_count[t] = 0;
     }
 
     for (i=cd.xorg; i<=cd.xorg+whole; i++) {
-	for (j=cd.zorg; j<=cd.zorg+whole; j++) {
+	for (int j=cd.zorg; j<=cd.zorg+whole; j++) {
 
 	    if  (i < 0 || i >= RowSize ||
 		 j < 0 || j >= NumRows )
@@ -351,12 +349,10 @@ float quadsquare::RecomputeError(const quadcornerdata& cd)
     }
 
     int max_count = 0;
-    int max_type = 0;
     int total = 0;
-    for (t=0; t<numTerr; t++) {
+    for (size_t t=0; t<numTerr; t++) {
 	if  (terrain_count[t] > max_count ) {
 	    max_count = terrain_count[t];
-	    max_type = t;
 	}
 	total += terrain_count[t];
     }

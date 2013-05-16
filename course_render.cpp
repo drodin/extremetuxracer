@@ -69,7 +69,7 @@ void DrawTrees() {
     TCollidable* treeLocs = &Course.CollArr[0];
     size_t numTrees = Course.CollArr.size();
 
-    for (int i = 0; i< numTrees; i++) {
+    for (size_t i = 0; i< numTrees; i++) {
 		if (clip_course) {
 			if (ctrl->viewpos.z - treeLocs[i].pt.z > fwd_clip_limit) continue;
 		    if (treeLocs[i].pt.z - ctrl->viewpos.z > bwd_clip_limit) continue;
@@ -121,7 +121,7 @@ void DrawTrees() {
 	TItem* itemLocs = &Course.NocollArr[0];
 	size_t numItems = Course.NocollArr.size();
 
-    for (int i = 0; i< numItems; i++) {
+    for (size_t i = 0; i< numItems; i++) {
 		if (itemLocs[i].collectable == 0 || itemLocs[i].drawable == false) continue;
 		if (clip_course) {
 		    if (ctrl->viewpos.z - itemLocs[i].pt.z > fwd_clip_limit) continue;

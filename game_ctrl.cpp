@@ -37,7 +37,7 @@ bool CEvents::LoadEventList () {
 	}
 
 	// pass 1: races
-	for (int i=0; i<list.Count(); i++) {
+	for (size_t i=0; i<list.Count(); i++) {
 		string line = list.Line (i);
 		int type = SPIntN (line, "struct", -1);
 		if (type == 0) {
@@ -57,7 +57,7 @@ bool CEvents::LoadEventList () {
 	list.MakeIndex (RaceIndex, "race");
 
 	// pass 2: cups
-	for (int i=0; i<list.Count(); i++) {
+	for (size_t i=0; i<list.Count(); i++) {
 		string line = list.Line (i);
 		int type = SPIntN (line, "struct", -1);
 		if (type == 1) {
@@ -76,7 +76,7 @@ bool CEvents::LoadEventList () {
 	list.MakeIndex (CupIndex, "cup");
 
 	// pass 3: events
-	for (int i=0; i<list.Count(); i++) {
+	for (size_t i=0; i<list.Count(); i++) {
 		string line = list.Line (i);
 		int type = SPIntN (line, "struct", -1);
 		if (type == 2) {
@@ -196,7 +196,7 @@ bool CPlayers::LoadPlayers () {
 
 	g_game.start_player = 0;
 	plyr.resize(list.Count());
-	for (int i=0; i<list.Count(); i++) {
+	for (size_t i=0; i<list.Count(); i++) {
 		string line = list.Line(i);
 		plyr[i].name = SPStrN (line, "name", "unknown");
 		plyr[i].funlocked = SPStrN (line, "unlocked", "");
@@ -218,7 +218,7 @@ void CPlayers::SavePlayers () const {
 	string playerfile = param.config_dir + SEP + "players";
 	CSPList list(MAX_PLAYERS);
 	string item = "";
-	for (int i=0; i<plyr.size(); i++) {
+	for (size_t i=0; i<plyr.size(); i++) {
 		item = "*[name]" + plyr[i].name;
 		item +="[avatar]" + plyr[i].avatar;
 		item += "[unlocked]" + plyr[i].funlocked;
@@ -254,7 +254,7 @@ string CPlayers::GetName (size_t player) const {
 }
 
 void CPlayers::ResetControls () {
-	for (int i=0; i<plyr.size(); i++) {
+	for (size_t i=0; i<plyr.size(); i++) {
 		if (plyr[i].ctrl != NULL) {
 			delete plyr[i].ctrl;
 			plyr[i].ctrl = NULL;
@@ -280,7 +280,7 @@ void CPlayers::LoadAvatars () {
 	}
 
 	AvatarIndex.clear();
-	for (int i=0; i<list.Count(); i++) {
+	for (size_t i=0; i<list.Count(); i++) {
 		string line = list.Line (i);
 		string filename = SPStrN (line, "file", "unknown");
 		TTexture* texture = new TTexture();
@@ -321,7 +321,7 @@ void CCharacter::LoadCharacterList () {
 	}
 
 	CharList.resize(list.Count());
-	for (int i=0; i<list.Count(); i++) {
+	for (size_t i=0; i<list.Count(); i++) {
 		string line = list.Line (i);
 		CharList[i].name = SPStrN (line, "name", "");
 		CharList[i].dir = SPStrN (line, "dir", "");
@@ -360,7 +360,7 @@ void CCharacter::LoadCharacterList () {
 }
 
 void CCharacter::FreeCharacterPreviews () {
-	for (int i=0; i<CharList.size(); i++) {
+	for (size_t i=0; i<CharList.size(); i++) {
 		delete CharList[i].preview;
 	}
 }

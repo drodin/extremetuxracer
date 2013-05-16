@@ -37,7 +37,7 @@ private:
 	TKeyframe clipboard;
 	double keytime;
 	double heightcorr;
-	int keyidx;
+	size_t keyidx;
 
 	double interp (double frac, double v1, double v2);
 	void InterpolateKeyframe (size_t idx, double frac, CCharShape *shape);

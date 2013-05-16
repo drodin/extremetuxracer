@@ -392,7 +392,7 @@ void DrawLevel (int x, int y, int level, double fact) {
 	glEnd();
 }
 
-void DrawBonus (int x, int y, int max, size_t num) {
+void DrawBonus (int x, int y, size_t max, size_t num) {
     TVector2 bl, tr;
 
 	bl.y = param.y_resolution - y - 32;
@@ -403,7 +403,7 @@ void DrawBonus (int x, int y, int max, size_t num) {
 	Tex.BindTex (TUXBONUS);
 	glColor4f (1.0, 1.0, 1.0, 1.0);
 
-	for (int i=0; i<max; i++) {
+	for (size_t i=0; i<max; i++) {
 		bl.x = x + i * 40;
 		tr.x = bl.x + 32;
 
@@ -456,11 +456,11 @@ void DrawBonusExt (int y, size_t numraces, size_t num) {
 	Tex.BindTex (TUXBONUS);
 	glColor4f (1.0, 1.0, 1.0, 1.0);
 
-	for (int i=0; i<(int)maxtux; i++) {
-		int majr = (int)(i/numraces);
-		int minr = i - majr * (int)numraces;
+	for (size_t i=0; i<maxtux; i++) {
+		size_t majr = (i/numraces);
+		size_t minr = i - majr * numraces;
 		if (majr > 2) majr = 2;
-		bl.x = lleft[majr] + minr * 40 + 6;
+		bl.x = lleft[majr] + (int)minr * 40 + 6;
 		tr.x = bl.x + 32;
 
 		// with tux outlines:
@@ -507,10 +507,10 @@ static int focussed = -1;
 TWidget* MouseMoveGUI(int x, int y) {
 	if(cursor_x != x || cursor_y != y) {
 		focussed = -1;
-		for(int i = 0; i < Widgets.size(); i++) {
+		for(size_t i = 0; i < Widgets.size(); i++) {
 			Widgets[i]->MouseMove(x, y);
 			if(Widgets[i]->focussed())
-				focussed = i;
+				focussed = (int)i;
 		}
 		cursor_x = x;
 		cursor_y = y;
@@ -541,7 +541,7 @@ void SetFocus(TWidget* widget) {
 	if(!widget)
 		focussed = -1;
 	else
-		for(int i = 0; i < Widgets.size(); i++)
+		for(int i = 0; i < (int)Widgets.size(); i++)
 			if(Widgets[i] == widget) {
 				focussed = i;
 				break;
@@ -553,7 +553,7 @@ void IncreaseFocus() {
 		Widgets[focussed]->focus = false;
 
 	focussed++;
-	if(focussed >= Widgets.size())
+	if(focussed >= (int)Widgets.size())
 		focussed = 0;
 	int end = focussed;
 	// Select only active widgets
@@ -562,7 +562,7 @@ void IncreaseFocus() {
 			break;
 
 		focussed++;
-		if(focussed >= Widgets.size())
+		if(focussed >= (int)Widgets.size())
 			focussed = 0;
 	} while(end != focussed);
 

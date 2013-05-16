@@ -63,14 +63,14 @@ void InitCharTools () {
 }
 
 void StoreAction (TCharAction *act) {
-	for (int i=0; i<=act->num; i++) {
+	for (size_t i=0; i<=act->num; i++) {
 		Undo.vec[i] = act->vec[i];
 		Undo.dval[i] = act->dval[i];
 	}
 }
 
 void RecallAction (TCharAction *act) {
-	for (int i=0; i<=act->num; i++) {
+	for (size_t i=0; i<=act->num; i++) {
 		act->vec[i] = Undo.vec[i];
 		act->dval[i] = Undo.dval[i];
 	}
@@ -315,7 +315,7 @@ void RenderChar (double timestep) {
 	FT.SetFont ("normal");
 	FT.SetSize (16);
 	int xl, yt;
-	for (int i=0; i<=lastnode; i++) {
+	for (size_t i=0; i<=lastnode; i++) {
 		if (i != curr_node) {
 			FT.SetColor (colLGrey); 
 			FT.SetFont ("normal");
@@ -323,8 +323,8 @@ void RenderChar (double timestep) {
 			FT.SetColor (colYellow);
 			FT.SetFont ("bold");
 		}
-		xl = ITrunc (i, charbase) * 100 + 20;
-		yt = IFrac (i, charbase) * 18 + 60;
+		xl = ITrunc ((int)i, charbase) * 100 + 20;
+		yt = IFrac ((int)i, charbase) * 18 + 60;
 		FT.DrawString (xl, yt, TestChar.GetNodeJoint (i));		
 	}
 
