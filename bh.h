@@ -94,10 +94,10 @@ GNU General Public License for more details.
 //			defines
 // --------------------------------------------------------------------
 
+#include "version.h"
 #define PROG_NAME "ETR"
 #define PACKAGE "etr"
-#define VERSION "0.6"
-#define WINDOW_TITLE "Extreme Tux Racer " VERSION
+#define WINDOW_TITLE "Extreme Tux Racer " ETR_VERSION_STRING
 
 using namespace std;
 

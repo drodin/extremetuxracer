@@ -159,6 +159,9 @@
     <ClInclude Include="..\game_over.h">
       <Filter>Header files</Filter>
     </ClInclude>
+    <ClInclude Include="..\version.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\tux.cpp">
@@ -302,5 +305,10 @@
     <ClCompile Include="..\translation.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\version.rc">
+      <Filter>Resource files</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

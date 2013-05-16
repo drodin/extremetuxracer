@@ -204,6 +204,7 @@
     <ClInclude Include="..\track_marks.h" />
     <ClInclude Include="..\translation.h" />
     <ClInclude Include="..\tux.h" />
+    <ClInclude Include="..\version.h" />
     <ClInclude Include="..\view.h" />
     <ClInclude Include="..\winsys.h" />
   </ItemGroup>
@@ -255,6 +256,9 @@
     <ClCompile Include="..\tux.cpp" />
     <ClCompile Include="..\view.cpp" />
     <ClCompile Include="..\winsys.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\version.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
