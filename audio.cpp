@@ -201,7 +201,6 @@ CMusic::CMusic () {
 	curr_musid = -1;
 	curr_volume = 10;
 	loop_count = 0;
-	is_playing = false;
 //	Mix_HookMusicFinished (Hook);
 }
 
@@ -269,7 +268,6 @@ void CMusic::FreeMusics () {
 
 	curr_musid = -1;
 	curr_volume = 10;
-	is_playing = false;
 }
 
 size_t CMusic::GetMusicIdx (const string& name) const {

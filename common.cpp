@@ -252,16 +252,6 @@ void GetTimeComponents (double time, int *min, int *sec, int *hundr) {
     *hundr = ((int) (time * 100 + 0.5) ) % 100;
 }
 
-void GetTestTime () {
-	time_t rawtime;			// seconds since 1. January 1970
-	struct tm * timeinfo;	// see above
-
-	time (&rawtime);
-	timeinfo = localtime (&rawtime);
-	PrintInt (timeinfo->tm_year + 1900);
-	PrintStr (asctime (timeinfo));
-}
-
 string GetTimeString1 () {
 	time_t rawtime;
 	struct tm * timeinfo;

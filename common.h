@@ -104,7 +104,6 @@ void	SaveMessages ();
 // --------------------------------------------------------------------
 
 void GetTimeComponents (double time, int *min, int *sec, int *hundr);
-void GetTestTime ();
 string GetTimeString1 ();
 
 size_t write_word (FILE *fp, uint16_t w);

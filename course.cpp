@@ -35,46 +35,38 @@ CCourse::CCourse () {
 	nmls = NULL;
 	vnc_array = NULL;
 
-	curr_course = -1;
+	curr_course = NULL;
 }
 
 const TVector2& CCourse::GetStartPoint () const {
 	return start_pt;
 }
 
-void CCourse::SetStartPoint (const TVector2& p)	{
-	start_pt = p;
-}
-
 double CCourse::GetBaseHeight (double distance) const {
-    double slope = tan (ANGLES_TO_RADIANS (course_angle));
+    double slope = tan (ANGLES_TO_RADIANS (curr_course->angle));
     double base_height;
 
     base_height = -slope * distance -
-	base_height_value / 255.0 * elev_scale;
+	base_height_value / 255.0 * curr_course->scale;
     return base_height;
 }
 
 double CCourse::GetMaxHeight (double distance) const {
-    return GetBaseHeight (distance) + elev_scale;
+    return GetBaseHeight (distance) + curr_course->scale;
 }
 
 double CCourse::GetCourseAngle () const {
-	return course_angle;
-}
-
-double CCourse::GetCourseDescent () const {
-	return course_descent;
+	return curr_course->angle;
 }
 
 void CCourse::GetDimensions (double *w, double *l) const {
-    *w = width;
-    *l = length;
+    *w = curr_course->width;
+    *l = curr_course->length;
 }
 
 void CCourse::GetPlayDimensions (double *pw, double *pl) const {
-    *pw = play_width;
-    *pl = play_length;
+    *pw = curr_course->play_width;
+    *pl = curr_course->play_length;
 }
 
 void CCourse::GetDivisions (int *x, int *y) const {
@@ -258,9 +250,9 @@ void CCourse::FillGlArrays() {
 		for (int y=0; y<ny; y++) {
 			int idx = STRIDE_GL_ARRAY * (y * nx + x);
 
-			FLOATVAL(0) = (GLfloat)x / (nx-1.0) * width;
+			FLOATVAL(0) = (GLfloat)x / (nx-1.0) * curr_course->width;
 			FLOATVAL(1) = elevation[(x) + nx*(y)];
-			FLOATVAL(2) = -(GLfloat)y / (ny-1.0) * length;
+			FLOATVAL(2) = -(GLfloat)y / (ny-1.0) * curr_course->length;
 
 			const TVector3& nml = normals[ x + y * nx ];
 			FLOATVAL(4) = nml.x;
@@ -343,9 +335,6 @@ void CCourse::MakeStandardPolyhedrons () {
 	PolyArr[1].polygons[7].vertices[0] = 4;
 	PolyArr[1].polygons[7].vertices[1] = 5;
 	PolyArr[1].polygons[7].vertices[2] = 3;
-
-	PolyIndex["none"] = 0;
-	PolyIndex["tree"] = 1;
 }
 
 void CCourse::FreeTerrainTextures () {
@@ -383,14 +372,14 @@ bool CCourse::LoadElevMap () {
 		return false;
     }
 
-    double slope = tan (ANGLES_TO_RADIANS (course_angle));
+    double slope = tan (ANGLES_TO_RADIANS (curr_course->angle));
     int pad = 0;
     for (int y=0; y<ny; y++) {
         for (int x=0; x<nx; x++) {
 			elevation [(nx-1-x) + nx * (ny-1-y)] =
 				((img.data [(x+nx*y) * img.depth + pad]
-			    - base_height_value) / 255.0) * elev_scale
-				- (double)(ny-1-y) / ny * length * slope;
+			    - base_height_value) / 255.0) * curr_course->scale
+				- (double)(ny-1-y) / ny * curr_course->length * slope;
    	     }
         pad += (nx * img.depth) % 4;
     }
@@ -417,8 +406,8 @@ void CCourse::LoadItemList () {
 		int z = SPIntN (line, "z", 0);
 		double height = SPFloatN (line, "height", 1);
 		double diam = SPFloatN (line, "diam", 1);
-		double xx = (nx - x) / (double)(nx - 1.0) * width;
-		double zz = -(ny - z) / (double)(ny - 1.0) * length;
+		double xx = (nx - x) / (double)(nx - 1.0) * curr_course->width;
+		double zz = -(ny - z) / (double)(ny - 1.0) * curr_course->length;
 
 		string name = SPStrN (line, "name", "");
 		size_t type = ObjectIndex[name];
@@ -454,7 +443,7 @@ void CCourse::LoadItemList () {
 // --------------------	LoadObjectMap ---------------------------------
 
 
-int GetObject (unsigned char pixel[]) {
+static int GetObject (unsigned char pixel[]) {
 	int r = pixel[0];
 	int g = pixel[1];
 	int b = pixel[2];
@@ -481,7 +470,7 @@ const double sizefact[6] = {0.5, 0.5, 0.7, 1.0, 1.4, 2.0};
 const double varfact[6] = {1.0, 1.0, 1.22, 1.41, 1.73, 2.0};
 const double diamfact = 1.4;
 
-void CalcRandomTrees (double baseheight, double basediam, double &height, double &diam) {
+static void CalcRandomTrees (double baseheight, double basediam, double &height, double &diam) {
 	double hhh = baseheight * sizefact[g_game.treesize];
 	double minsiz = hhh / varfact[g_game.treevar];
 	double maxsiz = hhh * varfact[g_game.treevar];
@@ -510,8 +499,8 @@ bool CCourse::LoadObjectMap () {
 			int type = GetObject (&treeImg.data[imgidx]);
 			if (type >= 0) {
 				cnt++;
-				double xx = (nx - x) / (double)(nx - 1.0) * width;
-				double zz = -(ny - y) / (double)(ny - 1.0) * length;
+				double xx = (nx - x) / (double)(nx - 1.0) * curr_course->width;
+				double zz = -(ny - y) / (double)(ny - 1.0) * curr_course->length;
 				if (ObjTypes[type].texture == NULL && ObjTypes[type].drawable) {
 					string terrpath = param.obj_dir + SEP + ObjTypes[type].textureFile;
 					ObjTypes[type].texture = new TTexture();
@@ -786,7 +775,7 @@ void CCourse::FreeCourseList () {
 }
 
 //  ===================================================================
-//           		LoadCourse
+//					LoadCourse
 //  ===================================================================
 
 void CCourse::ResetCourse () {
@@ -798,32 +787,25 @@ void CCourse::ResetCourse () {
 	FreeTerrainTextures ();
 	FreeObjectTextures ();
 	ResetQuadtree ();
-	curr_course = -1;
+	curr_course = NULL;
 }
 
 bool CCourse::LoadCourse (size_t idx) {
 	if (idx >= CourseList.size()) {
 		Message ("wrong course index");
-		curr_course = -1;
+		curr_course = NULL;
 		return false;
 	}
 
-	if (idx == curr_course && !g_game.force_treemap) return true;
+	if (&CourseList[idx] == curr_course && !g_game.force_treemap) return true;
 
 	ResetCourse ();
-	CourseDir = param.common_course_dir + SEP + CourseList[idx].dir;
+	curr_course = &CourseList[idx];
+	CourseDir = param.common_course_dir + SEP + curr_course->dir;
 
-	width = CourseList[idx].width;
-	length = CourseList[idx].length;
-	play_width = CourseList[idx].play_width;
-	play_length = CourseList[idx].play_length;
-	course_angle = CourseList[idx].angle;
-	course_descent = tan (course_angle * 6.2832 / 360.0) * length;
-	elev_scale = CourseList[idx].scale;
 	start_pt.x = CourseList[idx].startx;
 	start_pt.y = -CourseList[idx].starty;
     base_height_value = 127;
-	env = CourseList[idx].env;
 
 	g_game.use_keyframe = CourseList[idx].use_keyframe;
 	g_game.finish_brake = CourseList[idx].finish_brake;
@@ -859,18 +841,17 @@ bool CCourse::LoadCourse (size_t idx) {
 	init_track_marks ();
 	InitQuadtree (
    		elevation, nx, ny,
-		width / (nx - 1.0),
-		-length / (ny - 1.0),
+		curr_course->width / (nx - 1.0),
+		-curr_course->length / (ny - 1.0),
 		ctrl->viewpos,
 		param.course_detail_level);
 
 	if (g_game.mirror_id) MirrorCourse ();
-	curr_course = idx;
 	return true;
 }
 
 size_t CCourse::GetEnv () const {
-	return env;
+	return curr_course->env;
 }
 
 // --------------------------------------------------------------------
@@ -897,12 +878,12 @@ void CCourse::MirrorCourseData () {
     }
 
     for  (size_t i=0; i<CollArr.size(); i++) {
-		CollArr[i].pt.x = width - CollArr[i].pt.x;
+		CollArr[i].pt.x = curr_course->width - CollArr[i].pt.x;
 		CollArr[i].pt.y = FindYCoord (CollArr[i].pt.x, CollArr[i].pt.z);
     }
 
     for  (size_t i=0; i<NocollArr.size(); i++) {
-		NocollArr[i].pt.x = width - NocollArr[i].pt.x;
+		NocollArr[i].pt.x = curr_course->width - NocollArr[i].pt.x;
 		NocollArr[i].pt.y = FindYCoord (NocollArr[i].pt.x, NocollArr[i].pt.z);
     }
 
@@ -911,11 +892,11 @@ void CCourse::MirrorCourseData () {
     ResetQuadtree ();
     if  (nx > 0 && ny > 0) {
 		CControl *ctrl = Players.GetCtrl (g_game.player_id);
-		InitQuadtree (elevation, nx, ny, width/(nx-1),
-			- length/(ny-1), ctrl->viewpos, param.course_detail_level);
+		InitQuadtree (elevation, nx, ny, curr_course->width/(nx-1),
+			- curr_course->length/(ny-1), ctrl->viewpos, param.course_detail_level);
     }
 
-    start_pt.x = width - start_pt.x;
+    start_pt.x = curr_course->width - start_pt.x;
 }
 
 void CCourse::MirrorCourse () {
@@ -930,8 +911,8 @@ void CCourse::MirrorCourse () {
 void CCourse::GetIndicesForPoint
 		(double x, double z, int *x0, int *y0, int *x1, int *y1) const {
 
-	double xidx = x / width * ((double) nx - 1.);
-	double yidx = -z / length *  ((double) ny - 1.);
+	double xidx = x / curr_course->width * ((double) nx - 1.);
+	double yidx = -z / curr_course->length *  ((double) ny - 1.);
 
     if (xidx < 0) xidx = 0;
     else if  (xidx > nx-1) xidx = nx-1;
@@ -960,8 +941,8 @@ void CCourse::FindBarycentricCoords (double x, double z, TIndex2 *idx0,
     double dx, ex, dz, ez, qx, qz, invdet;
 
     GetIndicesForPoint (x, z, &x0, &y0, &x1, &y1);
-    xidx = x / width * ((double) nx - 1.);
-    yidx = -z / length * ((double) ny - 1.);
+    xidx = x / curr_course->width * ((double) nx - 1.);
+    yidx = -z / curr_course->length * ((double) ny - 1.);
 
     if  ((x0 + y0) % 2 == 0) {
 		if  (yidx - y0 < xidx - x0) {
@@ -997,12 +978,8 @@ void CCourse::FindBarycentricCoords (double x, double z, TIndex2 *idx0,
     *v = (qz * dx - qx * dz) * invdet;
 }
 
-double CCourse::GetMinYCoord() const {
-	return (-length * tan (ANGLES_TO_RADIANS (course_angle)));
-}
-
-#define COURSE_VERTX(x,y) MakeVector ( (double)(x)/(nx-1.)*width, \
-                       ELEV((x),(y)), -(double)(y)/(ny-1.)*length )
+#define COURSE_VERTX(x,y) MakeVector ( (double)(x)/(nx-1.)*curr_course->width, \
+                       ELEV((x),(y)), -(double)(y)/(ny-1.)*curr_course->length )
 
 TVector3 CCourse::FindCourseNormal (double x, double z) const {
 

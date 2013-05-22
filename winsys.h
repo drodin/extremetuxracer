@@ -25,9 +25,7 @@ GNU General Public License for more details.
 class CWinsys {
 private:
 	// time
-	float lasttick;
 	float elapsed_time;
-	int remain_ticks;
 
 	// joystick
 	SDL_Joystick *joystick;	

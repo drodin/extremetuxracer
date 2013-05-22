@@ -32,7 +32,6 @@ CWinsys Winsys;
 
 CWinsys::CWinsys () {
 	screen = NULL;
-	lasttick = 0;
 
 	joystick = NULL;
 	numJoysticks = 0;
@@ -52,9 +51,7 @@ CWinsys::CWinsys () {
 	auto_x_resolution = 800;
 	auto_y_resolution = 600;
 
-	lasttick = 0;
 	elapsed_time = 0;
-	remain_ticks = 0;
 }
 
 TScreenRes CWinsys::MakeRes (int width, int height) {

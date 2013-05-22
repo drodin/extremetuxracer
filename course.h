@@ -28,8 +28,8 @@ GNU General Public License for more details.
 #define STRIDE_GL_ARRAY (8 * sizeof(GLfloat) + 4 * sizeof(GLubyte))
 #define ELEV(x,y) (elevation[(x) + nx*(y)] )
 #define NORM_INTERPOL 0.05
-#define XCD(x) ((double)(x) / (nx-1.0) * width)
-#define ZCD(y) (-(double)(y) / (ny-1.0) * length)
+#define XCD(x) ((double)(x) / (nx-1.0) * curr_course->width)
+#define ZCD(y) (-(double)(y) / (ny-1.0) * curr_course->length)
 #define NMLPOINT(x,y) MakeVector (XCD(x), ELEV(x,y), ZCD(y) )
 
 
@@ -83,7 +83,6 @@ struct TObjectType {
 	string		textureFile;
 	TTexture*	texture;
 	bool		collidable;
-    double		above_ground;
     int			collectable;
     bool		drawable;
     bool		reset_point;
@@ -95,25 +94,16 @@ struct TObjectType {
 
 class CCourse {
 private:
-	size_t		curr_course;
+	const TCourse* curr_course;
 	map<string, size_t> CourseIndex;
 	map<string, size_t> ObjectIndex;
-	map<string, size_t> PolyIndex;
 	string		CourseDir;
 	bool		SaveItemsFlag;
 
 	int			nx;
 	int			ny;
-	double		width;
-	double		length;
-	double		play_width;
-	double		play_length;
-	double		course_angle;
-	double		course_descent;
-	double		elev_scale;
 	TVector2	start_pt;
 	int			base_height_value;
-	size_t		env;
 
 	void		FreeTerrainTextures ();
 	void		FreeObjectTextures ();
@@ -156,19 +146,16 @@ public:
 	void GetPlayDimensions (double *pw, double *pl) const;
 	void GetDivisions (int *nx, int *ny) const;
 	double GetCourseAngle () const;
-	double GetCourseDescent () const;
 	double GetBaseHeight (double distance) const;
 	double GetMaxHeight (double distance) const;
 	size_t GetEnv () const;
 	const TVector2& GetStartPoint () const;
-	void SetStartPoint (const TVector2& p);
 	const TPolyhedron& GetPoly (size_t type) const;
 	void MirrorCourse ();
 
 	void GetIndicesForPoint (double x, double z, int *x0, int *y0, int *x1, int *y1) const;
 	void FindBarycentricCoords (double x, double z,
 		TIndex2 *idx0, TIndex2 *idx1, TIndex2 *idx2, double *u, double *v) const;
-	double GetMinYCoord() const;
 	TVector3 FindCourseNormal (double x, double z) const;
 	double FindYCoord (double x, double z) const;
 	void GetSurfaceType (double x, double z, double weights[]) const;

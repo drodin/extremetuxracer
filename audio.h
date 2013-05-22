@@ -96,7 +96,6 @@ private:
 	int curr_volume;
 public:
 	CMusic ();
-	bool is_playing;
 
 	size_t LoadPiece (const char *name, const char *filename);
 	void LoadMusicList ();

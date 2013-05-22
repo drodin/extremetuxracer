@@ -26,7 +26,6 @@ GNU General Public License for more details.
 #define	MAX_CHAR_NODES 256
 #define	MAX_CHAR_MAT 32
 
-#define USE_CHAR_DISPLAY_LIST true
 #define MIN_SPHERE_DIV 3
 #define MAX_SPHERE_DIV 16
 
@@ -41,7 +40,7 @@ struct TCharAction {
 	size_t num;
 	int type[MAX_ACTIONS];
 	TVector3 vec[MAX_ACTIONS];
- 	double dval[MAX_ACTIONS];
+	double dval[MAX_ACTIONS];
 	string name;
 	string order;
 	string mat;
