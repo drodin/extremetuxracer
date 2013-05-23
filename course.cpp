@@ -224,7 +224,7 @@ void CCourse::CalcNormals () {
 }
 
 void CCourse::MakeCourseNormals () {
-    if (nmls != NULL) free (nmls);
+    if (nmls != NULL) delete[] nmls;
 	try {
 		nmls = new TVector3[nx * ny];
 	} catch(...) {
@@ -779,10 +779,10 @@ void CCourse::FreeCourseList () {
 //  ===================================================================
 
 void CCourse::ResetCourse () {
-	if (nmls != NULL) {free (nmls); nmls = NULL;}
+	if (nmls != NULL) {delete[] nmls; nmls = NULL;}
 	if (vnc_array != NULL) {delete[] vnc_array; vnc_array = NULL;}
-	if (elevation != NULL) {free (elevation); elevation = NULL;}
-	if (terrain != NULL) {free (terrain); terrain = NULL;}
+	if (elevation != NULL) {delete[] elevation; elevation = NULL;}
+	if (terrain != NULL) {delete[] terrain; terrain = NULL;}
 
 	FreeTerrainTextures ();
 	FreeObjectTextures ();
