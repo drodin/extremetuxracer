@@ -21,7 +21,6 @@ GNU General Public License for more details.
 #include "bh.h"
 
 void set_view_mode (CControl *ctrl, TViewMode mode);
-TViewMode get_view_mode (CControl *ctrl);
 void update_view (CControl *ctrl, double dt);
 
 void SetStationaryCamera (bool stat); // 0 follow, 1 stationary

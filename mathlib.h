@@ -57,7 +57,6 @@ void MakeBasisMat (TMatrix mat,	const TVector3& w1, const TVector3& w2, const TV
 void MakeBasismatrix_Inv (TMatrix mat, TMatrix invMat, const TVector3& w1, const TVector3& w2, const TVector3& w3);
 void RotateAboutVectorMatrix (TMatrix mat, const TVector3& u, double angle);
 
-TQuaternion MakeQuaternion (double x, double y, double z, double w);
 TQuaternion AddQuaternions (const TQuaternion& q, const TQuaternion& r);		// not used?
 TQuaternion MultiplyQuaternions (const TQuaternion& q, const TQuaternion& r);
 TQuaternion ScaleQuaternion (double s, const TQuaternion& q);
@@ -119,4 +118,5 @@ double	FRandom ();
 int		IRandom (int min, int max);
 int		ITrunc (int val, int base);
 int		IFrac (int val, int base);
+
 #endif
