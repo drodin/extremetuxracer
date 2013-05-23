@@ -24,11 +24,11 @@ GNU General Public License for more details.
 
 #include "bh.h"
 
-void init_track_marks (void);
-void break_track_marks (void);
+void init_track_marks();
+void break_track_marks();
 
-void SetTrackIDs (int id1, int id2, int id3);
-void UpdateTrackmarks (CControl *ctrl);
-void DrawTrackmarks (void);
+void SetTrackIDs(int id1, int id2, int id3);
+void UpdateTrackmarks(CControl *ctrl);
+void DrawTrackmarks();
 
 #endif

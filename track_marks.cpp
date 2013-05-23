@@ -19,14 +19,11 @@ GNU General Public License for more details.
 #include "ogl.h"
 #include "textures.h"
 #include "course.h"
+#include <list>
 
 #define TRACK_WIDTH  0.7
 #define MAX_TRACK_MARKS 10000
-#define MAX_CONTINUE_TRACK_DIST TRACK_WIDTH * 4
-#define MAX_CONTINUE_TRACK_TIME .1
 #define SPEED_TO_START_TRENCH 0.0
-#define SPEED_OF_DEEPEST_TRENCH 10
-
 #define TRACK_HEIGHT 0.08
 #define MAX_TRACK_DEPTH 0.7
 
@@ -47,11 +44,8 @@ struct track_quad_t {
 };
 
 struct track_marks_t {
-    track_quad_t quads[MAX_TRACK_MARKS];
-    int current_mark;
-    int next_mark;
-    double last_mark_time;
-    TVector3 last_mark_pos;
+    list<track_quad_t> quads;
+	list<track_quad_t>::iterator current_mark;
 };
 
 static track_marks_t track_marks;
@@ -61,37 +55,53 @@ static int trackid1 = 1;
 static int trackid2 = 2;
 static int trackid3 = 3;
 
-void SetTrackIDs (int id1, int id2, int id3) {
+void SetTrackIDs(int id1, int id2, int id3) {
 	trackid1 = id1;
 	trackid2 = id2;
 	trackid3 = id3;
 }
 
-void init_track_marks (void) {
-    track_marks.current_mark = 0;
-    track_marks.next_mark = 0;
-    track_marks.last_mark_time = -99999;
-    track_marks.last_mark_pos = MakeVector(-9999, -9999, -9999);
+void init_track_marks() {
+	track_marks.quads.clear();
+    track_marks.current_mark = track_marks.quads.begin();
     continuing_track = false;
+}
+
+template<typename T>
+static T incrementRingIterator(T q) {
+	T ret = q;
+	++ret;
+	if(ret == track_marks.quads.end() && track_marks.quads.size() == MAX_TRACK_MARKS)
+		ret = track_marks.quads.begin();
+	return ret;
+}
+
+template<typename T>
+static T decrementRingIterator(T q) {
+	T ret = q;
+	if(ret == track_marks.quads.begin() && track_marks.quads.size() == MAX_TRACK_MARKS)
+		ret = track_marks.quads.end();
+	else if(ret == track_marks.quads.begin())
+		return track_marks.quads.end();
+	--ret;
+	return ret;
 }
 
 // --------------------------------------------------------------------
 //						draw_track_marks
 // --------------------------------------------------------------------
 
-void DrawTrackmarks (void) {
-	if (param.perf_level < 3) return;	
+void DrawTrackmarks() {
+	if (param.perf_level < 3)
+		return;
 
     TTexture* textures[NUM_TRACK_TYPES];
-    int current_quad, num_quads;
-    int first_quad;
-    track_quad_t *q, *qnext;
 
     TColor track_colour = colWhite;
-	set_gl_options (TRACK_MARKS); 
+	set_gl_options (TRACK_MARKS);
 
     glColor4f (0, 0, 0, 1);
-	
+
 	textures[TRACK_HEAD] = Tex.GetTexture (trackid1);
 	textures[TRACK_MARK] = Tex.GetTexture (trackid2);
 	textures[TRACK_TAIL] = Tex.GetTexture (trackid3);
@@ -99,24 +109,18 @@ void DrawTrackmarks (void) {
 	glTexEnvf (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
     set_material (colWhite, colBlack, 1.0);
 
-    num_quads = min (track_marks.current_mark, MAX_TRACK_MARKS -
-		     track_marks.next_mark + track_marks.current_mark);
-    first_quad = track_marks.current_mark - num_quads;
-
-	for  (current_quad = 0; current_quad < num_quads; current_quad++) {
-		q = &track_marks.quads[(first_quad + current_quad) % MAX_TRACK_MARKS];
-
+	for  (list<track_quad_t>::const_iterator q = track_marks.quads.begin(); q != track_marks.quads.end(); ++q) {
 		track_colour.a = q->alpha;
 		set_material (track_colour, colBlack, 1.0);
 		textures[q->track_type]->Bind();
 
-		if ((q->track_type == TRACK_HEAD) || (q->track_type == TRACK_TAIL)) { 
+		if ((q->track_type == TRACK_HEAD) || (q->track_type == TRACK_TAIL)) {
 			glBegin(GL_QUADS);
-			
+
 			glNormal3f (q->n1.x, q->n1.y, q->n1.z);
 			glTexCoord2f (q->t1.x, q->t1.y);
 			glVertex3f (q->v1.x, q->v1.y, q->v1.z);
-		
+
 			glNormal3f (q->n2.x, q->n2.y, q->n2.z);
 			glTexCoord2f (q->t2.x, q->t2.y);
 			glVertex3f (q->v2.x, q->v2.y, q->v2.z);
@@ -124,11 +128,11 @@ void DrawTrackmarks (void) {
 			glNormal3f (q->n4.x, q->n4.y, q->n4.z);
 			glTexCoord2f (q->t4.x, q->t4.y);
 			glVertex3f (q->v4.x, q->v4.y, q->v4.z);
-		
+
 			glNormal3f (q->n3.x, q->n3.y, q->n3.z);
 			glTexCoord2f (q->t3.x, q->t3.y);
 			glVertex3f (q->v3.x, q->v3.y, q->v3.z);
-		
+
 			glEnd();
 
 		} else {
@@ -149,74 +153,66 @@ void DrawTrackmarks (void) {
 				glTexCoord2f (q->t3.x, q->t3.y);
 				glVertex3f (q->v3.x, q->v3.y, q->v3.z);
 
-				qnext = &track_marks.quads[(first_quad+current_quad+1)%MAX_TRACK_MARKS];
-				while ( (qnext->track_type == TRACK_MARK) && (current_quad + 1 < num_quads)) {
-					current_quad++;
-					q = &track_marks.quads[(first_quad+current_quad) % MAX_TRACK_MARKS];
-					track_colour.a = qnext->alpha;
-					set_material (track_colour, colBlack, 1.0);
+				list<track_quad_t>::const_iterator qnext = incrementRingIterator(q);
+				if(qnext != track_marks.quads.end()) {
+					while (qnext != track_marks.quads.end() && qnext->track_type == TRACK_MARK) {
+						q = qnext;
+						track_colour.a = qnext->alpha;
+						set_material (track_colour, colBlack, 1.0);
 
-					glNormal3f (q->n4.x, q->n4.y, q->n4.z);
-					glTexCoord2f (q->t4.x, q->t4.y);
-					glVertex3f (q->v4.x, q->v4.y, q->v4.z);
-		
-				glNormal3f (q->n3.x, q->n3.y, q->n3.z);
-				glTexCoord2f (q->t3.x, q->t3.y);
-				glVertex3f (q->v3.x, q->v3.y, q->v3.z);
-			
-				qnext = &track_marks.quads[(first_quad+current_quad+1)%MAX_TRACK_MARKS];
-			}
+						glNormal3f (q->n4.x, q->n4.y, q->n4.z);
+						glTexCoord2f (q->t4.x, q->t4.y);
+						glVertex3f (q->v4.x, q->v4.y, q->v4.z);
+
+						glNormal3f (q->n3.x, q->n3.y, q->n3.z);
+						glTexCoord2f (q->t3.x, q->t3.y);
+						glVertex3f (q->v3.x, q->v3.y, q->v3.z);
+
+						qnext = incrementRingIterator(qnext);
+					}
+				}
 			glEnd();
 		}
     }
 }
 
-void break_track_marks (void) {
-    track_quad_t *qprev, *qprevprev;
-    qprev = &track_marks.quads[(track_marks.current_mark-1)%MAX_TRACK_MARKS];
-    qprevprev = &track_marks.quads[(track_marks.current_mark-2)%MAX_TRACK_MARKS];
-
-    if (track_marks.current_mark > 0) {
+void break_track_marks() {
+	list<track_quad_t>::iterator qprev = decrementRingIterator(track_marks.current_mark);
+    if (qprev != track_marks.quads.end()) {
 		qprev->track_type = TRACK_TAIL;
 		qprev->t1 = MakeVector2(0.0, 0.0);
 		qprev->t2 = MakeVector2(1.0, 0.0);
 		qprev->t3 = MakeVector2(0.0, 1.0);
 		qprev->t4 = MakeVector2(1.0, 1.0);
-		qprevprev->t3.y = max((int)(qprevprev->t3.y+0.5), (int)(qprevprev->t1.y+1));
-		qprevprev->t4.y = max((int)(qprevprev->t3.y+0.5), (int)(qprevprev->t1.y+1));
+		list<track_quad_t>::iterator qprevprev = decrementRingIterator(qprev);
+		if (qprevprev != track_marks.quads.end()) {
+			qprevprev->t3.y = max((int)(qprevprev->t3.y+0.5), (int)(qprevprev->t1.y+1));
+			qprevprev->t4.y = max((int)(qprevprev->t3.y+0.5), (int)(qprevprev->t1.y+1));
+		}
     }
-    track_marks.last_mark_time = -99999;
-    track_marks.last_mark_pos = MakeVector(-9999, -9999, -9999);
     continuing_track = false;
 }
 
 // --------------------------------------------------------------------
 //                      add_track_mark
 // --------------------------------------------------------------------
-void add_track_mark (CControl *ctrl, int *id) {
+void add_track_mark(CControl *ctrl, int *id) {
     if (param.perf_level < 3)
 		return;
 
 	TTerrType *TerrList = &Course.TerrList[0];
 
-    track_quad_t* q = &track_marks.quads[track_marks.current_mark%MAX_TRACK_MARKS];
-    track_quad_t* qprev = &track_marks.quads[(track_marks.current_mark-1)%MAX_TRACK_MARKS];
-    track_quad_t* qprevprev = &track_marks.quads[(track_marks.current_mark-2)%MAX_TRACK_MARKS];
-
-    TVector3 vector_from_last_mark = SubtractVectors (ctrl->cpos, track_marks.last_mark_pos);
-    double dist_from_last_mark = NormVector (vector_from_last_mark);
-	
 	*id = Course.GetTerrainIdx (ctrl->cpos.x, ctrl->cpos.z, 0.5);
 	if (*id < 1) {
 		break_track_marks();
 		return;
-	} 
+	}
 
 	if (TerrList[*id].trackmarks < 1) {
 		break_track_marks();
 		return;
-	} 
-    
+	}
+
 	TVector3 vel = ctrl->cvel;
     double speed = NormVector (vel);
     if (speed < SPEED_TO_START_TRENCH) {
@@ -237,7 +233,7 @@ void add_track_mark (CControl *ctrl, int *id) {
     TVector3 right_wing = SubtractVectors (ctrl->cpos, right_vector);
     double left_y = Course.FindYCoord (left_wing.x, left_wing.z);
     double right_y = Course.FindYCoord (right_wing.x, right_wing.z);
-    
+
 	if (fabs(left_y-right_y) > MAX_TRACK_DEPTH) {
 		break_track_marks();
 		return;
@@ -252,6 +248,15 @@ void add_track_mark (CControl *ctrl, int *id) {
 		return;
     }
 
+	if(track_marks.quads.size() < MAX_TRACK_MARKS)
+		track_marks.quads.push_back(track_quad_t());
+	list<track_quad_t>::iterator qprev = track_marks.current_mark;
+	if(track_marks.current_mark == track_marks.quads.end())
+		track_marks.current_mark = track_marks.quads.begin();
+	else
+		track_marks.current_mark = incrementRingIterator(track_marks.current_mark);
+	list<track_quad_t>::iterator q = track_marks.current_mark;
+
     if (!continuing_track) {
 		break_track_marks();
 		q->track_type = TRACK_HEAD;
@@ -261,14 +266,13 @@ void add_track_mark (CControl *ctrl, int *id) {
 		q->n2 = Course.FindCourseNormal (q->v2.x, q->v2.z);
 		q->t1 = MakeVector2(0.0, 0.0);
 		q->t2 = MakeVector2(1.0, 0.0);
-		track_marks.next_mark = track_marks.current_mark + 1;
     } else {
-		if  (track_marks.next_mark == track_marks.current_mark) {
+		if  (qprev != track_marks.quads.end()) {
 		    q->v1 = qprev->v3;
 	    	q->v2 = qprev->v4;
 		    q->n1 = qprev->n3;
 		    q->n2 = qprev->n4;
-		    q->t1 = qprev->t3; 
+		    q->t1 = qprev->t3;
 		    q->t2 = qprev->t4;
 	    	if (qprev->track_type != TRACK_HEAD) qprev->track_type = TRACK_MARK;
 	    	q->track_type = TRACK_MARK;
@@ -285,23 +289,22 @@ void add_track_mark (CControl *ctrl, int *id) {
 		    q->t3 = MakeVector2 (0.0, q->t1.y + tex_end);
 		    q->t4 = MakeVector2 (1.0, q->t2.y + tex_end);
 		}
-		track_marks.current_mark++;
-		track_marks.next_mark = track_marks.current_mark;
     }
     q->alpha = min ((2*comp_depth-dist_from_surface)/(4*comp_depth), 1.0);
-    track_marks.last_mark_time = g_game.time;
     continuing_track = true;
 }
 
-void UpdateTrackmarks (CControl *ctrl) {
+void UpdateTrackmarks(CControl *ctrl) {
+	if (param.perf_level < 3)
+		return;
+
 	int trackid;
 	TTerrType *TerrList = &Course.TerrList[0];
 
-	if (param.perf_level < 3) return;	
 	add_track_mark (ctrl, &trackid);
 	if (trackid >= 0 && TerrList[trackid].trackmarks) {
 		SetTrackIDs (TerrList[trackid].starttex,
 					TerrList[trackid].tracktex,
 					TerrList[trackid].stoptex);
- 	}
+	}
 }
