@@ -155,7 +155,6 @@ int CScore::CalcRaceResult () {
 	TempScore.herrings = g_game.herring;
 	TempScore.time = g_game.time;
 	TempScore.player = Players.GetName (g_game.player_id);
-//	AddScore (g_game.course_id, TempScore);
 
 	return AddScore (g_game.course_id, TempScore);
 }
@@ -164,7 +163,7 @@ int CScore::CalcRaceResult () {
 //				score screen
 // --------------------------------------------------------------------
 
-static TVector2 cursor_pos = {0, 0};
+static TVector2 cursor_pos(0, 0);
 static TCourse *CourseList;
 static TUpDown* course;
 static TWidget* textbutton;
@@ -194,7 +193,7 @@ void CScore::Motion (int x, int y ){
 	y = param.y_resolution - y;
 
     TVector2 old_pos = cursor_pos;
-    cursor_pos = MakeVector2 (x, y);
+    cursor_pos = TVector2(x, y);
     if  (old_pos.x != x || old_pos.y != y) {
 		if (param.ui_snow) push_ui_snow (cursor_pos);
     }

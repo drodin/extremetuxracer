@@ -29,7 +29,7 @@ GNU General Public License for more details.
 
 CRegist Regist;
 
-static TVector2 cursor_pos = {0, 0};
+static TVector2 cursor_pos(0, 0);
 static TCharacter *CharList;
 static TWidget* textbuttons[2];
 static TUpDown* player;
@@ -74,7 +74,7 @@ void CRegist::Motion (int x, int y) {
 	y = param.y_resolution - y;
 
     TVector2 old_pos = cursor_pos;
-    cursor_pos = MakeVector2 (x, y);
+    cursor_pos = TVector2(x, y);
     if  (old_pos.x != x || old_pos.y != y) {
 		if (param.ui_snow) push_ui_snow (cursor_pos);
     }

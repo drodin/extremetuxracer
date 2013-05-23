@@ -180,10 +180,10 @@ void break_track_marks() {
 	list<track_quad_t>::iterator qprev = decrementRingIterator(track_marks.current_mark);
     if (qprev != track_marks.quads.end()) {
 		qprev->track_type = TRACK_TAIL;
-		qprev->t1 = MakeVector2(0.0, 0.0);
-		qprev->t2 = MakeVector2(1.0, 0.0);
-		qprev->t3 = MakeVector2(0.0, 1.0);
-		qprev->t4 = MakeVector2(1.0, 1.0);
+		qprev->t1 = TVector2(0.0, 0.0);
+		qprev->t2 = TVector2(1.0, 0.0);
+		qprev->t3 = TVector2(0.0, 1.0);
+		qprev->t4 = TVector2(1.0, 1.0);
 		list<track_quad_t>::iterator qprevprev = decrementRingIterator(qprev);
 		if (qprevprev != track_marks.quads.end()) {
 			qprevprev->t3.y = max((int)(qprevprev->t3.y+0.5), (int)(qprevprev->t1.y+1));
@@ -220,7 +220,7 @@ void add_track_mark(CControl *ctrl, int *id) {
 		return;
     }
 
-    TVector3 width_vector = CrossProduct (ctrl->cdirection, MakeVector (0, 1, 0));
+    TVector3 width_vector = CrossProduct (ctrl->cdirection, TVector3 (0, 1, 0));
     double magnitude = NormVector (width_vector);
     if  (magnitude == 0) {
 		break_track_marks();
@@ -260,12 +260,12 @@ void add_track_mark(CControl *ctrl, int *id) {
     if (!continuing_track) {
 		break_track_marks();
 		q->track_type = TRACK_HEAD;
-		q->v1 = MakeVector (left_wing.x, left_y + TRACK_HEIGHT, left_wing.z);
-		q->v2 = MakeVector (right_wing.x, right_y + TRACK_HEIGHT, right_wing.z);
+		q->v1 = TVector3 (left_wing.x, left_y + TRACK_HEIGHT, left_wing.z);
+		q->v2 = TVector3 (right_wing.x, right_y + TRACK_HEIGHT, right_wing.z);
 		q->n1 = Course.FindCourseNormal (q->v1.x, q->v1.z);
 		q->n2 = Course.FindCourseNormal (q->v2.x, q->v2.z);
-		q->t1 = MakeVector2(0.0, 0.0);
-		q->t2 = MakeVector2(1.0, 0.0);
+		q->t1 = TVector2(0.0, 0.0);
+		q->t2 = TVector2(1.0, 0.0);
     } else {
 		if  (qprev != track_marks.quads.end()) {
 		    q->v1 = qprev->v3;
@@ -277,17 +277,17 @@ void add_track_mark(CControl *ctrl, int *id) {
 	    	if (qprev->track_type != TRACK_HEAD) qprev->track_type = TRACK_MARK;
 	    	q->track_type = TRACK_MARK;
 		}
-		q->v3 = MakeVector (left_wing.x, left_y + TRACK_HEIGHT, left_wing.z);
-		q->v4 = MakeVector (right_wing.x, right_y + TRACK_HEIGHT, right_wing.z);
+		q->v3 = TVector3 (left_wing.x, left_y + TRACK_HEIGHT, left_wing.z);
+		q->v4 = TVector3 (right_wing.x, right_y + TRACK_HEIGHT, right_wing.z);
 		q->n3 = Course.FindCourseNormal (q->v3.x, q->v3.z);
 		q->n4 = Course.FindCourseNormal (q->v4.x, q->v4.z);
 		double tex_end = speed*g_game.time_step/TRACK_WIDTH;
 		if (q->track_type == TRACK_HEAD) {
-		    q->t3= MakeVector2 (0.0, 1.0);
-		    q->t4= MakeVector2 (1.0, 1.0);
+		    q->t3= TVector2 (0.0, 1.0);
+		    q->t4= TVector2 (1.0, 1.0);
 		} else {
-		    q->t3 = MakeVector2 (0.0, q->t1.y + tex_end);
-		    q->t4 = MakeVector2 (1.0, q->t2.y + tex_end);
+		    q->t3 = TVector2 (0.0, q->t1.y + tex_end);
+		    q->t4 = TVector2 (1.0, q->t2.y + tex_end);
 		}
     }
     q->alpha = min ((2*comp_depth-dist_from_surface)/(4*comp_depth), 1.0);

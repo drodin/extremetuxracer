@@ -55,7 +55,6 @@ void SetCameraDistance (double val) {camera_distance = val;}
 
 
 void set_view_mode (CControl *ctrl, TViewMode mode) {ctrl->viewmode = mode;}
-TViewMode get_view_mode (CControl *ctrl) {return ctrl->viewmode; }
 
 TVector3 interpolate_view_pos (TVector3 ctrl_pos1, TVector3 ctrl_pos2,
 			      double max_vec_angle,
@@ -63,7 +62,7 @@ TVector3 interpolate_view_pos (TVector3 ctrl_pos1, TVector3 ctrl_pos2,
 			      double dist, double dt,
 			      double time_constant)
 {
-    static TVector3 y_vec = { 0.0, 1.0, 0.0 };
+    static TVector3 y_vec(0.0, 1.0, 0.0);
 
     TVector3 vec1 = SubtractVectors (pos1, ctrl_pos1);
     TVector3 vec2 = SubtractVectors (pos2, ctrl_pos2);
@@ -178,7 +177,7 @@ TVector3 MakeViewVector () {
 			    course_angle -
 			    CAMERA_ANGLE_ABOVE_SLOPE +
 			    PLAYER_ANGLE_IN_CAMERA);
-	TVector3 res = MakeVector (0, sin(rad), cos(rad));
+	TVector3 res(0, sin(rad), cos(rad));
 	return ScaleVector (camera_distance, res);
 }
 
@@ -189,13 +188,13 @@ void update_view (CControl *ctrl, double dt) {
 		return;
 	}
 
-    TVector3 view_pt = MakeVector (0,0,0);
+    TVector3 view_pt(0,0,0);
     TVector3 view_dir;
     TMatrix rot_mat;
     TQuaternion rot_quat;
 
-	static const TVector3 y_vec = MakeVector (0.0, 1.0, 0.0);
-	static const TVector3 mz_vec = MakeVector (0.0, 0.0, -1.0);
+	static const TVector3 y_vec(0.0, 1.0, 0.0);
+	static const TVector3 mz_vec(0.0, 0.0, -1.0);
 
     TVector3 vel_cpy = ctrl->cvel;
     double speed = NormVector (vel_cpy);
@@ -246,7 +245,7 @@ void update_view (CControl *ctrl, double dt) {
 
 		if (ctrl->view_init) {
 	 		for (int i=0; i<2; i++) {
-				TVector3 up_dir = MakeVector (0, 1, 0);
+				TVector3 up_dir(0, 1, 0);
 				interpolate_view_frame (ctrl->viewup, ctrl->viewdir,
 					&up_dir, &view_dir, dt,
 					BEHIND_ORIENT_TIME_CONSTANT);
@@ -292,7 +291,7 @@ void update_view (CControl *ctrl, double dt) {
 
 		if (ctrl->view_init) {
 			for (int i=0; i<2; i++) {
-				TVector3 up_dir = MakeVector (0, 1, 0);
+				TVector3 up_dir(0, 1, 0);
 				interpolate_view_frame (ctrl->viewup, ctrl->viewdir,
 					&up_dir, &view_dir, dt,
 					FOLLOW_ORIENT_TIME_CONSTANT);
@@ -322,7 +321,7 @@ void update_view (CControl *ctrl, double dt) {
 
 	ctrl->viewpos = view_pt;
     ctrl->viewdir = view_dir;
-    ctrl->viewup = MakeVector (0, 1, 0);
+    ctrl->viewup = TVector3(0, 1, 0);
     ctrl->plyr_pos = ctrl->cpos;
     ctrl->view_init = true;
 
@@ -348,7 +347,7 @@ void SetupViewFrustum (CControl *ctrl) {
 
 	double near_dist = NEAR_CLIP_DIST;
 	double far_dist = param.forward_clip_distance;
-    TVector3 origin = { 0., 0., 0. };
+    TVector3 origin(0., 0., 0.);
     double half_fov = ANGLES_TO_RADIANS (param.fov * 0.5);
     double half_fov_horiz = atan (tan (half_fov) * aspect);
 
@@ -389,8 +388,8 @@ clip_result_t clip_aabb_to_view_frustum (const TVector3& min, const TVector3& ma
     bool intersect = false;
 
     for (int i=0; i<6; i++) {
-		TVector3 p = MakeVector (min.x, min.y, min.z);
-		TVector3 n = MakeVector (max.x, max.y, max.z);
+		TVector3 p(min.x, min.y, min.z);
+		TVector3 n(max.x, max.y, max.z);
 
 		if  (p_vertex_code[i] & 4) {
 		    p.x = max.x;

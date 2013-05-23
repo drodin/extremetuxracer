@@ -37,7 +37,7 @@ GNU General Public License for more details.
 #   define M_PI 3.1415926535
 #endif
 
-#define MAG_SQD(vec) ((vec).x * (vec).x + (vec).y * (vec).y + (vec).z * (vec).z )
+#define MAG_SQD(vec) ((vec).x * (vec).x + (vec).y * (vec).y + (vec).z * (vec).z)
 
 #ifndef EPS
 #	define EPS 1.0e-13
@@ -52,22 +52,59 @@ enum Orientation {
 #define MAX_ROLL_ANGLE 30
 #define BRAKING_ROLL_ANGLE 55
 
-#define CENTER -1
-#define FIT -1
+struct TVector2	{
+	double x, y;
+	TVector2(double _x = 0.0, double _y = 0.0)
+		: x(_x), y(_y)
+	{}
+};
+struct TVector3 : public TVector2 {
+	double z;
+	TVector3(double _x = 0.0, double _y = 0.0, double _z = 0.0)
+		: TVector2(_x, _y), z(_z)
+	{}
+};
+struct TVector4 : public TVector3 {
+	double w;
+	TVector4(double _x = 0.0, double _y = 0.0, double _z = 0.0, double _w = 0.0)
+		: TVector3(_x, _y, _z), w(_w)
+	{}
+};
 
-struct TVector2		{ double x, y; };
-struct TVector3		{ double x, y, z; };
-struct TVector4		{ double x, y, z, w; };
+struct TIndex2 {
+	int i, j;
+	TIndex2(int i_ = 0, int j_ = 0)
+		: i(i_), j(j_)
+	{}
+};
+struct TIndex3 : public TIndex2 {
+	int k;
+	TIndex3(int i_ = 0, int j_ = 0, int k_ = 0)
+		: TIndex2(i_, j_), k(k_)
+	{}
+};
+struct TIndex4 : public TIndex3 {
+	int l;
+	TIndex4(int i_ = 0, int j_ = 0, int k_ = 0, int l_ = 0)
+		: TIndex3(i_, j_, k_), l(l_)
+	{}
+};
 
-struct TIndex2		{ int i, j; };
-struct TIndex3		{ int i, j, k; };
-struct TIndex4		{ int i, j, k, l; };
-
-struct TColor		{ double r, g, b, a; };
-struct TColor3		{ double r, g, b; };
+struct TColor3 {
+	double r, g, b;
+	TColor3(double r_ = 0, double g_ = 0, double b_ = 0)
+		: r(r_), g(g_), b(b_)
+	{}
+};
+struct TColor : public TColor3 {
+	double a;
+	TColor(double r_ = 0, double g_ = 0, double b_ = 0, double a_ = 0)
+		: TColor3(r_, g_, b_), a(a_)
+	{}
+};
 
 typedef double TMatrix[4][4];
-struct TQuaternion	{ double x, y, z, w; };
+typedef TVector4 TQuaternion;
 
 struct TPlane		{ TVector3 nml; double d; };
 struct TPolygon		{ int num_vertices; int *vertices; };
@@ -80,39 +117,6 @@ struct TPolyhedron {
     size_t num_polygons;
     TVector3 *vertices;
     TPolygon *polygons;
-};
-
-struct TMaterial {
-    TColor diffuse;
-    TColor specular_colour;
-    double specular_exp;
-};
-
-struct key_frame_t {
-    double time;
-    TVector3 pos;
-    double yaw;
-    double pitch;
-    double l_shldr;
-    double r_shldr;
-    double l_hip;
-    double r_hip;
-};
-
-struct TCollidable {
-	TVector3 pt;
-    double height;
-    double diam;
-    size_t tree_type;
-};
-
-struct TItem {
-	TVector3 pt;
-    double height;
-    double diam;
-    size_t item_type;
-    int collectable;
-    bool drawable;
 };
 
 struct TRect {
@@ -139,8 +143,7 @@ enum TToolMode {
 
 enum TGameType {
 	PRACTICING,
-	CUPRACING,
-	TRAINING
+	CUPRACING
 };
 
 enum TViewMode {
@@ -150,22 +153,12 @@ enum TViewMode {
     NUM_VIEW_MODES
 };
 
-enum TFrameType {
-	START,
-	FINISH,
-	WONRACE,
-	LOSTRACE,
-	NUM_FRAME_TYPES
-};
-
 struct TCup2;
 
 struct TGameData {
 	TToolMode toolmode;
 	double time_step;
-    double secs_since_start;
 	double fps;
-	int timesteps;
 	TGameType game_type;
 	bool force_treemap;
 	int treesize;
@@ -174,7 +167,6 @@ struct TGameData {
 	string group_arg;
 	string dir_arg;
 	string file_arg;
-	int loopdelay;
 	bool finish;
 	bool use_keyframe;
 	double finish_brake;

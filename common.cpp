@@ -24,46 +24,29 @@ GNU General Public License for more details.
 //				color utils
 // --------------------------------------------------------------------
 
-const TColor colWhite =		{1.0, 1.0, 1.0, 1.0};
-const TColor colDYell =		{1.0, 0.8, 0.0, 1.0};
-const TColor colDDYell =	{0.8, 0.6, 0.0, 1.0};
-const TColor colYellow =	{1.0, 1.0, 0.0, 1.0};
-const TColor colLYell = 	{1.0, 1.0, 0.4, 1.0};
-const TColor colOrange =	{1.0, 0.5, 0.0, 1.0};
-const TColor colLRed =		{1.0, 0.3, 0.3, 1.0};
-const TColor colRed =		{1.0, 0.0, 0.0, 1.0};
-const TColor colDRed =		{0.8, 0.0, 0.0, 1.0};
-const TColor colGrey =		{0.5, 0.5, 0.5, 1.0};
-const TColor colLGrey =		{0.7, 0.7, 0.7, 1.0};
-const TColor colDGrey =		{0.3, 0.3, 0.3, 1.0};
-const TColor colBlack =		{0.0, 0.0, 0.0, 1.0};
-const TColor colBlue =		{0.0, 0.0, 1.0, 1.0};
-const TColor colLBlue =		{0.5, 0.7, 1.0, 1.0};
-const TColor colDBlue =		{0.0, 0.0, 0.6, 1.0};
-const TColor colLBackgr =	{0.5, 0.7, 0.9, 1.0};
-const TColor colBackgr =	{0.4, 0.6, 0.8, 1.0};
-const TColor colMBackgr =	{0.35, 0.5, 0.7, 1.0};
-const TColor colDBackgr =	{0.2, 0.3, 0.6, 1.0};
-const TColor colDDBackgr =	{0.13, 0.2, 0.4, 1.0};
-const TColor colMess =		{0.3, 0.3, 0.7, 1.0};
-const TColor colSky =		{0.82, 0.86, 0.88, 1.0};
-
-TColor MakeColor (double r, double g, double b, double a) {
-	TColor res;
-	res.r = r;
-	res.g = g;
-	res.b = b;
-	res.a = a;
-	return res;
-}
-
-TColor3 MakeColor3 (double r, double g, double b) {
-	TColor3 res;
-	res.r = r;
-	res.g = g;
-	res.b = b;
-	return res;
-}
+const TColor colWhite		(1.0, 1.0, 1.0, 1.0);
+const TColor colDYell		(1.0, 0.8, 0.0, 1.0);
+const TColor colDDYell		(0.8, 0.6, 0.0, 1.0);
+const TColor colYellow		(1.0, 1.0, 0.0, 1.0);
+const TColor colLYell		(1.0, 1.0, 0.4, 1.0);
+const TColor colOrange		(1.0, 0.5, 0.0, 1.0);
+const TColor colLRed		(1.0, 0.3, 0.3, 1.0);
+const TColor colRed			(1.0, 0.0, 0.0, 1.0);
+const TColor colDRed		(0.8, 0.0, 0.0, 1.0);
+const TColor colGrey		(0.5, 0.5, 0.5, 1.0);
+const TColor colLGrey		(0.7, 0.7, 0.7, 1.0);
+const TColor colDGrey		(0.3, 0.3, 0.3, 1.0);
+const TColor colBlack		(0.0, 0.0, 0.0, 1.0);
+const TColor colBlue		(0.0, 0.0, 1.0, 1.0);
+const TColor colLBlue		(0.5, 0.7, 1.0, 1.0);
+const TColor colDBlue		(0.0, 0.0, 0.6, 1.0);
+const TColor colLBackgr		(0.5, 0.7, 0.9, 1.0);
+const TColor colBackgr		(0.4, 0.6, 0.8, 1.0);
+const TColor colMBackgr		(0.35, 0.5, 0.7, 1.0);
+const TColor colDBackgr		(0.2, 0.3, 0.6, 1.0);
+const TColor colDDBackgr	(0.13, 0.2, 0.4, 1.0);
+const TColor colMess		(0.3, 0.3, 0.7, 1.0);
+const TColor colSky			(0.82, 0.86, 0.88, 1.0);
 
 // --------------------------------------------------------------------
 //				print utils

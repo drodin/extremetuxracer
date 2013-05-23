@@ -21,21 +21,14 @@ GNU General Public License for more details.
 
 #include "bh.h"
 
-static const TVector3 NullVec = {0.0, 0.0, 0.0};
-static const TVector3 GravVec = {0.0, -1.0, 0.0};
+static const TVector3 NullVec(0.0, 0.0, 0.0);
+static const TVector3 GravVec(0.0, -1.0, 0.0);
 
 // --------------------------------------------------------------------
 //			vector and matrix
 // --------------------------------------------------------------------
 
 double		VectorLength (const TVector3 &v);
-
-TVector3	MakeVector (double x, double y, double z);
-TVector2	MakeVector2 (double x, double y);
-TVector3	MakeVector3 (double x, double y, double z);
-TVector4	MakeVector4 (float x, float y, float z, float w);
-TIndex2		MakeIndex2 (int i, int j);
-TIndex3		MakeIndex3 (int i, int j, int k);
 
 TVector3	ScaleVector (double s, const TVector3& v);
 TVector3	AddVectors (const TVector3& v1, const TVector3& v2);

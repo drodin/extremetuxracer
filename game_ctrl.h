@@ -22,6 +22,15 @@ GNU General Public License for more details.
 #include <map>
 
 
+enum TFrameType {
+	START,
+	FINISH,
+	WONRACE,
+	LOSTRACE,
+	NUM_FRAME_TYPES
+};
+
+
 class TTexture;
 
 struct TRace2 {

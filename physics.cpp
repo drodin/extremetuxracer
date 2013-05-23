@@ -24,7 +24,7 @@ GNU General Public License for more details.
 #include "game_over.h"
 
 CControl::CControl () :
-	cnet_force(MakeVector(0, 0, 0))
+	cnet_force(0, 0, 0)
 {
 	minSpeed = 0;
 	minFrictspeed = 0;
@@ -75,7 +75,7 @@ void CControl::Init () {
 	cpos.y = Course.FindYCoord (cpos.x, cpos.z);
 	cvel = init_vel;
 	last_pos = cpos;
-	cnet_force = MakeVector (0, 0, 0);
+	cnet_force = TVector3 (0, 0, 0);
 	orientation_initialized = false;
 	plane_nml = nml;
 	cdirection = init_vel;
@@ -101,15 +101,15 @@ bool CControl::CheckTreeCollisions (const TVector3& pos, TVector3 *tree_loc, dou
 	CCharShape *shape = Char.GetShape (g_game.char_id);
     double diam = 0.0; 
     double height;
-    TVector3 loc = MakeVector (0, 0, 0);
+    TVector3 loc(0, 0, 0);
     bool hit = false;
 	TMatrix mat;
     
     // These variables are used to cache collision detection results 
     static bool last_collision = false;
-    static TVector3 last_collision_tree_loc = {-999, -999, -999};
+    static TVector3 last_collision_tree_loc(-999, -999, -999);
     static double last_collision_tree_diam = 0;
-    static TVector3 last_collision_pos = {-999, -999, -999};
+    static TVector3 last_collision_pos(-999, -999, -999);
 
     TVector3 dist_vec = SubtractVectors (pos, last_collision_pos);
 	if (MAG_SQD (dist_vec) < COLL_TOLERANCE) {
@@ -129,7 +129,7 @@ bool CControl::CheckTreeCollisions (const TVector3& pos, TVector3 *tree_loc, dou
         diam = trees[i].diam;
         height = trees[i].height;
         loc = trees[i].pt;
-        TVector3 distvec = MakeVector (loc.x - pos.x, 0.0, loc.z - pos.z);
+        TVector3 distvec(loc.x - pos.x, 0.0, loc.z - pos.z);
 
 		// check distance from tree; .6 is the radius of a bounding sphere
 		double squared_dist = (diam / 2.0 + 0.6);
@@ -197,7 +197,7 @@ void CControl::AdjustTreeCollision (const TVector3& pos, TVector3 *vel){
 }
 
 void CControl::CheckItemCollection (const TVector3& pos) {
-    static TVector3 last_collision_pos = {-999, -999, -999};
+    static TVector3 last_collision_pos(-999, -999, -999);
     TVector3 dist_vec = SubtractVectors (pos, last_collision_pos);
     if (MAG_SQD (dist_vec) < COLL_TOLERANCE) return;
 
@@ -211,7 +211,7 @@ void CControl::CheckItemCollection (const TVector3& pos) {
 		double height = items[i].height;
 		TVector3 loc = items[i].pt;
 
-		TVector3 distvec = MakeVector (loc.x - pos.x, 0.0, loc.z - pos.z);
+		TVector3 distvec(loc.x - pos.x, 0.0, loc.z - pos.z);
 		double squared_dist =  (diam / 2. + 0.6);
 		squared_dist *= squared_dist;
 		if (MAG_SQD (distvec) > squared_dist) continue;
@@ -280,7 +280,7 @@ void CControl::SetTuxPosition (double speed) {
 	}
     double disp_y = cpos.y + TUX_Y_CORR; 
 	shape->ResetNode (0);
-	shape->TranslateNode (0, MakeVector (cpos.x, disp_y, cpos.z));	
+	shape->TranslateNode (0, TVector3 (cpos.x, disp_y, cpos.z));	
 } 
 
 // --------------------------------------------------------------------
@@ -332,7 +332,7 @@ TVector3 CControl::CalcSpringForce () {
 }
 
 TVector3 CControl::CalcNormalForce () {
-    TVector3 nmlforce = MakeVector (0, 0, 0);    
+    TVector3 nmlforce(0, 0, 0);    
 	if (ff.surfdistance <= -ff.comp_depth) {
 		ff.compression = -ff.surfdistance - ff.comp_depth;
 		nmlforce = CalcSpringForce ();
@@ -351,10 +351,10 @@ TVector3 CControl::CalcJumpForce () {
     }
     if ((jumping) && (g_game.time - jump_start_time < JUMP_FORCE_DURATION)) {
 		double y = 294 + jump_amt * 294; // jump_amt goes from 0 to 1
-		jumpforce = MakeVector (0, y, 0);
+		jumpforce = TVector3 (0, y, 0);
 
     } else {
-		jumpforce = MakeVector (0, 0, 0);
+		jumpforce = TVector3 (0, 0, 0);
 		jumping = false;
     }
 	return ScaleVector (1.0, jumpforce); // normally 1.0
@@ -382,7 +382,7 @@ TVector3 CControl::CalcFrictionForce (double speed, const TVector3& nmlforce) {
 		frictforce = TransformVector (fric_rot_mat, frictforce);
 		frictforce = ScaleVector (1.0 + MAX_TURN_PEN, frictforce);
 	
-    } else frictforce =  MakeVector (0, 0, 0);
+    } else frictforce =  TVector3 (0, 0, 0);
 	return frictforce;
 }
 
@@ -392,8 +392,8 @@ TVector3 CControl::CalcBrakeForce (double speed) {
 		if (cairborne == false && speed > minFrictspeed) {
 			if (speed > minSpeed && is_braking) {
 				brakeforce = ScaleVector (ff.frict_coeff * BRAKE_FORCE, ff.frictdir); 
-			} else brakeforce = MakeVector (0, 0, 0);
-		} else brakeforce = MakeVector (0, 0, 0);
+			} else brakeforce = TVector3 (0, 0, 0);
+		} else brakeforce = TVector3 (0, 0, 0);
 
 	} else {
 /// ------------------- finish --------------------------------
@@ -415,25 +415,25 @@ TVector3 CControl::CalcPaddleForce (double speed) {
 
      if (is_paddling) {
 		if (cairborne) {
-			paddleforce = MakeVector (0, 0, -TUX_MASS * EARTH_GRAV / 4.0);
+			paddleforce = TVector3 (0, 0, -TUX_MASS * EARTH_GRAV / 4.0);
 			paddleforce = RotateVector (corientation, paddleforce);
 		} else {
 		    paddleforce = ScaleVector (-1 * min (MAX_PADD_FORCE, MAX_PADD_FORCE 
 				* (MAX_PADDLING_SPEED - speed) / MAX_PADDLING_SPEED 
 				* min(1.0, ff.frict_coeff / IDEAL_PADD_FRIC)), ff.frictdir);
 		}
-    } else paddleforce = MakeVector (0, 0, 0);
+    } else paddleforce = TVector3 (0, 0, 0);
 	return ScaleVector (PADDLE_FACT, paddleforce);
 }
 
 TVector3 CControl::CalcGravitationForce () {
 	TVector3 gravforce;
 	if (g_game.finish == false) {
-		gravforce = MakeVector (0, -EARTH_GRAV * TUX_MASS, 0);
+		gravforce = TVector3 (0, -EARTH_GRAV * TUX_MASS, 0);
 	} else {
 /// ---------------- finish -----------------------------------
-		if (cairborne) gravforce = MakeVector (0, -FIN_AIR_GRAV, 0);
-		else gravforce = MakeVector (0, -FIN_GRAV, 0);
+		if (cairborne) gravforce = TVector3 (0, -FIN_AIR_GRAV, 0);
+		else gravforce = TVector3 (0, -FIN_GRAV, 0);
 /// -----------------------------------------------------------
 	}
 	return gravforce;

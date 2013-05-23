@@ -59,7 +59,6 @@ void InitGame (int argc, char **argv) {
 		if (g_game.group_arg == "9") g_game.argument = 9;
 	}
 
-	g_game.secs_since_start = 0;
 	g_game.player_id = 0;
 	g_game.start_player = 0;
 	g_game.course_id = 0;
@@ -110,7 +109,7 @@ int main( int argc, char **argv ) {
 
 	switch (g_game.argument) {
 		case 0: State::manager.Run(SplashScreen); break;
-		case 4: 
+		case 4:
 			g_game.toolmode = TUXSHAPE; 
 			State::manager.Run(Tools);
 			break;
@@ -120,5 +119,4 @@ int main( int argc, char **argv ) {
 	Winsys.Quit();
 
     return 0;
-} 
-
+}

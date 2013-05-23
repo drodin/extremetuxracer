@@ -49,7 +49,7 @@ Then edit the below functions:
 #include "game_ctrl.h"
 
 CGameConfig GameConfig;
-static TVector2 cursor_pos = {0, 0};
+static TVector2 cursor_pos(0, 0);
 static string res_names[NUM_RESOLUTIONS];
 
 static TLang *LangList;
@@ -167,7 +167,7 @@ void CGameConfig::Motion (int x, int y) {
 	y = param.y_resolution - y;
 
     TVector2 old_pos = cursor_pos;
-    cursor_pos = MakeVector2 (x, y);
+    cursor_pos = TVector2(x, y);
     if  (old_pos.x != x || old_pos.y != y) {
 		if (param.ui_snow) push_ui_snow (cursor_pos);
     }

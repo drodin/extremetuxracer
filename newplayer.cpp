@@ -29,7 +29,7 @@ GNU General Public License for more details.
 
 CNewPlayer NewPlayer;
 
-static TVector2 cursor_pos = {0, 0};
+static TVector2 cursor_pos(0, 0);
 static string name;
 static size_t posit;
 static float curposit;
@@ -159,7 +159,7 @@ void CNewPlayer::Motion (int x, int y) {
 	y = param.y_resolution - y;
 
     TVector2 old_pos = cursor_pos;
-    cursor_pos = MakeVector2 (x, y);
+    cursor_pos = TVector2(x, y);
     if  (old_pos.x != x || old_pos.y != y) {
 		if (param.ui_snow) push_ui_snow (cursor_pos);
     }

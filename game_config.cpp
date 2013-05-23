@@ -329,7 +329,7 @@ void InitConfig (char *arg0) {
 	param.player_dir = param.data_dir + SEP + "players";
 
 	param.ui_snow = true;
-	param.view_mode = 1;
+	param.view_mode = FOLLOW;
 	param.display_fps = false;
 	param.show_hud = true;
 

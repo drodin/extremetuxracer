@@ -35,7 +35,7 @@ GNU General Public License for more details.
 
 CGameOver GameOver;
 
-static TVector2 cursor_pos = {0, 0 };
+static TVector2 cursor_pos(0, 0);
 static CKeyframe *final_frame;
 static int highscore_pos = 999;
 
@@ -61,7 +61,7 @@ void CGameOver::Motion  (int x, int y) {
 
     y = param.y_resolution - y;
     old_pos = cursor_pos;
-    cursor_pos = MakeVector2 (x, y);
+    cursor_pos = TVector2(x, y);
     if  (old_pos.x != x || old_pos.y != y)  {
     }
 }
@@ -104,7 +104,7 @@ void GameOverMessage (CControl *ctrl) {
 	float topframe = 80;
 
 	const TColor& backcol = colWhite;
-	const TColor framecol = {0.7, 0.7, 1, 1};
+	const TColor framecol(0.7, 0.7, 1, 1);
 
 	if (param.use_papercut_font > 0) FT.SetSize (28); else FT.SetSize (22);
 	if (g_game.raceaborted) {

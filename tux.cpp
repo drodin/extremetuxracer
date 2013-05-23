@@ -36,13 +36,13 @@ still shaped with spheres.
 #define SHADOW_HEIGHT 0.03 // ->0.05
 
 #ifdef USE_STENCIL_BUFFER
-	static const TColor shad_col = { 0.0, 0.0, 0.0, 0.3 };
+	static const TColor shad_col(0.0, 0.0, 0.0, 0.3);
 #else
-	static const TColor shad_col = { 0.0, 0.0, 0.0, 0.1 };
+	static const TColor shad_col(0.0, 0.0, 0.0, 0.1);
 #endif
 
-static const TCharMaterial TuxDefMat = {{0.5, 0.5, 0.5, 1.0}, {0.0, 0.0, 0.0, 1.0}, 0.0};
-static const TCharMaterial Highlight = {{0.8, 0.15, 0.15, 1.0}, {0.0, 0.0, 0.0, 1.0}, 0.0};
+static const TCharMaterial TuxDefMat = {TColor(0.5, 0.5, 0.5, 1.0), TColor(0.0, 0.0, 0.0, 1.0), 0.0};
+static const TCharMaterial Highlight = {TColor(0.8, 0.15, 0.15, 1.0), TColor(0.0, 0.0, 0.0, 1.0), 0.0};
 CCharShape TestChar;
 
 CCharShape::CCharShape () {
@@ -349,8 +349,8 @@ bool CCharShape::GetMaterial (const string& mat_name, TCharMaterial **mat) {
 }
 
 void CCharShape::CreateMaterial (const string& line) {
-	TVector3 diff = SPVector3N (line, "diff", MakeVector (0,0,0));
-	TVector3 spec = SPVector3N (line, "spec", MakeVector (0,0,0));
+	TVector3 diff = SPVector3N (line, "diff", TVector3 (0,0,0));
+	TVector3 spec = SPVector3N (line, "spec", TVector3 (0,0,0));
 	float exp = SPFloatN (line, "exp", 50);
 	std::string mat = SPItemN (line, "mat");
 	STrimN(mat);
@@ -482,7 +482,7 @@ bool CCharShape::Load (const string& dir, const string& filename, bool with_acti
 				int act = order.at(ii)-48;
 				switch (act) {
 					case 0: {
-						TVector3 trans = SPVector3N (line, "trans", MakeVector (0,0,0));
+						TVector3 trans = SPVector3N (line, "trans", TVector3 (0,0,0));
 						TranslateNode (node_name, trans);
 						break;
 					}
@@ -490,7 +490,7 @@ bool CCharShape::Load (const string& dir, const string& filename, bool with_acti
 					case 2: RotateNode (node_name, 2, rot.y); break;
 					case 3: RotateNode (node_name, 3, rot.z); break;
 					case 4: {
-						TVector3 scale = SPVector3N (line, "scale", MakeVector (1,1,1));
+						TVector3 scale = SPVector3N (line, "scale", TVector3 (1,1,1));
 						ScaleNode (node_name, scale);
 						break;
 					}
@@ -522,13 +522,13 @@ void CCharShape::AdjustOrientation (CControl *ctrl, double dtime,
     TVector3 new_y, new_z;
     TMatrix cob_mat, inv_cob_mat;
     TMatrix rot_mat;
-    static const TVector3 minus_z_vec = { 0, 0, -1};
-    static const TVector3 y_vec = { 0, 1, 0 };
+    static const TVector3 minus_z_vec(0, 0, -1);
+    static const TVector3 y_vec(0, 1, 0);
 
     if  (dist_from_surface > 0) {
 		new_y = ScaleVector (1, ctrl->cvel);
 		NormVector (new_y);
-		new_z = ProjectToPlane (new_y, MakeVector(0, -1, 0));
+		new_z = ProjectToPlane (new_y, TVector3(0, -1, 0));
 		NormVector (new_z);
 		new_z = AdjustRollvector (ctrl, ctrl->cvel, new_z);
     } else {
@@ -558,10 +558,10 @@ void CCharShape::AdjustOrientation (CControl *ctrl, double dtime,
     MakeMatrixFromQuaternion (cob_mat, ctrl->corientation);
 
     // Trick rotations
-    new_y = MakeVector (cob_mat[1][0], cob_mat[1][1], cob_mat[1][2]);
+    new_y = TVector3 (cob_mat[1][0], cob_mat[1][1], cob_mat[1][2]);
     RotateAboutVectorMatrix (rot_mat, new_y, (ctrl->roll_factor * 360));
     MultiplyMatrices (cob_mat, rot_mat, cob_mat);
-    new_x = MakeVector (cob_mat[0][0], cob_mat[0][1], cob_mat[0][2]);
+    new_x = TVector3 (cob_mat[0][0], cob_mat[0][1], cob_mat[0][2]);
     RotateAboutVectorMatrix (rot_mat, new_x, ctrl->flip_factor * 360);
     MultiplyMatrices (cob_mat, rot_mat, cob_mat);
 
@@ -661,7 +661,7 @@ bool CCharShape::CheckCollision (const TPolyhedron& ph) {
 
 bool CCharShape::Collision (const TVector3& pos, const TPolyhedron& ph) {
 	ResetNode (0);
-	TranslateNode (0, MakeVector (pos.x, pos.y, pos.z));
+	TranslateNode (0, TVector3 (pos.x, pos.y, pos.z));
 	return CheckCollision (ph);
 }
 
@@ -670,7 +670,7 @@ bool CCharShape::Collision (const TVector3& pos, const TPolyhedron& ph) {
 // --------------------------------------------------------------------
 
 void CCharShape::DrawShadowVertex (double x, double y, double z, TMatrix mat) {
-    TVector3 pt = MakeVector (x, y, z);
+    TVector3 pt(x, y, z);
     pt = TransformPoint (mat, pt);
     double old_y = pt.y;
     TVector3 nml = Course.FindCourseNormal (pt.x, pt.z);

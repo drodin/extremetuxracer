@@ -56,7 +56,7 @@ struct TGuiParticle {
 
 static list<TGuiParticle> particles_2d;
 static GLfloat part_col[4] = {1, 1, 1, 0.5 };
-static TVector2 push_position = {0, 0};
+static TVector2 push_position(0, 0);
 static TVector2 last_push_position;
 static double last_update_time = -1;
 static bool push_position_initialized = false;
@@ -74,17 +74,17 @@ TGuiParticle::TGuiParticle(double x, double y) {
     
 	int type = (int) (frand() * (4.0 - EPS));
 	if (type == 0) {
-		tex_min = MakeVector2  (0.0, 0.0);
-		tex_max = MakeVector2  (0.5, 0.5);
+		tex_min = TVector2(0.0, 0.0);
+		tex_max = TVector2(0.5, 0.5);
     } else if (type == 1) {
-		tex_min = MakeVector2  (0.5, 0.0);
-		tex_max = MakeVector2  (1.0, 0.5);
+		tex_min = TVector2(0.5, 0.0);
+		tex_max = TVector2(1.0, 0.5);
     } else if (type == 2) {
-		tex_min = MakeVector2  (0.5, 0.5);
-		tex_max = MakeVector2  (1.0, 1.0);
+		tex_min = TVector2(0.5, 0.5);
+		tex_max = TVector2(1.0, 1.0);
     } else {
-		tex_min = MakeVector2  (0.0, 0.5);
-		tex_max = MakeVector2  (0.5, 1.0);
+		tex_min = TVector2(0.0, 0.5);
+		tex_max = TVector2(0.5, 1.0);
     }
 }
 
@@ -140,7 +140,7 @@ void TGuiParticle::Update(double time_step, double push_timestep, const TVector2
 void init_ui_snow () {
 	for (int i=0; i<BASE_num_snowparticles; i++)
 		particles_2d.push_back(TGuiParticle( frand(), frand()));
-    push_position = MakeVector2 (0.0, 0.0);
+    push_position = TVector2(0.0, 0.0);
 }
 
 void update_ui_snow (double time_step) {
@@ -207,7 +207,7 @@ void draw_ui_snow () {
 }
 
 void push_ui_snow (const TVector2& pos) {
-    push_position = MakeVector2 (pos.x/(double)param.x_resolution, pos.y/(double)param.y_resolution);
+    push_position = TVector2(pos.x/(double)param.x_resolution, pos.y/(double)param.y_resolution);
     if  (!push_position_initialized) last_push_position = push_position;
     push_position_initialized = true;
 }
@@ -292,7 +292,7 @@ void Particle::draw_billboard (CControl *ctrl, double width, double height, bool
     x_vec.z = ctrl->view_mat[0][2];
 
     if  (use_world_y_axis) {
-		y_vec = MakeVector (0, 1, 0);
+		y_vec = TVector3(0, 1, 0);
 		x_vec = ProjectToPlane (y_vec, x_vec);
 		NormVector (x_vec);
 		z_vec = CrossProduct (x_vec, y_vec);
@@ -345,10 +345,10 @@ void create_new_particles (const TVector3& loc, TVector3 vel, int num)  {
         newp->age = frand() * MIN_AGE;
         newp->death = frand() * MAX_AGE;
         newp->vel = AddVectors (
-	    ScaleVector (speed, vel),
-	    MakeVector (VARIANCE_FACTOR * (frand() - 0.5) * speed, 
-			 VARIANCE_FACTOR * (frand() - 0.5) * speed,
-			 VARIANCE_FACTOR * (frand() - 0.5) * speed ));
+			ScaleVector (speed, vel),
+			TVector3(VARIANCE_FACTOR * (frand() - 0.5) * speed, 
+				 VARIANCE_FACTOR * (frand() - 0.5) * speed,
+				 VARIANCE_FACTOR * (frand() - 0.5) * speed ));
     }
 } 
 
@@ -583,17 +583,17 @@ void CFlakes::MakeSnowFlake (size_t ar, size_t i) {
 	int type = (int) (FRandom () * 3.9999);
 
 	if (type == 0) {
-		areas[ar].flakes[i].tex_min = MakeVector2  (0.0, 0.875);
-		areas[ar].flakes[i].tex_max = MakeVector2  (0.125, 1.0);
+		areas[ar].flakes[i].tex_min = TVector2(0.0, 0.875);
+		areas[ar].flakes[i].tex_max = TVector2(0.125, 1.0);
     } else if (type == 1) {
-		areas[ar].flakes[i].tex_min = MakeVector2  (0.125, 0.875);
-		areas[ar].flakes[i].tex_max = MakeVector2  (0.25, 1.0);
+		areas[ar].flakes[i].tex_min = TVector2(0.125, 0.875);
+		areas[ar].flakes[i].tex_max = TVector2(0.25, 1.0);
 	} else if (type == 2) {
-		areas[ar].flakes[i].tex_min = MakeVector2  (0.0, 0.75);
-		areas[ar].flakes[i].tex_max = MakeVector2  (0.125, 0.875);
+		areas[ar].flakes[i].tex_min = TVector2(0.0, 0.75);
+		areas[ar].flakes[i].tex_max = TVector2(0.125, 0.875);
     } else {
-		areas[ar].flakes[i].tex_min = MakeVector2  (0.125, 0.75);
- 		areas[ar].flakes[i].tex_max = MakeVector2  (0.25, 0.875);
+		areas[ar].flakes[i].tex_min = TVector2(0.125, 0.75);
+ 		areas[ar].flakes[i].tex_max = TVector2(0.25, 0.875);
     }
 }
 
@@ -912,7 +912,7 @@ void CCurtain::Init (CControl *ctrl) {
 CWind Wind;
 
 CWind::CWind ()
-	: WVector(MakeVector(0, 0, 0))
+	: WVector(0, 0, 0)
 {
 	windy = false;
 	CurrTime = 0.0;
@@ -1085,7 +1085,7 @@ void CWind::Update (float timestep) {
 void CWind::Init (int wind_id) {
 	if (wind_id < 1 || wind_id > 3) {
 		windy = false;
-		WVector = MakeVector (0, 0, 0);
+		WVector = TVector3 (0, 0, 0);
 		WAngle = 0;
 		WSpeed = 0;
 		return;

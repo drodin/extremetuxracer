@@ -105,7 +105,7 @@ bool CKeyframe::Load (const string& dir, const string& filename) {
 		for (size_t i=0; i<list.Count(); i++) {
 			string line = list.Line (i);
 			frames[i].val[0] = SPFloatN (line, "time", 0);
-			TVector3 posit = SPVector3N (line, "pos", MakeVector (0, 0, 0));
+			TVector3 posit = SPVector3N (line, "pos", TVector3(0, 0, 0));
 			frames[i].val[1] = posit.x;
 			frames[i].val[2] = posit.y;
 			frames[i].val[3] = posit.z;
@@ -114,19 +114,19 @@ bool CKeyframe::Load (const string& dir, const string& filename) {
 			frames[i].val[6] = SPFloatN (line, "roll", 0);
 			frames[i].val[7] = SPFloatN (line, "neck", 0);
 			frames[i].val[8] = SPFloatN (line, "head", 0);
-			TVector2 pp = SPVector2N (line, "sh", MakeVector2 (0, 0));
+			TVector2 pp = SPVector2N (line, "sh", TVector2(0, 0));
 			frames[i].val[9] = pp.x;
 			frames[i].val[10] = pp.y;
-			pp = SPVector2N (line, "arm", MakeVector2 (0, 0));
+			pp = SPVector2N (line, "arm", TVector2(0, 0));
 			frames[i].val[11] = pp.x;
 			frames[i].val[12] = pp.y;
-			pp = SPVector2N (line, "hip", MakeVector2 (0, 0));
+			pp = SPVector2N (line, "hip", TVector2(0, 0));
 			frames[i].val[13] = pp.x;
 			frames[i].val[14] = pp.y;
-			pp = SPVector2N (line, "knee", MakeVector2 (0, 0));
+			pp = SPVector2N (line, "knee", TVector2(0, 0));
 			frames[i].val[15] = pp.x;
 			frames[i].val[16] = pp.y;
-			pp = SPVector2N (line, "ankle", MakeVector2 (0, 0));
+			pp = SPVector2N (line, "ankle", TVector2(0, 0));
 			frames[i].val[17] = pp.x;
 			frames[i].val[18] = pp.y;
 		}
@@ -201,7 +201,7 @@ void CKeyframe::CalcKeyframe (size_t idx, CCharShape *shape, TVector3 refpos) {
 
 	shape->ResetRoot ();
 	shape->ResetJoints ();
-    shape->TranslateNode (0, MakeVector (pos.x, pos.y, pos.z));
+    shape->TranslateNode (0, TVector3(pos.x, pos.y, pos.z));
 
     vv = frames[idx].val[4];
     shape->RotateNode ("root", 2, vv);
@@ -282,7 +282,7 @@ void CKeyframe::Update (double timestep, CControl *ctrl) {
     Players.GetCtrl (g_game.player_id)->cpos = pos;
     double disp_y = pos.y + TUX_Y_CORR + heightcorr;
     shape->ResetNode (0);
-    shape->TranslateNode (0, MakeVector (pos.x, disp_y, pos.z));
+    shape->TranslateNode (0, TVector3(pos.x, disp_y, pos.z));
 	InterpolateKeyframe (keyidx, frac, shape);
 }
 
@@ -312,7 +312,7 @@ void CKeyframe::UpdateTest (double timestep, CCharShape *shape) {
 
 	shape->ResetRoot ();
 	shape->ResetJoints ();
-    shape->TranslateNode (0, MakeVector (pos.x, pos.y, pos.z));
+    shape->TranslateNode (0, TVector3(pos.x, pos.y, pos.z));
 	InterpolateKeyframe (keyidx, frac, shape);
 }
 

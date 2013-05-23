@@ -31,7 +31,7 @@ GNU General Public License for more details.
 
 CRaceSelect RaceSelect;
 
-static TVector2 cursor_pos = {0, 0};
+static TVector2 cursor_pos(0, 0);
 static TUpDown* course;
 static TIconButton* light;
 static TIconButton* snow;
@@ -65,7 +65,7 @@ void CRaceSelect::Motion (int x, int y) {
 	y = param.y_resolution - y;
 
     TVector2 old_pos = cursor_pos;
-    cursor_pos = MakeVector2 (x, y);
+    cursor_pos = TVector2(x, y);
     if  (old_pos.x != x || old_pos.y != y) {
 		if (param.ui_snow) push_ui_snow (cursor_pos);
     }
@@ -142,7 +142,7 @@ void CRaceSelect::Enter() {
 	int siz = FT.AutoSizeN (5);
 	double len1 = FT.GetTextWidth (Trans.Text(13));
 	textbuttons[0] = AddTextButton (Trans.Text(13), area.right-len1-50, AutoYPosN (80), siz);
- 	textbuttons[1] = AddTextButton (Trans.Text(8), area.left + 50, AutoYPosN (80), siz);
+	textbuttons[1] = AddTextButton (Trans.Text(8), area.left + 50, AutoYPosN (80), siz);
 
 	g_game.loopdelay = 20;
 }

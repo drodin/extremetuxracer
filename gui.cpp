@@ -431,7 +431,7 @@ void DrawBonusExt (int y, size_t numraces, size_t num) {
     TVector2 bl, tr;
 
 	//TColor col1 = {0.3, 0.5, 0.7, 1};
-	TColor col2 = {0.45, 0.65, 0.85, 1};
+	TColor col2(0.45, 0.65, 0.85, 1);
 	//TColor col3 = {0.6, 0.8, 1.0, 1};
 	//TColor gold = {1, 1, 0, 1};
 

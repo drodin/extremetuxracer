@@ -20,8 +20,11 @@ GNU General Public License for more details.
 
 #include "bh.h"
 
-class TTexture;
 
+#define CENTER -1
+
+
+class TTexture;
 
 class TWidget {
 protected:

@@ -143,7 +143,7 @@ TVector2 Str_Vector2N (const string &s, const TVector2 &def) {
 	istringstream is(s);
 	is >> x >> y;
 	if (is.fail()) return def;
-	else return MakeVector2 (x, y);
+	else return TVector2 (x, y);
 }
 
 TVector3 Str_Vector3N (const string &s, const TVector3 &def) {
@@ -151,7 +151,7 @@ TVector3 Str_Vector3N (const string &s, const TVector3 &def) {
 	istringstream is(s);
 	is >> x >> y >> z;
 	if (is.fail()) return def;
-	else return MakeVector (x, y, z);
+	else return TVector3 (x, y, z);
 }
 
 TIndex3 Str_Index3N (const string &s, const TIndex3 &def) {
@@ -159,7 +159,7 @@ TIndex3 Str_Index3N (const string &s, const TIndex3 &def) {
 	istringstream is(s);
 	is >> i >> j >> k;
 	if (is.fail()) return def;
-	else return MakeIndex3 (i, j, k);
+	else return TIndex3 (i, j, k);
 }
 
 TVector4 Str_Vector4N (const string &s, const TVector4 &def) {
@@ -167,7 +167,7 @@ TVector4 Str_Vector4N (const string &s, const TVector4 &def) {
 	istringstream is(s);
 	is >> x >> y >> z >> w;
 	if (is.fail()) return def;
-	else return MakeVector4 (x, y, z, w);
+	else return TVector4 (x, y, z, w);
 }
 
 TColor Str_ColorN (const string &s, const TColor &def) {
@@ -175,7 +175,7 @@ TColor Str_ColorN (const string &s, const TColor &def) {
 	istringstream is(s);
 	is >> r >> g >> b >> a;
 	if (is.fail()) return def;
-	else return MakeColor (r, g, b, a);
+	else return TColor(r, g, b, a);
 }
 
 TColor3 Str_Color3N (const string &s, const TColor3 &def) {
@@ -183,7 +183,7 @@ TColor3 Str_Color3N (const string &s, const TColor3 &def) {
 	istringstream is(s);
 	is >> r >> g >> b;
 	if (is.fail()) return def;
-	else return MakeColor3 (r, g, b);
+	else return TColor3(r, g, b);
 }
 
 void Str_ArrN (const string &s, float *arr, size_t count, float def) {

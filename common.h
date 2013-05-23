@@ -50,9 +50,6 @@ extern const TColor colLBackgr;
 extern const TColor colMess;
 extern const TColor colSky;
 
-TColor	MakeColor (double r, double g, double b, double a);
-TColor3 MakeColor3 (double r, double g, double b);
-
 // --------------------------------------------------------------------
 //				print utils
 // --------------------------------------------------------------------

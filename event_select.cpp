@@ -34,7 +34,7 @@ static TUpDown* event;
 static TUpDown* cup;
 static TWidget* textbuttons[2];
 static TCup2 *CupList;
-static TVector2 cursor_pos = {0, 0};
+static TVector2 cursor_pos(0, 0);
 
 void EnterEvent () {
 	g_game.game_type = CUPRACING;
@@ -72,7 +72,7 @@ void CEventSelect::Motion (int x, int y ){
 	MouseMoveGUI(x, y);
 	y = param.y_resolution - y;
     TVector2 old_pos = cursor_pos;
-    cursor_pos = MakeVector2 (x, y);
+    cursor_pos = TVector2(x, y);
 
     if  (old_pos.x != x || old_pos.y != y) {
 		if (param.ui_snow) push_ui_snow (cursor_pos);

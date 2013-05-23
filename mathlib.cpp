@@ -23,50 +23,6 @@ double VectorLength (const TVector3 &v) {
 	return sqrt (MAG_SQD(v));
 }
 
-
-TVector3 MakeVector (double x, double y, double z){
-    TVector3 result;
-    result.x = x;
-    result.y = y;
-    result.z = z;
-    return result;
-}
-
-TVector2 MakeVector2 (double x, double y){
-    TVector2 result;
-    result.x = x;
-    result.y = y;
-    return result;
-}
-
-TVector3 MakeVector3 (double x, double y, double z) {
-	return MakeVector (x, y, z);
-}
-
-TVector4 MakeVector4 (float x, float y, float z, float w) {
-    TVector4 result;
-    result.x = x;
-    result.y = y;
-    result.z = z;
-    result.w = w;
-    return result;
-}
-
-TIndex2 MakeIndex2 (int i, int j){
-    TIndex2 result;
-    result.i = i;
-    result.j = j;
-    return result;
-}
-
-TIndex3 MakeIndex3 (int i, int j, int k) {
-    TIndex3 result;
-    result.i = i;
-    result.j = j;
-    result.k = k;
-    return result;
-}
-
 double DotProduct (const TVector3& v1, const TVector3& v2){
     return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;
 }
@@ -636,7 +592,7 @@ bool IntersectPolygon (const TPolygon& p, TVector3 *v) {
     double edge_len, t, distsq;
 
     TVector3 nml = MakeNormal (p, v);
-    ray.pt = MakeVector (0., 0., 0.);
+    ray.pt = TVector3(0., 0., 0.);
     ray.vec = nml;
 
     nuDotProd = DotProduct (nml, ray.vec);
@@ -672,7 +628,7 @@ bool IntersectPolygon (const TPolygon& p, TVector3 *v) {
 		if  (distsq <= 1) return true;
     }
 
-    s = - (d + DotProduct (nml, MakeVector (ray.pt.x, ray.pt.y, ray.pt.z))) / nuDotProd;
+    s = - (d + DotProduct (nml, TVector3(ray.pt.x, ray.pt.y, ray.pt.z))) / nuDotProd;
     TVector3 pt = AddVectors (ray.pt, ScaleVector (s, ray.vec));
 
     for  (int i=0; i < p.num_vertices; i++) {

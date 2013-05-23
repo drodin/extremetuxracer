@@ -30,7 +30,7 @@ GNU General Public License for more details.
 #define NORM_INTERPOL 0.05
 #define XCD(x) ((double)(x) / (nx-1.0) * curr_course->width)
 #define ZCD(y) (-(double)(y) / (ny-1.0) * curr_course->length)
-#define NMLPOINT(x,y) MakeVector (XCD(x), ELEV(x,y), ZCD(y) )
+#define NMLPOINT(x,y) TVector3(XCD(x), ELEV(x,y), ZCD(y) )
 
 
 #define MAX_COURSES 64
@@ -39,6 +39,22 @@ GNU General Public License for more details.
 #define MAX_DESCRIPTION_LINES 8
 
 class TTexture;
+
+struct TCollidable {
+	TVector3 pt;
+	double height;
+	double diam;
+	size_t tree_type;
+};
+
+struct TItem {
+	TVector3 pt;
+	double height;
+	double diam;
+	size_t item_type;
+	int collectable;
+	bool drawable;
+};
 
 struct TCourse {
 	string name;

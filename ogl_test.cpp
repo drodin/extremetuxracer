@@ -19,6 +19,7 @@ GNU General Public License for more details.
 #include "ogl.h"
 #include "font.h"
 #include "env.h"
+#include "gui.h"
 
 COglTest OglTest;
 

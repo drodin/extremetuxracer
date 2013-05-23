@@ -86,7 +86,7 @@ void DrawTrees() {
 
         double treeRadius = treeLocs[i].diam / 2.0;
         double treeHeight = treeLocs[i].height;
-		TVector3 normal = MakeVector (0, 0, 1);
+		TVector3 normal(0, 0, 1);
 		glNormal3f (normal.x, normal.y, normal.z);
 /*		// slower but better method of setting the normals
 		normal = SubtractVectors (ctrl->viewpos, treeLocs[i].pt);

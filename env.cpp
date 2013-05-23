@@ -31,7 +31,7 @@ static const float def_diff[]    = {1.0, 0.9, 1.0, 1.0};
 static const float def_spec[]    = {0.6, 0.6, 0.6, 1.0};
 static const float def_pos[]     = {1, 2, 2, 0.0};
 static const float def_fogcol[]  = {0.9, 0.9, 1.0, 0.0};
-static const TColor def_partcol  = {0.8, 0.8, 0.9, 0.0};
+static const TColor def_partcol    (0.8, 0.8, 0.9, 0.0);
 
 CEnvironment Env;
 
@@ -296,7 +296,7 @@ void CEnvironment::DrawFog () {
 //	TPlane left_edge_plane = MakePlane (1.0, 0.0, 0.0, 0.0);
 //	TPlane right_edge_plane = MakePlane (-1.0, 0.0, 0.0, Course.width);
 
-    bottom_plane.nml = MakeVector (0.0, 1, -slope);
+    bottom_plane.nml = TVector3(0.0, 1, -slope);
     float height = Course.GetBaseHeight (0);
     bottom_plane.d = -height * bottom_plane.nml.y;
 

@@ -27,8 +27,8 @@ GNU General Public License for more details.
 CHelp Help;
 
 static int xleft1, xleft2, ytop;
-static TVector2 cursor_pos = {0, 0};
-				  
+static TVector2 cursor_pos(0, 0);
+
 void CHelp::Keyb(unsigned int key, bool special, bool release, int x, int y) {
 	if (key == SDLK_ESCAPE) State::manager.RequestEnterState (GameTypeSelect);
 }
@@ -40,28 +40,28 @@ void CHelp::Mouse(int button, int state, int x, int y) {
 void CHelp::Motion(int x, int y) {
     y = param.y_resolution - y;
     TVector2 old_pos = cursor_pos;
-    cursor_pos = MakeVector2 (x, y);
+    cursor_pos = TVector2(x, y);
     if  (old_pos.x != x || old_pos.y != y) {
 		if (param.ui_snow) push_ui_snow (cursor_pos);
     }
 }
 
-void CHelp::Enter() {  
+void CHelp::Enter() {
 	Winsys.ShowCursor (false);
 	Music.Play (param.credits_music, -1);
 
-	xleft1 = 40; 
+	xleft1 = 40;
 	xleft2 = (int)(param.x_resolution / 2) + 20;
 	ytop = AutoYPosN (15);
 }
 
 void CHelp::Loop(double timestep ){
-	Music.Update ();    
+	Music.Update ();
 	check_gl_error();
     ClearRenderContext ();
     set_gl_options (GUI);
     SetupGuiDisplay ();
-		
+
 	if (param.ui_snow) {
 		update_ui_snow (timestep);
 		draw_ui_snow();
@@ -86,10 +86,10 @@ void CHelp::Loop(double timestep ){
 	FT.DrawString (xleft1, ytop + offs * 10, Trans.Text(54));
 	FT.DrawString (xleft1, ytop + offs * 11, Trans.Text(55));
 	FT.DrawString (xleft1, ytop + offs * 12, Trans.Text(56));
-		
+
 	FT.DrawString (CENTER, AutoYPosN (90), Trans.Text(65));
     Winsys.SwapBuffers();
-} 
+}
 
 void CHelp::Exit() {
 	Music.Halt();

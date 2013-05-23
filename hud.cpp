@@ -61,7 +61,7 @@ static const GLfloat energy_foreground_color[] = { 0.54, 0.59, 1.00, 0.5 };
 static const GLfloat speedbar_background_color[] = { 0.2, 0.2, 0.2, 0.0 };
 static const GLfloat hud_white[] = { 1.0, 1.0, 1.0, 1.0 };
 
-static const TColor text_colour = {0, 0, 0, 1};
+static const TColor text_colour(0, 0, 0, 1);
 
 static void draw_time(){
     int min, sec, hundr;

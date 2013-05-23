@@ -65,7 +65,7 @@ void CIntro::Enter() {
 
     ctrl->Init ();
 
-    ctrl->cvel = MakeVector (0, 0, 0);
+    ctrl->cvel = TVector3(0, 0, 0);
     clear_particles();
     set_view_mode (ctrl, ABOVE);
 	SetCameraDistance (4.0);
@@ -84,7 +84,7 @@ void CIntro::Enter() {
 	InitWind ();
 		
 	Music.PlayTheme (g_game.theme_id, MUS_RACING);
-    param.show_hud = true;	
+    param.show_hud = true;
 	g_game.loopdelay = 1;
 }
 

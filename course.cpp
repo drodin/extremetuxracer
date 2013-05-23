@@ -92,8 +92,8 @@ void CCourse::CalcNormals () {
 
 	for (int y=0; y<ny; y++) {
         for  (int x=0; x<nx; x++) {
-            TVector3 nml = MakeVector (0.0, 0.0, 0.0);
-            TVector3 p0 = MakeVector (XCD(x), ELEV(x,y), ZCD(y));
+            TVector3 nml(0.0, 0.0, 0.0);
+            TVector3 p0 (XCD(x), ELEV(x,y), ZCD(y));
 
 			if  ((x + y) % 2 == 0) {
 				if  (x > 0 && y > 0) {
@@ -291,12 +291,12 @@ void CCourse::MakeStandardPolyhedrons () {
 	// poyhedron "tree"
 	PolyArr[1].num_vertices = 6;
 	PolyArr[1].vertices = new TVector3[6];
-	PolyArr[1].vertices[0] = MakeVector (0, 0, 0);
-	PolyArr[1].vertices[1] = MakeVector (0, 0.15, 0.5);
-	PolyArr[1].vertices[2] = MakeVector (0.5, 0.15, 0);
-	PolyArr[1].vertices[3] = MakeVector (0, 0.15, -0.5);
-	PolyArr[1].vertices[4] = MakeVector (-0.5, 0.15, 0);
-	PolyArr[1].vertices[5] = MakeVector (0, 1, 0);
+	PolyArr[1].vertices[0] = TVector3(0, 0, 0);
+	PolyArr[1].vertices[1] = TVector3(0, 0.15, 0.5);
+	PolyArr[1].vertices[2] = TVector3(0.5, 0.15, 0);
+	PolyArr[1].vertices[3] = TVector3(0, 0.15, -0.5);
+	PolyArr[1].vertices[4] = TVector3(-0.5, 0.15, 0);
+	PolyArr[1].vertices[5] = TVector3(0, 1, 0);
 
 	PolyArr[1].num_polygons = 8;
 	PolyArr[1].polygons = new TPolygon[8];
@@ -601,7 +601,7 @@ bool CCourse::LoadObjectTypes () {
 		ObjTypes[i].use_normal = SPIntN (line, "usenorm", 0) != 0;
 
 		if (ObjTypes[i].use_normal) {
-			ObjTypes[i].normal = SPVector3N (line, "norm", MakeVector (0, 1, 0));
+			ObjTypes[i].normal = SPVector3N (line, "norm", TVector3(0, 1, 0));
 			NormVector ((ObjTypes[i].normal));
 		}
 		ObjTypes[i].poly = 1;
@@ -645,7 +645,7 @@ bool CCourse::LoadTerrainTypes () {
 		TerrList[i].starttex = SPIntN (line, "starttex", -1);
 		TerrList[i].tracktex = SPIntN (line, "tracktex", -1);
 		TerrList[i].stoptex = SPIntN (line, "stoptex", -1);
-		TerrList[i].col = SPColor3N (line, "col", MakeColor3 (1, 1, 1));
+		TerrList[i].col = SPColor3N (line, "col", TColor3(1, 1, 1));
 		TerrList[i].friction = SPFloatN (line, "friction", 0.5);
 		TerrList[i].depth = SPFloatN (line, "depth", 0.01);
 		TerrList[i].particles = SPIntN (line, "part", 0);
@@ -946,23 +946,23 @@ void CCourse::FindBarycentricCoords (double x, double z, TIndex2 *idx0,
 
     if  ((x0 + y0) % 2 == 0) {
 		if  (yidx - y0 < xidx - x0) {
-			*idx0 = MakeIndex2 (x0, y0);
-			*idx1 = MakeIndex2 (x1, y0);
-			*idx2 = MakeIndex2 (x1, y1);
+			*idx0 = TIndex2 (x0, y0);
+			*idx1 = TIndex2 (x1, y0);
+			*idx2 = TIndex2 (x1, y1);
 		} else {
-			*idx0 = MakeIndex2 (x1, y1);
-			*idx1 = MakeIndex2 (x0, y1);
-			*idx2 = MakeIndex2 (x0, y0);
+			*idx0 = TIndex2 (x1, y1);
+			*idx1 = TIndex2 (x0, y1);
+			*idx2 = TIndex2 (x0, y0);
 		}
     } else {
 		if  (yidx - y0 + xidx - x0 < 1) {
-			*idx0 = MakeIndex2 (x0, y0);
-			*idx1 = MakeIndex2 (x1, y0);
-			*idx2 = MakeIndex2 (x0, y1);
+			*idx0 = TIndex2 (x0, y0);
+			*idx1 = TIndex2 (x1, y0);
+			*idx2 = TIndex2 (x0, y1);
 		} else {
-			*idx0 = MakeIndex2 (x1, y1);
-			*idx1 = MakeIndex2 (x0, y1);
-			*idx2 = MakeIndex2 (x1, y0);
+			*idx0 = TIndex2 (x1, y1);
+			*idx1 = TIndex2 (x0, y1);
+			*idx2 = TIndex2 (x1, y0);
 		}
     }
 
@@ -978,7 +978,7 @@ void CCourse::FindBarycentricCoords (double x, double z, TIndex2 *idx0,
     *v = (qz * dx - qx * dz) * invdet;
 }
 
-#define COURSE_VERTX(x,y) MakeVector ( (double)(x)/(nx-1.)*curr_course->width, \
+#define COURSE_VERTX(x,y) TVector3 ( (double)(x)/(nx-1.)*curr_course->width, \
                        ELEV((x),(y)), -(double)(y)/(ny-1.)*curr_course->length )
 
 TVector3 CCourse::FindCourseNormal (double x, double z) const {
