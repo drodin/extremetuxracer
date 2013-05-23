@@ -282,15 +282,13 @@ void CEnvironment::DrawFog () {
     TPlane bottom_plane, top_plane;
     TVector3 left, right, vpoint;
     TVector3 topleft, topright;
-    TVector3 bottomleft = NullVec;
-	TVector3 bottomright = NullVec;
-    float height;
+    TVector3 bottomleft, bottomright;
 
 	// the clipping planes are calculated by view frustum (view.cpp)
-	leftclip = get_left_clip_plane ();
-	rightclip = get_right_clip_plane ();
-	farclip = get_far_clip_plane ();
-	bottomclip = get_bottom_clip_plane ();
+	const TPlane& leftclip = get_left_clip_plane ();
+	const TPlane& rightclip = get_right_clip_plane ();
+	const TPlane& farclip = get_far_clip_plane ();
+	const TPlane& bottomclip = get_bottom_clip_plane ();
 
 	// --------------- calculate the planes ---------------------------
 
@@ -299,7 +297,7 @@ void CEnvironment::DrawFog () {
 //	TPlane right_edge_plane = MakePlane (-1.0, 0.0, 0.0, Course.width);
 
     bottom_plane.nml = MakeVector (0.0, 1, -slope);
-    height = Course.GetBaseHeight (0);
+    float height = Course.GetBaseHeight (0);
     bottom_plane.d = -height * bottom_plane.nml.y;
 
     top_plane.nml = bottom_plane.nml;

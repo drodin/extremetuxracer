@@ -62,11 +62,6 @@ private:
 	TFog fog;
 	TFog default_fog;
 
-	TPlane leftclip;
-	TPlane rightclip;
-	TPlane farclip;
-	TPlane bottomclip;
-
 	map<string, size_t> EnvIndex;
 	map<string, size_t> LightIndex;
 

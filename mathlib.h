@@ -50,8 +50,8 @@ TVector3	TransformVector (TMatrix mat, const TVector3& v);
 TVector3	TransformNormal (const TVector3& n, TMatrix mat);	// not used ?
 TVector3	TransformPoint (TMatrix mat, const TVector3& p);
 TPlane		MakePlane (double nx, double ny, double nz, double d);
-bool		IntersectPlanes (TPlane s1, TPlane s2, TPlane s3, TVector3 *p);
-double		DistanceToPlane (TPlane plane, const TVector3& pt);
+bool		IntersectPlanes (const TPlane& s1, const TPlane& s2, const TPlane& s3, TVector3 *p);
+double		DistanceToPlane (const TPlane& plane, const TVector3& pt);
 
 void MakeIdentityMatrix (TMatrix h);
 void MakeRotationMatrix (TMatrix mat, double angle, char axis);
@@ -66,8 +66,8 @@ void RotateAboutVectorMatrix (TMatrix mat, const TVector3& u, double angle);
 
 TQuaternion MakeQuaternion (double x, double y, double z, double w);
 TQuaternion AddQuaternions (const TQuaternion& q, const TQuaternion& r);		// not used?
-TQuaternion MultiplyQuaternions (const TQuaternion& q, const TQuaternion& r);	// not used?
-TQuaternion ScaleQuaternion (double s, TQuaternion q);
+TQuaternion MultiplyQuaternions (const TQuaternion& q, const TQuaternion& r);
+TQuaternion ScaleQuaternion (double s, const TQuaternion& q);
 TQuaternion ConjugateQuaternion (const TQuaternion& q);
 void		MakeMatrixFromQuaternion (TMatrix mat, const TQuaternion& q);
 TQuaternion MakeQuaternionFromMatrix (TMatrix mat);

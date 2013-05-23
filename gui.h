@@ -62,8 +62,8 @@ public:
 
 	TCheckbox(int x, int y, int width_, const string& tag_)
 		: TWidget(x, y, 32, 32)
-		, width(width_)
 		, tag(tag_)
+		, width(width_)
 		, checked(false)
 	{
 		mouseRect.left = x+width-32;
@@ -82,8 +82,8 @@ class TIconButton : public TWidget {
 public:
 	TIconButton(int x, int y, TTexture* texture_, double size_, int max_, int value_)
 		: TWidget(x, y, 32, 32)
-		, texture(texture_)
 		, size(size_)
+		, texture(texture_)
 		, maximum(max_)
 		, value(value_)
 	{}

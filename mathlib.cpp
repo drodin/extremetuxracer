@@ -155,7 +155,7 @@ TPlane MakePlane (double nx, double ny, double nz, double d){
     return tmp;
 }
 
-bool IntersectPlanes (TPlane s1, TPlane s2, TPlane s3, TVector3 *p){
+bool IntersectPlanes (const TPlane& s1, const TPlane& s2, const TPlane& s3, TVector3 *p){
     double A[3][4];
     double x[3];
     double retval;
@@ -187,8 +187,8 @@ bool IntersectPlanes (TPlane s1, TPlane s2, TPlane s3, TVector3 *p){
     }
 }
 
-double DistanceToPlane (TPlane plane, const TVector3& pt) {
-    return 
+double DistanceToPlane (const TPlane& plane, const TVector3& pt) {
+    return
 		plane.nml.x * pt.x +
 		plane.nml.y * pt.y +
 		plane.nml.z * pt.z +
@@ -252,28 +252,28 @@ void MakeRotationMatrix (TMatrix mat, double angle, char axis){
         mat[2][2] = cosv;
         break;
 
-    case 'z': 
+    case 'z':
         mat[0][0] = cosv;
         mat[1][0] = -sinv;
         mat[0][1] = sinv;
         mat[1][1] = cosv;
         break;
     }
-} 
+}
 
 void MakeTranslationMatrix (TMatrix mat, double x, double y, double z){
     MakeIdentityMatrix (mat);
     mat[3][0] = x;
     mat[3][1] = y;
     mat[3][2] = z;
-} 
+}
 
 void MakeScalingMatrix (TMatrix mat, double x, double y, double z){
     MakeIdentityMatrix (mat);
     mat[0][0] = x;
     mat[1][1] = y;
     mat[2][2] = z;
-} 
+}
 
 void MakeBasisMat (TMatrix mat, const TVector3& w1, const TVector3& w2, const TVector3& w3) {
     MakeIdentityMatrix (mat);
@@ -286,9 +286,9 @@ void MakeBasisMat (TMatrix mat, const TVector3& w1, const TVector3& w2, const TV
     mat[2][0] = w3.x;
     mat[2][1] = w3.y;
     mat[2][2] = w3.z;
-} 
+}
 
-void MakeBasismatrix_Inv (TMatrix mat, TMatrix invMat, 
+void MakeBasismatrix_Inv (TMatrix mat, TMatrix invMat,
 		const TVector3& w1, const TVector3& w2, const TVector3& w3){
     MakeIdentityMatrix (mat);
     mat[0][0] = w1.x;
@@ -311,7 +311,7 @@ void MakeBasismatrix_Inv (TMatrix mat, TMatrix invMat,
     invMat[0][2] = w3.x;
     invMat[1][2] = w3.y;
     invMat[2][2] = w3.z;
-} 
+}
 
 void RotateAboutVectorMatrix (TMatrix mat, const TVector3& u, double angle) {
     TMatrix rx, irx, ry, iry;
@@ -324,12 +324,12 @@ void RotateAboutVectorMatrix (TMatrix mat, const TVector3& u, double angle) {
     d = sqrt (b*b + c*c);
 
     if  (d < EPS) {
-        if  (a < 0) 
+        if  (a < 0)
             MakeRotationMatrix (mat, -angle, 'x');
         else
             MakeRotationMatrix (mat, angle, 'x');
         return;
-    } 
+    }
 
     MakeIdentityMatrix (rx);
     MakeIdentityMatrix (irx);
@@ -362,7 +362,7 @@ void RotateAboutVectorMatrix (TMatrix mat, const TVector3& u, double angle) {
     MultiplyMatrices (mat, mat, rx);
     MultiplyMatrices (mat, iry, mat);
     MultiplyMatrices (mat, irx, mat);
-} 
+}
 
 TQuaternion MakeQuaternion (double x, double y, double z, double w){
     TQuaternion q;
@@ -383,7 +383,7 @@ TQuaternion MultiplyQuaternions (const TQuaternion& q, const TQuaternion& r){
 }
 
 TQuaternion AddQuaternions (const TQuaternion& q, const TQuaternion& r){
-    TQuaternion res; 
+    TQuaternion res;
     res.x = q.x + r.x;
     res.y = q.y + r.y;
     res.z = q.z + r.z;
@@ -445,7 +445,7 @@ TQuaternion MakeQuaternionFromMatrix (TMatrix m){
 	res.x = (m[1][2] - m[2][1]) * s;
 	res.y = (m[2][0] - m[0][2]) * s;
 	res.z = (m[0][1] - m[1][0]) * s;
-    } else {                
+    } else {
 	i = 0;
 	if (m[1][1] > m[0][0]) i = 1;
 	if (m[2][2] > m[i][i]) i = 2;
@@ -453,9 +453,9 @@ TQuaternion MakeQuaternionFromMatrix (TMatrix m){
 	k = nxt[j];
 
 	s = sqrt (m[i][i] - m[j][j] - m[k][k] + 1.0);
-                       
+
 	q[i] = s * 0.5;
-                             
+
 	if (s != 0.0) s = 0.5 / s;
 
 	q[3] = (m[j][k] - m[k][j]) * s;
@@ -496,7 +496,7 @@ TQuaternion MakeRotationQuaternion (const TVector3& s, const TVector3& t){
     return res;
 }
 
-TQuaternion InterpolateQuaternions (const TQuaternion& q, 
+TQuaternion InterpolateQuaternions (const TQuaternion& q,
 		TQuaternion r, double t){
     TQuaternion res;
     double cosphi;
@@ -524,10 +524,10 @@ TQuaternion InterpolateQuaternions (const TQuaternion& q,
 	scale1 = t;
     }
 
-    res.x = scale0 * q.x + scale1 * r.x; 
-    res.y = scale0 * q.y + scale1 * r.y; 
-    res.z = scale0 * q.z + scale1 * r.z; 
-    res.w = scale0 * q.w + scale1 * r.w; 
+    res.x = scale0 * q.x + scale1 * r.x;
+    res.y = scale0 * q.y + scale1 * r.y;
+    res.z = scale0 * q.z + scale1 * r.z;
+    res.w = scale0 * q.w + scale1 * r.w;
 
     return res;
 }
@@ -610,7 +610,7 @@ void elim (double *matrix, int n, int pivot){
 		double factor = (*(matrix+row*(n+1)+pivot))/(*(matrix+pivot*(n+1)+pivot));
 		*(matrix+row*(n+1)+pivot)=0.0;
 		for (int col=pivot+1l; col<n+1; col++) {
-		    *(matrix+row*(n+1)+col) = *(matrix+row*(n+1)+col) - 
+		    *(matrix+row*(n+1)+col) = *(matrix+row*(n+1)+col) -
 			(*(matrix+pivot*(n+1)+col))*factor;
 		}
     }
@@ -620,7 +620,7 @@ void elim (double *matrix, int n, int pivot){
 void backsb (double *matrix, int n, double *soln){
     for (int row = n-1; row >=0; row--){
 		for (int col = n-1; col >= row+1; col--) {
-		    *(matrix+row*(n+1)+(n)) = *(matrix+row*(n+1)+n) - 
+		    *(matrix+row*(n+1)+(n)) = *(matrix+row*(n+1)+n) -
 			(*(soln+col))*(*(matrix+row*(n+1)+col));
 		}
 		*(soln+row) = (*(matrix+row*(n+1)+n))/(*(matrix+row*(n+1)+row));
@@ -643,8 +643,8 @@ bool IntersectPolygon (const TPolygon& p, TVector3 *v) {
     if  (fabs(nuDotProd) < EPS)
         return false;
 
-    d = - (nml.x * v[p.vertices[0]].x + 
-           nml.y * v[p.vertices[0]].y + 
+    d = - (nml.x * v[p.vertices[0]].x +
+           nml.y * v[p.vertices[0]].y +
            nml.z * v[p.vertices[0]].z);
 
     if  (fabs (d) > 1) return false;
@@ -653,7 +653,7 @@ bool IntersectPolygon (const TPolygon& p, TVector3 *v) {
 		TVector3 *v0, *v1;
 
 		v0 = &v[p.vertices[i]];
-		v1 = &v[p.vertices[ (i+1) % p.num_vertices ]]; 
+		v1 = &v[p.vertices[ (i+1) % p.num_vertices ]];
 
 		TVector3 edge_vec = SubtractVectors (*v1, *v0);
 		edge_len = NormVector (edge_vec);
@@ -676,23 +676,23 @@ bool IntersectPolygon (const TPolygon& p, TVector3 *v) {
     TVector3 pt = AddVectors (ray.pt, ScaleVector (s, ray.vec));
 
     for  (int i=0; i < p.num_vertices; i++) {
-        TVector3 edge_nml = CrossProduct (nml, 
+        TVector3 edge_nml = CrossProduct (nml,
             SubtractVectors (v[p.vertices[ (i+1) % p.num_vertices ]], v[p.vertices[i]]));
 
         wec = DotProduct (SubtractVectors (pt, v[p.vertices[i]]), edge_nml);
         if (wec < 0) return false;
-    } 
+    }
     return true;
-} 
+}
 
 bool IntersectPolyhedron (const TPolyhedron& p) {
     bool hit = false;
     for (size_t i=0; i<p.num_polygons; i++) {
         hit = IntersectPolygon (p.polygons[i], p.vertices);
         if  (hit == true) break;
-    } 
+    }
     return hit;
-} 
+}
 
 TVector3 MakeNormal (const TPolygon& p, TVector3 *v) {
     double old_len;
@@ -703,7 +703,7 @@ TVector3 MakeNormal (const TPolygon& p, TVector3 *v) {
 
     old_len = NormVector (normal);
     return normal;
-} 
+}
 
 
 TPolyhedron CopyPolyhedron (const TPolyhedron& ph) {
@@ -711,16 +711,16 @@ TPolyhedron CopyPolyhedron (const TPolyhedron& ph) {
 	newph.vertices = new TVector3[ph.num_vertices];
 	copy_n(ph.vertices, ph.num_vertices, newph.vertices);
     return newph;
-} 
+}
 
 void FreePolyhedron (const TPolyhedron& ph) {
     delete[] ph.vertices;
-} 
+}
 
 void TransPolyhedron (TMatrix mat, const TPolyhedron& ph) {
     for (size_t i=0; i<ph.num_vertices; i++)
         ph.vertices[i] = TransformPoint (mat, ph.vertices[i]);
-} 
+}
 
 // --------------------------------------------------------------------
 //					ode solver
@@ -731,7 +731,7 @@ const double ode23_coeff_mat[][4] = {
     {0.0, 1./2.,   0.0,  2./9.},
     {0.0,   0.0, 3./4.,  1./3.},
     {0.0,   0.0,   0.0,  4./9.},
-    {0.0,   0.0,   0.0,    0.0} 
+    {0.0,   0.0,   0.0,    0.0}
 };
 
 const double ode23_error_mat[] = {-5./72., 1./12., 1./9., -1./8. };
@@ -781,7 +781,7 @@ double ode23_TimestepExponent(){
 }
 
 TOdeSolver NewOdeSolver23() {
-    TOdeSolver s; 
+    TOdeSolver s;
     s.NumEstimates = ode23_NumEstimates;
     s.InitOdeData = ode23_InitOdeData;
     s.NextTime = ode23_NextTime;
@@ -808,11 +808,11 @@ double LinearInterp (const double x[], const double y[], double val, int n){
 }
 
 double XRandom (float min, float max) {
-	return (double)rand () / RAND_MAX * (max - min) + min; 
+	return (double)rand () / RAND_MAX * (max - min) + min;
 }
 
 double FRandom () {
-	return (double)rand () / RAND_MAX; 
+	return (double)rand () / RAND_MAX;
 }
 
 int IRandom (int min, int max) {

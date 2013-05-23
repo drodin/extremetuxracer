@@ -166,9 +166,7 @@ void setup_view_matrix (CControl *ctrl, bool save_mat) {
     view_mat[3][2] = -viewpt_in_view_frame.z;
 
 	if (save_mat) {
-		for (int xx=0; xx<4; xx++) {
-			for (int yy=0; yy<4; yy++) stationary_matrix[xx][yy] = view_mat[xx][yy];
-		}
+		memcpy(stationary_matrix, view_mat, 16*sizeof(*view_mat));
 	}
     glLoadIdentity();
 	glMultMatrixd ((double*) view_mat);
@@ -176,18 +174,12 @@ void setup_view_matrix (CControl *ctrl, bool save_mat) {
 
 TVector3 MakeViewVector () {
     double course_angle = Course.GetCourseAngle();
-	TVector3 res
-		= MakeVector (0,
-			sin (ANGLES_TO_RADIANS (
+	double rad = ANGLES_TO_RADIANS (
 			    course_angle -
 			    CAMERA_ANGLE_ABOVE_SLOPE +
-			    PLAYER_ANGLE_IN_CAMERA)),
-			cos (ANGLES_TO_RADIANS (
-			    course_angle -
-			    CAMERA_ANGLE_ABOVE_SLOPE +
-			    PLAYER_ANGLE_IN_CAMERA)));
-	res = ScaleVector (camera_distance, res);
-	return res;
+			    PLAYER_ANGLE_IN_CAMERA);
+	TVector3 res = MakeVector (0, sin(rad), cos(rad));
+	return ScaleVector (camera_distance, res);
 }
 
 void update_view (CControl *ctrl, double dt) {
@@ -198,41 +190,34 @@ void update_view (CControl *ctrl, double dt) {
 	}
 
     TVector3 view_pt = MakeVector (0,0,0);
-    TVector3 view_dir, view_vec;
-    double ycoord;
-    double course_angle;
-    TVector3 axis;
+    TVector3 view_dir;
     TMatrix rot_mat;
-    TVector3 y_vec;
-    TVector3 mz_vec;
-    TVector3 vel_proj;
     TQuaternion rot_quat;
+
+	static const TVector3 y_vec = MakeVector (0.0, 1.0, 0.0);
+	static const TVector3 mz_vec = MakeVector (0.0, 0.0, -1.0);
 
     TVector3 vel_cpy = ctrl->cvel;
     double speed = NormVector (vel_cpy);
     double time_constant_mult = 1.0 /
-	min (1.0, max (0.0,
-	   (speed - NO_INTERPOLATION_SPEED) /
-	   (BASELINE_INTERPOLATION_SPEED - NO_INTERPOLATION_SPEED)));
-
-    TVector3 up_dir = MakeVector (0, 1, 0);
+		min (1.0, max (0.0,
+			(speed - NO_INTERPOLATION_SPEED) /
+			(BASELINE_INTERPOLATION_SPEED - NO_INTERPOLATION_SPEED)));
 
     TVector3 vel_dir = ctrl->cvel;
     NormVector (vel_dir);
-    course_angle = Course.GetCourseAngle();
+    double course_angle = Course.GetCourseAngle();
 
     switch (ctrl->viewmode) {
     case BEHIND: {
-		view_vec = MakeViewVector ();
+		TVector3 view_vec = MakeViewVector ();
 
-		y_vec = MakeVector (0.0, 1.0, 0.0);
-		mz_vec = MakeVector (0.0, 0.0, -1.0);
-		vel_proj = ProjectToPlane (y_vec, vel_dir);
+		TVector3 vel_proj = ProjectToPlane (y_vec, vel_dir);
 		NormVector (vel_proj);
 		rot_quat = MakeRotationQuaternion (mz_vec, vel_proj);
 		view_vec = RotateVector (rot_quat, view_vec);
 		view_pt = AddVectors (ctrl->cpos, view_vec);
-        ycoord = Course.FindYCoord (view_pt.x, view_pt.z);
+        double ycoord = Course.FindYCoord (view_pt.x, view_pt.z);
 
         if (view_pt.y < ycoord + MIN_CAMERA_HEIGHT) {
             view_pt.y = ycoord + MIN_CAMERA_HEIGHT;
@@ -254,34 +239,31 @@ void update_view (CControl *ctrl, double dt) {
         }
 
 		view_vec = SubtractVectors (view_pt, ctrl->cpos);
-		axis = CrossProduct (y_vec, view_vec);
+		TVector3 axis = CrossProduct (y_vec, view_vec);
 		NormVector (axis);
 		RotateAboutVectorMatrix (rot_mat, axis, PLAYER_ANGLE_IN_CAMERA);
 		view_dir = ScaleVector (-1.0, TransformVector (rot_mat, view_vec));
 
 		if (ctrl->view_init) {
 	 		for (int i=0; i<2; i++) {
+				TVector3 up_dir = MakeVector (0, 1, 0);
 				interpolate_view_frame (ctrl->viewup, ctrl->viewdir,
 					&up_dir, &view_dir, dt,
 					BEHIND_ORIENT_TIME_CONSTANT);
-			up_dir = MakeVector (0.0, 1.0, 0.0);
 	    	}
 		}
         break;
     }
 
     case FOLLOW: { // normale Einstellung
-		up_dir = MakeVector (0, 1, 0);
-		view_vec = MakeViewVector ();
-		y_vec = MakeVector (0.0, 1.0, 0.0);
-		mz_vec = MakeVector (0.0, 0.0, -1.0);
+		TVector3 view_vec = MakeViewVector ();
 
-		vel_proj = ProjectToPlane (y_vec, vel_dir);
+		TVector3 vel_proj = ProjectToPlane (y_vec, vel_dir);
 		NormVector (vel_proj);
 		rot_quat = MakeRotationQuaternion (mz_vec, vel_proj);
 		view_vec = RotateVector (rot_quat, view_vec);
 		view_pt = AddVectors (ctrl->cpos, view_vec);
-        ycoord = Course.FindYCoord (view_pt.x, view_pt.z);
+        double ycoord = Course.FindYCoord (view_pt.x, view_pt.z);
         if (view_pt.y < ycoord + MIN_CAMERA_HEIGHT) {
             view_pt.y = ycoord + MIN_CAMERA_HEIGHT;
 		}
@@ -289,41 +271,40 @@ void update_view (CControl *ctrl, double dt) {
 		if (ctrl->view_init) {
 	    	for (int i=0; i<2; i++) {
 				view_pt = interpolate_view_pos (ctrl->plyr_pos, ctrl->cpos,
-					  MAX_CAMERA_PITCH, ctrl->viewpos,
-					  view_pt, camera_distance, dt,
-					  FOLLOW_ORBIT_TIME_CONSTANT *
-					  time_constant_mult);
+					MAX_CAMERA_PITCH, ctrl->viewpos,
+					view_pt, camera_distance, dt,
+					FOLLOW_ORBIT_TIME_CONSTANT *
+					time_constant_mult);
 			}
 		}
         ycoord = Course.FindYCoord (view_pt.x, view_pt.z);
-        if  (view_pt.y < ycoord + ABSOLUTE_MIN_CAMERA_HEIGHT) {
+        if (view_pt.y < ycoord + ABSOLUTE_MIN_CAMERA_HEIGHT) {
             view_pt.y = ycoord + ABSOLUTE_MIN_CAMERA_HEIGHT;
         }
 
 		view_vec = SubtractVectors (view_pt, ctrl->cpos);
-		axis = CrossProduct (y_vec, view_vec);
+		TVector3 axis = CrossProduct (y_vec, view_vec);
 		NormVector (axis);
 		RotateAboutVectorMatrix (rot_mat, axis,
-					   PLAYER_ANGLE_IN_CAMERA);
+						PLAYER_ANGLE_IN_CAMERA);
 		view_dir = ScaleVector (-1.0,
 				 TransformVector (rot_mat, view_vec));
 
 		if (ctrl->view_init) {
 			for (int i=0; i<2; i++) {
+				TVector3 up_dir = MakeVector (0, 1, 0);
 				interpolate_view_frame (ctrl->viewup, ctrl->viewdir,
 					&up_dir, &view_dir, dt,
 					FOLLOW_ORIENT_TIME_CONSTANT);
-				up_dir = MakeVector (0.0, 1.0, 0.0);
 	    	}
 		}
         break;
     }
 
     case ABOVE: {
-		up_dir = MakeVector (0, 1, 0);
-		view_vec = MakeViewVector ();
+		TVector3 view_vec = MakeViewVector ();
 		view_pt = AddVectors (ctrl->cpos, view_vec);
-        ycoord = Course.FindYCoord (view_pt.x, view_pt.z);
+        double ycoord = Course.FindYCoord (view_pt.x, view_pt.z);
         if (view_pt.y < ycoord + MIN_CAMERA_HEIGHT) {
             view_pt.y = ycoord + MIN_CAMERA_HEIGHT;
 		}
@@ -331,7 +312,7 @@ void update_view (CControl *ctrl, double dt) {
 		view_vec = SubtractVectors (view_pt, ctrl->cpos);
 		MakeRotationMatrix (rot_mat, PLAYER_ANGLE_IN_CAMERA, 'x');
 		view_dir = ScaleVector (-1.0,
-				 TransformVector (rot_mat, view_vec));
+			TransformVector (rot_mat, view_vec));
         break;
     }
 
@@ -341,7 +322,7 @@ void update_view (CControl *ctrl, double dt) {
 
 	ctrl->viewpos = view_pt;
     ctrl->viewdir = view_dir;
-    ctrl->viewup = up_dir;
+    ctrl->viewup = MakeVector (0, 1, 0);
     ctrl->plyr_pos = ctrl->cpos;
     ctrl->view_init = true;
 
@@ -438,7 +419,7 @@ clip_result_t clip_aabb_to_view_frustum (const TVector3& min, const TVector3& ma
     return NoClip;
 }
 
-TPlane get_far_clip_plane() {return frustum_planes[1]; }
-TPlane get_left_clip_plane() {return frustum_planes[2]; }
-TPlane get_right_clip_plane() {return frustum_planes[3]; }
-TPlane get_bottom_clip_plane() {return frustum_planes[5]; }
+const TPlane& get_far_clip_plane() {return frustum_planes[1]; }
+const TPlane& get_left_clip_plane() {return frustum_planes[2]; }
+const TPlane& get_right_clip_plane() {return frustum_planes[3]; }
+const TPlane& get_bottom_clip_plane() {return frustum_planes[5]; }
