@@ -175,7 +175,7 @@ void MultiplyMatrices (TMatrix ret, TMatrix mat1, TMatrix mat2){
 
 
 void TransposeMatrix (TMatrix mat, TMatrix trans) {
-	Matrix r;
+	TMatrix r;
 
 	for (int i = 0; i < 4; i++)
 		for (int j = 0; j< 4; j++)
