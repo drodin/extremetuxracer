@@ -158,7 +158,6 @@ struct TCup2;
 struct TGameData {
 	TToolMode toolmode;
 	double time_step;
-	double fps;
 	TGameType game_type;
 	bool force_treemap;
 	int treesize;
@@ -167,6 +166,7 @@ struct TGameData {
 	string group_arg;
 	string dir_arg;
 	string file_arg;
+	int loopdelay;
 	bool finish;
 	bool use_keyframe;
 	double finish_brake;

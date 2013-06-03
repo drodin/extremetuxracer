@@ -175,8 +175,6 @@ void CRacing::Enter (void) {
 	SetSoundVolumes ();
 	Music.PlayTheme (g_game.theme_id, MUS_RACING);
 	
-	g_game.fps = 0;
-	g_game.timesteps = 0;
 	g_game.finish = false;
 }
 
