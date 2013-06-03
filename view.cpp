@@ -165,7 +165,7 @@ void setup_view_matrix (CControl *ctrl, bool save_mat) {
     view_mat[3][2] = -viewpt_in_view_frame.z;
 
 	if (save_mat) {
-		memcpy(stationary_matrix, view_mat, 16*sizeof(*view_mat));
+		memcpy(stationary_matrix, view_mat, 16*sizeof(**view_mat));
 	}
     glLoadIdentity();
 	glMultMatrixd ((double*) view_mat);
