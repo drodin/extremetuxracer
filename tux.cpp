@@ -61,6 +61,15 @@ CCharShape::CCharShape () {
 	highlight_node = -1;
 }
 
+CCharShape::~CCharShape() {
+	for (int i=0; i<MAX_CHAR_NODES; i++) {
+		if (Nodes[i] != NULL) {
+			delete Nodes[i]->action;
+			delete Nodes[i];
+		}
+	}
+}
+
 // --------------------------------------------------------------------
 //				nodes
 // --------------------------------------------------------------------
@@ -947,10 +956,10 @@ void CCharShape::SaveCharNodes (const string& dir, const string& filename) {
 		string line = "*[node] " + Int_StrN ((int)node->node_name);
 		line += " [par] " + Int_StrN ((int)node->parent_name);
 		string order = act->order;
-		TVector3 rotation = NullVec;
 		bool rotflag = false;
 
 		if (!order.empty()) {
+			TVector3 rotation;
 			line += " [order] " + order;
 			for (size_t ii=0; ii<order.size(); ii++) {
 				int aa = order.at(ii)-48;

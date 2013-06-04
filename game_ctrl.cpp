@@ -155,6 +155,12 @@ CPlayers::CPlayers () {
 	currPlayer = 0;
 }
 
+CPlayers::~CPlayers() {
+	ResetControls();
+	for(size_t i = 0; i < avatars.size(); i++)
+		delete avatars[i].texture;
+}
+
 void CPlayers::AddPlayer (const string& name, const string& avatar) {
 	plyr.push_back(TPlayer());
 	plyr.back().name = name;
@@ -310,7 +316,14 @@ const string& CPlayers::GetDirectAvatarName (size_t avatar) const {
 
 CCharacter Char;
 
-static string char_type_index = "[spheres]0[3d]1";
+static const string char_type_index = "[spheres]0[3d]1";
+
+CCharacter::~CCharacter() {
+	for(size_t i = 0; i < CharList.size(); i++) {
+		delete CharList[i].preview;
+		delete CharList[i].shape;
+	}
+}
 
 void CCharacter::LoadCharacterList () {
 	CSPList list (MAX_CHARACTERS);

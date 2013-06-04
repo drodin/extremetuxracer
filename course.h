@@ -135,6 +135,7 @@ private:
 	void		MirrorCourseData ();
 public:
 	CCourse ();
+	~CCourse();
 
 	vector<TCourse>		CourseList;
 	vector<TTerrType>	TerrList;

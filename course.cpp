@@ -39,6 +39,15 @@ CCourse::CCourse () {
 	curr_course = NULL;
 }
 
+CCourse::~CCourse() {
+	for(size_t i = 0; i < PolyArr.size(); i++) {
+		delete PolyArr[i].polygons;
+		FreePolyhedron(PolyArr[i]);
+	}
+	FreeCourseList ();
+	ResetCourse ();
+}
+
 const TVector2& CCourse::GetStartPoint () const {
 	return start_pt;
 }

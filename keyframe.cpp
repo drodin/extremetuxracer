@@ -191,7 +191,7 @@ void CKeyframe::InterpolateKeyframe (size_t idx, double frac, CCharShape *shape)
     shape->RotateNode ("right_ankle", 3, vv);
 }
 
-void CKeyframe::CalcKeyframe (size_t idx, CCharShape *shape, TVector3 refpos) {
+void CKeyframe::CalcKeyframe (size_t idx, CCharShape *shape, const TVector3& refpos) {
 	double vv;
 	TVector3 pos;
 

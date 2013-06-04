@@ -108,6 +108,7 @@ private:
 	vector<TAvatar> avatars;
 public:
 	CPlayers ();
+	~CPlayers();
 
 	string GetCurrUnlocked () const;
 	void AddPassedCup (const string& cup);
@@ -147,6 +148,8 @@ struct TCharacter {
 class CCharacter {
 public:
 	vector<TCharacter> CharList;
+
+	~CCharacter();
 
 	void Draw (size_t idx);
 	CCharShape *GetShape (size_t idx);

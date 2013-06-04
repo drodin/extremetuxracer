@@ -176,10 +176,7 @@ void CWinsys::CloseJoystick () {
 
 void CWinsys::Quit () {
 	CloseJoystick ();
-	Tex.FreeTextureList ();
 	Score.SaveHighScore ();
-	Course.FreeCourseList ();
-	Course.ResetCourse ();
 	SaveMessages ();
 	Audio.Close ();		// frees music and sound as well
 	FT.Clear ();

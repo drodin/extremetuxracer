@@ -58,6 +58,9 @@ GLuint quadsquare::VertexArrayMaxIdx;
 quadsquare::quadsquare (quadcornerdata* pcd) {
 	pcd->Square = this;
 	Static = false;
+	ForceEastVert = false;
+	ForceSouthVert = false;
+	Dirty = true;
 
 	for (int i = 0; i < 4; i++) {
 		Child[i] = (quadsquare*) NULL;
