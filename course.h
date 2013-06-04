@@ -120,6 +120,7 @@ private:
 	int			ny;
 	TVector2	start_pt;
 	int			base_height_value;
+	bool		mirrored;
 
 	void		FreeTerrainTextures ();
 	void		FreeObjectTextures ();

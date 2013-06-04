@@ -34,6 +34,7 @@ CCourse::CCourse () {
 	elevation = NULL;
 	nmls = NULL;
 	vnc_array = NULL;
+	mirrored = false;
 
 	curr_course = NULL;
 }
@@ -87,9 +88,6 @@ size_t CCourse::GetCourseIdx (const string& dir) const {
 }
 
 void CCourse::CalcNormals () {
-    TVector3 p1, p2;
-    TVector3 n, v1, v2;
-
 	for (int y=0; y<ny; y++) {
         for  (int x=0; x<nx; x++) {
             TVector3 nml(0.0, 0.0, 0.0);
@@ -97,11 +95,11 @@ void CCourse::CalcNormals () {
 
 			if  ((x + y) % 2 == 0) {
 				if  (x > 0 && y > 0) {
-					p1 = NMLPOINT(x,  y-1);
-					p2 = NMLPOINT(x-1,y-1);
-					v1 = SubtractVectors (p1, p0);
-					v2 = SubtractVectors (p2, p0);
-					n = CrossProduct (v2, v1);
+					TVector3 p1 = NMLPOINT(x,  y-1);
+					TVector3 p2 = NMLPOINT(x-1,y-1);
+					TVector3 v1 = SubtractVectors (p1, p0);
+					TVector3 v2 = SubtractVectors (p2, p0);
+					TVector3 n = CrossProduct (v2, v1);
 
 					NormVector (n);
 					nml = AddVectors (nml, n);
@@ -116,11 +114,11 @@ void CCourse::CalcNormals () {
 					nml = AddVectors (nml, n);
 				}
 				if  (x > 0 && y < ny-1) {
-					p1 = NMLPOINT(x-1,y);
-					p2 = NMLPOINT(x-1,y+1);
-					v1 = SubtractVectors (p1, p0);
-					v2 = SubtractVectors (p2, p0);
-					n = CrossProduct (v2, v1);
+					TVector3 p1 = NMLPOINT(x-1,y);
+					TVector3 p2 = NMLPOINT(x-1,y+1);
+					TVector3 v1 = SubtractVectors (p1, p0);
+					TVector3 v2 = SubtractVectors (p2, p0);
+					TVector3 n = CrossProduct (v2, v1);
 
 					NormVector (n);
 					nml = AddVectors (nml, n);
@@ -135,11 +133,11 @@ void CCourse::CalcNormals () {
 					nml = AddVectors (nml, n);
 				}
 				if  (x < nx-1 && y > 0) {
-					p1 = NMLPOINT(x+1,y);
-					p2 = NMLPOINT(x+1,y-1);
-					v1 = SubtractVectors (p1, p0);
-					v2 = SubtractVectors (p2, p0);
-					n = CrossProduct (v2, v1);
+					TVector3 p1 = NMLPOINT(x+1,y);
+					TVector3 p2 = NMLPOINT(x+1,y-1);
+					TVector3 v1 = SubtractVectors (p1, p0);
+					TVector3 v2 = SubtractVectors (p2, p0);
+					TVector3 n = CrossProduct (v2, v1);
 
 					NormVector (n);
 					nml = AddVectors (nml, n);
@@ -154,11 +152,11 @@ void CCourse::CalcNormals () {
 					nml = AddVectors (nml, n);
 				}
 				if  (x < nx-1 && y < ny-1) {
-					p1 = NMLPOINT(x+1,y);
-					p2 = NMLPOINT(x+1,y+1);
-					v1 = SubtractVectors (p1, p0);
-					v2 = SubtractVectors (p2, p0);
-					n = CrossProduct (v1, v2);
+					TVector3 p1 = NMLPOINT(x+1,y);
+					TVector3 p2 = NMLPOINT(x+1,y+1);
+					TVector3 v1 = SubtractVectors (p1, p0);
+					TVector3 v2 = SubtractVectors (p2, p0);
+					TVector3 n = CrossProduct (v1, v2);
 
 					NormVector (n);
 					nml = AddVectors (nml, n);
@@ -175,41 +173,41 @@ void CCourse::CalcNormals () {
 				}
 			} else {
 				if  (x > 0 && y > 0) {
-					p1 = NMLPOINT(x,  y-1);
-					p2 = NMLPOINT(x-1,y);
-					v1 = SubtractVectors (p1, p0);
-					v2 = SubtractVectors (p2, p0);
-					n = CrossProduct (v2, v1);
+					TVector3 p1 = NMLPOINT(x,  y-1);
+					TVector3 p2 = NMLPOINT(x-1,y);
+					TVector3 v1 = SubtractVectors (p1, p0);
+					TVector3 v2 = SubtractVectors (p2, p0);
+					TVector3 n = CrossProduct (v2, v1);
 
 					NormVector (n);
 					nml = AddVectors (nml, n);
 				}
 				if  (x > 0 && y < ny-1) {
-					p1 = NMLPOINT(x-1,y);
-					p2 = NMLPOINT(x  ,y+1);
-					v1 = SubtractVectors (p1, p0);
-					v2 = SubtractVectors (p2, p0);
-					n = CrossProduct (v2, v1);
+					TVector3 p1 = NMLPOINT(x-1,y);
+					TVector3 p2 = NMLPOINT(x  ,y+1);
+					TVector3 v1 = SubtractVectors (p1, p0);
+					TVector3 v2 = SubtractVectors (p2, p0);
+					TVector3 n = CrossProduct (v2, v1);
 
 					NormVector (n);
 					nml = AddVectors (nml, n);
 				}
 				if  (x < nx-1 && y > 0) {
-					p1 = NMLPOINT(x+1,y);
-					p2 = NMLPOINT(x  ,y-1);
-					v1 = SubtractVectors (p1, p0);
-					v2 = SubtractVectors (p2, p0);
-					n = CrossProduct (v2, v1);
+					TVector3 p1 = NMLPOINT(x+1,y);
+					TVector3 p2 = NMLPOINT(x  ,y-1);
+					TVector3 v1 = SubtractVectors (p1, p0);
+					TVector3 v2 = SubtractVectors (p2, p0);
+					TVector3 n = CrossProduct (v2, v1);
 
 					NormVector (n);
 					nml = AddVectors (nml, n);
 				}
 				if  (x < nx-1 && y < ny-1) {
-					p1 = NMLPOINT(x+1,y);
-					p2 = NMLPOINT(x  ,y+1);
-					v1 = SubtractVectors (p1, p0);
-					v2 = SubtractVectors (p2, p0);
-					n = CrossProduct (v1, v2);
+					TVector3 p1 = NMLPOINT(x+1,y);
+					TVector3 p2 = NMLPOINT(x  ,y+1);
+					TVector3 v1 = SubtractVectors (p1, p0);
+					TVector3 v2 = SubtractVectors (p2, p0);
+					TVector3 n = CrossProduct (v1, v2);
 
 					NormVector (n);
 					nml = AddVectors (nml, n);
@@ -228,6 +226,7 @@ void CCourse::MakeCourseNormals () {
 	try {
 		nmls = new TVector3[nx * ny];
 	} catch(...) {
+		nmls = NULL;
 		Message ("Allocation failed in MakeCourseNormals" , "");
 	}
 	CalcNormals ();
@@ -244,7 +243,8 @@ void CCourse::FillGlArrays() {
     glDisableClientState (GL_NORMAL_ARRAY);
     glDisableClientState (GL_COLOR_ARRAY);
 
-	vnc_array = new GLubyte[STRIDE_GL_ARRAY * nx * ny];
+	if(vnc_array == NULL)
+		vnc_array = new GLubyte[STRIDE_GL_ARRAY * nx * ny];
 
     for (int x=0; x<nx; x++) {
 		for (int y=0; y<ny; y++) {
@@ -788,6 +788,7 @@ void CCourse::ResetCourse () {
 	FreeObjectTextures ();
 	ResetQuadtree ();
 	curr_course = NULL;
+	mirrored = false;
 }
 
 bool CCourse::LoadCourse (size_t idx) {
@@ -797,56 +798,59 @@ bool CCourse::LoadCourse (size_t idx) {
 		return false;
 	}
 
-	if (&CourseList[idx] == curr_course && !g_game.force_treemap) return true;
+	if (&CourseList[idx] != curr_course || g_game.force_treemap) {
+		ResetCourse ();
+		curr_course = &CourseList[idx];
+		CourseDir = param.common_course_dir + SEP + curr_course->dir;
 
-	ResetCourse ();
-	curr_course = &CourseList[idx];
-	CourseDir = param.common_course_dir + SEP + curr_course->dir;
+		start_pt.x = CourseList[idx].startx;
+		start_pt.y = -CourseList[idx].starty;
+		base_height_value = 127;
 
-	start_pt.x = CourseList[idx].startx;
-	start_pt.y = -CourseList[idx].starty;
-    base_height_value = 127;
+		g_game.use_keyframe = CourseList[idx].use_keyframe;
+		g_game.finish_brake = CourseList[idx].finish_brake;
 
-	g_game.use_keyframe = CourseList[idx].use_keyframe;
-	g_game.finish_brake = CourseList[idx].finish_brake;
+		if (!LoadElevMap ()) {
+			Message ("could not load course elev map");
+			return false;
+		}
 
-	if (!LoadElevMap ()) {
-		Message ("could not load course elev map");
-		return false;
+		MakeCourseNormals ();
+		FillGlArrays ();
+
+		if (!LoadTerrainMap ()) {
+			Message ("could not load course terrain map");
+			return false;
+		}
+
+		// ................................................................
+		string itemfile = CourseDir + SEP + "items.lst";
+		bool itemsexists = (FileExists (itemfile));
+		CControl *ctrl = Players.GetCtrl (g_game.player_id);
+
+		if (itemsexists && !g_game.force_treemap) {
+			SaveItemsFlag = false;
+			LoadItemList ();
+		} else {
+			SaveItemsFlag = true;
+			LoadObjectMap ();
+		}
+		g_game.force_treemap = false;
+		// ................................................................
+
+		init_track_marks ();
+		InitQuadtree (
+   			elevation, nx, ny,
+			curr_course->width / (nx - 1.0),
+			-curr_course->length / (ny - 1.0),
+			ctrl->viewpos,
+			param.course_detail_level);
 	}
 
-	MakeCourseNormals ();
-    FillGlArrays ();
-
-	if (!LoadTerrainMap ()) {
-		Message ("could not load course terrain map");
-		return false;
+	if (g_game.mirror_id != mirrored) {
+		MirrorCourse ();
+		mirrored = g_game.mirror_id;
 	}
-
-	// ................................................................
-	string itemfile = CourseDir + SEP + "items.lst";
-	bool itemsexists = (FileExists (itemfile));
-	CControl *ctrl = Players.GetCtrl (g_game.player_id);
-
-	if (itemsexists && !g_game.force_treemap) {
-		SaveItemsFlag = false;
-		LoadItemList ();
-	} else {
-		SaveItemsFlag = true;
-		LoadObjectMap ();
-	}
-	g_game.force_treemap = false;
-	// ................................................................
-
-	init_track_marks ();
-	InitQuadtree (
-   		elevation, nx, ny,
-		curr_course->width / (nx - 1.0),
-		-curr_course->length / (ny - 1.0),
-		ctrl->viewpos,
-		param.course_detail_level);
-
-	if (g_game.mirror_id) MirrorCourse ();
 	return true;
 }
 

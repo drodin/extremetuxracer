@@ -120,7 +120,7 @@ bool Str_BoolN (const string &s, const bool def) {
 }
 
 bool Str_BoolNX (const string &s, const bool def) {
-	string decode = "[0]0[1]1[true]1[false]0";
+	static const string decode = "[0]0[1]1[true]1[false]0";
 	string valstr;
 	if (def == true) valstr = SPStrN (decode, s, "1");
 	else valstr = SPStrN (decode, s, "0");
