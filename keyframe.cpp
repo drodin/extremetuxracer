@@ -103,9 +103,9 @@ bool CKeyframe::Load (const string& dir, const string& filename) {
 	if (list.Load (dir, filename)) {
 		frames.resize(list.Count());
 		for (size_t i=0; i<list.Count(); i++) {
-			string line = list.Line (i);
+			const string& line = list.Line(i);
 			frames[i].val[0] = SPFloatN (line, "time", 0);
-			TVector3 posit = SPVector3N (line, "pos", TVector3(0, 0, 0));
+			TVector3 posit = SPVector3N (line, "pos", NullVec);
 			frames[i].val[1] = posit.x;
 			frames[i].val[2] = posit.y;
 			frames[i].val[3] = posit.z;
@@ -326,14 +326,13 @@ TKeyframe *CKeyframe::GetFrame (size_t idx) {
 	return &frames[idx];
 }
 
-static const string empty;
 const string& CKeyframe::GetJointName (size_t idx) {
-	if (idx >= numJoints) return empty;
+	if (idx >= numJoints) return emptyString;
 	return jointnames[idx];
 }
 
 const string& CKeyframe::GetHighlightName (size_t idx) {
-	if (idx >= numJoints) return empty;
+	if (idx >= numJoints) return emptyString;
 	return highlightnames[idx];
 }
 

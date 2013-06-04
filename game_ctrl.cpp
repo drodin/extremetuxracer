@@ -38,7 +38,7 @@ bool CEvents::LoadEventList () {
 
 	// pass 1: races
 	for (size_t i=0; i<list.Count(); i++) {
-		string line = list.Line (i);
+		const string& line = list.Line(i);
 		int type = SPIntN (line, "struct", -1);
 		if (type == 0) {
 			RaceList.push_back(TRace2());
@@ -49,7 +49,7 @@ bool CEvents::LoadEventList () {
 			RaceList.back().light = Env.GetLightIdx (item);
 			RaceList.back().snow = SPIntN (line, "snow", 0);
 			RaceList.back().wind = SPIntN (line, "wind", 0);
-			RaceList.back().time = SPVector3N (line, "time", TVector3 (0, 0, 0));
+			RaceList.back().time = SPVector3N (line, "time", NullVec);
 			RaceList.back().herrings = SPIndex3N (line, "herring", TIndex3 (0, 0, 0));
 			RaceList.back().music_theme = Music.GetThemeIdx (SPStrN (line, "theme", "normal"));
 		}
@@ -58,7 +58,7 @@ bool CEvents::LoadEventList () {
 
 	// pass 2: cups
 	for (size_t i=0; i<list.Count(); i++) {
-		string line = list.Line (i);
+		const string& line = list.Line(i);
 		int type = SPIntN (line, "struct", -1);
 		if (type == 1) {
 			CupList.push_back(TCup2());
@@ -77,7 +77,7 @@ bool CEvents::LoadEventList () {
 
 	// pass 3: events
 	for (size_t i=0; i<list.Count(); i++) {
-		string line = list.Line (i);
+		const string& line = list.Line(i);
 		int type = SPIntN (line, "struct", -1);
 		if (type == 2) {
 			EventList.push_back(TEvent2());
@@ -197,7 +197,7 @@ bool CPlayers::LoadPlayers () {
 	g_game.start_player = 0;
 	plyr.resize(list.Count());
 	for (size_t i=0; i<list.Count(); i++) {
-		string line = list.Line(i);
+		const string& line = list.Line(i);
 		plyr[i].name = SPStrN (line, "name", "unknown");
 		plyr[i].funlocked = SPStrN (line, "unlocked", "");
 		plyr[i].avatar = SPStrN (line, "avatar", "");
@@ -248,8 +248,8 @@ CControl *CPlayers::GetCtrl (size_t player) const {
 	return plyr[player].ctrl;
 }
 
-string CPlayers::GetName (size_t player) const {
-	if (player >= plyr.size()) return "";
+const string& CPlayers::GetName (size_t player) const {
+	if (player >= plyr.size()) return emptyString;
 	return plyr[player].name;
 }
 
@@ -281,7 +281,7 @@ void CPlayers::LoadAvatars () {
 
 	AvatarIndex.clear();
 	for (size_t i=0; i<list.Count(); i++) {
-		string line = list.Line (i);
+		const string& line = list.Line(i);
 		string filename = SPStrN (line, "file", "unknown");
 		TTexture* texture = new TTexture();
 		if (texture && texture->Load(param.player_dir, filename)) {
@@ -299,8 +299,8 @@ TTexture* CPlayers::GetAvatarTexture (size_t avatar) const {
 	return avatars[avatar].texture;
 }
 
-string CPlayers::GetDirectAvatarName (size_t avatar) const {
-	if (avatar >= avatars.size()) return "";
+const string& CPlayers::GetDirectAvatarName (size_t avatar) const {
+	if (avatar >= avatars.size()) return emptyString;
 	return avatars[avatar].filename;
 }
 
@@ -322,7 +322,7 @@ void CCharacter::LoadCharacterList () {
 
 	CharList.resize(list.Count());
 	for (size_t i=0; i<list.Count(); i++) {
-		string line = list.Line (i);
+		const string& line = list.Line(i);
 		CharList[i].name = SPStrN (line, "name", "");
 		CharList[i].dir = SPStrN (line, "dir", "");
 		string typestr = SPStrN (line, "type", "unknown");

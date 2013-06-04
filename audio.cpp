@@ -87,7 +87,7 @@ void CSound::LoadSoundList () {
 	CSPList list(200);
 	if (list.Load (param.sounds_dir, "sounds.lst")) {
 		for (size_t i=0; i<list.Count(); i++) {
-			string line = list.Line(i);
+			const string& line = list.Line(i);
 			string name = SPStrN (line, "name", "");
 			string soundfile = SPStrN (line, "file", "");
 			string path = MakePathStr (param.sounds_dir, soundfile);
@@ -225,7 +225,7 @@ void CMusic::LoadMusicList () {
 	CSPList list(200);
 	if (list.Load (param.music_dir, "music.lst")) {
 		for (size_t i=0; i<list.Count(); i++) {
-			string line = list.Line(i);
+			const string& line = list.Line(i);
 			string name = SPStrN (line, "name", "");
 			string musicfile = SPStrN (line, "file", "");
 			string path = MakePathStr (param.music_dir, musicfile);
@@ -242,7 +242,7 @@ void CMusic::LoadMusicList () {
 	if (list.Load (param.music_dir, "racing_themes.lst")) {
 		themes.resize(list.Count());
 		for (size_t i=0; i<list.Count(); i++) {
-			string line = list.Line(i);
+			const string& line = list.Line(i);
 			string name = SPStrN (line, "name", "");
 			ThemesIndex[name] = i;
 			string item = SPStrN (line, "race", "race_1");

@@ -21,6 +21,8 @@ GNU General Public License for more details.
 #include <iostream>
 #include <fstream>
 
+const string emptyString = "";
+
 // --------------------------------------------------------------------
 //					elementary string functions
 // --------------------------------------------------------------------
@@ -401,8 +403,8 @@ CSPList::CSPList (size_t maxlines, bool newlineflag) {
 	fnewlineflag = newlineflag;
 }
 
-string CSPList::Line (size_t idx) const {
-	if (idx >= flines.size()) return "";
+const string& CSPList::Line (size_t idx) const {
+	if (idx >= flines.size()) return emptyString;
 	return flines[idx].first;
 }
 

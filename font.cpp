@@ -162,7 +162,7 @@ bool CFont::LoadFontlist () {
 	CSPList list(MAX_FONTS);
 	if (!list.Load ( param.font_dir, "fonts.lst")) return false;
 	for (size_t i=0; i<list.Count(); i++) {
-		string line = list.Line(i);
+		const string& line = list.Line(i);
 		string fontfile = SPStrN (line, "file", "");
 		string name = SPStrN (line, "name", "");
 

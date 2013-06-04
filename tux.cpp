@@ -462,7 +462,7 @@ bool CCharShape::Load (const string& dir, const string& filename, bool with_acti
 	}
 
 	for (size_t i=0; i<list.Count(); i++) {
-		string line = list.Line (i);
+		const string& line = list.Line(i);
 		int node_name = SPIntN (line, "node", -1);
 		int parent_name = SPIntN (line, "par", -1);
 		string mat_name = SPStrN (line, "mat", "");
@@ -892,8 +892,8 @@ size_t CCharShape::GetNumNodes () const {
 	return numNodes;
 }
 
-string CCharShape::GetNodeFullname (size_t idx) const {
-	if (idx >= numNodes) return "";
+const string& CCharShape::GetNodeFullname (size_t idx) const {
+	if (idx >= numNodes) return emptyString;
 	return Nodes[idx]->action->name;
 }
 

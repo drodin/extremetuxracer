@@ -106,8 +106,8 @@ void CTranslation::SetDefaultTranslations () {
 	texts[68] = "please wait ...";
 }
 
-string CTranslation::Text (size_t idx) const {
-	if (idx >= MAX_COMMON_TEXTS) return "";
+const string& CTranslation::Text (size_t idx) const {
+	if (idx >= MAX_COMMON_TEXTS) return emptyString;
 	return texts[idx];
 }
 
@@ -122,7 +122,7 @@ void CTranslation::LoadLanguages () {
 
 	languages.resize(list.Count());
 	for (size_t i=0; i<list.Count(); i++) {
-		string line = list.Line(i);
+		const string& line = list.Line(i);
 		languages[i].lang = SPStrN (line, "lang", "en_GB");
 		languages[i].language = SPStrN (line, "language", "English");
 		LangIndex[languages[i].lang] = i;
@@ -159,7 +159,7 @@ void CTranslation::LoadTranslations (size_t langidx) {
 	}
 
 	for (size_t i=0; i<list.Count(); i++) {
-		string line = list.Line(i);
+		const string& line = list.Line(i);
 		int idx = SPIntN (line, "idx", -1);
 		if (idx >= 0 && idx < MAX_COMMON_TEXTS) {
 			texts[idx] = SPStrN (line, "trans", texts[idx]);

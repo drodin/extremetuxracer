@@ -44,7 +44,7 @@ void CCredits::LoadCreditList () {
 	}
 
 	for (size_t i=0; i<list.Count(); i++) {
-		string line = list.Line(i);
+		const string& line = list.Line(i);
 		TCredits credit;
 		credit.text = SPStrN (line, "text", "");
 

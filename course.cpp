@@ -401,7 +401,7 @@ void CCourse::LoadItemList () {
 	CollArr.clear();
 	NocollArr.clear();
 	for (size_t i=0; i<list.Count(); i++) {
-		string line = list.Line (i);
+		const string& line = list.Line(i);
 		int x = SPIntN (line, "x", 0);
 		int z = SPIntN (line, "z", 0);
 		double height = SPFloatN (line, "height", 1);
@@ -582,7 +582,7 @@ bool CCourse::LoadObjectTypes () {
 	ObjTypes.resize(list.Count());
 
 	for (size_t i=0; i<list.Count(); i++) {
-		string line = list.Line (i);
+		const string& line = list.Line(i);
 	    ObjTypes[i].name = SPStrN (line, "name", "");
 		ObjTypes[i].textureFile = ObjTypes[i].name;
 		ObjTypes[i].texture = NULL;
@@ -639,7 +639,7 @@ bool CCourse::LoadTerrainTypes () {
 
 	TerrList.resize(list.Count());
 	for (size_t i=0; i<list.Count(); i++) {
-		string line = list.Line(i);
+		const string& line = list.Line(i);
 		TerrList[i].textureFile = SPStrN (line, "texture", "");
 		TerrList[i].sound = SPStrN (line, "sound", "");
 		TerrList[i].starttex = SPIntN (line, "starttex", -1);
@@ -715,7 +715,7 @@ bool CCourse::LoadCourseList () {
 
 	CourseList.resize(list.Count());
 	for (size_t i=0; i<list.Count(); i++) {
-		string line = list.Line (i);
+		string line = list.Line(i);
 		CourseList[i].name = SPStrN (line, "name", "noname");
 		CourseList[i].dir = SPStrN (line, "dir", "nodir");
 		CourseList[i].author = SPStrN (line, "author", "unknown");

@@ -50,7 +50,7 @@ void LoadConfigFile () {
 	}
 
 	for (size_t i=0; i<list.Count(); i++) {
-		string line = list.Line(i);
+		const string& line = list.Line(i);
 
 		param.fullscreen = SPIntN (line, "fullscreen", 0) != 0;
 		param.res_type = SPIntN (line, "res_type", 0);

@@ -140,7 +140,7 @@ bool CEnvironment::LoadEnvironmentList () {
 
 	locs.resize(list.Count());
 	for (size_t i=0; i<list.Count(); i++) {
-		string line = list.Line (i);
+		const string& line = list.Line(i);
 		locs[i].name = SPStrN (line, "location", "");
 	}
 	list.MakeIndex (EnvIndex, "location");
@@ -178,7 +178,7 @@ void CEnvironment::LoadLight () {
 	}
 
 	for (size_t i=0; i<list.Count(); i++) {
-		string line = list.Line(i);
+		const string& line = list.Line(i);
 		string item = SPStrN (line, "light", "none");
 		int idx = SPIntN (idxstr, item, -1);
 		if (idx < 0) {

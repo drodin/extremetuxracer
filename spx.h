@@ -98,8 +98,8 @@ private:
 public:
 	CSPList (size_t maxlines, bool newlineflag = false);
 
-	string Line (size_t idx) const;
-	size_t  Count () const { return flines.size(); }
+	const string& Line (size_t idx) const;
+	size_t Count () const { return flines.size(); }
 	void Clear ();
 	void Add (const string& line);
 	void Add (const string& line, int flag);
@@ -114,5 +114,7 @@ public:
 	void SetFlag (size_t idx, int flag);
 	void MakeIndex (map<string, size_t>& index, const string &tag);
 };
+
+extern const string emptyString;
 
 #endif

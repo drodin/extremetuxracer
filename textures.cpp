@@ -490,7 +490,7 @@ void CTexture::LoadTextureList () {
 	CSPList list (200);
 	if (list.Load (param.tex_dir, "textures.lst")) {
 		for (size_t i=0; i<list.Count(); i++) {
-			string line = list.Line (i);
+			const string& line = list.Line(i);
 			string name = SPStrN (line, "name", "");
 			int id = SPIntN (line, "id", -1);
 			CommonTex.resize(max(CommonTex.size(), (size_t)id+1));

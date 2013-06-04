@@ -151,7 +151,7 @@ public:
 	size_t GetNodeName (const string& node_trivialname) const;
 	string GetNodeJoint (size_t idx) const;
 	size_t GetNumNodes () const;
-	string GetNodeFullname (size_t idx) const;
+	const string& GetNodeFullname (size_t idx) const;
 	size_t GetNumActs (size_t idx) const;
 	TCharAction *GetAction (size_t idx) const;
 	void   PrintAction (size_t idx) const;

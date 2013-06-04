@@ -116,7 +116,7 @@ public:
 	void SavePlayers () const;
 	CControl *GetCtrl () const; // current player
 	CControl *GetCtrl (size_t player) const;
-	string GetName (size_t player) const;
+	const string& GetName (size_t player) const;
 	void ResetControls ();
 	void AllocControl (size_t player);
 	void LoadAvatars ();
@@ -124,7 +124,7 @@ public:
 	size_t numPlayers() const { return plyr.size(); }
 
 	TTexture* GetAvatarTexture (size_t avatar) const;
-	string GetDirectAvatarName (size_t avatar) const;
+	const string& GetDirectAvatarName (size_t avatar) const;
 };
 
 extern CPlayers Players;
