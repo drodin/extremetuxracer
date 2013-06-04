@@ -128,7 +128,7 @@ static TLight toollight;
 static int tool_mode = 0;
 
 void DrawQuad (float x, float y, float w, float h,
-		float scrheight, TColor col, int frame) {
+		float scrheight, const TColor& col, int frame) {
 	glDisable (GL_TEXTURE_2D);
     glColor4f (col.r, col.g, col.b, col.a);
 	glBegin (GL_QUADS);

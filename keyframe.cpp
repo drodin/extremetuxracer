@@ -326,13 +326,14 @@ TKeyframe *CKeyframe::GetFrame (size_t idx) {
 	return &frames[idx];
 }
 
-string CKeyframe::GetJointName (size_t idx) {
-	if (idx >= numJoints) return "";
+static const string empty;
+const string& CKeyframe::GetJointName (size_t idx) {
+	if (idx >= numJoints) return empty;
 	return jointnames[idx];
 }
 
-string CKeyframe::GetHighlightName (size_t idx) {
-	if (idx >= numJoints) return "";
+const string& CKeyframe::GetHighlightName (size_t idx) {
+	if (idx >= numJoints) return empty;
 	return highlightnames[idx];
 }
 

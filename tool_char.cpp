@@ -245,7 +245,7 @@ void CharMotion (int x, int y) {
 	}
 }
 
-void DrawActionVec (size_t nr, string s, int y, TVector3 v) {
+void DrawActionVec (size_t nr, const string& s, int y, const TVector3& v) {
 	FT.SetColor (colLGrey);
 	FT.DrawString (20, y, s);
 	if (nr == curr_act) {
@@ -269,7 +269,7 @@ void DrawActionVec (size_t nr, string s, int y, TVector3 v) {
 	}
 }
 
-void DrawActionFloat (size_t nr, string s, int y, float f) {
+void DrawActionFloat (size_t nr, const string& s, int y, float f) {
 	FT.SetColor (colLGrey);
 	FT.DrawString (20, y, s);
 	if (nr == curr_act) FT.SetColor (colYellow); else FT.SetColor (colLGrey);
@@ -361,6 +361,3 @@ void RenderChar (double timestep) {
     Winsys.SwapBuffers ();
 	if (drawcount > 3) must_render = false;
 }
-
-
-

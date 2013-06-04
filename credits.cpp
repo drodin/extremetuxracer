@@ -33,7 +33,6 @@ CCredits Credits;
 
 static TVector2 cursor_pos(0, 0);
 static double y_offset = 0;
-static TColor bgcol;
 static bool moving = true;
 
 void CCredits::LoadCreditList () {
@@ -81,24 +80,24 @@ void CCredits::DrawCreditsText (double time_step) {
 
 
     glDisable (GL_TEXTURE_2D);
-	glColor4dv ((double*)&bgcol);
+	glColor4dv ((double*)&colBackgr);
     glRectf (0, 0, w, BOTT_Y);
 
     glBegin( GL_QUADS );
 		glVertex2f (0, BOTT_Y );
 		glVertex2f (w, BOTT_Y );
-		glColor4f (bgcol.r, bgcol.g, bgcol.b, 0 );
+		glColor4f (colBackgr.r, colBackgr.g, colBackgr.b, 0 );
 		glVertex2f (w, BOTT_Y + 30 );
 		glVertex2f (0, BOTT_Y + 30 );
     glEnd();
 
-    glColor4dv ((double*)&bgcol);
+    glColor4dv ((double*)&colBackgr);
     glRectf (0, h - TOP_Y, w, h );
 
 	glBegin( GL_QUADS );
 		glVertex2f (w, h - TOP_Y );
 		glVertex2f (0, h - TOP_Y );
-		glColor4f (bgcol.r, bgcol.g, bgcol.b, 0 );
+		glColor4f (colBackgr.r, colBackgr.g, colBackgr.b, 0 );
 		glVertex2f (0, h - TOP_Y - 30 );
 		glVertex2f (w, h - TOP_Y - 30 );
     glEnd();
@@ -150,7 +149,7 @@ void CCredits::Mouse (int button, int state, int x, int y ){
 	if (state == 1) State::manager.RequestEnterState (GameTypeSelect);
 }
 
-void CCredits::Motion(int x, int y ) {
+void CCredits::Motion(int x, int y) {
     y = param.y_resolution - y;
     TVector2 old_pos = cursor_pos;
     cursor_pos = TVector2(x, y);
@@ -164,7 +163,6 @@ void CCredits::Enter() {
 	Music.Play (param.credits_music, -1);
 	y_offset = 0;
 	moving = true;
-	bgcol = colBackgr;
 }
 
 void CCredits::Loop(double time_step) {

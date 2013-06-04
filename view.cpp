@@ -191,7 +191,6 @@ void update_view (CControl *ctrl, double dt) {
     TVector3 view_pt(0,0,0);
     TVector3 view_dir;
     TMatrix rot_mat;
-    TQuaternion rot_quat;
 
 	static const TVector3 y_vec(0.0, 1.0, 0.0);
 	static const TVector3 mz_vec(0.0, 0.0, -1.0);
@@ -213,7 +212,7 @@ void update_view (CControl *ctrl, double dt) {
 
 		TVector3 vel_proj = ProjectToPlane (y_vec, vel_dir);
 		NormVector (vel_proj);
-		rot_quat = MakeRotationQuaternion (mz_vec, vel_proj);
+		TQuaternion rot_quat = MakeRotationQuaternion (mz_vec, vel_proj);
 		view_vec = RotateVector (rot_quat, view_vec);
 		view_pt = AddVectors (ctrl->cpos, view_vec);
         double ycoord = Course.FindYCoord (view_pt.x, view_pt.z);
@@ -259,7 +258,7 @@ void update_view (CControl *ctrl, double dt) {
 
 		TVector3 vel_proj = ProjectToPlane (y_vec, vel_dir);
 		NormVector (vel_proj);
-		rot_quat = MakeRotationQuaternion (mz_vec, vel_proj);
+		TQuaternion rot_quat = MakeRotationQuaternion (mz_vec, vel_proj);
 		view_vec = RotateVector (rot_quat, view_vec);
 		view_pt = AddVectors (ctrl->cpos, view_vec);
         double ycoord = Course.FindYCoord (view_pt.x, view_pt.z);

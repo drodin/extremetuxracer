@@ -31,7 +31,6 @@ GNU General Public License for more details.
 #include "paused.h"
 #include "reset.h"
 
-#define TURN_DECAY 0.5 
 #define MAX_JUMP_AMT 1.0
 #define ROLL_DECAY 0.2
 #define JUMP_MAX_START_HEIGHT 0.30

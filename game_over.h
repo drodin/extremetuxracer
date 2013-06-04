@@ -25,7 +25,6 @@ class CGameOver : public State {
 	void Loop(double time_step);
 	void Keyb(unsigned int key, bool special, bool release, int x, int y);
 	void Mouse(int button, int state, int x, int y);
-	void Motion(int x, int y);
 public:
 };
 

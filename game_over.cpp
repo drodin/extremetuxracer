@@ -35,7 +35,6 @@ GNU General Public License for more details.
 
 CGameOver GameOver;
 
-static TVector2 cursor_pos(0, 0);
 static CKeyframe *final_frame;
 static int highscore_pos = 999;
 
@@ -54,16 +53,6 @@ void CGameOver::Keyb (unsigned int key, bool special, bool release, int x, int y
 
 void CGameOver::Mouse (int button, int state, int x, int y) {
 	QuitGameOver ();
-}
-
-void CGameOver::Motion  (int x, int y) {
-    TVector2 old_pos;
-
-    y = param.y_resolution - y;
-    old_pos = cursor_pos;
-    cursor_pos = TVector2(x, y);
-    if  (old_pos.x != x || old_pos.y != y)  {
-    }
 }
 
 void DrawMessageFrame (float x, float y, float w, float h, int line,

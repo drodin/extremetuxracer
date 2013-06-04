@@ -106,8 +106,6 @@ void TGuiParticle::Draw(double xres, double yres) const {
 
 void TGuiParticle::Update(double time_step, double push_timestep, const TVector2& push_vector) {
 	TVector2 f;
-	f.x = 0;
-	f.y = 0;
 
 	double dist_from_push = (pow((pt.x - push_position.x), 2) +
 			pow((pt.y - push_position.y), 2));

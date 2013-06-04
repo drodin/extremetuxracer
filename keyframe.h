@@ -60,8 +60,8 @@ public:
 
 	// test and editing
 	TKeyframe *GetFrame (size_t idx);
-	static string GetHighlightName (size_t idx);
-	static string GetJointName (size_t idx);
+	static const string& GetHighlightName (size_t idx);
+	static const string& GetJointName (size_t idx);
 	int GetNumJoints () const;
 	void SaveTest (const string& dir, const string& filename);
 	void CopyFrame (size_t prim_idx, size_t sec_idx);

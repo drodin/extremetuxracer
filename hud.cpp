@@ -24,24 +24,12 @@ GNU General Public License for more details.
 #include "course.h"
 
 
-#define SECONDS_IN_MINUTE 60
-#define TIME_LABEL_X_OFFSET 12.0
-#define TIME_LABEL_Y_OFFSET 12.0
-#define TIME_X_OFFSET 20.0
-#define TIME_Y_OFFSET 5.0
-#define HERRING_ICON_HEIGHT 30.0
-#define HERRING_ICON_WIDTH 48.0
-#define HERRING_ICON_IMG_SIZE 64.0
-#define HERRING_ICON_X_OFFSET 160.0
-#define HERRING_ICON_Y_OFFSET 41.0
-#define HERRING_COUNT_Y_OFFSET 37.0
 #define GAUGE_IMG_SIZE 128
 #define ENERGY_GAUGE_BOTTOM 3.0
 #define ENERGY_GAUGE_HEIGHT 103.0
 #define ENERGY_GAUGE_CENTER_X 71.0
 #define ENERGY_GAUGE_CENTER_Y 55.0
 #define GAUGE_WIDTH 128.0
-#define SPEED_UNITS_Y_OFFSET 4.0
 #define SPEEDBAR_OUTER_RADIUS  (ENERGY_GAUGE_CENTER_X)
 #define SPEEDBAR_BASE_ANGLE 225
 #define SPEEDBAR_MAX_ANGLE 45
@@ -51,9 +39,6 @@ GNU General Public License for more details.
 #define SPEEDBAR_GREEN_FRACTION 0.5
 #define SPEEDBAR_YELLOW_FRACTION 0.25
 #define SPEEDBAR_RED_FRACTION 0.25
-#define FPS_X_OFFSET 12
-#define FPS_Y_OFFSET 12
-#define NUM_FPS_FRAMES 10 
 #define CIRCLE_DIVISIONS 10
 
 static const GLfloat energy_background_color[] = { 0.2, 0.2, 0.2, 0.0 };
@@ -77,16 +62,16 @@ static void draw_time(){
 		Tex.DrawNumStr (timestr.c_str(), 20, 10, 1, colWhite);
 		Tex.DrawNumStr (hundrstr.c_str(), 136, 10, 0.7, colWhite);
 	} else {
-		
-/*		
-	glEnable (GL_LINE_SMOOTH);
-	glEnable (GL_BLEND);
-	glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glHint (GL_LINE_SMOOTH_HINT, GL_DONT_CARE);
-	glLineWidth (1.5);
-*/
-	glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_NEAREST);
-		
+
+	/*
+		glEnable (GL_LINE_SMOOTH);
+		glEnable (GL_BLEND);
+		glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		glHint (GL_LINE_SMOOTH_HINT, GL_DONT_CARE);
+		glLineWidth (1.5);
+	*/
+		glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_NEAREST);
+
 		Tex.Draw (T_TIME, 10, 12, 1);
 		FT.SetColor (colDYell);
 		FT.SetSize (32);

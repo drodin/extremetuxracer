@@ -274,8 +274,3 @@ void RenderSequence (double timestep) {
 	Reshape (param.x_resolution, param.y_resolution);
     Winsys.SwapBuffers();
 }
-
-
-
-
-

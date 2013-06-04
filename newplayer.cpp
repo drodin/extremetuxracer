@@ -73,23 +73,10 @@ void CalcCursorPos () {
 	curposit = FT.GetTextWidth (temp);
 }
 
-void NameInsert (string ss) {
-	size_t le = name.size();
-	if (posit > le) posit = le;
-	name.insert (posit, ss);
-}
-
-void NameInsert (char *ss) {
-	size_t le = name.size();
-	if (posit > le) posit = le;
-	name.insert (posit, ss);
-}
-
 void NameInsert (char c) {
-	char temp[2];
-	temp[0] = c;
-	temp[1] = 0;
-	NameInsert (temp);
+	size_t le = name.size();
+	if (posit > le) posit = le;
+	name.insert(posit, c, 1);
 }
 
 void NameDelete (size_t po) {
@@ -195,7 +182,7 @@ void CNewPlayer::Enter() {
 	textbuttons[1] = AddTextButton (Trans.Text(15), area.right-len-50, AutoYPosN (70), siz);
 }
 
-void CNewPlayer::Loop(double timestep ){
+void CNewPlayer::Loop(double timestep) {
 	int ww = param.x_resolution;
 	int hh = param.y_resolution;
 	TColor col;
@@ -231,7 +218,6 @@ void CNewPlayer::Loop(double timestep ){
 	if (avatar->focussed()) col = colDYell; else col = colWhite;
 	Players.GetAvatarTexture(avatar->GetValue())->DrawFrame(
 		prevleft + prevoffs, prevtop, prevwidth, prevwidth, 2, col);
-
 
 	FT.SetColor (colWhite);
 	DrawGUI();

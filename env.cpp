@@ -60,8 +60,8 @@ CEnvironment::CEnvironment ()
 	default_fog.end = 70.0;
 	default_fog.height = 0;
 	for (int i=0; i<4; i++)
-		default_fog.color[i] =  def_fogcol[i];
-	default_fog.part_color =  def_partcol;
+		default_fog.color[i] = def_fogcol[i];
+	default_fog.part_color = def_partcol;
 }
 
 void CEnvironment::ResetSkybox () {
@@ -169,7 +169,7 @@ void CEnvironment::LoadSkybox () {
 }
 
 void CEnvironment::LoadLight () {
-	string idxstr = "[fog]-1[0]0[1]1[2]2[3]3[4]4[5]5[6]6";
+	static const string idxstr = "[fog]-1[0]0[1]1[2]2[3]3[4]4[5]5[6]6";
 
 	CSPList list(24);
 	if (!list.Load (EnvDir, "light.lst")) {
