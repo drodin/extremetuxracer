@@ -84,7 +84,7 @@ void CRaceSelect::Mouse (int button, int state, int x, int y ){
 
 void CRaceSelect::Keyb(unsigned int key, bool special, bool release, int x, int y) {
 	if (release) return;
-	KeyGUI(key, release);
+	KeyGUI(key, 0, release);
 	switch (key) {
 		case 27: State::manager.RequestEnterState (GameTypeSelect); break;
 		case SDLK_u: param.ui_snow = !param.ui_snow; break;

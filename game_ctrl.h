@@ -73,7 +73,7 @@ public:
 	string GetCup (size_t event, size_t cup) const;
 	string GetCupTrivialName (size_t event, size_t cup) const;
 
-	void MakeUnlockList (string unlockstr);
+	void MakeUnlockList (const string& unlockstr);
 	bool IsUnlocked (size_t event, size_t cup) const;
 };
 
@@ -110,7 +110,7 @@ public:
 	CPlayers ();
 	~CPlayers();
 
-	string GetCurrUnlocked () const;
+	const string& GetCurrUnlocked () const;
 	void AddPassedCup (const string& cup);
 	void AddPlayer (const string& name, const string& avatar);
 	bool LoadPlayers ();

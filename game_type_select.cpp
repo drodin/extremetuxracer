@@ -67,7 +67,7 @@ void CGameTypeSelect::Mouse (int button, int state, int x, int y) {
 void CGameTypeSelect::Keyb (unsigned int key, bool special, bool release, int x, int y) {
     if (release) return;
 
-	KeyGUI(key, release);
+	KeyGUI(key, 0, release);
 	switch (key) {
 		case SDLK_u: param.ui_snow = !param.ui_snow; break;	
 		case 27: State::manager.RequestQuit(); break;

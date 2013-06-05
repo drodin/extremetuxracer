@@ -136,7 +136,7 @@ void CGameConfig::Keyb (unsigned int key, bool special, bool release, int x, int
     if (release) return;
 
 	if(key != SDLK_UP && key != SDLK_DOWN)
-		KeyGUI(key, release);
+		KeyGUI(key, 0, release);
 	switch (key) {
 		case SDLK_q: State::manager.RequestQuit(); break;
 		case 27: State::manager.RequestEnterState (*State::manager.PreviousState()); break;

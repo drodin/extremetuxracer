@@ -22,6 +22,7 @@ GNU General Public License for more details.
 
 
 #define CENTER -1
+#define CRSR_PERIODE 0.4
 
 
 class TTexture;
@@ -38,7 +39,7 @@ public:
 	TWidget(int x, int y, int width, int height);
 	virtual void Draw() const = 0;
 	virtual bool Click(int x, int y);
-	virtual void Key(unsigned int key, bool released) {}
+	virtual void Key(unsigned int key, unsigned int mod, bool released) {}
 	virtual void MouseMove(int x, int y);
 	bool focussed() const { return focus; }
 	void SetActive(bool a) { active = a; if(!a) focus = false; }
@@ -48,7 +49,7 @@ public:
 };
 
 class TTextButton : public TWidget {
- 	string text;
+	string text;
 	double ftsize;	// font height
 public:
 	TTextButton(int x, int y, const string& text_, double ftsize_);
@@ -56,6 +57,21 @@ public:
 };
 TTextButton* AddTextButton (const string& text, int x, int y, double ftsize);
 TTextButton* AddTextButtonN (const string& text, int x, int y, int rel_ftsize);
+
+class TTextField : public TWidget {
+	string text;
+	size_t cursorPos;
+	size_t maxLng;
+	double time;
+	bool cursor;
+public:
+	TTextField(int x, int y, int width, int height, const string& text_);
+	void Draw() const;
+	void Key(unsigned int key, unsigned int mod, bool released);
+	void UpdateCursor(double timestep);
+	const string& Text() const { return text; }
+};
+TTextField* AddTextField(const string& text, int x, int y, int width, int height);
 
 class TCheckbox : public TWidget {
 	string tag;
@@ -73,7 +89,7 @@ public:
 	}
 	void Draw() const;
 	bool Click(int x, int y);
-	void Key(unsigned int key, bool released);
+	void Key(unsigned int key, unsigned int mod, bool released);
 };
 TCheckbox* AddCheckbox (int x, int y, int width, const string& tag);
 
@@ -93,7 +109,7 @@ public:
 	int GetValue() const { return value; }
 	void Draw() const;
 	bool Click(int x, int y);
-	void Key(unsigned int key, bool released);
+	void Key(unsigned int key, unsigned int mod, bool released);
 };
 TIconButton* AddIconButton (int x, int y, TTexture* texture, double size, int maximum, int value);
 
@@ -122,7 +138,7 @@ public:
 	void SetMaximum(int max_);
 	void Draw() const;
 	bool Click(int x, int y);
-	void Key(unsigned int key, bool released);
+	void Key(unsigned int key, unsigned int mod, bool released);
 	void MouseMove(int x, int y);
 };
 TUpDown* AddUpDown(int x, int y, int minimum, int maximum, int value, int distance = 2);
@@ -132,7 +148,7 @@ TUpDown* AddUpDown(int x, int y, int minimum, int maximum, int value, int distan
 void DrawGUI();
 TWidget* ClickGUI(int x, int y);
 TWidget* MouseMoveGUI(int x, int y);
-TWidget* KeyGUI(unsigned int key, bool released);
+TWidget* KeyGUI(unsigned int key, unsigned int spec, bool released);
 void SetFocus(TWidget* widget);
 void IncreaseFocus();
 void DecreaseFocus();

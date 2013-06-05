@@ -52,7 +52,7 @@ void CEventSelect::Keyb (unsigned int key, bool special, bool release, int x, in
 			else if (Events.IsUnlocked (event->GetValue(), cup->GetValue())) EnterEvent(); break;
 		case SDLK_u: param.ui_snow = !param.ui_snow; break;
 		default:
-			KeyGUI(key, release);
+			KeyGUI(key, 0, release);
 	}
 }
 

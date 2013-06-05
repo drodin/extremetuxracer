@@ -119,7 +119,7 @@ string CEvents::GetCupTrivialName (size_t event, size_t cup) const {
 	return EventList[event].cups[cup]->name;
 }
 
-void CEvents::MakeUnlockList (string unlockstr) {
+void CEvents::MakeUnlockList (const string& unlockstr) {
 	for (size_t event=0; event<EventList.size(); event++) {
 		for (size_t cup=0; cup<EventList[event].cups.size(); cup++) {
 			EventList[event].cups[cup]->Unlocked = false;
@@ -235,7 +235,7 @@ void CPlayers::SavePlayers () const {
 	list.Save (playerfile);
 }
 
-string CPlayers::GetCurrUnlocked () const {
+const string& CPlayers::GetCurrUnlocked () const {
 	return plyr[currPlayer].funlocked;
 }
 

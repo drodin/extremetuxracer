@@ -45,7 +45,7 @@ void QuitRegistration () {
 }
 
 void CRegist::Keyb (unsigned int key, bool special, bool release, int x, int y) {
-	TWidget* focussed = KeyGUI(key, release);
+	TWidget* focussed = KeyGUI(key, 0, release);
 	if (release) return;
 	switch (key) {
 		case 27: State::manager.RequestQuit(); break;

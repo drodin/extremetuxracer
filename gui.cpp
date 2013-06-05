@@ -92,6 +92,84 @@ TTextButton* AddTextButtonN (const string& text, int x, int y, int rel_ftsize) {
 	return AddTextButton (text, x, y, siz);
 }
 
+
+TTextField::TTextField(int x, int y, int width, int height, const string& text_)
+	: TWidget(x, y, width, height)
+	, text(text_)
+	, cursorPos(0)
+	, maxLng(32)
+	, time(0.0)
+	, cursor(false)
+{
+}
+
+void TTextField::Draw() const {
+	const TColor& col = focus?colDYell:colWhite;
+	FT.SetColor (col);
+	DrawFrameX (mouseRect.left, mouseRect.top, mouseRect.width, mouseRect.height, 3, colMBackgr, col, 1.0);
+	FT.AutoSizeN (5);
+	FT.DrawString (mouseRect.left+20, mouseRect.top, text);
+
+	if (cursor && focus) {
+		double x = mouseRect.left+20+1;
+		if (cursorPos != 0) {
+			string temp = text.substr (0, cursorPos);
+			x += FT.GetTextWidth (temp);
+		}
+		double w = 3;
+		double h = 26*param.scale;
+		double scrheight = param.y_resolution;
+
+		glDisable (GL_TEXTURE_2D);
+		glColor4f (colYellow.r, colYellow.g, colYellow.b, colYellow.a);
+		glBegin (GL_QUADS);
+			glVertex2f (x,   scrheight-mouseRect.top-h-9);
+			glVertex2f (x+w, scrheight-mouseRect.top-h-9);
+			glVertex2f (x+w, scrheight-mouseRect.top-9);
+			glVertex2f (x,   scrheight-mouseRect.top-9);
+		glEnd();
+		glEnable (GL_TEXTURE_2D);
+	}
+}
+
+void TTextField::Key(unsigned int key, unsigned int mod, bool released) {
+	if (islower (key)) {
+		if (text.size() < maxLng) {
+			if (mod & KMOD_SHIFT) text.insert(cursorPos, 1, toupper(key));
+			else text.insert(cursorPos, 1, key);
+			cursorPos++;
+		}
+	} else if (isdigit (key)) {
+		if (text.size() < maxLng) {
+			text.insert(cursorPos, 1, key);
+			cursorPos++;
+		}
+	} else {
+		switch (key) {
+			case 127: if (cursorPos < text.size()) text.erase (cursorPos, 1); break;
+			case 8: if (cursorPos > 0) { text.erase (cursorPos-1, 1); cursorPos--; } break;
+			case SDLK_RIGHT: if (cursorPos < text.size()) cursorPos++; break;
+			case SDLK_LEFT: if (cursorPos > 0) cursorPos--; break;
+			case 278: cursorPos = 0; break;
+			case 279: cursorPos = text.size(); break;
+			case 32: text.insert(cursorPos, 1, 21); cursorPos++; break;
+		}
+	}
+}
+
+void TTextField::UpdateCursor(double timestep) {
+	time += timestep;
+	if (time > CRSR_PERIODE) {
+		time = 0;
+		cursor = !cursor;
+	}
+}
+
+TTextField* AddTextField(const string& text, int x, int y, int width, int height) {
+	Widgets.push_back(new TTextField(x, y, width, height, text));
+	return static_cast<TTextField*>(Widgets.back());
+}
+
 void TCheckbox::Draw () const {
 	Tex.Draw (CHECKBOX, position.x + width - 32, position.y, 1.0);
 	if (checked)
@@ -111,7 +189,7 @@ bool TCheckbox::Click(int x, int y) {
 	return false;
 }
 
-void TCheckbox::Key(unsigned int key, bool released) {
+void TCheckbox::Key(unsigned int key, unsigned int mod, bool released) {
 	if(released) return;
 
 	if(key == SDLK_SPACE || key == SDLK_RIGHT || key == SDLK_LEFT) {
@@ -183,7 +261,7 @@ bool TIconButton::Click(int x, int y) {
 	return false;
 }
 
-void TIconButton::Key(unsigned int key, bool released) {
+void TIconButton::Key(unsigned int key, unsigned int mod, bool released) {
 	if(released) return;
 
 	if(key == SDLK_DOWN || key == SDLK_LEFT) { // Arrow down/left
@@ -285,7 +363,7 @@ bool TUpDown::Click(int x, int y) {
 	return false;
 }
 
-void TUpDown::Key(unsigned int key, bool released) {
+void TUpDown::Key(unsigned int key, unsigned int mod, bool released) {
 	if(released) return;
 
 	if(key == SDLK_UP || key == SDLK_RIGHT) { // Arrow down/left
@@ -521,7 +599,7 @@ TWidget* MouseMoveGUI(int x, int y) {
 	return Widgets[focussed];
 }
 
-TWidget* KeyGUI(unsigned int key, bool released) {
+TWidget* KeyGUI(unsigned int key, unsigned int mod, bool released) {
 	if(!released) {
 		switch (key) {
 			case SDLK_TAB:
@@ -533,7 +611,7 @@ TWidget* KeyGUI(unsigned int key, bool released) {
 	}
 	if(focussed == -1)
 		return 0;
-	Widgets[focussed]->Key(key, released);
+	Widgets[focussed]->Key(key, mod, released);
 	return Widgets[focussed];
 }
 
@@ -612,7 +690,7 @@ TArea AutoAreaN (double top_perc, double bott_perc, int w) {
 	TArea res;
 	res.top = AutoYPosN (top_perc);
 	res.bottom = AutoYPosN (bott_perc);
- 	if (w > param.x_resolution) w = param.x_resolution;
+	if (w > param.x_resolution) w = param.x_resolution;
 	double left = (param.x_resolution - w) / 2;
 	res.left = (int) left;
 	res.right = param.x_resolution - res.left;

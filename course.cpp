@@ -41,6 +41,8 @@ CCourse::CCourse () {
 
 CCourse::~CCourse() {
 	for(size_t i = 0; i < PolyArr.size(); i++) {
+		for(size_t j = 0; j < PolyArr[i].num_polygons; j++)
+			delete PolyArr[i].polygons[j].vertices;
 		delete PolyArr[i].polygons;
 		FreePolyhedron(PolyArr[i]);
 	}

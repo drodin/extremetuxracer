@@ -169,7 +169,7 @@ static TUpDown* course;
 static TWidget* textbutton;
 
 void CScore::Keyb (unsigned int key, bool special, bool release, int x, int y) {
-	KeyGUI(key, release);
+	KeyGUI(key, 0, release);
 	if (release) return;
 	switch (key) {
 		case 27: State::manager.RequestEnterState (GameTypeSelect); break;
