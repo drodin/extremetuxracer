@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="All" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <DefineSolutionProperties>false</DefineSolutionProperties>
+    <WixTargetsPath Condition="'$(WixTargetsPath)' == ''">$(MSBuildExtensionsPath)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
+    <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <OutputName>ExtremeTuxRacer</OutputName>
+    <IntermediateOutputPath>BuildTmp\Wix\$(Platform)\</IntermediateOutputPath>
+    <OutputType>package</OutputType>
+    <ProjectGuid>{3b772885-4980-4a76-8407-4dabf8f7757c}</ProjectGuid>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+    <CompilerAdditionalOptions />
+    <LinkerAdditionalOptions>-b ..\..\data</LinkerAdditionalOptions>
+    <OutputPath>..\..\bin\debug\x64\</OutputPath>
+    <IntermediateOutputPath>obj\$(Platform)\$(Configuration)\</IntermediateOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+    <CompilerAdditionalOptions />
+    <LinkerAdditionalOptions>-b ..\..\data</LinkerAdditionalOptions>
+    <OutputPath>bin\$(Platform)\$(Configuration)\</OutputPath>
+    <IntermediateOutputPath>obj\$(Platform)\$(Configuration)\</IntermediateOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <LinkerAdditionalOptions>-b ..\..\data</LinkerAdditionalOptions>
+    <OutputPath>..\..\bin\x86\</OutputPath>
+    <SuppressPdbOutput>True</SuppressPdbOutput>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
+    <LinkerAdditionalOptions>-b ..\..\data</LinkerAdditionalOptions>
+    <OutputPath>..\..\bin\x64\</OutputPath>
+    <SuppressPdbOutput>True</SuppressPdbOutput>
+  </PropertyGroup>
+  <ItemGroup>
+    <WixExtension Include="WixUIExtension">
+      <Name>WixUIExtension</Name>
+      <HintPath>WixUIExtension</HintPath>
+    </WixExtension>
+    <Compile Include="data.wxs" />
+    <Compile Include="extremetuxracer.wxs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="config.wxi" />
+    <Content Include="productInfo.wxi" />
+  </ItemGroup>
+  <Import Project="$(WixTargetsPath)" />
+  <Target Name="All" DependsOnTargets="Clean;Heat;Build" />
+  <Target Name="Heat">
+    <HeatDirectory NoLogo="$(HarvestDirectoryNoLogo)" SuppressAllWarnings="$(HarvestDirectorySuppressAllWarnings)" SuppressSpecificWarnings="$(HarvestDirectorySuppressSpecificWarnings)" ToolPath="$(WixToolPath)" TreatWarningsAsErrors="$(HarvestDirectoryTreatWarningsAsErrors)" TreatSpecificWarningsAsErrors="$(HarvestDirectoryTreatSpecificWarningsAsErrors)" VerboseOutput="$(HarvestDirectoryVerboseOutput)" AutogenerateGuids="$(HarvestDirectoryAutogenerateGuids)" GenerateGuidsNow="$(HarvestDirectoryGenerateGuidsNow)" OutputFile="data.wxs" SuppressFragments="$(HarvestDirectorySuppressFragments)" SuppressUniqueIds="$(HarvestDirectorySuppressUniqueIds)" Transforms="%(HarvestDirectory.Transforms)" Directory="..\..\data" ComponentGroupName="Data" DirectoryRefId="INSTALLDIR" KeepEmptyDirectories="%(HarvestDirectory.KeepEmptyDirectories)" PreprocessorVariable="%(HarvestDirectory.PreprocessorVariable)" SuppressCom="%(HarvestDirectory.SuppressCom)" SuppressRootDirectory="%(HarvestDirectory.SuppressRootDirectory)" SuppressRegistry="%(HarvestDirectory.SuppressRegistry)" />
+  </Target>
+  <Target Name="Clean">
+    <RemoveDir Directories="BuildTmp\Wix" />
+  </Target>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <OutputPath>..\..\bin\debug\x86\</OutputPath>
+    <CompilerAdditionalOptions />
+    <LinkerAdditionalOptions>-b ..\..\data</LinkerAdditionalOptions>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent />
+  </PropertyGroup>
+</Project>

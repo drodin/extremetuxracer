@@ -46,3 +46,5 @@ BEGIN
                              0x816, 1200
     END
 END
+
+IDI_ICON1               ICON    DISCARDABLE     "resources\etracericon.ico"

@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Wix xmlns='http://schemas.microsoft.com/wix/2006/wi'>
+  <?include productInfo.wxi ?>
+  <?include config.wxi ?>
+
+  <Product Name='$(var.ProductName)' Id='*' UpgradeCode='$(var.ProductUpgradeCode)'
+    Language='1033' Codepage='utf-8' Version='$(var.ProductVersion)' Manufacturer='$(var.ProductManufacturer)'>
+
+    <Package Id='*' Keywords='Installer' Description="$(var.ProductName) Setup"
+      Comments='$(var.ProductDescription)' Manufacturer='$(var.ProductManufacturer)'
+      InstallerVersion='405' Languages='1033' Compressed='yes' SummaryCodepage='1252' InstallScope='perMachine'/>
+
+    <Media Id='1' Cabinet='ExtremeTuxRacer.cab' EmbedCab='yes' CompressionLevel='high' DiskPrompt='CD-ROM 1' />
+    <Property Id='DiskPrompt' Value='ExtremeTuxRacer installation [1]' />
+
+    <Directory Id='TARGETDIR' Name='SourceDir'>
+      <Directory Id='SystemFolder' FileSource='SystemFolder' />
+      <Directory Id='$(var.PlatformProgramFilesFolder)' Name='PFiles'>
+        <Directory Id='INSTALLDIR' Name='$(var.ProductNameShort)'>
+          <Component Id='ExtremeTuxRacer.exe' Guid='$(var.etrGUID)'>
+            <File Id='ExtremeTuxRacer.exe' Name='ExtremeTuxRacer.exe' DiskId='1' Source='$(var.BinDir)\ExtremeTuxRacer.exe' KeyPath='yes' />
+          </Component>
+          <!--Component Id='Translations' Guid='$(var.translationsGUID)'>
+          </Component>-->
+          <Component Id='SDL' Guid='$(var.sdlGUID)'>
+            <File Id='libogg0.dll' Name='libogg-0.dll' DiskId='1' Source='$(var.BinDir)\libogg-0.dll' />
+            <File Id='libpng1515.dll' Name='libpng15-15.dll' DiskId='1' Source='$(var.BinDir)\libpng15-15.dll' />
+            <File Id='libvorbis0.dll' Name='libvorbis-0.dll' DiskId='1' Source='$(var.BinDir)\libvorbis-0.dll' />
+            <File Id='libvorbisfile3.dll' Name='libvorbisfile-3.dll' DiskId='1' Source='$(var.BinDir)\libvorbisfile-3.dll' />
+            <File Id='SDL.dll' Name='SDL.dll' DiskId='1' Source='$(var.BinDir)\SDL.dll' KeyPath='yes' />
+            <File Id='SDL_image.dll' Name='SDL_image.dll' DiskId='1' Source='$(var.BinDir)\SDL_image.dll' />
+            <File Id='SDL_mixer.dll' Name='SDL_mixer.dll' DiskId='1' Source='$(var.BinDir)\SDL_mixer.dll' />
+            <File Id='smpeg.dll' Name='smpeg.dll' DiskId='1' Source='$(var.BinDir)\smpeg.dll' />
+            <File Id='zlib1.dll' Name='zlib1.dll' DiskId='1' Source='$(var.BinDir)\zlib1.dll' />
+          </Component>
+        </Directory>
+        <Merge Id="CRT" Language="0" SourceFile="$(var.CrtMergeModule)" DiskId="1" />
+      </Directory>
+
+      <Directory Id='ProgramMenuFolder' Name='Programs' >
+        <Directory Id='ProgramMenuDir' Name='$(var.ProductName)'>
+          <Component Id='ProgramMenuDir' Guid='*'>
+            <RemoveFolder Id='ProgramMenuDir' On='uninstall' />
+            <RegistryValue Root='HKCU' Key='Software\ExtremeTuxRacer\$(var.ProductName)' Type='string' Value='' KeyPath='yes' />
+          </Component>
+        </Directory>
+      </Directory>
+    </Directory>
+
+    <Feature Id='Complete' Title='$(var.ProductName)' Description='The complete package.'
+      Display='expand' Level='1' AllowAdvertise='no' ConfigurableDirectory='INSTALLDIR' >
+      <Feature Id='ExtremeTuxRacer' Display='hidden' AllowAdvertise='no' Title='Extreme TuxRacer' Description='Extreme TuxRacer core components' Level='1'>
+        <ComponentRef Id='ExtremeTuxRacer.exe' />
+        <ComponentGroupRef Id='Data' />
+        <ComponentRef Id='SDL' />
+        <!--<Feature Id='Translations' Title='Translations' AllowAdvertise='no' Description='Translations for other languages than English' Level='1'>
+          <ComponentRef Id='Translations' />
+        </Feature>-->
+        <ComponentRef Id='ProgramMenuDir' />
+      </Feature>
+      <Feature Id="CRT" AllowAdvertise="no" Display="hidden" Level="1" Title="Microsoft Visual C++ 2012 Runtime Components">
+        <MergeRef Id="CRT"/>
+      </Feature>
+    </Feature>
+
+    <MajorUpgrade DowngradeErrorMessage='Downgrade is not possible'/>
+
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLDIR" />
+    <UIRef Id="WixUI_FeatureTree"/>
+
+    <Icon Id='ExtremeTuxRacer.exe' SourceFile='$(var.BinDir)\ExtremeTuxRacer.exe' />
+
+    <WixVariable Id="WixUILicenseRtf" Value="GPLv3.rtf" />
+    <WixVariable Id="WixUIBannerBmp" Value="..\..\resources\banner.bmp" />
+    <WixVariable Id="WixUIDialogBmp" Value="..\..\resources\dialog.bmp" />
+  </Product>
+</Wix>
