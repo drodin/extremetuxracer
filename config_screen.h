@@ -32,4 +32,4 @@ public:
 
 extern CGameConfig GameConfig;
 
-#endif
+#endif

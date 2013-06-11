@@ -1,14 +1,14 @@
-/* -------------------------------------------------------------------- 
-Extreme Tuxracer 
- 
+/* --------------------------------------------------------------------
+Extreme Tuxracer
+
 Copyright (c) 2001-2004 Henry Maddocks (FTGL)
 Copyright (C) 2010 Extreme Tuxracer Team (modification)
 
 The FTGL library from H. Maddocks is published under the terms
-of the Lesser General Publish License (LGPL). You can find a 
+of the Lesser General Publish License (LGPL). You can find a
 copy of the LGPL on the gnu website:
       http://www.gnu.org/copyleft/lesser.html
- 
+
 Hint: almost all comments are removed from the code to make it
 shorter. So all modules could put together in a single module.
 To read the comments of the author you should download the
@@ -38,7 +38,7 @@ typedef double FTGL_DOUBLE;
     #define FT_RENDER_MODE_NORMAL ft_render_mode_normal
 #endif
 
-#ifdef _MSC_VER // MS Visual C++ 
+#ifdef _MSC_VER // MS Visual C++
     #pragma warning(disable : 4251 )
     #pragma warning(disable : 4275 )
     #pragma warning(disable : 4786 )
@@ -49,12 +49,10 @@ typedef double FTGL_DOUBLE;
     #  define FTGL_EXPORT   __declspec(dllexport)
     #else
     #  define FTGL_EXPORT   __declspec(dllimport)
-    #endif 
-
+    #endif
 #else
     #define FTGL_EXPORT
-#endif  
-
+#endif
 // --------------------------------------------------------------------
 //			FTVector
 // --------------------------------------------------------------------
@@ -68,12 +66,12 @@ class FTGL_EXPORT FTVector {
         typedef value_type* iterator;
         typedef const value_type* const_iterator;
         typedef size_t size_type;
-        
+
         FTVector() {
             Capacity = Size = 0;
             Items = 0;
         }
-        
+
         virtual ~FTVector() {clear();}
 
         FTVector &operator = (const FTVector& v) {
@@ -85,7 +83,7 @@ class FTGL_EXPORT FTVector {
             Size = v.size();
             return *this;
         }
-        
+
         size_type size() const {return Size;}
         size_type capacity() const {return Capacity;}
         iterator begin() {return Items;}
@@ -95,7 +93,7 @@ class FTGL_EXPORT FTVector {
         bool empty() const {return size() == 0;}
         reference operator [](size_type pos) {return(*(begin() + pos));}
         const_reference operator [](size_type pos) const {return(*(begin() + pos));}
-        
+
         void clear() {
             if(Capacity) {
                 delete [] Items;
@@ -118,7 +116,7 @@ class FTGL_EXPORT FTVector {
             if (n == size()) {return;}
             reserve(n);
             iterator begin, end;
-            
+
             if(n >= Size) {
                 begin = this->end();
                 end = this->begin() + n;
@@ -126,7 +124,7 @@ class FTGL_EXPORT FTVector {
                 begin = this->begin() + n;
                 end = this->end();
             }
-        
+
             while(begin != end) {*begin++ = x;}
             Size = n;
         }
@@ -137,7 +135,7 @@ class FTGL_EXPORT FTVector {
             if(capacity_hint) {
                 while(new_capacity < capacity_hint) {new_capacity *= 2;}
             }
-            
+
             value_type *new_items = new value_type[new_capacity];
             iterator begin = this->begin();
             iterator end = this->end();
@@ -187,7 +185,7 @@ class FTGL_EXPORT FTList {
             tail = node;
             ++listSize;
         }
-        
+
         reference front() const {return head->next->payload;}
         reference back() const {return tail->payload;}
 
@@ -198,7 +196,7 @@ class FTGL_EXPORT FTList {
             Node* next;
             value_type payload;
         };
-        
+
         size_type listSize;
         Node* head;
         Node* tail;
@@ -212,7 +210,7 @@ class FTGL_EXPORT FTCharToGlyphIndexMap {
     public:
         typedef unsigned long CharacterCode;
         typedef signed long GlyphIndex;
-        
+
         enum {
             NumberOfBuckets = 256,
             BucketSize = 256,
@@ -226,7 +224,7 @@ class FTGL_EXPORT FTCharToGlyphIndexMap {
                 this->Indices = 0;
             }
         }
-  
+
         void clear() {
             if (this->Indices) {
                 for (int i = 0; i < FTCharToGlyphIndexMap::NumberOfBuckets; i++) {
@@ -240,7 +238,7 @@ class FTGL_EXPORT FTCharToGlyphIndexMap {
 
         const GlyphIndex find(CharacterCode c) {
             if(!this->Indices) {return 0;}
-        
+
             div_t pos = div(c, FTCharToGlyphIndexMap::BucketSize);
             if (!this->Indices[pos.quot]) {return 0;}
             const FTCharToGlyphIndexMap::GlyphIndex *ptr = &this->Indices[pos.quot][pos.rem];
@@ -296,19 +294,19 @@ class FTGL_EXPORT FTPoint {
             values[1] = 0;
             values[2] = 0;
         }
-        
+
         FTPoint(const FTGL_DOUBLE x, const FTGL_DOUBLE y, const FTGL_DOUBLE z){
             values[0] = x;
             values[1] = y;
             values[2] = z;
         }
-        
+
         FTPoint(const FT_Vector& ft_vector) {
             values[0] = ft_vector.x;
             values[1] = ft_vector.y;
             values[2] = 0;
         }
-        
+
         FTPoint& operator += (const FTPoint& point) {
             values[0] += point.values[0];
             values[1] += point.values[1];
@@ -325,7 +323,7 @@ class FTGL_EXPORT FTPoint {
 
             return temp;
         }
-        
+
         FTPoint operator * (double multiplier) {
             FTPoint temp;
             temp.values[0] = values[0] * multiplier;
@@ -334,7 +332,7 @@ class FTGL_EXPORT FTPoint {
 
             return temp;
         }
-        
+
         friend FTPoint operator*(double multiplier, FTPoint& point);
         friend bool operator == (const FTPoint &a, const FTPoint &b);
         friend bool operator != (const FTPoint &a, const FTPoint &b);
@@ -346,7 +344,7 @@ class FTGL_EXPORT FTPoint {
         FTGL_DOUBLE X() const { return values[0];};
         FTGL_DOUBLE Y() const { return values[1];};
         FTGL_DOUBLE Z() const { return values[2];};
-        
+
     private:
         FTGL_DOUBLE values[3];
 };
@@ -360,7 +358,7 @@ public:
 	FTSize();
 	virtual ~FTSize();
 
-	bool CharSize(FT_Face* face, unsigned int point_size, 
+	bool CharSize(FT_Face* face, unsigned int point_size,
 			unsigned int x_resolution, unsigned int y_resolution);
 
 	unsigned int CharSize() const;
@@ -421,7 +419,7 @@ class FTGL_EXPORT FTBBox {
             upperY(0.0f),
             upperZ(0.0f)
         {}
-        
+
         FTBBox(float lx, float ly, float lz, float ux, float uy, float uz)
         :   lowerX(lx),
             lowerY(ly),
@@ -430,7 +428,7 @@ class FTGL_EXPORT FTBBox {
             upperY(uy),
             upperZ(uz)
         {}
-        
+
         FTBBox(FT_GlyphSlot glyph)
         :   lowerX(0.0f),
             lowerY(0.0f),
@@ -447,8 +445,7 @@ class FTGL_EXPORT FTBBox {
             upperX = static_cast<float>(bbox.xMax) / 64.0f;
             upperY = static_cast<float>(bbox.yMax) / 64.0f;
             upperZ = 0.0f;
-        }       
-
+        }
         FTBBox &Move (FTPoint distance)
         {
             lowerX += distance.X();
@@ -462,18 +459,18 @@ class FTGL_EXPORT FTBBox {
 
         ~FTBBox() {}
 
-        FTBBox &operator += (const FTBBox& bbox) 
+        FTBBox &operator += (const FTBBox& bbox)
         {
-            lowerX = bbox.lowerX < lowerX? bbox.lowerX: lowerX; 
+            lowerX = bbox.lowerX < lowerX? bbox.lowerX: lowerX;
             lowerY = bbox.lowerY < lowerY? bbox.lowerY: lowerY;
-            lowerZ = bbox.lowerZ < lowerZ? bbox.lowerZ: lowerZ; 
-            upperX = bbox.upperX > upperX? bbox.upperX: upperX; 
-            upperY = bbox.upperY > upperY? bbox.upperY: upperY; 
-            upperZ = bbox.upperZ > upperZ? bbox.upperZ: upperZ; 
-            
+            lowerZ = bbox.lowerZ < lowerZ? bbox.lowerZ: lowerZ;
+            upperX = bbox.upperX > upperX? bbox.upperX: upperX;
+            upperY = bbox.upperY > upperY? bbox.upperY: upperY;
+            upperZ = bbox.upperZ > upperZ? bbox.upperZ: upperZ;
+
             return *this;
         }
-        
+
         void SetDepth(float depth) {upperZ = lowerZ + depth;}
         float lowerX, lowerY, lowerZ, upperX, upperY, upperZ;
     protected:
@@ -519,7 +516,7 @@ class FTGL_EXPORT FTCharmap {
         const FT_Face ftFace;
         typedef FTCharToGlyphIndexMap CharacterMap;
         CharacterMap charMap;
-        FT_Error err;        
+        FT_Error err;
 };
 
 // --------------------------------------------------------------------
@@ -537,7 +534,7 @@ class FTGL_EXPORT FTGlyphContainer {
         const FTGlyph* const Glyph(const unsigned int characterCode) const;
         FTBBox BBox(const unsigned int characterCode) const;
         float Advance(const unsigned int characterCode, const unsigned int nextCharacterCode);
-        FTPoint Render(const unsigned int characterCode, 
+        FTPoint Render(const unsigned int characterCode,
 			const unsigned int nextCharacterCode, FTPoint penPosition);
         FT_Error Error() const { return err;}
 
@@ -554,7 +551,7 @@ class FTGL_EXPORT FTGlyphContainer {
 
 class FTGL_EXPORT FTTextureGlyph : public FTGlyph {
     public:
-        FTTextureGlyph(FT_GlyphSlot glyph, int id, int xOffset, int yOffset, 
+        FTTextureGlyph(FT_GlyphSlot glyph, int id, int xOffset, int yOffset,
 			GLsizei width, GLsizei height);
         virtual ~FTTextureGlyph();
         virtual const FTPoint& Render(const FTPoint& pen);
@@ -590,9 +587,9 @@ class FTGL_EXPORT FTFont {
         float Ascender() const;
         float Descender() const;
         float LineHeight() const;
-        void BBox(const char* string, float& llx, float& lly, 
+        void BBox(const char* string, float& llx, float& lly,
 			float& llz, float& urx, float& ury, float& urz);
-        void BBox (const wchar_t* string, float& llx, float& lly, 
+        void BBox (const wchar_t* string, float& llx, float& lly,
 			float& llz, float& urx, float& ury, float& urz);
         float Advance (const wchar_t* string);
         float Advance (const char* string);
@@ -606,7 +603,7 @@ class FTGL_EXPORT FTFont {
         FTSize charSize;
         bool useDisplayLists;
         FT_Error err;
-    private:        
+    private:
         inline bool CheckGlyph(const unsigned int chr);
         FTGlyphContainer* glyphList;
         FTPoint pen;
@@ -652,7 +649,7 @@ class FTGL_EXPORT FTGLPixmapFont : public FTFont
 
     private:
         inline virtual FTGlyph* MakeGlyph( unsigned int g);
-        
+
 };
 
 class FTGL_EXPORT FTPixmapGlyph : public FTGlyph
@@ -665,8 +662,7 @@ class FTGL_EXPORT FTPixmapGlyph : public FTGlyph
         int destWidth;
         int destHeight;
         FTPoint pos;
-        unsigned char* data;        
+        unsigned char* data;
 };
 
-#endif 
-
+#endif

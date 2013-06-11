@@ -28,7 +28,7 @@ private:
 	float elapsed_time;
 
 	// joystick
-	SDL_Joystick *joystick;	
+	SDL_Joystick *joystick;
 	int numJoysticks;
 	bool joystick_active;
 
@@ -59,7 +59,7 @@ public:
 	void InitJoystick ();
 	void CloseJoystick ();
 	bool joystick_isActive() const { return joystick_active; }
-	double ClockTime () {return SDL_GetTicks() * 1.e-3; } 
+	double ClockTime () {return SDL_GetTicks() * 1.e-3; }
 //	SDL_Surface *GetSurfaceData ();
 	unsigned char *GetSurfaceData ();
 };

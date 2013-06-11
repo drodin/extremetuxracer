@@ -35,8 +35,10 @@ void setup_course_tex_gen () {
     glTexGenfv (GL_T, GL_OBJECT_PLANE, zplane);
 }
 
-// --------------------------------------------------------------------//							render course
-// --------------------------------------------------------------------void RenderCourse () {
+// --------------------------------------------------------------------
+//							render course
+// --------------------------------------------------------------------
+void RenderCourse () {
 	set_gl_options (COURSE);
     setup_course_tex_gen ();
     glTexEnvf (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
@@ -114,7 +116,8 @@ void DrawTrees() {
 		glEnd();
         glPopMatrix();
 	}
-//  items -----------------------------
+
+//  items -----------------------------
 	TItem* itemLocs = &Course.NocollArr[0];
 	size_t numItems = Course.NocollArr.size();
 
@@ -124,11 +127,13 @@ void DrawTrees() {
 		    if (ctrl->viewpos.z - itemLocs[i].pt.z > fwd_clip_limit) continue;
 		    if (itemLocs[i].pt.z - ctrl->viewpos.z > bwd_clip_limit) continue;
 		}
-		if (itemLocs[i].item_type != item_type) {
+
+		if (itemLocs[i].item_type != item_type) {
 		    item_type = itemLocs[i].item_type;
 			object_types[item_type].texture->Bind();
 		}
-		glPushMatrix();
+
+		glPushMatrix();
 		    glTranslatef (itemLocs[i].pt.x, itemLocs[i].pt.y,  itemLocs[i].pt.z);
 		    double itemRadius = itemLocs[i].diam / 2;
 		    double itemHeight = itemLocs[i].height;
@@ -155,4 +160,5 @@ void DrawTrees() {
 				glVertex3f (-itemRadius*normal.z, itemHeight, itemRadius*normal.x);
 	    	glEnd();
         glPopMatrix();
-    }}
+    }
+}

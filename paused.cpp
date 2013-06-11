@@ -84,7 +84,8 @@ void CPaused::Loop (double time_step) {
     if (terr) RenderCourse();
     DrawTrackmarks ();
     DrawTrees();
-	UpdateWind (time_step, ctrl);
+
+	UpdateWind (time_step, ctrl);
 	UpdateSnow (time_step, ctrl);
 	DrawSnow (ctrl);
 
@@ -97,4 +98,4 @@ void CPaused::Loop (double time_step) {
 	DrawHud (ctrl);
     Reshape (width, height);
     Winsys.SwapBuffers ();
-}
+}

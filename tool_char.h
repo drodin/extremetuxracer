@@ -29,6 +29,5 @@ void CharMotion (int x, int y);
 void RenderChar (double timestep);
 void StoreAction (TCharAction *act);
 
-#endif 
-
+#endif
 

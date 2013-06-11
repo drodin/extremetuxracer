@@ -64,7 +64,7 @@ struct TFlakeArea {
 	float maxSize;
 	float speed;
 	bool  rotate_flake;
-	
+
 	float left;
 	float right;
 	float bottom;
@@ -75,7 +75,7 @@ struct TFlakeArea {
 	vector<TFlake> flakes;
 
 	TFlakeArea(
-		int num_flakes, 
+		int num_flakes,
 		float xrange,
 		float ytop,
 		float yrange,
@@ -136,7 +136,7 @@ struct TCurtain {
 	float lastangle;
 	float minheight;
 	int texture;
-	
+
 	TCurtain(
 		int num_rows,
 		float z_dist,

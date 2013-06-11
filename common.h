@@ -74,7 +74,8 @@ extern const TColor colSky;
 // --------------------------------------------------------------------
 //				print utils
 // --------------------------------------------------------------------
-// some simple functions to print out values on the// terminal. Only used for development.
+// some simple functions to print out values on the
+// terminal. Only used for development.
 void	PrintInt (const int val);
 void	PrintInt (const string& s, const int val);
 void	PrintStr (const char *val);

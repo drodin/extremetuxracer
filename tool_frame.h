@@ -35,6 +35,5 @@ void SequenceMouse (int button, int state, int x, int y);
 void SequenceMotion (int x, int y);
 void RenderSequence (double timestep);
 
-#endif 
-
+#endif
 

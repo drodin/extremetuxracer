@@ -85,7 +85,8 @@ static TArea area;
 static int framewidth, frameheight, frametop1, frametop2;
 
 void CEventSelect::Enter () {
-	Winsys.ShowCursor (!param.ice_cursor);	EventList = &Events.EventList[0];
+	Winsys.ShowCursor (!param.ice_cursor);
+	EventList = &Events.EventList[0];
 	CupList = &Events.CupList[0];
 
 	framewidth = 500 * param.scale;
@@ -114,9 +115,11 @@ void CEventSelect::Loop (double timestep) {
 	int ww = param.x_resolution;
 	int hh = param.y_resolution;
 	TColor col;
-	check_gl_error();
+
+	check_gl_error();
    	set_gl_options (GUI );
-	Music.Update ();    ClearRenderContext ();
+	Music.Update ();
+    ClearRenderContext ();
 	SetupGuiDisplay ();
 
 	if (param.ui_snow) {
@@ -129,7 +132,9 @@ void CEventSelect::Loop (double timestep) {
 	Tex.Draw (BOTTOM_RIGHT, ww-256, hh-256, 1);
 	Tex.Draw (TOP_LEFT, 0, 0, 1);
 	Tex.Draw (TOP_RIGHT, ww-256, 0, 1);
-//	DrawFrameX (area.left, area.top, area.right-area.left, area.bottom - area.top,//			0, colMBackgr, colBlack, 0.2);
+
+//	DrawFrameX (area.left, area.top, area.right-area.left, area.bottom - area.top,
+//			0, colMBackgr, colBlack, 0.2);
 
 	FT.AutoSizeN (3);
 	FT.SetColor (colWhite);
@@ -149,7 +154,8 @@ void CEventSelect::Loop (double timestep) {
 
 	if (cup->focussed()) col = colDYell; else col = colWhite;
 	DrawFrameX (area.left, frametop2, framewidth, frameheight, 3, colMBackgr, col, 1.0);
-	if (Events.IsUnlocked (event->GetValue(), cup->GetValue())) FT.SetColor (colDYell);		else FT.SetColor (colLGrey);
+	if (Events.IsUnlocked (event->GetValue(), cup->GetValue())) FT.SetColor (colDYell);
+		else FT.SetColor (colLGrey);
 	FT.DrawString (area.left + 20, frametop2, Events.GetCupTrivialName (event->GetValue(), cup->GetValue()));
 
 	textbuttons[0]->SetActive(Events.IsUnlocked (event->GetValue(), cup->GetValue()));

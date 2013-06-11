@@ -71,7 +71,7 @@ public:
 	// auto
 	int AutoSizeN     (int rel_val);	// rel_val = relative size, return: autosize
 	int AutoDistanceN (int rel_val);	// rel_val = relative dist
-	
+
 	// draw
 	void DrawText   (float x, float y, const char *text) const;		// normal char*
 	void DrawText   (float x, float y, const wchar_t *text) const;	// wide char*

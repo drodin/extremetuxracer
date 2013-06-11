@@ -15,7 +15,7 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 ---------------------------------------------------------------------*/
 /* --------------------------------------------------------------------
-An name convention: 
+An name convention:
 "lang" means the short identifier, e.g. "en_GB"
 "language" means the language name, e.g. "English"
 ---------------------------------------------------------------------*/

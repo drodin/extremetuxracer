@@ -14,7 +14,8 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 ---------------------------------------------------------------------*/
 
-/*If you want to add a new option, do this:
+/*
+If you want to add a new option, do this:
 First add the option to the TParam struct (game_config.h).
 
 Then edit the below functions:
@@ -24,11 +25,14 @@ Then edit the below functions:
 	SPStrN for strings.
 	The first value is always 'line', the second defines the tag within the
 	brackets [ ], and the last value is the default.
-- SetConfigDefaults. These values are used as long as no options file exists.
+
+- SetConfigDefaults. These values are used as long as no options file exists.
 	It's a good idea to use the same values as the defaults in LoadConfigFile.
-- SaveConfigFile. See the other entries; it should be self-explanatory.
+
+- SaveConfigFile. See the other entries; it should be self-explanatory.
 	If an options file exists, you will have to change any value at runtime
-	on the configuration screen to overwrite the file. Then you will see the	new entry.
+	on the configuration screen to overwrite the file. Then you will see the
+	new entry.
 */
 
 #include "config_screen.h"
@@ -71,7 +75,8 @@ void RestartSDL () {
 	SDL_Quit ();					// SDL main
 
 	// second restore the freed resources
-	Winsys.Init ();					// includes SetVideoMode 	Audio.Open ();					// clear, it has been closed before
+	Winsys.Init ();					// includes SetVideoMode
+ 	Audio.Open ();					// clear, it has been closed before
 	Sound.LoadSoundList ();			// all sounds must loaded again
 	Music.LoadMusicList (); 		// same with music pieces
 	Tex.LoadTextureList ();			// common textures
@@ -111,7 +116,8 @@ void SetConfig () {
 				}
 			#endif
 		}
-		// the followind config params don't require a new VideoMode
+
+		// the followind config params don't require a new VideoMode
 		// they only must stored in the param structure (and saved)
 		param.music_volume = mus_vol->GetValue();
 		Music.SetVolume (param.music_volume);
@@ -135,7 +141,8 @@ void CGameConfig::Keyb (unsigned int key, bool special, bool release, int x, int
 	switch (key) {
 		case SDLK_q: State::manager.RequestQuit(); break;
 		case 27: State::manager.RequestEnterState (*State::manager.PreviousState()); break;
-		case 13:			if(textbuttons[0]->focussed())
+		case 13:
+			if(textbuttons[0]->focussed())
 				State::manager.RequestEnterState (*State::manager.PreviousState());
 			else if(textbuttons[1]->focussed())
 				SetConfig ();
@@ -174,7 +181,8 @@ static int framewidth, frameheight;
 static int dd, rightpos;
 
 void CGameConfig::Enter() {
-	Winsys.ShowCursor (!param.ice_cursor);	Winsys.KeyRepeat (true);
+	Winsys.ShowCursor (!param.ice_cursor);
+	Winsys.KeyRepeat (true);
 
 	LangList = &Trans.languages[0];
 
@@ -191,7 +199,8 @@ void CGameConfig::Enter() {
 	ResetGUI ();
 	fullscreen = AddCheckbox (area.left, area.top, framewidth-16, Trans.Text(31));
 	fullscreen->checked = param.fullscreen;
-	resolution = AddUpDown(rightpos, area.top+dd*1, 0, NUM_RESOLUTIONS-1, (int)param.res_type);
+
+	resolution = AddUpDown(rightpos, area.top+dd*1, 0, NUM_RESOLUTIONS-1, (int)param.res_type);
 	mus_vol = AddUpDown(rightpos, area.top+dd*2, 0, 120, param.music_volume);
 	sound_vol = AddUpDown(rightpos, area.top+dd*3, 0, 120, param.sound_volume);
 	detail_level = AddUpDown(rightpos, area.top+dd*4, 1, 3, param.perf_level);
@@ -209,11 +218,15 @@ void CGameConfig::Loop (double time_step) {
 	int ww = param.x_resolution;
 	int hh = param.y_resolution;
 
-	Music.Update ();	check_gl_error();
-	Music.Update ();    set_gl_options (GUI);
+	Music.Update ();
+
+	check_gl_error();
+	Music.Update ();
+    set_gl_options (GUI);
     ClearRenderContext ();
     SetupGuiDisplay ();
-	if (param.ui_snow) {
+
+	if (param.ui_snow) {
 		update_ui_snow (time_step);
 		draw_ui_snow();
     }
@@ -224,7 +237,8 @@ void CGameConfig::Loop (double time_step) {
 	Tex.Draw (TOP_LEFT, 0, 0, 1);
 	Tex.Draw (TOP_RIGHT, ww-256, 0, 1);
 
-//	DrawFrameX (area.left, area.top, area.right-area.left, area.bottom - area.top,//			0, colMBackgr, colBlack, 0.2);
+//	DrawFrameX (area.left, area.top, area.right-area.left, area.bottom - area.top,
+//			0, colMBackgr, colBlack, 0.2);
 
 	FT.AutoSizeN (4);
 
@@ -259,7 +273,8 @@ void CGameConfig::Loop (double time_step) {
 			FT.DrawString (CENTER, AutoYPosN (68), Trans.Text(41));
 			FT.DrawString (CENTER, AutoYPosN (72), Trans.Text(42));
 		}
-	#else		FT.SetColor (colWhite);
+	#else
+		FT.SetColor (colWhite);
 		FT.AutoSizeN (3);
 		FT.DrawString (CENTER, AutoYPosN (68), Trans.Text(41));
 		FT.DrawString (CENTER, AutoYPosN (72), Trans.Text(42));

@@ -55,8 +55,7 @@ void init_glfloat_array (int num, GLfloat arr[], ...) {
 PFNGLLOCKARRAYSEXTPROC glLockArraysEXT_p = NULL;
 PFNGLUNLOCKARRAYSEXTPROC glUnlockArraysEXT_p = NULL;
 
-typedef void (*(*get_gl_proc_fptr_t)(const GLubyte *))(); 
-
+typedef void (*(*get_gl_proc_fptr_t)(const GLubyte *))();
 void InitOpenglExtensions () {
 	get_gl_proc_fptr_t get_gl_proc;
 
@@ -69,13 +68,13 @@ void InitOpenglExtensions () {
 	#endif
 
     if (get_gl_proc) {
-		glLockArraysEXT_p = (PFNGLLOCKARRAYSEXTPROC) 
+		glLockArraysEXT_p = (PFNGLLOCKARRAYSEXTPROC)
 		    (*get_gl_proc)((GLubyte*) "glLockArraysEXT");
-		glUnlockArraysEXT_p = (PFNGLUNLOCKARRAYSEXTPROC) 
+		glUnlockArraysEXT_p = (PFNGLUNLOCKARRAYSEXTPROC)
 		    (*get_gl_proc)((GLubyte*) "glUnlockArraysEXT");
-	
+
 		if (glLockArraysEXT_p != NULL && glUnlockArraysEXT_p != NULL) {
-		
+
 		} else {
 		    Message ("GL_EXT_compiled_vertex_array extension NOT supported", "");
 	    	glLockArraysEXT_p = NULL;
@@ -144,7 +143,7 @@ void set_material (const TColor& diffuse_colour, const TColor& specular_colour, 
 	mat_amb_diff[0] = diffuse_colour.r;
 	mat_amb_diff[1] = diffuse_colour.g;
 	mat_amb_diff[2] = diffuse_colour.b;
-	mat_amb_diff[3] = diffuse_colour.a; 
+	mat_amb_diff[3] = diffuse_colour.a;
 	glMaterialfv (GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, mat_amb_diff);
 
 	mat_specular[0] = specular_colour.r;
@@ -155,10 +154,9 @@ void set_material (const TColor& diffuse_colour, const TColor& specular_colour, 
 
 	glMaterialf (GL_FRONT_AND_BACK, GL_SHININESS, specular_exp);
 
-	glColor4f (diffuse_colour.r, diffuse_colour.g, diffuse_colour.b, 
+	glColor4f (diffuse_colour.r, diffuse_colour.g, diffuse_colour.b,
 	     diffuse_colour.a);
-} 
-
+}
 void ClearRenderContext () {
 	glDepthMask (GL_TRUE);
 	glClearColor (colBackgr.r, colBackgr.g, colBackgr.b, colBackgr.a);
@@ -193,13 +191,12 @@ void Reshape (int w, int h) {
     far_clip_dist = param.forward_clip_distance + FAR_CLIP_FUDGE_AMOUNT;
     gluPerspective (param.fov, (double)w/h, NEAR_CLIP_DIST, far_clip_dist );
     glMatrixMode (GL_MODELVIEW );
-} 
-
+}
 // ====================================================================
 //					GL options
 // ====================================================================
 
-void set_gl_options (TRenderMode mode) 
+void set_gl_options (TRenderMode mode)
 {
 	switch (mode) {
     case GUI:
@@ -219,7 +216,7 @@ void set_gl_options (TRenderMode mode)
 		glDepthFunc (GL_LESS);
 		glDisable (GL_FOG);
         break;
-    
+
 	case GAUGE_BARS:
         glEnable (GL_TEXTURE_2D);
         glDisable (GL_DEPTH_TEST);
@@ -256,7 +253,7 @@ void set_gl_options (TRenderMode mode)
 		glShadeModel (GL_SMOOTH);
 		glDepthFunc (GL_LESS);
         break;
-    
+
 	case COURSE:
 		glEnable (GL_TEXTURE_2D);
 		glEnable (GL_DEPTH_TEST);
@@ -295,7 +292,7 @@ void set_gl_options (TRenderMode mode)
 
         glAlphaFunc (GL_GEQUAL, 0.5);
         break;
-        
+
     case PARTICLES:
         glEnable (GL_TEXTURE_2D);
 		glEnable (GL_DEPTH_TEST);
@@ -314,11 +311,11 @@ void set_gl_options (TRenderMode mode)
 
         glAlphaFunc (GL_GEQUAL, 0.5);
         break;
-    
+
 	case SKY:
 		glEnable (GL_TEXTURE_2D);
 		glDisable (GL_DEPTH_TEST);
-		glDisable (GL_CULL_FACE); 
+		glDisable (GL_CULL_FACE);
 		glDisable (GL_LIGHTING);
 		glDisable (GL_NORMALIZE);
 		glDisable (GL_ALPHA_TEST);
@@ -331,11 +328,11 @@ void set_gl_options (TRenderMode mode)
 		glShadeModel (GL_SMOOTH);
 		glDepthFunc (GL_LESS);
 		break;
- 	
+
     case FOG_PLANE:
 		glDisable (GL_TEXTURE_2D);
 		glEnable (GL_DEPTH_TEST);
-		glDisable (GL_CULL_FACE); 
+		glDisable (GL_CULL_FACE);
 		glDisable (GL_LIGHTING);
 		glDisable (GL_NORMALIZE);
 		glDisable (GL_ALPHA_TEST);
@@ -415,12 +412,11 @@ void set_gl_options (TRenderMode mode)
 		glShadeModel (GL_SMOOTH);
 		glDepthFunc (GL_LEQUAL);
 		break;
-    
+
 	default:
 		Message ("not a valid render mode", "");
-    } 
-} 
-
+    }
+}
 /* defined but not used
     case TEXT:
         glDisable (GL_TEXTURE_2D);

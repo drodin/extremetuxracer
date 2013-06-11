@@ -1,14 +1,14 @@
-/* -------------------------------------------------------------------- 
-Extreme Tuxracer 
- 
+/* --------------------------------------------------------------------
+Extreme Tuxracer
+
 Copyright (c) 2001-2004 Henry Maddocks (FTGL)
 Copyright (C) 2010 Extreme Tuxracer Team (modification)
 
 The FTGL library from H. Maddocks is published under the terms
-of the Lesser General Publish License (LGPL). You can find a 
+of the Lesser General Publish License (LGPL). You can find a
 copy of the LGPL on the gnu website:
       http://www.gnu.org/copyleft/lesser.html
- 
+
 Hint: almost all comments are removed from the code to make it
 shorter. So all modules could put together in a single module.
 To read the comments of the author you should download the
@@ -59,7 +59,7 @@ bool FTFont::Attach (const unsigned char *pBufferBytes, size_t bufferSizeInBytes
 bool FTFont::FaceSize (const unsigned int size, const unsigned int res) {
     charSize = face.Size (size, res);
     err = face.Error();
-    
+
     if (err != 0) return false;
     if (glyphList != NULL) delete glyphList;
     glyphList = new FTGlyphContainer (&face);
@@ -81,7 +81,7 @@ float FTFont::Ascender() const {return charSize.Ascender();}
 float FTFont::Descender() const {return charSize.Descender();}
 float FTFont::LineHeight() const {return charSize.Height();}
 
-void FTFont::BBox (const char* string, float& llx, float& lly, float& llz, 
+void FTFont::BBox (const char* string, float& llx, float& lly, float& llz,
 		float& urx, float& ury, float& urz) {
     FTBBox totalBBox;
 
@@ -93,7 +93,7 @@ void FTFont::BBox (const char* string, float& llx, float& lly, float& llz,
             totalBBox = glyphList->BBox (*c);
             advance = glyphList->Advance (*c, *(c + 1));
         }
-                
+
         while (*++c) {
             if(CheckGlyph (*c)) {
                 FTBBox tempBBox = glyphList->BBox (*c);
@@ -112,7 +112,7 @@ void FTFont::BBox (const char* string, float& llx, float& lly, float& llz,
     urz = totalBBox.upperZ;
 }
 
-void FTFont::BBox (const wchar_t* string, float& llx, float& lly, float& llz, 
+void FTFont::BBox (const wchar_t* string, float& llx, float& lly, float& llz,
 		float& urx, float& ury, float& urz) {
     FTBBox totalBBox;
 
@@ -124,7 +124,7 @@ void FTFont::BBox (const wchar_t* string, float& llx, float& lly, float& llz,
             totalBBox = glyphList->BBox (*c);
             advance = glyphList->Advance (*c, *(c + 1));
         }
-        
+
         while (*++c) {
             if(CheckGlyph (*c)) {
                 FTBBox tempBBox = glyphList->BBox (*c);
@@ -256,8 +256,8 @@ FTFace::FTFace (const unsigned char *pBufferBytes, size_t bufferSizeInBytes)
     ftFace = new FT_Face;
 
     err = FT_New_Memory_Face (
-			*FTLibrary::Instance().GetLibrary(), 
-			(FT_Byte *)pBufferBytes, 
+			*FTLibrary::Instance().GetLibrary(),
+			(FT_Byte *)pBufferBytes,
 			bufferSizeInBytes, DEFAULT_FACE_INDEX, ftFace);
 
     if (err) {
@@ -319,7 +319,7 @@ FTPoint FTFace::KernAdvance (unsigned int index1, unsigned int index2) {
         kernAdvance.x = kernAdvance.y = 0;
 
         err = FT_Get_Kerning (*ftFace, index1, index2, ft_kerning_unfitted, &kernAdvance);
-        if (!err) {   
+        if (!err) {
             x = static_cast<float> (kernAdvance.x) / 64.0f;
             y = static_cast<float> (kernAdvance.y) / 64.0f;
         }
@@ -338,19 +338,19 @@ FT_GlyphSlot FTFace::Glyph (unsigned int index, FT_Int load_flags) {
 // --------------------------------------------------------------------
 
 bool operator == (const FTPoint &a, const FTPoint &b) {
-    return((a.values[0] == b.values[0]) && (a.values[1] == 
+    return((a.values[0] == b.values[0]) && (a.values[1] ==
 	b.values[1]) && (a.values[2] == b.values[2]));
 }
 
 bool operator !=  (const FTPoint &a, const FTPoint &b) {
-    return((a.values[0] != b.values[0]) || (a.values[1] 
+    return((a.values[0] != b.values[0]) || (a.values[1]
 	!= b.values[1]) || (a.values[2] != b.values[2]));
 }
 
 FTPoint operator * (double multiplier, FTPoint& point){
     return point * multiplier;
 }
-        
+
 // --------------------------------------------------------------------
 //					FTSize
 // --------------------------------------------------------------------
@@ -366,7 +366,7 @@ FTSize::FTSize()
 
 FTSize::~FTSize() {}
 
-bool FTSize::CharSize (FT_Face* face, unsigned int pointSize, 
+bool FTSize::CharSize (FT_Face* face, unsigned int pointSize,
 		unsigned int xRes, unsigned int yRes) {
     if (size != pointSize || xResolution != xRes || yResolution != yRes) {
         err = FT_Set_Char_Size (*face, 0L, pointSize * 64, xResolution, yResolution);
@@ -403,17 +403,17 @@ float FTSize::Descender() const {
 float FTSize::Height() const {
     if (0 == ftSize) return 0.0f;
     if (FT_IS_SCALABLE((*ftFace))) {
-        return  ((*ftFace)->bbox.yMax - (*ftFace)->bbox.yMin) *  
+        return  ((*ftFace)->bbox.yMax - (*ftFace)->bbox.yMin) *
 		((float)ftSize->metrics.y_ppem / (float)(*ftFace)->units_per_EM);
     } else return static_cast<float> (ftSize->metrics.height) / 64.0f;
 }
 
 float FTSize::Width() const {
     if (0 == ftSize) return 0.0f;
-    
+
     if (FT_IS_SCALABLE((*ftFace))) {
-        return  ((*ftFace)->bbox.xMax - (*ftFace)->bbox.xMin) *  
-		(static_cast<float>(ftSize->metrics.x_ppem) / 
+        return  ((*ftFace)->bbox.xMax - (*ftFace)->bbox.xMin) *
+		(static_cast<float>(ftSize->metrics.x_ppem) /
 		static_cast<float>((*ftFace)->units_per_EM));
     } else return static_cast<float> (ftSize->metrics.max_advance) / 64.0f;
 }
@@ -477,21 +477,21 @@ FTBBox FTGlyphContainer::BBox (const unsigned int characterCode) const {
     return glyphs[charMap->GlyphListIndex (characterCode)]->BBox();
 }
 
-float FTGlyphContainer::Advance (const unsigned int characterCode, 
+float FTGlyphContainer::Advance (const unsigned int characterCode,
 		const unsigned int nextCharacterCode) {
     unsigned int left = charMap->FontIndex (characterCode);
     unsigned int right = charMap->FontIndex (nextCharacterCode);
 
     float width = face->KernAdvance (left, right).X();
     width += glyphs[charMap->GlyphListIndex (characterCode)]->Advance().X();
-    
+
     return width;
 }
 
-FTPoint FTGlyphContainer::Render (const unsigned int characterCode, 
+FTPoint FTGlyphContainer::Render (const unsigned int characterCode,
 		const unsigned int nextCharacterCode, FTPoint penPosition) {
     FTPoint kernAdvance, advance;
-    
+
     unsigned int left = charMap->FontIndex (characterCode);
     unsigned int right = charMap->FontIndex (nextCharacterCode);
 
@@ -499,7 +499,7 @@ FTPoint FTGlyphContainer::Render (const unsigned int characterCode,
     if (!face->Error()) {
         advance = glyphs[charMap->GlyphListIndex (characterCode)]->Render (penPosition);
     }
-    
+
     kernAdvance += advance;
     return kernAdvance;
 }
@@ -509,8 +509,8 @@ FTPoint FTGlyphContainer::Render (const unsigned int characterCode,
 // --------------------------------------------------------------------
 
 GLint FTTextureGlyph::activeTextureID = 0;
- 
-FTTextureGlyph::FTTextureGlyph (FT_GlyphSlot glyph, int id, int xOffset, 
+
+FTTextureGlyph::FTTextureGlyph (FT_GlyphSlot glyph, int id, int xOffset,
 		int yOffset, GLsizei width, GLsizei height)
 : FTGlyph (glyph), destWidth(0), destHeight(0), glTextureID(id) {
     err = FT_Render_Glyph (glyph, FT_RENDER_MODE_NORMAL);
@@ -519,7 +519,7 @@ FTTextureGlyph::FTTextureGlyph (FT_GlyphSlot glyph, int id, int xOffset,
     FT_Bitmap bitmap = glyph->bitmap;
     destWidth  = bitmap.width;
     destHeight = bitmap.rows;
-    
+
     if (destWidth && destHeight) {
         glPushClientAttrib (GL_CLIENT_PIXEL_STORE_BIT);
         glPixelStorei (GL_UNPACK_LSB_FIRST, GL_FALSE);
@@ -527,7 +527,7 @@ FTTextureGlyph::FTTextureGlyph (FT_GlyphSlot glyph, int id, int xOffset,
         glPixelStorei (GL_UNPACK_ALIGNMENT, 1);
 
         glBindTexture (GL_TEXTURE_2D, glTextureID);
-        glTexSubImage2D (GL_TEXTURE_2D, 0, xOffset, yOffset, 
+        glTexSubImage2D (GL_TEXTURE_2D, 0, xOffset, yOffset,
 			destWidth, destHeight, GL_ALPHA, GL_UNSIGNED_BYTE, bitmap.buffer);
 
         glPopClientAttrib();
@@ -537,7 +537,7 @@ FTTextureGlyph::FTTextureGlyph (FT_GlyphSlot glyph, int id, int xOffset,
     uv[0].Y (static_cast<float>(yOffset) / static_cast<float>(height));
     uv[1].X (static_cast<float> (xOffset + destWidth) / static_cast<float>(width));
     uv[1].Y (static_cast<float> (yOffset + destHeight) / static_cast<float>(height));
-    
+
     pos.X (glyph->bitmap_left);
     pos.Y (glyph->bitmap_top);
 }
@@ -549,7 +549,7 @@ const FTPoint& FTTextureGlyph::Render (const FTPoint& pen) {
         glBindTexture (GL_TEXTURE_2D, (GLuint)glTextureID);
         activeTextureID = glTextureID;
     }
-    
+
     glTranslatef (pen.X(),  pen.Y(), 0.0f);
 
     glBegin (GL_QUADS);
@@ -561,7 +561,7 @@ const FTPoint& FTTextureGlyph::Render (const FTPoint& pen) {
 
         glTexCoord2f (uv[1].X(), uv[1].Y());
         glVertex2f (destWidth + pos.X(), pos.Y() - destHeight);
-        
+
         glTexCoord2f (uv[1].X(), uv[0].Y());
         glVertex2f (destWidth + pos.X(), pos.Y());
     glEnd();
@@ -617,16 +617,16 @@ FTGLTextureFont::~FTGLTextureFont() {
 
 FTGlyph* FTGLTextureFont::MakeGlyph (unsigned int glyphIndex) {
     FT_GlyphSlot ftGlyph = face.Glyph (glyphIndex, FT_LOAD_NO_HINTING);
-    
+
     if (ftGlyph) {
         glyphHeight = static_cast<int> (charSize.Height());
         glyphWidth = static_cast<int> (charSize.Width());
-        
+
         if (textureIDList.empty()) {
             textureIDList.push_back (CreateTexture());
             xOffset = yOffset = padding;
         }
-        
+
         if (xOffset >  (textureWidth - glyphWidth)) {
             xOffset = padding;
             yOffset += glyphHeight;
@@ -635,15 +635,15 @@ FTGlyph* FTGLTextureFont::MakeGlyph (unsigned int glyphIndex) {
                 yOffset = padding;
             }
         }
-        
-        FTTextureGlyph* tempGlyph = 
+
+        FTTextureGlyph* tempGlyph =
 			new FTTextureGlyph (ftGlyph, textureIDList[textureIDList.size() - 1],
             xOffset, yOffset, textureWidth, textureHeight);
         xOffset += static_cast<int> (tempGlyph->BBox().upperX - tempGlyph->BBox().lowerX + padding);
-        
+
         --remGlyphs;
         return tempGlyph;
-    }  
+    }
     err = face.Error();
     return NULL;
 }
@@ -652,7 +652,7 @@ void FTGLTextureFont::CalculateTextureSize() {
     if (!maximumGLTextureSize) {
         glGetIntegerv (GL_MAX_TEXTURE_SIZE, (GLint*)&maximumGLTextureSize);
     }
-    
+
     textureWidth = NextPowerOf2 ((remGlyphs * glyphWidth) +  (padding * 2));
     textureWidth = textureWidth > maximumGLTextureSize ? maximumGLTextureSize : textureWidth;
     int h = static_cast<int> ((textureWidth -  (padding * 2)) / glyphWidth);
@@ -660,9 +660,9 @@ void FTGLTextureFont::CalculateTextureSize() {
     textureHeight = textureHeight > maximumGLTextureSize ? maximumGLTextureSize : textureHeight;
 }
 
-GLuint FTGLTextureFont::CreateTexture() {   
+GLuint FTGLTextureFont::CreateTexture() {
     CalculateTextureSize();
-    
+
     int totalMemory = textureWidth * textureHeight;
     unsigned char* textureMemory = new unsigned char[totalMemory];
     memset (textureMemory, 0, totalMemory);
@@ -676,7 +676,7 @@ GLuint FTGLTextureFont::CreateTexture() {
     glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 
-    glTexImage2D (GL_TEXTURE_2D, 0, GL_ALPHA, textureWidth, textureHeight, 0, 
+    glTexImage2D (GL_TEXTURE_2D, 0, GL_ALPHA, textureWidth, textureHeight, 0,
 		GL_ALPHA, GL_UNSIGNED_BYTE, textureMemory);
 
     delete [] textureMemory;
@@ -692,7 +692,7 @@ bool FTGLTextureFont::FaceSize (const unsigned int size, const unsigned int res)
     return FTFont::FaceSize (size, res);
 }
 
-void FTGLTextureFont::Render (const char* string) {   
+void FTGLTextureFont::Render (const char* string) {
     glPushAttrib (GL_ENABLE_BIT | GL_COLOR_BUFFER_BIT);
     glEnable(GL_BLEND);
     glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); // GL_ONE
@@ -701,7 +701,7 @@ void FTGLTextureFont::Render (const char* string) {
     glPopAttrib();
 }
 
-void FTGLTextureFont::Render (const wchar_t* string) {   
+void FTGLTextureFont::Render (const wchar_t* string) {
     glPushAttrib (GL_ENABLE_BIT | GL_COLOR_BUFFER_BIT);
     glEnable(GL_BLEND);
     glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); // GL_ONE
@@ -760,10 +760,10 @@ FTPixmapGlyph::FTPixmapGlyph( FT_GlyphSlot glyph)
     FT_Bitmap bitmap = glyph->bitmap;
     int srcWidth = bitmap.width;
     int srcHeight = bitmap.rows;
-    
+
     destWidth = srcWidth;
     destHeight = srcHeight;
-    
+
     if (destWidth && destHeight) {
         data = new unsigned char[destWidth * destHeight * 2];
         unsigned char* src = bitmap.buffer;
@@ -789,7 +789,7 @@ FTPixmapGlyph::~FTPixmapGlyph() {delete [] data;}
 
 const FTPoint& FTPixmapGlyph::Render( const FTPoint& pen) {
     glBitmap( 0, 0, 0.0f, 0.0f, pen.X() + pos.X(), pen.Y() - pos.Y(), (const GLubyte*)0);
-    
+
     if( data) {
         glPixelStorei( GL_UNPACK_ROW_LENGTH, 0);
         glPixelStorei( GL_UNPACK_ALIGNMENT, 2);
@@ -832,7 +832,7 @@ FTGlyph* FTGLPixmapFont::MakeGlyph( unsigned int g) {
 }
 
 
-void FTGLPixmapFont::Render( const char* string) {   
+void FTGLPixmapFont::Render( const char* string) {
     glPushAttrib( GL_ENABLE_BIT | GL_PIXEL_MODE_BIT | GL_COLOR_BUFFER_BIT);
     glPushClientAttrib( GL_CLIENT_PIXEL_STORE_BIT);
 
@@ -856,13 +856,13 @@ void FTGLPixmapFont::Render( const char* string) {
 }
 
 
-void FTGLPixmapFont::Render( const wchar_t* string) {   
+void FTGLPixmapFont::Render( const wchar_t* string) {
     glPushAttrib( GL_ENABLE_BIT | GL_PIXEL_MODE_BIT | GL_COLOR_BUFFER_BIT);
     glPushClientAttrib( GL_CLIENT_PIXEL_STORE_BIT);
-        
+
     glEnable(GL_BLEND);
     glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    
+
     glDisable( GL_TEXTURE_2D);
 
     GLfloat ftglColour[4];

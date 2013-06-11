@@ -81,7 +81,8 @@ int main( int argc, char **argv ) {
 	// written on the console):
 	//	Winsys.PrintJoystickInfo ();
 	//	PrintGLInfo ();
-	// theses resources must or should be loaded before splashscreen starts
+
+	// theses resources must or should be loaded before splashscreen starts
 	Tex.LoadTextureList ();
 	FT.LoadFontlist ();
 	Winsys.SetFonttype ();
@@ -92,7 +93,8 @@ int main( int argc, char **argv ) {
 	switch (g_game.argument) {
 		case 0: State::manager.Run(SplashScreen); break;
 		case 4:
-			g_game.toolmode = TUXSHAPE;			State::manager.Run(Tools);
+			g_game.toolmode = TUXSHAPE;
+			State::manager.Run(Tools);
 			break;
 		case 9: State::manager.Run(OglTest); break;
 	}

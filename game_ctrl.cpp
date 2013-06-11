@@ -296,7 +296,8 @@ void CPlayers::LoadAvatars () {
 			avatars.back().filename = filename;
 			avatars.back().texture = texture;
 			AvatarIndex[filename] = avatars.size()-1;
-		} else			delete texture;
+		} else
+			delete texture;
 	}
 }
 

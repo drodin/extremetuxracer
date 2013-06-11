@@ -43,7 +43,8 @@ void QuitAndAddPlayer () {
 
 void CNewPlayer::Keyb_spec (SDL_keysym sym, bool release) {
 	if (release) return;
-	KeyGUI(sym.sym, sym.mod, release);
+
+	KeyGUI(sym.sym, sym.mod, release);
 	switch (sym.sym) {
 		case 27: State::manager.RequestEnterState (Regist); break;
 		case 13:
