@@ -19,6 +19,7 @@ GNU General Public License for more details.
 #define RACE_SELECT_H
 
 #include "bh.h"
+#include "states.h"
 
 class CRaceSelect : public State {
 	void Enter();
@@ -31,4 +32,4 @@ public:
 
 extern CRaceSelect RaceSelect;
 
-#endif 
+#endif

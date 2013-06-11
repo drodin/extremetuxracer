@@ -19,6 +19,8 @@ GNU General Public License for more details.
 #include "spx.h"
 #include <iostream>
 #include <cerrno>
+#include <cstdio>
+#include <ctime>
 
 // --------------------------------------------------------------------
 //				color utils

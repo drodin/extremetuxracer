@@ -20,20 +20,16 @@ GNU General Public License for more details.
 #include "font.h"
 #include "env.h"
 #include "gui.h"
+#include "winsys.h"
 
 COglTest OglTest;
 
-static const float tedef_amb[]  = {0.45, 0.53, 0.75, 1.0};    
-static const float tedef_diff[] = {1.0, 0.9, 1.0, 1.0};    
-static const float tedef_spec[] = {0.6, 0.6, 0.6, 1.0};    
-static const float tedef_pos[]  = {1, 2, 2, 0.0};    
-static TLight testlight;
+static const float tedef_amb[]  = {0.45, 0.53, 0.75, 1.0};static const float tedef_diff[] = {1.0, 0.9, 1.0, 1.0};static const float tedef_spec[] = {0.6, 0.6, 0.6, 1.0};static const float tedef_pos[]  = {1, 2, 2, 0.0};static TLight testlight;
 
 
 void InitTestLight () {
 	testlight.is_on = true;
-	for (int i=0; i<4; i++) { 
-		testlight.ambient[i]  = tedef_amb[i];
+	for (int i=0; i<4; i++) {		testlight.ambient[i]  = tedef_amb[i];
 		testlight.diffuse[i]  = tedef_diff[i];
 		testlight.specular[i] = tedef_spec[i];
  		testlight.position[i] = tedef_pos[i];
@@ -75,8 +71,7 @@ void COglTest::Loop(double timestep) {
  	SetTestLight ();
 
 /*
-	glTranslatef (xposition, yposition, zposition);	
-	glRotatef (xrotation, 1, 0, 0);
+	glTranslatef (xposition, yposition, zposition);	glRotatef (xrotation, 1, 0, 0);
 	glRotatef (yrotation, 0, 1, 0);
 	glRotatef (zrotation, 0, 0, 1);
 */

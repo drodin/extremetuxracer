@@ -18,6 +18,7 @@ GNU General Public License for more details.
 #define SCORE_H
 
 #include "bh.h"
+#include "states.h"
 #include <vector>
 
 #define MAX_SCORES 8
@@ -39,8 +40,7 @@ class CScore : public State {
 private:
 	vector<TScoreList> Scorelist;
 	TScore TempScore;
-	
-	void Enter();
+	void Enter();
 	void Loop(double time_step);
 	void Keyb(unsigned int key, bool special, bool release, int x, int y);
 	void Mouse(int button, int state, int x, int y);

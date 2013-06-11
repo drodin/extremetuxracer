@@ -18,6 +18,7 @@ GNU General Public License for more details.
 #define GAME_CONFIG_SCREEN_H
 
 #include "bh.h"
+#include "states.h"
 
 class CGameConfig : public State {
 	void Enter();
@@ -31,4 +32,4 @@ public:
 
 extern CGameConfig GameConfig;
 
-#endif 
+#endif

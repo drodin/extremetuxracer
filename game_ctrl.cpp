@@ -21,6 +21,7 @@ GNU General Public License for more details.
 #include "audio.h"
 #include "textures.h"
 #include "tux.h"
+#include "physics.h"
 
 // --------------------------------------------------------------------
 //				administration of events and cups
@@ -295,8 +296,7 @@ void CPlayers::LoadAvatars () {
 			avatars.back().filename = filename;
 			avatars.back().texture = texture;
 			AvatarIndex[filename] = avatars.size()-1;
-		} else 
-			delete texture;
+		} else			delete texture;
 	}
 }
 

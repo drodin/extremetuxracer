@@ -19,6 +19,7 @@ GNU General Public License for more details.
 #define HELP_H
 
 #include "bh.h"
+#include "states.h"
 
 class CHelp : public State {
 	void Enter();

@@ -19,30 +19,13 @@ GNU General Public License for more details.
 #include "textures.h"
 #include "ogl.h"
 #include "splash_screen.h"
-#include "intro.h"
-#include "racing.h"
-#include "game_over.h"
-#include "paused.h"
-#include "reset.h"
 #include "audio.h"
-#include "game_type_select.h"
-#include "race_select.h"
-#include "event_select.h"
-#include "credits.h"
-#include "loading.h"
-#include "course.h"
-#include "event.h"
 #include "font.h"
-#include "translation.h"
-#include "help.h"
 #include "tools.h"
-#include "tux.h"
-#include "regist.h"
-#include "keyframe.h"
-#include "newplayer.h"
-#include "score.h"
 #include "ogl_test.h"
+#include "winsys.h"
 #include <iostream>
+#include <ctime>
 
 TGameData g_game;
 
@@ -98,8 +81,7 @@ int main( int argc, char **argv ) {
 	// written on the console):
 	//	Winsys.PrintJoystickInfo ();
 	//	PrintGLInfo ();
-	
-	// theses resources must or should be loaded before splashscreen starts
+	// theses resources must or should be loaded before splashscreen starts
 	Tex.LoadTextureList ();
 	FT.LoadFontlist ();
 	Winsys.SetFonttype ();
@@ -110,8 +92,7 @@ int main( int argc, char **argv ) {
 	switch (g_game.argument) {
 		case 0: State::manager.Run(SplashScreen); break;
 		case 4:
-			g_game.toolmode = TUXSHAPE; 
-			State::manager.Run(Tools);
+			g_game.toolmode = TUXSHAPE;			State::manager.Run(Tools);
 			break;
 		case 9: State::manager.Run(OglTest); break;
 	}

@@ -19,6 +19,7 @@ GNU General Public License for more details.
 #define TOOLS_H
 
 #include "bh.h"
+#include "states.h"
 
 class CCamera {
 private:
@@ -50,8 +51,7 @@ public:
 };
 
 // ---------------------------------------------------------------
-// CGluCamera works with gluLookAt but is reduced to a simple 
-// go-around-camera that ist strictly focused on an object in
+// CGluCamera works with gluLookAt but is reduced to a simple// go-around-camera that ist strictly focused on an object in
 // identity position (0,0,0).
 class CGluCamera {
 private:

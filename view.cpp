@@ -18,6 +18,7 @@ GNU General Public License for more details.
 #include "view.h"
 #include "course.h"
 #include "ogl.h"
+#include "physics.h"
 
 #define MIN_CAMERA_HEIGHT  1.5
 #define ABSOLUTE_MIN_CAMERA_HEIGHT  0.3

@@ -19,6 +19,7 @@ GNU General Public License for more details.
 #define EVENT_H
 
 #include "bh.h"
+#include "states.h"
 
 class CEvent : public State {
 	void Enter();

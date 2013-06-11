@@ -27,6 +27,8 @@ GNU General Public License for more details.
 #include "textures.h"
 #include "game_ctrl.h"
 #include "racing.h"
+#include "winsys.h"
+#include "physics.h"
 
 CPaused Paused;
 
@@ -82,8 +84,7 @@ void CPaused::Loop (double time_step) {
     if (terr) RenderCourse();
     DrawTrackmarks ();
     DrawTrees();
-	
-	UpdateWind (time_step, ctrl);
+	UpdateWind (time_step, ctrl);
 	UpdateSnow (time_step, ctrl);
 	DrawSnow (ctrl);
 
@@ -96,4 +97,4 @@ void CPaused::Loop (double time_step) {
 	DrawHud (ctrl);
     Reshape (width, height);
     Winsys.SwapBuffers ();
-} 
+}

@@ -19,6 +19,7 @@ GNU General Public License for more details.
 #define OGL_TEST_H
 
 #include "bh.h"
+#include "states.h"
 
 class COglTest : public State {
 	void Enter();

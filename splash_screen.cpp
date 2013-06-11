@@ -30,6 +30,7 @@ GNU General Public License for more details.
 #include "translation.h"
 #include "score.h"
 #include "regist.h"
+#include "winsys.h"
 
 CSplashScreen SplashScreen;
 
@@ -42,16 +43,12 @@ void CSplashScreen::Keyb(unsigned int key, bool special, bool release, int x, in
 }
 
 
-void CSplashScreen::Enter() {  
-	Winsys.ShowCursor (!param.ice_cursor);    
-	init_ui_snow (); 
-	Music.Play (param.menu_music, -1);
+void CSplashScreen::Enter() {	Winsys.ShowCursor (!param.ice_cursor);	init_ui_snow ();	Music.Play (param.menu_music, -1);
 	g_game.loopdelay = 10;
 }
 
 void CSplashScreen::Loop(double timestep) {
-	Music.Update ();    
-	check_gl_error();
+	Music.Update ();	check_gl_error();
     ClearRenderContext ();
     set_gl_options (GUI);
     SetupGuiDisplay ();
@@ -72,8 +69,7 @@ void CSplashScreen::Loop(double timestep) {
 	Sound.LoadSoundList ();
 	Credits.LoadCreditList ();
 	Char.LoadCharacterList ();
-	Course.LoadObjectTypes (); 
-	Course.LoadTerrainTypes ();
+	Course.LoadObjectTypes ();	Course.LoadTerrainTypes ();
 	Env.LoadEnvironmentList ();
 	Course.LoadCourseList ();
 	Score.LoadHighScore (); // after LoadCourseList !!!
@@ -82,4 +78,4 @@ void CSplashScreen::Loop(double timestep) {
 	Players.LoadPlayers ();
 
 	State::manager.RequestEnterState (Regist);
-} 
+}

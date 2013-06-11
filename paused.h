@@ -19,6 +19,7 @@ GNU General Public License for more details.
 #define PAUSED_H
 
 #include "bh.h"
+#include "states.h"
 
 class CPaused : public State {
 	void Loop(double time_step);

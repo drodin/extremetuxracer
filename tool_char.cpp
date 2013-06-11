@@ -22,6 +22,7 @@ GNU General Public License for more details.
 #include "textures.h"
 #include "spx.h"
 #include "tux.h"
+#include "winsys.h"
 
 static size_t firstnode = 0;
 static size_t lastnode;
@@ -52,8 +53,7 @@ static bool moveactive = false;
 static int comp = 0;
 
 void InitCharTools () {
-	charbase = (int)((param.y_resolution - 200) / 18); 
-	firstnode = 1;
+	charbase = (int)((param.y_resolution - 200) / 18);	firstnode = 1;
 	lastnode = TestChar.GetNumNodes () -1;
 	curr_node = firstnode;
 	curr_act = firstact;
@@ -79,19 +79,12 @@ void RecallAction (TCharAction *act) {
 void ChangeValue (int type, double fact) {
 	if (type == 0 || type == 4) {
 		if (comp == 0) {
-			action->vec[curr_act].x += 0.02 * fact; 
-			action->vec[curr_act].y += 0.02 * fact; 
-			action->vec[curr_act].z += 0.02 * fact; 
-		} else if (comp == 1) action->vec[curr_act].x += 0.02 * fact; 
-		else if (comp == 2) action->vec[curr_act].y += 0.02 * fact; 
-		else if (comp == 3) action->vec[curr_act].z += 0.02 * fact; 
-	} else if (type > 0 && type < 4) {
+			action->vec[curr_act].x += 0.02 * fact;			action->vec[curr_act].y += 0.02 * fact;			action->vec[curr_act].z += 0.02 * fact;		} else if (comp == 1) action->vec[curr_act].x += 0.02 * fact;		else if (comp == 2) action->vec[curr_act].y += 0.02 * fact;		else if (comp == 3) action->vec[curr_act].z += 0.02 * fact;	} else if (type > 0 && type < 4) {
 		action->dval[curr_act] += 1 * fact;
 	} else if (type == 5) {
 		action->dval[curr_act] += 1 * fact;
 	}
-	TestChar.RefreshNode (curr_node);				
-	SetCharChanged (true);
+	TestChar.RefreshNode (curr_node);	SetCharChanged (true);
 }
 
 void ChangeNode (int steps) {
@@ -105,8 +98,7 @@ void ChangeNode (int steps) {
 		action = TestChar.GetAction (curr_node);
 		if (action->num > 0 && action->type[0] == 4) comp = 0; else comp = 1;
 		StoreAction (action);
-	} 
-}
+	}}
 
 void SetRotation (double x, double y, double z) {
 	xrotation = x;
@@ -134,8 +126,7 @@ void CharKeys (unsigned int key, bool special, bool release, int x, int y) {
 
 	if (release) return;
 
-	int type = action->type[curr_act];	
-	switch (key) {
+	int type = action->type[curr_act];	switch (key) {
 		case SDLK_TAB: SetToolMode (1); break;
 		case SDLK_ESCAPE: case SDLK_q: QuitTool (); break;
 		case SDLK_F10: ScreenshotN (); break;
@@ -143,9 +134,7 @@ void CharKeys (unsigned int key, bool special, bool release, int x, int y) {
 		case SDLK_c: ScreenshotN (); break;
 		case SDLK_m: TestChar.useMaterials = !TestChar.useMaterials; break;
 		case SDLK_h: TestChar.useHighlighting = !TestChar.useHighlighting; break;
-		case SDLK_r: 
-			TestChar.Reset (); 
-			ReloadToolCharacter ();
+		case SDLK_r:			TestChar.Reset ();			ReloadToolCharacter ();
 			Tools.Enter ();
 			break;
 		case SDLK_u: if (action != NULL) {
@@ -174,20 +163,13 @@ void CharKeys (unsigned int key, bool special, bool release, int x, int y) {
 		case SDLK_HOME: ChangeNode (-charbase); break;
 
 		// select action
-		case SDLK_DOWN: 
-			if (curr_act < lastact) curr_act++; 
-			if (action->type[curr_act] == 4) comp = 0; else comp = 1;
-			break; 
-		case SDLK_UP: 
-			if (curr_act > 0) curr_act--; 
-			if (action->type[curr_act] == 4) comp = 0; else comp = 1;
-			break; 
-		case SDLK_LEFT: ChangeValue (type, -1); break;
+		case SDLK_DOWN:			if (curr_act < lastact) curr_act++;			if (action->type[curr_act] == 4) comp = 0; else comp = 1;
+			break;		case SDLK_UP:			if (curr_act > 0) curr_act--;			if (action->type[curr_act] == 4) comp = 0; else comp = 1;
+			break;		case SDLK_LEFT: ChangeValue (type, -1); break;
 		case SDLK_RIGHT: ChangeValue (type, 1); break;
 
 		// select value
-		case SDLK_SPACE: 
-			if (type == 0 || type == 4) {
+		case SDLK_SPACE:			if (type == 0 || type == 4) {
 				comp++;
 				if (comp > 3) comp = 0;
 				if (type == 0 && comp == 0) comp = 1;
@@ -292,8 +274,7 @@ void RenderChar (double timestep) {
 
 	TestChar.ResetRoot ();
 	TestChar.ResetJoints ();
-	glTranslatef (xposition, yposition, zposition);	
-	glRotatef (xrotation, 1, 0, 0);
+	glTranslatef (xposition, yposition, zposition);	glRotatef (xrotation, 1, 0, 0);
 	glRotatef (yrotation, 0, 1, 0);
 	glRotatef (zrotation, 0, 0, 1);
 
@@ -317,16 +298,14 @@ void RenderChar (double timestep) {
 	int xl, yt;
 	for (size_t i=0; i<=lastnode; i++) {
 		if (i != curr_node) {
-			FT.SetColor (colLGrey); 
-			FT.SetFont ("normal");
+			FT.SetColor (colLGrey);			FT.SetFont ("normal");
 		} else {
 			FT.SetColor (colYellow);
 			FT.SetFont ("bold");
 		}
 		xl = ITrunc ((int)i, charbase) * 100 + 20;
 		yt = IFrac ((int)i, charbase) * 18 + 60;
-		FT.DrawString (xl, yt, TestChar.GetNodeJoint (i));		
-	}
+		FT.DrawString (xl, yt, TestChar.GetNodeJoint (i));	}
 
 	size_t num = action->num;
 	int type;
@@ -341,8 +320,7 @@ void RenderChar (double timestep) {
 				case 2: DrawActionFloat (i, "y-rot", yt, action->dval[i]); break;
 				case 3: DrawActionFloat (i, "z-rot", yt, action->dval[i]); break;
 				case 4: DrawActionVec (i, "scale", yt, action->vec[i]); break;
-				case 5: DrawActionFloat (i, "vis", yt, action->dval[i]); 
-					is_visible = true; break;
+				case 5: DrawActionFloat (i, "vis", yt, action->dval[i]);					is_visible = true; break;
 				default: break;
 			}
 		}

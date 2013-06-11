@@ -26,6 +26,8 @@ GNU General Public License for more details.
 #include "track_marks.h"
 #include "game_ctrl.h"
 #include "racing.h"
+#include "winsys.h"
+#include "physics.h"
 
 #define BLINK_IN_PLACE_TIME 0.5
 #define TOTAL_RESET_TIME 1.0
@@ -47,8 +49,7 @@ void CReset::Loop(double time_step) {
 	CControl *ctrl = Players.GetCtrl (g_game.player_id);
     double elapsed_time = Winsys.ClockTime () - reset_start_time;
     double course_width, course_length;
-    static bool tux_visible = true; 
-    static int tux_visible_count = 0;
+    static bool tux_visible = true;    static int tux_visible_count = 0;
 	TObjectType	*object_types;
     TItem *item_locs;
     size_t first_reset, last_reset, num_item_types;
@@ -92,8 +93,7 @@ void CReset::Loop(double time_step) {
 		} else {
 		    best_loc = -1;
 		    for (size_t i = first_reset; i <= last_reset; i++) {
-				if (item_locs[i].pt.z > ctrl->cpos.z) { 
-				    if (best_loc == -1 || item_locs[i].pt.z < item_locs[best_loc].pt.z) {
+				if (item_locs[i].pt.z > ctrl->cpos.z) {				    if (best_loc == -1 || item_locs[i].pt.z < item_locs[best_loc].pt.z) {
 						best_loc = (int)i;
 				    } // if
 				} // if
@@ -110,8 +110,7 @@ void CReset::Loop(double time_step) {
 		    } else {
 				ctrl->cpos.x = item_locs[best_loc].pt.x;
 				ctrl->cpos.z = item_locs[best_loc].pt.z;
-		    } // if 
-		}
+		    } // if		}
 
 		ctrl->view_init = false;
 		ctrl->Init ();

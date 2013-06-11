@@ -23,6 +23,7 @@ GNU General Public License for more details.
 #include "textures.h"
 #include "spx.h"
 #include "tux.h"
+#include "winsys.h"
 
 static size_t curr_frame = 0;
 static int curr_joint = 0;

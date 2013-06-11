@@ -30,6 +30,7 @@ GNU General Public License for more details.
 #include "game_over.h"
 #include "game_config.h"
 #include "loading.h"
+#include "winsys.h"
 
 CEvent Event;
 

@@ -19,6 +19,7 @@ GNU General Public License for more details.
 #include "ogl.h"
 #include "textures.h"
 #include "course.h"
+#include "physics.h"
 #include <list>
 
 #define TRACK_WIDTH  0.7

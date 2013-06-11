@@ -19,6 +19,7 @@ GNU General Public License for more details.
 #define GAME_OVER_H
 
 #include "bh.h"
+#include "states.h"
 
 class CGameOver : public State {
 	void Enter();

@@ -28,6 +28,7 @@ GNU General Public License for more details.
 #include "spx.h"
 #include "game_type_select.h"
 #include "loading.h"
+#include "winsys.h"
 
 CRaceSelect RaceSelect;
 
@@ -57,8 +58,7 @@ void SetRaceConditions (void) {
 	g_game.course_id = course->GetValue();
 	g_game.theme_id = CourseList[course->GetValue()].music_theme;
 	g_game.game_type = PRACTICING;
-	State::manager.RequestEnterState (Loading); 
-}
+	State::manager.RequestEnterState (Loading);}
 
 void CRaceSelect::Motion (int x, int y) {
 	MouseMoveGUI(x, y);
@@ -89,10 +89,8 @@ void CRaceSelect::Keyb(unsigned int key, bool special, bool release, int x, int 
 		case 27: State::manager.RequestEnterState (GameTypeSelect); break;
 		case SDLK_u: param.ui_snow = !param.ui_snow; break;
 		case SDLK_t: g_game.force_treemap = !g_game.force_treemap; break;
-		case SDLK_c: g_game.treesize++; 
-				if (g_game.treesize > 5) g_game.treesize = 1; break;
-		case SDLK_v: g_game.treevar++; 
-				if (g_game.treevar > 5) g_game.treevar = 1; break;
+		case SDLK_c: g_game.treesize++;				if (g_game.treesize > 5) g_game.treesize = 1; break;
+		case SDLK_v: g_game.treevar++;				if (g_game.treevar > 5) g_game.treevar = 1; break;
 		case 13: if (textbuttons[1]->focussed())
 					 State::manager.RequestEnterState (GameTypeSelect);
 				 else
@@ -108,16 +106,13 @@ static int icontop, iconsize, iconspace, iconleft, iconsumwidth;
 static int boxleft, boxwidth;
 
 void CRaceSelect::Enter() {
-	Winsys.ShowCursor (!param.ice_cursor);    
-	Music.Play (param.menu_music, -1);
-	
-	CourseList = &Course.CourseList[0];
+	Winsys.ShowCursor (!param.ice_cursor);	Music.Play (param.menu_music, -1);
+	CourseList = &Course.CourseList[0];
 
 	framewidth = 550 * param.scale;
 	frameheight = 50 * param.scale;
 	frametop = AutoYPosN (30);
-	
-	area = AutoAreaN (30, 80, framewidth);
+	area = AutoAreaN (30, 80, framewidth);
 	prevtop = AutoYPosN (50);
 	prevheight = 144 * param.scale;
 	prevwidth = 192 * param.scale;
@@ -132,13 +127,8 @@ void CRaceSelect::Enter() {
 	ResetGUI ();
 
 	course = AddUpDown(area.left + framewidth + 8, frametop, 0, (int)Course.CourseList.size() - 1, (int)g_game.course_id);
-	
-	light = AddIconButton (iconleft, icontop, Tex.GetTexture (LIGHT_BUTT), iconsize, 3, (int)g_game.light_id);
-	snow = AddIconButton (iconleft + iconspace, icontop, Tex.GetTexture (SNOW_BUTT), iconsize, 3, g_game.snow_id); 
-	wind = AddIconButton (iconleft + iconspace*2, icontop, Tex.GetTexture (WIND_BUTT), iconsize, 3, g_game.wind_id); 
-	mirror = AddIconButton (iconleft + iconspace*3, icontop, Tex.GetTexture (MIRROR_BUTT), iconsize, 1, (int)g_game.mirror_id); 
-	random_btn = AddIconButton (iconleft + iconspace*4, icontop, Tex.GetTexture (RANDOM_BUTT), iconsize, 1, 0); 
-
+	light = AddIconButton (iconleft, icontop, Tex.GetTexture (LIGHT_BUTT), iconsize, 3, (int)g_game.light_id);
+	snow = AddIconButton (iconleft + iconspace, icontop, Tex.GetTexture (SNOW_BUTT), iconsize, 3, g_game.snow_id);	wind = AddIconButton (iconleft + iconspace*2, icontop, Tex.GetTexture (WIND_BUTT), iconsize, 3, g_game.wind_id);	mirror = AddIconButton (iconleft + iconspace*3, icontop, Tex.GetTexture (MIRROR_BUTT), iconsize, 1, (int)g_game.mirror_id);	random_btn = AddIconButton (iconleft + iconspace*4, icontop, Tex.GetTexture (RANDOM_BUTT), iconsize, 1, 0);
 	int siz = FT.AutoSizeN (5);
 	double len1 = FT.GetTextWidth (Trans.Text(13));
 	textbuttons[0] = AddTextButton (Trans.Text(13), area.right-len1-50, AutoYPosN (80), siz);
@@ -151,14 +141,12 @@ void CRaceSelect::Loop(double timestep) {
 	int ww = param.x_resolution;
 	int hh = param.y_resolution;
 	TColor col;
-		
-	check_gl_error();
+	check_gl_error();
    	set_gl_options (GUI );
     ClearRenderContext ();
 	SetupGuiDisplay ();
 
-	Music.Update ();    
-
+	Music.Update ();
 	if (param.ui_snow) {
 		update_ui_snow (timestep);
 		draw_ui_snow ();
@@ -170,8 +158,7 @@ void CRaceSelect::Loop(double timestep) {
 	Tex.Draw (TOP_LEFT, 0, 0, 1);
 	Tex.Draw (TOP_RIGHT, ww-256, 0, 1);
 
-//	DrawFrameX (area.left, area.top, area.right-area.left, area.bottom - area.top, 
-//			0, colMBackgr, colBlack, 0.2);
+//	DrawFrameX (area.left, area.top, area.right-area.left, area.bottom - area.top,//			0, colMBackgr, colBlack, 0.2);
 
 	// course selection
 	if (course->focussed()) col = colDYell; else col = colWhite;
@@ -190,8 +177,7 @@ void CRaceSelect::Loop(double timestep) {
 	for (size_t i=0; i<CourseList[course->GetValue()].num_lines; i++) {
 		FT.DrawString (boxleft+8, prevtop+i*dist, CourseList[course->GetValue()].desc[i]);
 	}
-	
-	FT.DrawString (CENTER, prevtop + prevheight + 10, "Author:  " + CourseList[course->GetValue()].author);
+	FT.DrawString (CENTER, prevtop + prevheight + 10, "Author:  " + CourseList[course->GetValue()].author);
 
 	FT.AutoSizeN (4);
 	string forcetrees = "Load trees.png";

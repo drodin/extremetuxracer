@@ -26,6 +26,7 @@ GNU General Public License for more details.
 #include "course.h"
 #include "spx.h"
 #include "game_type_select.h"
+#include "winsys.h"
 
 CScore Score;
 

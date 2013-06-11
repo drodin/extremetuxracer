@@ -22,6 +22,27 @@ GNU General Public License for more details.
 
 using namespace std;
 
+
+#ifndef MIN
+#	define MIN(x,y) ((x)<(y)?(x):(y))
+#endif
+#ifndef MAX
+#	define MAX(x,y) ((x)>(y)?(x):(y))
+#endif
+#define clamp(minimum, x, maximum) (max(min(x, maximum), minimum))
+
+#ifndef ROUND_TO_NEAREST
+#	define ROUND_TO_NEAREST(x) ((int) ((x)+0.5))
+#endif
+
+#define ANGLES_TO_RADIANS(x) (M_PI / 180.0 * (x) )
+#define RADIANS_TO_ANGLES(x) (180.0 / M_PI * (x) )
+
+#define TUX_WIDTH 0.45
+#define MAX_ROLL_ANGLE 30
+#define BRAKING_ROLL_ANGLE 55
+
+
 // --------------------------------------------------------------------
 //				color utils
 // --------------------------------------------------------------------
@@ -53,9 +74,7 @@ extern const TColor colSky;
 // --------------------------------------------------------------------
 //				print utils
 // --------------------------------------------------------------------
-// some simple functions to print out values on the 
-// terminal. Only used for development. 
-
+// some simple functions to print out values on the// terminal. Only used for development.
 void	PrintInt (const int val);
 void	PrintInt (const string& s, const int val);
 void	PrintStr (const char *val);
@@ -107,6 +126,4 @@ size_t write_word (FILE *fp, uint16_t w);
 size_t write_dword (FILE *fp, uint32_t dw);
 size_t write_long (FILE *fp, int32_t l);
 
-#endif 
-
-
+#endif

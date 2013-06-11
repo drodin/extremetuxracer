@@ -24,15 +24,12 @@ GNU General Public License for more details.
 #include "tool_frame.h"
 #include "tool_char.h"
 #include "env.h"
+#include "winsys.h"
 
 CGluCamera GluCamera;
 
 CCamera::CCamera () {
-	xview = 0; 
-	yview = 0; 
-	zview = 4; 
-	vhead = 0; 
-	vpitch = 0;
+	xview = 0;	yview = 0;	zview = 4;	vhead = 0;	vpitch = 0;
 
 	fore = false;
 	back = false;
@@ -69,9 +66,7 @@ void CCamera::RotatePitch (GLfloat step) {
 }
 
 void CCamera::Update (float timestep) {
-	if (fore)		ZMove (-2 * timestep); 
-	if (back)		ZMove (2 * timestep); 
-	if (left)		XMove (-1 * timestep);
+	if (fore)		ZMove (-2 * timestep);	if (back)		ZMove (2 * timestep);	if (left)		XMove (-1 * timestep);
 	if (right)		XMove (1 * timestep);
 	if (up)			YMove (1 * timestep);
 	if (down)		YMove (-1 * timestep);
@@ -83,8 +78,7 @@ void CCamera::Update (float timestep) {
 	glLoadIdentity ();
 	glRotatef (-vpitch, 1.0, 0.0 , 0.0);
 	glRotatef (-vhead, 0.0, 1.0 , 0.0);
-	glTranslatef (-xview, -yview, -zview);		
-}
+	glTranslatef (-xview, -yview, -zview);}
 
 
 CGluCamera::CGluCamera () {
@@ -120,11 +114,7 @@ static string char_dir;
 static string char_file;
 static string frame_file;
 
-static float tdef_amb[]  = {0.45, 0.53, 0.75, 1.0};    
-static float tdef_diff[] = {1.0, 0.9, 1.0, 1.0};    
-static float tdef_spec[] = {0.6, 0.6, 0.6, 1.0};    
-static float tdef_pos[]  = {1, 2, 2, 0.0};    
-static TLight toollight;
+static float tdef_amb[]  = {0.45, 0.53, 0.75, 1.0};static float tdef_diff[] = {1.0, 0.9, 1.0, 1.0};static float tdef_spec[] = {0.6, 0.6, 0.6, 1.0};static float tdef_pos[]  = {1, 2, 2, 0.0};static TLight toollight;
 static int tool_mode = 0;
 
 void DrawQuad (float x, float y, float w, float h,
@@ -150,8 +140,7 @@ void DrawChanged () {
 
 void InitToolLight () {
 	toollight.is_on = true;
-	for (int i=0; i<4; i++) { 
-		toollight.ambient[i]  = tdef_amb[i];
+	for (int i=0; i<4; i++) {		toollight.ambient[i]  = tdef_amb[i];
 		toollight.diffuse[i]  = tdef_diff[i];
 		toollight.specular[i] = tdef_spec[i];
  		toollight.position[i] = tdef_pos[i];

@@ -19,6 +19,7 @@ GNU General Public License for more details.
 #define RACING_H
 
 #include "bh.h"
+#include "states.h"
 
 class CRacing : public State {
 	void Enter();

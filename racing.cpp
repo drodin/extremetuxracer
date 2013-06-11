@@ -30,6 +30,8 @@ GNU General Public License for more details.
 #include "game_over.h"
 #include "paused.h"
 #include "reset.h"
+#include "winsys.h"
+#include "physics.h"
 
 #define MAX_JUMP_AMT 1.0
 #define ROLL_DECAY 0.2
@@ -61,38 +63,25 @@ static int lastsound = -1;
 void CRacing::Keyb (unsigned int key, bool special, bool release, int x, int y) {
 	switch (key) {
 		// steering flipflops
-		case 273: key_paddling = !release; break;	
-		case 274: key_braking = !release; break;	
-		case 276: left_turn = !release; break;	
-		case 275: right_turn = !release; break;	
-		case 32:  key_charging = !release; break;
-		case SDLK_t: trick_modifier = !release; break;		
-
+		case 273: key_paddling = !release; break;		case 274: key_braking = !release; break;		case 276: left_turn = !release; break;		case 275: right_turn = !release; break;		case 32:  key_charging = !release; break;
+		case SDLK_t: trick_modifier = !release; break;
 		// mode changing and other actions
-		case 27:  if (!release) { 
-			g_game.raceaborted = true;
+		case 27:  if (!release) {			g_game.raceaborted = true;
 			g_game.race_result = -1;
 			State::manager.RequestEnterState (GameOver);
-		} break;	
-		case SDLK_p: if (!release) State::manager.RequestEnterState (Paused); break;			
-		case SDLK_r: if (!release) State::manager.RequestEnterState (Reset); break;				
-		case SDLK_s: if (!release) ScreenshotN (); break;
+		} break;		case SDLK_p: if (!release) State::manager.RequestEnterState (Paused); break;		case SDLK_r: if (!release) State::manager.RequestEnterState (Reset); break;		case SDLK_s: if (!release) ScreenshotN (); break;
 
 		// view changing
 		case SDLK_1: if (!release) {
 			set_view_mode (Players.GetCtrl (g_game.player_id), ABOVE);
 			param.view_mode = ABOVE;
-		} break;	
-		case SDLK_2: if (!release) {
+		} break;		case SDLK_2: if (!release) {
 			set_view_mode (Players.GetCtrl (g_game.player_id), FOLLOW);
 			param.view_mode = FOLLOW;
-		} break;	
-		case SDLK_3: if (!release) {
+		} break;		case SDLK_3: if (!release) {
 			set_view_mode (Players.GetCtrl (g_game.player_id), BEHIND);
 			param.view_mode = BEHIND;
-		} break;	
-		
-		// toggle
+		} break;		// toggle
 		case SDLK_h:  if (!release) param.show_hud = !param.show_hud; break;
 		case SDLK_f:  if (!release) param.display_fps = !param.display_fps; break;
 		case SDLK_F5: if (!release) sky = !sky; break;
@@ -126,8 +115,7 @@ void CalcJumpEnergy (double time_step){
 	if  (ctrl->jump_charging) {
 		ctrl->jump_amt = min (MAX_JUMP_AMT, g_game.time - charge_start_time);
 	} else if  (ctrl->jumping) {
-		ctrl->jump_amt *=  (1.0 - (g_game.time - ctrl->jump_start_time) / 
-			JUMP_FORCE_DURATION);
+		ctrl->jump_amt *=  (1.0 - (g_game.time - ctrl->jump_start_time) /			JUMP_FORCE_DURATION);
 	} else {
 		ctrl->jump_amt = 0;
 	}
@@ -173,8 +161,7 @@ void CRacing::Enter (void) {
 
 	SetSoundVolumes ();
 	Music.PlayTheme (g_game.theme_id, MUS_RACING);
-	
-	g_game.finish = false;
+	g_game.finish = false;
 }
 
 // -------------------- sound -----------------------------------------
@@ -186,8 +173,7 @@ int SlideVolume (CControl *ctrl, double speed, int typ) {
 		 (ctrl->is_braking ? 128:0) +
 		 (ctrl->jumping ? 128:0) + 20) * (speed / 10), 128));
 	} else { 	// always
-		return (int)(128 * pow((speed/2),2));			   
-	}
+		return (int)(128 * pow((speed/2),2));	}
 }
 
 void PlayTerrainSound (CControl *ctrl, bool airborne) {
@@ -210,8 +196,7 @@ void PlayTerrainSound (CControl *ctrl, bool airborne) {
 // ----------------------- controls -----------------------------------
 void CalcSteeringControls (CControl *ctrl, double time_step) {
 	if (stick_turn) {
-		ctrl->turn_fact = stick_turnfact; 
-		ctrl->turn_animation += ctrl->turn_fact * 2 * time_step;
+		ctrl->turn_fact = stick_turnfact;		ctrl->turn_animation += ctrl->turn_fact * 2 * time_step;
 		ctrl->turn_animation = min (1.0, max (-1.0, ctrl->turn_animation));
 	} else if (left_turn ^ right_turn) {
 		if (left_turn) ctrl->turn_fact = -1.0;
@@ -305,8 +290,7 @@ void CRacing::Loop (double time_step){
     check_gl_error();
     ClearRenderContext ();
 	Env.SetupFog ();
-	Music.Update ();    
-
+	Music.Update ();
 	CalcTrickControls (ctrl, time_step, airborne);
 
 	if (!g_game.finish) CalcSteeringControls (ctrl, time_step);
@@ -314,8 +298,7 @@ void CRacing::Loop (double time_step){
 	PlayTerrainSound (ctrl, airborne);
 
 //  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-	ctrl->UpdatePlayerPos (time_step); 
-//  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+	ctrl->UpdatePlayerPos (time_step);//  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 	if (g_game.finish) IncCameraDistance (time_step);
 	update_view (ctrl, time_step);
@@ -337,12 +320,10 @@ void CRacing::Loop (double time_step){
 	UpdateSnow (time_step, ctrl);
 	DrawSnow (ctrl);
 	DrawHud (ctrl);
-	
-	Reshape (param.x_resolution, param.y_resolution);
+	Reshape (param.x_resolution, param.y_resolution);
     Winsys.SwapBuffers ();
 	if (g_game.finish == false) g_game.time += time_step;
-} 
-
+}
 // ---------------------------------- term ------------------
 void CRacing::Exit() {
 	Sound.HaltAll ();

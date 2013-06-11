@@ -19,6 +19,7 @@ GNU General Public License for more details.
 #define REGIST_H
 
 #include "bh.h"
+#include "states.h"
 
 class CRegist : public State {
 	void Enter();

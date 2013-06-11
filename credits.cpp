@@ -23,6 +23,7 @@ GNU General Public License for more details.
 #include "gui.h"
 #include "spx.h"
 #include "game_type_select.h"
+#include "winsys.h"
 
 #define TOP_Y 160
 #define BOTT_Y 64

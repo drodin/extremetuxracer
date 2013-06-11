@@ -22,6 +22,7 @@ GNU General Public License for more details.
 #include "particles.h"
 #include "font.h"
 #include "course.h"
+#include "physics.h"
 
 
 #define GAUGE_IMG_SIZE 128
@@ -102,17 +103,14 @@ TVector2 calc_new_fan_pt (double angle) {
 
 void start_tri_fan() {
     glBegin (GL_TRIANGLE_FAN);
-    glVertex2f (ENERGY_GAUGE_CENTER_X, 
-		ENERGY_GAUGE_CENTER_Y);
-    TVector2 pt = calc_new_fan_pt (SPEEDBAR_BASE_ANGLE); 
-    glVertex2f (pt.x, pt.y);
+    glVertex2f (ENERGY_GAUGE_CENTER_X,		ENERGY_GAUGE_CENTER_Y);
+    TVector2 pt = calc_new_fan_pt (SPEEDBAR_BASE_ANGLE);    glVertex2f (pt.x, pt.y);
 }
 
 void draw_partial_tri_fan (double fraction) {
     bool trifan = false;
 
-	double angle = SPEEDBAR_BASE_ANGLE + 
-		(SPEEDBAR_MAX_ANGLE - SPEEDBAR_BASE_ANGLE) * fraction;
+	double angle = SPEEDBAR_BASE_ANGLE +		(SPEEDBAR_MAX_ANGLE - SPEEDBAR_BASE_ANGLE) * fraction;
 
     int divs = (int)((SPEEDBAR_BASE_ANGLE - angle) * CIRCLE_DIVISIONS / 360.0);
     double cur_angle = SPEEDBAR_BASE_ANGLE;
@@ -183,8 +181,7 @@ void draw_gauge (double speed, double energy) {
 
 	if  (speed > SPEEDBAR_GREEN_MAX_SPEED) {
 	    speedbar_frac = SPEEDBAR_GREEN_FRACTION;
-	    
-	    if  (speed > SPEEDBAR_YELLOW_MAX_SPEED) {
+	    if  (speed > SPEEDBAR_YELLOW_MAX_SPEED) {
 			speedbar_frac += SPEEDBAR_YELLOW_FRACTION;
 			if  (speed > SPEEDBAR_RED_MAX_SPEED) {
 				speedbar_frac += SPEEDBAR_RED_FRACTION;
@@ -195,8 +192,7 @@ void draw_gauge (double speed, double energy) {
 	    } else {
 			speedbar_frac += (speed - SPEEDBAR_GREEN_MAX_SPEED) /
 				(SPEEDBAR_YELLOW_MAX_SPEED - SPEEDBAR_GREEN_MAX_SPEED) * SPEEDBAR_YELLOW_FRACTION;
-	    }	    
-	} else {
+	    }	} else {
 	    speedbar_frac +=  speed/SPEEDBAR_GREEN_MAX_SPEED * SPEEDBAR_GREEN_FRACTION;
 	}
 
@@ -220,8 +216,7 @@ void draw_gauge (double speed, double energy) {
 void DrawSpeed (double speed) {
 	string speedstr = Int_StrN ((int)speed, 3);
 	if (param.use_papercut_font < 2) {
-		Tex.DrawNumStr (speedstr.c_str(), 
-			param.x_resolution - 85, param.y_resolution-74, 1, colWhite);
+		Tex.DrawNumStr (speedstr.c_str(),			param.x_resolution - 85, param.y_resolution-74, 1, colWhite);
 	} else {
 		FT.SetColor (colDDYell);
 		FT.DrawString (param.x_resolution-82, param.y_resolution-80, speedstr);
@@ -232,8 +227,7 @@ void DrawWind (double dir, double speed) {
 	Tex.Draw (SPEEDMETER, 10, param.y_resolution - 150, 1.0);
 	glPushMatrix ();
     glDisable (GL_TEXTURE_2D );
-	
-	glColor4f (1, 0, 0, 0.5);
+	glColor4f (1, 0, 0, 0.5);
 	glTranslatef (82, 77, 0);
 	glRotatef (dir, 0, 0, 1);
 	glBegin (GL_QUADS);

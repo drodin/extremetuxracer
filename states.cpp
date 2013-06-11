@@ -17,6 +17,7 @@ GNU General Public License for more details.
 
 #include "states.h"
 #include "ogl.h"
+#include "winsys.h"
 
 State::Manager State::manager(Winsys);
 
@@ -58,15 +59,13 @@ void State::Manager::PollEvent() {
 			switch (event.type) {
 				case SDL_KEYDOWN:
 					SDL_GetMouseState(&x, &y);
-					key = event.key.keysym.sym; 
-					current->Keyb(key, key >= 256, false, x, y);
+					key = event.key.keysym.sym;					current->Keyb(key, key >= 256, false, x, y);
 					current->Keyb_spec(event.key.keysym, false);
 					break;
 
 				case SDL_KEYUP:
 					SDL_GetMouseState(&x, &y);
-					key = event.key.keysym.sym; 
-					current->Keyb(key, key >= 256, true, x, y);
+					key = event.key.keysym.sym;					current->Keyb(key, key >= 256, true, x, y);
 					current->Keyb_spec(event.key.keysym, true);
 					break;
 
@@ -87,8 +86,7 @@ void State::Manager::PollEvent() {
 							current->Jaxis(axis, val);
 						}
 					}
-					break; 
-
+					break;
 				case SDL_JOYBUTTONDOWN:
 				case SDL_JOYBUTTONUP:
 					if (Winsys.joystick_isActive()) {
@@ -104,8 +102,7 @@ void State::Manager::PollEvent() {
 						Reshape(event.resize.w, event.resize.h);
 					}
 					break;
-			
-				case SDL_QUIT:
+				case SDL_QUIT:
 					quit = true;
 					break;
 			}

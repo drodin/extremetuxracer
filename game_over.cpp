@@ -32,6 +32,8 @@ GNU General Public License for more details.
 #include "score.h"
 #include "race_select.h"
 #include "event.h"
+#include "winsys.h"
+#include "physics.h"
 
 CGameOver GameOver;
 

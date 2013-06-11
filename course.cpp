@@ -26,6 +26,7 @@ GNU General Public License for more details.
 #include "env.h"
 #include "game_ctrl.h"
 #include "font.h"
+#include "physics.h"
 
 CCourse Course;
 

@@ -23,6 +23,7 @@ GNU General Public License for more details.
 #include "gui.h"
 #include "translation.h"
 #include "game_type_select.h"
+#include "winsys.h"
 
 CHelp Help;
 

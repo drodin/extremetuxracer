@@ -26,6 +26,7 @@ GNU General Public License for more details.
 #include "translation.h"
 #include "game_type_select.h"
 #include "newplayer.h"
+#include "winsys.h"
 
 CRegist Regist;
 

@@ -29,6 +29,7 @@ GNU General Public License for more details.
 #include "config_screen.h"
 #include "help.h"
 #include "score.h"
+#include "winsys.h"
 
 CGameTypeSelect GameTypeSelect;
 
@@ -36,8 +37,7 @@ static TVector2 cursor_pos(0, 0);
 static TTextButton* textbuttons[7];
 
 void EnterPractice () {
-	g_game.game_type = PRACTICING;	
-	State::manager.RequestEnterState (RaceSelect);
+	g_game.game_type = PRACTICING;	State::manager.RequestEnterState (RaceSelect);
 }
 
 void QuitGameType () {
@@ -69,14 +69,12 @@ void CGameTypeSelect::Keyb (unsigned int key, bool special, bool release, int x,
 
 	KeyGUI(key, 0, release);
 	switch (key) {
-		case SDLK_u: param.ui_snow = !param.ui_snow; break;	
-		case 27: State::manager.RequestQuit(); break;
+		case SDLK_u: param.ui_snow = !param.ui_snow; break;		case 27: State::manager.RequestQuit(); break;
 		case 274: IncreaseFocus(); break;
 		case 273: DecreaseFocus(); break;
 		case 13: QuitGameType(); break;
 		case SDLK_w: Music.FreeMusics(); break;
-	}	
-}
+	}}
 
 void CGameTypeSelect::Motion (int x, int y) {
 	MouseMoveGUI(x, y);
@@ -115,12 +113,10 @@ void CGameTypeSelect::Loop (double time_step) {
 	int hh = param.y_resolution;
 
 	check_gl_error();
-	Music.Update ();    
-    set_gl_options (GUI);
+	Music.Update ();    set_gl_options (GUI);
     ClearRenderContext ();
     SetupGuiDisplay ();
-    
-	if (param.ui_snow) {
+	if (param.ui_snow) {
 		update_ui_snow (time_step);
 		draw_ui_snow();
     }

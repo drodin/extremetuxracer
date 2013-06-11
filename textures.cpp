@@ -20,6 +20,8 @@ GNU General Public License for more details.
 #include "course.h"
 #include <fstream>
 #include <cctype>
+#include <cstdio>
+
 // --------------------------------------------------------------------
 //				class CImage
 // --------------------------------------------------------------------

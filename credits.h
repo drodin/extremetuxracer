@@ -18,6 +18,7 @@ GNU General Public License for more details.
 #define CREDITS_H
 
 #include "bh.h"
+#include "states.h"
 #include <list>
 
 #define MAX_CREDITS 64

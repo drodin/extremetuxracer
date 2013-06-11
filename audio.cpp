@@ -117,7 +117,7 @@ void CSound::SetVolume (size_t soundid, int volume) {
     if (Audio.IsOpen == false) return;
 	if (soundid >= sounds.size()) return;
 
-	volume = MIN (MIX_MAX_VOLUME, MAX (0, volume));
+	volume = clamp(0, volume, MIX_MAX_VOLUME);
 	if (sounds[soundid].chunk == NULL) return;
 	Mix_VolumeChunk (sounds[soundid].chunk, volume);
 }
@@ -149,7 +149,7 @@ void CSound::Play (size_t soundid, int loop, int volume) {
 	if (sounds[soundid].active == true) return;
 	if (sounds[soundid].chunk == NULL) return;
 
-	volume = MIN (MIX_MAX_VOLUME, MAX (0, volume));
+	volume = clamp(0, volume, MIX_MAX_VOLUME);
     Mix_VolumeChunk (sounds[soundid].chunk, volume);
     sounds[soundid].channel = Mix_PlayChannel (-1, sounds[soundid].chunk, loop);
     sounds[soundid].loop_count = loop;
@@ -289,7 +289,7 @@ size_t CMusic::GetThemeIdx (const string& theme) const {
 }
 
 void CMusic::SetVolume (int volume) {
-	int vol = MIN (MIX_MAX_VOLUME, MAX (0, volume));
+	int vol = clamp(0, volume, MIX_MAX_VOLUME);
 	Mix_VolumeMusic (vol);
 	curr_volume = vol;
 }
@@ -326,7 +326,7 @@ bool CMusic::Play (size_t musid, int loop, int volume) {
 	if (musid >= musics.size()) return false;
 	Mix_Music *music = musics[musid];
 
-	int vol = MIN (MIX_MAX_VOLUME, MAX (0, volume));
+	int vol = clamp(0, volume, MIX_MAX_VOLUME);
 	if (musid != curr_musid) {
 		Halt ();
 		Mix_PlayMusic (music, loop);

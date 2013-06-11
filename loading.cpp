@@ -26,20 +26,21 @@ GNU General Public License for more details.
 #include "translation.h"
 #include "gui.h"
 #include "intro.h"
+#include "winsys.h"
 
 CLoading Loading;
 
 // ====================================================================
 void CLoading::Enter() {
-	Winsys.ShowCursor (false);    
+	Winsys.ShowCursor (false);
     Music.Play ("loading", -1);
 }
 
 void CLoading::Loop(double time_step) {
- 	TCourse *CourseList = &Course.CourseList[0];
+	TCourse *CourseList = &Course.CourseList[0];
 	int ww = param.x_resolution;
     int hh = param.y_resolution;
-	string msg = Trans.Text(29);	
+	string msg = Trans.Text(29);
 	msg += " " + CourseList[g_game.course_id].name;
 
 	check_gl_error ();
@@ -57,19 +58,19 @@ void CLoading::Loop(double time_step) {
 	Tex.Draw (BOTTOM_RIGHT, ww-256, hh-256, 1);
 	Tex.Draw (TOP_LEFT, 0, 0, 1);
 	Tex.Draw (TOP_RIGHT, ww-256, 0, 1);
-	
+
 	FT.SetColor (colDYell);
 	FT.AutoSizeN (5);
-	FT.DrawString (CENTER, AutoYPosN (60), msg);		
+	FT.DrawString (CENTER, AutoYPosN (60), msg);
 	FT.SetColor (colWhite);
-	FT.DrawString (CENTER, AutoYPosN (70), Trans.Text (30));		
+	FT.DrawString (CENTER, AutoYPosN (70), Trans.Text (30));
 	Winsys.SwapBuffers ();
 
 	Course.LoadCourse (g_game.course_id);
 	g_game.location_id = Course.GetEnv ();
 	Env.LoadEnvironment (g_game.location_id, g_game.light_id);
     State::manager.RequestEnterState (Intro);
-} 
+}
 
 void CLoading::Exit() {
 	Music.Halt ();

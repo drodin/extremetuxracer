@@ -16,6 +16,7 @@ GNU General Public License for more details.
 ---------------------------------------------------------------------*/
 
 #include "bh.h"
+#include "states.h"
 
 #ifndef LOADING_H
 #define LOADING_H

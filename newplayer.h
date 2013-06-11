@@ -19,6 +19,7 @@ GNU General Public License for more details.
 #define NEW_PLAYER_H
 
 #include "bh.h"
+#include "states.h"
 
 class CNewPlayer : public State {
 	void Enter();

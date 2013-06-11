@@ -19,6 +19,7 @@ GNU General Public License for more details.
 #define _INTRO_H_
 
 #include "bh.h"
+#include "states.h"
 
 class CIntro : public State {
 	void Enter();

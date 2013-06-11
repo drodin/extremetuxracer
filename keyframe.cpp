@@ -20,6 +20,7 @@ GNU General Public License for more details.
 #include "spx.h"
 #include "tux.h"
 #include "game_ctrl.h"
+#include "physics.h"
 
 static const int numJoints = 19;
 

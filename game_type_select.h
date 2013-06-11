@@ -19,6 +19,7 @@ GNU General Public License for more details.
 #define GAME_TYPE_SELECT_H
 
 #include "bh.h"
+#include "states.h"
 
 class CGameTypeSelect : public State {
 	void Enter();

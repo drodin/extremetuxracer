@@ -27,6 +27,8 @@ GNU General Public License for more details.
 #include "particles.h"
 #include "game_ctrl.h"
 #include "racing.h"
+#include "winsys.h"
+#include "physics.h"
 
 CIntro Intro;
 static CKeyframe *startframe;
@@ -60,8 +62,7 @@ void CIntro::Enter() {
     g_game.herring = 0;
     g_game.score = 0;
     g_game.time = 0.0;
-	g_game.race_result = -1; 
-	g_game.raceaborted = false;
+	g_game.race_result = -1;	g_game.raceaborted = false;
 
     ctrl->Init ();
 
@@ -70,8 +71,7 @@ void CIntro::Enter() {
     set_view_mode (ctrl, ABOVE);
 	SetCameraDistance (4.0);
 	SetStationaryCamera (false);
-	update_view (ctrl, EPS); 
-
+	update_view (ctrl, EPS);
     size_t num_items = Course.NocollArr.size();
     TItem* item_locs = &Course.NocollArr[0];
     for (size_t i = 0; i < num_items; i++) {
@@ -82,8 +82,7 @@ void CIntro::Enter() {
 
 	InitSnow (ctrl);
 	InitWind ();
-		
-	Music.PlayTheme (g_game.theme_id, MUS_RACING);
+	Music.PlayTheme (g_game.theme_id, MUS_RACING);
     param.show_hud = true;
 	g_game.loopdelay = 1;
 }
@@ -104,16 +103,14 @@ void CIntro::Loop (double time_step) {
     update_view (ctrl, time_step);
     SetupViewFrustum (ctrl);
 
-	Music.Update ();    
-    Env.DrawSkybox (ctrl->viewpos);
+	Music.Update ();    Env.DrawSkybox (ctrl->viewpos);
 
 	Env.DrawFog ();
 	Env.SetupLight ();
     RenderCourse ();
     DrawTrackmarks ();
     DrawTrees ();
-	
-	UpdateWind (time_step, ctrl);
+	UpdateWind (time_step, ctrl);
 	UpdateSnow (time_step, ctrl);
 	DrawSnow (ctrl);
 
@@ -123,8 +120,7 @@ void CIntro::Loop (double time_step) {
     Reshape (width, height);
     Winsys.SwapBuffers ();
 
-} 
-
+}
 // -----------------------------------------------------------------------
 
 void CIntro::Keyb (unsigned int key, bool special, bool release, int x, int y) {

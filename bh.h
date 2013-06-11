@@ -42,15 +42,12 @@ GNU General Public License for more details.
 
 #include <cstdint>
 #include <climits>
-#include <cfloat>
 #include <cstddef>
 #include <string>
 #include <sys/stat.h>
 
 #include <cmath>
 #include <cstdlib>
-#include <cstdio>
-#include <ctime>
 #include <cstring>
 
 #include <GL/gl.h>
@@ -105,9 +102,6 @@ using namespace std;
 #include "mathlib.h"
 #include "common.h"
 #include "game_config.h"
-#include "winsys.h"
-#include "states.h"
-#include "physics.h"
 
 extern TGameData g_game;
 

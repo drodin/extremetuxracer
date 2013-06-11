@@ -19,6 +19,7 @@ GNU General Public License for more details.
 #define RESET_H
 
 #include "bh.h"
+#include "states.h"
 
 class CReset : public State {
 	void Enter();
