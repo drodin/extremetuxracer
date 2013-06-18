@@ -398,6 +398,6 @@ void CFont::MakeLineList (const char *source, CSPList *line_list, float width) {
 	deque<string> wordlist;
 	MakeWordList (wordlist, source);
 
-	for(size_t last = 0; last < wordlist.size(); )
+	for(size_t last = 0; last < wordlist.size();)
 		last = MakeLine(last, wordlist, line_list, width)+1;
 }

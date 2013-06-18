@@ -110,7 +110,7 @@ void DrawTrackmarks() {
 	glTexEnvf (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
     set_material (colWhite, colBlack, 1.0);
 
-	for  (list<track_quad_t>::const_iterator q = track_marks.quads.begin(); q != track_marks.quads.end(); ++q) {
+	for (list<track_quad_t>::const_iterator q = track_marks.quads.begin(); q != track_marks.quads.end(); ++q) {
 		track_colour.a = q->alpha;
 		set_material (track_colour, colBlack, 1.0);
 		textures[q->track_type]->Bind();
@@ -223,7 +223,7 @@ void add_track_mark(CControl *ctrl, int *id) {
 
     TVector3 width_vector = CrossProduct (ctrl->cdirection, TVector3 (0, 1, 0));
     double magnitude = NormVector (width_vector);
-    if  (magnitude == 0) {
+    if (magnitude == 0) {
 		break_track_marks();
 		return;
     }
@@ -244,7 +244,7 @@ void add_track_mark(CControl *ctrl, int *id) {
     double dist_from_surface = DistanceToPlane (surf_plane, ctrl->cpos);
 	// comp_depth = get_compression_depth(Snow);
 	double comp_depth = 0.1;
-    if  (dist_from_surface >= (2 * comp_depth)) {
+    if (dist_from_surface >= (2 * comp_depth)) {
 		break_track_marks();
 		return;
     }
@@ -268,7 +268,7 @@ void add_track_mark(CControl *ctrl, int *id) {
 		q->t1 = TVector2(0.0, 0.0);
 		q->t2 = TVector2(1.0, 0.0);
     } else {
-		if  (qprev != track_marks.quads.end()) {
+		if (qprev != track_marks.quads.end()) {
 		    q->v1 = qprev->v3;
 	    	q->v2 = qprev->v4;
 		    q->n1 = qprev->n3;

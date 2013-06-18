@@ -125,7 +125,7 @@ void AddIntItem (CSPList &list, const string& tag, int val) {
 	AddItem (list, tag, vs);
 }
 
-void AddComment (CSPList &list, const string& comment)  {
+void AddComment (CSPList &list, const string& comment) {
 	string line;
 	line = "# " + comment;
 	list.Add (line);

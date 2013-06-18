@@ -190,7 +190,7 @@ void RenderSingleFrame (double timestep) {
 	TestChar.highlight_node = TestChar.GetNodeName (hlname);
 
 	glPushMatrix ();
- 	SetToolLight ();
+	SetToolLight ();
 	GluCamera.Update (timestep);
 
 	TestFrame.CalcKeyframe (curr_frame, &TestChar, ref_position);

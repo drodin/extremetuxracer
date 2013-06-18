@@ -107,9 +107,9 @@ void CEnvironment::SetupFog () {
     glFogfv  (GL_FOG_COLOR, fog.color);
 
     if (param.perf_level > 1) {
-		glHint (GL_FOG_HINT, GL_NICEST );
+		glHint (GL_FOG_HINT, GL_NICEST);
     } else {
-		glHint (GL_FOG_HINT, GL_FASTEST );
+		glHint (GL_FOG_HINT, GL_FASTEST);
     }
 }
 
@@ -188,7 +188,7 @@ void CEnvironment::LoadLight () {
 			fog.height = SPFloatN (line, "fogheight", 0);
 			SPArrN (line, "fogcol", fog.color, 4, 1);
 			fog.part_color = SPColorN (line, "partcol", def_partcol);
-		} else if (idx < 4){
+		} else if (idx < 4) {
 			lights[idx].is_on = true;
 			SPArrN (line, "amb", lights[idx].ambient, 4, 1);
 			SPArrN (line, "diff", lights[idx].diffuse, 4, 1);

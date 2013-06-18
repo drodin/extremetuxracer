@@ -47,7 +47,7 @@ void CPaused::Keyb (unsigned int key, bool special, bool release, int x, int y) 
 	}
 }
 
-void CPaused::Mouse (int button, int state, int x, int y){
+void CPaused::Mouse (int button, int state, int x, int y) {
     State::manager.RequestEnterState (Racing);
 }
 

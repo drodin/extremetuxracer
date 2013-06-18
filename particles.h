@@ -27,17 +27,17 @@ GNU General Public License for more details.
 
 void init_ui_snow ();
 void update_ui_snow (double time_step);
-void push_ui_snow (const TVector2& pos );
+void push_ui_snow (const TVector2& pos);
 void draw_ui_snow ();
 
 // --------------------------------------------------------------------
 //					snow particles during race
 // --------------------------------------------------------------------
 
-void create_new_particles (const TVector3& loc, TVector3 vel, int num );
-void update_particles (double time_step );
+void create_new_particles (const TVector3& loc, TVector3 vel, int num);
+void update_particles (double time_step);
 void clear_particles ();
-void draw_particles (CControl *ctrl );
+void draw_particles (CControl *ctrl);
 void generate_particles (CControl *ctrl, double dtime, const TVector3& pos, double speed);
 
 // --------------------------------------------------------------------

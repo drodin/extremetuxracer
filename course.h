@@ -73,7 +73,7 @@ struct TCourse {
 	double starty;
 	size_t env;
 	size_t music_theme;
- 	bool use_keyframe;
+	bool use_keyframe;
 	double finish_brake;
 };
 
@@ -150,7 +150,7 @@ public:
 	GLubyte		*vnc_array;
 
 	void ResetCourse ();
- 	size_t GetCourseIdx (const string& dir) const;
+	size_t GetCourseIdx (const string& dir) const;
 	bool LoadCourseList ();
 	void FreeCourseList ();
 	bool LoadCourse (size_t idx);

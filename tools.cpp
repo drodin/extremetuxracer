@@ -48,8 +48,8 @@ CCamera::CCamera () {
 }
 
 void CCamera::XMove (GLfloat step) {
-	zview += (float)sin(-vhead * 3.14 / 180  ) * step;
-	xview += (float)cos(-vhead * 3.14 / 180  ) * step;
+	zview += (float)sin(-vhead * 3.14 / 180) * step;
+	xview += (float)cos(-vhead * 3.14 / 180) * step;
 }
 
 void CCamera::YMove (GLfloat step) {
@@ -57,8 +57,8 @@ void CCamera::YMove (GLfloat step) {
 }
 
 void CCamera::ZMove (GLfloat step) {
-	xview += (float)sin (vhead * 3.14 / 180 ) * step;
-	zview += (float)cos (vhead * 3.14 / 180 ) * step;
+	xview += (float)sin (vhead * 3.14 / 180) * step;
+	zview += (float)cos (vhead * 3.14 / 180) * step;
 }
 
 void CCamera::RotateHead (GLfloat step) {
@@ -76,7 +76,7 @@ void CCamera::Update (float timestep) {
 	if (right)		XMove (1 * timestep);
 	if (up)			YMove (1 * timestep);
 	if (down)		YMove (-1 * timestep);
- 	if (headleft)	RotateHead (5 * timestep);
+	if (headleft)	RotateHead (5 * timestep);
 	if (headright)	RotateHead (-5 * timestep);
 	if (pitchup)	RotatePitch (-2 * timestep);
 	if (pitchdown)	RotatePitch (2 * timestep);
@@ -89,7 +89,7 @@ void CCamera::Update (float timestep) {
 
 
 CGluCamera::CGluCamera () {
- 	angle = 0.0;
+	angle = 0.0;
 	distance = 3.0;
 	turnright = false;
 	turnleft = false;
@@ -155,7 +155,7 @@ void InitToolLight () {
 		toollight.ambient[i]  = tdef_amb[i];
 		toollight.diffuse[i]  = tdef_diff[i];
 		toollight.specular[i] = tdef_spec[i];
- 		toollight.position[i] = tdef_pos[i];
+		toollight.position[i] = tdef_pos[i];
 	}
 }
 
@@ -212,7 +212,7 @@ void ReloadToolCharacter () {
 void SaveToolFrame () {
 	if (!framechanged) return;
 	TestFrame.SaveTest (char_dir, frame_file);
- 	framechanged = false;
+	framechanged = false;
 }
 
 void CTools::Enter() {
@@ -236,7 +236,7 @@ void CTools::Enter() {
 	InitFrameTools ();
 
 	Winsys.KeyRepeat (true);
- 	g_game.loopdelay = 1;
+	g_game.loopdelay = 1;
 }
 
 void CTools::Keyb(unsigned int key, bool special, bool release, int x, int y) {

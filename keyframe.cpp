@@ -260,7 +260,7 @@ void CKeyframe::Update (double timestep, CControl *ctrl) {
 		keytime = 0;
 	}
 
-    if  (keyidx >= frames.size()-1 || frames.size() < 2) {
+    if (keyidx >= frames.size()-1 || frames.size() < 2) {
 		active = false;
         return;
     }
@@ -269,7 +269,7 @@ void CKeyframe::Update (double timestep, CControl *ctrl) {
     TVector3 pos;
 	CCharShape *shape = Char.GetShape (g_game.char_id);
 
-    if  (fabs (frames[keyidx].val[0]) < 0.0001) frac = 1.0;
+    if (fabs (frames[keyidx].val[0]) < 0.0001) frac = 1.0;
 	else frac = (frames[keyidx].val[0] - keytime) / frames[keyidx].val[0];
 
     pos.x = interp (frac, frames[keyidx].val[1], frames[keyidx+1].val[1]) + refpos.x;
@@ -296,7 +296,7 @@ void CKeyframe::UpdateTest (double timestep, CCharShape *shape) {
 		keytime = 0;
 	}
 
-    if  (keyidx >= frames.size()-1 || frames.size() < 2) {
+    if (keyidx >= frames.size()-1 || frames.size() < 2) {
 		active = false;
         return;
     }
@@ -304,7 +304,7 @@ void CKeyframe::UpdateTest (double timestep, CCharShape *shape) {
     double frac;
     TVector3 pos;
 
-    if  (fabs (frames[keyidx].val[0]) < 0.0001) frac = 1.0;
+    if (fabs (frames[keyidx].val[0]) < 0.0001) frac = 1.0;
 	else frac = (frames[keyidx].val[0] - keytime) / frames[keyidx].val[0];
 
     pos.x = interp (frac, frames[keyidx].val[1], frames[keyidx+1].val[1]) + refpos.x;

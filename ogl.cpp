@@ -86,7 +86,7 @@ void InitOpenglExtensions () {
 
 }
 
-void PrintGLInfo (){
+void PrintGLInfo () {
     GLint int_val;
     GLfloat float_val;
     GLboolean boolean_val;
@@ -171,7 +171,7 @@ void ClearRenderContext (const TColor& col) {
 	glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 }
 
-void SetupGuiDisplay (){
+void SetupGuiDisplay () {
     double offset = 0.0;
 
     glMatrixMode (GL_PROJECTION);
@@ -186,11 +186,11 @@ void SetupGuiDisplay (){
 void Reshape (int w, int h) {
     double far_clip_dist;
     glViewport (0, 0, (GLint) w, (GLint) h );
-    glMatrixMode (GL_PROJECTION );
+    glMatrixMode (GL_PROJECTION);
     glLoadIdentity ();
     far_clip_dist = param.forward_clip_distance + FAR_CLIP_FUDGE_AMOUNT;
     gluPerspective (param.fov, (double)w/h, NEAR_CLIP_DIST, far_clip_dist );
-    glMatrixMode (GL_MODELVIEW );
+    glMatrixMode (GL_MODELVIEW);
 }
 // ====================================================================
 //					GL options

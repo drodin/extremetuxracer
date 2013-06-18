@@ -67,12 +67,12 @@ void CRaceSelect::Motion (int x, int y) {
 
     TVector2 old_pos = cursor_pos;
     cursor_pos = TVector2(x, y);
-    if  (old_pos.x != x || old_pos.y != y) {
+    if (old_pos.x != x || old_pos.y != y) {
 		if (param.ui_snow) push_ui_snow (cursor_pos);
     }
 }
 
-void CRaceSelect::Mouse (int button, int state, int x, int y ){
+void CRaceSelect::Mouse (int button, int state, int x, int y) {
 	if (state == 1) {
 		ClickGUI(x, y);
 
@@ -153,7 +153,7 @@ void CRaceSelect::Loop(double timestep) {
 	TColor col;
 
 	check_gl_error();
-   	set_gl_options (GUI );
+	set_gl_options (GUI);
     ClearRenderContext ();
 	SetupGuiDisplay ();
 

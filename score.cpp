@@ -189,7 +189,7 @@ void CScore::Mouse (int button, int state, int x, int y) {
 	}
 }
 
-void CScore::Motion (int x, int y ){
+void CScore::Motion (int x, int y) {
 	MouseMoveGUI(x, y);
 	y = param.y_resolution - y;
 
@@ -235,7 +235,7 @@ void CScore::Enter() {
 const string ordinals[10] =
 	{"1:st", "2:nd", "3:rd", "4:th", "5:th", "6:th", "7:th", "8:th", "9:th", "10:th"};
 
-void CScore::Loop (double timestep ){
+void CScore::Loop (double timestep) {
 	int ww = param.x_resolution;
 	int hh = param.y_resolution;
 

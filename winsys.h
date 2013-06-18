@@ -33,7 +33,7 @@ private:
 	bool joystick_active;
 
 	// sdl window
- 	TScreenRes resolution[NUM_RESOLUTIONS];
+	TScreenRes resolution[NUM_RESOLUTIONS];
 	int auto_x_resolution;
 	int auto_y_resolution;
 	SDL_Surface *screen;

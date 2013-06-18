@@ -103,7 +103,7 @@ void DrawTrees() {
     	    glTexCoord2f (0.0, 1.0);
     	    glVertex3f (-treeRadius, treeHeight, 0.0);
 
-//			if  (!clip_course || ctrl->viewpos.z - treeLocs[i].pt.z < fwd_tree_detail_limit) {
+//			if (!clip_course || ctrl->viewpos.z - treeLocs[i].pt.z < fwd_tree_detail_limit) {
 			    glTexCoord2f  (0., 0.);
 			    glVertex3f  (0.0, 0.0, -treeRadius);
 			    glTexCoord2f  (1., 0.);

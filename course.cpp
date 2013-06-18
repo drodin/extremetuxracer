@@ -101,12 +101,12 @@ size_t CCourse::GetCourseIdx (const string& dir) const {
 
 void CCourse::CalcNormals () {
 	for (int y=0; y<ny; y++) {
-        for  (int x=0; x<nx; x++) {
+        for (int x=0; x<nx; x++) {
             TVector3 nml(0.0, 0.0, 0.0);
             TVector3 p0 (XCD(x), ELEV(x,y), ZCD(y));
 
-			if  ((x + y) % 2 == 0) {
-				if  (x > 0 && y > 0) {
+			if ((x + y) % 2 == 0) {
+				if (x > 0 && y > 0) {
 					TVector3 p1 = NMLPOINT(x,  y-1);
 					TVector3 p2 = NMLPOINT(x-1,y-1);
 					TVector3 v1 = SubtractVectors (p1, p0);
@@ -125,7 +125,7 @@ void CCourse::CalcNormals () {
 					NormVector (n);
 					nml = AddVectors (nml, n);
 				}
-				if  (x > 0 && y < ny-1) {
+				if (x > 0 && y < ny-1) {
 					TVector3 p1 = NMLPOINT(x-1,y);
 					TVector3 p2 = NMLPOINT(x-1,y+1);
 					TVector3 v1 = SubtractVectors (p1, p0);
@@ -144,7 +144,7 @@ void CCourse::CalcNormals () {
 					NormVector (n);
 					nml = AddVectors (nml, n);
 				}
-				if  (x < nx-1 && y > 0) {
+				if (x < nx-1 && y > 0) {
 					TVector3 p1 = NMLPOINT(x+1,y);
 					TVector3 p2 = NMLPOINT(x+1,y-1);
 					TVector3 v1 = SubtractVectors (p1, p0);
@@ -163,7 +163,7 @@ void CCourse::CalcNormals () {
 					NormVector (n);
 					nml = AddVectors (nml, n);
 				}
-				if  (x < nx-1 && y < ny-1) {
+				if (x < nx-1 && y < ny-1) {
 					TVector3 p1 = NMLPOINT(x+1,y);
 					TVector3 p2 = NMLPOINT(x+1,y+1);
 					TVector3 v1 = SubtractVectors (p1, p0);
@@ -184,7 +184,7 @@ void CCourse::CalcNormals () {
 
 				}
 			} else {
-				if  (x > 0 && y > 0) {
+				if (x > 0 && y > 0) {
 					TVector3 p1 = NMLPOINT(x,  y-1);
 					TVector3 p2 = NMLPOINT(x-1,y);
 					TVector3 v1 = SubtractVectors (p1, p0);
@@ -194,7 +194,7 @@ void CCourse::CalcNormals () {
 					NormVector (n);
 					nml = AddVectors (nml, n);
 				}
-				if  (x > 0 && y < ny-1) {
+				if (x > 0 && y < ny-1) {
 					TVector3 p1 = NMLPOINT(x-1,y);
 					TVector3 p2 = NMLPOINT(x  ,y+1);
 					TVector3 v1 = SubtractVectors (p1, p0);
@@ -204,7 +204,7 @@ void CCourse::CalcNormals () {
 					NormVector (n);
 					nml = AddVectors (nml, n);
 				}
-				if  (x < nx-1 && y > 0) {
+				if (x < nx-1 && y > 0) {
 					TVector3 p1 = NMLPOINT(x+1,y);
 					TVector3 p2 = NMLPOINT(x  ,y-1);
 					TVector3 v1 = SubtractVectors (p1, p0);
@@ -214,7 +214,7 @@ void CCourse::CalcNormals () {
 					NormVector (n);
 					nml = AddVectors (nml, n);
 				}
-				if  (x < nx-1 && y < ny-1) {
+				if (x < nx-1 && y < ny-1) {
 					TVector3 p1 = NMLPOINT(x+1,y);
 					TVector3 p2 = NMLPOINT(x  ,y+1);
 					TVector3 v1 = SubtractVectors (p1, p0);
@@ -392,7 +392,7 @@ bool CCourse::LoadElevMap () {
 				((img.data [(x+nx*y) * img.depth + pad]
 			    - base_height_value) / 255.0) * curr_course->scale
 				- (double)(ny-1-y) / ny * curr_course->length * slope;
-   	     }
+	     }
         pad += (nx * img.depth) % 4;
     }
 	return true;
@@ -562,7 +562,7 @@ bool CCourse::LoadObjectMap () {
 				if (SaveItemsFlag) {
 					string line = "*[name]";
 					line += ObjTypes[type].name;
- 					SPSetIntN (line, "x", x);
+					SPSetIntN (line, "x", x);
 					SPSetIntN (line, "z", y);
 					SPSetFloatN (line, "height", height, 1);
 					SPSetFloatN (line, "diam", diam, 1);
@@ -852,7 +852,7 @@ bool CCourse::LoadCourse (size_t idx) {
 
 		init_track_marks ();
 		InitQuadtree (
-   			elevation, nx, ny,
+			elevation, nx, ny,
 			curr_course->width / (nx - 1.0),
 			-curr_course->length / (ny - 1.0),
 			ctrl->viewpos,
@@ -893,12 +893,12 @@ void CCourse::MirrorCourseData () {
 		}
     }
 
-    for  (size_t i=0; i<CollArr.size(); i++) {
+    for (size_t i=0; i<CollArr.size(); i++) {
 		CollArr[i].pt.x = curr_course->width - CollArr[i].pt.x;
 		CollArr[i].pt.y = FindYCoord (CollArr[i].pt.x, CollArr[i].pt.z);
     }
 
-    for  (size_t i=0; i<NocollArr.size(); i++) {
+    for (size_t i=0; i<NocollArr.size(); i++) {
 		NocollArr[i].pt.x = curr_course->width - NocollArr[i].pt.x;
 		NocollArr[i].pt.y = FindYCoord (NocollArr[i].pt.x, NocollArr[i].pt.z);
     }
@@ -906,7 +906,7 @@ void CCourse::MirrorCourseData () {
     FillGlArrays();
 
     ResetQuadtree ();
-    if  (nx > 0 && ny > 0) {
+    if (nx > 0 && ny > 0) {
 		CControl *ctrl = Players.GetCtrl (g_game.player_id);
 		InitQuadtree (elevation, nx, ny, curr_course->width/(nx-1),
 			- curr_course->length/(ny-1), ctrl->viewpos, param.course_detail_level);
@@ -931,10 +931,10 @@ void CCourse::GetIndicesForPoint
 	double yidx = -z / curr_course->length *  ((double) ny - 1.);
 
     if (xidx < 0) xidx = 0;
-    else if  (xidx > nx-1) xidx = nx-1;
+    else if (xidx > nx-1) xidx = nx-1;
 
     if (yidx < 0) yidx = 0;
-    else if  (yidx > ny-1) yidx = ny-1;
+    else if (yidx > ny-1) yidx = ny-1;
 
     *x0 = (int)(xidx);              // floor(xidx)
     *x1 = (int)(xidx + 0.9999);     // ceil(xidx)
@@ -960,8 +960,8 @@ void CCourse::FindBarycentricCoords (double x, double z, TIndex2 *idx0,
     xidx = x / curr_course->width * ((double) nx - 1.);
     yidx = -z / curr_course->length * ((double) ny - 1.);
 
-    if  ((x0 + y0) % 2 == 0) {
-		if  (yidx - y0 < xidx - x0) {
+    if ((x0 + y0) % 2 == 0) {
+		if (yidx - y0 < xidx - x0) {
 			*idx0 = TIndex2 (x0, y0);
 			*idx1 = TIndex2 (x1, y0);
 			*idx2 = TIndex2 (x1, y1);
@@ -971,7 +971,7 @@ void CCourse::FindBarycentricCoords (double x, double z, TIndex2 *idx0,
 			*idx2 = TIndex2 (x0, y0);
 		}
     } else {
-		if  (yidx - y0 + xidx - x0 < 1) {
+		if (yidx - y0 + xidx - x0 < 1) {
 			*idx0 = TIndex2 (x0, y0);
 			*idx1 = TIndex2 (x1, y0);
 			*idx2 = TIndex2 (x0, y1);
@@ -1026,7 +1026,7 @@ TVector3 CCourse::FindCourseNormal (double x, double z) const {
 	double min_bary = min (u, min (v, 1. - u - v));
 	double interp_factor = min (min_bary / NORM_INTERPOL, 1.0);
 
- 	TVector3 interp_nml = AddVectors (
+	TVector3 interp_nml = AddVectors (
 	ScaleVector (interp_factor, tri_nml),
 	ScaleVector (1.-interp_factor, smooth_nml));
     NormVector (interp_nml);
@@ -1038,7 +1038,7 @@ double CCourse::FindYCoord (double x, double z) const {
     static double last_x, last_z, last_y;
     static bool cache_full = false;
 
-    if  (cache_full && last_x == x && last_z == z) return last_y;
+    if (cache_full && last_x == x && last_z == z) return last_y;
     double *elevation = Course.elevation;
 
     TIndex2 idx0, idx1, idx2;

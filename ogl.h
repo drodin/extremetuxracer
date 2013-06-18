@@ -50,7 +50,7 @@ void PrintGLInfo();
 
 void set_material (const TColor& diffuse_colour,
 		const TColor& specular_colour,
-		double specular_exp );
+		double specular_exp);
 
 void set_gl_options (TRenderMode mode);
 void ClearRenderContext ();

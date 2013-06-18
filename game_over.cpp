@@ -68,19 +68,19 @@ void DrawMessageFrame (float x, float y, float w, float h, int line,
 
 	glColor4f (framecol.r, framecol.g, framecol.b, transp);
 	glTranslatef (x, yy, 0);
-	glBegin (GL_QUADS );
-	    glVertex2f (0, 0 );
-	    glVertex2f (w, 0 );
-	    glVertex2f (w, h );
-	    glVertex2f (0, h );
+	glBegin (GL_QUADS);
+	    glVertex2f (0, 0);
+	    glVertex2f (w, 0);
+	    glVertex2f (w, h);
+	    glVertex2f (0, h);
 	glEnd();
 
 	glColor4f (backcol.r, backcol.g, backcol.b, transp);
-	glBegin (GL_QUADS );
-	    glVertex2f (0 + line, 0 + line );
-	    glVertex2f (w - line, 0 + line );
-	    glVertex2f (w - line, h - line );
-	    glVertex2f (0 + line, h - line );
+	glBegin (GL_QUADS);
+	    glVertex2f (0 + line, 0 + line);
+	    glVertex2f (w - line, 0 + line);
+	    glVertex2f (w - line, h - line);
+	    glVertex2f (0 + line, h - line);
 	glEnd();
 
 	glEnable (GL_TEXTURE_2D);

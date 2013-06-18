@@ -57,7 +57,7 @@ void CEventSelect::Keyb (unsigned int key, bool special, bool release, int x, in
 	}
 }
 
-void CEventSelect::Mouse (int button, int state, int x, int y ) {
+void CEventSelect::Mouse (int button, int state, int x, int y) {
 	if (state == 1) {
 		TWidget* clicked = ClickGUI(x, y);
 		if (textbuttons[0] == clicked) {
@@ -69,13 +69,13 @@ void CEventSelect::Mouse (int button, int state, int x, int y ) {
 	}
 }
 
-void CEventSelect::Motion (int x, int y ){
+void CEventSelect::Motion (int x, int y) {
 	MouseMoveGUI(x, y);
 	y = param.y_resolution - y;
     TVector2 old_pos = cursor_pos;
     cursor_pos = TVector2(x, y);
 
-    if  (old_pos.x != x || old_pos.y != y) {
+    if (old_pos.x != x || old_pos.y != y) {
 		if (param.ui_snow) push_ui_snow (cursor_pos);
     }
 }
@@ -117,7 +117,7 @@ void CEventSelect::Loop (double timestep) {
 	TColor col;
 
 	check_gl_error();
-   	set_gl_options (GUI );
+	set_gl_options (GUI);
 	Music.Update ();
     ClearRenderContext ();
 	SetupGuiDisplay ();
@@ -142,7 +142,7 @@ void CEventSelect::Loop (double timestep) {
 	FT.DrawString (area.left,AutoYPosN (45), Trans.Text (7));
 	if (Events.IsUnlocked (event->GetValue(), cup->GetValue()) == false) {
 		FT.SetColor (colLGrey);
- 		FT.DrawString (CENTER, AutoYPosN (58), Trans.Text (10));
+		FT.DrawString (CENTER, AutoYPosN (58), Trans.Text (10));
 	}
 
 	FT.AutoSizeN (4);
@@ -154,8 +154,10 @@ void CEventSelect::Loop (double timestep) {
 
 	if (cup->focussed()) col = colDYell; else col = colWhite;
 	DrawFrameX (area.left, frametop2, framewidth, frameheight, 3, colMBackgr, col, 1.0);
-	if (Events.IsUnlocked (event->GetValue(), cup->GetValue())) FT.SetColor (colDYell);
-		else FT.SetColor (colLGrey);
+	if (Events.IsUnlocked (event->GetValue(), cup->GetValue()))
+		FT.SetColor (colDYell);
+	else
+		FT.SetColor (colLGrey);
 	FT.DrawString (area.left + 20, frametop2, Events.GetCupTrivialName (event->GetValue(), cup->GetValue()));
 
 	textbuttons[0]->SetActive(Events.IsUnlocked (event->GetValue(), cup->GetValue()));

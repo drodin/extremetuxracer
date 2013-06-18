@@ -244,7 +244,7 @@ void update_view (CControl *ctrl, double dt) {
 		view_dir = ScaleVector (-1.0, TransformVector (rot_mat, view_vec));
 
 		if (ctrl->view_init) {
-	 		for (int i=0; i<2; i++) {
+			for (int i=0; i<2; i++) {
 				TVector3 up_dir(0, 1, 0);
 				interpolate_view_frame (ctrl->viewup, ctrl->viewdir,
 					&up_dir, &view_dir, dt,
@@ -378,9 +378,9 @@ void SetupViewFrustum (CControl *ctrl) {
     for (int i=0; i<6; i++) {
 		p_vertex_code[i] = 0;
 
-		if  (frustum_planes[i].nml.x > 0) p_vertex_code[i] |= 4;
-		if  (frustum_planes[i].nml.y > 0) p_vertex_code[i] |= 2;
-		if  (frustum_planes[i].nml.z > 0) p_vertex_code[i] |= 1;
+		if (frustum_planes[i].nml.x > 0) p_vertex_code[i] |= 4;
+		if (frustum_planes[i].nml.y > 0) p_vertex_code[i] |= 2;
+		if (frustum_planes[i].nml.z > 0) p_vertex_code[i] |= 1;
     }
 }
 
@@ -391,26 +391,26 @@ clip_result_t clip_aabb_to_view_frustum (const TVector3& min, const TVector3& ma
 		TVector3 p(min.x, min.y, min.z);
 		TVector3 n(max.x, max.y, max.z);
 
-		if  (p_vertex_code[i] & 4) {
+		if (p_vertex_code[i] & 4) {
 		    p.x = max.x;
 	    	n.x = min.x;
 		}
 
-		if  (p_vertex_code[i] & 2) {
+		if (p_vertex_code[i] & 2) {
 		    p.y = max.y;
 	    	n.y = min.y;
 		}
 
-		if  (p_vertex_code[i] & 1) {
+		if (p_vertex_code[i] & 1) {
 		    p.z = max.z;
 	    	n.z = min.z;
 		}
 
-		if (DotProduct (n, frustum_planes[i].nml) + frustum_planes[i].d > 0){
+		if (DotProduct (n, frustum_planes[i].nml) + frustum_planes[i].d > 0) {
 		    return NotVisible;
 		}
 
-		if (DotProduct (p, frustum_planes[i].nml) + frustum_planes[i].d > 0){
+		if (DotProduct (p, frustum_planes[i].nml) + frustum_planes[i].d > 0) {
 	    	intersect = true;
 		}
     }

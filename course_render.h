@@ -23,6 +23,6 @@ GNU General Public License for more details.
 void setup_course_tex_gen ();
 
 void RenderCourse ();
-void DrawTrees () ;
+void DrawTrees ();
 
 #endif

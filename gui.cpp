@@ -208,7 +208,7 @@ void TIconButton::Draw () const {
 
 	int line = 3;
 	int framesize = size + 2 * line;
- 	int t = param.y_resolution - position.y;
+	int t = param.y_resolution - position.y;
 	int y = t - size;
 	int x = position.x;
 	int r = x + size;
@@ -306,19 +306,19 @@ void TArrow::Draw() const {
 	double textop = texbr[type];
 
 	glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    glEnable (GL_TEXTURE_2D );
+    glEnable (GL_TEXTURE_2D);
 	Tex.BindTex (LB_ARROWS);
 	glColor4f (1.0, 1.0, 1.0, 1.0);
 
 	glBegin( GL_QUADS );
 		glTexCoord2f (texleft, texbottom);
-		glVertex2f (bl.x, bl.y );
+		glVertex2f (bl.x, bl.y);
 		glTexCoord2f (texright, texbottom);
-		glVertex2f (tr.x, bl.y );
+		glVertex2f (tr.x, bl.y);
 		glTexCoord2f (texright, textop);
-		glVertex2f (tr.x, tr.y );
+		glVertex2f (tr.x, tr.y);
 		glTexCoord2f (texleft, textop);
-		glVertex2f (bl.x, tr.y );
+		glVertex2f (bl.x, tr.y);
 	glEnd();
 }
 
@@ -422,19 +422,19 @@ void DrawFrameX (int x, int y, int w, int h, int line,
 
 	glColor4f (framecol.r, framecol.g, framecol.b, transp);
 	glTranslatef (x, yy, 0);
-	glBegin (GL_QUADS );
-	    glVertex2f (0, 0 );
-	    glVertex2f (w, 0 );
-	    glVertex2f (w, h );
-	    glVertex2f (0, h );
+	glBegin (GL_QUADS);
+	    glVertex2f (0, 0);
+	    glVertex2f (w, 0);
+	    glVertex2f (w, h);
+	    glVertex2f (0, h);
 	glEnd();
 
 	glColor4f (backcol.r, backcol.g, backcol.b, transp);
-	glBegin (GL_QUADS );
-	    glVertex2f (0 + line, 0 + line );
-	    glVertex2f (w - line, 0 + line );
-	    glVertex2f (w - line, h - line );
-	    glVertex2f (0 + line, h - line );
+	glBegin (GL_QUADS);
+	    glVertex2f (0 + line, 0 + line);
+	    glVertex2f (w - line, 0 + line);
+	    glVertex2f (w - line, h - line);
+	    glVertex2f (0 + line, h - line);
 	glEnd();
 
 	glEnable (GL_TEXTURE_2D);
@@ -460,13 +460,13 @@ void DrawLevel (int x, int y, int level, double fact) {
 
 	glBegin( GL_QUADS );
 	    glTexCoord2f (0, bott);
-		glVertex2f (bl.x, bl.y );
+		glVertex2f (bl.x, bl.y);
 	    glTexCoord2f (0.75, bott);
-		glVertex2f (tr.x, bl.y );
+		glVertex2f (tr.x, bl.y);
 	    glTexCoord2f (0.75, top);
-		glVertex2f (tr.x, tr.y );
+		glVertex2f (tr.x, tr.y);
 	    glTexCoord2f (0, top);
-		glVertex2f (bl.x, tr.y );
+		glVertex2f (bl.x, tr.y);
 	glEnd();
 }
 
@@ -491,13 +491,13 @@ void DrawBonus (int x, int y, size_t max, size_t num) {
 
 		glBegin( GL_QUADS );
 		    glTexCoord2f (0, bott);
-			glVertex2f (bl.x, bl.y );
+			glVertex2f (bl.x, bl.y);
 		    glTexCoord2f (1, bott);
-			glVertex2f (tr.x, bl.y );
+			glVertex2f (tr.x, bl.y);
 	    	glTexCoord2f (1, top);
-			glVertex2f (tr.x, tr.y );
+			glVertex2f (tr.x, tr.y);
 		    glTexCoord2f (0, top);
-			glVertex2f (bl.x, tr.y );
+			glVertex2f (bl.x, tr.y);
 		glEnd();
 	}
 }

@@ -101,11 +101,11 @@ void CReset::Loop(double time_step) {
 				} // if
 		    } // for
 
-		    if  (best_loc == -1) {
+		    if (best_loc == -1) {
 				Course.GetDimensions (&course_width, &course_length);
 				ctrl->cpos.x = course_width/2.0;
 				ctrl->cpos.z = min (ctrl->cpos.z + 10, -1.0);
-		    } else if  (item_locs[best_loc].pt.z <= ctrl->cpos.z) {
+		    } else if (item_locs[best_loc].pt.z <= ctrl->cpos.z) {
 				Course.GetDimensions (&course_width, &course_length);
 				ctrl->cpos.x = course_width/2.0;
 				ctrl->cpos.z = min (ctrl->cpos.z + 10, -1.0);

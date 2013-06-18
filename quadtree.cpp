@@ -90,12 +90,12 @@ quadsquare::quadsquare (quadcornerdata* pcd) {
 		if (y > MaxY) MaxY = y;
 	}
 
-	if  (pcd->Parent == NULL ) {
+	if (pcd->Parent == NULL) {
 		EnvmapTexture = Tex.GetTexture (ENV_MAP);
 	}
 }
 
-quadsquare::~quadsquare(){
+quadsquare::~quadsquare() {
 	for (int i = 0; i < 4; i++) {
 		if (Child[i]) delete Child[i];
 	}
@@ -233,7 +233,7 @@ float quadsquare::RecomputeError(const quadcornerdata& cd)
 	if (e > maxerror) maxerror = e;
 	Error[1] = e;
 
-	if  (cd.Level == 0 && cd.xorg <= RowSize-1 && cd.zorg <= NumRows-1 ) {
+	if (cd.Level == 0 && cd.xorg <= RowSize-1 && cd.zorg <= NumRows-1) {
 
 		int x = cd.xorg + half;
 		int z = cd.zorg + whole;
@@ -242,31 +242,31 @@ float quadsquare::RecomputeError(const quadcornerdata& cd)
 
 		terrain_error = 0.f;
 
-		if  (x < RowSize && z < NumRows ) {
+		if (x < RowSize && z < NumRows) {
 
-			if  (x < RowSize - 1 ) {
-				if  (Terrain[idx] != Terrain[idx+1] ) {
+			if (x < RowSize - 1) {
+				if (Terrain[idx] != Terrain[idx+1]) {
 					different_terrains = true;
 				}
 			}
-			if  (z >= 1 ) {
+			if (z >= 1) {
 				idx -= RowSize;
-				if  (Terrain[idx] != Terrain[idx+1] ) {
+				if (Terrain[idx] != Terrain[idx+1]) {
 					different_terrains = true;
 				}
 			}
 
-			if  (different_terrains ) {
+			if (different_terrains) {
 				ForceSouthVert = true;
 				terrain_error = TERRAIN_ERROR_SCALE * whole * whole;
 			} else {
 				ForceSouthVert = false;
 			}
 
-			if  (terrain_error > Error[0] ) {
+			if (terrain_error > Error[0]) {
 				Error[0] = terrain_error;
 			}
-			if  (Error[0] > maxerror ) {
+			if (Error[0] > maxerror) {
 				maxerror = Error[0];
 			}
 		}
@@ -277,31 +277,31 @@ float quadsquare::RecomputeError(const quadcornerdata& cd)
 		terrain_error = 0;
 		different_terrains = false;
 
-		if  (x < RowSize && z < NumRows ) {
+		if (x < RowSize && z < NumRows) {
 
-			if  (z >= 1 ) {
-				if  (Terrain[idx] != Terrain[idx-RowSize] ) {
+			if (z >= 1) {
+				if (Terrain[idx] != Terrain[idx-RowSize]) {
 					different_terrains = true;
 				}
 			}
-			if  (z >= 1 && x < RowSize - 1 ) {
+			if (z >= 1 && x < RowSize - 1) {
 				idx += 1;
-				if  (Terrain[idx] != Terrain[idx-RowSize] ) {
+				if (Terrain[idx] != Terrain[idx-RowSize]) {
 					different_terrains = true;
 				}
 			}
 
-			if  (different_terrains ) {
+			if (different_terrains) {
 				ForceEastVert = true;
 				terrain_error = TERRAIN_ERROR_SCALE * whole * whole;
 			} else {
 				ForceEastVert = false;
 			}
 
-			if  (terrain_error > Error[1] ) {
+			if (terrain_error > Error[1]) {
 				Error[1] = terrain_error;
 			}
-			if  (Error[1] > maxerror ) {
+			if (Error[1] > maxerror) {
 				maxerror = Error[1];
 			}
 		}
@@ -339,8 +339,8 @@ float quadsquare::RecomputeError(const quadcornerdata& cd)
 	for (int i=cd.xorg; i<=cd.xorg+whole; i++) {
 		for (int j=cd.zorg; j<=cd.zorg+whole; j++) {
 
-			if  (i < 0 || i >= RowSize ||
-				j < 0 || j >= NumRows )
+			if (i < 0 || i >= RowSize ||
+				j < 0 || j >= NumRows)
 			{
 				continue;
 			}
@@ -353,7 +353,7 @@ float quadsquare::RecomputeError(const quadcornerdata& cd)
 	int max_count = 0;
 	int total = 0;
 	for (size_t t=0; t<numTerr; t++) {
-		if  (terrain_count[t] > max_count ) {
+		if (terrain_count[t] > max_count) {
 			max_count = terrain_count[t];
 		}
 		total += terrain_count[t];
@@ -361,18 +361,18 @@ float quadsquare::RecomputeError(const quadcornerdata& cd)
 
 	delete [] terrain_count;
 
-	if  (total > 0 ) {
+	if (total > 0) {
 		terrain_error = (1.0 - max_count / total);
-		if  (numTerr > 1 ) {
-			terrain_error *= numTerr /  (numTerr - 1.0 );
+		if (numTerr > 1) {
+			terrain_error *= numTerr /  (numTerr - 1.0);
 		}
 	} else terrain_error = 0;
 	terrain_error *= whole * whole;
 	terrain_error *= TERRAIN_ERROR_SCALE;
 
-	if  (terrain_error > maxerror ) maxerror = terrain_error;
-	if  (terrain_error > Error[0] ) Error[0] = terrain_error;
-	if  (terrain_error > Error[1] ) Error[1] = terrain_error;
+	if (terrain_error > maxerror) maxerror = terrain_error;
+	if (terrain_error > Error[0]) Error[0] = terrain_error;
+	if (terrain_error > Error[1]) Error[1] = terrain_error;
 
 	Dirty = false;
 
@@ -586,22 +586,22 @@ static float DetailThreshold = 100;
 
 
 bool quadsquare::VertexTest(int x, float y, int z, float error,
-							const float Viewer[3], int level, vertex_loc_t vertex_loc )
+							const float Viewer[3], int level, vertex_loc_t vertex_loc)
 {
-	float	dx = fabs(x - Viewer[0]) * fabs (ScaleX );
+	float	dx = fabs(x - Viewer[0]) * fabs (ScaleX);
 	float	dy = fabs(y - Viewer[1]);
-	float	dz = fabs(z - Viewer[2]) * fabs (ScaleZ );
-	float	d = max (dx, max (dy, dz ) );
+	float	dz = fabs(z - Viewer[2]) * fabs (ScaleZ);
+	float	d = max (dx, max (dy, dz) );
 
-	if  (vertex_loc == South && ForceSouthVert && d < VERTEX_FORCE_THRESHOLD )
+	if (vertex_loc == South && ForceSouthVert && d < VERTEX_FORCE_THRESHOLD)
 	{
 		return true;
 	}
-	if  (vertex_loc == East && ForceEastVert && d < VERTEX_FORCE_THRESHOLD )
+	if (vertex_loc == East && ForceEastVert && d < VERTEX_FORCE_THRESHOLD)
 	{
 		return true;
 	}
-	if  (d < ERROR_MAGNIFICATION_THRESHOLD ) {
+	if (d < ERROR_MAGNIFICATION_THRESHOLD) {
 		error *= ERROR_MAGNIFICATION_AMOUNT;
 	}
 
@@ -614,17 +614,17 @@ bool quadsquare::BoxTest(int x, int z, float size, float miny, float maxy, float
 	float	dx =  (fabs(x + half - Viewer[0]) - half ) * fabs(ScaleX);
 	float	dy = fabs((miny + maxy) * 0.5 - Viewer[1]) - (maxy - miny) * 0.5;
 	float	dz =  (fabs(z + half - Viewer[2]) - half ) * fabs(ScaleZ);
-	float	d = max (dx, max (dy , dz ) );
+	float	d = max (dx, max (dy , dz) );
 
-	if  (d < ERROR_MAGNIFICATION_THRESHOLD ) {
+	if (d < ERROR_MAGNIFICATION_THRESHOLD) {
 		error *= ERROR_MAGNIFICATION_AMOUNT;
 	}
 
-	if  (error * DetailThreshold > d ) {
+	if (error * DetailThreshold > d) {
 		return true;
 	}
-	if  ( (x < RowSize-1 && x+size >= RowSize ) ||
-		(z < NumRows-1 && z+size >= NumRows ) )
+	if ( (x < RowSize-1 && x+size >= RowSize) ||
+		(z < NumRows-1 && z+size >= NumRows) )
 	{
 		return true;
 	}
@@ -647,10 +647,10 @@ void quadsquare::Update (const quadcornerdata& cd, const float ViewerLocation[3]
 void quadsquare::UpdateAux (const quadcornerdata& cd,
 							const float ViewerLocation[3], float CenterError, clip_result_t vis) {
 	BlockUpdateCount++;
-	if  (vis != NoClip ) {
-		vis = ClipSquare (cd );
+	if (vis != NoClip) {
+		vis = ClipSquare (cd);
 
-		if  (vis == NotVisible ) {
+		if (vis == NotVisible) {
 			return;
 		}
 	}
@@ -660,14 +660,14 @@ void quadsquare::UpdateAux (const quadcornerdata& cd,
 
 	int	half = 1 << cd.Level;
 	int	whole = half << 1;
-	if  ((EnabledFlags & 1) == 0 &&
+	if ((EnabledFlags & 1) == 0 &&
 		VertexTest(cd.xorg + whole, Vertex[1].Y, cd.zorg + half,
 		Error[0], ViewerLocation, cd.Level, East) == true )
 	{
 		EnableEdgeVertex(0, false, cd);
 	}
 
-	if  ((EnabledFlags & 8) == 0 &&
+	if ((EnabledFlags & 8) == 0 &&
 		VertexTest(cd.xorg + half, Vertex[4].Y, cd.zorg + whole,
 		Error[1], ViewerLocation, cd.Level, South) == true )
 	{
@@ -711,7 +711,7 @@ void quadsquare::UpdateAux (const quadcornerdata& cd,
 			Child[3]->UpdateAux(q, ViewerLocation, Error[5], vis);
 		}
 	}
-	if  ((EnabledFlags & 1) &&
+	if ((EnabledFlags & 1) &&
 		SubEnabledCount[0] == 0 &&
 		VertexTest(cd.xorg + whole, Vertex[1].Y, cd.zorg + half,
 		Error[0], ViewerLocation, cd.Level, East) == false)
@@ -721,7 +721,7 @@ void quadsquare::UpdateAux (const quadcornerdata& cd,
 		if (s) s->EnabledFlags &= ~4;
 	}
 
-	if  ((EnabledFlags & 8) &&
+	if ((EnabledFlags & 8) &&
 		SubEnabledCount[1] == 0 &&
 		VertexTest(cd.xorg + half, Vertex[4].Y, cd.zorg + whole,
 		Error[1], ViewerLocation, cd.Level, South) == false)
@@ -744,8 +744,8 @@ GLuint VertexIndices[9];
 int VertexTerrains[9];
 
 void quadsquare::InitVert(int i, int x, int z) {
-	if  (x >= RowSize ) x = RowSize-1;
-	if  (z >= NumRows ) z = NumRows - 1;
+	if (x >= RowSize) x = RowSize-1;
+	if (z >= NumRows) z = NumRows - 1;
 
 	int idx = x + RowSize * z;
 
@@ -759,37 +759,37 @@ void quadsquare::DrawTris() {
 	int tmp_min_idx = VertexArrayMinIdx;
 
 	/*
-	if  (glLockArraysEXT_p && param.use_cva) {
+	if (glLockArraysEXT_p && param.use_cva) {
 	if (tmp_min_idx == 0) tmp_min_idx = 1;
-	glLockArraysEXT_p (tmp_min_idx, VertexArrayMaxIdx - tmp_min_idx + 1 );
+	glLockArraysEXT_p (tmp_min_idx, VertexArrayMaxIdx - tmp_min_idx + 1);
 	}
 	*/
-	if  (glLockArraysEXT_p) {
+	if (glLockArraysEXT_p) {
 		if (tmp_min_idx == 0) tmp_min_idx = 1;
-		glLockArraysEXT_p (tmp_min_idx, VertexArrayMaxIdx - tmp_min_idx + 1 );
+		glLockArraysEXT_p (tmp_min_idx, VertexArrayMaxIdx - tmp_min_idx + 1);
 	}
 	/*
 	glDrawElements (GL_TRIANGLES, VertexArrayCounter,
-	GL_UNSIGNED_INT, VertexArrayIndices );
+	GL_UNSIGNED_INT, VertexArrayIndices);
 	if (glUnlockArraysEXT_p && param.use_cva) glUnlockArraysEXT_p();
 	*/
 	glDrawElements (GL_TRIANGLES, VertexArrayCounter,
-		GL_UNSIGNED_INT, VertexArrayIndices );
+		GL_UNSIGNED_INT, VertexArrayIndices);
 	if (glUnlockArraysEXT_p) glUnlockArraysEXT_p();
 }
 
 void quadsquare::DrawEnvmapTris()
 {
-	if  (VertexArrayCounter > 0 && EnvmapTexture != NULL ) {
-		glTexGeni (GL_S, GL_TEXTURE_GEN_MODE, GL_SPHERE_MAP );
-		glTexGeni (GL_T, GL_TEXTURE_GEN_MODE, GL_SPHERE_MAP );
+	if (VertexArrayCounter > 0 && EnvmapTexture != NULL) {
+		glTexGeni (GL_S, GL_TEXTURE_GEN_MODE, GL_SPHERE_MAP);
+		glTexGeni (GL_T, GL_TEXTURE_GEN_MODE, GL_SPHERE_MAP);
 
 		EnvmapTexture->Bind();
 
 		DrawTris();
 
-		glTexGeni (GL_S, GL_TEXTURE_GEN_MODE, GL_OBJECT_LINEAR );
-		glTexGeni (GL_T, GL_TEXTURE_GEN_MODE, GL_OBJECT_LINEAR );
+		glTexGeni (GL_S, GL_TEXTURE_GEN_MODE, GL_OBJECT_LINEAR);
+		glTexGeni (GL_T, GL_TEXTURE_GEN_MODE, GL_OBJECT_LINEAR);
 	}
 }
 
@@ -804,7 +804,7 @@ void quadsquare::Render (const quadcornerdata& cd, GLubyte *vnc_array) {
 	VNCArray = vnc_array;
 	bool fog_on;
 	int nx, ny;
-	Course.GetDivisions (&nx, &ny );
+	Course.GetDivisions (&nx, &ny);
 	TTerrType *TerrList = &Course.TerrList[0];
 
 	size_t numTerrains = Course.TerrList.size();
@@ -820,10 +820,10 @@ void quadsquare::Render (const quadcornerdata& cd, GLubyte *vnc_array) {
 			DrawTris ();
 
 			if (TerrList[j].shiny && param.perf_level > 1) {
-				glDisableClientState (GL_COLOR_ARRAY );
-				glColor4f (1.0, 1.0, 1.0, ENV_MAP_ALPHA / 255.0 );
+				glDisableClientState (GL_COLOR_ARRAY);
+				glColor4f (1.0, 1.0, 1.0, ENV_MAP_ALPHA / 255.0);
 				DrawEnvmapTris();
-				glEnableClientState (GL_COLOR_ARRAY );
+				glEnableClientState (GL_COLOR_ARRAY);
 			}
 
 		}
@@ -831,24 +831,24 @@ void quadsquare::Render (const quadcornerdata& cd, GLubyte *vnc_array) {
 
 	if (param.perf_level > 1) {
 		InitArrayCounters();
-		RenderAux (cd, SomeClip, -1 );
+		RenderAux (cd, SomeClip, -1);
 
-		if (VertexArrayCounter != 0 ) {
-			glDisable (GL_FOG );
+		if (VertexArrayCounter != 0) {
+			glDisable (GL_FOG);
 			for (GLuint i=0; i<VertexArrayCounter; i++) {
-				colorval (VertexArrayIndices[i], 0 ) = 0;
-				colorval (VertexArrayIndices[i], 1 ) = 0;
-				colorval (VertexArrayIndices[i], 2 ) = 0;
-				colorval (VertexArrayIndices[i], 3 ) = 255;
+				colorval (VertexArrayIndices[i], 0) = 0;
+				colorval (VertexArrayIndices[i], 1) = 0;
+				colorval (VertexArrayIndices[i], 2) = 0;
+				colorval (VertexArrayIndices[i], 3) = 255;
 			}
 			Course.TerrList[0].texture->Bind();
 			DrawTris();
-			if (fog_on) glEnable (GL_FOG );
-			glBlendFunc  (GL_SRC_ALPHA, GL_ONE );
+			if (fog_on) glEnable (GL_FOG);
+			glBlendFunc  (GL_SRC_ALPHA, GL_ONE);
 			for (GLuint i=0; i<VertexArrayCounter; i++) {
-				colorval (VertexArrayIndices[i], 0 ) = 255;
-				colorval (VertexArrayIndices[i], 1 ) = 255;
-				colorval (VertexArrayIndices[i], 2 ) = 255;
+				colorval (VertexArrayIndices[i], 0) = 255;
+				colorval (VertexArrayIndices[i], 1) = 255;
+				colorval (VertexArrayIndices[i], 2) = 255;
 			}
 
 			for (size_t j=0; j<numTerrains; j++) {
@@ -856,7 +856,7 @@ void quadsquare::Render (const quadcornerdata& cd, GLubyte *vnc_array) {
 					Course.TerrList[j].texture->Bind();
 
 					for (GLuint i=0; i<VertexArrayCounter; i++) {
-						colorval (VertexArrayIndices[i], 3 ) =
+						colorval (VertexArrayIndices[i], 3) =
 							(Terrain[VertexArrayIndices[i]] == (char)j ) ? 255 : 0;
 					}
 					DrawTris();
@@ -865,9 +865,9 @@ void quadsquare::Render (const quadcornerdata& cd, GLubyte *vnc_array) {
 
 			/*
 			if (param.perf_level > 1) {
-			glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
+			glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 			for (i=0; i<VertexArrayCounter; i++) {
-			colorval (VertexArrayIndices[i], 3 ) =
+			colorval (VertexArrayIndices[i], 3) =
 			(TerrList[Terrain[VertexArrayIndices[i]]].shiny) ?
 			ENV_MAP_ALPHA : 0;
 			}
@@ -876,7 +876,7 @@ void quadsquare::Render (const quadcornerdata& cd, GLubyte *vnc_array) {
 			*/
 		}
 	}
-	glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
+	glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
 
 clip_result_t quadsquare::ClipSquare (const quadcornerdata& cd)
@@ -885,11 +885,11 @@ clip_result_t quadsquare::ClipSquare (const quadcornerdata& cd)
 	clip_result_t clip_result;
 	int	whole = 2 << cd.Level;
 
-	if  (cd.xorg >= RowSize-1 ) {
+	if (cd.xorg >= RowSize-1) {
 		return NotVisible;
 	}
 
-	if  (cd.zorg >= NumRows-1 ) {
+	if (cd.zorg >= NumRows-1) {
 		return NotVisible;
 	}
 
@@ -899,13 +899,13 @@ clip_result_t quadsquare::ClipSquare (const quadcornerdata& cd)
 	max.x = (cd.xorg + whole) * ScaleX;
 	max.y = MaxY;
 	max.z = (cd.zorg + whole) * ScaleZ;
-	if  (min.x > max.x ) {
+	if (min.x > max.x) {
 		double tmp = min.x;
 		min.x = max.x;
 		max.x = tmp;
 	}
 
-	if  (min.z > max.z ) {
+	if (min.z > max.z) {
 		double tmp = min.z;
 		min.z = max.z;
 		max.z = tmp;
@@ -913,14 +913,14 @@ clip_result_t quadsquare::ClipSquare (const quadcornerdata& cd)
 
 	clip_result = clip_aabb_to_view_frustum(min, max);
 
-	if  (clip_result == NotVisible || clip_result == SomeClip ) {
+	if (clip_result == NotVisible || clip_result == SomeClip) {
 		return clip_result;
 	}
 
-	if  (cd.xorg + whole >= RowSize ) {
+	if (cd.xorg + whole >= RowSize) {
 		return SomeClip;
 	}
-	if  (cd.zorg + whole >= NumRows ) {
+	if (cd.zorg + whole >= NumRows) {
 		return SomeClip;
 	}
 
@@ -930,56 +930,56 @@ clip_result_t quadsquare::ClipSquare (const quadcornerdata& cd)
 
 inline void quadsquare::MakeTri (int a, int b, int c, int terrain)
 {
-	if  ( (VertexTerrains[a] == terrain ||
+	if ( (VertexTerrains[a] == terrain ||
 		VertexTerrains[b] == terrain ||
-		VertexTerrains[c] == terrain ) )
+		VertexTerrains[c] == terrain) )
 	{
 		VertexArrayIndices[VertexArrayCounter++] = VertexIndices[a];
 		setalphaval(a);
-		update_min_max (VertexIndices[a] );
+		update_min_max (VertexIndices[a]);
 		VertexArrayIndices[VertexArrayCounter++] = VertexIndices[b];
 		setalphaval(b);
-		update_min_max (VertexIndices[b] );
+		update_min_max (VertexIndices[b]);
 		VertexArrayIndices[VertexArrayCounter++] = VertexIndices[c];
 		setalphaval(c);
-		update_min_max (VertexIndices[c] );
+		update_min_max (VertexIndices[c]);
 	}
 }
 
 
 inline void quadsquare::MakeSpecialTri (int a, int b, int c, int terrain)
 {
-	if  (VertexTerrains[a] != VertexTerrains[b] &&
+	if (VertexTerrains[a] != VertexTerrains[b] &&
 		VertexTerrains[a] != VertexTerrains[c] &&
-		VertexTerrains[b] != VertexTerrains[c] )
+		VertexTerrains[b] != VertexTerrains[c])
 	{
 		VertexArrayIndices[VertexArrayCounter++] = VertexIndices[a];
-		update_min_max (VertexIndices[a] );
+		update_min_max (VertexIndices[a]);
 		VertexArrayIndices[VertexArrayCounter++] = VertexIndices[b];
-		update_min_max (VertexIndices[b] );
+		update_min_max (VertexIndices[b]);
 		VertexArrayIndices[VertexArrayCounter++] = VertexIndices[c];
-		update_min_max (VertexIndices[c] );
+		update_min_max (VertexIndices[c]);
 	}
 }
 
-inline void quadsquare::MakeNoBlendTri (int a, int b, int c, int terrain )
+inline void quadsquare::MakeNoBlendTri (int a, int b, int c, int terrain)
 {
-	if  ( (VertexTerrains[a] == terrain ||
+	if ( (VertexTerrains[a] == terrain ||
 		VertexTerrains[b] == terrain ||
-		VertexTerrains[c] == terrain ) &&
+		VertexTerrains[c] == terrain) &&
 		(VertexTerrains[a] >= terrain &&
 		VertexTerrains[b] >= terrain &&
-		VertexTerrains[c] >= terrain ) )
+		VertexTerrains[c] >= terrain) )
 	{
 		VertexArrayIndices[VertexArrayCounter++] = VertexIndices[a];
 		setalphaval(a);
-		update_min_max (VertexIndices[a] );
+		update_min_max (VertexIndices[a]);
 		VertexArrayIndices[VertexArrayCounter++] = VertexIndices[b];
 		setalphaval(b);
-		update_min_max (VertexIndices[b] );
+		update_min_max (VertexIndices[b]);
 		VertexArrayIndices[VertexArrayCounter++] = VertexIndices[c];
 		setalphaval(c);
-		update_min_max (VertexIndices[c] );
+		update_min_max (VertexIndices[c]);
 	}
 }
 
@@ -988,8 +988,8 @@ void quadsquare::RenderAux(const quadcornerdata& cd, clip_result_t vis, int terr
 	int	half = 1 << cd.Level;
 	int	whole = 2 << cd.Level;
 	if (vis != NoClip) {
-		vis = ClipSquare (cd );
-		if (vis == NotVisible ) return;
+		vis = ClipSquare (cd);
+		if (vis == NotVisible) return;
 	}
 
 	int	flags = 0;
@@ -1016,7 +1016,7 @@ void quadsquare::RenderAux(const quadcornerdata& cd, clip_result_t vis, int terr
 	InitVert(6, cd.xorg, cd.zorg + whole);
 	InitVert(7, cd.xorg + half, cd.zorg + whole);
 	InitVert(8, cd.xorg + whole, cd.zorg + whole);
-	if (terrain == -1 ) {
+	if (terrain == -1) {
 		make_tri_list (MakeSpecialTri);
 	} else if (param.perf_level > 1) {
 		make_tri_list (MakeTri);
@@ -1084,8 +1084,8 @@ void quadsquare::AddHeightMap(const quadcornerdata& cd, const HeightMapInfo& hm)
 	RowSize = hm.RowWidth;
 	NumRows = hm.ZSize;
 
-	if  (cd.Parent == NULL ) {
-		if  (VertexArrayIndices != NULL ) {
+	if (cd.Parent == NULL) {
+		if (VertexArrayIndices != NULL) {
 			delete VertexArrayIndices;
 		}
 		VertexArrayIndices = new GLuint[6 * RowSize * NumRows];
@@ -1157,10 +1157,10 @@ void quadsquare::SetTerrain (char *t)
 
 float HeightMapInfo::Sample(int x, int z) const
 {
-	if  (x >= XSize ) {
+	if (x >= XSize) {
 		x = XSize - 1;
 	}
-	if  (z >= ZSize ) {
+	if (z >= ZSize) {
 		z = ZSize - 1;
 	}
 	return Data[ x + z * RowWidth ];
@@ -1206,7 +1206,7 @@ static void TVector3o_float_array (float dest[3], const TVector3& src)
 
 
 void InitQuadtree (double *elevation, int nx, int nz,
-				   double scalex, double scalez, const TVector3& view_pos, double detail){
+				   double scalex, double scalez, const TVector3& view_pos, double detail) {
 	HeightMapInfo hm;
 
 	hm.Data = elevation;
@@ -1243,13 +1243,13 @@ void InitQuadtree (double *elevation, int nx, int nz,
 	}
 }
 
-void UpdateQuadtree (const TVector3& view_pos, float detail){
+void UpdateQuadtree (const TVector3& view_pos, float detail) {
 	float ViewerLoc[3];
 	TVector3o_float_array (ViewerLoc, view_pos);
 	root->Update (root_corner_data, ViewerLoc, detail);
 }
 
-void RenderQuadtree(){
+void RenderQuadtree() {
 	GLubyte *vnc_array;
 	Course.GetGLArrays (&vnc_array);
 	root->Render (root_corner_data, vnc_array);

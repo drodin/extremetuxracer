@@ -136,7 +136,7 @@ bool CControl::CheckTreeCollisions (const TVector3& pos, TVector3 *tree_loc, dou
         if (MAG_SQD(distvec) > squared_dist) continue;
 
 		// have to look at polyhedron - switch to correct one if necessary
-		if (tree_type != trees[i].tree_type)  {
+		if (tree_type != trees[i].tree_type) {
 	    	tree_type = trees[i].tree_type;
 	    	ph = Course.GetPoly (tree_type);
 		}
@@ -150,7 +150,7 @@ bool CControl::CheckTreeCollisions (const TVector3& pos, TVector3 *tree_loc, dou
 		hit = shape->Collision (pos, ph2);
         FreePolyhedron (ph2);
 
-        if  (hit == true) {
+        if (hit == true) {
 	    	if (tree_loc != NULL) *tree_loc = loc;
 	    	if (tree_diam != NULL) *tree_diam = diam;
 			Sound.Play ("tree_hit", 0);
@@ -166,7 +166,7 @@ bool CControl::CheckTreeCollisions (const TVector3& pos, TVector3 *tree_loc, dou
     else last_collision = false;
     return hit;
 }
-void CControl::AdjustTreeCollision (const TVector3& pos, TVector3 *vel){
+void CControl::AdjustTreeCollision (const TVector3& pos, TVector3 *vel) {
     TVector3 treeLoc;
     double tree_diam;
 	double factor;
@@ -187,7 +187,7 @@ void CControl::AdjustTreeCollision (const TVector3& pos, TVector3 *vel){
 				//ScaleVector (-2 * DotProduct (*vel, treeNml), treeNml), *vel);
 				ScaleVector (-factor * costheta, treeNml), *vel);
 		    NormVector (*vel);
-   	    }
+	    }
 		speed = max (speed, minSpeed);
         *vel = ScaleVector (speed, *vel);
     }
@@ -213,7 +213,7 @@ void CControl::CheckItemCollection (const TVector3& pos) {
 		squared_dist *= squared_dist;
 		if (MAG_SQD (distvec) > squared_dist) continue;
 
-		if  ((pos.y - 0.6 >= loc.y && pos.y - 0.6 <= loc.y + height) ||
+		if ((pos.y - 0.6 >= loc.y && pos.y - 0.6 <= loc.y + height) ||
 			(pos.y + 0.6 >= loc.y && pos.y + 0.6 <= loc.y + height) ||
 			(pos.y - 0.6 <= loc.y && pos.y + 0.6 >= loc.y + height)) {
 			items[i].collectable = 0;
@@ -244,7 +244,7 @@ void CControl::AdjustVelocity (const TPlane& surf_plane) {
 }
 
 void CControl::AdjustPosition (const TPlane& surf_plane, double dist_from_surface) {
-    if  (dist_from_surface < -MAX_SURF_PEN) {
+    if (dist_from_surface < -MAX_SURF_PEN) {
 		double displace = -MAX_SURF_PEN - dist_from_surface;
 		cpos = AddVectors (cpos, ScaleVector (displace, surf_plane.nml));
     }
@@ -337,7 +337,7 @@ TVector3 CControl::CalcJumpForce () {
 	TVector3 jumpforce;
 	if (begin_jump == true) {
 		begin_jump = false;
-		if  (cairborne == false) {
+		if (cairborne == false) {
 			jumping = true;
 		    jump_start_time = g_game.time;
 		} else jumping = false;
@@ -366,7 +366,7 @@ TVector3 CControl::CalcFrictionForce (double speed, const TVector3& nmlforce) {
 
 		steer_angle = turn_fact * MAX_TURN_ANGLE;
 
-		if  (fabs (fric_f_mag * sin (steer_angle * M_PI / 180)) > MAX_TURN_PERP) {
+		if (fabs (fric_f_mag * sin (steer_angle * M_PI / 180)) > MAX_TURN_PERP) {
 	    	steer_angle = RADIANS_TO_ANGLES (asin (MAX_TURN_PERP / fric_f_mag)) *
 					turn_fact / fabs (turn_fact);
 		}
@@ -490,7 +490,7 @@ void CControl::SolveOdeSystem (double timestep) {
     double pos_err[3], vel_err[3], tot_pos_err, tot_vel_err;
     double err=0, tol=0;
 
- 	TOdeSolver solver = NewOdeSolver23 ();
+	TOdeSolver solver = NewOdeSolver23 ();
     double h = ode_time_step;
     if (h < 0 || solver.EstimateError == NULL)
 		h = AdjustTimeStep (timestep, cvel);
@@ -510,11 +510,11 @@ void CControl::SolveOdeSystem (double timestep) {
 
     bool done = false;
     while (!done) {
-		if  (t >= tfinal) {
-	   		Message ("t >= tfinal in ode_system()", "");
+		if (t >= tfinal) {
+			Message ("t >= tfinal in ode_system()", "");
 		    break;
 		}
-		if  (1.1 * h > tfinal - t) {
+		if (1.1 * h > tfinal - t) {
 	    	h = tfinal-t;
 		    done = true;
 		}
@@ -577,7 +577,7 @@ void CControl::SolveOdeSystem (double timestep) {
 				tot_pos_err = 0.;
 				tot_vel_err = 0.;
 
-				for  (int i=0; i<3; i++) {
+				for (int i=0; i<3; i++) {
 				    pos_err[i] *= pos_err[i];
 				    tot_pos_err += pos_err[i];
 				    vel_err[i] *= vel_err[i];
@@ -585,7 +585,7 @@ void CControl::SolveOdeSystem (double timestep) {
 				}
 				tot_pos_err = sqrt (tot_pos_err);
 				tot_vel_err = sqrt (tot_vel_err);
-				if  (tot_pos_err / MAX_POS_ERR > tot_vel_err / MAX_VEL_ERR) {
+				if (tot_pos_err / MAX_POS_ERR > tot_vel_err / MAX_VEL_ERR) {
 			    	err = tot_pos_err;
 				    tol = MAX_POS_ERR;
 				} else {
@@ -595,7 +595,7 @@ void CControl::SolveOdeSystem (double timestep) {
 
 				if (err > tol  && h > MIN_TIME_STEP + EPS) {
 				    done = false;
-				    if  (!failed) {
+				    if (!failed) {
 						failed = true;
 						h *=  max (0.5, 0.8 * pow (tol/err, solver.TimestepExponent()));
 				    } else h *= 0.5;
@@ -615,7 +615,7 @@ void CControl::SolveOdeSystem (double timestep) {
 
 		new_f = CalcNetForce (new_pos, new_vel);
 
-		if  (!failed && solver.EstimateError != NULL) {
+		if (!failed && solver.EstimateError != NULL) {
 	    	double temp = 1.25 * pow (err / tol, solver.TimestepExponent());
 		    if (temp > 0.2) h = h / temp;
 		    else h = 5.0 * h;
@@ -681,7 +681,7 @@ void CControl::UpdatePlayerPos (double timestep) {
     if (is_paddling) {
 		double factor;
 		factor = (g_game.time - paddle_time) / PADDLING_DURATION;
-		if  (cairborne) {
+		if (cairborne) {
 		    paddling_factor = 0;
 		    flap_factor = factor;
 		} else {

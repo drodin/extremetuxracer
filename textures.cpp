@@ -50,10 +50,10 @@ bool CImage::LoadPng (const char *filepath, bool mirroring) {
 	unsigned char *sdlData;
 
 	sdlImage = IMG_Load (filepath);
-   	if (sdlImage == 0) {
-   		Message ("could not load image", filepath);
+	if (sdlImage == 0) {
+		Message ("could not load image", filepath);
 		return false;
-   	}
+	}
 
 	nx    = sdlImage->w;
 	ny    = sdlImage->h;
@@ -62,13 +62,13 @@ bool CImage::LoadPng (const char *filepath, bool mirroring) {
 	DisposeData ();
 	data  = new unsigned char[pitch * ny];
 
-   	if (SDL_MUSTLOCK (sdlImage)) {
-   	    if (SDL_LockSurface (sdlImage) < 0) {
+	if (SDL_MUSTLOCK (sdlImage)) {
+	    if (SDL_LockSurface (sdlImage) < 0) {
 			SDL_FreeSurface (sdlImage);
-	   		Message ("mustlock error");
+			Message ("mustlock error");
 			return false;
 		};
-   	}
+	}
 
 	sdlData = (unsigned char *) sdlImage->pixels;
 
@@ -107,7 +107,7 @@ bool CImage::ReadFrameBuffer_PPM () {
 
 	glReadBuffer (GL_FRONT);
 
-	for (int i=0; i<viewport[3]; i++){
+	for (int i=0; i<viewport[3]; i++) {
 		glReadPixels (viewport[0], viewport[1] + viewport[3] - 1 - i,
 			viewport[2], 1, GL_RGB, GL_UNSIGNED_BYTE, data + viewport[2] * i * 3);
 	}
@@ -324,7 +324,7 @@ bool TTexture::LoadMipmap(const string& filename, bool repeatable) {
 	glBindTexture (GL_TEXTURE_2D, id);
     glPixelStorei (GL_UNPACK_ALIGNMENT, 4);
 
-   if  (repeatable) {
+   if (repeatable) {
 		glTexParameterf (GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 		glTexParameterf (GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
     } else {

@@ -154,7 +154,7 @@ public:
 	void Draw (size_t idx);
 	CCharShape *GetShape (size_t idx);
 	void LoadCharacterList ();
- 	void FreeCharacterPreviews ();
+	void FreeCharacterPreviews ();
 
 	CKeyframe *GetKeyframe (size_t idx, TFrameType type);
 };

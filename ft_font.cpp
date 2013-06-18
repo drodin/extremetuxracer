@@ -158,7 +158,7 @@ float FTFont::Advance (const char* string) {
     const unsigned char* c = (unsigned char*)string;
     float width = 0.0f;
 
-    while (*c)  {
+    while (*c) {
         if(CheckGlyph (*c)) width += glyphList->Advance (*c, *(c + 1));
         ++c;
     }
@@ -175,7 +175,7 @@ void FTFont::Render (const char* string) {
     }
 }
 
-void FTFont::Render (const wchar_t* string){
+void FTFont::Render (const wchar_t* string) {
     const wchar_t* c = string;
     pen.X(0); pen.Y(0);
 
@@ -209,7 +209,7 @@ const FTLibrary &FTLibrary::Instance () {
 
 FTLibrary::~FTLibrary () {
 //	PrintStr ("desctructor FTLibrary");
-	if (library != 0)  {
+	if (library != 0) {
         FT_Done_FreeType (*library);
         delete library;
         library= 0;
@@ -347,7 +347,7 @@ bool operator !=  (const FTPoint &a, const FTPoint &b) {
 	!= b.values[1]) || (a.values[2] != b.values[2]));
 }
 
-FTPoint operator * (double multiplier, FTPoint& point){
+FTPoint operator * (double multiplier, FTPoint& point) {
     return point * multiplier;
 }
 

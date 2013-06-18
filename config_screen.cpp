@@ -76,7 +76,7 @@ void RestartSDL () {
 
 	// second restore the freed resources
 	Winsys.Init ();					// includes SetVideoMode
- 	Audio.Open ();					// clear, it has been closed before
+	Audio.Open ();					// clear, it has been closed before
 	Sound.LoadSoundList ();			// all sounds must loaded again
 	Music.LoadMusicList (); 		// same with music pieces
 	Tex.LoadTextureList ();			// common textures
@@ -169,7 +169,7 @@ void CGameConfig::Motion (int x, int y) {
 
     TVector2 old_pos = cursor_pos;
     cursor_pos = TVector2(x, y);
-    if  (old_pos.x != x || old_pos.y != y) {
+    if (old_pos.x != x || old_pos.y != y) {
 		if (param.ui_snow) push_ui_snow (cursor_pos);
     }
 }

@@ -37,7 +37,7 @@ void InitTestLight () {
 		testlight.ambient[i]  = tedef_amb[i];
 		testlight.diffuse[i]  = tedef_diff[i];
 		testlight.specular[i] = tedef_spec[i];
- 		testlight.position[i] = tedef_pos[i];
+		testlight.position[i] = tedef_pos[i];
 	}
 }
 
@@ -61,7 +61,7 @@ void COglTest::Keyb(unsigned int key, bool special, bool release, int x, int y) 
 void COglTest::Enter() {
 	InitTestLight ();
 	Winsys.KeyRepeat (true);
- 	g_game.loopdelay = 1;
+	g_game.loopdelay = 1;
 }
 
 void COglTest::Loop(double timestep) {
@@ -73,7 +73,7 @@ void COglTest::Loop(double timestep) {
 
 	glLoadIdentity ();
 	glPushMatrix ();
- 	SetTestLight ();
+	SetTestLight ();
 
 /*
 	glTranslatef (xposition, yposition, zposition);

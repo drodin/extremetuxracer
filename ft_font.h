@@ -39,9 +39,9 @@ typedef double FTGL_DOUBLE;
 #endif
 
 #ifdef _MSC_VER // MS Visual C++
-    #pragma warning(disable : 4251 )
-    #pragma warning(disable : 4275 )
-    #pragma warning(disable : 4786 )
+    #pragma warning(disable : 4251)
+    #pragma warning(disable : 4275)
+    #pragma warning(disable : 4786)
 
     #ifdef FTGL_LIBRARY_STATIC      // static lib - no special export required
     #  define FTGL_EXPORT
@@ -276,7 +276,7 @@ public:
     ~FTLibrary();
 private:
     FTLibrary();
-    FTLibrary(const FT_Library&){}
+    FTLibrary(const FT_Library&) {}
     FTLibrary& operator=(const FT_Library&) { return *this; }
     bool Initialise();
     FT_Library* library;
@@ -295,7 +295,7 @@ class FTGL_EXPORT FTPoint {
             values[2] = 0;
         }
 
-        FTPoint(const FTGL_DOUBLE x, const FTGL_DOUBLE y, const FTGL_DOUBLE z){
+        FTPoint(const FTGL_DOUBLE x, const FTGL_DOUBLE y, const FTGL_DOUBLE z) {
             values[0] = x;
             values[1] = y;
             values[2] = z;
@@ -367,7 +367,7 @@ public:
 	float Height() const;
 	float Width() const;
 	float Underline() const;
- 	FT_Error Error() const { return err; }
+	FT_Error Error() const { return err; }
 private:
 	FT_Face* ftFace;
 	FT_Size ftSize;
@@ -384,7 +384,7 @@ private:
 class FTGL_EXPORT FTFace {
 public:
     FTFace(const char* fontFilePath);
-    FTFace(const unsigned char *pBufferBytes, size_t bufferSizeInBytes );
+    FTFace(const unsigned char *pBufferBytes, size_t bufferSizeInBytes);
     virtual ~FTFace();
     bool Attach(const char* fontFilePath);
     bool Attach(const unsigned char *pBufferBytes, size_t bufferSizeInBytes);
@@ -529,7 +529,7 @@ class FTGL_EXPORT FTGlyphContainer {
         FTGlyphContainer (FTFace* face);
         ~FTGlyphContainer();
         bool CharMap(FT_Encoding encoding);
-        unsigned int FontIndex(const unsigned int characterCode ) const;
+        unsigned int FontIndex(const unsigned int characterCode) const;
         void Add(FTGlyph* glyph, const unsigned int characterCode);
         const FTGlyph* const Glyph(const unsigned int characterCode) const;
         FTBBox BBox(const unsigned int characterCode) const;
@@ -555,7 +555,7 @@ class FTGL_EXPORT FTTextureGlyph : public FTGlyph {
 			GLsizei width, GLsizei height);
         virtual ~FTTextureGlyph();
         virtual const FTPoint& Render(const FTPoint& pen);
-        static void ResetActiveTexture(){ activeTextureID = 0;}
+        static void ResetActiveTexture() { activeTextureID = 0;}
     private:
         int destWidth;
         int destHeight;
@@ -582,7 +582,7 @@ class FTGL_EXPORT FTFont {
         FT_Encoding* CharMapList();
         virtual bool FaceSize(const unsigned int size, const unsigned int res = 72);
         unsigned int FaceSize() const;
-        virtual void Depth(float depth){}
+        virtual void Depth(float depth) {}
         void UseDisplayList(bool useList);
         float Ascender() const;
         float Descender() const;
@@ -593,8 +593,8 @@ class FTGL_EXPORT FTFont {
 			float& llz, float& urx, float& ury, float& urz);
         float Advance (const wchar_t* string);
         float Advance (const char* string);
-        virtual void Render (const char* string );
-        virtual void Render (const wchar_t* string );
+        virtual void Render (const char* string);
+        virtual void Render (const wchar_t* string);
         FT_Error Error() const { return err;}
 
     protected:

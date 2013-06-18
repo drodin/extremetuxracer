@@ -169,7 +169,7 @@ void CSound::Halt (size_t soundid) {
 	if (sounds[soundid].loop_count < 0) {
 		Mix_HaltChannel (sounds[soundid].channel);
 	    sounds[soundid].loop_count = 0;
-   		sounds[soundid].channel = -1;
+		sounds[soundid].channel = -1;
 		sounds[soundid].active = false;
 	}
 }
@@ -341,7 +341,7 @@ bool CMusic::Play (const string& name, int loop, int volume) {
 	return Play (GetMusicIdx (name), loop, volume);
 }
 
-bool CMusic::PlayTheme (size_t theme, ESituation situation)  {
+bool CMusic::PlayTheme (size_t theme, ESituation situation) {
 	if (theme >= themes.size()) return false;
 	if (situation >= SITUATION_COUNT) return false;
 	size_t musid = themes [theme].situation[situation];

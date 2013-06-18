@@ -71,7 +71,7 @@ bool		IntersectPolygon (const TPolygon& p, TVector3 *v);
 bool		IntersectPolyhedron (const TPolyhedron& p);
 TVector3	MakeNormal (const TPolygon& p, TVector3 *v);
 TPolyhedron	CopyPolyhedron (const TPolyhedron& ph);
-void		FreePolyhedron (const TPolyhedron& ph) ;
+void		FreePolyhedron (const TPolyhedron& ph);
 void		TransPolyhedron (TMatrix mat, const TPolyhedron& ph);
 
 // --------------------------------------------------------------------

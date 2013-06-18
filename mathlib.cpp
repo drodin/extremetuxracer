@@ -133,7 +133,7 @@ bool IntersectPlanes (const TPlane& s1, const TPlane& s2, const TPlane& s3, TVec
 
 	retval = Gauss ((double*) A, 3, x);
 
-	if  (retval != 0) {
+	if (retval != 0) {
 		return false;
 	} else {
 		p->x = x[0];
@@ -151,9 +151,9 @@ double DistanceToPlane (const TPlane& plane, const TVector3& pt) {
 		plane.d;
 }
 
-void MakeIdentityMatrix(TMatrix h){
-	for (int i= 0 ; i< 4 ; i++)
-		for (int j= 0 ; j< 4 ; j++)
+void MakeIdentityMatrix(TMatrix h) {
+	for (int i= 0; i< 4; i++)
+		for (int j= 0; j< 4; j++)
 			h[i][j]= (i==j);
 }
 
@@ -278,8 +278,8 @@ void RotateAboutVectorMatrix (TMatrix mat, const TVector3& u, double angle) {
 
 	double d = sqrt (b*b + c*c);
 
-	if  (d < EPS) {
-		if  (a < 0)
+	if (d < EPS) {
+		if (a < 0)
 			MakeRotationMatrix (mat, -angle, 'x');
 		else
 			MakeRotationMatrix (mat, angle, 'x');
@@ -543,7 +543,7 @@ void elim (double *matrix, int n, int pivot) {
 
 
 void backsb (double *matrix, int n, double *soln) {
-	for (int row = n-1; row >=0; row--){
+	for (int row = n-1; row >=0; row--) {
 		for (int col = n-1; col >= row+1; col--) {
 			*(matrix+row*(n+1)+(n)) = *(matrix+row*(n+1)+n) -
 				(*(soln+col))*(*(matrix+row*(n+1)+col));
@@ -565,16 +565,16 @@ bool IntersectPolygon (const TPolygon& p, TVector3 *v) {
 	ray.vec = nml;
 
 	nuDotProd = DotProduct (nml, ray.vec);
-	if  (fabs(nuDotProd) < EPS)
+	if (fabs(nuDotProd) < EPS)
 		return false;
 
 	d = - (nml.x * v[p.vertices[0]].x +
 		nml.y * v[p.vertices[0]].y +
 		nml.z * v[p.vertices[0]].z);
 
-	if  (fabs (d) > 1) return false;
+	if (fabs (d) > 1) return false;
 
-	for  (int i=0; i < p.num_vertices; i++) {
+	for (int i=0; i < p.num_vertices; i++) {
 		TVector3 *v0, *v1;
 
 		v0 = &v[p.vertices[i]];
@@ -585,16 +585,16 @@ bool IntersectPolygon (const TPolygon& p, TVector3 *v) {
 
 		double t = - DotProduct (*v0, edge_vec);
 
-		if  (t < 0) {
+		if (t < 0) {
 			distsq = MAG_SQD (*v0);
-		} else if  (t > edge_len) {
+		} else if (t > edge_len) {
 			distsq = MAG_SQD (*v1);
 		} else {
 			*v0 = AddVectors (*v0, ScaleVector (t, edge_vec));
 			distsq = MAG_SQD (*v0);
 		}
 
-		if  (distsq <= 1) return true;
+		if (distsq <= 1) return true;
 	}
 
 	s = - (d + DotProduct (nml, TVector3(ray.pt.x, ray.pt.y, ray.pt.z))) / nuDotProd;
@@ -614,7 +614,7 @@ bool IntersectPolyhedron (const TPolyhedron& p) {
 	bool hit = false;
 	for (size_t i=0; i<p.num_polygons; i++) {
 		hit = IntersectPolygon (p.polygons[i], p.vertices);
-		if  (hit == true) break;
+		if (hit == true) break;
 	}
 	return hit;
 }
@@ -674,7 +674,7 @@ double ode23_NextTime(TOdeData *data, int step) {
 double ode23_NextValue (TOdeData *data, int step) {
 	double val = data->init_val;
 
-	for  (int i=0; i<step; i++)
+	for (int i=0; i<step; i++)
 		val += ode23_coeff_mat[i][step] * data->k[i];
 	return val;
 }
@@ -694,7 +694,7 @@ double ode23_FinalEstimate(TOdeData *data) {
 double ode23_EstimateError(TOdeData *data) {
 	double err=0.;
 
-	for  (int i=0; i<4; i++)
+	for (int i=0; i<4; i++)
 		err += ode23_error_mat[i] * data->k[i];
 	return fabs(err);
 }
@@ -716,7 +716,7 @@ TOdeSolver NewOdeSolver23() {
 	return s;
 }
 
-double LinearInterp (const double x[], const double y[], double val, int n){
+double LinearInterp (const double x[], const double y[], double val, int n) {
 	int i;
 	double m, b;
 

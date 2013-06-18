@@ -37,7 +37,7 @@ CWinsys::CWinsys () {
 	numJoysticks = 0;
 	joystick_active = false;
 
- 	resolution[0] = MakeRes (0, 0);
+	resolution[0] = MakeRes (0, 0);
 	resolution[1] = MakeRes (800, 600);
 	resolution[2] = MakeRes (1024, 768);
 	resolution[3] = MakeRes (1152, 864);
@@ -85,7 +85,7 @@ void CWinsys::SetupVideoMode (TScreenRes resolution) {
     int bpp = 0;
     Uint32 video_flags = SDL_OPENGL;
     if (param.fullscreen) video_flags |= SDL_FULLSCREEN;
-	switch (param.bpp_mode ) {
+	switch (param.bpp_mode) {
 		case 0:	bpp = 0; break;
 		case 1:	bpp = 16; break;
 		case 2:	bpp = 32; break;
@@ -106,7 +106,7 @@ void CWinsys::SetupVideoMode (TScreenRes resolution) {
 		auto_x_resolution = param.x_resolution;
 		auto_y_resolution = param.y_resolution;
 	}
- 	param.scale = CalcScreenScale ();
+	param.scale = CalcScreenScale ();
 	if (param.use_quad_scale) param.scale = sqrt (param.scale);
 }
 

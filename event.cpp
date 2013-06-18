@@ -101,7 +101,7 @@ void CEvent::Motion (int x, int y) {
     TVector2 old_pos = cursor_pos;
     cursor_pos = TVector2(x, y);
 
-    if  (old_pos.x != x || old_pos.y != y) {
+    if (old_pos.x != x || old_pos.y != y) {
 		if (param.ui_snow) push_ui_snow (cursor_pos);
     }
 }
@@ -175,7 +175,7 @@ void CEvent::Loop (double timestep) {
 	int hh = param.y_resolution;
 
 	check_gl_error();
-	set_gl_options (GUI );
+	set_gl_options (GUI);
 	Music.Update ();
     ClearRenderContext ();
 	SetupGuiDisplay ();

@@ -289,7 +289,7 @@ void RenderChar (double timestep) {
 
 	glLoadIdentity ();
 	glPushMatrix ();
- 	SetToolLight ();
+	SetToolLight ();
 
 	TestChar.ResetRoot ();
 	TestChar.ResetJoints ();

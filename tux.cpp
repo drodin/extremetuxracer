@@ -232,7 +232,7 @@ void CCharShape::ScaleNode (size_t node_name, const TVector3& vec) {
     TCharNode *node;
     TMatrix matrix;
 
-    if  (GetNode (node_name, &node) == false) return;
+    if (GetNode (node_name, &node) == false) return;
 
 	MakeIdentityMatrix (matrix);
     MultiplyMatrices (node->trans, node->trans, matrix);
@@ -398,7 +398,7 @@ GLuint CCharShape::GetDisplayList (int divisions) {
 	static GLuint display_lists[MAX_SPHERE_DIV - MIN_SPHERE_DIV + 1] = {0};
 
     int idx = divisions - MIN_SPHERE_DIV;
-    if  (display_lists[idx] == 0) {
+    if (display_lists[idx] == 0) {
 		display_lists[idx] = glGenLists (1);
 		glNewList (display_lists[idx], GL_COMPILE);
 		DrawCharSphere (divisions);
@@ -454,7 +454,7 @@ void CCharShape::Draw () {
 	DrawNodes (node);
 	glDisable (GL_NORMALIZE);
 	if (param.perf_level > 2 && g_game.argument == 0) DrawShadow ();
- 	highlighted = false;
+	highlighted = false;
 }
 
 // --------------------------------------------------------------------
@@ -466,7 +466,7 @@ bool CCharShape::Load (const string& dir, const string& filename, bool with_acti
 	CreateRootNode ();
 	newActions = true;
 
- 	if (!list.Load (dir, filename)) {
+	if (!list.Load (dir, filename)) {
 		Message ("could not load character", filename);
 		return false;
 	}
@@ -485,7 +485,7 @@ bool CCharShape::Load (const string& dir, const string& filename, bool with_acti
 			double visible = SPFloatN (line, "vis", -1.0);
 			bool shadow = SPBoolN (line, "shad", false);
 			string order = SPStrN (line, "order", "");
- 			CreateCharNode (parent_name, node_name, name, fullname, order, shadow);
+			CreateCharNode (parent_name, node_name, name, fullname, order, shadow);
 			TVector3 rot = SPVector3N (line, "rot", NullVec);
 			MaterialNode (node_name, mat_name);
 			for (int ii=0; ii<(int)order.size(); ii++) {
@@ -535,7 +535,7 @@ void CCharShape::AdjustOrientation (CControl *ctrl, double dtime,
     static const TVector3 minus_z_vec(0, 0, -1);
     static const TVector3 y_vec(0, 1, 0);
 
-    if  (dist_from_surface > 0) {
+    if (dist_from_surface > 0) {
 		new_y = ScaleVector (1, ctrl->cvel);
 		NormVector (new_y);
 		new_z = ProjectToPlane (new_y, TVector3(0, -1, 0));
@@ -641,7 +641,7 @@ bool CCharShape::CheckPolyhedronCollision (TCharNode *node, TMatrix modelMatrix,
     MultiplyMatrices (newModelMatrix, modelMatrix, node->trans);
     MultiplyMatrices (newInvModelMatrix, node->invtrans, invModelMatrix);
 
-    if  (node->visible) {
+    if (node->visible) {
         TPolyhedron newph = CopyPolyhedron (ph);
         TransPolyhedron (newInvModelMatrix, newph);
         hit = IntersectPolyhedron (newph);
@@ -652,7 +652,7 @@ bool CCharShape::CheckPolyhedronCollision (TCharNode *node, TMatrix modelMatrix,
     TCharNode *child = node->child;
     while (child != NULL) {
         hit = CheckPolyhedronCollision (child, newModelMatrix, newInvModelMatrix, ph);
-        if  (hit == true) return hit;
+        if (hit == true) return hit;
         child = child->next;
     }
     return false;
@@ -685,7 +685,7 @@ void CCharShape::DrawShadowVertex (double x, double y, double z, TMatrix mat) {
     double old_y = pt.y;
     TVector3 nml = Course.FindCourseNormal (pt.x, pt.z);
     pt.y = Course.FindYCoord (pt.x, pt.z) + SHADOW_HEIGHT;
-    if  (pt.y > old_y) pt.y = old_y;
+    if (pt.y > old_y) pt.y = old_y;
     glNormal3f (nml.x, nml.y, nml.z);
     glVertex3f (pt.x, pt.y, pt.z);
 }
@@ -699,7 +699,7 @@ void CCharShape::DrawShadowSphere (TMatrix mat) {
     twopi = M_PI * 2.0;
     d_theta = d_phi = M_PI / div;
 
-    for  (phi = 0.0; phi + eps < M_PI; phi += d_phi) {
+    for (phi = 0.0; phi + eps < M_PI; phi += d_phi) {
 		double cos_theta, sin_theta;
 		double sin_phi, cos_phi;
 		double sin_phi_d_phi, cos_phi_d_phi;
@@ -709,11 +709,11 @@ void CCharShape::DrawShadowSphere (TMatrix mat) {
 		sin_phi_d_phi = sin (phi + d_phi);
 		cos_phi_d_phi = cos (phi + d_phi);
 
-        if  (phi <= eps) {
+        if (phi <= eps) {
 			glBegin (GL_TRIANGLE_FAN);
 				DrawShadowVertex (0., 0., 1., mat);
 
-				for  (theta = 0.0; theta + eps < twopi; theta += d_theta) {
+				for (theta = 0.0; theta + eps < twopi; theta += d_theta) {
 					sin_theta = sin (theta);
 					cos_theta = cos (theta);
 
@@ -727,10 +727,10 @@ void CCharShape::DrawShadowSphere (TMatrix mat) {
 				z = cos_phi_d_phi;
 				DrawShadowVertex (x, y, z, mat);
             glEnd();
-        } else if  (phi + d_phi + eps >= M_PI) {
+        } else if (phi + d_phi + eps >= M_PI) {
 			glBegin (GL_TRIANGLE_FAN);
 				DrawShadowVertex (0., 0., -1., mat);
-                for  (theta = twopi; theta - eps > 0; theta -= d_theta) {
+                for (theta = twopi; theta - eps > 0; theta -= d_theta) {
 					sin_theta = sin (theta);
 					cos_theta = cos (theta);
                     x = cos_theta * sin_phi;
@@ -967,9 +967,9 @@ void CCharShape::SaveCharNodes (const string& dir, const string& filename) {
 				switch (aa) {
 					case 0: line += " [trans] " + Vector_StrN (act->vec[ii], 2); break;
 					case 4: line += " [scale] " + Vector_StrN (act->vec[ii], 2); break;
- 					case 1: rotation.x = act->dval[ii]; rotflag = true; break;
- 					case 2: rotation.y = act->dval[ii]; rotflag = true; break;
- 					case 3: rotation.z = act->dval[ii]; rotflag = true; break;
+					case 1: rotation.x = act->dval[ii]; rotflag = true; break;
+					case 2: rotation.y = act->dval[ii]; rotflag = true; break;
+					case 3: rotation.z = act->dval[ii]; rotflag = true; break;
 					case 5: line += " [vis] " + Float_StrN (act->dval[ii], 0); break;
 					case 9: rotation.z = act->dval[ii]; rotflag = true; break;
 				}

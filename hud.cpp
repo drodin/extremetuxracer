@@ -49,7 +49,7 @@ static const GLfloat hud_white[] = { 1.0, 1.0, 1.0, 1.0 };
 
 static const TColor text_colour(0, 0, 0, 1);
 
-static void draw_time(){
+static void draw_time() {
     int min, sec, hundr;
     GetTimeComponents (g_game.time, &min, &sec, &hundr);
 	string timestr = Int_StrN (min, 2);
@@ -82,7 +82,7 @@ static void draw_time(){
 	}
 }
 
-static void draw_herring_count (int herring_count){
+static void draw_herring_count (int herring_count) {
 	string hcountstr = Int_StrN (herring_count, 3);
 	if (param.use_papercut_font < 2) {
 		Tex.DrawNumStr (hcountstr.c_str(), param.x_resolution - 90, 10, 1, colWhite);
@@ -120,7 +120,7 @@ void draw_partial_tri_fan (double fraction) {
     double angle_incr = 360.0 / CIRCLE_DIVISIONS;
 
     for (int i=0; i<divs; i++) {
-		if  (!trifan) {
+		if (!trifan) {
 		    start_tri_fan();
 	    	trifan = true;
 		}
@@ -129,9 +129,9 @@ void draw_partial_tri_fan (double fraction) {
 		glVertex2f (pt.x, pt.y);
     }
 
-    if  (cur_angle > angle + EPS) {
+    if (cur_angle > angle + EPS) {
 		cur_angle = angle;
-		if  (!trifan) {
+		if (!trifan) {
 		    start_tri_fan();
 	    	trifan = true;
 		}
@@ -139,7 +139,7 @@ void draw_partial_tri_fan (double fraction) {
 		glVertex2f (pt.x, pt.y);
     }
 
-    if  (trifan) {
+    if (trifan) {
 		glEnd();
 		trifan = false;
     }
@@ -182,12 +182,12 @@ void draw_gauge (double speed, double energy) {
 
 	double speedbar_frac = 0.0;
 
-	if  (speed > SPEEDBAR_GREEN_MAX_SPEED) {
+	if (speed > SPEEDBAR_GREEN_MAX_SPEED) {
 	    speedbar_frac = SPEEDBAR_GREEN_FRACTION;
 
-	    if  (speed > SPEEDBAR_YELLOW_MAX_SPEED) {
+	    if (speed > SPEEDBAR_YELLOW_MAX_SPEED) {
 			speedbar_frac += SPEEDBAR_YELLOW_FRACTION;
-			if  (speed > SPEEDBAR_RED_MAX_SPEED) {
+			if (speed > SPEEDBAR_RED_MAX_SPEED) {
 				speedbar_frac += SPEEDBAR_RED_FRACTION;
 			} else {
 				speedbar_frac += (speed - SPEEDBAR_YELLOW_MAX_SPEED) /
@@ -232,7 +232,7 @@ void DrawSpeed (double speed) {
 void DrawWind (double dir, double speed) {
 	Tex.Draw (SPEEDMETER, 10, param.y_resolution - 150, 1.0);
 	glPushMatrix ();
-    glDisable (GL_TEXTURE_2D );
+    glDisable (GL_TEXTURE_2D);
 
 	glColor4f (1, 0, 0, 0.5);
 	glTranslatef (82, 77, 0);
@@ -251,7 +251,7 @@ void DrawWind2 (float dir, float speed, CControl *ctrl) {
 	if (g_game.wind_id < 1) return;
 
 	Tex.Draw (SPEEDMETER, 0, param.y_resolution-140, 1.0);
-    glDisable (GL_TEXTURE_2D );
+    glDisable (GL_TEXTURE_2D);
 
 
 	float alpha, red, blue, len;
@@ -294,9 +294,9 @@ void DrawWind2 (float dir, float speed, CControl *ctrl) {
 	glEnd();
 	glPopMatrix ();
 
-    glEnable (GL_TEXTURE_2D );
+    glEnable (GL_TEXTURE_2D);
 
- 	Tex.Draw (SPEED_KNOB, 64, param.y_resolution - 74, 1.0);
+	Tex.Draw (SPEED_KNOB, 64, param.y_resolution - 74, 1.0);
 	string windstr = Int_StrN ((int)speed, 3);
 	if (param.use_papercut_font < 2) {
 		Tex.DrawNumStr (windstr.c_str(), 130, param.y_resolution - 55, 1, colWhite);
@@ -352,7 +352,7 @@ void DrawCoursePosition (CControl *ctrl) {
 	Course.GetPlayDimensions (&pw, &pl);
 	double fact = ctrl->cpos.z / pl;
 	if (fact > 1.0) fact = 1.0;
-    glEnable (GL_TEXTURE_2D );
+    glEnable (GL_TEXTURE_2D);
 	DrawPercentBar (-fact, param.x_resolution - 48, 280-128);
 	Tex.Draw (T_MASK_OUTLINE, param.x_resolution - 48, param.y_resolution - 280, 1.0);
 }

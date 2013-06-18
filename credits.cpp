@@ -85,25 +85,25 @@ void CCredits::DrawCreditsText (double time_step) {
     glRectf (0, 0, w, BOTT_Y);
 
     glBegin( GL_QUADS );
-		glVertex2f (0, BOTT_Y );
-		glVertex2f (w, BOTT_Y );
-		glColor4f (colBackgr.r, colBackgr.g, colBackgr.b, 0 );
-		glVertex2f (w, BOTT_Y + 30 );
-		glVertex2f (0, BOTT_Y + 30 );
+		glVertex2f (0, BOTT_Y);
+		glVertex2f (w, BOTT_Y);
+		glColor4f (colBackgr.r, colBackgr.g, colBackgr.b, 0);
+		glVertex2f (w, BOTT_Y + 30);
+		glVertex2f (0, BOTT_Y + 30);
     glEnd();
 
     glColor4dv ((double*)&colBackgr);
-    glRectf (0, h - TOP_Y, w, h );
+    glRectf (0, h - TOP_Y, w, h);
 
 	glBegin( GL_QUADS );
-		glVertex2f (w, h - TOP_Y );
-		glVertex2f (0, h - TOP_Y );
-		glColor4f (colBackgr.r, colBackgr.g, colBackgr.b, 0 );
-		glVertex2f (0, h - TOP_Y - 30 );
-		glVertex2f (w, h - TOP_Y - 30 );
+		glVertex2f (w, h - TOP_Y);
+		glVertex2f (0, h - TOP_Y);
+		glColor4f (colBackgr.r, colBackgr.g, colBackgr.b, 0);
+		glVertex2f (0, h - TOP_Y - 30);
+		glVertex2f (w, h - TOP_Y - 30);
     glEnd();
 
-	glColor4f (1, 1, 1, 1 );
+	glColor4f (1, 1, 1, 1);
     glEnable (GL_TEXTURE_2D);
 	if (offs < TOP_Y) y_offset = 0;
 }
@@ -137,7 +137,7 @@ static void DrawBackLogo (int x, int y, double size) {
 	glEnd();
 }
 
-void CCredits::Keyb (unsigned int key, bool special, bool release, int x, int y){
+void CCredits::Keyb (unsigned int key, bool special, bool release, int x, int y) {
 	if (release) return;
 	switch (key) {
 		case 109: moving = !moving; break;
@@ -146,7 +146,7 @@ void CCredits::Keyb (unsigned int key, bool special, bool release, int x, int y)
 	}
 }
 
-void CCredits::Mouse (int button, int state, int x, int y ){
+void CCredits::Mouse (int button, int state, int x, int y) {
 	if (state == 1) State::manager.RequestEnterState (GameTypeSelect);
 }
 
