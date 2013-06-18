@@ -63,7 +63,7 @@ void SetRaceConditions (void) {
 
 void CRaceSelect::Motion (int x, int y) {
 	MouseMoveGUI(x, y);
-	y = param.y_resolution - y;
+	y = Winsys.resolution.height - y;
 
     TVector2 old_pos = cursor_pos;
     cursor_pos = TVector2(x, y);
@@ -114,21 +114,21 @@ void CRaceSelect::Enter() {
 
 	CourseList = &Course.CourseList[0];
 
-	framewidth = 550 * param.scale;
-	frameheight = 50 * param.scale;
+	framewidth = 550 * Winsys.scale;
+	frameheight = 50 * Winsys.scale;
 	frametop = AutoYPosN (30);
 
 	area = AutoAreaN (30, 80, framewidth);
 	prevtop = AutoYPosN (50);
-	prevheight = 144 * param.scale;
-	prevwidth = 192 * param.scale;
+	prevheight = 144 * Winsys.scale;
+	prevwidth = 192 * Winsys.scale;
 	boxwidth = framewidth - prevwidth - 20;
 	boxleft = area.right - boxwidth;
 	icontop = AutoYPosN (40);
-	iconsize = 32 * param.scale;
+	iconsize = 32 * Winsys.scale;
 	iconspace = (int)((iconsize+6) * 1.5);
 	iconsumwidth = iconspace * 4 + iconsize;
-	iconleft = (param.x_resolution - iconsumwidth) / 2;
+	iconleft = (Winsys.resolution.width - iconsumwidth) / 2;
 
 	ResetGUI ();
 
@@ -148,8 +148,8 @@ void CRaceSelect::Enter() {
 }
 
 void CRaceSelect::Loop(double timestep) {
-	int ww = param.x_resolution;
-	int hh = param.y_resolution;
+	int ww = Winsys.resolution.width;
+	int hh = Winsys.resolution.height;
 	TColor col;
 
 	check_gl_error();

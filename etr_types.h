@@ -92,7 +92,6 @@ struct TPlane		{ TVector3 nml; double d; };
 struct TPolygon		{ int num_vertices; int *vertices; };
 struct TSphere		{ double radius; int divisions; };
 struct TRay			{ TVector3 pt; TVector3 vec; };
-struct TScreenRes	{ int width, height; };
 
 struct TPolyhedron {
     size_t num_vertices;

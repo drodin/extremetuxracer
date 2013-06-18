@@ -18,6 +18,7 @@ GNU General Public License for more details.
 #include "gui.h"
 #include "textures.h"
 #include "font.h"
+#include "winsys.h"
 #include <list>
 #include <vector>
 
@@ -65,7 +66,7 @@ TTextButton::TTextButton(int x, int y, const string& text_, double ftsize_)
 	if (ftsize < 0) ftsize = FT.AutoSizeN (4);
 
 	double len = FT.GetTextWidth (text);
-	if (x == CENTER) position.x = (int)((param.x_resolution - len) / 2);
+	if (x == CENTER) position.x = (int)((Winsys.resolution.width - len) / 2);
 	int offs = (int)(ftsize / 5);
 	mouseRect.left = position.x-20;
 	mouseRect.top = position.y+offs;
@@ -117,8 +118,8 @@ void TTextField::Draw() const {
 			x += FT.GetTextWidth (temp);
 		}
 		double w = 3;
-		double h = 26*param.scale;
-		double scrheight = param.y_resolution;
+		double h = 26*Winsys.scale;
+		double scrheight = Winsys.resolution.height;
 
 		glDisable (GL_TEXTURE_2D);
 		glColor4f (colYellow.r, colYellow.g, colYellow.b, colYellow.a);
@@ -208,7 +209,7 @@ void TIconButton::Draw () const {
 
 	int line = 3;
 	int framesize = size + 2 * line;
-	int t = param.y_resolution - position.y;
+	int t = Winsys.resolution.height - position.y;
 	int y = t - size;
 	int x = position.x;
 	int r = x + size;
@@ -296,9 +297,9 @@ void TArrow::Draw() const {
 		type += 3;
 
 	bl.x = position.x;
-	bl.y = param.y_resolution - position.y - 16;
+	bl.y = Winsys.resolution.height - position.y - 16;
 	tr.x = position.x + 32;
-	tr.y = param.y_resolution - position.y;
+	tr.y = Winsys.resolution.height - position.y;
 
 	double texleft = textl[type];
 	double texright = textr[type];
@@ -414,9 +415,9 @@ TUpDown* AddUpDown(int x, int y, int minimum, int maximum, int value, int distan
 
 void DrawFrameX (int x, int y, int w, int h, int line,
 		const TColor& backcol, const TColor& framecol, double transp) {
-	double yy = param.y_resolution - y - h;
+	double yy = Winsys.resolution.height - y - h;
 
-	if (x < 0) x = (param.x_resolution -w) / 2;
+	if (x < 0) x = (Winsys.resolution.width -w) / 2;
 	glPushMatrix();
 	glDisable (GL_TEXTURE_2D);
 
@@ -446,9 +447,9 @@ void DrawLevel (int x, int y, int level, double fact) {
 	static const double lev[4] = {0.0, 0.75, 0.5, 0.25};
 
 	bl.x = x;
-	bl.y = param.y_resolution - y - 32;
+	bl.y = Winsys.resolution.height - y - 32;
 	tr.x = x + 95;
-	tr.y = param.y_resolution - y;
+	tr.y = Winsys.resolution.height - y;
 
 	double bott = lev[level];
 	double top = bott + 0.25;
@@ -473,8 +474,8 @@ void DrawLevel (int x, int y, int level, double fact) {
 void DrawBonus (int x, int y, size_t max, size_t num) {
     TVector2 bl, tr;
 
-	bl.y = param.y_resolution - y - 32;
-	tr.y = param.y_resolution - y;
+	bl.y = Winsys.resolution.height - y - 32;
+	tr.y = Winsys.resolution.height - y;
 
 	glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable (GL_TEXTURE_2D);
@@ -517,7 +518,7 @@ void DrawBonusExt (int y, size_t numraces, size_t num) {
 
 	int framewidth = (int)numraces * 40 + 8;
 	int totalwidth = framewidth * 3 + 8;
-	int xleft = (param.x_resolution - totalwidth) / 2;
+	int xleft = (Winsys.resolution.width - totalwidth) / 2;
 	lleft[0] = xleft;
 	lleft[1] = xleft + framewidth + 4;
 	lleft[2] = xleft + framewidth + framewidth + 8;
@@ -526,8 +527,8 @@ void DrawBonusExt (int y, size_t numraces, size_t num) {
 	DrawFrameX (lleft[1], y, framewidth, 40, 1, col2, colBlack, 1);
 	DrawFrameX (lleft[2], y, framewidth, 40, 1, col2, colBlack, 1);
 	if (param.use_papercut_font > 0) FT.SetSize (20); else FT.SetSize (15);
-	bl.y = param.y_resolution - y - 32 -4;
-	tr.y = param.y_resolution - y - 0 -4;
+	bl.y = Winsys.resolution.height - y - 32 -4;
+	tr.y = Winsys.resolution.height - y - 0 -4;
 
 	glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable (GL_TEXTURE_2D);
@@ -559,7 +560,7 @@ void DrawBonusExt (int y, size_t numraces, size_t num) {
 
 void DrawCursor () {
 	Tex.Draw (MOUSECURSOR, cursor_x, cursor_y,
-		CURSOR_SIZE  * (double)param.x_resolution / 14000);
+		CURSOR_SIZE  * (double)Winsys.resolution.width / 14000);
 }
 
 
@@ -681,7 +682,7 @@ void ResetGUI () {
 // ------------------ new ---------------------------------------------
 
 int AutoYPosN (double percent) {
-	double hh = (double)param.y_resolution;
+	double hh = (double)Winsys.resolution.height;
 	double po = hh * percent / 100;
 	return (int)(po);
 }
@@ -690,9 +691,9 @@ TArea AutoAreaN (double top_perc, double bott_perc, int w) {
 	TArea res;
 	res.top = AutoYPosN (top_perc);
 	res.bottom = AutoYPosN (bott_perc);
-	if (w > param.x_resolution) w = param.x_resolution;
-	double left = (param.x_resolution - w) / 2;
+	if (w > Winsys.resolution.width) w = Winsys.resolution.width;
+	double left = (Winsys.resolution.width - w) / 2;
 	res.left = (int) left;
-	res.right = param.x_resolution - res.left;
+	res.right = Winsys.resolution.width - res.left;
 	return res;
 }

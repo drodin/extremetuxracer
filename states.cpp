@@ -97,9 +97,9 @@ void State::Manager::PollEvent() {
 					break;
 
 				case SDL_VIDEORESIZE:
-					if(param.x_resolution != event.resize.w || param.y_resolution != event.resize.h) {
-						param.x_resolution = event.resize.w;
-						param.y_resolution = event.resize.h;
+					if(Winsys.resolution.width != event.resize.w || Winsys.resolution.height != event.resize.h) {
+						Winsys.resolution.width = event.resize.w;
+						Winsys.resolution.height = event.resize.h;
 						Winsys.SetupVideoMode (param.res_type);
 						Reshape(event.resize.w, event.resize.h);
 					}

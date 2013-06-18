@@ -19,6 +19,7 @@ GNU General Public License for more details.
 #include "course.h"
 #include "ogl.h"
 #include "physics.h"
+#include "winsys.h"
 
 #define MIN_CAMERA_HEIGHT  1.5
 #define ABSOLUTE_MIN_CAMERA_HEIGHT  0.3
@@ -343,7 +344,7 @@ static char p_vertex_code[6];
 
 
 void SetupViewFrustum (CControl *ctrl) {
-    double aspect = (double) param.x_resolution /param.y_resolution;
+    double aspect = (double) Winsys.resolution.width /Winsys.resolution.height;
 
 	double near_dist = NEAR_CLIP_DIST;
 	double far_dist = param.forward_clip_distance;

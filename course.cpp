@@ -27,6 +27,7 @@ GNU General Public License for more details.
 #include "game_ctrl.h"
 #include "font.h"
 #include "physics.h"
+#include "winsys.h"
 
 CCourse Course;
 
@@ -730,11 +731,10 @@ bool CCourse::LoadCourseList () {
 		string line = list.Line(i);
 		CourseList[i].name = SPStrN (line, "name", "noname");
 		CourseList[i].dir = SPStrN (line, "dir", "nodir");
-		CourseList[i].author = SPStrN (line, "author", "unknown");
 
 		string desc = SPStrN (line, "desc", "");
 		FT.AutoSizeN (2);
-		FT.MakeLineList (desc.c_str(), &desclist, 335 * param.scale - 16.0);
+		FT.MakeLineList (desc.c_str(), &desclist, 335 * Winsys.scale - 16.0);
 		size_t cnt = desclist.Count ();
 		if (cnt > MAX_DESCRIPTION_LINES) cnt = MAX_DESCRIPTION_LINES;
 		CourseList[i].num_lines = cnt;
@@ -760,6 +760,7 @@ bool CCourse::LoadCourseList () {
 			}
 
 			line = paramlist.Line (0);
+			CourseList[i].author = SPStrN (line, "author", "unknown");
 			CourseList[i].width = SPFloatN (line, "width", 100);
 			CourseList[i].length = SPFloatN (line, "length", 1000);
 			CourseList[i].play_width = SPFloatN (line, "play_width", 90);

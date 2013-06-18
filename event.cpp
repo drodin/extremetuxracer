@@ -97,7 +97,7 @@ void CEvent::Mouse (int button, int state, int x, int y) {
 void CEvent::Motion (int x, int y) {
 	TWidget* foc = MouseMoveGUI(x, y);
 	if (foc != 0) curr_focus = foc;
-	y = param.y_resolution - y;
+	y = Winsys.resolution.height - y;
     TVector2 old_pos = cursor_pos;
     cursor_pos = TVector2(x, y);
 
@@ -147,7 +147,7 @@ void CEvent::Enter () {
 	messtop = AutoYPosN (50);
 	messtop2 = AutoYPosN (60);
 	bonustop = AutoYPosN (35);
-	texsize = 32 * param.scale;
+	texsize = 32 * Winsys.scale;
 	if (texsize < 32) texsize = 32;
 	dist = texsize + 2 * 4;
 	framebottom = frametop + (int)ecup->races.size() * dist + 10;
@@ -171,8 +171,8 @@ int resultlevel (size_t num, size_t numraces) {
 }
 
 void CEvent::Loop (double timestep) {
-	int ww = param.x_resolution;
-	int hh = param.y_resolution;
+	int ww = Winsys.resolution.width;
+	int hh = Winsys.resolution.height;
 
 	check_gl_error();
 	set_gl_options (GUI);
@@ -184,7 +184,7 @@ void CEvent::Loop (double timestep) {
 		update_ui_snow (timestep);
 		draw_ui_snow ();
 	}
-	Tex.Draw (T_TITLE_SMALL, CENTER, AutoYPosN (5), param.scale);
+	Tex.Draw (T_TITLE_SMALL, CENTER, AutoYPosN (5), Winsys.scale);
 	Tex.Draw (BOTTOM_LEFT, 0, hh-256, 1);
 	Tex.Draw (BOTTOM_RIGHT, ww-256, hh-256, 1);
 	Tex.Draw (TOP_LEFT, 0, 0, 1);

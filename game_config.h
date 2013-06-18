@@ -78,10 +78,6 @@ struct TParam {
     bool	display_fps;
 	bool	show_hud;
     TViewMode view_mode;
-
-	int 	x_resolution;
-	int 	y_resolution;
-	double	scale;		// scale factor for screen, see 'use_quad_scale'
 };
 
 void InitConfig (char *arg0);

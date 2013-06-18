@@ -53,7 +53,7 @@ static bool moveactive = false;
 static int comp = 0;
 
 void InitCharTools () {
-	charbase = (int)((param.y_resolution - 200) / 18);
+	charbase = (int)((Winsys.resolution.height - 200) / 18);
 	firstnode = 1;
 	lastnode = TestChar.GetNumNodes () -1;
 	curr_node = firstnode;
@@ -335,7 +335,7 @@ void RenderChar (double timestep) {
 		for (size_t i=0; i<num; i++) {
 			is_visible = false;
 			type = action->type[i];
-			yt = param.y_resolution - 120 + (int)i * 18;
+			yt = Winsys.resolution.height - 120 + (int)i * 18;
 			switch (type) {
 				case 0: DrawActionVec (i, "trans", yt, action->vec[i]); break;
 				case 1: DrawActionFloat (i, "x-rot", yt, action->dval[i]); break;
@@ -355,10 +355,10 @@ void RenderChar (double timestep) {
 	if (ToolsFinalStage ()) {
 		FT.SetSize (20);
 		FT.SetColor (colYellow);
-		FT.DrawString (-1, param.y_resolution - 50, "Quit program. Save character list (y/n)");
+		FT.DrawString (-1, Winsys.resolution.height - 50, "Quit program. Save character list (y/n)");
 	}
 
-	Reshape (param.x_resolution, param.y_resolution);
+	Reshape (Winsys.resolution.width, Winsys.resolution.height);
     Winsys.SwapBuffers ();
 	if (drawcount > 3) must_render = false;
 }

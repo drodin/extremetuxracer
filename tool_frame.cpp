@@ -39,7 +39,7 @@ static bool lastframe = 0;
 static bool keyrun = false;
 
 void InitFrameTools () {
-	framebase = (int)((param.y_resolution - 350) / 18);
+	framebase = (int)((Winsys.resolution.height - 350) / 18);
 	if (TestFrame.numFrames() < 1) TestFrame.AddFrame ();
 	curr_joint = 0;
 	last_joint = TestFrame.GetNumJoints () -1;
@@ -186,7 +186,7 @@ void RenderSingleFrame (double timestep) {
 	set_gl_options (TUX);
     ClearRenderContext (colDDBackgr);
 
-	string hlname = TestFrame.GetHighlightName (curr_joint);
+	const string& hlname = TestFrame.GetHighlightName (curr_joint);
 	TestChar.highlight_node = TestChar.GetNodeName (hlname);
 
 	glPushMatrix ();
@@ -226,15 +226,15 @@ void RenderSingleFrame (double timestep) {
 
 	FT.SetFont ("normal");
 	FT.SetColor (colLGrey);
-	PrintFrameParams (param.y_resolution - 330, TestFrame.GetFrame (curr_frame));
+	PrintFrameParams (Winsys.resolution.height - 330, TestFrame.GetFrame (curr_frame));
 
 	if (ToolsFinalStage ()) {
 		FT.SetSize (20);
 		FT.SetColor (colYellow);
-		FT.DrawString (-1, param.y_resolution - 50, "Quit program. Save character list (y/n)");
+		FT.DrawString (-1, Winsys.resolution.height - 50, "Quit program. Save character list (y/n)");
 	}
 
-	Reshape (param.x_resolution, param.y_resolution);
+	Reshape (Winsys.resolution.width, Winsys.resolution.height);
     Winsys.SwapBuffers();
 	must_render = false;
 }
@@ -272,6 +272,6 @@ void RenderSequence (double timestep) {
 	TestChar.Draw ();
 	glPopMatrix ();
 
-	Reshape (param.x_resolution, param.y_resolution);
+	Reshape (Winsys.resolution.width, Winsys.resolution.height);
     Winsys.SwapBuffers();
 }

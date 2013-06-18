@@ -30,58 +30,47 @@ GNU General Public License for more details.
 
 CWinsys Winsys;
 
-CWinsys::CWinsys () {
+CWinsys::CWinsys ()
+	: auto_resolution(800, 600)
+{
 	screen = NULL;
 
 	joystick = NULL;
 	numJoysticks = 0;
 	joystick_active = false;
 
-	resolution[0] = MakeRes (0, 0);
-	resolution[1] = MakeRes (800, 600);
-	resolution[2] = MakeRes (1024, 768);
-	resolution[3] = MakeRes (1152, 864);
-	resolution[4] = MakeRes (1280, 960);
-	resolution[5] = MakeRes (1280, 1024);
-	resolution[6] = MakeRes (1360, 768);
-	resolution[7] = MakeRes (1400, 1050);
-	resolution[8] = MakeRes (1440, 900);
-	resolution[9] = MakeRes (1680, 1050);
-
-	auto_x_resolution = 800;
-	auto_y_resolution = 600;
-
-	elapsed_time = 0;
+	resolutions[0] = TScreenRes(0, 0);
+	resolutions[1] = TScreenRes(800, 600);
+	resolutions[2] = TScreenRes(1024, 768);
+	resolutions[3] = TScreenRes(1152, 864);
+	resolutions[4] = TScreenRes(1280, 960);
+	resolutions[5] = TScreenRes(1280, 1024);
+	resolutions[6] = TScreenRes(1360, 768);
+	resolutions[7] = TScreenRes(1400, 1050);
+	resolutions[8] = TScreenRes(1440, 900);
+	resolutions[9] = TScreenRes(1680, 1050);
 }
 
-TScreenRes CWinsys::MakeRes (int width, int height) {
-	TScreenRes res;
-	res.width = width;
-	res.height = height;
-	return res;
+const TScreenRes& CWinsys::GetResolution (size_t idx) const {
+	if (idx >= NUM_RESOLUTIONS) return auto_resolution;
+	return resolutions[idx];
 }
 
-TScreenRes CWinsys::GetResolution (size_t idx) {
-	if (idx >= NUM_RESOLUTIONS) return MakeRes (800, 600);
-	return resolution[idx];
-}
-
-string CWinsys::GetResName (size_t idx) {
+string CWinsys::GetResName (size_t idx) const {
 	if (idx >= NUM_RESOLUTIONS) return "800 x 600";
 	if (idx == 0) return ("auto");
-	string line = Int_StrN (resolution[idx].width);
-	line += " x " + Int_StrN (resolution[idx].height);
+	string line = Int_StrN (resolutions[idx].width);
+	line += " x " + Int_StrN (resolutions[idx].height);
 	return line;
 }
 
-double CWinsys::CalcScreenScale () {
-	double hh = (double)param.y_resolution;
-	if (hh < 768) return 0.78;
-	else if (hh == 768) return 1.0;
-	else return (hh / 768);
+double CWinsys::CalcScreenScale () const {
+	if (resolution.height < 768) return 0.78;
+	else if (resolution.height == 768) return 1.0;
+	else return (resolution.height / 768);
 }
 
-void CWinsys::SetupVideoMode (TScreenRes resolution) {
+void CWinsys::SetupVideoMode (const TScreenRes& resolution_) {
     int bpp = 0;
     Uint32 video_flags = SDL_OPENGL;
     if (param.fullscreen) video_flags |= SDL_FULLSCREEN;
@@ -92,7 +81,7 @@ void CWinsys::SetupVideoMode (TScreenRes resolution) {
 		default: param.bpp_mode = 0; bpp = 0;
     }
 	if ((screen = SDL_SetVideoMode
-	(resolution.width, resolution.height, bpp, video_flags)) == NULL) {
+	(resolution_.width, resolution_.height, bpp, video_flags)) == NULL) {
 		Message ("couldn't initialize video",  SDL_GetError());
 		Message ("set to 800 x 600");
 		screen = SDL_SetVideoMode (800, 600, bpp, video_flags);
@@ -100,23 +89,21 @@ void CWinsys::SetupVideoMode (TScreenRes resolution) {
 		SaveConfigFile ();
 	}
 	SDL_Surface *surf = SDL_GetVideoSurface ();
-	param.x_resolution = surf->w;
-	param.y_resolution = surf->h;
+	resolution.width = surf->w;
+	resolution.height = surf->h;
 	if (resolution.width == 0 && resolution.height == 0) {
-		auto_x_resolution = param.x_resolution;
-		auto_y_resolution = param.y_resolution;
+		auto_resolution = resolution;
 	}
-	param.scale = CalcScreenScale ();
-	if (param.use_quad_scale) param.scale = sqrt (param.scale);
+	scale = CalcScreenScale ();
+	if (param.use_quad_scale) scale = sqrt (scale);
 }
 
 void CWinsys::SetupVideoMode (size_t idx) {
-	if (idx >= NUM_RESOLUTIONS) SetupVideoMode (MakeRes (800, 600));
-	else SetupVideoMode (resolution[idx]);
+	SetupVideoMode (GetResolution(idx));
 }
 
 void CWinsys::SetupVideoMode (int width, int height) {
-	SetupVideoMode (MakeRes (width, height));
+	SetupVideoMode (TScreenRes(width, height));
 }
 
 void CWinsys::InitJoystick () {
@@ -148,7 +135,7 @@ void CWinsys::Init () {
 	#endif
 
 	SetupVideoMode (GetResolution (param.res_type));
-	Reshape (param.x_resolution, param.y_resolution);
+	Reshape (resolution.width, resolution.height);
 
     SDL_WM_SetCaption (WINDOW_TITLE, WINDOW_TITLE);
 	KeyRepeat (false);
@@ -189,7 +176,7 @@ void CWinsys::Terminate () {
 	exit(0);
 }
 
-void CWinsys::PrintJoystickInfo () {
+void CWinsys::PrintJoystickInfo () const {
 	if (joystick_active == false) {
 		Message ("No joystick found");
 		return;
@@ -202,6 +189,6 @@ void CWinsys::PrintJoystickInfo () {
 	cout << "Joystick has " << num_axes << " ax" << (num_axes == 1 ? "i" : "e") << "s\n\n";
 }
 
-unsigned char *CWinsys::GetSurfaceData () {
+unsigned char *CWinsys::GetSurfaceData () const {
 	return (unsigned char*)screen->pixels;
 }

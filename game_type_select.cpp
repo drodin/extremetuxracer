@@ -81,7 +81,7 @@ void CGameTypeSelect::Keyb (unsigned int key, bool special, bool release, int x,
 
 void CGameTypeSelect::Motion (int x, int y) {
 	MouseMoveGUI(x, y);
-	y = param.y_resolution - y;
+	y = Winsys.resolution.height - y;
 	TVector2 old_pos = cursor_pos;
     cursor_pos = TVector2 (x, y);
 
@@ -112,8 +112,8 @@ void CGameTypeSelect::Enter () {
 }
 
 void CGameTypeSelect::Loop (double time_step) {
-	int ww = param.x_resolution;
-	int hh = param.y_resolution;
+	int ww = Winsys.resolution.width;
+	int hh = Winsys.resolution.height;
 
 	check_gl_error();
 	Music.Update ();
@@ -126,7 +126,7 @@ void CGameTypeSelect::Loop (double time_step) {
 		draw_ui_snow();
     }
 
-	Tex.Draw (T_TITLE, CENTER, AutoYPosN (5), param.scale);
+	Tex.Draw (T_TITLE, CENTER, AutoYPosN (5), Winsys.scale);
 	Tex.Draw (BOTTOM_LEFT, 0, hh-256, 1);
 	Tex.Draw (BOTTOM_RIGHT, ww-256, hh-256, 1);
 	Tex.Draw (TOP_LEFT, 0, 0, 1);

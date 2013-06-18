@@ -60,7 +60,7 @@ void CSplashScreen::Loop(double timestep) {
 	Trans.LoadTranslations (param.language); // Before first texts are being displayed
 
 //	FT.SetFont ("normal");
-	Tex.Draw (TEXLOGO, CENTER, 60, param.scale);
+	Tex.Draw (TEXLOGO, CENTER, 60, Winsys.scale);
 	FT.SetColor (colDYell);
 	FT.AutoSizeN (6);
 	int top = AutoYPosN (60);

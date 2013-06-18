@@ -193,8 +193,8 @@ void update_ui_snow (double time_step) {
     }
 }
 void draw_ui_snow () {
-    double xres = param.x_resolution;
-    double yres = param.y_resolution;
+    double xres = Winsys.resolution.width;
+    double yres = Winsys.resolution.height;
 
     glTexEnvf (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 	Tex.BindTex (SNOW_PART);
@@ -206,7 +206,7 @@ void draw_ui_snow () {
 }
 
 void push_ui_snow (const TVector2& pos) {
-    push_position = TVector2(pos.x/(double)param.x_resolution, pos.y/(double)param.y_resolution);
+    push_position = TVector2(pos.x/(double)Winsys.resolution.width, pos.y/(double)Winsys.resolution.height);
     if (!push_position_initialized) last_push_position = push_position;
     push_position_initialized = true;
 }
@@ -271,7 +271,7 @@ void Particle::Draw(CControl* ctrl) const {
 		max_tex_coord.x = 1.0;
 	}
 
-	TColor particle_colour = Env.ParticleColor ();
+	const TColor& particle_colour = Env.ParticleColor ();
 	glColor4f (particle_colour.r,
 			particle_colour.g,
 			particle_colour.b,
@@ -529,7 +529,7 @@ void TFlakeArea::Draw (CControl *ctrl) const {
 	set_gl_options (PARTICLES);
 	glTexEnvf (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 	Tex.BindTex (T_WIDGETS);
-	TColor particle_colour = Env.ParticleColor ();
+	const TColor& particle_colour = Env.ParticleColor ();
     glColor4f (particle_colour.r, particle_colour.g, particle_colour.b, particle_colour.a);
 
 	for (size_t i=0; i < flakes.size(); i++) {
@@ -823,7 +823,7 @@ void CCurtain::Draw (CControl *ctrl) {
 
 	set_gl_options (PARTICLES);
 	glTexEnvf (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-	TColor particle_colour = Env.ParticleColor ();
+	const TColor& particle_colour = Env.ParticleColor ();
 	glColor4f (particle_colour.r, particle_colour.g, particle_colour.b, 1.0);
 
 	// glEnable (GL_NORMALIZE);

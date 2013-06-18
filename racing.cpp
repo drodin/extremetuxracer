@@ -338,7 +338,7 @@ void CRacing::Loop (double time_step) {
 	DrawSnow (ctrl);
 	DrawHud (ctrl);
 
-	Reshape (param.x_resolution, param.y_resolution);
+	Reshape (Winsys.resolution.width, Winsys.resolution.height);
     Winsys.SwapBuffers ();
 	if (g_game.finish == false) g_game.time += time_step;
 }

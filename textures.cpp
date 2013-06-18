@@ -18,6 +18,7 @@ GNU General Public License for more details.
 #include "textures.h"
 #include "spx.h"
 #include "course.h"
+#include "winsys.h"
 #include <fstream>
 #include <cctype>
 #include <cstdio>
@@ -116,8 +117,8 @@ bool CImage::ReadFrameBuffer_PPM () {
 }
 
 void CImage::ReadFrameBuffer_TGA () {
-	nx = param.x_resolution;
-	ny = param.y_resolution;
+	nx = Winsys.resolution.width;
+	ny = Winsys.resolution.height;
 	depth = 3;
 
 	DisposeData ();
@@ -128,8 +129,8 @@ void CImage::ReadFrameBuffer_TGA () {
 }
 
 void CImage::ReadFrameBuffer_BMP () {
-	nx = param.x_resolution;
-	ny = param.y_resolution;
+	nx = Winsys.resolution.width;
+	ny = Winsys.resolution.height;
 	depth = 4;
 
 	DisposeData ();
@@ -186,8 +187,8 @@ void CImage::WriteTGA_H (const char *filepath) {
     for (int i=0; i<5; i++) header.tfColorMapSpec[i] = 0;
     header.tfOrigX = 0;
     header.tfOrigY = 0;
-    header.tfWidth = param.x_resolution;
-    header.tfHeight = param.y_resolution;
+    header.tfWidth = Winsys.resolution.width;
+    header.tfHeight = Winsys.resolution.height;
     header.tfBpp = 24;
     header.tfImageDes = 0;
 
@@ -388,14 +389,14 @@ void TTexture::Draw(int x, int y, float size, Orientation orientation) {
 	height = h * size;
 
 	if (orientation == OR_TOP) {
-		top = param.y_resolution - y;
+		top = Winsys.resolution.height - y;
 		bott = top - height;
 
 	} else {
 		bott = y;
 		top = bott + height;
     }
-	if (x >= 0) left = x; else left = (param.x_resolution - width) / 2;
+	if (x >= 0) left = x; else left = (Winsys.resolution.width - width) / 2;
 	right = left + width;
 
     glColor4f (1.0, 1.0, 1.0, 1.0);
@@ -419,13 +420,13 @@ void TTexture::Draw(int x, int y, float width, float height, Orientation orienta
 	glGetTexLevelParameteriv (GL_TEXTURE_2D, 0, GL_TEXTURE_HEIGHT, &h);
 
 	if (orientation == OR_TOP) {
-		top = param.y_resolution - y;
+		top = Winsys.resolution.height - y;
 		bott = top - height;
 	} else {
 		bott = y;
 		top = bott + height;
     }
-	if (x >= 0) left = x; else left = (param.x_resolution - width) / 2;
+	if (x >= 0) left = x; else left = (Winsys.resolution.width - width) / 2;
 	right = left + width;
 
     glColor4f (1.0, 1.0, 1.0, 1.0);
@@ -444,7 +445,7 @@ void TTexture::DrawFrame(int x, int y, double w, double h, int frame, const TCol
     GLint ww = GLint (w);
 	GLint hh = GLint (h);
 	GLint xx = x;
-	GLint yy = param.y_resolution - hh - y;
+	GLint yy = Winsys.resolution.height - hh - y;
 
 	glBindTexture (GL_TEXTURE_2D, id);
 
@@ -599,9 +600,9 @@ void CTexture::DrawNumChr (char c, int x, int y, int w, int h, const TColor& col
     TVector2 bl, tr;
 	// quad coords
 	bl.x = x;
-	bl.y = param.y_resolution - y - h;
+	bl.y = Winsys.resolution.height - y - h;
 	tr.x = x + w * 0.9;
-	tr.y = param.y_resolution - y;
+	tr.y = Winsys.resolution.height - y;
 
 	// texture coords
 	float texw = 22.0 / 256.0;

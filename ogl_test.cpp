@@ -90,6 +90,6 @@ void COglTest::Loop(double timestep) {
 	FT.SetSize (24);
 	FT.SetColor (colWhite);
 	FT.DrawString (CENTER, 10, "Test screen");
-	Reshape (param.x_resolution, param.y_resolution);
+	Reshape (Winsys.resolution.width, Winsys.resolution.height);
     Winsys.SwapBuffers ();
 }

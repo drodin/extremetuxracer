@@ -60,8 +60,8 @@ void CGameOver::Mouse (int button, int state, int x, int y) {
 void DrawMessageFrame (float x, float y, float w, float h, int line,
 		TColor backcol, TColor framecol, float transp) {
 
-	float yy = param.y_resolution - y - h;
-	if (x < 0) 	x = (param.x_resolution - w) / 2;
+	float yy = Winsys.resolution.height - y - h;
+	if (x < 0) 	x = (Winsys.resolution.width - w) / 2;
 
 	glPushMatrix();
 	glDisable (GL_TEXTURE_2D);
@@ -91,7 +91,7 @@ void DrawMessageFrame (float x, float y, float w, float h, int line,
 void GameOverMessage (CControl *ctrl) {
 	int fwidth = 500;
 
-	float leftframe = (param.x_resolution - fwidth) / 2;
+	float leftframe = (Winsys.resolution.width - fwidth) / 2;
 	float topframe = 80;
 
 	const TColor& backcol = colWhite;
@@ -210,8 +210,8 @@ void CGameOver::Enter() {
 void CGameOver::Loop(double time_step) {
     CControl *ctrl = Players.GetCtrl (g_game.player_id);
     int width, height;
-    width = param.x_resolution;
-    height = param.y_resolution;
+    width = Winsys.resolution.width;
+    height = Winsys.resolution.height;
     check_gl_error();
 
 	Music.Update ();

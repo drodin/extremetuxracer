@@ -67,7 +67,7 @@ void CNewPlayer::Mouse (int button, int state, int x, int y) {
 
 void CNewPlayer::Motion (int x, int y) {
 	MouseMoveGUI(x, y);
-	y = param.y_resolution - y;
+	y = Winsys.resolution.height - y;
 
     TVector2 old_pos = cursor_pos;
     cursor_pos = TVector2(x, y);
@@ -84,13 +84,13 @@ void CNewPlayer::Enter() {
 	Music.Play (param.menu_music, -1);
 
 	g_game.loopdelay = 10;
-	int framewidth = 400 * param.scale;
-	int frameheight = 50 * param.scale;
+	int framewidth = 400 * Winsys.scale;
+	int frameheight = 50 * Winsys.scale;
 	int frametop = AutoYPosN (38);
 	TArea area = AutoAreaN (30, 80, framewidth);
 	prevleft = area.left;
 	prevtop = AutoYPosN (52);
-	prevwidth = 75 * param.scale;
+	prevwidth = 75 * Winsys.scale;
 	prevoffs = 80;
 
 	ResetGUI();
@@ -105,8 +105,8 @@ void CNewPlayer::Enter() {
 }
 
 void CNewPlayer::Loop(double timestep) {
-	int ww = param.x_resolution;
-	int hh = param.y_resolution;
+	int ww = Winsys.resolution.width;
+	int hh = Winsys.resolution.height;
 	TColor col;
 
 	Music.Update ();
@@ -127,7 +127,7 @@ void CNewPlayer::Loop(double timestep) {
 	Tex.Draw (BOTTOM_RIGHT, ww-256, hh-256, 1);
 	Tex.Draw (TOP_LEFT, 0, 0, 1);
 	Tex.Draw (TOP_RIGHT, ww-256, 0, 1);
-	Tex.Draw (T_TITLE_SMALL, CENTER, AutoYPosN (5), param.scale);
+	Tex.Draw (T_TITLE_SMALL, CENTER, AutoYPosN (5), Winsys.scale);
 
 	FT.SetColor (colWhite);
 	FT.AutoSizeN (4);

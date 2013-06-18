@@ -38,8 +38,8 @@ void CLoading::Enter() {
 
 void CLoading::Loop(double time_step) {
 	TCourse *CourseList = &Course.CourseList[0];
-	int ww = param.x_resolution;
-    int hh = param.y_resolution;
+	int ww = Winsys.resolution.width;
+    int hh = Winsys.resolution.height;
 	string msg = Trans.Text(29);
 	msg += " " + CourseList[g_game.course_id].name;
 

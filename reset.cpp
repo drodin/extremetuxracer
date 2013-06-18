@@ -56,8 +56,8 @@ void CReset::Loop(double time_step) {
     size_t first_reset, last_reset, num_item_types;
     int best_loc;
 
-    width = param.x_resolution;
-    height = param.y_resolution;
+    width = Winsys.resolution.width;
+    height = Winsys.resolution.height;
 
     check_gl_error();
 	ClearRenderContext ();

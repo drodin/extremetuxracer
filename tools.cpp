@@ -142,11 +142,11 @@ void DrawQuad (float x, float y, float w, float h,
 }
 
 void DrawChanged () {
-	DrawQuad (param.x_resolution - 120, 10, 100, 22, param.y_resolution, colRed, 0);
+	DrawQuad (Winsys.resolution.width - 120, 10, 100, 22, Winsys.resolution.height, colRed, 0);
 	FT.SetFont ("normal");
 	FT.SetSize (18);
 	FT.SetColor (colBlack);
-	FT.DrawString (param.x_resolution - 110, 8, "changed");
+	FT.DrawString (Winsys.resolution.width - 110, 8, "changed");
 }
 
 void InitToolLight () {

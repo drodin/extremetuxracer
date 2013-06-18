@@ -49,7 +49,7 @@ void CCredits::LoadCreditList () {
 		TCredits credit;
 		credit.text = SPStrN (line, "text", "");
 
-		double offset = SPFloatN (line, "offs", 0) * OFFS_SCALE_FACTOR * param.scale;
+		double offset = SPFloatN (line, "offs", 0) * OFFS_SCALE_FACTOR * Winsys.scale;
 		if (i>0) credit.offs = CreditList.back().offs + (int)offset;
 		else credit.offs = offset;
 
@@ -60,8 +60,8 @@ void CCredits::LoadCreditList () {
 }
 
 void CCredits::DrawCreditsText (double time_step) {
-    double w = (double)param.x_resolution;
-    double h = (double)param.y_resolution;
+    double w = (double)Winsys.resolution.width;
+    double h = (double)Winsys.resolution.height;
 	double offs = 0.0;
 	if (moving) y_offset += time_step * 30;
 
@@ -122,10 +122,10 @@ static void DrawBackLogo (int x, int y, double size) {
 	width  = w * size;
 	height = h * size;
 
-	top = param.y_resolution - y;
+	top = Winsys.resolution.height - y;
 	bott = top - height;
 
-	if (x >= 0) left = x; else left = (param.x_resolution - width) / 2;
+	if (x >= 0) left = x; else left = (Winsys.resolution.width - width) / 2;
 	right = left + width;
 
     glColor4f (1.0, 1.0, 1.0, 0.4);
@@ -151,7 +151,7 @@ void CCredits::Mouse (int button, int state, int x, int y) {
 }
 
 void CCredits::Motion(int x, int y) {
-    y = param.y_resolution - y;
+    y = Winsys.resolution.height - y;
     TVector2 old_pos = cursor_pos;
     cursor_pos = TVector2(x, y);
 
@@ -167,8 +167,8 @@ void CCredits::Enter() {
 }
 
 void CCredits::Loop(double time_step) {
-	int ww = param.x_resolution;
-	int hh = param.y_resolution;
+	int ww = Winsys.resolution.width;
+	int hh = Winsys.resolution.height;
 
 	Music.Update ();
 	check_gl_error();
@@ -186,7 +186,7 @@ void CCredits::Loop(double time_step) {
 	Tex.Draw (BOTTOM_RIGHT, ww-256, hh-256, 1);
 	Tex.Draw (TOP_LEFT, 0, 0, 1);
 	Tex.Draw (TOP_RIGHT, ww-256, 0, 1);
-	Tex.Draw (T_TITLE_SMALL, CENTER, AutoYPosN (5), param.scale);
+	Tex.Draw (T_TITLE_SMALL, CENTER, AutoYPosN (5), Winsys.scale);
 
 
 	Reshape (ww, hh);

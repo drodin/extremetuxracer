@@ -72,7 +72,7 @@ void CRegist::Mouse (int button, int state, int x, int y) {
 
 void CRegist::Motion (int x, int y) {
 	MouseMoveGUI(x, y);
-	y = param.y_resolution - y;
+	y = Winsys.resolution.height - y;
 
     TVector2 old_pos = cursor_pos;
     cursor_pos = TVector2(x, y);
@@ -89,7 +89,7 @@ void CRegist::Enter (void) {
 	Winsys.ShowCursor (!param.ice_cursor);
 	Music.Play (param.menu_music, -1);
 
-	scale = param.scale;
+	scale = Winsys.scale;
 	framewidth = (int)(scale * 280);
 	frameheight = (int)(scale * 50);
 	arrowwidth = 50;
@@ -109,8 +109,8 @@ void CRegist::Enter (void) {
 }
 
 void CRegist::Loop (double timestep) {
-	int ww = param.x_resolution;
-	int hh = param.y_resolution;
+	int ww = Winsys.resolution.width;
+	int hh = Winsys.resolution.height;
 	Music.Update ();
 	check_gl_error();
     ClearRenderContext ();

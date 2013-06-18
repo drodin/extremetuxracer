@@ -17,6 +17,7 @@ GNU General Public License for more details.
 
 #include "ogl.h"
 #include "spx.h"
+#include "winsys.h"
 #include <cstdarg>
 
 struct gl_value_t {
@@ -176,7 +177,7 @@ void SetupGuiDisplay () {
 
     glMatrixMode (GL_PROJECTION);
     glLoadIdentity ();
-    glOrtho (0, param.x_resolution, 0, param.y_resolution, -1.0, 1.0);
+    glOrtho (0, Winsys.resolution.width, 0, Winsys.resolution.height, -1.0, 1.0);
     glMatrixMode (GL_MODELVIEW);
     glLoadIdentity ();
     glTranslatef (offset, offset, -1.0);

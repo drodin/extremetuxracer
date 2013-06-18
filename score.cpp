@@ -191,7 +191,7 @@ void CScore::Mouse (int button, int state, int x, int y) {
 
 void CScore::Motion (int x, int y) {
 	MouseMoveGUI(x, y);
-	y = param.y_resolution - y;
+	y = Winsys.resolution.height - y;
 
     TVector2 old_pos = cursor_pos;
     cursor_pos = TVector2(x, y);
@@ -210,17 +210,17 @@ void CScore::Enter() {
 	Winsys.KeyRepeat (true);
 	Music.Play (param.menu_music, -1);
 
-	framewidth = 550 * param.scale;
-	frameheight = 50 * param.scale;
+	framewidth = 550 * Winsys.scale;
+	frameheight = 50 * Winsys.scale;
 	frametop = AutoYPosN (32);
 	area = AutoAreaN (30, 80, framewidth);
 	FT.AutoSizeN (3);
 	linedist = FT.AutoDistanceN (1);
 	listtop = AutoYPosN (44);
-	dd1 = 50 * param.scale;
-	dd2 = 115 * param.scale;
-	dd3 = 250 * param.scale;
-	dd4 = 375 * param.scale;
+	dd1 = 50 * Winsys.scale;
+	dd2 = 115 * Winsys.scale;
+	dd3 = 250 * Winsys.scale;
+	dd4 = 375 * Winsys.scale;
 
 	CourseList = &Course.CourseList[0];
 
@@ -236,8 +236,8 @@ const string ordinals[10] =
 	{"1:st", "2:nd", "3:rd", "4:th", "5:th", "6:th", "7:th", "8:th", "9:th", "10:th"};
 
 void CScore::Loop (double timestep) {
-	int ww = param.x_resolution;
-	int hh = param.y_resolution;
+	int ww = Winsys.resolution.width;
+	int hh = Winsys.resolution.height;
 
 	Music.Update ();
 	check_gl_error();
@@ -251,7 +251,7 @@ void CScore::Loop (double timestep) {
 	Tex.Draw (BOTTOM_RIGHT, ww-256, hh-256, 1);
 	Tex.Draw (TOP_LEFT, 0, 0, 1);
 	Tex.Draw (TOP_RIGHT, ww-256, 0, 1);
-	Tex.Draw (T_TITLE_SMALL, CENTER, AutoYPosN (5), param.scale);
+	Tex.Draw (T_TITLE_SMALL, CENTER, AutoYPosN (5), Winsys.scale);
 
 //	DrawFrameX (area.left, area.top, area.right-area.left, area.bottom - area.top,
 //			0, colMBackgr, colBlack, 0.2);

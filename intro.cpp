@@ -91,8 +91,8 @@ void CIntro::Enter() {
 
 void CIntro::Loop (double time_step) {
 	CControl *ctrl = Players.GetCtrl (g_game.player_id);
-    int width = param.x_resolution;
-    int height = param.y_resolution;
+    int width = Winsys.resolution.width;
+    int height = Winsys.resolution.height;
     check_gl_error();
 
 	if (startframe->active) {

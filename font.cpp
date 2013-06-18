@@ -19,6 +19,7 @@ GNU General Public License for more details.
 #include "font.h"
 #include "ft_font.h"
 #include "spx.h"
+#include "winsys.h"
 #include <deque>
 
 #define USE_UNICODE 1
@@ -219,7 +220,7 @@ void CFont::SetFont (const string& fontname) {
 int CFont::AutoSizeN (int rel_val) {
 	double size = (rel_val + 2) * 4;
 	size *= curr_fact;
-	size *= param.scale;
+	size *= Winsys.scale;
 	SetSize (size);
 	return (int)size;
 }
@@ -241,11 +242,11 @@ void CFont::DrawText(float x, float y, const char *text, size_t font, float size
 
 	float left;
 	if (x >= 0) left = x;
-	else left = (param.x_resolution - GetTextWidth (text)) / 2;
+	else left = (Winsys.resolution.width - GetTextWidth (text)) / 2;
 	if (left < 0) left = 0;
 
 	if (forientation == OR_TOP) {
-		glRasterPos2i ((int)left, (int)(param.y_resolution - curr_size - y));
+		glRasterPos2i ((int)left, (int)(Winsys.resolution.height - curr_size - y));
 	} else {
 		glRasterPos2i ((int)left, (int)y);
 	}
@@ -263,11 +264,11 @@ void CFont::DrawText(float x, float y, const wchar_t *text, size_t font, float s
 
 	float left;
 	if (x >= 0) left = x;
-	else left = (param.x_resolution - GetTextWidth (text)) / 2;
+	else left = (Winsys.resolution.width - GetTextWidth (text)) / 2;
 	if (left < 0) left = 0;
 
 	if (forientation == OR_TOP) {
-		glRasterPos2i ((int)left, (int)(param.y_resolution - curr_size - y));
+		glRasterPos2i ((int)left, (int)(Winsys.resolution.height - curr_size - y));
 	} else {
 		glRasterPos2i ((int)left, (int)y);
 	}
@@ -387,7 +388,7 @@ float CFont::GetTextWidth (const wchar_t *text, const string &fontname, float si
 }
 
 float CFont::CenterX (const char *text) const {
-	return (param.x_resolution - GetTextWidth (text)) / 2.0;
+	return (Winsys.resolution.width - GetTextWidth (text)) / 2.0;
 }
 
 void CFont::SetOrientation (Orientation orientation) {

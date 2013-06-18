@@ -165,7 +165,7 @@ void CGameConfig::Mouse (int button, int state, int x, int y) {
 
 void CGameConfig::Motion (int x, int y) {
 	MouseMoveGUI(x, y);
-	y = param.y_resolution - y;
+	y = Winsys.resolution.height - y;
 
     TVector2 old_pos = cursor_pos;
     cursor_pos = TVector2(x, y);
@@ -188,8 +188,8 @@ void CGameConfig::Enter() {
 
 	for (int i=0; i<NUM_RESOLUTIONS; i++) res_names[i] = Winsys.GetResName (i);
 
-	framewidth = 550 * param.scale;
-	frameheight = 50 * param.scale;
+	framewidth = 550 * Winsys.scale;
+	frameheight = 50 * Winsys.scale;
 	area = AutoAreaN (30, 80, framewidth);
 	FT.AutoSizeN (4);
 	dd = FT.AutoDistanceN (3);
@@ -215,8 +215,8 @@ void CGameConfig::Enter() {
 }
 
 void CGameConfig::Loop (double time_step) {
-	int ww = param.x_resolution;
-	int hh = param.y_resolution;
+	int ww = Winsys.resolution.width;
+	int hh = Winsys.resolution.height;
 
 	Music.Update ();
 

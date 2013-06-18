@@ -56,7 +56,7 @@ void PausedSetupDisplay () {
 
     glMatrixMode (GL_PROJECTION);
     glLoadIdentity();
-    glOrtho (0, param.x_resolution,  0, param.y_resolution, -1.0, 1.0);
+    glOrtho (0, Winsys.resolution.width,  0, Winsys.resolution.height, -1.0, 1.0);
     glMatrixMode (GL_MODELVIEW);
     glLoadIdentity();
     glTranslatef (offset, offset, -1.0);
@@ -67,8 +67,8 @@ void PausedSetupDisplay () {
 
 void CPaused::Loop (double time_step) {
     CControl *ctrl = Players.GetCtrl (g_game.player_id);
-    int width = param.x_resolution;
-    int height = param.y_resolution;
+    int width = Winsys.resolution.width;
+    int height = Winsys.resolution.height;
     check_gl_error();
 
 	Music.Update ();

@@ -71,7 +71,7 @@ void CEventSelect::Mouse (int button, int state, int x, int y) {
 
 void CEventSelect::Motion (int x, int y) {
 	MouseMoveGUI(x, y);
-	y = param.y_resolution - y;
+	y = Winsys.resolution.height - y;
     TVector2 old_pos = cursor_pos;
     cursor_pos = TVector2(x, y);
 
@@ -89,8 +89,8 @@ void CEventSelect::Enter () {
 	EventList = &Events.EventList[0];
 	CupList = &Events.CupList[0];
 
-	framewidth = 500 * param.scale;
-	frameheight = 50 * param.scale;
+	framewidth = 500 * Winsys.scale;
+	frameheight = 50 * Winsys.scale;
 	area = AutoAreaN (30, 80, framewidth);
 	frametop1 = AutoYPosN (35);
 	frametop2 = AutoYPosN (50);
@@ -112,8 +112,8 @@ void CEventSelect::Enter () {
 }
 
 void CEventSelect::Loop (double timestep) {
-	int ww = param.x_resolution;
-	int hh = param.y_resolution;
+	int ww = Winsys.resolution.width;
+	int hh = Winsys.resolution.height;
 	TColor col;
 
 	check_gl_error();
@@ -127,7 +127,7 @@ void CEventSelect::Loop (double timestep) {
 		draw_ui_snow ();
 	}
 
-	Tex.Draw (T_TITLE_SMALL, CENTER, AutoYPosN (5), param.scale);
+	Tex.Draw (T_TITLE_SMALL, CENTER, AutoYPosN (5), Winsys.scale);
 	Tex.Draw (BOTTOM_LEFT, 0, hh-256, 1);
 	Tex.Draw (BOTTOM_RIGHT, ww-256, hh-256, 1);
 	Tex.Draw (TOP_LEFT, 0, 0, 1);
