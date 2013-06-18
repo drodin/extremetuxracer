@@ -72,7 +72,7 @@ template<typename T>
 static T incrementRingIterator(T q) {
 	T ret = q;
 	++ret;
-	if(ret == track_marks.quads.end() && track_marks.quads.size() == MAX_TRACK_MARKS)
+	if(ret == track_marks.quads.end() || track_marks.quads.size() == MAX_TRACK_MARKS)
 		ret = track_marks.quads.begin();
 	return ret;
 }
@@ -154,23 +154,21 @@ void DrawTrackmarks() {
 				glTexCoord2f (q->t3.x, q->t3.y);
 				glVertex3f (q->v3.x, q->v3.y, q->v3.z);
 
-				list<track_quad_t>::const_iterator qnext = incrementRingIterator(q);
-				if(qnext != track_marks.quads.end()) {
-					while (qnext != track_marks.quads.end() && qnext->track_type == TRACK_MARK) {
-						q = qnext;
-						track_colour.a = qnext->alpha;
-						set_material (track_colour, colBlack, 1.0);
+				list<track_quad_t>::const_iterator qnext = q; ++qnext;
+				while (qnext != track_marks.quads.end() && qnext->track_type != TRACK_TAIL) {
+					q = qnext;
+					track_colour.a = q->alpha;
+					set_material (track_colour, colBlack, 1.0);
 
-						glNormal3f (q->n4.x, q->n4.y, q->n4.z);
-						glTexCoord2f (q->t4.x, q->t4.y);
-						glVertex3f (q->v4.x, q->v4.y, q->v4.z);
+					glNormal3f (q->n4.x, q->n4.y, q->n4.z);
+					glTexCoord2f (q->t4.x, q->t4.y);
+					glVertex3f (q->v4.x, q->v4.y, q->v4.z);
 
-						glNormal3f (q->n3.x, q->n3.y, q->n3.z);
-						glTexCoord2f (q->t3.x, q->t3.y);
-						glVertex3f (q->v3.x, q->v3.y, q->v3.z);
+					glNormal3f (q->n3.x, q->n3.y, q->n3.z);
+					glTexCoord2f (q->t3.x, q->t3.y);
+					glVertex3f (q->v3.x, q->v3.y, q->v3.z);
 
-						qnext = incrementRingIterator(qnext);
-					}
+					++qnext;
 				}
 			glEnd();
 		}
@@ -178,17 +176,17 @@ void DrawTrackmarks() {
 }
 
 void break_track_marks() {
-	list<track_quad_t>::iterator qprev = decrementRingIterator(track_marks.current_mark);
-    if (qprev != track_marks.quads.end()) {
-		qprev->track_type = TRACK_TAIL;
-		qprev->t1 = TVector2(0.0, 0.0);
-		qprev->t2 = TVector2(1.0, 0.0);
-		qprev->t3 = TVector2(0.0, 1.0);
-		qprev->t4 = TVector2(1.0, 1.0);
-		list<track_quad_t>::iterator qprevprev = decrementRingIterator(qprev);
-		if (qprevprev != track_marks.quads.end()) {
-			qprevprev->t3.y = max((int)(qprevprev->t3.y+0.5), (int)(qprevprev->t1.y+1));
-			qprevprev->t4.y = max((int)(qprevprev->t3.y+0.5), (int)(qprevprev->t1.y+1));
+	list<track_quad_t>::iterator q = track_marks.current_mark;
+	if (q != track_marks.quads.end()) {
+		q->track_type = TRACK_TAIL;
+		q->t1 = TVector2(0.0, 0.0);
+		q->t2 = TVector2(1.0, 0.0);
+		q->t3 = TVector2(0.0, 1.0);
+		q->t4 = TVector2(1.0, 1.0);
+		list<track_quad_t>::iterator qprev = decrementRingIterator(q);
+		if (qprev != track_marks.quads.end()) {
+			qprev->t3.y = max((int)(qprev->t3.y+0.5), (int)(qprev->t1.y+1));
+			qprev->t4.y = max((int)(qprev->t3.y+0.5), (int)(qprev->t1.y+1));
 		}
     }
     continuing_track = false;
@@ -259,15 +257,17 @@ void add_track_mark(CControl *ctrl, int *id) {
 	list<track_quad_t>::iterator q = track_marks.current_mark;
 
     if (!continuing_track) {
-		break_track_marks();
 		q->track_type = TRACK_HEAD;
 		q->v1 = TVector3 (left_wing.x, left_y + TRACK_HEIGHT, left_wing.z);
 		q->v2 = TVector3 (right_wing.x, right_y + TRACK_HEIGHT, right_wing.z);
+		q->v3 = TVector3 (left_wing.x, left_y + TRACK_HEIGHT, left_wing.z);
+		q->v4 = TVector3 (right_wing.x, right_y + TRACK_HEIGHT, right_wing.z);
 		q->n1 = Course.FindCourseNormal (q->v1.x, q->v1.z);
 		q->n2 = Course.FindCourseNormal (q->v2.x, q->v2.z);
 		q->t1 = TVector2(0.0, 0.0);
 		q->t2 = TVector2(1.0, 0.0);
     } else {
+		q->track_type = TRACK_TAIL;
 		if (qprev != track_marks.quads.end()) {
 		    q->v1 = qprev->v3;
 	    	q->v2 = qprev->v4;
@@ -275,8 +275,7 @@ void add_track_mark(CControl *ctrl, int *id) {
 		    q->n2 = qprev->n4;
 		    q->t1 = qprev->t3;
 		    q->t2 = qprev->t4;
-	    	if (qprev->track_type != TRACK_HEAD) qprev->track_type = TRACK_MARK;
-	    	q->track_type = TRACK_MARK;
+	if (qprev->track_type == TRACK_TAIL) qprev->track_type = TRACK_MARK;
 		}
 		q->v3 = TVector3 (left_wing.x, left_y + TRACK_HEIGHT, left_wing.z);
 		q->v4 = TVector3 (right_wing.x, right_y + TRACK_HEIGHT, right_wing.z);
