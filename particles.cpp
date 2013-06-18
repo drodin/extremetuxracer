@@ -395,7 +395,6 @@ double adjust_particle_count (double particles) {
 }
 
 void generate_particles (CControl *ctrl, double dtime, const TVector3& pos, double speed) {
-    TVector3 left_part_pt, right_part_pt;
     double brake_particles;
     double turn_particles;
     double roll_particles;
@@ -407,9 +406,10 @@ void generate_particles (CControl *ctrl, double dtime, const TVector3& pos, doub
     surf_y = Course.FindYCoord (pos.x, pos.z);
 
 	int id = Course.GetTerrainIdx (pos.x, pos.z, 0.5);
-	if (id >= 0 && TerrList[id].particles > 0 && pos.y < surf_y) {
+	if (id >= 0 && TerrList[id].particles && pos.y < surf_y) {
 		TVector3 xvec = CrossProduct (ctrl->cdirection, ctrl->plane_nml);
-        right_part_pt = left_part_pt = pos;
+        TVector3 right_part_pt = pos;
+		TVector3 left_part_pt = pos;
 
 		right_part_pt = AddVectors (
 		    right_part_pt,

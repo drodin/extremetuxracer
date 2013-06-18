@@ -59,9 +59,9 @@ void SingleFrameKeys (unsigned int key, bool special, bool release, int x, int y
 	else if (key == SDLK_F4) {GluCamera.farther = !release; return;}
 
 	// additional keys if needed
-	if (key == 304) shift = !release;
-	if (key == 306) control = !release;
-	if (key == 308) alt = !release;
+	if (key == SDLK_LSHIFT) shift = !release;
+	if (key == SDLK_LCTRL) control = !release;
+	if (key == SDLK_LALT) alt = !release;
 	if (shift) keyfact = -1; else keyfact = 1;
 
 	if (release) return;
@@ -75,7 +75,7 @@ void SingleFrameKeys (unsigned int key, bool special, bool release, int x, int y
 			} break;
 		case SDLK_n: if (ToolsFinalStage ()) State::manager.RequestQuit(); break;
 
-		case 27: case SDLK_q: QuitTool (); break;
+		case SDLK_ESCAPE: case SDLK_q: QuitTool (); break;
 		case SDLK_s: SaveToolFrame (); break;
 		case SDLK_TAB: SetToolMode (0); break;
 
@@ -83,11 +83,11 @@ void SingleFrameKeys (unsigned int key, bool special, bool release, int x, int y
 			TestFrame.AddFrame ();
 			SetFrameChanged (true);
 			break;
-		case 277:
+		case SDLK_INSERT:
 			TestFrame.InsertFrame (curr_frame);
 			SetFrameChanged (true);
 			break;
-		case 127:
+		case SDLK_DELETE:
 			curr_frame = TestFrame.DeleteFrame (curr_frame);
 			SetFrameChanged (true);
 			break;
@@ -109,13 +109,13 @@ void SingleFrameKeys (unsigned int key, bool special, bool release, int x, int y
 			frame->val[curr_joint] = 0.0;
 			SetFrameChanged (true);
 			break;
-		case 32:
+		case SDLK_SPACE:
 			if (curr_joint < 4) frame->val[curr_joint] += 0.05 * keyfact;
 			else frame->val[curr_joint] += 1 * keyfact;
 			SetFrameChanged (true);
 			break;
 
-		case 13:
+		case SDLK_RETURN:
 			TestFrame.InitTest (ref_position, &TestChar);
 			SetToolMode (2);
 			must_render = true;
@@ -247,8 +247,8 @@ void RenderSingleFrame (double timestep) {
 void SequenceKeys (unsigned int key, bool special, bool release, int x, int y) {
 	if (release) return;
 	switch (key) {
-		case 13: keyrun = true; break;
-		case 27: case SDLK_TAB: SetToolMode (1); break;
+		case SDLK_RETURN: keyrun = true; break;
+		case SDLK_ESCAPE: case SDLK_TAB: SetToolMode (1); break;
 		case SDLK_q: QuitTool (); break;
 	}
 }

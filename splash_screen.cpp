@@ -37,8 +37,8 @@ CSplashScreen SplashScreen;
 void CSplashScreen::Keyb(unsigned int key, bool special, bool release, int x, int y) {
 	if (release) return;
 	switch (key) {
-		case 27: State::manager.RequestQuit(); break;
-		case 13: State::manager.RequestEnterState (Regist); break;
+		case SDLK_ESCAPE: State::manager.RequestQuit(); break;
+		case SDLK_RETURN: State::manager.RequestEnterState (Regist); break;
 	}
 }
 

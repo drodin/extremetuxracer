@@ -63,14 +63,14 @@ static int lastsound = -1;
 void CRacing::Keyb (unsigned int key, bool special, bool release, int x, int y) {
 	switch (key) {
 		// steering flipflops
-		case 273: key_paddling = !release; break;
-		case 274: key_braking = !release; break;
-		case 276: left_turn = !release; break;
-		case 275: right_turn = !release; break;
-		case 32:  key_charging = !release; break;
+		case SDLK_UP: key_paddling = !release; break;
+		case SDLK_DOWN: key_braking = !release; break;
+		case SDLK_RIGHT: left_turn = !release; break;
+		case SDLK_LEFT: right_turn = !release; break;
+		case SDLK_SPACE: key_charging = !release; break;
 		case SDLK_t: trick_modifier = !release; break;
 		// mode changing and other actions
-		case 27:  if (!release) {
+		case SDLK_ESCAPE: if (!release) {
 			g_game.raceaborted = true;
 			g_game.race_result = -1;
 			State::manager.RequestEnterState (GameOver);

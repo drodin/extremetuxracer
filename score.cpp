@@ -173,11 +173,11 @@ void CScore::Keyb (unsigned int key, bool special, bool release, int x, int y) {
 	KeyGUI(key, 0, release);
 	if (release) return;
 	switch (key) {
-		case 27: State::manager.RequestEnterState (GameTypeSelect); break;
+		case SDLK_ESCAPE: State::manager.RequestEnterState (GameTypeSelect); break;
 		case SDLK_q: State::manager.RequestQuit(); break;
 		case SDLK_s: Score.SaveHighScore (); break;
 		case SDLK_l: Score.LoadHighScore (); break;
-		case 13: State::manager.RequestEnterState (GameTypeSelect); break;
+		case SDLK_RETURN: State::manager.RequestEnterState (GameTypeSelect); break;
 	}
 }
 

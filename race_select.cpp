@@ -87,14 +87,14 @@ void CRaceSelect::Keyb(unsigned int key, bool special, bool release, int x, int 
 	if (release) return;
 	KeyGUI(key, 0, release);
 	switch (key) {
-		case 27: State::manager.RequestEnterState (GameTypeSelect); break;
+		case SDLK_ESCAPE: State::manager.RequestEnterState (GameTypeSelect); break;
 		case SDLK_u: param.ui_snow = !param.ui_snow; break;
 		case SDLK_t: g_game.force_treemap = !g_game.force_treemap; break;
 		case SDLK_c: g_game.treesize++;
 				if (g_game.treesize > 5) g_game.treesize = 1; break;
 		case SDLK_v: g_game.treevar++;
 				if (g_game.treevar > 5) g_game.treevar = 1; break;
-		case 13: if (textbuttons[1]->focussed())
+		case SDLK_RETURN: if (textbuttons[1]->focussed())
 					 State::manager.RequestEnterState (GameTypeSelect);
 				 else
 					 SetRaceConditions (); break;

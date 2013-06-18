@@ -71,10 +71,10 @@ void CGameTypeSelect::Keyb (unsigned int key, bool special, bool release, int x,
 	KeyGUI(key, 0, release);
 	switch (key) {
 		case SDLK_u: param.ui_snow = !param.ui_snow; break;
-		case 27: State::manager.RequestQuit(); break;
-		case 274: IncreaseFocus(); break;
-		case 273: DecreaseFocus(); break;
-		case 13: QuitGameType(); break;
+		case SDLK_ESCAPE: State::manager.RequestQuit(); break;
+		case SDLK_DOWN: IncreaseFocus(); break;
+		case SDLK_UP: DecreaseFocus(); break;
+		case SDLK_RETURN: QuitGameType(); break;
 		case SDLK_w: Music.FreeMusics(); break;
 	}
 }

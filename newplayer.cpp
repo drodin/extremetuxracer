@@ -46,8 +46,8 @@ void CNewPlayer::Keyb_spec (SDL_keysym sym, bool release) {
 
 	KeyGUI(sym.sym, sym.mod, release);
 	switch (sym.sym) {
-		case 27: State::manager.RequestEnterState (Regist); break;
-		case 13:
+		case SDLK_ESCAPE: State::manager.RequestEnterState (Regist); break;
+		case SDLK_RETURN:
 			if (textbuttons[0]->focussed()) State::manager.RequestEnterState (Regist);
 			else QuitAndAddPlayer ();
 			break;

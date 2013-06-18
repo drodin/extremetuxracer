@@ -47,9 +47,9 @@ void EnterEvent () {
 void CEventSelect::Keyb (unsigned int key, bool special, bool release, int x, int y) {
     if (release) return;
 	switch (key) {
-		case 27: State::manager.RequestEnterState (GameTypeSelect); break;
+		case SDLK_ESCAPE: State::manager.RequestEnterState (GameTypeSelect); break;
 		case SDLK_q: State::manager.RequestQuit(); break;
-		case 13: if (textbuttons[1]->focussed()) State::manager.RequestEnterState (GameTypeSelect);
+		case SDLK_RETURN: if (textbuttons[1]->focussed()) State::manager.RequestEnterState (GameTypeSelect);
 			else if (Events.IsUnlocked (event->GetValue(), cup->GetValue())) EnterEvent(); break;
 		case SDLK_u: param.ui_snow = !param.ui_snow; break;
 		default:

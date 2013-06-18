@@ -86,11 +86,11 @@ struct TTerrType {
 	double friction;
 	double depth;
 	int vol_type;
-	int particles;
-	int trackmarks;
 	int starttex;
 	int tracktex;
 	int stoptex;
+	bool particles;
+	bool trackmarks;
 	bool shiny;
 };
 

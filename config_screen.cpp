@@ -140,8 +140,8 @@ void CGameConfig::Keyb (unsigned int key, bool special, bool release, int x, int
 		KeyGUI(key, 0, release);
 	switch (key) {
 		case SDLK_q: State::manager.RequestQuit(); break;
-		case 27: State::manager.RequestEnterState (*State::manager.PreviousState()); break;
-		case 13:
+		case SDLK_ESCAPE: State::manager.RequestEnterState (*State::manager.PreviousState()); break;
+		case SDLK_RETURN:
 			if(textbuttons[0]->focussed())
 				State::manager.RequestEnterState (*State::manager.PreviousState());
 			else if(textbuttons[1]->focussed())

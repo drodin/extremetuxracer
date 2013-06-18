@@ -101,14 +101,11 @@ void DrawTrackmarks() {
     TColor track_colour = colWhite;
 	set_gl_options (TRACK_MARKS);
 
-    glColor4f (0, 0, 0, 1);
-
 	textures[TRACK_HEAD] = Tex.GetTexture (trackid1);
 	textures[TRACK_MARK] = Tex.GetTexture (trackid2);
 	textures[TRACK_TAIL] = Tex.GetTexture (trackid3);
 
 	glTexEnvf (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-    set_material (colWhite, colBlack, 1.0);
 
 	for (list<track_quad_t>::const_iterator q = track_marks.quads.begin(); q != track_marks.quads.end(); ++q) {
 		track_colour.a = q->alpha;
@@ -207,7 +204,7 @@ void add_track_mark(CControl *ctrl, int *id) {
 		return;
 	}
 
-	if (TerrList[*id].trackmarks < 1) {
+	if (!TerrList[*id].trackmarks) {
 		break_track_marks();
 		return;
 	}

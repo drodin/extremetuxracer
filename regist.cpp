@@ -49,8 +49,8 @@ void CRegist::Keyb (unsigned int key, bool special, bool release, int x, int y) 
 	TWidget* focussed = KeyGUI(key, 0, release);
 	if (release) return;
 	switch (key) {
-		case 27: State::manager.RequestQuit(); break;
-		case 13:
+		case SDLK_ESCAPE: State::manager.RequestQuit(); break;
+		case SDLK_RETURN:
 			if (focussed == textbuttons[1]) {
 				g_game.player_id = player->GetValue();
 				State::manager.RequestEnterState (NewPlayer);

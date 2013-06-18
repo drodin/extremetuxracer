@@ -146,13 +146,13 @@ void TTextField::Key(unsigned int key, unsigned int mod, bool released) {
 		}
 	} else {
 		switch (key) {
-			case 127: if (cursorPos < text.size()) text.erase (cursorPos, 1); break;
-			case 8: if (cursorPos > 0) { text.erase (cursorPos-1, 1); cursorPos--; } break;
+			case SDLK_DELETE: if (cursorPos < text.size()) text.erase (cursorPos, 1); break;
+			case SDLK_BACKSPACE: if (cursorPos > 0) { text.erase (cursorPos-1, 1); cursorPos--; } break;
 			case SDLK_RIGHT: if (cursorPos < text.size()) cursorPos++; break;
 			case SDLK_LEFT: if (cursorPos > 0) cursorPos--; break;
-			case 278: cursorPos = 0; break;
-			case 279: cursorPos = text.size(); break;
-			case 32: text.insert(cursorPos, 1, 21); cursorPos++; break;
+			case SDLK_HOME: cursorPos = 0; break;
+			case SDLK_END: cursorPos = text.size(); break;
+			case SDLK_SPACE: text.insert(cursorPos, 1, 21); cursorPos++; break;
 		}
 	}
 }

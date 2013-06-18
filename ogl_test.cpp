@@ -54,7 +54,7 @@ void SetTestLight () {
 void COglTest::Keyb(unsigned int key, bool special, bool release, int x, int y) {
 	if (release) return;
 	switch (key) {
-		case 27: State::manager.RequestQuit(); break;
+		case SDLK_ESCAPE: State::manager.RequestQuit(); break;
 	}
 }
 

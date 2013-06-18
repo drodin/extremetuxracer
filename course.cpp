@@ -660,8 +660,8 @@ bool CCourse::LoadTerrainTypes () {
 		TerrList[i].col = SPColor3N (line, "col", TColor3(1, 1, 1));
 		TerrList[i].friction = SPFloatN (line, "friction", 0.5);
 		TerrList[i].depth = SPFloatN (line, "depth", 0.01);
-		TerrList[i].particles = SPIntN (line, "part", 0);
-		TerrList[i].trackmarks = SPIntN (line, "trackmarks", 0);
+		TerrList[i].particles = SPIntN (line, "part", 0) != 0;
+		TerrList[i].trackmarks = SPIntN (line, "trackmarks", 0) != 0;
 		TerrList[i].texture = NULL;
 		if (SPIntN (line, "shiny", 0) > 0) {
 			TerrList[i].shiny = true;
@@ -837,7 +837,7 @@ bool CCourse::LoadCourse (size_t idx) {
 
 		// ................................................................
 		string itemfile = CourseDir + SEP + "items.lst";
-		bool itemsexists = (FileExists (itemfile));
+		bool itemsexists = FileExists (itemfile);
 		CControl *ctrl = Players.GetCtrl (g_game.player_id);
 
 		if (itemsexists && !g_game.force_treemap) {

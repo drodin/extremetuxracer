@@ -63,11 +63,11 @@ void StartRace () {
 void CEvent::Keyb (unsigned int key, bool special, bool release, int x, int y) {
     if (release) return;
 	switch (key) {
-	case 13:
+	case SDLK_RETURN:
 		if (curr_focus == textbuttons[0] && ready < 1) StartRace ();
 		else State::manager.RequestEnterState (EventSelect);
 		break;
-	case 27:
+	case SDLK_ESCAPE:
 		State::manager.RequestEnterState (EventSelect);
 		break;
 	case SDLK_TAB:

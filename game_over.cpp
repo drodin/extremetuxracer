@@ -50,7 +50,7 @@ void QuitGameOver () {
 
 void CGameOver::Keyb (unsigned int key, bool special, bool release, int x, int y) {
 	if (release) return;
-	if (key == 13 || key == 27) QuitGameOver ();
+	if (key == 13 || key == SDLK_ESCAPE) QuitGameOver ();
 }
 
 void CGameOver::Mouse (int button, int state, int x, int y) {
