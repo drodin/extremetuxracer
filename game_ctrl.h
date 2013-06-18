@@ -70,8 +70,8 @@ public:
 	size_t GetRaceIdx (const string& race) const;
 	size_t GetCupIdx (const string& cup) const;
 	size_t GetEventIdx (const string& event) const;
-	string GetCup (size_t event, size_t cup) const;
-	string GetCupTrivialName (size_t event, size_t cup) const;
+	const string& GetCup (size_t event, size_t cup) const;
+	const string& GetCupTrivialName (size_t event, size_t cup) const;
 
 	void MakeUnlockList (const string& unlockstr);
 	bool IsUnlocked (size_t event, size_t cup) const;

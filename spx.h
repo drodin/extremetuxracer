@@ -116,5 +116,6 @@ public:
 };
 
 extern const string emptyString;
+extern const string errorString;
 
 #endif

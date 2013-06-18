@@ -43,7 +43,7 @@ bool CEvents::LoadEventList () {
 		int type = SPIntN (line, "struct", -1);
 		if (type == 0) {
 			RaceList.push_back(TRace2());
-			RaceList.back().race = SPStrN (line, "race", "error");
+			RaceList.back().race = SPStrN (line, "race", errorString);
 			string item = SPStrN (line, "course", "");
 			RaceList.back().course = Course.GetCourseIdx (item);
 			item = SPStrN (line, "light", "");
@@ -63,7 +63,7 @@ bool CEvents::LoadEventList () {
 		int type = SPIntN (line, "struct", -1);
 		if (type == 1) {
 			CupList.push_back(TCup2());
-			CupList.back().cup = SPStrN (line, "cup", "error");
+			CupList.back().cup = SPStrN (line, "cup", errorString);
 			CupList.back().name = SPStrN (line, "name", "unknown");
 			CupList.back().desc = SPStrN (line, "desc", "unknown");
 			int num = SPIntN (line, "num", 0);
@@ -108,15 +108,15 @@ size_t CEvents::GetEventIdx (const string& event) const {
 	return EventIndex.at(event);
 }
 
-string CEvents::GetCup (size_t event, size_t cup) const {
-	if (event >= EventList.size()) return "error";
-	if (cup >= EventList[event].cups.size()) return "error";
+const string& CEvents::GetCup (size_t event, size_t cup) const {
+	if (event >= EventList.size()) return errorString;
+	if (cup >= EventList[event].cups.size()) return errorString;
 	return EventList[event].cups[cup]->cup;
 }
 
-string CEvents::GetCupTrivialName (size_t event, size_t cup) const {
-	if (event >= EventList.size()) return "error";
-	if (cup >= EventList[event].cups.size()) return "error";
+const string& CEvents::GetCupTrivialName (size_t event, size_t cup) const {
+	if (event >= EventList.size()) return errorString;
+	if (cup >= EventList[event].cups.size()) return errorString;
 	return EventList[event].cups[cup]->name;
 }
 
@@ -128,7 +128,7 @@ void CEvents::MakeUnlockList (const string& unlockstr) {
 	}
 	for (size_t event=0; event<EventList.size(); event++) {
 		for (size_t cup=0; cup<EventList[event].cups.size(); cup++) {
-			string cp = GetCup (event, cup);
+			const string& cp = GetCup (event, cup);
 			bool passed = SPosN (unlockstr, cp) != string::npos;
 			if (cup < 1) EventList[event].cups[0]->Unlocked = true;
 			if (passed) {

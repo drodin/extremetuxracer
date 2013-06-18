@@ -96,14 +96,7 @@ void CControl::Init () {
 //					collision
 // --------------------------------------------------------------------
 
-bool CControl::CheckTreeCollisions (const TVector3& pos, TVector3 *tree_loc, double *tree_diam){
-	CCharShape *shape = Char.GetShape (g_game.char_id);
-    double diam = 0.0;
-    double height;
-    TVector3 loc(0, 0, 0);
-    bool hit = false;
-	TMatrix mat;
-
+bool CControl::CheckTreeCollisions (const TVector3& pos, TVector3 *tree_loc, double *tree_diam) {
     // These variables are used to cache collision detection results
     static bool last_collision = false;
     static TVector3 last_collision_tree_loc(-999, -999, -999);
@@ -118,6 +111,13 @@ bool CControl::CheckTreeCollisions (const TVector3& pos, TVector3 *tree_loc, dou
 		    return true;
 		} else return false;
     }
+
+	CCharShape *shape = Char.GetShape (g_game.char_id);
+    double diam = 0.0;
+    double height;
+    TVector3 loc(0, 0, 0);
+    bool hit = false;
+	TMatrix mat;
 
 	TCollidable *trees = &Course.CollArr[0];
     size_t num_trees = Course.CollArr.size();
@@ -167,14 +167,13 @@ bool CControl::CheckTreeCollisions (const TVector3& pos, TVector3 *tree_loc, dou
     return hit;
 }
 void CControl::AdjustTreeCollision (const TVector3& pos, TVector3 *vel){
-    TVector3 treeNml;
     TVector3 treeLoc;
     double tree_diam;
 	double factor;
 
 	if (CheckTreeCollisions (pos, &treeLoc, &tree_diam)) {
+		TVector3 treeNml;
         treeNml.x = pos.x - treeLoc.x;
-        treeNml.y = 0;
         treeNml.z = pos.z - treeLoc.z;
         NormVector (treeNml);
 
@@ -327,12 +326,11 @@ TVector3 CControl::CalcSpringForce () {
 }
 
 TVector3 CControl::CalcNormalForce () {
-    TVector3 nmlforce(0, 0, 0);
 	if (ff.surfdistance <= -ff.comp_depth) {
 		ff.compression = -ff.surfdistance - ff.comp_depth;
-		nmlforce = CalcSpringForce ();
+		return CalcSpringForce ();
     }
-	return nmlforce;
+	return TVector3(0, 0, 0);
 }
 
 TVector3 CControl::CalcJumpForce () {
@@ -356,7 +354,6 @@ TVector3 CControl::CalcJumpForce () {
 }
 
 TVector3 CControl::CalcFrictionForce (double speed, const TVector3& nmlforce) {
-	TVector3 frictforce;
 	double fric_f_mag;
 	TMatrix fric_rot_mat;
 	double steer_angle;
@@ -365,7 +362,7 @@ TVector3 CControl::CalcFrictionForce (double speed, const TVector3& nmlforce) {
 		TVector3 tmp_nml_f = nmlforce;
 		fric_f_mag = NormVector (tmp_nml_f) * ff.frict_coeff;
 		fric_f_mag = MIN (MAX_FRICT_FORCE, fric_f_mag);
-		frictforce = ScaleVector (fric_f_mag, ff.frictdir);
+		TVector3 frictforce = ScaleVector (fric_f_mag, ff.frictdir);
 
 		steer_angle = turn_fact * MAX_TURN_ANGLE;
 
@@ -375,36 +372,34 @@ TVector3 CControl::CalcFrictionForce (double speed, const TVector3& nmlforce) {
 		}
 		RotateAboutVectorMatrix (fric_rot_mat, ff.surfnml, steer_angle);
 		frictforce = TransformVector (fric_rot_mat, frictforce);
-		frictforce = ScaleVector (1.0 + MAX_TURN_PEN, frictforce);
-
-    } else frictforce =  TVector3 (0, 0, 0);
-	return frictforce;
+		return ScaleVector (1.0 + MAX_TURN_PEN, frictforce);
+    }
+	return TVector3 (0, 0, 0);
 }
 
 TVector3 CControl::CalcBrakeForce (double speed) {
-	TVector3 brakeforce;
 	if (g_game.finish == false) {
 		if (cairborne == false && speed > minFrictspeed) {
 			if (speed > minSpeed && is_braking) {
-				brakeforce = ScaleVector (ff.frict_coeff * BRAKE_FORCE, ff.frictdir);
-			} else brakeforce = TVector3 (0, 0, 0);
-		} else brakeforce = TVector3 (0, 0, 0);
-
+				return ScaleVector (ff.frict_coeff * BRAKE_FORCE, ff.frictdir);
+			}
+		}
+		return TVector3(0, 0, 0);
 	} else {
 /// ------------------- finish --------------------------------
 		if (cairborne == false) {
 			is_braking = true;
-			brakeforce = ScaleVector (finish_speed * g_game.finish_brake, ff.frictdir);
+			return ScaleVector (finish_speed * g_game.finish_brake, ff.frictdir);
 		} else {
-			brakeforce = ScaleVector (finish_speed * FIN_AIR_BRAKE, ff.frictdir);
+			return ScaleVector (finish_speed * FIN_AIR_BRAKE, ff.frictdir);
 		}
 /// -----------------------------------------------------------
 	}
-	return brakeforce;
+	return TVector3(0, 0, 0);
 }
 
 TVector3 CControl::CalcPaddleForce (double speed) {
-	TVector3 paddleforce;
+	TVector3 paddleforce(0, 0, 0);
     if (is_paddling)
 		if (g_game.time - paddle_time >= PADDLING_DURATION) is_paddling = false;
 
@@ -417,21 +412,19 @@ TVector3 CControl::CalcPaddleForce (double speed) {
 				* (MAX_PADDLING_SPEED - speed) / MAX_PADDLING_SPEED
 				* min(1.0, ff.frict_coeff / IDEAL_PADD_FRIC)), ff.frictdir);
 		}
-    } else paddleforce = TVector3 (0, 0, 0);
+    } else return paddleforce;
 	return ScaleVector (PADDLE_FACT, paddleforce);
 }
 
 TVector3 CControl::CalcGravitationForce () {
-	TVector3 gravforce;
 	if (g_game.finish == false) {
-		gravforce = TVector3 (0, -EARTH_GRAV * TUX_MASS, 0);
+		return TVector3 (0, -EARTH_GRAV * TUX_MASS, 0);
 	} else {
 /// ---------------- finish -----------------------------------
-		if (cairborne) gravforce = TVector3 (0, -FIN_AIR_GRAV, 0);
-		else gravforce = TVector3 (0, -FIN_GRAV, 0);
+		if (cairborne) return TVector3 (0, -FIN_AIR_GRAV, 0);
+		else return TVector3 (0, -FIN_GRAV, 0);
 /// -----------------------------------------------------------
 	}
-	return gravforce;
 }
 
 TVector3 CControl::CalcNetForce (const TVector3& pos, const TVector3& vel) {

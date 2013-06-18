@@ -22,6 +22,7 @@ GNU General Public License for more details.
 #include <fstream>
 
 const string emptyString = "";
+const string errorString = "error";
 
 // --------------------------------------------------------------------
 //					elementary string functions

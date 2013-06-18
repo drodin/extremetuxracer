@@ -48,8 +48,8 @@ public:
 
 	void LoadLanguages ();
 	size_t GetLangIdx (const string& lang) const;
-	string GetLanguage (size_t idx) const;
-	string GetLanguage (const string& lang) const;
+	const string& GetLanguage (size_t idx) const;
+	const string& GetLanguage (const string& lang) const;
 	void SetDefaultTranslations ();
 	const string& Text (size_t idx) const;
 	void LoadTranslations (size_t langidx);

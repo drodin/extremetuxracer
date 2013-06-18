@@ -137,12 +137,12 @@ size_t CTranslation::GetLangIdx (const string& lang) const {
 	return LangIndex.at(lang);
 }
 
-string CTranslation::GetLanguage (size_t idx) const {
-	if (idx >= languages.size()) return "error";
+const string& CTranslation::GetLanguage (size_t idx) const {
+	if (idx >= languages.size()) return errorString;
 	return languages[idx].language;
 }
 
-string CTranslation::GetLanguage (const string& lang) const {
+const string& CTranslation::GetLanguage (const string& lang) const {
 	return GetLanguage (GetLangIdx (lang));
 }
 
