@@ -61,9 +61,9 @@ int CScore::AddScore (size_t list_idx, const TScore& score) {
 }
 
 // for testing:
-void CScore::PrintScorelist (size_t list_idx) {
+void CScore::PrintScorelist (size_t list_idx) const {
 	if (list_idx >= Scorelist.size()) return;
-	TScoreList *list = &Scorelist[list_idx];
+	const TScoreList *list = &Scorelist[list_idx];
 
 	if (list->numScores < 1) {
 		PrintString ("no entries in this score list");
@@ -83,11 +83,11 @@ TScoreList *CScore::GetScorelist (size_t list_idx) {
 	return &Scorelist[list_idx];
 }
 
-bool CScore::SaveHighScore () {
+bool CScore::SaveHighScore () const {
 	CSPList splist ((int)Scorelist.size()*MAX_SCORES);
 
 	for (size_t li=0; li<Scorelist.size(); li++) {
-		TScoreList* lst = &Scorelist[li];
+		const TScoreList* lst = &Scorelist[li];
 		if (lst != NULL) {
 			int num = lst->numScores;
 			if (num > 0) {

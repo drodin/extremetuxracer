@@ -20,16 +20,15 @@ GNU General Public License for more details.
 #include "ft_font.h"
 #include "spx.h"
 #include "winsys.h"
-#include <deque>
 
 #define USE_UNICODE 1
 
 // --------------------------------------------------------------------
 // First some common function used for textboxes and called by
 // CFont::MakeLineList. This bundle of functions generates
-// a SPList from a textstring and adapts the lines to the textbox
+// a vector<string> from a textstring and adapts the lines to the textbox
 
-static void MakeWordList (deque<string>& wordlist, const char *s) {
+static void MakeWordList (vector<string>& wordlist, const char *s) {
 	size_t start = 0;
 	for(size_t i = 0; s[i] != '\0'; i++) {
 		if(s[i] == ' ')
@@ -45,7 +44,7 @@ static void MakeWordList (deque<string>& wordlist, const char *s) {
 		wordlist.push_back(string(s+start));
 }
 
-static size_t MakeLine (size_t first, const deque<string>& wordlist, CSPList *linelist, float width) {
+static size_t MakeLine (size_t first, const vector<string>& wordlist, vector<string>& linelist, float width) {
 	if (first >= wordlist.size()) return wordlist.size()-1;
 
 	size_t last = first;
@@ -67,7 +66,7 @@ static size_t MakeLine (size_t first, const deque<string>& wordlist, CSPList *li
 		if(j < last)
 			line += ' ';
 	}
-	linelist->Add (line);
+	linelist.push_back(line);
 	return last-1;
 }
 
@@ -395,10 +394,13 @@ void CFont::SetOrientation (Orientation orientation) {
 	forientation = orientation;
 }
 
-void CFont::MakeLineList (const char *source, CSPList *line_list, float width) {
-	deque<string> wordlist;
-	MakeWordList (wordlist, source);
+vector<string> CFont::MakeLineList (const char *source, float width) {
+	vector<string> wordlist;
+	MakeWordList(wordlist, source);
+	vector<string> linelist;
 
 	for(size_t last = 0; last < wordlist.size();)
-		last = MakeLine(last, wordlist, line_list, width)+1;
+		last = MakeLine(last, wordlist, linelist, width)+1;
+
+	return linelist;
 }

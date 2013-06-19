@@ -723,7 +723,6 @@ bool CCourse::LoadCourseList () {
 		return false;
 	}
 
-	CSPList desclist (12);
 	CSPList paramlist (48);
 
 	CourseList.resize(list.Count());
@@ -734,14 +733,13 @@ bool CCourse::LoadCourseList () {
 
 		string desc = SPStrN (line, "desc", "");
 		FT.AutoSizeN (2);
-		FT.MakeLineList (desc.c_str(), &desclist, 335 * Winsys.scale - 16.0);
-		size_t cnt = desclist.Count ();
+		vector<string> desclist = FT.MakeLineList (desc.c_str(), 335 * Winsys.scale - 16.0);
+		size_t cnt = desclist.size();
 		if (cnt > MAX_DESCRIPTION_LINES) cnt = MAX_DESCRIPTION_LINES;
 		CourseList[i].num_lines = cnt;
 		for (size_t ll=0; ll<cnt; ll++) {
-			CourseList[i].desc[ll] = desclist.Line (ll);
+			CourseList[i].desc[ll] = desclist[ll];
 		}
-		desclist.Clear ();
 
 		string coursepath = param.common_course_dir + SEP + CourseList[i].dir;
 		if (DirExists (coursepath.c_str())) {

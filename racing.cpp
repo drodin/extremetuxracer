@@ -65,8 +65,8 @@ void CRacing::Keyb (unsigned int key, bool special, bool release, int x, int y) 
 		// steering flipflops
 		case SDLK_UP: key_paddling = !release; break;
 		case SDLK_DOWN: key_braking = !release; break;
-		case SDLK_RIGHT: left_turn = !release; break;
-		case SDLK_LEFT: right_turn = !release; break;
+		case SDLK_LEFT: left_turn = !release; break;
+		case SDLK_RIGHT: right_turn = !release; break;
 		case SDLK_SPACE: key_charging = !release; break;
 		case SDLK_t: trick_modifier = !release; break;
 		// mode changing and other actions

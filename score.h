@@ -49,8 +49,8 @@ private:
 public:
 	int AddScore (size_t list_idx, const TScore& score);
 	TScoreList *GetScorelist (size_t list_idx);
-	void PrintScorelist (size_t list_idx);
-	bool SaveHighScore ();
+	void PrintScorelist (size_t list_idx) const;
+	bool SaveHighScore () const;
 	bool LoadHighScore ();
 	int CalcRaceResult ();
 };
