@@ -238,7 +238,7 @@ void CGameOver::Loop(double time_step) {
 
 	Char.Draw (g_game.char_id);
 
-    set_gl_options (GUI);
+    ScopedRenderMode rm(GUI);
 	SetupGuiDisplay ();
 	if (final_frame != NULL) {
 		if (!final_frame->active) GameOverMessage (ctrl);

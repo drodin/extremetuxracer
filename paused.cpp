@@ -92,7 +92,7 @@ void CPaused::Loop (double time_step) {
     if (param.perf_level > 2) draw_particles (ctrl);
 	Char.Draw (g_game.char_id);
 
-    set_gl_options (GUI);
+	ScopedRenderMode rm(GUI);
 	SetupGuiDisplay ();
 	PausedSetupDisplay ();
 	DrawHud (ctrl);

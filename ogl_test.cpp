@@ -68,7 +68,7 @@ void COglTest::Loop(double timestep) {
 	check_gl_error();
 
 	// ------------- 3d scenery ---------------------------------------
-	set_gl_options (TUX);
+	ScopedRenderMode rm(TUX);
     ClearRenderContext (colDDBackgr);
 
 	glLoadIdentity ();
@@ -85,7 +85,7 @@ void COglTest::Loop(double timestep) {
 
 	// --------------- 2d screen --------------------------------------
 	SetupGuiDisplay ();
-	set_gl_options (TEXFONT);
+	ScopedRenderMode rm2(TEXFONT);
 	FT.SetFont ("bold");
 	FT.SetSize (24);
 	FT.SetColor (colWhite);

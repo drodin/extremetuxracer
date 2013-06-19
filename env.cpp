@@ -199,7 +199,7 @@ void CEnvironment::LoadLight () {
 }
 
 void CEnvironment::DrawSkybox (const TVector3& pos) {
-	set_gl_options (SKY);
+	ScopedRenderMode rm(SKY);
 	double aa, bb;
 
 #if defined (OS_LINUX)
@@ -317,7 +317,7 @@ void CEnvironment::DrawFog () {
 
 	// --------------- draw the fog plane -----------------------------
 
-	set_gl_options (FOG_PLANE);
+	ScopedRenderMode rm(FOG_PLANE);
     glEnable (GL_FOG);
 
 	// only the alpha channel is used

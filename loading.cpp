@@ -44,7 +44,7 @@ void CLoading::Loop(double time_step) {
 	msg += " " + CourseList[g_game.course_id].name;
 
 	check_gl_error ();
-    set_gl_options (GUI);
+	ScopedRenderMode rm(GUI);
     ClearRenderContext ();
     SetupGuiDisplay ();
 

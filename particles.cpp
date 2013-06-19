@@ -206,7 +206,7 @@ void draw_ui_snow () {
 }
 
 void push_ui_snow (const TVector2& pos) {
-    push_position = TVector2(pos.x/(double)Winsys.resolution.width, pos.y/(double)Winsys.resolution.height);
+    push_position = TVector2(pos.x/(double)Winsys.resolution.width, 1.0 - pos.y/(double)Winsys.resolution.height);
     if (!push_position_initialized) last_push_position = push_position;
     push_position_initialized = true;
 }
@@ -372,7 +372,7 @@ void update_particles (double time_step) {
 	}
 }
 void draw_particles (CControl *ctrl) {
-    set_gl_options (PARTICLES);
+    ScopedRenderMode rm(PARTICLES);
 	Tex.BindTex (SNOW_PART);
     glTexEnvf (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
     glColor4f(part_col[0], part_col[1], part_col[2], part_col[3]);
@@ -526,7 +526,7 @@ void TFlakeArea::Draw (CControl *ctrl) const {
 	TPlane rp = get_right_clip_plane ();
 	float dir_angle (atan (ctrl->viewdir.x / ctrl->viewdir.z) * 180 / 3.14159);
 
-	set_gl_options (PARTICLES);
+	ScopedRenderMode rm(PARTICLES);
 	glTexEnvf (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 	Tex.BindTex (T_WIDGETS);
 	const TColor& particle_colour = Env.ParticleColor ();
@@ -821,7 +821,7 @@ void TCurtain::CurtainVec (float angle, float zdist, float &x, float &z) {
 void CCurtain::Draw (CControl *ctrl) {
 	if (g_game.snow_id < 1) return;
 
-	set_gl_options (PARTICLES);
+	ScopedRenderMode rm(PARTICLES);
 	glTexEnvf (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 	const TColor& particle_colour = Env.ParticleColor ();
 	glColor4f (particle_colour.r, particle_colour.g, particle_colour.b, 1.0);

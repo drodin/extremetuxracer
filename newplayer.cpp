@@ -30,7 +30,6 @@ GNU General Public License for more details.
 
 CNewPlayer NewPlayer;
 
-static TVector2 cursor_pos(0, 0);
 static TUpDown* avatar;
 static TWidget* textbuttons[2];
 static TTextField* textfield;
@@ -67,11 +66,8 @@ void CNewPlayer::Mouse (int button, int state, int x, int y) {
 
 void CNewPlayer::Motion (int x, int y) {
 	MouseMoveGUI(x, y);
-	y = Winsys.resolution.height - y;
 
-    TVector2 old_pos = cursor_pos;
-    cursor_pos = TVector2(x, y);
-    if (old_pos.x != x || old_pos.y != y) {
+	if (x != 0 || y != 0) {
 		if (param.ui_snow) push_ui_snow (cursor_pos);
     }
 }
@@ -112,7 +108,7 @@ void CNewPlayer::Loop(double timestep) {
 	Music.Update ();
 	check_gl_error();
     ClearRenderContext ();
-    set_gl_options (GUI);
+    ScopedRenderMode rm(GUI);
     SetupGuiDisplay ();
 
 	update_ui_snow (timestep);

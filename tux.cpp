@@ -447,7 +447,7 @@ void CCharShape::Draw () {
     float dummy_color[]  = {0.0, 0.0, 0.0, 1.0};
 
     glMaterialfv (GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, dummy_color);
-    set_gl_options (TUX);
+	ScopedRenderMode rm(TUX);
 	glEnable (GL_NORMALIZE);
 
 	if (!GetNode (0, &node)) return;
@@ -792,7 +792,7 @@ void CCharShape::DrawShadow () {
 
 	if (g_game.light_id == 1 || g_game.light_id == 3) return;
 
-    set_gl_options (TUX_SHADOW);
+    ScopedRenderMode rm(TUX_SHADOW);
     glColor4f (shad_col.r, shad_col.g, shad_col.b, shad_col.a);
     MakeIdentityMatrix (model_matrix);
 

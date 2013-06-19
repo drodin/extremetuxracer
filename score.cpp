@@ -164,7 +164,6 @@ int CScore::CalcRaceResult () {
 //				score screen
 // --------------------------------------------------------------------
 
-static TVector2 cursor_pos(0, 0);
 static TCourse *CourseList;
 static TUpDown* course;
 static TWidget* textbutton;
@@ -191,11 +190,8 @@ void CScore::Mouse (int button, int state, int x, int y) {
 
 void CScore::Motion (int x, int y) {
 	MouseMoveGUI(x, y);
-	y = Winsys.resolution.height - y;
 
-    TVector2 old_pos = cursor_pos;
-    cursor_pos = TVector2(x, y);
-    if (old_pos.x != x || old_pos.y != y) {
+	if (x != 0 || y != 0) {
 		if (param.ui_snow) push_ui_snow (cursor_pos);
     }
 }
@@ -242,7 +238,7 @@ void CScore::Loop (double timestep) {
 	Music.Update ();
 	check_gl_error();
     ClearRenderContext ();
-    set_gl_options (GUI);
+    ScopedRenderMode rm(GUI);
     SetupGuiDisplay ();
 	update_ui_snow (timestep);
 	draw_ui_snow();

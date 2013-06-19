@@ -54,7 +54,7 @@ void CSplashScreen::Loop(double timestep) {
 	Music.Update ();
 	check_gl_error();
     ClearRenderContext ();
-    set_gl_options (GUI);
+	ScopedRenderMode rm(GUI);
     SetupGuiDisplay ();
 	Trans.LoadLanguages ();
 	Trans.LoadTranslations (param.language); // Before first texts are being displayed

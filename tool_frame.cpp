@@ -183,7 +183,7 @@ void RenderSingleFrame (double timestep) {
 	check_gl_error ();
 
 	// ------------------ 3d scenery ----------------------------------
-	set_gl_options (TUX);
+	ScopedRenderMode rm1(TUX);
     ClearRenderContext (colDDBackgr);
 
 	const string& hlname = TestFrame.GetHighlightName (curr_joint);
@@ -199,7 +199,7 @@ void RenderSingleFrame (double timestep) {
 
 	// ----------------- 2d screen ------------------------------------
 	SetupGuiDisplay ();
-	set_gl_options (TEXFONT);
+	ScopedRenderMode rm2(TEXFONT);
 
 	if (FrameHasChanged ()) DrawChanged ();
 
@@ -258,7 +258,7 @@ void SequenceMotion (int x, int y) {}
 
 void RenderSequence (double timestep) {
 	check_gl_error();
-	set_gl_options (TUX);
+	ScopedRenderMode rm(TUX);
     ClearRenderContext (colDDBackgr);
 
 	GluCamera.Update (timestep);

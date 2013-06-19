@@ -22,6 +22,8 @@ GNU General Public License for more details.
 
 #define NUM_RESOLUTIONS 10
 
+extern TVector2 cursor_pos;
+
 struct TScreenRes {
 	int width, height;
 	TScreenRes(int w = 0, int h = 0) : width(w), height(h) {}

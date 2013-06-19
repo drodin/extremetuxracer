@@ -233,14 +233,14 @@ void CharMotion (int x, int y) {
 
 	must_render = true;
 	if (rotactive) {
-		diffx = x - startx;
-		diffy = y - starty;
+		diffx = cursor_pos.x - startx;
+		diffy = cursor_pos.y - starty;
 		yrotation = startroty + diffx;
 		xrotation = startrotx + diffy;
 	}
 	if (moveactive) {
-		diffposx = (double)(x - startx) / 200;
-		diffposy = (double)(y - starty) / 200;
+		diffposx = (double)(cursor_pos.x - startx) / 200;
+		diffposy = (double)(cursor_pos.y - starty) / 200;
 		yposition = startposy - diffposy;
 		xposition = startposx + diffposx;
 	}
@@ -283,7 +283,7 @@ void RenderChar (double timestep) {
 	check_gl_error();
 
 	// ------------- 3d scenery ---------------------------------------
-	set_gl_options (TUX);
+	ScopedRenderMode rm1(TUX);
     ClearRenderContext (colDDBackgr);
 	TestChar.highlight_node = TestChar.GetNodeName (curr_node);
 
@@ -304,7 +304,7 @@ void RenderChar (double timestep) {
 
 	// --------------- 2d screen --------------------------------------
 	SetupGuiDisplay ();
-	set_gl_options (TEXFONT);
+	ScopedRenderMode rm2(TEXFONT);
 
 	FT.SetFont ("bold");
 	FT.SetSize (20);

@@ -19,6 +19,7 @@ GNU General Public License for more details.
 #include "spx.h"
 #include "winsys.h"
 #include <cstdarg>
+#include <stack>
 
 struct gl_value_t {
     char name[40];
@@ -197,8 +198,10 @@ void Reshape (int w, int h) {
 //					GL options
 // ====================================================================
 
+TRenderMode currentMode = (TRenderMode)-1;
 void set_gl_options (TRenderMode mode)
 {
+	currentMode = mode;
 	switch (mode) {
     case GUI:
         glEnable (GL_TEXTURE_2D);
@@ -365,37 +368,28 @@ void set_gl_options (TRenderMode mode)
     	break;
 
     case TUX_SHADOW:
-	#ifdef USE_STENCIL_BUFFER
 		glDisable (GL_TEXTURE_2D);
 		glEnable (GL_DEPTH_TEST);
-		glDisable (GL_CULL_FACE);
 		glDisable (GL_LIGHTING);
 		glDisable (GL_NORMALIZE);
 		glDisable (GL_ALPHA_TEST);
 		glEnable (GL_BLEND);
-		glEnable (GL_STENCIL_TEST);
 		glDisable (GL_COLOR_MATERIAL);
-		glDepthMask (GL_FALSE);
 		glShadeModel (GL_SMOOTH);
 		glDepthFunc (GL_LESS);
+	#ifdef USE_STENCIL_BUFFER
+		glDisable (GL_CULL_FACE);
+		glEnable (GL_STENCIL_TEST);
+		glDepthMask (GL_FALSE);
 
 		glStencilFunc (GL_EQUAL, 0, ~0);
 		glStencilOp (GL_KEEP, GL_KEEP, GL_INCR);
 	#else
-		glDisable (GL_TEXTURE_2D);
-		glEnable (GL_DEPTH_TEST);
 		glEnable (GL_CULL_FACE);
-		glDisable (GL_LIGHTING);
-		glDisable (GL_NORMALIZE);
-		glDisable (GL_ALPHA_TEST);
-		glEnable (GL_BLEND);
 		glDisable (GL_STENCIL_TEST);
-		glDisable (GL_COLOR_MATERIAL);
 		glDepthMask (GL_TRUE);
-		glShadeModel (GL_SMOOTH);
-		glDepthFunc (GL_LESS);
 	#endif
-	break;
+		break;
 
     case TRACK_MARKS:
 		glEnable (GL_TEXTURE_2D);
@@ -488,3 +482,19 @@ void set_gl_options (TRenderMode mode)
     	glAlphaFunc (GL_GEQUAL, 0.5);
     break;
 */
+
+stack<TRenderMode> modestack;
+void PushRenderMode(TRenderMode mode)
+{
+	if(currentMode != mode)
+		set_gl_options(mode);
+	modestack.push(mode);
+}
+
+void PopRenderMode()
+{
+	TRenderMode mode = modestack.top();
+	modestack.pop();
+	if(!modestack.empty() && modestack.top() != mode)
+		set_gl_options(modestack.top());
+}

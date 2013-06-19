@@ -28,6 +28,8 @@ GNU General Public License for more details.
 
 #define USE_JOYSTICK true
 
+TVector2 cursor_pos(0, 0);
+
 CWinsys Winsys;
 
 CWinsys::CWinsys ()

@@ -150,7 +150,7 @@ void draw_gauge (double speed, double energy) {
     GLfloat xplane[4] = {1.0 / GAUGE_IMG_SIZE, 0.0, 0.0, 0.0 };
     GLfloat yplane[4] = {0.0, 1.0 / GAUGE_IMG_SIZE, 0.0, 0.0 };
 
-    set_gl_options (GAUGE_BARS);
+	ScopedRenderMode rm(GAUGE_BARS);
 
 	if (Tex.GetTexture (GAUGE_ENERGY) == NULL) return;
 	if (Tex.GetTexture (GAUGE_SPEED) == NULL) return;
@@ -368,7 +368,7 @@ void DrawHud (CControl *ctrl) {
     SetupGuiDisplay ();
 
     draw_gauge (speed * 3.6, ctrl->jump_amt);
-	set_gl_options (TEXFONT);
+	ScopedRenderMode rm(TEXFONT);
 	glColor4f (1, 1, 1, 1);
     draw_time();
     draw_herring_count (g_game.herring);

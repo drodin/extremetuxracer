@@ -33,7 +33,6 @@ GNU General Public License for more details.
 
 CGameTypeSelect GameTypeSelect;
 
-static TVector2 cursor_pos(0, 0);
 static TTextButton* textbuttons[7];
 
 void EnterPractice () {
@@ -81,11 +80,8 @@ void CGameTypeSelect::Keyb (unsigned int key, bool special, bool release, int x,
 
 void CGameTypeSelect::Motion (int x, int y) {
 	MouseMoveGUI(x, y);
-	y = Winsys.resolution.height - y;
-	TVector2 old_pos = cursor_pos;
-    cursor_pos = TVector2 (x, y);
 
-    if (old_pos.x != x || old_pos.y != y) {
+	if (x != 0 || y != 0) {
 		if (param.ui_snow) push_ui_snow (cursor_pos);
     }
 }
@@ -117,7 +113,7 @@ void CGameTypeSelect::Loop (double time_step) {
 
 	check_gl_error();
 	Music.Update ();
-    set_gl_options (GUI);
+    ScopedRenderMode rm(GUI);
     ClearRenderContext ();
     SetupGuiDisplay ();
 

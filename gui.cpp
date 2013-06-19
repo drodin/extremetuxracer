@@ -25,9 +25,6 @@ GNU General Public License for more details.
 
 #define CURSOR_SIZE 10
 
-static int cursor_x = -100;
-static int cursor_y = -100;
-
 static vector<TWidget*> Widgets;
 
 static bool Inside (int x, int y, const TRect& Rect) {
@@ -559,7 +556,7 @@ void DrawBonusExt (int y, size_t numraces, size_t num) {
 }
 
 void DrawCursor () {
-	Tex.Draw (MOUSECURSOR, cursor_x, cursor_y,
+	Tex.Draw (MOUSECURSOR, cursor_pos.x, cursor_pos.y,
 		CURSOR_SIZE  * (double)Winsys.resolution.width / 14000);
 }
 
@@ -584,15 +581,13 @@ TWidget* ClickGUI(int x, int y) {
 
 static int focussed = -1;
 TWidget* MouseMoveGUI(int x, int y) {
-	if(cursor_x != x || cursor_y != y) {
+	if(x != 0 || y != 0) {
 		focussed = -1;
 		for(size_t i = 0; i < Widgets.size(); i++) {
-			Widgets[i]->MouseMove(x, y);
+			Widgets[i]->MouseMove(cursor_pos.x, cursor_pos.y);
 			if(Widgets[i]->focussed())
 				focussed = (int)i;
 		}
-		cursor_x = x;
-		cursor_y = y;
 	}
 	if(focussed == -1)
 		return 0;

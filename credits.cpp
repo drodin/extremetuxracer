@@ -32,7 +32,6 @@ GNU General Public License for more details.
 CCredits Credits;
 
 
-static TVector2 cursor_pos(0, 0);
 static double y_offset = 0;
 static bool moving = true;
 
@@ -151,11 +150,7 @@ void CCredits::Mouse (int button, int state, int x, int y) {
 }
 
 void CCredits::Motion(int x, int y) {
-    y = Winsys.resolution.height - y;
-    TVector2 old_pos = cursor_pos;
-    cursor_pos = TVector2(x, y);
-
-    if (old_pos.x != x || old_pos.y != y) {
+	if (x != 0 || y != 0) {
 		if (param.ui_snow) push_ui_snow (cursor_pos);
     }
 }
@@ -173,7 +168,7 @@ void CCredits::Loop(double time_step) {
 	Music.Update ();
 	check_gl_error();
     ClearRenderContext ();
-    set_gl_options (GUI);
+    ScopedRenderMode rm(GUI);
     SetupGuiDisplay ();
 
 //	DrawBackLogo (-1,  AutoYPos (200), 1.0);

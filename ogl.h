@@ -52,7 +52,19 @@ void set_material (const TColor& diffuse_colour,
 		const TColor& specular_colour,
 		double specular_exp);
 
-void set_gl_options (TRenderMode mode);
+
+void PushRenderMode(TRenderMode mode);
+void PopRenderMode();
+
+struct ScopedRenderMode {
+	ScopedRenderMode(TRenderMode mode) {
+		PushRenderMode(mode);
+	}
+	~ScopedRenderMode() {
+		PopRenderMode();
+	}
+};
+
 void ClearRenderContext ();
 void ClearRenderContext (const TColor& col);
 void SetupGuiDisplay ();

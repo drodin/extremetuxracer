@@ -30,7 +30,6 @@ GNU General Public License for more details.
 
 CRegist Regist;
 
-static TVector2 cursor_pos(0, 0);
 static TCharacter *CharList;
 static TWidget* textbuttons[2];
 static TUpDown* player;
@@ -72,11 +71,8 @@ void CRegist::Mouse (int button, int state, int x, int y) {
 
 void CRegist::Motion (int x, int y) {
 	MouseMoveGUI(x, y);
-	y = Winsys.resolution.height - y;
 
-    TVector2 old_pos = cursor_pos;
-    cursor_pos = TVector2(x, y);
-    if (old_pos.x != x || old_pos.y != y) {
+	if (x != 0 || y != 0) {
 		if (param.ui_snow) push_ui_snow (cursor_pos);
     }
 }
@@ -114,7 +110,7 @@ void CRegist::Loop (double timestep) {
 	Music.Update ();
 	check_gl_error();
     ClearRenderContext ();
-    set_gl_options (GUI);
+    ScopedRenderMode rm(GUI);
     SetupGuiDisplay ();
 	TColor col;
 

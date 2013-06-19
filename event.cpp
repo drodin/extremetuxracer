@@ -40,7 +40,6 @@ static TWidget* curr_focus = 0;
 static TCup2 *ecup = 0;
 static size_t curr_race = 0;
 static size_t curr_bonus = 0;
-static TVector2 cursor_pos(0, 0);
 static TWidget* textbuttons[3];
 
 void StartRace () {
@@ -97,11 +96,8 @@ void CEvent::Mouse (int button, int state, int x, int y) {
 void CEvent::Motion (int x, int y) {
 	TWidget* foc = MouseMoveGUI(x, y);
 	if (foc != 0) curr_focus = foc;
-	y = Winsys.resolution.height - y;
-    TVector2 old_pos = cursor_pos;
-    cursor_pos = TVector2(x, y);
 
-    if (old_pos.x != x || old_pos.y != y) {
+	if (x != 0 || y != 0) {
 		if (param.ui_snow) push_ui_snow (cursor_pos);
     }
 }
@@ -175,7 +171,7 @@ void CEvent::Loop (double timestep) {
 	int hh = Winsys.resolution.height;
 
 	check_gl_error();
-	set_gl_options (GUI);
+	ScopedRenderMode rm(GUI);
 	Music.Update ();
     ClearRenderContext ();
 	SetupGuiDisplay ();

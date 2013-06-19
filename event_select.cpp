@@ -35,7 +35,6 @@ static TUpDown* event;
 static TUpDown* cup;
 static TWidget* textbuttons[2];
 static TCup2 *CupList;
-static TVector2 cursor_pos(0, 0);
 
 void EnterEvent () {
 	g_game.game_type = CUPRACING;
@@ -71,11 +70,8 @@ void CEventSelect::Mouse (int button, int state, int x, int y) {
 
 void CEventSelect::Motion (int x, int y) {
 	MouseMoveGUI(x, y);
-	y = Winsys.resolution.height - y;
-    TVector2 old_pos = cursor_pos;
-    cursor_pos = TVector2(x, y);
 
-    if (old_pos.x != x || old_pos.y != y) {
+	if (x != 0 || y != 0) {
 		if (param.ui_snow) push_ui_snow (cursor_pos);
     }
 }
@@ -117,7 +113,7 @@ void CEventSelect::Loop (double timestep) {
 	TColor col;
 
 	check_gl_error();
-	set_gl_options (GUI);
+	ScopedRenderMode rm(GUI);
 	Music.Update ();
     ClearRenderContext ();
 	SetupGuiDisplay ();
