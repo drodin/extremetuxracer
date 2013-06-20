@@ -70,7 +70,7 @@
       </Feature>
     </Feature>
 
-    <MajorUpgrade DowngradeErrorMessage='Downgrade is not possible'/>
+    <MajorUpgrade DowngradeErrorMessage='Downgrade is not possible' AllowSameVersionUpgrades='yes'/>
 
     <Property Id="WIXUI_INSTALLDIR" Value="INSTALLDIR" />
     <UIRef Id="WixUI_FeatureTree"/>
