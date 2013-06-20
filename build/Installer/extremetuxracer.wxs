@@ -40,6 +40,11 @@
       <Directory Id='ProgramMenuFolder' Name='Programs' >
         <Directory Id='ProgramMenuDir' Name='$(var.ProductName)'>
           <Component Id='ProgramMenuDir' Guid='*'>
+            <Shortcut Id="ApplicationStartMenuShortcut"
+                  Name="Extreme TuxRacer"
+                  Description="Extreme TuxRacer"
+                  Target="[INSTALLDIR]ExtremeTuxRacer.exe"
+                  WorkingDirectory="INSTALLDIR"/>
             <RemoveFolder Id='ProgramMenuDir' On='uninstall' />
             <RegistryValue Root='HKCU' Key='Software\ExtremeTuxRacer\$(var.ProductName)' Type='string' Value='' KeyPath='yes' />
           </Component>
@@ -53,9 +58,11 @@
         <ComponentRef Id='ExtremeTuxRacer.exe' />
         <ComponentGroupRef Id='Data' />
         <ComponentRef Id='SDL' />
-        <!--<Feature Id='Translations' Title='Translations' AllowAdvertise='no' Description='Translations for other languages than English' Level='1'>
+      </Feature>
+      <!--<Feature Id='Translations' Title='Translations' AllowAdvertise='no' Description='Translations for other languages than English' Level='1'>
           <ComponentRef Id='Translations' />
         </Feature>-->
+      <Feature Id='ProgramMenuEntry' Title='Program menu entry' AllowAdvertise='no' Description='Add entry to program menu' Level='1'>
         <ComponentRef Id='ProgramMenuDir' />
       </Feature>
       <Feature Id="CRT" AllowAdvertise="no" Display="hidden" Level="1" Title="Microsoft Visual C++ 2012 Runtime Components">
