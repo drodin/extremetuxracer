@@ -204,7 +204,7 @@ CMusic::CMusic () {
 //	Mix_HookMusicFinished (Hook);
 }
 
-size_t CMusic::LoadPiece (const char *name, const char *filename) {
+size_t CMusic::LoadPiece (const string& name, const char *filename) {
     if (!Audio.IsOpen) return -1;
 	Mix_Music* m = Mix_LoadMUS (filename);
 	if (m == NULL) {
@@ -229,7 +229,7 @@ void CMusic::LoadMusicList () {
 			string name = SPStrN (line, "name", "");
 			string musicfile = SPStrN (line, "file", "");
 			string path = MakePathStr (param.music_dir, musicfile);
-			LoadPiece (name.c_str(), path.c_str());
+			LoadPiece (name, path.c_str());
 		}
 	} else {
 		Message ("could not load music.lst");

@@ -63,9 +63,7 @@ void SetRaceConditions (void) {
 void CRaceSelect::Motion (int x, int y) {
 	MouseMoveGUI(x, y);
 
-	if (x != 0 || y != 0) {
-		if (param.ui_snow) push_ui_snow (cursor_pos);
-    }
+	if (param.ui_snow) push_ui_snow (cursor_pos);
 }
 
 void CRaceSelect::Mouse (int button, int state, int x, int y) {
@@ -188,13 +186,13 @@ void CRaceSelect::Loop(double timestep) {
 
 	FT.DrawString (CENTER, prevtop + prevheight + 10, "Author:  " + CourseList[course->GetValue()].author);
 
-	FT.AutoSizeN (4);
-	string forcetrees = "Load trees.png";
-	string sizevar = "Size: ";
-	sizevar += Int_StrN (g_game.treesize);
-	sizevar += " Variation: ";
-	sizevar += Int_StrN (g_game.treevar);
 	if (g_game.force_treemap) {
+		FT.AutoSizeN (4);
+		static const string forcetrees = "Load trees.png";
+		string sizevar = "Size: ";
+		sizevar += Int_StrN (g_game.treesize);
+		sizevar += " Variation: ";
+		sizevar += Int_StrN (g_game.treevar);
 		FT.SetColor (colYellow);
 		FT.DrawString (CENTER, AutoYPosN (85), forcetrees);
 		FT.DrawString (CENTER, AutoYPosN (90), sizevar);

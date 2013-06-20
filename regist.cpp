@@ -72,9 +72,7 @@ void CRegist::Mouse (int button, int state, int x, int y) {
 void CRegist::Motion (int x, int y) {
 	MouseMoveGUI(x, y);
 
-	if (x != 0 || y != 0) {
-		if (param.ui_snow) push_ui_snow (cursor_pos);
-    }
+	if (param.ui_snow) push_ui_snow (cursor_pos);
 }
 
 static int framewidth, frameheight, arrowwidth, sumwidth;
@@ -114,8 +112,10 @@ void CRegist::Loop (double timestep) {
     SetupGuiDisplay ();
 	TColor col;
 
-	update_ui_snow (timestep);
-	draw_ui_snow();
+	if (param.ui_snow) {
+		update_ui_snow (timestep);
+		draw_ui_snow();
+	}
 
 	Tex.Draw (BOTTOM_LEFT, 0, hh - 256, 1);
 	Tex.Draw (BOTTOM_RIGHT, ww-256, hh-256, 1);

@@ -97,9 +97,7 @@ void CEvent::Motion (int x, int y) {
 	TWidget* foc = MouseMoveGUI(x, y);
 	if (foc != 0) curr_focus = foc;
 
-	if (x != 0 || y != 0) {
-		if (param.ui_snow) push_ui_snow (cursor_pos);
-    }
+	if (param.ui_snow) push_ui_snow (cursor_pos);
 }
 
 void InitCupRacing () {

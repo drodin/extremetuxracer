@@ -164,7 +164,7 @@ void SaveMessages () {
 }
 
 void Message (const char *msg, const char *desc) {
-	if (strlen(msg)<1 && strlen(desc)<1) {
+	if (*msg == 0 && *desc == 0) {
 		cout << '\n';
 		return;
 	}
@@ -176,12 +176,9 @@ void Message (const char *msg, const char *desc) {
 }
 
 void Message (const char *msg) {
-	if (strlen(msg)<1) {
-		cout << '\n';
-		return;
-	}
 	cout << msg << '\n';
-	msg_list.Add (msg);
+	if (*msg != 0)
+		msg_list.Add (msg);
 }
 
 void Message (const string& a, const string& b) {

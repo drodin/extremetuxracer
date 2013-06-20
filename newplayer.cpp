@@ -67,9 +67,7 @@ void CNewPlayer::Mouse (int button, int state, int x, int y) {
 void CNewPlayer::Motion (int x, int y) {
 	MouseMoveGUI(x, y);
 
-	if (x != 0 || y != 0) {
-		if (param.ui_snow) push_ui_snow (cursor_pos);
-    }
+	if (param.ui_snow) push_ui_snow (cursor_pos);
 }
 
 static int prevleft, prevtop, prevwidth, prevoffs;
@@ -111,8 +109,10 @@ void CNewPlayer::Loop(double timestep) {
     ScopedRenderMode rm(GUI);
     SetupGuiDisplay ();
 
-	update_ui_snow (timestep);
-	draw_ui_snow();
+	if (param.ui_snow) {
+		update_ui_snow (timestep);
+		draw_ui_snow();
+	}
 
 	textfield->UpdateCursor(timestep);
 

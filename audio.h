@@ -97,7 +97,7 @@ private:
 public:
 	CMusic ();
 
-	size_t LoadPiece (const char *name, const char *filename);
+	size_t LoadPiece (const string& name, const char *filename);
 	void LoadMusicList ();
 	size_t GetMusicIdx (const string& name) const;
 	size_t GetThemeIdx (const string& theme) const;

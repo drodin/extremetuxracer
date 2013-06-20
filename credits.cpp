@@ -150,9 +150,7 @@ void CCredits::Mouse (int button, int state, int x, int y) {
 }
 
 void CCredits::Motion(int x, int y) {
-	if (x != 0 || y != 0) {
-		if (param.ui_snow) push_ui_snow (cursor_pos);
-    }
+	if (param.ui_snow) push_ui_snow (cursor_pos);
 }
 
 void CCredits::Enter() {

@@ -81,9 +81,7 @@ void CGameTypeSelect::Keyb (unsigned int key, bool special, bool release, int x,
 void CGameTypeSelect::Motion (int x, int y) {
 	MouseMoveGUI(x, y);
 
-	if (x != 0 || y != 0) {
-		if (param.ui_snow) push_ui_snow (cursor_pos);
-    }
+	if (param.ui_snow) push_ui_snow (cursor_pos);
 }
 
 // ====================================================================
