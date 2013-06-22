@@ -547,7 +547,8 @@ bool CTexture::BindTex (const string& name) {
 // ---------------------------- Draw ----------------------------------
 
 void CTexture::Draw (size_t idx) {
-	CommonTex[idx]->Draw();
+	if(CommonTex.size() > idx)
+		CommonTex[idx]->Draw();
 }
 
 void CTexture::Draw (const string& name) {
@@ -555,7 +556,8 @@ void CTexture::Draw (const string& name) {
 }
 
 void CTexture::Draw (size_t idx, int x, int y, float size) {
-	CommonTex[idx]->Draw(x, y, size, forientation);
+	if(CommonTex.size() > idx)
+		CommonTex[idx]->Draw(x, y, size, forientation);
 }
 
 void CTexture::Draw (const string& name, int x, int y, float size) {
@@ -563,7 +565,8 @@ void CTexture::Draw (const string& name, int x, int y, float size) {
 }
 
 void CTexture::Draw (size_t idx, int x, int y, int width, int height) {
-	CommonTex[idx]->Draw (x, y, width, height, forientation);
+	if(CommonTex.size() > idx)
+		CommonTex[idx]->Draw (x, y, width, height, forientation);
 }
 
 void CTexture::Draw (const string& name, int x, int y, int width, int height) {
@@ -571,7 +574,8 @@ void CTexture::Draw (const string& name, int x, int y, int width, int height) {
 }
 
 void CTexture::DrawFrame (size_t idx, int x, int y, double w, double h, int frame, const TColor& col) {
-	CommonTex[idx]->DrawFrame (x, y, w, h, frame, col);
+	if(CommonTex.size() > idx)
+		CommonTex[idx]->DrawFrame (x, y, w, h, frame, col);
 }
 
 void CTexture::DrawFrame (const string& name, int x, int y, double w, double h, int frame, const TColor& col) {

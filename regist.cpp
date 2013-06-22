@@ -30,7 +30,6 @@ GNU General Public License for more details.
 
 CRegist Regist;
 
-static TCharacter *CharList;
 static TWidget* textbuttons[2];
 static TUpDown* player;
 static TUpDown* character;
@@ -99,7 +98,8 @@ void CRegist::Enter (void) {
 	textbuttons[1] = AddTextButton (Trans.Text(61), CENTER, AutoYPosN (70), siz);
 
 	g_game.loopdelay = 10;
-	CharList = &Char.CharList[0];
+	if(Char.CharList.empty())
+		Winsys.Terminate(); // Characters are necessary - ETR is unusable otherwise
 }
 
 void CRegist::Loop (double timestep) {
@@ -145,9 +145,9 @@ void CRegist::Loop (double timestep) {
 		framewidth, frameheight, 3, colMBackgr, col, 1.0);
 	FT.SetColor (col);
 	FT.DrawString (area.left + framewidth + arrowwidth + 20,
-		area.top, CharList[character->GetValue()].name);
-	if(CharList[character->GetValue()].preview != NULL)
-		CharList[character->GetValue()].preview->DrawFrame(
+		area.top, Char.CharList[character->GetValue()].name);
+	if(Char.CharList[character->GetValue()].preview != NULL)
+		Char.CharList[character->GetValue()].preview->DrawFrame(
 			area.right - texsize - 60 - arrowwidth,
 			AutoYPosN (40), texsize, texsize, 3, colWhite);
 

@@ -881,10 +881,6 @@ void quadsquare::Render (const quadcornerdata& cd, GLubyte *vnc_array) {
 
 clip_result_t quadsquare::ClipSquare (const quadcornerdata& cd)
 {
-	TVector3	min, max;
-	clip_result_t clip_result;
-	int	whole = 2 << cd.Level;
-
 	if (cd.xorg >= RowSize-1) {
 		return NotVisible;
 	}
@@ -893,6 +889,9 @@ clip_result_t quadsquare::ClipSquare (const quadcornerdata& cd)
 		return NotVisible;
 	}
 
+	clip_result_t clip_result;
+	int whole = 2 << cd.Level;
+	TVector3 min, max;
 	min.x = cd.xorg * ScaleX;
 	min.y = MinY;
 	min.z =  cd.zorg * ScaleZ;

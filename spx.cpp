@@ -450,7 +450,7 @@ bool CSPList::Load (const string &filepath) {
 
 	bool backflag = false;
 	if (!tempfile) {
-		Message ("CSPList::Load - unable to open","");
+		Message ("CSPList::Load - unable to open " + filepath, "");
 		return false;
 	} else {
 		while (getline(tempfile, line)) {
@@ -499,7 +499,7 @@ bool CSPList::Load (const string& dir, const string& filename) {
 bool CSPList::Save (const string &filepath) const {
 	std::ofstream tempfile(filepath.c_str());
 	if (!tempfile) {
-		Message ("CSPList::Save - unable to open","");
+		Message ("CSPList::Save - unable to open " + filepath, "");
 		return false;
 	} else {
 		for (size_t i=0; i<flines.size(); i++) {

@@ -166,15 +166,17 @@ bool CControl::CheckTreeCollisions (const TVector3& pos, TVector3 *tree_loc, dou
     else last_collision = false;
     return hit;
 }
+
 void CControl::AdjustTreeCollision (const TVector3& pos, TVector3 *vel) {
     TVector3 treeLoc;
     double tree_diam;
 	double factor;
 
 	if (CheckTreeCollisions (pos, &treeLoc, &tree_diam)) {
-		TVector3 treeNml;
-        treeNml.x = pos.x - treeLoc.x;
-        treeNml.z = pos.z - treeLoc.z;
+		TVector3 treeNml(
+			pos.x - treeLoc.x,
+			0,
+			pos.z - treeLoc.z);
         NormVector (treeNml);
 
         double speed = NormVector (*vel);
@@ -344,10 +346,9 @@ TVector3 CControl::CalcJumpForce () {
     }
     if ((jumping) && (g_game.time - jump_start_time < JUMP_FORCE_DURATION)) {
 		double y = 294 + jump_amt * 294; // jump_amt goes from 0 to 1
-		jumpforce = TVector3 (0, y, 0);
+		jumpforce.y = y;
 
     } else {
-		jumpforce = TVector3 (0, 0, 0);
 		jumping = false;
     }
 	return ScaleVector (1.0, jumpforce); // normally 1.0

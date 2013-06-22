@@ -915,8 +915,8 @@ void CCourse::MirrorCourseData () {
 }
 
 void CCourse::MirrorCourse () {
-		MirrorCourseData ();
-		init_track_marks ();
+	MirrorCourseData ();
+	init_track_marks ();
 }
 
 // ********************************************************************

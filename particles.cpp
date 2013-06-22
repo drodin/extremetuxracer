@@ -147,8 +147,6 @@ void update_ui_snow (double time_step) {
     double time = Winsys.ClockTime ();
 
     TVector2 push_vector;
-    push_vector.x = 0;
-    push_vector.y = 0;
     double push_timestep = 0;
 
     if (push_position_initialized) {
