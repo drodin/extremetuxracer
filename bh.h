@@ -22,18 +22,23 @@ GNU General Public License for more details.
 //		compiler flags
 // --------------------------------------------------------------------
 
+#ifndef HAVE_CONFIG_H
+// These are detected by configure
 #define HAVE_SDL
 #define HAVE_SDL_MIXER
 #define HAVE_SDL_IMAGE
-#define HAVE_SDL_JOYSTICK
 #define STDC_HEADERS
-#define TIME_WITH_SYS_TIME
 #define HAVE_GETCWD
-#define HAVE_GETTIMEOFDAY
 #define HAVE_STRDUP
+#define HAVE_SYS_TIME_H
+#endif
+
+
+#define HAVE_SDL_JOYSTICK
+#define TIME_WITH_SYS_TIME
+#define HAVE_GETTIMEOFDAY
 #define HAVE_GL_GLEXT_H
 #define HAVE_GL_GLX_H
-#define HAVE_SYS_TIME_H
 #define USE_STENCIL_BUFFER
 
 // --------------------------------------------------------------------

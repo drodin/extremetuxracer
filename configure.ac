@@ -40,7 +40,7 @@ esac
 
 # Checks for library functions.
 AC_FUNC_MALLOC
-AC_CHECK_FUNCS([floor getcwd memmove memset mkdir pow sqrt strchr])
+AC_CHECK_FUNCS([floor getcwd memmove memset mkdir pow sqrt strchr strdup])
 
 AM_PATH_SDL([1.0.0])
 CFLAGS="$CFLAGS $SDL_CFLAGS"
