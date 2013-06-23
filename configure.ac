@@ -4,7 +4,7 @@
 AC_PREREQ([2.61])
 AC_INIT([etr], [0.6-beta1], [BUG-REPORT-ADDRESS])
 AC_CONFIG_SRCDIR([gui.cpp])
-AC_CONFIG_HEADERS([config.h])
+AC_CONFIG_HEADERS([etr_config.h])
 
 AM_INIT_AUTOMAKE
 
