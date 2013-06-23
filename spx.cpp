@@ -115,23 +115,11 @@ int Str_IntN (const string &s, const int def) {
 }
 
 bool Str_BoolN (const string &s, const bool def) {
-	int val;
-	istringstream is(s);
-	is >> val;
-	if (is.fail()) return def;
-	return (val != 0);
-}
-
-bool Str_BoolNX (const string &s, const bool def) {
-	static const string decode = "[0]0[1]1[true]1[false]0";
-	string valstr;
-	if (def == true) valstr = SPStrN (decode, s, "1");
-	else valstr = SPStrN (decode, s, "0");
-	int val;
-	istringstream is(valstr);
-	is >> val;
-	if (is.fail()) return def;
-	return (val != 0);
+	if(s == "0" || s == "false")
+		return false;
+	if(s == "1" || s == "true")
+		return true;
+	return (bool)Str_IntN(s, (int)def); // Try to parse as int
 }
 
 float Str_FloatN (const string &s, const float def) {
@@ -232,10 +220,6 @@ int SPIntN (const string &s, const string &tag, const int def) {
 }
 
 bool SPBoolN (const string &s, const string &tag, const bool def) {
-	return (Str_BoolN (SPItemN (s, tag), def));
-}
-
-bool SPBoolNX (const string &s, const string &tag, const bool def) {
 	string item = SPItemN (s, tag);
 	STrimN (item);
 	return Str_BoolNX (item, def);

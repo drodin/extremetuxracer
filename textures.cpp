@@ -498,7 +498,7 @@ void CTexture::LoadTextureList () {
 			int id = SPIntN (line, "id", -1);
 			CommonTex.resize(max(CommonTex.size(), (size_t)id+1));
 			string texfile = SPStrN (line, "file", "");
-			bool rep = SPIntN (line, "repeat", 0) != 0;
+			bool rep = SPBoolN (line, "repeat", false);
 			if (id >= 0) {
 				CommonTex[id] = new TTexture();
 				if (rep)

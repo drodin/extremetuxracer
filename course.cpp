@@ -600,18 +600,18 @@ bool CCourse::LoadObjectTypes () {
 		ObjTypes[i].textureFile = ObjTypes[i].name;
 		ObjTypes[i].texture = NULL;
 
-		ObjTypes[i].drawable = SPIntN (line, "draw", 1) != 0;
+		ObjTypes[i].drawable = SPBoolN (line, "draw", true);
 		if (ObjTypes[i].drawable) {
 			ObjTypes[i].textureFile = SPStrN (line, "texture", "");
 		}
-		ObjTypes[i].collectable = SPIntN (line, "snap", -1) != 0;
+		ObjTypes[i].collectable = SPBoolN (line, "snap", -1) != 0;
 		if (ObjTypes[i].collectable == 0) {
 			ObjTypes[i].collectable = -1;
 		}
 
-		ObjTypes[i].collidable = SPIntN (line, "coll", 0) != 0;
-		ObjTypes[i].reset_point = SPIntN (line, "reset", 0) != 0;
-		ObjTypes[i].use_normal = SPIntN (line, "usenorm", 0) != 0;
+		ObjTypes[i].collidable = SPBoolN (line, "coll", false);
+		ObjTypes[i].reset_point = SPBoolN (line, "reset", false);
+		ObjTypes[i].use_normal = SPBoolN (line, "usenorm", false);
 
 		if (ObjTypes[i].use_normal) {
 			ObjTypes[i].normal = SPVector3N (line, "norm", TVector3(0, 1, 0));
@@ -661,14 +661,10 @@ bool CCourse::LoadTerrainTypes () {
 		TerrList[i].col = SPColor3N (line, "col", TColor3(1, 1, 1));
 		TerrList[i].friction = SPFloatN (line, "friction", 0.5);
 		TerrList[i].depth = SPFloatN (line, "depth", 0.01);
-		TerrList[i].particles = SPIntN (line, "part", 0) != 0;
-		TerrList[i].trackmarks = SPIntN (line, "trackmarks", 0) != 0;
+		TerrList[i].particles = SPBoolN (line, "part", false);
+		TerrList[i].trackmarks = SPBoolN (line, "trackmarks", false);
 		TerrList[i].texture = NULL;
-		if (SPIntN (line, "shiny", 0) > 0) {
-			TerrList[i].shiny = true;
-		} else {
-			TerrList[i].shiny = false;
-		}
+		TerrList[i].shiny = SPBoolN(line, "shiny", false);
 		TerrList[i].vol_type = SPIntN (line, "vol_type", 1);
 	}
 	return true;
@@ -769,7 +765,7 @@ bool CCourse::LoadCourseList () {
 			CourseList[i].starty = SPFloatN (line, "starty", 5);
 			CourseList[i].env = Env.GetEnvIdx (SPStrN (line, "env", "etr"));
 			CourseList[i].music_theme = Music.GetThemeIdx (SPStrN (line, "theme", "normal"));
-			CourseList[i].use_keyframe = SPIntN (line, "use_keyframe", 0) != 0;
+			CourseList[i].use_keyframe = SPBoolN (line, "use_keyframe", false);
 			CourseList[i].finish_brake = SPFloatN (line, "finish_brake", 20);
 			paramlist.Clear ();	// the list is used several times
 		}
