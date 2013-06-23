@@ -57,21 +57,33 @@ GNU General Public License for more details.
 #include "SDL/SDL_image.h"
 #include "SDL/SDL_mixer.h"
 
+#ifndef HAVE_CONFIG_H
 #ifdef _WIN32 // Windows platform
-	#ifdef _MSC_VER // MSVC compiler
-		#include <windows.h>
-		#include "glext.h"
-		#define OS_WIN32_MSC
-		#pragma warning (disable:4244)
-		#pragma warning (disable:4305)
-		#define SEP "\\"
-		#undef DrawText
-	#else // Assume MinGW compiler
-		#include <dirent.h>
-		#include <GL/glext.h>
-		#define OS_WIN32_MINGW
-		#define SEP "/"
-	#endif
+#ifdef _MSC_VER // MSVC compiler
+#define OS_WIN32_MSC
+#else // Assume MinGW compiler
+#define OS_WIN32_MINGW
+#endif
+#else // Assume Unix platform (Linux, Mac OS X, BSD, ...)
+#ifdef __APPLE__
+#define OS_MAC
+#elif defined(__linux__)
+#define OS_LINUX
+#endif
+#endif
+#endif // CONFIG_H
+
+#if defined OS_WIN32_MSC // Windows platform
+	#include <windows.h>
+	#include "glext.h"
+	#pragma warning (disable:4244)
+	#pragma warning (disable:4305)
+	#define SEP "\\"
+	#undef DrawText
+#elif defined OS_WON32_MINGW
+	#include <dirent.h>
+	#include <GL/glext.h>
+	#define SEP "/"
 #else // Assume Unix platform (Linux, Mac OS X, BSD, ...)
 	#include <unistd.h>
 	#include <sys/types.h>
@@ -80,11 +92,6 @@ GNU General Public License for more details.
 	#include <sys/time.h>
 	#include <GL/glx.h>
 	#define SEP "/"
-	#ifdef __APPLE__
-		#define OS_MAC
-	#elif defined(__linux__)
-		#define OS_LINUX
-	#endif
 #endif
 
 // --------------------------------------------------------------------
@@ -105,4 +112,4 @@ using namespace std;
 
 extern TGameData g_game;
 
-#endif
+#endif // BH_H

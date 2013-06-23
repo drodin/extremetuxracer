@@ -31,7 +31,11 @@ AC_TYPE_SIZE_T
 #
 case "$host_os" in
   *linux*)
-     CXXFLAGS="$CXXFLAGS -DOS_LINUX" ;;
+     AC_DEFINE([OS_LINUX], [1], [Linux build]) ;;
+  *mingw32*)
+     AC_DEFINE([OS_WIN32_MINGW], [1], [MinGW build]) ;;
+  *darwin*)
+     AC_DEFINE([OS_MAC], [1], [Mac OS X build]) ;;
 esac
 
 # Checks for library functions.
