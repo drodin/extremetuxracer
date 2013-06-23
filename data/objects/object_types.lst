@@ -38,5 +38,10 @@
 	 [coll] 1 [poly] tree [draw] 1 
 
 * [name] tree3 [texture] forest_tree2.png [repeat] 0
-	 [coll] 1 [poly] tree [draw] 1 
+	 [coll] 1 [poly] tree [draw] 1
 
+* [name] tree4 [texture] forest_tree3.png [repeat] 0
+	 [coll] 1 [poly] tree [draw] 1
+
+* [name] tree5 [texture] forest_tree4.png [repeat] 0
+	 [coll] 1 [poly] tree [draw] 1
