@@ -28,7 +28,8 @@ An name convention:
 #include <vector>
 
 #define MAX_LANGUAGES 32
-#define MAX_COMMON_TEXTS 128
+#define NUM_COMMON_TEXTS 69
+#define MAX_COMMON_TEXT_LINES NUM_COMMON_TEXTS*2
 
 
 struct TLang {
@@ -38,7 +39,7 @@ struct TLang {
 
 class CTranslation {
 private:
-	string texts[MAX_COMMON_TEXTS];
+	string texts[NUM_COMMON_TEXTS];
 	map<string, size_t> LangIndex;
 	bool languages_ok;
 public:

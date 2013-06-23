@@ -107,7 +107,7 @@ void CTranslation::SetDefaultTranslations () {
 }
 
 const string& CTranslation::Text (size_t idx) const {
-	if (idx >= MAX_COMMON_TEXTS) return emptyString;
+	if (idx >= NUM_COMMON_TEXTS) return emptyString;
 	return texts[idx];
 }
 
@@ -151,7 +151,7 @@ void CTranslation::LoadTranslations (size_t langidx) {
 	if (!languages_ok) return;
 	if (langidx >= languages.size()) return;
 
-	CSPList list(MAX_COMMON_TEXTS + 3);
+	CSPList list(MAX_COMMON_TEXT_LINES);
 	string filename = languages[langidx].lang + ".lst";
 	if (!list.Load (param.trans_dir, filename)) {
 		Message ("could not load translations list:", filename);
@@ -161,7 +161,7 @@ void CTranslation::LoadTranslations (size_t langidx) {
 	for (size_t i=0; i<list.Count(); i++) {
 		const string& line = list.Line(i);
 		int idx = SPIntN (line, "idx", -1);
-		if (idx >= 0 && idx < MAX_COMMON_TEXTS) {
+		if (idx >= 0 && idx < NUM_COMMON_TEXTS) {
 			texts[idx] = SPStrN (line, "trans", texts[idx]);
 		}
 	}
