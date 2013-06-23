@@ -1,4 +1,4 @@
-SUBDIRS = data
+SUBDIRS = build data
 
 bin_PROGRAMS = etr
 
