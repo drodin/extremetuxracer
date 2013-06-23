@@ -20,3 +20,5 @@ pkgdata_DATA = \
 	avatar15.png	\
 	avatar16.png	\
 	avatar17.png
+
+EXTRA_DIST = $(pkgdata_DATA)

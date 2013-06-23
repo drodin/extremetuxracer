@@ -98,6 +98,7 @@ noinst_HEADERS =	\
 	track_marks.h	\
 	translation.h	\
 	tux.h		\
+	version.h	\
 	view.h		\
 	winsys.h
 

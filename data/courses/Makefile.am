@@ -29,3 +29,5 @@ pkgdatadir = $(datadir)/$(PACKAGE)/courses
 pkgdata_DATA = \
 	courses.lst \
 	events.lst
+
+EXTRA_DIST = $(pkgdata_DATA)

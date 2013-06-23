@@ -13,3 +13,5 @@ pkgdata_DATA = \
 	pickup1.wav	\
 	pickup2.wav	\
 	pickup3.wav
+
+EXTRA_DIST = $(pkgdata_DATA)

@@ -7,3 +7,5 @@ pkgdata_DATA = \
 	preview.png	\
 	terrain.png	\
 	trees.png
+
+EXTRA_DIST = $(pkgdata_DATA)

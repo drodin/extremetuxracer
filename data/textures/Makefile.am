@@ -43,3 +43,5 @@ pkgdata_DATA = \
 	gaugeoutline.png	\
 	gaugeenergymask.png	\
 	gaugespeedmask.png
+
+EXTRA_DIST = $(pkgdata_DATA)

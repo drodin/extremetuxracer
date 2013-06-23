@@ -15,3 +15,5 @@ pkgdata_DATA = \
 	spunkyrace-ks.ogg	\
 	start1-jt.ogg	\
 	wonrace1-jt.ogg
+
+EXTRA_DIST = $(pkgdata_DATA)

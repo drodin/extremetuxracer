@@ -2,3 +2,5 @@ SUBDIRS = char courses env fonts music objects players sounds terrains textures 
 
 pkgdata_DATA = \
 	credits.lst
+
+EXTRA_DIST = $(pkgdata_DATA)

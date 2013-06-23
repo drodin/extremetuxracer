@@ -6,3 +6,5 @@ pkgdata_DATA = \
 	front.png	\
 	left.png	\
 	right.png
+
+EXTRA_DIST = $(pkgdata_DATA)

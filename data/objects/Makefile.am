@@ -10,3 +10,5 @@ pkgdata_DATA = \
 	herring.png	\
 	start.png	\
 	finish.png
+
+EXTRA_DIST = $(pkgdata_DATA)

@@ -19,3 +19,5 @@ pkgdata_DATA = \
 	sk_SK.lst	\
 	fi_FI.lst	\
 	sv_SE.lst
+
+EXTRA_DIST = $(pkgdata_DATA)

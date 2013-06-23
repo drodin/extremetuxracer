@@ -8,3 +8,5 @@ pkgdata_DATA = \
 	finish.lst	\
 	wonrace.lst	\
 	lostrace.lst
+
+EXTRA_DIST = $(pkgdata_DATA)

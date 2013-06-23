@@ -9,3 +9,5 @@ pkgdata_DATA = \
 	outline.ttf	\
 	pc_20.ttf	\
 	pc_outline.ttf
+
+EXTRA_DIST = $(pkgdata_DATA)

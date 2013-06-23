@@ -45,3 +45,5 @@ pkgdata_DATA = \
 	snowy_grass03.png	\
 	icy_grass03.png	\
 	icy_grass04.png
+
+EXTRA_DIST = $(pkgdata_DATA)
