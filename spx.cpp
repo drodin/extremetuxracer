@@ -119,7 +119,7 @@ bool Str_BoolN (const string &s, const bool def) {
 		return false;
 	if(s == "1" || s == "true")
 		return true;
-	return (bool)Str_IntN(s, (int)def); // Try to parse as int
+	return Str_IntN(s, (int)def) != 0; // Try to parse as int
 }
 
 float Str_FloatN (const string &s, const float def) {
@@ -222,7 +222,7 @@ int SPIntN (const string &s, const string &tag, const int def) {
 bool SPBoolN (const string &s, const string &tag, const bool def) {
 	string item = SPItemN (s, tag);
 	STrimN (item);
-	return Str_BoolNX (item, def);
+	return Str_BoolN (item, def);
 }
 
 float SPFloatN (const string &s, const string &tag, const float def) {
