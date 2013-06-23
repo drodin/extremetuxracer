@@ -20,6 +20,10 @@ defining the character has radically changed though the character is
 still shaped with spheres.
 ---------------------------------------------------------------------*/
 
+#ifdef HAVE_CONFIG_H
+#include <etr_config.h>
+#endif
+
 #include "tux.h"
 #include "ogl.h"
 #include "spx.h"

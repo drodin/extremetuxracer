@@ -15,6 +15,10 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 ---------------------------------------------------------------------*/
 
+#ifdef HAVE_CONFIG_H
+#include <etr_config.h>
+#endif
+
 #include "event_select.h"
 #include "gui.h"
 #include "font.h"

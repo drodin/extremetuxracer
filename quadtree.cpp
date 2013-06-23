@@ -1,3 +1,8 @@
+
+#ifdef HAVE_CONFIG_H
+#include <etr_config.h>
+#endif
+
 #include "textures.h"
 #include "course.h"
 #include "ogl.h"

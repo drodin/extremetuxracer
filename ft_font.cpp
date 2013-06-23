@@ -16,6 +16,10 @@ original FTGL library. Most functions are the same as in this
 module.
 --------------------------------------------------------------------- */
 
+#ifdef HAVE_CONFIG_H
+#include <etr_config.h>
+#endif
+
 #include "ft_font.h"
 
 // --------------------------------------------------------------------

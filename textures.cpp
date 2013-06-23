@@ -15,6 +15,10 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 ---------------------------------------------------------------------*/
 
+#ifdef HAVE_CONFIG_H
+#include <etr_config.h>
+#endif
+
 #include "textures.h"
 #include "spx.h"
 #include "course.h"

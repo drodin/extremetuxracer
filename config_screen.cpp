@@ -35,6 +35,10 @@ Then edit the below functions:
 	new entry.
 */
 
+#ifdef HAVE_CONFIG_H
+#include <etr_config.h>
+#endif
+
 #include "config_screen.h"
 #include "spx.h"
 #include "translation.h"
