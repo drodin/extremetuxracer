@@ -448,7 +448,7 @@ void CCharShape::DrawNodes (TCharNode *node) {
 
 void CCharShape::Draw () {
     TCharNode *node;
-    float dummy_color[]  = {0.0, 0.0, 0.0, 1.0};
+    static const float dummy_color[]  = {0.0, 0.0, 0.0, 1.0};
 
     glMaterialfv (GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, dummy_color);
 	ScopedRenderMode rm(TUX);
@@ -492,8 +492,8 @@ bool CCharShape::Load (const string& dir, const string& filename, bool with_acti
 			CreateCharNode (parent_name, node_name, name, fullname, order, shadow);
 			TVector3 rot = SPVector3N (line, "rot", NullVec);
 			MaterialNode (node_name, mat_name);
-			for (int ii=0; ii<(int)order.size(); ii++) {
-				int act = order.at(ii)-48;
+			for (size_t ii = 0; ii < order.size(); ii++) {
+				int act = order[ii]-48;
 				switch (act) {
 					case 0: {
 						TVector3 trans = SPVector3N (line, "trans", TVector3 (0,0,0));
@@ -845,7 +845,7 @@ void CCharShape::RefreshNode (size_t idx) {
 
 	for (size_t i=0; i<act->num; i++) {
 		int type = act->type[i];
-		TVector3 vec = act->vec[i];
+		const TVector3& vec = act->vec[i];
 		double dval = act->dval[i];
 
 		switch (type) {
@@ -960,14 +960,13 @@ void CCharShape::SaveCharNodes (const string& dir, const string& filename) {
 		if (node->parent_name >= node->node_name) Message ("wrong parent index");
 		string line = "*[node] " + Int_StrN ((int)node->node_name);
 		line += " [par] " + Int_StrN ((int)node->parent_name);
-		string order = act->order;
 		bool rotflag = false;
 
-		if (!order.empty()) {
+		if (!act->order.empty()) {
 			TVector3 rotation;
-			line += " [order] " + order;
-			for (size_t ii=0; ii<order.size(); ii++) {
-				int aa = order.at(ii)-48;
+			line += " [order] " + act->order;
+			for (size_t ii=0; ii<act->order.size(); ii++) {
+				int aa = act->order[ii]-48;
 				switch (aa) {
 					case 0: line += " [trans] " + Vector_StrN (act->vec[ii], 2); break;
 					case 4: line += " [scale] " + Vector_StrN (act->vec[ii], 2); break;

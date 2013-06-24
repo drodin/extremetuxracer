@@ -151,8 +151,8 @@ void draw_partial_tri_fan (double fraction) {
 }
 
 void draw_gauge (double speed, double energy) {
-    GLfloat xplane[4] = {1.0 / GAUGE_IMG_SIZE, 0.0, 0.0, 0.0 };
-    GLfloat yplane[4] = {0.0, 1.0 / GAUGE_IMG_SIZE, 0.0, 0.0 };
+	static const GLfloat xplane[4] = {1.0 / GAUGE_IMG_SIZE, 0.0, 0.0, 0.0 };
+	static const GLfloat yplane[4] = {0.0, 1.0 / GAUGE_IMG_SIZE, 0.0, 0.0 };
 
 	ScopedRenderMode rm(GAUGE_BARS);
 

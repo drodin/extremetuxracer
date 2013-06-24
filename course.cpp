@@ -727,11 +727,11 @@ bool CCourse::LoadCourseList () {
 
 	CourseList.resize(list.Count());
 	for (size_t i=0; i<list.Count(); i++) {
-		string line = list.Line(i);
-		CourseList[i].name = SPStrN (line, "name", "noname");
-		CourseList[i].dir = SPStrN (line, "dir", "nodir");
+		const string& line1 = list.Line(i);
+		CourseList[i].name = SPStrN (line1, "name", "noname");
+		CourseList[i].dir = SPStrN (line1, "dir", "nodir");
 
-		string desc = SPStrN (line, "desc", "");
+		string desc = SPStrN (line1, "desc", "");
 		FT.AutoSizeN (2);
 		vector<string> desclist = FT.MakeLineList (desc.c_str(), 335 * Winsys.scale - 16.0);
 		size_t cnt = desclist.size();
@@ -757,20 +757,20 @@ bool CCourse::LoadCourseList () {
 				Message ("could not load course.dim");
 			}
 
-			line = paramlist.Line (0);
-			CourseList[i].author = SPStrN (line, "author", "unknown");
-			CourseList[i].width = SPFloatN (line, "width", 100);
-			CourseList[i].length = SPFloatN (line, "length", 1000);
-			CourseList[i].play_width = SPFloatN (line, "play_width", 90);
-			CourseList[i].play_length = SPFloatN (line, "play_length", 900);
-			CourseList[i].angle = SPFloatN (line, "angle", 10);
-			CourseList[i].scale = SPFloatN (line, "scale", 10);
-			CourseList[i].startx = SPFloatN (line, "startx", 50);
-			CourseList[i].starty = SPFloatN (line, "starty", 5);
-			CourseList[i].env = Env.GetEnvIdx (SPStrN (line, "env", "etr"));
-			CourseList[i].music_theme = Music.GetThemeIdx (SPStrN (line, "theme", "normal"));
-			CourseList[i].use_keyframe = SPBoolN (line, "use_keyframe", false);
-			CourseList[i].finish_brake = SPFloatN (line, "finish_brake", 20);
+			const string& line2 = paramlist.Line (0);
+			CourseList[i].author = SPStrN (line2, "author", "unknown");
+			CourseList[i].width = SPFloatN (line2, "width", 100);
+			CourseList[i].length = SPFloatN (line2, "length", 1000);
+			CourseList[i].play_width = SPFloatN (line2, "play_width", 90);
+			CourseList[i].play_length = SPFloatN (line2, "play_length", 900);
+			CourseList[i].angle = SPFloatN (line2, "angle", 10);
+			CourseList[i].scale = SPFloatN (line2, "scale", 10);
+			CourseList[i].startx = SPFloatN (line2, "startx", 50);
+			CourseList[i].starty = SPFloatN (line2, "starty", 5);
+			CourseList[i].env = Env.GetEnvIdx (SPStrN (line2, "env", "etr"));
+			CourseList[i].music_theme = Music.GetThemeIdx (SPStrN (line2, "theme", "normal"));
+			CourseList[i].use_keyframe = SPBoolN (line2, "use_keyframe", false);
+			CourseList[i].finish_brake = SPFloatN (line2, "finish_brake", 20);
 			paramlist.Clear ();	// the list is used several times
 		}
 	}
@@ -1006,28 +1006,28 @@ TVector3 CCourse::FindCourseNormal (double x, double z) const {
     double u, v;
     FindBarycentricCoords (x, z, &idx0, &idx1, &idx2, &u, &v);
 
-	TVector3 n0 = Course.nmls[ idx0.i + nx * idx0.j ];
-	TVector3 n1 = Course.nmls[ idx1.i + nx * idx1.j ];
-	TVector3 n2 = Course.nmls[ idx2.i + nx * idx2.j ];
+	const TVector3& n0 = Course.nmls[ idx0.i + nx * idx0.j ];
+	const TVector3& n1 = Course.nmls[ idx1.i + nx * idx1.j ];
+	const TVector3& n2 = Course.nmls[ idx2.i + nx * idx2.j ];
 
 	TVector3 p0 = COURSE_VERTX (idx0.i, idx0.j);
 	TVector3 p1 = COURSE_VERTX (idx1.i, idx1.j);
 	TVector3 p2 = COURSE_VERTX (idx2.i, idx2.j);
 
 	TVector3 smooth_nml = AddVectors (
-	ScaleVector (u, n0),
-	AddVectors (ScaleVector (v, n1), ScaleVector (1.-u-v, n2)));
+		ScaleVector (u, n0),
+		AddVectors (ScaleVector (v, n1), ScaleVector (1.-u-v, n2)));
 
 	TVector3 tri_nml = CrossProduct (
-	SubtractVectors (p1, p0), SubtractVectors (p2, p0));
+		SubtractVectors (p1, p0), SubtractVectors (p2, p0));
     NormVector (tri_nml);
 
 	double min_bary = min (u, min (v, 1. - u - v));
 	double interp_factor = min (min_bary / NORM_INTERPOL, 1.0);
 
 	TVector3 interp_nml = AddVectors (
-	ScaleVector (interp_factor, tri_nml),
-	ScaleVector (1.-interp_factor, smooth_nml));
+		ScaleVector (interp_factor, tri_nml),
+		ScaleVector (1.-interp_factor, smooth_nml));
     NormVector (interp_nml);
 
     return interp_nml;

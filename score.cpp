@@ -96,7 +96,7 @@ bool CScore::SaveHighScore () const {
 			int num = lst->numScores;
 			if (num > 0) {
 				for (int sc=0; sc<num; sc++) {
-					TScore score = lst->scores[sc];
+					const TScore& score = lst->scores[sc];
 					string line = "*[course] " + Course.CourseList[li].dir;
 					line += " [plyr] " + score.player;
 					line += " [pts] " + Int_StrN (score.points);

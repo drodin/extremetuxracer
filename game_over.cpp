@@ -99,7 +99,7 @@ void GameOverMessage (CControl *ctrl) {
 	float topframe = 80;
 
 	const TColor& backcol = colWhite;
-	const TColor framecol(0.7, 0.7, 1, 1);
+	static const TColor framecol(0.7, 0.7, 1, 1);
 
 	if (param.use_papercut_font > 0) FT.SetSize (28); else FT.SetSize (22);
 	if (g_game.raceaborted) {
@@ -108,13 +108,12 @@ void GameOverMessage (CControl *ctrl) {
 		FT.DrawString (CENTER, topframe+30, Trans.Text(25));
 	} else {
 		DrawMessageFrame (leftframe, topframe, fwidth, 210, 4, backcol, framecol, 0.5);
-		string line;
 
 		if (param.use_papercut_font > 0) FT.SetSize (20); else FT.SetSize (14);
 		if (g_game.race_result >= 0 || g_game.game_type != CUPRACING) FT.SetColor (colDBlue);
 			else FT.SetColor (colDRed);
 
-		line = "Score:  ";
+		string line = "Score:  ";
 		FT.DrawString (leftframe+80, topframe+15, line);
 		line = Int_StrN (g_game.score);
 		line += "  pts";

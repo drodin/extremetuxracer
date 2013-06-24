@@ -212,7 +212,7 @@ void CControl::CheckItemCollection (const TVector3& pos) {
 
 		double diam = items[i].diam;
 		double height = items[i].height;
-		TVector3 loc = items[i].pt;
+		const TVector3& loc = items[i].pt;
 
 		TVector3 distvec(loc.x - pos.x, 0.0, loc.z - pos.z);
 		double squared_dist =  (diam / 2. + 0.6);
@@ -410,7 +410,7 @@ TVector3 CControl::CalcPaddleForce (double speed) {
 
      if (is_paddling) {
 		if (cairborne) {
-			paddleforce = TVector3 (0, 0, -TUX_MASS * EARTH_GRAV / 4.0);
+			paddleforce.z = -TUX_MASS * EARTH_GRAV / 4.0;
 			paddleforce = RotateVector (corientation, paddleforce);
 		} else {
 		    paddleforce = ScaleVector (-1 * min (MAX_PADD_FORCE, MAX_PADD_FORCE

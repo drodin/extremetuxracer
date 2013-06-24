@@ -410,15 +410,13 @@ void generate_particles (CControl *ctrl, double dtime, const TVector3& pos, doub
 	int id = Course.GetTerrainIdx (pos.x, pos.z, 0.5);
 	if (id >= 0 && TerrList[id].particles && pos.y < surf_y) {
 		TVector3 xvec = CrossProduct (ctrl->cdirection, ctrl->plane_nml);
-        TVector3 right_part_pt = pos;
-		TVector3 left_part_pt = pos;
 
-		right_part_pt = AddVectors (
-		    right_part_pt,
+		TVector3 right_part_pt = AddVectors (
+		    pos,
 		    ScaleVector (TUX_WIDTH/2.0, xvec));
 
-		left_part_pt = AddVectors (
-		    left_part_pt,
+		TVector3 left_part_pt = AddVectors (
+		    pos,
 		    ScaleVector (-TUX_WIDTH/2.0, xvec));
 
         right_part_pt.y = left_part_pt.y  = surf_y;
@@ -524,8 +522,8 @@ TFlakeArea::TFlakeArea (
 void TFlakeArea::Draw (CControl *ctrl) const {
 	if (g_game.snow_id < 1) return;
 
-	TPlane lp = get_left_clip_plane ();
-	TPlane rp = get_right_clip_plane ();
+	const TPlane& lp = get_left_clip_plane ();
+	const TPlane& rp = get_right_clip_plane ();
 	float dir_angle (atan (ctrl->viewdir.x / ctrl->viewdir.z) * 180 / 3.14159);
 
 	ScopedRenderMode rm(PARTICLES);
@@ -836,7 +834,7 @@ void CCurtain::Draw (CControl *ctrl) {
 
 void CCurtain::Update (float timestep, CControl *ctrl) {
 	if (g_game.snow_id < 1) return;
-	TVector3 drift = Wind.WindDrift ();
+	const TVector3& drift = Wind.WindDrift ();
 
 	UpdateChanges (timestep);
 	for (size_t i=0; i<curtains.size(); i++) {

@@ -206,7 +206,7 @@ void CKeyframe::CalcKeyframe (size_t idx, CCharShape *shape, const TVector3& ref
 
 	shape->ResetRoot ();
 	shape->ResetJoints ();
-    shape->TranslateNode (0, TVector3(pos.x, pos.y, pos.z));
+	shape->TranslateNode (0, pos);
 
     vv = frames[idx].val[4];
     shape->RotateNode ("root", 2, vv);
