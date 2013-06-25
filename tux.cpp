@@ -90,17 +90,6 @@ TCharNode *CCharShape::GetNode (size_t node_name) {
 	return Nodes[idx];
 }
 
-bool CCharShape::GetNode (size_t node_name, TCharNode **node) {
-	size_t idx = GetNodeIdx (node_name);
-	if (idx >= numNodes) {
-		*node = NULL;
-		return false;
-	} else {
-		*node = Nodes[idx];
-		return true;
-	}
-}
-
 void CCharShape::CreateRootNode () {
     TCharNode *node = new TCharNode;
 	node->node_name = 0;
@@ -190,10 +179,11 @@ void CCharShape::AddAction (size_t node_name, int type, const TVector3& vec, dou
 }
 
 bool CCharShape::TranslateNode (size_t node_name, const TVector3& vec) {
-    TCharNode *node;
+	TCharNode *node = GetNode (node_name);
+	if (node == NULL) return false;
+
     TMatrix TransMatrix;
 
-    if (GetNode (node_name, &node) == false) return false;
     MakeTranslationMatrix (TransMatrix, vec.x, vec.y, vec.z);
     MultiplyMatrices (node->trans, node->trans, TransMatrix);
 	MakeTranslationMatrix (TransMatrix, -vec.x, -vec.y, -vec.z);
@@ -204,13 +194,13 @@ bool CCharShape::TranslateNode (size_t node_name, const TVector3& vec) {
 }
 
 bool CCharShape::RotateNode (size_t node_name, int axis, double angle) {
-	TCharNode *node;
-    TMatrix rotMatrix;
-	char caxis = '0';
-
-    if (GetNode (node_name, &node) == false) return false;
+	TCharNode *node = GetNode (node_name);
+	if (node == NULL) return false;
 
 	if (axis > 3) return false;
+
+    TMatrix rotMatrix;
+	char caxis = '0';
 	switch (axis) {
 		case 1: caxis = 'x'; break;
 		case 2: caxis = 'y'; break;
@@ -233,10 +223,10 @@ bool CCharShape::RotateNode (const string& node_trivialname, int axis, double an
 }
 
 void CCharShape::ScaleNode (size_t node_name, const TVector3& vec) {
-    TCharNode *node;
-    TMatrix matrix;
+	TCharNode *node = GetNode(node_name);
+	if (node == NULL) return;
 
-    if (GetNode (node_name, &node) == false) return;
+    TMatrix matrix;
 
 	MakeIdentityMatrix (matrix);
     MultiplyMatrices (node->trans, node->trans, matrix);
@@ -257,8 +247,8 @@ void CCharShape::ScaleNode (size_t node_name, const TVector3& vec) {
 }
 
 bool CCharShape::VisibleNode (size_t node_name, float level) {
-    TCharNode *node;
-    if (GetNode (node_name, &node) == false) return false;
+	TCharNode *node = GetNode(node_name);
+	if (node == NULL) return false;
 
 	node->visible = (level > 0);
 
@@ -273,19 +263,18 @@ bool CCharShape::VisibleNode (size_t node_name, float level) {
 }
 
 bool CCharShape::MaterialNode (size_t node_name, const string& mat_name) {
-    TCharMaterial *mat;
-    TCharNode *node;
-	size_t idx = GetNodeIdx (node_name);
-    if (GetNode (node_name, &node) == false) return false;
-    if (GetMaterial (mat_name, &mat) == false) return false;
+	TCharNode *node = GetNode(node_name);
+	if (node == NULL) return false;
+	TCharMaterial *mat = GetMaterial(mat_name);
+	if (mat == NULL) return false;
 	node->mat = mat;
 	if (newActions && useActions) node->action->mat = mat_name;
 	return true;
 }
 
 bool CCharShape::ResetNode (size_t node_name) {
-    TCharNode *node;
-    if (GetNode (node_name, &node) == false) return false;
+	TCharNode *node = GetNode(node_name);
+	if (node == NULL) return false;
 
     MakeIdentityMatrix (node->trans);
     MakeIdentityMatrix (node->invtrans);
@@ -299,8 +288,8 @@ bool CCharShape::ResetNode (const string& node_trivialname) {
 }
 
 bool CCharShape::TransformNode (size_t node_name, TMatrix mat, TMatrix invmat) {
-    TCharNode *node;
-    if (GetNode (node_name, &node) == false) return false;
+	TCharNode *node = GetNode(node_name);
+	if (node == NULL) return false;
 
     MultiplyMatrices (node->trans, node->trans, mat);
 	MultiplyMatrices (node->invtrans, invmat, node->invtrans);
@@ -351,15 +340,12 @@ void CCharShape::Reset () {
 //				materials
 // --------------------------------------------------------------------
 
-bool CCharShape::GetMaterial (const string& mat_name, TCharMaterial **mat) {
+TCharMaterial* CCharShape::GetMaterial (const string& mat_name) {
 	map<string, size_t>::const_iterator i = MaterialIndex.find(mat_name);
 	if (i != MaterialIndex.end() && i->second < Materials.size()) {
-		*mat = &Materials[i->second];
-		return true;
-	} else {
-		*mat = 0;
-		return false;
+		return &Materials[i->second];
 	}
+	return NULL;
 }
 
 void CCharShape::CreateMaterial (const string& line) {
@@ -447,14 +433,15 @@ void CCharShape::DrawNodes (TCharNode *node) {
 }
 
 void CCharShape::Draw () {
-    TCharNode *node;
-    static const float dummy_color[]  = {0.0, 0.0, 0.0, 1.0};
+    static const float dummy_color[] = {0.0, 0.0, 0.0, 1.0};
 
     glMaterialfv (GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, dummy_color);
 	ScopedRenderMode rm(TUX);
 	glEnable (GL_NORMALIZE);
 
-	if (!GetNode (0, &node)) return;
+	TCharNode *node = GetNode(0);
+	if (node == NULL) return;
+
 	DrawNodes (node);
 	glDisable (GL_NORMALIZE);
 	if (param.perf_level > 2 && g_game.argument == 0) DrawShadow ();
@@ -586,7 +573,7 @@ void CCharShape::AdjustOrientation (CControl *ctrl, double dtime,
 void CCharShape::AdjustJoints (double turnFact, bool isBraking,
 			double paddling_factor, double speed,
 			const TVector3& net_force, double flap_factor) {
-    double turning_angle[2] = {0, 0};
+    double turning_angle[2];
     double paddling_angle = 0;
     double ext_paddling_angle = 0;
     double kick_paddling_angle = 0;
@@ -663,13 +650,13 @@ bool CCharShape::CheckPolyhedronCollision (TCharNode *node, TMatrix modelMatrix,
 }
 
 bool CCharShape::CheckCollision (const TPolyhedron& ph) {
-    TCharNode *node;
     TMatrix mat, invmat;
 
     MakeIdentityMatrix (mat);
     MakeIdentityMatrix (invmat);
 
-	if (GetNode (0, &node) == false) return false;
+	TCharNode *node = GetNode(0);
+	if (node == NULL) return false;
     return CheckPolyhedronCollision (node, mat, invmat, ph);
 }
 
@@ -792,7 +779,6 @@ void CCharShape::TraverseDagForShadow (TCharNode *node, TMatrix mat) {
 
 void CCharShape::DrawShadow () {
     TMatrix model_matrix;
-    TCharNode *node;
 
 	if (g_game.light_id == 1 || g_game.light_id == 3) return;
 
@@ -800,7 +786,8 @@ void CCharShape::DrawShadow () {
     glColor4f (shad_col.r, shad_col.g, shad_col.b, shad_col.a);
     MakeIdentityMatrix (model_matrix);
 
-    if (GetNode (0, &node) == false) {
+	TCharNode *node = GetNode(0);
+	if (node == NULL) {
 		Message ("couldn't find tux's root node", "");
 		return;
     }

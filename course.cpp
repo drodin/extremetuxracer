@@ -92,8 +92,8 @@ void CCourse::GetDivisions (int *x, int *y) const {
     *y = ny;
 }
 
-void CCourse::GetGLArrays (GLubyte **vnc_arr) const {
-	*vnc_arr = vnc_array;
+GLubyte* CCourse::GetGLArrays() const {
+	return vnc_array;
 }
 
 const TPolyhedron& CCourse::GetPoly (size_t type) const {

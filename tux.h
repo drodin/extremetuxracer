@@ -83,7 +83,6 @@ private:
 	// nodes
 	size_t GetNodeIdx (size_t node_name) const;
 	TCharNode *GetNode (size_t node_name);
-	bool GetNode (size_t node_name, TCharNode **node);
 	void CreateRootNode ();
 	bool CreateCharNode
 		(int parent_name, size_t node_name, const string& joint,
@@ -93,7 +92,7 @@ private:
 	bool TransformNode (size_t node_name, TMatrix mat, TMatrix invmat);
 
 	// material
-	bool GetMaterial (const string& mat_name, TCharMaterial **mat);
+	TCharMaterial* GetMaterial (const string& mat_name);
 	void CreateMaterial (const string& line);
 
 	// drawing

@@ -157,7 +157,7 @@ public:
 	bool LoadTerrainTypes ();
 	bool LoadObjectTypes ();
 	void MakeStandardPolyhedrons ();
-	void GetGLArrays (GLubyte **vnc_array) const;
+	GLubyte* GetGLArrays() const;
 	void FillGlArrays();
 
 	void GetDimensions (double *w, double *l) const;
