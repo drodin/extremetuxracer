@@ -17,6 +17,13 @@
       <Directory Id='SystemFolder' FileSource='SystemFolder' />
       <Directory Id='$(var.PlatformProgramFilesFolder)' Name='PFiles'>
         <Directory Id='INSTALLDIR' Name='$(var.ProductNameShort)'>
+          <Directory Id='ConfigDir' Name='config'>
+            <Component Id="Config" Guid='$(var.configGUID)'>
+              <CreateFolder>
+                <Permission User="Everyone" GenericAll="yes" />
+              </CreateFolder>
+            </Component>
+          </Directory>
           <Component Id='ExtremeTuxRacer.exe' Guid='$(var.etrGUID)'>
             <File Id='ExtremeTuxRacer.exe' Name='ExtremeTuxRacer.exe' DiskId='1' Source='$(var.BinDir)\ExtremeTuxRacer.exe' KeyPath='yes' />
           </Component>
@@ -57,6 +64,7 @@
       <Feature Id='ExtremeTuxRacer' Display='hidden' AllowAdvertise='no' Title='Extreme TuxRacer' Description='Extreme TuxRacer core components' Level='1'>
         <ComponentRef Id='ExtremeTuxRacer.exe' />
         <ComponentGroupRef Id='Data' />
+        <ComponentRef Id='Config' />
         <ComponentRef Id='SDL' />
       </Feature>
       <!--<Feature Id='Translations' Title='Translations' AllowAdvertise='no' Description='Translations for other languages than English' Level='1'>

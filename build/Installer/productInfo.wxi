@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Include>
-  <?define ProductName = "Extreme TuxRacer 0.6 ($(var.Platform))" ?>
+  <?define ProductName = "Extreme TuxRacer 0.6 Beta 1 ($(var.Platform))" ?>
   <?define ProductNameShort = "Extreme TuxRacer" ?>
-  <?define ProductVersion = "0.6" ?>
+  <?define ProductVersion = "0.5.99.1" ?>
 
   <?define ProductManufacturer = "The ExtremeTuxRacer team" ?>
   <?define ProductDescription = "High speed arctic racing game" ?>
@@ -11,5 +11,6 @@
   <?define etrGUID = "D0102D22-564F-4D77-B767-D76E6AA579B1" ?>
   <?define translationsGUID = "3600F254-3E73-4665-8720-A1535D3F3DAA" ?>
   <?define dataGUID = "3600F254-3E73-4641-8720-A1535D3F3DAA" ?>
+  <?define configGUID = "518222EC-45A7-3E33-CDE4-CD9857AF7752" ?>
   <?define sdlGUID = "23EECE51-1BA7-44EA-8EF6-2C9F48C303DD" ?>
 </Include>
