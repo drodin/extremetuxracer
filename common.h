@@ -83,16 +83,16 @@ void	PrintString (const string& s);
 void	PrintFloat (const float val);
 void	PrintDouble (const double val);
 void	PrintFloat8 (const float val);
-void	PrintFloat (char *s, const float val);
+void	PrintFloat (const char *s, const float val);
 void	PrintBool (const bool val);
 void	PrintPointer (void *p);
 void	PrintVector (const TVector3& v);
 void	PrintVector4 (const TVector4& v);
 void    PrintColor (const TColor& c);
 void	PrintVector2 (const TVector2& v);
-void	PrintVector (char *s, const TVector3& v);
+void	PrintVector (const char *s, const TVector3& v);
 
-void	PrintMatrix (TMatrix mat);
+void	PrintMatrix (const TMatrix mat);
 void	PrintQuaternion (const TQuaternion& q);
 
 void	PrintIndex3 (const TIndex3& idx);

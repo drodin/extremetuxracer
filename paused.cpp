@@ -89,7 +89,7 @@ void CPaused::Loop (double time_step) {
     DrawTrackmarks ();
     DrawTrees();
 
-	UpdateWind (time_step, ctrl);
+	UpdateWind (time_step);
 	UpdateSnow (time_step, ctrl);
 	DrawSnow (ctrl);
 

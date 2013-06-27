@@ -100,7 +100,7 @@ void CIntro::Loop (double time_step) {
     check_gl_error();
 
 	if (startframe->active) {
-		startframe->Update (time_step, ctrl);
+		startframe->Update (time_step);
 	} else State::manager.RequestEnterState (Racing);
 
 	ClearRenderContext ();
@@ -118,7 +118,7 @@ void CIntro::Loop (double time_step) {
     DrawTrackmarks ();
     DrawTrees ();
 
-	UpdateWind (time_step, ctrl);
+	UpdateWind (time_step);
 	UpdateSnow (time_step, ctrl);
 	DrawSnow (ctrl);
 

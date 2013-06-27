@@ -84,7 +84,7 @@ void PrintDouble (const double val) {
 	cout << val << '\n';
 }
 
-void PrintFloat (char *s, const float val) {
+void PrintFloat (const char *s, const float val) {
 	cout.precision(5);
 	cout << s << ' ' << val << '\n';
 }
@@ -132,12 +132,12 @@ void PrintIndex4 (const TIndex4& idx) {
 	cout << idx.i << ' ' << idx.j << ' ' << idx.k << ' ' << idx.l << '\n';
 }
 
-void PrintVector (char *s, const TVector3& v) {
+void PrintVector (const char *s, const TVector3& v) {
 	cout << s << ' ';
 	PrintVector(v);
 }
 
-void PrintMatrix (TMatrix mat) {
+void PrintMatrix (const TMatrix mat) {
 	cout << '\n';
 	cout.precision(3);
 	for (int i=0; i<4; i++) {

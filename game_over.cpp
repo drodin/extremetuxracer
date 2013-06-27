@@ -92,7 +92,7 @@ void DrawMessageFrame (float x, float y, float w, float h, int line,
 }
 
 
-void GameOverMessage (CControl *ctrl) {
+void GameOverMessage (const CControl *ctrl) {
 	int fwidth = 500;
 
 	float leftframe = (Winsys.resolution.width - fwidth) / 2;
@@ -202,7 +202,7 @@ void CGameOver::Enter() {
 		} else final_frame = Char.GetKeyframe (g_game.char_id, FINISH);
 
 		if (!g_game.raceaborted) {
-			CControl *ctrl = Players.GetCtrl (g_game.player_id);
+			const CControl *ctrl = Players.GetCtrl (g_game.player_id);
 			final_frame->Init (ctrl->cpos, -0.18);
 		}
 	}
@@ -224,7 +224,7 @@ void CGameOver::Loop(double time_step) {
 
 	update_view (ctrl, 0);
 
-	if (final_frame != NULL) final_frame->Update (time_step, ctrl);
+	if (final_frame != NULL) final_frame->Update (time_step);
 
     SetupViewFrustum (ctrl);
     Env.DrawSkybox (ctrl->viewpos);
@@ -235,7 +235,7 @@ void CGameOver::Loop(double time_step) {
     DrawTrackmarks ();
     DrawTrees ();
 
-	UpdateWind (time_step, ctrl);
+	UpdateWind (time_step);
 	UpdateSnow (time_step, ctrl);
 	DrawSnow (ctrl);
 

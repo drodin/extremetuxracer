@@ -28,8 +28,8 @@ GNU General Public License for more details.
 #define STRIDE_GL_ARRAY (8 * sizeof(GLfloat) + 4 * sizeof(GLubyte))
 #define ELEV(x,y) (elevation[(x) + nx*(y)] )
 #define NORM_INTERPOL 0.05
-#define XCD(x) ((double)(x) / (nx-1.0) * curr_course->width)
-#define ZCD(y) (-(double)(y) / (ny-1.0) * curr_course->length)
+#define XCD(_x) ((double)(_x) / (nx-1.0) * curr_course->size.x)
+#define ZCD(_y) (-(double)(_y) / (ny-1.0) * curr_course->size.y)
 #define NMLPOINT(x,y) TVector3(XCD(x), ELEV(x,y), ZCD(y) )
 
 
@@ -63,14 +63,11 @@ struct TCourse {
 	string desc[MAX_DESCRIPTION_LINES];
 	size_t num_lines;
 	TTexture* preview;
-	double width;
-	double length;
-	double play_width;
-	double play_length;
+	TVector2 size;
+	TVector2 play_size;
 	double angle;
 	double scale;
-	double startx;
-	double starty;
+	TVector2 start;
 	size_t env;
 	size_t music_theme;
 	bool use_keyframe;
@@ -160,8 +157,8 @@ public:
 	GLubyte* GetGLArrays() const;
 	void FillGlArrays();
 
-	void GetDimensions (double *w, double *l) const;
-	void GetPlayDimensions (double *pw, double *pl) const;
+	const TVector2& GetDimensions() const { return curr_course->size; }
+	const TVector2& GetPlayDimensions() const { return curr_course->play_size; }
 	void GetDivisions (int *nx, int *ny) const;
 	double GetCourseAngle () const;
 	double GetBaseHeight (double distance) const;

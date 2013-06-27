@@ -248,14 +248,14 @@ struct Particle {
     double alpha;
     TVector3 vel;
 
-	void Draw(CControl* ctrl) const;
-	void draw_billboard (CControl *ctrl, double width, double height, bool use_world_y_axis,
+	void Draw(const CControl* ctrl) const;
+	void draw_billboard (const CControl *ctrl, double width, double height, bool use_world_y_axis,
 		const TVector2& min_tex_coord, const TVector2& max_tex_coord) const;
 };
 
 static list<Particle> particles;
 
-void Particle::Draw(CControl* ctrl) const {
+void Particle::Draw(const CControl* ctrl) const {
 	TVector2 min_tex_coord, max_tex_coord;
 	if (type == 0 || type == 1) {
 		min_tex_coord.y = 0;
@@ -282,7 +282,7 @@ void Particle::Draw(CControl* ctrl) const {
 	draw_billboard (ctrl, cur_size, cur_size, false, min_tex_coord, max_tex_coord);
 }
 
-void Particle::draw_billboard (CControl *ctrl, double width, double height, bool use_world_y_axis, const TVector2& min_tex_coord, const TVector2& max_tex_coord) const
+void Particle::draw_billboard (const CControl *ctrl, double width, double height, bool use_world_y_axis, const TVector2& min_tex_coord, const TVector2& max_tex_coord) const
 {
     TVector3 x_vec;
     TVector3 y_vec;
@@ -373,7 +373,7 @@ void update_particles (double time_step) {
         ++p;
 	}
 }
-void draw_particles (CControl *ctrl) {
+void draw_particles (const CControl *ctrl) {
     ScopedRenderMode rm(PARTICLES);
 	Tex.BindTex (SNOW_PART);
     glTexEnvf (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
@@ -396,7 +396,7 @@ double adjust_particle_count (double particles) {
     } else return particles;
 }
 
-void generate_particles (CControl *ctrl, double dtime, const TVector3& pos, double speed) {
+void generate_particles (const CControl *ctrl, double dtime, const TVector3& pos, double speed) {
     double brake_particles;
     double turn_particles;
     double roll_particles;
@@ -519,7 +519,7 @@ TFlakeArea::TFlakeArea (
 	flakes.resize(num_flakes);
 }
 
-void TFlakeArea::Draw (CControl *ctrl) const {
+void TFlakeArea::Draw (const CControl *ctrl) const {
 	if (g_game.snow_id < 1) return;
 
 	const TPlane& lp = get_left_clip_plane ();
@@ -591,7 +591,7 @@ void CFlakes::MakeSnowFlake (size_t ar, size_t i) {
     }
 }
 
-void CFlakes::GenerateSnowFlakes (CControl *ctrl) {
+void CFlakes::GenerateSnowFlakes (const CControl *ctrl) {
 	if (g_game.snow_id < 1) return;
 	snow_lastpos = ctrl->cpos;
 	for (size_t ar=0; ar<areas.size(); ar++) {
@@ -599,7 +599,7 @@ void CFlakes::GenerateSnowFlakes (CControl *ctrl) {
 	}
 }
 
-void CFlakes::UpdateAreas (CControl *ctrl) {
+void CFlakes::UpdateAreas (const CControl *ctrl) {
 	for (size_t ar=0; ar<areas.size(); ar++) {
 		areas[ar].left = ctrl->cpos.x - areas[ar].xrange / 2;
 		areas[ar].right = areas[ar].left + areas[ar].xrange;
@@ -613,7 +613,7 @@ void CFlakes::UpdateAreas (CControl *ctrl) {
 #define YDRIFT 0.8
 #define ZDRIFT 0.6
 
-void CFlakes::Init (int grade, CControl *ctrl) {
+void CFlakes::Init (int grade, const CControl *ctrl) {
 	Reset ();
 	switch (grade) {
 		case 1:
@@ -656,7 +656,7 @@ void CFlakes::Init (int grade, CControl *ctrl) {
 	GenerateSnowFlakes (ctrl);
 }
 
-void CFlakes::Update (double timestep, CControl *ctrl) {
+void CFlakes::Update (double timestep, const CControl *ctrl) {
 	if (g_game.snow_id < 1)
 		return;
 
@@ -679,7 +679,7 @@ void CFlakes::Update (double timestep, CControl *ctrl) {
 	snow_lastpos = ctrl->cpos;
 }
 
-void CFlakes::Draw (CControl *ctrl) const {
+void CFlakes::Draw (const CControl *ctrl) const {
 	for (size_t ar=0; ar<areas.size(); ar++)
 		areas[ar].Draw(ctrl);
 }
@@ -749,7 +749,7 @@ TCurtain::TCurtain (int num_rows, float z_dist, float tex_size,
 		chg[i] = IRandom (0, 5);
 }
 
-void TCurtain::SetStartParams(CControl* ctrl) {
+void TCurtain::SetStartParams(const CControl* ctrl) {
 	for (unsigned int co=0; co<numCols; co++) {
 		for (unsigned int row=0; row<numRows; row++) {
 			TCurtainElement* curt = &curtains[co][row];
@@ -789,7 +789,7 @@ void TCurtain::Draw() const {
 	}
 }
 
-void TCurtain::Update(float timestep, const TVector3& drift, CControl* ctrl) {
+void TCurtain::Update(float timestep, const TVector3& drift, const CControl* ctrl) {
 	for (unsigned int co=0; co<numCols; co++) {
 		for (unsigned int row=0; row<numRows; row++) {
 			TCurtainElement* curt = &curtains[co][row];
@@ -818,7 +818,7 @@ void TCurtain::CurtainVec (float angle, float zdist, float &x, float &z) {
 	else z = -sqrt (zdist * zdist - x * x);
 }
 
-void CCurtain::Draw (CControl *ctrl) {
+void CCurtain::Draw () {
 	if (g_game.snow_id < 1) return;
 
 	ScopedRenderMode rm(PARTICLES);
@@ -832,7 +832,7 @@ void CCurtain::Draw (CControl *ctrl) {
 	}
 }
 
-void CCurtain::Update (float timestep, CControl *ctrl) {
+void CCurtain::Update (float timestep, const CControl *ctrl) {
 	if (g_game.snow_id < 1) return;
 	const TVector3& drift = Wind.WindDrift ();
 
@@ -840,20 +840,20 @@ void CCurtain::Update (float timestep, CControl *ctrl) {
 	for (size_t i=0; i<curtains.size(); i++) {
 		curtains[i].Update(timestep, drift, ctrl);
 	}
-	Draw (ctrl);
+	Draw ();
 }
 
 void CCurtain::Reset () {
 	curtains.clear();
 }
 
-void CCurtain::SetStartParams (CControl *ctrl) {
+void CCurtain::SetStartParams (const CControl *ctrl) {
 	for (size_t i=0; i<curtains.size(); i++) {
 		curtains[i].SetStartParams(ctrl);
 	}
 }
 
-void CCurtain::Init (CControl *ctrl) {
+void CCurtain::Init (const CControl *ctrl) {
 	Reset ();
 	InitChanges ();
 	switch (g_game.snow_id) {
@@ -1094,28 +1094,28 @@ void CWind::Init (int wind_id) {
 //			access functions
 // ====================================================================
 
-void InitSnow (CControl *ctrl) {
+void InitSnow (const CControl *ctrl) {
 	if (g_game.snow_id < 1 || g_game.snow_id > 3) return;
 	Flakes.Init (g_game.snow_id, ctrl);
 	Curtain.Init (ctrl);
 }
 
- void UpdateSnow (double timestep, CControl *ctrl) {
+ void UpdateSnow (double timestep, const CControl *ctrl) {
 	if (g_game.snow_id < 1 || g_game.snow_id > 3) return;
 	Flakes.Update (timestep, ctrl);
 	Curtain.Update (timestep, ctrl);
 }
 
-void DrawSnow (CControl *ctrl) {
+void DrawSnow (const CControl *ctrl) {
 	if (g_game.snow_id < 1 || g_game.snow_id > 3) return;
 	Flakes.Draw (ctrl);
-	Curtain.Draw (ctrl);
+	Curtain.Draw ();
 }
 
 void InitWind () {
 	Wind.Init (g_game.wind_id);
 }
 
-void UpdateWind (double timestep, CControl *ctrl) {
+void UpdateWind (double timestep) {
 	Wind.Update (timestep);
 }

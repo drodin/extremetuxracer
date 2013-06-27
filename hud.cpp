@@ -252,7 +252,7 @@ void DrawWind (double dir, double speed) {
 	Tex.Draw (SPEED_KNOB, 74, Winsys.resolution.height - 84, 1.0);
 }
 
-void DrawWind2 (float dir, float speed, CControl *ctrl) {
+void DrawWind2 (float dir, float speed, const CControl *ctrl) {
 	if (g_game.wind_id < 1) return;
 
 	Tex.Draw (SPEEDMETER, 0, Winsys.resolution.height-140, 1.0);
@@ -352,10 +352,8 @@ void DrawPercentBar (float fact, float x, float y) {
 	glEnd();
 }
 
-void DrawCoursePosition (CControl *ctrl) {
-	double pl, pw;
-	Course.GetPlayDimensions (&pw, &pl);
-	double fact = ctrl->cpos.z / pl;
+void DrawCoursePosition (const CControl *ctrl) {
+	double fact = ctrl->cpos.z / Course.GetPlayDimensions().y;
 	if (fact > 1.0) fact = 1.0;
     glEnable (GL_TEXTURE_2D);
 	DrawPercentBar (-fact, Winsys.resolution.width - 48, 280-128);
@@ -363,7 +361,7 @@ void DrawCoursePosition (CControl *ctrl) {
 }
 
 // -------------------------------------------------------
-void DrawHud (CControl *ctrl) {
+void DrawHud (const CControl *ctrl) {
 	if (!param.show_hud)
 		return;
 

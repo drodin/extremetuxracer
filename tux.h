@@ -89,7 +89,7 @@ private:
 		const string& name, const string& order, bool shadow);
 	bool VisibleNode (size_t node_name, float level);
 	bool MaterialNode (size_t node_name, const string& mat_name);
-	bool TransformNode (size_t node_name, TMatrix mat, TMatrix invmat);
+	bool TransformNode (size_t node_name, const TMatrix mat, const TMatrix invmat);
 
 	// material
 	TCharMaterial* GetMaterial (const string& mat_name);
@@ -98,18 +98,18 @@ private:
 	// drawing
 	void DrawCharSphere (int num_divisions);
 	GLuint GetDisplayList (int divisions);
-	void DrawNodes (TCharNode *node);
-	TVector3 AdjustRollvector (CControl *ctrl, TVector3 vel, const TVector3& zvec);
+	void DrawNodes (const TCharNode *node);
+	TVector3 AdjustRollvector (const CControl *ctrl, TVector3 vel, const TVector3& zvec);
 
 	// collision
-	bool CheckPolyhedronCollision (TCharNode *node, TMatrix modelMatrix,
-		TMatrix invModelMatrix, const TPolyhedron& ph);
+	bool CheckPolyhedronCollision (const TCharNode *node, const TMatrix modelMatrix,
+		const TMatrix invModelMatrix, const TPolyhedron& ph);
 	bool CheckCollision (const TPolyhedron& ph);
 
 	// shadow
-	void DrawShadowVertex (double x, double y, double z, TMatrix mat);
-	void DrawShadowSphere (TMatrix mat);
-	void TraverseDagForShadow (TCharNode *node, TMatrix mat);
+	void DrawShadowVertex (double x, double y, double z, const TMatrix mat);
+	void DrawShadowSphere (const TMatrix mat);
+	void TraverseDagForShadow (const TCharNode *node, const TMatrix mat);
 
 	// testing and developing
 	void AddAction (size_t node_name, int type, const TVector3& vec, double val);

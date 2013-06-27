@@ -280,7 +280,7 @@ void SaveConfigFile () {
 
 // --------------------------------------------------------------------
 
-void InitConfig (char *arg0) {
+void InitConfig (const char *arg0) {
 #if defined (OS_WIN32_MINGW) || defined (OS_WIN32_MSC)
 	// the progdir is always the current dir
 	param.config_dir = "config";
@@ -291,7 +291,7 @@ void InitConfig (char *arg0) {
 #if 0
 	char buff[256];
 
-	if (strcmp (arg0, "./etr") == 0) { 		// start from work directory
+	if (strcmp (arg0, "./etr") == 0) {		// start from work directory
 		char *s = getcwd (buff, 256);
 		if (s==NULL) {};
 	} else {                                        // start with full path

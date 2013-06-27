@@ -28,7 +28,7 @@ void init_track_marks();
 void break_track_marks();
 
 void SetTrackIDs(int id1, int id2, int id3);
-void UpdateTrackmarks(CControl *ctrl);
+void UpdateTrackmarks(const CControl *ctrl);
 void DrawTrackmarks();
 
 #endif

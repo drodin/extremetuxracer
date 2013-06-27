@@ -196,7 +196,7 @@ void break_track_marks() {
 // --------------------------------------------------------------------
 //                      add_track_mark
 // --------------------------------------------------------------------
-void add_track_mark(CControl *ctrl, int *id) {
+void add_track_mark(const CControl *ctrl, int *id) {
     if (param.perf_level < 3)
 		return;
 
@@ -295,7 +295,7 @@ void add_track_mark(CControl *ctrl, int *id) {
     continuing_track = true;
 }
 
-void UpdateTrackmarks(CControl *ctrl) {
+void UpdateTrackmarks(const CControl *ctrl) {
 	if (param.perf_level < 3)
 		return;
 

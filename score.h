@@ -48,7 +48,7 @@ private:
 	void Motion(int x, int y);
 public:
 	int AddScore (size_t list_idx, const TScore& score);
-	TScoreList *GetScorelist (size_t list_idx);
+	const TScoreList *GetScorelist (size_t list_idx) const;
 	void PrintScorelist (size_t list_idx) const;
 	bool SaveHighScore () const;
 	bool LoadHighScore ();

@@ -80,7 +80,7 @@ struct TParam {
     TViewMode view_mode;
 };
 
-void InitConfig (char *arg0);
+void InitConfig (const char *arg0);
 void SaveConfigFile ();
 
 extern TParam param;

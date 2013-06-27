@@ -20,6 +20,6 @@ GNU General Public License for more details.
 
 #include "bh.h"
 
-void DrawHud (CControl *ctrl);
+void DrawHud (const CControl *ctrl);
 
 #endif

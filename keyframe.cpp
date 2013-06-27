@@ -254,7 +254,7 @@ void CKeyframe::CalcKeyframe (size_t idx, CCharShape *shape, const TVector3& ref
     shape->RotateNode ("right_ankle", 3, vv);
 }
 
-void CKeyframe::Update (double timestep, CControl *ctrl) {
+void CKeyframe::Update (double timestep) {
 	if (!loaded) return;
 	if (!active) return;
 

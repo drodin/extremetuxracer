@@ -287,7 +287,7 @@ bool CCharShape::ResetNode (const string& node_trivialname) {
 	return ResetNode (i->second);
 }
 
-bool CCharShape::TransformNode (size_t node_name, TMatrix mat, TMatrix invmat) {
+bool CCharShape::TransformNode (size_t node_name, const TMatrix mat, const TMatrix invmat) {
 	TCharNode *node = GetNode(node_name);
 	if (node == NULL) return false;
 
@@ -397,7 +397,7 @@ GLuint CCharShape::GetDisplayList (int divisions) {
     return display_lists[idx];
 }
 
-void CCharShape::DrawNodes (TCharNode *node) {
+void CCharShape::DrawNodes (const TCharNode *node) {
     glPushMatrix();
     glMultMatrixd ((double *) node->trans);
 
@@ -506,7 +506,7 @@ bool CCharShape::Load (const string& dir, const string& filename, bool with_acti
 	return true;
 }
 
-TVector3 CCharShape::AdjustRollvector (CControl *ctrl, TVector3 vel, const TVector3& zvec) {
+TVector3 CCharShape::AdjustRollvector (const CControl *ctrl, TVector3 vel, const TVector3& zvec) {
     TMatrix rot_mat;
     vel = ProjectToPlane (zvec, vel);
     NormVector (vel);
@@ -623,8 +623,8 @@ void CCharShape::AdjustJoints (double turnFact, bool isBraking,
 //				collision
 // --------------------------------------------------------------------
 
-bool CCharShape::CheckPolyhedronCollision (TCharNode *node, TMatrix modelMatrix,
-		TMatrix invModelMatrix, const TPolyhedron& ph) {
+bool CCharShape::CheckPolyhedronCollision (const TCharNode *node, const TMatrix modelMatrix,
+		const TMatrix invModelMatrix, const TPolyhedron& ph) {
 
     TMatrix newModelMatrix, newInvModelMatrix;
     bool hit = false;
@@ -640,7 +640,7 @@ bool CCharShape::CheckPolyhedronCollision (TCharNode *node, TMatrix modelMatrix,
     }
 
     if (hit == true) return hit;
-    TCharNode *child = node->child;
+    const TCharNode *child = node->child;
     while (child != NULL) {
         hit = CheckPolyhedronCollision (child, newModelMatrix, newInvModelMatrix, ph);
         if (hit == true) return hit;
@@ -670,7 +670,7 @@ bool CCharShape::Collision (const TVector3& pos, const TPolyhedron& ph) {
 //				shadow
 // --------------------------------------------------------------------
 
-void CCharShape::DrawShadowVertex (double x, double y, double z, TMatrix mat) {
+void CCharShape::DrawShadowVertex (double x, double y, double z, const TMatrix mat) {
     TVector3 pt(x, y, z);
     pt = TransformPoint (mat, pt);
     double old_y = pt.y;
@@ -681,7 +681,7 @@ void CCharShape::DrawShadowVertex (double x, double y, double z, TMatrix mat) {
     glVertex3f (pt.x, pt.y, pt.z);
 }
 
-void CCharShape::DrawShadowSphere (TMatrix mat) {
+void CCharShape::DrawShadowSphere (const TMatrix mat) {
     double theta, phi, d_theta, d_phi, eps, twopi;
     double x, y, z;
     int div = param.tux_shadow_sphere_divisions;
@@ -762,15 +762,14 @@ void CCharShape::DrawShadowSphere (TMatrix mat) {
     }
 }
 
-void CCharShape::TraverseDagForShadow (TCharNode *node, TMatrix mat) {
+void CCharShape::TraverseDagForShadow (const TCharNode *node, const TMatrix mat) {
     TMatrix new_matrix;
-    TCharNode *child;
 
     MultiplyMatrices (new_matrix, mat, node->trans);
 	if (node->visible && node->render_shadow)
 		DrawShadowSphere (new_matrix);
 
-    child = node->child;
+    TCharNode* child = node->child;
     while (child != NULL) {
         TraverseDagForShadow (child, new_matrix);
         child = child->next;

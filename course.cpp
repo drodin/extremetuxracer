@@ -77,16 +77,6 @@ double CCourse::GetCourseAngle () const {
 	return curr_course->angle;
 }
 
-void CCourse::GetDimensions (double *w, double *l) const {
-    *w = curr_course->width;
-    *l = curr_course->length;
-}
-
-void CCourse::GetPlayDimensions (double *pw, double *pl) const {
-    *pw = curr_course->play_width;
-    *pl = curr_course->play_length;
-}
-
 void CCourse::GetDivisions (int *x, int *y) const {
     *x = nx;
     *y = ny;
@@ -267,9 +257,9 @@ void CCourse::FillGlArrays() {
 		for (int y=0; y<ny; y++) {
 			int idx = STRIDE_GL_ARRAY * (y * nx + x);
 
-			FLOATVAL(0) = (GLfloat)x / (nx-1.0) * curr_course->width;
+			FLOATVAL(0) = (GLfloat)x / (nx-1.0) * curr_course->size.x;
 			FLOATVAL(1) = elevation[(x) + nx*(y)];
-			FLOATVAL(2) = -(GLfloat)y / (ny-1.0) * curr_course->length;
+			FLOATVAL(2) = -(GLfloat)y / (ny-1.0) * curr_course->size.y;
 
 			const TVector3& nml = normals[ x + y * nx ];
 			FLOATVAL(4) = nml.x;
@@ -396,7 +386,7 @@ bool CCourse::LoadElevMap () {
 			elevation [(nx-1-x) + nx * (ny-1-y)] =
 				((img.data [(x+nx*y) * img.depth + pad]
 			    - base_height_value) / 255.0) * curr_course->scale
-				- (double)(ny-1-y) / ny * curr_course->length * slope;
+				- (double)(ny-1-y) / ny * curr_course->size.y * slope;
 	     }
         pad += (nx * img.depth) % 4;
     }
@@ -423,8 +413,8 @@ void CCourse::LoadItemList () {
 		int z = SPIntN (line, "z", 0);
 		double height = SPFloatN (line, "height", 1);
 		double diam = SPFloatN (line, "diam", 1);
-		double xx = (nx - x) / (double)(nx - 1.0) * curr_course->width;
-		double zz = -(ny - z) / (double)(ny - 1.0) * curr_course->length;
+		double xx = (nx - x) / (double)(nx - 1.0) * curr_course->size.x;
+		double zz = -(ny - z) / (double)(ny - 1.0) * curr_course->size.y;
 
 		string name = SPStrN (line, "name", "");
 		size_t type = ObjectIndex[name];
@@ -516,8 +506,8 @@ bool CCourse::LoadObjectMap () {
 			int type = GetObject (&treeImg.data[imgidx]);
 			if (type >= 0) {
 				cnt++;
-				double xx = (nx - x) / (double)(nx - 1.0) * curr_course->width;
-				double zz = -(ny - y) / (double)(ny - 1.0) * curr_course->length;
+				double xx = (nx - x) / (double)(nx - 1.0) * curr_course->size.x;
+				double zz = -(ny - y) / (double)(ny - 1.0) * curr_course->size.y;
 				if (ObjTypes[type].texture == NULL && ObjTypes[type].drawable) {
 					string terrpath = param.obj_dir + SEP + ObjTypes[type].textureFile;
 					ObjTypes[type].texture = new TTexture();
@@ -759,14 +749,14 @@ bool CCourse::LoadCourseList () {
 
 			const string& line2 = paramlist.Line (0);
 			CourseList[i].author = SPStrN (line2, "author", "unknown");
-			CourseList[i].width = SPFloatN (line2, "width", 100);
-			CourseList[i].length = SPFloatN (line2, "length", 1000);
-			CourseList[i].play_width = SPFloatN (line2, "play_width", 90);
-			CourseList[i].play_length = SPFloatN (line2, "play_length", 900);
+			CourseList[i].size.x = SPFloatN (line2, "width", 100);
+			CourseList[i].size.y = SPFloatN (line2, "length", 1000);
+			CourseList[i].play_size.x = SPFloatN (line2, "play_width", 90);
+			CourseList[i].play_size.y = SPFloatN (line2, "play_length", 900);
 			CourseList[i].angle = SPFloatN (line2, "angle", 10);
 			CourseList[i].scale = SPFloatN (line2, "scale", 10);
-			CourseList[i].startx = SPFloatN (line2, "startx", 50);
-			CourseList[i].starty = SPFloatN (line2, "starty", 5);
+			CourseList[i].start.x = SPFloatN (line2, "startx", 50);
+			CourseList[i].start.y = SPFloatN (line2, "starty", 5);
 			CourseList[i].env = Env.GetEnvIdx (SPStrN (line2, "env", "etr"));
 			CourseList[i].music_theme = Music.GetThemeIdx (SPStrN (line2, "theme", "normal"));
 			CourseList[i].use_keyframe = SPBoolN (line2, "use_keyframe", false);
@@ -814,8 +804,8 @@ bool CCourse::LoadCourse (size_t idx) {
 		curr_course = &CourseList[idx];
 		CourseDir = param.common_course_dir + SEP + curr_course->dir;
 
-		start_pt.x = CourseList[idx].startx;
-		start_pt.y = -CourseList[idx].starty;
+		start_pt.x = CourseList[idx].start.x;
+		start_pt.y = -CourseList[idx].start.y;
 		base_height_value = 127;
 
 		g_game.use_keyframe = CourseList[idx].use_keyframe;
@@ -837,7 +827,7 @@ bool CCourse::LoadCourse (size_t idx) {
 		// ................................................................
 		string itemfile = CourseDir + SEP + "items.lst";
 		bool itemsexists = FileExists (itemfile);
-		CControl *ctrl = Players.GetCtrl (g_game.player_id);
+		const CControl *ctrl = Players.GetCtrl (g_game.player_id);
 
 		if (itemsexists && !g_game.force_treemap) {
 			SaveItemsFlag = false;
@@ -852,8 +842,8 @@ bool CCourse::LoadCourse (size_t idx) {
 		init_track_marks ();
 		InitQuadtree (
 			elevation, nx, ny,
-			curr_course->width / (nx - 1.0),
-			-curr_course->length / (ny - 1.0),
+			curr_course->size.x / (nx - 1.0),
+			-curr_course->size.y / (ny - 1.0),
 			ctrl->viewpos,
 			param.course_detail_level);
 	}
@@ -893,12 +883,12 @@ void CCourse::MirrorCourseData () {
     }
 
     for (size_t i=0; i<CollArr.size(); i++) {
-		CollArr[i].pt.x = curr_course->width - CollArr[i].pt.x;
+		CollArr[i].pt.x = curr_course->size.x - CollArr[i].pt.x;
 		CollArr[i].pt.y = FindYCoord (CollArr[i].pt.x, CollArr[i].pt.z);
     }
 
     for (size_t i=0; i<NocollArr.size(); i++) {
-		NocollArr[i].pt.x = curr_course->width - NocollArr[i].pt.x;
+		NocollArr[i].pt.x = curr_course->size.x - NocollArr[i].pt.x;
 		NocollArr[i].pt.y = FindYCoord (NocollArr[i].pt.x, NocollArr[i].pt.z);
     }
 
@@ -906,12 +896,12 @@ void CCourse::MirrorCourseData () {
 
     ResetQuadtree ();
     if (nx > 0 && ny > 0) {
-		CControl *ctrl = Players.GetCtrl (g_game.player_id);
-		InitQuadtree (elevation, nx, ny, curr_course->width/(nx-1),
-			- curr_course->length/(ny-1), ctrl->viewpos, param.course_detail_level);
+		const CControl *ctrl = Players.GetCtrl (g_game.player_id);
+		InitQuadtree (elevation, nx, ny, curr_course->size.x/(nx-1),
+			- curr_course->size.y/(ny-1), ctrl->viewpos, param.course_detail_level);
     }
 
-    start_pt.x = curr_course->width - start_pt.x;
+    start_pt.x = curr_course->size.x - start_pt.x;
 }
 
 void CCourse::MirrorCourse () {
@@ -926,8 +916,8 @@ void CCourse::MirrorCourse () {
 void CCourse::GetIndicesForPoint
 		(double x, double z, int *x0, int *y0, int *x1, int *y1) const {
 
-	double xidx = x / curr_course->width * ((double) nx - 1.);
-	double yidx = -z / curr_course->length *  ((double) ny - 1.);
+	double xidx = x / curr_course->size.x * ((double) nx - 1.);
+	double yidx = -z / curr_course->size.y *  ((double) ny - 1.);
 
     if (xidx < 0) xidx = 0;
     else if (xidx > nx-1) xidx = nx-1;
@@ -956,8 +946,8 @@ void CCourse::FindBarycentricCoords (double x, double z, TIndex2 *idx0,
     double dx, ex, dz, ez, qx, qz, invdet;
 
     GetIndicesForPoint (x, z, &x0, &y0, &x1, &y1);
-    xidx = x / curr_course->width * ((double) nx - 1.);
-    yidx = -z / curr_course->length * ((double) ny - 1.);
+    xidx = x / curr_course->size.x * ((double) nx - 1.);
+    yidx = -z / curr_course->size.y * ((double) ny - 1.);
 
     if ((x0 + y0) % 2 == 0) {
 		if (yidx - y0 < xidx - x0) {
@@ -993,8 +983,8 @@ void CCourse::FindBarycentricCoords (double x, double z, TIndex2 *idx0,
     *v = (qz * dx - qx * dz) * invdet;
 }
 
-#define COURSE_VERTX(x,y) TVector3 ( (double)(x)/(nx-1.)*curr_course->width, \
-                       ELEV((x),(y)), -(double)(y)/(ny-1.)*curr_course->length )
+#define COURSE_VERTX(_x, _y) TVector3 ( (double)(_x)/(nx-1.)*curr_course->size.x, \
+                       ELEV((_x),(_y)), -(double)(_y)/(ny-1.)*curr_course->size.y )
 
 TVector3 CCourse::FindCourseNormal (double x, double z) const {
 

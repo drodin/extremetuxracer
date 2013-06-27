@@ -258,19 +258,17 @@ void CControl::AdjustPosition (const TPlane& surf_plane, double dist_from_surfac
 
 void CControl::SetTuxPosition (double speed) {
 	CCharShape *shape = Char.GetShape (g_game.char_id);
-	double playWidth, playLength;
-	double courseWidth, courseLength;
 
-	Course.GetPlayDimensions (&playWidth, &playLength);
-	Course.GetDimensions (&courseWidth, &courseLength);
-	double boundaryWidth = (courseWidth - playWidth) / 2;
+	TVector2 playSize = Course.GetPlayDimensions();
+	TVector2 courseSize = Course.GetDimensions();
+	double boundaryWidth = (courseSize.x - playSize.x) / 2;
 	if (cpos.x < boundaryWidth) cpos.x = boundaryWidth;
-	if (cpos.x > courseWidth - boundaryWidth) cpos.x = courseWidth - boundaryWidth;
+	if (cpos.x > courseSize.x - boundaryWidth) cpos.x = courseSize.x - boundaryWidth;
 	if (cpos.z > 0) cpos.z = 0;
 
 	if (g_game.finish == false) {
 /// ------------------- finish --------------------------------
-		if (-cpos.z >= playLength) {
+		if (-cpos.z >= playSize.y) {
 			if (g_game.use_keyframe) {
 				g_game.finish = true;
 				finish_speed = speed;

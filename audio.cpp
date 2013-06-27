@@ -198,7 +198,7 @@ void CSound::HaltAll () {
 
 void Hook () {
 	Mix_HaltMusic();
-	PrintString ("halted");
+	PrintStr ("halted");
 }
 
 CMusic::CMusic () {

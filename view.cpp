@@ -62,9 +62,9 @@ void SetCameraDistance (double val) {camera_distance = val;}
 
 void set_view_mode (CControl *ctrl, TViewMode mode) {ctrl->viewmode = mode;}
 
-TVector3 interpolate_view_pos (TVector3 ctrl_pos1, TVector3 ctrl_pos2,
+TVector3 interpolate_view_pos (const TVector3& ctrl_pos1, const TVector3& ctrl_pos2,
 			      double max_vec_angle,
-			      TVector3 pos1, TVector3 pos2,
+			      const TVector3& pos1, const TVector3& pos2,
 			      double dist, double dt,
 			      double time_constant)
 {
@@ -93,7 +93,7 @@ TVector3 interpolate_view_pos (TVector3 ctrl_pos1, TVector3 ctrl_pos2,
     return AddVectors (ctrl_pos2, ScaleVector (dist, vec2));
 }
 
-void interpolate_view_frame (TVector3 up1, TVector3 dir1,
+void interpolate_view_frame (const TVector3& up1, const TVector3& dir1,
 			     TVector3 *p_up2, TVector3 *p_dir2,
 			     double dt, double time_constant)
 {
@@ -347,7 +347,7 @@ static TPlane frustum_planes[6];
 static char p_vertex_code[6];
 
 
-void SetupViewFrustum (CControl *ctrl) {
+void SetupViewFrustum (const CControl *ctrl) {
     double aspect = (double) Winsys.resolution.width /Winsys.resolution.height;
 
 	double near_dist = NEAR_CLIP_DIST;

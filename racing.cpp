@@ -337,7 +337,7 @@ void CRacing::Loop (double time_step) {
 		draw_particles (ctrl);
     }
 	Char.Draw (g_game.char_id);
-	UpdateWind (time_step, ctrl);
+	UpdateWind (time_step);
 	UpdateSnow (time_step, ctrl);
 	DrawSnow (ctrl);
 	DrawHud (ctrl);

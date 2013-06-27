@@ -78,7 +78,7 @@ TVector3 CrossProduct(const TVector3& u, const TVector3& v) {
 	return ret;
 }
 
-TVector3 TransformVector(TMatrix mat, const TVector3& v) {
+TVector3 TransformVector(const TMatrix mat, const TVector3& v) {
 	TVector3 r;
 	r.x = v.x * mat[0][0] + v.y * mat[1][0] + v.z * mat[2][0];
 	r.y = v.x * mat[0][1] + v.y * mat[1][1] + v.z * mat[2][1];
@@ -86,7 +86,7 @@ TVector3 TransformVector(TMatrix mat, const TVector3& v) {
 	return r;
 }
 
-TVector3 TransformNormal(const TVector3& n, TMatrix mat) {
+TVector3 TransformNormal(const TVector3& n, const TMatrix mat) {
 	TVector3 r;
 	r.x = n.x * mat[0][0] + n.y * mat[0][1] + n.z * mat[0][2];
 	r.y = n.x * mat[1][0] + n.y * mat[1][1] + n.z * mat[1][2];
@@ -94,7 +94,7 @@ TVector3 TransformNormal(const TVector3& n, TMatrix mat) {
 	return r;
 }
 
-TVector3 TransformPoint(TMatrix mat, const TVector3& p) {
+TVector3 TransformPoint(const TMatrix mat, const TVector3& p) {
 	TVector3 r;
 	r.x = p.x * mat[0][0] + p.y * mat[1][0] + p.z * mat[2][0];
 	r.y = p.x * mat[0][1] + p.y * mat[1][1] + p.z * mat[2][1];
@@ -162,7 +162,7 @@ void MakeIdentityMatrix(TMatrix h) {
 }
 
 
-void MultiplyMatrices (TMatrix ret, TMatrix mat1, TMatrix mat2) {
+void MultiplyMatrices (TMatrix ret, const TMatrix mat1, const TMatrix mat2) {
 	TMatrix r;
 
 	for (int i = 0; i < 4; i++)
@@ -178,7 +178,7 @@ void MultiplyMatrices (TMatrix ret, TMatrix mat1, TMatrix mat2) {
 }
 
 
-void TransposeMatrix (TMatrix mat, TMatrix trans) {
+void TransposeMatrix (const TMatrix mat, TMatrix trans) {
 	TMatrix r;
 
 	for (int i = 0; i < 4; i++)
@@ -379,7 +379,7 @@ void MakeMatrixFromQuaternion (TMatrix mat, const TQuaternion& q) {
 	mat[3][3] = 1.0;
 }
 
-TQuaternion MakeQuaternionFromMatrix (TMatrix m) {
+TQuaternion MakeQuaternionFromMatrix (const TMatrix m) {
 	TQuaternion res;
 	double  tr, s, q[4];
 
@@ -644,7 +644,7 @@ void FreePolyhedron (const TPolyhedron& ph) {
 	delete[] ph.vertices;
 }
 
-void TransPolyhedron (TMatrix mat, const TPolyhedron& ph) {
+void TransPolyhedron (const TMatrix mat, const TPolyhedron& ph) {
 	for (size_t i=0; i<ph.num_vertices; i++)
 		ph.vertices[i] = TransformPoint (mat, ph.vertices[i]);
 }

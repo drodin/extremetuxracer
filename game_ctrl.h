@@ -102,12 +102,10 @@ struct TPlayer {
 class CPlayers {
 private:
 	vector<TPlayer> plyr;
-	size_t currPlayer;
 	void SetDefaultPlayers ();
 	map<string, size_t> AvatarIndex;
 	vector<TAvatar> avatars;
 public:
-	CPlayers ();
 	~CPlayers();
 
 	const string& GetCurrUnlocked () const;
@@ -115,8 +113,8 @@ public:
 	void AddPlayer (const string& name, const string& avatar);
 	bool LoadPlayers ();
 	void SavePlayers () const;
-	CControl *GetCtrl () const; // current player
-	CControl *GetCtrl (size_t player) const;
+	CControl *GetCtrl (size_t player);
+	const CControl *GetCtrl (size_t player) const;
 	const string& GetName (size_t player) const;
 	void ResetControls ();
 	void AllocControl (size_t player);

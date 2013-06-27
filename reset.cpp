@@ -49,19 +49,10 @@ void CReset::Enter() {
 }
 
 void CReset::Loop(double time_step) {
-    int width, height;
 	CControl *ctrl = Players.GetCtrl (g_game.player_id);
     double elapsed_time = Winsys.ClockTime () - reset_start_time;
-    double course_width, course_length;
     static bool tux_visible = true;
     static int tux_visible_count = 0;
-	TObjectType	*object_types;
-    TItem *item_locs;
-    size_t first_reset, last_reset, num_item_types;
-    int best_loc;
-
-    width = Winsys.resolution.width;
-    height = Winsys.resolution.height;
 
     check_gl_error();
 	ClearRenderContext ();
@@ -77,11 +68,11 @@ void CReset::Loop(double time_step) {
     DrawTrees ();
 
     if ((elapsed_time > BLINK_IN_PLACE_TIME) && (!position_reset)) {
-		object_types = &Course.ObjTypes[0];
-		item_locs  = &Course.NocollArr[0];
-		num_item_types = Course.ObjTypes.size();
-		first_reset = 0;
-		last_reset = 0;
+		TObjectType* object_types = &Course.ObjTypes[0];
+		TItem* item_locs  = &Course.NocollArr[0];
+		size_t num_item_types = Course.ObjTypes.size();
+		size_t first_reset = 0;
+		size_t last_reset = 0;
 		for (size_t i = 0; i < num_item_types; i++) {
 		    if (object_types[i].reset_point == true) {
 				last_reset = first_reset + object_types[i].num_items - 1;
@@ -92,11 +83,10 @@ void CReset::Loop(double time_step) {
 		} // for
 
 		if (last_reset == 0) {
-		    Course.GetDimensions (&course_width, &course_length);
-		    ctrl->cpos.x = course_width/2.0;
+		    ctrl->cpos.x = Course.GetDimensions().x/2.0;
 		    ctrl->cpos.z = min(ctrl->cpos.z + 10, -1.0);
 		} else {
-		    best_loc = -1;
+			int best_loc = -1;
 		    for (size_t i = first_reset; i <= last_reset; i++) {
 				if (item_locs[i].pt.z > ctrl->cpos.z) {
 				    if (best_loc == -1 || item_locs[i].pt.z < item_locs[best_loc].pt.z) {
@@ -106,12 +96,10 @@ void CReset::Loop(double time_step) {
 		    } // for
 
 		    if (best_loc == -1) {
-				Course.GetDimensions (&course_width, &course_length);
-				ctrl->cpos.x = course_width/2.0;
+				ctrl->cpos.x = Course.GetDimensions().x/2.0;
 				ctrl->cpos.z = min (ctrl->cpos.z + 10, -1.0);
 		    } else if (item_locs[best_loc].pt.z <= ctrl->cpos.z) {
-				Course.GetDimensions (&course_width, &course_length);
-				ctrl->cpos.x = course_width/2.0;
+				ctrl->cpos.x = Course.GetDimensions().x/2.0;
 				ctrl->cpos.z = min (ctrl->cpos.z + 10, -1.0);
 		    } else {
 				ctrl->cpos.x = item_locs[best_loc].pt.x;
@@ -132,7 +120,7 @@ void CReset::Loop(double time_step) {
     }
 
     DrawHud (ctrl);
-    Reshape (width, height);
+	Reshape (Winsys.resolution.width, Winsys.resolution.height);
     Winsys.SwapBuffers ();
     g_game.time += time_step;
 
