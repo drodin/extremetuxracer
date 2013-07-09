@@ -95,8 +95,8 @@ struct TObjectType {
 	string		name;
 	string		textureFile;
 	TTexture*	texture;
-	bool		collidable;
     int			collectable;
+	bool		collidable;
     bool		drawable;
     bool		reset_point;
     bool		use_normal;
