@@ -34,7 +34,7 @@ CHelp Help;
 static int xleft1, xleft2, ytop;
 
 void CHelp::Keyb(unsigned int key, bool special, bool release, int x, int y) {
-	if (key == SDLK_ESCAPE) State::manager.RequestEnterState (GameTypeSelect);
+	State::manager.RequestEnterState (GameTypeSelect);
 }
 
 void CHelp::Mouse(int button, int state, int x, int y) {
