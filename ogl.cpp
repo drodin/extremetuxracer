@@ -47,7 +47,8 @@ static const gl_value_t gl_values[] = {
 void check_gl_error() {
     GLenum error = glGetError();
     if (error != GL_NO_ERROR) {
-		Message ("OpenGL Error: ", "");
+		const char* errstr = (const char*)gluErrorString(error);
+		Message ("OpenGL Error: ", errstr ? errstr : "");
     }
 }
 
