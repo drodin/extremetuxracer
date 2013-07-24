@@ -43,21 +43,35 @@ static TIconButton* wind;
 static TIconButton* mirror;
 static TIconButton* random_btn;
 static TWidget* textbuttons[2];
+static string info;
 
 static TCourse *CourseList;
 
-void SetRaceConditions (void) {
-	if (random_btn->GetValue() > 0) {
-		g_game.mirror_id = IRandom (0, 1) != 0;
-		g_game.light_id = IRandom (0, 3);
-		g_game.snow_id = IRandom (0, 3);
-		g_game.wind_id = IRandom (0, 3);
-	} else {
-		g_game.mirror_id = mirror->GetValue() != 0;
-		g_game.light_id = light->GetValue();
-		g_game.snow_id = snow->GetValue();
-		g_game.wind_id = wind->GetValue();
+static void UpdateInfo() {
+	info = "";
+	if(mirror->focus && mirror->GetValue() < 2) {
+		info = Trans.Text(69 + mirror->GetValue());
 	}
+	else if(light->focus && light->GetValue() < 4) {
+		info = Trans.Text(71 + light->GetValue());
+	}
+	else if(snow->focus && snow->GetValue() < 4) {
+		info = Trans.Text(75 + snow->GetValue());
+	}
+	else if(wind->focus && wind->GetValue() < 4) {
+		info = Trans.Text(79 + wind->GetValue());
+	}
+	else if(random_btn->focus) {
+		info = Trans.Text(83);
+	}
+}
+
+void SetRaceConditions (void) {
+	g_game.mirror_id = mirror->GetValue() != 0;
+	g_game.light_id = light->GetValue();
+	g_game.snow_id = snow->GetValue();
+	g_game.wind_id = wind->GetValue();
+
 	g_game.course_id = course->GetValue();
 	g_game.theme_id = CourseList[course->GetValue()].music_theme;
 	g_game.game_type = PRACTICING;
@@ -68,6 +82,8 @@ void CRaceSelect::Motion (int x, int y) {
 	MouseMoveGUI(x, y);
 
 	if (param.ui_snow) push_ui_snow (cursor_pos);
+
+	UpdateInfo ();
 }
 
 void CRaceSelect::Mouse (int button, int state, int x, int y) {
@@ -78,6 +94,15 @@ void CRaceSelect::Mouse (int button, int state, int x, int y) {
 			SetRaceConditions ();
 		else if(textbuttons[1]->focussed())
 			State::manager.RequestEnterState (GameTypeSelect);
+
+		if(random_btn->focussed()) {
+			mirror->SetValue(IRandom (0, 1));
+			light->SetValue(IRandom (0, 3));
+			snow->SetValue(IRandom (0, 3));
+			wind->SetValue(IRandom (0, 3));
+		}
+
+		UpdateInfo ();
 	}
 }
 
@@ -136,7 +161,7 @@ void CRaceSelect::Enter() {
 	snow = AddIconButton (iconleft + iconspace, icontop, Tex.GetTexture (SNOW_BUTT), iconsize, 3, g_game.snow_id);
 	wind = AddIconButton (iconleft + iconspace*2, icontop, Tex.GetTexture (WIND_BUTT), iconsize, 3, g_game.wind_id);
 	mirror = AddIconButton (iconleft + iconspace*3, icontop, Tex.GetTexture (MIRROR_BUTT), iconsize, 1, (int)g_game.mirror_id);
-	random_btn = AddIconButton (iconleft + iconspace*4, icontop, Tex.GetTexture (RANDOM_BUTT), iconsize, 1, 0);
+	random_btn = AddIconButton (iconleft + iconspace*4, icontop, Tex.GetTexture (RANDOM_BUTT), iconsize, 0, 0);
 	int siz = FT.AutoSizeN (5);
 	double len1 = FT.GetTextWidth (Trans.Text(13));
 	textbuttons[0] = AddTextButton (Trans.Text(13), area.right-len1-50, AutoYPosN (80), siz);
@@ -189,6 +214,8 @@ void CRaceSelect::Loop(double timestep) {
 	}
 
 	FT.DrawString (CENTER, prevtop + prevheight + 10, "Author:  " + CourseList[course->GetValue()].author);
+
+	FT.DrawString (CENTER, AutoYPosN (45), info);
 
 	if (g_game.force_treemap) {
 		FT.AutoSizeN (4);

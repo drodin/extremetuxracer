@@ -108,6 +108,26 @@ void CTranslation::SetDefaultTranslations () {
 
 	texts[67] = "Loading resources,";
 	texts[68] = "please wait ...";
+
+	texts[69] = "Mirror track: Off";
+	texts[70] = "Mirror track: On";
+
+	texts[71] = "Light: Sunny";
+	texts[72] = "Light: Cloudy";
+	texts[73] = "Light: Evening";
+	texts[74] = "Light: Night";
+
+	texts[75] = "Snow: No";
+	texts[76] = "Snow: A little";
+	texts[77] = "Snow: Some";
+	texts[78] = "Snow: A lot";
+
+	texts[79] = "Wind: No";
+	texts[80] = "Wind: Breeze";
+	texts[81] = "Wind: Strong";
+	texts[82] = "Wind: Blustery";
+
+	texts[83] = "Randomize settings";
 }
 
 const string& CTranslation::Text (size_t idx) const {

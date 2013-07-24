@@ -107,6 +107,7 @@ public:
 		, value(value_)
 	{}
 	int GetValue() const { return value; }
+	void SetValue(int _value);
 	void Draw() const;
 	bool Click(int x, int y);
 	void Key(unsigned int key, unsigned int mod, bool released);

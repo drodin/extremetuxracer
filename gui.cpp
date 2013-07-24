@@ -204,6 +204,12 @@ TCheckbox* AddCheckbox (int x, int y, int width, const string& tag) {
 	return static_cast<TCheckbox*>(Widgets.back());
 }
 
+void TIconButton::SetValue (int _value) {
+	value = _value;
+	if(value > maximum)
+		value = maximum;
+}
+
 void TIconButton::Draw () const {
 	TColor framecol = colWhite;
 	if (focus) framecol = colDYell;
