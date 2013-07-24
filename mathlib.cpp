@@ -63,8 +63,9 @@ TVector3 ProjectToPlane (const TVector3& nml, const TVector3& v) {
 }
 
 double NormVector (TVector3 &v) {
-	if (v.x == 0 && v.y == 0 && v.z == 0) return 0.0;
-	double denom = sqrt (v.x * v.x + v.y * v.y + v.z * v.z);
+	double square = v.x * v.x + v.y * v.y + v.z * v.z;
+	if (square == 0.0) return 0.0;
+	double denom = sqrt (square);
 	v = ScaleVector (1.0 / denom, v);
 	return denom;
 }

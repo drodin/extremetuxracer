@@ -78,7 +78,6 @@ private:
 	bool newActions;
 	vector<TCharMaterial> Materials;
 	map<string, size_t> MaterialIndex;
-	size_t numDisplayLists;
 
 	// nodes
 	size_t GetNodeIdx (size_t node_name) const;
@@ -97,7 +96,6 @@ private:
 
 	// drawing
 	void DrawCharSphere (int num_divisions);
-	GLuint GetDisplayList (int divisions);
 	void DrawNodes (const TCharNode *node);
 	TVector3 AdjustRollvector (const CControl *ctrl, TVector3 vel, const TVector3& zvec);
 

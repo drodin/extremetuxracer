@@ -483,7 +483,7 @@ class FTGL_EXPORT FTBBox {
 
 class FTGL_EXPORT FTGlyph {
     public:
-        FTGlyph(FT_GlyphSlot glyph, bool useDisplayList = true);
+        FTGlyph(FT_GlyphSlot glyph);
         virtual ~FTGlyph();
         virtual const FTPoint& Render(const FTPoint& pen) = 0;
         const FTPoint& Advance() const { return advance;}
@@ -492,7 +492,6 @@ class FTGL_EXPORT FTGlyph {
     protected:
         FTPoint advance;
         FTBBox bBox;
-        bool useDisplayList;
         FT_Error err;
     private:
 };
@@ -583,7 +582,6 @@ class FTGL_EXPORT FTFont {
         virtual bool FaceSize(const unsigned int size, const unsigned int res = 72);
         unsigned int FaceSize() const;
         virtual void Depth(float depth) {}
-        void UseDisplayList(bool useList);
         float Ascender() const;
         float Descender() const;
         float LineHeight() const;
@@ -601,7 +599,6 @@ class FTGL_EXPORT FTFont {
         virtual FTGlyph* MakeGlyph(unsigned int g) = 0;
         FTFace face;
         FTSize charSize;
-        bool useDisplayLists;
         FT_Error err;
     private:
         inline bool CheckGlyph(const unsigned int chr);

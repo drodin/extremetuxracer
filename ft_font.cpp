@@ -27,7 +27,7 @@ module.
 // --------------------------------------------------------------------
 
 FTFont::FTFont (const char* fontFilePath)
-: face (fontFilePath), useDisplayLists(true), glyphList(0) {
+: face (fontFilePath), glyphList(0) {
     err = face.Error();
     if (err == 0) glyphList = new FTGlyphContainer (&face);
 }
@@ -80,7 +80,6 @@ bool FTFont::CharMap (FT_Encoding encoding) {
 
 unsigned int FTFont::CharMapCount() {return face.CharMapCount();}
 FT_Encoding *FTFont::CharMapList() {return face.CharMapList();}
-void FTFont::UseDisplayList (bool useList) {useDisplayLists = useList;}
 float FTFont::Ascender() const {return charSize.Ascender();}
 float FTFont::Descender() const {return charSize.Descender();}
 float FTFont::LineHeight() const {return charSize.Height();}
@@ -428,8 +427,8 @@ float FTSize::Underline() const {return 0.0f;}
 //					FTGlyph
 // --------------------------------------------------------------------
 
-FTGlyph::FTGlyph (FT_GlyphSlot glyph, bool useList)
-:   useDisplayList(useList), err(0) {
+FTGlyph::FTGlyph (FT_GlyphSlot glyph)
+:   err(0) {
     if (glyph) {
         bBox = FTBBox (glyph);
         advance = FTPoint (glyph->advance.x / 64.0f, glyph->advance.y / 64.0f, 0.0f);
