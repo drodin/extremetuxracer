@@ -81,3 +81,23 @@
 
 *[idx] 67 [engl] Loading resources, [trans] Ressourcen werden geladen,
 *[idx] 68 [engl] please wait [trans] bitte warten...
+
+*[idx] 69 [engl] Mirror track: Off [trans] Abfahrt nicht gespiegelt
+*[idx] 70 [engl] Mirror track: On [trans] Abfahrt gespiegelt
+
+*[idx] 71 [engl] Light: Sunny [trans] Wetter: Sonnig
+*[idx] 72 [engl] Light: Cloudy [trans] Wetter: Bewölkt
+*[idx] 73 [engl] Light: Evening [trans] Wetter: Abend
+*[idx] 74 [engl] Light: Night [trans] Wetter: Nacht
+
+*[idx] 75 [engl] Snow: No [trans] Schneefall: Keiner
+*[idx] 76 [engl] Snow: A little [trans] Schneefall: Wenig
+*[idx] 77 [engl] Snow: Some [trans] Schneefall: Etwas
+*[idx] 78 [engl] Snow: A lot [trans] Schneefall: Viel
+
+*[idx] 79 [engl] Wind: No [trans] Windstille
+*[idx] 80 [engl] Wind: Breeze [trans] Leichte Brise
+*[idx] 81 [engl] Wind: Strong [trans] Starker Wind
+*[idx] 82 [engl] Wind: Blustery [trans] Sturm
+
+*[idx] 83 [engl] Randomize settings [trans] Zufällige Einstellungen

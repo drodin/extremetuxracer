@@ -144,9 +144,11 @@ void CTranslation::LoadLanguages () {
 		return;
 	}
 
-	languages.resize(list.Count());
-	for (size_t i=0; i<list.Count(); i++) {
-		const string& line = list.Line(i);
+	languages.resize(list.Count()+1);
+	languages[0].lang = "en_GB";
+	languages[0].language = "English";
+	for (size_t i=1; i<list.Count()+1; i++) {
+		const string& line = list.Line(i-1);
 		languages[i].lang = SPStrN (line, "lang", "en_GB");
 		languages[i].language = SPStrN (line, "language", "English");
 		LangIndex[languages[i].lang] = i;
@@ -173,7 +175,7 @@ const string& CTranslation::GetLanguage (const string& lang) const {
 void CTranslation::LoadTranslations (size_t langidx) {
 	SetDefaultTranslations ();
 	if (!languages_ok) return;
-	if (langidx >= languages.size()) return;
+	if (langidx == 0 || langidx >= languages.size()) return;
 
 	CSPList list(MAX_COMMON_TEXT_LINES);
 	string filename = languages[langidx].lang + ".lst";

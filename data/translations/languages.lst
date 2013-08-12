@@ -1,7 +1,3 @@
-# The first entry is the default language.
-# That can be important if another language can't be loades
-
-*[lang] en_GB [language] English 
 *[lang] eu_ES [language] Basque 
 *[lang] ca_ES [language] Català 
 *[lang] de_DE [language] Deutsch 
