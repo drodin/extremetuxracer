@@ -1,55 +1,78 @@
 # Please, don't change the idx
+# but you may change the order of the entries
 
-*[idx] 0 [engl] PRESS ANY KEY TO START [trans]
-*[idx] 1 [engl] Enter an event [trans]
-*[idx] 2 [engl] Practice [trans]
-*[idx] 3 [engl] Configuration [trans]
-*[idx] 4 [engl] Credits [trans]
-*[idx] 5 [engl] Quit [trans]
-*[idx] 6 [engl] Select an event [trans]
-*[idx] 7 [engl] Select a cup [trans]
-*[idx] 8 [engl] Back [trans]
-*[idx] 9 [engl] Continue [trans] 
-*[idx] 10 [engl] You cannot enter this cup yet 
-	[trans] 
+*[idx] 0 [engl] PRESS ANY KEY TO START [trans] PULSE CUALQUIER TECLA PARA EMPEZAR
+*[idx] 1 [engl] Enter an event [trans] Entrar en un evento
+*[idx] 2 [engl] Practice [trans] Practicar
+*[idx] 3 [engl] Configuration [trans] Configuración
+*[idx] 4 [engl] Credits [trans] Créditos
+*[idx] 5 [engl] Quit [trans] Salir
+*[idx] 6 [engl] Select an event [trans] Seleccionar un evento
+*[idx] 7 [engl] Select a cup [trans] Seleccionar una copa
+*[idx] 8 [engl] Back [trans] Atrás
+*[idx] 9 [engl] Continue [trans] Continuar
+*[idx] 10 [engl] You cannot enter this cup yet [trans] Todavía no puedes participar en esta copa
 
-*[idx] 11 [engl] Herring: [trans]
-*[idx] 12 [engl] Time: [trans]
-*[idx] 13 [engl] Race! [trans]
-*[idx] 14 [engl] seconds [trans]
-*[idx] 15 [engl] Ok [trans]
-*[idx] 16 [engl] Congratulations! You won the cup! 
-	[trans] 
-*[idx] 17 [engl] You have reached level [trans] 
-*[idx] 18 [engl] Sorry, you didn't advance [trans]
-*[idx] 19 [engl] You don't have any lives left [trans]
-*[idx] 20 [engl] Select a race [trans]
+*[idx] 11 [engl] Herring: [trans] Arenques:
+*[idx] 12 [engl] Time: [trans] Tiempo:
+*[idx] 13 [engl] Race! [trans] ¡Correr!
+*[idx] 14 [engl] seconds [trans] segundos
+*[idx] 15 [engl] Ok [trans] OK
+*[idx] 16 [engl] Congratulations! You won the cup! [trans] ¡Enhorabuena! ¡Has ganado la copa!
+*[idx] 17 [engl] You have reached level [trans] Has alcanzado el nivel
+*[idx] 18 [engl] Sorry, you didn't advance [trans] Lo siento, no has avanzado
+*[idx] 19 [engl] You don't have any lives left [trans] No te quedan vidas
+*[idx] 20 [engl] Select a race [trans] Selecciona una carrera
 
-*[idx] 21 [engl] Failed, -1 Tuxlive [trans] 
-*[idx] 22 [engl] Success, +/- 0 Tuxlive [trans]
-*[idx] 23 [engl] Success, +1 Tuxlive [trans]
-*[idx] 24 [engl] Success, +2 Tuxlive [trans]
-*[idx] 25 [engl] Race aborted [trans]
-*[idx] 26 [engl] Score: [trans]
-*[idx] 27 [engl] points [trans]
+*[idx] 21 [engl] Failed, -1 Tuxlive [trans] Fallado, -1 vida
+*[idx] 22 [engl] Success, +/- 0 Tuxlive [trans] Conseguido
+*[idx] 23 [engl] Success, +1 Tuxlive [trans] Conseguido, +1 vida
+*[idx] 24 [engl] Success, +2 Tuxlive [trans] Conseguido, +2 vidas
+*[idx] 25 [engl] Race aborted [trans] Carrera abortada
+*[idx] 26 [engl] Score: [trans] Puntuación:
+*[idx] 27 [engl] points [trans] puntos
 
-*[idx] 28 [engl] Cancel [trans]
-*[idx] 29 [engl] Loading [trans]
-*[idx] 30 [engl] Please wait... [trans]
+*[idx] 28 [engl] Cancel [trans] Cancelar
+*[idx] 29 [engl] Loading [trans] Cargando
+*[idx] 30 [engl] Please wait... [trans] Por favor, espera...
+*[idx] 31 [engl] Fullscreen: [trans] Pantalla completa:
+*[idx] 32 [engl] Resolution: [trans] Resolución:
+*[idx] 33 [engl] Music volume: [trans] Volumen de música:
+*[idx] 34 [engl] Sound volume: [trans] Volumen de sonido:
+*[idx] 35 [engl] Language: [trans] Idioma:
+*[idx] 36 [engl] Level of detail: [trans] Nivel de detalle:
+*[idx] 37 [engl] Contributed by: [trans] Creado por:
+*[idx] 38 [engl] Event: [trans] Evento:
+*[idx] 39 [engl] Cup: [trans] Copa:
+*[idx] 40 [engl] Race Over [trans] Fin de la carrera
 
-*[idx] 31 [engl] Fullscreen: [trans]
-*[idx] 32 [engl] Resolution: [trans]
-*[idx] 33 [engl] Music volume: [trans]
-*[idx] 34 [engl] Sound volume: [trans]
-*[idx] 35 [engl] Language: [trans]
-*[idx] 36 [engl] Level of detail: [trans] 
-*[idx] 37 [engl] Contributed by: [trans]
-*[idx] 38 [engl] Event: [trans]
-*[idx] 39 [engl] Cup: [trans]
-*[idx] 40 [engl] Race Over [trans]
+*[idx] 41 [engl] For more configuration options, please edit the [trans] Para más opciones de configuración, por favor edita
+*[idx] 42 [engl] file 'options.lst' and read the documentation. [trans] el archivo 'options.lst' y lee la documentación.
 
-*[idx] 41 [engl] For more configuration options, please edit the 
-	[trans] 
-*[idx] 42 [engl] file 'options.lst' and read the documentation. 
-	[trans] 
+*[idx] 43 [engl] Help [trans] Ayuda
+*[idx] 44 [engl] 1, 2, 3 - change view mode [trans] 1, 2, 3 - cambiar punto de vista
+*[idx] 45 [engl] F - hide/show fps display [trans] F - mostrar/ocultar fotogramas por segundo
+*[idx] 46 [engl] H - hide/show hud display [trans] H - mostrar/ocultar información en pantalla
+*[idx] 47 [engl] S - screenshot [trans] S - captura de pantalla
+*[idx] 48 [engl] U - toggle ui snow [trans] activar/desactivar nieve
+*[idx] 49 [engl] P - set pause mode [trans] pausa
+*[idx] 50 [engl] T - trick [trans] T - pirueta
+*[idx] 51 [engl] ESC - abort Race [trans] ESC - abortar carrera
+*[idx] 52 [engl] SPACE - jump [trans] Espacio - saltar
+*[idx] 53 [engl] CRSR Left - turn left [trans] Izquierda - girar a la izquierda
+*[idx] 54 [engl] CRSR Right - turn right [trans] Derecha - girar a la derecha
+*[idx] 55 [engl] CRSR Up - accelerate [trans] Arriba - acelerar
+*[idx] 56 [engl] CRSR down - brake [trans] Abajo - frenar
+*[idx] 57 [engl] Keyboard Functions [trans] Funciones de las teclas
 
+*[idx] 58 [engl] Select your player name: [trans] Selecciona tu nombre de jugador:
+*[idx] 59 [engl] Select a character: [trans] Selecciona un personaje:
+*[idx] 60 [engl] Enter [trans] Entrar
+*[idx] 61 [engl] Register a new player [trans] Registrar nuevo jugador
+*[idx] 62 [engl] Highscore list [trans] Mejores puntuaciones
+*[idx] 63 [engl] No entries for this race [trans] No hay resultados para esta carrera
+*[idx] 64 [engl] Back [trans] Atrás
+*[idx] 65 [engl] Press any key to return to the main menu [trans] Pulsa cualquier tecla para volver al menú principal
+*[idx] 66 [engl] Enter a name for the new player and select an avatar: [trans] Introduce el nombre del nuevo jugador y elige una imagen para mostrar:
+*[idx] 67 [engl] Loading resources, [trans] Cargando recursos,
+*[idx] 68 [engl] please wait [trans] por favor, espera
