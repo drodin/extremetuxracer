@@ -1,36 +1,16 @@
-*[lang] eu_ES [language] Basque 
-*[lang] ca_ES [language] Català 
-*[lang] de_DE [language] Deutsch 
-*[lang] es_ES [language] Español 
-*[lang] fr_FR [language] français 
-*[lang] it_IT [language] Italian 
-*[lang] nl_NL [language] Nederlands 
-*[lang] nb_NO [language] Norsk (bokmål) 
-*[lang] nn_NO [language] Norsk (nynorsk) 
-*[lang] pl_PL [language] polski 
-*[lang] pt_PT [language] Português 
-*[lang] ru_RU [language] Русский 
-*[lang] ro_RO [language] românã 
-*[lang] sk_SK [language] Slovenčina 
-*[lang] fi_FI [language] Suomi 
+*[lang] eu_ES [language] Basque
+*[lang] ca_ES [language] Català
+*[lang] de_DE [language] Deutsch
+*[lang] es_ES [language] Español
+*[lang] fr_FR [language] français
+*[lang] it_IT [language] Italian
+*[lang] nl_NL [language] Nederlands
+*[lang] nb_NO [language] Norsk (bokmål)
+*[lang] nn_NO [language] Norsk (nynorsk)
+*[lang] pl_PL [language] polski
+*[lang] pt_PT [language] Português
+*[lang] ru_RU [language] Русский
+*[lang] ro_RO [language] românã
+*[lang] sk_SK [language] Slovenčina
+*[lang] fi_FI [language] Suomi
 *[lang] sv_SE [language] Svenska 
-
-#*pp_translate_language "eu_ES" "Basque"
-#*pp_translate_language "ca_ES" "Català"
-#*pp_translate_language "de_DE" "Deutsch"
-#*pp_translate_language "en_GB" "English"
-#*pp_translate_language "es_ES" "Español"
-#*pp_translate_language "fr_FR" "français"
-#*pp_translate_language "it_IT" "Italian"
-#*pp_translate_language "nl_NL" "Nederlands"
-#*pp_translate_language "nb_NO" "Norsk (bokmål)"
-#*pp_translate_language "nn_NO" "Norsk (nynorsk)"
-#*pp_translate_language "pl_PL" "polski" 
-#*pp_translate_language "pt_PT" "Português"
-#*pp_translate_language "ru_RU" "Русский"
-#*pp_translate_language "ro_RO" "românã"
-#*pp_translate_language "sk_SK" "Slovenčina"
-#*pp_translate_language "fi_FI" "Suomi"
-#*pp_translate_language "sv_SE" "Svenska"
-
-

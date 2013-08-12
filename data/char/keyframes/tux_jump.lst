@@ -4,7 +4,7 @@
 # yaw: looking around
 # pitch: standing or lying
 
-*[time] 0.5 [pos] 0 0.25 1 [yaw] 180 
+*[time] 0.5 [pos] 0 0.25 1 [yaw] 180
 *[time] 0.5 [pos] 0 0.2 1  [yaw] 180 [hip] 50 50 [knee] -50 -50 [ankle] 0 0 [sh] -70 -70
 *[time] 0.5 [pos] 0 0.25 1 [yaw] 180 [sh] 140 140
 *[time] 0.5 [pos] 0 0.2 1  [yaw] 180 [hip] 50 50 [knee] -50 -50 [ankle] 0 0 [sh] -70 -70
@@ -16,4 +16,3 @@
 
 #*[time] 3 [pos] -2 0.25 1 [yaw] 0 [sh] -60 -60
 #*[time] 0 [pos] 0 0.2 1  [yaw] 180 [sh] 60 60
-

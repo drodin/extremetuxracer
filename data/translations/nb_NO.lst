@@ -9,23 +9,23 @@
 *[idx] 6 [engl] Select an event [trans]
 *[idx] 7 [engl] Select a cup [trans]
 *[idx] 8 [engl] Back [trans]
-*[idx] 9 [engl] Continue [trans] 
-*[idx] 10 [engl] You cannot enter this cup yet 
-	[trans] 
+*[idx] 9 [engl] Continue [trans]
+*[idx] 10 [engl] You cannot enter this cup yet
+	[trans]
 
 *[idx] 11 [engl] Herring: [trans]
 *[idx] 12 [engl] Time: [trans]
 *[idx] 13 [engl] Race! [trans]
 *[idx] 14 [engl] seconds [trans]
 *[idx] 15 [engl] Ok [trans]
-*[idx] 16 [engl] Congratulations! You won the cup! 
-	[trans] 
-*[idx] 17 [engl] You have reached level [trans] 
+*[idx] 16 [engl] Congratulations! You won the cup!
+	[trans]
+*[idx] 17 [engl] You have reached level [trans]
 *[idx] 18 [engl] Sorry, you didn't advance [trans]
 *[idx] 19 [engl] You don't have any lives left [trans]
 *[idx] 20 [engl] Select a race [trans]
 
-*[idx] 21 [engl] Failed, -1 Tuxlive [trans] 
+*[idx] 21 [engl] Failed, -1 Tuxlive [trans]
 *[idx] 22 [engl] Success, +/- 0 Tuxlive [trans]
 *[idx] 23 [engl] Success, +1 Tuxlive [trans]
 *[idx] 24 [engl] Success, +2 Tuxlive [trans]
@@ -42,14 +42,13 @@
 *[idx] 33 [engl] Music volume: [trans]
 *[idx] 34 [engl] Sound volume: [trans]
 *[idx] 35 [engl] Language: [trans]
-*[idx] 36 [engl] Level of detail: [trans] 
+*[idx] 36 [engl] Level of detail: [trans]
 *[idx] 37 [engl] Contributed by: [trans]
 *[idx] 38 [engl] Event: [trans]
 *[idx] 39 [engl] Cup: [trans]
 *[idx] 40 [engl] Race Over [trans]
 
-*[idx] 41 [engl] For more configuration options, please edit the 
-	[trans] 
-*[idx] 42 [engl] file 'options.lst' and read the documentation. 
-	[trans] 
-
+*[idx] 41 [engl] For more configuration options, please edit the
+	[trans]
+*[idx] 42 [engl] file 'options.lst' and read the documentation.
+	[trans]

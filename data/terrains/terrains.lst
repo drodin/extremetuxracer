@@ -28,7 +28,7 @@
 
 *[name] strike_snow [texture] snow02.png [friction] 0.3 [depth] 0.04
 	[col] 255 230 255 [sound] [part] 1 [trackmarks] 0
-	[shiny] 0 
+	[shiny] 0
 
 
 # row 2 ---------------------------------------------------------------
@@ -146,5 +146,3 @@
 
 *[name] icy_grass04 [texture] icy_grass04.png [friction] 0.4 [depth] 0.02
 	[col] 30 240 30 [sound] grass_sound [part] 0
-
-	

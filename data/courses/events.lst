@@ -10,7 +10,7 @@
 *[struct] 0 [race] race_twistyslope [course] twisty_slope [light] night [snow] 0 [wind] 0
 [herring] 21 23 24 [time] 43 39 34 [theme] spunky
 
-*[struct] 0 [race] race_bumpyride [course] bumpy_ride  [light] sunny [snow] 0 [wind] 0 
+*[struct] 0 [race] race_bumpyride [course] bumpy_ride  [light] sunny [snow] 0 [wind] 0
 [herring] 13 16 17 [time] 35 31 28
 
 *[struct] 0 [race] race_frozenriver [course] frozen_river [light] evening [snow] 0 [wind] 0
@@ -25,13 +25,13 @@
 # [cup] must be unique in this lise
 # ---------------------------------------------------------------------
 
-*[struct] 1 [cup] canadian [name] Canadian Cup 
+*[struct] 1 [cup] canadian [name] Canadian Cup
 [num] 3 [1] race_bunnyhill [2] race_twistyslope [3] race_bumpyride
 [desc] The classic Tux Racer cup for beginners. Learn to paddle and to find the best track.
 
-*[struct] 1 [cup] swiss [name] Swiss Cup 
+*[struct] 1 [cup] swiss [name] Swiss Cup
 [num] 2 [1] race_frozenriver [2] race_pathofdaggers
-[desc] Two slightly more challenging courses that shipped with the original Tux Racer. 
+[desc] Two slightly more challenging courses that shipped with the original Tux Racer.
 
 # ---------------------------------------------------------------------
 # events [struct] 2:
@@ -39,7 +39,4 @@
 # ---------------------------------------------------------------------
 
 *[struct] 2 [event] classics [name] Tux Racer Classics
-[num] 2 [1] canadian [2] swiss 
-
-
-
+[num] 2 [1] canadian [2] swiss

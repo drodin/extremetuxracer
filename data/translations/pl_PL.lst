@@ -13,7 +13,7 @@
 *[idx] 7 [engl] Select a cup [trans] Wybierz puchar
 *[idx] 8 [engl] Back [trans] Wstecz
 *[idx] 9 [engl] Continue [trans] Kontynuuj
-*[idx] 10 [engl] You cannot enter this cup yet 
+*[idx] 10 [engl] You cannot enter this cup yet
 	[trans] Jeszcze nie możesz wystartować w tym pucharze
 
 *[idx] 11 [engl] Herring: [trans] Śledzie:
@@ -21,9 +21,9 @@
 *[idx] 13 [engl] Race! [trans] Start!
 *[idx] 14 [engl] seconds [trans]
 *[idx] 15 [engl] Ok [trans] OK
-*[idx] 16 [engl] Congratulations! You won the cup! 
+*[idx] 16 [engl] Congratulations! You won the cup!
 	[trans] Wygrałeś ten puchar!
-*[idx] 17 [engl] You have reached level [trans] Osiągnąłeś poziom 
+*[idx] 17 [engl] You have reached level [trans] Osiągnąłeś poziom
 *[idx] 18 [engl] Sorry, you didn't advance [trans] Niestety, nie przeszedłeś dalej
 *[idx] 19 [engl] You don't have any lives left [trans] Nie masz już możliwych szansz.
 *[idx] 20 [engl] Select a race [trans] Wybierz trasę
@@ -45,15 +45,15 @@
 *[idx] 33 [engl] Music volume: [trans] Głośność muzyki:
 *[idx] 34 [engl] Sound volume: [trans] Głośność dźwięków:
 *[idx] 35 [engl] Language: [trans] Język:
-*[idx] 36 [engl] Level of detail: [trans] Poziom szczegółów: 
+*[idx] 36 [engl] Level of detail: [trans] Poziom szczegółów:
 *[idx] 37 [engl] Contributed by: [trans] Stworzona przez:
 *[idx] 38 [engl] Event: [trans] Rozgrywki:
 *[idx] 39 [engl] Cup: [trans] Puchar:
 *[idx] 40 [engl] Race Over [trans] Koniec wyścigu
 
-*[idx] 41 [engl] For more configuration options, please edit the 
+*[idx] 41 [engl] For more configuration options, please edit the
 	[trans] Zaawansowane opcje konfiguracji znajdują się w
-*[idx] 42 [engl] file 'options.lst' and read the documentation. 
+*[idx] 42 [engl] file 'options.lst' and read the documentation.
 	[trans] pliku 'options.lst' - szczegóły w dokumentacji
 
 *[idx] 43 [engl] Help [trans] Pomoc

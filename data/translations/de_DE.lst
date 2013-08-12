@@ -10,7 +10,7 @@
 *[idx] 7 [engl] Select a cup [trans] Wettbewerb wählen
 *[idx] 8 [engl] Back [trans] Zurück
 *[idx] 9 [engl] Continue [trans] Weiter
-*[idx] 10 [engl] You cannot enter this cup yet 
+*[idx] 10 [engl] You cannot enter this cup yet
 	[trans] Du kannst an diesem Wettbewerb noch nicht teilnehmen
 
 *[idx] 11 [engl] Herring: [trans] Heringe:
@@ -47,9 +47,9 @@
 *[idx] 39 [engl] Cup: [trans] Wettbewerb:
 *[idx] 40 [engl] Race Over [trans] Rennen vorbei
 
-*[idx] 41 [engl] For more configuration options, please edit the 
+*[idx] 41 [engl] For more configuration options, please edit the
 	[trans] Für weitere Einstellungen bearbeite bitte die
-*[idx] 42 [engl] file 'options.lst' and read the documentation. 
+*[idx] 42 [engl] file 'options.lst' and read the documentation.
 	[trans] Datei 'options.lst' und lies die Dokumentation
 *[idx] 43 [engl] Help [trans] Hilfe
 *[idx] 44 [engl] 1, 2, 3 - change view mode [trans] 1, 2, 3 - Wechsel der Ansicht
