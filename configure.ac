@@ -62,10 +62,17 @@ AC_CHECK_LIB([SDL_mixer], [Mix_OpenAudio], [],
 
 LIBS="$LIBS -lSDL_mixer"
 
-CPPFLAGS="${CPPFLAGS} -DETR_DATA_DIR=\\\"$datadir\\\""
+AC_CHECK_LIB([GL], [glBegin], [],
+[AC_MSG_ERROR([libGL not found])])
 
-# TODO: Proper checks instead of hardcoding
-LIBS="$LIBS -lGL -lGLU"
+LIBS="$LIBS -lGL"
+
+AC_CHECK_LIB([GLU], [gluBeginCurve], [],
+[AC_MSG_ERROR([libGLU not found])])
+
+LIBS="$LIBS -lGLU"
+
+CPPFLAGS="${CPPFLAGS} -DETR_DATA_DIR=\\\"$datadir\\\""
 
 # Request c++11 compatibility
 CXXFLAGS="${CXXFLAGS} -std=c++11"
