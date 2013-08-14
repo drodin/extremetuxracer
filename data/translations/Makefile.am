@@ -3,7 +3,6 @@ pkgdatadir = $(datadir)/$(PACKAGE)/translations
 
 pkgdata_DATA = \
 	languages.lst	\
-	en_GB.lst	\
 	eu_ES.lst	\
 	de_DE.lst	\
 	es_ES.lst	\
