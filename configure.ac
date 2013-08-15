@@ -46,21 +46,19 @@ AM_PATH_SDL([1.0.0])
 CFLAGS="$CFLAGS $SDL_CFLAGS"
 LIBS="$LIBS $SDL_LIBS"
 
-AC_CHECK_HEADER([SDL_image.h], [],
-[AC_MSG_ERROR([SDL_image.h not found])])
+PKG_CHECK_MODULES([SDLIMAGE], [SDL_image],
+[
+  CFLAGS="${CFLAGS} $SDLIMAGA_CFLAGS"
+  LIBS="${LIBS} $SDLIMAGE_LIBS"
+],
+[AC_MSG_ERROR([SDL_image not found])])
 
-AC_CHECK_LIB([SDL_image], [IMG_Load], [],
-[AC_MSG_ERROR([SDL_image library not found])])
-
-LIBS="$LIBS -lSDL_image"
-
-AC_CHECK_HEADER([SDL_mixer.h], [],
-[AC_MSG_ERROR([SDL_mixer.h not found])])
-
-AC_CHECK_LIB([SDL_mixer], [Mix_OpenAudio], [],
-[AC_MSG_ERROR([SDL_mixer library not found])])
-
-LIBS="$LIBS -lSDL_mixer"
+PKG_CHECK_MODULES([SDLMIXER], [SDL_mixer],
+[
+  CFLAGS="${CFLAGS} $SDLMIXER_CFLAGS"
+  LIBS="${LIBS} $SDLMIXER_LIBS"
+],
+[AC_MSG_ERROR([SDL_mixer not found])])
 
 AC_CHECK_LIB([GL], [glBegin], [],
 [AC_MSG_ERROR([libGL not found])])
