@@ -39,14 +39,13 @@ static const TColor def_partcol    (0.8, 0.8, 0.9, 0.0);
 
 CEnvironment Env;
 
-CEnvironment::CEnvironment ()
-{
+CEnvironment::CEnvironment () {
 	EnvID = -1;
 	lightcond[0].name = "sunny";
 	lightcond[1].name = "cloudy";
 	lightcond[2].name = "evening";
 	lightcond[3].name = "night";
-	for(size_t i = 0; i < 4; i++)
+	for (size_t i = 0; i < 4; i++)
 		LightIndex[lightcond[i].name] = i;
 	Skybox = NULL;
 
@@ -104,17 +103,17 @@ void CEnvironment::SetupLight () {
 }
 
 void CEnvironment::SetupFog () {
-    glEnable (GL_FOG);
-    glFogi   (GL_FOG_MODE, fog.mode);
-    glFogf   (GL_FOG_START, fog.start);
-    glFogf   (GL_FOG_END, fog.end);
-    glFogfv  (GL_FOG_COLOR, fog.color);
+	glEnable (GL_FOG);
+	glFogi   (GL_FOG_MODE, fog.mode);
+	glFogf   (GL_FOG_START, fog.start);
+	glFogf   (GL_FOG_END, fog.end);
+	glFogfv  (GL_FOG_COLOR, fog.color);
 
-    if (param.perf_level > 1) {
+	if (param.perf_level > 1) {
 		glHint (GL_FOG_HINT, GL_NICEST);
-    } else {
+	} else {
 		glHint (GL_FOG_HINT, GL_FASTEST);
-    }
+	}
 }
 
 void CEnvironment::ResetLight () {
@@ -155,8 +154,8 @@ string CEnvironment::GetDir (size_t location, size_t light) const {
 	if (location >= locs.size()) return "";
 	if (light >= 4) return "";
 	string res =
-		param.env_dir2 + SEP +
-		locs[location].name + SEP + lightcond[light].name;
+	    param.env_dir2 + SEP +
+	    locs[location].name + SEP + lightcond[light].name;
 	return res;
 }
 
@@ -222,28 +221,40 @@ void CEnvironment::DrawSkybox (const TVector3& pos) {
 	// front
 	Skybox[0].Bind();
 	glBegin(GL_QUADS);
-		glTexCoord2f (aa, aa); glVertex3f (-1, -1, -1);
-		glTexCoord2f (bb, aa); glVertex3f ( 1, -1, -1);
-		glTexCoord2f (bb, bb); glVertex3f ( 1,  1, -1);
-		glTexCoord2f (aa, bb); glVertex3f (-1,  1, -1);
+	glTexCoord2f (aa, aa);
+	glVertex3f (-1, -1, -1);
+	glTexCoord2f (bb, aa);
+	glVertex3f ( 1, -1, -1);
+	glTexCoord2f (bb, bb);
+	glVertex3f ( 1,  1, -1);
+	glTexCoord2f (aa, bb);
+	glVertex3f (-1,  1, -1);
 	glEnd();
 
 	// left
 	Skybox[1].Bind();
 	glBegin(GL_QUADS);
-		glTexCoord2f (aa, aa); glVertex3f (-1, -1,  1);
-		glTexCoord2f (bb, aa); glVertex3f (-1, -1, -1);
-		glTexCoord2f (bb, bb); glVertex3f (-1,  1, -1);
-		glTexCoord2f (aa, bb); glVertex3f (-1,  1,  1);
+	glTexCoord2f (aa, aa);
+	glVertex3f (-1, -1,  1);
+	glTexCoord2f (bb, aa);
+	glVertex3f (-1, -1, -1);
+	glTexCoord2f (bb, bb);
+	glVertex3f (-1,  1, -1);
+	glTexCoord2f (aa, bb);
+	glVertex3f (-1,  1,  1);
 	glEnd();
 
 	// right
 	Skybox[2].Bind();
 	glBegin(GL_QUADS);
-		glTexCoord2f (aa, aa); glVertex3f (1, -1, -1);
-		glTexCoord2f (bb, aa); glVertex3f (1, -1,  1);
-		glTexCoord2f (bb, bb); glVertex3f (1,  1,  1);
-		glTexCoord2f (aa, bb); glVertex3f (1,  1, -1);
+	glTexCoord2f (aa, aa);
+	glVertex3f (1, -1, -1);
+	glTexCoord2f (bb, aa);
+	glVertex3f (1, -1,  1);
+	glTexCoord2f (bb, bb);
+	glVertex3f (1,  1,  1);
+	glTexCoord2f (aa, bb);
+	glVertex3f (1,  1, -1);
 	glEnd();
 
 	// normally, the following textures are unvisible
@@ -252,28 +263,40 @@ void CEnvironment::DrawSkybox (const TVector3& pos) {
 		// top
 		Skybox[3].Bind();
 		glBegin(GL_QUADS);
-			glTexCoord2f (aa, aa); glVertex3f (-1, 1, -1);
-			glTexCoord2f (bb, aa); glVertex3f ( 1, 1, -1);
-			glTexCoord2f (bb, bb); glVertex3f ( 1, 1,  1);
-			glTexCoord2f (aa, bb); glVertex3f (-1, 1,  1);
+		glTexCoord2f (aa, aa);
+		glVertex3f (-1, 1, -1);
+		glTexCoord2f (bb, aa);
+		glVertex3f ( 1, 1, -1);
+		glTexCoord2f (bb, bb);
+		glVertex3f ( 1, 1,  1);
+		glTexCoord2f (aa, bb);
+		glVertex3f (-1, 1,  1);
 		glEnd();
 
 		// bottom
 		Skybox[4].Bind();
 		glBegin(GL_QUADS);
-			glTexCoord2f (aa, aa); glVertex3f (-1, -1,  1);
-			glTexCoord2f (bb, aa); glVertex3f ( 1, -1,  1);
-			glTexCoord2f (bb, bb); glVertex3f ( 1, -1, -1);
-			glTexCoord2f (aa, bb); glVertex3f (-1, -1, -1);
+		glTexCoord2f (aa, aa);
+		glVertex3f (-1, -1,  1);
+		glTexCoord2f (bb, aa);
+		glVertex3f ( 1, -1,  1);
+		glTexCoord2f (bb, bb);
+		glVertex3f ( 1, -1, -1);
+		glTexCoord2f (aa, bb);
+		glVertex3f (-1, -1, -1);
 		glEnd();
 
 		// back
 		Skybox[5].Bind();
 		glBegin(GL_QUADS);
-			glTexCoord2f (aa, aa); glVertex3f ( 1, -1, 1);
-			glTexCoord2f (bb, aa); glVertex3f (-1, -1, 1);
-			glTexCoord2f (bb, bb); glVertex3f (-1,  1, 1);
-			glTexCoord2f (aa, bb); glVertex3f ( 1,  1, 1);
+		glTexCoord2f (aa, aa);
+		glVertex3f ( 1, -1, 1);
+		glTexCoord2f (bb, aa);
+		glVertex3f (-1, -1, 1);
+		glTexCoord2f (bb, bb);
+		glVertex3f (-1,  1, 1);
+		glTexCoord2f (aa, bb);
+		glVertex3f ( 1,  1, 1);
 		glEnd();
 	}
 	glPopMatrix();
@@ -283,10 +306,10 @@ void CEnvironment::DrawFog () {
 	if (!fog.is_on)
 		return;
 
-    TPlane bottom_plane, top_plane;
-    TVector3 left, right, vpoint;
-    TVector3 topleft, topright;
-    TVector3 bottomleft, bottomright;
+	TPlane bottom_plane, top_plane;
+	TVector3 left, right, vpoint;
+	TVector3 topleft, topright;
+	TVector3 bottomleft, bottomright;
 
 	// the clipping planes are calculated by view frustum (view.cpp)
 	const TPlane& leftclip = get_left_clip_plane ();
@@ -296,33 +319,33 @@ void CEnvironment::DrawFog () {
 
 	// --------------- calculate the planes ---------------------------
 
-    float slope = tan (ANGLES_TO_RADIANS (Course.GetCourseAngle()));
+	float slope = tan (ANGLES_TO_RADIANS (Course.GetCourseAngle()));
 //	TPlane left_edge_plane = MakePlane (1.0, 0.0, 0.0, 0.0);
 //	TPlane right_edge_plane = MakePlane (-1.0, 0.0, 0.0, Course.width);
 
-    bottom_plane.nml = TVector3(0.0, 1, -slope);
-    float height = Course.GetBaseHeight (0);
-    bottom_plane.d = -height * bottom_plane.nml.y;
+	bottom_plane.nml = TVector3(0.0, 1, -slope);
+	float height = Course.GetBaseHeight (0);
+	bottom_plane.d = -height * bottom_plane.nml.y;
 
-    top_plane.nml = bottom_plane.nml;
-    height = Course.GetMaxHeight (0) + fog.height;
-    top_plane.d = -height * top_plane.nml.y;
+	top_plane.nml = bottom_plane.nml;
+	height = Course.GetMaxHeight (0) + fog.height;
+	top_plane.d = -height * top_plane.nml.y;
 
 
-    if (!IntersectPlanes (bottom_plane, farclip, leftclip,  &left)) return;
-    if (!IntersectPlanes (bottom_plane, farclip, rightclip, &right)) return;
-    if (!IntersectPlanes (top_plane,    farclip, leftclip,  &topleft)) return;
-    if (!IntersectPlanes (top_plane,    farclip, rightclip, &topright)) return;
-    if (!IntersectPlanes (bottomclip,   farclip, leftclip,  &bottomleft)) return;
-    if (!IntersectPlanes (bottomclip,   farclip, rightclip, &bottomright)) return;
+	if (!IntersectPlanes (bottom_plane, farclip, leftclip,  &left)) return;
+	if (!IntersectPlanes (bottom_plane, farclip, rightclip, &right)) return;
+	if (!IntersectPlanes (top_plane,    farclip, leftclip,  &topleft)) return;
+	if (!IntersectPlanes (top_plane,    farclip, rightclip, &topright)) return;
+	if (!IntersectPlanes (bottomclip,   farclip, leftclip,  &bottomleft)) return;
+	if (!IntersectPlanes (bottomclip,   farclip, rightclip, &bottomright)) return;
 
 	TVector3 leftvec  = SubtractVectors (topleft, left);
-    TVector3 rightvec = SubtractVectors (topright, right);
+	TVector3 rightvec = SubtractVectors (topright, right);
 
 	// --------------- draw the fog plane -----------------------------
 
 	ScopedRenderMode rm(FOG_PLANE);
-    glEnable (GL_FOG);
+	glEnable (GL_FOG);
 
 	// only the alpha channel is used
 	float bottom_dens[4]     = {0, 0, 0, 1.0};
@@ -330,29 +353,29 @@ void CEnvironment::DrawFog () {
 	float leftright_dens[4]  = {0, 0, 0, 0.3};
 	float top_bottom_dens[4] = {0, 0, 0, 0.0};
 
-    glBegin (GL_QUAD_STRIP);
-	    glColor4fv (bottom_dens);
-	    glVertex3f (bottomleft.x, bottomleft.y, bottomleft.z);
-    	glVertex3f (bottomright.x, bottomright.y, bottomright.z);
-	    glVertex3f (left.x, left.y, left.z);
-    	glVertex3f (right.x, right.y, right.z);
+	glBegin (GL_QUAD_STRIP);
+	glColor4fv (bottom_dens);
+	glVertex3f (bottomleft.x, bottomleft.y, bottomleft.z);
+	glVertex3f (bottomright.x, bottomright.y, bottomright.z);
+	glVertex3f (left.x, left.y, left.z);
+	glVertex3f (right.x, right.y, right.z);
 
-	    glColor4fv (top_dens);
-    	glVertex3f (topleft.x, topleft.y, topleft.z);
-    	glVertex3f (topright.x, topright.y, topright.z);
+	glColor4fv (top_dens);
+	glVertex3f (topleft.x, topleft.y, topleft.z);
+	glVertex3f (topright.x, topright.y, topright.z);
 
-	    glColor4fv (leftright_dens);
-    	vpoint = AddVectors (topleft, leftvec);
-	    glVertex3f (vpoint.x, vpoint.y, vpoint.z);
-    	vpoint = AddVectors (topright, rightvec);
-	    glVertex3f (vpoint.x, vpoint.y, vpoint.z);
+	glColor4fv (leftright_dens);
+	vpoint = AddVectors (topleft, leftvec);
+	glVertex3f (vpoint.x, vpoint.y, vpoint.z);
+	vpoint = AddVectors (topright, rightvec);
+	glVertex3f (vpoint.x, vpoint.y, vpoint.z);
 
-	    glColor4fv (top_bottom_dens);
-	    vpoint = AddVectors (topleft, ScaleVector (3.0, leftvec));
-    	glVertex3f (vpoint.x, vpoint.y, vpoint.z);
-	    vpoint = AddVectors (topright, ScaleVector (3.0, rightvec));
-    	glVertex3f (vpoint.x, vpoint.y, vpoint.z);
-    glEnd();
+	glColor4fv (top_bottom_dens);
+	vpoint = AddVectors (topleft, ScaleVector (3.0, leftvec));
+	glVertex3f (vpoint.x, vpoint.y, vpoint.z);
+	vpoint = AddVectors (topright, ScaleVector (3.0, rightvec));
+	glVertex3f (vpoint.x, vpoint.y, vpoint.z);
+	glEnd();
 }
 
 

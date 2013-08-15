@@ -170,7 +170,7 @@ void SaveConfigFile () {
 	liste.Add ("");
 
 	AddComment (liste, "Volume of the background music [0...120]");
-    AddIntItem (liste, "music_volume", param.music_volume);
+	AddIntItem (liste, "music_volume", param.music_volume);
 	liste.Add ("");
 
 	liste.Add ("# ------------------------------------------------------------------");
@@ -297,8 +297,8 @@ void InitConfig (const char *arg0) {
 	} else {                                        // start with full path
 		strcpy (buff, arg0);
 		if (strlen (buff) > 5) {
-                  buff[strlen(buff)-3] = 0;
-                }
+			buff[strlen(buff)-3] = 0;
+		}
 	}
 
 	param.prog_dir = buff;
@@ -309,11 +309,11 @@ void InitConfig (const char *arg0) {
 	param.config_dir += SEP;
 	param.config_dir += CONFIG_DIR;
 	// or: param.config_dir = param.prog_dir + SEP + "config";
-    if (!DirExists (param.config_dir.c_str()))
+	if (!DirExists (param.config_dir.c_str()))
 		mkdir (param.config_dir.c_str(), 0775);
-        param.data_dir = ETR_DATA_DIR;
-        param.data_dir += SEP;
-        param.data_dir += "etr";
+	param.data_dir = ETR_DATA_DIR;
+	param.data_dir += SEP;
+	param.data_dir += "etr";
 	// param.data_dir = param.prog_dir + SEP + "data";
 	param.configfile = param.config_dir + SEP + "options";
 #endif

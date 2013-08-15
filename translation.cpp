@@ -155,7 +155,7 @@ void CTranslation::LoadLanguages () {
 	}
 	if (!languages.empty()) languages_ok = true;
 
-	if(param.language == string::npos)
+	if (param.language == string::npos)
 		param.language = GetSystemDefaultLangIdx();
 }
 
@@ -200,7 +200,7 @@ string CTranslation::GetSystemDefaultLang() {
 	char buf2[10] = {0};
 	WideCharToMultiByte(CP_ACP, 0, buf, -1, buf2, 10, NULL, NULL);
 	string ret = buf2;
-	while(ret.find('-') != string::npos)
+	while (ret.find('-') != string::npos)
 		ret[ret.find('-')] = '_';
 	return ret;
 #else
@@ -211,7 +211,7 @@ string CTranslation::GetSystemDefaultLang() {
 size_t CTranslation::GetSystemDefaultLangIdx() const {
 	try {
 		return GetLangIdx(GetSystemDefaultLang());
-	} catch(...) {
+	} catch (...) {
 		return 0;
 	}
 }

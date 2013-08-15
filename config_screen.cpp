@@ -96,28 +96,28 @@ void RestartSDL () {
 
 void SetConfig () {
 	if (mus_vol->GetValue() != param.music_volume ||
-		sound_vol->GetValue() != param.sound_volume ||
-		language->GetValue() != param.language ||
-		resolution->GetValue() != param.res_type ||
-		detail_level->GetValue() != param.perf_level ||
-		fullscreen->checked != param.fullscreen) {
+	        sound_vol->GetValue() != param.sound_volume ||
+	        language->GetValue() != param.language ||
+	        resolution->GetValue() != param.res_type ||
+	        detail_level->GetValue() != param.perf_level ||
+	        fullscreen->checked != param.fullscreen) {
 
 		if (resolution->GetValue() != param.res_type || fullscreen->checked != param.fullscreen) {
 			// these changes require a new VideoMode
 			param.res_type = resolution->GetValue();
 			param.fullscreen = fullscreen->checked;
 
-			#if defined (OS_WIN32_MINGW)
-				// on windows we need to free and restore a lot of resources
-				if (!param.restart_on_res_change) RestartSDL ();
-			#else
-				// on linux the resources seem to be kept at new VideoMode
-				if (param.res_type > 0) {
-					Winsys.SetupVideoMode(param.res_type);
-				} else {
-					RestartSDL();
-				}
-			#endif
+#if defined (OS_WIN32_MINGW)
+			// on windows we need to free and restore a lot of resources
+			if (!param.restart_on_res_change) RestartSDL ();
+#else
+			// on linux the resources seem to be kept at new VideoMode
+			if (param.res_type > 0) {
+				Winsys.SetupVideoMode(param.res_type);
+			} else {
+				RestartSDL();
+			}
+#endif
 		}
 
 		// the followind config params don't require a new VideoMode
@@ -137,21 +137,29 @@ void SetConfig () {
 }
 
 void CGameConfig::Keyb (unsigned int key, bool special, bool release, int x, int y) {
-    if (release) return;
+	if (release) return;
 
-	if(key != SDLK_UP && key != SDLK_DOWN)
+	if (key != SDLK_UP && key != SDLK_DOWN)
 		KeyGUI(key, 0, release);
 	switch (key) {
-		case SDLK_q: State::manager.RequestQuit(); break;
-		case SDLK_ESCAPE: State::manager.RequestEnterState (*State::manager.PreviousState()); break;
+		case SDLK_q:
+			State::manager.RequestQuit();
+			break;
+		case SDLK_ESCAPE:
+			State::manager.RequestEnterState (*State::manager.PreviousState());
+			break;
 		case SDLK_RETURN:
-			if(textbuttons[0]->focussed())
+			if (textbuttons[0]->focussed())
 				State::manager.RequestEnterState (*State::manager.PreviousState());
-			else if(textbuttons[1]->focussed())
+			else if (textbuttons[1]->focussed())
 				SetConfig ();
 			break;
-		case SDLK_UP: DecreaseFocus(); break;
-		case SDLK_DOWN: IncreaseFocus(); break;
+		case SDLK_UP:
+			DecreaseFocus();
+			break;
+		case SDLK_DOWN:
+			IncreaseFocus();
+			break;
 	}
 }
 
@@ -159,9 +167,9 @@ void CGameConfig::Mouse (int button, int state, int x, int y) {
 	if (state == 1) {
 		TWidget* focussed = ClickGUI(x, y);
 
-		if(focussed == textbuttons[0])
+		if (focussed == textbuttons[0])
 			State::manager.RequestEnterState (*State::manager.PreviousState());
-		else if(focussed == textbuttons[1])
+		else if (focussed == textbuttons[1])
 			SetConfig ();
 	}
 }
@@ -221,13 +229,13 @@ void CGameConfig::Loop (double time_step) {
 	check_gl_error();
 	Music.Update ();
 	ScopedRenderMode rm(GUI);
-    ClearRenderContext ();
-    SetupGuiDisplay ();
+	ClearRenderContext ();
+	SetupGuiDisplay ();
 
 	if (param.ui_snow) {
 		update_ui_snow (time_step);
 		draw_ui_snow();
-    }
+	}
 
 	Tex.Draw (T_TITLE_SMALL, CENTER, AutoYPosN (5), 1.0);
 	Tex.Draw (BOTTOM_LEFT, 0, hh-256, 1);
@@ -240,15 +248,20 @@ void CGameConfig::Loop (double time_step) {
 
 	FT.AutoSizeN (4);
 
-	if (resolution->focussed()) FT.SetColor (colDYell); else FT.SetColor (colWhite);
+	if (resolution->focussed()) FT.SetColor (colDYell);
+	else FT.SetColor (colWhite);
 	FT.DrawString (area.left, area.top + dd, Trans.Text(32));
-	if (mus_vol->focussed()) FT.SetColor (colDYell); else FT.SetColor (colWhite);
+	if (mus_vol->focussed()) FT.SetColor (colDYell);
+	else FT.SetColor (colWhite);
 	FT.DrawString (area.left, area.top + dd*2, Trans.Text(33));
-	if (sound_vol->focussed()) FT.SetColor (colDYell); else FT.SetColor (colWhite);
+	if (sound_vol->focussed()) FT.SetColor (colDYell);
+	else FT.SetColor (colWhite);
 	FT.DrawString (area.left, area.top + dd*3, Trans.Text(34));
-	if (detail_level->focussed()) FT.SetColor (colDYell); else FT.SetColor (colWhite);
+	if (detail_level->focussed()) FT.SetColor (colDYell);
+	else FT.SetColor (colWhite);
 	FT.DrawString (area.left, area.top + dd*4, Trans.Text(36));
-	if (language->focussed()) FT.SetColor (colDYell); else FT.SetColor (colWhite);
+	if (language->focussed()) FT.SetColor (colDYell);
+	else FT.SetColor (colWhite);
 	FT.DrawString (area.left, area.top + dd*5, Trans.Text(35));
 
 	FT.SetColor (colWhite);
@@ -258,25 +271,25 @@ void CGameConfig::Loop (double time_step) {
 	FT.DrawString (area.left+240, area.top + dd*4, Int_StrN (detail_level->GetValue()));
 	FT.DrawString (area.left+240, area.top + dd*5, LangList[language->GetValue()].language);
 
-	#if defined (OS_WIN32_MINGW)
-		if ((curr_res != prev_res || curr_fullscreen != prev_fullscreen) &&
-		param.restart_on_res_change) {
-			FT.SetColor (colDYell);
-			FT.AutoSizeN (4);
-			FT.DrawString (CENTER, AutoYPosN (68), "The video adjustments have changed,");
-			FT.DrawString (CENTER, AutoYPosN (72), "You need to restart the game");
-		} else {
-			FT.SetColor (colLGrey);
-			FT.AutoSizeN (3);
-			FT.DrawString (CENTER, AutoYPosN (68), Trans.Text(41));
-			FT.DrawString (CENTER, AutoYPosN (72), Trans.Text(42));
-		}
-	#else
-		FT.SetColor (colWhite);
+#if defined (OS_WIN32_MINGW)
+	if ((curr_res != prev_res || curr_fullscreen != prev_fullscreen) &&
+	        param.restart_on_res_change) {
+		FT.SetColor (colDYell);
+		FT.AutoSizeN (4);
+		FT.DrawString (CENTER, AutoYPosN (68), "The video adjustments have changed,");
+		FT.DrawString (CENTER, AutoYPosN (72), "You need to restart the game");
+	} else {
+		FT.SetColor (colLGrey);
 		FT.AutoSizeN (3);
 		FT.DrawString (CENTER, AutoYPosN (68), Trans.Text(41));
 		FT.DrawString (CENTER, AutoYPosN (72), Trans.Text(42));
-	#endif
+	}
+#else
+	FT.SetColor (colWhite);
+	FT.AutoSizeN (3);
+	FT.DrawString (CENTER, AutoYPosN (68), Trans.Text(41));
+	FT.DrawString (CENTER, AutoYPosN (72), Trans.Text(42));
+#endif
 
 	DrawGUI();
 

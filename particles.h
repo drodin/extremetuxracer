@@ -45,11 +45,11 @@ void generate_particles (const CControl *ctrl, double dtime, const TVector3& pos
 // --------------------------------------------------------------------
 
 struct TFlake {
-    TVector3 pt;
-    float   size;
-    TVector3 vel;
-    TVector2 tex_min;
-    TVector2 tex_max;
+	TVector3 pt;
+	float   size;
+	TVector3 vel;
+	TVector2 tex_min;
+	TVector2 tex_max;
 
 	void Draw(const TPlane& lp, const TPlane& rp, bool rotate_flake, float dir_angle) const;
 };
@@ -75,16 +75,16 @@ struct TFlakeArea {
 	vector<TFlake> flakes;
 
 	TFlakeArea(
-		int num_flakes,
-		float xrange,
-		float ytop,
-		float yrange,
-		float zback,
-		float zrange,
-		float minSize,
-		float maxSize,
-		float speed,
-		bool  rotate);
+	    int num_flakes,
+	    float xrange,
+	    float ytop,
+	    float yrange,
+	    float zback,
+	    float zrange,
+	    float minSize,
+	    float maxSize,
+	    float speed,
+	    bool  rotate);
 	void Draw(const CControl* ctrl) const;
 	void Update(float timestep, float xcoeff, float ycoeff, float zcoeff);
 };
@@ -116,7 +116,7 @@ public:
 #define MAX_CURTAIN_ROWS 8
 
 struct TCurtainElement {
-    TVector3 pt;
+	TVector3 pt;
 	float angle;
 	float height;
 	float zrandom;
@@ -138,13 +138,13 @@ struct TCurtain {
 	int texture;
 
 	TCurtain(
-		int num_rows,
-		float z_dist,
-		float tex_size,
-		float base_speed,
-		float start_angle,
-		float min_height,
-		int curt_texture);
+	    int num_rows,
+	    float z_dist,
+	    float tex_size,
+	    float base_speed,
+	    float start_angle,
+	    float min_height,
+	    int curt_texture);
 	void SetStartParams(const CControl* ctrl);
 	void Draw() const;
 	void Update(float timestep, const TVector3& drift, const CControl* ctrl);

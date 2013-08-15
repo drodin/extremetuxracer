@@ -26,7 +26,7 @@ GNU General Public License for more details.
 State::Manager State::manager(Winsys);
 
 State::Manager::~Manager() {
-	if(current)
+	if (current)
 		current->Exit();
 }
 
@@ -35,7 +35,7 @@ void State::Manager::Run(State& entranceState) {
 	current->Enter();
 	while (!quit) {
 		PollEvent();
-		if(next)
+		if (next)
 			EnterNextState();
 		CallLoopFunction();
 		SDL_Delay(g_game.loopdelay);
@@ -105,7 +105,7 @@ void State::Manager::PollEvent() {
 					break;
 
 				case SDL_VIDEORESIZE:
-					if(Winsys.resolution.width != event.resize.w || Winsys.resolution.height != event.resize.h) {
+					if (Winsys.resolution.width != event.resize.w || Winsys.resolution.height != event.resize.h) {
 						Winsys.resolution.width = event.resize.w;
 						Winsys.resolution.height = event.resize.h;
 						Winsys.SetupVideoMode (param.res_type);

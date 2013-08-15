@@ -41,8 +41,12 @@ CSplashScreen SplashScreen;
 void CSplashScreen::Keyb(unsigned int key, bool special, bool release, int x, int y) {
 	if (release) return;
 	switch (key) {
-		case SDLK_ESCAPE: State::manager.RequestQuit(); break;
-		case SDLK_RETURN: State::manager.RequestEnterState (Regist); break;
+		case SDLK_ESCAPE:
+			State::manager.RequestQuit();
+			break;
+		case SDLK_RETURN:
+			State::manager.RequestEnterState (Regist);
+			break;
 	}
 }
 
@@ -57,9 +61,9 @@ void CSplashScreen::Enter() {
 void CSplashScreen::Loop(double timestep) {
 	Music.Update ();
 	check_gl_error();
-    ClearRenderContext ();
+	ClearRenderContext ();
 	ScopedRenderMode rm(GUI);
-    SetupGuiDisplay ();
+	SetupGuiDisplay ();
 	Trans.LoadLanguages ();
 	Trans.LoadTranslations (param.language); // Before first texts are being displayed
 
@@ -72,7 +76,7 @@ void CSplashScreen::Loop(double timestep) {
 	FT.DrawString (CENTER, top, Trans.Text(67));
 	FT.DrawString (CENTER, top+dist, Trans.Text(68));
 
-    Winsys.SwapBuffers();
+	Winsys.SwapBuffers();
 	Course.MakeStandardPolyhedrons ();
 	Sound.LoadSoundList ();
 	Credits.LoadCreditList ();

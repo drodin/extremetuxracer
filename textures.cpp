@@ -34,9 +34,9 @@ GNU General Public License for more details.
 CImage::CImage () {
 	data = NULL;
 	nx = 0;
-    ny = 0;
-    depth = 0;
-    pitch = 0;
+	ny = 0;
+	depth = 0;
+	pitch = 0;
 }
 
 CImage::~CImage () {
@@ -68,7 +68,7 @@ bool CImage::LoadPng (const char *filepath, bool mirroring) {
 	data  = new unsigned char[pitch * ny];
 
 	if (SDL_MUSTLOCK (sdlImage)) {
-	    if (SDL_LockSurface (sdlImage) < 0) {
+		if (SDL_LockSurface (sdlImage) < 0) {
 			SDL_FreeSurface (sdlImage);
 			Message ("mustlock error");
 			return false;
@@ -114,7 +114,7 @@ bool CImage::ReadFrameBuffer_PPM () {
 
 	for (int i=0; i<viewport[3]; i++) {
 		glReadPixels (viewport[0], viewport[1] + viewport[3] - 1 - i,
-			viewport[2], 1, GL_RGB, GL_UNSIGNED_BYTE, data + viewport[2] * i * 3);
+		              viewport[2], 1, GL_RGB, GL_UNSIGNED_BYTE, data + viewport[2] * i * 3);
 	}
 
 	return true;
@@ -150,9 +150,9 @@ void CImage::WritePPM (const char *filepath) {
 	std::ofstream file(filepath);
 
 	file << "P6\n# A Raw PPM file"
-		 << "\n# width\n" << nx
-		 << "\n# height\n" << ny
-		 << "\n# max component value\n255"<< std::endl;
+	     << "\n# width\n" << nx
+	     << "\n# height\n" << ny
+	     << "\n# max component value\n255"<< std::endl;
 
 	file.write ((const char*) data, nx * ny * depth);
 	file.close ();
@@ -186,15 +186,15 @@ void CImage::WriteTGA_H (const char *filepath) {
 	TTgaHeader header;
 
 	header.tfType = 0;
-    header.tfColorMapType = 0;
-    header.tfImageType = 2;
-    for (int i=0; i<5; i++) header.tfColorMapSpec[i] = 0;
-    header.tfOrigX = 0;
-    header.tfOrigY = 0;
-    header.tfWidth = Winsys.resolution.width;
-    header.tfHeight = Winsys.resolution.height;
-    header.tfBpp = 24;
-    header.tfImageDes = 0;
+	header.tfColorMapType = 0;
+	header.tfImageType = 2;
+	for (int i=0; i<5; i++) header.tfColorMapSpec[i] = 0;
+	header.tfOrigX = 0;
+	header.tfOrigY = 0;
+	header.tfWidth = Winsys.resolution.width;
+	header.tfHeight = Winsys.resolution.height;
+	header.tfBpp = 24;
+	header.tfImageDes = 0;
 
 	std::ofstream out(filepath, std::ios_base::out|std::ios_base::binary);
 	out.write(reinterpret_cast<char*>(&header), sizeof(TTgaHeader));
@@ -211,8 +211,8 @@ void CImage::WriteTGA_H (const char *dir, const char *filename) {
 void CImage::WriteBMP (const char *filepath) {
 	if (data == NULL) return;
 	TBmpInfo info;
-    FILE *fp;
-    int  infosize;
+	FILE *fp;
+	int  infosize;
 	unsigned int bitsize;
 
 	info.biSize = 40;
@@ -227,7 +227,7 @@ void CImage::WriteBMP (const char *filepath) {
 	info.biClrUsed = 0;
 	info.biClrImportant = 0;
 
-    if ((fp = fopen (filepath, "wb")) == NULL) {
+	if ((fp = fopen (filepath, "wb")) == NULL) {
 		Message ("could not open bmp file", filepath);
 		return;
 	}
@@ -238,42 +238,42 @@ void CImage::WriteBMP (const char *filepath) {
 	int bitcnt = info.biBitCount; // 24 or 32
 
 	// (width * bitcnt + 7) / 8 = width * depth
-    if (imgsize == 0) bitsize = (width * bitcnt + 7) / 8 * height;
-    else bitsize = imgsize;
+	if (imgsize == 0) bitsize = (width * bitcnt + 7) / 8 * height;
+	else bitsize = imgsize;
 
-    infosize = info.biSize; // 40
+	infosize = info.biSize; // 40
 	if (infosize != 40 || info.biCompression != 0) {
 		Message ("wrong bmp header");
 		fclose(fp);
 		return;
 	}
 
-    write_word  (fp, 0x4D42);
-    write_dword (fp, 14 + infosize + bitsize);
-    write_word  (fp, 0);
-    write_word  (fp, 0);
-    write_dword (fp, 54);
+	write_word  (fp, 0x4D42);
+	write_dword (fp, 14 + infosize + bitsize);
+	write_word  (fp, 0);
+	write_word  (fp, 0);
+	write_dword (fp, 54);
 
-    write_dword (fp, info.biSize);
-    write_long  (fp, info.biWidth);
-    write_long  (fp, info.biHeight);
-    write_word  (fp, info.biPlanes);
-    write_word  (fp, info.biBitCount);
-    write_dword (fp, info.biCompression);
-    write_dword (fp, info.biSizeImage);
-    write_long  (fp, info.biXPelsPerMeter);
-    write_long  (fp, info.biYPelsPerMeter);
-    write_dword (fp, info.biClrUsed);
-    write_dword (fp, info.biClrImportant);
+	write_dword (fp, info.biSize);
+	write_long  (fp, info.biWidth);
+	write_long  (fp, info.biHeight);
+	write_word  (fp, info.biPlanes);
+	write_word  (fp, info.biBitCount);
+	write_dword (fp, info.biCompression);
+	write_dword (fp, info.biSizeImage);
+	write_long  (fp, info.biXPelsPerMeter);
+	write_long  (fp, info.biYPelsPerMeter);
+	write_dword (fp, info.biClrUsed);
+	write_dword (fp, info.biClrImportant);
 
-    if (fwrite (data, 1, bitsize, fp) != bitsize) {
+	if (fwrite (data, 1, bitsize, fp) != bitsize) {
 		Message ("error on writing bmp data");
-        fclose (fp);
-        return;
-    }
+		fclose (fp);
+		return;
+	}
 
-    fclose(fp);
-    return;
+	fclose(fp);
+	return;
 }
 
 void CImage::WriteBMP (const char *dir, const char *filename) {
@@ -292,13 +292,13 @@ TTexture::~TTexture() {
 }
 
 bool TTexture::Load(const string& filename) {
-    CImage texImage;
+	CImage texImage;
 
 	if (texImage.LoadPng (filename.c_str(), true) == false)
 		return false;
 	glGenTextures (1, &id);
 	glBindTexture (GL_TEXTURE_2D, id);
-    glPixelStorei (GL_UNPACK_ALIGNMENT, 4);
+	glPixelStorei (GL_UNPACK_ALIGNMENT, 4);
 	glTexParameterf (GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
 	glTexParameterf (GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
 
@@ -306,50 +306,50 @@ bool TTexture::Load(const string& filename) {
 	if (texImage.depth == 3) format = GL_RGB;
 	else format = GL_RGBA;
 
-    glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 
 	glTexImage2D
-		(GL_TEXTURE_2D, 0, texImage.depth, texImage.nx,
-		texImage.ny, 0, format, GL_UNSIGNED_BYTE, texImage.data);
+	(GL_TEXTURE_2D, 0, texImage.depth, texImage.nx,
+	 texImage.ny, 0, format, GL_UNSIGNED_BYTE, texImage.data);
 
 	texImage.DisposeData();
-    return true;
+	return true;
 }
 bool TTexture::Load(const string& dir, const string& filename) {
 	return Load(dir + SEP + filename);
 }
 
 bool TTexture::LoadMipmap(const string& filename, bool repeatable) {
-    CImage texImage;
+	CImage texImage;
 	if (texImage.LoadPng (filename.c_str(), true) == false)
 		return false;
 
 	glGenTextures (1, &id);
 	glBindTexture (GL_TEXTURE_2D, id);
-    glPixelStorei (GL_UNPACK_ALIGNMENT, 4);
+	glPixelStorei (GL_UNPACK_ALIGNMENT, 4);
 
-   if (repeatable) {
+	if (repeatable) {
 		glTexParameterf (GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 		glTexParameterf (GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-    } else {
+	} else {
 		glTexParameterf (GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
 		glTexParameterf (GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
-    }
+	}
 
 	GLenum format;
 	if (texImage.depth == 3) format = GL_RGB;
 	else format = GL_RGBA;
 
-    glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    glTexParameterf (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_NEAREST);
+	glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameterf (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_NEAREST);
 
 	gluBuild2DMipmaps
-		(GL_TEXTURE_2D, texImage.depth, texImage.nx,
-		texImage.ny, format, GL_UNSIGNED_BYTE, texImage.data);
+	(GL_TEXTURE_2D, texImage.depth, texImage.nx,
+	 texImage.ny, format, GL_UNSIGNED_BYTE, texImage.data);
 
 	texImage.DisposeData();
-    return true;
+	return true;
 }
 bool TTexture::LoadMipmap(const string& dir, const string& filename, bool repeatable) {
 	return LoadMipmap(dir + SEP + filename, repeatable);
@@ -369,12 +369,16 @@ void TTexture::Draw() {
 	glGetTexLevelParameteriv (GL_TEXTURE_2D, 0, GL_TEXTURE_WIDTH, &w);
 	glGetTexLevelParameteriv (GL_TEXTURE_2D, 0, GL_TEXTURE_HEIGHT, &h);
 
-    glColor4f (1.0, 1.0, 1.0, 1.0);
+	glColor4f (1.0, 1.0, 1.0, 1.0);
 	glBegin (GL_QUADS);
-	    glTexCoord2f (0, 0); glVertex2f (0, 0);
-	    glTexCoord2f (1, 0); glVertex2f (w, 0);
-	    glTexCoord2f (1, 1); glVertex2f (w, h);
-	    glTexCoord2f (0, 1); glVertex2f (0, h);
+	glTexCoord2f (0, 0);
+	glVertex2f (0, 0);
+	glTexCoord2f (1, 0);
+	glVertex2f (w, 0);
+	glTexCoord2f (1, 1);
+	glVertex2f (w, h);
+	glTexCoord2f (0, 1);
+	glVertex2f (0, h);
 	glEnd();
 }
 
@@ -399,16 +403,21 @@ void TTexture::Draw(int x, int y, float size, Orientation orientation) {
 	} else {
 		bott = y;
 		top = bott + height;
-    }
-	if (x >= 0) left = x; else left = (Winsys.resolution.width - width) / 2;
+	}
+	if (x >= 0) left = x;
+	else left = (Winsys.resolution.width - width) / 2;
 	right = left + width;
 
-    glColor4f (1.0, 1.0, 1.0, 1.0);
+	glColor4f (1.0, 1.0, 1.0, 1.0);
 	glBegin (GL_QUADS);
-	    glTexCoord2f (0, 0); glVertex2f (left, bott);
-	    glTexCoord2f (1, 0); glVertex2f (right, bott);
-	    glTexCoord2f (1, 1); glVertex2f (right, top);
-	    glTexCoord2f (0, 1); glVertex2f (left, top);
+	glTexCoord2f (0, 0);
+	glVertex2f (left, bott);
+	glTexCoord2f (1, 0);
+	glVertex2f (right, bott);
+	glTexCoord2f (1, 1);
+	glVertex2f (right, top);
+	glTexCoord2f (0, 1);
+	glVertex2f (left, top);
 	glEnd();
 }
 
@@ -429,16 +438,21 @@ void TTexture::Draw(int x, int y, float width, float height, Orientation orienta
 	} else {
 		bott = y;
 		top = bott + height;
-    }
-	if (x >= 0) left = x; else left = (Winsys.resolution.width - width) / 2;
+	}
+	if (x >= 0) left = x;
+	else left = (Winsys.resolution.width - width) / 2;
 	right = left + width;
 
-    glColor4f (1.0, 1.0, 1.0, 1.0);
+	glColor4f (1.0, 1.0, 1.0, 1.0);
 	glBegin (GL_QUADS);
-	    glTexCoord2f (0, 0); glVertex2f (left, bott);
-	    glTexCoord2f (1, 0); glVertex2f (right, bott);
-	    glTexCoord2f (1, 1); glVertex2f (right, top);
-	    glTexCoord2f (0, 1); glVertex2f (left, top);
+	glTexCoord2f (0, 0);
+	glVertex2f (left, bott);
+	glTexCoord2f (1, 0);
+	glVertex2f (right, bott);
+	glTexCoord2f (1, 1);
+	glVertex2f (right, top);
+	glTexCoord2f (0, 1);
+	glVertex2f (left, top);
 	glEnd();
 }
 
@@ -446,7 +460,7 @@ void TTexture::DrawFrame(int x, int y, double w, double h, int frame, const TCol
 	if (id < 1)
 		return;
 
-    GLint ww = GLint (w);
+	GLint ww = GLint (w);
 	GLint hh = GLint (h);
 	GLint xx = x;
 	GLint yy = Winsys.resolution.height - hh - y;
@@ -457,24 +471,28 @@ void TTexture::DrawFrame(int x, int y, double w, double h, int frame, const TCol
 		if (w < 1) glGetTexLevelParameteriv (GL_TEXTURE_2D, 0, GL_TEXTURE_WIDTH, &ww);
 		if (h < 1) glGetTexLevelParameteriv (GL_TEXTURE_2D, 0, GL_TEXTURE_HEIGHT, &hh);
 
-	   glColor4f (col.r, col.g, col.b, 1.0);
+		glColor4f (col.r, col.g, col.b, 1.0);
 
 		glDisable (GL_TEXTURE_2D);
 		glBegin (GL_QUADS);
-			glVertex2f (xx - frame, yy - frame);
-		    glVertex2f (xx + ww + frame, yy - frame);
-		    glVertex2f (xx + ww + frame, yy + hh + frame);
-		    glVertex2f (xx - frame, yy + hh + frame);
+		glVertex2f (xx - frame, yy - frame);
+		glVertex2f (xx + ww + frame, yy - frame);
+		glVertex2f (xx + ww + frame, yy + hh + frame);
+		glVertex2f (xx - frame, yy + hh + frame);
 		glEnd();
 		glEnable (GL_TEXTURE_2D);
 	}
 
-    glColor4f (1.0, 1.0, 1.0, 1.0);
+	glColor4f (1.0, 1.0, 1.0, 1.0);
 	glBegin (GL_QUADS);
-		glTexCoord2f (0, 0); glVertex2f (xx, yy);
-	    glTexCoord2f (1, 0); glVertex2f (xx + ww, yy);
-	    glTexCoord2f (1, 1); glVertex2f (xx + ww, yy + hh);
-	    glTexCoord2f (0, 1); glVertex2f (xx, yy + hh);
+	glTexCoord2f (0, 0);
+	glVertex2f (xx, yy);
+	glTexCoord2f (1, 0);
+	glVertex2f (xx + ww, yy);
+	glTexCoord2f (1, 1);
+	glVertex2f (xx + ww, yy + hh);
+	glTexCoord2f (0, 1);
+	glVertex2f (xx, yy + hh);
 	glEnd();
 }
 
@@ -542,7 +560,7 @@ bool CTexture::BindTex (size_t idx) {
 bool CTexture::BindTex (const string& name) {
 	try {
 		Index.at(name)->Bind();
-	} catch(...) {
+	} catch (...) {
 		return false;
 	}
 	return true;
@@ -551,7 +569,7 @@ bool CTexture::BindTex (const string& name) {
 // ---------------------------- Draw ----------------------------------
 
 void CTexture::Draw (size_t idx) {
-	if(CommonTex.size() > idx)
+	if (CommonTex.size() > idx)
 		CommonTex[idx]->Draw();
 }
 
@@ -560,7 +578,7 @@ void CTexture::Draw (const string& name) {
 }
 
 void CTexture::Draw (size_t idx, int x, int y, float size) {
-	if(CommonTex.size() > idx)
+	if (CommonTex.size() > idx)
 		CommonTex[idx]->Draw(x, y, size, forientation);
 }
 
@@ -569,7 +587,7 @@ void CTexture::Draw (const string& name, int x, int y, float size) {
 }
 
 void CTexture::Draw (size_t idx, int x, int y, int width, int height) {
-	if(CommonTex.size() > idx)
+	if (CommonTex.size() > idx)
 		CommonTex[idx]->Draw (x, y, width, height, forientation);
 }
 
@@ -578,7 +596,7 @@ void CTexture::Draw (const string& name, int x, int y, int width, int height) {
 }
 
 void CTexture::DrawFrame (size_t idx, int x, int y, double w, double h, int frame, const TColor& col) {
-	if(CommonTex.size() > idx)
+	if (CommonTex.size() > idx)
 		CommonTex[idx]->DrawFrame (x, y, w, h, frame, col);
 }
 
@@ -594,18 +612,17 @@ void CTexture::SetOrientation (Orientation orientation) {
 
 void CTexture::DrawNumChr (char c, int x, int y, int w, int h, const TColor& col) {
 	int idx;
-	if(isdigit(c)) {
+	if (isdigit(c)) {
 		char chrname[2] = {c, '\0'};
 		idx = atoi(chrname);
-	}
-	else if(c == ':')
+	} else if (c == ':')
 		idx = 10;
-	else if(c == ' ')
+	else if (c == ' ')
 		idx = 11;
 	else
 		return;
 
-    TVector2 bl, tr;
+	TVector2 bl, tr;
 	// quad coords
 	bl.x = x;
 	bl.y = Winsys.resolution.height - y - h;
@@ -619,10 +636,14 @@ void CTexture::DrawNumChr (char c, int x, int y, int w, int h, const TColor& col
 
 	glColor4f (col.r, col.g, col.b, col.a);
 	glBegin (GL_QUADS);
-	    glTexCoord2f (texleft, 0); glVertex2f (bl.x, bl.y);
-	    glTexCoord2f (texright, 0); glVertex2f (tr.x, bl.y);
-	    glTexCoord2f (texright, 1); glVertex2f (tr.x, tr.y);
-	    glTexCoord2f (texleft, 1); glVertex2f (bl.x, tr.y);
+	glTexCoord2f (texleft, 0);
+	glVertex2f (bl.x, bl.y);
+	glTexCoord2f (texright, 0);
+	glVertex2f (tr.x, bl.y);
+	glTexCoord2f (texright, 1);
+	glVertex2f (tr.x, tr.y);
+	glTexCoord2f (texleft, 1);
+	glVertex2f (bl.x, tr.y);
 	glEnd();
 }
 
@@ -632,7 +653,7 @@ void CTexture::DrawNumStr (const char *s, int x, int y, float size, const TColor
 		return;
 	}
 	glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    glEnable (GL_TEXTURE_2D);
+	glEnable (GL_TEXTURE_2D);
 	int qw = (int)(22 * size);
 	int qh = (int)(32 * size);
 

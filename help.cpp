@@ -57,14 +57,14 @@ void CHelp::Enter() {
 void CHelp::Loop(double timestep) {
 	Music.Update ();
 	check_gl_error();
-    ClearRenderContext ();
+	ClearRenderContext ();
 	ScopedRenderMode rm(GUI);
-    SetupGuiDisplay ();
+	SetupGuiDisplay ();
 
 	if (param.ui_snow) {
 		update_ui_snow (timestep);
 		draw_ui_snow();
-    }
+	}
 
 	FT.AutoSizeN (4);
 	FT.SetColor (colWhite);
@@ -87,7 +87,7 @@ void CHelp::Loop(double timestep) {
 	FT.DrawString (xleft1, ytop + offs * 12, Trans.Text(56));
 
 	FT.DrawString (CENTER, AutoYPosN (90), Trans.Text(65));
-    Winsys.SwapBuffers();
+	Winsys.SwapBuffers();
 }
 
 void CHelp::Exit() {

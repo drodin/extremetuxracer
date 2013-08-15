@@ -108,7 +108,8 @@ void ChangeNode (int steps) {
 		curr_act = firstact;
 		lastact = TestChar.GetNumActs (curr_node) -1;
 		action = TestChar.GetAction (curr_node);
-		if (action->num > 0 && action->type[0] == 4) comp = 0; else comp = 1;
+		if (action->num > 0 && action->type[0] == 4) comp = 0;
+		else comp = 1;
 		StoreAction (action);
 	}
 }
@@ -135,29 +136,48 @@ void CharKeys (unsigned int key, bool special, bool release, int x, int y) {
 	if (key == 304) shift = !release;
 	if (key == 306) control = !release;
 	if (key == 308) alt = !release;
-	if (shift) keyfact = -1; else keyfact = 1;
+	if (shift) keyfact = -1;
+	else keyfact = 1;
 
 	if (release) return;
 
 	int type = action->type[curr_act];
 	switch (key) {
-		case SDLK_TAB: SetToolMode (1); break;
-		case SDLK_ESCAPE: case SDLK_q: QuitTool (); break;
-		case SDLK_F10: ScreenshotN (); break;
-		case SDLK_s: SaveToolCharacter ();  break;
-		case SDLK_c: ScreenshotN (); break;
-		case SDLK_m: TestChar.useMaterials = !TestChar.useMaterials; break;
-		case SDLK_h: TestChar.useHighlighting = !TestChar.useHighlighting; break;
+		case SDLK_TAB:
+			SetToolMode (1);
+			break;
+		case SDLK_ESCAPE:
+		case SDLK_q:
+			QuitTool ();
+			break;
+		case SDLK_F10:
+			ScreenshotN ();
+			break;
+		case SDLK_s:
+			SaveToolCharacter ();
+			break;
+		case SDLK_c:
+			ScreenshotN ();
+			break;
+		case SDLK_m:
+			TestChar.useMaterials = !TestChar.useMaterials;
+			break;
+		case SDLK_h:
+			TestChar.useHighlighting = !TestChar.useHighlighting;
+			break;
 		case SDLK_r:
 			TestChar.Reset ();
 			ReloadToolCharacter ();
 			Tools.Enter ();
 			break;
-		case SDLK_u: if (action != NULL) {
+		case SDLK_u:
+			if (action != NULL) {
 				RecallAction (action);
 				TestChar.RefreshNode (curr_node);
-			} break;
-		case SDLK_PLUS: case SDLK_EQUALS: // zoom in
+			}
+			break;
+		case SDLK_PLUS:
+		case SDLK_EQUALS: // zoom in
 			zposition += 0.1;
 			xposition -= 0.03;
 			break;
@@ -166,38 +186,62 @@ void CharKeys (unsigned int key, bool special, bool release, int x, int y) {
 			xposition += 0.03;
 			break;
 
-		// set rotations for view
-		case SDLK_1: SetRotation (0, 0, 0); break;
-		case SDLK_2: SetRotation (-50, 180, 15); break;
-		case SDLK_3: SetRotation (0, 180, 0); break;
-		case SDLK_4: SetRotation (0, -80, 0); break;
+			// set rotations for view
+		case SDLK_1:
+			SetRotation (0, 0, 0);
+			break;
+		case SDLK_2:
+			SetRotation (-50, 180, 15);
+			break;
+		case SDLK_3:
+			SetRotation (0, 180, 0);
+			break;
+		case SDLK_4:
+			SetRotation (0, -80, 0);
+			break;
 
-		// select node
-		case SDLK_PAGEUP: ChangeNode (-1); break;
-		case SDLK_PAGEDOWN: ChangeNode (1); break;
-		case SDLK_END: ChangeNode (charbase); break;
-		case SDLK_HOME: ChangeNode (-charbase); break;
+			// select node
+		case SDLK_PAGEUP:
+			ChangeNode (-1);
+			break;
+		case SDLK_PAGEDOWN:
+			ChangeNode (1);
+			break;
+		case SDLK_END:
+			ChangeNode (charbase);
+			break;
+		case SDLK_HOME:
+			ChangeNode (-charbase);
+			break;
 
-		// select action
+			// select action
 		case SDLK_DOWN:
 			if (curr_act < lastact) curr_act++;
-			if (action->type[curr_act] == 4) comp = 0; else comp = 1;
+			if (action->type[curr_act] == 4) comp = 0;
+			else comp = 1;
 			break;
 		case SDLK_UP:
 			if (curr_act > 0) curr_act--;
-			if (action->type[curr_act] == 4) comp = 0; else comp = 1;
+			if (action->type[curr_act] == 4) comp = 0;
+			else comp = 1;
 			break;
-		case SDLK_LEFT: ChangeValue (type, -1); break;
-		case SDLK_RIGHT: ChangeValue (type, 1); break;
+		case SDLK_LEFT:
+			ChangeValue (type, -1);
+			break;
+		case SDLK_RIGHT:
+			ChangeValue (type, 1);
+			break;
 
-		// select value
+			// select value
 		case SDLK_SPACE:
 			if (type == 0 || type == 4) {
 				comp++;
 				if (comp > 3) comp = 0;
 				if (type == 0 && comp == 0) comp = 1;
-			} break;
-		default: break;
+			}
+			break;
+		default:
+			break;
 	}
 }
 
@@ -260,11 +304,14 @@ void DrawActionVec (size_t nr, const string& s, int y, const TVector3& v) {
 			FT.DrawString (150, y, Float_StrN (v.y, 2));
 			FT.DrawString (200, y, Float_StrN (v.z, 2));
 		} else {
-			if (comp == 1) FT.SetColor (colYellow); else FT.SetColor (colLGrey);
+			if (comp == 1) FT.SetColor (colYellow);
+			else FT.SetColor (colLGrey);
 			FT.DrawString (100, y, Float_StrN (v.x, 2));
-			if (comp == 2) FT.SetColor (colYellow); else FT.SetColor (colLGrey);
+			if (comp == 2) FT.SetColor (colYellow);
+			else FT.SetColor (colLGrey);
 			FT.DrawString (150, y, Float_StrN (v.y, 2));
-			if (comp == 3) FT.SetColor (colYellow); else FT.SetColor (colLGrey);
+			if (comp == 3) FT.SetColor (colYellow);
+			else FT.SetColor (colLGrey);
 			FT.DrawString (200, y, Float_StrN (v.z, 2));
 		}
 	} else {
@@ -277,7 +324,8 @@ void DrawActionVec (size_t nr, const string& s, int y, const TVector3& v) {
 void DrawActionFloat (size_t nr, const string& s, int y, float f) {
 	FT.SetColor (colLGrey);
 	FT.DrawString (20, y, s);
-	if (nr == curr_act) FT.SetColor (colYellow); else FT.SetColor (colLGrey);
+	if (nr == curr_act) FT.SetColor (colYellow);
+	else FT.SetColor (colLGrey);
 	FT.DrawString (100, y, Float_StrN (f, 2));
 }
 
@@ -288,7 +336,7 @@ void RenderChar (double timestep) {
 
 	// ------------- 3d scenery ---------------------------------------
 	ScopedRenderMode rm1(TUX);
-    ClearRenderContext (colDDBackgr);
+	ClearRenderContext (colDDBackgr);
 	TestChar.highlight_node = TestChar.GetNodeName (curr_node);
 
 	glLoadIdentity ();
@@ -341,19 +389,33 @@ void RenderChar (double timestep) {
 			type = action->type[i];
 			yt = Winsys.resolution.height - 120 + (int)i * 18;
 			switch (type) {
-				case 0: DrawActionVec (i, "trans", yt, action->vec[i]); break;
-				case 1: DrawActionFloat (i, "x-rot", yt, action->dval[i]); break;
-				case 2: DrawActionFloat (i, "y-rot", yt, action->dval[i]); break;
-				case 3: DrawActionFloat (i, "z-rot", yt, action->dval[i]); break;
-				case 4: DrawActionVec (i, "scale", yt, action->vec[i]); break;
-				case 5: DrawActionFloat (i, "vis", yt, action->dval[i]);
-					is_visible = true; break;
-				default: break;
+				case 0:
+					DrawActionVec (i, "trans", yt, action->vec[i]);
+					break;
+				case 1:
+					DrawActionFloat (i, "x-rot", yt, action->dval[i]);
+					break;
+				case 2:
+					DrawActionFloat (i, "y-rot", yt, action->dval[i]);
+					break;
+				case 3:
+					DrawActionFloat (i, "z-rot", yt, action->dval[i]);
+					break;
+				case 4:
+					DrawActionVec (i, "scale", yt, action->vec[i]);
+					break;
+				case 5:
+					DrawActionFloat (i, "vis", yt, action->dval[i]);
+					is_visible = true;
+					break;
+				default:
+					break;
 			}
 		}
 	}
 
-	if (is_visible) FT.SetColor (colYellow); else FT.SetColor (colLGrey);
+	if (is_visible) FT.SetColor (colYellow);
+	else FT.SetColor (colLGrey);
 	FT.DrawString (20, 20, action->name);
 
 	if (ToolsFinalStage ()) {
@@ -363,6 +425,6 @@ void RenderChar (double timestep) {
 	}
 
 	Reshape (Winsys.resolution.width, Winsys.resolution.height);
-    Winsys.SwapBuffers ();
+	Winsys.SwapBuffers ();
 	if (drawcount > 3) must_render = false;
 }

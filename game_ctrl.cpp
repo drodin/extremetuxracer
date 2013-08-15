@@ -137,7 +137,7 @@ void CEvents::MakeUnlockList (const string& unlockstr) {
 			if (cup < 1) EventList[event].cups[0]->Unlocked = true;
 			if (passed) {
 				EventList[event].cups[cup]->Unlocked = true;
-				if(cup+1 < EventList[event].cups.size())
+				if (cup+1 < EventList[event].cups.size())
 					EventList[event].cups[cup+1]->Unlocked = true;
 			}
 		}
@@ -158,7 +158,7 @@ CPlayers Players;
 
 CPlayers::~CPlayers() {
 	ResetControls();
-	for(size_t i = 0; i < avatars.size(); i++)
+	for (size_t i = 0; i < avatars.size(); i++)
 		delete avatars[i].texture;
 }
 
@@ -230,7 +230,7 @@ void CPlayers::SavePlayers () const {
 		item +="[avatar]" + plyr[i].avatar;
 		item += "[unlocked]" + plyr[i].funlocked;
 		if (i == g_game.player_id) item += "[active]1";
-			else item += "[active]0";
+		else item += "[active]0";
 		list.Add (item);
 	}
 	list.Save (playerfile);
@@ -321,7 +321,7 @@ CCharacter Char;
 static const string char_type_index = "[spheres]0[3d]1";
 
 CCharacter::~CCharacter() {
-	for(size_t i = 0; i < CharList.size(); i++) {
+	for (size_t i = 0; i < CharList.size(); i++) {
 		delete CharList[i].preview;
 		delete CharList[i].shape;
 	}

@@ -34,17 +34,16 @@ GNU General Public License for more details.
 
 static void MakeWordList (vector<string>& wordlist, const char *s) {
 	size_t start = 0;
-	for(size_t i = 0; s[i] != '\0'; i++) {
-		if(s[i] == ' ')
-		{
-			if(i != start)
+	for (size_t i = 0; s[i] != '\0'; i++) {
+		if (s[i] == ' ') {
+			if (i != start)
 				wordlist.push_back(string(s+start, i-start));
-			while(s[i+1] == ' ')
+			while (s[i+1] == ' ')
 				i++;
 			start = i+1;
 		}
 	}
-	if(s[start] != '0')
+	if (s[start] != '0')
 		wordlist.push_back(string(s+start));
 }
 
@@ -55,7 +54,7 @@ static size_t MakeLine (size_t first, const vector<string>& wordlist, vector<str
 	float lng = 0;
 
 	float spacelng = FT.GetTextWidth("a a") - FT.GetTextWidth("aa");;
-	while(last < wordlist.size()) {
+	while (last < wordlist.size()) {
 		float wordlng = FT.GetTextWidth(wordlist[last]);
 		lng += wordlng;
 		lng += spacelng;
@@ -67,7 +66,7 @@ static size_t MakeLine (size_t first, const vector<string>& wordlist, vector<str
 	string line;
 	for (size_t j=first; j<last; j++) {
 		line += wordlist[j];
-		if(j < last)
+		if (j < last)
 			line += ' ';
 	}
 	linelist.push_back(line);
@@ -100,7 +99,7 @@ CFont::~CFont() {
 }
 
 void CFont::Clear () {
-	for(size_t i = 0; i < fonts.size(); i++)
+	for (size_t i = 0; i < fonts.size(); i++)
 		delete fonts[i];
 	fonts.clear();
 	fontindex.clear();
@@ -122,17 +121,15 @@ wstring CFont::UnicodeStr (const char *s) {
 			ch |=  (wchar_t) (s[++i] & 0x3F) << 12;
 			ch |=  (wchar_t) (s[++i] & 0x3F) << 6;
 			ch |=  (wchar_t) (s[++i] & 0x3F);
-		} else
-			if (ch >= 0xE0) {
-				ch  =  (wchar_t) (s[i] & 0x0F)   << 12;
-				ch |=  (wchar_t) (s[++i] & 0x3F) << 6;
+		} else if (ch >= 0xE0) {
+			ch  =  (wchar_t) (s[i] & 0x0F)   << 12;
+			ch |=  (wchar_t) (s[++i] & 0x3F) << 6;
 			ch |=  (wchar_t) (s[++i] & 0x3F);
-			} else
-				if (ch >= 0xC0) {
-					ch  =  (wchar_t) (s[i] & 0x1F) << 6;
-					ch |=  (wchar_t) (s[++i] & 0x3F);
-				}
-				res[j] = ch;
+		} else if (ch >= 0xC0) {
+			ch  =  (wchar_t) (s[i] & 0x1F) << 6;
+			ch |=  (wchar_t) (s[++i] & 0x3F);
+		}
+		res[j] = ch;
 	}
 	return res;
 }
@@ -210,12 +207,12 @@ void CFont::SetSize (float size) {
 void CFont::SetFont (const string& fontname) {
 	try {
 		curr_font = (int)fontindex[fontname];
-	} catch(...) {
+	} catch (...) {
 		curr_font = -1;
 	}
 
 	if (fontname == "pc20") curr_fact = 1.25;
-		else curr_fact = 1.0;
+	else curr_fact = 1.0;
 }
 
 // -------------------- auto ------------------------------------------
@@ -310,18 +307,18 @@ void CFont::DrawText(float x, float y, const char *text, const string &fontname,
 }
 
 void CFont::DrawText
-		(float x, float y, const wchar_t *text, const string &fontname, float size) const {
+(float x, float y, const wchar_t *text, const string &fontname, float size) const {
 	size_t temp_font = GetFontIdx (fontname);
 	DrawText(x, y, text, temp_font, size);
 }
 
 void CFont::DrawString (
-		float x, float y, const string &s, const string &fontname, float size) const {
+    float x, float y, const string &s, const string &fontname, float size) const {
 	DrawText (x, y, s.c_str(), fontname, size);
 }
 
 void CFont::DrawString (
-		float x, float y, const wstring &s, const string &fontname, float size) const {
+    float x, float y, const wstring &s, const string &fontname, float size) const {
 	DrawText (x, y, s.c_str(), fontname, size);
 }
 
@@ -403,7 +400,7 @@ vector<string> CFont::MakeLineList (const char *source, float width) {
 	MakeWordList(wordlist, source);
 	vector<string> linelist;
 
-	for(size_t last = 0; last < wordlist.size();)
+	for (size_t last = 0; last < wordlist.size();)
 		last = MakeLine(last, wordlist, linelist, width)+1;
 
 	return linelist;

@@ -42,8 +42,8 @@ public:
 	virtual void Key(unsigned int key, unsigned int mod, bool released) {}
 	virtual void MouseMove(int x, int y);
 	bool focussed() const { return focus; }
-	void SetActive(bool a) { active = a; if(!a) focus = false; }
-	void SetVisible(bool v) { visible = v; if(!v) focus = false; }
+	void SetActive(bool a) { active = a; if (!a) focus = false; }
+	void SetVisible(bool v) { visible = v; if (!v) focus = false; }
 	bool GetActive() const { return active; }
 	bool GetVisible() const { return visible; }
 };
@@ -83,8 +83,7 @@ public:
 		: TWidget(x, y, 32, 32)
 		, tag(tag_)
 		, width(width_)
-		, checked(false)
-	{
+		, checked(false) {
 		mouseRect.left = x+width-32;
 	}
 	void Draw() const;
@@ -158,7 +157,7 @@ void ResetGUI();
 // --------------------------------------------------------------------
 
 void DrawFrameX (int x, int y, int w, int h, int line,
-			const TColor& backcol, const TColor& framecol, double transp);
+                 const TColor& backcol, const TColor& framecol, double transp);
 void DrawLevel (int x, int y, int level, double fact);
 void DrawBonus (int x, int y, size_t max, size_t num);
 void DrawBonusExt (int y, size_t numraces, size_t num);

@@ -34,16 +34,16 @@ struct TLightCond {
 };
 
 struct TFog {
-    bool is_on;
+	bool is_on;
 	GLint mode;
-    float start;
-    float end;
+	float start;
+	float end;
 	float height;
-    float color[4];
+	float color[4];
 	TColor part_color;
 };
 
-struct TLight{
+struct TLight {
 	bool is_on;
 	float ambient[4];
 	float diffuse[4];

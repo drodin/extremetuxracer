@@ -30,8 +30,8 @@ GNU General Public License for more details.
 
 
 enum Orientation {
-	OR_TOP = 0,			// top-orientated menu widgets
-	OR_BOTTOM = 1		// bottom-orientated
+    OR_TOP = 0,			// top-orientated menu widgets
+    OR_BOTTOM = 1		// bottom-orientated
 };
 
 struct TVector2	{
@@ -94,10 +94,10 @@ struct TSphere		{ double radius; int divisions; };
 struct TRay			{ TVector3 pt; TVector3 vec; };
 
 struct TPolyhedron {
-    size_t num_vertices;
-    size_t num_polygons;
-    TVector3 *vertices;
-    TPolygon *polygons;
+	size_t num_vertices;
+	size_t num_polygons;
+	TVector3 *vertices;
+	TPolygon *polygons;
 };
 
 struct TRect {
@@ -115,16 +115,16 @@ struct TArea {
 };
 
 enum TToolMode {
-	NONE,
-	TUXSHAPE,
-	KEYFRAME,
-	TREEGEN,
-	LEARN,
+    NONE,
+    TUXSHAPE,
+    KEYFRAME,
+    TREEGEN,
+    LEARN,
 };
 
 enum TGameType {
-	PRACTICING,
-	CUPRACING
+    PRACTICING,
+    CUPRACING
 };
 
 enum TViewMode {
@@ -175,7 +175,7 @@ struct TGameData {
 	int score;				// reached score
 	int herring;			// catched herrings during the race
 	int race_result;		// tuxlifes, only for a single race, see game_ctrl
-    bool raceaborted;
+	bool raceaborted;
 };
 
 class CControl;

@@ -23,11 +23,11 @@ GNU General Public License for more details.
 
 
 enum TFrameType {
-	START,
-	FINISH,
-	WONRACE,
-	LOSTRACE,
-	NUM_FRAME_TYPES
+    START,
+    FINISH,
+    WONRACE,
+    LOSTRACE,
+    NUM_FRAME_TYPES
 };
 
 

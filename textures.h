@@ -68,38 +68,38 @@ GNU General Public License for more details.
 #define BF_TYPE 0x4D42             // "MB"
 
 struct TTgaHeader {
-    char tfType;
-    char tfColorMapType;
-    char tfImageType;
-    char tfColorMapSpec[5];
-    short tfOrigX;
-    short tfOrigY;
-    short tfWidth;
-    short tfHeight;
-    char tfBpp;
-    char tfImageDes;
+	char tfType;
+	char tfColorMapType;
+	char tfImageType;
+	char tfColorMapSpec[5];
+	short tfOrigX;
+	short tfOrigY;
+	short tfWidth;
+	short tfHeight;
+	char tfBpp;
+	char tfImageDes;
 };
 
 struct TBmpHeader {
-    unsigned short  bfType;           // identifier of bmp format
-    unsigned long   bfSize;           // size of file, including the headers
-    unsigned short  bfReserved1;      // reserved, always 0
-    unsigned short  bfReserved2;      // reserved, always 0
-    unsigned long   bfOffBits;        // offset to bitmap data
+	unsigned short  bfType;           // identifier of bmp format
+	unsigned long   bfSize;           // size of file, including the headers
+	unsigned short  bfReserved1;      // reserved, always 0
+	unsigned short  bfReserved2;      // reserved, always 0
+	unsigned long   bfOffBits;        // offset to bitmap data
 };
 
 struct TBmpInfo {
-    unsigned long   biSize;           // size of info header, normally 40
-    long            biWidth;          // width
-    long            biHeight;         // height
-    unsigned short  biPlanes;         // number of color planes, normally 1
-    unsigned short  biBitCount;       // Number of bits per pixel (8 * depth)
-    unsigned long   biCompression;    // type of compression, normally 0 = no compr.
-    unsigned long   biSizeImage;      // size of data
-    long            biXPelsPerMeter;  // normally 0
-    long            biYPelsPerMeter;  // normally 0
-    unsigned long   biClrUsed;        // normally 0
-    unsigned long   biClrImportant;   // normally 0
+	unsigned long   biSize;           // size of info header, normally 40
+	long            biWidth;          // width
+	long            biHeight;         // height
+	unsigned short  biPlanes;         // number of color planes, normally 1
+	unsigned short  biBitCount;       // Number of bits per pixel (8 * depth)
+	unsigned long   biCompression;    // type of compression, normally 0 = no compr.
+	unsigned long   biSizeImage;      // size of data
+	long            biXPelsPerMeter;  // normally 0
+	long            biYPelsPerMeter;  // normally 0
+	unsigned long   biClrUsed;        // normally 0
+	unsigned long   biClrImportant;   // normally 0
 };
 
 
@@ -110,14 +110,14 @@ struct TBmpInfo {
 class CImage {
 private:
 public:
-    CImage ();
+	CImage ();
 	~CImage ();
 
 	unsigned char *data;
 	int nx;
-    int ny;
-    int depth;
-    int pitch;
+	int ny;
+	int depth;
+	int pitch;
 
 	void DisposeData ();
 
@@ -174,7 +174,7 @@ private:
 
 	void DrawNumChr (char c, int x, int y, int w, int h, const TColor& col);
 public:
-    CTexture ();
+	CTexture ();
 	~CTexture ();
 	void LoadTextureList ();
 	void FreeTextureList ();

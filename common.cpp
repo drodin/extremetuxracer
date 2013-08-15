@@ -195,11 +195,11 @@ void Message (const string& a, const string& b) {
 // --------------------------------------------------------------------
 
 bool FileExists (const char *filename) {
-    struct stat stat_info;
-    if (stat (filename, &stat_info) != 0) {
+	struct stat stat_info;
+	if (stat (filename, &stat_info) != 0) {
 		if (errno != ENOENT) Message ("couldn't stat ", filename);
 		return false;
-    } else return true;
+	} else return true;
 }
 
 bool FileExists (const string& filename) {
@@ -213,15 +213,15 @@ bool FileExists (const string& dir, const string& filename) {
 #ifndef OS_WIN32_MSC
 bool DirExists (const char *dirname) {
 	DIR *xdir;
-    if ((xdir = opendir (dirname)) == 0)
+	if ((xdir = opendir (dirname)) == 0)
 		return ((errno != ENOENT) && (errno != ENOTDIR));
-    if (closedir (xdir) != 0) Message ("Couldn't close directory", dirname);
-    return true;
+	if (closedir (xdir) != 0) Message ("Couldn't close directory", dirname);
+	return true;
 }
 #else
 bool DirExists (const char *dirname) {
 	DWORD typ = GetFileAttributesA(dirname);
-	if(typ == INVALID_FILE_ATTRIBUTES)
+	if (typ == INVALID_FILE_ATTRIBUTES)
 		return false; // Doesn't exist
 
 	return (typ & FILE_ATTRIBUTE_DIRECTORY) != 0; // Is directory?
@@ -233,9 +233,9 @@ bool DirExists (const char *dirname) {
 // --------------------------------------------------------------------
 
 void GetTimeComponents (double time, int *min, int *sec, int *hundr) {
-    *min = (int) (time / 60);
-    *sec = ((int) time) % 60;
-    *hundr = ((int) (time * 100 + 0.5) ) % 100;
+	*min = (int) (time / 60);
+	*sec = ((int) time) % 60;
+	*hundr = ((int) (time * 100 + 0.5) ) % 100;
 }
 
 string GetTimeString1 () {

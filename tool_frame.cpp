@@ -66,22 +66,34 @@ void SingleFrameKeys (unsigned int key, bool special, bool release, int x, int y
 	if (key == SDLK_LSHIFT) shift = !release;
 	if (key == SDLK_LCTRL) control = !release;
 	if (key == SDLK_LALT) alt = !release;
-	if (shift) keyfact = -1; else keyfact = 1;
+	if (shift) keyfact = -1;
+	else keyfact = 1;
 
 	if (release) return;
 
 	switch (key) {
-		case SDLK_y: case SDLK_j:
+		case SDLK_y:
+		case SDLK_j:
 			if (ToolsFinalStage ()) {
 				SaveToolCharacter ();
 				SaveToolFrame ();
 				State::manager.RequestQuit();
-			} break;
-		case SDLK_n: if (ToolsFinalStage ()) State::manager.RequestQuit(); break;
+			}
+			break;
+		case SDLK_n:
+			if (ToolsFinalStage ()) State::manager.RequestQuit();
+			break;
 
-		case SDLK_ESCAPE: case SDLK_q: QuitTool (); break;
-		case SDLK_s: SaveToolFrame (); break;
-		case SDLK_TAB: SetToolMode (0); break;
+		case SDLK_ESCAPE:
+		case SDLK_q:
+			QuitTool ();
+			break;
+		case SDLK_s:
+			SaveToolFrame ();
+			break;
+		case SDLK_TAB:
+			SetToolMode (0);
+			break;
 
 		case SDLK_a:
 			TestFrame.AddFrame ();
@@ -95,20 +107,28 @@ void SingleFrameKeys (unsigned int key, bool special, bool release, int x, int y
 			curr_frame = TestFrame.DeleteFrame (curr_frame);
 			SetFrameChanged (true);
 			break;
-		case SDLK_PAGEDOWN: if (curr_frame < TestFrame.numFrames()-1) curr_frame++; break;
-		case SDLK_PAGEUP: if (curr_frame > 0) curr_frame--; break;
-		case SDLK_UP: if (curr_joint > 0) curr_joint--; break;
-		case SDLK_DOWN: if (curr_joint < last_joint) curr_joint++; break;
+		case SDLK_PAGEDOWN:
+			if (curr_frame < TestFrame.numFrames()-1) curr_frame++;
+			break;
+		case SDLK_PAGEUP:
+			if (curr_frame > 0) curr_frame--;
+			break;
+		case SDLK_UP:
+			if (curr_joint > 0) curr_joint--;
+			break;
+		case SDLK_DOWN:
+			if (curr_joint < last_joint) curr_joint++;
+			break;
 		case SDLK_RIGHT:
-				if (curr_joint < 4) frame->val[curr_joint] += 0.05;
-				else frame->val[curr_joint] += 1;
-				SetFrameChanged (true);
-				break;
+			if (curr_joint < 4) frame->val[curr_joint] += 0.05;
+			else frame->val[curr_joint] += 1;
+			SetFrameChanged (true);
+			break;
 		case SDLK_LEFT:
-				if (curr_joint < 4) frame->val[curr_joint] -= 0.05;
-				else frame->val[curr_joint] -= 1;
-				SetFrameChanged (true);
-				break;
+			if (curr_joint < 4) frame->val[curr_joint] -= 0.05;
+			else frame->val[curr_joint] -= 1;
+			SetFrameChanged (true);
+			break;
 		case SDLK_0:
 			frame->val[curr_joint] = 0.0;
 			SetFrameChanged (true);
@@ -125,8 +145,12 @@ void SingleFrameKeys (unsigned int key, bool special, bool release, int x, int y
 			must_render = true;
 			break;
 
-		case SDLK_m: TestChar.useMaterials = !TestChar.useMaterials; break;
-		case SDLK_h: TestChar.useHighlighting = !TestChar.useHighlighting; break;
+		case SDLK_m:
+			TestChar.useMaterials = !TestChar.useMaterials;
+			break;
+		case SDLK_h:
+			TestChar.useHighlighting = !TestChar.useHighlighting;
+			break;
 		case SDLK_c:
 			if (control) TestFrame.CopyToClipboard (curr_frame);
 			else TestFrame.ClearFrame (curr_frame);
@@ -136,18 +160,38 @@ void SingleFrameKeys (unsigned int key, bool special, bool release, int x, int y
 			if (control) TestFrame.PasteFromClipboard (curr_frame);
 			SetFrameChanged (true);
 			break;
-		case SDLK_p: if (curr_frame>0)
-			TestFrame.CopyFrame (curr_frame-1, curr_frame); break;
-		case SDLK_F10: ScreenshotN (); break;
+		case SDLK_p:
+			if (curr_frame>0)
+				TestFrame.CopyFrame (curr_frame-1, curr_frame);
+			break;
+		case SDLK_F10:
+			ScreenshotN ();
+			break;
 
-		case SDLK_1: GluCamera.angle = 0; break;
-		case SDLK_2: GluCamera.angle = 45; break;
-		case SDLK_3: GluCamera.angle = 90; break;
-		case SDLK_4: GluCamera.angle = 135; break;
-		case SDLK_5: GluCamera.angle = 180; break;
-		case SDLK_6: GluCamera.angle = 225; break;
-		case SDLK_7: GluCamera.angle = 270; break;
-		case SDLK_8: GluCamera.angle = 315; break;
+		case SDLK_1:
+			GluCamera.angle = 0;
+			break;
+		case SDLK_2:
+			GluCamera.angle = 45;
+			break;
+		case SDLK_3:
+			GluCamera.angle = 90;
+			break;
+		case SDLK_4:
+			GluCamera.angle = 135;
+			break;
+		case SDLK_5:
+			GluCamera.angle = 180;
+			break;
+		case SDLK_6:
+			GluCamera.angle = 225;
+			break;
+		case SDLK_7:
+			GluCamera.angle = 270;
+			break;
+		case SDLK_8:
+			GluCamera.angle = 315;
+			break;
 	}
 }
 
@@ -188,7 +232,7 @@ void RenderSingleFrame (double timestep) {
 
 	// ------------------ 3d scenery ----------------------------------
 	ScopedRenderMode rm1(TUX);
-    ClearRenderContext (colDDBackgr);
+	ClearRenderContext (colDDBackgr);
 
 	const string& hlname = TestFrame.GetHighlightName (curr_joint);
 	TestChar.highlight_node = TestChar.GetNodeName (hlname);
@@ -239,7 +283,7 @@ void RenderSingleFrame (double timestep) {
 	}
 
 	Reshape (Winsys.resolution.width, Winsys.resolution.height);
-    Winsys.SwapBuffers();
+	Winsys.SwapBuffers();
 	must_render = false;
 }
 
@@ -251,9 +295,16 @@ void RenderSingleFrame (double timestep) {
 void SequenceKeys (unsigned int key, bool special, bool release, int x, int y) {
 	if (release) return;
 	switch (key) {
-		case SDLK_RETURN: keyrun = true; break;
-		case SDLK_ESCAPE: case SDLK_TAB: SetToolMode (1); break;
-		case SDLK_q: QuitTool (); break;
+		case SDLK_RETURN:
+			keyrun = true;
+			break;
+		case SDLK_ESCAPE:
+		case SDLK_TAB:
+			SetToolMode (1);
+			break;
+		case SDLK_q:
+			QuitTool ();
+			break;
 	}
 }
 
@@ -263,7 +314,7 @@ void SequenceMotion (int x, int y) {}
 void RenderSequence (double timestep) {
 	check_gl_error();
 	ScopedRenderMode rm(TUX);
-    ClearRenderContext (colDDBackgr);
+	ClearRenderContext (colDDBackgr);
 
 	GluCamera.Update (timestep);
 	if (TestFrame.active) TestFrame.UpdateTest (timestep, &TestChar);
@@ -277,5 +328,5 @@ void RenderSequence (double timestep) {
 	glPopMatrix ();
 
 	Reshape (Winsys.resolution.width, Winsys.resolution.height);
-    Winsys.SwapBuffers();
+	Winsys.SwapBuffers();
 }

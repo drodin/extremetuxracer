@@ -30,9 +30,9 @@ GNU General Public License for more details.
 #define MAX_SPHERE_DIV 16
 
 struct TCharMaterial {
-    TColor diffuse;
-    TColor specular;
-    float exp;
+	TColor diffuse;
+	TColor specular;
+	float exp;
 	string matline;
 };
 
@@ -47,9 +47,9 @@ struct TCharAction {
 };
 
 struct TCharNode {
-    TCharNode *parent;
-    TCharNode *next;
-    TCharNode *child;
+	TCharNode *parent;
+	TCharNode *next;
+	TCharNode *child;
 
 	TCharAction* action;
 
@@ -59,13 +59,13 @@ struct TCharNode {
 	size_t child_name;
 	size_t next_name;
 
-    string joint;
-    TMatrix trans;
+	string joint;
+	TMatrix trans;
 	TMatrix invtrans;
 	double radius;
 	int divisions;
-    TCharMaterial *mat;
-    bool render_shadow;
+	TCharMaterial *mat;
+	bool render_shadow;
 	bool visible;
 };
 
@@ -84,8 +84,8 @@ private:
 	TCharNode *GetNode (size_t node_name);
 	void CreateRootNode ();
 	bool CreateCharNode
-		(int parent_name, size_t node_name, const string& joint,
-		const string& name, const string& order, bool shadow);
+	(int parent_name, size_t node_name, const string& joint,
+	 const string& name, const string& order, bool shadow);
 	bool VisibleNode (size_t node_name, float level);
 	bool MaterialNode (size_t node_name, const string& mat_name);
 	bool TransformNode (size_t node_name, const TMatrix mat, const TMatrix invmat);
@@ -101,7 +101,7 @@ private:
 
 	// collision
 	bool CheckPolyhedronCollision (const TCharNode *node, const TMatrix modelMatrix,
-		const TMatrix invModelMatrix, const TPolyhedron& ph);
+	                               const TMatrix invModelMatrix, const TPolyhedron& ph);
 	bool CheckCollision (const TPolyhedron& ph);
 
 	// shadow
@@ -135,10 +135,10 @@ public:
 	bool Load (const string& dir, const string& filename, bool with_actions);
 
 	void AdjustOrientation (CControl *ctrl, double dtime,
-		double dist_from_surface, const TVector3& surf_nml);
+	                        double dist_from_surface, const TVector3& surf_nml);
 	void AdjustJoints (double turnFact, bool isBraking,
-		double paddling_factor, double speed,
-		const TVector3& net_force, double flap_factor);
+	                   double paddling_factor, double speed,
+	                   const TVector3& net_force, double flap_factor);
 	bool Collision (const TVector3& pos, const TPolyhedron& ph);
 
 	// testing and tools

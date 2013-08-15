@@ -68,19 +68,19 @@ void InitGame (int argc, char **argv) {
 // ====================================================================
 
 #if defined ( OS_WIN32_MINGW )
-	#undef main
+#undef main
 #endif
 
 int main( int argc, char **argv ) {
 	// ****************************************************************
 	cout << "\n----------- Extreme Tux Racer " ETR_VERSION_STRING " ----------------";
-    cout << "\n----------- (C) 2010 Extreme Tuxracer Team  --------\n\n";
+	cout << "\n----------- (C) 2010 Extreme Tuxracer Team  --------\n\n";
 
 	srand (time (NULL));
 	InitConfig (argv[0]);
 	InitGame (argc, argv);
 	Winsys.Init ();
-    InitOpenglExtensions ();
+	InitOpenglExtensions ();
 	// for checking the joystick and the OpgenGL version (the info is
 	// written on the console):
 	//	Winsys.PrintJoystickInfo ();
@@ -95,15 +95,19 @@ int main( int argc, char **argv ) {
 	Music.SetVolume (param.music_volume);
 
 	switch (g_game.argument) {
-		case 0: State::manager.Run(SplashScreen); break;
+		case 0:
+			State::manager.Run(SplashScreen);
+			break;
 		case 4:
 			g_game.toolmode = TUXSHAPE;
 			State::manager.Run(Tools);
 			break;
-		case 9: State::manager.Run(OglTest); break;
+		case 9:
+			State::manager.Run(OglTest);
+			break;
 	}
 
 	Winsys.Quit();
 
-    return 0;
+	return 0;
 }

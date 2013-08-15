@@ -133,14 +133,14 @@ static TLight toollight;
 static int tool_mode = 0;
 
 void DrawQuad (float x, float y, float w, float h,
-		float scrheight, const TColor& col, int frame) {
+               float scrheight, const TColor& col, int frame) {
 	glDisable (GL_TEXTURE_2D);
-    glColor4f (col.r, col.g, col.b, col.a);
+	glColor4f (col.r, col.g, col.b, col.a);
 	glBegin (GL_QUADS);
-		glVertex2f (x-frame,   scrheight-y-h-frame);
-		glVertex2f (x+w+frame, scrheight-y-h-frame);
-		glVertex2f (x+w+frame, scrheight-y+frame);
-		glVertex2f (x-frame,   scrheight-y+frame);
+	glVertex2f (x-frame,   scrheight-y-h-frame);
+	glVertex2f (x+w+frame, scrheight-y-h-frame);
+	glVertex2f (x+w+frame, scrheight-y+frame);
+	glVertex2f (x-frame,   scrheight-y+frame);
 	glEnd();
 	glEnable (GL_TEXTURE_2D);
 }
@@ -179,11 +179,15 @@ void QuitTool () {
 
 void SetToolMode (int newmode) {
 	if (newmode == tool_mode) return;
-	if (newmode > 2) tool_mode = 0; else tool_mode = newmode;
+	if (newmode > 2) tool_mode = 0;
+	else tool_mode = newmode;
 	switch (tool_mode) {
-		case 0: break;
-		case 1: break;
-		case 2: break;
+		case 0:
+			break;
+		case 1:
+			break;
+		case 2:
+			break;
 	}
 }
 
@@ -244,33 +248,57 @@ void CTools::Enter() {
 }
 
 void CTools::Keyb(unsigned int key, bool special, bool release, int x, int y) {
-		switch (tool_mode) {
-			case 0: CharKeys (key, special, release, x, y); break;
-			case 1: SingleFrameKeys (key, special, release, x, y); break;
-			case 2: SequenceKeys (key, special, release, x, y); break;
-		}
+	switch (tool_mode) {
+		case 0:
+			CharKeys (key, special, release, x, y);
+			break;
+		case 1:
+			SingleFrameKeys (key, special, release, x, y);
+			break;
+		case 2:
+			SequenceKeys (key, special, release, x, y);
+			break;
+	}
 }
 
 void CTools::Mouse(int button, int state, int x, int y) {
 	switch (tool_mode) {
-		case 0: CharMouse (button, state, x, y); break;
-		case 1: SingleFrameMouse (button, state, x, y); break;
-		case 2: SequenceMouse (button, state, x, y); break;
+		case 0:
+			CharMouse (button, state, x, y);
+			break;
+		case 1:
+			SingleFrameMouse (button, state, x, y);
+			break;
+		case 2:
+			SequenceMouse (button, state, x, y);
+			break;
 	}
 }
 
 void CTools::Motion(int x, int y) {
 	switch (tool_mode) {
-		case 0: CharMotion (x, y); break;
-		case 1: SingleFrameMotion (x, y); break;
-		case 2: SequenceMotion (x, y); break;
+		case 0:
+			CharMotion (x, y);
+			break;
+		case 1:
+			SingleFrameMotion (x, y);
+			break;
+		case 2:
+			SequenceMotion (x, y);
+			break;
 	}
 }
 
 void CTools::Loop(double timestep) {
 	switch (tool_mode) {
-		case 0: RenderChar (timestep); break;
-		case 1: RenderSingleFrame (timestep); break;
-		case 2: RenderSequence (timestep); break;
+		case 0:
+			RenderChar (timestep);
+			break;
+		case 1:
+			RenderSingleFrame (timestep);
+			break;
+		case 2:
+			RenderSequence (timestep);
+			break;
 	}
 }

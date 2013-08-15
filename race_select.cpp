@@ -49,19 +49,15 @@ static TCourse *CourseList;
 
 static void UpdateInfo() {
 	info = "";
-	if(mirror->focus && mirror->GetValue() < 2) {
+	if (mirror->focus && mirror->GetValue() < 2) {
 		info = Trans.Text(69 + mirror->GetValue());
-	}
-	else if(light->focus && light->GetValue() < 4) {
+	} else if (light->focus && light->GetValue() < 4) {
 		info = Trans.Text(71 + light->GetValue());
-	}
-	else if(snow->focus && snow->GetValue() < 4) {
+	} else if (snow->focus && snow->GetValue() < 4) {
 		info = Trans.Text(75 + snow->GetValue());
-	}
-	else if(wind->focus && wind->GetValue() < 4) {
+	} else if (wind->focus && wind->GetValue() < 4) {
 		info = Trans.Text(79 + wind->GetValue());
-	}
-	else if(random_btn->focus) {
+	} else if (random_btn->focus) {
 		info = Trans.Text(83);
 	}
 }
@@ -90,12 +86,12 @@ void CRaceSelect::Mouse (int button, int state, int x, int y) {
 	if (state == 1) {
 		ClickGUI(x, y);
 
-		if(textbuttons[0]->focussed())
+		if (textbuttons[0]->focussed())
 			SetRaceConditions ();
-		else if(textbuttons[1]->focussed())
+		else if (textbuttons[1]->focussed())
 			State::manager.RequestEnterState (GameTypeSelect);
 
-		if(random_btn->focussed()) {
+		if (random_btn->focussed()) {
 			mirror->SetValue(IRandom (0, 1));
 			light->SetValue(IRandom (0, 3));
 			snow->SetValue(IRandom (0, 3));
@@ -110,17 +106,29 @@ void CRaceSelect::Keyb(unsigned int key, bool special, bool release, int x, int 
 	if (release) return;
 	KeyGUI(key, 0, release);
 	switch (key) {
-		case SDLK_ESCAPE: State::manager.RequestEnterState (GameTypeSelect); break;
-		case SDLK_u: param.ui_snow = !param.ui_snow; break;
-		case SDLK_t: g_game.force_treemap = !g_game.force_treemap; break;
-		case SDLK_c: g_game.treesize++;
-				if (g_game.treesize > 5) g_game.treesize = 1; break;
-		case SDLK_v: g_game.treevar++;
-				if (g_game.treevar > 5) g_game.treevar = 1; break;
-		case SDLK_RETURN: if (textbuttons[1]->focussed())
-					 State::manager.RequestEnterState (GameTypeSelect);
-				 else
-					 SetRaceConditions (); break;
+		case SDLK_ESCAPE:
+			State::manager.RequestEnterState (GameTypeSelect);
+			break;
+		case SDLK_u:
+			param.ui_snow = !param.ui_snow;
+			break;
+		case SDLK_t:
+			g_game.force_treemap = !g_game.force_treemap;
+			break;
+		case SDLK_c:
+			g_game.treesize++;
+			if (g_game.treesize > 5) g_game.treesize = 1;
+			break;
+		case SDLK_v:
+			g_game.treevar++;
+			if (g_game.treevar > 5) g_game.treevar = 1;
+			break;
+		case SDLK_RETURN:
+			if (textbuttons[1]->focussed())
+				State::manager.RequestEnterState (GameTypeSelect);
+			else
+				SetRaceConditions ();
+			break;
 	}
 }
 
@@ -177,7 +185,7 @@ void CRaceSelect::Loop(double timestep) {
 
 	check_gl_error();
 	ScopedRenderMode rm(GUI);
-    ClearRenderContext ();
+	ClearRenderContext ();
 	SetupGuiDisplay ();
 
 	Music.Update ();
@@ -196,13 +204,14 @@ void CRaceSelect::Loop(double timestep) {
 //			0, colMBackgr, colBlack, 0.2);
 
 	// course selection
-	if (course->focussed()) col = colDYell; else col = colWhite;
+	if (course->focussed()) col = colDYell;
+	else col = colWhite;
 	DrawFrameX (area.left, frametop, framewidth, frameheight, 3, colMBackgr, col, 1.0);
 	FT.AutoSizeN (4);
 	FT.SetColor (colDYell);
 	FT.DrawString (area.left+20, frametop, CourseList[course->GetValue()].name);
 
-	if(CourseList[course->GetValue()].preview)
+	if (CourseList[course->GetValue()].preview)
 		CourseList[course->GetValue()].preview->DrawFrame(area.left + 3, prevtop, prevwidth, prevheight, 3, colWhite);
 
 	DrawFrameX (area.right-boxwidth, prevtop-3, boxwidth, prevheight+6, 3, colBackgr, colWhite, 1.0);
@@ -231,5 +240,5 @@ void CRaceSelect::Loop(double timestep) {
 
 	DrawGUI();
 
-    Winsys.SwapBuffers();
+	Winsys.SwapBuffers();
 }

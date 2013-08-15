@@ -33,25 +33,25 @@ double DotProduct (const TVector3& v1, const TVector3& v2) {
 
 TVector3 ScaleVector (double s, const TVector3& v) {
 	TVector3 rval(
-		s * v.x,
-		s * v.y,
-		s * v.z);
+	    s * v.x,
+	    s * v.y,
+	    s * v.z);
 	return rval;
 }
 
 TVector3 AddVectors (const TVector3& v1, const TVector3& v2) {
 	TVector3 result(
-		v1.x + v2.x,
-		v1.y + v2.y,
-		v1.z + v2.z);
+	    v1.x + v2.x,
+	    v1.y + v2.y,
+	    v1.z + v2.z);
 	return result;
 }
 
 TVector3 SubtractVectors (const TVector3& v1, const TVector3& v2) {
 	TVector3 result(
-		v1.x - v2.x,
-		v1.y - v2.y,
-		v1.z - v2.z);
+	    v1.x - v2.x,
+	    v1.y - v2.y,
+	    v1.z - v2.z);
 	return result;
 }
 
@@ -73,9 +73,9 @@ double NormVector (TVector3 &v) {
 
 TVector3 CrossProduct(const TVector3& u, const TVector3& v) {
 	TVector3 ret(
-		u.y * v.z - u.z * v.y,
-		u.z * v.x - u.x * v.z,
-		u.x * v.y - u.y * v.x);
+	    u.y * v.z - u.z * v.y,
+	    u.z * v.x - u.x * v.z,
+	    u.x * v.y - u.y * v.x);
 	return ret;
 }
 
@@ -150,10 +150,10 @@ bool IntersectPlanes (const TPlane& s1, const TPlane& s2, const TPlane& s3, TVec
 
 double DistanceToPlane (const TPlane& plane, const TVector3& pt) {
 	return
-		plane.nml.x * pt.x +
-		plane.nml.y * pt.y +
-		plane.nml.z * pt.z +
-		plane.d;
+	    plane.nml.x * pt.x +
+	    plane.nml.y * pt.y +
+	    plane.nml.z * pt.z +
+	    plane.d;
 }
 
 void MakeIdentityMatrix(TMatrix h) {
@@ -169,9 +169,9 @@ void MultiplyMatrices (TMatrix ret, const TMatrix mat1, const TMatrix mat2) {
 	for (int i = 0; i < 4; i++)
 		for (int j = 0; j < 4; j++)
 			r[j][i] = mat1[0][i] * mat2[j][0] +
-				mat1[1][i] * mat2[j][1] +
-				mat1[2][i] * mat2[j][2] +
-				mat1[3][i] * mat2[j][3];
+			          mat1[1][i] * mat2[j][1] +
+			          mat1[2][i] * mat2[j][2] +
+			          mat1[3][i] * mat2[j][3];
 
 	for (int i = 0; i < 4; i++)
 		for (int j = 0; j < 4; j++)
@@ -199,26 +199,26 @@ void MakeRotationMatrix (TMatrix mat, double angle, char axis) {
 	MakeIdentityMatrix (mat);
 
 	switch (axis) {
-	case 'x':
-		mat[1][1] = cosv;
-		mat[2][1] = -sinv;
-		mat[1][2] = sinv;
-		mat[2][2] = cosv;
-		break;
+		case 'x':
+			mat[1][1] = cosv;
+			mat[2][1] = -sinv;
+			mat[1][2] = sinv;
+			mat[2][2] = cosv;
+			break;
 
-	case 'y':
-		mat[0][0] = cosv;
-		mat[2][0] = sinv;
-		mat[0][2] = -sinv;
-		mat[2][2] = cosv;
-		break;
+		case 'y':
+			mat[0][0] = cosv;
+			mat[2][0] = sinv;
+			mat[0][2] = -sinv;
+			mat[2][2] = cosv;
+			break;
 
-	case 'z':
-		mat[0][0] = cosv;
-		mat[1][0] = -sinv;
-		mat[0][1] = sinv;
-		mat[1][1] = cosv;
-		break;
+		case 'z':
+			mat[0][0] = cosv;
+			mat[1][0] = -sinv;
+			mat[0][1] = sinv;
+			mat[1][1] = cosv;
+			break;
 	}
 }
 
@@ -250,7 +250,7 @@ void MakeBasisMat (TMatrix mat, const TVector3& w1, const TVector3& w2, const TV
 }
 
 void MakeBasismatrix_Inv (TMatrix mat, TMatrix invMat,
-		const TVector3& w1, const TVector3& w2, const TVector3& w3) {
+                          const TVector3& w1, const TVector3& w2, const TVector3& w3) {
 	MakeIdentityMatrix (mat);
 	mat[0][0] = w1.x;
 	mat[0][1] = w1.y;
@@ -335,29 +335,29 @@ TQuaternion MultiplyQuaternions (const TQuaternion& q, const TQuaternion& r) {
 
 TQuaternion AddQuaternions (const TQuaternion& q, const TQuaternion& r) {
 	TQuaternion res(
-		q.x + r.x,
-		q.y + r.y,
-		q.z + r.z,
-		q.w + r.w);
+	    q.x + r.x,
+	    q.y + r.y,
+	    q.z + r.z,
+	    q.w + r.w);
 	return res;
 }
 
 TQuaternion ConjugateQuaternion (const TQuaternion& q) {
 	TQuaternion res(
-		-1 * q.x,
-		-1 * q.y,
-		-1 * q.z,
-		q.w);
+	    -1 * q.x,
+	    -1 * q.y,
+	    -1 * q.z,
+	    q.w);
 
 	return res;
 }
 
 TQuaternion ScaleQuaternion (double s, const TQuaternion& q) {
 	TQuaternion res(
-		s * q.x,
-		s * q.y,
-		s * q.z,
-		s * q.w);
+	    s * q.x,
+	    s * q.y,
+	    s * q.z,
+	    s * q.w);
 
 	return res;
 }
@@ -434,10 +434,10 @@ TQuaternion MakeRotationQuaternion (const TVector3& s, const TVector3& t) {
 		double cosphi = sqrt ( (1 + cos2phi) / 2.0);
 
 		return TQuaternion(
-			sinphi * u.x,
-			sinphi * u.y,
-			sinphi * u.z,
-			cosphi);
+		           sinphi * u.x,
+		           sinphi * u.y,
+		           sinphi * u.z,
+		           cosphi);
 	}
 }
 
@@ -499,7 +499,7 @@ int Gauss(double *matrix, int n, double *soln) {
 	unsigned short error=0;
 
 	while ((pivot<(n-1)) && (!error)) {
-		if(!(error = order(matrix,n,pivot))) {
+		if (!(error = order(matrix,n,pivot))) {
 			elim(matrix,n,pivot);
 			pivot++;
 		}
@@ -525,8 +525,7 @@ unsigned short order (double *matrix, int n, int pivot) {
 	if (fabs(*(matrix+rmax*(n+1)+pivot)) < EPS)
 		error = 1;
 	else if (rmax != pivot) {
-		for (int k=0; k<(n+1); k++)
-		{
+		for (int k=0; k<(n+1); k++) {
 			double temp = *(matrix+rmax*(n+1)+k);
 			*(matrix+rmax*(n+1)+k) = *(matrix+pivot*(n+1)+k);
 			*(matrix+pivot*(n+1)+k) = temp;
@@ -541,7 +540,7 @@ void elim (double *matrix, int n, int pivot) {
 		*(matrix+row*(n+1)+pivot)=0.0;
 		for (int col=pivot+1l; col<n+1; col++) {
 			*(matrix+row*(n+1)+col) = *(matrix+row*(n+1)+col) -
-				(*(matrix+pivot*(n+1)+col))*factor;
+			                          (*(matrix+pivot*(n+1)+col))*factor;
 		}
 	}
 }
@@ -551,7 +550,7 @@ void backsb (double *matrix, int n, double *soln) {
 	for (int row = n-1; row >=0; row--) {
 		for (int col = n-1; col >= row+1; col--) {
 			*(matrix+row*(n+1)+(n)) = *(matrix+row*(n+1)+n) -
-				(*(soln+col))*(*(matrix+row*(n+1)+col));
+			                          (*(soln+col))*(*(matrix+row*(n+1)+col));
 		}
 		*(soln+row) = (*(matrix+row*(n+1)+n))/(*(matrix+row*(n+1)+row));
 	}
@@ -574,8 +573,8 @@ bool IntersectPolygon (const TPolygon& p, TVector3 *v) {
 		return false;
 
 	d = - (nml.x * v[p.vertices[0]].x +
-		nml.y * v[p.vertices[0]].y +
-		nml.z * v[p.vertices[0]].z);
+	       nml.y * v[p.vertices[0]].y +
+	       nml.z * v[p.vertices[0]].z);
 
 	if (fabs (d) > 1) return false;
 
@@ -607,7 +606,7 @@ bool IntersectPolygon (const TPolygon& p, TVector3 *v) {
 
 	for (int i=0; i < p.num_vertices; i++) {
 		TVector3 edge_nml = CrossProduct (nml,
-			SubtractVectors (v[p.vertices[ (i+1) % p.num_vertices ]], v[p.vertices[i]]));
+		                                  SubtractVectors (v[p.vertices[ (i+1) % p.num_vertices ]], v[p.vertices[i]]));
 
 		wec = DotProduct (SubtractVectors (pt, v[p.vertices[i]]), edge_nml);
 		if (wec < 0) return false;

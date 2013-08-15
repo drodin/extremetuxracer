@@ -61,7 +61,7 @@ void STrimLeftN (string &s) {
 
 void STrimRightN (string &s) {
 	size_t i = s.find_last_not_of(" \t");
-	if(i != s.size()-1)
+	if (i != s.size()-1)
 		s.erase (i+1);
 }
 
@@ -115,13 +115,14 @@ int Str_IntN (const string &s, const int def) {
 	int val;
 	istringstream is(s);
 	is >> val;
-	if (is.fail()) return def; else return val;
+	if (is.fail()) return def;
+	else return val;
 }
 
 bool Str_BoolN (const string &s, const bool def) {
-	if(s == "0" || s == "false")
+	if (s == "0" || s == "false")
 		return false;
-	if(s == "1" || s == "true")
+	if (s == "1" || s == "true")
 		return true;
 	return Str_IntN(s, (int)def) != 0; // Try to parse as int
 }
@@ -130,7 +131,8 @@ float Str_FloatN (const string &s, const float def) {
 	float val;
 	istringstream is(s);
 	is >> val;
-	if (is.fail()) return def; else return val;
+	if (is.fail()) return def;
+	else return val;
 }
 
 TVector2 Str_Vector2N (const string &s, const TVector2 &def) {
@@ -183,14 +185,15 @@ TColor3 Str_Color3N (const string &s, const TColor3 &def) {
 
 void Str_ArrN (const string &s, float *arr, size_t count, float def) {
 	istringstream is(s);
-	for(size_t i = 0; i < count; i++)
+	for (size_t i = 0; i < count; i++)
 		is >> arr[i];
 	if (is.fail())
 		for (size_t i=0; i<count; i++) arr[i] = def;
 }
 
 string Bool_StrN (const bool val) {
-	if (val == true) return "true"; else return "false";
+	if (val == true) return "true";
+	else return "false";
 }
 
 // --------------------------------------------------------------------
@@ -347,7 +350,8 @@ void SPAddBoolN (string &s, const string &tag, const bool val) {
 	s += '[';
 	s += tag;
 	s += ']';
-	if (val == true) s += "true"; else s+= "false";
+	if (val == true) s += "true";
+	else s+= "false";
 }
 
 // --------------------------------------------------------------------

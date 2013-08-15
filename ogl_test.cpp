@@ -58,7 +58,9 @@ void SetTestLight () {
 void COglTest::Keyb(unsigned int key, bool special, bool release, int x, int y) {
 	if (release) return;
 	switch (key) {
-		case SDLK_ESCAPE: State::manager.RequestQuit(); break;
+		case SDLK_ESCAPE:
+			State::manager.RequestQuit();
+			break;
 	}
 }
 
@@ -73,18 +75,18 @@ void COglTest::Loop(double timestep) {
 
 	// ------------- 3d scenery ---------------------------------------
 	ScopedRenderMode rm(TUX);
-    ClearRenderContext (colDDBackgr);
+	ClearRenderContext (colDDBackgr);
 
 	glLoadIdentity ();
 	glPushMatrix ();
 	SetTestLight ();
 
-/*
-	glTranslatef (xposition, yposition, zposition);
-	glRotatef (xrotation, 1, 0, 0);
-	glRotatef (yrotation, 0, 1, 0);
-	glRotatef (zrotation, 0, 0, 1);
-*/
+	/*
+		glTranslatef (xposition, yposition, zposition);
+		glRotatef (xrotation, 1, 0, 0);
+		glRotatef (yrotation, 0, 1, 0);
+		glRotatef (zrotation, 0, 0, 1);
+	*/
 	glPopMatrix ();
 
 	// --------------- 2d screen --------------------------------------
@@ -95,5 +97,5 @@ void COglTest::Loop(double timestep) {
 	FT.SetColor (colWhite);
 	FT.DrawString (CENTER, 10, "Test screen");
 	Reshape (Winsys.resolution.width, Winsys.resolution.height);
-    Winsys.SwapBuffers ();
+	Winsys.SwapBuffers ();
 }

@@ -95,14 +95,14 @@ struct TObjectType {
 	string		name;
 	string		textureFile;
 	TTexture*	texture;
-    int			collectable;
+	int			collectable;
 	bool		collidable;
-    bool		drawable;
-    bool		reset_point;
-    bool		use_normal;
-    TVector3	normal;
-    int			num_items;
-    int			poly;
+	bool		drawable;
+	bool		reset_point;
+	bool		use_normal;
+	TVector3	normal;
+	int			num_items;
+	int			poly;
 };
 
 class CCourse {
@@ -170,7 +170,7 @@ public:
 
 	void GetIndicesForPoint (double x, double z, int *x0, int *y0, int *x1, int *y1) const;
 	void FindBarycentricCoords (double x, double z,
-		TIndex2 *idx0, TIndex2 *idx1, TIndex2 *idx2, double *u, double *v) const;
+	                            TIndex2 *idx0, TIndex2 *idx1, TIndex2 *idx2, double *u, double *v) const;
 	TVector3 FindCourseNormal (double x, double z) const;
 	double FindYCoord (double x, double z) const;
 	void GetSurfaceType (double x, double z, double weights[]) const;

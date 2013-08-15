@@ -45,19 +45,19 @@ void EnterPractice () {
 }
 
 void QuitGameType () {
-	if(textbuttons[0]->focussed())
+	if (textbuttons[0]->focussed())
 		State::manager.RequestEnterState (EventSelect);
-	if(textbuttons[1]->focussed())
+	if (textbuttons[1]->focussed())
 		EnterPractice ();
-	if(textbuttons[2]->focussed())
+	if (textbuttons[2]->focussed())
 		State::manager.RequestEnterState (GameConfig);
-	if(textbuttons[3]->focussed())
+	if (textbuttons[3]->focussed())
 		State::manager.RequestEnterState (Score);
-	if(textbuttons[4]->focussed())
+	if (textbuttons[4]->focussed())
 		State::manager.RequestEnterState (Help);
-	if(textbuttons[5]->focussed())
+	if (textbuttons[5]->focussed())
 		State::manager.RequestEnterState (Credits);
-	if(textbuttons[6]->focussed())
+	if (textbuttons[6]->focussed())
 		State::manager.RequestQuit();
 }
 
@@ -69,16 +69,28 @@ void CGameTypeSelect::Mouse (int button, int state, int x, int y) {
 }
 
 void CGameTypeSelect::Keyb (unsigned int key, bool special, bool release, int x, int y) {
-    if (release) return;
+	if (release) return;
 
 	KeyGUI(key, 0, release);
 	switch (key) {
-		case SDLK_u: param.ui_snow = !param.ui_snow; break;
-		case SDLK_ESCAPE: State::manager.RequestQuit(); break;
-		case SDLK_DOWN: IncreaseFocus(); break;
-		case SDLK_UP: DecreaseFocus(); break;
-		case SDLK_RETURN: QuitGameType(); break;
-		case SDLK_w: Music.FreeMusics(); break;
+		case SDLK_u:
+			param.ui_snow = !param.ui_snow;
+			break;
+		case SDLK_ESCAPE:
+			State::manager.RequestQuit();
+			break;
+		case SDLK_DOWN:
+			IncreaseFocus();
+			break;
+		case SDLK_UP:
+			DecreaseFocus();
+			break;
+		case SDLK_RETURN:
+			QuitGameType();
+			break;
+		case SDLK_w:
+			Music.FreeMusics();
+			break;
 	}
 }
 
@@ -115,14 +127,14 @@ void CGameTypeSelect::Loop (double time_step) {
 
 	check_gl_error();
 	Music.Update ();
-    ScopedRenderMode rm(GUI);
-    ClearRenderContext ();
-    SetupGuiDisplay ();
+	ScopedRenderMode rm(GUI);
+	ClearRenderContext ();
+	SetupGuiDisplay ();
 
 	if (param.ui_snow) {
 		update_ui_snow (time_step);
 		draw_ui_snow();
-    }
+	}
 
 	Tex.Draw (T_TITLE, CENTER, AutoYPosN (5), Winsys.scale);
 	Tex.Draw (BOTTOM_LEFT, 0, hh-256, 1);

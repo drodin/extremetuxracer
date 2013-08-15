@@ -68,7 +68,7 @@ struct TForce {
 	double frict_coeff;
 	double comp_depth;
 	double surfdistance;
-    double compression;
+	double compression;
 };
 
 class CControl {
@@ -103,42 +103,42 @@ public:
 
 	// view:
 	TViewMode viewmode;
-    TVector3 viewpos;
-    TVector3 plyr_pos;
-    TVector3 viewdir;
-    TVector3 viewup;
-    TMatrix view_mat;
-    bool view_init;
+	TVector3 viewpos;
+	TVector3 plyr_pos;
+	TVector3 viewdir;
+	TVector3 viewup;
+	TMatrix view_mat;
+	bool view_init;
 	// main:
 	TVector3 cpos;
-    TVector3 cvel;
+	TVector3 cvel;
 	TVector3 last_pos;
-    TVector3 cnet_force;
-    TVector3 cdirection;
+	TVector3 cnet_force;
+	TVector3 cdirection;
 	TQuaternion corientation;
 	double way;
 
-    bool orientation_initialized;
-    TVector3 plane_nml;
+	bool orientation_initialized;
+	TVector3 plane_nml;
 	// steering:
-    double turn_fact;
-    double turn_animation;
+	double turn_fact;
+	double turn_animation;
 	double paddle_time;
-    double jump_amt;
-    double jump_start_time;
-    bool   is_paddling;
-    bool   is_braking;
-    bool   begin_jump;
-    bool   jumping;
-    bool   jump_charging;
+	double jump_amt;
+	double jump_start_time;
+	bool   is_paddling;
+	bool   is_braking;
+	bool   begin_jump;
+	bool   jumping;
+	bool   jump_charging;
 	// trick:
-    bool   front_flip;
-    bool   back_flip;
-    bool   cairborne;
-    bool   roll_left;
-    bool   roll_right;
-    double roll_factor;
-    double flip_factor;
+	bool   front_flip;
+	bool   back_flip;
+	bool   cairborne;
+	bool   roll_left;
+	bool   roll_right;
+	double roll_factor;
+	double flip_factor;
 	// pseudo constants:
 	double minSpeed;
 	double minFrictspeed;

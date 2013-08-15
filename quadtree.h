@@ -35,12 +35,12 @@ enum vertex_loc_t {
 };
 
 struct HeightMapInfo {
-    double *Data;
-    int	XOrigin, ZOrigin;
-    int	XSize, ZSize;
-    int	RowWidth;
-    int	Scale;
-    float Sample(int x, int z) const;
+	double *Data;
+	int	XOrigin, ZOrigin;
+	int	XSize, ZSize;
+	int	RowWidth;
+	int	Scale;
+	float Sample(int x, int z) const;
 };
 
 struct	VertInfo { float Y; };
@@ -48,86 +48,86 @@ struct quadsquare;
 
 class quadcornerdata {
 public:
-    const quadcornerdata* Parent;
-    quadsquare*	Square;
-    int	ChildIndex;
-    int	Level;
-    int	xorg, zorg;
-    VertInfo Verts[4];
+	const quadcornerdata* Parent;
+	quadsquare*	Square;
+	int	ChildIndex;
+	int	Level;
+	int	xorg, zorg;
+	VertInfo Verts[4];
 };
 
 struct quadsquare {
-    quadsquare*	Child[4];
+	quadsquare*	Child[4];
 
-    VertInfo Vertex[5];
-    float	Error[6];
-    float	MinY, MaxY;
-    unsigned char	EnabledFlags;
-    unsigned char	SubEnabledCount[2];
-    bool	Static;
-    bool	Dirty;
+	VertInfo Vertex[5];
+	float	Error[6];
+	float	MinY, MaxY;
+	unsigned char	EnabledFlags;
+	unsigned char	SubEnabledCount[2];
+	bool	Static;
+	bool	Dirty;
 
-    bool ForceEastVert;
-    bool ForceSouthVert;
+	bool ForceEastVert;
+	bool ForceSouthVert;
 
-    static double ScaleX, ScaleZ;
-    static int RowSize, NumRows;
-    static char *Terrain;
-    static TTexture* EnvmapTexture;
+	static double ScaleX, ScaleZ;
+	static int RowSize, NumRows;
+	static char *Terrain;
+	static TTexture* EnvmapTexture;
 
-    static GLuint *VertexArrayIndices;
-    static GLuint VertexArrayCounter;
-    static GLuint VertexArrayMinIdx;
-    static GLuint VertexArrayMaxIdx;
+	static GLuint *VertexArrayIndices;
+	static GLuint VertexArrayCounter;
+	static GLuint VertexArrayMinIdx;
+	static GLuint VertexArrayMaxIdx;
 
-    static void MakeTri( int a, int b, int c, int terrain );
-    static void MakeSpecialTri( int a, int b, int c, int terrain );
-    static void MakeNoBlendTri( int a, int b, int c, int terrain );
+	static void MakeTri( int a, int b, int c, int terrain );
+	static void MakeSpecialTri( int a, int b, int c, int terrain );
+	static void MakeNoBlendTri( int a, int b, int c, int terrain );
 
-    static void DrawTris();
-    static void DrawEnvmapTris();
-    static void InitArrayCounters();
+	static void DrawTris();
+	static void DrawEnvmapTris();
+	static void InitArrayCounters();
 
-    quadsquare (quadcornerdata* pcd);
+	quadsquare (quadcornerdata* pcd);
 	~quadsquare();
 
-    void	AddHeightMap(const quadcornerdata& cd, const HeightMapInfo& hm);
-    void	StaticCullData(const quadcornerdata& cd, float ThresholdDetail);
-    float	RecomputeError(const quadcornerdata& cd);
-    int		CountNodes();
-    void	Update(const quadcornerdata& cd,
-			const float ViewerLocation[3], float Detail);
-    void	Render(const quadcornerdata& cd, GLubyte *vnc_array);
-    float	GetHeight(const quadcornerdata& cd, float x, float z);
-    void	SetScale(double x, double z);
-    void	SetTerrain (char *terrain);
+	void	AddHeightMap(const quadcornerdata& cd, const HeightMapInfo& hm);
+	void	StaticCullData(const quadcornerdata& cd, float ThresholdDetail);
+	float	RecomputeError(const quadcornerdata& cd);
+	int		CountNodes();
+	void	Update(const quadcornerdata& cd,
+	               const float ViewerLocation[3], float Detail);
+	void	Render(const quadcornerdata& cd, GLubyte *vnc_array);
+	float	GetHeight(const quadcornerdata& cd, float x, float z);
+	void	SetScale(double x, double z);
+	void	SetTerrain (char *terrain);
 
 private:
-    quadsquare*	EnableDescendant(int count, int stack[],
-				const quadcornerdata& cd);
-    quadsquare*	GetNeighbor(int dir, const quadcornerdata &cd);
-    clip_result_t ClipSquare( const quadcornerdata &cd );
+	quadsquare*	EnableDescendant(int count, int stack[],
+	                             const quadcornerdata& cd);
+	quadsquare*	GetNeighbor(int dir, const quadcornerdata &cd);
+	clip_result_t ClipSquare( const quadcornerdata &cd );
 
 	void	EnableEdgeVertex(int index, bool IncrementCount,
-			const quadcornerdata &cd);
+	                         const quadcornerdata &cd);
 	void	EnableChild(int index, const quadcornerdata &cd);
 	void	NotifyChildDisable(const quadcornerdata& cd, int index);
 	void	ResetTree();
 	void	StaticCullAux (const quadcornerdata &cd, float ThresholdDetail,
-			int TargetLevel);
-    void	CreateChild(int index, const quadcornerdata &cd);
+	                       int TargetLevel);
+	void	CreateChild(int index, const quadcornerdata &cd);
 	void	SetupCornerData (quadcornerdata *q, const quadcornerdata &pd,
-			int ChildIndex);
-    void	UpdateAux(const quadcornerdata &cd, const float ViewerLocation[3],
-			float CenterError, clip_result_t vis);
+	                         int ChildIndex);
+	void	UpdateAux(const quadcornerdata &cd, const float ViewerLocation[3],
+	                  float CenterError, clip_result_t vis);
 	void	RenderAux(const quadcornerdata &cd, clip_result_t vis,
-			int terrain);
+	                  int terrain);
 	void	SetStatic (const quadcornerdata &cd);
 	void	InitVert(int i, int x, int z);
-    bool	VertexTest(int x, float y, int z, float error, const float Viewer[3],
-			int level, vertex_loc_t vertex_loc);
+	bool	VertexTest(int x, float y, int z, float error, const float Viewer[3],
+	                   int level, vertex_loc_t vertex_loc);
 	bool	BoxTest(int x, int z, float size, float miny, float maxy,
-			float error, const float Viewer[3]);
+	                float error, const float Viewer[3]);
 };
 
 // --------------------------------------------------------------------
@@ -136,8 +136,8 @@ private:
 
 void ResetQuadtree();
 void InitQuadtree (double *elevation, int nx, int nz,
-			   double scalex, double scalez,
-			   const TVector3& view_pos, double detail);
+                   double scalex, double scalez,
+                   const TVector3& view_pos, double detail);
 
 void UpdateQuadtree (const TVector3& view_pos, float detail);
 void RenderQuadtree();

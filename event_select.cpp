@@ -48,13 +48,21 @@ void EnterEvent () {
 }
 
 void CEventSelect::Keyb (unsigned int key, bool special, bool release, int x, int y) {
-    if (release) return;
+	if (release) return;
 	switch (key) {
-		case SDLK_ESCAPE: State::manager.RequestEnterState (GameTypeSelect); break;
-		case SDLK_q: State::manager.RequestQuit(); break;
-		case SDLK_RETURN: if (textbuttons[1]->focussed()) State::manager.RequestEnterState (GameTypeSelect);
-			else if (Events.IsUnlocked (event->GetValue(), cup->GetValue())) EnterEvent(); break;
-		case SDLK_u: param.ui_snow = !param.ui_snow; break;
+		case SDLK_ESCAPE:
+			State::manager.RequestEnterState (GameTypeSelect);
+			break;
+		case SDLK_q:
+			State::manager.RequestQuit();
+			break;
+		case SDLK_RETURN:
+			if (textbuttons[1]->focussed()) State::manager.RequestEnterState (GameTypeSelect);
+			else if (Events.IsUnlocked (event->GetValue(), cup->GetValue())) EnterEvent();
+			break;
+		case SDLK_u:
+			param.ui_snow = !param.ui_snow;
+			break;
 		default:
 			KeyGUI(key, 0, release);
 	}
@@ -66,8 +74,7 @@ void CEventSelect::Mouse (int button, int state, int x, int y) {
 		if (textbuttons[0] == clicked) {
 			if (Events.IsUnlocked (event->GetValue(), cup->GetValue()))
 				EnterEvent();
-		}
-		else if (textbuttons[1] == clicked)
+		} else if (textbuttons[1] == clicked)
 			State::manager.RequestEnterState (GameTypeSelect);
 	}
 }
@@ -117,7 +124,7 @@ void CEventSelect::Loop (double timestep) {
 	check_gl_error();
 	ScopedRenderMode rm(GUI);
 	Music.Update ();
-    ClearRenderContext ();
+	ClearRenderContext ();
 	SetupGuiDisplay ();
 
 	if (param.ui_snow) {
@@ -145,12 +152,14 @@ void CEventSelect::Loop (double timestep) {
 
 	FT.AutoSizeN (4);
 
-	if (event->focussed()) col = colDYell; else col = colWhite;
+	if (event->focussed()) col = colDYell;
+	else col = colWhite;
 	DrawFrameX (area.left, frametop1, framewidth, frameheight, 3, colMBackgr, col, 1.0);
 	FT.SetColor (colDYell);
 	FT.DrawString (area.left + 20, frametop1, EventList[event->GetValue()].name);
 
-	if (cup->focussed()) col = colDYell; else col = colWhite;
+	if (cup->focussed()) col = colDYell;
+	else col = colWhite;
 	DrawFrameX (area.left, frametop2, framewidth, frameheight, 3, colMBackgr, col, 1.0);
 	if (Events.IsUnlocked (event->GetValue(), cup->GetValue()))
 		FT.SetColor (colDYell);

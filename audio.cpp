@@ -37,11 +37,11 @@ CAudio::CAudio () {
 void CAudio::Open () {
 	// first initialize audio (SDL, not SDL_Mixer).
 	if (SDL_Init (SDL_INIT_AUDIO) < 0) {
-	    Message ("Couldn't initialize SDL Audio", SDL_GetError());
+		Message ("Couldn't initialize SDL Audio", SDL_GetError());
 		return;
 	}
 	Uint16 format = AUDIO_S16SYS;
-    int channels = 2;
+	int channels = 2;
 	if (Mix_OpenAudio (param.audio_freq, format, channels, param.audio_buffer_size) < 0)
 		Message ("Couldn't open SDL_mixer", Mix_GetError());
 	IsOpen = CheckOpen ();
@@ -58,10 +58,10 @@ void CAudio::Close () {
 }
 
 bool CAudio::CheckOpen() {
-    int freq;
-    Uint16 format;
-    int channels;
-    int ret = Mix_QuerySpec (&freq, &format, &channels);
+	int freq;
+	Uint16 format;
+	int channels;
+	int ret = Mix_QuerySpec (&freq, &format, &channels);
 	return (ret > 0);
 }
 
@@ -70,7 +70,7 @@ bool CAudio::CheckOpen() {
 // --------------------------------------------------------------------
 
 size_t CSound::LoadChunk (const std::string& name, const char *filename) {
-    if (Audio.IsOpen == false) return -1;
+	if (Audio.IsOpen == false) return -1;
 	sounds.push_back(TSound());
 	sounds.back().chunk = Mix_LoadWAV (filename);
 	if (sounds.back().chunk == NULL) return -1;
@@ -109,16 +109,16 @@ void CSound::FreeSounds () {
 }
 
 size_t CSound::GetSoundIdx (const string& name) const {
-    if (Audio.IsOpen == false) return -1;
+	if (Audio.IsOpen == false) return -1;
 	try {
 		return SoundIndex.at(name);
-	} catch(...) {
+	} catch (...) {
 		return -1;
 	}
 }
 
 void CSound::SetVolume (size_t soundid, int volume) {
-    if (Audio.IsOpen == false) return;
+	if (Audio.IsOpen == false) return;
 	if (soundid >= sounds.size()) return;
 
 	volume = clamp(0, volume, MIX_MAX_VOLUME);
@@ -138,8 +138,8 @@ void CSound::Play (size_t soundid, int loop) {
 	if (sounds[soundid].active == true) return;
 	if (sounds[soundid].chunk == NULL) return;
 
-    sounds[soundid].channel = Mix_PlayChannel (-1, sounds[soundid].chunk, loop);
-    sounds[soundid].loop_count = loop;
+	sounds[soundid].channel = Mix_PlayChannel (-1, sounds[soundid].chunk, loop);
+	sounds[soundid].loop_count = loop;
 	if (loop < 0) sounds[soundid].active = true;
 }
 
@@ -148,15 +148,15 @@ void CSound::Play (const string& name, int loop) {
 }
 
 void CSound::Play (size_t soundid, int loop, int volume) {
-    if (!Audio.IsOpen) return;
+	if (!Audio.IsOpen) return;
 	if (soundid >= sounds.size()) return;
 	if (sounds[soundid].active == true) return;
 	if (sounds[soundid].chunk == NULL) return;
 
 	volume = clamp(0, volume, MIX_MAX_VOLUME);
-    Mix_VolumeChunk (sounds[soundid].chunk, volume);
-    sounds[soundid].channel = Mix_PlayChannel (-1, sounds[soundid].chunk, loop);
-    sounds[soundid].loop_count = loop;
+	Mix_VolumeChunk (sounds[soundid].chunk, volume);
+	sounds[soundid].channel = Mix_PlayChannel (-1, sounds[soundid].chunk, loop);
+	sounds[soundid].loop_count = loop;
 	if (loop < 0) sounds[soundid].active = true;
 }
 
@@ -165,14 +165,14 @@ void CSound::Play (const string& name, int loop, int volume) {
 }
 
 void CSound::Halt (size_t soundid) {
-    if (!Audio.IsOpen) return;
+	if (!Audio.IsOpen) return;
 	if (soundid >= sounds.size()) return;
 	if (sounds[soundid].chunk == NULL) return;
 
 	// loop_count must be -1 (endless loop) for halt
 	if (sounds[soundid].loop_count < 0) {
 		Mix_HaltChannel (sounds[soundid].channel);
-	    sounds[soundid].loop_count = 0;
+		sounds[soundid].loop_count = 0;
 		sounds[soundid].channel = -1;
 		sounds[soundid].active = false;
 	}
@@ -183,7 +183,7 @@ void CSound::Halt (const string& name) {
 }
 
 void CSound::HaltAll () {
-    if (!Audio.IsOpen) return;
+	if (!Audio.IsOpen) return;
 	Mix_HaltChannel (-1);
 	for (size_t i=0; i<sounds.size(); i++) {
 		sounds[i].loop_count = 0;
@@ -209,7 +209,7 @@ CMusic::CMusic () {
 }
 
 size_t CMusic::LoadPiece (const string& name, const char *filename) {
-    if (!Audio.IsOpen) return -1;
+	if (!Audio.IsOpen) return -1;
 	Mix_Music* m = Mix_LoadMUS (filename);
 	if (m == NULL) {
 		Message ("could not load music", filename);
@@ -275,19 +275,19 @@ void CMusic::FreeMusics () {
 }
 
 size_t CMusic::GetMusicIdx (const string& name) const {
-    if (Audio.IsOpen == false) return -1;
+	if (Audio.IsOpen == false) return -1;
 	try {
 		return MusicIndex.at(name);
-	} catch(...) {
+	} catch (...) {
 		return -1;
 	}
 }
 
 size_t CMusic::GetThemeIdx (const string& theme) const {
-    if (Audio.IsOpen == false) return -1;
+	if (Audio.IsOpen == false) return -1;
 	try {
 		return ThemesIndex.at(theme);
-	} catch(...) {
+	} catch (...) {
 		return -1;
 	}
 }
@@ -307,7 +307,7 @@ void CMusic::Update () {
 }
 
 bool CMusic::Play (size_t musid, int loop) {
-    if (!Audio.IsOpen) return false;
+	if (!Audio.IsOpen) return false;
 	if (musid >= musics.size()) return false;
 	Mix_Music *music = musics[musid];
 	if (music == NULL) return false;
@@ -326,7 +326,7 @@ bool CMusic::Play (const string& name, int loop) {
 }
 
 bool CMusic::Play (size_t musid, int loop, int volume) {
-    if (!Audio.IsOpen) return false;
+	if (!Audio.IsOpen) return false;
 	if (musid >= musics.size()) return false;
 	Mix_Music *music = musics[musid];
 

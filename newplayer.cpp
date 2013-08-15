@@ -49,7 +49,9 @@ void CNewPlayer::Keyb_spec (SDL_keysym sym, bool release) {
 
 	KeyGUI(sym.sym, sym.mod, release);
 	switch (sym.sym) {
-		case SDLK_ESCAPE: State::manager.RequestEnterState (Regist); break;
+		case SDLK_ESCAPE:
+			State::manager.RequestEnterState (Regist);
+			break;
 		case SDLK_RETURN:
 			if (textbuttons[0]->focussed()) State::manager.RequestEnterState (Regist);
 			else QuitAndAddPlayer ();
@@ -63,9 +65,9 @@ void CNewPlayer::Mouse (int button, int state, int x, int y) {
 	if (state == 1) {
 		TWidget* clicked = ClickGUI(x, y);
 
-		if(clicked == textbuttons[0])
+		if (clicked == textbuttons[0])
 			State::manager.RequestEnterState (Regist);
-		else if(clicked == textbuttons[1])
+		else if (clicked == textbuttons[1])
 			QuitAndAddPlayer();
 	}
 }
@@ -111,9 +113,9 @@ void CNewPlayer::Loop(double timestep) {
 
 	Music.Update ();
 	check_gl_error();
-    ClearRenderContext ();
-    ScopedRenderMode rm(GUI);
-    SetupGuiDisplay ();
+	ClearRenderContext ();
+	ScopedRenderMode rm(GUI);
+	SetupGuiDisplay ();
 
 	if (param.ui_snow) {
 		update_ui_snow (timestep);
@@ -135,10 +137,11 @@ void CNewPlayer::Loop(double timestep) {
 	FT.AutoSizeN (4);
 	FT.DrawString (CENTER, AutoYPosN (30), Trans.Text(66));
 
-	if (avatar->focussed()) col = colDYell; else col = colWhite;
+	if (avatar->focussed()) col = colDYell;
+	else col = colWhite;
 	Players.GetAvatarTexture(avatar->GetValue())->DrawFrame(
-		prevleft + prevoffs, prevtop, prevwidth, prevwidth, 2, col);
+	    prevleft + prevoffs, prevtop, prevwidth, prevwidth, 2, col);
 
 	DrawGUI();
-    Winsys.SwapBuffers();
+	Winsys.SwapBuffers();
 }

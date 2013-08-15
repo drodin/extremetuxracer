@@ -37,8 +37,7 @@ TVector2 cursor_pos(0, 0);
 CWinsys Winsys;
 
 CWinsys::CWinsys ()
-	: auto_resolution(800, 600)
-{
+	: auto_resolution(800, 600) {
 	screen = NULL;
 
 	joystick = NULL;
@@ -77,17 +76,25 @@ double CWinsys::CalcScreenScale () const {
 }
 
 void CWinsys::SetupVideoMode (const TScreenRes& resolution_) {
-    int bpp = 0;
-    Uint32 video_flags = SDL_OPENGL;
-    if (param.fullscreen) video_flags |= SDL_FULLSCREEN;
+	int bpp = 0;
+	Uint32 video_flags = SDL_OPENGL;
+	if (param.fullscreen) video_flags |= SDL_FULLSCREEN;
 	switch (param.bpp_mode) {
-		case 0:	bpp = 0; break;
-		case 1:	bpp = 16; break;
-		case 2:	bpp = 32; break;
-		default: param.bpp_mode = 0; bpp = 0;
-    }
+		case 0:
+			bpp = 0;
+			break;
+		case 1:
+			bpp = 16;
+			break;
+		case 2:
+			bpp = 32;
+			break;
+		default:
+			param.bpp_mode = 0;
+			bpp = 0;
+	}
 	if ((screen = SDL_SetVideoMode
-	(resolution_.width, resolution_.height, bpp, video_flags)) == NULL) {
+	              (resolution_.width, resolution_.height, bpp, video_flags)) == NULL) {
 		Message ("couldn't initialize video",  SDL_GetError());
 		Message ("set to 800 x 600");
 		screen = SDL_SetVideoMode (800, 600, bpp, video_flags);
@@ -113,7 +120,7 @@ void CWinsys::SetupVideoMode (int width, int height) {
 }
 
 void CWinsys::InitJoystick () {
-    if (SDL_InitSubSystem (SDL_INIT_JOYSTICK) < 0) {
+	if (SDL_InitSubSystem (SDL_INIT_JOYSTICK) < 0) {
 		Message ("Could not initialize SDL_joystick: %s", SDL_GetError());
 		return;
 	}
@@ -124,26 +131,26 @@ void CWinsys::InitJoystick () {
 	}
 	SDL_JoystickEventState (SDL_ENABLE);
 	joystick = SDL_JoystickOpen (0);	// first stick with number 0
-    if (joystick == NULL) {
+	if (joystick == NULL) {
 		Message ("Cannot open joystick %s", SDL_GetError ());
 		return;
-    }
+	}
 	joystick_active = true;
 }
 
 void CWinsys::Init () {
 	Uint32 sdl_flags = SDL_INIT_VIDEO | SDL_INIT_NOPARACHUTE | SDL_INIT_TIMER;
-    if (SDL_Init (sdl_flags) < 0) Message ("Could not initialize SDL");
-    SDL_GL_SetAttribute (SDL_GL_DOUBLEBUFFER, 1);
+	if (SDL_Init (sdl_flags) < 0) Message ("Could not initialize SDL");
+	SDL_GL_SetAttribute (SDL_GL_DOUBLEBUFFER, 1);
 
-	#if defined (USE_STENCIL_BUFFER)
-	    SDL_GL_SetAttribute (SDL_GL_STENCIL_SIZE, 8);
-	#endif
+#if defined (USE_STENCIL_BUFFER)
+	SDL_GL_SetAttribute (SDL_GL_STENCIL_SIZE, 8);
+#endif
 
 	SetupVideoMode (GetResolution (param.res_type));
 	Reshape (resolution.width, resolution.height);
 
-    SDL_WM_SetCaption (WINDOW_TITLE, WINDOW_TITLE);
+	SDL_WM_SetCaption (WINDOW_TITLE, WINDOW_TITLE);
 	KeyRepeat (false);
 	if (USE_JOYSTICK) InitJoystick ();
 //	SDL_EnableUNICODE (1);

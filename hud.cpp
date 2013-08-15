@@ -55,8 +55,8 @@ static const GLfloat hud_white[] = { 1.0, 1.0, 1.0, 1.0 };
 static const TColor text_colour(0, 0, 0, 1);
 
 static void draw_time() {
-    int min, sec, hundr;
-    GetTimeComponents (g_game.time, &min, &sec, &hundr);
+	int min, sec, hundr;
+	GetTimeComponents (g_game.time, &min, &sec, &hundr);
 	string timestr = Int_StrN (min, 2);
 	string secstr = Int_StrN (sec, 2);
 	string hundrstr = Int_StrN (hundr, 2);
@@ -69,13 +69,13 @@ static void draw_time() {
 		Tex.DrawNumStr (hundrstr.c_str(), 136, 10, 0.7, colWhite);
 	} else {
 
-	/*
-		glEnable (GL_LINE_SMOOTH);
-		glEnable (GL_BLEND);
-		glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		glHint (GL_LINE_SMOOTH_HINT, GL_DONT_CARE);
-		glLineWidth (1.5);
-	*/
+		/*
+			glEnable (GL_LINE_SMOOTH);
+			glEnable (GL_BLEND);
+			glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+			glHint (GL_LINE_SMOOTH_HINT, GL_DONT_CARE);
+			glLineWidth (1.5);
+		*/
 		glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_NEAREST);
 
 		Tex.Draw (T_TIME, 10, 12, 1);
@@ -100,54 +100,54 @@ static void draw_herring_count (int herring_count) {
 }
 
 TVector2 calc_new_fan_pt (double angle) {
-    TVector2 pt;
-    pt.x = ENERGY_GAUGE_CENTER_X + cos (ANGLES_TO_RADIANS (angle)) * SPEEDBAR_OUTER_RADIUS;
-    pt.y = ENERGY_GAUGE_CENTER_Y + sin (ANGLES_TO_RADIANS (angle)) * SPEEDBAR_OUTER_RADIUS;
-    return pt;
+	TVector2 pt;
+	pt.x = ENERGY_GAUGE_CENTER_X + cos (ANGLES_TO_RADIANS (angle)) * SPEEDBAR_OUTER_RADIUS;
+	pt.y = ENERGY_GAUGE_CENTER_Y + sin (ANGLES_TO_RADIANS (angle)) * SPEEDBAR_OUTER_RADIUS;
+	return pt;
 }
 
 void start_tri_fan() {
-    glBegin (GL_TRIANGLE_FAN);
-    glVertex2f (ENERGY_GAUGE_CENTER_X,
-		ENERGY_GAUGE_CENTER_Y);
-    TVector2 pt = calc_new_fan_pt (SPEEDBAR_BASE_ANGLE);
-    glVertex2f (pt.x, pt.y);
+	glBegin (GL_TRIANGLE_FAN);
+	glVertex2f (ENERGY_GAUGE_CENTER_X,
+	            ENERGY_GAUGE_CENTER_Y);
+	TVector2 pt = calc_new_fan_pt (SPEEDBAR_BASE_ANGLE);
+	glVertex2f (pt.x, pt.y);
 }
 
 void draw_partial_tri_fan (double fraction) {
-    bool trifan = false;
+	bool trifan = false;
 
 	double angle = SPEEDBAR_BASE_ANGLE +
-		(SPEEDBAR_MAX_ANGLE - SPEEDBAR_BASE_ANGLE) * fraction;
+	               (SPEEDBAR_MAX_ANGLE - SPEEDBAR_BASE_ANGLE) * fraction;
 
-    int divs = (int)((SPEEDBAR_BASE_ANGLE - angle) * CIRCLE_DIVISIONS / 360.0);
-    double cur_angle = SPEEDBAR_BASE_ANGLE;
-    double angle_incr = 360.0 / CIRCLE_DIVISIONS;
+	int divs = (int)((SPEEDBAR_BASE_ANGLE - angle) * CIRCLE_DIVISIONS / 360.0);
+	double cur_angle = SPEEDBAR_BASE_ANGLE;
+	double angle_incr = 360.0 / CIRCLE_DIVISIONS;
 
-    for (int i=0; i<divs; i++) {
+	for (int i=0; i<divs; i++) {
 		if (!trifan) {
-		    start_tri_fan();
-	    	trifan = true;
+			start_tri_fan();
+			trifan = true;
 		}
 		cur_angle -= angle_incr;
 		TVector2 pt = calc_new_fan_pt (cur_angle);
 		glVertex2f (pt.x, pt.y);
-    }
+	}
 
-    if (cur_angle > angle + EPS) {
+	if (cur_angle > angle + EPS) {
 		cur_angle = angle;
 		if (!trifan) {
-		    start_tri_fan();
-	    	trifan = true;
+			start_tri_fan();
+			trifan = true;
 		}
 		TVector2 pt = calc_new_fan_pt (cur_angle);
 		glVertex2f (pt.x, pt.y);
-    }
+	}
 
-    if (trifan) {
+	if (trifan) {
 		glEnd();
 		trifan = false;
-    }
+	}
 }
 
 void draw_gauge (double speed, double energy) {
@@ -161,49 +161,49 @@ void draw_gauge (double speed, double energy) {
 	if (Tex.GetTexture (GAUGE_OUTLINE) == NULL) return;
 
 	Tex.BindTex (GAUGE_ENERGY);
-    glTexGenfv (GL_S, GL_OBJECT_PLANE, xplane);
-    glTexGenfv (GL_T, GL_OBJECT_PLANE, yplane);
+	glTexGenfv (GL_S, GL_OBJECT_PLANE, xplane);
+	glTexGenfv (GL_T, GL_OBJECT_PLANE, yplane);
 
-    glPushMatrix();
+	glPushMatrix();
 	glTranslatef (Winsys.resolution.width - GAUGE_WIDTH, 0, 0);
 	Tex.BindTex (GAUGE_ENERGY);
 	double y = ENERGY_GAUGE_BOTTOM + energy * ENERGY_GAUGE_HEIGHT;
 
 	glColor4fv (energy_background_color);
 	glBegin (GL_QUADS);
-	    glVertex2f (0.0, y);
-	    glVertex2f (GAUGE_IMG_SIZE, y);
-	    glVertex2f (GAUGE_IMG_SIZE, GAUGE_IMG_SIZE);
-	    glVertex2f (0.0, GAUGE_IMG_SIZE);
+	glVertex2f (0.0, y);
+	glVertex2f (GAUGE_IMG_SIZE, y);
+	glVertex2f (GAUGE_IMG_SIZE, GAUGE_IMG_SIZE);
+	glVertex2f (0.0, GAUGE_IMG_SIZE);
 	glEnd ();
 
 	glColor4fv (energy_foreground_color);
 	glBegin (GL_QUADS);
-	    glVertex2f (0.0, 0.0);
-	    glVertex2f (GAUGE_IMG_SIZE, 0.0);
-	    glVertex2f (GAUGE_IMG_SIZE, y);
-	    glVertex2f (0.0, y);
+	glVertex2f (0.0, 0.0);
+	glVertex2f (GAUGE_IMG_SIZE, 0.0);
+	glVertex2f (GAUGE_IMG_SIZE, y);
+	glVertex2f (0.0, y);
 	glEnd ();
 
 	double speedbar_frac = 0.0;
 
 	if (speed > SPEEDBAR_GREEN_MAX_SPEED) {
-	    speedbar_frac = SPEEDBAR_GREEN_FRACTION;
+		speedbar_frac = SPEEDBAR_GREEN_FRACTION;
 
-	    if (speed > SPEEDBAR_YELLOW_MAX_SPEED) {
+		if (speed > SPEEDBAR_YELLOW_MAX_SPEED) {
 			speedbar_frac += SPEEDBAR_YELLOW_FRACTION;
 			if (speed > SPEEDBAR_RED_MAX_SPEED) {
 				speedbar_frac += SPEEDBAR_RED_FRACTION;
 			} else {
 				speedbar_frac += (speed - SPEEDBAR_YELLOW_MAX_SPEED) /
-				(SPEEDBAR_RED_MAX_SPEED - SPEEDBAR_YELLOW_MAX_SPEED) * SPEEDBAR_RED_FRACTION;
+				                 (SPEEDBAR_RED_MAX_SPEED - SPEEDBAR_YELLOW_MAX_SPEED) * SPEEDBAR_RED_FRACTION;
 			}
-	    } else {
+		} else {
 			speedbar_frac += (speed - SPEEDBAR_GREEN_MAX_SPEED) /
-				(SPEEDBAR_YELLOW_MAX_SPEED - SPEEDBAR_GREEN_MAX_SPEED) * SPEEDBAR_YELLOW_FRACTION;
-	    }
+			                 (SPEEDBAR_YELLOW_MAX_SPEED - SPEEDBAR_GREEN_MAX_SPEED) * SPEEDBAR_YELLOW_FRACTION;
+		}
 	} else {
-	    speedbar_frac +=  speed/SPEEDBAR_GREEN_MAX_SPEED * SPEEDBAR_GREEN_FRACTION;
+		speedbar_frac +=  speed/SPEEDBAR_GREEN_MAX_SPEED * SPEEDBAR_GREEN_FRACTION;
 	}
 
 	glColor4fv (speedbar_background_color);
@@ -215,19 +215,19 @@ void draw_gauge (double speed, double energy) {
 	glColor4fv (hud_white);
 	Tex.BindTex (GAUGE_OUTLINE);
 	glBegin (GL_QUADS);
-	    glVertex2f (0.0, 0.0);
-	    glVertex2f (GAUGE_IMG_SIZE, 0.0);
-	    glVertex2f (GAUGE_IMG_SIZE, GAUGE_IMG_SIZE);
-	    glVertex2f (0.0, GAUGE_IMG_SIZE);
+	glVertex2f (0.0, 0.0);
+	glVertex2f (GAUGE_IMG_SIZE, 0.0);
+	glVertex2f (GAUGE_IMG_SIZE, GAUGE_IMG_SIZE);
+	glVertex2f (0.0, GAUGE_IMG_SIZE);
 	glEnd();
-    glPopMatrix();
+	glPopMatrix();
 }
 
 void DrawSpeed (double speed) {
 	string speedstr = Int_StrN ((int)speed, 3);
 	if (param.use_papercut_font < 2) {
 		Tex.DrawNumStr (speedstr.c_str(),
-			Winsys.resolution.width - 85, Winsys.resolution.height-74, 1, colWhite);
+		                Winsys.resolution.width - 85, Winsys.resolution.height-74, 1, colWhite);
 	} else {
 		FT.SetColor (colDDYell);
 		FT.DrawString (Winsys.resolution.width-82, Winsys.resolution.height-80, speedstr);
@@ -237,16 +237,16 @@ void DrawSpeed (double speed) {
 void DrawWind (double dir, double speed) {
 	Tex.Draw (SPEEDMETER, 10, Winsys.resolution.height - 150, 1.0);
 	glPushMatrix ();
-    glDisable (GL_TEXTURE_2D);
+	glDisable (GL_TEXTURE_2D);
 
 	glColor4f (1, 0, 0, 0.5);
 	glTranslatef (82, 77, 0);
 	glRotatef (dir, 0, 0, 1);
 	glBegin (GL_QUADS);
-	    glVertex2f (-3, 0.0);
-	    glVertex2f (3, 0.0);
-	    glVertex2f (3, -speed);
-	    glVertex2f (-3, -speed);
+	glVertex2f (-3, 0.0);
+	glVertex2f (3, 0.0);
+	glVertex2f (3, -speed);
+	glVertex2f (-3, -speed);
 	glEnd();
 	glPopMatrix ();
 	Tex.Draw (SPEED_KNOB, 74, Winsys.resolution.height - 84, 1.0);
@@ -256,7 +256,7 @@ void DrawWind2 (float dir, float speed, const CControl *ctrl) {
 	if (g_game.wind_id < 1) return;
 
 	Tex.Draw (SPEEDMETER, 0, Winsys.resolution.height-140, 1.0);
-    glDisable (GL_TEXTURE_2D);
+	glDisable (GL_TEXTURE_2D);
 
 
 	float alpha, red, blue, len;
@@ -275,10 +275,10 @@ void DrawWind2 (float dir, float speed, const CControl *ctrl) {
 	glTranslatef (72, 66, 0);
 	glRotatef (dir, 0, 0, 1);
 	glBegin (GL_QUADS);
-	    glVertex2f (-5, 0.0);
-	    glVertex2f (5, 0.0);
-	    glVertex2f (5, -len);
-	    glVertex2f (-5, -len);
+	glVertex2f (-5, 0.0);
+	glVertex2f (5, 0.0);
+	glVertex2f (5, -len);
+	glVertex2f (-5, -len);
 	glEnd();
 	glPopMatrix ();
 
@@ -292,14 +292,14 @@ void DrawWind2 (float dir, float speed, const CControl *ctrl) {
 	glTranslatef (72, 66, 0);
 	glRotatef (dir_angle + 180, 0, 0, 1);
 	glBegin (GL_QUADS);
-	    glVertex2f (-2, 0.0);
-	    glVertex2f (2, 0.0);
-	    glVertex2f (2, -50);
-	    glVertex2f (-2, -50);
+	glVertex2f (-2, 0.0);
+	glVertex2f (2, 0.0);
+	glVertex2f (2, -50);
+	glVertex2f (-2, -50);
 	glEnd();
 	glPopMatrix ();
 
-    glEnable (GL_TEXTURE_2D);
+	glEnable (GL_TEXTURE_2D);
 
 	Tex.Draw (SPEED_KNOB, 64, Winsys.resolution.height - 74, 1.0);
 	string windstr = Int_StrN ((int)speed, 3);
@@ -345,17 +345,21 @@ void DrawPercentBar (float fact, float x, float y) {
 	Tex.BindTex (T_ENERGY_MASK);
 	glColor4f (1.0, 1.0, 1.0, 1.0);
 	glBegin (GL_QUADS);
-		glTexCoord2f (0, 0); glVertex2f (x, y);
-	    glTexCoord2f (1, 0); glVertex2f (x+32, y);
-	    glTexCoord2f (1, fact); glVertex2f (x+32, y+fact*128);
-	    glTexCoord2f (0, fact); glVertex2f (x, y+fact*128);
+	glTexCoord2f (0, 0);
+	glVertex2f (x, y);
+	glTexCoord2f (1, 0);
+	glVertex2f (x+32, y);
+	glTexCoord2f (1, fact);
+	glVertex2f (x+32, y+fact*128);
+	glTexCoord2f (0, fact);
+	glVertex2f (x, y+fact*128);
 	glEnd();
 }
 
 void DrawCoursePosition (const CControl *ctrl) {
 	double fact = ctrl->cpos.z / Course.GetPlayDimensions().y;
 	if (fact > 1.0) fact = 1.0;
-    glEnable (GL_TEXTURE_2D);
+	glEnable (GL_TEXTURE_2D);
 	DrawPercentBar (-fact, Winsys.resolution.width - 48, 280-128);
 	Tex.Draw (T_MASK_OUTLINE, Winsys.resolution.width - 48, Winsys.resolution.height - 280, 1.0);
 }
@@ -367,14 +371,14 @@ void DrawHud (const CControl *ctrl) {
 
 	TVector3 vel = ctrl->cvel;
 	double speed = NormVector (vel);
-    SetupGuiDisplay ();
+	SetupGuiDisplay ();
 
-    draw_gauge (speed * 3.6, ctrl->jump_amt);
+	draw_gauge (speed * 3.6, ctrl->jump_amt);
 	ScopedRenderMode rm(TEXFONT);
 	glColor4f (1, 1, 1, 1);
-    draw_time();
-    draw_herring_count (g_game.herring);
-    DrawSpeed (speed * 3.6);
+	draw_time();
+	draw_herring_count (g_game.herring);
+	DrawSpeed (speed * 3.6);
 	DrawFps ();
 	DrawCoursePosition (ctrl);
 	if (g_game.wind_id > 0) DrawWind2 (Wind.Angle (), Wind.Speed (), ctrl);

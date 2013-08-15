@@ -51,21 +51,24 @@ void CRegist::Keyb (unsigned int key, bool special, bool release, int x, int y) 
 	TWidget* focussed = KeyGUI(key, 0, release);
 	if (release) return;
 	switch (key) {
-		case SDLK_ESCAPE: State::manager.RequestQuit(); break;
+		case SDLK_ESCAPE:
+			State::manager.RequestQuit();
+			break;
 		case SDLK_RETURN:
 			if (focussed == textbuttons[1]) {
 				g_game.player_id = player->GetValue();
 				State::manager.RequestEnterState (NewPlayer);
-			} else QuitRegistration ();	break;
+			} else QuitRegistration ();
+			break;
 	}
 }
 
 void CRegist::Mouse (int button, int state, int x, int y) {
 	if (state == 1) {
 		TWidget* focussed = ClickGUI(x, y);
-		if(focussed == textbuttons[0])
+		if (focussed == textbuttons[0])
 			QuitRegistration ();
-		else if(focussed == textbuttons[1]) {
+		else if (focussed == textbuttons[1]) {
 			g_game.player_id = player->GetValue();
 			State::manager.RequestEnterState (NewPlayer);
 		}
@@ -102,7 +105,7 @@ void CRegist::Enter (void) {
 	textbuttons[1] = AddTextButton (Trans.Text(61), CENTER, AutoYPosN (70), siz);
 
 	g_game.loopdelay = 10;
-	if(Char.CharList.empty())
+	if (Char.CharList.empty())
 		Winsys.Terminate(); // Characters are necessary - ETR is unusable otherwise
 }
 
@@ -111,9 +114,9 @@ void CRegist::Loop (double timestep) {
 	int hh = Winsys.resolution.height;
 	Music.Update ();
 	check_gl_error();
-    ClearRenderContext ();
-    ScopedRenderMode rm(GUI);
-    SetupGuiDisplay ();
+	ClearRenderContext ();
+	ScopedRenderMode rm(GUI);
+	SetupGuiDisplay ();
 	TColor col;
 
 	if (param.ui_snow) {
@@ -137,27 +140,29 @@ void CRegist::Loop (double timestep) {
 	FT.DrawString (area.left + framewidth + arrowwidth, top, Trans.Text(59));
 
 	FT.AutoSizeN (4);
-	if (player->focussed()) col = colDYell; else col = colWhite;
+	if (player->focussed()) col = colDYell;
+	else col = colWhite;
 	DrawFrameX (area.left, area.top, framewidth, frameheight, 3, colMBackgr, col, 1.0);
 	FT.SetColor (col);
 	FT.DrawString (area.left + 20, area.top, Players.GetName (player->GetValue()));
 	Players.GetAvatarTexture(player->GetValue())->DrawFrame(
-		area.left + 60, AutoYPosN (40), texsize, texsize, 3, colWhite);
+	    area.left + 60, AutoYPosN (40), texsize, texsize, 3, colWhite);
 
-	if (character->focussed()) col = colDYell; else col = colWhite;
+	if (character->focussed()) col = colDYell;
+	else col = colWhite;
 	DrawFrameX (area.left + framewidth + arrowwidth, area.top,
-		framewidth, frameheight, 3, colMBackgr, col, 1.0);
+	            framewidth, frameheight, 3, colMBackgr, col, 1.0);
 	FT.SetColor (col);
 	FT.DrawString (area.left + framewidth + arrowwidth + 20,
-		area.top, Char.CharList[character->GetValue()].name);
-	if(Char.CharList[character->GetValue()].preview != NULL)
+	               area.top, Char.CharList[character->GetValue()].name);
+	if (Char.CharList[character->GetValue()].preview != NULL)
 		Char.CharList[character->GetValue()].preview->DrawFrame(
-			area.right - texsize - 60 - arrowwidth,
-			AutoYPosN (40), texsize, texsize, 3, colWhite);
+		    area.right - texsize - 60 - arrowwidth,
+		    AutoYPosN (40), texsize, texsize, 3, colWhite);
 
 
 	FT.SetColor (colWhite);
 	DrawGUI();
 
-    Winsys.SwapBuffers();
+	Winsys.SwapBuffers();
 }

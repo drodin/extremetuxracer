@@ -39,21 +39,21 @@ static CKeyframe *startframe;
 
 void abort_intro (CControl *ctrl) {
 	TVector2 start_pt = Course.GetStartPoint ();
-    State::manager.RequestEnterState (Racing);
-    ctrl->orientation_initialized = false;
-    ctrl->view_init = false;
-    ctrl->cpos.x = start_pt.x;
-    ctrl->cpos.z = start_pt.y;
+	State::manager.RequestEnterState (Racing);
+	ctrl->orientation_initialized = false;
+	ctrl->view_init = false;
+	ctrl->cpos.x = start_pt.x;
+	ctrl->cpos.z = start_pt.y;
 }
 
 // =================================================================
 void CIntro::Enter() {
-    CControl *ctrl = Players.GetCtrl (g_game.player_id);
-    TVector2 start_pt = Course.GetStartPoint ();
+	CControl *ctrl = Players.GetCtrl (g_game.player_id);
+	TVector2 start_pt = Course.GetStartPoint ();
 	ctrl->orientation_initialized = false;
-    ctrl->view_init = false;
-    ctrl->cpos.x = start_pt.x;
-    ctrl->cpos.z = start_pt.y;
+	ctrl->view_init = false;
+	ctrl->cpos.x = start_pt.x;
+	ctrl->cpos.z = start_pt.y;
 
 	startframe = Char.GetKeyframe (g_game.char_id, START);
 	if (startframe->loaded) {
@@ -63,41 +63,41 @@ void CIntro::Enter() {
 	}
 
 	// reset of result values
-    g_game.herring = 0;
-    g_game.score = 0;
-    g_game.time = 0.0;
+	g_game.herring = 0;
+	g_game.score = 0;
+	g_game.time = 0.0;
 	g_game.race_result = -1;
 	g_game.raceaborted = false;
 
-    ctrl->Init ();
+	ctrl->Init ();
 
-    ctrl->cvel = TVector3(0, 0, 0);
-    clear_particles();
-    set_view_mode (ctrl, ABOVE);
+	ctrl->cvel = TVector3(0, 0, 0);
+	clear_particles();
+	set_view_mode (ctrl, ABOVE);
 	SetCameraDistance (4.0);
 	SetStationaryCamera (false);
 	update_view (ctrl, EPS);
-    size_t num_items = Course.NocollArr.size();
-    TItem* item_locs = &Course.NocollArr[0];
-    for (size_t i = 0; i < num_items; i++) {
+	size_t num_items = Course.NocollArr.size();
+	TItem* item_locs = &Course.NocollArr[0];
+	for (size_t i = 0; i < num_items; i++) {
 		if (item_locs[i].collectable != -1) {
-		    item_locs[i].collectable = 1;
+			item_locs[i].collectable = 1;
 		}
-    }
+	}
 
 	InitSnow (ctrl);
 	InitWind ();
 
 	Music.PlayTheme (g_game.theme_id, MUS_RACING);
-    param.show_hud = true;
+	param.show_hud = true;
 	g_game.loopdelay = 1;
 }
 
 void CIntro::Loop (double time_step) {
 	CControl *ctrl = Players.GetCtrl (g_game.player_id);
-    int width = Winsys.resolution.width;
-    int height = Winsys.resolution.height;
-    check_gl_error();
+	int width = Winsys.resolution.width;
+	int height = Winsys.resolution.height;
+	check_gl_error();
 
 	if (startframe->active) {
 		startframe->Update (time_step);
@@ -106,33 +106,33 @@ void CIntro::Loop (double time_step) {
 	ClearRenderContext ();
 	Env.SetupFog ();
 
-    update_view (ctrl, time_step);
-    SetupViewFrustum (ctrl);
+	update_view (ctrl, time_step);
+	SetupViewFrustum (ctrl);
 
 	Music.Update ();
-    Env.DrawSkybox (ctrl->viewpos);
+	Env.DrawSkybox (ctrl->viewpos);
 
 	Env.DrawFog ();
 	Env.SetupLight ();
-    RenderCourse ();
-    DrawTrackmarks ();
-    DrawTrees ();
+	RenderCourse ();
+	DrawTrackmarks ();
+	DrawTrees ();
 
 	UpdateWind (time_step);
 	UpdateSnow (time_step, ctrl);
 	DrawSnow (ctrl);
 
 	Char.Draw (g_game.char_id);
-    DrawHud (ctrl);
+	DrawHud (ctrl);
 
-    Reshape (width, height);
-    Winsys.SwapBuffers ();
+	Reshape (width, height);
+	Winsys.SwapBuffers ();
 
 }
 // -----------------------------------------------------------------------
 
 void CIntro::Keyb (unsigned int key, bool special, bool release, int x, int y) {
 	CControl *ctrl = Players.GetCtrl (g_game.player_id);
-    if (release) return;
-    abort_intro (ctrl);
+	if (release) return;
+	abort_intro (ctrl);
 }

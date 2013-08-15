@@ -31,18 +31,20 @@ static const int numJoints = 19;
 // The jointnames are shown on the tools screen and define the
 // possible rotations. A joint can be rotated around 3 axis, so
 // a joint can contain up to 3 joinnames.
-static const string jointnames[numJoints] =
-	{"time","pos.x","pos.y","pos.z","yaw","pitch","roll","neck","head",
+static const string jointnames[numJoints] = {
+	"time","pos.x","pos.y","pos.z","yaw","pitch","roll","neck","head",
 	"l_shldr","r_shldr","l_arm","r_arm",
-	"l_hip","r_hip","l_knee","r_knee","l_ankle","r_ankle"};
+	"l_hip","r_hip","l_knee","r_knee","l_ankle","r_ankle"
+};
 
 // The highlightnames must be official joint identifiers, defined in
 // the character description. They are used to find the port nodes
 // for highlighting
-static const string highlightnames[numJoints] =
-	{"","","","","","","","neck","head",
+static const string highlightnames[numJoints] = {
+	"","","","","","","","neck","head",
 	"left_shldr","right_shldr","left_shldr","right_shldr",
-	"left_hip","right_hip","left_knee","right_knee","left_ankle","right_ankle"};
+	"left_hip","right_hip","left_knee","right_knee","left_ankle","right_ankle"
+};
 
 CKeyframe TestFrame;
 
@@ -55,14 +57,14 @@ CKeyframe::CKeyframe () {
 }
 
 double CKeyframe::interp (double frac, double v1, double v2) {
-    return frac * v1 + (1.0 - frac) * v2;
+	return frac * v1 + (1.0 - frac) * v2;
 }
 
 void CKeyframe::Init (const TVector3& ref_position, double height_correction) {
 	if (!loaded) return;
 	CCharShape *shape = Char.GetShape (g_game.char_id);
-    shape->ResetNode ("head");
-    shape->ResetNode ("neck");
+	shape->ResetNode ("head");
+	shape->ResetNode ("neck");
 	refpos = ref_position;
 	heightcorr = height_correction;
 	active = true;
@@ -72,8 +74,8 @@ void CKeyframe::Init (const TVector3& ref_position, double height_correction) {
 
 void CKeyframe::Init (const TVector3& ref_position, double height_correction, CCharShape *shape) {
 	if (!loaded) return;
-    shape->ResetNode ("head");
-    shape->ResetNode ("neck");
+	shape->ResetNode ("head");
+	shape->ResetNode ("neck");
 	refpos = ref_position;
 	heightcorr = height_correction;
 	active = true;
@@ -84,8 +86,8 @@ void CKeyframe::Init (const TVector3& ref_position, double height_correction, CC
 
 void CKeyframe::InitTest (const TVector3& ref_position, CCharShape *shape) {
 	if (!loaded) return;
-    shape->ResetNode ("head");
-    shape->ResetNode ("neck");
+	shape->ResetNode ("head");
+	shape->ResetNode ("neck");
 	refpos = ref_position;
 	heightcorr = 0.0;
 	active = true;
@@ -150,174 +152,174 @@ bool CKeyframe::Load (const string& dir, const string& filename) {
 
 void CKeyframe::InterpolateKeyframe (size_t idx, double frac, CCharShape *shape) {
 	double vv;
-    vv = interp (frac, frames[idx].val[4], frames[idx+1].val[4]);
-    shape->RotateNode ("root", 2, vv);
+	vv = interp (frac, frames[idx].val[4], frames[idx+1].val[4]);
+	shape->RotateNode ("root", 2, vv);
 
-    vv = interp (frac, frames[idx].val[5], frames[idx+1].val[5]);
+	vv = interp (frac, frames[idx].val[5], frames[idx+1].val[5]);
 	shape->RotateNode ("root", 1, vv);
 
-    vv = interp (frac, frames[idx].val[6], frames[idx+1].val[6]);
-    shape->RotateNode ("root", 3, vv);
+	vv = interp (frac, frames[idx].val[6], frames[idx+1].val[6]);
+	shape->RotateNode ("root", 3, vv);
 
-    vv = interp (frac, frames[idx].val[7], frames[idx+1].val[7]);
-    shape->RotateNode ("neck", 3, vv);
+	vv = interp (frac, frames[idx].val[7], frames[idx+1].val[7]);
+	shape->RotateNode ("neck", 3, vv);
 
-    vv = interp (frac, frames[idx].val[8], frames[idx+1].val[8]);
-    shape->RotateNode ("head", 2, vv);
+	vv = interp (frac, frames[idx].val[8], frames[idx+1].val[8]);
+	shape->RotateNode ("head", 2, vv);
 
-    vv = interp (frac, frames[idx].val[9], frames[idx+1].val[9]);
-    shape->RotateNode ("left_shldr", 3, vv);
+	vv = interp (frac, frames[idx].val[9], frames[idx+1].val[9]);
+	shape->RotateNode ("left_shldr", 3, vv);
 
-    vv = interp (frac, frames[idx].val[10], frames[idx+1].val[10]);
-    shape->RotateNode ("right_shldr", 3, vv);
+	vv = interp (frac, frames[idx].val[10], frames[idx+1].val[10]);
+	shape->RotateNode ("right_shldr", 3, vv);
 
-    vv = interp (frac, frames[idx].val[11], frames[idx+1].val[11]);
-    shape->RotateNode ("left_shldr", 2, vv);
+	vv = interp (frac, frames[idx].val[11], frames[idx+1].val[11]);
+	shape->RotateNode ("left_shldr", 2, vv);
 
-    vv = interp (frac, frames[idx].val[12], frames[idx+1].val[12]);
-    shape->RotateNode ("right_shldr", 2, vv);
+	vv = interp (frac, frames[idx].val[12], frames[idx+1].val[12]);
+	shape->RotateNode ("right_shldr", 2, vv);
 
-    vv = interp (frac, frames[idx].val[13], frames[idx+1].val[13]);
-    shape->RotateNode ("left_hip", 3, vv);
+	vv = interp (frac, frames[idx].val[13], frames[idx+1].val[13]);
+	shape->RotateNode ("left_hip", 3, vv);
 
-    vv = interp (frac, frames[idx].val[14], frames[idx+1].val[14]);
-    shape->RotateNode ("right_hip", 3, vv);
+	vv = interp (frac, frames[idx].val[14], frames[idx+1].val[14]);
+	shape->RotateNode ("right_hip", 3, vv);
 
-    vv = interp (frac, frames[idx].val[15], frames[idx+1].val[15]);
-    shape->RotateNode ("left_knee", 3, vv);
+	vv = interp (frac, frames[idx].val[15], frames[idx+1].val[15]);
+	shape->RotateNode ("left_knee", 3, vv);
 
-    vv = interp (frac, frames[idx].val[16], frames[idx+1].val[16]);
-    shape->RotateNode ("right_knee", 3, vv);
+	vv = interp (frac, frames[idx].val[16], frames[idx+1].val[16]);
+	shape->RotateNode ("right_knee", 3, vv);
 
-    vv = interp (frac, frames[idx].val[17], frames[idx+1].val[17]);
-    shape->RotateNode ("left_ankle", 3, vv);
+	vv = interp (frac, frames[idx].val[17], frames[idx+1].val[17]);
+	shape->RotateNode ("left_ankle", 3, vv);
 
-    vv = interp (frac, frames[idx].val[18], frames[idx+1].val[18]);
-    shape->RotateNode ("right_ankle", 3, vv);
+	vv = interp (frac, frames[idx].val[18], frames[idx+1].val[18]);
+	shape->RotateNode ("right_ankle", 3, vv);
 }
 
 void CKeyframe::CalcKeyframe (size_t idx, CCharShape *shape, const TVector3& refpos) {
 	double vv;
 	TVector3 pos;
 
-    pos.x = frames[idx].val[1] + refpos.x;
-    pos.z = frames[idx].val[3] + refpos.z;
+	pos.x = frames[idx].val[1] + refpos.x;
+	pos.z = frames[idx].val[3] + refpos.z;
 	pos.y = refpos.y;
 
 	shape->ResetRoot ();
 	shape->ResetJoints ();
 	shape->TranslateNode (0, pos);
 
-    vv = frames[idx].val[4];
-    shape->RotateNode ("root", 2, vv);
+	vv = frames[idx].val[4];
+	shape->RotateNode ("root", 2, vv);
 
-    vv = frames[idx].val[5];
+	vv = frames[idx].val[5];
 	shape->RotateNode ("root", 1, vv);
 
-    vv = frames[idx].val[6];
+	vv = frames[idx].val[6];
 	shape->RotateNode ("root", 3, vv);
 
-    vv = frames[idx].val[7];
-    shape->RotateNode ("neck", 3, vv);
+	vv = frames[idx].val[7];
+	shape->RotateNode ("neck", 3, vv);
 
-    vv = frames[idx].val[8];
-    shape->RotateNode ("head", 2, vv);
+	vv = frames[idx].val[8];
+	shape->RotateNode ("head", 2, vv);
 
-    vv = frames[idx].val[9];
-    shape->RotateNode ("left_shldr", 3, vv);
+	vv = frames[idx].val[9];
+	shape->RotateNode ("left_shldr", 3, vv);
 
-    vv = frames[idx].val[10];
-    shape->RotateNode ("right_shldr", 3, vv);
+	vv = frames[idx].val[10];
+	shape->RotateNode ("right_shldr", 3, vv);
 
-    vv = frames[idx].val[11];
-    shape->RotateNode ("left_shldr", 2, vv);
+	vv = frames[idx].val[11];
+	shape->RotateNode ("left_shldr", 2, vv);
 
-    vv = frames[idx].val[12];
-    shape->RotateNode ("right_shldr", 2, vv);
+	vv = frames[idx].val[12];
+	shape->RotateNode ("right_shldr", 2, vv);
 
-    vv = frames[idx].val[13];
-    shape->RotateNode ("left_hip", 3, vv);
+	vv = frames[idx].val[13];
+	shape->RotateNode ("left_hip", 3, vv);
 
-    vv = frames[idx].val[14];
-    shape->RotateNode ("right_hip", 3, vv);
+	vv = frames[idx].val[14];
+	shape->RotateNode ("right_hip", 3, vv);
 
-    vv = frames[idx].val[15];
-    shape->RotateNode ("left_knee", 3, vv);
+	vv = frames[idx].val[15];
+	shape->RotateNode ("left_knee", 3, vv);
 
-    vv = frames[idx].val[16];
-    shape->RotateNode ("right_knee", 3, vv);
+	vv = frames[idx].val[16];
+	shape->RotateNode ("right_knee", 3, vv);
 
-    vv = frames[idx].val[17];
-    shape->RotateNode ("left_ankle", 3, vv);
+	vv = frames[idx].val[17];
+	shape->RotateNode ("left_ankle", 3, vv);
 
-    vv = frames[idx].val[18];
-    shape->RotateNode ("right_ankle", 3, vv);
+	vv = frames[idx].val[18];
+	shape->RotateNode ("right_ankle", 3, vv);
 }
 
 void CKeyframe::Update (double timestep) {
 	if (!loaded) return;
 	if (!active) return;
 
-    keytime += timestep;
+	keytime += timestep;
 	if (keytime >= frames[keyidx].val[0]) {
 		keyidx++;
 		keytime = 0;
 	}
 
-    if (keyidx >= frames.size()-1 || frames.size() < 2) {
+	if (keyidx >= frames.size()-1 || frames.size() < 2) {
 		active = false;
-        return;
-    }
+		return;
+	}
 
-    double frac;
-    TVector3 pos;
+	double frac;
+	TVector3 pos;
 	CCharShape *shape = Char.GetShape (g_game.char_id);
 
-    if (fabs (frames[keyidx].val[0]) < 0.0001) frac = 1.0;
+	if (fabs (frames[keyidx].val[0]) < 0.0001) frac = 1.0;
 	else frac = (frames[keyidx].val[0] - keytime) / frames[keyidx].val[0];
 
-    pos.x = interp (frac, frames[keyidx].val[1], frames[keyidx+1].val[1]) + refpos.x;
-    pos.z = interp (frac, frames[keyidx].val[3], frames[keyidx+1].val[3]) + refpos.z;
-    pos.y = interp (frac, frames[keyidx].val[2], frames[keyidx+1].val[2]);
-    pos.y += Course.FindYCoord (pos.x, pos.z);
+	pos.x = interp (frac, frames[keyidx].val[1], frames[keyidx+1].val[1]) + refpos.x;
+	pos.z = interp (frac, frames[keyidx].val[3], frames[keyidx+1].val[3]) + refpos.z;
+	pos.y = interp (frac, frames[keyidx].val[2], frames[keyidx+1].val[2]);
+	pos.y += Course.FindYCoord (pos.x, pos.z);
 
 	shape->ResetRoot ();
 	shape->ResetJoints ();
 
-    Players.GetCtrl (g_game.player_id)->cpos = pos;
-    double disp_y = pos.y + TUX_Y_CORR + heightcorr;
-    shape->ResetNode (0);
-    shape->TranslateNode (0, TVector3(pos.x, disp_y, pos.z));
+	Players.GetCtrl (g_game.player_id)->cpos = pos;
+	double disp_y = pos.y + TUX_Y_CORR + heightcorr;
+	shape->ResetNode (0);
+	shape->TranslateNode (0, TVector3(pos.x, disp_y, pos.z));
 	InterpolateKeyframe (keyidx, frac, shape);
 }
 
 void CKeyframe::UpdateTest (double timestep, CCharShape *shape) {
 	if (!active) return;
 
-    keytime += timestep;
+	keytime += timestep;
 	if (keytime >= frames[keyidx].val[0]) {
 		keyidx++;
 		keytime = 0;
 	}
 
-    if (keyidx >= frames.size()-1 || frames.size() < 2) {
+	if (keyidx >= frames.size()-1 || frames.size() < 2) {
 		active = false;
-        return;
-    }
+		return;
+	}
 
-    double frac;
-    TVector3 pos;
+	double frac;
+	TVector3 pos;
 
-    if (fabs (frames[keyidx].val[0]) < 0.0001) frac = 1.0;
+	if (fabs (frames[keyidx].val[0]) < 0.0001) frac = 1.0;
 	else frac = (frames[keyidx].val[0] - keytime) / frames[keyidx].val[0];
 
-    pos.x = interp (frac, frames[keyidx].val[1], frames[keyidx+1].val[1]) + refpos.x;
-    pos.z = interp (frac, frames[keyidx].val[3], frames[keyidx+1].val[3]) + refpos.z;
-    pos.y = interp (frac, frames[keyidx].val[2], frames[keyidx+1].val[2]);
+	pos.x = interp (frac, frames[keyidx].val[1], frames[keyidx+1].val[1]) + refpos.x;
+	pos.z = interp (frac, frames[keyidx].val[3], frames[keyidx+1].val[3]) + refpos.z;
+	pos.y = interp (frac, frames[keyidx].val[2], frames[keyidx+1].val[2]);
 
 	shape->ResetRoot ();
 	shape->ResetJoints ();
-    shape->TranslateNode (0, TVector3(pos.x, pos.y, pos.z));
+	shape->TranslateNode (0, TVector3(pos.x, pos.y, pos.z));
 	InterpolateKeyframe (keyidx, frac, shape);
 }
 

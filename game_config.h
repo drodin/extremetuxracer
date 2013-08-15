@@ -26,15 +26,15 @@ using namespace std;
 
 struct TParam {
 	// defined at runtime:
-  //	string	prog_dir;
+	//	string	prog_dir;
 	string	config_dir;
-    string	data_dir;
-    string	common_course_dir;
-    string	obj_dir;
-    string	terr_dir;
-    string	char_dir;
+	string	data_dir;
+	string	common_course_dir;
+	string	obj_dir;
+	string	terr_dir;
+	string	char_dir;
 	string  env_dir2;
-    string	tex_dir;
+	string	tex_dir;
 	string	sounds_dir;
 	string  music_dir;
 	string	screenshot_dir;
@@ -49,17 +49,17 @@ struct TParam {
 	size_t	res_type;
 	int		perf_level;
 	size_t	language;
-    int		sound_volume;
-    int		music_volume;
+	int		sound_volume;
+	int		music_volume;
 
-    int		forward_clip_distance;
-    int		backward_clip_distance;
-    int		fov;
-    int		bpp_mode;
-    int		tree_detail_distance;
-    int		tux_sphere_divisions;
-    int		tux_shadow_sphere_divisions;
-    int		course_detail_level; // only for quadtree
+	int		forward_clip_distance;
+	int		backward_clip_distance;
+	int		fov;
+	int		bpp_mode;
+	int		tree_detail_distance;
+	int		tux_sphere_divisions;
+	int		tux_shadow_sphere_divisions;
+	int		course_detail_level; // only for quadtree
 	int		audio_freq;
 	int		audio_buffer_size;
 
@@ -74,10 +74,10 @@ struct TParam {
 	string  config_music;
 
 	// these params are not saved in options file
-    bool	ui_snow;
-    bool	display_fps;
+	bool	ui_snow;
+	bool	display_fps;
 	bool	show_hud;
-    TViewMode view_mode;
+	TViewMode view_mode;
 };
 
 void InitConfig (const char *arg0);

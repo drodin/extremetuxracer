@@ -45,7 +45,7 @@ static CKeyframe *final_frame;
 static int highscore_pos = 999;
 
 void QuitGameOver () {
-    if (g_game.game_type == PRACTICING) {
+	if (g_game.game_type == PRACTICING) {
 		State::manager.RequestEnterState (RaceSelect);
 	} else {
 		State::manager.RequestEnterState (Event);
@@ -62,7 +62,7 @@ void CGameOver::Mouse (int button, int state, int x, int y) {
 }
 
 void DrawMessageFrame (float x, float y, float w, float h, int line,
-		TColor backcol, TColor framecol, float transp) {
+                       TColor backcol, TColor framecol, float transp) {
 
 	float yy = Winsys.resolution.height - y - h;
 	if (x < 0) 	x = (Winsys.resolution.width - w) / 2;
@@ -73,22 +73,22 @@ void DrawMessageFrame (float x, float y, float w, float h, int line,
 	glColor4f (framecol.r, framecol.g, framecol.b, transp);
 	glTranslatef (x, yy, 0);
 	glBegin (GL_QUADS);
-	    glVertex2f (0, 0);
-	    glVertex2f (w, 0);
-	    glVertex2f (w, h);
-	    glVertex2f (0, h);
+	glVertex2f (0, 0);
+	glVertex2f (w, 0);
+	glVertex2f (w, h);
+	glVertex2f (0, h);
 	glEnd();
 
 	glColor4f (backcol.r, backcol.g, backcol.b, transp);
 	glBegin (GL_QUADS);
-	    glVertex2f (0 + line, 0 + line);
-	    glVertex2f (w - line, 0 + line);
-	    glVertex2f (w - line, h - line);
-	    glVertex2f (0 + line, h - line);
+	glVertex2f (0 + line, 0 + line);
+	glVertex2f (w - line, 0 + line);
+	glVertex2f (w - line, h - line);
+	glVertex2f (0 + line, h - line);
 	glEnd();
 
 	glEnable (GL_TEXTURE_2D);
-    glPopMatrix();
+	glPopMatrix();
 }
 
 
@@ -101,7 +101,8 @@ void GameOverMessage (const CControl *ctrl) {
 	const TColor& backcol = colWhite;
 	static const TColor framecol(0.7, 0.7, 1, 1);
 
-	if (param.use_papercut_font > 0) FT.SetSize (28); else FT.SetSize (22);
+	if (param.use_papercut_font > 0) FT.SetSize (28);
+	else FT.SetSize (22);
 	if (g_game.raceaborted) {
 		DrawMessageFrame (leftframe, topframe, fwidth, 100, 4, backcol, framecol, 0.5);
 		FT.SetColor (colDBlue);
@@ -109,9 +110,10 @@ void GameOverMessage (const CControl *ctrl) {
 	} else {
 		DrawMessageFrame (leftframe, topframe, fwidth, 210, 4, backcol, framecol, 0.5);
 
-		if (param.use_papercut_font > 0) FT.SetSize (20); else FT.SetSize (14);
+		if (param.use_papercut_font > 0) FT.SetSize (20);
+		else FT.SetSize (14);
 		if (g_game.race_result >= 0 || g_game.game_type != CUPRACING) FT.SetColor (colDBlue);
-			else FT.SetColor (colDRed);
+		else FT.SetColor (colDRed);
 
 		string line = "Score:  ";
 		FT.DrawString (leftframe+80, topframe+15, line);
@@ -152,13 +154,22 @@ void GameOverMessage (const CControl *ctrl) {
 		line += "  km/h";
 		FT.DrawString (leftframe+240, topframe+115, line);
 
-		if (param.use_papercut_font > 0) FT.SetSize (28); else FT.SetSize (22);
+		if (param.use_papercut_font > 0) FT.SetSize (28);
+		else FT.SetSize (22);
 		if (g_game.game_type == CUPRACING) {
 			switch (g_game.race_result) {
-				case -1: FT.DrawString (CENTER, topframe+150, Trans.Text(21)); break;
-				case 0: FT.DrawString (CENTER, topframe+150, Trans.Text(22)); break;
-				case 1: FT.DrawString (CENTER, topframe+150, Trans.Text(23)); break;
-				case 2: FT.DrawString (CENTER, topframe+150,  Trans.Text(24)); break;
+				case -1:
+					FT.DrawString (CENTER, topframe+150, Trans.Text(21));
+					break;
+				case 0:
+					FT.DrawString (CENTER, topframe+150, Trans.Text(22));
+					break;
+				case 1:
+					FT.DrawString (CENTER, topframe+150, Trans.Text(23));
+					break;
+				case 2:
+					FT.DrawString (CENTER, topframe+150,  Trans.Text(24));
+					break;
 			}
 		} else {
 			if (highscore_pos < 5) {
@@ -197,8 +208,8 @@ void CGameOver::Enter() {
 	} else {
 		if (g_game.game_type == CUPRACING) {
 			if (g_game.race_result < 0) final_frame =
-				Char.GetKeyframe (g_game.char_id, LOSTRACE);
-				else final_frame = Char.GetKeyframe (g_game.char_id, WONRACE);
+				    Char.GetKeyframe (g_game.char_id, LOSTRACE);
+			else final_frame = Char.GetKeyframe (g_game.char_id, WONRACE);
 		} else final_frame = Char.GetKeyframe (g_game.char_id, FINISH);
 
 		if (!g_game.raceaborted) {
@@ -211,29 +222,29 @@ void CGameOver::Enter() {
 
 
 void CGameOver::Loop(double time_step) {
-    CControl *ctrl = Players.GetCtrl (g_game.player_id);
-    int width, height;
-    width = Winsys.resolution.width;
-    height = Winsys.resolution.height;
-    check_gl_error();
+	CControl *ctrl = Players.GetCtrl (g_game.player_id);
+	int width, height;
+	width = Winsys.resolution.width;
+	height = Winsys.resolution.height;
+	check_gl_error();
 
 	Music.Update ();
 
 	ClearRenderContext ();
-    Env.SetupFog ();
+	Env.SetupFog ();
 
 	update_view (ctrl, 0);
 
 	if (final_frame != NULL) final_frame->Update (time_step);
 
-    SetupViewFrustum (ctrl);
-    Env.DrawSkybox (ctrl->viewpos);
-    Env.DrawFog ();
+	SetupViewFrustum (ctrl);
+	Env.DrawSkybox (ctrl->viewpos);
+	Env.DrawFog ();
 	Env.SetupLight ();
 
-    RenderCourse ();
-    DrawTrackmarks ();
-    DrawTrees ();
+	RenderCourse ();
+	DrawTrackmarks ();
+	DrawTrees ();
 
 	UpdateWind (time_step);
 	UpdateSnow (time_step, ctrl);
@@ -241,12 +252,12 @@ void CGameOver::Loop(double time_step) {
 
 	Char.Draw (g_game.char_id);
 
-    ScopedRenderMode rm(GUI);
+	ScopedRenderMode rm(GUI);
 	SetupGuiDisplay ();
 	if (final_frame != NULL) {
 		if (!final_frame->active) GameOverMessage (ctrl);
 	} else GameOverMessage (ctrl);
 	DrawHud (ctrl);
-    Reshape (width, height);
-    Winsys.SwapBuffers ();
+	Reshape (width, height);
+	Winsys.SwapBuffers ();
 }
