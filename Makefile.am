@@ -1,4 +1,4 @@
-SUBDIRS = build data
+SUBDIRS = build data resources
 
 bin_PROGRAMS = etr
 
@@ -105,4 +105,5 @@ noinst_HEADERS =	\
 EXTRA_DIST = \
 	autogen.sh	\
 	m4/freetype2.m4	\
-	m4/sdl.m4
+	m4/sdl.m4	\
+	version.rc
