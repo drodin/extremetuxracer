@@ -117,6 +117,8 @@ bool CScore::SaveHighScore () const {
 bool CScore::LoadHighScore () {
 	CSPList list (520);
 
+	Scorelist.resize(Course.CourseList.size());
+
 	if (!list.Load (param.config_dir, "highscore")) {
 		Message ("could not load highscore list");
 		return false;
@@ -124,7 +126,6 @@ bool CScore::LoadHighScore () {
 
 	TScore score;
 
-	Scorelist.resize(Course.CourseList.size());
 	for (size_t i=0; i<list.Count(); i++) {
 		const string& line = list.Line(i);
 		string course = SPStrN (line, "course", "unknown");
