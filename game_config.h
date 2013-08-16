@@ -66,7 +66,6 @@ struct TParam {
 	int		use_papercut_font;
 	bool	ice_cursor;
 	bool	full_skybox;
-	bool	restart_on_res_change;	// only Windows
 	bool	use_quad_scale;			// scaling type for menus
 
 	string  menu_music;

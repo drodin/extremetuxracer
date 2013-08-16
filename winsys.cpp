@@ -28,6 +28,7 @@ GNU General Public License for more details.
 #include "textures.h"
 #include "spx.h"
 #include "course.h"
+#include "SDL_syswm.h"
 #include <iostream>
 
 #define USE_JOYSTICK true
@@ -57,7 +58,7 @@ CWinsys::CWinsys ()
 }
 
 const TScreenRes& CWinsys::GetResolution (size_t idx) const {
-	if (idx >= NUM_RESOLUTIONS) return auto_resolution;
+	if (idx >= NUM_RESOLUTIONS || (idx == 0 && !param.fullscreen)) return auto_resolution;
 	return resolutions[idx];
 }
 
@@ -93,6 +94,17 @@ void CWinsys::SetupVideoMode (const TScreenRes& resolution_) {
 			param.bpp_mode = 0;
 			bpp = 0;
 	}
+
+#ifdef _WIN32
+	SDL_SysWMinfo info;
+	SDL_VERSION(&info.version);
+	SDL_GetWMInfo(&info);
+	HDC tempDC = GetDC(info.window);
+	HGLRC tempRC = wglCreateContext(tempDC);
+	SetLastError(0);
+	wglShareLists(info.hglrc, tempRC); // Share resources with old context
+#endif
+
 	if ((screen = SDL_SetVideoMode
 	              (resolution_.width, resolution_.height, bpp, video_flags)) == NULL) {
 		Message ("couldn't initialize video",  SDL_GetError());
@@ -101,6 +113,14 @@ void CWinsys::SetupVideoMode (const TScreenRes& resolution_) {
 		param.res_type = 1;
 		SaveConfigFile ();
 	}
+
+#ifdef _WIN32
+	SDL_VERSION(&info.version);
+	SDL_GetWMInfo(&info);
+	wglShareLists(tempRC, info.hglrc); // Share resources with new context
+	wglDeleteContext(tempRC);
+#endif
+
 	SDL_Surface *surf = SDL_GetVideoSurface ();
 	resolution.width = surf->w;
 	resolution.height = surf->h;

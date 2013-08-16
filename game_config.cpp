@@ -77,7 +77,6 @@ void LoadConfigFile () {
 		param.full_skybox = SPBoolN (line, "full_skybox", false);
 		param.audio_freq = SPIntN (line, "audio_freq", 22050);
 		param.audio_buffer_size = SPIntN (line, "audio_buffer_size", 512);
-		param.restart_on_res_change = SPBoolN (line, "restart_on_res_change", false);
 		param.use_quad_scale = SPBoolN (line, "use_quad_scale", false);
 
 		param.menu_music = SPStrN (line, "menu_music", "start_1");
@@ -110,7 +109,6 @@ void SetConfigDefaults () {
 	param.use_papercut_font = 1;
 	param.ice_cursor = true;
 	param.full_skybox = false;
-	param.restart_on_res_change = false;
 	param.use_quad_scale = false;
 
 	param.menu_music = "start_1";
@@ -259,13 +257,6 @@ void SaveConfigFile () {
 	AddItem (liste, "menu_music", param.menu_music);
 	AddItem (liste, "credits_music", param.credits_music);
 	AddItem (liste, "config_music", param.config_music);
-	liste.Add ("");
-
-	AddComment (liste, "Restart if the resolution has been changed [0...1]");
-	AddComment (liste, "Only for Windows users: if the game crashes after");
-	AddComment (liste, "changing the resolution you should set this option to 1.");
-	AddComment (liste, "Then you will have to restart for the new resolution.");
-	AddIntItem (liste, "restart_on_res_change", param.restart_on_res_change);
 	liste.Add ("");
 
 	AddComment (liste, "Use sqare root of scale factors for menu screens [0...1]");

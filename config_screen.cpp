@@ -66,34 +66,6 @@ static TUpDown* detail_level;
 static TWidget* textbuttons[2];
 
 
-void RestartSDL () {
-	// first close the resources that must be restored when
-	// starting a new VideoMode. That are all resourcse controlled
-	// by SDL or OpenGL
-	Winsys.CloseJoystick ();		// controlled by SDL
-	Tex.FreeTextureList ();			// textures are controlled by OpenGL
-	Course.FreeCourseList ();		// contains the preview textures
-	Char.FreeCharacterPreviews ();	// they are not reloaded !!!
-	Audio.Close ();					// frees music and sound as well (SDL_mixer)
-	SDL_Quit ();					// SDL main
-
-	// second restore the freed resources
-	Winsys.Init ();					// includes SetVideoMode
-	Audio.Open ();					// clear, it has been closed before
-	Sound.LoadSoundList ();			// all sounds must loaded again
-	Music.LoadMusicList (); 		// same with music pieces
-	Tex.LoadTextureList ();			// common textures
-	Course.LoadCourseList ();		// only for the previews
-	Course.ResetCourse ();			// the current course must be freed and reset
-
-	// and some start settings which refer to the restored resources,
-	// probably it's not necessary.
-	Music.SetVolume (param.music_volume);
-	g_game.course_id = 0;
-	g_game.cup = 0;
-	g_game.race_id = 0;
-}
-
 void SetConfig () {
 	if (mus_vol->GetValue() != param.music_volume ||
 	        sound_vol->GetValue() != param.sound_volume ||
@@ -105,18 +77,13 @@ void SetConfig () {
 		if (resolution->GetValue() != param.res_type || fullscreen->checked != param.fullscreen) {
 			// these changes require a new VideoMode
 			param.res_type = resolution->GetValue();
-			param.fullscreen = fullscreen->checked;
-
-#if defined (OS_WIN32_MINGW)
-			// on windows we need to free and restore a lot of resources
-			if (!param.restart_on_res_change) RestartSDL ();
-#else
-			// on linux the resources seem to be kept at new VideoMode
-			if (param.res_type > 0) {
+#ifdef _WIN32
+			if (fullscreen->checked == param.fullscreen)
 				Winsys.SetupVideoMode(param.res_type);
-			} else {
-				RestartSDL();
-			}
+			param.fullscreen = fullscreen->checked;
+#else
+			param.fullscreen = fullscreen->checked;
+			Winsys.SetupVideoMode(param.res_type);
 #endif
 		}
 
@@ -271,9 +238,8 @@ void CGameConfig::Loop (double time_step) {
 	FT.DrawString (area.left+240, area.top + dd*4, Int_StrN (detail_level->GetValue()));
 	FT.DrawString (area.left+240, area.top + dd*5, LangList[language->GetValue()].language);
 
-#if defined (OS_WIN32_MINGW)
-	if ((curr_res != prev_res || curr_fullscreen != prev_fullscreen) &&
-	        param.restart_on_res_change) {
+#if defined (_WIN32)
+	if (fullscreen->checked != param.fullscreen) {
 		FT.SetColor (colDYell);
 		FT.AutoSizeN (4);
 		FT.DrawString (CENTER, AutoYPosN (68), "The video adjustments have changed,");
