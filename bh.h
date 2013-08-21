@@ -57,10 +57,10 @@ GNU General Public License for more details.
 
 #include <GL/gl.h>
 #include <GL/glu.h>
-#include "SDL/SDL.h"
-#include "SDL/SDL_joystick.h"
-#include "SDL/SDL_image.h"
-#include "SDL/SDL_mixer.h"
+#include <SDL/SDL.h>
+#include <SDL/SDL_joystick.h>
+#include <SDL/SDL_image.h>
+#include <SDL/SDL_mixer.h>
 
 #ifndef HAVE_CONFIG_H
 #	ifdef _WIN32 // Windows platform

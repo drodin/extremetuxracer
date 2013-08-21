@@ -28,7 +28,7 @@ GNU General Public License for more details.
 #include "textures.h"
 #include "spx.h"
 #include "course.h"
-#include "SDL_syswm.h"
+#include <SDL/SDL_syswm.h>
 #include <iostream>
 
 #define USE_JOYSTICK true
