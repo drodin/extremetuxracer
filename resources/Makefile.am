@@ -10,4 +10,6 @@ icon_DATA =		\
 
 EXTRA_DIST = 		\
 	etracericon.ico	\
-	etracericon.svg
+	etracericon.svg	\
+	etr.desktop	\
+	etr.png
