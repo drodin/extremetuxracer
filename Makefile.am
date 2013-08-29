@@ -1,4 +1,4 @@
-SUBDIRS = src build data resources
+SUBDIRS = src build data resources doc
 
 EXTRA_DIST = \
 	autogen.sh	\
