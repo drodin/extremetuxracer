@@ -242,8 +242,8 @@ void CGameConfig::Loop (double time_step) {
 	if (fullscreen->checked != param.fullscreen) {
 		FT.SetColor (colDYell);
 		FT.AutoSizeN (4);
-		FT.DrawString (CENTER, AutoYPosN (68), "The video adjustments have changed,");
-		FT.DrawString (CENTER, AutoYPosN (72), "You need to restart the game");
+		FT.DrawString (CENTER, AutoYPosN (68), Trans.Text(84));
+		FT.DrawString (CENTER, AutoYPosN (72), Trans.Text(85));
 	} else {
 		FT.SetColor (colLGrey);
 		FT.AutoSizeN (3);

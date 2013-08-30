@@ -128,6 +128,9 @@ void CTranslation::SetDefaultTranslations () {
 	texts[82] = "Wind: Blustery";
 
 	texts[83] = "Randomize settings";
+
+	texts[84] = "Fullscreen setting has changed,";
+	texts[85] = "You need to restart the game";
 }
 
 const string& CTranslation::Text (size_t idx) const {
