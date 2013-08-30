@@ -9,6 +9,8 @@ icon_DATA =		\
 	etr.png
 
 EXTRA_DIST = 		\
+	banner.bmp	\
+	dialog.bmp	\
 	etracericon.ico	\
 	etracericon.svg	\
 	etr.desktop	\
