@@ -1,4 +1,4 @@
-#include "version.h"
+#include "src/version.h"
 #include "winresrc.h"
 
 VS_VERSION_INFO VERSIONINFO

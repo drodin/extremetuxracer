@@ -15,294 +15,294 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\game_type_select.h">
+    <ClInclude Include="..\src\loading.h">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="..\gui.h">
+    <ClInclude Include="..\src\mathlib.h">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="..\help.h">
+    <ClInclude Include="..\src\newplayer.h">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="..\hud.h">
+    <ClInclude Include="..\src\ogl.h">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="..\intro.h">
+    <ClInclude Include="..\src\ogl_test.h">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="..\keyframe.h">
+    <ClInclude Include="..\src\particles.h">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="..\loading.h">
+    <ClInclude Include="..\src\paused.h">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="..\mathlib.h">
+    <ClInclude Include="..\src\physics.h">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="..\newplayer.h">
+    <ClInclude Include="..\src\quadtree.h">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="..\ogl.h">
+    <ClInclude Include="..\src\race_select.h">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="..\ogl_test.h">
+    <ClInclude Include="..\src\racing.h">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="..\particles.h">
+    <ClInclude Include="..\src\regist.h">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="..\paused.h">
+    <ClInclude Include="..\src\reset.h">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="..\physics.h">
+    <ClInclude Include="..\src\score.h">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="..\quadtree.h">
+    <ClInclude Include="..\src\splash_screen.h">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="..\race_select.h">
+    <ClInclude Include="..\src\spx.h">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="..\racing.h">
+    <ClInclude Include="..\src\states.h">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="..\regist.h">
+    <ClInclude Include="..\src\textures.h">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="..\reset.h">
+    <ClInclude Include="..\src\tool_char.h">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="..\score.h">
+    <ClInclude Include="..\src\tool_frame.h">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="..\splash_screen.h">
+    <ClInclude Include="..\src\tools.h">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="..\spx.h">
+    <ClInclude Include="..\src\track_marks.h">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="..\states.h">
+    <ClInclude Include="..\src\translation.h">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="..\textures.h">
+    <ClInclude Include="..\src\tux.h">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="..\tool_char.h">
+    <ClInclude Include="..\src\version.h">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="..\tool_frame.h">
+    <ClInclude Include="..\src\view.h">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="..\tools.h">
+    <ClInclude Include="..\src\winsys.h">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="..\track_marks.h">
+    <ClInclude Include="..\src\audio.h">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="..\translation.h">
+    <ClInclude Include="..\src\bh.h">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="..\tux.h">
+    <ClInclude Include="..\src\common.h">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="..\view.h">
+    <ClInclude Include="..\src\config_screen.h">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="..\winsys.h">
+    <ClInclude Include="..\src\course.h">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="..\audio.h">
+    <ClInclude Include="..\src\course_render.h">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="..\bh.h">
+    <ClInclude Include="..\src\credits.h">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="..\common.h">
+    <ClInclude Include="..\src\env.h">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="..\config_screen.h">
+    <ClInclude Include="..\src\etr_types.h">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="..\course.h">
+    <ClInclude Include="..\src\event.h">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="..\course_render.h">
+    <ClInclude Include="..\src\event_select.h">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="..\credits.h">
+    <ClInclude Include="..\src\font.h">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="..\env.h">
+    <ClInclude Include="..\src\ft_font.h">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="..\etr_types.h">
+    <ClInclude Include="..\src\game_config.h">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="..\event.h">
+    <ClInclude Include="..\src\game_ctrl.h">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="..\event_select.h">
+    <ClInclude Include="..\src\game_over.h">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="..\font.h">
+    <ClInclude Include="..\src\game_type_select.h">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="..\ft_font.h">
+    <ClInclude Include="..\src\gui.h">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="..\game_config.h">
+    <ClInclude Include="..\src\help.h">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="..\game_ctrl.h">
+    <ClInclude Include="..\src\hud.h">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="..\game_over.h">
+    <ClInclude Include="..\src\intro.h">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="..\version.h">
+    <ClInclude Include="..\src\keyframe.h">
       <Filter>Header files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\tux.cpp">
+    <ClCompile Include="..\src\main.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\view.cpp">
+    <ClCompile Include="..\src\mathlib.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\winsys.cpp">
+    <ClCompile Include="..\src\newplayer.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\audio.cpp">
+    <ClCompile Include="..\src\ogl.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\common.cpp">
+    <ClCompile Include="..\src\ogl_test.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\config_screen.cpp">
+    <ClCompile Include="..\src\particles.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\course.cpp">
+    <ClCompile Include="..\src\paused.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\course_render.cpp">
+    <ClCompile Include="..\src\physics.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\credits.cpp">
+    <ClCompile Include="..\src\quadtree.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\env.cpp">
+    <ClCompile Include="..\src\race_select.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\event.cpp">
+    <ClCompile Include="..\src\racing.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\event_select.cpp">
+    <ClCompile Include="..\src\regist.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\font.cpp">
+    <ClCompile Include="..\src\reset.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\ft_font.cpp">
+    <ClCompile Include="..\src\score.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\game_config.cpp">
+    <ClCompile Include="..\src\splash_screen.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\game_ctrl.cpp">
+    <ClCompile Include="..\src\spx.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\game_over.cpp">
+    <ClCompile Include="..\src\states.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\game_type_select.cpp">
+    <ClCompile Include="..\src\textures.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\gui.cpp">
+    <ClCompile Include="..\src\tool_char.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\help.cpp">
+    <ClCompile Include="..\src\tool_frame.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\hud.cpp">
+    <ClCompile Include="..\src\tools.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\intro.cpp">
+    <ClCompile Include="..\src\track_marks.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\keyframe.cpp">
+    <ClCompile Include="..\src\translation.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\loading.cpp">
+    <ClCompile Include="..\src\tux.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\main.cpp">
+    <ClCompile Include="..\src\view.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\mathlib.cpp">
+    <ClCompile Include="..\src\winsys.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\newplayer.cpp">
+    <ClCompile Include="..\src\audio.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\ogl.cpp">
+    <ClCompile Include="..\src\common.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\ogl_test.cpp">
+    <ClCompile Include="..\src\config_screen.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\particles.cpp">
+    <ClCompile Include="..\src\course.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\paused.cpp">
+    <ClCompile Include="..\src\course_render.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\physics.cpp">
+    <ClCompile Include="..\src\credits.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\quadtree.cpp">
+    <ClCompile Include="..\src\env.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\race_select.cpp">
+    <ClCompile Include="..\src\event.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\racing.cpp">
+    <ClCompile Include="..\src\event_select.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\regist.cpp">
+    <ClCompile Include="..\src\font.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\reset.cpp">
+    <ClCompile Include="..\src\ft_font.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\score.cpp">
+    <ClCompile Include="..\src\game_config.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\splash_screen.cpp">
+    <ClCompile Include="..\src\game_ctrl.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\spx.cpp">
+    <ClCompile Include="..\src\game_over.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\states.cpp">
+    <ClCompile Include="..\src\game_type_select.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\textures.cpp">
+    <ClCompile Include="..\src\gui.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\tool_char.cpp">
+    <ClCompile Include="..\src\help.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\tool_frame.cpp">
+    <ClCompile Include="..\src\hud.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\tools.cpp">
+    <ClCompile Include="..\src\intro.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\track_marks.cpp">
+    <ClCompile Include="..\src\keyframe.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\translation.cpp">
+    <ClCompile Include="..\src\loading.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
   </ItemGroup>
