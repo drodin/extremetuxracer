@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Include>
-  <?define ProductName = "Extreme TuxRacer 0.6 Beta 2 ($(var.Platform))" ?>
+  <?define ProductName = "Extreme TuxRacer 0.7 dev ($(var.Platform))" ?>
   <?define ProductNameShort = "Extreme TuxRacer" ?>
-  <?define ProductVersion = "0.5.99.2" ?>
+  <?define ProductVersion = "0.6.99.0" ?>
 
   <?define ProductManufacturer = "The ExtremeTuxRacer team" ?>
   <?define ProductDescription = "High speed arctic racing game" ?>
