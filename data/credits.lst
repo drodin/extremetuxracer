@@ -39,7 +39,7 @@
 *[offs] 30 [text] Ulrich Thatcher (quadtree algorithm)[font] 0 [size] 3 [col] 0
 
 *[offs] 40 [text] Translations: [font] 0 [size] 4 [col] 1
-*[offs] 30 [text] (will be added for final release) [font] 0 [size] 3 [col] 0
+*[offs] 30 [text] Translators up to version 0.6.0 unknown [font] 0 [size] 3 [col] 0
 
 *[offs] 50 [text] Copyright © 1999 - 2000 Jasmin F. Patry[font] 0 [size] 3 [col] 0
 *[offs] 25 [text] Copyright © 2011-2013 The Extreme Tux Racer Team[font] 0 [size] 3 [col] 0
