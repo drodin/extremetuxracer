@@ -56,7 +56,7 @@ void CTranslation::SetDefaultTranslations () {
 	texts[22] = "Success, +/- 0 Tuxlive";
 	texts[23] = "Success, +1 Tuxlive";
 	texts[24] = "Success, +2 Tuxlive";
-	texts[25] = "Race aborted [trans]";
+	texts[25] = "Race aborted";
 	texts[26] = "Score:";
 	texts[27] = "points";
 
