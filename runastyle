@@ -1,1 +1,1 @@
-astyle --options=astyle.ini *.cpp *.h
+astyle --options=astyle.ini src/*.cpp src/*.h
