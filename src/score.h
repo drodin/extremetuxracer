@@ -39,7 +39,6 @@ struct TScoreList {
 class CScore : public State {
 private:
 	vector<TScoreList> Scorelist;
-	TScore TempScore;
 
 	void Enter();
 	void Loop(double time_step);

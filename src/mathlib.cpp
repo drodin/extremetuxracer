@@ -442,13 +442,7 @@ TQuaternion MakeRotationQuaternion (const TVector3& s, const TVector3& t) {
 }
 
 TQuaternion InterpolateQuaternions (const TQuaternion& q, TQuaternion r, double t) {
-	TQuaternion res;
-	double cosphi;
-	double sinphi;
-	double phi;
-	double scale0, scale1;
-
-	cosphi = q.x * r.x + q.y * r.y + q.z * r.z + q.w * r.w;
+	double cosphi = q.x * r.x + q.y * r.y + q.z * r.z + q.w * r.w;
 
 	if (cosphi < 0.0) {
 		cosphi = -cosphi;
@@ -458,9 +452,10 @@ TQuaternion InterpolateQuaternions (const TQuaternion& q, TQuaternion r, double 
 		r.w = -r.w;
 	}
 
+	double scale0, scale1;
 	if (1.0 - cosphi > EPS) {
-		phi = acos (cosphi);
-		sinphi = sin (phi);
+		double phi = acos (cosphi);
+		double sinphi = sin (phi);
 		scale0 = sin (phi *  (1.0 - t)) / sinphi;
 		scale1 = sin (phi * t) / sinphi;
 	} else {
@@ -468,6 +463,7 @@ TQuaternion InterpolateQuaternions (const TQuaternion& q, TQuaternion r, double 
 		scale1 = t;
 	}
 
+	TQuaternion res;
 	res.x = scale0 * q.x + scale1 * r.x;
 	res.y = scale0 * q.y + scale1 * r.y;
 	res.z = scale0 * q.z + scale1 * r.z;
@@ -561,7 +557,7 @@ void backsb (double *matrix, int n, double *soln) {
 
 bool IntersectPolygon (const TPolygon& p, TVector3 *v) {
 	TRay ray;
-	double d, s, nuDotProd, wec;
+	double d, s, nuDotProd;
 	double distsq;
 
 	TVector3 nml = MakeNormal (p, v);
@@ -608,7 +604,7 @@ bool IntersectPolygon (const TPolygon& p, TVector3 *v) {
 		TVector3 edge_nml = CrossProduct (nml,
 		                                  SubtractVectors (v[p.vertices[ (i+1) % p.num_vertices ]], v[p.vertices[i]]));
 
-		wec = DotProduct (SubtractVectors (pt, v[p.vertices[i]]), edge_nml);
+		double wec = DotProduct (SubtractVectors (pt, v[p.vertices[i]]), edge_nml);
 		if (wec < 0) return false;
 	}
 	return true;

@@ -945,9 +945,9 @@ void CCharShape::SaveCharNodes (const string& dir, const string& filename) {
 		if (node->parent_name >= node->node_name) Message ("wrong parent index");
 		string line = "*[node] " + Int_StrN ((int)node->node_name);
 		line += " [par] " + Int_StrN ((int)node->parent_name);
-		bool rotflag = false;
 
 		if (!act->order.empty()) {
+			bool rotflag = false;
 			TVector3 rotation;
 			line += " [order] " + act->order;
 			for (size_t ii=0; ii<act->order.size(); ii++) {

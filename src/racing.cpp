@@ -235,13 +235,10 @@ int SlideVolume (CControl *ctrl, double speed, int typ) {
 }
 
 void PlayTerrainSound (CControl *ctrl, bool airborne) {
-	int terridx = -1;
-	TTerrType *TerrList = &Course.TerrList[0];
-
 	if (airborne == false) {
-		terridx = Course.GetTerrainIdx (ctrl->cpos.x, ctrl->cpos.z, 0.5);
+		int terridx = Course.GetTerrainIdx (ctrl->cpos.x, ctrl->cpos.z, 0.5);
 		if (terridx >= 0) {
-			newsound = (int)Sound.GetSoundIdx (TerrList[terridx].sound);
+			newsound = (int)Sound.GetSoundIdx (Course.TerrList[terridx].sound);
 		} else newsound = -1;
 	} else newsound = -1;
 	if ((newsound != lastsound) && (lastsound >= 0)) Sound.Halt (lastsound);

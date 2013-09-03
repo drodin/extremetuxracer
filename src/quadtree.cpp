@@ -1147,15 +1147,8 @@ void ResetQuadtree() {
 }
 
 static int get_root_level (int nx, int nz) {
-	int xlev, zlev;
-
-	xlev = (int) (log(static_cast<double>(nx)) / log (2.0));
-	zlev = (int) (log(static_cast<double>(nz)) / log (2.0));
-	if ((nx >> xlev) << xlev == nx) {
-	} else nx += 1;
-
-	if ((nz >> zlev) << zlev == nz) {
-	} else nz += 1;
+	int xlev = (int) (log(static_cast<double>(nx)) / log (2.0));
+	int zlev = (int) (log(static_cast<double>(nz)) / log (2.0));
 
 	return max (xlev, zlev);
 }

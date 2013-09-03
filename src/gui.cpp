@@ -188,7 +188,7 @@ void TCheckbox::Draw () const {
 	Tex.Draw (CHECKBOX, position.x + width - 32, position.y, 1.0);
 	if (checked)
 		Tex.Draw (CHECKMARK_SMALL, position.x + width - 32, position.y, 1.0);
-	if (focus == focus)
+	if (focus)
 		FT.SetColor (colDYell);
 	else
 		FT.SetColor (colWhite);

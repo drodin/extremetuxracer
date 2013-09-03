@@ -543,7 +543,7 @@ void CTexture::FreeTextureList () {
 }
 
 TTexture* CTexture::GetTexture (size_t idx) const {
-	if (idx >= CommonTex.size() || idx < 0) return NULL;
+	if (idx >= CommonTex.size()) return NULL;
 	return CommonTex[idx];
 }
 
@@ -552,7 +552,7 @@ TTexture* CTexture::GetTexture (const string& name) const {
 }
 
 bool CTexture::BindTex (size_t idx) {
-	if (idx < 0 || idx >= CommonTex.size()) return false;
+	if (idx >= CommonTex.size()) return false;
 	CommonTex[idx]->Bind();
 	return true;
 }

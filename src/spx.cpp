@@ -440,16 +440,16 @@ bool CSPList::Load (const string &filepath) {
 	std::ifstream tempfile(filepath.c_str());
 	string line;
 
-	bool backflag = false;
 	if (!tempfile) {
 		Message ("CSPList::Load - unable to open " + filepath, "");
 		return false;
 	} else {
+		bool backflag = false;
 		while (getline(tempfile, line)) {
 
 			// delete new line char if in string
 			size_t npos = line.rfind ('\n');
-			if (npos >= 0) SDeleteN (line, npos, 1);
+			if (npos != string::npos) SDeleteN (line, npos, 1);
 
 			bool valid = true;
 			if (line.empty()) valid = false;	// empty line

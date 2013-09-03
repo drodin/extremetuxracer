@@ -146,7 +146,6 @@ void draw_partial_tri_fan (double fraction) {
 
 	if (trifan) {
 		glEnd();
-		trifan = false;
 	}
 }
 

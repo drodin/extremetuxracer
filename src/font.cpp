@@ -140,7 +140,6 @@ wstring CFont::UnicodeStr (const char *s) {
 
 int CFont::LoadFont (const string& name, const char *path) {
 	fonts.push_back(new FTGLPixmapFont (path));
-//	fonts.push_back(new FTGLTextureFont (path));
 	if (fonts.back()->Error()) {
 		Message ("Failed to open font");
 		return -1;

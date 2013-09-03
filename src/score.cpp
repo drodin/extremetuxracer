@@ -155,6 +155,7 @@ int CScore::CalcRaceResult () {
 	g_game.score = (int)(herringpt + timept);
 	if (g_game.score < 0) g_game.score = 0;
 
+	TScore TempScore;
 	TempScore.points = g_game.score;
 	TempScore.herrings = g_game.herring;
 	TempScore.time = g_game.time;

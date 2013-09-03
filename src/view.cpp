@@ -208,7 +208,6 @@ void update_view (CControl *ctrl, double dt) {
 
 	TVector3 vel_dir = ctrl->cvel;
 	NormVector (vel_dir);
-	double course_angle = Course.GetCourseAngle();
 
 	switch (ctrl->viewmode) {
 		case BEHIND: {

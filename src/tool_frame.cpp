@@ -210,15 +210,14 @@ void SingleFrameMotion (int x, int y) {
 }
 
 void PrintFrameParams (int ytop, TKeyframe *frame) {
-	int y, x;
 	int offs = 18;
 
 	for (int i=0; i<=last_joint; i++) {
 		if (i == curr_joint) FT.SetColor (colYellow);
 		else FT.SetColor (colLGrey);
 
-		x = ITrunc (i, jointbase) * 140 + 20;
-		y = IFrac (i, jointbase) * offs + ytop;
+		int x = ITrunc (i, jointbase) * 140 + 20;
+		int y = IFrac (i, jointbase) * offs + ytop;
 
 		FT.DrawString (x, y, TestFrame.GetJointName(i));
 		if (i < 4) FT.DrawString (x+80, y, Float_StrN (frame->val[i], 2));
@@ -258,7 +257,6 @@ void RenderSingleFrame (double timestep) {
 
 	FT.SetFont ("normal");
 	FT.SetSize (16);
-	int xl, yt;
 	for (size_t i=0; i<TestFrame.numFrames(); i++) {
 		if (i != curr_frame) {
 			FT.SetColor (colLGrey);
@@ -267,8 +265,8 @@ void RenderSingleFrame (double timestep) {
 			FT.SetColor (colYellow);
 			FT.SetFont ("bold");
 		}
-		xl = ITrunc ((int)i, framebase) * 100 + 20;
-		yt = IFrac ((int)i, framebase) * 18 + 20;
+		int xl = ITrunc ((int)i, framebase) * 100 + 20;
+		int yt = IFrac ((int)i, framebase) * 18 + 20;
 		FT.DrawString (xl, yt, Int_StrN ((int)i));
 	}
 

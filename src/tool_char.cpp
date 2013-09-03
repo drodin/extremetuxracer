@@ -121,7 +121,6 @@ void SetRotation (double x, double y, double z) {
 }
 
 void CharKeys (unsigned int key, bool special, bool release, int x, int y) {
-	int keyfact;
 	must_render = true;
 
 	if (ToolsFinalStage ()) {
@@ -136,8 +135,6 @@ void CharKeys (unsigned int key, bool special, bool release, int x, int y) {
 	if (key == 304) shift = !release;
 	if (key == 306) control = !release;
 	if (key == 308) alt = !release;
-	if (shift) keyfact = -1;
-	else keyfact = 1;
 
 	if (release) return;
 
@@ -276,19 +273,16 @@ void CharMouse (int button, int state, int x, int y) {
 }
 
 void CharMotion (int x, int y) {
-	int diffx, diffy;
-	float diffposx, diffposy;
-
 	must_render = true;
 	if (rotactive) {
-		diffx = cursor_pos.x - startx;
-		diffy = cursor_pos.y - starty;
+		int diffx = cursor_pos.x - startx;
+		int diffy = cursor_pos.y - starty;
 		yrotation = startroty + diffx;
 		xrotation = startrotx + diffy;
 	}
 	if (moveactive) {
-		diffposx = (double)(cursor_pos.x - startx) / 200;
-		diffposy = (double)(cursor_pos.y - starty) / 200;
+		float diffposx = (double)(cursor_pos.x - startx) / 200;
+		float diffposy = (double)(cursor_pos.y - starty) / 200;
 		yposition = startposy - diffposy;
 		xposition = startposx + diffposx;
 	}
@@ -367,7 +361,6 @@ void RenderChar (double timestep) {
 
 	FT.SetFont ("normal");
 	FT.SetSize (16);
-	int xl, yt;
 	for (size_t i=0; i<=lastnode; i++) {
 		if (i != curr_node) {
 			FT.SetColor (colLGrey);
@@ -376,8 +369,8 @@ void RenderChar (double timestep) {
 			FT.SetColor (colYellow);
 			FT.SetFont ("bold");
 		}
-		xl = ITrunc ((int)i, charbase) * 100 + 20;
-		yt = IFrac ((int)i, charbase) * 18 + 60;
+		int xl = ITrunc ((int)i, charbase) * 100 + 20;
+		int yt = IFrac ((int)i, charbase) * 18 + 60;
 		FT.DrawString (xl, yt, TestChar.GetNodeJoint (i));
 	}
 
@@ -387,7 +380,7 @@ void RenderChar (double timestep) {
 		for (size_t i=0; i<num; i++) {
 			is_visible = false;
 			type = action->type[i];
-			yt = Winsys.resolution.height - 120 + (int)i * 18;
+			int yt = Winsys.resolution.height - 120 + (int)i * 18;
 			switch (type) {
 				case 0:
 					DrawActionVec (i, "trans", yt, action->vec[i]);

@@ -117,7 +117,6 @@ bool CControl::CheckTreeCollisions (const TVector3& pos, TVector3 *tree_loc, dou
 
 	CCharShape *shape = Char.GetShape (g_game.char_id);
 	double diam = 0.0;
-	double height;
 	TVector3 loc(0, 0, 0);
 	bool hit = false;
 	TMatrix mat;
@@ -129,7 +128,7 @@ bool CControl::CheckTreeCollisions (const TVector3& pos, TVector3 *tree_loc, dou
 
 	for (size_t i=0; i<num_trees; i++) {
 		diam = trees[i].diam;
-		height = trees[i].height;
+		double height = trees[i].height;
 		loc = trees[i].pt;
 		TVector3 distvec(loc.x - pos.x, 0.0, loc.z - pos.z);
 
@@ -173,7 +172,6 @@ bool CControl::CheckTreeCollisions (const TVector3& pos, TVector3 *tree_loc, dou
 void CControl::AdjustTreeCollision (const TVector3& pos, TVector3 *vel) {
 	TVector3 treeLoc;
 	double tree_diam;
-	double factor;
 
 	if (CheckTreeCollisions (pos, &treeLoc, &tree_diam)) {
 		TVector3 treeNml(
@@ -187,6 +185,7 @@ void CControl::AdjustTreeCollision (const TVector3& pos, TVector3 *vel) {
 
 		double costheta = DotProduct (*vel, treeNml);
 		if (costheta < 0) {
+			double factor;
 			if (cairborne) factor = 0.5;
 			else factor = 1.5;
 			*vel = AddVectors (
@@ -357,22 +356,19 @@ TVector3 CControl::CalcJumpForce () {
 }
 
 TVector3 CControl::CalcFrictionForce (double speed, const TVector3& nmlforce) {
-	double fric_f_mag;
-	TMatrix fric_rot_mat;
-	double steer_angle;
-
 	if ((cairborne == false && speed > minFrictspeed) || g_game.finish) {
 		TVector3 tmp_nml_f = nmlforce;
-		fric_f_mag = NormVector (tmp_nml_f) * ff.frict_coeff;
+		double fric_f_mag = NormVector (tmp_nml_f) * ff.frict_coeff;
 		fric_f_mag = MIN (MAX_FRICT_FORCE, fric_f_mag);
 		TVector3 frictforce = ScaleVector (fric_f_mag, ff.frictdir);
 
-		steer_angle = turn_fact * MAX_TURN_ANGLE;
+		double steer_angle = turn_fact * MAX_TURN_ANGLE;
 
 		if (fabs (fric_f_mag * sin (steer_angle * M_PI / 180)) > MAX_TURN_PERP) {
 			steer_angle = RADIANS_TO_ANGLES (asin (MAX_TURN_PERP / fric_f_mag)) *
 			              turn_fact / fabs (turn_fact);
 		}
+		TMatrix fric_rot_mat;
 		RotateAboutVectorMatrix (fric_rot_mat, ff.surfnml, steer_angle);
 		frictforce = TransformVector (fric_rot_mat, frictforce);
 		return ScaleVector (1.0 + MAX_TURN_PEN, frictforce);
@@ -488,8 +484,6 @@ double CControl::AdjustTimeStep (double h, TVector3 vel) {
 }
 
 void CControl::SolveOdeSystem (double timestep) {
-	bool failed = false;
-	double speed;
 	double pos_err[3], vel_err[3], tot_pos_err, tot_vel_err;
 	double err=0, tol=0;
 
@@ -525,7 +519,7 @@ void CControl::SolveOdeSystem (double timestep) {
 		TVector3 saved_vel = new_vel;
 		TVector3 saved_f = new_f;
 
-		failed = false;
+		bool failed = false;
 		for (;;) {
 			solver.InitOdeData (x, new_pos.x, h);
 			solver.InitOdeData (y, new_pos.y, h);
@@ -613,7 +607,7 @@ void CControl::SolveOdeSystem (double timestep) {
 
 		t = t + h;
 		TVector3 tmp_vel = new_vel;
-		speed = NormVector (tmp_vel);
+		double speed = NormVector (tmp_vel);
 		if (param.perf_level > 2) generate_particles (this, h, new_pos, speed);
 
 		new_f = CalcNetForce (new_pos, new_vel);

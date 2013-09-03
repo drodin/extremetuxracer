@@ -396,15 +396,9 @@ double adjust_particle_count (double particles) {
 }
 
 void generate_particles (const CControl *ctrl, double dtime, const TVector3& pos, double speed) {
-	double brake_particles;
-	double turn_particles;
-	double roll_particles;
-	double surf_y;
-	double left_particles, right_particles;
-	TMatrix rot_mat;
 	TTerrType *TerrList = &Course.TerrList[0];
 
-	surf_y = Course.FindYCoord (pos.x, pos.z);
+	double surf_y = Course.FindYCoord (pos.x, pos.z);
 
 	int id = Course.GetTerrainIdx (pos.x, pos.z, 0.5);
 	if (id >= 0 && TerrList[id].particles && pos.y < surf_y) {
@@ -420,27 +414,28 @@ void generate_particles (const CControl *ctrl, double dtime, const TVector3& pos
 
 		right_part_pt.y = left_part_pt.y  = surf_y;
 
-		brake_particles = dtime *
-		                  BRAKE_PARTICLES *  (ctrl->is_braking ? 1.0 : 0.0)
-		                  * min (speed / PARTICLE_SPEED_FACTOR, 1.0);
-		turn_particles = dtime * MAX_TURN_PARTICLES
-		                 * min (speed / PARTICLE_SPEED_FACTOR, 1.0);
-		roll_particles = dtime * MAX_ROLL_PARTICLES
-		                 * min (speed / PARTICLE_SPEED_FACTOR, 1.0);
+		double brake_particles = dtime *
+		                         BRAKE_PARTICLES *  (ctrl->is_braking ? 1.0 : 0.0)
+		                         * min (speed / PARTICLE_SPEED_FACTOR, 1.0);
+		double turn_particles = dtime * MAX_TURN_PARTICLES
+		                        * min (speed / PARTICLE_SPEED_FACTOR, 1.0);
+		double roll_particles = dtime * MAX_ROLL_PARTICLES
+		                        * min (speed / PARTICLE_SPEED_FACTOR, 1.0);
 
-		left_particles = turn_particles *
-		                 fabs (min(ctrl->turn_fact, 0.)) +
-		                 brake_particles +
-		                 roll_particles * fabs (min(ctrl->turn_animation, 0.));
+		double left_particles = turn_particles *
+		                        fabs (min(ctrl->turn_fact, 0.)) +
+		                        brake_particles +
+		                        roll_particles * fabs (min(ctrl->turn_animation, 0.));
 
-		right_particles = turn_particles *
-		                  fabs (max(ctrl->turn_fact, 0.)) +
-		                  brake_particles +
-		                  roll_particles * fabs (max(ctrl->turn_animation, 0.));
+		double right_particles = turn_particles *
+		                         fabs (max(ctrl->turn_fact, 0.)) +
+		                         brake_particles +
+		                         roll_particles * fabs (max(ctrl->turn_animation, 0.));
 
 		left_particles = adjust_particle_count (left_particles);
 		right_particles = adjust_particle_count (right_particles);
 
+		TMatrix rot_mat;
 		RotateAboutVectorMatrix(
 		    rot_mat, ctrl->cdirection,
 		    MAX (-MAX_PARTICLE_ANGLE,
@@ -567,7 +562,6 @@ void CFlakes::MakeSnowFlake (size_t ar, size_t i) {
 	areas[ar].flakes[i].pt.y = -XRandom (areas[ar].top, areas[ar].bottom);
 	areas[ar].flakes[i].pt.z = areas[ar].back - FRandom () * (areas[ar].back - areas[ar].front);
 
-	float p_dist = FRandom ();
 	areas[ar].flakes[i].size = XRandom (areas[ar].minSize, areas[ar].maxSize);
 	areas[ar].flakes[i].vel.x = 0;
 	areas[ar].flakes[i].vel.z = 0;
@@ -1037,9 +1031,8 @@ void CWind::CalcDestAngle () {
 }
 
 void CWind::Update (float timestep) {
-	float xx, zz;
-
 	if (!windy) return;
+
 	// the wind needn't be updated in each frame
 	CurrTime = CurrTime + timestep;
 	if (CurrTime > UPDATE_TIME) {
@@ -1070,8 +1063,8 @@ void CWind::Update (float timestep) {
 		if (WAngle > params.maxAngle) WAngle = params.maxAngle;
 		if (WAngle < params.minAngle) WAngle = params.minAngle;
 
-		xx = sin (WAngle * 3.14159 / 180);
-		zz = sqrt (1 - xx * xx);
+		float xx = sin (WAngle * 3.14159 / 180);
+		float zz = sqrt (1 - xx * xx);
 		if ((WAngle > 90 && WAngle < 270) || (WAngle > 450 && WAngle < 630)) {
 			zz = -zz;
 		}
