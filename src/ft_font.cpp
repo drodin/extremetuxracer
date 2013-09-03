@@ -880,11 +880,3 @@ void FTGLPixmapFont::Render( const wchar_t* string) {
 	glPopClientAttrib();
 	glPopAttrib();
 }
-
-
-
-
-
-
-
-

@@ -25,7 +25,6 @@ GNU General Public License for more details.
 #include "winsys.h"
 #include <fstream>
 #include <cctype>
-#include <cstdio>
 
 // --------------------------------------------------------------------
 //				class CImage
@@ -158,27 +157,26 @@ void CImage::WritePPM (const char *filepath) {
 	file.close ();
 }
 
-void CImage::WritePPM (const char *dir, const char *filename) {
-	string path = dir;
-	path += SEP;
-	path += filename;
-	WritePPM (path.c_str());
-}
+struct TTgaHeader {
+	char tfType;
+	char tfColorMapType;
+	char tfImageType;
+	char tfColorMapSpec[5];
+	short tfOrigX;
+	short tfOrigY;
+	short tfWidth;
+	short tfHeight;
+	char tfBpp;
+	char tfImageDes;
+};
 
 void CImage::WriteTGA (const char *filepath) {
 	if (data == NULL) return;
 	std::ofstream out(filepath, std::ios_base::out|std::ios_base::binary);
-	short TGAhead[] = {0, 2, 0, 0, 0, 0, nx, ny, 24};
+	static short TGAhead[] = {0, 2, 0, 0, 0, 0, nx, ny, 24};
 
 	out.write(reinterpret_cast<char*>(&TGAhead), sizeof(TGAhead));
 	out.write(reinterpret_cast<char*>(data), 3 * nx * ny);
-}
-
-void CImage::WriteTGA (const char *dir, const char *filename) {
-	string path = dir;
-	path += SEP;
-	path += filename;
-	WriteTGA (path.c_str());
 }
 
 void CImage::WriteTGA_H (const char *filepath) {
@@ -201,86 +199,86 @@ void CImage::WriteTGA_H (const char *filepath) {
 	out.write(reinterpret_cast<char*>(data), 3 * nx * ny);
 }
 
-void CImage::WriteTGA_H (const char *dir, const char *filename) {
-	string path = dir;
-	path += SEP;
-	path += filename;
-	WriteTGA_H (path.c_str());
-}
+#define BF_TYPE 0x4D42             // "MB"
+
+#ifdef _MSC_VER
+#pragma pack(push, 1)
+#endif
+struct TBmpHeader {
+	uint16_t bfType;           // identifier of bmp format
+	uint32_t bfSize;           // size of file, including the headers
+	uint16_t bfReserved1;      // reserved, always 0
+	uint16_t bfReserved2;      // reserved, always 0
+	uint32_t bfOffBits;        // offset to bitmap data
+#ifdef _MSC_VER
+};
+#else
+} __attribute__((packed));
+#endif
+
+struct TBmpInfo {
+	uint32_t biSize;           // size of info header, normally 40
+	int32_t  biWidth;          // width
+	int32_t  biHeight;         // height
+	uint16_t biPlanes;         // number of color planes, normally 1
+	uint16_t biBitCount;       // Number of bits per pixel (8 * depth)
+	uint32_t biCompression;    // type of compression, normally 0 = no compr.
+	uint32_t biSizeImage;      // size of data
+	int32_t  biXPelsPerMeter;  // normally 0
+	int32_t  biYPelsPerMeter;  // normally 0
+	uint32_t biClrUsed;        // normally 0
+	uint32_t biClrImportant;   // normally 0
+#ifdef _MSC_VER
+};
+#pragma pack(pop)
+#else
+} __attribute__((packed));
+#endif
 
 void CImage::WriteBMP (const char *filepath) {
-	if (data == NULL) return;
-	TBmpInfo info;
-	FILE *fp;
-	int  infosize;
-	unsigned int bitsize;
+	if (data == NULL)
+		return;
 
-	info.biSize = 40;
-	info.biWidth = nx;
-	info.biHeight = ny;
+	int infosize = 40;
+	int width = nx;
+	int height = ny;
+	int imgsize = nx * ny * depth;
+	int bitcnt = 8 * depth; // 24 or 32
+	unsigned int bitsize;
+	// (width * bitcnt + 7) / 8 = width * depth
+	if (imgsize == 0) bitsize = (width * bitcnt + 7) / 8 * height;
+	else bitsize = imgsize;
+
+	TBmpHeader header;
+	header.bfType = BF_TYPE;
+	header.bfSize = 14 + infosize + bitsize;
+	header.bfReserved1 = 0;
+	header.bfReserved2 = 0;
+	header.bfOffBits = sizeof(TBmpHeader) + sizeof(TBmpInfo);
+
+	TBmpInfo info;
+	info.biSize = infosize;
+	info.biWidth = width;
+	info.biHeight = height;
 	info.biPlanes = 1;
-	info.biBitCount = 8 * depth;
+	info.biBitCount = bitcnt;
 	info.biCompression = 0;
-	info.biSizeImage = nx * ny * depth;
+	info.biSizeImage = imgsize;
 	info.biXPelsPerMeter = 0;
 	info.biYPelsPerMeter= 0;
 	info.biClrUsed = 0;
 	info.biClrImportant = 0;
 
-	if ((fp = fopen (filepath, "wb")) == NULL) {
+	std::ofstream out(filepath, std::ios_base::out|std::ios_base::binary);
+	if (!out) {
 		Message ("could not open bmp file", filepath);
 		return;
 	}
 
-	int imgsize = info.biSizeImage;
-	int width = info.biWidth;
-	int height = info.biHeight;
-	int bitcnt = info.biBitCount; // 24 or 32
+	out.write(reinterpret_cast<char*>(&header), sizeof(TBmpHeader));
+	out.write(reinterpret_cast<char*>(&info), sizeof(TBmpInfo));
 
-	// (width * bitcnt + 7) / 8 = width * depth
-	if (imgsize == 0) bitsize = (width * bitcnt + 7) / 8 * height;
-	else bitsize = imgsize;
-
-	infosize = info.biSize; // 40
-	if (infosize != 40 || info.biCompression != 0) {
-		Message ("wrong bmp header");
-		fclose(fp);
-		return;
-	}
-
-	write_word  (fp, 0x4D42);
-	write_dword (fp, 14 + infosize + bitsize);
-	write_word  (fp, 0);
-	write_word  (fp, 0);
-	write_dword (fp, 54);
-
-	write_dword (fp, info.biSize);
-	write_long  (fp, info.biWidth);
-	write_long  (fp, info.biHeight);
-	write_word  (fp, info.biPlanes);
-	write_word  (fp, info.biBitCount);
-	write_dword (fp, info.biCompression);
-	write_dword (fp, info.biSizeImage);
-	write_long  (fp, info.biXPelsPerMeter);
-	write_long  (fp, info.biYPelsPerMeter);
-	write_dword (fp, info.biClrUsed);
-	write_dword (fp, info.biClrImportant);
-
-	if (fwrite (data, 1, bitsize, fp) != bitsize) {
-		Message ("error on writing bmp data");
-		fclose (fp);
-		return;
-	}
-
-	fclose(fp);
-	return;
-}
-
-void CImage::WriteBMP (const char *dir, const char *filename) {
-	string path = dir;
-	path += SEP;
-	path += filename;
-	WriteBMP (path.c_str());
+	out.write(reinterpret_cast<char*>(data), bitsize);
 }
 
 // --------------------------------------------------------------------
@@ -675,7 +673,7 @@ void ScreenshotN () {
 	path += SEP;
 	path += Course.CourseList[g_game.course_id].dir;
 	path += "_";
-	path += GetTimeString1 ();
+	path += GetTimeString();
 	int type = SCREENSHOT_PROC;
 
 	switch (type) {
@@ -683,25 +681,21 @@ void ScreenshotN () {
 			path += ".ppm";
 			image.ReadFrameBuffer_PPM ();
 			image.WritePPM (path.c_str());
-			image.DisposeData ();
 			break;
 		case 1:
 			path += ".tga";
 			image.ReadFrameBuffer_TGA ();
 			image.WriteTGA (path.c_str());
-			image.DisposeData ();
 			break;
 		case 2:
 			path += ".tga";
 			image.ReadFrameBuffer_TGA ();
 			image.WriteTGA_H (path.c_str());
-			image.DisposeData ();
 			break;
 		case 3:
 			path += ".bmp";
 			image.ReadFrameBuffer_BMP ();
 			image.WriteBMP (path.c_str());
-			image.DisposeData ();
 			break;
 	}
 }

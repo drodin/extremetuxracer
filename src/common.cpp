@@ -23,7 +23,6 @@ GNU General Public License for more details.
 #include "spx.h"
 #include <iostream>
 #include <cerrno>
-#include <cstdio>
 #include <ctime>
 
 // --------------------------------------------------------------------
@@ -94,16 +93,6 @@ void PrintFloat8 (const float val) {
 	cout << val << '\n';
 }
 
-void PrintBool (const bool val) {
-	if (val == true) cout <<"bool: true\n";
-	else cout << "bool: false\n";
-}
-
-void PrintPointer (void *p) {
-	if (p == NULL) cout << "Pointer: NULL\n";
-	else cout << "Pointer: " << p << '\n';
-}
-
 void PrintVector4 (const TVector4& v) {
 	cout.precision(3);
 	cout << v.x << "  " << v.y << "  " << v.z << "  " << v.w << '\n';
@@ -160,8 +149,6 @@ void PrintQuaternion (const TQuaternion& q) {
 // --------------------------------------------------------------------
 
 static CSPList msg_list (100);
-
-void InitMessages () {}
 
 void SaveMessages () {
 	msg_list.Save (param.config_dir, "messages");
@@ -238,7 +225,7 @@ void GetTimeComponents (double time, int *min, int *sec, int *hundr) {
 	*hundr = ((int) (time * 100 + 0.5) ) % 100;
 }
 
-string GetTimeString1 () {
+string GetTimeString () {
 	time_t rawtime;
 	struct tm * timeinfo;
 
@@ -251,20 +238,4 @@ string GetTimeString1 () {
 	line += Int_StrN (timeinfo->tm_min);
 	line += Int_StrN (timeinfo->tm_sec);
 	return line;
-}
-
-// --------------------------------------------------------------------
-//				FILE, read and write
-// --------------------------------------------------------------------
-
-size_t write_word (FILE *fp, uint16_t w) {
-	return fwrite(&w, 2, 1, fp);
-}
-
-size_t write_dword(FILE *fp, uint32_t dw) {
-	return fwrite(&dw, 4, 1, fp);
-}
-
-size_t write_long (FILE *fp, int32_t l) {
-	return fwrite(&l, 4, 1, fp);
 }

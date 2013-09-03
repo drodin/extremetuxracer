@@ -22,16 +22,13 @@ GNU General Public License for more details.
 #include "ogl.h"
 #include "spx.h"
 #include "winsys.h"
-#include <cstdarg>
 #include <stack>
 
-struct gl_value_t {
-	char name[40];
+static const struct {
+	const char* name;
 	GLenum value;
 	GLenum type;
-};
-
-static const gl_value_t gl_values[] = {
+} gl_values[] = {
 	{ "maximum lights", GL_MAX_LIGHTS, GL_INT },
 	{ "modelview stack depth", GL_MAX_MODELVIEW_STACK_DEPTH, GL_INT },
 	{ "projection stack depth", GL_MAX_PROJECTION_STACK_DEPTH, GL_INT },
@@ -53,13 +50,6 @@ void check_gl_error() {
 	}
 }
 
-void init_glfloat_array (int num, GLfloat arr[], ...) {
-	va_list args;
-	va_start (args, arr);
-	for (int i=0; i<num; i++) arr[i] = va_arg(args, double);
-	va_end (args);
-}
-
 PFNGLLOCKARRAYSEXTPROC glLockArraysEXT_p = NULL;
 PFNGLUNLOCKARRAYSEXTPROC glUnlockArraysEXT_p = NULL;
 
@@ -67,13 +57,7 @@ typedef void (*(*get_gl_proc_fptr_t)(const GLubyte *))();
 void InitOpenglExtensions () {
 	get_gl_proc_fptr_t get_gl_proc;
 
-#if defined (HAVE_SDL)
 	get_gl_proc = (get_gl_proc_fptr_t) SDL_GL_GetProcAddress;
-#elif defined (OS_WIN32_MSC)
-	get_gl_proc = (get_gl_proc_fptr_t) wglGetProcAddress;
-#else
-	get_gl_proc = NULL;
-#endif
 
 	if (get_gl_proc) {
 		glLockArraysEXT_p = (PFNGLLOCKARRAYSEXTPROC)
@@ -95,11 +79,6 @@ void InitOpenglExtensions () {
 }
 
 void PrintGLInfo () {
-	GLint int_val;
-	GLfloat float_val;
-	GLboolean boolean_val;
-	string ss;
-
 	Message ("Gl vendor: ", (char*)glGetString (GL_VENDOR));
 	Message ("Gl renderer: ", (char*)glGetString (GL_RENDERER));
 	Message ("Gl version: ", (char*)glGetString (GL_VERSION));
@@ -120,44 +99,48 @@ void PrintGLInfo () {
 	Message ("", "");
 	for (int i=0; i<(int)(sizeof(gl_values)/sizeof(gl_values[0])); i++) {
 		switch (gl_values[i].type) {
-			case GL_INT:
+			case GL_INT: {
+				GLint int_val;
 				glGetIntegerv (gl_values[i].value, &int_val);
-				ss = Int_StrN (int_val);
+				string ss = Int_StrN (int_val);
 				Message (gl_values[i].name, ss);
 				break;
-
-			case GL_FLOAT:
+			}
+			case GL_FLOAT: {
+				GLfloat float_val;
 				glGetFloatv (gl_values[i].value, &float_val);
-				ss = Float_StrN (float_val, 2);
+				string ss = Float_StrN (float_val, 2);
 				Message (gl_values[i].name, ss);
 				break;
-
-			case GL_UNSIGNED_BYTE:
+			}
+			case GL_UNSIGNED_BYTE: {
+				GLboolean boolean_val;
 				glGetBooleanv (gl_values[i].value, &boolean_val);
-				ss = Int_StrN (boolean_val);
+				string ss = Int_StrN (boolean_val);
 				Message (gl_values[i].name, ss);
 				break;
-
+			}
 			default:
-				Message ("","");
+				Message ("", "");
 		}
 	}
 }
 
 void set_material (const TColor& diffuse_colour, const TColor& specular_colour, double specular_exp) {
-	GLfloat mat_amb_diff[4];
-	GLfloat mat_specular[4];
-
-	mat_amb_diff[0] = diffuse_colour.r;
-	mat_amb_diff[1] = diffuse_colour.g;
-	mat_amb_diff[2] = diffuse_colour.b;
-	mat_amb_diff[3] = diffuse_colour.a;
+	GLfloat mat_amb_diff[4] = {
+		diffuse_colour.r,
+		diffuse_colour.g,
+		diffuse_colour.b,
+		diffuse_colour.a
+	};
 	glMaterialfv (GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, mat_amb_diff);
 
-	mat_specular[0] = specular_colour.r;
-	mat_specular[1] = specular_colour.g;
-	mat_specular[2] = specular_colour.b;
-	mat_specular[3] = specular_colour.a;
+	GLfloat mat_specular[4] = {
+		specular_colour.r,
+		specular_colour.g,
+		specular_colour.b,
+		specular_colour.a
+	};
 	glMaterialfv (GL_FRONT_AND_BACK, GL_SPECULAR, mat_specular);
 
 	glMaterialf (GL_FRONT_AND_BACK, GL_SHININESS, specular_exp);
@@ -192,11 +175,10 @@ void SetupGuiDisplay () {
 }
 
 void Reshape (int w, int h) {
-	double far_clip_dist;
 	glViewport (0, 0, (GLint) w, (GLint) h );
 	glMatrixMode (GL_PROJECTION);
 	glLoadIdentity ();
-	far_clip_dist = param.forward_clip_distance + FAR_CLIP_FUDGE_AMOUNT;
+	double far_clip_dist = param.forward_clip_distance + FAR_CLIP_FUDGE_AMOUNT;
 	gluPerspective (param.fov, (double)w/h, NEAR_CLIP_DIST, far_clip_dist );
 	glMatrixMode (GL_MODELVIEW);
 }
@@ -204,7 +186,7 @@ void Reshape (int w, int h) {
 //					GL options
 // ====================================================================
 
-TRenderMode currentMode = (TRenderMode)-1;
+TRenderMode currentMode = RM_UNINITIALIZED;
 void set_gl_options (TRenderMode mode) {
 	currentMode = mode;
 	switch (mode) {
@@ -488,7 +470,7 @@ void set_gl_options (TRenderMode mode) {
     break;
 */
 
-stack<TRenderMode> modestack;
+static stack<TRenderMode> modestack;
 void PushRenderMode(TRenderMode mode) {
 	if (currentMode != mode)
 		set_gl_options(mode);

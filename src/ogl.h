@@ -35,6 +35,7 @@ enum TRenderMode {
     SKY,
     FOG_PLANE,
     TRACK_MARKS,
+    RM_UNINITIALIZED = -1
 };
 
 
@@ -44,7 +45,6 @@ extern PFNGLLOCKARRAYSEXTPROC glLockArraysEXT_p;
 extern PFNGLUNLOCKARRAYSEXTPROC glUnlockArraysEXT_p;
 
 void check_gl_error();
-void init_glfloat_array( int num, GLfloat arr[], ... );
 void InitOpenglExtensions();
 void PrintGLInfo();
 

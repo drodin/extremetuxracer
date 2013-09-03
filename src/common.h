@@ -84,8 +84,6 @@ void	PrintFloat (const float val);
 void	PrintDouble (const double val);
 void	PrintFloat8 (const float val);
 void	PrintFloat (const char *s, const float val);
-void	PrintBool (const bool val);
-void	PrintPointer (void *p);
 void	PrintVector (const TVector3& v);
 void	PrintVector4 (const TVector4& v);
 void    PrintColor (const TColor& c);
@@ -121,10 +119,7 @@ void	SaveMessages ();
 // --------------------------------------------------------------------
 
 void GetTimeComponents (double time, int *min, int *sec, int *hundr);
-string GetTimeString1 ();
+string GetTimeString ();
 
-size_t write_word (FILE *fp, uint16_t w);
-size_t write_dword (FILE *fp, uint32_t dw);
-size_t write_long (FILE *fp, int32_t l);
 
 #endif
