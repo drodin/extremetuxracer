@@ -100,7 +100,7 @@ void CEvent::Mouse (int button, int state, int x, int y) {
 	if (clicked == textbuttons[0]) {
 		if (ready < 1)
 			StartRace ();
-	} else if (clicked == textbuttons[1])
+	} else if (clicked == textbuttons[1] || clicked == textbuttons[2])
 		State::manager.RequestEnterState (EventSelect);
 }
 
