@@ -70,17 +70,17 @@ bool CAudio::CheckOpen() {
 //				class CSound
 // --------------------------------------------------------------------
 
-size_t CSound::LoadChunk (const std::string& name, const char *filename) {
-	if (Audio.IsOpen == false) return -1;
+bool CSound::LoadChunk (const std::string& name, const char *filename) {
+	if (Audio.IsOpen == false) return false;
 	sounds.push_back(TSound());
 	sounds.back().chunk = Mix_LoadWAV (filename);
-	if (sounds.back().chunk == NULL) return -1;
+	if (sounds.back().chunk == NULL) return false;
 	sounds.back().channel = -1;					// default: no channel
 	sounds.back().loop_count = 0;				// default: playing once
 
 	Mix_VolumeChunk (sounds.back().chunk, param.sound_volume);
 	SoundIndex[name] = sounds.size()-1;
-	return sounds.size()-1;
+	return true;
 }
 
 // Load all soundfiles listed in "/sounds/sounds.lst"
@@ -104,7 +104,8 @@ void CSound::LoadSoundList () {
 void CSound::FreeSounds () {
 	HaltAll ();
 	for (size_t i=0; i<sounds.size(); i++)
-		if (sounds[i].chunk != NULL) Mix_FreeChunk (sounds[i].chunk);
+		if (sounds[i].chunk != NULL)
+			Mix_FreeChunk (sounds[i].chunk);
 	sounds.clear();
 	SoundIndex.clear();
 }
@@ -133,15 +134,20 @@ void CSound::SetVolume (const string& name, int volume) {
 
 // ------------------- play -------------------------------------------
 
+void TSound::Play(int loop) {
+	if (active == true) return;
+	if (chunk == NULL) return;
+
+	channel = Mix_PlayChannel (-1, chunk, loop);
+	loop_count = loop;
+	if (loop < 0) active = true;
+}
+
 void CSound::Play (size_t soundid, int loop) {
 	if (!Audio.IsOpen) return;
 	if (soundid >= sounds.size()) return;
-	if (sounds[soundid].active == true) return;
-	if (sounds[soundid].chunk == NULL) return;
 
-	sounds[soundid].channel = Mix_PlayChannel (-1, sounds[soundid].chunk, loop);
-	sounds[soundid].loop_count = loop;
-	if (loop < 0) sounds[soundid].active = true;
+	sounds[soundid].Play(loop);
 }
 
 void CSound::Play (const string& name, int loop) {
@@ -151,14 +157,10 @@ void CSound::Play (const string& name, int loop) {
 void CSound::Play (size_t soundid, int loop, int volume) {
 	if (!Audio.IsOpen) return;
 	if (soundid >= sounds.size()) return;
-	if (sounds[soundid].active == true) return;
-	if (sounds[soundid].chunk == NULL) return;
 
 	volume = clamp(0, volume, MIX_MAX_VOLUME);
 	Mix_VolumeChunk (sounds[soundid].chunk, volume);
-	sounds[soundid].channel = Mix_PlayChannel (-1, sounds[soundid].chunk, loop);
-	sounds[soundid].loop_count = loop;
-	if (loop < 0) sounds[soundid].active = true;
+	sounds[soundid].Play(loop);
 }
 
 void CSound::Play (const string& name, int loop, int volume) {
@@ -203,22 +205,22 @@ void Hook () {
 }
 
 CMusic::CMusic () {
-	curr_musid = -1;
+	curr_music = 0;
 	curr_volume = 10;
 	loop_count = 0;
 //	Mix_HookMusicFinished (Hook);
 }
 
-size_t CMusic::LoadPiece (const string& name, const char *filename) {
+bool CMusic::LoadPiece (const string& name, const char *filename) {
 	if (!Audio.IsOpen) return -1;
 	Mix_Music* m = Mix_LoadMUS (filename);
 	if (m == NULL) {
 		Message ("could not load music", filename);
-		return -1;
+		return false;
 	}
 	MusicIndex[name] = musics.size();
 	musics.push_back(m);
-	return musics.size()-1;
+	return true;
 }
 
 void CMusic::LoadMusicList () {
@@ -251,11 +253,11 @@ void CMusic::LoadMusicList () {
 			string name = SPStrN (line, "name", "");
 			ThemesIndex[name] = i;
 			string item = SPStrN (line, "race", "race_1");
-			themes[i].situation[0] = GetMusicIdx (item);
+			themes[i].situation[0] = musics[MusicIndex[item]];
 			item = SPStrN (line, "wonrace", "wonrace_1");
-			themes[i].situation[1] = GetMusicIdx (item);
+			themes[i].situation[1] = musics[MusicIndex[item]];
 			item = SPStrN (line, "lostrace", "lostrace_1");
-			themes[i].situation[2] = GetMusicIdx (item);
+			themes[i].situation[2] = musics[MusicIndex[item]];
 		}
 	} else Message ("could not load racing_themes.lst");
 }
@@ -271,7 +273,7 @@ void CMusic::FreeMusics () {
 	themes.clear();
 	ThemesIndex.clear();
 
-	curr_musid = -1;
+	curr_music = 0;
 	curr_volume = 10;
 }
 
@@ -307,39 +309,37 @@ void CMusic::Update () {
 	Mix_VolumeMusic (curr_volume);
 }
 
+bool CMusic::Play (Mix_Music* music, int loop, int volume) {
+	if(!music)
+		return false;
+
+	int vol = clamp(0, volume, MIX_MAX_VOLUME);
+	if (music != curr_music) {
+		Halt ();
+		Mix_PlayMusic (music, loop);
+		curr_music = music;
+		loop_count = loop;
+	}
+	Mix_VolumeMusic (vol);
+	return true;
+}
+
 bool CMusic::Play (size_t musid, int loop) {
 	if (!Audio.IsOpen) return false;
 	if (musid >= musics.size()) return false;
 	Mix_Music *music = musics[musid];
-	if (music == NULL) return false;
-	if (musid != curr_musid) {
-		Halt ();
-		Mix_PlayMusic (music, loop);
-		curr_musid = (int)musid;
-		loop_count = loop;
-	}
-	Mix_VolumeMusic (curr_volume);
-	return true;
+	return Play(music, loop, curr_volume);
 }
 
 bool CMusic::Play (const string& name, int loop) {
-	return Play (GetMusicIdx (name), loop);
+	return Play (GetMusicIdx(name), loop);
 }
 
 bool CMusic::Play (size_t musid, int loop, int volume) {
 	if (!Audio.IsOpen) return false;
 	if (musid >= musics.size()) return false;
 	Mix_Music *music = musics[musid];
-
-	int vol = clamp(0, volume, MIX_MAX_VOLUME);
-	if (musid != curr_musid) {
-		Halt ();
-		Mix_PlayMusic (music, loop);
-		Mix_VolumeMusic (vol);
-		curr_musid = (int)musid;
-		loop_count = loop;
-	}
-	return true;
+	return Play(music, loop, volume);
 }
 
 bool CMusic::Play (const string& name, int loop, int volume) {
@@ -349,16 +349,12 @@ bool CMusic::Play (const string& name, int loop, int volume) {
 bool CMusic::PlayTheme (size_t theme, ESituation situation) {
 	if (theme >= themes.size()) return false;
 	if (situation >= SITUATION_COUNT) return false;
-	size_t musid = themes [theme].situation[situation];
-	return Play (musid, -1);
-}
-
-void CMusic::Refresh (const string& name) {
-	Play (name, -1);
+	Mix_Music *music = themes [theme].situation[situation];
+	return Play (music, -1, curr_volume);
 }
 
 void CMusic::Halt () {
 	if (Mix_PlayingMusic ()) Mix_HaltMusic();
 	loop_count = -1;
-	curr_musid = -1;
+	curr_music = 0;
 }

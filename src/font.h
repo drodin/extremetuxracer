@@ -63,8 +63,8 @@ public:
 	void SetProps   (const string &fontname, float size, const TColor& col);
 	void SetProps   (const string &fontname, float size);
 	void SetColor   (float r, float g, float b, float a);
-	void SetColor   (const TColor& col);
-	void SetSize    (float size);
+	void SetColor   (const TColor& col) { curr_col = col; }
+	void SetSize    (float size) { curr_size = size; }
 	void SetFont    (const string& fontname);
 
 	// auto
@@ -93,7 +93,7 @@ public:
 	float GetTextWidth (const wchar_t *text, const string &fontname, float size) const;
 
 	float CenterX        (const char *text) const;
-	void  SetOrientation (Orientation orientation);
+	void  SetOrientation (Orientation orientation) { forientation = orientation; }
 
 	vector<string> MakeLineList (const char *source, float width);
 };

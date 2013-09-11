@@ -302,10 +302,6 @@ bool CCharShape::TransformNode (size_t node_name, const TMatrix mat, const TMatr
 	return true;
 }
 
-void CCharShape::ResetRoot () {
-	ResetNode (0);
-}
-
 void CCharShape::ResetJoints () {
 	ResetNode ("left_shldr");
 	ResetNode ("right_shldr");
@@ -886,10 +882,6 @@ void CCharShape::RefreshNode (size_t idx) {
 				break;
 		}
 	}
-}
-
-size_t CCharShape::GetNumNodes () const {
-	return numNodes;
 }
 
 const string& CCharShape::GetNodeFullname (size_t idx) const {

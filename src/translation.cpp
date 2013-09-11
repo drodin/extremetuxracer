@@ -24,10 +24,6 @@ GNU General Public License for more details.
 
 CTranslation Trans;
 
-CTranslation::CTranslation () {
-	languages_ok = false;
-}
-
 // if anything is wrong with an translation, the program will fall back
 // to these defaults (only the wrong items)
 void CTranslation::SetDefaultTranslations () {
@@ -141,7 +137,6 @@ const string& CTranslation::Text (size_t idx) const {
 void CTranslation::LoadLanguages () {
 	CSPList list (MAX_LANGUAGES);
 
-	languages_ok = false;
 	if (!list.Load (param.trans_dir, "languages.lst")) {
 		Message ("could not load language list");
 		return;
@@ -156,7 +151,6 @@ void CTranslation::LoadLanguages () {
 		languages[i].language = SPStrN (line, "language", "English");
 		LangIndex[languages[i].lang] = i;
 	}
-	if (!languages.empty()) languages_ok = true;
 
 	if (param.language == string::npos)
 		param.language = GetSystemDefaultLangIdx();
@@ -177,7 +171,6 @@ const string& CTranslation::GetLanguage (const string& lang) const {
 
 void CTranslation::LoadTranslations (size_t langidx) {
 	SetDefaultTranslations ();
-	if (!languages_ok) return;
 	if (langidx == 0 || langidx >= languages.size()) return;
 
 	CSPList list(MAX_COMMON_TEXT_LINES);

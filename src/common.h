@@ -70,15 +70,11 @@ void	PrintInt (const int val);
 void	PrintInt (const string& s, const int val);
 void	PrintStr (const char *val);
 void	PrintString (const string& s);
-void	PrintFloat (const float val);
 void	PrintDouble (const double val);
-void	PrintFloat8 (const float val);
-void	PrintFloat (const char *s, const float val);
 void	PrintVector (const TVector3& v);
 void	PrintVector4 (const TVector4& v);
 void    PrintColor (const TColor& c);
 void	PrintVector2 (const TVector2& v);
-void	PrintVector (const char *s, const TVector3& v);
 
 void	PrintMatrix (const TMatrix mat);
 void	PrintQuaternion (const TQuaternion& q);

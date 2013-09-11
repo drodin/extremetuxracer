@@ -41,11 +41,8 @@ class CTranslation {
 private:
 	string texts[NUM_COMMON_TEXTS];
 	map<string, size_t> LangIndex;
-	bool languages_ok;
 public:
 	vector<TLang> languages;
-
-	CTranslation ();
 
 	void LoadLanguages ();
 	size_t GetLangIdx (const string& lang) const;

@@ -195,14 +195,6 @@ void CFont::SetColor (float r, float g, float b, float a) {
 	curr_col.a = a;
 }
 
-void CFont::SetColor (const TColor& col) {
-	curr_col = col;
-}
-
-void CFont::SetSize (float size) {
-	curr_size = size;
-}
-
 void CFont::SetFont (const string& fontname) {
 	try {
 		curr_font = (int)fontindex[fontname];
@@ -388,10 +380,6 @@ float CFont::GetTextWidth (const wchar_t *text, const string &fontname, float si
 
 float CFont::CenterX (const char *text) const {
 	return (Winsys.resolution.width - GetTextWidth (text)) / 2.0;
-}
-
-void CFont::SetOrientation (Orientation orientation) {
-	forientation = orientation;
 }
 
 vector<string> CFont::MakeLineList (const char *source, float width) {

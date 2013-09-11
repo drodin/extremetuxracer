@@ -56,10 +56,6 @@ CCourse::~CCourse() {
 	ResetCourse ();
 }
 
-const TVector2& CCourse::GetStartPoint () const {
-	return start_pt;
-}
-
 double CCourse::GetBaseHeight (double distance) const {
 	double slope = tan (ANGLES_TO_RADIANS (curr_course->angle));
 	double base_height;
@@ -73,17 +69,9 @@ double CCourse::GetMaxHeight (double distance) const {
 	return GetBaseHeight (distance) + curr_course->scale;
 }
 
-double CCourse::GetCourseAngle () const {
-	return curr_course->angle;
-}
-
 void CCourse::GetDivisions (int *x, int *y) const {
 	*x = nx;
 	*y = ny;
-}
-
-GLubyte* CCourse::GetGLArrays() const {
-	return vnc_array;
 }
 
 const TPolyhedron& CCourse::GetPoly (size_t type) const {

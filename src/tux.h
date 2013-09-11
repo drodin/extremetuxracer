@@ -125,7 +125,7 @@ public:
 	bool RotateNode (size_t node_name, int axis, double angle);
 	bool RotateNode (const string& node_trivialname, int axis, double angle);
 	void ScaleNode (size_t node_name, const TVector3& vec);
-	void ResetRoot ();
+	void ResetRoot () { ResetNode (0); }
 	void ResetJoints ();
 
 	// global functions
@@ -148,7 +148,7 @@ public:
 	size_t GetNodeName (size_t idx) const;
 	size_t GetNodeName (const string& node_trivialname) const;
 	string GetNodeJoint (size_t idx) const;
-	size_t GetNumNodes () const;
+	size_t GetNumNodes () const { return numNodes; }
 	const string& GetNodeFullname (size_t idx) const;
 	size_t GetNumActs (size_t idx) const;
 	TCharAction *GetAction (size_t idx) const;

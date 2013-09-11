@@ -343,7 +343,7 @@ const string& CKeyframe::GetHighlightName (size_t idx) {
 	return highlightnames[idx];
 }
 
-int CKeyframe::GetNumJoints () const {
+int CKeyframe::GetNumJoints () {
 	return numJoints;
 }
 

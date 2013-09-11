@@ -90,7 +90,7 @@ void     SPSetStrN    (string &s, const string &tag, const string &val);
 
 class CSPList {
 private:
-	vector<pair<string, int>> flines;
+	vector<string> flines;
 	size_t fmax;
 	bool fnewlineflag;
 public:
@@ -98,9 +98,8 @@ public:
 
 	const string& Line (size_t idx) const;
 	size_t Count () const { return flines.size(); }
-	void Clear ();
+	void Clear () { flines.clear(); }
 	void Add (const string& line);
-	void Add (const string& line, int flag);
 	void Append (const string& line, size_t idx);
 	void Print () const;
 	bool Load (const string &filepath);
@@ -108,8 +107,6 @@ public:
 	bool Save (const string &filepath) const;
 	bool Save (const string& dir, const string& filename) const;
 
-	int Flag (size_t idx) const;
-	void SetFlag (size_t idx, int flag);
 	void MakeIndex (map<string, size_t>& index, const string &tag);
 };
 

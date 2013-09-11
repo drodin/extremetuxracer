@@ -119,6 +119,7 @@ void CEnvironment::ResetFog () {
 }
 
 void CEnvironment::Reset () {
+	EnvID = -1;
 	ResetSkybox ();
 	ResetLight ();
 	ResetFog ();
@@ -338,10 +339,10 @@ void CEnvironment::DrawFog () {
 	glEnable (GL_FOG);
 
 	// only the alpha channel is used
-	float bottom_dens[4]     = {0, 0, 0, 1.0};
-	float top_dens[4]        = {0, 0, 0, 0.9};
-	float leftright_dens[4]  = {0, 0, 0, 0.3};
-	float top_bottom_dens[4] = {0, 0, 0, 0.0};
+	static const float bottom_dens[4]     = {0, 0, 0, 1.0};
+	static const float top_dens[4]        = {0, 0, 0, 0.9};
+	static const float leftright_dens[4]  = {0, 0, 0, 0.3};
+	static const float top_bottom_dens[4] = {0, 0, 0, 0.0};
 
 	glBegin (GL_QUAD_STRIP);
 	glColor4fv (bottom_dens);

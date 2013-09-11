@@ -436,7 +436,9 @@ TVector3 CControl::CalcNetForce (const TVector3& pos, const TVector3& vel) {
 	double speed = NormVector (ff.frictdir);
 	ff.frictdir = ScaleVector (-1.0, ff.frictdir);
 
-	vector<double> surfweights(Course.TerrList.size());
+	static vector<double> surfweights;
+	if (surfweights.size() != Course.TerrList.size())
+		surfweights.resize(Course.TerrList.size());
 	Course.GetSurfaceType (ff.pos.x, ff.pos.z, &surfweights[0]);
 	TTerrType *TerrList = &Course.TerrList[0];
 	ff.frict_coeff = ff.comp_depth = 0;

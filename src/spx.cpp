@@ -398,42 +398,23 @@ CSPList::CSPList (size_t maxlines, bool newlineflag) {
 
 const string& CSPList::Line (size_t idx) const {
 	if (idx >= flines.size()) return emptyString;
-	return flines[idx].first;
-}
-
-void CSPList::Clear () {
-	flines.clear();
+	return flines[idx];
 }
 
 void CSPList::Add (const string& line) {
 	if (flines.size() < fmax) {
-		flines.push_back(make_pair(line, 0));
-	}
-}
-
-void CSPList::Add (const string& line, int flag) {
-	if (flines.size() < fmax) {
-		flines.push_back(make_pair(line, flag));
+		flines.push_back(line);
 	}
 }
 
 void CSPList::Append (const string& line, size_t idx) {
 	if (idx >= flines.size()) return;
-	flines[idx].first += line;
-}
-
-void CSPList::SetFlag (size_t idx, int flag) {
-	if (idx >= flines.size()) return;
-	flines[idx].second= flag;
-}
-
-int CSPList::Flag (size_t idx) const {
-	if (idx >= flines.size()) return 0;
-	return flines[idx].second;
+	flines[idx] += line;
 }
 
 void CSPList::Print () const {
-	for (size_t i=0; i<flines.size(); i++) cout << flines[i].first << endl;
+	for (size_t i = 0; i < flines.size(); i++)
+		cout << flines[i] << endl;
 }
 
 bool CSPList::Load (const string &filepath) {
@@ -495,7 +476,7 @@ bool CSPList::Save (const string &filepath) const {
 		return false;
 	} else {
 		for (size_t i=0; i<flines.size(); i++) {
-			tempfile << flines[i].first << '\n';
+			tempfile << flines[i] << '\n';
 		}
 		return true;
 	}
@@ -510,7 +491,7 @@ void CSPList::MakeIndex (map<string, size_t>& index, const string &tag) {
 	size_t idx = 0;
 
 	for (size_t i=0; i<flines.size(); i++) {
-		string item = SPItemN (flines[i].first, tag);
+		string item = SPItemN (flines[i], tag);
 		STrimN (item);
 		if (!item.empty()) {
 			index[item] = idx;

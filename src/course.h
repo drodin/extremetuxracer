@@ -154,17 +154,17 @@ public:
 	bool LoadTerrainTypes ();
 	bool LoadObjectTypes ();
 	void MakeStandardPolyhedrons ();
-	GLubyte* GetGLArrays() const;
+	GLubyte* GetGLArrays() const { return vnc_array; }
 	void FillGlArrays();
 
 	const TVector2& GetDimensions() const { return curr_course->size; }
 	const TVector2& GetPlayDimensions() const { return curr_course->play_size; }
 	void GetDivisions (int *nx, int *ny) const;
-	double GetCourseAngle () const;
+	double GetCourseAngle () const { return curr_course->angle; }
 	double GetBaseHeight (double distance) const;
 	double GetMaxHeight (double distance) const;
 	size_t GetEnv () const;
-	const TVector2& GetStartPoint () const;
+	const TVector2& GetStartPoint () const { return start_pt; }
 	const TPolyhedron& GetPoly (size_t type) const;
 	void MirrorCourse ();
 

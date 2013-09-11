@@ -62,7 +62,7 @@ public:
 	TKeyframe *GetFrame (size_t idx);
 	static const string& GetHighlightName (size_t idx);
 	static const string& GetJointName (size_t idx);
-	int GetNumJoints () const;
+	static int GetNumJoints ();
 	void SaveTest (const string& dir, const string& filename);
 	void CopyFrame (size_t prim_idx, size_t sec_idx);
 	void AddFrame ();
