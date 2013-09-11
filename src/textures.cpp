@@ -164,16 +164,16 @@ void CImage::WritePPM (const char *filepath) {
 #pragma pack(push, 1)
 #endif
 struct TTgaHeader {
-	char tfType;
-	char tfColorMapType;
-	char tfImageType;
-	char tfColorMapSpec[5];
-	short tfOrigX;
-	short tfOrigY;
-	short tfWidth;
-	short tfHeight;
-	char tfBpp;
-	char tfImageDes;
+	int8_t  tfType;
+	int8_t  tfColorMapType;
+	int8_t  tfImageType;
+	int8_t  tfColorMapSpec[5];
+	int16_t tfOrigX;
+	int16_t tfOrigY;
+	int16_t tfWidth;
+	int16_t tfHeight;
+	int8_t  tfBpp;
+	int8_t  tfImageDes;
 #ifdef _MSC_VER
 };
 #pragma pack(pop)
@@ -193,8 +193,8 @@ void CImage::WriteTGA (const char *filepath) {
 	for (int i=0; i<5; i++) header.tfColorMapSpec[i] = 0;
 	header.tfOrigX = 0;
 	header.tfOrigY = 0;
-	header.tfWidth = nx;
-	header.tfHeight = ny;
+	header.tfWidth = static_cast<int16_t>(nx);
+	header.tfHeight = static_cast<int16_t>(ny);
 	header.tfBpp = 24;
 	header.tfImageDes = 0;
 

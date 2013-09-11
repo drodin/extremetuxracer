@@ -129,18 +129,18 @@ void PrintGLInfo () {
 
 void set_material (const TColor& diffuse_colour, const TColor& specular_colour, double specular_exp) {
 	GLfloat mat_amb_diff[4] = {
-		diffuse_colour.r,
-		diffuse_colour.g,
-		diffuse_colour.b,
-		diffuse_colour.a
+		static_cast<GLfloat>(diffuse_colour.r),
+		static_cast<GLfloat>(diffuse_colour.g),
+		static_cast<GLfloat>(diffuse_colour.b),
+		static_cast<GLfloat>(diffuse_colour.a)
 	};
 	glMaterialfv (GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, mat_amb_diff);
 
 	GLfloat mat_specular[4] = {
-		specular_colour.r,
-		specular_colour.g,
-		specular_colour.b,
-		specular_colour.a
+		static_cast<GLfloat>(specular_colour.r),
+		static_cast<GLfloat>(specular_colour.g),
+		static_cast<GLfloat>(specular_colour.b),
+		static_cast<GLfloat>(specular_colour.a)
 	};
 	glMaterialfv (GL_FRONT_AND_BACK, GL_SPECULAR, mat_specular);
 
