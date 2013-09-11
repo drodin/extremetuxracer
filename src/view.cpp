@@ -202,9 +202,9 @@ void update_view (CControl *ctrl, double dt) {
 	TVector3 vel_cpy = ctrl->cvel;
 	double speed = NormVector (vel_cpy);
 	double time_constant_mult = 1.0 /
-	                            min (1.0, max (0.0,
-	                                    (speed - NO_INTERPOLATION_SPEED) /
-	                                    (BASELINE_INTERPOLATION_SPEED - NO_INTERPOLATION_SPEED)));
+	                            clamp (0.0,
+	                                   (speed - NO_INTERPOLATION_SPEED) / (BASELINE_INTERPOLATION_SPEED - NO_INTERPOLATION_SPEED),
+	                                   1.0);
 
 	TVector3 vel_dir = ctrl->cvel;
 	NormVector (vel_dir);

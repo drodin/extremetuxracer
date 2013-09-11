@@ -36,6 +36,7 @@ GNU General Public License for more details.
 #include "reset.h"
 #include "winsys.h"
 #include "physics.h"
+#include <algorithm>
 
 #define MAX_JUMP_AMT 1.0
 #define ROLL_DECAY 0.2
@@ -226,7 +227,7 @@ void CRacing::Enter (void) {
 // this function is not used yet.
 int SlideVolume (CControl *ctrl, double speed, int typ) {
 	if (typ == 1) {	// only at paddling or braking
-		return (int)(MIN ((((pow(ctrl->turn_fact, 2) * 128)) +
+		return (int)(min ((((pow(ctrl->turn_fact, 2) * 128)) +
 		                   (ctrl->is_braking ? 128:0) +
 		                   (ctrl->jumping ? 128:0) + 20) * (speed / 10), 128));
 	} else { 	// always
@@ -252,12 +253,12 @@ void CalcSteeringControls (CControl *ctrl, double time_step) {
 	if (stick_turn) {
 		ctrl->turn_fact = stick_turnfact;
 		ctrl->turn_animation += ctrl->turn_fact * 2 * time_step;
-		ctrl->turn_animation = min (1.0, max (-1.0, ctrl->turn_animation));
+		ctrl->turn_animation = clamp (-1.0, ctrl->turn_animation, 1.0);
 	} else if (left_turn ^ right_turn) {
 		if (left_turn) ctrl->turn_fact = -1.0;
 		else ctrl->turn_fact = 1.0;
 		ctrl->turn_animation += ctrl->turn_fact * 2 * time_step;
-		ctrl->turn_animation = min (1.0, max (-1.0, ctrl->turn_animation));
+		ctrl->turn_animation = clamp (-1.0, ctrl->turn_animation, 1.0);
 	} else {
 		ctrl->turn_fact = 0.0;
 		if (time_step < ROLL_DECAY) {

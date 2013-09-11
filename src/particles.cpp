@@ -30,6 +30,7 @@ GNU General Public License for more details.
 #include "physics.h"
 #include <cstdlib>
 #include <list>
+#include <algorithm>
 
 // ====================================================================
 //					gui particles 2D
@@ -45,6 +46,7 @@ GNU General Public License for more details.
 #define PUSH_FACTOR 0.5
 #define MAX_PUSH_FORCE 5
 #define AIR_DRAG 0.4
+#define TUX_WIDTH 0.45
 
 #define PARTICLE_MIN_SIZE 1
 #define PARTICLE_SIZE_RANGE 10
@@ -119,10 +121,8 @@ void TGuiParticle::Update(double time_step, double push_timestep, const TVector2
 	if (push_timestep > 0) {
 		f.x = PUSH_FACTOR * push_vector.x / push_timestep;
 		f.y = PUSH_FACTOR * push_vector.y / push_timestep;
-		f.x = MIN (MAX_PUSH_FORCE, f.x);
-		f.x = MAX (-MAX_PUSH_FORCE, f.x);
-		f.y = MIN (MAX_PUSH_FORCE, f.y);
-		f.y = MAX (-MAX_PUSH_FORCE, f.y);
+		f.x = clamp (-MAX_PUSH_FORCE, f.x, MAX_PUSH_FORCE);
+		f.y = clamp (-MAX_PUSH_FORCE, f.y, MAX_PUSH_FORCE);
 		f.x *= 1.0/(PUSH_DIST_DECAY*dist_from_push + 1) *
 		       size/PARTICLE_SIZE_RANGE;
 		f.y *= 1.0/(PUSH_DIST_DECAY*dist_from_push + 1) *
@@ -439,18 +439,18 @@ void generate_particles (const CControl *ctrl, double dtime, const TVector3& pos
 		TMatrix rot_mat;
 		RotateAboutVectorMatrix(
 		    rot_mat, ctrl->cdirection,
-		    MAX (-MAX_PARTICLE_ANGLE,
+		    max (-MAX_PARTICLE_ANGLE,
 		         -MAX_PARTICLE_ANGLE * speed / MAX_PARTICLE_ANGLE_SPEED));
 		TVector3 left_part_vel = TransformVector (rot_mat, ctrl->plane_nml);
-		left_part_vel = ScaleVector (MIN (MAX_PARTICLE_SPEED,
+		left_part_vel = ScaleVector (min (MAX_PARTICLE_SPEED,
 		                                  speed * PARTICLE_SPEED_MULTIPLIER),left_part_vel);
 
 		RotateAboutVectorMatrix(
 		    rot_mat, ctrl->cdirection,
-		    MIN (MAX_PARTICLE_ANGLE,
+		    min (MAX_PARTICLE_ANGLE,
 		         MAX_PARTICLE_ANGLE * speed / MAX_PARTICLE_ANGLE_SPEED));
 		TVector3 right_part_vel = TransformVector (rot_mat, ctrl->plane_nml);
-		right_part_vel = ScaleVector (MIN (MAX_PARTICLE_SPEED,
+		right_part_vel = ScaleVector (min (MAX_PARTICLE_SPEED,
 		                                   speed * PARTICLE_SPEED_MULTIPLIER),right_part_vel);
 
 

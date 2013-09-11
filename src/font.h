@@ -30,7 +30,6 @@ GNU General Public License for more details.
 #define MAX_FONTS 36
 
 class FTFont;
-class CSPList;
 
 
 class CFont {

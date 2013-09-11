@@ -52,6 +52,9 @@ GNU General Public License for more details.
 #define MAX_POS_ERR 0.005
 #define MAX_VEL_ERR	0.05
 
+#define MAX_ROLL_ANGLE 30
+#define BRAKING_ROLL_ANGLE 55
+
 // constants for finish stage
 #define FIN_AIR_GRAV 500
 #define FIN_GRAV 500

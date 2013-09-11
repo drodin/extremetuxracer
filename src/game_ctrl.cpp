@@ -349,7 +349,7 @@ void CCharacter::LoadCharacterList () {
 
 			TCharacter* ch = &CharList[i];
 			ch->preview = new TTexture();
-			if (!ch->preview->LoadMipmap(previewfile, 0)) {
+			if (!ch->preview->LoadMipmap(previewfile, false)) {
 				Message ("could not load previewfile of character");
 //				texid = Tex.TexID (NO_PREVIEW);
 			}

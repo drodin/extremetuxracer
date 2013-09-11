@@ -332,11 +332,8 @@ float quadsquare::RecomputeError(const quadcornerdata& cd) {
 
 	int terrain;
 
-	int *terrain_count = new int[(int)numTerr];
-
-	for (size_t t=0; t<numTerr; t++) {
-		terrain_count[t] = 0;
-	}
+	int *terrain_count = new int[numTerr];
+	memset(terrain_count, 0, sizeof(*terrain_count)*numTerr);
 
 	for (int i=cd.xorg; i<=cd.xorg+whole; i++) {
 		for (int j=cd.zorg; j<=cd.zorg+whole; j++) {

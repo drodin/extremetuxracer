@@ -25,14 +25,6 @@ GNU General Public License for more details.
 class TTexture;
 
 
-struct TLocInfo {
-	string name;
-};
-
-struct TLightCond {
-	string name;
-};
-
 struct TFog {
 	bool is_on;
 	GLint mode;
@@ -49,14 +41,16 @@ struct TLight {
 	float diffuse[4];
 	float specular[4];
 	float position[4];
+
+	void Enable(GLenum num) const;
 };
 
 class CEnvironment {
 private:
 	size_t EnvID;
 	TTexture* Skybox;
-	vector<TLocInfo> locs;
-	TLightCond lightcond[4];
+	vector<string> locs;
+	string lightcond[4];
 	TLight default_light;
 	TLight lights[4];
 	TFog fog;
@@ -66,17 +60,16 @@ private:
 	map<string, size_t> LightIndex;
 
 	void ResetSkybox ();
-	void LoadSkybox ();
+	void LoadSkybox (const string& EnvDir);
 	void ResetLight ();
-	void LoadLight ();
+	void LoadLight (const string& EnvDir);
 	void ResetFog ();
-	string EnvDir;
 	void Reset ();
 	string GetDir (size_t location, size_t light) const;
 public:
 	CEnvironment ();
 	bool LoadEnvironmentList ();
-	bool LoadEnvironment (size_t loc, size_t light);
+	void LoadEnvironment (size_t loc, size_t light);
 	void DrawSkybox (const TVector3& pos);
 	void SetupLight ();
 	void SetupFog ();

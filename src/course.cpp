@@ -48,8 +48,8 @@ CCourse::CCourse () {
 CCourse::~CCourse() {
 	for (size_t i = 0; i < PolyArr.size(); i++) {
 		for (size_t j = 0; j < PolyArr[i].num_polygons; j++)
-			delete PolyArr[i].polygons[j].vertices;
-		delete PolyArr[i].polygons;
+			delete[] PolyArr[i].polygons[j].vertices;
+		delete[] PolyArr[i].polygons;
 		FreePolyhedron(PolyArr[i]);
 	}
 	FreeCourseList ();
@@ -421,7 +421,7 @@ void CCourse::LoadItemList () {
 		if (ObjTypes[type].texture == NULL && ObjTypes[type].drawable) {
 			string terrpath = param.obj_dir + SEP + ObjTypes[type].textureFile;
 			ObjTypes[type].texture = new TTexture();
-			ObjTypes[type].texture->LoadMipmap(terrpath, 0);
+			ObjTypes[type].texture->LoadMipmap(terrpath, false);
 		}
 		bool coll = ObjTypes[type].collidable;
 		if (coll == 1) {
@@ -511,7 +511,7 @@ bool CCourse::LoadObjectMap () {
 				if (ObjTypes[type].texture == NULL && ObjTypes[type].drawable) {
 					string terrpath = param.obj_dir + SEP + ObjTypes[type].textureFile;
 					ObjTypes[type].texture = new TTexture();
-					ObjTypes[type].texture->LoadMipmap(terrpath, 0);
+					ObjTypes[type].texture->LoadMipmap(terrpath, false);
 				}
 
 				// set random height and diam - see constants above
@@ -699,7 +699,7 @@ bool CCourse::LoadTerrainMap () {
 			terrain[arridx] = terr;
 			if (TerrList[terr].texture == NULL) {
 				TerrList[terr].texture = new TTexture();
-				TerrList[terr].texture->LoadMipmap(param.terr_dir, TerrList[terr].textureFile, 1);
+				TerrList[terr].texture->LoadMipmap(param.terr_dir, TerrList[terr].textureFile, true);
 			}
 		}
 		pad += (nx * terrImage.depth) % 4;
@@ -730,8 +730,7 @@ bool CCourse::LoadCourseList () {
 		string desc = SPStrN (line1, "desc", "");
 		FT.AutoSizeN (2);
 		vector<string> desclist = FT.MakeLineList (desc.c_str(), 335 * Winsys.scale - 16.0);
-		size_t cnt = desclist.size();
-		if (cnt > MAX_DESCRIPTION_LINES) cnt = MAX_DESCRIPTION_LINES;
+		size_t cnt = min(desclist.size(), MAX_DESCRIPTION_LINES);
 		CourseList[i].num_lines = cnt;
 		for (size_t ll=0; ll<cnt; ll++) {
 			CourseList[i].desc[ll] = desclist[ll];
@@ -742,7 +741,7 @@ bool CCourse::LoadCourseList () {
 			// preview
 			string previewfile = coursepath + SEP + "preview.png";
 			CourseList[i].preview = new TTexture();
-			if (!CourseList[i].preview->LoadMipmap(previewfile, 0)) {
+			if (!CourseList[i].preview->LoadMipmap(previewfile, false)) {
 				Message ("couldn't load previewfile");
 //				texid = Tex.TexID (NO_PREVIEW);
 			}
@@ -919,8 +918,7 @@ void CCourse::MirrorCourse () {
 //				from phys_sim:
 // ********************************************************************
 
-void CCourse::GetIndicesForPoint
-(double x, double z, int *x0, int *y0, int *x1, int *y1) const {
+void CCourse::GetIndicesForPoint(double x, double z, int *x0, int *y0, int *x1, int *y1) const {
 
 	double xidx = x / curr_course->size.x * ((double) nx - 1.);
 	double yidx = -z / curr_course->size.y *  ((double) ny - 1.);

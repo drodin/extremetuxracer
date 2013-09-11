@@ -23,24 +23,14 @@ GNU General Public License for more details.
 using namespace std;
 
 
-#ifndef MIN
-#	define MIN(x,y) ((x)<(y)?(x):(y))
-#endif
-#ifndef MAX
-#	define MAX(x,y) ((x)>(y)?(x):(y))
-#endif
 #define clamp(minimum, x, maximum) (max(min(x, maximum), minimum))
 
 #ifndef ROUND_TO_NEAREST
 #	define ROUND_TO_NEAREST(x) ((int) ((x)+0.5))
 #endif
 
-#define ANGLES_TO_RADIANS(x) (M_PI / 180.0 * (x) )
-#define RADIANS_TO_ANGLES(x) (180.0 / M_PI * (x) )
-
-#define TUX_WIDTH 0.45
-#define MAX_ROLL_ANGLE 30
-#define BRAKING_ROLL_ANGLE 55
+#define ANGLES_TO_RADIANS(x) (M_PI / 180.0 * (x))
+#define RADIANS_TO_ANGLES(x) (180.0 / M_PI * (x))
 
 
 // --------------------------------------------------------------------

@@ -45,10 +45,8 @@ CImage::~CImage () {
 }
 
 void CImage::DisposeData () {
-	if (data != NULL) {
-		delete[] data;
-		data = NULL;
-	}
+	delete[] data;
+	data = NULL;
 }
 
 bool CImage::LoadPng (const char *filepath, bool mirroring) {

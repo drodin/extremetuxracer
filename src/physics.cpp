@@ -26,6 +26,7 @@ GNU General Public License for more details.
 #include "particles.h"
 #include "game_ctrl.h"
 #include "game_over.h"
+#include <algorithm>
 
 CControl::CControl () :
 	cnet_force(0, 0, 0) {
@@ -292,8 +293,8 @@ TVector3 CControl::CalcRollNormal (double speed) {
 	if (is_braking) roll_angle = BRAKING_ROLL_ANGLE;
 
 	double angle = turn_fact * roll_angle *
-	               MIN (1.0, MAX (0.0, ff.frict_coeff) / IDEAL_ROLL_FRIC) *
-	               MIN (1.0, MAX (0.0, speed - minSpeed) / (IDEAL_ROLL_SPEED - minSpeed));
+	               min (1.0, max (0.0, ff.frict_coeff) / IDEAL_ROLL_FRIC) *
+	               min (1.0, max (0.0, speed - minSpeed) / (IDEAL_ROLL_SPEED - minSpeed));
 
 	TMatrix rot_mat;
 	RotateAboutVectorMatrix (rot_mat, vel, angle);
@@ -319,12 +320,11 @@ TVector3 CControl::CalcAirForce () {
 
 TVector3 CControl::CalcSpringForce () {
 	double springvel = DotProduct (ff.vel, ff.rollnml);
-	double springfact = MIN (ff.compression, 0.05) * 1500;
-	springfact += MAX (0, min (ff.compression - 0.05, 0.12)) * 3000;
-	springfact += MAX (0, ff.compression - 0.12 - 0.05) * 10000;
+	double springfact = min (ff.compression, 0.05) * 1500;
+	springfact += clamp (0, ff.compression - 0.05, 0.12) * 3000;
+	springfact += max (0, ff.compression - 0.12 - 0.05) * 10000;
 	springfact -= springvel * (ff.compression <= 0.05 ? 1500 : 500);
-	springfact = MAX (springfact, 0.0);
-	springfact = MIN (springfact, 3000);
+	springfact = clamp (0.0, springfact, 3000.0);
 	return ScaleVector (springfact, ff.rollnml);
 }
 
@@ -359,7 +359,7 @@ TVector3 CControl::CalcFrictionForce (double speed, const TVector3& nmlforce) {
 	if ((cairborne == false && speed > minFrictspeed) || g_game.finish) {
 		TVector3 tmp_nml_f = nmlforce;
 		double fric_f_mag = NormVector (tmp_nml_f) * ff.frict_coeff;
-		fric_f_mag = MIN (MAX_FRICT_FORCE, fric_f_mag);
+		fric_f_mag = min (MAX_FRICT_FORCE, fric_f_mag);
 		TVector3 frictforce = ScaleVector (fric_f_mag, ff.frictdir);
 
 		double steer_angle = turn_fact * MAX_TURN_ANGLE;
@@ -477,8 +477,7 @@ TVector3 CControl::CalcNetForce (const TVector3& pos, const TVector3& vel) {
 
 double CControl::AdjustTimeStep (double h, TVector3 vel) {
 	double speed = NormVector (vel);
-	h = max (h, MIN_TIME_STEP);
-	h = min (h, MAX_STEP_DIST / speed);
+	h = clamp (MIN_TIME_STEP, h, MAX_STEP_DIST / speed);
 	h = min (h, MAX_TIME_STEP);
 	return h;
 }
@@ -494,12 +493,12 @@ void CControl::SolveOdeSystem (double timestep) {
 	double t = 0;
 	double tfinal = timestep;
 
-	TOdeData *x = new TOdeData;
-	TOdeData *y  = new TOdeData;
-	TOdeData *z  = new TOdeData;
-	TOdeData *vx = new TOdeData;
-	TOdeData *vy = new TOdeData;
-	TOdeData *vz = new TOdeData;
+	TOdeData x;
+	TOdeData y;
+	TOdeData z;
+	TOdeData vx;
+	TOdeData vy;
+	TOdeData vz;
 
 	TVector3 new_pos = cpos;
 	TVector3 new_vel = cvel;
@@ -521,55 +520,55 @@ void CControl::SolveOdeSystem (double timestep) {
 
 		bool failed = false;
 		for (;;) {
-			solver.InitOdeData (x, new_pos.x, h);
-			solver.InitOdeData (y, new_pos.y, h);
-			solver.InitOdeData (z, new_pos.z, h);
-			solver.InitOdeData (vx, new_vel.x, h);
-			solver.InitOdeData (vy, new_vel.y, h);
-			solver.InitOdeData (vz, new_vel.z, h);
+			solver.InitOdeData (&x, new_pos.x, h);
+			solver.InitOdeData (&y, new_pos.y, h);
+			solver.InitOdeData (&z, new_pos.z, h);
+			solver.InitOdeData (&vx, new_vel.x, h);
+			solver.InitOdeData (&vy, new_vel.y, h);
+			solver.InitOdeData (&vz, new_vel.z, h);
 
-			solver.UpdateEstimate (x, 0, new_vel.x);
-			solver.UpdateEstimate (y, 0, new_vel.y);
-			solver.UpdateEstimate (z, 0, new_vel.z);
-			solver.UpdateEstimate (vx, 0, new_f.x / TUX_MASS);
-			solver.UpdateEstimate (vy, 0, new_f.y / TUX_MASS);
-			solver.UpdateEstimate (vz, 0, new_f.z / TUX_MASS);
+			solver.UpdateEstimate (&x, 0, new_vel.x);
+			solver.UpdateEstimate (&y, 0, new_vel.y);
+			solver.UpdateEstimate (&z, 0, new_vel.z);
+			solver.UpdateEstimate (&vx, 0, new_f.x / TUX_MASS);
+			solver.UpdateEstimate (&vy, 0, new_f.y / TUX_MASS);
+			solver.UpdateEstimate (&vz, 0, new_f.z / TUX_MASS);
 
 			for (int i=1; i < solver.NumEstimates(); i++) {
-				new_pos.x = solver.NextValue (x, i);
-				new_pos.y = solver.NextValue (y, i);
-				new_pos.z = solver.NextValue (z, i);
-				new_vel.x = solver.NextValue (vx, i);
-				new_vel.y = solver.NextValue (vy, i);
-				new_vel.z = solver.NextValue (vz, i);
+				new_pos.x = solver.NextValue (&x, i);
+				new_pos.y = solver.NextValue (&y, i);
+				new_pos.z = solver.NextValue (&z, i);
+				new_vel.x = solver.NextValue (&vx, i);
+				new_vel.y = solver.NextValue (&vy, i);
+				new_vel.z = solver.NextValue (&vz, i);
 
-				solver.UpdateEstimate (x, i, new_vel.x);
-				solver.UpdateEstimate (y, i, new_vel.y);
-				solver.UpdateEstimate (z, i, new_vel.z);
+				solver.UpdateEstimate (&x, i, new_vel.x);
+				solver.UpdateEstimate (&y, i, new_vel.y);
+				solver.UpdateEstimate (&z, i, new_vel.z);
 
 				new_f = CalcNetForce (new_pos, new_vel);
 
-				solver.UpdateEstimate (vx, i, new_f.x / TUX_MASS);
-				solver.UpdateEstimate (vy, i, new_f.y / TUX_MASS);
-				solver.UpdateEstimate (vz, i, new_f.z / TUX_MASS);
+				solver.UpdateEstimate (&vx, i, new_f.x / TUX_MASS);
+				solver.UpdateEstimate (&vy, i, new_f.y / TUX_MASS);
+				solver.UpdateEstimate (&vz, i, new_f.z / TUX_MASS);
 			}
 
-			new_pos.x = solver.FinalEstimate (x);
-			new_pos.y = solver.FinalEstimate (y);
-			new_pos.z = solver.FinalEstimate (z);
+			new_pos.x = solver.FinalEstimate (&x);
+			new_pos.y = solver.FinalEstimate (&y);
+			new_pos.z = solver.FinalEstimate (&z);
 
-			new_vel.x = solver.FinalEstimate (vx);
-			new_vel.y = solver.FinalEstimate (vy);
-			new_vel.z = solver.FinalEstimate (vz);
+			new_vel.x = solver.FinalEstimate (&vx);
+			new_vel.y = solver.FinalEstimate (&vy);
+			new_vel.z = solver.FinalEstimate (&vz);
 
 			if (solver.EstimateError != NULL) {
-				pos_err[0] = solver.EstimateError (x);
-				pos_err[1] = solver.EstimateError (y);
-				pos_err[2] = solver.EstimateError (z);
+				pos_err[0] = solver.EstimateError (&x);
+				pos_err[1] = solver.EstimateError (&y);
+				pos_err[2] = solver.EstimateError (&z);
 
-				vel_err[0] = solver.EstimateError (vx);
-				vel_err[1] = solver.EstimateError (vy);
-				vel_err[2] = solver.EstimateError (vz);
+				vel_err[0] = solver.EstimateError (&vx);
+				vel_err[1] = solver.EstimateError (&vy);
+				vel_err[2] = solver.EstimateError (&vz);
 
 				tot_pos_err = 0.;
 				tot_vel_err = 0.;
@@ -631,13 +630,6 @@ void CControl::SolveOdeSystem (double timestep) {
 
 	float step = VectorLength (SubtractVectors (cpos, last_pos));
 	way += step;
-
-	delete x;
-	delete y;
-	delete z;
-	delete vx;
-	delete vy;
-	delete vz;
 }
 
 // --------------------------------------------------------------------

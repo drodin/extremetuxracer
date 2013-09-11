@@ -37,16 +37,24 @@ static const float def_pos[]     = {1, 2, 2, 0.0};
 static const float def_fogcol[]  = {0.9, 0.9, 1.0, 0.0};
 static const TColor def_partcol    (0.8, 0.8, 0.9, 0.0);
 
+void TLight::Enable(GLenum num) const {
+	glLightfv(num, GL_POSITION, position);
+	glLightfv(num, GL_AMBIENT, ambient);
+	glLightfv(num, GL_DIFFUSE, diffuse);
+	glLightfv(num, GL_SPECULAR, specular);
+	glEnable(num);
+}
+
 CEnvironment Env;
 
 CEnvironment::CEnvironment () {
 	EnvID = -1;
-	lightcond[0].name = "sunny";
-	lightcond[1].name = "cloudy";
-	lightcond[2].name = "evening";
-	lightcond[3].name = "night";
+	lightcond[0] = "sunny";
+	lightcond[1] = "cloudy";
+	lightcond[2] = "evening";
+	lightcond[3] = "night";
 	for (size_t i = 0; i < 4; i++)
-		LightIndex[lightcond[i].name] = i;
+		LightIndex[lightcond[i]] = i;
 	Skybox = NULL;
 
 	default_light.is_on = true;
@@ -73,33 +81,15 @@ void CEnvironment::ResetSkybox () {
 }
 
 void CEnvironment::SetupLight () {
-	glLightfv (GL_LIGHT0, GL_POSITION, lights[0].position);
-	glLightfv (GL_LIGHT0, GL_AMBIENT, lights[0].ambient);
-	glLightfv (GL_LIGHT0, GL_DIFFUSE, lights[0].diffuse);
-	glLightfv (GL_LIGHT0, GL_SPECULAR, lights[0].specular);
-	glEnable  (GL_LIGHT0);
-	if (lights[1].is_on) {
-		glLightfv (GL_LIGHT1, GL_POSITION, lights[1].position);
-		glLightfv (GL_LIGHT1, GL_AMBIENT, lights[1].ambient);
-		glLightfv (GL_LIGHT1, GL_DIFFUSE, lights[1].diffuse);
-		glLightfv (GL_LIGHT1, GL_SPECULAR, lights[1].specular);
-		glEnable  (GL_LIGHT1);
-	}
-	if (lights[2].is_on) {
-		glLightfv (GL_LIGHT2, GL_POSITION, lights[2].position);
-		glLightfv (GL_LIGHT2, GL_AMBIENT, lights[2].ambient);
-		glLightfv (GL_LIGHT2, GL_DIFFUSE, lights[2].diffuse);
-		glLightfv (GL_LIGHT2, GL_SPECULAR, lights[2].specular);
-		glEnable  (GL_LIGHT2);
-	}
-	if (lights[3].is_on) {
-		glLightfv (GL_LIGHT3, GL_POSITION, lights[3].position);
-		glLightfv (GL_LIGHT3, GL_AMBIENT, lights[3].ambient);
-		glLightfv (GL_LIGHT3, GL_DIFFUSE, lights[3].diffuse);
-		glLightfv (GL_LIGHT3, GL_SPECULAR, lights[3].specular);
-		glEnable  (GL_LIGHT3);
-	}
-	glEnable  (GL_LIGHTING);
+	lights[0].Enable(GL_LIGHT0);
+	if (lights[1].is_on)
+		lights[1].Enable(GL_LIGHT1);
+	if (lights[2].is_on)
+		lights[2].Enable(GL_LIGHT2);
+	if (lights[3].is_on)
+		lights[3].Enable(GL_LIGHT3);
+
+	glEnable(GL_LIGHTING);
 }
 
 void CEnvironment::SetupFog () {
@@ -144,7 +134,7 @@ bool CEnvironment::LoadEnvironmentList () {
 	locs.resize(list.Count());
 	for (size_t i=0; i<list.Count(); i++) {
 		const string& line = list.Line(i);
-		locs[i].name = SPStrN (line, "location", "");
+		locs[i] = SPStrN (line, "location", "");
 	}
 	list.MakeIndex (EnvIndex, "location");
 	return true;
@@ -155,11 +145,11 @@ string CEnvironment::GetDir (size_t location, size_t light) const {
 	if (light >= 4) return "";
 	string res =
 	    param.env_dir2 + SEP +
-	    locs[location].name + SEP + lightcond[light].name;
+	    locs[location] + SEP + lightcond[light];
 	return res;
 }
 
-void CEnvironment::LoadSkybox () {
+void CEnvironment::LoadSkybox (const string& EnvDir) {
 	Skybox = new TTexture[param.full_skybox?6:3];
 	Skybox[0].Load(EnvDir, "front.png");
 	Skybox[1].Load(EnvDir, "left.png");
@@ -171,7 +161,7 @@ void CEnvironment::LoadSkybox () {
 	}
 }
 
-void CEnvironment::LoadLight () {
+void CEnvironment::LoadLight (const string& EnvDir) {
 	static const string idxstr = "[fog]-1[0]0[1]1[2]2[3]3[4]4[5]5[6]6";
 
 	CSPList list(24);
@@ -379,32 +369,30 @@ void CEnvironment::DrawFog () {
 }
 
 
-bool CEnvironment::LoadEnvironment (size_t loc, size_t light) {
+void CEnvironment::LoadEnvironment (size_t loc, size_t light) {
 	if (loc >= locs.size()) loc = 0;
 	if (light >= 4) light = 0;
 	// remember: with (example) 3 locations and 4 lights there
 	// are 12 different environments
 	size_t env_id = loc * 100 + light;
 
-	if (env_id == EnvID) {
-		Message ("same environment");
-		return false;
-	}
+	if (env_id == EnvID)
+		return; // Already loaded
+	EnvID = env_id;
 
 	// Set directory. The dir is used several times.
-	EnvDir = GetDir (loc, light);
+	string EnvDir = GetDir (loc, light);
 
 	// Load skybox. If the sky can't be loaded for any reason, the
 	// texture id's are set to 0 and the sky will not be drawn.
-	// There is no error handlung, you see the result on the screen.
+	// There is no error handling, you see the result on the screen.
 	ResetSkybox ();
-	LoadSkybox ();
+	LoadSkybox (EnvDir);
 
 	// Load light conditions.
 	ResetFog ();
 	ResetLight ();
-	LoadLight ();
-	return true;
+	LoadLight (EnvDir);
 }
 
 size_t CEnvironment::GetEnvIdx (const string& tag) const {

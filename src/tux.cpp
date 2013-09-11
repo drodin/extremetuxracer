@@ -31,6 +31,7 @@ still shaped with spheres.
 #include "course.h"
 #include "physics.h"
 #include <GL/glu.h>
+#include <algorithm>
 
 #define MAX_ARM_ANGLE2 30.0
 #define MAX_PADDLING_ANGLE2 35.0
@@ -260,8 +261,7 @@ bool CCharShape::VisibleNode (size_t node_name, float level) {
 
 	if (node->visible) {
 		node->divisions =
-		    MIN (MAX_SPHERE_DIV, MAX (MIN_SPHERE_DIV,
-		                              ROUND_TO_NEAREST (param.tux_sphere_divisions * level / 10)));
+		    clamp (MIN_SPHERE_DIV, ROUND_TO_NEAREST (param.tux_sphere_divisions * level / 10), MAX_SPHERE_DIV);
 		node->radius = 1.0;
 	}
 	if (newActions && useActions) AddAction (node_name, 5, NullVec, level);
@@ -586,18 +586,18 @@ void CCharShape::AdjustJoints (double turnFact, bool isBraking,
 	ext_paddling_angle = MAX_EXT_PADDLING_ANGLE2 * sin(paddling_factor * M_PI);
 	kick_paddling_angle = MAX_KICK_PADDLING_ANGLE2 * sin(paddling_factor * M_PI * 2.0);
 
-	turning_angle[0] = MAX(-turnFact,0.0) * MAX_ARM_ANGLE2;
-	turning_angle[1] = MAX(turnFact,0.0) * MAX_ARM_ANGLE2;
+	turning_angle[0] = max(-turnFact,0.0) * MAX_ARM_ANGLE2;
+	turning_angle[1] = max(turnFact,0.0) * MAX_ARM_ANGLE2;
 	flap_angle = MAX_ARM_ANGLE2 * (0.5 + 0.5 * sin (M_PI * flap_factor * 6 - M_PI / 2));
-	force_angle = max (-20.0, min (20.0, -net_force.z / 300.0));
+	force_angle = clamp (-20.0, -net_force.z / 300.0, 20.0);
 	turn_leg_angle = turnFact * 10;
 
 	ResetJoints ();
 
 	RotateNode ("left_shldr", 3,
-	            MIN (braking_angle + paddling_angle + turning_angle[0], MAX_ARM_ANGLE2) + flap_angle);
+	            min (braking_angle + paddling_angle + turning_angle[0], MAX_ARM_ANGLE2) + flap_angle);
 	RotateNode ("right_shldr", 3,
-	            MIN (braking_angle + paddling_angle + turning_angle[1], MAX_ARM_ANGLE2) + flap_angle);
+	            min (braking_angle + paddling_angle + turning_angle[1], MAX_ARM_ANGLE2) + flap_angle);
 
 	RotateNode ("left_shldr", 2, -ext_paddling_angle);
 	RotateNode ("right_shldr", 2, ext_paddling_angle);
@@ -605,12 +605,12 @@ void CCharShape::AdjustJoints (double turnFact, bool isBraking,
 	RotateNode ("right_hip", 3, -20 - turn_leg_angle + force_angle);
 
 	RotateNode ("left_knee", 3,
-	            -10 + turn_leg_angle - MIN (35, speed) + kick_paddling_angle + force_angle);
+	            -10 + turn_leg_angle - min (35, speed) + kick_paddling_angle + force_angle);
 	RotateNode ("right_knee", 3,
-	            -10 - turn_leg_angle - MIN (35, speed) - kick_paddling_angle + force_angle);
+	            -10 - turn_leg_angle - min (35, speed) - kick_paddling_angle + force_angle);
 
-	RotateNode ("left_ankle", 3, -20 + MIN (50, speed));
-	RotateNode ("right_ankle", 3, -20 + MIN (50, speed));
+	RotateNode ("left_ankle", 3, -20 + min (50, speed));
+	RotateNode ("right_ankle", 3, -20 + min (50, speed));
 	RotateNode ("tail", 3, turnFact * 20);
 	RotateNode ("neck", 3, -50);
 	RotateNode ("head", 3, -30);
