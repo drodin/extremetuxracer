@@ -251,7 +251,7 @@ FTFace::FTFace (const char* fontFilePath)
 		ftFace = 0;
 	} else {
 		numGlyphs = (*ftFace)->num_glyphs;
-		hasKerningTable = FT_HAS_KERNING((*ftFace));
+		hasKerningTable = FT_HAS_KERNING((*ftFace)) != 0;
 	}
 }
 
@@ -263,7 +263,7 @@ FTFace::FTFace (const unsigned char *pBufferBytes, size_t bufferSizeInBytes)
 	err = FT_New_Memory_Face (
 	          *FTLibrary::Instance().GetLibrary(),
 	          (FT_Byte *)pBufferBytes,
-	          bufferSizeInBytes, DEFAULT_FACE_INDEX, ftFace);
+	          (FT_Long)bufferSizeInBytes, DEFAULT_FACE_INDEX, ftFace);
 
 	if (err) {
 		delete ftFace;
@@ -289,7 +289,7 @@ bool FTFace::Attach (const unsigned char *pBufferBytes, size_t bufferSizeInBytes
 
 	open.flags = FT_OPEN_MEMORY;
 	open.memory_base = (FT_Byte *)pBufferBytes;
-	open.memory_size = bufferSizeInBytes;
+	open.memory_size = (FT_Long)bufferSizeInBytes;
 
 	err = FT_Attach_Stream (*ftFace, &open);
 	return !err;
@@ -469,7 +469,7 @@ unsigned int FTGlyphContainer::FontIndex (const unsigned int characterCode) cons
 }
 
 void FTGlyphContainer::Add (FTGlyph* tempGlyph, const unsigned int characterCode) {
-	charMap->InsertIndex (characterCode, glyphs.size());
+	charMap->InsertIndex (characterCode, (unsigned int)glyphs.size());
 	glyphs.push_back (tempGlyph);
 }
 
@@ -615,7 +615,7 @@ FTGLTextureFont::FTGLTextureFont (const unsigned char *pBufferBytes, size_t buff
 }
 
 FTGLTextureFont::~FTGLTextureFont() {
-	glDeleteTextures (textureIDList.size(), (const GLuint*)&textureIDList[0]);
+	glDeleteTextures ((GLsizei)textureIDList.size(), (const GLuint*)&textureIDList[0]);
 }
 
 FTGlyph* FTGLTextureFont::MakeGlyph (unsigned int glyphIndex) {
@@ -688,7 +688,7 @@ GLuint FTGLTextureFont::CreateTexture() {
 
 bool FTGLTextureFont::FaceSize (const unsigned int size, const unsigned int res) {
 	if (!textureIDList.empty()) {
-		glDeleteTextures (textureIDList.size(), (const GLuint*)&textureIDList[0]);
+		glDeleteTextures ((GLsizei)textureIDList.size(), (const GLuint*)&textureIDList[0]);
 		textureIDList.clear();
 		remGlyphs = numGlyphs = face.GlyphCount();
 	}
