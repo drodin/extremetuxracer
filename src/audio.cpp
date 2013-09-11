@@ -20,6 +20,7 @@ GNU General Public License for more details.
 
 #include "audio.h"
 #include "spx.h"
+#include <SDL/SDL.h>
 
 // the global instances of the 3 audio classes
 CAudio Audio;

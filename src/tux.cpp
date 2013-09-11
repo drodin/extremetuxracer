@@ -30,6 +30,7 @@ still shaped with spheres.
 #include "textures.h"
 #include "course.h"
 #include "physics.h"
+#include <GL/glu.h>
 
 #define MAX_ARM_ANGLE2 30.0
 #define MAX_PADDLING_ANGLE2 35.0

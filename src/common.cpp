@@ -21,6 +21,7 @@ GNU General Public License for more details.
 
 #include "common.h"
 #include "spx.h"
+#include <sys/stat.h>
 #include <iostream>
 #include <cerrno>
 #include <ctime>

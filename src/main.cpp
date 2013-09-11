@@ -74,7 +74,7 @@ void InitGame (int argc, char **argv) {
 int main( int argc, char **argv ) {
 	// ****************************************************************
 	cout << "\n----------- Extreme Tux Racer " ETR_VERSION_STRING " ----------------";
-	cout << "\n----------- (C) 2010 Extreme Tuxracer Team  --------\n\n";
+	cout << "\n----------- (C) 2010-2013 Extreme Tuxracer Team  --------\n\n";
 
 	srand (time (NULL));
 	InitConfig (argv[0]);

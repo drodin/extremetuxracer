@@ -20,6 +20,7 @@ GNU General Public License for more details.
 #include "bh.h"
 #include <vector>
 #include <map>
+#include <SDL/SDL_mixer.h>
 
 // --------------------------------------------------------------------
 //				class CAudio

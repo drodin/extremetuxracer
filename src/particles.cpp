@@ -28,6 +28,7 @@ GNU General Public License for more details.
 #include "game_over.h"
 #include "winsys.h"
 #include "physics.h"
+#include <cstdlib>
 #include <list>
 
 // ====================================================================

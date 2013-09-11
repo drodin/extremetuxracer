@@ -22,6 +22,7 @@ GNU General Public License for more details.
 #include "ogl.h"
 #include "spx.h"
 #include "winsys.h"
+#include <GL/glu.h>
 #include <stack>
 
 static const struct {

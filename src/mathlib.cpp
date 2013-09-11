@@ -21,6 +21,7 @@ GNU General Public License for more details.
 #endif
 
 #include "mathlib.h"
+#include <cstdlib>
 #include <algorithm>
 
 double VectorLength (const TVector3 &v) {

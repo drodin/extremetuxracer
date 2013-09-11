@@ -3,11 +3,12 @@
 #include <etr_config.h>
 #endif
 
+#include "quadtree.h"
 #include "textures.h"
 #include "course.h"
 #include "ogl.h"
 
-#include "quadtree.h"
+#include <climits>
 
 #define TERRAIN_ERROR_SCALE 0.1
 #define VERTEX_FORCE_THRESHOLD 100

@@ -94,9 +94,6 @@ public:
 	void ReadFrameBuffer_BMP ();
 	void WritePPM (const char *filepath);
 	void WriteTGA (const char *filepath);
-
-	// versions with explicite header
-	void WriteTGA_H (const char *filepath);
 	void WriteBMP (const char *filepath);
 };
 

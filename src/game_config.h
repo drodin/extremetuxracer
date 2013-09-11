@@ -22,8 +22,6 @@ GNU General Public License for more details.
 #define CONFIG_DIR ".etr"
 #define PLAYER_FILE "players"
 
-using namespace std;
-
 struct TParam {
 	// defined at runtime:
 	//	string	prog_dir;

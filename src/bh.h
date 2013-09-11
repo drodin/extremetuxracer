@@ -19,25 +19,14 @@ GNU General Public License for more details.
 #define BH_H
 
 // --------------------------------------------------------------------
-//			includes
+//			global and or system-dependant includes
 // --------------------------------------------------------------------
 
 #include <cstdint>
-#include <climits>
 #include <cstddef>
 #include <string>
-#include <sys/stat.h>
-
-#include <cmath>
-#include <cstdlib>
-#include <cstring>
 
 #include <GL/gl.h>
-#include <GL/glu.h>
-#include <SDL/SDL.h>
-#include <SDL/SDL_joystick.h>
-#include <SDL/SDL_image.h>
-#include <SDL/SDL_mixer.h>
 
 #ifndef HAVE_CONFIG_H
 #	ifdef _WIN32 // Windows platform
@@ -83,8 +72,6 @@ GNU General Public License for more details.
 #define USE_STENCIL_BUFFER
 
 #include "version.h"
-#define PROG_NAME "ETR"
-#define PACKAGE "etr"
 #define WINDOW_TITLE "Extreme Tux Racer " ETR_VERSION_STRING
 
 using namespace std;

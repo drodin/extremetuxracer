@@ -23,6 +23,8 @@ GNU General Public License for more details.
 #include "spx.h"
 #include "course.h"
 #include "winsys.h"
+#include <SDL/SDL_image.h>
+#include <GL/glu.h>
 #include <fstream>
 #include <cctype>
 
@@ -145,7 +147,9 @@ void CImage::ReadFrameBuffer_BMP () {
 // ---------------------------
 
 void CImage::WritePPM (const char *filepath) {
-	if (data == NULL) return;
+	if (data == NULL)
+		return;
+
 	std::ofstream file(filepath);
 
 	file << "P6\n# A Raw PPM file"
@@ -153,10 +157,12 @@ void CImage::WritePPM (const char *filepath) {
 	     << "\n# height\n" << ny
 	     << "\n# max component value\n255"<< std::endl;
 
-	file.write ((const char*) data, nx * ny * depth);
-	file.close ();
+	file.write(reinterpret_cast<char*>(data), depth * nx * ny);
 }
 
+#ifdef _MSC_VER
+#pragma pack(push, 1)
+#endif
 struct TTgaHeader {
 	char tfType;
 	char tfColorMapType;
@@ -168,19 +174,17 @@ struct TTgaHeader {
 	short tfHeight;
 	char tfBpp;
 	char tfImageDes;
+#ifdef _MSC_VER
 };
+#pragma pack(pop)
+#else
+} __attribute__((packed));
+#endif
 
 void CImage::WriteTGA (const char *filepath) {
-	if (data == NULL) return;
-	std::ofstream out(filepath, std::ios_base::out|std::ios_base::binary);
-	static short TGAhead[] = {0, 2, 0, 0, 0, 0, nx, ny, 24};
+	if (data == NULL)
+		return;
 
-	out.write(reinterpret_cast<char*>(&TGAhead), sizeof(TGAhead));
-	out.write(reinterpret_cast<char*>(data), 3 * nx * ny);
-}
-
-void CImage::WriteTGA_H (const char *filepath) {
-	if (data == NULL) return;
 	TTgaHeader header;
 
 	header.tfType = 0;
@@ -189,8 +193,8 @@ void CImage::WriteTGA_H (const char *filepath) {
 	for (int i=0; i<5; i++) header.tfColorMapSpec[i] = 0;
 	header.tfOrigX = 0;
 	header.tfOrigY = 0;
-	header.tfWidth = Winsys.resolution.width;
-	header.tfHeight = Winsys.resolution.height;
+	header.tfWidth = nx;
+	header.tfHeight = ny;
 	header.tfBpp = 24;
 	header.tfImageDes = 0;
 
@@ -664,8 +668,8 @@ void CTexture::DrawNumStr (const char *s, int x, int y, float size, const TColor
 //				screenshot
 // --------------------------------------------------------------------
 
-// 0 ppm, 1 tga, 2 tga_header, 3 bmp
-#define SCREENSHOT_PROC 3
+// 0 ppm, 1 tga, 2 bmp
+#define SCREENSHOT_PROC 2
 
 void ScreenshotN () {
 	CImage image;
@@ -688,11 +692,6 @@ void ScreenshotN () {
 			image.WriteTGA (path.c_str());
 			break;
 		case 2:
-			path += ".tga";
-			image.ReadFrameBuffer_TGA ();
-			image.WriteTGA_H (path.c_str());
-			break;
-		case 3:
 			path += ".bmp";
 			image.ReadFrameBuffer_BMP ();
 			image.WriteBMP (path.c_str());

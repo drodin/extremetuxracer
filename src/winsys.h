@@ -19,6 +19,7 @@ GNU General Public License for more details.
 #define WINSYS_H
 
 #include "bh.h"
+#include <SDL/SDL.h>
 
 #define NUM_RESOLUTIONS 10
 

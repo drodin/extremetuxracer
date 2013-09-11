@@ -19,6 +19,7 @@ GNU General Public License for more details.
 #define STATES_H
 
 #include "bh.h"
+#include <SDL/SDL.h>
 
 
 class CWinsys;
