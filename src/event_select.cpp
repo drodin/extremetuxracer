@@ -113,7 +113,6 @@ void CEventSelect::Enter () {
 
 	Events.MakeUnlockList (Players.GetCurrUnlocked());
 	Music.Play (param.menu_music, -1);
-	g_game.loopdelay = 20;
 }
 
 void CEventSelect::Loop (double timestep) {

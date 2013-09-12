@@ -407,6 +407,12 @@ void CSPList::Add (const string& line) {
 	}
 }
 
+void CSPList::AddLine () {
+	if (flines.size() < fmax) {
+		flines.push_back(emptyString);
+	}
+}
+
 void CSPList::Append (const string& line, size_t idx) {
 	if (idx >= flines.size()) return;
 	flines[idx] += line;
@@ -422,7 +428,7 @@ bool CSPList::Load (const string &filepath) {
 	string line;
 
 	if (!tempfile) {
-		Message ("CSPList::Load - unable to open " + filepath, "");
+		Message ("CSPList::Load - unable to open " + filepath);
 		return false;
 	} else {
 		bool backflag = false;
@@ -456,7 +462,7 @@ bool CSPList::Load (const string &filepath) {
 						backflag = fwdflag;
 					}
 				} else {
-					Message ("CSPList::Load - not enough lines","");
+					Message ("CSPList::Load - not enough lines");
 					return false;
 				}
 			}
@@ -472,7 +478,7 @@ bool CSPList::Load (const string& dir, const string& filename) {
 bool CSPList::Save (const string &filepath) const {
 	std::ofstream tempfile(filepath.c_str());
 	if (!tempfile) {
-		Message ("CSPList::Save - unable to open " + filepath, "");
+		Message ("CSPList::Save - unable to open " + filepath);
 		return false;
 	} else {
 		for (size_t i=0; i<flines.size(); i++) {

@@ -104,7 +104,6 @@ void CRegist::Enter (void) {
 	textbuttons[0] = AddTextButton (Trans.Text(60), CENTER, AutoYPosN (62), siz);
 	textbuttons[1] = AddTextButton (Trans.Text(61), CENTER, AutoYPosN (70), siz);
 
-	g_game.loopdelay = 10;
 	if (Char.CharList.empty())
 		Winsys.Terminate(); // Characters are necessary - ETR is unusable otherwise
 }

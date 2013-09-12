@@ -509,7 +509,7 @@ void CControl::SolveOdeSystem (double timestep) {
 	bool done = false;
 	while (!done) {
 		if (t >= tfinal) {
-			Message ("t >= tfinal in ode_system()", "");
+			Message ("t >= tfinal in ode_system()");
 			break;
 		}
 		if (1.1 * h > tfinal - t) {

@@ -45,6 +45,7 @@ struct TParam {
 	// main config params:
 	bool	fullscreen;
 	size_t	res_type;
+	uint32_t	framerate;
 	int		perf_level;
 	size_t	language;
 	int		sound_volume;

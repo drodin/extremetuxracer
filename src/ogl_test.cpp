@@ -54,7 +54,6 @@ void COglTest::Keyb(unsigned int key, bool special, bool release, int x, int y) 
 
 void COglTest::Enter() {
 	Winsys.KeyRepeat (true);
-	g_game.loopdelay = 1;
 }
 
 void COglTest::Loop(double timestep) {

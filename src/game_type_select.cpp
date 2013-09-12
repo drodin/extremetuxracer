@@ -118,7 +118,6 @@ void CGameTypeSelect::Enter () {
 	textbuttons[6] = AddTextButton (Trans.Text(5), CENTER, top + dist * 6, siz);
 
 	Music.Play (param.menu_music, -1);
-	g_game.loopdelay = 10;
 }
 
 void CGameTypeSelect::Loop (double time_step) {

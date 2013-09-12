@@ -22,6 +22,7 @@ GNU General Public License for more details.
 #include "states.h"
 #include "ogl.h"
 #include "winsys.h"
+#include <ctime>
 
 State::Manager State::manager(Winsys);
 
@@ -33,12 +34,19 @@ State::Manager::~Manager() {
 void State::Manager::Run(State& entranceState) {
 	current = &entranceState;
 	current->Enter();
+	clock_t ticks = clock();
 	while (!quit) {
 		PollEvent();
 		if (next)
 			EnterNextState();
 		CallLoopFunction();
-		SDL_Delay(g_game.loopdelay);
+		if (param.framerate != 0) {
+			clock_t nticks = clock();
+			int32_t sleeptime = CLOCKS_PER_SEC/param.framerate - (nticks-ticks);
+			if (sleeptime > 0)
+				SDL_Delay(sleeptime);
+			ticks = nticks;
+		}
 	}
 	current->Exit();
 	previous = current;

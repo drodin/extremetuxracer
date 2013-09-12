@@ -50,7 +50,7 @@ void CCredits::LoadCreditList () {
 	for (size_t i=0; i<list.Count(); i++) {
 		const string& line = list.Line(i);
 		TCredits credit;
-		credit.text = SPStrN (line, "text", "");
+		credit.text = SPStrN (line, "text");
 
 		double offset = SPFloatN (line, "offs", 0) * OFFS_SCALE_FACTOR * Winsys.scale;
 		if (i>0) credit.offs = CreditList.back().offs + (int)offset;

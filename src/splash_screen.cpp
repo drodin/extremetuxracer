@@ -55,7 +55,6 @@ void CSplashScreen::Enter() {
 	Winsys.ShowCursor (!param.ice_cursor);
 	init_ui_snow ();
 	Music.Play (param.menu_music, -1);
-	g_game.loopdelay = 10;
 }
 
 void CSplashScreen::Loop(double timestep) {

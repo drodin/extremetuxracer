@@ -516,10 +516,10 @@ void CTexture::LoadTextureList () {
 	if (list.Load (param.tex_dir, "textures.lst")) {
 		for (size_t i=0; i<list.Count(); i++) {
 			const string& line = list.Line(i);
-			string name = SPStrN (line, "name", "");
+			string name = SPStrN (line, "name");
 			int id = SPIntN (line, "id", -1);
 			CommonTex.resize(max(CommonTex.size(), (size_t)id+1));
-			string texfile = SPStrN (line, "file", "");
+			string texfile = SPStrN (line, "file");
 			bool rep = SPBoolN (line, "repeat", false);
 			if (id >= 0) {
 				CommonTex[id] = new TTexture();

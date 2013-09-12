@@ -135,7 +135,7 @@ bool CEnvironment::LoadEnvironmentList () {
 	locs.resize(list.Count());
 	for (size_t i=0; i<list.Count(); i++) {
 		const string& line = list.Line(i);
-		locs[i] = SPStrN (line, "location", "");
+		locs[i] = SPStrN (line, "location");
 	}
 	list.MakeIndex (EnvIndex, "location");
 	return true;
@@ -167,7 +167,7 @@ void CEnvironment::LoadLight (const string& EnvDir) {
 
 	CSPList list(24);
 	if (!list.Load (EnvDir, "light.lst")) {
-		Message ("could not load light file", "");
+		Message ("could not load light file");
 		return;
 	}
 

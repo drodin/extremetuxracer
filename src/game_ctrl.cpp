@@ -48,9 +48,9 @@ bool CEvents::LoadEventList () {
 		if (type == 0) {
 			RaceList.push_back(TRace2());
 			RaceList.back().race = SPStrN (line, "race", errorString);
-			string item = SPStrN (line, "course", "");
+			string item = SPStrN (line, "course");
 			RaceList.back().course = Course.GetCourseIdx (item);
-			item = SPStrN (line, "light", "");
+			item = SPStrN (line, "light");
 			RaceList.back().light = Env.GetLightIdx (item);
 			RaceList.back().snow = SPIntN (line, "snow", 0);
 			RaceList.back().wind = SPIntN (line, "wind", 0);
@@ -73,7 +73,7 @@ bool CEvents::LoadEventList () {
 			int num = SPIntN (line, "num", 0);
 			CupList.back().races.resize(num);
 			for (int ii=0; ii<num; ii++) {
-				string race = SPStrN (line, Int_StrN (ii+1), "");
+				string race = SPStrN (line, Int_StrN (ii+1));
 				CupList.back().races[ii] = &RaceList[GetRaceIdx(race)];
 			}
 		}
@@ -90,7 +90,7 @@ bool CEvents::LoadEventList () {
 			int num = SPIntN (line, "num", 0);
 			EventList.back().cups.resize(num);
 			for (int ii=0; ii<num; ii++) {
-				string cup = SPStrN (line, Int_StrN (ii+1), "");
+				string cup = SPStrN (line, Int_StrN (ii+1));
 				EventList.back().cups[ii] = &CupList[GetCupIdx(cup)];
 			}
 		}
@@ -206,8 +206,8 @@ bool CPlayers::LoadPlayers () {
 	for (size_t i=0; i<list.Count(); i++) {
 		const string& line = list.Line(i);
 		plyr[i].name = SPStrN (line, "name", "unknown");
-		plyr[i].funlocked = SPStrN (line, "unlocked", "");
-		plyr[i].avatar = SPStrN (line, "avatar", "");
+		plyr[i].funlocked = SPStrN (line, "unlocked");
+		plyr[i].avatar = SPStrN (line, "avatar");
 		plyr[i].texture = GetAvatarTexture(AvatarIndex[plyr[i].avatar]);
 		plyr[i].ctrl = NULL;
 		int active = SPIntN (line, "active", 0);
@@ -338,8 +338,8 @@ void CCharacter::LoadCharacterList () {
 	CharList.resize(list.Count());
 	for (size_t i=0; i<list.Count(); i++) {
 		const string& line = list.Line(i);
-		CharList[i].name = SPStrN (line, "name", "");
-		CharList[i].dir = SPStrN (line, "dir", "");
+		CharList[i].name = SPStrN (line, "name");
+		CharList[i].dir = SPStrN (line, "dir");
 		string typestr = SPStrN (line, "type", "unknown");
 		CharList[i].type = SPIntN (char_type_index, typestr, -1);
 

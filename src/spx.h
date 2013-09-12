@@ -24,6 +24,9 @@ GNU General Public License for more details.
 
 using namespace std;
 
+extern const string emptyString;
+extern const string errorString;
+
 // ----- elementary string functions ----------------------------------
 string   MakePathStr  (const string& src, const string& add);
 void     SInsertN     (string &s, size_t pos, const string& ins);
@@ -57,7 +60,7 @@ bool     SPExistsN    (const string &s, const string &tag);
 size_t   SPPosN       (const string &s, const string &tag);
 
 string   SPItemN      (const string &s, const string &tag);
-string   SPStrN       (const string &s, const string &tag, const string& def);
+string   SPStrN       (const string &s, const string &tag, const string& def = emptyString);
 int      SPIntN       (const string &s, const string &tag, const int def);
 bool     SPBoolN      (const string &s, const string &tag, const bool def);
 float    SPFloatN     (const string &s, const string &tag, const float def);
@@ -100,6 +103,7 @@ public:
 	size_t Count () const { return flines.size(); }
 	void Clear () { flines.clear(); }
 	void Add (const string& line);
+	void AddLine();
 	void Append (const string& line, size_t idx);
 	void Print () const;
 	bool Load (const string &filepath);
@@ -109,8 +113,5 @@ public:
 
 	void MakeIndex (map<string, size_t>& index, const string &tag);
 };
-
-extern const string emptyString;
-extern const string errorString;
 
 #endif

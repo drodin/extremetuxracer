@@ -93,8 +93,8 @@ void CSound::LoadSoundList () {
 	if (list.Load (param.sounds_dir, "sounds.lst")) {
 		for (size_t i=0; i<list.Count(); i++) {
 			const string& line = list.Line(i);
-			string name = SPStrN (line, "name", "");
-			string soundfile = SPStrN (line, "file", "");
+			string name = SPStrN (line, "name");
+			string soundfile = SPStrN (line, "file");
 			string path = MakePathStr (param.sounds_dir, soundfile);
 			LoadChunk (name, path.c_str());
 		}
@@ -233,8 +233,8 @@ void CMusic::LoadMusicList () {
 	if (list.Load (param.music_dir, "music.lst")) {
 		for (size_t i=0; i<list.Count(); i++) {
 			const string& line = list.Line(i);
-			string name = SPStrN (line, "name", "");
-			string musicfile = SPStrN (line, "file", "");
+			string name = SPStrN (line, "name");
+			string musicfile = SPStrN (line, "file");
 			string path = MakePathStr (param.music_dir, musicfile);
 			LoadPiece (name, path.c_str());
 		}
@@ -250,7 +250,7 @@ void CMusic::LoadMusicList () {
 		themes.resize(list.Count());
 		for (size_t i=0; i<list.Count(); i++) {
 			const string& line = list.Line(i);
-			string name = SPStrN (line, "name", "");
+			string name = SPStrN (line, "name");
 			ThemesIndex[name] = i;
 			string item = SPStrN (line, "race", "race_1");
 			themes[i].situation[0] = musics[MusicIndex[item]];
@@ -310,7 +310,7 @@ void CMusic::Update () {
 }
 
 bool CMusic::Play (Mix_Music* music, int loop, int volume) {
-	if(!music)
+	if (!music)
 		return false;
 
 	int vol = clamp(0, volume, MIX_MAX_VOLUME);

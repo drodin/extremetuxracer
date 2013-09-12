@@ -30,6 +30,7 @@ GNU General Public License for more details.
 #include "translation.h"
 #include "regist.h"
 #include "winsys.h"
+#include "spx.h"
 #include <cctype>
 
 CNewPlayer NewPlayer;
@@ -103,7 +104,7 @@ void CNewPlayer::Enter() {
 	double len = FT.GetTextWidth (Trans.Text(15));
 	textbuttons[1] = AddTextButton (Trans.Text(15), area.right-len-50, AutoYPosN (70), siz);
 
-	textfield = AddTextField("", area.left, frametop, framewidth, frameheight);
+	textfield = AddTextField(emptyString, area.left, frametop, framewidth, frameheight);
 }
 
 void CNewPlayer::Loop(double timestep) {

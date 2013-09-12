@@ -232,7 +232,6 @@ void CTools::Enter() {
 	InitFrameTools ();
 
 	Winsys.KeyRepeat (true);
-	g_game.loopdelay = 1;
 }
 
 void CTools::Keyb(unsigned int key, bool special, bool release, int x, int y) {

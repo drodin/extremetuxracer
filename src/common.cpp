@@ -158,6 +158,11 @@ void Message (const string& a, const string& b) {
 	msg_list.Add (a + b);
 }
 
+void Message (const string& msg) {
+	cout << msg << endl;
+	msg_list.Add (msg);
+}
+
 // --------------------------------------------------------------------
 //				file utils
 // --------------------------------------------------------------------

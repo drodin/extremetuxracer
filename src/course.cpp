@@ -222,7 +222,7 @@ void CCourse::MakeCourseNormals () {
 		nmls = new TVector3[nx * ny];
 	} catch (...) {
 		nmls = NULL;
-		Message ("Allocation failed in MakeCourseNormals" , "");
+		Message ("Allocation failed in MakeCourseNormals");
 	}
 	CalcNormals ();
 }
@@ -404,7 +404,7 @@ void CCourse::LoadItemList () {
 		double xx = (nx - x) / (double)(nx - 1.0) * curr_course->size.x;
 		double zz = -(ny - z) / (double)(ny - 1.0) * curr_course->size.y;
 
-		string name = SPStrN (line, "name", "");
+		string name = SPStrN (line, "name");
 		size_t type = ObjectIndex[name];
 		if (ObjTypes[type].texture == NULL && ObjTypes[type].drawable) {
 			string terrpath = param.obj_dir + SEP + ObjTypes[type].textureFile;
@@ -584,13 +584,13 @@ bool CCourse::LoadObjectTypes () {
 
 	for (size_t i=0; i<list.Count(); i++) {
 		const string& line = list.Line(i);
-		ObjTypes[i].name = SPStrN (line, "name", "");
+		ObjTypes[i].name = SPStrN (line, "name");
 		ObjTypes[i].textureFile = ObjTypes[i].name;
 		ObjTypes[i].texture = NULL;
 
 		ObjTypes[i].drawable = SPBoolN (line, "draw", true);
 		if (ObjTypes[i].drawable) {
-			ObjTypes[i].textureFile = SPStrN (line, "texture", "");
+			ObjTypes[i].textureFile = SPStrN (line, "texture");
 		}
 		ObjTypes[i].collectable = SPBoolN (line, "snap", -1) != 0;
 		if (ObjTypes[i].collectable == 0) {
@@ -641,8 +641,8 @@ bool CCourse::LoadTerrainTypes () {
 	TerrList.resize(list.Count());
 	for (size_t i=0; i<list.Count(); i++) {
 		const string& line = list.Line(i);
-		TerrList[i].textureFile = SPStrN (line, "texture", "");
-		TerrList[i].sound = SPStrN (line, "sound", "");
+		TerrList[i].textureFile = SPStrN (line, "texture");
+		TerrList[i].sound = SPStrN (line, "sound");
 		TerrList[i].starttex = SPIntN (line, "starttex", -1);
 		TerrList[i].tracktex = SPIntN (line, "tracktex", -1);
 		TerrList[i].stoptex = SPIntN (line, "stoptex", -1);
@@ -670,13 +670,13 @@ bool CCourse::LoadTerrainMap () {
 		return false;
 	}
 	if (nx != terrImage.nx || ny != terrImage.ny) {
-		Message ("wrong terrain size", "");
+		Message ("wrong terrain size");
 	}
 
 	try {
 		terrain = new char[nx * ny];
 	} catch (...) {
-		Message ("Allocation failed in LoadTerrainMap", "");
+		Message ("Allocation failed in LoadTerrainMap");
 	}
 	int pad = 0;
 	for (int y=0; y<ny; y++) {
@@ -715,7 +715,7 @@ bool CCourse::LoadCourseList () {
 		CourseList[i].name = SPStrN (line1, "name", "noname");
 		CourseList[i].dir = SPStrN (line1, "dir", "nodir");
 
-		string desc = SPStrN (line1, "desc", "");
+		string desc = SPStrN (line1, "desc");
 		FT.AutoSizeN (2);
 		vector<string> desclist = FT.MakeLineList (desc.c_str(), 335 * Winsys.scale - 16.0);
 		size_t cnt = min(desclist.size(), MAX_DESCRIPTION_LINES);

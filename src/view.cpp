@@ -318,7 +318,7 @@ void update_view (CControl *ctrl, double dt) {
 		}
 
 		default:
-			Message ("code not reached", "");
+			Message ("code not reached");
 			return;
 	}
 

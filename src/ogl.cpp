@@ -69,12 +69,12 @@ void InitOpenglExtensions () {
 		if (glLockArraysEXT_p != NULL && glUnlockArraysEXT_p != NULL) {
 
 		} else {
-			Message ("GL_EXT_compiled_vertex_array extension NOT supported", "");
+			Message ("GL_EXT_compiled_vertex_array extension NOT supported");
 			glLockArraysEXT_p = NULL;
 			glUnlockArraysEXT_p = NULL;
 		}
 	} else {
-		Message ("No function available for obtaining GL proc addresses", "");
+		Message ("No function available for obtaining GL proc addresses");
 	}
 
 }
@@ -84,20 +84,20 @@ void PrintGLInfo () {
 	Message ("Gl renderer: ", (char*)glGetString (GL_RENDERER));
 	Message ("Gl version: ", (char*)glGetString (GL_VERSION));
 	string extensions = (char*)glGetString (GL_EXTENSIONS);
-	Message ("", "");
-	Message ("Gl extensions:", "");
-	Message ("", "");
+	Message ("");
+	Message ("Gl extensions:");
+	Message ("");
 
 	size_t oldpos = 0;
 	size_t pos;
 	while ((pos = extensions.find(' ', oldpos)) != string::npos) {
 		string s = extensions.substr(oldpos, pos-oldpos);
-		Message(s, "");
+		Message(s);
 		oldpos = pos+1;
 	}
-	Message(extensions.substr(oldpos), "");
+	Message(extensions.substr(oldpos));
 
-	Message ("", "");
+	Message ("");
 	for (int i=0; i<(int)(sizeof(gl_values)/sizeof(gl_values[0])); i++) {
 		switch (gl_values[i].type) {
 			case GL_INT: {
@@ -122,7 +122,7 @@ void PrintGLInfo () {
 				break;
 			}
 			default:
-				Message ("", "");
+				Message ("");
 		}
 	}
 }
@@ -397,7 +397,7 @@ void set_gl_options (TRenderMode mode) {
 			break;
 
 		default:
-			Message ("not a valid render mode", "");
+			Message ("not a valid render mode");
 	}
 }
 /* defined but not used

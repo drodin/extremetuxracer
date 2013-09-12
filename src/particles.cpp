@@ -331,7 +331,7 @@ void create_new_particles (const TVector3& loc, TVector3 vel, int num) {
 	double speed = NormVector (vel);
 
 	if (particles.size() + num > MAX_PARTICLES) {
-		Message ("maximum number of particles exceeded", "");
+		Message ("maximum number of particles exceeded");
 	}
 	for (int i=0; i<num; i++) {
 		particles.push_back(Particle());
