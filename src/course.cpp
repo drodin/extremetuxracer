@@ -32,6 +32,7 @@ GNU General Public License for more details.
 #include "font.h"
 #include "physics.h"
 #include "winsys.h"
+#include <cmath>
 
 CCourse Course;
 
@@ -718,7 +719,7 @@ bool CCourse::LoadCourseList () {
 		string desc = SPStrN (line1, "desc");
 		FT.AutoSizeN (2);
 		vector<string> desclist = FT.MakeLineList (desc.c_str(), 335 * Winsys.scale - 16.0);
-		size_t cnt = min(desclist.size(), MAX_DESCRIPTION_LINES);
+		size_t cnt = min<size_t>(desclist.size(), MAX_DESCRIPTION_LINES);
 		CourseList[i].num_lines = cnt;
 		for (size_t ll=0; ll<cnt; ll++) {
 			CourseList[i].desc[ll] = desclist[ll];
