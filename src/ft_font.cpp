@@ -557,19 +557,27 @@ const FTPoint& FTTextureGlyph::Render (const FTPoint& pen) {
 
 	glTranslatef (pen.X(),  pen.Y(), 0.0f);
 
-	glBegin (GL_QUADS);
-	glTexCoord2f (uv[0].X(), uv[0].Y());
-	glVertex2f (pos.X(), pos.Y());
+	const GLfloat tex [] = {
+		uv[0].X(), uv[0].Y(),
+		uv[0].X(), uv[1].Y(),
+		uv[1].X(), uv[1].Y(),
+		uv[1].X(), uv[0].Y(),
+	};
+	const GLfloat vtx [] = {
+		pos.X(), pos.Y(),
+		pos.X(), pos.Y() - destHeight,
+		destWidth + pos.X(), pos.Y() - destHeight,
+		destWidth + pos.X(), pos.Y()
+	};
+	glEnableClientState(GL_VERTEX_ARRAY);
+	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 
-	glTexCoord2f (uv[0].X(), uv[1].Y());
-	glVertex2f (pos.X(), pos.Y() - destHeight);
+	glVertexPointer(2, GL_FLOAT, 0, vtx);
+	glTexCoordPointer(2, GL_FLOAT, 0, tex);
+	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 
-	glTexCoord2f (uv[1].X(), uv[1].Y());
-	glVertex2f (destWidth + pos.X(), pos.Y() - destHeight);
-
-	glTexCoord2f (uv[1].X(), uv[0].Y());
-	glVertex2f (destWidth + pos.X(), pos.Y());
-	glEnd();
+	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+	glDisableClientState(GL_VERTEX_ARRAY);
 	return advance;
 }
 

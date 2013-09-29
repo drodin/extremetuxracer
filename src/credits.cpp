@@ -132,17 +132,28 @@ static void DrawBackLogo (int x, int y, double size) {
 	else left = (Winsys.resolution.width - width) / 2;
 	right = left + width;
 
-	glColor4f (1.0, 1.0, 1.0, 0.4);
-	glBegin (GL_QUADS);
-	glTexCoord2f (0, 0);
-	glVertex2f (left, bott);
-	glTexCoord2f (1, 0);
-	glVertex2f (right, bott);
-	glTexCoord2f (1, 1);
-	glVertex2f (right, top);
-	glTexCoord2f (0, 1);
-	glVertex2f (left, top);
-	glEnd();
+	glColor4f(1.0, 1.0, 1.0, 0.4);
+	const GLfloat tex [] = {
+		0, 0,
+		1, 0,
+		1, 1,
+		0, 1
+	};
+	const GLfloat vtx [] = {
+		left, bott,
+		right, bott,
+		right, top,
+		left, top
+	};
+	glEnableClientState(GL_VERTEX_ARRAY);
+	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+
+	glVertexPointer(2, GL_FLOAT, 0, vtx);
+	glTexCoordPointer(2, GL_FLOAT, 0, tex);
+	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+
+	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+	glDisableClientState(GL_VERTEX_ARRAY);
 }
 
 void CCredits::Keyb (unsigned int key, bool special, bool release, int x, int y) {

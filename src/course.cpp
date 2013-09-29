@@ -236,10 +236,6 @@ void CCourse::MakeCourseNormals () {
 void CCourse::FillGlArrays() {
 	TVector3 *normals = nmls;
 
-	glDisableClientState (GL_VERTEX_ARRAY);
-	glDisableClientState (GL_NORMAL_ARRAY);
-	glDisableClientState (GL_COLOR_ARRAY);
-
 	if (vnc_array == NULL)
 		vnc_array = new GLubyte[STRIDE_GL_ARRAY * nx * ny];
 
@@ -263,17 +259,6 @@ void CCourse::FillGlArrays() {
 			BYTEVAL(3) = 255;
 		}
 	}
-
-	glEnableClientState (GL_VERTEX_ARRAY);
-	glVertexPointer (3, GL_FLOAT, STRIDE_GL_ARRAY, vnc_array);
-
-	glEnableClientState (GL_NORMAL_ARRAY);
-	glNormalPointer (GL_FLOAT, STRIDE_GL_ARRAY,
-	                 vnc_array + 4*sizeof(GLfloat));
-
-	glEnableClientState (GL_COLOR_ARRAY);
-	glColorPointer (4, GL_UNSIGNED_BYTE, STRIDE_GL_ARRAY,
-	                vnc_array + 8*sizeof(GLfloat));
 }
 
 void CCourse::MakeStandardPolyhedrons () {

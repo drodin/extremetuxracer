@@ -53,10 +53,9 @@ GNU General Public License for more details.
 
 struct TGuiParticle {
 	TVector2 pt;
-	double size;
+	float size;
 	TVector2 vel;
-	TVector2 tex_min;
-	TVector2 tex_max;
+	const GLfloat* tex;
 
 	TGuiParticle(double x, double y);
 	void Draw(double xres, double yres) const;
@@ -64,7 +63,6 @@ struct TGuiParticle {
 };
 
 static list<TGuiParticle> particles_2d;
-static GLfloat part_col[4] = {1, 1, 1, 0.5 };
 static TVector2 push_position(0, 0);
 static TVector2 last_push_position;
 static double last_update_time = -1;
@@ -81,36 +79,43 @@ TGuiParticle::TGuiParticle(double x, double y) {
 	vel.x = 0;
 	vel.y = -BASE_VELOCITY - p_dist * VELOCITY_RANGE;
 
-	int type = (int) (frand() * (4.0 - EPS));
-	if (type == 0) {
-		tex_min = TVector2(0.0, 0.0);
-		tex_max = TVector2(0.5, 0.5);
-	} else if (type == 1) {
-		tex_min = TVector2(0.5, 0.0);
-		tex_max = TVector2(1.0, 0.5);
-	} else if (type == 2) {
-		tex_min = TVector2(0.5, 0.5);
-		tex_max = TVector2(1.0, 1.0);
-	} else {
-		tex_min = TVector2(0.0, 0.5);
-		tex_max = TVector2(0.5, 1.0);
-	}
+	static const GLfloat tex_coords[4][8] = {
+		{
+			0.0, 0.0,
+			0.5, 0.0,
+			0.5, 0.5,
+			0.0, 0.5
+		}, {
+			0.5, 0.0,
+			1.0, 0.0,
+			1.0, 0.5,
+			0.5, 0.5
+		}, {
+			0.0, 0.5,
+			0.5, 0.5,
+			0.5, 1.0,
+			0.0, 1.0
+		}, {
+			0.5, 0.5,
+			1.0, 0.5,
+			1.0, 1.0,
+			0.5, 1.0
+		}
+	};
+	int type = rand() % 4;
+	tex = tex_coords[type];
 }
 
 void TGuiParticle::Draw(double xres, double yres) const {
-	glPushMatrix();
-	glTranslatef (pt.x * xres, pt.y * yres, 0);
-	glBegin (GL_QUADS);
-	glTexCoord2f (tex_min.x, tex_min.y);
-	glVertex2f (0, 0);
-	glTexCoord2f (tex_max.x, tex_min.y);
-	glVertex2f (size, 0);
-	glTexCoord2f (tex_max.x, tex_max.y);
-	glVertex2f (size, size);
-	glTexCoord2f (tex_min.x, tex_max.y);
-	glVertex2f (0, size);
-	glEnd();
-	glPopMatrix();
+	const GLfloat vtx[] = {
+		pt.x * xres,        pt.y * yres,
+		pt.x * xres + size, pt.y * yres,
+		pt.x * xres + size, pt.y * yres + size,
+		pt.x * xres,        pt.y * yres + size
+	};
+	glVertexPointer(2, GL_FLOAT, 0, vtx);
+	glTexCoordPointer(2, GL_FLOAT, 0, tex);
+	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 }
 
 void TGuiParticle::Update(double time_step, double push_timestep, const TVector2& push_vector) {
@@ -148,7 +153,7 @@ void init_ui_snow () {
 	push_position = TVector2(0.0, 0.0);
 }
 
-void update_ui_snow (double time_step) {
+void update_ui_snow(double time_step) {
 	double time = Winsys.ClockTime ();
 
 	TVector2 push_vector;
@@ -201,11 +206,15 @@ void draw_ui_snow () {
 
 	glTexEnvf (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 	Tex.BindTex (SNOW_PART);
-	glColor4f(part_col[0], part_col[1], part_col[2], part_col[3]);
-	part_col[3] = 0.3;
+	glColor4f(1.f, 1.f, 1.f, 0.3f);
+
+	glEnableClientState(GL_VERTEX_ARRAY);
+	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 	for (list<TGuiParticle>::const_iterator i = particles_2d.begin(); i != particles_2d.end(); ++i) {
 		i->Draw(xres, yres);
 	}
+	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+	glDisableClientState(GL_VERTEX_ARRAY);
 }
 
 void push_ui_snow (const TVector2& pos) {
@@ -339,7 +348,7 @@ void create_new_particles (const TVector3& loc, TVector3 vel, int num) {
 		newp->pt.x = loc.x + 2.*(frand() - 0.5) * START_RADIUS;
 		newp->pt.y = loc.y;
 		newp->pt.z = loc.z + 2.*(frand() - 0.5) * START_RADIUS;
-		newp->type = (int) (frand() * (4.0 - EPS));
+		newp->type = rand() % 4;
 		newp->base_size =  (frand() + 0.5) * OLD_PART_SIZE;
 		newp->cur_size = NEW_PART_SIZE;
 		newp->age = frand() * MIN_AGE;
@@ -377,8 +386,7 @@ void draw_particles (const CControl *ctrl) {
 	ScopedRenderMode rm(PARTICLES);
 	Tex.BindTex (SNOW_PART);
 	glTexEnvf (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-	glColor4f(part_col[0], part_col[1], part_col[2], part_col[3]);
-	part_col[3] = 0.8;    // !!!!!!!!!
+	glColor4f(1.f, 1.f, 1.f, 0.8f);
 
 	for (list<Particle>::const_iterator p = particles.begin(); p != particles.end(); ++p) {
 		if (p->age >= 0)

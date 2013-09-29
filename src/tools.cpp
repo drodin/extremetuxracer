@@ -135,16 +135,21 @@ static const TLight toollight = {
 };
 static int tool_mode = 0;
 
-void DrawQuad (float x, float y, float w, float h,
-               float scrheight, const TColor& col, int frame) {
+void DrawQuad (float x, float y, float w, float h, float scrheight, const TColor& col, int frame) {
 	glDisable (GL_TEXTURE_2D);
 	glColor4f (col.r, col.g, col.b, col.a);
-	glBegin (GL_QUADS);
-	glVertex2f (x-frame,   scrheight-y-h-frame);
-	glVertex2f (x+w+frame, scrheight-y-h-frame);
-	glVertex2f (x+w+frame, scrheight-y+frame);
-	glVertex2f (x-frame,   scrheight-y+frame);
-	glEnd();
+	const GLfloat vtx [] = {
+		x - frame, scrheight - y - h - frame,
+		x + w + frame, scrheight - y - h - frame,
+		x + w + frame, scrheight - y + frame,
+		x - frame, scrheight - y + frame
+	};
+	glEnableClientState(GL_VERTEX_ARRAY);
+
+	glVertexPointer(2, GL_FLOAT, 0, vtx);
+	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+
+	glDisableClientState(GL_VERTEX_ARRAY);
 	glEnable (GL_TEXTURE_2D);
 }
 

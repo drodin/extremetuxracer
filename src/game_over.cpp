@@ -61,36 +61,6 @@ void CGameOver::Mouse (int button, int state, int x, int y) {
 	QuitGameOver ();
 }
 
-void DrawMessageFrame (float x, float y, float w, float h, int line,
-                       TColor backcol, TColor framecol, float transp) {
-
-	float yy = Winsys.resolution.height - y - h;
-	if (x < 0) 	x = (Winsys.resolution.width - w) / 2;
-
-	glPushMatrix();
-	glDisable (GL_TEXTURE_2D);
-
-	glColor4f (framecol.r, framecol.g, framecol.b, transp);
-	glTranslatef (x, yy, 0);
-	glBegin (GL_QUADS);
-	glVertex2f (0, 0);
-	glVertex2f (w, 0);
-	glVertex2f (w, h);
-	glVertex2f (0, h);
-	glEnd();
-
-	glColor4f (backcol.r, backcol.g, backcol.b, transp);
-	glBegin (GL_QUADS);
-	glVertex2f (0 + line, 0 + line);
-	glVertex2f (w - line, 0 + line);
-	glVertex2f (w - line, h - line);
-	glVertex2f (0 + line, h - line);
-	glEnd();
-
-	glEnable (GL_TEXTURE_2D);
-	glPopMatrix();
-}
-
 
 void GameOverMessage (const CControl *ctrl) {
 	int fwidth = 500;
@@ -104,11 +74,11 @@ void GameOverMessage (const CControl *ctrl) {
 	if (param.use_papercut_font > 0) FT.SetSize (28);
 	else FT.SetSize (22);
 	if (g_game.raceaborted) {
-		DrawMessageFrame (leftframe, topframe, fwidth, 100, 4, backcol, framecol, 0.5);
+		DrawFrameX (leftframe, topframe, fwidth, 100, 4, backcol, framecol, 0.5);
 		FT.SetColor (colDBlue);
 		FT.DrawString (CENTER, topframe+30, Trans.Text(25));
 	} else {
-		DrawMessageFrame (leftframe, topframe, fwidth, 210, 4, backcol, framecol, 0.5);
+		DrawFrameX(leftframe, topframe, fwidth, 210, 4, backcol, framecol, 0.5);
 
 		if (param.use_papercut_font > 0) FT.SetSize (20);
 		else FT.SetSize (14);

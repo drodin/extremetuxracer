@@ -168,21 +168,29 @@ void draw_gauge (double speed, double energy) {
 	Tex.BindTex (GAUGE_ENERGY);
 	double y = ENERGY_GAUGE_BOTTOM + energy * ENERGY_GAUGE_HEIGHT;
 
-	glColor4fv (energy_background_color);
-	glBegin (GL_QUADS);
-	glVertex2f (0.0, y);
-	glVertex2f (GAUGE_IMG_SIZE, y);
-	glVertex2f (GAUGE_IMG_SIZE, GAUGE_IMG_SIZE);
-	glVertex2f (0.0, GAUGE_IMG_SIZE);
-	glEnd ();
+	const GLfloat vtx1 [] = {
+		0.0, y,
+		GAUGE_IMG_SIZE, y,
+		GAUGE_IMG_SIZE, GAUGE_IMG_SIZE,
+		0.0, GAUGE_IMG_SIZE
+	};
+	const GLfloat vtx2 [] = {
+		0.0, 0.0,
+		GAUGE_IMG_SIZE, 0.0,
+		GAUGE_IMG_SIZE, y,
+		0.0, y
+	};
+	glEnableClientState(GL_VERTEX_ARRAY);
 
-	glColor4fv (energy_foreground_color);
-	glBegin (GL_QUADS);
-	glVertex2f (0.0, 0.0);
-	glVertex2f (GAUGE_IMG_SIZE, 0.0);
-	glVertex2f (GAUGE_IMG_SIZE, y);
-	glVertex2f (0.0, y);
-	glEnd ();
+	glColor4fv(energy_background_color);
+	glVertexPointer(2, GL_FLOAT, 0, vtx1);
+	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+
+	glColor4fv(energy_foreground_color);
+	glVertexPointer(2, GL_FLOAT, 0, vtx2);
+	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+
+	glDisableClientState(GL_VERTEX_ARRAY);
 
 	double speedbar_frac = 0.0;
 
@@ -212,13 +220,19 @@ void draw_gauge (double speed, double energy) {
 	draw_partial_tri_fan (min (1.0, speedbar_frac));
 
 	glColor4fv (hud_white);
-	Tex.BindTex (GAUGE_OUTLINE);
-	glBegin (GL_QUADS);
-	glVertex2f (0.0, 0.0);
-	glVertex2f (GAUGE_IMG_SIZE, 0.0);
-	glVertex2f (GAUGE_IMG_SIZE, GAUGE_IMG_SIZE);
-	glVertex2f (0.0, GAUGE_IMG_SIZE);
-	glEnd();
+	Tex.BindTex(GAUGE_OUTLINE);
+	const GLfloat vtx3 [] = {
+		0.0, 0.0,
+		GAUGE_IMG_SIZE, 0.0,
+		GAUGE_IMG_SIZE, GAUGE_IMG_SIZE,
+		0.0, GAUGE_IMG_SIZE
+	};
+	glEnableClientState(GL_VERTEX_ARRAY);
+
+	glVertexPointer(2, GL_FLOAT, 0, vtx3);
+	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+
+	glDisableClientState(GL_VERTEX_ARRAY);
 	glPopMatrix();
 }
 
@@ -241,12 +255,16 @@ void DrawWind (double dir, double speed) {
 	glColor4f (1, 0, 0, 0.5);
 	glTranslatef (82, 77, 0);
 	glRotatef (dir, 0, 0, 1);
-	glBegin (GL_QUADS);
-	glVertex2f (-3, 0.0);
-	glVertex2f (3, 0.0);
-	glVertex2f (3, -speed);
-	glVertex2f (-3, -speed);
-	glEnd();
+	const GLfloat vtx [] = {
+		-2, 0.0,
+		2, 0.0,
+		2, -speed,
+		-2, -speed
+	};
+	glEnableClientState(GL_VERTEX_ARRAY);
+	glVertexPointer(2, GL_FLOAT, 0, vtx);
+	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+	glDisableClientState(GL_VERTEX_ARRAY);
 	glPopMatrix ();
 	Tex.Draw (SPEED_KNOB, 74, Winsys.resolution.height - 84, 1.0);
 }
@@ -272,13 +290,16 @@ void DrawWind2 (float dir, float speed, const CControl *ctrl) {
 	glPushMatrix ();
 	glColor4f (red, 0, blue, alpha);
 	glTranslatef (72, 66, 0);
-	glRotatef (dir, 0, 0, 1);
-	glBegin (GL_QUADS);
-	glVertex2f (-5, 0.0);
-	glVertex2f (5, 0.0);
-	glVertex2f (5, -len);
-	glVertex2f (-5, -len);
-	glEnd();
+	glRotatef(dir, 0, 0, 1);
+	glEnableClientState(GL_VERTEX_ARRAY);
+	const GLfloat vtx1 [] = {
+		-5, 0.0,
+		5, 0.0,
+		5, -len,
+		- 5, -len
+	};
+	glVertexPointer(2, GL_FLOAT, 0, vtx1);
+	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 	glPopMatrix ();
 
 	// direction indicator
@@ -290,12 +311,15 @@ void DrawWind2 (float dir, float speed, const CControl *ctrl) {
 	glColor4f (0, 0.5, 0, 1.0);
 	glTranslatef (72, 66, 0);
 	glRotatef (dir_angle + 180, 0, 0, 1);
-	glBegin (GL_QUADS);
-	glVertex2f (-2, 0.0);
-	glVertex2f (2, 0.0);
-	glVertex2f (2, -50);
-	glVertex2f (-2, -50);
-	glEnd();
+	const GLfloat vtx2 [] = {
+		-2, 0.0,
+		2, 0.0,
+		2, -50,
+		-2, -50
+	};
+	glVertexPointer(2, GL_FLOAT, 0, vtx2);
+	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+	glDisableClientState(GL_VERTEX_ARRAY);
 	glPopMatrix ();
 
 	glEnable (GL_TEXTURE_2D);
@@ -343,16 +367,29 @@ void DrawFps () {
 void DrawPercentBar (float fact, float x, float y) {
 	Tex.BindTex (T_ENERGY_MASK);
 	glColor4f (1.0, 1.0, 1.0, 1.0);
-	glBegin (GL_QUADS);
-	glTexCoord2f (0, 0);
-	glVertex2f (x, y);
-	glTexCoord2f (1, 0);
-	glVertex2f (x+32, y);
-	glTexCoord2f (1, fact);
-	glVertex2f (x+32, y+fact*128);
-	glTexCoord2f (0, fact);
-	glVertex2f (x, y+fact*128);
-	glEnd();
+
+	const GLfloat tex [] = {
+		0, 0,
+		1, 0,
+		1, fact,
+		0, fact
+	};
+	const GLfloat vtx [] = {
+		x, y,
+		x + 32, y,
+		x + 32, y + fact * 128,
+		x, y + fact * 128
+	};
+
+	glEnableClientState(GL_VERTEX_ARRAY);
+	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+
+	glVertexPointer(2, GL_FLOAT, 0, vtx);
+	glTexCoordPointer(2, GL_FLOAT, 0, tex);
+	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+
+	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+	glDisableClientState(GL_VERTEX_ARRAY);
 }
 
 void DrawCoursePosition (const CControl *ctrl) {
