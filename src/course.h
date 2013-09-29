@@ -77,7 +77,7 @@ struct TCourse {
 struct TTerrType {
 	string textureFile;
 	TTexture* texture;
-	string sound;
+	size_t sound;
 	TColor3 col;
 
 	double friction;
@@ -111,7 +111,6 @@ private:
 	map<string, size_t> CourseIndex;
 	map<string, size_t> ObjectIndex;
 	string		CourseDir;
-	bool		SaveItemsFlag;
 
 	int			nx;
 	int			ny;
@@ -125,7 +124,7 @@ private:
 	void		MakeCourseNormals ();
 	bool		LoadElevMap ();
 	void		LoadItemList ();
-	bool		LoadObjectMap ();
+	bool		LoadAndConvertObjectMap ();
 	bool		LoadTerrainMap ();
 	int			GetTerrain (unsigned char pixel[]) const;
 

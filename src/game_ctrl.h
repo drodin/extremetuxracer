@@ -34,7 +34,6 @@ enum TFrameType {
 class TTexture;
 
 struct TRace2 {
-	string race;
 	size_t course;
 	size_t light;
 	int snow;

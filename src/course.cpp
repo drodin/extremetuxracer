@@ -33,6 +33,7 @@ GNU General Public License for more details.
 #include "physics.h"
 #include "winsys.h"
 #include <cmath>
+#include <algorithm>
 
 CCourse Course;
 
@@ -474,7 +475,7 @@ static void CalcRandomTrees (double baseheight, double basediam, double &height,
 	diam = XRandom (height/diamfact, height);
 }
 
-bool CCourse::LoadObjectMap () {
+bool CCourse::LoadAndConvertObjectMap () {
 	CImage treeImg;
 
 	if (!treeImg.LoadPng (CourseDir.c_str(), "trees.png", true)) {
@@ -549,23 +550,19 @@ bool CCourse::LoadObjectMap () {
 					ObjTypes[type].num_items++;
 				}
 
-				if (SaveItemsFlag) {
-					string line = "*[name]";
-					line += ObjTypes[type].name;
-					SPSetIntN (line, "x", x);
-					SPSetIntN (line, "z", y);
-					SPSetFloatN (line, "height", height, 1);
-					SPSetFloatN (line, "diam", diam, 1);
-					savelist.Add (line);
-				}
+				string line = "*[name]";
+				line += ObjTypes[type].name;
+				SPSetIntN (line, "x", x);
+				SPSetIntN (line, "z", y);
+				SPSetFloatN (line, "height", height, 1);
+				SPSetFloatN (line, "diam", diam, 1);
+				savelist.Add (line);
 			}
 		}
 		pad += (nx * treeImg.depth) % 4;
 	}
-	if (SaveItemsFlag) {
-		string itemfile = CourseDir + SEP + "items.lst";
-		savelist.Save (itemfile);
-	}
+	string itemfile = CourseDir + SEP + "items.lst";
+	savelist.Save (itemfile); // Convert trees.png to items.lst
 	return true;
 }
 
@@ -643,7 +640,7 @@ bool CCourse::LoadTerrainTypes () {
 	for (size_t i=0; i<list.Count(); i++) {
 		const string& line = list.Line(i);
 		TerrList[i].textureFile = SPStrN (line, "texture");
-		TerrList[i].sound = SPStrN (line, "sound");
+		TerrList[i].sound = Sound.GetSoundIdx (SPStrN (line, "sound"));
 		TerrList[i].starttex = SPIntN (line, "starttex", -1);
 		TerrList[i].tracktex = SPIntN (line, "tracktex", -1);
 		TerrList[i].stoptex = SPIntN (line, "stoptex", -1);
@@ -823,13 +820,10 @@ bool CCourse::LoadCourse (size_t idx) {
 		bool itemsexists = FileExists (itemfile);
 		const CControl *ctrl = Players.GetCtrl (g_game.player_id);
 
-		if (itemsexists && !g_game.force_treemap) {
-			SaveItemsFlag = false;
+		if (itemsexists && !g_game.force_treemap)
 			LoadItemList ();
-		} else {
-			SaveItemsFlag = true;
-			LoadObjectMap ();
-		}
+		else
+			LoadAndConvertObjectMap ();
 		g_game.force_treemap = false;
 		// ................................................................
 

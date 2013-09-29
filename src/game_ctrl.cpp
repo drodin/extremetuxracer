@@ -47,7 +47,6 @@ bool CEvents::LoadEventList () {
 		int type = SPIntN (line, "struct", -1);
 		if (type == 0) {
 			RaceList.push_back(TRace2());
-			RaceList.back().race = SPStrN (line, "race", errorString);
 			string item = SPStrN (line, "course");
 			RaceList.back().course = Course.GetCourseIdx (item);
 			item = SPStrN (line, "light");

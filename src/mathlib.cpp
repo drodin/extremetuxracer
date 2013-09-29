@@ -598,7 +598,7 @@ bool IntersectPolygon (const TPolygon& p, TVector3 *v) {
 		if (distsq <= 1) return true;
 	}
 
-	s = - (d + DotProduct (nml, TVector3(ray.pt.x, ray.pt.y, ray.pt.z))) / nuDotProd;
+	s = - (d + DotProduct (nml, ray.pt)) / nuDotProd;
 	TVector3 pt = AddVectors (ray.pt, ScaleVector (s, ray.vec));
 
 	for (int i=0; i < p.num_vertices; i++) {

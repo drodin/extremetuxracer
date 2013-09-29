@@ -319,7 +319,7 @@ void CKeyframe::UpdateTest (double timestep, CCharShape *shape) {
 
 	shape->ResetRoot ();
 	shape->ResetJoints ();
-	shape->TranslateNode (0, TVector3(pos.x, pos.y, pos.z));
+	shape->TranslateNode (0, pos);
 	InterpolateKeyframe (keyidx, frac, shape);
 }
 

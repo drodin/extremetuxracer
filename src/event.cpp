@@ -168,7 +168,6 @@ void CEvent::Enter () {
 	Music.Play (param.menu_music, -1);
 	if (ready < 1) curr_focus = textbuttons[0];
 	else curr_focus = textbuttons[2];
-	g_game.loopdelay = 20;
 }
 
 int resultlevel (size_t num, size_t numraces) {

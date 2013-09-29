@@ -236,8 +236,6 @@ void CScore::Enter() {
 	course = AddUpDown(area.right + 8, frametop, 0, (int)Course.CourseList.size()-1, 0);
 	int siz = FT.AutoSizeN (5);
 	textbutton = AddTextButton (Trans.Text(64), CENTER, AutoYPosN (80), siz);
-
-	g_game.loopdelay = 1;
 }
 
 const string ordinals[10] =

@@ -86,7 +86,6 @@ void CNewPlayer::Enter() {
 	Winsys.ShowCursor (!param.ice_cursor);
 	Music.Play (param.menu_music, -1);
 
-	g_game.loopdelay = 10;
 	int framewidth = 400 * Winsys.scale;
 	int frameheight = 50 * Winsys.scale;
 	int frametop = AutoYPosN (38);
