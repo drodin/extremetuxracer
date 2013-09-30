@@ -281,8 +281,8 @@ void CharMotion (int x, int y) {
 		xrotation = startrotx + diffy;
 	}
 	if (moveactive) {
-		float diffposx = (double)(cursor_pos.x - startx) / 200;
-		float diffposy = (double)(cursor_pos.y - starty) / 200;
+		float diffposx = (float)(cursor_pos.x - startx) / 200;
+		float diffposy = (float) (cursor_pos.y - starty) / 200;
 		yposition = startposy - diffposy;
 		xposition = startposx + diffposx;
 	}

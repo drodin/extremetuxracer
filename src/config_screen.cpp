@@ -150,8 +150,7 @@ void CGameConfig::Motion (int x, int y) {
 // ------------------ Init --------------------------------------------
 
 static TArea area;
-static int framewidth, frameheight;
-static int dd, rightpos;
+static int dd;
 
 void CGameConfig::Enter() {
 	Winsys.ShowCursor (!param.ice_cursor);
@@ -161,13 +160,12 @@ void CGameConfig::Enter() {
 
 	for (int i=0; i<NUM_RESOLUTIONS; i++) res_names[i] = Winsys.GetResName (i);
 
-	framewidth = 550 * Winsys.scale;
-	frameheight = 50 * Winsys.scale;
+	int framewidth = 550 * Winsys.scale;
 	area = AutoAreaN (30, 80, framewidth);
 	FT.AutoSizeN (4);
 	dd = FT.AutoDistanceN (3);
 	if (dd < 36) dd = 36;
-	rightpos = area.right -48;
+	int rightpos = area.right -48;
 
 	ResetGUI ();
 	fullscreen = AddCheckbox (area.left, area.top, framewidth-16, Trans.Text(31));

@@ -31,7 +31,7 @@ GNU General Public License for more details.
 
 CHelp Help;
 
-static int xleft1, xleft2, ytop;
+static int ytop;
 
 void CHelp::Keyb(unsigned int key, bool special, bool release, int x, int y) {
 	State::manager.RequestEnterState (GameTypeSelect);
@@ -49,8 +49,6 @@ void CHelp::Enter() {
 	Winsys.ShowCursor (false);
 	Music.Play (param.credits_music, -1);
 
-	xleft1 = 40;
-	xleft2 = (int)(Winsys.resolution.width / 2) + 20;
 	ytop = AutoYPosN (15);
 }
 
@@ -67,7 +65,8 @@ void CHelp::Loop(double timestep) {
 	}
 
 	FT.AutoSizeN (4);
-	FT.SetColor (colWhite);
+	FT.SetColor(colWhite);
+	const int xleft1 = 40;
 	FT.DrawString (xleft1, AutoYPosN (5), Trans.Text (57));
 
 	FT.AutoSizeN (3);

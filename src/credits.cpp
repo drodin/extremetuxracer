@@ -63,8 +63,8 @@ void CCredits::LoadCreditList () {
 }
 
 void CCredits::DrawCreditsText (double time_step) {
-	double w = (double)Winsys.resolution.width;
-	double h = (double)Winsys.resolution.height;
+	int w = Winsys.resolution.width;
+	int h = Winsys.resolution.height;
 	double offs = 0.0;
 	if (moving) y_offset += time_step * 30;
 
@@ -85,25 +85,25 @@ void CCredits::DrawCreditsText (double time_step) {
 
 	glDisable (GL_TEXTURE_2D);
 	glColor(colBackgr);
-	glRectf (0, 0, w, BOTT_Y);
+	glRecti (0, 0, w, BOTT_Y);
 
 	glBegin( GL_QUADS );
-	glVertex2f (0, BOTT_Y);
-	glVertex2f (w, BOTT_Y);
+	glVertex2i(0, BOTT_Y);
+	glVertex2i(w, BOTT_Y);
 	glColor(colBackgr, 0);
-	glVertex2f (w, BOTT_Y + 30);
-	glVertex2f (0, BOTT_Y + 30);
+	glVertex2i(w, BOTT_Y + 30);
+	glVertex2i(0, BOTT_Y + 30);
 	glEnd();
 
 	glColor(colBackgr);
-	glRectf (0, h - TOP_Y, w, h);
+	glRecti (0, h - TOP_Y, w, h);
 
 	glBegin( GL_QUADS );
-	glVertex2f (w, h - TOP_Y);
-	glVertex2f (0, h - TOP_Y);
+	glVertex2i(w, h - TOP_Y);
+	glVertex2i(0, h - TOP_Y);
 	glColor(colBackgr, 0);
-	glVertex2f (0, h - TOP_Y - 30);
-	glVertex2f (w, h - TOP_Y - 30);
+	glVertex2i(0, h - TOP_Y - 30);
+	glVertex2i (w, h - TOP_Y - 30);
 	glEnd();
 
 	glColor4f (1, 1, 1, 1);
@@ -111,58 +111,13 @@ void CCredits::DrawCreditsText (double time_step) {
 	if (offs < TOP_Y) y_offset = 0;
 }
 
-static void DrawBackLogo (int x, int y, double size) {
-	GLint w, h;
-	GLfloat width, height, top, bott, left, right;
-
-	glEnable (GL_TEXTURE_2D);
-	glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	Tex.GetTexture(T_TITLE)->Bind();
-
-	glGetTexLevelParameteriv (GL_TEXTURE_2D, 0, GL_TEXTURE_WIDTH, &w);
-	glGetTexLevelParameteriv (GL_TEXTURE_2D, 0, GL_TEXTURE_HEIGHT, &h);
-
-	width  = w * size;
-	height = h * size;
-
-	top = Winsys.resolution.height - y;
-	bott = top - height;
-
-	if (x >= 0) left = x;
-	else left = (Winsys.resolution.width - width) / 2;
-	right = left + width;
-
-	glColor4f(1.0, 1.0, 1.0, 0.4);
-	static const GLshort tex[] = {
-		0, 0,
-		1, 0,
-		1, 1,
-		0, 1
-	};
-	const GLfloat vtx[] = {
-		left, bott,
-		right, bott,
-		right, top,
-		left, top
-	};
-	glEnableClientState(GL_VERTEX_ARRAY);
-	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-
-	glVertexPointer(2, GL_FLOAT, 0, vtx);
-	glTexCoordPointer(2, GL_SHORT, 0, tex);
-	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
-
-	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-	glDisableClientState(GL_VERTEX_ARRAY);
-}
-
 void CCredits::Keyb (unsigned int key, bool special, bool release, int x, int y) {
 	if (release) return;
 	switch (key) {
-		case 109:
+		case SDLK_m:
 			moving = !moving;
 			break;
-		case 9:
+		case SDLK_u:
 			param.ui_snow = !param.ui_snow;
 			break;
 		default:
@@ -194,7 +149,6 @@ void CCredits::Loop(double time_step) {
 	ScopedRenderMode rm(GUI);
 	SetupGuiDisplay ();
 
-//	DrawBackLogo (-1,  AutoYPos (200), 1.0);
 	DrawCreditsText (time_step);
 	if (param.ui_snow) {
 		update_ui_snow (time_step);

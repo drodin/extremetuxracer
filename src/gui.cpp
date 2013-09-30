@@ -718,8 +718,7 @@ TArea AutoAreaN (double top_perc, double bott_perc, int w) {
 	res.top = AutoYPosN (top_perc);
 	res.bottom = AutoYPosN (bott_perc);
 	if (w > Winsys.resolution.width) w = Winsys.resolution.width;
-	double left = (Winsys.resolution.width - w) / 2;
-	res.left = (int) left;
+	res.left = (Winsys.resolution.width - w) / 2;
 	res.right = Winsys.resolution.width - res.left;
 	return res;
 }

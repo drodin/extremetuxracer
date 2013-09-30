@@ -221,15 +221,15 @@ void draw_gauge (double speed, double energy) {
 
 	glColor4fv (hud_white);
 	Tex.BindTex(GAUGE_OUTLINE);
-	const GLfloat vtx3 [] = {
-		0.0, 0.0,
-		GAUGE_IMG_SIZE, 0.0,
+	static const GLshort vtx3 [] = {
+		0, 0,
+		GAUGE_IMG_SIZE, 0,
 		GAUGE_IMG_SIZE, GAUGE_IMG_SIZE,
-		0.0, GAUGE_IMG_SIZE
+		0, GAUGE_IMG_SIZE
 	};
 	glEnableClientState(GL_VERTEX_ARRAY);
 
-	glVertexPointer(2, GL_FLOAT, 0, vtx3);
+	glVertexPointer(2, GL_SHORT, 0, vtx3);
 	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 
 	glDisableClientState(GL_VERTEX_ARRAY);
@@ -247,7 +247,7 @@ void DrawSpeed (double speed) {
 	}
 }
 
-void DrawWind (double dir, double speed) {
+void DrawWind(float dir, float speed) {
 	Tex.Draw (SPEEDMETER, 10, Winsys.resolution.height - 150, 1.0);
 	glPushMatrix ();
 	glDisable (GL_TEXTURE_2D);
@@ -276,8 +276,7 @@ void DrawWind2 (float dir, float speed, const CControl *ctrl) {
 	glDisable (GL_TEXTURE_2D);
 
 
-	float alpha, red, blue, len;
-	len = 45;
+	float alpha, red, blue;
 	if (speed <= 50) {
 		alpha = speed / 50;
 		red = 0;
@@ -292,32 +291,30 @@ void DrawWind2 (float dir, float speed, const CControl *ctrl) {
 	glTranslatef (72, 66, 0);
 	glRotatef(dir, 0, 0, 1);
 	glEnableClientState(GL_VERTEX_ARRAY);
-	const GLfloat vtx1 [] = {
+	static const int len = 45;
+	static const GLshort vtx1 [] = {
 		-5, 0.0,
 		5, 0.0,
 		5, -len,
 		- 5, -len
 	};
-	glVertexPointer(2, GL_FLOAT, 0, vtx1);
+	glVertexPointer(2, GL_SHORT, 0, vtx1);
 	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
-	glPopMatrix ();
 
 	// direction indicator
 	TVector3 movdir = ctrl->cvel;
 	NormVector (movdir);
 	float dir_angle = atan (movdir.x / movdir.z) * 57.3;
 
-	glPushMatrix ();
 	glColor4f (0, 0.5, 0, 1.0);
-	glTranslatef (72, 66, 0);
-	glRotatef (dir_angle + 180, 0, 0, 1);
-	const GLfloat vtx2 [] = {
-		-2, 0.0,
-		2, 0.0,
+	glRotatef (dir_angle + 180 - dir, 0, 0, 1);
+	static const GLshort vtx2 [] = {
+		-2, 0,
+		2, 0,
 		2, -50,
 		-2, -50
 	};
-	glVertexPointer(2, GL_FLOAT, 0, vtx2);
+	glVertexPointer(2, GL_SHORT, 0, vtx2);
 	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 	glDisableClientState(GL_VERTEX_ARRAY);
 	glPopMatrix ();
@@ -405,8 +402,7 @@ void DrawHud (const CControl *ctrl) {
 	if (!param.show_hud)
 		return;
 
-	TVector3 vel = ctrl->cvel;
-	double speed = NormVector (vel);
+	double speed = VectorLength(ctrl->cvel);
 	SetupGuiDisplay ();
 
 	draw_gauge (speed * 3.6, ctrl->jump_amt);
@@ -417,5 +413,5 @@ void DrawHud (const CControl *ctrl) {
 	DrawSpeed (speed * 3.6);
 	DrawFps ();
 	DrawCoursePosition (ctrl);
-	if (g_game.wind_id > 0) DrawWind2 (Wind.Angle (), Wind.Speed (), ctrl);
+	DrawWind2 (Wind.Angle (), Wind.Speed (), ctrl);
 }

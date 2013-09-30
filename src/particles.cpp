@@ -215,7 +215,7 @@ void draw_ui_snow () {
 	glDisableClientState(GL_VERTEX_ARRAY);
 }
 
-void push_ui_snow (const TVector2& pos) {
+void push_ui_snow (const TVector2i& pos) {
 	push_position = TVector2(pos.x/(double)Winsys.resolution.width, 1.0 - pos.y/(double)Winsys.resolution.height);
 	if (!push_position_initialized) last_push_position = push_position;
 	push_position_initialized = true;

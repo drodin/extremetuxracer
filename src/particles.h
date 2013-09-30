@@ -27,7 +27,7 @@ GNU General Public License for more details.
 
 void init_ui_snow ();
 void update_ui_snow (double time_step);
-void push_ui_snow (const TVector2& pos);
+void push_ui_snow (const TVector2i& pos);
 void draw_ui_snow ();
 
 // --------------------------------------------------------------------

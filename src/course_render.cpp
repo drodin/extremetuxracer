@@ -33,8 +33,8 @@ GNU General Public License for more details.
 static const bool clip_course = true;
 
 void setup_course_tex_gen () {
-	static GLfloat xplane[4] = {1.0 / TEX_SCALE, 0.0, 0.0, 0.0 };
-	static GLfloat zplane[4] = {0.0, 0.0, 1.0 / TEX_SCALE, 0.0 };
+	static const GLfloat xplane[4] = {1.0 / TEX_SCALE, 0.0, 0.0, 0.0 };
+	static const GLfloat zplane[4] = {0.0, 0.0, 1.0 / TEX_SCALE, 0.0 };
 	glTexGenfv (GL_S, GL_OBJECT_PLANE, xplane);
 	glTexGenfv (GL_T, GL_OBJECT_PLANE, zplane);
 }
@@ -88,8 +88,8 @@ void DrawTrees() {
 		glTranslate(treeLocs[i].pt);
 		if (param.perf_level > 1) glRotatef (1, 0, 1, 0);
 
-		double treeRadius = treeLocs[i].diam / 2.0;
-		double treeHeight = treeLocs[i].height;
+		float treeRadius = treeLocs[i].diam / 2.0;
+		float treeHeight = treeLocs[i].height;
 		glNormal3i(0, 0, 1);
 
 		static const GLshort tex[] = {

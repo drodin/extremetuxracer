@@ -65,8 +65,8 @@ void CGameOver::Mouse (int button, int state, int x, int y) {
 void GameOverMessage (const CControl *ctrl) {
 	int fwidth = 500;
 
-	float leftframe = (Winsys.resolution.width - fwidth) / 2;
-	float topframe = 80;
+	int leftframe = (Winsys.resolution.width - fwidth) / 2;
+	int topframe = 80;
 
 	const TColor& backcol = colWhite;
 	static const TColor framecol(0.7, 0.7, 1, 1);
@@ -193,9 +193,8 @@ void CGameOver::Enter() {
 
 void CGameOver::Loop(double time_step) {
 	CControl *ctrl = Players.GetCtrl (g_game.player_id);
-	int width, height;
-	width = Winsys.resolution.width;
-	height = Winsys.resolution.height;
+	int width = Winsys.resolution.width;
+	int height = Winsys.resolution.height;
 	check_gl_error();
 
 	Music.Update ();

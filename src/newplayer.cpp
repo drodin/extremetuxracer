@@ -79,7 +79,7 @@ void CNewPlayer::Motion (int x, int y) {
 	if (param.ui_snow) push_ui_snow (cursor_pos);
 }
 
-static int prevleft, prevtop, prevwidth, prevoffs;
+static int prevleft, prevtop, prevwidth;
 
 void CNewPlayer::Enter() {
 	Winsys.KeyRepeat (true);
@@ -89,11 +89,11 @@ void CNewPlayer::Enter() {
 	int framewidth = 400 * Winsys.scale;
 	int frameheight = 50 * Winsys.scale;
 	int frametop = AutoYPosN (38);
-	TArea area = AutoAreaN (30, 80, framewidth);
-	prevleft = area.left;
+	TArea area = AutoAreaN(30, 80, framewidth);
+	int prevoffs = 80;
+	prevleft = area.left + prevoffs;
 	prevtop = AutoYPosN (52);
 	prevwidth = 75 * Winsys.scale;
-	prevoffs = 80;
 
 	ResetGUI();
 
@@ -140,7 +140,7 @@ void CNewPlayer::Loop(double timestep) {
 	if (avatar->focussed()) col = colDYell;
 	else col = colWhite;
 	Players.GetAvatarTexture(avatar->GetValue())->DrawFrame(
-	    prevleft + prevoffs, prevtop, prevwidth, prevwidth, 2, col);
+	    prevleft, prevtop, prevwidth, prevwidth, 2, col);
 
 	DrawGUI();
 	Winsys.SwapBuffers();

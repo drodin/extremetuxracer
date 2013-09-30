@@ -89,7 +89,7 @@ void State::Manager::PollEvent() {
 					break;
 
 				case SDL_MOUSEMOTION: {
-					TVector2 old = cursor_pos;
+					TVector2i old = cursor_pos;
 					cursor_pos.x = event.motion.x;
 					cursor_pos.y = event.motion.y;
 					current->Motion(event.motion.x-old.x, event.motion.y-old.y);

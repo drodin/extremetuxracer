@@ -209,10 +209,10 @@ void update_view (CControl *ctrl, double dt) {
 	TVector3 vel_dir = ctrl->cvel;
 	NormVector (vel_dir);
 
+	TVector3 view_vec = MakeViewVector();
+
 	switch (ctrl->viewmode) {
 		case BEHIND: {
-			TVector3 view_vec = MakeViewVector ();
-
 			TVector3 vel_proj = ProjectToPlane (y_vec, vel_dir);
 			NormVector (vel_proj);
 			TQuaternion rot_quat = MakeRotationQuaternion (mz_vec, vel_proj);
@@ -257,8 +257,6 @@ void update_view (CControl *ctrl, double dt) {
 		}
 
 		case FOLLOW: { // normale Einstellung
-			TVector3 view_vec = MakeViewVector ();
-
 			TVector3 vel_proj = ProjectToPlane (y_vec, vel_dir);
 			NormVector (vel_proj);
 			TQuaternion rot_quat = MakeRotationQuaternion (mz_vec, vel_proj);
@@ -303,7 +301,6 @@ void update_view (CControl *ctrl, double dt) {
 		}
 
 		case ABOVE: {
-			TVector3 view_vec = MakeViewVector ();
 			view_pt = AddVectors (ctrl->cpos, view_vec);
 			double ycoord = Course.FindYCoord (view_pt.x, view_pt.z);
 			if (view_pt.y < ycoord + MIN_CAMERA_HEIGHT) {

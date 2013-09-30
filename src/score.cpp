@@ -150,7 +150,7 @@ int CScore::CalcRaceResult () {
 	if (g_game.time <= g_game.time_req.z &&
 	        g_game.herring >= g_game.herring_req.k) g_game.race_result = 2;
 
-	double herringpt = g_game.herring * 10;
+	int herringpt = g_game.herring * 10;
 	double timept = Course.GetDimensions().y - (g_game.time * 10);
 	g_game.score = (int)(herringpt + timept);
 	if (g_game.score < 0) g_game.score = 0;

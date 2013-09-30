@@ -81,21 +81,20 @@ void CRegist::Motion (int x, int y) {
 	if (param.ui_snow) push_ui_snow (cursor_pos);
 }
 
-static int framewidth, frameheight, arrowwidth, sumwidth;
+static int framewidth, frameheight, arrowwidth;
 static TArea area;
-static double scale, texsize;
+static double texsize;
 
 void CRegist::Enter (void) {
 	Winsys.ShowCursor (!param.ice_cursor);
 	Music.Play (param.menu_music, -1);
 
-	scale = Winsys.scale;
-	framewidth = (int)(scale * 280);
-	frameheight = (int)(scale * 50);
+	framewidth = (int) (Winsys.scale * 280);
+	frameheight = (int) (Winsys.scale * 50);
 	arrowwidth = 50;
-	sumwidth = framewidth * 2 + arrowwidth * 2;
+	int sumwidth = framewidth * 2 + arrowwidth * 2;
 	area = AutoAreaN (30, 80, sumwidth);
-	texsize = 128 * scale;
+	texsize = 128 * Winsys.scale;
 
 	ResetGUI ();
 	player = AddUpDown(area.left + framewidth + 8, area.top, 0, (int)Players.numPlayers() - 1, (int)g_game.start_player);
@@ -127,7 +126,7 @@ void CRegist::Loop (double timestep) {
 	Tex.Draw (BOTTOM_RIGHT, ww-256, hh-256, 1);
 	Tex.Draw (TOP_LEFT, 0, 0, 1);
 	Tex.Draw (TOP_RIGHT, ww-256, 0, 1);
-	Tex.Draw (T_TITLE_SMALL, CENTER, AutoYPosN (5), scale);
+	Tex.Draw(T_TITLE_SMALL, CENTER, AutoYPosN(5), Winsys.scale);
 
 //	DrawFrameX (area.left, area.top, area.right-area.left, area.bottom - area.top,
 //			0, colMBackgr, col, 0.2);

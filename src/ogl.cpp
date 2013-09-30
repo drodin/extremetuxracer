@@ -127,7 +127,7 @@ void PrintGLInfo () {
 	}
 }
 
-void set_material (const TColor& diffuse_colour, const TColor& specular_colour, double specular_exp) {
+void set_material (const TColor& diffuse_colour, const TColor& specular_colour, float specular_exp) {
 	GLfloat mat_amb_diff[4] = {
 		static_cast<GLfloat>(diffuse_colour.r),
 		static_cast<GLfloat>(diffuse_colour.g),
@@ -163,7 +163,7 @@ void ClearRenderContext (const TColor& col) {
 }
 
 void SetupGuiDisplay () {
-	double offset = 0.0;
+	static const float offset = 0.f;
 
 	glMatrixMode (GL_PROJECTION);
 	glLoadIdentity ();

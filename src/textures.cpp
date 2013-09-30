@@ -353,9 +353,7 @@ bool TTexture::LoadMipmap(const string& filename, bool repeatable) {
 	glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTexParameterf (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_NEAREST);
 
-	gluBuild2DMipmaps
-	(GL_TEXTURE_2D, texImage.depth, texImage.nx,
-	 texImage.ny, format, GL_UNSIGNED_BYTE, texImage.data);
+	gluBuild2DMipmaps(GL_TEXTURE_2D, texImage.depth, texImage.nx, texImage.ny, format, GL_UNSIGNED_BYTE, texImage.data);
 
 	texImage.DisposeData();
 	return true;
@@ -480,8 +478,8 @@ void TTexture::DrawFrame(int x, int y, double w, double h, int frame, const TCol
 	if (id < 1)
 		return;
 
-	GLint ww = GLint (w);
-	GLint hh = GLint (h);
+	GLint ww = GLint(w);
+	GLint hh = GLint(h);
 	GLint xx = x;
 	GLint yy = Winsys.resolution.height - hh - y;
 
@@ -496,14 +494,14 @@ void TTexture::DrawFrame(int x, int y, double w, double h, int frame, const TCol
 		glColor(col, 1.0);
 
 		glDisable (GL_TEXTURE_2D);
-		const GLfloat vtx[] = {
+		const GLint vtx [] = {
 			xx - frame, yy - frame,
 			xx + ww + frame, yy - frame,
 			xx + ww + frame, yy + hh + frame,
 			xx - frame, yy + hh + frame
 		};
 
-		glVertexPointer(2, GL_FLOAT, 0, vtx);
+		glVertexPointer(2, GL_INT, 0, vtx);
 		glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 
 		glEnable (GL_TEXTURE_2D);

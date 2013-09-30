@@ -136,7 +136,6 @@ void CRaceSelect::Keyb(unsigned int key, bool special, bool release, int x, int 
 static TArea area;
 static int framewidth, frameheight, frametop;
 static int prevtop, prevwidth, prevheight;
-static int icontop, iconsize, iconspace, iconleft, iconsumwidth;
 static int boxleft, boxwidth;
 
 void CRaceSelect::Enter() {
@@ -155,11 +154,11 @@ void CRaceSelect::Enter() {
 	prevwidth = 192 * Winsys.scale;
 	boxwidth = framewidth - prevwidth - 20;
 	boxleft = area.right - boxwidth;
-	icontop = AutoYPosN (40);
-	iconsize = 32 * Winsys.scale;
-	iconspace = (int)((iconsize+6) * 1.5);
-	iconsumwidth = iconspace * 4 + iconsize;
-	iconleft = (Winsys.resolution.width - iconsumwidth) / 2;
+	int icontop = AutoYPosN(40);
+	int iconsize = 32 * Winsys.scale;
+	int iconspace = (int) ((iconsize + 6) * 1.5);
+	int iconsumwidth = iconspace * 4 + iconsize;
+	int iconleft = (Winsys.resolution.width - iconsumwidth) / 2;
 
 	ResetGUI ();
 
