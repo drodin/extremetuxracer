@@ -97,7 +97,7 @@ private:
 	// drawing
 	void DrawCharSphere (int num_divisions);
 	void DrawNodes (const TCharNode *node);
-	TVector3 AdjustRollvector (const CControl *ctrl, TVector3 vel, const TVector3& zvec);
+	TVector3 AdjustRollvector (const CControl *ctrl, const TVector3& vel, const TVector3& zvec);
 
 	// collision
 	bool CheckPolyhedronCollision (const TCharNode *node, const TMatrix modelMatrix,

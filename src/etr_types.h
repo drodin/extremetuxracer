@@ -95,7 +95,14 @@ struct TColor : public TColor3 {
 typedef double TMatrix[4][4];
 typedef TVector4 TQuaternion;
 
-struct TPlane		{ TVector3 nml; double d; };
+struct TPlane {
+	TVector3 nml;
+	double d;
+	TPlane(double nx = 0.0, double ny = 0.0, double nz = 0.0, double d_ = 0.0)
+		: nml(nx, ny, nz), d(d_)
+	{}
+};
+
 struct TPolygon		{ int num_vertices; int *vertices; };
 struct TSphere		{ double radius; int divisions; };
 struct TRay			{ TVector3 pt; TVector3 vec; };

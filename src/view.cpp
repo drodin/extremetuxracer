@@ -199,8 +199,7 @@ void update_view (CControl *ctrl, double dt) {
 	static const TVector3 y_vec(0.0, 1.0, 0.0);
 	static const TVector3 mz_vec(0.0, 0.0, -1.0);
 
-	TVector3 vel_cpy = ctrl->cvel;
-	double speed = NormVector (vel_cpy);
+	double speed = VectorLength(ctrl->cvel);
 	double time_constant_mult = 1.0 /
 	                            clamp (0.0,
 	                                   (speed - NO_INTERPOLATION_SPEED) / (BASELINE_INTERPOLATION_SPEED - NO_INTERPOLATION_SPEED),
@@ -352,16 +351,16 @@ void SetupViewFrustum (const CControl *ctrl) {
 	double half_fov = ANGLES_TO_RADIANS (param.fov * 0.5);
 	double half_fov_horiz = atan (tan (half_fov) * aspect);
 
-	frustum_planes[0] = MakePlane (0, 0, 1, near_dist);
-	frustum_planes[1] = MakePlane (0, 0, -1, -far_dist);
+	frustum_planes[0] = TPlane(0, 0, 1, near_dist);
+	frustum_planes[1] = TPlane(0, 0, -1, -far_dist);
 	frustum_planes[2]
-	    = MakePlane (-cos(half_fov_horiz), 0, sin(half_fov_horiz), 0);
+		= TPlane(-cos(half_fov_horiz), 0, sin(half_fov_horiz), 0);
 	frustum_planes[3]
-	    = MakePlane (cos(half_fov_horiz), 0, sin(half_fov_horiz), 0);
+		= TPlane(cos(half_fov_horiz), 0, sin(half_fov_horiz), 0);
 	frustum_planes[4]
-	    = MakePlane (0, cos(half_fov), sin(half_fov), 0);
+		= TPlane(0, cos(half_fov), sin(half_fov), 0);
 	frustum_planes[5]
-	    = MakePlane (0, -cos(half_fov), sin(half_fov), 0);
+		= TPlane(0, -cos(half_fov), sin(half_fov), 0);
 
 	for (int i=0; i<6; i++) {
 		TVector3 pt = TransformPoint (ctrl->view_mat,

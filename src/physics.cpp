@@ -238,12 +238,10 @@ void CControl::CheckItemCollection (const TVector3& pos) {
 void CControl::AdjustVelocity (const TPlane& surf_plane) {
 	double speed = NormVector (cvel);
 	speed = max (minSpeed, speed);
+	cvel = ScaleVector (speed, cvel);
 
-	if (g_game.finish == false) {
-		cvel = ScaleVector (speed, cvel);
-	} else {
+	if (g_game.finish == true) {
 /// --------------- finish ------------------------------------
-		cvel = ScaleVector (speed, cvel);
 		if (speed < 3) State::manager.RequestEnterState (GameOver);
 /// -----------------------------------------------------------
 	}
@@ -309,12 +307,12 @@ TVector3 CControl::CalcAirForce () {
 	if (g_game.wind_id > 0)
 		windvec = AddVectors (windvec, ScaleVector (WIND_FACTOR, Wind.WindDrift ()));
 
-	double windspeed = NormVector (windvec);
+	double windspeed = VectorLength(windvec);
 	double re = 34600 * windspeed;
 	int tablesize = sizeof (airdrag) / sizeof (airdrag[0]);
 	double interpol = LinearInterp (airlog, airdrag, log10 (re), tablesize);
 	double dragcoeff = pow (10.0, interpol);
-	double airfact = 0.104 * dragcoeff *  windspeed * windspeed;
+	double airfact = 0.104 * dragcoeff *  windspeed;
 	return ScaleVector (airfact, windvec);
 }
 
@@ -352,13 +350,12 @@ TVector3 CControl::CalcJumpForce () {
 	} else {
 		jumping = false;
 	}
-	return ScaleVector (1.0, jumpforce); // normally 1.0
+	return jumpforce; // normally scaled with 1.0
 }
 
 TVector3 CControl::CalcFrictionForce (double speed, const TVector3& nmlforce) {
 	if ((cairborne == false && speed > minFrictspeed) || g_game.finish) {
-		TVector3 tmp_nml_f = nmlforce;
-		double fric_f_mag = NormVector (tmp_nml_f) * ff.frict_coeff;
+		double fric_f_mag = VectorLength(nmlforce) * ff.frict_coeff;
 		fric_f_mag = min (MAX_FRICT_FORCE, fric_f_mag);
 		TVector3 frictforce = ScaleVector (fric_f_mag, ff.frictdir);
 
@@ -470,15 +467,15 @@ TVector3 CControl::CalcNetForce (const TVector3& pos, const TVector3& vel) {
 	                                                AddVectors (airforce,
 	                                                        AddVectors (brakeforce, paddleforce))))));
 
-	return ScaleVector (1.0, netforce);
+	return netforce;
 }
 
 // --------------------------------------------------------------------
 //				ODE solver
 // --------------------------------------------------------------------
 
-double CControl::AdjustTimeStep (double h, TVector3 vel) {
-	double speed = NormVector (vel);
+double CControl::AdjustTimeStep (double h, const TVector3& vel) {
+	double speed = VectorLength(vel);
 	h = clamp (MIN_TIME_STEP, h, MAX_STEP_DIST / speed);
 	h = min (h, MAX_TIME_STEP);
 	return h;
@@ -607,8 +604,7 @@ void CControl::SolveOdeSystem (double timestep) {
 		}
 
 		t = t + h;
-		TVector3 tmp_vel = new_vel;
-		double speed = NormVector (tmp_vel);
+		double speed = VectorLength(new_vel);
 		if (param.perf_level > 2) generate_particles (this, h, new_pos, speed);
 
 		new_f = CalcNetForce (new_pos, new_vel);
@@ -640,7 +636,6 @@ void CControl::SolveOdeSystem (double timestep) {
 
 void CControl::UpdatePlayerPos (double timestep) {
 	CCharShape *shape = Char.GetShape (g_game.char_id);
-	double speed;
 	double paddling_factor;
 	double flap_factor;
 	double dist_from_surface;
@@ -661,10 +656,9 @@ void CControl::UpdatePlayerPos (double timestep) {
 	TVector3 surf_nml = surf_plane.nml; // normal vector of terrain
 	dist_from_surface = DistanceToPlane (surf_plane, cpos);
 
-	TVector3 temp_vel = cvel;
+	double speed = VectorLength(cvel);
 	AdjustVelocity (surf_plane);
 	AdjustPosition (surf_plane, dist_from_surface);
-	speed = NormVector (temp_vel);
 	SetTuxPosition (speed);	// speed only to set finish_speed
 	shape->AdjustOrientation (this, timestep, dist_from_surface, surf_nml);
 

@@ -42,7 +42,6 @@ TVector3	ProjectToPlane (const TVector3& nml, const TVector3& v);
 TVector3	TransformVector (const TMatrix mat, const TVector3& v);
 TVector3	TransformNormal (const TVector3& n, const TMatrix mat);	// not used ?
 TVector3	TransformPoint (const TMatrix mat, const TVector3& p);
-TPlane		MakePlane (double nx, double ny, double nz, double d);
 bool		IntersectPlanes (const TPlane& s1, const TPlane& s2, const TPlane& s3, TVector3 *p);
 double		DistanceToPlane (const TPlane& plane, const TVector3& pt);
 

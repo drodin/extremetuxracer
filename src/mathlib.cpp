@@ -33,27 +33,24 @@ double DotProduct (const TVector3& v1, const TVector3& v2) {
 }
 
 TVector3 ScaleVector (double s, const TVector3& v) {
-	TVector3 rval(
+	return TVector3(
 	    s * v.x,
 	    s * v.y,
 	    s * v.z);
-	return rval;
 }
 
 TVector3 AddVectors (const TVector3& v1, const TVector3& v2) {
-	TVector3 result(
+	return TVector3(
 	    v1.x + v2.x,
 	    v1.y + v2.y,
 	    v1.z + v2.z);
-	return result;
 }
 
 TVector3 SubtractVectors (const TVector3& v1, const TVector3& v2) {
-	TVector3 result(
+	return TVector3(
 	    v1.x - v2.x,
 	    v1.y - v2.y,
 	    v1.z - v2.z);
-	return result;
 }
 
 TVector3 ProjectToPlane (const TVector3& nml, const TVector3& v) {
@@ -73,11 +70,10 @@ double NormVector (TVector3 &v) {
 
 
 TVector3 CrossProduct(const TVector3& u, const TVector3& v) {
-	TVector3 ret(
+	return TVector3(
 	    u.y * v.z - u.z * v.y,
 	    u.z * v.x - u.x * v.z,
 	    u.x * v.y - u.y * v.x);
-	return ret;
 }
 
 TVector3 TransformVector(const TMatrix mat, const TVector3& v) {
@@ -105,16 +101,6 @@ TVector3 TransformPoint(const TMatrix mat, const TVector3& p) {
 	r.y += mat[3][1];
 	r.z += mat[3][2];
 	return r;
-}
-
-TPlane MakePlane (double nx, double ny, double nz, double d) {
-	TPlane tmp;
-	tmp.nml.x = nx;
-	tmp.nml.y = ny;
-	tmp.nml.z = nz;
-	tmp.d = d;
-
-	return tmp;
 }
 
 bool IntersectPlanes (const TPlane& s1, const TPlane& s2, const TPlane& s3, TVector3 *p) {

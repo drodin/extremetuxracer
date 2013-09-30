@@ -340,8 +340,8 @@ void Particle::draw_billboard (const CControl *ctrl, double width, double height
 	glDisableClientState(GL_VERTEX_ARRAY);
 }
 
-void create_new_particles (const TVector3& loc, TVector3 vel, int num) {
-	double speed = NormVector (vel);
+void create_new_particles (const TVector3& loc, const TVector3& vel, int num) {
+	double speed = VectorLength (vel);
 
 	if (particles.size() + num > MAX_PARTICLES) {
 		Message ("maximum number of particles exceeded");
@@ -358,7 +358,7 @@ void create_new_particles (const TVector3& loc, TVector3 vel, int num) {
 		newp->age = FRandom() * MIN_AGE;
 		newp->death = FRandom() * MAX_AGE;
 		newp->vel = AddVectors (
-		                ScaleVector (speed, vel),
+		                vel,
 		                TVector3(VARIANCE_FACTOR * (FRandom() - 0.5) * speed,
 		                         VARIANCE_FACTOR * (FRandom() - 0.5) * speed,
 		                         VARIANCE_FACTOR * (FRandom() - 0.5) * speed));

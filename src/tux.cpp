@@ -235,19 +235,9 @@ void CCharShape::ScaleNode (size_t node_name, const TVector3& vec) {
 
 	TMatrix matrix;
 
-	MakeIdentityMatrix (matrix);
-	MultiplyMatrices (node->trans, node->trans, matrix);
-	MakeIdentityMatrix (matrix);
-	MultiplyMatrices (node->invtrans, matrix, node->invtrans);
-
 	MakeScalingMatrix (matrix, vec.x, vec.y, vec.z);
 	MultiplyMatrices (node->trans, node->trans, matrix);
 	MakeScalingMatrix (matrix, 1.0 / vec.x, 1.0 / vec.y, 1.0 / vec.z);
-	MultiplyMatrices (node->invtrans, matrix, node->invtrans);
-
-	MakeIdentityMatrix (matrix);
-	MultiplyMatrices (node->trans, node->trans, matrix);
-	MakeIdentityMatrix (matrix);
 	MultiplyMatrices (node->invtrans, matrix, node->invtrans);
 
 	if (newActions && useActions) AddAction (node_name, 4, vec, 0);
@@ -500,9 +490,9 @@ bool CCharShape::Load (const string& dir, const string& filename, bool with_acti
 	return true;
 }
 
-TVector3 CCharShape::AdjustRollvector (const CControl *ctrl, TVector3 vel, const TVector3& zvec) {
+TVector3 CCharShape::AdjustRollvector (const CControl *ctrl, const TVector3& vel_, const TVector3& zvec) {
 	TMatrix rot_mat;
-	vel = ProjectToPlane (zvec, vel);
+	TVector3 vel = ProjectToPlane(zvec, vel_);
 	NormVector (vel);
 	if (ctrl->is_braking) {
 		RotateAboutVectorMatrix (rot_mat, vel, ctrl->turn_fact * BRAKING_ROLL_ANGLE);
@@ -521,7 +511,7 @@ void CCharShape::AdjustOrientation (CControl *ctrl, double dtime,
 	static const TVector3 y_vec(0, 1, 0);
 
 	if (dist_from_surface > 0) {
-		new_y = ScaleVector (1, ctrl->cvel);
+		new_y = ctrl->cvel;
 		NormVector (new_y);
 		new_z = ProjectToPlane (new_y, TVector3(0, -1, 0));
 		NormVector (new_z);
@@ -529,7 +519,7 @@ void CCharShape::AdjustOrientation (CControl *ctrl, double dtime,
 	} else {
 		new_z = ScaleVector (-1, surf_nml);
 		new_z = AdjustRollvector (ctrl, ctrl->cvel, new_z);
-		new_y = ProjectToPlane (surf_nml, ScaleVector (1, ctrl->cvel));
+		new_y = ProjectToPlane (surf_nml, ctrl->cvel);
 		NormVector(new_y);
 	}
 
@@ -860,19 +850,9 @@ void CCharShape::RefreshNode (size_t idx) {
 				MultiplyMatrices (node->invtrans, TempMatrix, node->invtrans);
 				break;
 			case 4:
-				MakeIdentityMatrix (TempMatrix);
-				MultiplyMatrices (node->trans, node->trans, TempMatrix);
-				MakeIdentityMatrix (TempMatrix);
-				MultiplyMatrices (node->invtrans, TempMatrix, node->invtrans);
-
 				MakeScalingMatrix (TempMatrix, vec.x, vec.y, vec.z);
 				MultiplyMatrices (node->trans, node->trans, TempMatrix);
 				MakeScalingMatrix (TempMatrix, 1.0 / vec.x, 1.0 / vec.y, 1.0 / vec.z);
-				MultiplyMatrices (node->invtrans, TempMatrix, node->invtrans);
-
-				MakeIdentityMatrix (TempMatrix);
-				MultiplyMatrices (node->trans, node->trans, TempMatrix);
-				MakeIdentityMatrix (TempMatrix);
 				MultiplyMatrices (node->invtrans, TempMatrix, node->invtrans);
 				break;
 			case 5:

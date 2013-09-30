@@ -291,9 +291,8 @@ void CalcSteeringControls (CControl *ctrl, double time_step) {
 }
 
 void CalcFinishControls (CControl *ctrl, double timestep, bool airborne) {
-	TVector3 movdir = ctrl->cvel;
-	double speed = NormVector (movdir);
-	double dir_angle = atan (movdir.x / movdir.z) * 57.3;
+	double speed = VectorLength(ctrl->cvel);
+	double dir_angle = atan(ctrl->cvel.x / ctrl->cvel.z) * 57.3;
 
 	if (fabs (dir_angle) > 5 && speed > 5) {
 		ctrl->turn_fact = dir_angle / 20;

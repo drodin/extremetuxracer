@@ -214,8 +214,7 @@ void add_track_mark(const CControl *ctrl, int *id) {
 		return;
 	}
 
-	TVector3 vel = ctrl->cvel;
-	double speed = NormVector (vel);
+	double speed = VectorLength(ctrl->cvel);
 	if (speed < SPEED_TO_START_TRENCH) {
 		break_track_marks();
 		return;

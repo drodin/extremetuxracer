@@ -99,7 +99,7 @@ private:
 	void     AdjustVelocity (const TPlane& surf_plane);
 	void     AdjustPosition (const TPlane& surf_plane, double dist_from_surface);
 	void     SetTuxPosition (double speed);
-	double   AdjustTimeStep (double h, TVector3 vel);
+	double   AdjustTimeStep (double h, const TVector3& vel);
 	void     SolveOdeSystem (double timestep);
 public:
 	CControl ();
