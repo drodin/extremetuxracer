@@ -22,6 +22,7 @@ GNU General Public License for more details.
 #include "gui.h"
 #include "textures.h"
 #include "font.h"
+#include "ogl.h"
 #include "winsys.h"
 #include <list>
 #include <vector>
@@ -110,25 +111,25 @@ void TTextField::Draw() const {
 	FT.DrawString (mouseRect.left+20, mouseRect.top, text);
 
 	if (cursor && focus) {
-		double x = mouseRect.left+20+1;
+		int x = mouseRect.left + 20 + 1;
 		if (cursorPos != 0) {
 			string temp = text.substr (0, cursorPos);
 			x += FT.GetTextWidth (temp);
 		}
-		double w = 3;
-		double h = 26*Winsys.scale;
-		double scrheight = Winsys.resolution.height;
+		int w = 3;
+		int h = 26 * Winsys.scale;
+		int scrheight = Winsys.resolution.height;
 
 		glDisable (GL_TEXTURE_2D);
-		glColor4f (colYellow.r, colYellow.g, colYellow.b, colYellow.a);
-		const GLfloat vtx [] = {
+		glColor(colYellow);
+		const GLshort vtx[] = {
 			x,     scrheight - mouseRect.top - h - 9,
 			x + w, scrheight - mouseRect.top - h - 9,
 			x + w, scrheight - mouseRect.top - 9,
 			x,     scrheight - mouseRect.top - 9
 		};
 		glEnableClientState(GL_VERTEX_ARRAY);
-		glVertexPointer(2, GL_FLOAT, 0, vtx);
+		glVertexPointer(2, GL_SHORT, 0, vtx);
 		glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 		glDisableClientState(GL_VERTEX_ARRAY);
 		glEnable (GL_TEXTURE_2D);
@@ -245,7 +246,7 @@ void TIconButton::Draw () const {
 	texture->Bind();
 	glColor4f (1.0, 1.0, 1.0, 1.0);
 
-	const GLfloat vtx[] = {
+	const GLshort vtx[] = {
 		x, y,
 		r, y,
 		r, t,
@@ -277,7 +278,7 @@ void TIconButton::Draw () const {
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 
-	glVertexPointer(2, GL_FLOAT, 0, vtx);
+	glVertexPointer(2, GL_SHORT, 0, vtx);
 	glTexCoordPointer(2, GL_FLOAT, 0, tex[value]);
 	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 
@@ -315,11 +316,10 @@ TIconButton* AddIconButton(int x, int y, TTexture* texture, double size, int max
 }
 
 void TArrow::Draw() const {
-	static const double textl[6] = {0.5, 0.0, 0.5, 0.5, 0.0, 0.5};
-	static const double textr[6] = {1.0, 0.5, 1.0, 1.0, 0.5, 1.0};
-	static const double texbl[6] = {0.25, 0.25, 0.75, 0.00, 0.00, 0.50};
-	static const double texbr[6] = {0.50, 0.50, 1.00, 0.25, 0.25, 0.75};
-	TVector2 bl, tr;
+	static const float textl[6] = { 0.5, 0.0, 0.5, 0.5, 0.0, 0.5 };
+	static const float textr[6] = { 1.0, 0.5, 1.0, 1.0, 0.5, 1.0 };
+	static const float texbl[6] = { 0.25, 0.25, 0.75, 0.00, 0.00, 0.50 };
+	static const float texbr[6] = {0.50, 0.50, 1.00, 0.25, 0.25, 0.75};
 
 	int type = 0;
 	if (active)
@@ -329,37 +329,27 @@ void TArrow::Draw() const {
 	if (down)
 		type += 3;
 
-	bl.x = position.x;
-	bl.y = Winsys.resolution.height - position.y - 16;
-	tr.x = position.x + 32;
-	tr.y = Winsys.resolution.height - position.y;
-
-	double texleft = textl[type];
-	double texright = textr[type];
-	double texbottom = texbl[type];
-	double textop = texbr[type];
-
 	glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glEnable (GL_TEXTURE_2D);
 	Tex.BindTex (LB_ARROWS);
 	glColor4f (1.0, 1.0, 1.0, 1.0);
 
-	const GLfloat tex [] = {
-		texleft, texbottom,
-		texright, texbottom,
-		texright, textop,
-		texleft, textop
+	const GLfloat tex[] = {
+		textl[type], texbl[type],
+		textr[type], texbl[type],
+		textr[type], texbr[type],
+		textl[type], texbr[type]
 	};
-	const GLfloat vtx [] = {
-		bl.x, bl.y,
-		tr.x, bl.y,
-		tr.x, tr.y,
-		bl.x, tr.y
+	const GLshort vtx[] = {
+		position.x,      Winsys.resolution.height - position.y - 16,
+		position.x + 32, Winsys.resolution.height - position.y - 16,
+		position.x + 32, Winsys.resolution.height - position.y,
+		position.x,      Winsys.resolution.height - position.y
 	};
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 
-	glVertexPointer(2, GL_FLOAT, 0, vtx);
+	glVertexPointer(2, GL_SHORT, 0, vtx);
 	glTexCoordPointer(2, GL_FLOAT, 0, tex);
 	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 
@@ -459,32 +449,32 @@ TUpDown* AddUpDown(int x, int y, int minimum, int maximum, int value, int distan
 // ------------------ Elementary drawing ---------------------------------------------
 
 void DrawFrameX (int x, int y, int w, int h, int line, const TColor& backcol, const TColor& framecol, double transp) {
-	double yy = Winsys.resolution.height - y - h;
+	float yy = Winsys.resolution.height - y - h;
 	if (x < 0) x = (Winsys.resolution.width -w) / 2;
 
 	glPushMatrix();
 	glDisable(GL_TEXTURE_2D);
 	glEnableClientState(GL_VERTEX_ARRAY);
 
-	glColor4f (framecol.r, framecol.g, framecol.b, transp);
+	glColor(framecol, transp);
 	glTranslatef(x, yy, 0);
-	const GLfloat frame [] = {
+	const GLshort frame [] = {
 		0, 0,
 		w, 0,
 		w, h,
 		0, h
 	};
-	glVertexPointer(2, GL_FLOAT, 0, frame);
+	glVertexPointer(2, GL_SHORT, 0, frame);
 	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 
-	glColor4f (backcol.r, backcol.g, backcol.b, transp);
-	const GLfloat back [] = {
+	glColor(backcol, transp);
+	const GLshort back [] = {
 		0 + line, 0 + line,
 		w - line, 0 + line,
 		w - line, h - line,
 		0 + line, h - line
 	};
-	glVertexPointer(2, GL_FLOAT, 0, back);
+	glVertexPointer(2, GL_SHORT, 0, back);
 	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 
 	glDisableClientState(GL_VERTEX_ARRAY);
@@ -493,38 +483,32 @@ void DrawFrameX (int x, int y, int w, int h, int line, const TColor& backcol, co
 }
 
 void DrawLevel (int x, int y, int level, double fact) {
-	TVector2 bl, tr;
-	static const double lev[4] = {0.0, 0.75, 0.5, 0.25};
+	static const float lev[4] = {0.0, 0.75, 0.5, 0.25};
 
-	bl.x = x;
-	bl.y = Winsys.resolution.height - y - 32;
-	tr.x = x + 95;
-	tr.y = Winsys.resolution.height - y;
-
-	double bott = lev[level];
-	double top = bott + 0.25;
+	float bott = lev[level];
+	float top = bott + 0.25;
 
 	glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glEnable (GL_TEXTURE_2D);
 	Tex.BindTex (STARS);
 	glColor4f (1.0, 1.0, 1.0, 1.0);
 
-	const GLfloat tex [] = {
+	const GLfloat tex[] = {
 		0,    bott,
 		0.75, bott,
 		0.75, top,
 		0,    top
 	};
-	const GLfloat vtx [] = {
-		bl.x, bl.y,
-		tr.x, bl.y,
-		tr.x, tr.y,
-		bl.x, tr.y
+	const GLshort vtx[] = {
+		x,      Winsys.resolution.height - y - 32,
+		x + 95, Winsys.resolution.height - y - 32,
+		x + 95, Winsys.resolution.height - y,
+		x,      Winsys.resolution.height - y
 	};
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 
-	glVertexPointer(2, GL_FLOAT, 0, vtx);
+	glVertexPointer(2, GL_SHORT, 0, vtx);
 	glTexCoordPointer(2, GL_FLOAT, 0, tex);
 	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 
@@ -536,7 +520,7 @@ void DrawBonusExt (int y, size_t numraces, size_t num) {
 	size_t maxtux = numraces * 3;
 	if (num > maxtux) return;
 
-	TVector2 bl, tr;
+	TVector2i bl, tr;
 
 	//TColor col1 = {0.3, 0.5, 0.7, 1};
 	TColor col2(0.45, 0.65, 0.85, 1);
@@ -578,22 +562,22 @@ void DrawBonusExt (int y, size_t numraces, size_t num) {
 		// if (i<num) bott = 0.5; else bott = 0.0;
 		// top = bott + 0.5;
 		if (i<num) {
-			double bott = 0.5;
-			double top = 1.0;
+			float bott = 0.5;
+			float top = 1.0;
 
-			const GLfloat tex [] = {
+			const GLfloat tex[] = {
 				0, bott,
 				1, bott,
 				1, top,
 				0, top
 			};
-			const GLfloat vtx [] = {
+			const GLshort vtx[] = {
 				bl.x, bl.y,
 				tr.x, bl.y,
 				tr.x, tr.y,
 				bl.x, tr.y
 			};
-			glVertexPointer(2, GL_FLOAT, 0, vtx);
+			glVertexPointer(2, GL_SHORT, 0, vtx);
 			glTexCoordPointer(2, GL_FLOAT, 0, tex);
 			glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 		}

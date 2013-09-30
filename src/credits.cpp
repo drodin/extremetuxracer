@@ -84,24 +84,24 @@ void CCredits::DrawCreditsText (double time_step) {
 
 
 	glDisable (GL_TEXTURE_2D);
-	glColor4dv ((double*)&colBackgr);
+	glColor(colBackgr);
 	glRectf (0, 0, w, BOTT_Y);
 
 	glBegin( GL_QUADS );
 	glVertex2f (0, BOTT_Y);
 	glVertex2f (w, BOTT_Y);
-	glColor4f (colBackgr.r, colBackgr.g, colBackgr.b, 0);
+	glColor(colBackgr, 0);
 	glVertex2f (w, BOTT_Y + 30);
 	glVertex2f (0, BOTT_Y + 30);
 	glEnd();
 
-	glColor4dv ((double*)&colBackgr);
+	glColor(colBackgr);
 	glRectf (0, h - TOP_Y, w, h);
 
 	glBegin( GL_QUADS );
 	glVertex2f (w, h - TOP_Y);
 	glVertex2f (0, h - TOP_Y);
-	glColor4f (colBackgr.r, colBackgr.g, colBackgr.b, 0);
+	glColor(colBackgr, 0);
 	glVertex2f (0, h - TOP_Y - 30);
 	glVertex2f (w, h - TOP_Y - 30);
 	glEnd();
@@ -133,13 +133,13 @@ static void DrawBackLogo (int x, int y, double size) {
 	right = left + width;
 
 	glColor4f(1.0, 1.0, 1.0, 0.4);
-	const GLfloat tex [] = {
+	static const GLshort tex[] = {
 		0, 0,
 		1, 0,
 		1, 1,
 		0, 1
 	};
-	const GLfloat vtx [] = {
+	const GLfloat vtx[] = {
 		left, bott,
 		right, bott,
 		right, top,
@@ -149,7 +149,7 @@ static void DrawBackLogo (int x, int y, double size) {
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 
 	glVertexPointer(2, GL_FLOAT, 0, vtx);
-	glTexCoordPointer(2, GL_FLOAT, 0, tex);
+	glTexCoordPointer(2, GL_SHORT, 0, tex);
 	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 
 	glDisableClientState(GL_TEXTURE_COORD_ARRAY);

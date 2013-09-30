@@ -34,6 +34,13 @@ enum Orientation {
     OR_BOTTOM = 1		// bottom-orientated
 };
 
+struct TVector2i {
+	int x, y;
+	TVector2i(int _x = 0, int _y = 0)
+		: x(_x), y(_y)
+	{}
+};
+
 struct TVector2	{
 	double x, y;
 	TVector2(double _x = 0.0, double _y = 0.0)

@@ -255,7 +255,7 @@ void DrawWind (double dir, double speed) {
 	glColor4f (1, 0, 0, 0.5);
 	glTranslatef (82, 77, 0);
 	glRotatef (dir, 0, 0, 1);
-	const GLfloat vtx [] = {
+	const GLfloat vtx[] = {
 		-2, 0.0,
 		2, 0.0,
 		2, -speed,
@@ -368,13 +368,13 @@ void DrawPercentBar (float fact, float x, float y) {
 	Tex.BindTex (T_ENERGY_MASK);
 	glColor4f (1.0, 1.0, 1.0, 1.0);
 
-	const GLfloat tex [] = {
+	const GLfloat tex[] = {
 		0, 0,
 		1, 0,
 		1, fact,
 		0, fact
 	};
-	const GLfloat vtx [] = {
+	const GLfloat vtx[] = {
 		x, y,
 		x + 32, y,
 		x + 32, y + fact * 128,

@@ -92,32 +92,39 @@ void DrawTrees() {
 		double treeHeight = treeLocs[i].height;
 		TVector3 normal(0, 0, 1);
 		glNormal3f (normal.x, normal.y, normal.z);
-		/*		// slower but better method of setting the normals
-				normal = SubtractVectors (ctrl->viewpos, treeLocs[i].pt);
-				NormVector (normal);
-				glNormal3f (normal.x, normal.y, normal.z); */
 
-		glBegin (GL_QUADS);
-		glTexCoord2f (0.0, 0.0);
-		glVertex3f (-treeRadius, 0.0, 0.0);
-		glTexCoord2f (1.0, 0.0);
-		glVertex3f (treeRadius, 0.0, 0.0);
-		glTexCoord2f (1.0, 1.0);
-		glVertex3f (treeRadius, treeHeight, 0.0);
-		glTexCoord2f (0.0, 1.0);
-		glVertex3f (-treeRadius, treeHeight, 0.0);
+		static const GLshort tex[] = {
+			0, 0,
+			1, 0,
+			1, 1,
+			0, 1,
+			0, 0,
+			1, 0,
+			1, 1,
+			0, 1
+		};
 
-//			if (!clip_course || ctrl->viewpos.z - treeLocs[i].pt.z < fwd_tree_detail_limit) {
-		glTexCoord2f  (0., 0.);
-		glVertex3f  (0.0, 0.0, -treeRadius);
-		glTexCoord2f  (1., 0.);
-		glVertex3f  (0.0, 0.0, treeRadius);
-		glTexCoord2f  (1., 1.);
-		glVertex3f  (0.0, treeHeight, treeRadius);
-		glTexCoord2f  (0., 1.);
-		glVertex3f  (0.0, treeHeight, -treeRadius);
-//			}
-		glEnd();
+		const GLfloat vtx[] = {
+			-treeRadius, 0.0,        0.0,
+			treeRadius,  0.0,        0.0,
+			treeRadius,  treeHeight, 0.0,
+			-treeRadius, treeHeight, 0.0,
+			0.0,         0.0,        -treeRadius,
+			0.0,         0.0,        treeRadius,
+			0.0,         treeHeight, treeRadius,
+			0.0,         treeHeight, -treeRadius
+		};
+
+		glEnableClientState(GL_VERTEX_ARRAY);
+		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+
+		glVertexPointer(3, GL_FLOAT, 0, vtx);
+		glTexCoordPointer(2, GL_SHORT, 0, tex);
+		glDrawArrays(GL_QUADS, 0, 8);
+
+		glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+		glDisableClientState(GL_VERTEX_ARRAY);
+
 		glPopMatrix();
 	}
 
@@ -146,23 +153,35 @@ void DrawTrees() {
 		if (object_types[item_type].use_normal) {
 			normal = object_types[item_type].normal;
 		} else {
-//				normal = MakeVector (0, 0, 1);
 			normal = SubtractVectors (ctrl->viewpos, itemLocs[i].pt);
 			NormVector (normal);
 		}
 		glNormal3f (normal.x, normal.y, normal.z);
 		normal.y = 0.0;
 		NormVector (normal);
-		glBegin (GL_QUADS);
-		glTexCoord2f (0., 0.);
-		glVertex3f (-itemRadius*normal.z, 0.0,  itemRadius*normal.x);
-		glTexCoord2f (1., 0.);
-		glVertex3f (itemRadius*normal.z, 0.0, -itemRadius*normal.x);
-		glTexCoord2f (1., 1.);
-		glVertex3f (itemRadius*normal.z, itemHeight, -itemRadius*normal.x);
-		glTexCoord2f (0., 1.);
-		glVertex3f (-itemRadius*normal.z, itemHeight, itemRadius*normal.x);
-		glEnd();
+
+		static const GLshort tex[] = {
+			0, 0,
+			1, 0,
+			1, 1,
+			0, 1
+		};
+
+		const GLfloat vtx[] = {
+			-itemRadius*normal.z, 0.0,        itemRadius*normal.x,
+			itemRadius*normal.z, 0.0,        -itemRadius*normal.x,
+			itemRadius*normal.z,  itemHeight, -itemRadius*normal.x,
+			-itemRadius*normal.z, itemHeight, itemRadius*normal.x
+		};
+		glEnableClientState(GL_VERTEX_ARRAY);
+		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+
+		glVertexPointer(3, GL_FLOAT, 0, vtx);
+		glTexCoordPointer(2, GL_SHORT, 0, tex);
+		glDrawArrays(GL_QUADS, 0, 4);
+
+		glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+		glDisableClientState(GL_VERTEX_ARRAY);
 		glPopMatrix();
 	}
 }

@@ -70,5 +70,8 @@ void ClearRenderContext (const TColor& col);
 void SetupGuiDisplay ();
 void Reshape (int w, int h);
 
+void glColor(const TColor& col);
+void glColor(const TColor& col, double alpha);
+
 
 #endif

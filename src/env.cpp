@@ -194,14 +194,13 @@ void CEnvironment::LoadLight (const string& EnvDir) {
 
 void CEnvironment::DrawSkybox (const TVector3& pos) {
 	ScopedRenderMode rm(SKY);
-	double aa, bb;
 
 #if defined (OS_LINUX)
-	aa = 0.0;
-	bb = 1.0;
+	static const float aa = 0.0f;
+	static const float bb = 1.0f;
 #else
-	aa = 0.005;
-	bb = 0.995;
+	static const float aa = 0.005f;
+	static const float bb = 0.995f;
 #endif
 
 	glColor4f (1.0, 1.0, 1.0, 1.0);
@@ -209,87 +208,93 @@ void CEnvironment::DrawSkybox (const TVector3& pos) {
 	glPushMatrix();
 	glTranslatef (pos.x, pos.y, pos.z);
 
+	static const GLfloat tex[] = {
+		aa, aa,
+		bb, aa,
+		bb, bb,
+		aa, bb
+	};
+
+	glEnableClientState(GL_VERTEX_ARRAY);
+	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 	// front
+	static const GLshort front[] = {
+		-1, -1, -1,
+		1, -1, -1,
+		1,  1, -1,
+		-1,  1, -1
+	};
+
 	Skybox[0].Bind();
-	glBegin(GL_QUADS);
-	glTexCoord2f (aa, aa);
-	glVertex3f (-1, -1, -1);
-	glTexCoord2f (bb, aa);
-	glVertex3f ( 1, -1, -1);
-	glTexCoord2f (bb, bb);
-	glVertex3f ( 1,  1, -1);
-	glTexCoord2f (aa, bb);
-	glVertex3f (-1,  1, -1);
-	glEnd();
+	glVertexPointer(3, GL_SHORT, 0, front);
+	glTexCoordPointer(2, GL_FLOAT, 0, tex);
+	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 
 	// left
+	static const GLshort left[] = {
+		-1, -1,  1,
+		-1, -1, -1,
+		-1,  1, -1,
+		-1,  1,  1
+	};
 	Skybox[1].Bind();
-	glBegin(GL_QUADS);
-	glTexCoord2f (aa, aa);
-	glVertex3f (-1, -1,  1);
-	glTexCoord2f (bb, aa);
-	glVertex3f (-1, -1, -1);
-	glTexCoord2f (bb, bb);
-	glVertex3f (-1,  1, -1);
-	glTexCoord2f (aa, bb);
-	glVertex3f (-1,  1,  1);
-	glEnd();
+	glVertexPointer(3, GL_SHORT, 0, left);
+	glTexCoordPointer(2, GL_FLOAT, 0, tex);
+	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 
 	// right
+	static const GLshort right[] = {
+		1, -1, -1,
+		1, -1, 1,
+		1,  1, 1,
+		1,  1, -1
+	};
 	Skybox[2].Bind();
-	glBegin(GL_QUADS);
-	glTexCoord2f (aa, aa);
-	glVertex3f (1, -1, -1);
-	glTexCoord2f (bb, aa);
-	glVertex3f (1, -1,  1);
-	glTexCoord2f (bb, bb);
-	glVertex3f (1,  1,  1);
-	glTexCoord2f (aa, bb);
-	glVertex3f (1,  1, -1);
-	glEnd();
+	glVertexPointer(3, GL_SHORT, 0, right);
+	glTexCoordPointer(2, GL_FLOAT, 0, tex);
+	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 
 	// normally, the following textures are unvisible
 	// see game_config.cpp (param.full_skybox)
 	if (param.full_skybox) {
 		// top
+		static const GLshort top[] = {
+			-1, 1, -1,
+			1, 1, -1,
+			1, 1,  1,
+			-1, 1,  1
+		};
 		Skybox[3].Bind();
-		glBegin(GL_QUADS);
-		glTexCoord2f (aa, aa);
-		glVertex3f (-1, 1, -1);
-		glTexCoord2f (bb, aa);
-		glVertex3f ( 1, 1, -1);
-		glTexCoord2f (bb, bb);
-		glVertex3f ( 1, 1,  1);
-		glTexCoord2f (aa, bb);
-		glVertex3f (-1, 1,  1);
-		glEnd();
+		glVertexPointer(3, GL_SHORT, 0, top);
+		glTexCoordPointer(2, GL_FLOAT, 0, tex);
+		glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 
 		// bottom
+		static const GLshort bottom[] = {
+			-1, -1,  1,
+			1, -1,  1,
+			1, -1, -1,
+			-1, -1, -1
+		};
 		Skybox[4].Bind();
-		glBegin(GL_QUADS);
-		glTexCoord2f (aa, aa);
-		glVertex3f (-1, -1,  1);
-		glTexCoord2f (bb, aa);
-		glVertex3f ( 1, -1,  1);
-		glTexCoord2f (bb, bb);
-		glVertex3f ( 1, -1, -1);
-		glTexCoord2f (aa, bb);
-		glVertex3f (-1, -1, -1);
-		glEnd();
+		glVertexPointer(3, GL_SHORT, 0, bottom);
+		glTexCoordPointer(2, GL_FLOAT, 0, tex);
+		glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 
 		// back
+		static const GLshort back[] = {
+			1, -1, 1,
+			-1, -1, 1,
+			-1,  1, 1,
+			1,  1, 1
+		};
 		Skybox[5].Bind();
-		glBegin(GL_QUADS);
-		glTexCoord2f (aa, aa);
-		glVertex3f ( 1, -1, 1);
-		glTexCoord2f (bb, aa);
-		glVertex3f (-1, -1, 1);
-		glTexCoord2f (bb, bb);
-		glVertex3f (-1,  1, 1);
-		glTexCoord2f (aa, bb);
-		glVertex3f ( 1,  1, 1);
-		glEnd();
+		glVertexPointer(3, GL_SHORT, 0, back);
+		glTexCoordPointer(2, GL_FLOAT, 0, tex);
+		glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 	}
+	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+	glDisableClientState(GL_VERTEX_ARRAY);
 	glPopMatrix();
 }
 
@@ -339,10 +344,10 @@ void CEnvironment::DrawFog () {
 	glEnable (GL_FOG);
 
 	// only the alpha channel is used
-	static const float bottom_dens[4]     = {0, 0, 0, 1.0};
-	static const float top_dens[4]        = {0, 0, 0, 0.9};
-	static const float leftright_dens[4]  = {0, 0, 0, 0.3};
-	static const float top_bottom_dens[4] = {0, 0, 0, 0.0};
+	static const GLfloat bottom_dens[4]     = {0, 0, 0, 1.0};
+	static const GLfloat top_dens[4] = { 0, 0, 0, 0.9 };
+	static const GLfloat leftright_dens[4] = { 0, 0, 0, 0.3 };
+	static const GLfloat top_bottom_dens[4] = { 0, 0, 0, 0.0 };
 
 	glBegin (GL_QUAD_STRIP);
 	glColor4fv (bottom_dens);

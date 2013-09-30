@@ -137,8 +137,8 @@ static int tool_mode = 0;
 
 void DrawQuad (float x, float y, float w, float h, float scrheight, const TColor& col, int frame) {
 	glDisable (GL_TEXTURE_2D);
-	glColor4f (col.r, col.g, col.b, col.a);
-	const GLfloat vtx [] = {
+	glColor(col);
+	const GLfloat vtx[] = {
 		x - frame, scrheight - y - h - frame,
 		x + w + frame, scrheight - y - h - frame,
 		x + w + frame, scrheight - y + frame,

@@ -23,6 +23,7 @@ GNU General Public License for more details.
 #include "font.h"
 #include "ft_font.h"
 #include "spx.h"
+#include "ogl.h"
 #include "winsys.h"
 
 #define USE_UNICODE 1
@@ -229,7 +230,7 @@ void CFont::DrawText(float x, float y, const char *text, size_t font, float size
 
 	glPushMatrix();
 	fonts[font]->FaceSize ((int)size);
-	glColor4f (curr_col.r, curr_col.g, curr_col.b, curr_col.a);
+	glColor(curr_col);
 
 	float left;
 	if (x >= 0) left = x;
@@ -251,7 +252,7 @@ void CFont::DrawText(float x, float y, const wchar_t *text, size_t font, float s
 
 	glPushMatrix();
 	fonts[font]->FaceSize ((int)size);
-	glColor4f (curr_col.r, curr_col.g, curr_col.b, curr_col.a);
+	glColor(curr_col);
 
 	float left;
 	if (x >= 0) left = x;

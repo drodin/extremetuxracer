@@ -48,8 +48,7 @@ struct TFlake {
 	TVector3 pt;
 	float   size;
 	TVector3 vel;
-	TVector2 tex_min;
-	TVector2 tex_max;
+	const GLfloat* tex;
 
 	void Draw(const TPlane& lp, const TPlane& rp, bool rotate_flake, float dir_angle) const;
 };

@@ -30,7 +30,7 @@ class TTexture;
 class TWidget {
 protected:
 	TRect mouseRect;
-	TVector2 position;
+	TVector2i position;
 	bool active;
 	bool visible;
 public:

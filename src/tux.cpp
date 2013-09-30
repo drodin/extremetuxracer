@@ -776,7 +776,7 @@ void CCharShape::DrawShadow () {
 	if (g_game.light_id == 1 || g_game.light_id == 3) return;
 
 	ScopedRenderMode rm(TUX_SHADOW);
-	glColor4f (shad_col.r, shad_col.g, shad_col.b, shad_col.a);
+	glColor(shad_col);
 	MakeIdentityMatrix (model_matrix);
 
 	TCharNode *node = GetNode(0);

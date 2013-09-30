@@ -146,8 +146,7 @@ void set_material (const TColor& diffuse_colour, const TColor& specular_colour, 
 
 	glMaterialf (GL_FRONT_AND_BACK, GL_SHININESS, specular_exp);
 
-	glColor4f (diffuse_colour.r, diffuse_colour.g, diffuse_colour.b,
-	           diffuse_colour.a);
+	glColor(diffuse_colour);
 }
 void ClearRenderContext () {
 	glDepthMask (GL_TRUE);
@@ -483,4 +482,13 @@ void PopRenderMode() {
 	modestack.pop();
 	if (!modestack.empty() && modestack.top() != mode)
 		set_gl_options(modestack.top());
+}
+
+
+void glColor(const TColor& col) {
+	glColor4d(col.r, col.g, col.b, col.a);
+}
+
+void glColor(const TColor& col, double alpha) {
+	glColor4d(col.r, col.g, col.b, alpha);
 }

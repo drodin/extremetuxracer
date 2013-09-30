@@ -557,13 +557,13 @@ const FTPoint& FTTextureGlyph::Render (const FTPoint& pen) {
 
 	glTranslatef (pen.X(),  pen.Y(), 0.0f);
 
-	const GLfloat tex [] = {
+	const GLfloat tex[] = {
 		uv[0].X(), uv[0].Y(),
 		uv[0].X(), uv[1].Y(),
 		uv[1].X(), uv[1].Y(),
 		uv[1].X(), uv[0].Y(),
 	};
-	const GLfloat vtx [] = {
+	const GLfloat vtx[] = {
 		pos.X(), pos.Y(),
 		pos.X(), pos.Y() - destHeight,
 		destWidth + pos.X(), pos.Y() - destHeight,
