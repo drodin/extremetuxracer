@@ -119,41 +119,41 @@ void DrawTrackmarks() {
 		if ((q->track_type == TRACK_HEAD) || (q->track_type == TRACK_TAIL)) {
 			glBegin(GL_QUADS);
 
-			glNormal3f (q->n1.x, q->n1.y, q->n1.z);
-			glTexCoord2f (q->t1.x, q->t1.y);
-			glVertex3f (q->v1.x, q->v1.y, q->v1.z);
+			glNormal3(q->n1);
+			glTexCoord2(q->t1);
+			glVertex3(q->v1);
 
-			glNormal3f (q->n2.x, q->n2.y, q->n2.z);
-			glTexCoord2f (q->t2.x, q->t2.y);
-			glVertex3f (q->v2.x, q->v2.y, q->v2.z);
+			glNormal3(q->n2);
+			glTexCoord2(q->t2);
+			glVertex3(q->v2);
 
-			glNormal3f (q->n4.x, q->n4.y, q->n4.z);
-			glTexCoord2f (q->t4.x, q->t4.y);
-			glVertex3f (q->v4.x, q->v4.y, q->v4.z);
+			glNormal3(q->n4);
+			glTexCoord2(q->t4);
+			glVertex3(q->v4);
 
-			glNormal3f (q->n3.x, q->n3.y, q->n3.z);
-			glTexCoord2f (q->t3.x, q->t3.y);
-			glVertex3f (q->v3.x, q->v3.y, q->v3.z);
+			glNormal3(q->n3);
+			glTexCoord2(q->t3);
+			glVertex3(q->v3);
 
 			glEnd();
 
 		} else {
 			glBegin(GL_QUAD_STRIP);
-			glNormal3f (q->n2.x, q->n2.y, q->n2.z);
-			glTexCoord2f (q->t2.x, q->t2.y);
-			glVertex3f (q->v2.x, q->v2.y, q->v2.z);
+			glNormal3(q->n2);
+			glTexCoord2(q->t2);
+			glVertex3(q->v2);
 
-			glNormal3f (q->n1.x, q->n1.y, q->n1.z);
-			glTexCoord2f (q->t1.x, q->t1.y);
-			glVertex3f (q->v1.x, q->v1.y, q->v1.z);
+			glNormal3(q->n1);
+			glTexCoord2(q->t1);
+			glVertex3(q->v1);
 
-			glNormal3f (q->n4.x, q->n4.y, q->n4.z);
-			glTexCoord2f (q->t4.x, q->t4.y);
-			glVertex3f (q->v4.x, q->v4.y, q->v4.z);
+			glNormal3(q->n4);
+			glTexCoord2(q->t4);
+			glVertex3(q->v4);
 
-			glNormal3f (q->n3.x, q->n3.y, q->n3.z);
-			glTexCoord2f (q->t3.x, q->t3.y);
-			glVertex3f (q->v3.x, q->v3.y, q->v3.z);
+			glNormal3(q->n3);
+			glTexCoord2(q->t3);
+			glVertex3(q->v3);
 
 			list<track_quad_t>::const_iterator qnext = q;
 			++qnext;
@@ -162,13 +162,13 @@ void DrawTrackmarks() {
 				track_colour.a = q->alpha;
 				set_material (track_colour, colBlack, 1.0);
 
-				glNormal3f (q->n4.x, q->n4.y, q->n4.z);
-				glTexCoord2f (q->t4.x, q->t4.y);
-				glVertex3f (q->v4.x, q->v4.y, q->v4.z);
+				glNormal3(q->n4);
+				glTexCoord2(q->t4);
+				glVertex3(q->v4);
 
-				glNormal3f (q->n3.x, q->n3.y, q->n3.z);
-				glTexCoord2f (q->t3.x, q->t3.y);
-				glVertex3f (q->v3.x, q->v3.y, q->v3.z);
+				glNormal3(q->n3);
+				glTexCoord2(q->t3);
+				glVertex3(q->v3);
 
 				++qnext;
 			}

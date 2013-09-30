@@ -73,5 +73,11 @@ void Reshape (int w, int h);
 void glColor(const TColor& col);
 void glColor(const TColor& col, double alpha);
 
+void glTranslate(const TVector3& vec);
+
+void glNormal3(const TVector3& vec);
+void glVertex3(const TVector3& vec);
+void glTexCoord2(const TVector2& vec);
+
 
 #endif

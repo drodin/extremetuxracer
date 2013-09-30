@@ -671,8 +671,8 @@ void CCharShape::DrawShadowVertex (double x, double y, double z, const TMatrix m
 	TVector3 nml = Course.FindCourseNormal (pt.x, pt.z);
 	pt.y = Course.FindYCoord (pt.x, pt.z) + SHADOW_HEIGHT;
 	if (pt.y > old_y) pt.y = old_y;
-	glNormal3f (nml.x, nml.y, nml.z);
-	glVertex3f (pt.x, pt.y, pt.z);
+	glNormal3(nml);
+	glVertex3(pt);
 }
 
 void CCharShape::DrawShadowSphere (const TMatrix mat) {

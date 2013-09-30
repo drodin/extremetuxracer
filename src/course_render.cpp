@@ -85,13 +85,12 @@ void DrawTrees() {
 		}
 
 		glPushMatrix();
-		glTranslatef (treeLocs[i].pt.x, treeLocs[i].pt.y, treeLocs[i].pt.z);
+		glTranslate(treeLocs[i].pt);
 		if (param.perf_level > 1) glRotatef (1, 0, 1, 0);
 
 		double treeRadius = treeLocs[i].diam / 2.0;
 		double treeHeight = treeLocs[i].height;
-		TVector3 normal(0, 0, 1);
-		glNormal3f (normal.x, normal.y, normal.z);
+		glNormal3i(0, 0, 1);
 
 		static const GLshort tex[] = {
 			0, 0,
@@ -145,7 +144,7 @@ void DrawTrees() {
 		}
 
 		glPushMatrix();
-		glTranslatef (itemLocs[i].pt.x, itemLocs[i].pt.y,  itemLocs[i].pt.z);
+		glTranslate(itemLocs[i].pt);
 		double itemRadius = itemLocs[i].diam / 2;
 		double itemHeight = itemLocs[i].height;
 
@@ -156,7 +155,7 @@ void DrawTrees() {
 			normal = SubtractVectors (ctrl->viewpos, itemLocs[i].pt);
 			NormVector (normal);
 		}
-		glNormal3f (normal.x, normal.y, normal.z);
+		glNormal3(normal);
 		normal.y = 0.0;
 		NormVector (normal);
 

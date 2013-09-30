@@ -485,7 +485,7 @@ static CFlakes Flakes;
 void TFlake::Draw(const TPlane& lp, const TPlane& rp, bool rotate_flake, float dir_angle) const {
 	if ((DistanceToPlane (lp, pt) < 0) && (DistanceToPlane (rp, pt) < 0)) {
 		glPushMatrix();
-		glTranslatef (pt.x, pt.y, pt.z);
+		glTranslate(pt);
 		if (rotate_flake) glRotatef (dir_angle, 0, 1, 0);
 
 		const GLfloat vtx[] = {
@@ -801,9 +801,9 @@ void TCurtain::Draw() const {
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 	for (unsigned int co=0; co<numCols; co++) {
 		for (unsigned int row=0; row<numRows; row++) {
-			const TVector3* pt = &curtains[co][row].pt;
+			const TVector3& pt = curtains[co][row].pt;
 			glPushMatrix();
-			glTranslatef (pt->x, pt->y, pt->z);
+			glTranslate(pt);
 			glRotatef (-curtains[co][row].angle, 0, 1, 0);
 
 			static const GLshort tex[] = {

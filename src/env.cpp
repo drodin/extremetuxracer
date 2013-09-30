@@ -206,7 +206,7 @@ void CEnvironment::DrawSkybox (const TVector3& pos) {
 	glColor4f (1.0, 1.0, 1.0, 1.0);
 	glTexEnvf (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
 	glPushMatrix();
-	glTranslatef (pos.x, pos.y, pos.z);
+	glTranslate(pos);
 
 	static const GLfloat tex[] = {
 		aa, aa,
@@ -351,26 +351,26 @@ void CEnvironment::DrawFog () {
 
 	glBegin (GL_QUAD_STRIP);
 	glColor4fv (bottom_dens);
-	glVertex3f (bottomleft.x, bottomleft.y, bottomleft.z);
-	glVertex3f (bottomright.x, bottomright.y, bottomright.z);
-	glVertex3f (left.x, left.y, left.z);
-	glVertex3f (right.x, right.y, right.z);
+	glVertex3(bottomleft);
+	glVertex3(bottomright);
+	glVertex3(left);
+	glVertex3(right);
 
 	glColor4fv (top_dens);
-	glVertex3f (topleft.x, topleft.y, topleft.z);
-	glVertex3f (topright.x, topright.y, topright.z);
+	glVertex3(topleft);
+	glVertex3(topright);
 
 	glColor4fv (leftright_dens);
 	vpoint = AddVectors (topleft, leftvec);
-	glVertex3f (vpoint.x, vpoint.y, vpoint.z);
+	glVertex3(vpoint);
 	vpoint = AddVectors (topright, rightvec);
-	glVertex3f (vpoint.x, vpoint.y, vpoint.z);
+	glVertex3(vpoint);
 
 	glColor4fv (top_bottom_dens);
 	vpoint = AddVectors (topleft, ScaleVector (3.0, leftvec));
-	glVertex3f (vpoint.x, vpoint.y, vpoint.z);
+	glVertex3(vpoint);
 	vpoint = AddVectors (topright, ScaleVector (3.0, rightvec));
-	glVertex3f (vpoint.x, vpoint.y, vpoint.z);
+	glVertex3(vpoint);
 	glEnd();
 }
 
