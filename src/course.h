@@ -30,7 +30,7 @@ GNU General Public License for more details.
 #define NORM_INTERPOL 0.05
 #define XCD(_x) ((double)(_x) / (nx-1.0) * curr_course->size.x)
 #define ZCD(_y) (-(double)(_y) / (ny-1.0) * curr_course->size.y)
-#define NMLPOINT(x,y) TVector3(XCD(x), ELEV(x,y), ZCD(y) )
+#define NMLPOINT(x,y) TVector3d(XCD(x), ELEV(x,y), ZCD(y) )
 
 
 #define MAX_COURSES 64
@@ -41,14 +41,14 @@ GNU General Public License for more details.
 class TTexture;
 
 struct TCollidable {
-	TVector3 pt;
+	TVector3d pt;
 	double height;
 	double diam;
 	size_t tree_type;
 };
 
 struct TItem {
-	TVector3 pt;
+	TVector3d pt;
 	double height;
 	double diam;
 	size_t item_type;
@@ -63,11 +63,11 @@ struct TCourse {
 	string desc[MAX_DESCRIPTION_LINES];
 	size_t num_lines;
 	TTexture* preview;
-	TVector2 size;
-	TVector2 play_size;
+	TVector2d size;
+	TVector2d play_size;
 	double angle;
 	double scale;
-	TVector2 start;
+	TVector2d start;
 	size_t env;
 	size_t music_theme;
 	bool use_keyframe;
@@ -100,7 +100,7 @@ struct TObjectType {
 	bool		drawable;
 	bool		reset_point;
 	bool		use_normal;
-	TVector3	normal;
+	TVector3d	normal;
 	int			num_items;
 	int			poly;
 };
@@ -114,7 +114,7 @@ private:
 
 	int			nx;
 	int			ny;
-	TVector2	start_pt;
+	TVector2d	start_pt;
 	int			base_height_value;
 	bool		mirrored;
 
@@ -142,7 +142,7 @@ public:
 
 	char		*terrain;
 	double		*elevation;
-	TVector3	*nmls;
+	TVector3d	*nmls;
 	GLubyte		*vnc_array;
 
 	void ResetCourse ();
@@ -156,25 +156,25 @@ public:
 	GLubyte* GetGLArrays() const { return vnc_array; }
 	void FillGlArrays();
 
-	const TVector2& GetDimensions() const { return curr_course->size; }
-	const TVector2& GetPlayDimensions() const { return curr_course->play_size; }
+	const TVector2d& GetDimensions() const { return curr_course->size; }
+	const TVector2d& GetPlayDimensions() const { return curr_course->play_size; }
 	void GetDivisions (int *nx, int *ny) const;
 	double GetCourseAngle () const { return curr_course->angle; }
 	double GetBaseHeight (double distance) const;
 	double GetMaxHeight (double distance) const;
 	size_t GetEnv () const;
-	const TVector2& GetStartPoint () const { return start_pt; }
+	const TVector2d& GetStartPoint () const { return start_pt; }
 	const TPolyhedron& GetPoly (size_t type) const;
 	void MirrorCourse ();
 
 	void GetIndicesForPoint (double x, double z, int *x0, int *y0, int *x1, int *y1) const;
 	void FindBarycentricCoords (double x, double z,
 	                            TIndex2 *idx0, TIndex2 *idx1, TIndex2 *idx2, double *u, double *v) const;
-	TVector3 FindCourseNormal (double x, double z) const;
+	TVector3d FindCourseNormal (double x, double z) const;
 	double FindYCoord (double x, double z) const;
 	void GetSurfaceType (double x, double z, double weights[]) const;
 	int GetTerrainIdx (double x, double z, double level) const;
-	TPlane GetLocalCoursePlane (TVector3 pt) const;
+	TPlane GetLocalCoursePlane (TVector3d pt) const;
 };
 
 extern CCourse Course;

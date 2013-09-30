@@ -32,7 +32,7 @@ struct TKeyframe {
 class CKeyframe {
 private:
 	vector<TKeyframe> frames;
-	TVector3 refpos;
+	TVector3d refpos;
 	string loadedfile;
 	TKeyframe clipboard;
 	double keytime;
@@ -49,14 +49,14 @@ public:
 	bool loaded;
 	bool active;
 
-	void Init (const TVector3& ref_position, double height_correction);
-	void Init (const TVector3& ref_position, double height_correction, CCharShape *shape);
-	void InitTest (const TVector3& ref_position, CCharShape *shape);
+	void Init (const TVector3d& ref_position, double height_correction);
+	void Init (const TVector3d& ref_position, double height_correction, CCharShape *shape);
+	void InitTest (const TVector3d& ref_position, CCharShape *shape);
 	void Reset ();
 	void Update (double timestep);
 	void UpdateTest (double timestep, CCharShape *shape);
 	bool Load (const string& dir, const string& filename);
-	void CalcKeyframe (size_t idx, CCharShape *shape, const TVector3& refpos);
+	void CalcKeyframe (size_t idx, CCharShape *shape, const TVector3d& refpos);
 
 	// test and editing
 	TKeyframe *GetFrame (size_t idx);

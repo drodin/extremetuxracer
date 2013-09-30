@@ -170,7 +170,7 @@ bool CCharShape::CreateCharNode
 	return true;
 }
 
-void CCharShape::AddAction (size_t node_name, int type, const TVector3& vec, double val) {
+void CCharShape::AddAction (size_t node_name, int type, const TVector3d& vec, double val) {
 	size_t idx = GetNodeIdx (node_name);
 	TCharAction *act = Nodes[idx]->action;
 	act->type[act->num] = type;
@@ -179,7 +179,7 @@ void CCharShape::AddAction (size_t node_name, int type, const TVector3& vec, dou
 	act->num++;
 }
 
-bool CCharShape::TranslateNode (size_t node_name, const TVector3& vec) {
+bool CCharShape::TranslateNode (size_t node_name, const TVector3d& vec) {
 	TCharNode *node = GetNode (node_name);
 	if (node == NULL) return false;
 
@@ -229,7 +229,7 @@ bool CCharShape::RotateNode (const string& node_trivialname, int axis, double an
 	return RotateNode (i->second, axis, angle);
 }
 
-void CCharShape::ScaleNode (size_t node_name, const TVector3& vec) {
+void CCharShape::ScaleNode (size_t node_name, const TVector3d& vec) {
 	TCharNode *node = GetNode(node_name);
 	if (node == NULL) return;
 
@@ -341,8 +341,8 @@ TCharMaterial* CCharShape::GetMaterial (const string& mat_name) {
 }
 
 void CCharShape::CreateMaterial (const string& line) {
-	TVector3 diff = SPVector3N (line, "diff", TVector3 (0,0,0));
-	TVector3 spec = SPVector3N (line, "spec", TVector3 (0,0,0));
+	TVector3d diff = SPVector3N(line, "diff", NullVec);
+	TVector3d spec = SPVector3N(line, "spec", NullVec);
 	float exp = SPFloatN (line, "exp", 50);
 	std::string mat = SPItemN (line, "mat");
 	STrimN(mat);
@@ -450,13 +450,13 @@ bool CCharShape::Load (const string& dir, const string& filename, bool with_acti
 			bool shadow = SPBoolN (line, "shad", false);
 			string order = SPStrN (line, "order");
 			CreateCharNode (parent_name, node_name, name, fullname, order, shadow);
-			TVector3 rot = SPVector3N (line, "rot", NullVec);
+			TVector3d rot = SPVector3N (line, "rot", NullVec);
 			MaterialNode (node_name, mat_name);
 			for (size_t ii = 0; ii < order.size(); ii++) {
 				int act = order[ii]-48;
 				switch (act) {
 					case 0: {
-						TVector3 trans = SPVector3N (line, "trans", TVector3 (0,0,0));
+						TVector3d trans = SPVector3N(line, "trans", NullVec);
 						TranslateNode (node_name, trans);
 						break;
 					}
@@ -470,7 +470,7 @@ bool CCharShape::Load (const string& dir, const string& filename, bool with_acti
 						RotateNode (node_name, 3, rot.z);
 						break;
 					case 4: {
-						TVector3 scale = SPVector3N (line, "scale", TVector3 (1,1,1));
+						TVector3d scale = SPVector3N (line, "scale", TVector3d (1,1,1));
 						ScaleNode (node_name, scale);
 						break;
 					}
@@ -490,10 +490,10 @@ bool CCharShape::Load (const string& dir, const string& filename, bool with_acti
 	return true;
 }
 
-TVector3 CCharShape::AdjustRollvector (const CControl *ctrl, const TVector3& vel_, const TVector3& zvec) {
+TVector3d CCharShape::AdjustRollvector (const CControl *ctrl, const TVector3d& vel_, const TVector3d& zvec) {
 	TMatrix rot_mat;
-	TVector3 vel = ProjectToPlane(zvec, vel_);
-	NormVector (vel);
+	TVector3d vel = ProjectToPlane(zvec, vel_);
+	vel.Norm();
 	if (ctrl->is_braking) {
 		RotateAboutVectorMatrix (rot_mat, vel, ctrl->turn_fact * BRAKING_ROLL_ANGLE);
 	} else {
@@ -503,27 +503,27 @@ TVector3 CCharShape::AdjustRollvector (const CControl *ctrl, const TVector3& vel
 }
 
 void CCharShape::AdjustOrientation (CControl *ctrl, double dtime,
-                                    double dist_from_surface, const TVector3& surf_nml) {
-	TVector3 new_y, new_z;
+                                    double dist_from_surface, const TVector3d& surf_nml) {
+	TVector3d new_y, new_z;
 	TMatrix cob_mat, inv_cob_mat;
 	TMatrix rot_mat;
-	static const TVector3 minus_z_vec(0, 0, -1);
-	static const TVector3 y_vec(0, 1, 0);
+	static const TVector3d minus_z_vec(0, 0, -1);
+	static const TVector3d y_vec(0, 1, 0);
 
 	if (dist_from_surface > 0) {
 		new_y = ctrl->cvel;
-		NormVector (new_y);
-		new_z = ProjectToPlane (new_y, TVector3(0, -1, 0));
-		NormVector (new_z);
+		new_y.Norm();
+		new_z = ProjectToPlane (new_y, TVector3d(0, -1, 0));
+		new_z.Norm();
 		new_z = AdjustRollvector (ctrl, ctrl->cvel, new_z);
 	} else {
-		new_z = ScaleVector (-1, surf_nml);
+		new_z = -1.0 * surf_nml;
 		new_z = AdjustRollvector (ctrl, ctrl->cvel, new_z);
 		new_y = ProjectToPlane (surf_nml, ctrl->cvel);
-		NormVector(new_y);
+		new_y.Norm();
 	}
 
-	TVector3 new_x = CrossProduct (new_y, new_z);
+	TVector3d new_x = CrossProduct (new_y, new_z);
 	MakeBasismatrix_Inv (cob_mat, inv_cob_mat, new_x, new_y, new_z);
 	TQuaternion new_orient = MakeQuaternionFromMatrix (cob_mat);
 
@@ -543,10 +543,10 @@ void CCharShape::AdjustOrientation (CControl *ctrl, double dtime,
 	MakeMatrixFromQuaternion (cob_mat, ctrl->corientation);
 
 	// Trick rotations
-	new_y = TVector3 (cob_mat[1][0], cob_mat[1][1], cob_mat[1][2]);
+	new_y = TVector3d (cob_mat[1][0], cob_mat[1][1], cob_mat[1][2]);
 	RotateAboutVectorMatrix (rot_mat, new_y, (ctrl->roll_factor * 360));
 	MultiplyMatrices (cob_mat, rot_mat, cob_mat);
-	new_x = TVector3 (cob_mat[0][0], cob_mat[0][1], cob_mat[0][2]);
+	new_x = TVector3d (cob_mat[0][0], cob_mat[0][1], cob_mat[0][2]);
 	RotateAboutVectorMatrix (rot_mat, new_x, ctrl->flip_factor * 360);
 	MultiplyMatrices (cob_mat, rot_mat, cob_mat);
 
@@ -556,7 +556,7 @@ void CCharShape::AdjustOrientation (CControl *ctrl, double dtime,
 
 void CCharShape::AdjustJoints (double turnFact, bool isBraking,
                                double paddling_factor, double speed,
-                               const TVector3& net_force, double flap_factor) {
+                               const TVector3d& net_force, double flap_factor) {
 	double turning_angle[2];
 	double paddling_angle = 0;
 	double ext_paddling_angle = 0;
@@ -644,9 +644,9 @@ bool CCharShape::CheckCollision (const TPolyhedron& ph) {
 	return CheckPolyhedronCollision (node, mat, invmat, ph);
 }
 
-bool CCharShape::Collision (const TVector3& pos, const TPolyhedron& ph) {
+bool CCharShape::Collision (const TVector3d& pos, const TPolyhedron& ph) {
 	ResetNode (0);
-	TranslateNode (0, TVector3 (pos.x, pos.y, pos.z));
+	TranslateNode (0, TVector3d (pos.x, pos.y, pos.z));
 	return CheckCollision (ph);
 }
 
@@ -655,10 +655,10 @@ bool CCharShape::Collision (const TVector3& pos, const TPolyhedron& ph) {
 // --------------------------------------------------------------------
 
 void CCharShape::DrawShadowVertex (double x, double y, double z, const TMatrix mat) {
-	TVector3 pt(x, y, z);
+	TVector3d pt(x, y, z);
 	pt = TransformPoint (mat, pt);
 	double old_y = pt.y;
-	TVector3 nml = Course.FindCourseNormal (pt.x, pt.z);
+	TVector3d nml = Course.FindCourseNormal (pt.x, pt.z);
 	pt.y = Course.FindYCoord (pt.x, pt.z) + SHADOW_HEIGHT;
 	if (pt.y > old_y) pt.y = old_y;
 	glNormal3(nml);
@@ -815,7 +815,7 @@ void CCharShape::RefreshNode (size_t idx) {
 
 	for (size_t i=0; i<act->num; i++) {
 		int type = act->type[i];
-		const TVector3& vec = act->vec[i];
+		const TVector3d& vec = act->vec[i];
 		double dval = act->dval[i];
 
 		switch (type) {
@@ -921,7 +921,7 @@ void CCharShape::SaveCharNodes (const string& dir, const string& filename) {
 
 		if (!act->order.empty()) {
 			bool rotflag = false;
-			TVector3 rotation;
+			TVector3d rotation;
 			line += " [order] " + act->order;
 			for (size_t ii=0; ii<act->order.size(); ii++) {
 				int aa = act->order[ii]-48;

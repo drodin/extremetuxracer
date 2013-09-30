@@ -18,46 +18,11 @@ GNU General Public License for more details.
 #ifndef ETR_TYPES_H
 #define ETR_TYPES_H
 
-#ifndef M_PI
-#	define M_PI 3.1415926535
-#endif
-
-#ifndef EPS
-#	define EPS 1.0e-13
-#endif
-
-#define MAG_SQD(vec) ((vec).x * (vec).x + (vec).y * (vec).y + (vec).z * (vec).z)
-
+#include "vectors.h"
 
 enum Orientation {
     OR_TOP = 0,			// top-orientated menu widgets
     OR_BOTTOM = 1		// bottom-orientated
-};
-
-struct TVector2i {
-	int x, y;
-	TVector2i(int _x = 0, int _y = 0)
-		: x(_x), y(_y)
-	{}
-};
-
-struct TVector2	{
-	double x, y;
-	TVector2(double _x = 0.0, double _y = 0.0)
-		: x(_x), y(_y)
-	{}
-};
-struct TVector3 : public TVector2 {
-	double z;
-	TVector3(double _x = 0.0, double _y = 0.0, double _z = 0.0)
-		: TVector2(_x, _y), z(_z)
-	{}
-};
-struct TVector4 : public TVector3 {
-	double w;
-	TVector4(double _x = 0.0, double _y = 0.0, double _z = 0.0, double _w = 0.0)
-		: TVector3(_x, _y, _z), w(_w)
-	{}
 };
 
 struct TIndex2 {
@@ -93,10 +58,9 @@ struct TColor : public TColor3 {
 };
 
 typedef double TMatrix[4][4];
-typedef TVector4 TQuaternion;
 
 struct TPlane {
-	TVector3 nml;
+	TVector3d nml;
 	double d;
 	TPlane(double nx = 0.0, double ny = 0.0, double nz = 0.0, double d_ = 0.0)
 		: nml(nx, ny, nz), d(d_)
@@ -105,12 +69,12 @@ struct TPlane {
 
 struct TPolygon		{ int num_vertices; int *vertices; };
 struct TSphere		{ double radius; int divisions; };
-struct TRay			{ TVector3 pt; TVector3 vec; };
+struct TRay			{ TVector3d pt; TVector3d vec; };
 
 struct TPolyhedron {
 	size_t num_vertices;
 	size_t num_polygons;
-	TVector3 *vertices;
+	TVector3d *vertices;
 	TPolygon *polygons;
 };
 
@@ -181,7 +145,7 @@ struct TGameData {
 
 	// requirements
 	TIndex3 herring_req;	// 3 levels of needed herrings
-	TVector3 time_req;		// 3 levels of allowed time
+	TVector3d time_req;		// 3 levels of allowed time
 
 	// race results (better in player.ctrl ?)
 	double time;			// reached time

@@ -99,8 +99,8 @@ static void draw_herring_count (int herring_count) {
 	}
 }
 
-TVector2 calc_new_fan_pt (double angle) {
-	TVector2 pt;
+TVector2d calc_new_fan_pt (double angle) {
+	TVector2d pt;
 	pt.x = ENERGY_GAUGE_CENTER_X + cos (ANGLES_TO_RADIANS (angle)) * SPEEDBAR_OUTER_RADIUS;
 	pt.y = ENERGY_GAUGE_CENTER_Y + sin (ANGLES_TO_RADIANS (angle)) * SPEEDBAR_OUTER_RADIUS;
 	return pt;
@@ -110,7 +110,7 @@ void start_tri_fan() {
 	glBegin (GL_TRIANGLE_FAN);
 	glVertex2f (ENERGY_GAUGE_CENTER_X,
 	            ENERGY_GAUGE_CENTER_Y);
-	TVector2 pt = calc_new_fan_pt (SPEEDBAR_BASE_ANGLE);
+	TVector2d pt = calc_new_fan_pt (SPEEDBAR_BASE_ANGLE);
 	glVertex2f (pt.x, pt.y);
 }
 
@@ -130,7 +130,7 @@ void draw_partial_tri_fan (double fraction) {
 			trifan = true;
 		}
 		cur_angle -= angle_incr;
-		TVector2 pt = calc_new_fan_pt (cur_angle);
+		TVector2d pt = calc_new_fan_pt (cur_angle);
 		glVertex2f (pt.x, pt.y);
 	}
 
@@ -140,7 +140,7 @@ void draw_partial_tri_fan (double fraction) {
 			start_tri_fan();
 			trifan = true;
 		}
-		TVector2 pt = calc_new_fan_pt (cur_angle);
+		TVector2d pt = calc_new_fan_pt (cur_angle);
 		glVertex2f (pt.x, pt.y);
 	}
 
@@ -302,8 +302,8 @@ void DrawWind2 (float dir, float speed, const CControl *ctrl) {
 	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 
 	// direction indicator
-	TVector3 movdir = ctrl->cvel;
-	NormVector (movdir);
+	TVector3d movdir = ctrl->cvel;
+	movdir.Norm();
 	float dir_angle = atan (movdir.x / movdir.z) * 57.3;
 
 	glColor4f (0, 0.5, 0, 1.0);
@@ -402,7 +402,7 @@ void DrawHud (const CControl *ctrl) {
 	if (!param.show_hud)
 		return;
 
-	double speed = VectorLength(ctrl->cvel);
+	double speed = ctrl->cvel.Length();
 	SetupGuiDisplay ();
 
 	draw_gauge (speed * 3.6, ctrl->jump_amt);

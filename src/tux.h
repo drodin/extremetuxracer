@@ -39,7 +39,7 @@ struct TCharMaterial {
 struct TCharAction {
 	size_t num;
 	int type[MAX_ACTIONS];
-	TVector3 vec[MAX_ACTIONS];
+	TVector3d vec[MAX_ACTIONS];
 	double dval[MAX_ACTIONS];
 	string name;
 	string order;
@@ -97,7 +97,7 @@ private:
 	// drawing
 	void DrawCharSphere (int num_divisions);
 	void DrawNodes (const TCharNode *node);
-	TVector3 AdjustRollvector (const CControl *ctrl, const TVector3& vel, const TVector3& zvec);
+	TVector3d AdjustRollvector (const CControl *ctrl, const TVector3d& vel, const TVector3d& zvec);
 
 	// collision
 	bool CheckPolyhedronCollision (const TCharNode *node, const TMatrix modelMatrix,
@@ -110,7 +110,7 @@ private:
 	void TraverseDagForShadow (const TCharNode *node, const TMatrix mat);
 
 	// testing and developing
-	void AddAction (size_t node_name, int type, const TVector3& vec, double val);
+	void AddAction (size_t node_name, int type, const TVector3d& vec, double val);
 public:
 	CCharShape ();
 	~CCharShape();
@@ -121,10 +121,10 @@ public:
 	// nodes
 	bool ResetNode (size_t node_name);
 	bool ResetNode (const string& node_trivialname);
-	bool TranslateNode (size_t node_name, const TVector3& vec);
+	bool TranslateNode (size_t node_name, const TVector3d& vec);
 	bool RotateNode (size_t node_name, int axis, double angle);
 	bool RotateNode (const string& node_trivialname, int axis, double angle);
-	void ScaleNode (size_t node_name, const TVector3& vec);
+	void ScaleNode (size_t node_name, const TVector3d& vec);
 	void ResetRoot () { ResetNode (0); }
 	void ResetJoints ();
 
@@ -135,11 +135,11 @@ public:
 	bool Load (const string& dir, const string& filename, bool with_actions);
 
 	void AdjustOrientation (CControl *ctrl, double dtime,
-	                        double dist_from_surface, const TVector3& surf_nml);
+	                        double dist_from_surface, const TVector3d& surf_nml);
 	void AdjustJoints (double turnFact, bool isBraking,
 	                   double paddling_factor, double speed,
-	                   const TVector3& net_force, double flap_factor);
-	bool Collision (const TVector3& pos, const TPolyhedron& ph);
+	                   const TVector3d& net_force, double flap_factor);
+	bool Collision (const TVector3d& pos, const TPolyhedron& ph);
 
 	// testing and tools
 	bool   highlighted;

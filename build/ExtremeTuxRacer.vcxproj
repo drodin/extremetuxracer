@@ -175,6 +175,7 @@
     <ClInclude Include="..\src\game_ctrl.h" />
     <ClInclude Include="..\src\game_over.h" />
     <ClInclude Include="..\src\game_type_select.h" />
+    <ClInclude Include="..\src\vectors.h" />
     <ClInclude Include="..\src\gui.h" />
     <ClInclude Include="..\src\help.h" />
     <ClInclude Include="..\src\hud.h" />
@@ -224,6 +225,7 @@
     <ClCompile Include="..\src\game_ctrl.cpp" />
     <ClCompile Include="..\src\game_over.cpp" />
     <ClCompile Include="..\src\game_type_select.cpp" />
+    <ClCompile Include="..\src\vectors.cpp" />
     <ClCompile Include="..\src\gui.cpp" />
     <ClCompile Include="..\src\help.cpp" />
     <ClCompile Include="..\src\hud.cpp" />

@@ -29,8 +29,18 @@ using namespace std;
 #	define ROUND_TO_NEAREST(x) ((int) ((x)+0.5))
 #endif
 
+#ifndef M_PI
+#	define M_PI 3.1415926535
+#endif
+
+#ifndef EPS
+#	define EPS 1.0e-13
+#endif
+
 #define ANGLES_TO_RADIANS(x) (M_PI / 180.0 * (x))
 #define RADIANS_TO_ANGLES(x) (180.0 / M_PI * (x))
+
+#define MAG_SQD(vec) ((vec).x * (vec).x + (vec).y * (vec).y + (vec).z * (vec).z)
 
 
 // --------------------------------------------------------------------
@@ -71,10 +81,10 @@ void	PrintInt (const string& s, const int val);
 void	PrintStr (const char *val);
 void	PrintString (const string& s);
 void	PrintDouble (const double val);
-void	PrintVector (const TVector3& v);
-void	PrintVector4 (const TVector4& v);
+void	PrintVector (const TVector3d& v);
+void	PrintVector4 (const TVector4d& v);
 void    PrintColor (const TColor& c);
-void	PrintVector2 (const TVector2& v);
+void	PrintVector2 (const TVector2d& v);
 
 void	PrintMatrix (const TMatrix mat);
 void	PrintQuaternion (const TQuaternion& q);

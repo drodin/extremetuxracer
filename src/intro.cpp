@@ -38,7 +38,7 @@ CIntro Intro;
 static CKeyframe *startframe;
 
 void abort_intro (CControl *ctrl) {
-	TVector2 start_pt = Course.GetStartPoint ();
+	TVector2d start_pt = Course.GetStartPoint ();
 	State::manager.RequestEnterState (Racing);
 	ctrl->orientation_initialized = false;
 	ctrl->view_init = false;
@@ -49,7 +49,7 @@ void abort_intro (CControl *ctrl) {
 // =================================================================
 void CIntro::Enter() {
 	CControl *ctrl = Players.GetCtrl (g_game.player_id);
-	TVector2 start_pt = Course.GetStartPoint ();
+	TVector2d start_pt = Course.GetStartPoint ();
 	ctrl->orientation_initialized = false;
 	ctrl->view_init = false;
 	ctrl->cpos.x = start_pt.x;
@@ -71,7 +71,7 @@ void CIntro::Enter() {
 
 	ctrl->Init ();
 
-	ctrl->cvel = TVector3(0, 0, 0);
+	ctrl->cvel = TVector3d(0, 0, 0);
 	clear_particles();
 	set_view_mode (ctrl, ABOVE);
 	SetCameraDistance (4.0);

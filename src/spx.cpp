@@ -104,7 +104,7 @@ string Float_StrN (const float val, const streamsize count) {
 	return os.str();
 }
 
-string Vector_StrN (const TVector3& v, const streamsize count) {
+string Vector_StrN (const TVector3d& v, const streamsize count) {
 	string res = Float_StrN (v.x, count);
 	res += ' ' + Float_StrN (v.y, count);
 	res += ' ' + Float_StrN (v.z, count);
@@ -135,20 +135,20 @@ float Str_FloatN (const string &s, const float def) {
 	else return val;
 }
 
-TVector2 Str_Vector2N (const string &s, const TVector2 &def) {
+TVector2d Str_Vector2N (const string &s, const TVector2d &def) {
 	float x, y;
 	istringstream is(s);
 	is >> x >> y;
 	if (is.fail()) return def;
-	else return TVector2 (x, y);
+	else return TVector2d (x, y);
 }
 
-TVector3 Str_Vector3N (const string &s, const TVector3 &def) {
+TVector3d Str_Vector3N (const string &s, const TVector3d &def) {
 	float x, y, z;
 	istringstream is(s);
 	is >> x >> y >> z;
 	if (is.fail()) return def;
-	else return TVector3 (x, y, z);
+	else return TVector3d (x, y, z);
 }
 
 TIndex3 Str_Index3N (const string &s, const TIndex3 &def) {
@@ -159,12 +159,12 @@ TIndex3 Str_Index3N (const string &s, const TIndex3 &def) {
 	else return TIndex3 (i, j, k);
 }
 
-TVector4 Str_Vector4N (const string &s, const TVector4 &def) {
+TVector4d Str_Vector4N (const string &s, const TVector4d &def) {
 	float x, y, z, w;
 	istringstream is(s);
 	is >> x >> y >> z >> w;
 	if (is.fail()) return def;
-	else return TVector4 (x, y, z, w);
+	else return TVector4d (x, y, z, w);
 }
 
 TColor Str_ColorN (const string &s, const TColor &def) {
@@ -236,11 +236,11 @@ float SPFloatN (const string &s, const string &tag, const float def) {
 	return (Str_FloatN (SPItemN (s, tag), def));
 }
 
-TVector2 SPVector2N (const string &s, const string &tag, const TVector2& def) {
+TVector2d SPVector2N (const string &s, const string &tag, const TVector2d& def) {
 	return (Str_Vector2N (SPItemN (s, tag), def));
 }
 
-TVector3 SPVector3N (const string &s, const string &tag, const TVector3& def) {
+TVector3d SPVector3N (const string &s, const string &tag, const TVector3d& def) {
 	return (Str_Vector3N (SPItemN (s, tag), def));
 }
 
@@ -248,7 +248,7 @@ TIndex3 SPIndex3N (const string &s, const string &tag, const TIndex3& def) {
 	return (Str_Index3N (SPItemN (s, tag), def));
 }
 
-TVector4 SPVector4N (const string &s, const string &tag, const TVector4& def) {
+TVector4d SPVector4N (const string &s, const string &tag, const TVector4d& def) {
 	return (Str_Vector4N (SPItemN (s, tag), def));
 }
 
@@ -298,7 +298,7 @@ void SPAddStrN (string &s, const string &tag, const string &val) {
 	s += val;
 }
 
-void SPAddVec2N (string &s, const string &tag, const TVector2 &val, size_t count) {
+void SPAddVec2N (string &s, const string &tag, const TVector2d &val, size_t count) {
 	s += '[';
 	s += tag;
 	s += ']';
@@ -308,7 +308,7 @@ void SPAddVec2N (string &s, const string &tag, const TVector2 &val, size_t count
 	s += Float_StrN (val.y, count);
 }
 
-void SPAddVec3N (string &s, const string &tag, const TVector3 &val, size_t count) {
+void SPAddVec3N (string &s, const string &tag, const TVector3d &val, size_t count) {
 	s += '[';
 	s += tag;
 	s += ']';

@@ -148,16 +148,16 @@ void DrawTrees() {
 		double itemRadius = itemLocs[i].diam / 2;
 		double itemHeight = itemLocs[i].height;
 
-		TVector3 normal;
+		TVector3d normal;
 		if (object_types[item_type].use_normal) {
 			normal = object_types[item_type].normal;
 		} else {
-			normal = SubtractVectors (ctrl->viewpos, itemLocs[i].pt);
-			NormVector (normal);
+			normal = ctrl->viewpos - itemLocs[i].pt;
+			normal.Norm();
 		}
 		glNormal3(normal);
 		normal.y = 0.0;
-		NormVector (normal);
+		normal.Norm();
 
 		static const GLshort tex[] = {
 			0, 0,

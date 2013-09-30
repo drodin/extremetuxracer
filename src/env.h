@@ -70,7 +70,7 @@ public:
 	CEnvironment ();
 	bool LoadEnvironmentList ();
 	void LoadEnvironment (size_t loc, size_t light);
-	void DrawSkybox (const TVector3& pos);
+	void DrawSkybox (const TVector3d& pos);
 	void SetupLight ();
 	void SetupFog ();
 	void DrawFog ();

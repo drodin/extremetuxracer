@@ -79,7 +79,7 @@ void PrintDouble (const double val) {
 	cout << val << '\n';
 }
 
-void PrintVector4 (const TVector4& v) {
+void PrintVector4 (const TVector4d& v) {
 	cout.precision(3);
 	cout << v.x << "  " << v.y << "  " << v.z << "  " << v.w << '\n';
 }
@@ -89,12 +89,12 @@ void PrintColor (const TColor& v) {
 	cout << v.r << "  " << v.g << "  " << v.b << '\n';
 }
 
-void PrintVector2 (const TVector2& v) {
+void PrintVector2 (const TVector2d& v) {
 	cout.precision(3);
 	cout << v.x << "  " << v.y << '\n';
 }
 
-void PrintVector (const TVector3& v) {
+void PrintVector (const TVector3d& v) {
 	cout.precision(5);
 	cout << v.x << "  " << v.y << "  " << v.z << '\n';
 }

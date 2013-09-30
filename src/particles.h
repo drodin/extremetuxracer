@@ -34,20 +34,20 @@ void draw_ui_snow ();
 //					snow particles during race
 // --------------------------------------------------------------------
 
-void create_new_particles (const TVector3& loc, const TVector3& vel, int num);
+void create_new_particles (const TVector3d& loc, const TVector3d& vel, int num);
 void update_particles (double time_step);
 void clear_particles ();
 void draw_particles (const CControl *ctrl);
-void generate_particles (const CControl *ctrl, double dtime, const TVector3& pos, double speed);
+void generate_particles (const CControl *ctrl, double dtime, const TVector3d& pos, double speed);
 
 // --------------------------------------------------------------------
 //					snow flakes for short distances
 // --------------------------------------------------------------------
 
 struct TFlake {
-	TVector3 pt;
+	TVector3d pt;
 	float   size;
-	TVector3 vel;
+	TVector3d vel;
 	const GLfloat* tex;
 
 	void Draw(const TPlane& lp, const TPlane& rp, bool rotate_flake, float dir_angle) const;
@@ -90,7 +90,7 @@ struct TFlakeArea {
 
 class CFlakes {
 private:
-	TVector3 snow_lastpos;
+	TVector3d snow_lastpos;
 	vector<TFlakeArea> areas;
 	void MakeSnowFlake (size_t ar, size_t i);
 	void GenerateSnowFlakes (const CControl *ctrl);
@@ -115,7 +115,7 @@ public:
 #define MAX_CURTAIN_ROWS 8
 
 struct TCurtainElement {
-	TVector3 pt;
+	TVector3d pt;
 	float angle;
 	float height;
 	float zrandom;
@@ -146,7 +146,7 @@ struct TCurtain {
 	    int curt_texture);
 	void SetStartParams(const CControl* ctrl);
 	void Draw() const;
-	void Update(float timestep, const TVector3& drift, const CControl* ctrl);
+	void Update(float timestep, const TVector3d& drift, const CControl* ctrl);
 
 private:
 	static void CurtainVec (float angle, float zdist, float &x, float &z);
@@ -195,7 +195,7 @@ private:
 
 	float WSpeed;
 	float WAngle;
-	TVector3 WVector;
+	TVector3d WVector;
 
 	float DestSpeed;
 	float DestAngle;
@@ -213,7 +213,7 @@ public:
 	bool Windy () const { return windy; }
 	float Angle () const { return WAngle; }
 	float Speed () const { return WSpeed; }
-	const TVector3& WindDrift () const { return WVector; }
+	const TVector3d& WindDrift () const { return WVector; }
 };
 
 extern CWind Wind;

@@ -137,9 +137,9 @@ private:
 void ResetQuadtree();
 void InitQuadtree (double *elevation, int nx, int nz,
                    double scalex, double scalez,
-                   const TVector3& view_pos, double detail);
+                   const TVector3d& view_pos, double detail);
 
-void UpdateQuadtree (const TVector3& view_pos, float detail);
+void UpdateQuadtree (const TVector3d& view_pos, float detail);
 void RenderQuadtree();
 
 

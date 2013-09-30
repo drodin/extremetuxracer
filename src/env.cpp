@@ -192,7 +192,7 @@ void CEnvironment::LoadLight (const string& EnvDir) {
 	}
 }
 
-void CEnvironment::DrawSkybox (const TVector3& pos) {
+void CEnvironment::DrawSkybox (const TVector3d& pos) {
 	ScopedRenderMode rm(SKY);
 
 #if defined (OS_LINUX)
@@ -303,9 +303,9 @@ void CEnvironment::DrawFog () {
 		return;
 
 	TPlane bottom_plane, top_plane;
-	TVector3 left, right, vpoint;
-	TVector3 topleft, topright;
-	TVector3 bottomleft, bottomright;
+	TVector3d left, right, vpoint;
+	TVector3d topleft, topright;
+	TVector3d bottomleft, bottomright;
 
 	// the clipping planes are calculated by view frustum (view.cpp)
 	const TPlane& leftclip = get_left_clip_plane ();
@@ -319,7 +319,7 @@ void CEnvironment::DrawFog () {
 //	TPlane left_edge_plane = MakePlane (1.0, 0.0, 0.0, 0.0);
 //	TPlane right_edge_plane = MakePlane (-1.0, 0.0, 0.0, Course.width);
 
-	bottom_plane.nml = TVector3(0.0, 1, -slope);
+	bottom_plane.nml = TVector3d(0.0, 1, -slope);
 	float height = Course.GetBaseHeight (0);
 	bottom_plane.d = -height * bottom_plane.nml.y;
 
@@ -335,8 +335,8 @@ void CEnvironment::DrawFog () {
 	if (!IntersectPlanes (bottomclip,   farclip, leftclip,  &bottomleft)) return;
 	if (!IntersectPlanes (bottomclip,   farclip, rightclip, &bottomright)) return;
 
-	TVector3 leftvec  = SubtractVectors (topleft, left);
-	TVector3 rightvec = SubtractVectors (topright, right);
+	TVector3d leftvec  = topleft - left;
+	TVector3d rightvec = topright - right;
 
 	// --------------- draw the fog plane -----------------------------
 
@@ -361,15 +361,15 @@ void CEnvironment::DrawFog () {
 	glVertex3(topright);
 
 	glColor4fv (leftright_dens);
-	vpoint = AddVectors (topleft, leftvec);
+	vpoint = topleft + leftvec;
 	glVertex3(vpoint);
-	vpoint = AddVectors (topright, rightvec);
+	vpoint = topright + rightvec;
 	glVertex3(vpoint);
 
 	glColor4fv (top_bottom_dens);
-	vpoint = AddVectors (topleft, ScaleVector (3.0, leftvec));
+	vpoint = topleft + 3.0 * leftvec;
 	glVertex3(vpoint);
-	vpoint = AddVectors (topright, ScaleVector (3.0, rightvec));
+	vpoint = topright + 3.0 * rightvec;
 	glVertex3(vpoint);
 	glEnd();
 }

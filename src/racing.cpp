@@ -291,7 +291,7 @@ void CalcSteeringControls (CControl *ctrl, double time_step) {
 }
 
 void CalcFinishControls (CControl *ctrl, double timestep, bool airborne) {
-	double speed = VectorLength(ctrl->cvel);
+	double speed = ctrl->cvel.Length();
 	double dir_angle = atan(ctrl->cvel.x / ctrl->cvel.z) * 57.3;
 
 	if (fabs (dir_angle) > 5 && speed > 5) {

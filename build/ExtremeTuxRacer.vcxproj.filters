@@ -162,6 +162,9 @@
     <ClInclude Include="..\src\keyframe.h">
       <Filter>Header files</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\vectors.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\main.cpp">
@@ -303,6 +306,9 @@
       <Filter>Source files</Filter>
     </ClCompile>
     <ClCompile Include="..\src\loading.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\vectors.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
   </ItemGroup>

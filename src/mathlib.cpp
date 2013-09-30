@@ -24,76 +24,33 @@ GNU General Public License for more details.
 #include <cstdlib>
 #include <algorithm>
 
-double VectorLength (const TVector3 &v) {
-	return sqrt (MAG_SQD(v));
-}
 
-double DotProduct (const TVector3& v1, const TVector3& v2) {
-	return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;
-}
-
-TVector3 ScaleVector (double s, const TVector3& v) {
-	return TVector3(
-	    s * v.x,
-	    s * v.y,
-	    s * v.z);
-}
-
-TVector3 AddVectors (const TVector3& v1, const TVector3& v2) {
-	return TVector3(
-	    v1.x + v2.x,
-	    v1.y + v2.y,
-	    v1.z + v2.z);
-}
-
-TVector3 SubtractVectors (const TVector3& v1, const TVector3& v2) {
-	return TVector3(
-	    v1.x - v2.x,
-	    v1.y - v2.y,
-	    v1.z - v2.z);
-}
-
-TVector3 ProjectToPlane (const TVector3& nml, const TVector3& v) {
+TVector3d ProjectToPlane (const TVector3d& nml, const TVector3d& v) {
 	double dotProd = DotProduct (nml, v);
-	TVector3 nmlComp = ScaleVector (dotProd, nml);
+	TVector3d nmlComp = dotProd * nml;
 
-	return SubtractVectors (v, nmlComp);
-}
-
-double NormVector (TVector3 &v) {
-	double square = v.x * v.x + v.y * v.y + v.z * v.z;
-	if (square == 0.0) return 0.0;
-	double denom = sqrt (square);
-	v = ScaleVector (1.0 / denom, v);
-	return denom;
+	return v - nmlComp;
 }
 
 
-TVector3 CrossProduct(const TVector3& u, const TVector3& v) {
-	return TVector3(
-	    u.y * v.z - u.z * v.y,
-	    u.z * v.x - u.x * v.z,
-	    u.x * v.y - u.y * v.x);
-}
-
-TVector3 TransformVector(const TMatrix mat, const TVector3& v) {
-	TVector3 r;
+TVector3d TransformVector(const TMatrix mat, const TVector3d& v) {
+	TVector3d r;
 	r.x = v.x * mat[0][0] + v.y * mat[1][0] + v.z * mat[2][0];
 	r.y = v.x * mat[0][1] + v.y * mat[1][1] + v.z * mat[2][1];
 	r.z = v.x * mat[0][2] + v.y * mat[1][2] + v.z * mat[2][2];
 	return r;
 }
 
-TVector3 TransformNormal(const TVector3& n, const TMatrix mat) {
-	TVector3 r;
+TVector3d TransformNormal(const TVector3d& n, const TMatrix mat) {
+	TVector3d r;
 	r.x = n.x * mat[0][0] + n.y * mat[0][1] + n.z * mat[0][2];
 	r.y = n.x * mat[1][0] + n.y * mat[1][1] + n.z * mat[1][2];
 	r.z = n.x * mat[2][0] + n.y * mat[2][1] + n.z * mat[2][2];
 	return r;
 }
 
-TVector3 TransformPoint(const TMatrix mat, const TVector3& p) {
-	TVector3 r;
+TVector3d TransformPoint(const TMatrix mat, const TVector3d& p) {
+	TVector3d r;
 	r.x = p.x * mat[0][0] + p.y * mat[1][0] + p.z * mat[2][0];
 	r.y = p.x * mat[0][1] + p.y * mat[1][1] + p.z * mat[2][1];
 	r.z = p.x * mat[0][2] + p.y * mat[1][2] + p.z * mat[2][2];
@@ -103,7 +60,7 @@ TVector3 TransformPoint(const TMatrix mat, const TVector3& p) {
 	return r;
 }
 
-bool IntersectPlanes (const TPlane& s1, const TPlane& s2, const TPlane& s3, TVector3 *p) {
+bool IntersectPlanes (const TPlane& s1, const TPlane& s2, const TPlane& s3, TVector3d *p) {
 	double A[3][4];
 	double x[3];
 	double retval;
@@ -135,7 +92,7 @@ bool IntersectPlanes (const TPlane& s1, const TPlane& s2, const TPlane& s3, TVec
 	}
 }
 
-double DistanceToPlane (const TPlane& plane, const TVector3& pt) {
+double DistanceToPlane (const TPlane& plane, const TVector3d& pt) {
 	return
 	    plane.nml.x * pt.x +
 	    plane.nml.y * pt.y +
@@ -223,7 +180,7 @@ void MakeScalingMatrix (TMatrix mat, double x, double y, double z) {
 	mat[2][2] = z;
 }
 
-void MakeBasisMat (TMatrix mat, const TVector3& w1, const TVector3& w2, const TVector3& w3) {
+void MakeBasisMat (TMatrix mat, const TVector3d& w1, const TVector3d& w2, const TVector3d& w3) {
 	MakeIdentityMatrix (mat);
 	mat[0][0] = w1.x;
 	mat[0][1] = w1.y;
@@ -237,7 +194,7 @@ void MakeBasisMat (TMatrix mat, const TVector3& w1, const TVector3& w2, const TV
 }
 
 void MakeBasismatrix_Inv (TMatrix mat, TMatrix invMat,
-                          const TVector3& w1, const TVector3& w2, const TVector3& w3) {
+                          const TVector3d& w1, const TVector3d& w2, const TVector3d& w3) {
 	MakeIdentityMatrix (mat);
 	mat[0][0] = w1.x;
 	mat[0][1] = w1.y;
@@ -261,7 +218,7 @@ void MakeBasismatrix_Inv (TMatrix mat, TMatrix invMat,
 	invMat[2][2] = w3.z;
 }
 
-void RotateAboutVectorMatrix (TMatrix mat, const TVector3& u, double angle) {
+void RotateAboutVectorMatrix (TMatrix mat, const TVector3d& u, double angle) {
 	TMatrix rx, irx, ry, iry;
 
 	double a = u.x;
@@ -408,9 +365,9 @@ TQuaternion MakeQuaternionFromMatrix (const TMatrix m) {
 	return res;
 }
 
-TQuaternion MakeRotationQuaternion (const TVector3& s, const TVector3& t) {
-	TVector3 u = CrossProduct (s, t);
-	double sin2phi = NormVector (u);
+TQuaternion MakeRotationQuaternion (const TVector3d& s, const TVector3d& t) {
+	TVector3d u = CrossProduct (s, t);
+	double sin2phi = u.Norm();
 
 	if (sin2phi < EPS) {
 		return TQuaternion (0., 0., 0., 1.);
@@ -459,7 +416,7 @@ TQuaternion InterpolateQuaternions (const TQuaternion& q, TQuaternion r, double 
 	return res;
 }
 
-TVector3 RotateVector (const TQuaternion& q, const TVector3& v) {
+TVector3d RotateVector (const TQuaternion& q, const TVector3d& v) {
 	TQuaternion p(v.x, v.y, v.z, 1.0);
 
 	TQuaternion qs(-q.x, -q.y, -q.z, q.w);
@@ -542,13 +499,13 @@ void backsb (double *matrix, int n, double *soln) {
 // ***************************************************************************
 // ***************************************************************************
 
-bool IntersectPolygon (const TPolygon& p, TVector3 *v) {
+bool IntersectPolygon (const TPolygon& p, TVector3d *v) {
 	TRay ray;
 	double d, s, nuDotProd;
 	double distsq;
 
-	TVector3 nml = MakeNormal (p, v);
-	ray.pt = TVector3(0., 0., 0.);
+	TVector3d nml = MakeNormal (p, v);
+	ray.pt = TVector3d(0., 0., 0.);
 	ray.vec = nml;
 
 	nuDotProd = DotProduct (nml, ray.vec);
@@ -562,13 +519,13 @@ bool IntersectPolygon (const TPolygon& p, TVector3 *v) {
 	if (fabs (d) > 1) return false;
 
 	for (int i=0; i < p.num_vertices; i++) {
-		TVector3 *v0, *v1;
+		TVector3d *v0, *v1;
 
 		v0 = &v[p.vertices[i]];
 		v1 = &v[p.vertices[ (i+1) % p.num_vertices ]];
 
-		TVector3 edge_vec = SubtractVectors (*v1, *v0);
-		double edge_len = NormVector (edge_vec);
+		TVector3d edge_vec = *v1 - *v0;
+		double edge_len = edge_vec.Norm();
 
 		double t = - DotProduct (*v0, edge_vec);
 
@@ -577,7 +534,7 @@ bool IntersectPolygon (const TPolygon& p, TVector3 *v) {
 		} else if (t > edge_len) {
 			distsq = MAG_SQD (*v1);
 		} else {
-			*v0 = AddVectors (*v0, ScaleVector (t, edge_vec));
+			*v0 += t * edge_vec;
 			distsq = MAG_SQD (*v0);
 		}
 
@@ -585,13 +542,13 @@ bool IntersectPolygon (const TPolygon& p, TVector3 *v) {
 	}
 
 	s = - (d + DotProduct (nml, ray.pt)) / nuDotProd;
-	TVector3 pt = AddVectors (ray.pt, ScaleVector (s, ray.vec));
+	TVector3d pt = ray.pt + s * ray.vec;
 
 	for (int i=0; i < p.num_vertices; i++) {
-		TVector3 edge_nml = CrossProduct (nml,
-		                                  SubtractVectors (v[p.vertices[ (i+1) % p.num_vertices ]], v[p.vertices[i]]));
+		TVector3d edge_nml = CrossProduct (nml,
+		                                   v[p.vertices[ (i+1) % p.num_vertices ]] - v[p.vertices[i]]);
 
-		double wec = DotProduct (SubtractVectors (pt, v[p.vertices[i]]), edge_nml);
+		double wec = DotProduct (pt - v[p.vertices[i]], edge_nml);
 		if (wec < 0) return false;
 	}
 	return true;
@@ -606,19 +563,19 @@ bool IntersectPolyhedron (const TPolyhedron& p) {
 	return hit;
 }
 
-TVector3 MakeNormal (const TPolygon& p, TVector3 *v) {
-	TVector3 v1 = SubtractVectors (v[p.vertices[1]], v[p.vertices[0]]);
-	TVector3 v2 = SubtractVectors (v[p.vertices[p.num_vertices-1]], v[p.vertices[0]]);
-	TVector3 normal = CrossProduct (v1, v2);
+TVector3d MakeNormal (const TPolygon& p, TVector3d *v) {
+	TVector3d v1 = v[p.vertices[1]] - v[p.vertices[0]];
+	TVector3d v2 = v[p.vertices[p.num_vertices-1]] - v[p.vertices[0]];
+	TVector3d normal = CrossProduct (v1, v2);
 
-	NormVector (normal);
+	normal.Norm();
 	return normal;
 }
 
 
 TPolyhedron CopyPolyhedron (const TPolyhedron& ph) {
 	TPolyhedron newph = ph;
-	newph.vertices = new TVector3[ph.num_vertices];
+	newph.vertices = new TVector3d[ph.num_vertices];
 	copy_n(ph.vertices, ph.num_vertices, newph.vertices);
 	return newph;
 }

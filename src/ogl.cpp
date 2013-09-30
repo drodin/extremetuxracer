@@ -493,18 +493,18 @@ void glColor(const TColor& col, double alpha) {
 	glColor4d(col.r, col.g, col.b, alpha);
 }
 
-void glTranslate(const TVector3& vec) {
+void glTranslate(const TVector3d& vec) {
 	glTranslated(vec.x, vec.y, vec.z);
 }
 
-void glNormal3(const TVector3& vec) {
+void glNormal3(const TVector3d& vec) {
 	glNormal3d(vec.x, vec.y, vec.z);
 }
 
-void glVertex3(const TVector3& vec) {
+void glVertex3(const TVector3d& vec) {
 	glVertex3d(vec.x, vec.y, vec.z);
 }
 
-void glTexCoord2(const TVector2& vec) {
+void glTexCoord2(const TVector2d& vec) {
 	glTexCoord2d(vec.x, vec.y);
 }

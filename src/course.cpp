@@ -87,130 +87,129 @@ size_t CCourse::GetCourseIdx (const string& dir) const {
 void CCourse::CalcNormals () {
 	for (int y=0; y<ny; y++) {
 		for (int x=0; x<nx; x++) {
-			TVector3 nml(0.0, 0.0, 0.0);
-			TVector3 p0 (XCD(x), ELEV(x,y), ZCD(y));
+			TVector3d nml(0.0, 0.0, 0.0);
+			TVector3d p0 (XCD(x), ELEV(x,y), ZCD(y));
 
 			if ((x + y) % 2 == 0) {
 				if (x > 0 && y > 0) {
-					TVector3 p1 = NMLPOINT(x,  y-1);
-					TVector3 p2 = NMLPOINT(x-1,y-1);
-					TVector3 v1 = SubtractVectors (p1, p0);
-					TVector3 v2 = SubtractVectors (p2, p0);
-					TVector3 n = CrossProduct (v2, v1);
+					TVector3d p1 = NMLPOINT(x,  y-1);
+					TVector3d p2 = NMLPOINT(x-1,y-1);
+					TVector3d v1 = p1 - p0;
+					TVector3d v2 = p2 - p0;
+					TVector3d n = CrossProduct (v2, v1);
 
-					NormVector (n);
-					nml = AddVectors (nml, n);
+					n.Norm();
+					nml += n;
 
 					p1 = NMLPOINT (x-1, y-1);
 					p2 = NMLPOINT (x-1, y);
-					v1 = SubtractVectors (p1, p0);
-					v2 = SubtractVectors (p2, p0);
+					v1 = p1 - p0;
+					v2 = p2 - p0;
 					n = CrossProduct (v2, v1);
 
-					NormVector (n);
-					nml = AddVectors (nml, n);
+					n.Norm();
+					nml += n;
 				}
 				if (x > 0 && y < ny-1) {
-					TVector3 p1 = NMLPOINT(x-1,y);
-					TVector3 p2 = NMLPOINT(x-1,y+1);
-					TVector3 v1 = SubtractVectors (p1, p0);
-					TVector3 v2 = SubtractVectors (p2, p0);
-					TVector3 n = CrossProduct (v2, v1);
+					TVector3d p1 = NMLPOINT(x-1,y);
+					TVector3d p2 = NMLPOINT(x-1,y+1);
+					TVector3d v1 = p1 - p0;
+					TVector3d v2 = p2 - p0;
+					TVector3d n = CrossProduct (v2, v1);
 
-					NormVector (n);
-					nml = AddVectors (nml, n);
+					n.Norm();
+					nml += n;
 
 					p1 = NMLPOINT(x-1,y+1);
 					p2 = NMLPOINT(x  ,y+1);
-					v1 = SubtractVectors (p1, p0);
-					v2 = SubtractVectors (p2, p0);
+					v1 = p1 - p0;
+					v2 = p2 - p0;
 					n = CrossProduct (v2, v1);
 
-					NormVector (n);
-					nml = AddVectors (nml, n);
+					n.Norm();
+					nml += n;
 				}
 				if (x < nx-1 && y > 0) {
-					TVector3 p1 = NMLPOINT(x+1,y);
-					TVector3 p2 = NMLPOINT(x+1,y-1);
-					TVector3 v1 = SubtractVectors (p1, p0);
-					TVector3 v2 = SubtractVectors (p2, p0);
-					TVector3 n = CrossProduct (v2, v1);
+					TVector3d p1 = NMLPOINT(x+1,y);
+					TVector3d p2 = NMLPOINT(x+1,y-1);
+					TVector3d v1 = p1 - p0;
+					TVector3d v2 = p2 - p0;
+					TVector3d n = CrossProduct (v2, v1);
 
-					NormVector (n);
-					nml = AddVectors (nml, n);
+					n.Norm();
+					nml += n;
 
 					p1 = NMLPOINT(x+1,y-1);
 					p2 = NMLPOINT(x  ,y-1);
-					v1 = SubtractVectors (p1, p0);
-					v2 = SubtractVectors (p2, p0);
+					v1 = p1 - p0;
+					v2 = p2 - p0;
 					n = CrossProduct (v2, v1);
 
-					NormVector (n);
-					nml = AddVectors (nml, n);
+					n.Norm();
+					nml += n;
 				}
 				if (x < nx-1 && y < ny-1) {
-					TVector3 p1 = NMLPOINT(x+1,y);
-					TVector3 p2 = NMLPOINT(x+1,y+1);
-					TVector3 v1 = SubtractVectors (p1, p0);
-					TVector3 v2 = SubtractVectors (p2, p0);
-					TVector3 n = CrossProduct (v1, v2);
+					TVector3d p1 = NMLPOINT(x+1,y);
+					TVector3d p2 = NMLPOINT(x+1,y+1);
+					TVector3d v1 = p1 - p0;
+					TVector3d v2 = p2 - p0;
+					TVector3d n = CrossProduct (v1, v2);
 
-					NormVector (n);
-					nml = AddVectors (nml, n);
+					n.Norm();
+					nml += n;
 
 					p1 = NMLPOINT(x+1,y+1);
 					p2 = NMLPOINT(x  ,y+1);
-					v1 = SubtractVectors (p1, p0);
-					v2 = SubtractVectors (p2, p0);
+					v1 = p1 - p0;
+					v2 = p2 - p0;
 					n = CrossProduct (v1, v2);
 
-					NormVector (n);
-					nml = AddVectors (nml, n);
-
+					n.Norm();
+					nml += n;
 				}
 			} else {
 				if (x > 0 && y > 0) {
-					TVector3 p1 = NMLPOINT(x,  y-1);
-					TVector3 p2 = NMLPOINT(x-1,y);
-					TVector3 v1 = SubtractVectors (p1, p0);
-					TVector3 v2 = SubtractVectors (p2, p0);
-					TVector3 n = CrossProduct (v2, v1);
+					TVector3d p1 = NMLPOINT(x,  y-1);
+					TVector3d p2 = NMLPOINT(x-1,y);
+					TVector3d v1 = p1 - p0;
+					TVector3d v2 = p2 - p0;
+					TVector3d n = CrossProduct (v2, v1);
 
-					NormVector (n);
-					nml = AddVectors (nml, n);
+					n.Norm();
+					nml += n;
 				}
 				if (x > 0 && y < ny-1) {
-					TVector3 p1 = NMLPOINT(x-1,y);
-					TVector3 p2 = NMLPOINT(x  ,y+1);
-					TVector3 v1 = SubtractVectors (p1, p0);
-					TVector3 v2 = SubtractVectors (p2, p0);
-					TVector3 n = CrossProduct (v2, v1);
+					TVector3d p1 = NMLPOINT(x-1,y);
+					TVector3d p2 = NMLPOINT(x  ,y+1);
+					TVector3d v1 = p1 - p0;
+					TVector3d v2 = p2 - p0;
+					TVector3d n = CrossProduct (v2, v1);
 
-					NormVector (n);
-					nml = AddVectors (nml, n);
+					n.Norm();
+					nml += n;
 				}
 				if (x < nx-1 && y > 0) {
-					TVector3 p1 = NMLPOINT(x+1,y);
-					TVector3 p2 = NMLPOINT(x  ,y-1);
-					TVector3 v1 = SubtractVectors (p1, p0);
-					TVector3 v2 = SubtractVectors (p2, p0);
-					TVector3 n = CrossProduct (v2, v1);
+					TVector3d p1 = NMLPOINT(x+1,y);
+					TVector3d p2 = NMLPOINT(x  ,y-1);
+					TVector3d v1 = p1 - p0;
+					TVector3d v2 = p2 - p0;
+					TVector3d n = CrossProduct (v2, v1);
 
-					NormVector (n);
-					nml = AddVectors (nml, n);
+					n.Norm();
+					nml += n;
 				}
 				if (x < nx-1 && y < ny-1) {
-					TVector3 p1 = NMLPOINT(x+1,y);
-					TVector3 p2 = NMLPOINT(x  ,y+1);
-					TVector3 v1 = SubtractVectors (p1, p0);
-					TVector3 v2 = SubtractVectors (p2, p0);
-					TVector3 n = CrossProduct (v1, v2);
+					TVector3d p1 = NMLPOINT(x+1,y);
+					TVector3d p2 = NMLPOINT(x  ,y+1);
+					TVector3d v1 = p1 - p0;
+					TVector3d v2 = p2 - p0;
+					TVector3d n = CrossProduct (v1, v2);
 
-					NormVector (n);
-					nml = AddVectors (nml, n);
+					n.Norm();
+					nml += n;
 				}
 			}
-			NormVector (nml);
+			nml.Norm();
 			nmls [x + nx * y] = nml;
 			continue;
 
@@ -221,7 +220,7 @@ void CCourse::CalcNormals () {
 void CCourse::MakeCourseNormals () {
 	if (nmls != NULL) delete[] nmls;
 	try {
-		nmls = new TVector3[nx * ny];
+		nmls = new TVector3d[nx * ny];
 	} catch (...) {
 		nmls = NULL;
 		Message ("Allocation failed in MakeCourseNormals");
@@ -234,7 +233,7 @@ void CCourse::MakeCourseNormals () {
 // --------------------------------------------------------------------
 
 void CCourse::FillGlArrays() {
-	TVector3 *normals = nmls;
+	TVector3d *normals = nmls;
 
 	if (vnc_array == NULL)
 		vnc_array = new GLubyte[STRIDE_GL_ARRAY * nx * ny];
@@ -247,7 +246,7 @@ void CCourse::FillGlArrays() {
 			FLOATVAL(1) = elevation[(x) + nx*(y)];
 			FLOATVAL(2) = -(GLfloat)y / (ny-1.0) * curr_course->size.y;
 
-			const TVector3& nml = normals[ x + y * nx ];
+			const TVector3d& nml = normals[ x + y * nx ];
 			FLOATVAL(4) = nml.x;
 			FLOATVAL(5) = nml.y;
 			FLOATVAL(6) = nml.z;
@@ -272,13 +271,13 @@ void CCourse::MakeStandardPolyhedrons () {
 
 	// poyhedron "tree"
 	PolyArr[1].num_vertices = 6;
-	PolyArr[1].vertices = new TVector3[6];
-	PolyArr[1].vertices[0] = TVector3(0, 0, 0);
-	PolyArr[1].vertices[1] = TVector3(0, 0.15, 0.5);
-	PolyArr[1].vertices[2] = TVector3(0.5, 0.15, 0);
-	PolyArr[1].vertices[3] = TVector3(0, 0.15, -0.5);
-	PolyArr[1].vertices[4] = TVector3(-0.5, 0.15, 0);
-	PolyArr[1].vertices[5] = TVector3(0, 1, 0);
+	PolyArr[1].vertices = new TVector3d[6];
+	PolyArr[1].vertices[0] = TVector3d(0, 0, 0);
+	PolyArr[1].vertices[1] = TVector3d(0, 0.15, 0.5);
+	PolyArr[1].vertices[2] = TVector3d(0.5, 0.15, 0);
+	PolyArr[1].vertices[3] = TVector3d(0, 0.15, -0.5);
+	PolyArr[1].vertices[4] = TVector3d(-0.5, 0.15, 0);
+	PolyArr[1].vertices[5] = TVector3d(0, 1, 0);
 
 	PolyArr[1].num_polygons = 8;
 	PolyArr[1].polygons = new TPolygon[8];
@@ -585,8 +584,8 @@ bool CCourse::LoadObjectTypes () {
 		ObjTypes[i].use_normal = SPBoolN (line, "usenorm", false);
 
 		if (ObjTypes[i].use_normal) {
-			ObjTypes[i].normal = SPVector3N (line, "norm", TVector3(0, 1, 0));
-			NormVector ((ObjTypes[i].normal));
+			ObjTypes[i].normal = SPVector3N (line, "norm", TVector3d(0, 1, 0));
+			ObjTypes[i].normal.Norm();
 		}
 		ObjTypes[i].poly = 1;
 	}
@@ -957,10 +956,10 @@ void CCourse::FindBarycentricCoords (double x, double z, TIndex2 *idx0,
 	*v = (qz * dx - qx * dz) * invdet;
 }
 
-#define COURSE_VERTX(_x, _y) TVector3 ( (double)(_x)/(nx-1.)*curr_course->size.x, \
+#define COURSE_VERTX(_x, _y) TVector3d ( (double)(_x)/(nx-1.)*curr_course->size.x, \
                        ELEV((_x),(_y)), -(double)(_y)/(ny-1.)*curr_course->size.y )
 
-TVector3 CCourse::FindCourseNormal (double x, double z) const {
+TVector3d CCourse::FindCourseNormal (double x, double z) const {
 
 	double *elevation = Course.elevation;
 	int x0, x1, y0, y1;
@@ -970,29 +969,26 @@ TVector3 CCourse::FindCourseNormal (double x, double z) const {
 	double u, v;
 	FindBarycentricCoords (x, z, &idx0, &idx1, &idx2, &u, &v);
 
-	const TVector3& n0 = Course.nmls[ idx0.i + nx * idx0.j ];
-	const TVector3& n1 = Course.nmls[ idx1.i + nx * idx1.j ];
-	const TVector3& n2 = Course.nmls[ idx2.i + nx * idx2.j ];
+	const TVector3d& n0 = Course.nmls[ idx0.i + nx * idx0.j ];
+	const TVector3d& n1 = Course.nmls[ idx1.i + nx * idx1.j ];
+	const TVector3d& n2 = Course.nmls[ idx2.i + nx * idx2.j ];
 
-	TVector3 p0 = COURSE_VERTX (idx0.i, idx0.j);
-	TVector3 p1 = COURSE_VERTX (idx1.i, idx1.j);
-	TVector3 p2 = COURSE_VERTX (idx2.i, idx2.j);
+	TVector3d p0 = COURSE_VERTX (idx0.i, idx0.j);
+	TVector3d p1 = COURSE_VERTX (idx1.i, idx1.j);
+	TVector3d p2 = COURSE_VERTX (idx2.i, idx2.j);
 
-	TVector3 smooth_nml = AddVectors (
-	                          ScaleVector (u, n0),
-	                          AddVectors (ScaleVector (v, n1), ScaleVector (1.-u-v, n2)));
+	TVector3d smooth_nml = u * n0 +
+	                       v * n1 +
+	                       (1.-u-v) * n2;
 
-	TVector3 tri_nml = CrossProduct (
-	                       SubtractVectors (p1, p0), SubtractVectors (p2, p0));
-	NormVector (tri_nml);
+	TVector3d tri_nml = CrossProduct(p1 - p0, p2 - p0);
+	tri_nml.Norm();
 
 	double min_bary = min (u, min (v, 1. - u - v));
 	double interp_factor = min (min_bary / NORM_INTERPOL, 1.0);
 
-	TVector3 interp_nml = AddVectors (
-	                          ScaleVector (interp_factor, tri_nml),
-	                          ScaleVector (1.-interp_factor, smooth_nml));
-	NormVector (interp_nml);
+	TVector3d interp_nml = interp_factor * tri_nml + (1.-interp_factor) * smooth_nml;
+	interp_nml.Norm();
 
 	return interp_nml;
 }
@@ -1008,9 +1004,9 @@ double CCourse::FindYCoord (double x, double z) const {
 	double u, v;
 	FindBarycentricCoords (x, z, &idx0, &idx1, &idx2, &u, &v);
 
-	TVector3 p0 = COURSE_VERTX (idx0.i, idx0.j);
-	TVector3 p1 = COURSE_VERTX (idx1.i, idx1.j);
-	TVector3 p2 = COURSE_VERTX (idx2.i, idx2.j);
+	TVector3d p0 = COURSE_VERTX (idx0.i, idx0.j);
+	TVector3d p1 = COURSE_VERTX (idx1.i, idx1.j);
+	TVector3d p2 = COURSE_VERTX (idx2.i, idx2.j);
 
 	double ycoord = u * p0.y + v * p1.y +  (1. - u - v) * p2.y;
 
@@ -1052,7 +1048,7 @@ int CCourse::GetTerrainIdx (double x, double z, double level) const {
 	return -1;
 }
 
-TPlane CCourse::GetLocalCoursePlane (TVector3 pt) const {
+TPlane CCourse::GetLocalCoursePlane (TVector3d pt) const {
 	TPlane plane;
 	pt.y = FindYCoord (pt.x, pt.z);
 	plane.nml = FindCourseNormal (pt.x, pt.z);

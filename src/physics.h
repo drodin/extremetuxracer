@@ -62,11 +62,11 @@ GNU General Public License for more details.
 #define FIN_BRAKE 12
 
 struct TForce {
-	TVector3 surfnml;
-	TVector3 rollnml;
-	TVector3 pos;
-	TVector3 vel;
-	TVector3 frictdir;
+	TVector3d surfnml;
+	TVector3d rollnml;
+	TVector3d pos;
+	TVector3d vel;
+	TVector3d frictdir;
 
 	double frict_coeff;
 	double comp_depth;
@@ -80,49 +80,49 @@ private:
 	double ode_time_step;
 	double finish_speed;
 
-	bool     CheckTreeCollisions (const TVector3& pos, TVector3 *tree_loc, double *tree_diam);
-	void     AdjustTreeCollision (const TVector3& pos, TVector3 *vel);
-	void     CheckItemCollection (const TVector3& pos);
+	bool     CheckTreeCollisions (const TVector3d& pos, TVector3d *tree_loc, double *tree_diam);
+	void     AdjustTreeCollision (const TVector3d& pos, TVector3d *vel);
+	void     CheckItemCollection (const TVector3d& pos);
 
-	TVector3 CalcRollNormal (double speed);
-	TVector3 CalcAirForce ();
-	TVector3 CalcSpringForce ();
-	TVector3 CalcNormalForce ();
-	TVector3 CalcJumpForce ();
-	TVector3 CalcFrictionForce (double speed, const TVector3& nmlforce);
-	TVector3 CalcPaddleForce (double speed);
-	TVector3 CalcBrakeForce (double speed);
-	TVector3 CalcGravitationForce ();
-	TVector3 CalcNetForce (const TVector3& pos, const TVector3& vel);
-	TVector3 CalcFinishForce (const TVector3& pos, const TVector3& vel);
+	TVector3d CalcRollNormal (double speed);
+	TVector3d CalcAirForce ();
+	TVector3d CalcSpringForce ();
+	TVector3d CalcNormalForce ();
+	TVector3d CalcJumpForce ();
+	TVector3d CalcFrictionForce (double speed, const TVector3d& nmlforce);
+	TVector3d CalcPaddleForce (double speed);
+	TVector3d CalcBrakeForce (double speed);
+	TVector3d CalcGravitationForce ();
+	TVector3d CalcNetForce (const TVector3d& pos, const TVector3d& vel);
+	TVector3d CalcFinishForce (const TVector3d& pos, const TVector3d& vel);
 
 	void     AdjustVelocity (const TPlane& surf_plane);
 	void     AdjustPosition (const TPlane& surf_plane, double dist_from_surface);
 	void     SetTuxPosition (double speed);
-	double   AdjustTimeStep (double h, const TVector3& vel);
+	double   AdjustTimeStep (double h, const TVector3d& vel);
 	void     SolveOdeSystem (double timestep);
 public:
 	CControl ();
 
 	// view:
 	TViewMode viewmode;
-	TVector3 viewpos;
-	TVector3 plyr_pos;
-	TVector3 viewdir;
-	TVector3 viewup;
+	TVector3d viewpos;
+	TVector3d plyr_pos;
+	TVector3d viewdir;
+	TVector3d viewup;
 	TMatrix view_mat;
 	bool view_init;
 	// main:
-	TVector3 cpos;
-	TVector3 cvel;
-	TVector3 last_pos;
-	TVector3 cnet_force;
-	TVector3 cdirection;
+	TVector3d cpos;
+	TVector3d cvel;
+	TVector3d last_pos;
+	TVector3d cnet_force;
+	TVector3d cdirection;
 	TQuaternion corientation;
 	double way;
 
 	bool orientation_initialized;
-	TVector3 plane_nml;
+	TVector3d plane_nml;
 	// steering:
 	double turn_fact;
 	double turn_animation;

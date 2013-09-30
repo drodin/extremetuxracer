@@ -41,9 +41,9 @@ enum track_types_t {
 };
 
 struct track_quad_t {
-	TVector3 v1, v2, v3, v4;
-	TVector2 t1, t2, t3, t4;
-	TVector3 n1, n2, n3, n4;
+	TVector3d v1, v2, v3, v4;
+	TVector2d t1, t2, t3, t4;
+	TVector3d n1, n2, n3, n4;
 	track_types_t track_type;
 	double alpha;
 };
@@ -181,10 +181,10 @@ void break_track_marks() {
 	list<track_quad_t>::iterator q = track_marks.current_mark;
 	if (q != track_marks.quads.end()) {
 		q->track_type = TRACK_TAIL;
-		q->t1 = TVector2(0.0, 0.0);
-		q->t2 = TVector2(1.0, 0.0);
-		q->t3 = TVector2(0.0, 1.0);
-		q->t4 = TVector2(1.0, 1.0);
+		q->t1 = TVector2d(0.0, 0.0);
+		q->t2 = TVector2d(1.0, 0.0);
+		q->t3 = TVector2d(0.0, 1.0);
+		q->t4 = TVector2d(1.0, 1.0);
 		list<track_quad_t>::iterator qprev = decrementRingIterator(q);
 		if (qprev != track_marks.quads.end()) {
 			qprev->t3.y = max((int)(qprev->t3.y+0.5), (int)(qprev->t1.y+1));
@@ -214,23 +214,23 @@ void add_track_mark(const CControl *ctrl, int *id) {
 		return;
 	}
 
-	double speed = VectorLength(ctrl->cvel);
+	double speed = ctrl->cvel.Length();
 	if (speed < SPEED_TO_START_TRENCH) {
 		break_track_marks();
 		return;
 	}
 
-	TVector3 width_vector = CrossProduct (ctrl->cdirection, TVector3 (0, 1, 0));
-	double magnitude = NormVector (width_vector);
+	TVector3d width_vector = CrossProduct (ctrl->cdirection, TVector3d (0, 1, 0));
+	double magnitude = width_vector.Norm();
 	if (magnitude == 0) {
 		break_track_marks();
 		return;
 	}
 
-	TVector3 left_vector = ScaleVector (TRACK_WIDTH/2.0, width_vector);
-	TVector3 right_vector = ScaleVector (-TRACK_WIDTH/2.0, width_vector);
-	TVector3 left_wing =  SubtractVectors (ctrl->cpos, left_vector);
-	TVector3 right_wing = SubtractVectors (ctrl->cpos, right_vector);
+	TVector3d left_vector = TRACK_WIDTH/2.0 * width_vector;
+	TVector3d right_vector = -TRACK_WIDTH/2.0 * width_vector;
+	TVector3d left_wing =  ctrl->cpos - left_vector;
+	TVector3d right_wing = ctrl->cpos - right_vector;
 	double left_y = Course.FindYCoord (left_wing.x, left_wing.z);
 	double right_y = Course.FindYCoord (right_wing.x, right_wing.z);
 
@@ -259,14 +259,14 @@ void add_track_mark(const CControl *ctrl, int *id) {
 
 	if (!continuing_track) {
 		q->track_type = TRACK_HEAD;
-		q->v1 = TVector3 (left_wing.x, left_y + TRACK_HEIGHT, left_wing.z);
-		q->v2 = TVector3 (right_wing.x, right_y + TRACK_HEIGHT, right_wing.z);
-		q->v3 = TVector3 (left_wing.x, left_y + TRACK_HEIGHT, left_wing.z);
-		q->v4 = TVector3 (right_wing.x, right_y + TRACK_HEIGHT, right_wing.z);
+		q->v1 = TVector3d (left_wing.x, left_y + TRACK_HEIGHT, left_wing.z);
+		q->v2 = TVector3d (right_wing.x, right_y + TRACK_HEIGHT, right_wing.z);
+		q->v3 = TVector3d (left_wing.x, left_y + TRACK_HEIGHT, left_wing.z);
+		q->v4 = TVector3d (right_wing.x, right_y + TRACK_HEIGHT, right_wing.z);
 		q->n1 = Course.FindCourseNormal (q->v1.x, q->v1.z);
 		q->n2 = Course.FindCourseNormal (q->v2.x, q->v2.z);
-		q->t1 = TVector2(0.0, 0.0);
-		q->t2 = TVector2(1.0, 0.0);
+		q->t1 = TVector2d(0.0, 0.0);
+		q->t2 = TVector2d(1.0, 0.0);
 	} else {
 		q->track_type = TRACK_TAIL;
 		if (qprev != track_marks.quads.end()) {
@@ -278,17 +278,17 @@ void add_track_mark(const CControl *ctrl, int *id) {
 			q->t2 = qprev->t4;
 			if (qprev->track_type == TRACK_TAIL) qprev->track_type = TRACK_MARK;
 		}
-		q->v3 = TVector3 (left_wing.x, left_y + TRACK_HEIGHT, left_wing.z);
-		q->v4 = TVector3 (right_wing.x, right_y + TRACK_HEIGHT, right_wing.z);
+		q->v3 = TVector3d (left_wing.x, left_y + TRACK_HEIGHT, left_wing.z);
+		q->v4 = TVector3d (right_wing.x, right_y + TRACK_HEIGHT, right_wing.z);
 		q->n3 = Course.FindCourseNormal (q->v3.x, q->v3.z);
 		q->n4 = Course.FindCourseNormal (q->v4.x, q->v4.z);
 		double tex_end = speed*g_game.time_step/TRACK_WIDTH;
 		if (q->track_type == TRACK_HEAD) {
-			q->t3= TVector2 (0.0, 1.0);
-			q->t4= TVector2 (1.0, 1.0);
+			q->t3= TVector2d (0.0, 1.0);
+			q->t4= TVector2d (1.0, 1.0);
 		} else {
-			q->t3 = TVector2 (0.0, q->t1.y + tex_end);
-			q->t4 = TVector2 (1.0, q->t2.y + tex_end);
+			q->t3 = TVector2d (0.0, q->t1.y + tex_end);
+			q->t4 = TVector2d (1.0, q->t2.y + tex_end);
 		}
 	}
 	q->alpha = min ((2*comp_depth-dist_from_surface)/(4*comp_depth), 1.0);

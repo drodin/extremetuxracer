@@ -52,19 +52,19 @@ GNU General Public License for more details.
 #define PARTICLE_SIZE_RANGE 10
 
 struct TGuiParticle {
-	TVector2 pt;
+	TVector2d pt;
 	float size;
-	TVector2 vel;
+	TVector2d vel;
 	const GLfloat* tex;
 
 	TGuiParticle(double x, double y);
 	void Draw(double xres, double yres) const;
-	void Update(double time_step, double push_timestep, const TVector2& push_vector);
+	void Update(double time_step, double push_timestep, const TVector2d& push_vector);
 };
 
 static list<TGuiParticle> particles_2d;
-static TVector2 push_position(0, 0);
-static TVector2 last_push_position;
+static TVector2d push_position(0, 0);
+static TVector2d last_push_position;
 static double last_update_time = -1;
 static bool push_position_initialized = false;
 
@@ -116,8 +116,8 @@ void TGuiParticle::Draw(double xres, double yres) const {
 	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 }
 
-void TGuiParticle::Update(double time_step, double push_timestep, const TVector2& push_vector) {
-	TVector2 f;
+void TGuiParticle::Update(double time_step, double push_timestep, const TVector2d& push_vector) {
+	TVector2d f;
 
 	double dist_from_push = (pow((pt.x - push_position.x), 2) +
 	                         pow((pt.y - push_position.y), 2));
@@ -148,13 +148,13 @@ void TGuiParticle::Update(double time_step, double push_timestep, const TVector2
 void init_ui_snow () {
 	for (int i=0; i<BASE_num_snowparticles; i++)
 		particles_2d.push_back(TGuiParticle(FRandom(), FRandom()));
-	push_position = TVector2(0.0, 0.0);
+	push_position = TVector2d(0.0, 0.0);
 }
 
 void update_ui_snow(double time_step) {
 	double time = Winsys.ClockTime ();
 
-	TVector2 push_vector;
+	TVector2d push_vector;
 	double push_timestep = 0;
 
 	if (push_position_initialized) {
@@ -216,7 +216,7 @@ void draw_ui_snow () {
 }
 
 void push_ui_snow (const TVector2i& pos) {
-	push_position = TVector2(pos.x/(double)Winsys.resolution.width, 1.0 - pos.y/(double)Winsys.resolution.height);
+	push_position = TVector2d(pos.x/(double)Winsys.resolution.width, 1.0 - pos.y/(double)Winsys.resolution.height);
 	if (!push_position_initialized) last_push_position = push_position;
 	push_position_initialized = true;
 }
@@ -246,7 +246,7 @@ void push_ui_snow (const TVector2i& pos) {
 
 
 struct Particle {
-	TVector3 pt;
+	TVector3d pt;
 	short type;
 	double base_size;
 	double cur_size;
@@ -254,7 +254,7 @@ struct Particle {
 	double age;
 	double death;
 	double alpha;
-	TVector3 vel;
+	TVector3d vel;
 
 	void Draw(const CControl* ctrl) const;
 private:
@@ -295,18 +295,18 @@ void Particle::Draw(const CControl* ctrl) const {
 }
 
 void Particle::draw_billboard (const CControl *ctrl, double width, double height, bool use_world_y_axis, const GLfloat* tex) const {
-	TVector3 x_vec;
-	TVector3 y_vec;
-	TVector3 z_vec;
+	TVector3d x_vec;
+	TVector3d y_vec;
+	TVector3d z_vec;
 
 	x_vec.x = ctrl->view_mat[0][0];
 	x_vec.y = ctrl->view_mat[0][1];
 	x_vec.z = ctrl->view_mat[0][2];
 
 	if (use_world_y_axis) {
-		y_vec = TVector3(0, 1, 0);
+		y_vec = TVector3d(0, 1, 0);
 		x_vec = ProjectToPlane (y_vec, x_vec);
-		NormVector (x_vec);
+		x_vec.Norm();
 		z_vec = CrossProduct (x_vec, y_vec);
 	} else {
 		y_vec.x = ctrl->view_mat[1][0];
@@ -317,11 +317,11 @@ void Particle::draw_billboard (const CControl *ctrl, double width, double height
 		z_vec.z = ctrl->view_mat[2][2];
 	}
 
-	TVector3 pt1 = AddVectors (pt, ScaleVector (-width/2.0, x_vec));
-	pt1 = AddVectors(pt1, ScaleVector(-height / 2.0, y_vec));
-	TVector3 pt2 = AddVectors(pt1, ScaleVector(width, x_vec));
-	TVector3 pt3 = AddVectors(pt2, ScaleVector(height, y_vec));
-	TVector3 pt4 = AddVectors(pt3, ScaleVector(-width, x_vec));
+	TVector3d pt1 = pt + -width/2.0 * x_vec;
+	pt1 += -height / 2.0 * y_vec;
+	TVector3d pt2 = pt1 + width * x_vec;
+	TVector3d pt3 = pt2 + height * y_vec;
+	TVector3d pt4 = pt3 + -width * x_vec;
 	const GLfloat vtx[] = {
 		pt1.x, pt1.y, pt1.z,
 		pt2.x, pt2.y, pt2.z,
@@ -340,8 +340,8 @@ void Particle::draw_billboard (const CControl *ctrl, double width, double height
 	glDisableClientState(GL_VERTEX_ARRAY);
 }
 
-void create_new_particles (const TVector3& loc, const TVector3& vel, int num) {
-	double speed = VectorLength (vel);
+void create_new_particles (const TVector3d& loc, const TVector3d& vel, int num) {
+	double speed = vel.Length();
 
 	if (particles.size() + num > MAX_PARTICLES) {
 		Message ("maximum number of particles exceeded");
@@ -357,11 +357,10 @@ void create_new_particles (const TVector3& loc, const TVector3& vel, int num) {
 		newp->cur_size = NEW_PART_SIZE;
 		newp->age = FRandom() * MIN_AGE;
 		newp->death = FRandom() * MAX_AGE;
-		newp->vel = AddVectors (
-		                vel,
-		                TVector3(VARIANCE_FACTOR * (FRandom() - 0.5) * speed,
-		                         VARIANCE_FACTOR * (FRandom() - 0.5) * speed,
-		                         VARIANCE_FACTOR * (FRandom() - 0.5) * speed));
+		newp->vel = vel +
+		            TVector3d(VARIANCE_FACTOR * (FRandom() - 0.5) * speed,
+		                      VARIANCE_FACTOR * (FRandom() - 0.5) * speed,
+		                      VARIANCE_FACTOR * (FRandom() - 0.5) * speed);
 	}
 }
 void update_particles (double time_step) {
@@ -372,7 +371,7 @@ void update_particles (double time_step) {
 			continue;
 		}
 
-		p->pt = AddVectors (p->pt, ScaleVector (time_step, p->vel));
+		p->pt += time_step * p->vel;
 		double ycoord = Course.FindYCoord (p->pt.x, p->pt.z);
 		if (p->pt.y < ycoord - 3) {p->age = p->death + 1;}
 		if (p->age >= p->death) {
@@ -408,22 +407,18 @@ double adjust_particle_count (double particles) {
 	} else return particles;
 }
 
-void generate_particles (const CControl *ctrl, double dtime, const TVector3& pos, double speed) {
+void generate_particles (const CControl *ctrl, double dtime, const TVector3d& pos, double speed) {
 	TTerrType *TerrList = &Course.TerrList[0];
 
 	double surf_y = Course.FindYCoord (pos.x, pos.z);
 
 	int id = Course.GetTerrainIdx (pos.x, pos.z, 0.5);
 	if (id >= 0 && TerrList[id].particles && pos.y < surf_y) {
-		TVector3 xvec = CrossProduct (ctrl->cdirection, ctrl->plane_nml);
+		TVector3d xvec = CrossProduct (ctrl->cdirection, ctrl->plane_nml);
 
-		TVector3 right_part_pt = AddVectors (
-		                             pos,
-		                             ScaleVector (TUX_WIDTH/2.0, xvec));
+		TVector3d right_part_pt = pos + TUX_WIDTH/2.0 * xvec;
 
-		TVector3 left_part_pt = AddVectors (
-		                            pos,
-		                            ScaleVector (-TUX_WIDTH/2.0, xvec));
+		TVector3d left_part_pt = pos + -TUX_WIDTH/2.0 * xvec;
 
 		right_part_pt.y = left_part_pt.y  = surf_y;
 
@@ -453,17 +448,15 @@ void generate_particles (const CControl *ctrl, double dtime, const TVector3& pos
 		    rot_mat, ctrl->cdirection,
 		    max (-MAX_PARTICLE_ANGLE,
 		         -MAX_PARTICLE_ANGLE * speed / MAX_PARTICLE_ANGLE_SPEED));
-		TVector3 left_part_vel = TransformVector (rot_mat, ctrl->plane_nml);
-		left_part_vel = ScaleVector (min (MAX_PARTICLE_SPEED,
-		                                  speed * PARTICLE_SPEED_MULTIPLIER),left_part_vel);
+		TVector3d left_part_vel = TransformVector (rot_mat, ctrl->plane_nml);
+		left_part_vel = min(MAX_PARTICLE_SPEED, speed * PARTICLE_SPEED_MULTIPLIER);
 
 		RotateAboutVectorMatrix(
 		    rot_mat, ctrl->cdirection,
 		    min (MAX_PARTICLE_ANGLE,
 		         MAX_PARTICLE_ANGLE * speed / MAX_PARTICLE_ANGLE_SPEED));
-		TVector3 right_part_vel = TransformVector (rot_mat, ctrl->plane_nml);
-		right_part_vel = ScaleVector (min (MAX_PARTICLE_SPEED,
-		                                   speed * PARTICLE_SPEED_MULTIPLIER),right_part_vel);
+		TVector3d right_part_vel = TransformVector (rot_mat, ctrl->plane_nml);
+		right_part_vel *= min(MAX_PARTICLE_SPEED, speed * PARTICLE_SPEED_MULTIPLIER);
 
 
 		create_new_particles (left_part_pt, left_part_vel,
@@ -692,7 +685,7 @@ void CFlakes::Update (double timestep, const CControl *ctrl) {
 		ydiff = ctrl->cpos.y - snow_lastpos.y;
 	}
 
-	TVector3 winddrift = ScaleVector (SNOW_WIND_DRIFT, Wind.WindDrift ());
+	TVector3d winddrift = SNOW_WIND_DRIFT * Wind.WindDrift ();
 	float xcoeff = winddrift.x * timestep;
 	float ycoeff = (ydiff * YDRIFT) + (winddrift.z * timestep);
 	float zcoeff = (zdiff * ZDRIFT) + (winddrift.z * timestep);
@@ -801,7 +794,7 @@ void TCurtain::Draw() const {
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 	for (unsigned int co=0; co<numCols; co++) {
 		for (unsigned int row=0; row<numRows; row++) {
-			const TVector3& pt = curtains[co][row].pt;
+			const TVector3d& pt = curtains[co][row].pt;
 			glPushMatrix();
 			glTranslate(pt);
 			glRotatef (-curtains[co][row].angle, 0, 1, 0);
@@ -828,7 +821,7 @@ void TCurtain::Draw() const {
 	glDisableClientState(GL_VERTEX_ARRAY);
 }
 
-void TCurtain::Update(float timestep, const TVector3& drift, const CControl* ctrl) {
+void TCurtain::Update(float timestep, const TVector3d& drift, const CControl* ctrl) {
 	for (unsigned int co=0; co<numCols; co++) {
 		for (unsigned int row=0; row<numRows; row++) {
 			TCurtainElement* curt = &curtains[co][row];
@@ -873,7 +866,7 @@ void CCurtain::Draw () {
 
 void CCurtain::Update (float timestep, const CControl *ctrl) {
 	if (g_game.snow_id < 1) return;
-	const TVector3& drift = Wind.WindDrift ();
+	const TVector3d& drift = Wind.WindDrift ();
 
 	UpdateChanges (timestep);
 	for (size_t i=0; i<curtains.size(); i++) {
@@ -1116,7 +1109,7 @@ void CWind::Update (float timestep) {
 void CWind::Init (int wind_id) {
 	if (wind_id < 1 || wind_id > 3) {
 		windy = false;
-		WVector = TVector3 (0, 0, 0);
+		WVector = TVector3d (0, 0, 0);
 		WAngle = 0;
 		WSpeed = 0;
 		return;

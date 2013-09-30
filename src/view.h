@@ -36,7 +36,7 @@ enum clip_result_t {
 };
 
 void SetupViewFrustum (const CControl *ctrl);
-clip_result_t clip_aabb_to_view_frustum (const TVector3& min, const TVector3& max);
+clip_result_t clip_aabb_to_view_frustum (const TVector3d& min, const TVector3d& max);
 
 const TPlane& get_far_clip_plane();
 const TPlane& get_left_clip_plane();

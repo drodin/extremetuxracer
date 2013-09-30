@@ -32,7 +32,7 @@ GNU General Public License for more details.
 static size_t curr_frame = 0;
 static int curr_joint = 0;
 static int last_joint = 0;
-static TVector3 ref_position(0, 0, 0);
+static TVector3d ref_position(0, 0, 0);
 static bool must_render = true;
 static int framebase = 24;
 static int jointbase = 16;

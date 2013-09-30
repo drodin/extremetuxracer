@@ -857,7 +857,7 @@ clip_result_t quadsquare::ClipSquare (const quadcornerdata& cd) {
 	}
 
 	int whole = 2 << cd.Level;
-	TVector3 min, max;
+	TVector3d min, max;
 	min.x = cd.xorg * ScaleX;
 	min.y = MinY;
 	min.z =  cd.zorg * ScaleZ;
@@ -1141,7 +1141,7 @@ static int get_root_level (int nx, int nz) {
 	return max (xlev, zlev);
 }
 
-static void TVector3o_float_array (float dest[3], const TVector3& src) {
+static void TVector3do_float_array (float dest[3], const TVector3d& src) {
 	dest[0] = src.x;
 	dest[1] = src.y;
 	dest[2] = src.z;
@@ -1149,7 +1149,7 @@ static void TVector3o_float_array (float dest[3], const TVector3& src) {
 
 
 void InitQuadtree (double *elevation, int nx, int nz,
-                   double scalex, double scalez, const TVector3& view_pos, double detail) {
+                   double scalex, double scalez, const TVector3d& view_pos, double detail) {
 	HeightMapInfo hm;
 
 	hm.Data = elevation;
@@ -1179,16 +1179,16 @@ void InitQuadtree (double *elevation, int nx, int nz,
 	root->StaticCullData (root_corner_data, CULL_DETAIL_FACTOR);
 
 	float ViewerLoc[3];
-	TVector3o_float_array (ViewerLoc, view_pos);
+	TVector3do_float_array (ViewerLoc, view_pos);
 
 	for (int i = 0; i < 10; i++) {
 		root->Update(root_corner_data, ViewerLoc, detail);
 	}
 }
 
-void UpdateQuadtree (const TVector3& view_pos, float detail) {
+void UpdateQuadtree (const TVector3d& view_pos, float detail) {
 	float ViewerLoc[3];
-	TVector3o_float_array (ViewerLoc, view_pos);
+	TVector3do_float_array (ViewerLoc, view_pos);
 	root->Update (root_corner_data, ViewerLoc, detail);
 }
 

@@ -288,7 +288,7 @@ void CharMotion (int x, int y) {
 	}
 }
 
-void DrawActionVec (size_t nr, const string& s, int y, const TVector3& v) {
+void DrawActionVec (size_t nr, const string& s, int y, const TVector3d& v) {
 	FT.SetColor (colLGrey);
 	FT.DrawString (20, y, s);
 	if (nr == curr_act) {
