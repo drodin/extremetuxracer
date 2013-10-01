@@ -85,7 +85,7 @@ static int framewidth, frameheight, arrowwidth;
 static TArea area;
 static double texsize;
 
-void CRegist::Enter (void) {
+void CRegist::Enter() {
 	Winsys.ShowCursor (!param.ice_cursor);
 	Music.Play (param.menu_music, -1);
 

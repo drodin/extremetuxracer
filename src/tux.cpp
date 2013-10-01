@@ -219,7 +219,7 @@ bool CCharShape::RotateNode (size_t node_name, int axis, double angle) {
 	MakeRotationMatrix (rotMatrix, -angle, caxis);
 	MultiplyMatrices (node->invtrans, rotMatrix, node->invtrans);
 
-	if (newActions && useActions) AddAction (node_name, axis, NullVec, angle);
+	if (newActions && useActions) AddAction (node_name, axis, NullVec3, angle);
 	return true;
 }
 
@@ -254,7 +254,7 @@ bool CCharShape::VisibleNode (size_t node_name, float level) {
 		    clamp (MIN_SPHERE_DIV, ROUND_TO_NEAREST (param.tux_sphere_divisions * level / 10), MAX_SPHERE_DIV);
 		node->radius = 1.0;
 	}
-	if (newActions && useActions) AddAction (node_name, 5, NullVec, level);
+	if (newActions && useActions) AddAction (node_name, 5, NullVec3, level);
 	return true;
 }
 
@@ -341,8 +341,8 @@ TCharMaterial* CCharShape::GetMaterial (const string& mat_name) {
 }
 
 void CCharShape::CreateMaterial (const string& line) {
-	TVector3d diff = SPVector3N(line, "diff", NullVec);
-	TVector3d spec = SPVector3N(line, "spec", NullVec);
+	TVector3d diff = SPVector3N(line, "diff");
+	TVector3d spec = SPVector3N(line, "spec");
 	float exp = SPFloatN (line, "exp", 50);
 	std::string mat = SPItemN (line, "mat");
 	STrimN(mat);
@@ -450,13 +450,13 @@ bool CCharShape::Load (const string& dir, const string& filename, bool with_acti
 			bool shadow = SPBoolN (line, "shad", false);
 			string order = SPStrN (line, "order");
 			CreateCharNode (parent_name, node_name, name, fullname, order, shadow);
-			TVector3d rot = SPVector3N (line, "rot", NullVec);
+			TVector3d rot = SPVector3N (line, "rot");
 			MaterialNode (node_name, mat_name);
 			for (size_t ii = 0; ii < order.size(); ii++) {
 				int act = order[ii]-48;
 				switch (act) {
 					case 0: {
-						TVector3d trans = SPVector3N(line, "trans", NullVec);
+						TVector3d trans = SPVector3N(line, "trans");
 						TranslateNode (node_name, trans);
 						break;
 					}

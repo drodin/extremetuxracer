@@ -106,7 +106,6 @@ void CCredits::DrawCreditsText (double time_step) {
 	glVertex2i (w, h - TOP_Y - 30);
 	glEnd();
 
-	glColor4f (1, 1, 1, 1);
 	glEnable (GL_TEXTURE_2D);
 	if (offs < TOP_Y) y_offset = 0;
 }

@@ -317,7 +317,7 @@ void RenderSequence (double timestep) {
 	GluCamera.Update (timestep);
 	if (TestFrame.active) TestFrame.UpdateTest (timestep, &TestChar);
 	else if (keyrun) {
-		TestFrame.InitTest (NullVec, &TestChar);
+		TestFrame.InitTest (NullVec3, &TestChar);
 		keyrun = false;
 	}
 

@@ -21,7 +21,6 @@ GNU General Public License for more details.
 
 #include "bh.h"
 
-static const TVector3d NullVec(0.0, 0.0, 0.0);
 static const TVector3d GravVec(0.0, -1.0, 0.0);
 
 // --------------------------------------------------------------------

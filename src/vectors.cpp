@@ -22,6 +22,10 @@ GNU General Public License for more details.
 #include "vectors.h"
 
 
+const TVector2d NullVec2;
+const TVector3d NullVec3;
+
+
 // Instanciate only functions we actually need
 template<>
 double TVector3<double>::Norm() {

@@ -162,4 +162,8 @@ double    DotProduct(const TVector3d& v1, const TVector3d& v2);
 TVector3d CrossProduct(const TVector3d& u, const TVector3d& v);
 
 
+extern const TVector2d NullVec2;
+extern const TVector3d NullVec3;
+
+
 #endif

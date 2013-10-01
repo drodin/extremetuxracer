@@ -194,7 +194,7 @@ void SetSoundVolumes () {
 }
 
 // ---------------------------- init ----------------------------------
-void CRacing::Enter (void) {
+void CRacing::Enter() {
 	CControl *ctrl = Players.GetCtrl (g_game.player_id);
 
 	if (param.view_mode < 0 || param.view_mode >= NUM_VIEW_MODES) {

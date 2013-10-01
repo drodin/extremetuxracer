@@ -39,6 +39,7 @@ CPaused Paused;
 static bool sky = true;
 static bool fog = true;
 static bool terr = true;
+static bool trees = true;
 
 void CPaused::Keyb (unsigned int key, bool special, bool release, int x, int y) {
 	if (release) return;
@@ -55,6 +56,9 @@ void CPaused::Keyb (unsigned int key, bool special, bool release, int x, int y) 
 		case SDLK_F7:
 			terr = !terr;
 			break;
+		case SDLK_F8:
+			trees = !trees;
+			break;
 		default:
 			State::manager.RequestEnterState (Racing);
 	}
@@ -62,18 +66,6 @@ void CPaused::Keyb (unsigned int key, bool special, bool release, int x, int y) 
 
 void CPaused::Mouse (int button, int state, int x, int y) {
 	State::manager.RequestEnterState (Racing);
-}
-
-void PausedSetupDisplay () {
-	double offset = 0.0;
-
-	glMatrixMode (GL_PROJECTION);
-	glLoadIdentity();
-	glOrtho (0, Winsys.resolution.width,  0, Winsys.resolution.height, -1.0, 1.0);
-	glMatrixMode (GL_MODELVIEW);
-	glLoadIdentity();
-	glTranslatef (offset, offset, -1.0);
-	glColor4f (1.0, 1.0, 1.0, 1.0);
 }
 
 // ====================================================================
@@ -87,7 +79,6 @@ void CPaused::Loop (double time_step) {
 	Music.Update ();
 	ClearRenderContext ();
 	Env.SetupFog ();
-	ctrl->UpdatePlayerPos (0);
 	update_view (ctrl, 0);
 	SetupViewFrustum (ctrl);
 
@@ -96,18 +87,13 @@ void CPaused::Loop (double time_step) {
 	Env.SetupLight ();
 	if (terr) RenderCourse();
 	DrawTrackmarks ();
-	DrawTrees();
+	if (trees) DrawTrees();
 
-	UpdateWind (time_step);
-	UpdateSnow (time_step, ctrl);
 	DrawSnow (ctrl);
 
 	if (param.perf_level > 2) draw_particles (ctrl);
 	Char.Draw (g_game.char_id);
 
-	ScopedRenderMode rm(GUI);
-	SetupGuiDisplay ();
-	PausedSetupDisplay ();
 	DrawHud (ctrl);
 	Reshape (width, height);
 	Winsys.SwapBuffers ();

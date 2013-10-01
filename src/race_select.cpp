@@ -62,7 +62,7 @@ static void UpdateInfo() {
 	}
 }
 
-void SetRaceConditions (void) {
+void SetRaceConditions() {
 	g_game.mirror_id = mirror->GetValue() != 0;
 	g_game.light_id = light->GetValue();
 	g_game.snow_id = snow->GetValue();

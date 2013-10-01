@@ -407,7 +407,6 @@ void DrawHud (const CControl *ctrl) {
 
 	draw_gauge (speed * 3.6, ctrl->jump_amt);
 	ScopedRenderMode rm(TEXFONT);
-	glColor4f (1, 1, 1, 1);
 	draw_time();
 	draw_herring_count (g_game.herring);
 	DrawSpeed (speed * 3.6);
