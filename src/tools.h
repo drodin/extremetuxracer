@@ -93,6 +93,7 @@ class CTools : public State {
 	void Motion(int x, int y);
 public:
 	void Enter();
+	static void SetParameter(const string& dir, const string& file);
 };
 
 extern CTools Tools;

@@ -1052,6 +1052,6 @@ TPlane CCourse::GetLocalCoursePlane (TVector3d pt) const {
 	TPlane plane;
 	pt.y = FindYCoord (pt.x, pt.z);
 	plane.nml = FindCourseNormal (pt.x, pt.z);
-	plane.d = - (plane.nml.x * pt.x +  plane.nml.y * pt.y +  plane.nml.z * pt.z);
+	plane.d = -DotProduct(plane.nml, pt);
 	return plane;
 }

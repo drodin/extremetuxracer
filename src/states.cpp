@@ -100,7 +100,7 @@ void State::Manager::PollEvent() {
 					if (Winsys.joystick_isActive()) {
 						unsigned int axis = event.jaxis.axis;
 						if (axis < 2) {
-							float val = (float)event.jaxis.value / 32768;
+							float val = (float)event.jaxis.value / 32768.f;
 							current->Jaxis(axis, val);
 						}
 					}

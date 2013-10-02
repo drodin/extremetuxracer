@@ -217,11 +217,13 @@ void SaveToolFrame () {
 	framechanged = false;
 }
 
-void CTools::Enter() {
-	char_dir = param.char_dir + SEP + g_game.dir_arg;
+void CTools::SetParameter(const string& dir, const string& file) {
+	char_dir = param.char_dir + SEP + dir;
 	char_file = "shape.lst";
-	frame_file = g_game.file_arg;
+	frame_file = file;
+}
 
+void CTools::Enter() {
 	if (TestChar.Load (char_dir, char_file, true) == false) {
 		Message ("could not load 'shape.lst'");
 		Winsys.Terminate();

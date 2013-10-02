@@ -153,14 +153,12 @@ public:
 	void DrawFrame (const string& name, int x, int y, double w, double h, int frame, const TColor& col);
 
 	void SetOrientation (Orientation orientation);
-	void DrawNumStr (const char *s, int x, int y, float size, const TColor& col);
+	void DrawNumStr (const string& s, int x, int y, float size, const TColor& col);
 };
 
 extern CTexture Tex;
 
 void ScreenshotN ();
-void TGAScreenshot2 (const char *destFile);
-void BMPScreenshot (const char *destFile);
 
 
 #endif

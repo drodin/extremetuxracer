@@ -47,7 +47,7 @@ CRacing Racing;
 static bool right_turn;
 static bool left_turn;
 static bool stick_turn;
-static double stick_turnfact;
+static float stick_turnfact;
 static bool key_paddling;
 static bool stick_paddling;
 static bool key_charging;
@@ -146,7 +146,7 @@ void CRacing::Keyb (unsigned int key, bool special, bool release, int x, int y) 
 	}
 }
 
-void CRacing::Jaxis (int axis, double value) {
+void CRacing::Jaxis (int axis, float value) {
 	if (axis == 0) { 	// left and right
 		stick_turn = ((value < -0.2) || (value > 0.2));
 		if (stick_turn) stick_turnfact = value;
@@ -178,8 +178,8 @@ void CalcJumpEnergy (double time_step) {
 	}
 }
 
-int CalcSoundVol (double fact) {
-	double vv = (double) param.sound_volume * fact;
+int CalcSoundVol (float fact) {
+	float vv = (float) param.sound_volume * fact;
 	if (vv > 120) vv = 120;
 	return (int) vv;
 }

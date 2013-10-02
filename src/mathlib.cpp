@@ -94,9 +94,7 @@ bool IntersectPlanes (const TPlane& s1, const TPlane& s2, const TPlane& s3, TVec
 
 double DistanceToPlane (const TPlane& plane, const TVector3d& pt) {
 	return
-	    plane.nml.x * pt.x +
-	    plane.nml.y * pt.y +
-	    plane.nml.z * pt.z +
+	    DotProduct(plane.nml, pt) +
 	    plane.d;
 }
 
@@ -277,31 +275,12 @@ TQuaternion MultiplyQuaternions (const TQuaternion& q, const TQuaternion& r) {
 	return res;
 }
 
-TQuaternion AddQuaternions (const TQuaternion& q, const TQuaternion& r) {
-	TQuaternion res(
-	    q.x + r.x,
-	    q.y + r.y,
-	    q.z + r.z,
-	    q.w + r.w);
-	return res;
-}
-
 TQuaternion ConjugateQuaternion (const TQuaternion& q) {
 	TQuaternion res(
 	    -1 * q.x,
 	    -1 * q.y,
 	    -1 * q.z,
 	    q.w);
-
-	return res;
-}
-
-TQuaternion ScaleQuaternion (double s, const TQuaternion& q) {
-	TQuaternion res(
-	    s * q.x,
-	    s * q.y,
-	    s * q.z,
-	    s * q.w);
 
 	return res;
 }
@@ -407,13 +386,7 @@ TQuaternion InterpolateQuaternions (const TQuaternion& q, TQuaternion r, double 
 		scale1 = t;
 	}
 
-	TQuaternion res;
-	res.x = scale0 * q.x + scale1 * r.x;
-	res.y = scale0 * q.y + scale1 * r.y;
-	res.z = scale0 * q.z + scale1 * r.z;
-	res.w = scale0 * q.w + scale1 * r.w;
-
-	return res;
+	return scale0 * q + scale1 * r;
 }
 
 TVector3d RotateVector (const TQuaternion& q, const TVector3d& v) {
@@ -430,13 +403,13 @@ TVector3d RotateVector (const TQuaternion& q, const TVector3d& v) {
 //				 Gauss
 // --------------------------------------------------------------------
 
-unsigned short order (double *matrix, int n, int pivot);
+bool order (double *matrix, int n, int pivot);
 void elim (double *matrix, int n, int pivot);
 void backsb (double *matrix, int n, double *soln);
 
 int Gauss(double *matrix, int n, double *soln) {
-	int pivot=0;
-	unsigned short error=0;
+	int pivot = 0;
+	bool error = false;
 
 	while ((pivot<(n-1)) && (!error)) {
 		if (!(error = order(matrix,n,pivot))) {
@@ -452,8 +425,8 @@ int Gauss(double *matrix, int n, double *soln) {
 	return 0;
 }
 
-unsigned short order (double *matrix, int n, int pivot) {
-	unsigned short error=0;
+bool order (double *matrix, int n, int pivot) {
+	bool error = false;
 
 	int rmax = pivot;
 
@@ -463,7 +436,7 @@ unsigned short order (double *matrix, int n, int pivot) {
 	}
 
 	if (fabs(*(matrix+rmax*(n+1)+pivot)) < EPS)
-		error = 1;
+		error = true;
 	else if (rmax != pivot) {
 		for (int k=0; k<(n+1); k++) {
 			double temp = *(matrix+rmax*(n+1)+k);
@@ -512,9 +485,7 @@ bool IntersectPolygon (const TPolygon& p, TVector3d *v) {
 	if (fabs(nuDotProd) < EPS)
 		return false;
 
-	d = - (nml.x * v[p.vertices[0]].x +
-	       nml.y * v[p.vertices[0]].y +
-	       nml.z * v[p.vertices[0]].z);
+	d = - DotProduct(nml, v[p.vertices[0]]);
 
 	if (fabs (d) > 1) return false;
 
@@ -647,17 +618,15 @@ double ode23_TimestepExponent() {
 	return ode23_time_step_exp;
 }
 
-TOdeSolver NewOdeSolver23() {
-	TOdeSolver s;
-	s.NumEstimates = ode23_NumEstimates;
-	s.InitOdeData = ode23_InitOdeData;
-	s.NextTime = ode23_NextTime;
-	s.NextValue = ode23_NextValue;
-	s.UpdateEstimate = ode23_UpdateEstimate;
-	s.FinalEstimate = ode23_FinalEstimate;
-	s.EstimateError = ode23_EstimateError;
-	s.TimestepExponent = ode23_TimestepExponent;
-	return s;
+TOdeSolver::TOdeSolver() {
+	NumEstimates = ode23_NumEstimates;
+	InitOdeData = ode23_InitOdeData;
+	NextTime = ode23_NextTime;
+	NextValue = ode23_NextValue;
+	UpdateEstimate = ode23_UpdateEstimate;
+	FinalEstimate = ode23_FinalEstimate;
+	EstimateError = ode23_EstimateError;
+	TimestepExponent = ode23_TimestepExponent;
 }
 
 double LinearInterp (const double x[], const double y[], double val, int n) {
@@ -666,7 +635,7 @@ double LinearInterp (const double x[], const double y[], double val, int n) {
 
 	if (val < x[0]) i = 0;
 	else if (val >= x[n-1]) i = n-2;
-	else for (i=0; i<n-1; i++) if (val < x[i+1]) break;
+	else for (int i=0; i<n-1; i++) if (val < x[i+1]) break;
 
 	m = (y[i+1] - y[i]) / (x[i+1] - x[i]);
 	b = y[i] - m * x[i];

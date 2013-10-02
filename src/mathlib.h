@@ -45,9 +45,7 @@ void MakeBasisMat (TMatrix mat,	const TVector3d& w1, const TVector3d& w2, const 
 void MakeBasismatrix_Inv (TMatrix mat, TMatrix invMat, const TVector3d& w1, const TVector3d& w2, const TVector3d& w3);
 void RotateAboutVectorMatrix (TMatrix mat, const TVector3d& u, double angle);
 
-TQuaternion AddQuaternions (const TQuaternion& q, const TQuaternion& r);		// not used?
 TQuaternion MultiplyQuaternions (const TQuaternion& q, const TQuaternion& r);
-TQuaternion ScaleQuaternion (double s, const TQuaternion& q);
 TQuaternion ConjugateQuaternion (const TQuaternion& q);
 void		MakeMatrixFromQuaternion (TMatrix mat, const TQuaternion& q);
 TQuaternion MakeQuaternionFromMatrix (const TMatrix mat);
@@ -90,9 +88,8 @@ struct TOdeSolver {
 	PFinalEstimate		FinalEstimate;
 	PEstimateError		EstimateError;
 	PTimestepExponent	TimestepExponent;
+	TOdeSolver();
 };
-
-TOdeSolver NewOdeSolver23 ();
 
 // --------------------------------------------------------------------
 //			special

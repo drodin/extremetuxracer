@@ -476,7 +476,7 @@ void CControl::SolveOdeSystem (double timestep) {
 	double pos_err[3], vel_err[3], tot_pos_err, tot_vel_err;
 	double err=0, tol=0;
 
-	TOdeSolver solver = NewOdeSolver23 ();
+	static const TOdeSolver solver;
 	double h = ode_time_step;
 	if (h < 0 || solver.EstimateError == NULL)
 		h = AdjustTimeStep (timestep, cvel);

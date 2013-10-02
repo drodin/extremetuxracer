@@ -244,7 +244,7 @@ void CEvent::Loop (double timestep) {
 		FT.DrawString (CENTER, messtop, Trans.Text(16));
 		DrawBonusExt (bonustop, (int)ecup->races.size(), curr_bonus);
 		int res = resultlevel(curr_bonus, ecup->races.size());
-		FT.DrawString (CENTER, messtop2, Trans.Text(17) + "  "+Int_StrN (res));
+		FT.DrawString (CENTER, messtop2, Trans.Text(17) + "  " + Int_StrN (res));
 	} else if (ready == 2) {		// cup finished but failed
 		FT.AutoSizeN (5);
 		FT.SetColor (colLRed);

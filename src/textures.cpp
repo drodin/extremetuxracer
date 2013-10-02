@@ -673,7 +673,7 @@ void CTexture::DrawNumChr (char c, int x, int y, int w, int h, const TColor& col
 	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 }
 
-void CTexture::DrawNumStr (const char *s, int x, int y, float size, const TColor& col) {
+void CTexture::DrawNumStr (const string& s, int x, int y, float size, const TColor& col) {
 	if (!BindTex ("ziff032")) {
 		Message ("DrawNumStr: missing texture");
 		return;
@@ -686,7 +686,7 @@ void CTexture::DrawNumStr (const char *s, int x, int y, float size, const TColor
 	glColor(col);
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-	for (size_t i=0; s[i] != '\0'; i++) {
+	for (size_t i=0; i < s.size(); i++) {
 		DrawNumChr (s[i], x + (int)i*qw, y, qw, qh, col);
 	}
 	glDisableClientState(GL_TEXTURE_COORD_ARRAY);

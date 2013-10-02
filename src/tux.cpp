@@ -115,10 +115,7 @@ void CCharShape::CreateRootNode () {
 	numNodes = 1;
 }
 
-bool CCharShape::CreateCharNode
-(int parent_name, size_t node_name, const string& joint,
- const string& name, const string& order, bool shadow) {
-
+bool CCharShape::CreateCharNode(int parent_name, size_t node_name, const string& joint, const string& name, const string& order, bool shadow) {
 	TCharNode *parent = GetNode (parent_name);
 	if (parent == NULL) {
 		Message ("wrong parent node");
@@ -446,7 +443,7 @@ bool CCharShape::Load (const string& dir, const string& filename, bool with_acti
 		if (SPIntN (line, "material", 0) > 0) {
 			CreateMaterial (line);
 		} else {
-			double visible = SPFloatN (line, "vis", -1.0);
+			float visible = SPFloatN (line, "vis", -1.0);
 			bool shadow = SPBoolN (line, "shad", false);
 			string order = SPStrN (line, "order");
 			CreateCharNode (parent_name, node_name, name, fullname, order, shadow);

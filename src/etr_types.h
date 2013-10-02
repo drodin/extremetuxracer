@@ -122,9 +122,6 @@ struct TGameData {
 	int treesize;
 	int treevar;
 	int argument;
-	string group_arg;
-	string dir_arg;
-	string file_arg;
 	bool finish;
 	bool use_keyframe;
 	double finish_brake;

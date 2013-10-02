@@ -37,13 +37,12 @@ void InitGame (int argc, char **argv) {
 	g_game.toolmode = NONE;
 	g_game.argument = 0;
 	if (argc == 4) {
-		g_game.group_arg = argv[1];
-		if (g_game.group_arg == "--char") g_game.argument = 4;
-		g_game.dir_arg = argv[2];
-		g_game.file_arg = argv[3];
+		string group_arg = argv[1];
+		if (group_arg == "--char") g_game.argument = 4;
+		Tools.SetParameter(argv[2], argv[3]);
 	} else if (argc == 2) {
-		g_game.group_arg = argv[1];
-		if (g_game.group_arg == "9") g_game.argument = 9;
+		string group_arg = argv[1];
+		if (group_arg == "9") g_game.argument = 9;
 	}
 
 	g_game.player_id = 0;

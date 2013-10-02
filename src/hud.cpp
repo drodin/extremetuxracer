@@ -65,8 +65,8 @@ static void draw_time() {
 	timestr += secstr;
 
 	if (param.use_papercut_font < 2) {
-		Tex.DrawNumStr (timestr.c_str(), 20, 10, 1, colWhite);
-		Tex.DrawNumStr (hundrstr.c_str(), 136, 10, 0.7, colWhite);
+		Tex.DrawNumStr (timestr, 20, 10, 1, colWhite);
+		Tex.DrawNumStr (hundrstr, 136, 10, 0.7, colWhite);
 	} else {
 
 		/*
@@ -90,7 +90,7 @@ static void draw_time() {
 static void draw_herring_count (int herring_count) {
 	string hcountstr = Int_StrN (herring_count, 3);
 	if (param.use_papercut_font < 2) {
-		Tex.DrawNumStr (hcountstr.c_str(), Winsys.resolution.width - 90, 10, 1, colWhite);
+		Tex.DrawNumStr (hcountstr, Winsys.resolution.width - 90, 10, 1, colWhite);
 		Tex.Draw (HERRING_ICON, Winsys.resolution.width-160, -20, 1);
 	} else {
 		FT.SetColor (colDYell);
@@ -239,7 +239,7 @@ void draw_gauge (double speed, double energy) {
 void DrawSpeed (double speed) {
 	string speedstr = Int_StrN ((int)speed, 3);
 	if (param.use_papercut_font < 2) {
-		Tex.DrawNumStr (speedstr.c_str(),
+		Tex.DrawNumStr (speedstr,
 		                Winsys.resolution.width - 85, Winsys.resolution.height-74, 1, colWhite);
 	} else {
 		FT.SetColor (colDDYell);
@@ -324,7 +324,7 @@ void DrawWind2 (float dir, float speed, const CControl *ctrl) {
 	Tex.Draw (SPEED_KNOB, 64, Winsys.resolution.height - 74, 1.0);
 	string windstr = Int_StrN ((int)speed, 3);
 	if (param.use_papercut_font < 2) {
-		Tex.DrawNumStr (windstr.c_str(), 130, Winsys.resolution.height - 55, 1, colWhite);
+		Tex.DrawNumStr (windstr, 130, Winsys.resolution.height - 55, 1, colWhite);
 	} else {
 		FT.SetColor (colBlue);
 		FT.DrawString (130, Winsys.resolution.height - 55, windstr);
@@ -350,7 +350,7 @@ void DrawFps () {
 	if (param.display_fps) {
 		string fpsstr = Float_StrN (averagefps, 0);
 		if (param.use_papercut_font < 2) {
-			Tex.DrawNumStr (fpsstr.c_str(), (Winsys.resolution.width - 60) / 2, 10, 1, colWhite);
+			Tex.DrawNumStr (fpsstr, (Winsys.resolution.width - 60) / 2, 10, 1, colWhite);
 		} else {
 			if (averagefps >= 35)
 				FT.SetColor (colWhite);

@@ -148,7 +148,7 @@ TUpDown* AddUpDown(int x, int y, int minimum, int maximum, int value, int distan
 void DrawGUI();
 TWidget* ClickGUI(int x, int y);
 TWidget* MouseMoveGUI(int x, int y);
-TWidget* KeyGUI(unsigned int key, unsigned int spec, bool released);
+TWidget* KeyGUI(unsigned int key, unsigned int mod, bool released);
 void SetFocus(TWidget* widget);
 void IncreaseFocus();
 void DecreaseFocus();

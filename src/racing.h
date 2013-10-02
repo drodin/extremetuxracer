@@ -25,7 +25,7 @@ class CRacing : public State {
 	void Enter();
 	void Loop(double time_step);
 	void Keyb(unsigned int key, bool special, bool release, int x, int y);
-	void Jaxis(int axis, double value);
+	void Jaxis(int axis, float value);
 	void Jbutt(int button, int state);
 	void Exit();
 public:
