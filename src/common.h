@@ -19,6 +19,7 @@ GNU General Public License for more details.
 #define COMMON_H
 
 #include "bh.h"
+#include "matrices.h"
 
 using namespace std;
 
@@ -83,10 +84,11 @@ void	PrintString (const string& s);
 void	PrintDouble (const double val);
 void	PrintVector (const TVector3d& v);
 void	PrintVector4 (const TVector4d& v);
-void    PrintColor (const TColor& c);
+void	PrintColor (const TColor& c);
 void	PrintVector2 (const TVector2d& v);
 
-void	PrintMatrix (const TMatrix mat);
+template<int x, int y>
+void	PrintMatrix (const TMatrix<x, y>& mat);
 void	PrintQuaternion (const TQuaternion& q);
 
 void	PrintIndex3 (const TIndex3& idx);
@@ -96,17 +98,17 @@ void	PrintIndex4 (const TIndex4& idx);
 //				file utils
 // --------------------------------------------------------------------
 
-bool    FileExists (const char *filename);
+bool	FileExists (const char *filename);
 bool	FileExists (const string& filename);
 bool	FileExists (const string& dir, const string& filename);
-bool    DirExists (const char *dirname);
+bool	DirExists (const char *dirname);
 
 // --------------------------------------------------------------------
 //				message utils
 // --------------------------------------------------------------------
 
-void    Message (const char *msg, const char *desc);
-void    Message (const char *msg);
+void	Message (const char *msg, const char *desc);
+void	Message (const char *msg);
 void	Message (const string& a, const string& b);
 void	Message (const string& a);
 void	SaveMessages ();

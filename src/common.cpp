@@ -107,11 +107,12 @@ void PrintIndex4 (const TIndex4& idx) {
 	cout << idx.i << ' ' << idx.j << ' ' << idx.k << ' ' << idx.l << '\n';
 }
 
-void PrintMatrix (const TMatrix mat) {
+template<int x, int y>
+void PrintMatrix (const TMatrix<x, y>& mat) {
 	cout << '\n';
 	cout.precision(3);
-	for (int i=0; i<4; i++) {
-		for (int j=0; j<4; j++) {
+	for (int i=0; i<x; i++) {
+		for (int j=0; j<y; j++) {
 			if (mat[i][j]>=0) cout << ' ';
 			cout << "  " << mat[i][j];
 		}
@@ -119,6 +120,8 @@ void PrintMatrix (const TMatrix mat) {
 	}
 	cout << '\n';
 }
+template void PrintMatrix<4, 4>(const TMatrix<4, 4>& mat);
+template void PrintMatrix<3, 3>(const TMatrix<3, 3>& mat);
 
 void PrintQuaternion (const TQuaternion& q) {
 	cout.precision(5);

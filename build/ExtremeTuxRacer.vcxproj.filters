@@ -165,6 +165,9 @@
     <ClInclude Include="..\src\vectors.h">
       <Filter>Header files</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\matrices.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\main.cpp">
@@ -309,6 +312,9 @@
       <Filter>Source files</Filter>
     </ClCompile>
     <ClCompile Include="..\src\vectors.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\matrices.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
   </ItemGroup>

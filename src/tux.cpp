@@ -105,8 +105,8 @@ void CCharShape::CreateRootNode () {
 	node->render_shadow = false;
 	node->visible = false;
 	node->action = NULL;
-	MakeIdentityMatrix (node->trans);
-	MakeIdentityMatrix (node->invtrans);
+	node->trans.SetIdentity();
+	node->invtrans.SetIdentity();
 
 	NodeIndex.clear();
 	NodeIndex["root"] = 0;
@@ -145,8 +145,8 @@ bool CCharShape::CreateCharNode(int parent_name, size_t node_name, const string&
 	node->render_shadow = shadow;
 	node->joint = joint;
 
-	MakeIdentityMatrix (node->trans);
-	MakeIdentityMatrix (node->invtrans);
+	node->trans.SetIdentity();
+	node->invtrans.SetIdentity();
 
 	if (!joint.empty()) NodeIndex[joint] = node_name;
 	Nodes[numNodes] = node;
@@ -180,12 +180,12 @@ bool CCharShape::TranslateNode (size_t node_name, const TVector3d& vec) {
 	TCharNode *node = GetNode (node_name);
 	if (node == NULL) return false;
 
-	TMatrix TransMatrix;
+	TMatrix<4, 4> TransMatrix;
 
-	MakeTranslationMatrix (TransMatrix, vec.x, vec.y, vec.z);
-	MultiplyMatrices (node->trans, node->trans, TransMatrix);
-	MakeTranslationMatrix (TransMatrix, -vec.x, -vec.y, -vec.z);
-	MultiplyMatrices (node->invtrans, TransMatrix, node->invtrans);
+	TransMatrix.SetTranslationMatrix(vec.x, vec.y, vec.z);
+	node->trans = node->trans * TransMatrix;
+	TransMatrix.SetTranslationMatrix(-vec.x, -vec.y, -vec.z);
+	node->invtrans = TransMatrix * node->invtrans;
 
 	if (newActions && useActions) AddAction (node_name, 0, vec, 0);
 	return true;
@@ -197,7 +197,7 @@ bool CCharShape::RotateNode (size_t node_name, int axis, double angle) {
 
 	if (axis > 3) return false;
 
-	TMatrix rotMatrix;
+	TMatrix<4, 4> rotMatrix;
 	char caxis = '0';
 	switch (axis) {
 		case 1:
@@ -211,10 +211,10 @@ bool CCharShape::RotateNode (size_t node_name, int axis, double angle) {
 			break;
 	}
 
-	MakeRotationMatrix (rotMatrix, angle, caxis);
-	MultiplyMatrices (node->trans, node->trans, rotMatrix);
-	MakeRotationMatrix (rotMatrix, -angle, caxis);
-	MultiplyMatrices (node->invtrans, rotMatrix, node->invtrans);
+	rotMatrix.SetRotationMatrix(angle, caxis);
+	node->trans = node->trans * rotMatrix;
+	rotMatrix.SetRotationMatrix(-angle, caxis);
+	node->invtrans = rotMatrix * node->invtrans;
 
 	if (newActions && useActions) AddAction (node_name, axis, NullVec3, angle);
 	return true;
@@ -230,12 +230,12 @@ void CCharShape::ScaleNode (size_t node_name, const TVector3d& vec) {
 	TCharNode *node = GetNode(node_name);
 	if (node == NULL) return;
 
-	TMatrix matrix;
+	TMatrix<4, 4> matrix;
 
-	MakeScalingMatrix (matrix, vec.x, vec.y, vec.z);
-	MultiplyMatrices (node->trans, node->trans, matrix);
-	MakeScalingMatrix (matrix, 1.0 / vec.x, 1.0 / vec.y, 1.0 / vec.z);
-	MultiplyMatrices (node->invtrans, matrix, node->invtrans);
+	matrix.SetScalingMatrix(vec.x, vec.y, vec.z);
+	node->trans = node->trans * matrix;
+	matrix.SetScalingMatrix(1.0 / vec.x, 1.0 / vec.y, 1.0 / vec.z);
+	node->invtrans = matrix * node->invtrans;
 
 	if (newActions && useActions) AddAction (node_name, 4, vec, 0);
 }
@@ -269,8 +269,8 @@ bool CCharShape::ResetNode (size_t node_name) {
 	TCharNode *node = GetNode(node_name);
 	if (node == NULL) return false;
 
-	MakeIdentityMatrix (node->trans);
-	MakeIdentityMatrix (node->invtrans);
+	node->trans.SetIdentity();
+	node->invtrans.SetIdentity();
 	return true;
 }
 
@@ -280,12 +280,12 @@ bool CCharShape::ResetNode (const string& node_trivialname) {
 	return ResetNode (i->second);
 }
 
-bool CCharShape::TransformNode (size_t node_name, const TMatrix mat, const TMatrix invmat) {
+bool CCharShape::TransformNode(size_t node_name, const TMatrix<4, 4>& mat, const TMatrix<4, 4>& invmat) {
 	TCharNode *node = GetNode(node_name);
 	if (node == NULL) return false;
 
-	MultiplyMatrices (node->trans, node->trans, mat);
-	MultiplyMatrices (node->invtrans, invmat, node->invtrans);
+	node->trans = node->trans * mat;
+	node->invtrans = invmat * node->invtrans;
 	return true;
 }
 
@@ -375,7 +375,7 @@ void CCharShape::DrawCharSphere (int num_divisions) {
 
 void CCharShape::DrawNodes (const TCharNode *node) {
 	glPushMatrix();
-	glMultMatrixd ((double *) node->trans);
+	glMultMatrix(node->trans);
 
 	if (node->node_name == highlight_node) highlighted = true;
 	const TCharMaterial *mat;
@@ -488,13 +488,13 @@ bool CCharShape::Load (const string& dir, const string& filename, bool with_acti
 }
 
 TVector3d CCharShape::AdjustRollvector (const CControl *ctrl, const TVector3d& vel_, const TVector3d& zvec) {
-	TMatrix rot_mat;
+	TMatrix<4, 4> rot_mat;
 	TVector3d vel = ProjectToPlane(zvec, vel_);
 	vel.Norm();
 	if (ctrl->is_braking) {
-		RotateAboutVectorMatrix (rot_mat, vel, ctrl->turn_fact * BRAKING_ROLL_ANGLE);
+		rot_mat = RotateAboutVectorMatrix (vel, ctrl->turn_fact * BRAKING_ROLL_ANGLE);
 	} else {
-		RotateAboutVectorMatrix (rot_mat, vel, ctrl->turn_fact * MAX_ROLL_ANGLE);
+		rot_mat = RotateAboutVectorMatrix (vel, ctrl->turn_fact * MAX_ROLL_ANGLE);
 	}
 	return TransformVector (rot_mat, zvec);
 }
@@ -502,8 +502,6 @@ TVector3d CCharShape::AdjustRollvector (const CControl *ctrl, const TVector3d& v
 void CCharShape::AdjustOrientation (CControl *ctrl, double dtime,
                                     double dist_from_surface, const TVector3d& surf_nml) {
 	TVector3d new_y, new_z;
-	TMatrix cob_mat, inv_cob_mat;
-	TMatrix rot_mat;
 	static const TVector3d minus_z_vec(0, 0, -1);
 	static const TVector3d y_vec(0, 1, 0);
 
@@ -521,7 +519,7 @@ void CCharShape::AdjustOrientation (CControl *ctrl, double dtime,
 	}
 
 	TVector3d new_x = CrossProduct (new_y, new_z);
-	MakeBasismatrix_Inv (cob_mat, inv_cob_mat, new_x, new_y, new_z);
+	TMatrix<4, 4> cob_mat(new_x, new_y, new_z);
 	TQuaternion new_orient = MakeQuaternionFromMatrix (cob_mat);
 
 	if (!ctrl->orientation_initialized) {
@@ -537,18 +535,17 @@ void CCharShape::AdjustOrientation (CControl *ctrl, double dtime,
 
 	ctrl->plane_nml = RotateVector (ctrl->corientation, minus_z_vec);
 	ctrl->cdirection = RotateVector (ctrl->corientation, y_vec);
-	MakeMatrixFromQuaternion (cob_mat, ctrl->corientation);
+	cob_mat = MakeMatrixFromQuaternion(ctrl->corientation);
 
 	// Trick rotations
 	new_y = TVector3d (cob_mat[1][0], cob_mat[1][1], cob_mat[1][2]);
-	RotateAboutVectorMatrix (rot_mat, new_y, (ctrl->roll_factor * 360));
-	MultiplyMatrices (cob_mat, rot_mat, cob_mat);
+	TMatrix<4, 4> rot_mat = RotateAboutVectorMatrix(new_y, (ctrl->roll_factor * 360));
+	cob_mat = rot_mat * cob_mat;
 	new_x = TVector3d (cob_mat[0][0], cob_mat[0][1], cob_mat[0][2]);
-	RotateAboutVectorMatrix (rot_mat, new_x, ctrl->flip_factor * 360);
-	MultiplyMatrices (cob_mat, rot_mat, cob_mat);
+	rot_mat = RotateAboutVectorMatrix (new_x, ctrl->flip_factor * 360);
+	cob_mat = rot_mat * cob_mat;
 
-	TransposeMatrix (cob_mat, inv_cob_mat);
-	TransformNode (0, cob_mat, inv_cob_mat);
+	TransformNode (0, cob_mat, cob_mat.GetTransposed());
 }
 
 void CCharShape::AdjustJoints (double turnFact, bool isBraking,
@@ -604,14 +601,12 @@ void CCharShape::AdjustJoints (double turnFact, bool isBraking,
 //				collision
 // --------------------------------------------------------------------
 
-bool CCharShape::CheckPolyhedronCollision (const TCharNode *node, const TMatrix modelMatrix,
-        const TMatrix invModelMatrix, const TPolyhedron& ph) {
-
-	TMatrix newModelMatrix, newInvModelMatrix;
+bool CCharShape::CheckPolyhedronCollision(const TCharNode *node, const TMatrix<4, 4>& modelMatrix,
+        const TMatrix<4, 4>& invModelMatrix, const TPolyhedron& ph) {
 	bool hit = false;
 
-	MultiplyMatrices (newModelMatrix, modelMatrix, node->trans);
-	MultiplyMatrices (newInvModelMatrix, node->invtrans, invModelMatrix);
+	TMatrix<4, 4> newModelMatrix = modelMatrix * node->trans;
+	TMatrix<4, 4> newInvModelMatrix = node->invtrans * invModelMatrix;
 
 	if (node->visible) {
 		TPolyhedron newph = CopyPolyhedron (ph);
@@ -631,14 +626,10 @@ bool CCharShape::CheckPolyhedronCollision (const TCharNode *node, const TMatrix 
 }
 
 bool CCharShape::CheckCollision (const TPolyhedron& ph) {
-	TMatrix mat, invmat;
-
-	MakeIdentityMatrix (mat);
-	MakeIdentityMatrix (invmat);
-
 	TCharNode *node = GetNode(0);
 	if (node == NULL) return false;
-	return CheckPolyhedronCollision (node, mat, invmat, ph);
+	const TMatrix<4, 4>& identity = TMatrix<4, 4>::getIdentity();
+	return CheckPolyhedronCollision(node, identity, identity, ph);
 }
 
 bool CCharShape::Collision (const TVector3d& pos, const TPolyhedron& ph) {
@@ -651,7 +642,7 @@ bool CCharShape::Collision (const TVector3d& pos, const TPolyhedron& ph) {
 //				shadow
 // --------------------------------------------------------------------
 
-void CCharShape::DrawShadowVertex (double x, double y, double z, const TMatrix mat) {
+void CCharShape::DrawShadowVertex(double x, double y, double z, const TMatrix<4, 4>& mat) {
 	TVector3d pt(x, y, z);
 	pt = TransformPoint (mat, pt);
 	double old_y = pt.y;
@@ -662,7 +653,7 @@ void CCharShape::DrawShadowVertex (double x, double y, double z, const TMatrix m
 	glVertex3(pt);
 }
 
-void CCharShape::DrawShadowSphere (const TMatrix mat) {
+void CCharShape::DrawShadowSphere(const TMatrix<4, 4>& mat) {
 	double theta, phi, d_theta, d_phi, eps, twopi;
 	double x, y, z;
 	int div = param.tux_shadow_sphere_divisions;
@@ -743,10 +734,8 @@ void CCharShape::DrawShadowSphere (const TMatrix mat) {
 	}
 }
 
-void CCharShape::TraverseDagForShadow (const TCharNode *node, const TMatrix mat) {
-	TMatrix new_matrix;
-
-	MultiplyMatrices (new_matrix, mat, node->trans);
+void CCharShape::TraverseDagForShadow(const TCharNode *node, const TMatrix<4, 4>& mat) {
+	TMatrix<4, 4> new_matrix = mat * node->trans;
 	if (node->visible && node->render_shadow)
 		DrawShadowSphere (new_matrix);
 
@@ -758,20 +747,17 @@ void CCharShape::TraverseDagForShadow (const TCharNode *node, const TMatrix mat)
 }
 
 void CCharShape::DrawShadow () {
-	TMatrix model_matrix;
-
 	if (g_game.light_id == 1 || g_game.light_id == 3) return;
 
 	ScopedRenderMode rm(TUX_SHADOW);
 	glColor(shad_col);
-	MakeIdentityMatrix (model_matrix);
 
 	TCharNode *node = GetNode(0);
 	if (node == NULL) {
 		Message ("couldn't find tux's root node");
 		return;
 	}
-	TraverseDagForShadow (node, model_matrix);
+	TraverseDagForShadow(node, TMatrix<4, 4>::getIdentity());
 }
 
 // --------------------------------------------------------------------
@@ -798,7 +784,7 @@ size_t CCharShape::GetNodeName (const string& node_trivialname) const {
 
 void CCharShape::RefreshNode (size_t idx) {
 	if (idx >= numNodes) return;
-	TMatrix TempMatrix;
+	TMatrix<4, 4> TempMatrix;
 	char caxis;
 	double angle;
 
@@ -807,8 +793,8 @@ void CCharShape::RefreshNode (size_t idx) {
 	if (act == NULL) return;
 	if (act->num < 1) return;
 
-	MakeIdentityMatrix (node->trans);
-	MakeIdentityMatrix (node->invtrans);
+	node->trans.SetIdentity();
+	node->invtrans.SetIdentity();
 
 	for (size_t i=0; i<act->num; i++) {
 		int type = act->type[i];
@@ -817,40 +803,40 @@ void CCharShape::RefreshNode (size_t idx) {
 
 		switch (type) {
 			case 0:
-				MakeTranslationMatrix (TempMatrix, vec.x, vec.y, vec.z);
-				MultiplyMatrices (node->trans, node->trans, TempMatrix);
-				MakeTranslationMatrix (TempMatrix, -vec.x, -vec.y, -vec.z);
-				MultiplyMatrices (node->invtrans, TempMatrix, node->invtrans);
+				TempMatrix.SetTranslationMatrix(vec.x, vec.y, vec.z);
+				node->trans = node->trans * TempMatrix;
+				TempMatrix.SetTranslationMatrix(-vec.x, -vec.y, -vec.z);
+				node->invtrans = TempMatrix * node->invtrans;
 				break;
 			case 1:
 				caxis = 'x';
 				angle = dval;
-				MakeRotationMatrix (TempMatrix, angle, caxis);
-				MultiplyMatrices (node->trans, node->trans, TempMatrix);
-				MakeRotationMatrix (TempMatrix, -angle, caxis);
-				MultiplyMatrices (node->invtrans, TempMatrix, node->invtrans);
+				TempMatrix.SetRotationMatrix(angle, caxis);
+				node->trans = node->trans * TempMatrix;
+				TempMatrix.SetRotationMatrix(-angle, caxis);
+				node->invtrans = TempMatrix * node->invtrans;
 				break;
 			case 2:
 				caxis = 'y';
 				angle = dval;
-				MakeRotationMatrix (TempMatrix, angle, caxis);
-				MultiplyMatrices (node->trans, node->trans, TempMatrix);
-				MakeRotationMatrix (TempMatrix, -angle, caxis);
-				MultiplyMatrices (node->invtrans, TempMatrix, node->invtrans);
+				TempMatrix.SetRotationMatrix(angle, caxis);
+				node->trans = node->trans * TempMatrix;
+				TempMatrix.SetRotationMatrix(-angle, caxis);
+				node->invtrans = TempMatrix * node->invtrans;
 				break;
 			case 3:
 				caxis = 'z';
 				angle = dval;
-				MakeRotationMatrix (TempMatrix, angle, caxis);
-				MultiplyMatrices (node->trans, node->trans, TempMatrix);
-				MakeRotationMatrix (TempMatrix, -angle, caxis);
-				MultiplyMatrices (node->invtrans, TempMatrix, node->invtrans);
+				TempMatrix.SetRotationMatrix(angle, caxis);
+				node->trans = node->trans * TempMatrix;
+				TempMatrix.SetRotationMatrix(-angle, caxis);
+				node->invtrans = TempMatrix * node->invtrans;
 				break;
 			case 4:
-				MakeScalingMatrix (TempMatrix, vec.x, vec.y, vec.z);
-				MultiplyMatrices (node->trans, node->trans, TempMatrix);
-				MakeScalingMatrix (TempMatrix, 1.0 / vec.x, 1.0 / vec.y, 1.0 / vec.z);
-				MultiplyMatrices (node->invtrans, TempMatrix, node->invtrans);
+				TempMatrix.SetScalingMatrix(vec.x, vec.y, vec.z);
+				node->trans = node->trans * TempMatrix;
+				TempMatrix.SetScalingMatrix(1.0 / vec.x, 1.0 / vec.y, 1.0 / vec.z);
+				node->invtrans = TempMatrix * node->invtrans;
 				break;
 			case 5:
 				VisibleNode (node->node_name, dval);

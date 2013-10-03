@@ -33,7 +33,7 @@ TVector3d ProjectToPlane (const TVector3d& nml, const TVector3d& v) {
 }
 
 
-TVector3d TransformVector(const TMatrix mat, const TVector3d& v) {
+TVector3d TransformVector(const TMatrix<4, 4>& mat, const TVector3d& v) {
 	TVector3d r;
 	r.x = v.x * mat[0][0] + v.y * mat[1][0] + v.z * mat[2][0];
 	r.y = v.x * mat[0][1] + v.y * mat[1][1] + v.z * mat[2][1];
@@ -41,7 +41,7 @@ TVector3d TransformVector(const TMatrix mat, const TVector3d& v) {
 	return r;
 }
 
-TVector3d TransformNormal(const TVector3d& n, const TMatrix mat) {
+TVector3d TransformNormal(const TVector3d& n, const TMatrix<4, 4>& mat) {
 	TVector3d r;
 	r.x = n.x * mat[0][0] + n.y * mat[0][1] + n.z * mat[0][2];
 	r.y = n.x * mat[1][0] + n.y * mat[1][1] + n.z * mat[1][2];
@@ -49,7 +49,7 @@ TVector3d TransformNormal(const TVector3d& n, const TMatrix mat) {
 	return r;
 }
 
-TVector3d TransformPoint(const TMatrix mat, const TVector3d& p) {
+TVector3d TransformPoint(const TMatrix<4, 4>& mat, const TVector3d& p) {
 	TVector3d r;
 	r.x = p.x * mat[0][0] + p.y * mat[1][0] + p.z * mat[2][0];
 	r.y = p.x * mat[0][1] + p.y * mat[1][1] + p.z * mat[2][1];
@@ -98,126 +98,10 @@ double DistanceToPlane (const TPlane& plane, const TVector3d& pt) {
 	    plane.d;
 }
 
-void MakeIdentityMatrix(TMatrix h) {
-	for (int i= 0; i< 4; i++)
-		for (int j= 0; j< 4; j++)
-			h[i][j]= (i==j);
-}
 
-
-void MultiplyMatrices (TMatrix ret, const TMatrix mat1, const TMatrix mat2) {
-	TMatrix r;
-
-	for (int i = 0; i < 4; i++)
-		for (int j = 0; j < 4; j++)
-			r[j][i] = mat1[0][i] * mat2[j][0] +
-			          mat1[1][i] * mat2[j][1] +
-			          mat1[2][i] * mat2[j][2] +
-			          mat1[3][i] * mat2[j][3];
-
-	for (int i = 0; i < 4; i++)
-		for (int j = 0; j < 4; j++)
-			ret[i][j] = r[i][j];
-}
-
-
-void TransposeMatrix (const TMatrix mat, TMatrix trans) {
-	TMatrix r;
-
-	for (int i = 0; i < 4; i++)
-		for (int j = 0; j< 4; j++)
-			r[j][i] = mat[i][j];
-
-	for (int i = 0; i< 4; i++)
-		for (int j = 0; j< 4; j++)
-			trans[i][j] = r[i][j];
-}
-
-void MakeRotationMatrix (TMatrix mat, double angle, char axis) {
-	double sinv, cosv;
-	sinv = sin (ANGLES_TO_RADIANS (angle));
-	cosv = cos (ANGLES_TO_RADIANS (angle));
-
-	MakeIdentityMatrix (mat);
-
-	switch (axis) {
-		case 'x':
-			mat[1][1] = cosv;
-			mat[2][1] = -sinv;
-			mat[1][2] = sinv;
-			mat[2][2] = cosv;
-			break;
-
-		case 'y':
-			mat[0][0] = cosv;
-			mat[2][0] = sinv;
-			mat[0][2] = -sinv;
-			mat[2][2] = cosv;
-			break;
-
-		case 'z':
-			mat[0][0] = cosv;
-			mat[1][0] = -sinv;
-			mat[0][1] = sinv;
-			mat[1][1] = cosv;
-			break;
-	}
-}
-
-void MakeTranslationMatrix (TMatrix mat, double x, double y, double z) {
-	MakeIdentityMatrix (mat);
-	mat[3][0] = x;
-	mat[3][1] = y;
-	mat[3][2] = z;
-}
-
-void MakeScalingMatrix (TMatrix mat, double x, double y, double z) {
-	MakeIdentityMatrix (mat);
-	mat[0][0] = x;
-	mat[1][1] = y;
-	mat[2][2] = z;
-}
-
-void MakeBasisMat (TMatrix mat, const TVector3d& w1, const TVector3d& w2, const TVector3d& w3) {
-	MakeIdentityMatrix (mat);
-	mat[0][0] = w1.x;
-	mat[0][1] = w1.y;
-	mat[0][2] = w1.z;
-	mat[1][0] = w2.x;
-	mat[1][1] = w2.y;
-	mat[1][2] = w2.z;
-	mat[2][0] = w3.x;
-	mat[2][1] = w3.y;
-	mat[2][2] = w3.z;
-}
-
-void MakeBasismatrix_Inv (TMatrix mat, TMatrix invMat,
-                          const TVector3d& w1, const TVector3d& w2, const TVector3d& w3) {
-	MakeIdentityMatrix (mat);
-	mat[0][0] = w1.x;
-	mat[0][1] = w1.y;
-	mat[0][2] = w1.z;
-	mat[1][0] = w2.x;
-	mat[1][1] = w2.y;
-	mat[1][2] = w2.z;
-	mat[2][0] = w3.x;
-	mat[2][1] = w3.y;
-	mat[2][2] = w3.z;
-
-	MakeIdentityMatrix (invMat);
-	invMat[0][0] = w1.x;
-	invMat[1][0] = w1.y;
-	invMat[2][0] = w1.z;
-	invMat[0][1] = w2.x;
-	invMat[1][1] = w2.y;
-	invMat[2][1] = w2.z;
-	invMat[0][2] = w3.x;
-	invMat[1][2] = w3.y;
-	invMat[2][2] = w3.z;
-}
-
-void RotateAboutVectorMatrix (TMatrix mat, const TVector3d& u, double angle) {
-	TMatrix rx, irx, ry, iry;
+TMatrix<4, 4> RotateAboutVectorMatrix(const TVector3d& u, double angle) {
+	TMatrix<4, 4> rx, irx, ry, iry;
+	TMatrix<4, 4> mat;
 
 	double a = u.x;
 	double b = u.y;
@@ -227,16 +111,16 @@ void RotateAboutVectorMatrix (TMatrix mat, const TVector3d& u, double angle) {
 
 	if (d < EPS) {
 		if (a < 0)
-			MakeRotationMatrix (mat, -angle, 'x');
+			mat.SetRotationMatrix(-angle, 'x');
 		else
-			MakeRotationMatrix (mat, angle, 'x');
-		return;
+			mat.SetRotationMatrix(angle, 'x');
+		return mat;
 	}
 
-	MakeIdentityMatrix (rx);
-	MakeIdentityMatrix (irx);
-	MakeIdentityMatrix (ry);
-	MakeIdentityMatrix (iry);
+	rx.SetIdentity();
+	irx.SetIdentity();
+	ry.SetIdentity();
+	iry.SetIdentity();
 
 	rx[1][1] = c/d;
 	rx[2][1] = -b/d;
@@ -258,12 +142,13 @@ void RotateAboutVectorMatrix (TMatrix mat, const TVector3d& u, double angle) {
 	iry[0][2] = -a;
 	iry[2][2] = d;
 
-	MakeRotationMatrix (mat, angle, 'z');
+	mat.SetRotationMatrix(angle, 'z');
 
-	MultiplyMatrices (mat, mat, ry);
-	MultiplyMatrices (mat, mat, rx);
-	MultiplyMatrices (mat, iry, mat);
-	MultiplyMatrices (mat, irx, mat);
+	mat = mat * ry;
+	mat = mat * rx;
+	mat = iry * mat;
+	mat = irx * mat;
+	return mat;
 }
 
 TQuaternion MultiplyQuaternions (const TQuaternion& q, const TQuaternion& r) {
@@ -285,7 +170,8 @@ TQuaternion ConjugateQuaternion (const TQuaternion& q) {
 	return res;
 }
 
-void MakeMatrixFromQuaternion (TMatrix mat, const TQuaternion& q) {
+TMatrix<4, 4> MakeMatrixFromQuaternion(const TQuaternion& q) {
+	TMatrix<4, 4> mat;
 	mat[0][0] = 1.0 - 2.0 *  (q.y * q.y + q.z * q.z);
 	mat[1][0] =       2.0 *  (q.x * q.y - q.w * q.z);
 	mat[2][0] =       2.0 *  (q.x * q.z + q.w * q.y);
@@ -301,9 +187,10 @@ void MakeMatrixFromQuaternion (TMatrix mat, const TQuaternion& q) {
 	mat[3][0] = mat[3][1] = mat[3][2] = 0.0;
 	mat[0][3] = mat[1][3] = mat[2][3] = 0.0;
 	mat[3][3] = 1.0;
+	return mat;
 }
 
-TQuaternion MakeQuaternionFromMatrix (const TMatrix m) {
+TQuaternion MakeQuaternionFromMatrix(const TMatrix<4, 4>& m) {
 	TQuaternion res;
 	double  tr, s, q[4];
 
@@ -555,7 +442,7 @@ void FreePolyhedron (const TPolyhedron& ph) {
 	delete[] ph.vertices;
 }
 
-void TransPolyhedron (const TMatrix mat, const TPolyhedron& ph) {
+void TransPolyhedron (const TMatrix<4, 4>& mat, const TPolyhedron& ph) {
 	for (size_t i=0; i<ph.num_vertices; i++)
 		ph.vertices[i] = TransformPoint (mat, ph.vertices[i]);
 }

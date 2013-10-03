@@ -15,8 +15,8 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 ---------------------------------------------------------------------*/
 
-#ifndef GEOMETRY_TYPES_H
-#define GEOMETRY_TYPES_H
+#ifndef VECTORS_H
+#define VECTORS_H
 
 #include <cmath>
 

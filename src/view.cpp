@@ -39,7 +39,7 @@ GNU General Public License for more details.
 #define NO_INTERPOLATION_SPEED 2.0
 #define CAMERA_DISTANCE_INCREMENT 2
 
-static TMatrix stationary_matrix;
+static TMatrix<4, 4> stationary_matrix;
 static bool is_stationary = false;
 static bool shall_stationary = false;
 
@@ -85,8 +85,7 @@ TVector3d interpolate_view_pos (const TVector3d& ctrl_pos1, const TVector3d& ctr
 	if (theta > max_vec_angle) {
 		TVector3d axis = CrossProduct (y_vec, vec2);
 		axis.Norm();
-		TMatrix rot_mat;
-		RotateAboutVectorMatrix (rot_mat, axis, theta-max_vec_angle);
+		TMatrix<4, 4> rot_mat = RotateAboutVectorMatrix(axis, theta - max_vec_angle);
 		vec2 = TransformVector (rot_mat, vec2);
 	}
 	return ctrl_pos2 + dist * vec2;
@@ -95,16 +94,13 @@ TVector3d interpolate_view_pos (const TVector3d& ctrl_pos1, const TVector3d& ctr
 void interpolate_view_frame (const TVector3d& up1, const TVector3d& dir1,
                              TVector3d *p_up2, TVector3d *p_dir2,
                              double dt, double time_constant) {
-	TMatrix cob_mat1, inv_cob_mat1;
-	TMatrix cob_mat2, inv_cob_mat2;
-
 	TVector3d z1 = -1.0 * dir1;
 	z1.Norm();
 	TVector3d y1 = ProjectToPlane (z1, up1);
 	y1.Norm();
 	TVector3d x1 = CrossProduct (y1, z1);
 
-	MakeBasismatrix_Inv (cob_mat1, inv_cob_mat1, x1, y1, z1);
+	TMatrix<4, 4> cob_mat1(x1, y1, z1);
 	TQuaternion q1 = MakeQuaternionFromMatrix (cob_mat1);
 	TVector3d z2 = -1.0 * *p_dir2;
 	z2.Norm();
@@ -112,11 +108,11 @@ void interpolate_view_frame (const TVector3d& up1, const TVector3d& dir1,
 	y2.Norm();
 	TVector3d x2 = CrossProduct (y2, z2);
 
-	MakeBasismatrix_Inv (cob_mat2, inv_cob_mat2, x2, y2, z2);
+	TMatrix<4, 4> cob_mat2(x2, y2, z2);
 	TQuaternion q2 = MakeQuaternionFromMatrix (cob_mat2);
 	double alpha = min (MAX_INTERPOLATION_VALUE, 1.0 - exp (-dt / time_constant));
 	q2 = InterpolateQuaternions (q1, q2, alpha);
-	MakeMatrixFromQuaternion (cob_mat2, q2);
+	cob_mat2 = MakeMatrixFromQuaternion(q2);
 
 	p_up2->x = cob_mat2[1][0];
 	p_up2->y = cob_mat2[1][1];
@@ -128,8 +124,6 @@ void interpolate_view_frame (const TVector3d& up1, const TVector3d& dir1,
 }
 
 void setup_view_matrix (CControl *ctrl, bool save_mat) {
-	TMatrix view_mat;
-
 	TVector3d view_z = -1.0 * ctrl->viewdir;
 	TVector3d view_x = CrossProduct (ctrl->viewup, view_z);
 	TVector3d view_y = CrossProduct (view_z, view_x);
@@ -137,26 +131,13 @@ void setup_view_matrix (CControl *ctrl, bool save_mat) {
 	view_x.Norm();
 	view_y.Norm();
 
-	MakeIdentityMatrix (ctrl->view_mat);
-
-	ctrl->view_mat[0][0] = view_x.x;
-	ctrl->view_mat[0][1] = view_x.y;
-	ctrl->view_mat[0][2] = view_x.z;
-
-	ctrl->view_mat[1][0] = view_y.x;
-	ctrl->view_mat[1][1] = view_y.y;
-	ctrl->view_mat[1][2] = view_y.z;
-
-	ctrl->view_mat[2][0] = view_z.x;
-	ctrl->view_mat[2][1] = view_z.y;
-	ctrl->view_mat[2][2] = view_z.z;
+	ctrl->view_mat = TMatrix<4, 4>(view_x, view_y, view_z);
 
 	ctrl->view_mat[3][0] = ctrl->viewpos.x;
 	ctrl->view_mat[3][1] = ctrl->viewpos.y;
 	ctrl->view_mat[3][2] = ctrl->viewpos.z;
-	ctrl->view_mat[3][3] = 1;
 
-	TransposeMatrix (ctrl->view_mat, view_mat);
+	TMatrix<4, 4> view_mat = ctrl->view_mat.GetTransposed();
 
 	view_mat[0][3] = 0;
 	view_mat[1][3] = 0;
@@ -169,10 +150,10 @@ void setup_view_matrix (CControl *ctrl, bool save_mat) {
 	view_mat[3][2] = -viewpt_in_view_frame.z;
 
 	if (save_mat) {
-		memcpy(stationary_matrix, view_mat, 16*sizeof(**view_mat));
+		stationary_matrix = view_mat;
 	}
 	glLoadIdentity();
-	glMultMatrixd ((double*) view_mat);
+	glMultMatrix(view_mat);
 }
 
 TVector3d MakeViewVector () {
@@ -188,13 +169,12 @@ TVector3d MakeViewVector () {
 void update_view (CControl *ctrl, double dt) {
 	if (is_stationary) {
 		glLoadIdentity();
-		glMultMatrixd ((double*) stationary_matrix);
+		glMultMatrix(stationary_matrix);
 		return;
 	}
 
 	TVector3d view_pt(0,0,0);
 	TVector3d view_dir;
-	TMatrix rot_mat;
 
 	static const TVector3d y_vec(0.0, 1.0, 0.0);
 	static const TVector3d mz_vec(0.0, 0.0, -1.0);
@@ -241,7 +221,7 @@ void update_view (CControl *ctrl, double dt) {
 			view_vec = view_pt - ctrl->cpos;
 			TVector3d axis = CrossProduct (y_vec, view_vec);
 			axis.Norm();
-			RotateAboutVectorMatrix (rot_mat, axis, PLAYER_ANGLE_IN_CAMERA);
+			TMatrix<4, 4> rot_mat = RotateAboutVectorMatrix(axis, PLAYER_ANGLE_IN_CAMERA);
 			view_dir = -1.0 * TransformVector (rot_mat, view_vec);
 
 			if (ctrl->view_init) {
@@ -283,8 +263,7 @@ void update_view (CControl *ctrl, double dt) {
 			view_vec = view_pt - ctrl->cpos;
 			TVector3d axis = CrossProduct (y_vec, view_vec);
 			axis.Norm();
-			RotateAboutVectorMatrix (rot_mat, axis,
-			                         PLAYER_ANGLE_IN_CAMERA);
+			TMatrix<4, 4> rot_mat = RotateAboutVectorMatrix(axis, PLAYER_ANGLE_IN_CAMERA);
 			view_dir = -1.0 * TransformVector (rot_mat, view_vec);
 
 			if (ctrl->view_init) {
@@ -306,7 +285,8 @@ void update_view (CControl *ctrl, double dt) {
 			}
 
 			view_vec = view_pt - ctrl->cpos;
-			MakeRotationMatrix (rot_mat, PLAYER_ANGLE_IN_CAMERA, 'x');
+			TMatrix<4, 4> rot_mat;
+			rot_mat.SetRotationMatrix(PLAYER_ANGLE_IN_CAMERA, 'x');
 			view_dir = -1.0 * TransformVector (rot_mat, view_vec);
 			break;
 		}

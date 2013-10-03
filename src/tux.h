@@ -60,8 +60,8 @@ struct TCharNode {
 	size_t next_name;
 
 	string joint;
-	TMatrix trans;
-	TMatrix invtrans;
+	TMatrix<4, 4> trans;
+	TMatrix<4, 4> invtrans;
 	double radius;
 	int divisions;
 	TCharMaterial *mat;
@@ -88,7 +88,7 @@ private:
 	 const string& name, const string& order, bool shadow);
 	bool VisibleNode (size_t node_name, float level);
 	bool MaterialNode (size_t node_name, const string& mat_name);
-	bool TransformNode (size_t node_name, const TMatrix mat, const TMatrix invmat);
+	bool TransformNode(size_t node_name, const TMatrix<4, 4>& mat, const TMatrix<4, 4>& invmat);
 
 	// material
 	TCharMaterial* GetMaterial (const string& mat_name);
@@ -100,14 +100,14 @@ private:
 	TVector3d AdjustRollvector (const CControl *ctrl, const TVector3d& vel, const TVector3d& zvec);
 
 	// collision
-	bool CheckPolyhedronCollision (const TCharNode *node, const TMatrix modelMatrix,
-	                               const TMatrix invModelMatrix, const TPolyhedron& ph);
+	bool CheckPolyhedronCollision(const TCharNode *node, const TMatrix<4, 4>& modelMatrix,
+	                              const TMatrix<4, 4>& invModelMatrix, const TPolyhedron& ph);
 	bool CheckCollision (const TPolyhedron& ph);
 
 	// shadow
-	void DrawShadowVertex (double x, double y, double z, const TMatrix mat);
-	void DrawShadowSphere (const TMatrix mat);
-	void TraverseDagForShadow (const TCharNode *node, const TMatrix mat);
+	void DrawShadowVertex(double x, double y, double z, const TMatrix<4, 4>& mat);
+	void DrawShadowSphere(const TMatrix<4, 4>& mat);
+	void TraverseDagForShadow(const TCharNode *node, const TMatrix<4, 4>& mat);
 
 	// testing and developing
 	void AddAction (size_t node_name, int type, const TVector3d& vec, double val);

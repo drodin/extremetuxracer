@@ -79,5 +79,7 @@ void glNormal3(const TVector3d& vec);
 void glVertex3(const TVector3d& vec);
 void glTexCoord2(const TVector2d& vec);
 
+void glMultMatrix(const TMatrix<4, 4>& mat);
+
 
 #endif

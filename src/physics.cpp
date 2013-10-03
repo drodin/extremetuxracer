@@ -64,8 +64,8 @@ CControl::CControl () :
 
 void CControl::Init () {
 	TVector3d nml = Course.FindCourseNormal (cpos.x, cpos.z);
-	TMatrix rotMat;
-	MakeRotationMatrix (rotMat, -90.0, 'x');
+	TMatrix<4, 4> rotMat;
+	rotMat.SetRotationMatrix(-90.0, 'x');
 	TVector3d init_vel = TransformVector (rotMat, nml);
 	init_vel *= INIT_TUX_SPEED;
 
@@ -120,7 +120,7 @@ bool CControl::CheckTreeCollisions (const TVector3d& pos, TVector3d *tree_loc, d
 	double diam = 0.0;
 	TVector3d loc(0, 0, 0);
 	bool hit = false;
-	TMatrix mat;
+	TMatrix<4, 4> mat;
 
 	TCollidable *trees = &Course.CollArr[0];
 	size_t num_trees = Course.CollArr.size();
@@ -145,9 +145,9 @@ bool CControl::CheckTreeCollisions (const TVector3d& pos, TVector3d *tree_loc, d
 		}
 
 		TPolyhedron ph2 = CopyPolyhedron (ph);
-		MakeScalingMatrix (mat, diam, height, diam);
+		mat.SetScalingMatrix(diam, height, diam);
 		TransPolyhedron (mat, ph2);
-		MakeTranslationMatrix (mat, loc.x, loc.y, loc.z);
+		mat.SetTranslationMatrix(loc.x, loc.y, loc.z);
 		TransPolyhedron (mat, ph2);
 //		hit = TuxCollision2 (pos, ph2);
 		hit = shape->Collision (pos, ph2);
@@ -292,8 +292,7 @@ TVector3d CControl::CalcRollNormal (double speed) {
 	               min (1.0, max (0.0, ff.frict_coeff) / IDEAL_ROLL_FRIC) *
 	               min (1.0, max (0.0, speed - minSpeed) / (IDEAL_ROLL_SPEED - minSpeed));
 
-	TMatrix rot_mat;
-	RotateAboutVectorMatrix (rot_mat, vel, angle);
+	TMatrix<4, 4> rot_mat = RotateAboutVectorMatrix(vel, angle);
 	return TransformVector (rot_mat, ff.surfnml);
 }
 
@@ -363,8 +362,7 @@ TVector3d CControl::CalcFrictionForce (double speed, const TVector3d& nmlforce) 
 			steer_angle = RADIANS_TO_ANGLES (asin (MAX_TURN_PERP / fric_f_mag)) *
 			              turn_fact / fabs (turn_fact);
 		}
-		TMatrix fric_rot_mat;
-		RotateAboutVectorMatrix (fric_rot_mat, ff.surfnml, steer_angle);
+		TMatrix<4, 4> fric_rot_mat = RotateAboutVectorMatrix(ff.surfnml, steer_angle);
 		frictforce = TransformVector (fric_rot_mat, frictforce);
 		return (1.0 + MAX_TURN_PEN) * frictforce;
 	}

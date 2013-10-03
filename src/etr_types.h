@@ -57,8 +57,6 @@ struct TColor : public TColor3 {
 	{}
 };
 
-typedef double TMatrix[4][4];
-
 struct TPlane {
 	TVector3d nml;
 	double d;

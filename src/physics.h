@@ -110,7 +110,7 @@ public:
 	TVector3d plyr_pos;
 	TVector3d viewdir;
 	TVector3d viewup;
-	TMatrix view_mat;
+	TMatrix<4, 4> view_mat;
 	bool view_init;
 	// main:
 	TVector3d cpos;

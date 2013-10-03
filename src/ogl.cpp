@@ -508,3 +508,7 @@ void glVertex3(const TVector3d& vec) {
 void glTexCoord2(const TVector2d& vec) {
 	glTexCoord2d(vec.x, vec.y);
 }
+
+void glMultMatrix(const TMatrix<4, 4>& mat) {
+	glMultMatrixd((const double*)mat.data());
+}

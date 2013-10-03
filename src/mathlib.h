@@ -20,6 +20,7 @@ GNU General Public License for more details.
 #define MATHLIB_H
 
 #include "bh.h"
+#include "matrices.h"
 
 static const TVector3d GravVec(0.0, -1.0, 0.0);
 
@@ -27,28 +28,19 @@ static const TVector3d GravVec(0.0, -1.0, 0.0);
 //			vector and matrix
 // --------------------------------------------------------------------
 
-TVector3d	ProjectToPlane (const TVector3d& nml, const TVector3d& v);
-TVector3d	TransformVector (const TMatrix mat, const TVector3d& v);
-TVector3d	TransformNormal (const TVector3d& n, const TMatrix mat);	// not used ?
-TVector3d	TransformPoint (const TMatrix mat, const TVector3d& p);
+TVector3d	ProjectToPlane(const TVector3d& nml, const TVector3d& v);
+TVector3d	TransformVector(const TMatrix<4, 4>& mat, const TVector3d& v);
+TVector3d	TransformNormal(const TVector3d& n, const TMatrix<4, 4>& mat);	// not used ?
+TVector3d	TransformPoint(const TMatrix<4, 4>& mat, const TVector3d& p);
 bool		IntersectPlanes (const TPlane& s1, const TPlane& s2, const TPlane& s3, TVector3d *p);
 double		DistanceToPlane (const TPlane& plane, const TVector3d& pt);
 
-void MakeIdentityMatrix (TMatrix h);
-void MakeRotationMatrix (TMatrix mat, double angle, char axis);
-void MakeTranslationMatrix (TMatrix mat, double x, double y, double z);
-void MakeScalingMatrix (TMatrix mat, double x, double y, double z);
-
-void MultiplyMatrices (TMatrix ret, const TMatrix mat1, const TMatrix mat2);
-void TransposeMatrix (const TMatrix mat, TMatrix trans);
-void MakeBasisMat (TMatrix mat,	const TVector3d& w1, const TVector3d& w2, const TVector3d& w3);
-void MakeBasismatrix_Inv (TMatrix mat, TMatrix invMat, const TVector3d& w1, const TVector3d& w2, const TVector3d& w3);
-void RotateAboutVectorMatrix (TMatrix mat, const TVector3d& u, double angle);
+TMatrix<4, 4> RotateAboutVectorMatrix(const TVector3d& u, double angle);
 
 TQuaternion MultiplyQuaternions (const TQuaternion& q, const TQuaternion& r);
 TQuaternion ConjugateQuaternion (const TQuaternion& q);
-void		MakeMatrixFromQuaternion (TMatrix mat, const TQuaternion& q);
-TQuaternion MakeQuaternionFromMatrix (const TMatrix mat);
+TMatrix<4, 4> MakeMatrixFromQuaternion(const TQuaternion& q);
+TQuaternion MakeQuaternionFromMatrix(const TMatrix<4, 4>& mat);
 TQuaternion MakeRotationQuaternion (const TVector3d& s, const TVector3d& t);
 TQuaternion InterpolateQuaternions (const TQuaternion& q, TQuaternion r, double t);
 TVector3d	RotateVector (const TQuaternion& q, const TVector3d& v);
@@ -58,7 +50,7 @@ bool		IntersectPolyhedron (const TPolyhedron& p);
 TVector3d	MakeNormal (const TPolygon& p, TVector3d *v);
 TPolyhedron	CopyPolyhedron (const TPolyhedron& ph);
 void		FreePolyhedron (const TPolyhedron& ph);
-void		TransPolyhedron (const TMatrix mat, const TPolyhedron& ph);
+void		TransPolyhedron(const TMatrix<4, 4>& mat, const TPolyhedron& ph);
 
 // --------------------------------------------------------------------
 //				ode solver
