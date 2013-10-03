@@ -29,31 +29,32 @@
 		VertexArrayMinIdx = idx; \
 	}
 
-#define make_tri_list(tri_func) \
-	if ((EnabledFlags & 1) == 0 ) { \
-		tri_func(0, 2, 8, terrain); \
-	} else { \
-		if (flags & 8) tri_func(0, 1, 8, terrain); \
-		if (flags & 1) tri_func(0, 2, 1, terrain); \
-	} \
-	if ((EnabledFlags & 2) == 0 ) {  \
-		tri_func(0, 4, 2, terrain);  \
-	} else { \
-		if (flags & 1) tri_func(0, 3, 2, terrain); \
-		if (flags & 2) tri_func(0, 4, 3, terrain); \
-	} \
-	if ((EnabledFlags & 4) == 0 ) { \
-		tri_func(0, 6, 4, terrain); \
-	} else { \
-		if (flags & 2) tri_func(0, 5, 4, terrain); \
-		if (flags & 4) tri_func(0, 6, 5, terrain); \
-	} \
-	if ((EnabledFlags & 8) == 0 ) { \
-		tri_func(0, 8, 6, terrain); \
-	} else { \
-		if (flags & 4) tri_func(0, 7, 6, terrain); \
-		if (flags & 8) tri_func(0, 8, 7, terrain); \
+static void make_tri_list(void(*tri_func)(int, int, int, int), unsigned char EnabledFlags, int flags, int terrain) {
+	if ((EnabledFlags & 1) == 0) {
+		tri_func(0, 2, 8, terrain);
+	} else {
+		if (flags & 8) tri_func(0, 1, 8, terrain);
+		if (flags & 1) tri_func(0, 2, 1, terrain);
 	}
+	if ((EnabledFlags & 2) == 0) {
+		tri_func(0, 4, 2, terrain);
+	} else {
+		if (flags & 1) tri_func(0, 3, 2, terrain);
+		if (flags & 2) tri_func(0, 4, 3, terrain);
+	}
+	if ((EnabledFlags & 4) == 0) {
+		tri_func(0, 6, 4, terrain);
+	} else {
+		if (flags & 2) tri_func(0, 5, 4, terrain);
+		if (flags & 4) tri_func(0, 6, 5, terrain);
+	}
+	if ((EnabledFlags & 8) == 0) {
+		tri_func(0, 8, 6, terrain);
+	} else {
+		if (flags & 4) tri_func(0, 7, 6, terrain);
+		if (flags & 8) tri_func(0, 8, 7, terrain);
+	}
+}
 
 TTexture* quadsquare::EnvmapTexture = NULL;
 GLuint *quadsquare::VertexArrayIndices = NULL;
@@ -310,7 +311,7 @@ float quadsquare::RecomputeError(const quadcornerdata& cd) {
 	}
 
 	for (int i = 0; i < 4; i++) {
-		float	y = Vertex[1 + i].Y;
+		float y = Vertex[1 + i].Y;
 		if (y < MinY) MinY = y;
 		if (y > MaxY) MaxY = y;
 	}
@@ -330,8 +331,6 @@ float quadsquare::RecomputeError(const quadcornerdata& cd) {
 		if (Error[i+2] > maxerror) maxerror = Error[i+2];
 	}
 
-	int terrain;
-
 	int *terrain_count = new int[numTerr];
 	memset(terrain_count, 0, sizeof(*terrain_count)*numTerr);
 
@@ -343,7 +342,7 @@ float quadsquare::RecomputeError(const quadcornerdata& cd) {
 				continue;
 			}
 
-			terrain = (int) Terrain[ i + RowSize*j ];
+			int terrain = (int) Terrain[i + RowSize*j];
 			terrain_count[ terrain ] += 1;
 		}
 	}
@@ -473,8 +472,6 @@ void quadsquare::StaticCullAux(const quadcornerdata& cd, float ThresholdDetail, 
 	}
 }
 
-int	MaxCreateDepth = 0;
-
 void quadsquare::EnableEdgeVertex(int index, bool IncrementCount, const quadcornerdata& cd) {
 	int	ct = 0;
 	int	stack[32];
@@ -553,9 +550,6 @@ void quadsquare::EnableChild(int index, const quadcornerdata& cd) {
 	}
 }
 
-int	BlockDeleteCount = 0;
-int	BlockUpdateCount = 0;
-
 void quadsquare::NotifyChildDisable(const quadcornerdata& cd, int index) {
 	EnabledFlags &= ~(16 << index);
 	quadsquare*	s;
@@ -618,20 +612,19 @@ bool quadsquare::BoxTest(int x, int z, float size, float miny, float maxy, float
 	return false;
 }
 
-void quadsquare::Update (const quadcornerdata& cd, const float ViewerLocation[3], float Detail) {
+void quadsquare::Update (const quadcornerdata& cd, const TVector3d& ViewerLocation, float Detail) {
 	float Viewer[3];
 
 	DetailThreshold = Detail;
-	Viewer[0] = ViewerLocation[0] / ScaleX;
-	Viewer[1] = ViewerLocation[1];
-	Viewer[2] = ViewerLocation[2] / ScaleZ;
+	Viewer[0] = ViewerLocation.x / ScaleX;
+	Viewer[1] = ViewerLocation.y;
+	Viewer[2] = ViewerLocation.z / ScaleZ;
 	UpdateAux(cd, Viewer, 0, SomeClip);
 }
 
 
 void quadsquare::UpdateAux (const quadcornerdata& cd,
                             const float ViewerLocation[3], float CenterError, clip_result_t vis) {
-	BlockUpdateCount++;
 	if (vis != NoClip) {
 		vis = ClipSquare (cd);
 
@@ -975,11 +968,11 @@ void quadsquare::RenderAux(const quadcornerdata& cd, clip_result_t vis, int terr
 	InitVert(7, cd.xorg + half, cd.zorg + whole);
 	InitVert(8, cd.xorg + whole, cd.zorg + whole);
 	if (terrain == -1) {
-		make_tri_list (MakeSpecialTri);
+		make_tri_list(MakeSpecialTri, EnabledFlags, flags, terrain);
 	} else if (param.perf_level > 1) {
-		make_tri_list (MakeTri);
+		make_tri_list(MakeTri, EnabledFlags, flags, terrain);
 	} else {
-		make_tri_list (MakeNoBlendTri);
+		make_tri_list(MakeNoBlendTri, EnabledFlags, flags, terrain);
 	}
 
 }
@@ -1141,12 +1134,6 @@ static int get_root_level (int nx, int nz) {
 	return max (xlev, zlev);
 }
 
-static void TVector3do_float_array (float dest[3], const TVector3d& src) {
-	dest[0] = src.x;
-	dest[1] = src.y;
-	dest[2] = src.z;
-}
-
 
 void InitQuadtree (double *elevation, int nx, int nz,
                    double scalex, double scalez, const TVector3d& view_pos, double detail) {
@@ -1178,18 +1165,13 @@ void InitQuadtree (double *elevation, int nx, int nz,
 
 	root->StaticCullData (root_corner_data, CULL_DETAIL_FACTOR);
 
-	float ViewerLoc[3];
-	TVector3do_float_array (ViewerLoc, view_pos);
-
 	for (int i = 0; i < 10; i++) {
-		root->Update(root_corner_data, ViewerLoc, detail);
+		root->Update(root_corner_data, view_pos, detail);
 	}
 }
 
 void UpdateQuadtree (const TVector3d& view_pos, float detail) {
-	float ViewerLoc[3];
-	TVector3do_float_array (ViewerLoc, view_pos);
-	root->Update (root_corner_data, ViewerLoc, detail);
+	root->Update(root_corner_data, view_pos, detail);
 }
 
 void RenderQuadtree() {

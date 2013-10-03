@@ -152,7 +152,7 @@ int CFont::LoadFont (const string& name, const char *path) {
 	return (int)fonts.size()-1;
 }
 
-int CFont::LoadFont (const string& name, const char *dir, const char *filename) {
+int CFont::LoadFont(const string& name, const string& dir, const string& filename) {
 	string path = dir;
 	path += SEP;
 	path += filename;
@@ -167,7 +167,7 @@ bool CFont::LoadFontlist () {
 		string fontfile = SPStrN (line, "file");
 		string name = SPStrN (line, "name");
 
-		int ftidx = LoadFont (name, param.font_dir.c_str(), fontfile.c_str());
+		int ftidx = LoadFont (name, param.font_dir, fontfile);
 		if (ftidx < 0) {
 			Message ("couldn't load font", name);
 		}
@@ -185,15 +185,8 @@ void CFont::SetProps (const string &fontname, float size, const TColor& col) {
 }
 
 void CFont::SetProps (const string &fontname, float size) {
-	if (!fontname.empty()) curr_font = (int)GetFontIdx (fontname);
-	if (size > 0) curr_size = size;
-}
-
-void CFont::SetColor (float r, float g, float b, float a) {
-	curr_col.r = r;
-	curr_col.g = g;
-	curr_col.b = b;
-	curr_col.a = a;
+	curr_font = (int)GetFontIdx (fontname);
+	curr_size = size;
 }
 
 void CFont::SetFont (const string& fontname) {
@@ -210,7 +203,7 @@ void CFont::SetFont (const string& fontname) {
 // -------------------- auto ------------------------------------------
 
 int CFont::AutoSizeN (int rel_val) {
-	double size = (rel_val + 2) * 4;
+	float size = (rel_val + 2) * 4;
 	size *= curr_fact;
 	size *= Winsys.scale;
 	SetSize (size);
@@ -218,23 +211,24 @@ int CFont::AutoSizeN (int rel_val) {
 }
 
 int CFont::AutoDistanceN (int rel_val) {
-	double fact = (rel_val + 5) * 0.2;
-	double dist = curr_size * fact;
+	float fact = (rel_val + 5) * 0.2;
+	float dist = curr_size * fact;
 	return (int) dist;
 }
 
 // -------------------- draw (x, y, text) -----------------------------
 
-void CFont::DrawText(float x, float y, const char *text, size_t font, float size) const {
+template<typename T>
+void CFont::DrawText(float x, float y, const T* text, size_t font, float size) const {
 	if (font >= fonts.size()) return;
 
 	glPushMatrix();
-	fonts[font]->FaceSize ((int)size);
+	fonts[font]->FaceSize((int)size);
 	glColor(curr_col);
 
 	float left;
 	if (x >= 0) left = x;
-	else left = (Winsys.resolution.width - GetTextWidth (text)) / 2;
+	else left = (Winsys.resolution.width - GetTextWidth(text)) / 2;
 	if (left < 0) left = 0;
 
 	if (forientation == OR_TOP) {
@@ -243,37 +237,17 @@ void CFont::DrawText(float x, float y, const char *text, size_t font, float size
 		glRasterPos2i ((int)left, (int)y);
 	}
 
-	fonts[font]->Render (text);
+	fonts[font]->Render(text);
 	glPopMatrix();
 }
-
-void CFont::DrawText(float x, float y, const wchar_t *text, size_t font, float size) const {
-	if (font >= fonts.size()) return;
-
-	glPushMatrix();
-	fonts[font]->FaceSize ((int)size);
-	glColor(curr_col);
-
-	float left;
-	if (x >= 0) left = x;
-	else left = (Winsys.resolution.width - GetTextWidth (text)) / 2;
-	if (left < 0) left = 0;
-
-	if (forientation == OR_TOP) {
-		glRasterPos2i ((int)left, (int)(Winsys.resolution.height - curr_size - y));
-	} else {
-		glRasterPos2i ((int)left, (int)y);
-	}
-
-	fonts[font]->Render (text);
-	glPopMatrix();
-}
+template void CFont::DrawText<char>(float x, float y, const char* text, size_t font, float size) const; // instanciate
+template void CFont::DrawText<wchar_t>(float x, float y, const wchar_t* text, size_t font, float size) const; // instanciate
 
 void CFont::DrawText (float x, float y, const char *text) const {
 #if USE_UNICODE
 	DrawString(x, y, UnicodeStr(text));
 #else
-	DrawText(x, y, text, curr_font);
+	DrawText(x, y, text, curr_font, curr_size);
 #endif
 }
 

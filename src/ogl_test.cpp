@@ -78,9 +78,7 @@ void COglTest::Loop(double timestep) {
 	// --------------- 2d screen --------------------------------------
 	SetupGuiDisplay ();
 	ScopedRenderMode rm2(TEXFONT);
-	FT.SetFont ("bold");
-	FT.SetSize (24);
-	FT.SetColor (colWhite);
+	FT.SetProps("bold", 24, colWhite);
 	FT.DrawString (CENTER, 10, "Test screen");
 	Reshape (Winsys.resolution.width, Winsys.resolution.height);
 	Winsys.SwapBuffers ();

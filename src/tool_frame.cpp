@@ -250,13 +250,10 @@ void RenderSingleFrame (double timestep) {
 
 	if (FrameHasChanged ()) DrawChanged ();
 
-	FT.SetFont ("bold");
-	FT.SetSize (20);
-	FT.SetColor (colYellow);
+	FT.SetProps("bold", 20, colYellow);
 	FT.DrawString (-1, 10, "Keyframe mode");
 
-	FT.SetFont ("normal");
-	FT.SetSize (16);
+	FT.SetProps("normal", 16);
 	for (size_t i=0; i<TestFrame.numFrames(); i++) {
 		if (i != curr_frame) {
 			FT.SetColor (colLGrey);

@@ -124,13 +124,12 @@ bool CScore::LoadHighScore () {
 		return false;
 	}
 
-	TScore score;
-
 	for (size_t i=0; i<list.Count(); i++) {
 		const string& line = list.Line(i);
 		string course = SPStrN (line, "course", "unknown");
 		size_t cidx = Course.GetCourseIdx (course);
 
+		TScore score;
 		score.player = SPStrN (line, "plyr", "unknown");
 		score.points = SPIntN (line, "pts", 0);
 		score.herrings = SPIntN (line, "herr", 0);

@@ -352,14 +352,11 @@ void RenderChar (double timestep) {
 	SetupGuiDisplay ();
 	ScopedRenderMode rm2(TEXFONT);
 
-	FT.SetFont ("bold");
-	FT.SetSize (20);
-	FT.SetColor (colYellow);
+	FT.SetProps("bold", 20, colYellow);
 	FT.DrawString (-1, 10, "Edit mode");
 
 	if (CharHasChanged ()) DrawChanged ();
 
-	FT.SetFont ("normal");
 	FT.SetSize (16);
 	for (size_t i=0; i<=lastnode; i++) {
 		if (i != curr_node) {
@@ -407,6 +404,7 @@ void RenderChar (double timestep) {
 		}
 	}
 
+	FT.SetFont("normal");
 	if (is_visible) FT.SetColor (colYellow);
 	else FT.SetColor (colLGrey);
 	FT.DrawString (20, 20, action->name);

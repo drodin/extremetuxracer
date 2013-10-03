@@ -321,8 +321,6 @@ bool TTexture::Load(const string& filename) {
 	glTexImage2D
 	(GL_TEXTURE_2D, 0, texImage.depth, texImage.nx,
 	 texImage.ny, 0, format, GL_UNSIGNED_BYTE, texImage.data);
-
-	texImage.DisposeData();
 	return true;
 }
 bool TTexture::Load(const string& dir, const string& filename) {
@@ -354,8 +352,6 @@ bool TTexture::LoadMipmap(const string& filename, bool repeatable) {
 	glTexParameterf (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_NEAREST);
 
 	gluBuild2DMipmaps(GL_TEXTURE_2D, texImage.depth, texImage.nx, texImage.ny, format, GL_UNSIGNED_BYTE, texImage.data);
-
-	texImage.DisposeData();
 	return true;
 }
 bool TTexture::LoadMipmap(const string& dir, const string& filename, bool repeatable) {

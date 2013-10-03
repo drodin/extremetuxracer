@@ -44,8 +44,8 @@ private:
 	float  curr_fact;		// the length factor
 
 	static wstring UnicodeStr(const char* s);
-	void DrawText(float x, float y, const char *text, size_t font, float size) const;
-	void DrawText(float x, float y, const wchar_t *text, size_t font, float size) const;
+	template<typename T>
+	void DrawText(float x, float y, const T* text, size_t font, float size) const;
 	void GetTextSize(const char *text, float &x, float &y, size_t font, float size) const;
 	void GetTextSize(const wchar_t *text, float &x, float &y, size_t font, float size) const;
 
@@ -54,15 +54,14 @@ public:
 	~CFont ();
 
 	void Clear ();
-	int  LoadFont (const string& name, const char *dir, const char *filename);
-	int  LoadFont (const string& name, const char *path);
+	int  LoadFont(const string& name, const string& dir, const string& filename);
+	int  LoadFont(const string& name, const char *path);
 	bool LoadFontlist ();
 	size_t GetFontIdx (const string &name) const;
 
 	// properties
 	void SetProps   (const string &fontname, float size, const TColor& col);
 	void SetProps   (const string &fontname, float size);
-	void SetColor   (float r, float g, float b, float a);
 	void SetColor   (const TColor& col) { curr_col = col; }
 	void SetSize    (float size) { curr_size = size; }
 	void SetFont    (const string& fontname);

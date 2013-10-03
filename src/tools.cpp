@@ -155,9 +155,7 @@ void DrawQuad (float x, float y, float w, float h, float scrheight, const TColor
 
 void DrawChanged () {
 	DrawQuad (Winsys.resolution.width - 120, 10, 100, 22, Winsys.resolution.height, colRed, 0);
-	FT.SetFont ("normal");
-	FT.SetSize (18);
-	FT.SetColor (colBlack);
+	FT.SetProps("normal", 18, colBlack);
 	FT.DrawString (Winsys.resolution.width - 110, 8, "changed");
 }
 

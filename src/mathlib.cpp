@@ -635,7 +635,7 @@ double LinearInterp (const double x[], const double y[], double val, int n) {
 
 	if (val < x[0]) i = 0;
 	else if (val >= x[n-1]) i = n-2;
-	else for (int i=0; i<n-1; i++) if (val < x[i+1]) break;
+	else for (i=0; i<n-1; i++) if (val < x[i+1]) break;
 
 	m = (y[i+1] - y[i]) / (x[i+1] - x[i]);
 	b = y[i] - m * x[i];
