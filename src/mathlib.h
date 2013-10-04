@@ -25,8 +25,27 @@ GNU General Public License for more details.
 static const TVector3d GravVec(0.0, -1.0, 0.0);
 
 // --------------------------------------------------------------------
-//			vector and matrix
+//			Advanced geometry
 // --------------------------------------------------------------------
+
+struct TPlane {
+	TVector3d nml;
+	double d;
+	TPlane(double nx = 0.0, double ny = 0.0, double nz = 0.0, double d_ = 0.0)
+		: nml(nx, ny, nz), d(d_)
+	{}
+};
+
+struct TPolygon		{ int num_vertices; int *vertices; };
+struct TSphere		{ double radius; int divisions; };
+struct TRay			{ TVector3d pt; TVector3d vec; };
+
+struct TPolyhedron {
+	size_t num_vertices;
+	size_t num_polygons;
+	TVector3d *vertices;
+	TPolygon *polygons;
+};
 
 TVector3d	ProjectToPlane(const TVector3d& nml, const TVector3d& v);
 TVector3d	TransformVector(const TMatrix<4, 4>& mat, const TVector3d& v);

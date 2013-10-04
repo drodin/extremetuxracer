@@ -19,6 +19,7 @@ GNU General Public License for more details.
 #define PHYSICS_H
 
 #include "bh.h"
+#include "mathlib.h"
 
 #define MAX_PADDLING_SPEED (60.0 / 3.6)   /* original 60 */
 #define PADDLE_FACT 1.0 /* original 1.0 */

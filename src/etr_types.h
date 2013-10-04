@@ -38,39 +38,6 @@ struct TColor : public TColor3 {
 	{}
 };
 
-struct TPlane {
-	TVector3d nml;
-	double d;
-	TPlane(double nx = 0.0, double ny = 0.0, double nz = 0.0, double d_ = 0.0)
-		: nml(nx, ny, nz), d(d_)
-	{}
-};
-
-struct TPolygon		{ int num_vertices; int *vertices; };
-struct TSphere		{ double radius; int divisions; };
-struct TRay			{ TVector3d pt; TVector3d vec; };
-
-struct TPolyhedron {
-	size_t num_vertices;
-	size_t num_polygons;
-	TVector3d *vertices;
-	TPolygon *polygons;
-};
-
-struct TRect {
-	int left;
-	int top;
-	int width;
-	int height;
-};
-
-struct TArea {
-	int left;
-	int right;
-	int top;
-	int bottom;
-};
-
 enum TToolMode {
     NONE,
     TUXSHAPE,

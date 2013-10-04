@@ -19,6 +19,7 @@ GNU General Public License for more details.
 #define TUX_H
 
 #include "bh.h"
+#include "mathlib.h"
 #include <map>
 #include <vector>
 

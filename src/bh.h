@@ -51,6 +51,7 @@ GNU General Public License for more details.
 #	pragma warning (disable:4305)
 #	define SEP "\\"
 #	undef DrawText
+#	undef GetObject
 #elif defined OS_WON32_MINGW
 #	include <dirent.h>
 #	include <GL/glext.h>
@@ -77,7 +78,6 @@ GNU General Public License for more details.
 using namespace std;
 
 #include "etr_types.h"
-#include "mathlib.h"
 #include "common.h"
 #include "game_config.h"
 

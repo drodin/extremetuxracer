@@ -19,6 +19,7 @@ GNU General Public License for more details.
 #define VIEW_H
 
 #include "bh.h"
+#include "mathlib.h"
 
 void set_view_mode (CControl *ctrl, TViewMode mode);
 void update_view (CControl *ctrl, double dt);

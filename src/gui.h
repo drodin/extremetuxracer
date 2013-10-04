@@ -25,6 +25,21 @@ GNU General Public License for more details.
 #define CRSR_PERIODE 0.4
 
 
+struct TRect {
+	int left;
+	int top;
+	int width;
+	int height;
+};
+
+struct TArea {
+	int left;
+	int right;
+	int top;
+	int bottom;
+};
+
+
 class TTexture;
 
 class TWidget {

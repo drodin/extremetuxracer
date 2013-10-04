@@ -19,6 +19,7 @@ GNU General Public License for more details.
 #define PARTICLES_H
 
 #include "bh.h"
+#include "mathlib.h"
 #include <vector>
 
 // --------------------------------------------------------------------

@@ -24,8 +24,7 @@ GNU General Public License for more details.
 
 
 template<int x, int y>
-const TMatrix<x, y>& TMatrix<x, y>::getIdentity()
-{
+const TMatrix<x, y>& TMatrix<x, y>::getIdentity() {
 	static bool b = false;
 	static TMatrix<x, y> mat;
 	if (!b) {
@@ -57,26 +56,26 @@ void TMatrix<x, y>::SetRotationMatrix(double angle, char axis) {
 	SetIdentity();
 
 	switch (axis) {
-	case 'x':
-		_data[1][1] = cosv;
-		_data[2][1] = -sinv;
-		_data[1][2] = sinv;
-		_data[2][2] = cosv;
-		break;
+		case 'x':
+			_data[1][1] = cosv;
+			_data[2][1] = -sinv;
+			_data[1][2] = sinv;
+			_data[2][2] = cosv;
+			break;
 
-	case 'y':
-		_data[0][0] = cosv;
-		_data[2][0] = sinv;
-		_data[0][2] = -sinv;
-		_data[2][2] = cosv;
-		break;
+		case 'y':
+			_data[0][0] = cosv;
+			_data[2][0] = sinv;
+			_data[0][2] = -sinv;
+			_data[2][2] = cosv;
+			break;
 
-	case 'z':
-		_data[0][0] = cosv;
-		_data[1][0] = -sinv;
-		_data[0][1] = sinv;
-		_data[1][1] = cosv;
-		break;
+		case 'z':
+			_data[0][0] = cosv;
+			_data[1][0] = -sinv;
+			_data[0][1] = sinv;
+			_data[1][1] = cosv;
+			break;
 	}
 }
 template void TMatrix<3, 3>::SetRotationMatrix(double angle, char axis);
@@ -135,10 +134,10 @@ TMatrix<3, 3> operator*<3, 3>(const TMatrix<3, 3>& l, const TMatrix<3, 3>& r) {
 	TMatrix<3, 3> ret;
 
 	for (int i = 0; i < 3; i++)
-	for (int j = 0; j < 3; j++)
-		ret[j][i] = l[0][i] * r[j][0] +
-		l[1][i] * r[j][1] +
-		l[2][i] * r[j][2];
+		for (int j = 0; j < 3; j++)
+			ret[j][i] = l[0][i] * r[j][0] +
+			            l[1][i] * r[j][1] +
+			            l[2][i] * r[j][2];
 
 	return ret;
 }
@@ -147,11 +146,11 @@ TMatrix<4, 4> operator*<4, 4>(const TMatrix<4, 4>& l, const TMatrix<4, 4>& r) {
 	TMatrix<4, 4> ret;
 
 	for (int i = 0; i < 4; i++)
-	for (int j = 0; j < 4; j++)
-		ret[j][i] = l[0][i] * r[j][0] +
-		l[1][i] * r[j][1] +
-		l[2][i] * r[j][2] +
-		l[3][i] * r[j][3];
+		for (int j = 0; j < 4; j++)
+			ret[j][i] = l[0][i] * r[j][0] +
+			            l[1][i] * r[j][1] +
+			            l[2][i] * r[j][2] +
+			            l[3][i] * r[j][3];
 
 	return ret;
 }
