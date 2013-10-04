@@ -74,12 +74,6 @@ void STrimN (string &s) {
 //				conversion functions
 // --------------------------------------------------------------------
 
-void Int_StrN (string &s, const int val) {
-	ostringstream os;
-	os << val;
-	s = os.str();
-}
-
 string Int_StrN (const int val) {
 	ostringstream os;
 	os << val;
@@ -90,12 +84,6 @@ string Int_StrN (const int val, const streamsize count) {
 	ostringstream os;
 	os << setw(count) << setfill('0') << val;
 	return os.str();
-}
-
-void Float_StrN (string &s, const float val, const streamsize count) {
-	ostringstream os;
-	os << setprecision(count) << fixed << val;
-	s = os.str();
 }
 
 string Float_StrN (const float val, const streamsize count) {
@@ -109,6 +97,11 @@ string Vector_StrN (const TVector3d& v, const streamsize count) {
 	res += ' ' + Float_StrN (v.y, count);
 	res += ' ' + Float_StrN (v.z, count);
 	return res;
+}
+
+string Bool_StrN(const bool val) {
+	if (val == true) return "true";
+	else return "false";
 }
 
 int Str_IntN (const string &s, const int def) {
@@ -135,37 +128,39 @@ float Str_FloatN (const string &s, const float def) {
 	else return val;
 }
 
-TVector2d Str_Vector2N (const string &s, const TVector2d &def) {
-	float x, y;
+template<typename T>
+TVector2<T> Str_Vector2(const string &s, const TVector2<T> &def) {
+	T x, y;
 	istringstream is(s);
 	is >> x >> y;
 	if (is.fail()) return def;
-	else return TVector2d (x, y);
+	else return TVector2<T>(x, y);
 }
+template TVector2<double> Str_Vector2(const string &s, const TVector2<double> &def);
+template TVector2<int> Str_Vector2(const string &s, const TVector2<int> &def);
 
-TVector3d Str_Vector3N (const string &s, const TVector3d &def) {
-	float x, y, z;
+template<typename T>
+TVector3<T> Str_Vector3(const string &s, const TVector3<T> &def) {
+	T x, y, z;
 	istringstream is(s);
 	is >> x >> y >> z;
 	if (is.fail()) return def;
-	else return TVector3d (x, y, z);
+	else return TVector3<T>(x, y, z);
 }
+template TVector3<double> Str_Vector3(const string &s, const TVector3<double> &def);
+template TVector3<int> Str_Vector3(const string &s, const TVector3<int> &def);
 
-TIndex3 Str_Index3N (const string &s, const TIndex3 &def) {
-	int i, j, k;
-	istringstream is(s);
-	is >> i >> j >> k;
-	if (is.fail()) return def;
-	else return TIndex3 (i, j, k);
-}
-
-TVector4d Str_Vector4N (const string &s, const TVector4d &def) {
-	float x, y, z, w;
+template<typename T>
+TVector4<T> Str_Vector4(const string &s, const TVector4<T> &def) {
+	T x, y, z, w;
 	istringstream is(s);
 	is >> x >> y >> z >> w;
 	if (is.fail()) return def;
-	else return TVector4d (x, y, z, w);
+	else return TVector4<T>(x, y, z, w);
 }
+template TVector4<double> Str_Vector4(const string &s, const TVector4<double> &def);
+template TVector4<int> Str_Vector4(const string &s, const TVector4<int> &def);
+
 
 TColor Str_ColorN (const string &s, const TColor &def) {
 	float r, g, b, a;
@@ -189,11 +184,6 @@ void Str_ArrN (const string &s, float *arr, size_t count, float def) {
 		is >> arr[i];
 	if (is.fail())
 		for (size_t i=0; i<count; i++) arr[i] = def;
-}
-
-string Bool_StrN (const bool val) {
-	if (val == true) return "true";
-	else return "false";
 }
 
 // --------------------------------------------------------------------
@@ -236,21 +226,26 @@ float SPFloatN (const string &s, const string &tag, const float def) {
 	return (Str_FloatN (SPItemN (s, tag), def));
 }
 
-TVector2d SPVector2N (const string &s, const string &tag, const TVector2d& def) {
-	return (Str_Vector2N (SPItemN (s, tag), def));
+template<typename T>
+TVector2<T> SPVector2 (const string &s, const string &tag, const TVector2<T>& def) {
+	return (Str_Vector2(SPItemN (s, tag), def));
 }
+template TVector2<int> SPVector2(const string &s, const string &tag, const TVector2<int>& def);
+template TVector2<double> SPVector2(const string &s, const string &tag, const TVector2<double>& def);
 
-TVector3d SPVector3N (const string &s, const string &tag, const TVector3d& def) {
-	return (Str_Vector3N (SPItemN (s, tag), def));
+template<typename T>
+TVector3<T> SPVector3(const string &s, const string &tag, const TVector3<T>& def) {
+	return (Str_Vector3(SPItemN(s, tag), def));
 }
+template TVector3<int> SPVector3(const string &s, const string &tag, const TVector3<int>& def);
+template TVector3<double> SPVector3(const string &s, const string &tag, const TVector3<double>& def);
 
-TIndex3 SPIndex3N (const string &s, const string &tag, const TIndex3& def) {
-	return (Str_Index3N (SPItemN (s, tag), def));
+template<typename T>
+TVector4<T> SPVector4(const string &s, const string &tag, const TVector4<T>& def) {
+	return (Str_Vector4(SPItemN(s, tag), def));
 }
-
-TVector4d SPVector4N (const string &s, const string &tag, const TVector4d& def) {
-	return (Str_Vector4N (SPItemN (s, tag), def));
-}
+template TVector4<int> SPVector4(const string &s, const string &tag, const TVector4<int>& def);
+template TVector4<double> SPVector4(const string &s, const string &tag, const TVector4<double>& def);
 
 TColor SPColorN (const string &s, const string &tag, const TColor& def) {
 	return (Str_ColorN (SPItemN (s, tag), def));
@@ -262,12 +257,6 @@ TColor3 SPColor3N (const string &s, const string &tag, const TColor3& def) {
 
 void SPArrN (const string &s, const string &tag, float *arr, size_t count, float def) {
 	Str_ArrN (SPItemN (s, tag), arr, count, def);
-}
-
-bool SPExistsN  (const string &s, const string &tag) {
-	string tg = '[' + tag + ']';
-	size_t i = SPosN (s, tg);
-	return i != string::npos;
 }
 
 size_t SPPosN (const string &s, const string &tag) {
@@ -318,32 +307,6 @@ void SPAddVec3N (string &s, const string &tag, const TVector3d &val, size_t coun
 	s += Float_StrN (val.y, count);
 	s += ' ';
 	s += Float_StrN (val.z, count);
-}
-
-void SPAddIndx3N  (string &s, const string &tag, const TIndex3 &val) {
-	s += '[';
-	s += tag;
-	s += ']';
-	s += ' ';
-	s += Int_StrN (val.i);
-	s += ' ';
-	s += Int_StrN (val.j);
-	s += ' ';
-	s += Int_StrN (val.k);
-}
-
-void SPAddIndx4N  (string &s, const string &tag, const TIndex4 &val) {
-	s += '[';
-	s += tag;
-	s += ']';
-	s += ' ';
-	s += Int_StrN (val.i);
-	s += ' ';
-	s += Int_StrN (val.j);
-	s += ' ';
-	s += Int_StrN (val.k);
-	s += ' ';
-	s += Int_StrN (val.l);
 }
 
 void SPAddBoolN (string &s, const string &tag, const bool val) {

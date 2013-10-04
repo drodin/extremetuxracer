@@ -99,14 +99,6 @@ void PrintVector (const TVector3d& v) {
 	cout << v.x << "  " << v.y << "  " << v.z << '\n';
 }
 
-void PrintIndex3 (const TIndex3& idx) {
-	cout << idx.i << ' ' << idx.j << ' ' << idx.k << '\n';
-}
-
-void PrintIndex4 (const TIndex4& idx) {
-	cout << idx.i << ' ' << idx.j << ' ' << idx.k << ' ' << idx.l << '\n';
-}
-
 template<int x, int y>
 void PrintMatrix (const TMatrix<x, y>& mat) {
 	cout << '\n';

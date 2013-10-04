@@ -112,7 +112,7 @@ bool CKeyframe::Load (const string& dir, const string& filename) {
 		for (size_t i=0; i<list.Count(); i++) {
 			const string& line = list.Line(i);
 			frames[i].val[0] = SPFloatN (line, "time", 0);
-			TVector3d posit = SPVector3N (line, "pos");
+			TVector3d posit = SPVector3d(line, "pos");
 			frames[i].val[1] = posit.x;
 			frames[i].val[2] = posit.y;
 			frames[i].val[3] = posit.z;
@@ -121,19 +121,19 @@ bool CKeyframe::Load (const string& dir, const string& filename) {
 			frames[i].val[6] = SPFloatN (line, "roll", 0);
 			frames[i].val[7] = SPFloatN (line, "neck", 0);
 			frames[i].val[8] = SPFloatN (line, "head", 0);
-			TVector2d pp = SPVector2N (line, "sh");
+			TVector2d pp = SPVector2d(line, "sh");
 			frames[i].val[9] = pp.x;
 			frames[i].val[10] = pp.y;
-			pp = SPVector2N (line, "arm");
+			pp = SPVector2d(line, "arm");
 			frames[i].val[11] = pp.x;
 			frames[i].val[12] = pp.y;
-			pp = SPVector2N (line, "hip");
+			pp = SPVector2d(line, "hip");
 			frames[i].val[13] = pp.x;
 			frames[i].val[14] = pp.y;
-			pp = SPVector2N (line, "knee");
+			pp = SPVector2d(line, "knee");
 			frames[i].val[15] = pp.x;
 			frames[i].val[16] = pp.y;
-			pp = SPVector2N (line, "ankle");
+			pp = SPVector2d(line, "ankle");
 			frames[i].val[17] = pp.x;
 			frames[i].val[18] = pp.y;
 		}

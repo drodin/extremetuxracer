@@ -143,11 +143,11 @@ bool CScore::LoadHighScore () {
 int CScore::CalcRaceResult () {
 	g_game.race_result = -1;
 	if (g_game.time <= g_game.time_req.x &&
-	        g_game.herring >= g_game.herring_req.i) g_game.race_result = 0;
+	        g_game.herring >= g_game.herring_req.x) g_game.race_result = 0;
 	if (g_game.time <= g_game.time_req.y &&
-	        g_game.herring >= g_game.herring_req.j) g_game.race_result = 1;
+	        g_game.herring >= g_game.herring_req.y) g_game.race_result = 1;
 	if (g_game.time <= g_game.time_req.z &&
-	        g_game.herring >= g_game.herring_req.k) g_game.race_result = 2;
+	        g_game.herring >= g_game.herring_req.z) g_game.race_result = 2;
 
 	int herringpt = g_game.herring * 10;
 	double timept = Course.GetDimensions().y - (g_game.time * 10);

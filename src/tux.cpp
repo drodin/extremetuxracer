@@ -338,11 +338,10 @@ TCharMaterial* CCharShape::GetMaterial (const string& mat_name) {
 }
 
 void CCharShape::CreateMaterial (const string& line) {
-	TVector3d diff = SPVector3N(line, "diff");
-	TVector3d spec = SPVector3N(line, "spec");
+	TVector3d diff = SPVector3d(line, "diff");
+	TVector3d spec = SPVector3d(line, "spec");
 	float exp = SPFloatN (line, "exp", 50);
-	std::string mat = SPItemN (line, "mat");
-	STrimN(mat);
+	std::string mat = SPStrN(line, "mat");
 
 	Materials.push_back(TCharMaterial());
 	Materials.back().diffuse.r = diff.x;
@@ -447,13 +446,13 @@ bool CCharShape::Load (const string& dir, const string& filename, bool with_acti
 			bool shadow = SPBoolN (line, "shad", false);
 			string order = SPStrN (line, "order");
 			CreateCharNode (parent_name, node_name, name, fullname, order, shadow);
-			TVector3d rot = SPVector3N (line, "rot");
+			TVector3d rot = SPVector3d(line, "rot");
 			MaterialNode (node_name, mat_name);
 			for (size_t ii = 0; ii < order.size(); ii++) {
 				int act = order[ii]-48;
 				switch (act) {
 					case 0: {
-						TVector3d trans = SPVector3N(line, "trans");
+						TVector3d trans = SPVector3d(line, "trans");
 						TranslateNode (node_name, trans);
 						break;
 					}
@@ -467,7 +466,7 @@ bool CCharShape::Load (const string& dir, const string& filename, bool with_acti
 						RotateNode (node_name, 3, rot.z);
 						break;
 					case 4: {
-						TVector3d scale = SPVector3N (line, "scale", TVector3d (1,1,1));
+						TVector3d scale = SPVector3(line, "scale", TVector3d(1, 1, 1));
 						ScaleNode (node_name, scale);
 						break;
 					}

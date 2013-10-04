@@ -25,25 +25,6 @@ enum Orientation {
     OR_BOTTOM = 1		// bottom-orientated
 };
 
-struct TIndex2 {
-	int i, j;
-	TIndex2(int i_ = 0, int j_ = 0)
-		: i(i_), j(j_)
-	{}
-};
-struct TIndex3 : public TIndex2 {
-	int k;
-	TIndex3(int i_ = 0, int j_ = 0, int k_ = 0)
-		: TIndex2(i_, j_), k(k_)
-	{}
-};
-struct TIndex4 : public TIndex3 {
-	int l;
-	TIndex4(int i_ = 0, int j_ = 0, int k_ = 0, int l_ = 0)
-		: TIndex3(i_, j_, k_), l(l_)
-	{}
-};
-
 struct TColor3 {
 	double r, g, b;
 	TColor3(double r_ = 0, double g_ = 0, double b_ = 0)
@@ -139,7 +120,7 @@ struct TGameData {
 	size_t theme_id;
 
 	// requirements
-	TIndex3 herring_req;	// 3 levels of needed herrings
+	TVector3i herring_req;	// 3 levels of needed herrings
 	TVector3d time_req;		// 3 levels of allowed time
 
 	// race results (better in player.ctrl ?)

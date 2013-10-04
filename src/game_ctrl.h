@@ -38,7 +38,7 @@ struct TRace2 {
 	size_t light;
 	int snow;
 	int wind;
-	TIndex3 herrings;
+	TVector3i herrings;
 	TVector3d time;
 	size_t music_theme;
 };

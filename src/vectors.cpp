@@ -24,6 +24,10 @@ GNU General Public License for more details.
 
 const TVector2d NullVec2;
 const TVector3d NullVec3;
+const TVector4d NullVec4;
+const TVector2i NullVec2i;
+const TVector3i NullVec3i;
+const TVector4i NullVec4i;
 
 
 // Instanciate only functions we actually need

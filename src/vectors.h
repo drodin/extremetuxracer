@@ -164,6 +164,10 @@ TVector3d CrossProduct(const TVector3d& u, const TVector3d& v);
 
 extern const TVector2d NullVec2;
 extern const TVector3d NullVec3;
+extern const TVector4d NullVec4;
+extern const TVector2i NullVec2i;
+extern const TVector3i NullVec3i;
+extern const TVector4i NullVec4i;
 
 
 #endif

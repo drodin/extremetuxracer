@@ -584,7 +584,7 @@ bool CCourse::LoadObjectTypes () {
 		ObjTypes[i].use_normal = SPBoolN (line, "usenorm", false);
 
 		if (ObjTypes[i].use_normal) {
-			ObjTypes[i].normal = SPVector3N (line, "norm", TVector3d(0, 1, 0));
+			ObjTypes[i].normal = SPVector3(line, "norm", TVector3d(0, 1, 0));
 			ObjTypes[i].normal.Norm();
 		}
 		ObjTypes[i].poly = 1;
@@ -912,8 +912,8 @@ void CCourse::GetIndicesForPoint(double x, double z, int *x0, int *y0, int *x1, 
 	}
 }
 
-void CCourse::FindBarycentricCoords (double x, double z, TIndex2 *idx0,
-                                     TIndex2 *idx1, TIndex2 *idx2, double *u, double *v) const {
+void CCourse::FindBarycentricCoords(double x, double z, TVector2i *idx0,
+                                    TVector2i *idx1, TVector2i *idx2, double *u, double *v) const {
 	double xidx, yidx;
 	int x0, x1, y0, y1;
 	double dx, ex, dz, ez, qx, qz, invdet;
@@ -924,32 +924,32 @@ void CCourse::FindBarycentricCoords (double x, double z, TIndex2 *idx0,
 
 	if ((x0 + y0) % 2 == 0) {
 		if (yidx - y0 < xidx - x0) {
-			*idx0 = TIndex2 (x0, y0);
-			*idx1 = TIndex2 (x1, y0);
-			*idx2 = TIndex2 (x1, y1);
+			*idx0 = TVector2i(x0, y0);
+			*idx1 = TVector2i(x1, y0);
+			*idx2 = TVector2i(x1, y1);
 		} else {
-			*idx0 = TIndex2 (x1, y1);
-			*idx1 = TIndex2 (x0, y1);
-			*idx2 = TIndex2 (x0, y0);
+			*idx0 = TVector2i(x1, y1);
+			*idx1 = TVector2i(x0, y1);
+			*idx2 = TVector2i(x0, y0);
 		}
 	} else {
 		if (yidx - y0 + xidx - x0 < 1) {
-			*idx0 = TIndex2 (x0, y0);
-			*idx1 = TIndex2 (x1, y0);
-			*idx2 = TIndex2 (x0, y1);
+			*idx0 = TVector2i(x0, y0);
+			*idx1 = TVector2i(x1, y0);
+			*idx2 = TVector2i(x0, y1);
 		} else {
-			*idx0 = TIndex2 (x1, y1);
-			*idx1 = TIndex2 (x0, y1);
-			*idx2 = TIndex2 (x1, y0);
+			*idx0 = TVector2i(x1, y1);
+			*idx1 = TVector2i(x0, y1);
+			*idx2 = TVector2i(x1, y0);
 		}
 	}
 
-	dx = idx0->i - idx2->i;
-	dz = idx0->j - idx2->j;
-	ex = idx1->i - idx2->i;
-	ez = idx1->j - idx2->j;
-	qx = xidx - idx2->i;
-	qz = yidx - idx2->j;
+	dx = idx0->x - idx2->x;
+	dz = idx0->y - idx2->y;
+	ex = idx1->x - idx2->x;
+	ez = idx1->y - idx2->y;
+	qx = xidx - idx2->x;
+	qz = yidx - idx2->y;
 
 	invdet = 1 / (dx * ez - dz * ex);
 	*u = (qx * ez - qz * ex) * invdet;
@@ -965,17 +965,17 @@ TVector3d CCourse::FindCourseNormal (double x, double z) const {
 	int x0, x1, y0, y1;
 	GetIndicesForPoint (x, z, &x0, &y0, &x1, &y1);
 
-	TIndex2 idx0, idx1, idx2;
+	TVector2i idx0, idx1, idx2;
 	double u, v;
 	FindBarycentricCoords (x, z, &idx0, &idx1, &idx2, &u, &v);
 
-	const TVector3d& n0 = Course.nmls[ idx0.i + nx * idx0.j ];
-	const TVector3d& n1 = Course.nmls[ idx1.i + nx * idx1.j ];
-	const TVector3d& n2 = Course.nmls[ idx2.i + nx * idx2.j ];
+	const TVector3d& n0 = Course.nmls[ idx0.x + nx * idx0.y ];
+	const TVector3d& n1 = Course.nmls[ idx1.x + nx * idx1.y ];
+	const TVector3d& n2 = Course.nmls[ idx2.x + nx * idx2.y ];
 
-	TVector3d p0 = COURSE_VERTX (idx0.i, idx0.j);
-	TVector3d p1 = COURSE_VERTX (idx1.i, idx1.j);
-	TVector3d p2 = COURSE_VERTX (idx2.i, idx2.j);
+	TVector3d p0 = COURSE_VERTX (idx0.x, idx0.y);
+	TVector3d p1 = COURSE_VERTX (idx1.x, idx1.y);
+	TVector3d p2 = COURSE_VERTX (idx2.x, idx2.y);
 
 	TVector3d smooth_nml = u * n0 +
 	                       v * n1 +
@@ -1000,13 +1000,13 @@ double CCourse::FindYCoord (double x, double z) const {
 	if (cache_full && last_x == x && last_z == z) return last_y;
 	double *elevation = Course.elevation;
 
-	TIndex2 idx0, idx1, idx2;
+	TVector2i idx0, idx1, idx2;
 	double u, v;
 	FindBarycentricCoords (x, z, &idx0, &idx1, &idx2, &u, &v);
 
-	TVector3d p0 = COURSE_VERTX (idx0.i, idx0.j);
-	TVector3d p1 = COURSE_VERTX (idx1.i, idx1.j);
-	TVector3d p2 = COURSE_VERTX (idx2.i, idx2.j);
+	TVector3d p0 = COURSE_VERTX (idx0.x, idx0.y);
+	TVector3d p1 = COURSE_VERTX (idx1.x, idx1.y);
+	TVector3d p2 = COURSE_VERTX (idx2.x, idx2.y);
 
 	double ycoord = u * p0.y + v * p1.y +  (1. - u - v) * p2.y;
 
@@ -1019,30 +1019,30 @@ double CCourse::FindYCoord (double x, double z) const {
 }
 
 void CCourse::GetSurfaceType (double x, double z, double weights[]) const {
-	TIndex2 idx0, idx1, idx2;
+	TVector2i idx0, idx1, idx2;
 	double u, v;
 	FindBarycentricCoords (x, z, &idx0, &idx1, &idx2, &u, &v);
 
 	char *terrain = Course.terrain;
 	for (size_t i=0; i<Course.TerrList.size(); i++) {
 		weights[i] = 0;
-		if (terrain [idx0.i + nx*idx0.j ] == i) weights[i] += u;
-		if (terrain [idx1.i + nx*idx1.j ] == i) weights[i] += v;
-		if (terrain [idx2.i + nx*idx2.j ] == i) weights[i] += 1.0 - u - v;
+		if (terrain [idx0.x + nx*idx0.y ] == i) weights[i] += u;
+		if (terrain [idx1.x + nx*idx1.y ] == i) weights[i] += v;
+		if (terrain [idx2.x + nx*idx2.y ] == i) weights[i] += 1.0 - u - v;
 	}
 }
 
 int CCourse::GetTerrainIdx (double x, double z, double level) const {
-	TIndex2 idx0, idx1, idx2;
+	TVector2i idx0, idx1, idx2;
 	double u, v;
 	FindBarycentricCoords (x, z, &idx0, &idx1, &idx2, &u, &v);
 	char *terrain = Course.terrain;
 
 	for (size_t i=0; i<Course.TerrList.size(); i++) {
 		double wheight = 0.0;
-		if (terrain [idx0.i + nx*idx0.j] == i) wheight += u;
-		if (terrain [idx1.i + nx*idx1.j] == i) wheight += v;
-		if (terrain [idx2.i + nx*idx2.j] == i) wheight += 1.0 - u - v;
+		if (terrain [idx0.x + nx*idx0.y] == i) wheight += u;
+		if (terrain [idx1.x + nx*idx1.y] == i) wheight += v;
+		if (terrain [idx2.x + nx*idx2.y] == i) wheight += 1.0 - u - v;
 		if (wheight > level) return (int)i;
 	}
 	return -1;

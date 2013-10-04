@@ -169,7 +169,7 @@ public:
 
 	void GetIndicesForPoint (double x, double z, int *x0, int *y0, int *x1, int *y1) const;
 	void FindBarycentricCoords (double x, double z,
-	                            TIndex2 *idx0, TIndex2 *idx1, TIndex2 *idx2, double *u, double *v) const;
+	                            TVector2i *idx0, TVector2i *idx1, TVector2i *idx2, double *u, double *v) const;
 	TVector3d FindCourseNormal (double x, double z) const;
 	double FindYCoord (double x, double z) const;
 	void GetSurfaceType (double x, double z, double weights[]) const;

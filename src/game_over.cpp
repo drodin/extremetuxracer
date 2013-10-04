@@ -96,7 +96,7 @@ void GameOverMessage (const CControl *ctrl) {
 		line = Int_StrN (g_game.herring);
 		if (g_game.game_type == CUPRACING) {
 			line += "  (";
-			line += Int_StrN (g_game.herring_req.i);
+			line += Int_StrN (g_game.herring_req.x);
 			line += ")";
 		}
 		FT.DrawString (leftframe+240, topframe+40, line);

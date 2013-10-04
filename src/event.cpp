@@ -226,9 +226,9 @@ void CEvent::Loop (double timestep) {
 		int ddd = FT.AutoDistanceN (1);
 		FT.SetColor (colDBlue);
 		string info = Trans.Text(11);
-		info += "   " + Int_StrN (ecup->races[curr_race]->herrings.i);
-		info += "   " + Int_StrN (ecup->races[curr_race]->herrings.j);
-		info += "   " + Int_StrN (ecup->races[curr_race]->herrings.k);
+		info += "   " + Int_StrN (ecup->races[curr_race]->herrings.x);
+		info += "   " + Int_StrN (ecup->races[curr_race]->herrings.y);
+		info += "   " + Int_StrN (ecup->races[curr_race]->herrings.z);
 		FT.DrawString (CENTER, framebottom+15, info);
 
 		info = Trans.Text(12);

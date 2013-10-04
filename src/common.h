@@ -91,9 +91,6 @@ template<int x, int y>
 void	PrintMatrix (const TMatrix<x, y>& mat);
 void	PrintQuaternion (const TQuaternion& q);
 
-void	PrintIndex3 (const TIndex3& idx);
-void	PrintIndex4 (const TIndex4& idx);
-
 // --------------------------------------------------------------------
 //				file utils
 // --------------------------------------------------------------------

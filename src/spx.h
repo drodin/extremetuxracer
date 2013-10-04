@@ -37,37 +37,43 @@ void     STrimRightN  (string &s);
 void     STrimN       (string &s);
 
 // ----- conversion functions -----------------------------------------
-void     Int_StrN     (string &s, const int val);
 string   Int_StrN     (const int val);
 string   Int_StrN     (const int val, const streamsize count);
-void     Float_StrN   (string &s, const float val, const streamsize count);
 string   Float_StrN   (const float val, const streamsize count);
+string   Bool_StrN    (const bool val);
 string   Vector_StrN  (const TVector3d& v, const streamsize count);
 int      Str_IntN     (const string &s, const int def);
 bool     Str_BoolN    (const string &s, const bool def);
-float    Str_FloatN   (const string &s, const float def);
-TVector2d Str_Vector2N(const string &s, const TVector2d& def);
-TVector3d Str_Vector3N(const string &s, const TVector3d& def);
-TVector4d Str_Vector4N(const string &s, const TVector4d& def);
+float    Str_FloatN(const string &s, const float def);
+template<typename T>
+TVector2<T> Str_Vector2(const string &s, const TVector2<T>& def);
+template<typename T>
+TVector3<T> Str_Vector3(const string &s, const TVector3<T>& def);
+template<typename T>
+TVector4<T> Str_Vector4(const string &s, const TVector4<T>& def);
 TColor   Str_ColorN   (const string &s, const TColor& def);
 TColor3  Str_Color3N  (const string &s, const TColor3& def);
 void     Str_ArrN     (const string &s, float *arr, size_t count, float def);
-string   Bool_StrN    (const bool val);
-TIndex3  Str_Index3N  (const string &s, const TIndex3& def);
 
 // ----- SP functions for parsing lines --------------------------------
-bool     SPExistsN    (const string &s, const string &tag);
 size_t   SPPosN       (const string &s, const string &tag);
 
-string   SPItemN      (const string &s, const string &tag);
 string   SPStrN       (const string &s, const string &tag, const string& def = emptyString);
 int      SPIntN       (const string &s, const string &tag, const int def);
 bool     SPBoolN      (const string &s, const string &tag, const bool def);
 float    SPFloatN     (const string &s, const string &tag, const float def);
-TVector2d SPVector2N  (const string &s, const string &tag, const TVector2d& def = NullVec2);
-TVector3d SPVector3N  (const string &s, const string &tag, const TVector3d& def = NullVec3);
-TIndex3  SPIndex3N    (const string &s, const string &tag, const TIndex3& def);
-TVector4d SPVector4N  (const string &s, const string &tag, const TVector4d& def);
+template<typename T>
+TVector2<T> SPVector2(const string &s, const string &tag, const TVector2<T>& def);
+static inline TVector2d SPVector2d(const string &s, const string &tag) { return SPVector2(s, tag, NullVec2); }
+static inline TVector2i SPVector2i(const string &s, const string &tag) { return SPVector2(s, tag, NullVec2i); }
+template<typename T>
+TVector3<T> SPVector3(const string &s, const string &tag, const TVector3<T>& def);
+static inline TVector3d SPVector3d(const string &s, const string &tag) { return SPVector3(s, tag, NullVec3); }
+static inline TVector3i SPVector3i(const string &s, const string &tag) { return SPVector3(s, tag, NullVec3i); }
+template<typename T>
+TVector4<T> SPVector4(const string &s, const string &tag, const TVector4<T>& def);
+static inline TVector4d SPVector4d(const string &s, const string &tag) { return SPVector4(s, tag, NullVec4); }
+static inline TVector4i SPVector4i(const string &s, const string &tag) { return SPVector4(s, tag, NullVec4i); }
 TColor   SPColorN     (const string &s, const string &tag, const TColor& def);
 TColor3  SPColor3N    (const string &s, const string &tag, const TColor3& def);
 void     SPArrN       (const string &s, const string &tag, float *arr, size_t count, float def);
@@ -78,9 +84,7 @@ void     SPAddFloatN  (string &s, const string &tag, const float val, size_t cou
 void     SPAddStrN    (string &s, const string &tag, const string &val);
 void     SPAddVec2N   (string &s, const string &tag, const TVector2d& val, size_t count);
 void     SPAddVec3N   (string &s, const string &tag, const TVector3d& val, size_t count);
-void     SPAddIndx3N  (string &s, const string &tag, const TIndex3& val);
-void     SPAddIndx4N  (string &s, const string &tag, const TIndex4& val);
-void	 SPAddBoolN   (string &s, const string &tag, const bool val);
+void     SPAddBoolN   (string &s, const string &tag, const bool val);
 
 // ----- manipulating SP strings --------------------------------------
 void     SPSetIntN    (string &s, const string &tag, const int val);

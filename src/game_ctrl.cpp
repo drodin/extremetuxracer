@@ -53,8 +53,8 @@ bool CEvents::LoadEventList () {
 			RaceList.back().light = Env.GetLightIdx (item);
 			RaceList.back().snow = SPIntN (line, "snow", 0);
 			RaceList.back().wind = SPIntN (line, "wind", 0);
-			RaceList.back().time = SPVector3N (line, "time");
-			RaceList.back().herrings = SPIndex3N (line, "herring", TIndex3 (0, 0, 0));
+			RaceList.back().time = SPVector3d(line, "time");
+			RaceList.back().herrings = SPVector3i(line, "herring");
 			RaceList.back().music_theme = Music.GetThemeIdx (SPStrN (line, "theme", "normal"));
 		}
 	}
