@@ -196,8 +196,13 @@ void CFont::UnicodeStr (wchar_t *buff, const char *string) {
 
 int CFont::LoadFont (string name, const char *path) {
 	if (numFonts >= MAX_FONTS) return -1;	
+#ifndef __QNX__
 	fonts[numFonts] = new FTGLPixmapFont (path);
 //	fonts[numFonts] = new FTGLTextureFont (path);
+#else
+#define glRasterPos2i FTTextureGlyph::SetTextPos
+	fonts[numFonts] = new FTGLTextureFont (path);
+#endif
 	if (fonts[numFonts]->Error()) {
 		Message ("Failed to open font");
 		return -1;

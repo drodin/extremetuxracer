@@ -24,7 +24,11 @@ GNU General Public License for more details.
 #include "course.h"
 
 #define TRACK_WIDTH  0.7
+#ifndef __QNX__
 #define MAX_TRACK_MARKS 10000
+#else
+#define MAX_TRACK_MARKS 100
+#endif
 #define MAX_CONTINUE_TRACK_DIST TRACK_WIDTH * 4
 #define MAX_CONTINUE_TRACK_TIME .1
 #define SPEED_TO_START_TRENCH 0.0

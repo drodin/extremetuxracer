@@ -50,7 +50,11 @@ void LoadingLoop (double time_step) {
 		draw_ui_snow ();
     }
 
+#ifndef __QNX__
 	Tex.Draw (TEXLOGO, CENTER, 40, 0.7);
+#else
+	Tex.Draw (TEXLOGO, CENTER, 40, param.scale);
+#endif
 	Tex.Draw (BOTTOM_LEFT, 0, hh-256, 1);
 	Tex.Draw (BOTTOM_RIGHT, ww-256, hh-256, 1);
 	Tex.Draw (TOP_LEFT, 0, 0, 1);
@@ -60,7 +64,7 @@ void LoadingLoop (double time_step) {
 	FT.AutoSizeN (5);
 	FT.DrawString (CENTER, AutoYPosN (60), msg);		
 	FT.SetColor (colWhite);
-	FT.DrawString (CENTER, AutoYPosN (70), Trans.Text (30));		
+	FT.DrawString (CENTER, AutoYPosN (70), Trans.Text (30));
 	Winsys.SwapBuffers ();
 
 	SDL_Delay (100);

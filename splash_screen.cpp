@@ -33,22 +33,27 @@ GNU General Public License for more details.
 void SplashKeys (unsigned int key, bool special, bool release, int x, int y) {
 	if (release) return;
 	switch (key) {
+#ifndef __QNX__
 		case 27: Winsys.Quit (); break;
+#endif
 		case 13: Winsys.SetMode (REGIST); break;
 	}
 }
 
 
 void SplashInit (void) {  
+#ifndef __QNX__
 	Winsys.ShowCursor (!param.ice_cursor);    
 	init_ui_snow (); 
 	Music.Play (param.menu_music, -1);
 	g_game.loopdelay = 10;
+#endif
 }
 
 static string fontnam[6] = {"normal", "italic", "bold", "outline", "pc20", "pcoutline"};
 
 void SplashLoop (double timestep ){
+#ifndef __QNX__
 	Music.Update ();    
 	check_gl_error();
     ClearRenderContext ();
@@ -68,6 +73,7 @@ void SplashLoop (double timestep ){
 
 	if (param.ice_cursor) DrawCursor ();
     Winsys.SwapBuffers();
+#endif
 
 	Trans.LoadLanguages ();
 	Trans.LoadTranslations (param.language);

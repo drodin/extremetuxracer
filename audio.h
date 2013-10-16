@@ -42,7 +42,11 @@ public:
 #define MAX_SOUNDS 32
 
 typedef struct {
+#ifndef USE_AL
     Mix_Chunk *chunk;  
+#else
+    ALmixer_Data *chunk;
+#endif
     int channel;
 	double vol_fact;
     int loop_count;
@@ -90,7 +94,11 @@ public:
 
 class CMusic {
 private:
+#ifndef USE_AL
 	Mix_Music *musics[MAX_MUSICS];
+#else
+	ALmixer_Data *musics[MAX_MUSICS];
+#endif
 	int numMusics;
 	string MusicIndex;		
 
@@ -100,7 +108,12 @@ private:
 
 	int loop_count;			// we need only 1 variable for all pieces
 	int curr_musid;			// ID of current music piece
+#ifndef USE_AL
 	int curr_volume;
+#else
+	ALfloat curr_volume;
+	ALuint curr_channel;
+#endif
 public:
 	CMusic (); 
 	~CMusic () {}

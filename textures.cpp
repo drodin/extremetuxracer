@@ -567,10 +567,20 @@ void CTexture::DrawDirectFrame (GLuint texid, int x, int y, double w, double h, 
 
     glColor4f (1.0, 1.0, 1.0, 1.0);
 	glBegin (GL_QUADS);
+#ifndef __QNX__
 		glTexCoord2f (0, 0); glVertex2f (xx, yy);
 	    glTexCoord2f (1, 0); glVertex2f (xx + ww, yy);
 	    glTexCoord2f (1, 1); glVertex2f (xx + ww, yy + hh);
 	    glTexCoord2f (0, 1); glVertex2f (xx, yy + hh);
+#else
+	    int tw, th;
+		glGetTexLevelParameteriv (GL_TEXTURE_2D, 0, GL_TEXTURE_WIDTH, &tw);
+		glGetTexLevelParameteriv (GL_TEXTURE_2D, 0, GL_TEXTURE_HEIGHT, &th);
+		glTexCoord2f (0, 0); glVertex2f (xx, yy);
+	    glTexCoord2f ((float)ww/(float)tw, 0); glVertex2f (xx + ww, yy);
+	    glTexCoord2f ((float)ww/(float)tw, (float)hh/(float)th); glVertex2f (xx + ww, yy + hh);
+	    glTexCoord2f (0, (float)hh/(float)th); glVertex2f (xx, yy + hh);
+#endif
 	glEnd();
 }
 

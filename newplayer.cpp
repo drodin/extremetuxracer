@@ -30,7 +30,11 @@ static TVector2 cursor_pos = {0, 0};
 static string name;
 static int posit;
 static float curposit;
+#ifndef __QNX__
 static int maxlng = 32;
+#else
+static int maxlng = 16;
+#endif
 static bool crsrvisible = true;
 static float crsrtime = 0;
 static int curr_avatar = 0;
@@ -148,9 +152,15 @@ void NewPlayerKeySpec (SDL_keysym sym, bool release) {
 	} else {
 		switch (key) {
 			case 127: if (posit < len(name)) NameDelete (posit); break;
-			case 8: if (posit > 0) NameDelete (posit-1); posit--; break;
+			case 8: if (posit > 0) { NameDelete (posit-1); posit--; } break;
+#ifndef __QNX__
 			case 27: Winsys.SetMode (REGIST); break;
-			case 13: 
+			case 13:
+#else
+			case 27: virtualkeyboard_hide(); Winsys.SetMode (REGIST); break;
+			case 13:
+				virtualkeyboard_hide();
+#endif
 				if (curr_focus == 1) Winsys.SetMode (REGIST);
 				else QuitAndAddPlayer (); 
 				break;
@@ -175,6 +185,9 @@ void NewPlayerMouseFunc (int button, int state, int x, int y) {
 			case 0: ChangeAvatarSelection (foc, dir); break;
 			case 1: Winsys.SetMode (REGIST); break;
 			case 2: QuitAndAddPlayer(); break;
+#ifdef __QNX__
+			case 3: virtualkeyboard_show(); break;
+#endif
 		}
 	}
 }
@@ -214,16 +227,31 @@ void NewPlayerInit (void) {
 	area = AutoAreaN (30, 80, framewidth);
 	prevleft = area.left;
 	prevtop = AutoYPosN (52);
+#ifndef __QNX__
 	prevwidth = 75 * param.scale;
 	prevoffs = 80;
+#else
+	prevwidth = 128 * param.scale;
+	prevoffs = 138;
+#endif
 
 	ResetWidgets ();
 	AddArrow (area.left + prevwidth + prevoffs + 8, prevtop, 0, 0);
+#ifndef __QNX__
 	AddArrow (area.left + prevwidth + prevoffs + 8, prevtop +prevwidth -18, 1, 0);
 	int siz = FT.AutoSizeN (5);
 	AddTextButton (Trans.Text(8), area.left+50, AutoYPosN (70), 1, siz);
 	double len = FT.GetTextWidth (Trans.Text(15));
 	AddTextButton (Trans.Text(15), area.right-len-50, AutoYPosN (70), 2, siz);
+#else
+	AddArrow (area.left + prevwidth + prevoffs + 8, prevtop +prevwidth -32, 1, 0);
+	int siz = FT.AutoSizeN (5);
+	AddTextButton (Trans.Text(8), area.left+50, AutoYPosN (80), 1, siz);
+	double len = FT.GetTextWidth (Trans.Text(15));
+	AddTextButton (Trans.Text(15), area.right-len-50, AutoYPosN (80), 2, siz);
+	extern void AddMouseRect (int left, int top, int width, int height, int focus, int dir, int arrnr, TWidgetType type);
+	AddMouseRect (area.left, frametop, framewidth, frameheight, 3, 0, 0, W_TEXTBUTTON);
+#endif
 
 	last_avatar = Players.numAvatars - 1;
 	curr_focus = 0;
@@ -250,7 +278,11 @@ void NewPlayerLoop (double timestep ){
 	Tex.Draw (BOTTOM_RIGHT, ww-256, hh-256, 1);
 	Tex.Draw (TOP_LEFT, 0, 0, 1);
 	Tex.Draw (TOP_RIGHT, ww-256, 0, 1);
+#ifndef __QNX__
 	Tex.Draw (T_TITLE_SMALL, CENTER, AutoYPosN (5), param.scale);
+#else
+	Tex.Draw (T_TITLE_SMALL, CENTER, AutoYPosN (2), param.scale);
+#endif
 
 	FT.SetColor (colWhite);
 	FT.AutoSizeN (4);

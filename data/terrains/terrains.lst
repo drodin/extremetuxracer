@@ -39,7 +39,7 @@
 *[name] snowy_ice [texture] snowy_ice.png [friction] 0.2 [depth] 0.03
 	[col] 60 0 180 [sound] ice_sound [part] 0 [shiny] 0
 
-*[name] snowy_hockey_ice [texture] snowy_ice02 [friction] 0.2 [depth] 0.03
+*[name] snowy_hockey_ice [texture] snowy_ice02.png [friction] 0.2 [depth] 0.03
 	[col] 60 60 180 [sound] ice_sound [part] 0 [shiny] 0
 
 *[name] rock [texture] rock.png [friction] 0.7 [depth] 0.01

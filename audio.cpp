@@ -17,6 +17,10 @@ GNU General Public License for more details.
 #include "audio.h"
 #include "spx.h"
 
+#ifdef USE_AL
+ALfloat MIX_MAX_VOLUME = 1.0f;
+#endif
+
 // the global instances of the 3 audio classes
 CAudio Audio;
 CMusic Music;
@@ -31,6 +35,7 @@ CAudio::CAudio () {
 }
 
 void CAudio::Open () {
+#ifndef USE_AL
 	// first initialize audio (SDL, not SDL_Mixer).
 	if (SDL_Init (SDL_INIT_AUDIO) < 0) {
 	    Message ("Couldn't initialize SDL Audio", SDL_GetError());
@@ -42,23 +47,35 @@ void CAudio::Open () {
 		Message ("Couldn't open SDL_mixer", Mix_GetError());
 	IsOpen = CheckOpen ();
 	Mix_AllocateChannels (8);
+#else
+	ALmixer_Init(param.audio_freq, ALMIXER_DEFAULT_NUM_CHANNELS, 0);
+	IsOpen = CheckOpen ();
+#endif
 }
 
 void CAudio::Close () {
 	if (IsOpen) {
 		Music.FreeMusics ();
 		Sound.FreeSounds ();
+#ifndef USE_AL
 		Mix_CloseAudio();
+#else
+		ALmixer_Quit();
+#endif
 		IsOpen = false;
 	}
 }
 
 bool CAudio::CheckOpen() {
+#ifndef USE_AL
     int freq;
     Uint16 format;
     int channels;
     int ret = Mix_QuerySpec (&freq, &format, &channels);
 	return (ret > 0);
+#else
+	return ALmixer_IsInitialized();
+#endif
 }
 
 // --------------------------------------------------------------------
@@ -77,12 +94,20 @@ CSound::CSound () {
 int CSound::LoadChunk (const char *name, const char *filename) {
     if (Audio.IsOpen == false) return -1;
 	if (numSounds >= MAX_SOUNDS) return -1; 
+#ifndef USE_AL
 	sounds[numSounds].chunk = Mix_LoadWAV (filename);
+#else
+	sounds[numSounds].chunk = ALmixer_LoadAll(filename, AL_FALSE);
+#endif
 	if (sounds[numSounds].chunk == NULL) return -1;
 	sounds[numSounds].channel = -1;				// default: no channel
 	sounds[numSounds].loop_count = 0;				// default: playing once
 
+#ifndef USE_AL
 	Mix_VolumeChunk (sounds[numSounds].chunk, param.sound_volume);
+#else
+	sounds[numSounds].vol_fact = (float)param.sound_volume/128.0f;
+#endif
 	SoundIndex = SoundIndex + "[" + name + "]" + Int_StrN (numSounds);
 	numSounds++;
 	return numSounds-1;
@@ -111,7 +136,11 @@ void CSound::LoadSoundList () {
 void CSound::FreeSounds () {
 	HaltAll ();
 	for (int i=0; i<numSounds; i++)
+#ifndef USE_AL
 		if (sounds[i].chunk != NULL) Mix_FreeChunk (sounds[i].chunk);
+#else
+		if (sounds[i].chunk != NULL) ALmixer_FreeData (sounds[i].chunk);
+#endif
 
 	for (int i=0; i<MAX_SOUNDS; i++) {
 		sounds[i].chunk = NULL;
@@ -130,9 +159,15 @@ void CSound::SetVolume (int soundid, int volume) {
     if (Audio.IsOpen == false) return;
 	if (soundid < 0 || soundid >= numSounds) return;
 
+#ifndef USE_AL
 	volume = MIN (MIX_MAX_VOLUME, MAX (0, volume));
 	if (sounds[soundid].chunk == NULL) return;
 	Mix_VolumeChunk (sounds[soundid].chunk, volume);
+#else
+	ALfloat vol = MIN (MIX_MAX_VOLUME, MAX (0.0f, (float)volume/128.0f));
+	if (sounds[soundid].chunk == NULL) return;
+	sounds[soundid].vol_fact = vol;
+#endif
 }
 
 void CSound::SetVolume (string name, int volume) {
@@ -147,7 +182,12 @@ void CSound::Play (int soundid, int loop) {
 	if (active_arr[soundid] == true) return;
 	if (sounds[soundid].chunk == NULL) return;
 
+#ifndef USE_AL
     sounds[soundid].channel = Mix_PlayChannel (-1, sounds[soundid].chunk, loop);
+#else
+    sounds[soundid].channel = ALmixer_PlayChannel (-1, sounds[soundid].chunk, loop);
+    ALmixer_SetVolumeChannel(sounds[soundid].channel, sounds[soundid].vol_fact);
+#endif
     sounds[soundid].loop_count = loop;
 	if (loop < 0) active_arr[soundid] = true;
 }
@@ -162,9 +202,15 @@ void CSound::Play (int soundid, int loop, int volume) {
 	if (active_arr[soundid] == true) return;
 	if (sounds[soundid].chunk == NULL) return;
 
+#ifndef USE_AL
 	volume = MIN (MIX_MAX_VOLUME, MAX (0, volume));
     Mix_VolumeChunk (sounds[soundid].chunk, volume);  
     sounds[soundid].channel = Mix_PlayChannel (-1, sounds[soundid].chunk, loop);
+#else
+	ALfloat vol = MIN (MIX_MAX_VOLUME, MAX (0.0f, (float)volume/128.0f));
+	sounds[soundid].channel = ALmixer_PlayChannel (-1, sounds[soundid].chunk, loop);
+    ALmixer_SetVolumeChannel (sounds[soundid].channel, vol);
+#endif
     sounds[soundid].loop_count = loop;
 	if (loop < 0) active_arr[soundid] = true;
 }
@@ -180,7 +226,11 @@ void CSound::Halt (int soundid) {
 
 	// loop_count must be -1 (endless loop) for halt 
 	if (sounds[soundid].loop_count < 0) {
+#ifndef USE_AL
 		Mix_HaltChannel (sounds[soundid].channel);
+#else
+		ALmixer_HaltChannel (sounds[soundid].channel);
+#endif
 	    sounds[soundid].loop_count = 0;
    		sounds[soundid].channel = -1;
 		active_arr[soundid] = false;
@@ -193,8 +243,14 @@ void CSound::Halt (string name) {
 
 void CSound::HaltAll () {
     if (!Audio.IsOpen) return;
+#ifndef USE_AL
 	Mix_HaltChannel (-1);
+#endif
 	for (int i=0; i<numSounds; i++) {
+#ifdef USE_AL
+		if (sounds[i].channel >= 0)
+			ALmixer_HaltChannel (sounds[i].channel);
+#endif
 		sounds[i].loop_count = 0;
 		sounds[i].channel = -1;
 		active_arr[i] = false;
@@ -206,7 +262,9 @@ void CSound::HaltAll () {
 // --------------------------------------------------------------------
 
 void Hook () {
+#ifndef USE_AL
 	Mix_HaltMusic();
+#endif
 	PrintString ("halted");
 }
 
@@ -231,7 +289,11 @@ CMusic::CMusic () {
 int CMusic::LoadPiece (const char *name, const char *filename) {
     if (!Audio.IsOpen) return -1;
 	if (numMusics >= MAX_MUSICS) return -1; 
+#ifndef USE_AL
 	musics[numMusics] = Mix_LoadMUS (filename);
+#else
+	musics[numMusics] = ALmixer_LoadStream (filename, ALMIXER_DEFAULT_BUFFERSIZE * 4, 16, 8, 4, AL_FALSE);
+#endif
 	if (musics[numMusics] == NULL) {
 		Message ("could not load music", filename);
 		return -1;
@@ -285,7 +347,11 @@ void CMusic::LoadMusicList () {
 
 void CMusic::FreeMusics () {
 	Halt ();
+#ifndef USE_AL
 	for (int i=0; i<numMusics; i++) if (musics[i] != NULL) Mix_FreeMusic (musics[i]);
+#else
+	for (int i=0; i<numMusics; i++) if (musics[i] != NULL) ALmixer_FreeData (musics[i]);
+#endif
 	for (int i=0; i<MAX_MUSICS; i++) musics[i] = NULL;
 	MusicIndex = ""; 
 	numMusics = 0;
@@ -312,8 +378,12 @@ int CMusic::GetThemeIdx (string theme) {
 }
 
 void CMusic::SetVolume (int volume) {
+#ifndef USE_AL
 	int vol = MIN (MIX_MAX_VOLUME, MAX (0, volume));
 	Mix_VolumeMusic (vol);
+#else
+	ALfloat vol = MIN (MIX_MAX_VOLUME, MAX (0.0f, (float)volume/128.0f));
+#endif
 	curr_volume = vol;
 }
 
@@ -322,21 +392,37 @@ void CMusic::SetVolume (int volume) {
 // in each (!) frame.
 
 void CMusic::Update () {
+#ifndef USE_AL
 	Mix_VolumeMusic (curr_volume);
+#else
+	ALmixer_Update();
+#endif
 }
 
 bool CMusic::Play (int musid, int loop) {
     if (!Audio.IsOpen) return false;
 	if (musid < 0 || musid >= numMusics) return false;
+#ifndef USE_AL
 	Mix_Music *music = musics[musid];
+#else
+	ALmixer_Data *music = musics[musid];
+#endif
 	if (music == NULL) return false;
 	if (musid != curr_musid) {
 		Halt ();
+#ifndef USE_AL
 		Mix_PlayMusic (music, loop);
+#else
+		curr_channel = ALmixer_PlayChannel(-1, music, loop);
+#endif
 		curr_musid = musid;
 		loop_count = loop;
 	}
+#ifndef USE_AL
 	Mix_VolumeMusic (curr_volume);
+#else
+	ALmixer_SetVolumeChannel(curr_channel, curr_volume);
+#endif
 	return true;
 }
 
@@ -347,13 +433,24 @@ bool CMusic::Play (string name, int loop) {
 bool CMusic::Play (int musid, int loop, int volume) {
     if (!Audio.IsOpen) return false;
 	if (musid < 0 || musid >= numMusics) return false;
+#ifndef USE_AL
 	Mix_Music *music = musics[musid];
 
 	int vol = MIN (MIX_MAX_VOLUME, MAX (0, volume));
+#else
+	ALmixer_Data *music = musics[musid];
+
+	float vol = MIN (MIX_MAX_VOLUME, MAX (0.0f, (float)volume/128.0f));
+#endif
 	if (musid != curr_musid) {
 		Halt ();
+#ifndef USE_AL
 		Mix_PlayMusic (music, loop);
 		Mix_VolumeMusic (vol);
+#else
+		ALmixer_PlayChannel(curr_channel, music, loop);
+		ALmixer_SetVolumeChannel (curr_channel, vol);
+#endif
 		curr_musid = musid;
 		loop_count = loop;
 	}
@@ -376,7 +473,12 @@ void CMusic::Refresh (string name) {
 }
 
 void CMusic::Halt () {
+#ifndef USE_AL
 	if (Mix_PlayingMusic ()) Mix_HaltMusic();
+#else
+	ALmixer_HaltChannel(curr_channel);
+	curr_channel = -1;
+#endif
 	loop_count = -1;
 	curr_musid = -1;
 }

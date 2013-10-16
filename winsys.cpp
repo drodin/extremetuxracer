@@ -65,6 +65,9 @@ CWinsys::CWinsys () {
 	lasttick = 0;
 	elapsed_time = 0;
 	remain_ticks = 0;
+#ifdef __QNX__
+	gamePaused = false;
+#endif
 }
 
 CWinsys::~CWinsys () {}
@@ -91,10 +94,14 @@ string CWinsys::GetResName (int idx) {
 }
 
 double CWinsys::CalcScreenScale () {
+#ifndef __QNX__
 	double hh = (double)param.y_resolution;
 	if (hh < 768) return 0.78; 
 	else if (hh == 768) return 1.0;
 	else return (hh / 768);
+#else
+	return 1.0;
+#endif
 }
 
 /*
@@ -113,6 +120,7 @@ void CWinsys::SetupVideoMode (TScreenRes resolution) {
     int bpp = 0;
     Uint32 video_flags = SDL_OPENGL;
     if (param.fullscreen) video_flags |= SDL_FULLSCREEN;
+#ifndef __QNX__
 	switch (param.bpp_mode ) {
 		case 0:	bpp = 0; break;
 		case 1:	bpp = 16; break;
@@ -127,6 +135,9 @@ void CWinsys::SetupVideoMode (TScreenRes resolution) {
 		param.res_type = 1;
 		SaveConfigFile ();
 	}
+#else
+	screen = SDL_SetVideoMode(atoi(getenv("WIDTH")), atoi(getenv("HEIGHT")), 0, video_flags);
+#endif
 	SDL_Surface *surf = SDL_GetVideoSurface ();
 	param.x_resolution = surf->w;
 	param.y_resolution = surf->h;
@@ -268,7 +279,7 @@ void CWinsys::PollEvent () {
 	float val;
 
 	while (SDL_PollEvent (&event)) {
-		if (ModePending()) {
+		if (ModePending() && event.type != SDL_QUIT) {
 			IdleFunc ();
     	} else {
 			switch (event.type) {
@@ -328,12 +339,22 @@ void CWinsys::PollEvent () {
 				}
 				break;
 
+#ifndef __QNX__
 				case SDL_VIDEORESIZE:
 					param.x_resolution = event.resize.w;
 					param.y_resolution = event.resize.h;
 					SetupVideoMode (param.res_type);
 					Reshape (event.resize.w, event.resize.h);
 				break;
+#else
+				case SDL_ACTIVEEVENT:
+					if (event.active.state & SDL_APPINPUTFOCUS)
+						if (event.active.gain)
+							gamePaused = false;
+						else
+							gamePaused = true;
+				break;
+#endif
 			
 				case SDL_QUIT: 
 					Quit ();
@@ -371,12 +392,41 @@ void CWinsys::CallLoopFunction () {
 }
 
 void CWinsys::EventLoop () {
+#ifndef __QNX__
     while (true) {
 		PollEvent ();
 	    if (ModePending()) ChangeMode ();
 		CallLoopFunction ();
 		SDL_Delay (g_game.loopdelay);
     }
+#else
+    static int pause = 0;
+    while (true) {
+		PollEvent ();
+		if (gamePaused) {
+			if (!pause) {
+				pause = 1;
+				Music.SetVolume(0);
+				Music.Update();
+				if (g_game.mode == RACING) {
+					SetMode(PAUSED);
+					ChangeMode ();
+					CallLoopFunction ();
+				}
+			}
+			SDL_Delay (g_game.loopdelay);
+		} else { // NOT PAUSED
+			if (pause) {
+				pause = 0;
+				Music.SetVolume(param.music_volume);
+				Music.Update();
+			}
+			if (ModePending()) {FT.Clear(); FT.LoadFontlist(); ChangeMode ();}
+			CallLoopFunction ();
+			SDL_Delay (g_game.loopdelay);
+		}
+    }
+#endif
 }
 
 unsigned char *CWinsys::GetSurfaceData () {

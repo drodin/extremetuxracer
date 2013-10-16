@@ -100,6 +100,7 @@ void RacingKeys (unsigned int key, bool special, bool release, int x, int y) {
 }
 
 void RacingJoyAxis (int axis, double value) {
+#ifndef __QNX__
 	if (axis == 0) { 	// left and right
 		stick_turn = ((value < -0.2) || (value > 0.2));
 		if (stick_turn) stick_turnfact = value; else stick_turnfact = 0.0;
@@ -107,6 +108,15 @@ void RacingJoyAxis (int axis, double value) {
 		stick_paddling = (value < -0.3);
 		stick_braking = (value > 0.3);
 	}
+#else
+	if (axis == 0) { 	// left and right
+		stick_turn = ((value < -0.1) || (value > 0.1));
+		if (stick_turn) stick_turnfact = value*1.5; else stick_turnfact = 0.0;
+	} else if (axis == 1) {	// paddling and braking
+		stick_paddling = (value > 0.1);
+		stick_braking = (value < -0.1);
+	}
+#endif
 }
 
 void RacingJoyButton (int button, int state) {
@@ -116,6 +126,14 @@ void RacingJoyButton (int button, int state) {
 //		key_charging = (bool) state;
 	}
 }
+
+#ifdef __QNX__
+void RacingMouseButton (int button, int state, int x, int y) {
+	if (button == 1) {
+		key_charging = (bool) state;
+	}
+}
+#endif
 
 void CalcJumpEnergy (double time_step){
     CControl *ctrl = Players.GetCtrl (g_game.player_id);
@@ -350,6 +368,11 @@ static void racing_term() {
 }
 
 void racing_register(){
+#ifndef __QNX__
 	Winsys.SetModeFuncs (RACING, racing_init, racing_loop, racing_term,
  		RacingKeys, NULL, NULL, RacingJoyAxis, RacingJoyButton, NULL);
+#else
+	Winsys.SetModeFuncs (RACING, racing_init, racing_loop, racing_term,
+ 		RacingKeys, RacingMouseButton, NULL, RacingJoyAxis, RacingJoyButton, NULL);
+#endif
 }

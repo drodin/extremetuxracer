@@ -27,6 +27,11 @@ GNU General Public License for more details.
 #include "particles.h"
 #include "textures.h"
 #include "game_ctrl.h"
+#ifdef __QNX__
+#include "font.h"
+const char* paused_msg = "PAUSED!";
+const char* touch_msg = "Touch screen to resume game.";
+#endif
 
 static bool sky = true;
 static bool fog = true;
@@ -95,6 +100,14 @@ void paused_loop (double time_step) {
 	SetupGuiDisplay ();
 	PausedSetupDisplay ();
 	DrawHud (ctrl);
+#ifdef __QNX__
+	FT.AutoSizeN(10);
+	FT.SetColor(colDRed);
+	FT.DrawString(FT.CenterX(paused_msg), param.y_resolution/2 - 25, paused_msg);
+	FT.AutoSizeN(8);
+	FT.SetColor(colDYell);
+	FT.DrawString(FT.CenterX(touch_msg), param.y_resolution/2 + 25, touch_msg);
+#endif
     Reshape (width, height);
     Winsys.SwapBuffers ();
 } 

@@ -59,10 +59,24 @@ GNU General Public License for more details.
 
 #include <GL/gl.h>
 #include <GL/glu.h>
+#ifndef __QNX__
 #include "SDL/SDL.h"
 #include "SDL/SDL_joystick.h"
 #include "SDL/SDL_image.h"
+#else
+#undef STDC_HEADERS
+#undef HAVE_STRDUP
+#include "SDL.h"
+#include "SDL_joystick.h"
+#include <bps/navigator.h>
+#include <bps/virtualkeyboard.h>
+#include "image/image.h"
+#endif
+#ifndef USE_AL
 #include "SDL/SDL_mixer.h"
+#else
+#include "ALmixer.h"
+#endif
 
 #if defined ( OS_LINUX )
 	#include <unistd.h>

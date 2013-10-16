@@ -57,7 +57,9 @@ void GameSelectKeys (unsigned int key, bool special, bool release, int x, int y)
 
 	switch (key) {
 		case SDLK_u: param.ui_snow = !param.ui_snow; break;	
+#ifndef __QNX__
 		case 27: Winsys.Quit (); break;
+#endif
 		case 274: if (scope < 6) scope++; break;
 		case 273: if (scope > 0) scope--; break;
 		case 13: QuitGameType (scope); break;
@@ -90,7 +92,11 @@ static void GameSelectInit (void) {
 	scope = 0;
 	
 	ResetWidgets ();
+#ifndef __QNX__
 	int top = AutoYPosN (40);
+#else
+	int top = AutoYPosN (25);
+#endif
 	int siz = FT.AutoSizeN (6);
 	int dist = FT.AutoDistanceN (2);
 	AddTextButton (Trans.Text(1), CENTER, top, 0, siz);
@@ -120,7 +126,11 @@ static void GameSelectLoop (double time_step) {
 		draw_ui_snow();
     }
 
+#ifndef __QNX__
 	Tex.Draw (T_TITLE, CENTER, AutoYPosN (5), param.scale);
+#else
+	Tex.Draw (T_TITLE_SMALL, CENTER, AutoYPosN (2), param.scale);
+#endif
 	Tex.Draw (BOTTOM_LEFT, 0, hh-256, 1);
 	Tex.Draw (BOTTOM_RIGHT, ww-256, hh-256, 1);
 	Tex.Draw (TOP_LEFT, 0, 0, 1);

@@ -412,7 +412,7 @@ bool CCourse::LoadElevMap () {
 			    - base_height_value) / 255.0) * elev_scale
 				- (double)(ny-1-y) / ny * length * slope;
    	     } 
-        pad += (nx * img.depth) % 4;
+        //pad += (nx * img.depth) % 4;
     } 
 	return true;
 } 
@@ -608,7 +608,7 @@ bool CCourse::LoadObjectMap () {
 				}
 			} 
 		} 
-        pad += (nx * treeImg.depth) % 4;
+        //pad += (nx * treeImg.depth) % 4;
 	} 
 	if (SaveItemsFlag) {
 		itemfile = CourseDir + SEP + "items.lst";
@@ -757,7 +757,7 @@ bool CCourse::LoadTerrainMap () {
 				TerrList[terr].texid = texid;
 			}
 		} 
-        pad += (nx * terrImage.depth) % 4;
+        //pad += (nx * terrImage.depth) % 4;
     } 
     return true;
 } 

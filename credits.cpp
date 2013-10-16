@@ -87,6 +87,7 @@ void DrawCreditsText (double time_step){
 	glColor4dv ((double*)&bgcol);
     glRectf (0, 0, w, BOTT_Y);
 
+    /*
     glBegin( GL_QUADS );
 		glVertex2f (0, BOTT_Y );
 		glVertex2f (w, BOTT_Y );
@@ -96,8 +97,10 @@ void DrawCreditsText (double time_step){
     glEnd();
 
     glColor4dv ((double*)&bgcol);
+    */
     glRectf (0, h - TOP_Y, w, h );
     
+    /*
 	glBegin( GL_QUADS );
 		glVertex2f (w, h - TOP_Y );
 		glVertex2f (0, h - TOP_Y );
@@ -105,6 +108,7 @@ void DrawCreditsText (double time_step){
 		glVertex2f (0, h - TOP_Y - 30 );
 		glVertex2f (w, h - TOP_Y - 30 );
     glEnd();
+    */
     
 	glColor4f (1, 1, 1, 1 );
     glEnable (GL_TEXTURE_2D);
@@ -193,7 +197,11 @@ void CreditsLoop (double time_step) {
 	Tex.Draw (BOTTOM_RIGHT, ww-256, hh-256, 1);
 	Tex.Draw (TOP_LEFT, 0, 0, 1);
 	Tex.Draw (TOP_RIGHT, ww-256, 0, 1);
+#ifndef __QNX__
  	Tex.Draw (T_TITLE_SMALL, CENTER, AutoYPosN (5), param.scale);
+#else
+ 	Tex.Draw (T_TITLE_SMALL, CENTER, AutoYPosN (2), param.scale);
+#endif
 	
 
 	Reshape (ww, hh);

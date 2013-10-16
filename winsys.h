@@ -52,6 +52,9 @@ private:
 	float lasttick;
 	float elapsed_time;
 	int remain_ticks;
+#ifdef __QNX__
+	bool gamePaused;
+#endif
 
 	// joystick
 	SDL_Joystick *joystick;	

@@ -61,13 +61,16 @@ void LoadConfigFile () {
 	for (int i=0; i<list.Count(); i++) {
 		line = list.Line(i);
 
+#ifndef __QNX__
 		param.fullscreen = SPIntN (line, "fullscreen", 0);
 		param.res_type = SPIntN (line, "res_type", 0);
 		param.perf_level = SPIntN (line, "detail_level", 0);
 		param.language = SPIntN (line, "language", 0);
+#endif
 		param.sound_volume = SPIntN (line, "sound_volume", 100);
 		param.music_volume = SPIntN (line, "music_volume", 20);
 
+#ifndef __QNX__
 		param.forward_clip_distance = SPIntN (line, "forward_clip_distance", 75);
 		param.backward_clip_distance = SPIntN (line, "backward_clip_distance", 20);
 		param.fov = SPIntN (line, "fov", 60);
@@ -88,6 +91,7 @@ void LoadConfigFile () {
 		param.menu_music = SPStrN (line, "menu_music", "start_1");
 		param.credits_music = SPStrN (line, "credits_music", "credits_1");
 		param.config_music = SPStrN (line, "config_music", "options_1");
+#endif
 	}		
 }
 
@@ -101,8 +105,13 @@ void SetConfigDefaults () {
 
 	// ---------------------------------------
 	
+#ifndef __QNX__
 	param.forward_clip_distance = 75;
 	param.backward_clip_distance = 20;
+#else
+	param.forward_clip_distance = 60;
+	param.backward_clip_distance = 0;
+#endif
 	param.fov = 60;
 	param.bpp_mode = 1;
 	param.tree_detail_distance = 20;
@@ -113,7 +122,11 @@ void SetConfigDefaults () {
 	param.audio_buffer_size = 512;
 
 	param.use_papercut_font = 1;
+#ifndef __QNX__
 	param.ice_cursor = true;
+#else
+	param.ice_cursor = false;
+#endif
 	param.full_skybox = false;
 	param.restart_on_res_change = 0;
 	param.use_quad_scale = 0;
@@ -130,9 +143,9 @@ void AddItem (CSPList *list, string tag, string content) {
 }
 
 void AddIntItem (CSPList *list, string tag, int val) {
-	tag = tag;
+	string ptag = tag;
 	string vs = Int_StrN (val);
-	AddItem (list, tag, vs);
+	AddItem (list, ptag, vs);
 }
 
 void AddComment (CSPList &list, string comment)  {
@@ -144,6 +157,7 @@ void AddComment (CSPList &list, string comment)  {
 void SaveConfigFile () {
 	CSPList liste (512);
 	
+#ifndef __QNX__
 	liste.Add ("# ------------------------------------------------------------------");
 	liste.Add ("#   The first group of params can be adjusted ");
 	liste.Add ("#   on the configuration screen, too");
@@ -171,6 +185,7 @@ void SaveConfigFile () {
 	AddIntItem (&liste, "language", param.language);
 	liste.Add ("");
 
+#endif
 	AddComment (liste, "Sound volume [0...120]");
 	AddComment (liste, "Sounds are the terrain effects or the pickup noise.");
 	AddIntItem (&liste, "sound_volume", param.sound_volume);
@@ -180,6 +195,7 @@ void SaveConfigFile () {
     AddIntItem (&liste, "music_volume", param.music_volume);
 	liste.Add ("");
 
+#ifndef __QNX__
 	liste.Add ("# ------------------------------------------------------------------");
 	liste.Add ("#   The second group of params must be adjusted in this file.");
 	liste.Add ("# ------------------------------------------------------------------");
@@ -280,6 +296,7 @@ void SaveConfigFile () {
 	AddComment (liste, "The widgets are closer to their default sizes.");
 	AddIntItem (&liste, "use_quad_scale", param.use_quad_scale);
 	liste.Add ("");
+#endif
 
 	// ---------------------------------------
 	liste.Save (param.configfile);	
@@ -293,6 +310,11 @@ void InitConfig (char *arg0) {
 	param.config_dir = "config";
 	param.data_dir = "data";
 	param.configfile = param.config_dir + SEP + "options.txt";
+#elif defined ( __QNX__ )
+	param.config_dir = "./data";
+	//param.data_dir = "./shared/misc/extremetuxracer/data";
+	param.data_dir = "./app/native/data";
+	param.configfile = param.config_dir + SEP + "options";
 #else
 	char buff[256];
 	if (strcmp (arg0, "./etr") == 0) { 		// start from work directory
@@ -336,6 +358,9 @@ void InitConfig (char *arg0) {
 
 	if (FileExists (param.configfile.c_str())) {
 //		SetConfigDefaults ();
+#ifdef __QNX__
+		SetConfigDefaults ();
+#endif
 		LoadConfigFile ();
 	} else {
 		SetConfigDefaults ();
@@ -432,15 +457,19 @@ void SetConfig () {
 }
 
 void ChangeRes (int val) {
+#ifndef __QNX__
 	curr_res += val;
 	if (curr_res < 0) curr_res = 0;
 	if (curr_res >= NUM_RESOLUTIONS) curr_res = NUM_RESOLUTIONS-1;
 	paramchanged = true; 
+#endif
 }
 
 void ToggleFullscreen () {
+#ifndef __QNX__
 	curr_fullscreen = !curr_fullscreen; 
 	paramchanged = true; 
+#endif
 }
 
 void ChangeMusVol (int val) {
@@ -458,17 +487,21 @@ void ChangeSoundVol (int val) {
 }
 
 void ChangeDetail (int val) {
+#ifndef __QNX__
 	curr_detail_level += val;
 	if (curr_detail_level < 1) curr_detail_level = 1;
 	if (curr_detail_level > 3) curr_detail_level = 3;
 	paramchanged = true; 
+#endif
 }
 
 void ChangeLanguage (int val) {
+#ifndef __QNX__
 	curr_language += val;
 	if (curr_language < 0) curr_language = 0;
 	if (curr_language > lastLang) curr_language = lastLang;
 	paramchanged = true; 
+#endif
 }
 
 void GameConfigKeys (unsigned int key, bool special, bool release, int x, int y) {
@@ -594,10 +627,17 @@ void GameConfigInit (void) {
 
 	framewidth = 550 * param.scale;
 	frameheight = 50 * param.scale;
+#ifndef __QNX__
 	area = AutoAreaN (30, 80, framewidth);
+#else
+	area = AutoAreaN (5, 45, framewidth);
+#endif
 	FT.AutoSizeN (4);
 	dd = FT.AutoDistanceN (3);
 	if (dd < 36) dd = 36;
+#ifdef __QNX__
+	dd *= 1.5;
+#endif
 	rightpos = area.right -48;
 
 	ResetWidgets ();
@@ -639,7 +679,11 @@ void GameConfigLoop (double time_step) {
 		draw_ui_snow();
     }
 
+#ifndef __QNX__
 	Tex.Draw (T_TITLE_SMALL, CENTER, AutoYPosN (5), 1.0);
+#else
+	Tex.Draw (T_TITLE_SMALL, CENTER, AutoYPosN (2), 1.0);
+#endif
 	Tex.Draw (BOTTOM_LEFT, 0, hh-256, 1);
 	Tex.Draw (BOTTOM_RIGHT, ww-256, hh-256, 1);
 	Tex.Draw (TOP_LEFT, 0, 0, 1);
@@ -649,14 +693,17 @@ void GameConfigLoop (double time_step) {
 //			0, colMBackgr, colBlack, 0.2);
 
 	FT.AutoSizeN (4);
+#ifndef __QNX__
 	PrintCheckbox (0, curr_focus, curr_fullscreen);
 
 	if (curr_focus == 1) FT.SetColor (colDYell); else FT.SetColor (colWhite);
 	FT.DrawString (area.left, area.top + dd, Trans.Text(32));
+#endif
 	if (curr_focus == 2) FT.SetColor (colDYell); else FT.SetColor (colWhite);
 	FT.DrawString (area.left, area.top + dd*2, Trans.Text(33));
 	if (curr_focus == 3) FT.SetColor (colDYell); else FT.SetColor (colWhite);
 	FT.DrawString (area.left, area.top + dd*3, Trans.Text(34));
+#ifndef __QNX__
 	if (curr_focus == 4) FT.SetColor (colDYell); else FT.SetColor (colWhite);
 	FT.DrawString (area.left, area.top + dd*4, Trans.Text(36));
 	if (curr_focus == 5) FT.SetColor (colDYell); else FT.SetColor (colWhite);
@@ -664,21 +711,26 @@ void GameConfigLoop (double time_step) {
 
 	FT.SetColor (colWhite);
 	FT.DrawString (area.left+240, area.top + dd, res_names[curr_res]);
+#endif
 	FT.DrawString (area.left+240, area.top + dd*2, Int_StrN (curr_mus_vol));
 	FT.DrawString (area.left+240, area.top + dd*3, Int_StrN (curr_sound_vol));
+#ifndef __QNX__
 	FT.DrawString (area.left+240, area.top + dd*4, Int_StrN (curr_detail_level));
 	FT.DrawString (area.left+240, area.top + dd*5, LangList[curr_language].language);
 
 	PrintArrow (0, (curr_res < (NUM_RESOLUTIONS-1)));
-	PrintArrow (1, (curr_res > 0));	
+	PrintArrow (1, (curr_res > 0));
+#endif
 	PrintArrow (2, (curr_mus_vol < 120));
 	PrintArrow (3, (curr_mus_vol > 0));	
 	PrintArrow (4, (curr_sound_vol < 120));
 	PrintArrow (5, (curr_sound_vol > 0));	
+#ifndef __QNX__
 	PrintArrow (6, (curr_detail_level < 3));
 	PrintArrow (7, (curr_detail_level > 1));	
 	PrintArrow (8, (curr_language > 0));	
  	PrintArrow (9, (curr_language < lastLang));
+#endif
 	
 	PrintTextButton (0, curr_focus);
 	PrintTextButton (1, curr_focus);
@@ -696,6 +748,7 @@ void GameConfigLoop (double time_step) {
 			FT.DrawString (CENTER, AutoYPosN (68), Trans.Text(41));
 			FT.DrawString (CENTER, AutoYPosN (72), Trans.Text(42));
 		}
+	#elif defined (__QNX__)
 	#else 
 		FT.SetColor (colWhite);
 		FT.AutoSizeN (3);

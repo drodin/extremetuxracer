@@ -30,7 +30,11 @@ static int curr_focus = 0;
 static int curr_light = 0;
 static int lastLight = 3;
 static int curr_snow = 0;
+#ifndef __QNX__
 static int lastSnow = 3;
+#else
+static int lastSnow = 2;
+#endif
 static int curr_wind = 0;
 static int lastWind = 3;
 static int curr_mirror = 0;
@@ -204,7 +208,11 @@ void RaceSelectLoop (double timestep){
 		draw_ui_snow ();
 	}
 
+#ifndef __QNX__
 	Tex.Draw (T_TITLE_SMALL, CENTER, AutoYPosN (5), 1.0);
+#else
+	Tex.Draw (T_TITLE_SMALL, CENTER, AutoYPosN (2), 1.0);
+#endif
 	Tex.Draw (BOTTOM_LEFT, 0, hh-256, 1);
 	Tex.Draw (BOTTOM_RIGHT, ww-256, hh-256, 1);
 	Tex.Draw (TOP_LEFT, 0, 0, 1);

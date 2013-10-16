@@ -70,10 +70,17 @@ void AddMouseRect (int left, int top, int width, int height,
 void AddArrow (int x, int y, int dir, int focus) {
 	if (numArrows >= MAX_ARROWS) return;
 	Arrows[numArrows].x = x;
+#ifdef __QNX__
+	if (dir) y += 8;
+#endif
 	Arrows[numArrows].y = y;
 	Arrows[numArrows].dir = dir;
 	Arrows[numArrows].focus = focus;
+#ifndef __QNX__
 	AddMouseRect (x, y, 32, 16, focus, dir, numArrows, W_ARROW);
+#else
+	AddMouseRect (x, y, 48, 24, focus, dir, numArrows, W_ARROW);
+#endif
 	numArrows++;
 }
 
@@ -216,10 +223,17 @@ void DrawArrow (int x, int y, int dir, bool active, int sel) {
 	int type;	 
 	if (active) type = 3 * dir + 1 + sel; else type = 3 * dir;
 	
+#ifndef __QNX__
 	bl.x = x;
 	bl.y = param.y_resolution - y - 16;
 	tr.x = x + 32;
 	tr.y = param.y_resolution - y;
+#else
+	bl.x = x;
+	bl.y = param.y_resolution - y - 24;
+	tr.x = x + 48;
+	tr.y = param.y_resolution - y;
+#endif
 		
 	texleft = textl[type];
 	texright = textr[type];
@@ -438,6 +452,9 @@ void DrawBonusExt (int y, int numraces, int num) {
 int AutoYPosN (double percent) {
 	double hh = (double)param.y_resolution;
 	double po = hh * percent / 100;
+#ifdef __QNX__
+	po += 20;
+#endif
 	return (int)(po);
 }
 

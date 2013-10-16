@@ -193,7 +193,11 @@ void EventLoop (double timestep) {
 		update_ui_snow (timestep);
 		draw_ui_snow ();
 	}
+#ifndef __QNX__
 	Tex.Draw (T_TITLE_SMALL, CENTER, AutoYPosN (5), param.scale);
+#else
+	Tex.Draw (T_TITLE_SMALL, CENTER, AutoYPosN (2), param.scale);
+#endif
 	Tex.Draw (BOTTOM_LEFT, 0, hh-256, 1);
 	Tex.Draw (BOTTOM_RIGHT, ww-256, hh-256, 1);
 	Tex.Draw (TOP_LEFT, 0, 0, 1);

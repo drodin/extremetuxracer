@@ -26,13 +26,26 @@ GNU General Public License for more details.
 
 static int xleft1, xleft2, ytop;
 static TVector2 cursor_pos = {0, 0};
+
+#ifdef __QNX__
+const char website[] = "http://extremetuxracer.drodin.com";
+#endif
 				  
 void HelpKeys (unsigned int key, bool special, bool release, int x, int y) {
 	if (key == 27) Winsys.SetMode (GAME_TYPE_SELECT);
 }
 
 void HelpMouseFunc (int button, int state, int x, int y) {
+#ifndef __QNX__
 	if (state == 1) Winsys.SetMode (GAME_TYPE_SELECT);
+#else
+	int foc, dir;
+	if (state == 1) {
+		GetFocus (x, y, &foc, &dir);
+		if (foc == 0) navigator_invoke(website, NULL);
+		else Winsys.SetMode (GAME_TYPE_SELECT);
+	}
+#endif
 }
 
 void HelpMotionFunc (int x, int y ){
@@ -54,6 +67,11 @@ void HelpInit (void) {
 	xleft1 = 40; 
 	xleft2 = (int)(param.x_resolution / 2) + 20;
 	ytop = AutoYPosN (15);
+	ResetWidgets ();
+#ifdef __QNX__
+	int siz = FT.AutoSizeN (5);
+	AddTextButton (website, param.x_resolution/2 - 120, AutoYPosN (85), 0, siz);
+#endif
 }
 
 void HelpLoop (double timestep ){
@@ -68,6 +86,7 @@ void HelpLoop (double timestep ){
 		draw_ui_snow();
     }
 
+#ifndef __QNX__
 	FT.AutoSizeN (4);
 	FT.SetColor (colWhite);
 	FT.DrawString (xleft1, AutoYPosN (5), Trans.Text (57));
@@ -87,8 +106,36 @@ void HelpLoop (double timestep ){
 	FT.DrawString (xleft1, ytop + offs * 10, Trans.Text(54));
 	FT.DrawString (xleft1, ytop + offs * 11, Trans.Text(55));
 	FT.DrawString (xleft1, ytop + offs * 12, Trans.Text(56));
-		
+
 	FT.DrawString (CENTER, AutoYPosN (90), "Press any key to return to the main menu");
+#else
+	int ww = param.x_resolution;
+	int hh = param.y_resolution;
+
+	Tex.Draw (TEXLOGO, CENTER, 20, param.scale);
+	Tex.Draw (BOTTOM_LEFT, 0, hh-256, 1);
+	Tex.Draw (BOTTOM_RIGHT, ww-256, hh-256, 1);
+	Tex.Draw (TOP_LEFT, 0, 0, 1);
+	Tex.Draw (TOP_RIGHT, ww-256, 0, 1);
+
+	FT.SetColor (colWhite);
+	FT.AutoSizeN (4);
+	int top = AutoYPosN (47);
+	int dist = FT.AutoDistanceN (2);
+	FT.DrawText (CENTER, top, "Control Tux with your tablet's accelerometer.");
+	FT.DrawText (CENTER, top+dist, "Tilt tablet left/right to turn respectively.");
+	FT.DrawText (CENTER, top+dist*2, "Lean forward to accelerate, backward to brake.");
+	FT.DrawText (CENTER, top+dist*3, "Touch screen and hold to get power, release to jump.");
+	FT.DrawText (CENTER, top+dist*4, "Swipe down to abort race or go to previous menu.");
+	/*
+	FT.SetColor (colDYell);
+	FT.AutoSizeN (6);
+	FT.DrawText (CENTER, AutoYPosN (85), "Loading resources, please wait ...");
+	*/
+	FT.AutoSizeN (5);
+	FT.DrawText (param.x_resolution/2 - 300, AutoYPosN (85), "More info at:");
+	PrintTextButton (0, 0);
+#endif
     Winsys.SwapBuffers();
 
 } 

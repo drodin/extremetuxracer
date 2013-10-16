@@ -579,18 +579,21 @@ class FTGL_EXPORT FTGlyphContainer {
 
 class FTGL_EXPORT FTTextureGlyph : public FTGlyph {
     public:
-        FTTextureGlyph(FT_GlyphSlot glyph, int id, int xOffset, int yOffset, 
-			GLsizei width, GLsizei height);
+        FTTextureGlyph(FT_GlyphSlot glyph);
         virtual ~FTTextureGlyph();
         virtual const FTPoint& Render(const FTPoint& pen);
         static void ResetActiveTexture(){ activeTextureID = 0;}
+        static void SetTextPos(int x, int y){ textPosX = x; textPosY = y;}
     private:
+        unsigned char* bitmapBuffer;
         int destWidth;
         int destHeight;
+        GLuint texWidth;
+        GLuint texHeight;
         FTPoint pos;
-        FTPoint uv[2];
-        int glTextureID;
-        static GLint activeTextureID;
+        GLuint glTextureID;
+        static GLuint activeTextureID;
+        static int textPosX, textPosY;
 };
 
 // --------------------------------------------------------------------
@@ -631,9 +634,10 @@ class FTGL_EXPORT FTFont {
         FTSize charSize;
         bool useDisplayLists;
         FT_Error err;
-    private:        
+    private:
         inline bool CheckGlyph(const unsigned int chr);
-        FTGlyphContainer* glyphList;
+        typedef map<unsigned int, FTGlyphContainer*> GlyphList;
+        GlyphList glyphList;
         FTPoint pen;
 };
 
@@ -646,24 +650,10 @@ class FTGL_EXPORT FTGLTextureFont : public FTFont {
         FTGLTextureFont(const char* fontFilePath);
         FTGLTextureFont(const unsigned char *pBufferBytes, size_t bufferSizeInBytes);
         virtual ~FTGLTextureFont();
-        virtual bool FaceSize(const unsigned int size, const unsigned int res = 72);
         virtual void Render(const char* string);
         virtual void Render(const wchar_t* string);
     private:
         inline virtual FTGlyph* MakeGlyph(unsigned int glyphIndex);
-        inline void CalculateTextureSize();
-        inline GLuint CreateTexture();
-        GLsizei maximumGLTextureSize;
-        GLsizei textureWidth;
-        GLsizei textureHeight;
-        FTVector<GLuint> textureIDList;
-        int glyphHeight;
-        int glyphWidth;
-        unsigned int padding;
-        unsigned int numGlyphs;
-        unsigned int remGlyphs;
-        int xOffset;
-        int yOffset;
 };
 
 class FTGL_EXPORT FTGLPixmapFont : public FTFont

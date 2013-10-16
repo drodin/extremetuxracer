@@ -443,10 +443,14 @@ GLuint CCharShape::GetDisplayList (int divisions) {
 
     idx = divisions - MIN_SPHERE_DIV;
     if  (display_lists[idx] == 0) {
+#ifndef __QNX__
 		display_lists[idx] = glGenLists (1);
 		glNewList (display_lists[idx], GL_COMPILE);
+#endif
 		DrawCharSphere (divisions);
+#ifndef __QNX__
 		glEndList ();
+#endif
     }
     return display_lists[idx];
 }

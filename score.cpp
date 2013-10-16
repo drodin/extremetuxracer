@@ -227,8 +227,8 @@ void ScoreMouseFunc (int button, int state, int x, int y) {
 	int foc, dir;
 	if (state == 1) {
 		GetFocus (x, y, &foc, &dir);
-		if (curr_focus == 0) ChangeScoreSelection (foc, dir);
-		else if (curr_focus == 1) Winsys.SetMode (GAME_TYPE_SELECT); 
+		if (foc == 0) ChangeScoreSelection (foc, dir);
+		else if (foc == 1) Winsys.SetMode (GAME_TYPE_SELECT);
 	}
 }
 
@@ -261,6 +261,7 @@ void ScoreInit (void) {
 
 	framewidth = 550 * param.scale;
 	frameheight = 50 * param.scale;
+#ifndef __QNX__
 	frametop = AutoYPosN (32);
 	area = AutoAreaN (30, 80, framewidth);
 	FT.AutoSizeN (3);
@@ -270,6 +271,17 @@ void ScoreInit (void) {
 	dd2 = 115 * param.scale;
 	dd3 = 250 * param.scale;
 	dd4 = 375 * param.scale;
+#else
+	frametop = AutoYPosN (26);
+	area = AutoAreaN (20, 70, framewidth);
+	FT.AutoSizeN (3);
+	linedist = FT.AutoDistanceN (1);
+	listtop = AutoYPosN (36);
+	dd1 = 50 * param.scale;
+	dd2 = 115 * param.scale;
+	dd3 = 345 * param.scale;
+	dd4 = 460 * param.scale;
+#endif
 
 	CourseList = Course.CourseList;
 	lastCourse = Course.numCourses - 1;
@@ -303,6 +315,7 @@ void ScoreLoop (double timestep ){
 	Tex.Draw (BOTTOM_RIGHT, ww-256, hh-256, 1);
 	Tex.Draw (TOP_LEFT, 0, 0, 1);
 	Tex.Draw (TOP_RIGHT, ww-256, 0, 1);
+#ifndef __QNX__
 	Tex.Draw (T_TITLE_SMALL, CENTER, AutoYPosN (5), param.scale);
 
 //	DrawFrameX (area.left, area.top, area.right-area.left, area.bottom - area.top, 
@@ -311,6 +324,9 @@ void ScoreLoop (double timestep ){
 	FT.AutoSizeN (7);
 	FT.SetColor (colWhite);
 	FT.DrawString (CENTER, AutoYPosN (22), "Highscore list");
+#else
+	Tex.Draw (T_TITLE_SMALL, CENTER, AutoYPosN (2), param.scale);
+#endif
 
 	DrawFrameX (area.left, frametop, framewidth, frameheight, 3, colMBackgr, colDYell, 1.0);
 	FT.AutoSizeN (5);

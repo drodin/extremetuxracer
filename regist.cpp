@@ -65,7 +65,9 @@ void ChangeRegistSelection (int focus, int dir) {
 void RegistKeys (unsigned int key, bool special, bool release, int x, int y) {
 	if (release) return;
 	switch (key) {
+#ifndef __QNX__
 		case 27: Winsys.Quit (); break;
+#endif
 		case 13: 
 			if (curr_focus == 3) {
 				old_last = last_player;
@@ -121,7 +123,11 @@ void RegistInit (void) {
 	scale = param.scale;
 	framewidth = (int)(scale * 280);
 	frameheight = (int)(scale * 50);
+#ifndef __QNX__
 	arrowwidth = 50;
+#else
+	arrowwidth = 75;
+#endif
 	sumwidth = framewidth * 2 + arrowwidth * 2;
 	area = AutoAreaN (30, 80, sumwidth);
 	texsize = 128 * scale;
@@ -162,7 +168,11 @@ void RegistLoop (double timestep ){
 	Tex.Draw (BOTTOM_RIGHT, ww-256, hh-256, 1);
 	Tex.Draw (TOP_LEFT, 0, 0, 1);
 	Tex.Draw (TOP_RIGHT, ww-256, 0, 1);
+#ifndef __QNX__
 	Tex.Draw (T_TITLE_SMALL, CENTER, AutoYPosN (5), scale);
+#else
+	Tex.Draw (T_TITLE_SMALL, CENTER, AutoYPosN (2), scale);
+#endif
 
 //	DrawFrameX (area.left, area.top, area.right-area.left, area.bottom - area.top, 
 //			0, colMBackgr, col, 0.2);
