@@ -30,6 +30,7 @@ GNU General Public License for more details.
 #include "env.h"
 #include "winsys.h"
 #include <GL/glu.h>
+#include <cmath>
 
 CGluCamera GluCamera;
 

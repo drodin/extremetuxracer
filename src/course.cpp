@@ -32,7 +32,6 @@ GNU General Public License for more details.
 #include "font.h"
 #include "physics.h"
 #include "winsys.h"
-#include <cmath>
 
 CCourse Course;
 

@@ -25,6 +25,7 @@ GNU General Public License for more details.
 #include "tux.h"
 #include "game_ctrl.h"
 #include "physics.h"
+#include <string.h>
 
 static const int numJoints = 19;
 

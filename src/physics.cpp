@@ -321,8 +321,8 @@ TVector3 CControl::CalcAirForce () {
 TVector3 CControl::CalcSpringForce () {
 	double springvel = DotProduct (ff.vel, ff.rollnml);
 	double springfact = min (ff.compression, 0.05) * 1500;
-	springfact += clamp (0, ff.compression - 0.05, 0.12) * 3000;
-	springfact += max (0, ff.compression - 0.12 - 0.05) * 10000;
+	springfact += clamp (0.0, ff.compression - 0.05, 0.12) * 3000;
+	springfact += max (0.0, ff.compression - 0.12 - 0.05) * 10000;
 	springfact -= springvel * (ff.compression <= 0.05 ? 1500 : 500);
 	springfact = clamp (0.0, springfact, 3000.0);
 	return ScaleVector (springfact, ff.rollnml);
