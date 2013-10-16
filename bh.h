@@ -68,9 +68,9 @@ GNU General Public License for more details.
 #undef HAVE_STRDUP
 #include "SDL.h"
 #include "SDL_joystick.h"
+#include "SDL_image.h"
 #include <bps/navigator.h>
 #include <bps/virtualkeyboard.h>
-#include "image/image.h"
 #endif
 #ifndef USE_AL
 #include "SDL/SDL_mixer.h"

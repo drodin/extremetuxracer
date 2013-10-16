@@ -52,12 +52,13 @@
     <category>core.games</category>
     <asset path="icon.png">icon.png</asset>
     <asset path="icon_big.png">icon_big.png</asset>
-    <asset path="data">data</asset>
+    <asset path="../data">data</asset>
     <configuration name="Device-Debug">
        <platformArchitecture>armle-v7</platformArchitecture>
        <asset path="Device-Debug/extremetuxracer" entry="true" type="Qnx/Elf">extremetuxracer</asset>
        <asset path="${workspace_loc:/GLwrapper/Device-Debug/libGLwrapper.so}" type="Qnx/Elf">lib/libGLwrapper.so</asset>
        <asset path="${workspace_loc:/SDL/Device-Debug/libSDL.so}" type="Qnx/Elf">lib/libSDL.so</asset>
+       <asset path="${workspace_loc:/SDL_image/Device-Debug/libSDL_image.so}" type="Qnx/Elf">lib/libSDL_image.so</asset>
        <asset path="${workspace_loc:/ALmixer/Device-Debug/libALmixer.so}" type="Qnx/Elf">lib/libALmixer.so</asset>
        <asset path="${workspace_loc:/Tremor/Device-Debug/libTremor.so}" type="Qnx/Elf">lib/libTremor.so</asset>
        <asset path="${workspace_loc:/libogg/Device-Debug/libogg.so}" type="Qnx/Elf">lib/libogg.so</asset>
@@ -67,6 +68,7 @@
        <asset path="Device-Release/extremetuxracer" entry="true" type="Qnx/Elf">extremetuxracer</asset>
        <asset path="${workspace_loc:/GLwrapper/Device-Release/libGLwrapper.so}" type="Qnx/Elf">lib/libGLwrapper.so</asset>
        <asset path="${workspace_loc:/SDL/Device-Release/libSDL.so}" type="Qnx/Elf">lib/libSDL.so</asset>
+       <asset path="${workspace_loc:/SDL_image/Device-Release/libSDL_image.so}" type="Qnx/Elf">lib/libSDL_image.so</asset>
        <asset path="${workspace_loc:/ALmixer/Device-Release/libALmixer.so}" type="Qnx/Elf">lib/libALmixer.so</asset>
        <asset path="${workspace_loc:/Tremor/Device-Release/libTremor.so}" type="Qnx/Elf">lib/libTremor.so</asset>
        <asset path="${workspace_loc:/libogg/Device-Release/libogg.so}" type="Qnx/Elf">lib/libogg.so</asset>
@@ -76,6 +78,7 @@
        <asset path="Simulator/extremetuxracer" entry="true" type="Qnx/Elf">extremetuxracer</asset>
        <asset path="${workspace_loc:/GLwrapper/Simulator/libGLwrapper.so}" type="Qnx/Elf">lib/libGLwrapper.so</asset>
        <asset path="${workspace_loc:/SDL/Simulator/libSDL.so}" type="Qnx/Elf">lib/libSDL.so</asset>
+       <asset path="${workspace_loc:/SDL_image/Simulator/libSDL_image.so}" type="Qnx/Elf">lib/libSDL_image.so</asset>
        <asset path="${workspace_loc:/ALmixer/Simulator/libALmixer.so}" type="Qnx/Elf">lib/libALmixer.so</asset>
        <asset path="${workspace_loc:/Tremor/Simulator/libTremor.so}" type="Qnx/Elf">lib/libTremor.so</asset>
        <asset path="${workspace_loc:/libogg/Simulator/libogg.so}" type="Qnx/Elf">lib/libogg.so</asset>

@@ -74,4 +74,17 @@
 		<nature>com.qnx.tools.ide.bbt.core.bbtnature</nature>
 		<nature>org.eclipse.cdt.core.ccnature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>src</name>
+			<type>2</type>
+			<locationURI>PROJECT_ROOT</locationURI>
+		</link>
+	</linkedResources>
+	<variableList>
+		<variable>
+			<name>PROJECT_ROOT</name>
+			<value>$%7BPARENT-1-PROJECT_LOC%7D</value>
+		</variable>
+	</variableList>
 </projectDescription>
