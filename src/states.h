@@ -63,7 +63,11 @@ public:
 	virtual void Motion(int x, int y) {}
 	virtual void Jaxis(int axis, double value) {}
 	virtual void Jbutt(int button, int state) {}
+#ifndef USE_SDL2
 	virtual void Keyb_spec(SDL_keysym sym, bool release) {}
+#else
+	virtual void Keyb_spec(SDL_Keysym sym, bool release) {}
+#endif
 	virtual void Exit() {}
 };
 

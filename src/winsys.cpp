@@ -33,6 +33,10 @@ GNU General Public License for more details.
 
 #define USE_JOYSTICK true
 
+#ifdef USE_SDL2
+SDL_Window* gameWindow;
+#endif
+
 TVector2 cursor_pos(0, 0);
 
 CWinsys Winsys;
@@ -77,6 +81,7 @@ double CWinsys::CalcScreenScale () const {
 }
 
 void CWinsys::SetupVideoMode (const TScreenRes& resolution_) {
+#ifndef USE_SDL2
 	int bpp = 0;
 	Uint32 video_flags = SDL_OPENGL;
 	if (param.fullscreen) video_flags |= SDL_FULLSCREEN;
@@ -127,6 +132,15 @@ void CWinsys::SetupVideoMode (const TScreenRes& resolution_) {
 	if (resolution.width == 0 && resolution.height == 0) {
 		auto_resolution = resolution;
 	}
+#else
+	gameWindow = SDL_CreateWindow(
+		WINDOW_TITLE,
+		SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
+		0, 0,
+		SDL_WINDOW_FULLSCREEN_DESKTOP);
+	SDL_GLContext glcontext = SDL_GL_CreateContext(gameWindow);
+	resolution.width = 1280; resolution.height = 720;
+#endif
 	scale = CalcScreenScale ();
 	if (param.use_quad_scale) scale = sqrt (scale);
 }
@@ -170,16 +184,20 @@ void CWinsys::Init () {
 	SetupVideoMode (GetResolution (param.res_type));
 	Reshape (resolution.width, resolution.height);
 
+#ifndef USE_SDL2
 	SDL_WM_SetCaption (WINDOW_TITLE, WINDOW_TITLE);
+#endif
 	KeyRepeat (false);
 	if (USE_JOYSTICK) InitJoystick ();
 //	SDL_EnableUNICODE (1);
 }
 
 void CWinsys::KeyRepeat (bool repeat) {
+#ifndef USE_SDL2
 	if (repeat)
 		SDL_EnableKeyRepeat (SDL_DEFAULT_REPEAT_DELAY, SDL_DEFAULT_REPEAT_INTERVAL);
 	else SDL_EnableKeyRepeat (0, 0);
+#endif
 }
 
 void CWinsys::SetFonttype () {

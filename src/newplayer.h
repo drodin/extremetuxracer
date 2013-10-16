@@ -24,7 +24,11 @@ GNU General Public License for more details.
 class CNewPlayer : public State {
 	void Enter();
 	void Loop(double time_step);
+#ifndef USE_SDL2
 	void Keyb_spec(SDL_keysym sym, bool release);
+#else
+	void Keyb_spec(SDL_Keysym sym, bool release);
+#endif
 	void Mouse(int button, int state, int x, int y);
 	void Motion(int x, int y);
 public:

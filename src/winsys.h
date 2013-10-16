@@ -23,6 +23,10 @@ GNU General Public License for more details.
 
 #define NUM_RESOLUTIONS 10
 
+#ifdef USE_SDL2
+extern SDL_Window* gameWindow;
+#endif
+
 extern TVector2 cursor_pos;
 
 struct TScreenRes {
@@ -59,7 +63,11 @@ public:
 	void SetFonttype ();
 	void PrintJoystickInfo () const;
 	void ShowCursor (bool visible) {SDL_ShowCursor (visible);}
+#ifndef USE_SDL2
 	void SwapBuffers () {SDL_GL_SwapBuffers ();}
+#else
+	void SwapBuffers () {SDL_GL_SwapWindow (gameWindow);}
+#endif
 	void Quit ();
 	void Terminate ();
 	void InitJoystick ();

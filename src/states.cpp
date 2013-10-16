@@ -112,6 +112,7 @@ void State::Manager::PollEvent() {
 					}
 					break;
 
+#ifndef __BLACKBERRY__
 				case SDL_VIDEORESIZE:
 					if (Winsys.resolution.width != event.resize.w || Winsys.resolution.height != event.resize.h) {
 						Winsys.resolution.width = event.resize.w;
@@ -120,6 +121,7 @@ void State::Manager::PollEvent() {
 						Reshape(event.resize.w, event.resize.h);
 					}
 					break;
+#endif
 
 				case SDL_QUIT:
 					quit = true;
