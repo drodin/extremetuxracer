@@ -526,8 +526,10 @@ FTTextureGlyph::FTTextureGlyph (FT_GlyphSlot glyph, int id, int xOffset,
 	destHeight = bitmap.rows;
 
 	if (destWidth && destHeight) {
+#ifndef USE_GLES
 		glPushClientAttrib (GL_CLIENT_PIXEL_STORE_BIT);
 		glPixelStorei (GL_UNPACK_LSB_FIRST, GL_FALSE);
+#endif
 		glPixelStorei (GL_UNPACK_ROW_LENGTH, 0);
 		glPixelStorei (GL_UNPACK_ALIGNMENT, 1);
 
@@ -535,7 +537,9 @@ FTTextureGlyph::FTTextureGlyph (FT_GlyphSlot glyph, int id, int xOffset,
 		glTexSubImage2D (GL_TEXTURE_2D, 0, xOffset, yOffset,
 		                 destWidth, destHeight, GL_ALPHA, GL_UNSIGNED_BYTE, bitmap.buffer);
 
+#ifndef USE_GLES
 		glPopClientAttrib();
+#endif
 	}
 
 	uv[0].X (static_cast<float>(xOffset) / static_cast<float>(width));
@@ -696,21 +700,29 @@ bool FTGLTextureFont::FaceSize (const unsigned int size, const unsigned int res)
 }
 
 void FTGLTextureFont::Render (const char* string) {
+#ifndef USE_GLES
 	glPushAttrib (GL_ENABLE_BIT | GL_COLOR_BUFFER_BIT);
+#endif
 	glEnable(GL_BLEND);
 	glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); // GL_ONE
 	FTTextureGlyph::ResetActiveTexture();
 	FTFont::Render (string);
+#ifndef USE_GLES
 	glPopAttrib();
+#endif
 }
 
 void FTGLTextureFont::Render (const wchar_t* string) {
+#ifndef USE_GLES
 	glPushAttrib (GL_ENABLE_BIT | GL_COLOR_BUFFER_BIT);
+#endif
 	glEnable(GL_BLEND);
 	glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); // GL_ONE
 	FTTextureGlyph::ResetActiveTexture();
 	FTFont::Render (string);
+#ifndef USE_GLES
 	glPopAttrib();
+#endif
 }
 
 // --------------------------------------------------------------------
@@ -747,6 +759,7 @@ void FTCharmap::InsertIndex (const unsigned int characterCode, const unsigned in
 }
 
 
+#ifndef USE_GLES
 // --------------------------------------------------------------------
 //			FTPixmapGlyph
 // --------------------------------------------------------------------
@@ -880,3 +893,4 @@ void FTGLPixmapFont::Render( const wchar_t* string) {
 	glPopClientAttrib();
 	glPopAttrib();
 }
+#endif

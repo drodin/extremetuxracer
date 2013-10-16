@@ -139,7 +139,11 @@ wstring CFont::UnicodeStr (const char *s) {
 // --------------------------------------------------------------------
 
 int CFont::LoadFont (const string& name, const char *path) {
+#ifndef USE_GLES
 	fonts.push_back(new FTGLPixmapFont (path));
+#else
+	fonts.push_back(new FTGLTextureFont (path));
+#endif
 	if (fonts.back()->Error()) {
 		Message ("Failed to open font");
 		return -1;
@@ -236,11 +240,13 @@ void CFont::DrawText(float x, float y, const char *text, size_t font, float size
 	else left = (Winsys.resolution.width - GetTextWidth (text)) / 2;
 	if (left < 0) left = 0;
 
+#ifndef USE_GLES
 	if (forientation == OR_TOP) {
 		glRasterPos2i ((int)left, (int)(Winsys.resolution.height - curr_size - y));
 	} else {
 		glRasterPos2i ((int)left, (int)y);
 	}
+#endif
 
 	fonts[font]->Render (text);
 	glPopMatrix();
@@ -258,11 +264,13 @@ void CFont::DrawText(float x, float y, const wchar_t *text, size_t font, float s
 	else left = (Winsys.resolution.width - GetTextWidth (text)) / 2;
 	if (left < 0) left = 0;
 
+#ifndef USE_GLES
 	if (forientation == OR_TOP) {
 		glRasterPos2i ((int)left, (int)(Winsys.resolution.height - curr_size - y));
 	} else {
 		glRasterPos2i ((int)left, (int)y);
 	}
+#endif
 
 	fonts[font]->Render (text);
 	glPopMatrix();
