@@ -147,6 +147,7 @@ void CRacing::Keyb (unsigned int key, bool special, bool release, int x, int y) 
 }
 
 void CRacing::Jaxis (int axis, double value) {
+#ifndef __BLACKBERRY__
 	if (axis == 0) { 	// left and right
 		stick_turn = ((value < -0.2) || (value > 0.2));
 		if (stick_turn) stick_turnfact = value;
@@ -155,6 +156,16 @@ void CRacing::Jaxis (int axis, double value) {
 		stick_paddling = (value < -0.3);
 		stick_braking = (value > 0.3);
 	}
+#else
+	if (axis == 0) {    // left and right
+		stick_turn = ((value < -0.1) || (value > 0.1));
+		if (stick_turn) stick_turnfact = value*2;
+		else stick_turnfact = 0.0;
+	} else if (axis == 1) { // paddling and braking
+		stick_paddling = (value > 0.1);
+		stick_braking = (value < -0.1);
+	}
+#endif
 }
 
 void CRacing::Jbutt (int button, int state) {

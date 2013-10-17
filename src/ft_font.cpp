@@ -514,6 +514,10 @@ FTPoint FTGlyphContainer::Render (const unsigned int characterCode,
 // --------------------------------------------------------------------
 
 GLint FTTextureGlyph::activeTextureID = 0;
+#ifdef USE_GLES
+int FTTextureGlyph::textPosX = 0;
+int FTTextureGlyph::textPosY = 0;
+#endif
 
 FTTextureGlyph::FTTextureGlyph (FT_GlyphSlot glyph, int id, int xOffset,
                                 int yOffset, GLsizei width, GLsizei height)
@@ -561,6 +565,7 @@ const FTPoint& FTTextureGlyph::Render (const FTPoint& pen) {
 
 	glTranslatef (pen.X(),  pen.Y(), 0.0f);
 
+#ifndef USE_GLES
 	glBegin (GL_QUADS);
 	glTexCoord2f (uv[0].X(), uv[0].Y());
 	glVertex2f (pos.X(), pos.Y());
@@ -574,6 +579,21 @@ const FTPoint& FTTextureGlyph::Render (const FTPoint& pen) {
 	glTexCoord2f (uv[1].X(), uv[0].Y());
 	glVertex2f (destWidth + pos.X(), pos.Y());
 	glEnd();
+#else
+	glBegin (GL_QUADS);
+	glTexCoord2f (uv[0].X(), uv[0].Y());
+	glVertex2f (textPosX + pos.X(), textPosY + pos.Y());
+
+	glTexCoord2f (uv[0].X(), uv[1].Y());
+	glVertex2f (textPosX + pos.X(), textPosY + pos.Y() - destHeight);
+
+	glTexCoord2f (uv[1].X(), uv[1].Y());
+	glVertex2f (textPosX + destWidth + pos.X(), textPosY + pos.Y() - destHeight);
+
+	glTexCoord2f (uv[1].X(), uv[0].Y());
+	glVertex2f (textPosX + destWidth + pos.X(), textPosY + pos.Y());
+	glEnd();
+#endif
 	return advance;
 }
 

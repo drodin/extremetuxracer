@@ -35,6 +35,7 @@ GNU General Public License for more details.
 
 #ifdef USE_SDL2
 SDL_Window* gameWindow;
+SDL_GLContext gameGLContext;
 #endif
 
 TVector2 cursor_pos(0, 0);
@@ -137,9 +138,11 @@ void CWinsys::SetupVideoMode (const TScreenRes& resolution_) {
 		WINDOW_TITLE,
 		SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
 		0, 0,
-		SDL_WINDOW_FULLSCREEN_DESKTOP);
-	SDL_GLContext glcontext = SDL_GL_CreateContext(gameWindow);
-	resolution.width = 1280; resolution.height = 720;
+		SDL_WINDOW_FULLSCREEN|SDL_WINDOW_OPENGL);
+	gameGLContext = SDL_GL_CreateContext(gameWindow);
+	SDL_DisplayMode mode;
+	SDL_GetWindowDisplayMode(gameWindow, &mode);
+	resolution.width = mode.w; resolution.height = mode.h;
 #endif
 	scale = CalcScreenScale ();
 	if (param.use_quad_scale) scale = sqrt (scale);
@@ -219,6 +222,9 @@ void CWinsys::Quit () {
 	Audio.Close ();		// frees music and sound as well
 	FT.Clear ();
 	if (g_game.argument < 1) Players.SavePlayers ();
+#ifdef USE_SDL2
+	SDL_GL_DeleteContext(gameGLContext);
+#endif
 	SDL_Quit ();
 }
 

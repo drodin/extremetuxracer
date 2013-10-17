@@ -551,6 +551,9 @@ public:
 	virtual ~FTTextureGlyph();
 	virtual const FTPoint& Render(const FTPoint& pen);
 	static void ResetActiveTexture() { activeTextureID = 0;}
+#ifdef USE_GLES
+	static void SetTextPos(int x, int y){ textPosX = x; textPosY = y;}
+#endif
 private:
 	int destWidth;
 	int destHeight;
@@ -558,6 +561,9 @@ private:
 	FTPoint uv[2];
 	int glTextureID;
 	static GLint activeTextureID;
+#ifdef USE_GLES
+	static int textPosX, textPosY;
+#endif
 };
 
 // --------------------------------------------------------------------

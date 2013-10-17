@@ -58,7 +58,11 @@ void LoadConfigFile () {
 
 		param.fullscreen = SPBoolN (line, "fullscreen", false);
 		param.res_type = SPIntN (line, "res_type", 0);
+#ifndef __BLACKBERRY__
 		param.framerate = SPIntN (line, "framerate", 60);
+#else
+		param.framerate = SPIntN (line, "framerate", 0);
+#endif
 		param.perf_level = SPIntN (line, "detail_level", 0);
 		param.language = SPIntN (line, "language", 0);
 		param.sound_volume = SPIntN (line, "sound_volume", 100);
@@ -74,7 +78,11 @@ void LoadConfigFile () {
 		param.course_detail_level = SPIntN (line, "course_detail_level", 75);
 
 		param.use_papercut_font = SPIntN (line, "use_papercut_font", 1);
+#ifndef __BLACKBERRY__
 		param.ice_cursor = SPBoolN (line, "ice_cursor", true);
+#else
+		param.ice_cursor = SPBoolN (line, "ice_cursor", false);
+#endif
 		param.full_skybox = SPBoolN (line, "full_skybox", false);
 		param.audio_freq = SPIntN (line, "audio_freq", 22050);
 		param.audio_buffer_size = SPIntN (line, "audio_buffer_size", 512);
@@ -284,6 +292,10 @@ void InitConfig (const char *arg0) {
 	param.config_dir = "config";
 	param.data_dir = "data";
 	param.configfile = param.config_dir + SEP + "options.txt";
+#elif defined __BLACKBERRY__
+	param.config_dir = "./data";
+	param.data_dir = "./app/native/data";
+	param.configfile = param.config_dir + SEP + "options";
 #else
 
 #if 0
