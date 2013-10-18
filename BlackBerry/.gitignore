@@ -1,3 +1,4 @@
+.settings
 Device-Debug
 Device-Release
-Simulator
+Simulator-Profile
