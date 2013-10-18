@@ -19,7 +19,11 @@ GNU General Public License for more details.
 #define WINSYS_H
 
 #include "bh.h"
+#ifndef USE_SDL2
+#include <SDL/SDL.h>
+#else
 #include <SDL.h>
+#endif
 
 #define NUM_RESOLUTIONS 10
 
@@ -62,10 +66,11 @@ public:
 	void KeyRepeat (bool repeat);
 	void SetFonttype ();
 	void PrintJoystickInfo () const;
-	void ShowCursor (bool visible) {SDL_ShowCursor (visible);}
 #ifndef USE_SDL2
+	void ShowCursor (bool visible) {SDL_ShowCursor (visible);}
 	void SwapBuffers () {SDL_GL_SwapBuffers ();}
 #else
+	void ShowCursor (bool visible) {return;}
 	void SwapBuffers () {SDL_GL_SwapWindow (gameWindow);}
 #endif
 	void Quit ();

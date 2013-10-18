@@ -23,7 +23,11 @@ GNU General Public License for more details.
 #include "spx.h"
 #include "course.h"
 #include "winsys.h"
+#ifndef USE_SDL2
+#include <SDL/SDL_image.h>
+#else
 #include <SDL_image.h>
+#endif
 #include <GL/glu.h>
 #include <fstream>
 #include <cctype>

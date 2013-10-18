@@ -40,6 +40,7 @@ void State::Manager::Run(State& entranceState) {
 		if (next)
 			EnterNextState();
 		CallLoopFunction();
+#ifndef __BLACKBERRY__
 		if (param.framerate != 0) {
 			clock_t nticks = clock();
 			int32_t sleeptime = CLOCKS_PER_SEC/param.framerate - (nticks-ticks);
@@ -47,6 +48,7 @@ void State::Manager::Run(State& entranceState) {
 				SDL_Delay(sleeptime);
 			ticks = nticks;
 		}
+#endif
 	}
 	current->Exit();
 	previous = current;

@@ -600,8 +600,10 @@ void DrawBonusExt (int y, size_t numraces, size_t num) {
 }
 
 void DrawCursor () {
+#ifndef __BLACKBERRY__
 	Tex.Draw (MOUSECURSOR, cursor_pos.x, cursor_pos.y,
 	          CURSOR_SIZE  * (double)Winsys.resolution.width / 14000);
+#endif
 }
 
 
