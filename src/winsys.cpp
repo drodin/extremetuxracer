@@ -144,9 +144,7 @@ void CWinsys::SetupVideoMode (const TScreenRes& resolution_) {
 		0, 0,
 		SDL_WINDOW_FULLSCREEN|SDL_WINDOW_OPENGL);
 	gameGLContext = SDL_GL_CreateContext(gameWindow);
-	SDL_DisplayMode mode;
-	SDL_GetWindowDisplayMode(gameWindow, &mode);
-	resolution.width = mode.w; resolution.height = mode.h;
+	SDL_GetWindowSize(gameWindow, &(resolution.width), &resolution.height);
 #endif
 	scale = CalcScreenScale ();
 	if (param.use_quad_scale) scale = sqrt (scale);
@@ -228,6 +226,7 @@ void CWinsys::Quit () {
 	if (g_game.argument < 1) Players.SavePlayers ();
 #ifdef USE_SDL2
 	SDL_GL_DeleteContext(gameGLContext);
+	SDL_DestroyWindow(gameWindow);
 #endif
 	SDL_Quit ();
 }
