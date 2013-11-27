@@ -30,6 +30,7 @@ GNU General Public License for more details.
 #include "particles.h"
 #include "textures.h"
 #include "game_ctrl.h"
+#include "tux.h"
 #include "racing.h"
 #include "winsys.h"
 #include "physics.h"
@@ -71,7 +72,7 @@ void CPaused::Mouse (int button, int state, int x, int y) {
 // ====================================================================
 
 void CPaused::Loop (double time_step) {
-	CControl *ctrl = Players.GetCtrl (g_game.player_id);
+	CControl *ctrl = g_game.player->ctrl;
 	int width = Winsys.resolution.width;
 	int height = Winsys.resolution.height;
 	check_gl_error();
@@ -92,7 +93,7 @@ void CPaused::Loop (double time_step) {
 	DrawSnow (ctrl);
 
 	if (param.perf_level > 2) draw_particles (ctrl);
-	Char.Draw (g_game.char_id);
+	g_game.character->shape->Draw();
 
 	DrawHud (ctrl);
 	Reshape (width, height);

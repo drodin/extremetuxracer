@@ -29,6 +29,7 @@ GNU General Public License for more details.
 #include "course.h"
 #include "track_marks.h"
 #include "game_ctrl.h"
+#include "tux.h"
 #include "racing.h"
 #include "winsys.h"
 #include "physics.h"
@@ -49,7 +50,7 @@ void CReset::Enter() {
 }
 
 void CReset::Loop(double time_step) {
-	CControl *ctrl = Players.GetCtrl (g_game.player_id);
+	CControl *ctrl = g_game.player->ctrl;
 	double elapsed_time = Winsys.ClockTime () - reset_start_time;
 	static bool tux_visible = true;
 	static int tux_visible_count = 0;
@@ -112,7 +113,7 @@ void CReset::Loop(double time_step) {
 		position_reset = true;
 	} // if elapsed time
 
-	if (tux_visible) Char.Draw (g_game.char_id);
+	if (tux_visible) g_game.character->shape->Draw();
 
 	if (++tux_visible_count > 3) {
 		tux_visible = (bool) !tux_visible;

@@ -36,6 +36,7 @@ GNU General Public License for more details.
 #include "reset.h"
 #include "winsys.h"
 #include "physics.h"
+#include "tux.h"
 #include <algorithm>
 
 #define MAX_JUMP_AMT 1.0
@@ -67,7 +68,7 @@ static int lastsound = -1;
 
 void CRacing::Keyb (unsigned int key, bool special, bool release, int x, int y) {
 	switch (key) {
-			// steering flipflops
+		// steering flipflops
 		case SDLK_UP:
 			key_paddling = !release;
 			break;
@@ -86,7 +87,7 @@ void CRacing::Keyb (unsigned int key, bool special, bool release, int x, int y) 
 		case SDLK_t:
 			trick_modifier = !release;
 			break;
-			// mode changing and other actions
+		// mode changing and other actions
 		case SDLK_ESCAPE:
 			if (!release) {
 				g_game.raceaborted = true;
@@ -104,27 +105,27 @@ void CRacing::Keyb (unsigned int key, bool special, bool release, int x, int y) 
 			if (!release) ScreenshotN ();
 			break;
 
-			// view changing
+		// view changing
 		case SDLK_1:
 			if (!release) {
-				set_view_mode (Players.GetCtrl (g_game.player_id), ABOVE);
+				set_view_mode (g_game.player->ctrl, ABOVE);
 				param.view_mode = ABOVE;
 			}
 			break;
 		case SDLK_2:
 			if (!release) {
-				set_view_mode (Players.GetCtrl (g_game.player_id), FOLLOW);
+				set_view_mode (g_game.player->ctrl, FOLLOW);
 				param.view_mode = FOLLOW;
 			}
 			break;
 		case SDLK_3:
 			if (!release) {
-				set_view_mode (Players.GetCtrl (g_game.player_id), BEHIND);
+				set_view_mode (g_game.player->ctrl, BEHIND);
 				param.view_mode = BEHIND;
 			}
 			break;
 
-			// toggle
+		// toggle
 		case SDLK_h:
 			if (!release) param.show_hud = !param.show_hud;
 			break;
@@ -166,7 +167,7 @@ void CRacing::Jbutt (int button, int state) {
 }
 
 void CalcJumpEnergy (double time_step) {
-	CControl *ctrl = Players.GetCtrl (g_game.player_id);
+	CControl *ctrl = g_game.player->ctrl;
 
 	if (ctrl->jump_charging) {
 		ctrl->jump_amt = min (MAX_JUMP_AMT, g_game.time - charge_start_time);
@@ -195,7 +196,7 @@ void SetSoundVolumes () {
 
 // ---------------------------- init ----------------------------------
 void CRacing::Enter() {
-	CControl *ctrl = Players.GetCtrl (g_game.player_id);
+	CControl *ctrl = g_game.player->ctrl;
 
 	if (param.view_mode < 0 || param.view_mode >= NUM_VIEW_MODES) {
 		param.view_mode = ABOVE;
@@ -292,7 +293,7 @@ void CalcSteeringControls (CControl *ctrl, double time_step) {
 
 void CalcFinishControls (CControl *ctrl, double timestep, bool airborne) {
 	double speed = ctrl->cvel.Length();
-	double dir_angle = atan(ctrl->cvel.x / ctrl->cvel.z) * 57.3;
+	double dir_angle = RADIANS_TO_ANGLES(atan(ctrl->cvel.x / ctrl->cvel.z));
 
 	if (fabs (dir_angle) > 5 && speed > 5) {
 		ctrl->turn_fact = dir_angle / 20;
@@ -338,7 +339,7 @@ void CalcTrickControls (CControl *ctrl, double time_step, bool airborne) {
 // ====================================================================
 
 void CRacing::Loop (double time_step) {
-	CControl *ctrl = Players.GetCtrl (g_game.player_id);
+	CControl *ctrl = g_game.player->ctrl;
 	double ycoord = Course.FindYCoord (ctrl->cpos.x, ctrl->cpos.z);
 	bool airborne = (bool) (ctrl->cpos.y > (ycoord + JUMP_MAX_START_HEIGHT));
 
@@ -371,7 +372,7 @@ void CRacing::Loop (double time_step) {
 		update_particles (time_step);
 		draw_particles (ctrl);
 	}
-	Char.Draw (g_game.char_id);
+	g_game.character->shape->Draw();
 	UpdateWind (time_step);
 	UpdateSnow (time_step, ctrl);
 	DrawSnow (ctrl);

@@ -116,7 +116,6 @@ bool CControl::CheckTreeCollisions (const TVector3d& pos, TVector3d *tree_loc, d
 		} else return false;
 	}
 
-	CCharShape *shape = Char.GetShape (g_game.char_id);
 	double diam = 0.0;
 	TVector3d loc(0, 0, 0);
 	bool hit = false;
@@ -125,7 +124,7 @@ bool CControl::CheckTreeCollisions (const TVector3d& pos, TVector3d *tree_loc, d
 	TCollidable *trees = &Course.CollArr[0];
 	size_t num_trees = Course.CollArr.size();
 	size_t tree_type = trees[0].tree_type;
-	TPolyhedron ph = Course.GetPoly (tree_type);
+	const TPolyhedron* ph = &Course.GetPoly (tree_type);
 
 	for (size_t i=0; i<num_trees; i++) {
 		diam = trees[i].diam;
@@ -141,17 +140,16 @@ bool CControl::CheckTreeCollisions (const TVector3d& pos, TVector3d *tree_loc, d
 		// have to look at polyhedron - switch to correct one if necessary
 		if (tree_type != trees[i].tree_type) {
 			tree_type = trees[i].tree_type;
-			ph = Course.GetPoly (tree_type);
+			ph = &Course.GetPoly (tree_type);
 		}
 
-		TPolyhedron ph2 = CopyPolyhedron (ph);
+		TPolyhedron ph2 = *ph;
 		mat.SetScalingMatrix(diam, height, diam);
 		TransPolyhedron (mat, ph2);
 		mat.SetTranslationMatrix(loc.x, loc.y, loc.z);
 		TransPolyhedron (mat, ph2);
 //		hit = TuxCollision2 (pos, ph2);
-		hit = shape->Collision (pos, ph2);
-		FreePolyhedron (ph2);
+		hit = g_game.character->shape->Collision(pos, ph2);
 
 		if (hit == true) {
 			if (tree_loc != NULL) *tree_loc = loc;
@@ -253,7 +251,7 @@ void CControl::AdjustPosition (const TPlane& surf_plane, double dist_from_surfac
 }
 
 void CControl::SetTuxPosition (double speed) {
-	CCharShape *shape = Char.GetShape (g_game.char_id);
+	CCharShape *shape = g_game.character->shape;
 
 	TVector2d playSize = Course.GetPlayDimensions();
 	TVector2d courseSize = Course.GetDimensions();
@@ -624,7 +622,7 @@ void CControl::SolveOdeSystem (double timestep) {
 // --------------------------------------------------------------------
 
 void CControl::UpdatePlayerPos (double timestep) {
-	CCharShape *shape = Char.GetShape (g_game.char_id);
+	CCharShape *shape = g_game.character->shape;
 	double paddling_factor;
 	double flap_factor;
 	double dist_from_surface;

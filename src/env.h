@@ -45,11 +45,16 @@ struct TLight {
 	void Enable(GLenum num) const;
 };
 
+struct TEnvironment {
+	string name;
+	bool high_res;
+};
+
 class CEnvironment {
 private:
 	size_t EnvID;
 	TTexture* Skybox;
-	vector<string> locs;
+	vector<TEnvironment> locs;
 	string lightcond[4];
 	TLight default_light;
 	TLight lights[4];
@@ -60,7 +65,8 @@ private:
 	map<string, size_t> LightIndex;
 
 	void ResetSkybox ();
-	void LoadSkybox (const string& EnvDir);
+	void LoadSkybox(const string& EnvDir, bool high_res);
+	void LoadSkyboxSide(size_t index, const string& EnvDir, const string& name, bool high_res);
 	void ResetLight ();
 	void LoadLight (const string& EnvDir);
 	void ResetFog ();

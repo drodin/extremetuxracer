@@ -56,7 +56,6 @@ static void make_tri_list(void(*tri_func)(int, int, int, int), unsigned char Ena
 	}
 }
 
-TTexture* quadsquare::EnvmapTexture = NULL;
 GLuint *quadsquare::VertexArrayIndices = NULL;
 GLuint quadsquare::VertexArrayCounter;
 GLuint quadsquare::VertexArrayMinIdx;
@@ -95,10 +94,6 @@ quadsquare::quadsquare (quadcornerdata* pcd) {
 		float y = pcd->Verts[i].Y;
 		if (y < MinY) MinY = y;
 		if (y > MaxY) MaxY = y;
-	}
-
-	if (pcd->Parent == NULL) {
-		EnvmapTexture = Tex.GetTexture (ENV_MAP);
 	}
 }
 
@@ -741,20 +736,6 @@ void quadsquare::DrawTris() {
 	if (glUnlockArraysEXT_p) glUnlockArraysEXT_p();
 }
 
-void quadsquare::DrawEnvmapTris() {
-	if (VertexArrayCounter > 0 && EnvmapTexture != NULL) {
-		glTexGeni (GL_S, GL_TEXTURE_GEN_MODE, GL_SPHERE_MAP);
-		glTexGeni (GL_T, GL_TEXTURE_GEN_MODE, GL_SPHERE_MAP);
-
-		EnvmapTexture->Bind();
-
-		DrawTris();
-
-		glTexGeni (GL_S, GL_TEXTURE_GEN_MODE, GL_OBJECT_LINEAR);
-		glTexGeni (GL_T, GL_TEXTURE_GEN_MODE, GL_OBJECT_LINEAR);
-	}
-}
-
 void quadsquare::InitArrayCounters() {
 	VertexArrayCounter = 0;
 	VertexArrayMinIdx = INT_MAX;
@@ -779,14 +760,6 @@ void quadsquare::Render (const quadcornerdata& cd, GLubyte *vnc_array) {
 
 			Course.TerrList[j].texture->Bind();
 			DrawTris ();
-
-			if (TerrList[j].shiny && param.perf_level > 1) {
-				glDisableClientState (GL_COLOR_ARRAY);
-				glColor4f (1.0, 1.0, 1.0, ENV_MAP_ALPHA / 255.0);
-				DrawEnvmapTris();
-				glEnableClientState (GL_COLOR_ARRAY);
-			}
-
 		}
 	}
 
@@ -823,18 +796,6 @@ void quadsquare::Render (const quadcornerdata& cd, GLubyte *vnc_array) {
 					DrawTris();
 				}
 			}
-
-			/*
-			if (param.perf_level > 1) {
-			glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-			for (i=0; i<VertexArrayCounter; i++) {
-			colorval (VertexArrayIndices[i], 3) =
-			(TerrList[Terrain[VertexArrayIndices[i]]].shiny) ?
-			ENV_MAP_ALPHA : 0;
-			}
-			DrawEnvmapTris();
-			}
-			*/
 		}
 	}
 	glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);

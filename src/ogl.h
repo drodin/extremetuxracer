@@ -24,18 +24,18 @@ GNU General Public License for more details.
 #define NEAR_CLIP_DIST 0.1
 
 enum TRenderMode {
-    GUI,
-    GAUGE_BARS,
-    TEXFONT,
-    COURSE,
-    TREES,
-    PARTICLES,
-    TUX,
-    TUX_SHADOW,
-    SKY,
-    FOG_PLANE,
-    TRACK_MARKS,
-    RM_UNINITIALIZED = -1
+	GUI,
+	GAUGE_BARS,
+	TEXFONT,
+	COURSE,
+	TREES,
+	PARTICLES,
+	TUX,
+	TUX_SHADOW,
+	SKY,
+	FOG_PLANE,
+	TRACK_MARKS,
+	RM_UNINITIALIZED = -1
 };
 
 

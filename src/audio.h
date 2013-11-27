@@ -79,10 +79,10 @@ public:
 // --------------------------------------------------------------------
 
 enum ESituation {
-    MUS_RACING = 0,
-    MUS_WONRACE = 1,
-    MUS_LOSTRACE = 2,
-    SITUATION_COUNT
+	MUS_RACING = 0,
+	MUS_WONRACE = 1,
+	MUS_LOSTRACE = 2,
+	SITUATION_COUNT
 };
 
 class CMusic {

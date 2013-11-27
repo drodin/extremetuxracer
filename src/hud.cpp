@@ -78,7 +78,7 @@ static void draw_time() {
 		*/
 		glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_NEAREST);
 
-		Tex.Draw (T_TIME, 10, 12, 1);
+		Tex.Draw (T_TIME, 16, 20, 1);
 		FT.SetColor (colDYell);
 		FT.SetSize (32);
 		FT.DrawString (160, 6, hundrstr);
@@ -247,29 +247,7 @@ void DrawSpeed (double speed) {
 	}
 }
 
-void DrawWind(float dir, float speed) {
-	Tex.Draw (SPEEDMETER, 10, Winsys.resolution.height - 150, 1.0);
-	glPushMatrix ();
-	glDisable (GL_TEXTURE_2D);
-
-	glColor4f (1, 0, 0, 0.5);
-	glTranslatef (82, 77, 0);
-	glRotatef (dir, 0, 0, 1);
-	const GLfloat vtx[] = {
-		-2, 0.0,
-		2, 0.0,
-		2, -speed,
-		-2, -speed
-	};
-	glEnableClientState(GL_VERTEX_ARRAY);
-	glVertexPointer(2, GL_FLOAT, 0, vtx);
-	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
-	glDisableClientState(GL_VERTEX_ARRAY);
-	glPopMatrix ();
-	Tex.Draw (SPEED_KNOB, 74, Winsys.resolution.height - 84, 1.0);
-}
-
-void DrawWind2 (float dir, float speed, const CControl *ctrl) {
+void DrawWind(float dir, float speed, const CControl *ctrl) {
 	if (g_game.wind_id < 1) return;
 
 	Tex.Draw (SPEEDMETER, 0, Winsys.resolution.height-140, 1.0);
@@ -302,12 +280,10 @@ void DrawWind2 (float dir, float speed, const CControl *ctrl) {
 	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 
 	// direction indicator
-	TVector3d movdir = ctrl->cvel;
-	movdir.Norm();
-	float dir_angle = atan (movdir.x / movdir.z) * 57.3;
+	float dir_angle = RADIANS_TO_ANGLES(atan2(ctrl->cvel.x, ctrl->cvel.z));
 
 	glColor4f (0, 0.5, 0, 1.0);
-	glRotatef (dir_angle + 180 - dir, 0, 0, 1);
+	glRotatef (dir_angle - dir, 0, 0, 1);
 	static const GLshort vtx2 [] = {
 		-2, 0,
 		2, 0,
@@ -331,12 +307,15 @@ void DrawWind2 (float dir, float speed, const CControl *ctrl) {
 	}
 }
 
-const  int   maxFrames = 50;
-static int   numFrames = 0;
-static float averagefps = 0;
-static float sumTime = 0;
+void DrawFps() {
+	const  int   maxFrames = 50;
+	static int   numFrames = 0;
+	static float averagefps = 0;
+	static float sumTime = 0;
 
-void DrawFps () {
+	if (!param.display_fps)
+		return;
+
 	if (numFrames >= maxFrames) {
 		averagefps = 1 / sumTime * maxFrames;
 		numFrames = 0;
@@ -347,17 +326,15 @@ void DrawFps () {
 	}
 	if (averagefps < 1) return;
 
-	if (param.display_fps) {
-		string fpsstr = Float_StrN (averagefps, 0);
-		if (param.use_papercut_font < 2) {
-			Tex.DrawNumStr (fpsstr, (Winsys.resolution.width - 60) / 2, 10, 1, colWhite);
-		} else {
-			if (averagefps >= 35)
-				FT.SetColor (colWhite);
-			else
-				FT.SetColor (colRed);
-			FT.DrawString ((Winsys.resolution.width - 60) / 2, 10, fpsstr);
-		}
+	string fpsstr = Int_StrN((int)averagefps);
+	if (param.use_papercut_font < 2) {
+		Tex.DrawNumStr (fpsstr, (Winsys.resolution.width - 60) / 2, 10, 1, colWhite);
+	} else {
+		if (averagefps >= 35)
+			FT.SetColor (colWhite);
+		else
+			FT.SetColor (colRed);
+		FT.DrawString ((Winsys.resolution.width - 60) / 2, 10, fpsstr);
 	}
 }
 
@@ -412,5 +389,5 @@ void DrawHud (const CControl *ctrl) {
 	DrawSpeed (speed * 3.6);
 	DrawFps ();
 	DrawCoursePosition (ctrl);
-	DrawWind2 (Wind.Angle (), Wind.Speed (), ctrl);
+	DrawWind (Wind.Angle (), Wind.Speed (), ctrl);
 }

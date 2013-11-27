@@ -48,12 +48,6 @@ CCourse::CCourse () {
 }
 
 CCourse::~CCourse() {
-	for (size_t i = 0; i < PolyArr.size(); i++) {
-		for (size_t j = 0; j < PolyArr[i].num_polygons; j++)
-			delete[] PolyArr[i].polygons[j].vertices;
-		delete[] PolyArr[i].polygons;
-		FreePolyhedron(PolyArr[i]);
-	}
 	FreeCourseList ();
 	ResetCourse ();
 }
@@ -80,8 +74,15 @@ const TPolyhedron& CCourse::GetPoly (size_t type) const {
 	return PolyArr[ObjTypes[type].poly];
 }
 
-size_t CCourse::GetCourseIdx (const string& dir) const {
-	return CourseIndex.at(dir);
+TCourse* CCourse::GetCourse(const string& dir) {
+	return &CourseList[CourseIndex.at(dir)];
+}
+
+size_t CCourse::GetCourseIdx(const TCourse* course) const {
+	size_t idx = (course - &CourseList[0]) / sizeof(TCourse);
+	if (idx >= CourseList.size())
+		return -1;
+	return idx;
 }
 
 void CCourse::CalcNormals () {
@@ -264,14 +265,9 @@ void CCourse::MakeStandardPolyhedrons () {
 	PolyArr.resize(2);
 
 	// polyhedron "none"
-	PolyArr[0].num_vertices = 0;
-	PolyArr[0].num_polygons = 0;
-	PolyArr[0].vertices = NULL;
-	PolyArr[0].polygons = NULL;
 
 	// poyhedron "tree"
-	PolyArr[1].num_vertices = 6;
-	PolyArr[1].vertices = new TVector3d[6];
+	PolyArr[1].vertices.resize(6);
 	PolyArr[1].vertices[0] = TVector3d(0, 0, 0);
 	PolyArr[1].vertices[1] = TVector3d(0, 0.15, 0.5);
 	PolyArr[1].vertices[2] = TVector3d(0.5, 0.15, 0);
@@ -279,11 +275,9 @@ void CCourse::MakeStandardPolyhedrons () {
 	PolyArr[1].vertices[4] = TVector3d(-0.5, 0.15, 0);
 	PolyArr[1].vertices[5] = TVector3d(0, 1, 0);
 
-	PolyArr[1].num_polygons = 8;
-	PolyArr[1].polygons = new TPolygon[8];
-	for (size_t i=0; i<PolyArr[1].num_polygons; i++) {
-		PolyArr[1].polygons[i].num_vertices = 3;
-		PolyArr[1].polygons[i].vertices = new int[3];
+	PolyArr[1].polygons.resize(8);
+	for (size_t i = 0; i < 8; i++) {
+		PolyArr[1].polygons[i].vertices.resize(3);
 	}
 	PolyArr[1].polygons[0].vertices[0] = 0;
 	PolyArr[1].polygons[0].vertices[1] = 1;
@@ -339,8 +333,7 @@ void CCourse::FreeObjectTextures () {
 bool CCourse::LoadElevMap () {
 	CImage img;
 
-	if (!img.LoadPng (CourseDir.c_str(), "elev.png", true)) {
-		Message ("unable to open elev.png");
+	if (!img.LoadPng (CourseDir.c_str(), "elev.png", true)) {		Message ("unable to open elev.png");
 		return false;
 	}
 
@@ -397,27 +390,11 @@ void CCourse::LoadItemList () {
 			ObjTypes[type].texture = new TTexture();
 			ObjTypes[type].texture->LoadMipmap(terrpath, false);
 		}
-		bool coll = ObjTypes[type].collidable;
-		if (coll == 1) {
-			CollArr.push_back(TCollidable());
-			CollArr.back().pt.x = xx;
-			CollArr.back().pt.z = zz;
-			CollArr.back().pt.y = FindYCoord (xx, zz);
-			CollArr.back().height = height;
-			CollArr.back().diam = diam;
-			CollArr.back().tree_type = type;
-		} else if (coll == 0) {
-			NocollArr.push_back(TItem());
-			NocollArr.back().pt.x = xx;
-			NocollArr.back().pt.z = zz;
-			NocollArr.back().pt.y = FindYCoord (xx, zz);
-			NocollArr.back().height = height;
-			NocollArr.back().diam = diam;
-			NocollArr.back().item_type = type;
-			NocollArr.back().collectable = ObjTypes[type].collectable;
-			NocollArr.back().drawable = ObjTypes[type].drawable;
-			ObjTypes[type].num_items++;
-		}
+
+		if (ObjTypes[type].collidable)
+			CollArr.push_back(TCollidable(xx, FindYCoord(xx, zz), zz, height, diam, type));
+		else
+			NocollArr.push_back(TItem(xx, FindYCoord(xx, zz), zz, height, diam, ObjTypes[type]));
 	}
 }
 
@@ -462,8 +439,7 @@ static void CalcRandomTrees (double baseheight, double basediam, double &height,
 bool CCourse::LoadAndConvertObjectMap () {
 	CImage treeImg;
 
-	if (!treeImg.LoadPng (CourseDir.c_str(), "trees.png", true)) {
-		Message ("unable to open trees.png");
+	if (!treeImg.LoadPng (CourseDir.c_str(), "trees.png", true)) {		Message ("unable to open trees.png");
 		return false;
 	}
 
@@ -512,27 +488,10 @@ bool CCourse::LoadAndConvertObjectMap () {
 						break;
 				}
 
-				bool coll = ObjTypes[type].collidable;
-				if (coll == 1) {
-					CollArr.push_back(TCollidable());
-					CollArr.back().pt.x = xx;
-					CollArr.back().pt.z = zz;
-					CollArr.back().pt.y = FindYCoord (xx, zz);
-					CollArr.back().height = height;
-					CollArr.back().diam = diam;
-					CollArr.back().tree_type = type;
-				} else if (coll == 0) {
-					NocollArr.push_back(TItem());
-					NocollArr.back().pt.x = xx;
-					NocollArr.back().pt.z = zz;
-					NocollArr.back().pt.y = FindYCoord (xx, zz);
-					NocollArr.back().height = height;
-					NocollArr.back().diam = diam;
-					NocollArr.back().item_type = type;
-					NocollArr.back().collectable = ObjTypes[type].collectable;
-					NocollArr.back().drawable = ObjTypes[type].drawable;
-					ObjTypes[type].num_items++;
-				}
+				if (ObjTypes[type].collidable)
+					CollArr.push_back(TCollidable(xx, FindYCoord(xx, zz), zz, height, diam, type));
+				else
+					NocollArr.push_back(TItem(xx, FindYCoord(xx, zz), zz, height, diam, ObjTypes[type]));
 
 				string line = "*[name]";
 				line += ObjTypes[type].name;
@@ -545,7 +504,7 @@ bool CCourse::LoadAndConvertObjectMap () {
 		}
 		pad += (nx * treeImg.depth) % 4;
 	}
-	string itemfile = CourseDir + SEP + "items.lst";
+	string itemfile = CourseDir + SEP "items.lst";
 	savelist.Save (itemfile); // Convert trees.png to items.lst
 	return true;
 }
@@ -647,8 +606,7 @@ bool CCourse::LoadTerrainTypes () {
 bool CCourse::LoadTerrainMap () {
 	CImage terrImage;
 
-	if (!terrImage.LoadPng (CourseDir.c_str(), "terrain.png", true)) {
-		Message ("unable to open terrain.png");
+	if (!terrImage.LoadPng (CourseDir.c_str(), "terrain.png", true)) {		Message ("unable to open terrain.png");
 		return false;
 	}
 	if (nx != terrImage.nx || ny != terrImage.ny) {
@@ -709,7 +667,7 @@ bool CCourse::LoadCourseList () {
 		string coursepath = param.common_course_dir + SEP + CourseList[i].dir;
 		if (DirExists (coursepath.c_str())) {
 			// preview
-			string previewfile = coursepath + SEP + "preview.png";
+			string previewfile = coursepath + SEP "preview.png";
 			CourseList[i].preview = new TTexture();
 			if (!CourseList[i].preview->LoadMipmap(previewfile, false)) {
 				Message ("couldn't load previewfile");
@@ -717,7 +675,7 @@ bool CCourse::LoadCourseList () {
 			}
 
 			// params
-			string paramfile = coursepath + SEP + "course.dim";
+			string paramfile = coursepath + SEP "course.dim";
 			if (!paramlist.Load (paramfile)) {
 				Message ("could not load course.dim");
 			}
@@ -767,24 +725,18 @@ void CCourse::ResetCourse () {
 	mirrored = false;
 }
 
-bool CCourse::LoadCourse (size_t idx) {
-	if (idx >= CourseList.size()) {
-		Message ("wrong course index");
-		curr_course = NULL;
-		return false;
-	}
-
-	if (&CourseList[idx] != curr_course || g_game.force_treemap) {
+bool CCourse::LoadCourse (TCourse* course) {
+	if (course != curr_course || g_game.force_treemap) {
 		ResetCourse ();
-		curr_course = &CourseList[idx];
+		curr_course = course;
 		CourseDir = param.common_course_dir + SEP + curr_course->dir;
 
-		start_pt.x = CourseList[idx].start.x;
-		start_pt.y = -CourseList[idx].start.y;
+		start_pt.x = course->start.x;
+		start_pt.y = -course->start.y;
 		base_height_value = 127;
 
-		g_game.use_keyframe = CourseList[idx].use_keyframe;
-		g_game.finish_brake = CourseList[idx].finish_brake;
+		g_game.use_keyframe = course->use_keyframe;
+		g_game.finish_brake = course->finish_brake;
 
 		if (!LoadElevMap ()) {
 			Message ("could not load course elev map");
@@ -800,9 +752,9 @@ bool CCourse::LoadCourse (size_t idx) {
 		}
 
 		// ................................................................
-		string itemfile = CourseDir + SEP + "items.lst";
+		string itemfile = CourseDir + SEP "items.lst";
 		bool itemsexists = FileExists (itemfile);
-		const CControl *ctrl = Players.GetCtrl (g_game.player_id);
+		const CControl *ctrl = g_game.player->ctrl;
 
 		if (itemsexists && !g_game.force_treemap)
 			LoadItemList ();
@@ -820,9 +772,9 @@ bool CCourse::LoadCourse (size_t idx) {
 		    param.course_detail_level);
 	}
 
-	if (g_game.mirror_id != mirrored) {
+	if (g_game.mirrorred != mirrored) {
 		MirrorCourse ();
-		mirrored = g_game.mirror_id;
+		mirrored = g_game.mirrorred;
 	}
 	return true;
 }
@@ -868,7 +820,7 @@ void CCourse::MirrorCourseData () {
 
 	ResetQuadtree ();
 	if (nx > 0 && ny > 0) {
-		const CControl *ctrl = Players.GetCtrl (g_game.player_id);
+		const CControl *ctrl = g_game.player->ctrl;
 		InitQuadtree (elevation, nx, ny, curr_course->size.x/(nx-1),
 		              - curr_course->size.y/(ny-1), ctrl->viewpos, param.course_detail_level);
 	}

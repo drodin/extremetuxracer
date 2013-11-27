@@ -173,7 +173,6 @@ void ResetGUI();
 
 void DrawFrameX (int x, int y, int w, int h, int line,
                  const TColor& backcol, const TColor& framecol, double transp);
-void DrawLevel (int x, int y, int level, double fact);
 void DrawBonusExt (int y, size_t numraces, size_t num);
 void DrawCursor ();
 

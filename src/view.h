@@ -31,9 +31,9 @@ void SetCameraDistance (double val);
 // ------------- viewfrustum ------------------------------------------
 
 enum clip_result_t {
-    NoClip,
-    SomeClip,
-    NotVisible
+	NoClip,
+	SomeClip,
+	NotVisible
 };
 
 void SetupViewFrustum (const CControl *ctrl);

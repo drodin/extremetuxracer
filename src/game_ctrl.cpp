@@ -46,16 +46,14 @@ bool CEvents::LoadEventList () {
 		const string& line = list.Line(i);
 		int type = SPIntN (line, "struct", -1);
 		if (type == 0) {
-			RaceList.push_back(TRace2());
-			string item = SPStrN (line, "course");
-			RaceList.back().course = Course.GetCourseIdx (item);
-			item = SPStrN (line, "light");
-			RaceList.back().light = Env.GetLightIdx (item);
-			RaceList.back().snow = SPIntN (line, "snow", 0);
-			RaceList.back().wind = SPIntN (line, "wind", 0);
-			RaceList.back().time = SPVector3d(line, "time");
-			RaceList.back().herrings = SPVector3i(line, "herring");
-			RaceList.back().music_theme = Music.GetThemeIdx (SPStrN (line, "theme", "normal"));
+			RaceList.push_back(TRace(
+			                       Course.GetCourse(SPStrN(line, "course")),
+			                       Env.GetLightIdx(SPStrN(line, "light")),
+			                       SPIntN(line, "snow", 0),
+			                       SPIntN(line, "wind", 0),
+			                       SPVector3i(line, "herring"),
+			                       SPVector3d(line, "time"),
+			                       Music.GetThemeIdx(SPStrN(line, "theme", "normal"))));
 		}
 	}
 	list.MakeIndex (RaceIndex, "race");
@@ -65,10 +63,10 @@ bool CEvents::LoadEventList () {
 		const string& line = list.Line(i);
 		int type = SPIntN (line, "struct", -1);
 		if (type == 1) {
-			CupList.push_back(TCup2());
-			CupList.back().cup = SPStrN (line, "cup", errorString);
-			CupList.back().name = SPStrN (line, "name", "unknown");
-			CupList.back().desc = SPStrN (line, "desc", "unknown");
+			CupList.push_back(TCup(
+			                      SPStrN(line, "cup", errorString),
+			                      SPStrN(line, "name", "unknown"),
+			                      SPStrN(line, "desc", "unknown")));
 			int num = SPIntN (line, "num", 0);
 			CupList.back().races.resize(num);
 			for (int ii=0; ii<num; ii++) {
@@ -84,8 +82,7 @@ bool CEvents::LoadEventList () {
 		const string& line = list.Line(i);
 		int type = SPIntN (line, "struct", -1);
 		if (type == 2) {
-			EventList.push_back(TEvent2());
-			EventList.back().name = SPStrN (line, "name", "unknown");
+			EventList.push_back(TEvent(SPStrN(line, "name", "unknown")));
 			int num = SPIntN (line, "num", 0);
 			EventList.back().cups.resize(num);
 			for (int ii=0; ii<num; ii++) {
@@ -162,41 +159,25 @@ CPlayers::~CPlayers() {
 }
 
 void CPlayers::AddPlayer (const string& name, const string& avatar) {
-	plyr.push_back(TPlayer());
-	plyr.back().name = name;
-	plyr.back().avatar = avatar;
-	plyr.back().texture = GetAvatarTexture(AvatarIndex[plyr.back().avatar]);
-	plyr.back().funlocked = "";
-	plyr.back().ctrl = NULL;
+	plyr.push_back(TPlayer(name, FindAvatar(avatar)));
 }
 
 void CPlayers::SetDefaultPlayers () {
-	plyr.resize(2);
-	plyr[0].funlocked = "";
-	plyr[0].name = "Racer";
-	plyr[0].avatar = "avatar01.png";
-	plyr[0].texture = GetAvatarTexture(AvatarIndex[plyr[0].avatar]);
-	plyr[0].ctrl = NULL;
-
-	plyr[1].funlocked = "";
-	plyr[1].name = "Bunny";
-	plyr[1].avatar = "avatar02.png";
-	plyr[1].texture = GetAvatarTexture(AvatarIndex[plyr[1].avatar]);
-	plyr[1].ctrl = NULL;
+	plyr.push_back(TPlayer("Racer", FindAvatar("avatar01.png")));
+	plyr.push_back(TPlayer("Bunny", FindAvatar("avatar02.png")));
 }
 
 bool CPlayers::LoadPlayers () {
-	CSPList list(MAX_PLAYERS);
-
 	if (FileExists (param.config_dir, "players") == false) {
 		SetDefaultPlayers ();
 		Message ("file 'players' does not exist, set default players");
 		return false;
 	}
 
+	CSPList list(MAX_PLAYERS);
 	if (list.Load (param.config_dir, "players") == false) {
 		SetDefaultPlayers ();
-		Message ("coule not load players list, set default players");
+		Message ("could not load players list, set default players");
 		return false;
 	}
 
@@ -206,8 +187,7 @@ bool CPlayers::LoadPlayers () {
 		const string& line = list.Line(i);
 		plyr[i].name = SPStrN (line, "name", "unknown");
 		plyr[i].funlocked = SPStrN (line, "unlocked");
-		plyr[i].avatar = SPStrN (line, "avatar");
-		plyr[i].texture = GetAvatarTexture(AvatarIndex[plyr[i].avatar]);
+		plyr[i].avatar = FindAvatar(SPStrN(line, "avatar"));
 		plyr[i].ctrl = NULL;
 		int active = SPIntN (line, "active", 0);
 		if (active > 0) g_game.start_player = plyr.size()-1;
@@ -221,51 +201,36 @@ bool CPlayers::LoadPlayers () {
 }
 
 void CPlayers::SavePlayers () const {
-	string playerfile = param.config_dir + SEP + "players";
-	CSPList list(MAX_PLAYERS);
-	string item = "";
+	string playerfile = param.config_dir + SEP "players";
+	CSPList list(plyr.size());
 	for (size_t i=0; i<plyr.size(); i++) {
-		item = "*[name]" + plyr[i].name;
-		item +="[avatar]" + plyr[i].avatar;
+		string item = "*[name]" + plyr[i].name;
+		item +="[avatar]" + plyr[i].avatar->filename;
 		item += "[unlocked]" + plyr[i].funlocked;
-		if (i == g_game.player_id) item += "[active]1";
+		if (&plyr[i] == g_game.player) item += "[active]1";
 		else item += "[active]0";
 		list.Add (item);
 	}
 	list.Save (playerfile);
 }
 
-const string& CPlayers::GetCurrUnlocked () const {
-	return plyr[g_game.player_id].funlocked;
+const TAvatar* CPlayers::FindAvatar(const string& name) {
+	for (size_t i = 0; i < avatars.size(); i++)
+		if (avatars[i].filename == name)
+			return &avatars[i];
+	return 0;
 }
 
 void CPlayers::AddPassedCup (const string& cup) {
-	if (SPIntN (plyr[g_game.player_id].funlocked, cup, -1) > 0) return;
-	plyr[g_game.player_id].funlocked += " ";
-	plyr[g_game.player_id].funlocked += cup;
-}
-
-CControl *CPlayers::GetCtrl (size_t player) {
-	if (player >= plyr.size()) return NULL;
-	return plyr[player].ctrl;
-}
-
-const CControl *CPlayers::GetCtrl (size_t player) const {
-	if (player >= plyr.size()) return NULL;
-	return plyr[player].ctrl;
-}
-
-const string& CPlayers::GetName (size_t player) const {
-	if (player >= plyr.size()) return emptyString;
-	return plyr[player].name;
+	if (SPIntN (g_game.player->funlocked, cup, -1) > 0) return;
+	g_game.player->funlocked += " ";
+	g_game.player->funlocked += cup;
 }
 
 void CPlayers::ResetControls () {
 	for (size_t i=0; i<plyr.size(); i++) {
-		if (plyr[i].ctrl != NULL) {
-			delete plyr[i].ctrl;
-			plyr[i].ctrl = NULL;
-		}
+		delete plyr[i].ctrl;
+		plyr[i].ctrl = NULL;
 	}
 }
 
@@ -286,16 +251,12 @@ void CPlayers::LoadAvatars () {
 		return;
 	}
 
-	AvatarIndex.clear();
 	for (size_t i=0; i<list.Count(); i++) {
 		const string& line = list.Line(i);
 		string filename = SPStrN (line, "file", "unknown");
 		TTexture* texture = new TTexture();
 		if (texture && texture->Load(param.player_dir, filename)) {
-			avatars.push_back(TAvatar());
-			avatars.back().filename = filename;
-			avatars.back().texture = texture;
-			AvatarIndex[filename] = avatars.size()-1;
+			avatars.push_back(TAvatar(filename, texture));
 		} else
 			delete texture;
 	}
@@ -314,6 +275,12 @@ const string& CPlayers::GetDirectAvatarName (size_t avatar) const {
 // ********************************************************************
 //				Character Administration
 // ********************************************************************
+
+CKeyframe* TCharacter::GetKeyframe(TFrameType type) {
+	if (type < 0 || type >= NUM_FRAME_TYPES) return NULL;
+	return &frames[type];
+}
+
 
 CCharacter Char;
 
@@ -344,7 +311,7 @@ void CCharacter::LoadCharacterList () {
 
 		string charpath = param.char_dir + SEP + CharList[i].dir;
 		if (DirExists (charpath.c_str())) {
-			string previewfile = charpath + SEP + "preview.png";
+			string previewfile = charpath + SEP "preview.png";
 
 			TCharacter* ch = &CharList[i];
 			ch->preview = new TTexture();
@@ -373,24 +340,9 @@ void CCharacter::LoadCharacterList () {
 	}
 }
 
-void CCharacter::FreeCharacterPreviews () {
+void CCharacter::FreeCharacterPreviews() {
 	for (size_t i=0; i<CharList.size(); i++) {
 		delete CharList[i].preview;
+		CharList[i].preview = 0;
 	}
-}
-
-void CCharacter::Draw (size_t idx) {
-	if (idx >= CharList.size()) return;
-	CharList[idx].shape->Draw ();
-}
-
-CCharShape *CCharacter::GetShape (size_t idx) {
-	if (idx >= CharList.size()) return NULL;
-	return CharList[idx].shape;
-}
-
-CKeyframe *CCharacter::GetKeyframe (size_t idx, TFrameType type) {
-	if (type < 0 || type >= NUM_FRAME_TYPES) return NULL;
-	if (idx >= CharList.size()) return NULL;
-	return &CharList[idx].frames[type];
 }

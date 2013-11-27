@@ -59,7 +59,7 @@ void LoadConfigFile () {
 		param.fullscreen = SPBoolN (line, "fullscreen", false);
 		param.res_type = SPIntN (line, "res_type", 0);
 		param.framerate = SPIntN (line, "framerate", 60);
-		param.perf_level = SPIntN (line, "detail_level", 0);
+		param.perf_level = SPIntN (line, "detail_level", 3);
 		param.language = SPIntN (line, "language", 0);
 		param.sound_volume = SPIntN (line, "sound_volume", 100);
 		param.music_volume = SPIntN (line, "music_volume", 20);
@@ -283,7 +283,7 @@ void InitConfig (const char *arg0) {
 	// the progdir is always the current dir
 	param.config_dir = "config";
 	param.data_dir = "data";
-	param.configfile = param.config_dir + SEP + "options.txt";
+	param.configfile = param.config_dir + SEP "options.txt";
 #else
 
 #if 0
@@ -306,28 +306,28 @@ void InitConfig (const char *arg0) {
 	param.config_dir = pwent->pw_dir;
 	param.config_dir += SEP;
 	param.config_dir += CONFIG_DIR;
-	// or: param.config_dir = param.prog_dir + SEP + "config";
+	// or: param.config_dir = param.prog_dir + SEP "config";
 	if (!DirExists (param.config_dir.c_str()))
 		mkdir (param.config_dir.c_str(), 0775);
 	param.data_dir = ETR_DATA_DIR;
 	param.data_dir += SEP;
 	param.data_dir += "etr";
-	// param.data_dir = param.prog_dir + SEP + "data";
-	param.configfile = param.config_dir + SEP + "options";
+	// param.data_dir = param.prog_dir + SEP "data";
+	param.configfile = param.config_dir + SEP "options";
 #endif
 
-	param.screenshot_dir = param.data_dir + SEP + "screenshots";
-	param.obj_dir = param.data_dir + SEP + "objects";
-	param.env_dir2 = param.data_dir + SEP + "env";
-	param.char_dir = param.data_dir + SEP + "char";
-	param.terr_dir = param.data_dir + SEP + "terrains";
-	param.tex_dir = param.data_dir + SEP + "textures";
-	param.common_course_dir = param.data_dir + SEP + "courses";
-	param.sounds_dir = param.data_dir + SEP + "sounds";
-	param.music_dir = param.data_dir + SEP + "music";
-	param.font_dir = param.data_dir + SEP + "fonts";
-	param.trans_dir = param.data_dir + SEP + "translations";
-	param.player_dir = param.data_dir + SEP + "players";
+	param.screenshot_dir = param.data_dir + SEP "screenshots";
+	param.obj_dir = param.data_dir + SEP "objects";
+	param.env_dir2 = param.data_dir + SEP "env";
+	param.char_dir = param.data_dir + SEP "char";
+	param.terr_dir = param.data_dir + SEP "terrains";
+	param.tex_dir = param.data_dir + SEP "textures";
+	param.common_course_dir = param.data_dir + SEP "courses";
+	param.sounds_dir = param.data_dir + SEP "sounds";
+	param.music_dir = param.data_dir + SEP "music";
+	param.font_dir = param.data_dir + SEP "fonts";
+	param.trans_dir = param.data_dir + SEP "translations";
+	param.player_dir = param.data_dir + SEP "players";
 
 	param.ui_snow = true;
 	param.view_mode = FOLLOW;
@@ -340,8 +340,4 @@ void InitConfig (const char *arg0) {
 		SetConfigDefaults ();
 		SaveConfigFile ();
 	}
-	/*string playerfile = param.config_dir + SEP + PLAYER_FILE;
-	if (FileExists (playerfile)) {
-	} else {
-	}*/
 }

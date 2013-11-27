@@ -41,39 +41,6 @@ GNU General Public License for more details.
 
 class TTexture;
 
-struct TCollidable {
-	TVector3d pt;
-	double height;
-	double diam;
-	size_t tree_type;
-};
-
-struct TItem {
-	TVector3d pt;
-	double height;
-	double diam;
-	size_t item_type;
-	int collectable;
-	bool drawable;
-};
-
-struct TCourse {
-	string name;
-	string dir;
-	string author;
-	string desc[MAX_DESCRIPTION_LINES];
-	size_t num_lines;
-	TTexture* preview;
-	TVector2d size;
-	TVector2d play_size;
-	double angle;
-	double scale;
-	TVector2d start;
-	size_t env;
-	size_t music_theme;
-	bool use_keyframe;
-	double finish_brake;
-};
 
 struct TTerrType {
 	string textureFile;
@@ -104,6 +71,45 @@ struct TObjectType {
 	TVector3d	normal;
 	int			num_items;
 	int			poly;
+};
+
+struct TCollidable {
+	TVector3d pt;
+	double height;
+	double diam;
+	size_t tree_type;
+	TCollidable(double x, double y, double z, double height_, double diam_, size_t type)
+		: pt(x, y, z), height(height_), diam(diam_), tree_type(type)
+	{}
+};
+
+struct TItem {
+	TVector3d pt;
+	double height;
+	double diam;
+	int collectable;
+	const TObjectType& type;
+	TItem(double x, double y, double z, double height_, double diam_, const TObjectType& type_)
+		: pt(x, y, z), height(height_), diam(diam_), collectable(type_.collectable), type(type_)
+	{}
+};
+
+struct TCourse {
+	string name;
+	string dir;
+	string author;
+	string desc[MAX_DESCRIPTION_LINES];
+	size_t num_lines;
+	TTexture* preview;
+	TVector2d size;
+	TVector2d play_size;
+	double angle;
+	double scale;
+	TVector2d start;
+	size_t env;
+	size_t music_theme;
+	bool use_keyframe;
+	double finish_brake;
 };
 
 class CCourse {
@@ -147,10 +153,11 @@ public:
 	GLubyte		*vnc_array;
 
 	void ResetCourse ();
-	size_t GetCourseIdx (const string& dir) const;
+	TCourse* GetCourse (const string& dir);
+	size_t GetCourseIdx(const TCourse* course) const;
 	bool LoadCourseList ();
 	void FreeCourseList ();
-	bool LoadCourse (size_t idx);
+	bool LoadCourse(TCourse* course);
 	bool LoadTerrainTypes ();
 	bool LoadObjectTypes ();
 	void MakeStandardPolyhedrons ();

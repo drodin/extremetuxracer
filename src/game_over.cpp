@@ -38,6 +38,7 @@ GNU General Public License for more details.
 #include "event.h"
 #include "winsys.h"
 #include "physics.h"
+#include "tux.h"
 
 CGameOver GameOver;
 
@@ -96,7 +97,7 @@ void GameOverMessage (const CControl *ctrl) {
 		line = Int_StrN (g_game.herring);
 		if (g_game.game_type == CUPRACING) {
 			line += "  (";
-			line += Int_StrN (g_game.herring_req.x);
+			line += Int_StrN (g_game.race->herrings.x);
 			line += ")";
 		}
 		FT.DrawString (leftframe+240, topframe+40, line);
@@ -107,7 +108,7 @@ void GameOverMessage (const CControl *ctrl) {
 		line += "  s";
 		if (g_game.game_type == CUPRACING) {
 			line += "  (";
-			line += Float_StrN (g_game.time_req.x, 2);
+			line += Float_StrN (g_game.race->time.x, 2);
 			line += ")";
 		}
 		FT.DrawString (leftframe+240, topframe+65, line);
@@ -177,13 +178,13 @@ void CGameOver::Enter() {
 		final_frame = NULL;
 	} else {
 		if (g_game.game_type == CUPRACING) {
-			if (g_game.race_result < 0) final_frame =
-				    Char.GetKeyframe (g_game.char_id, LOSTRACE);
-			else final_frame = Char.GetKeyframe (g_game.char_id, WONRACE);
-		} else final_frame = Char.GetKeyframe (g_game.char_id, FINISH);
+			if (g_game.race_result < 0)
+				final_frame = g_game.character->GetKeyframe(LOSTRACE);
+			else final_frame = g_game.character->GetKeyframe(WONRACE);
+		} else final_frame = g_game.character->GetKeyframe( FINISH);
 
 		if (!g_game.raceaborted) {
-			const CControl *ctrl = Players.GetCtrl (g_game.player_id);
+			const CControl *ctrl = g_game.player->ctrl;
 			final_frame->Init (ctrl->cpos, -0.18);
 		}
 	}
@@ -192,7 +193,7 @@ void CGameOver::Enter() {
 
 
 void CGameOver::Loop(double time_step) {
-	CControl *ctrl = Players.GetCtrl (g_game.player_id);
+	CControl *ctrl = g_game.player->ctrl;
 	int width = Winsys.resolution.width;
 	int height = Winsys.resolution.height;
 	check_gl_error();
@@ -219,7 +220,7 @@ void CGameOver::Loop(double time_step) {
 	UpdateSnow (time_step, ctrl);
 	DrawSnow (ctrl);
 
-	Char.Draw (g_game.char_id);
+	g_game.character->shape->Draw();
 
 	ScopedRenderMode rm(GUI);
 	SetupGuiDisplay ();

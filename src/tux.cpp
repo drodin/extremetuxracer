@@ -608,10 +608,9 @@ bool CCharShape::CheckPolyhedronCollision(const TCharNode *node, const TMatrix<4
 	TMatrix<4, 4> newInvModelMatrix = node->invtrans * invModelMatrix;
 
 	if (node->visible) {
-		TPolyhedron newph = CopyPolyhedron (ph);
+		TPolyhedron newph = ph;
 		TransPolyhedron (newInvModelMatrix, newph);
 		hit = IntersectPolyhedron (newph);
-		FreePolyhedron (newph);
 	}
 
 	if (hit == true) return hit;

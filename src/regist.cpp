@@ -41,9 +41,10 @@ static TUpDown* character;
 void QuitRegistration () {
 	Players.ResetControls ();
 	Players.AllocControl (player->GetValue());
-	g_game.player_id = player->GetValue();
+	g_game.player = Players.GetPlayer(player->GetValue());
 
-	g_game.char_id = character->GetValue();
+	g_game.character = &Char.CharList[character->GetValue()];
+	Char.FreeCharacterPreviews(); // From here on, character previews are no longer required
 	State::manager.RequestEnterState (GameTypeSelect);
 }
 
@@ -56,7 +57,7 @@ void CRegist::Keyb (unsigned int key, bool special, bool release, int x, int y) 
 			break;
 		case SDLK_RETURN:
 			if (focussed == textbuttons[1]) {
-				g_game.player_id = player->GetValue();
+				g_game.player = Players.GetPlayer(player->GetValue());
 				State::manager.RequestEnterState (NewPlayer);
 			} else QuitRegistration ();
 			break;
@@ -69,7 +70,7 @@ void CRegist::Mouse (int button, int state, int x, int y) {
 		if (focussed == textbuttons[0])
 			QuitRegistration ();
 		else if (focussed == textbuttons[1]) {
-			g_game.player_id = player->GetValue();
+			g_game.player = Players.GetPlayer(player->GetValue());
 			State::manager.RequestEnterState (NewPlayer);
 		}
 	}
@@ -128,8 +129,6 @@ void CRegist::Loop (double timestep) {
 	Tex.Draw (TOP_RIGHT, ww-256, 0, 1);
 	Tex.Draw(T_TITLE_SMALL, CENTER, AutoYPosN(5), Winsys.scale);
 
-//	DrawFrameX (area.left, area.top, area.right-area.left, area.bottom - area.top,
-//			0, colMBackgr, col, 0.2);
 
 	FT.AutoSizeN (3);
 	FT.SetColor (colWhite);
@@ -142,7 +141,7 @@ void CRegist::Loop (double timestep) {
 	else col = colWhite;
 	DrawFrameX (area.left, area.top, framewidth, frameheight, 3, colMBackgr, col, 1.0);
 	FT.SetColor (col);
-	FT.DrawString (area.left + 20, area.top, Players.GetName (player->GetValue()));
+	FT.DrawString(area.left + 20, area.top, Players.GetPlayer(player->GetValue())->name);
 	Players.GetAvatarTexture(player->GetValue())->DrawFrame(
 	    area.left + 60, AutoYPosN (40), texsize, texsize, 3, colWhite);
 

@@ -528,7 +528,7 @@ void TFlakeArea::Draw (const CControl *ctrl) const {
 
 	ScopedRenderMode rm(PARTICLES);
 	glTexEnvf (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-	Tex.BindTex (T_WIDGETS);
+	Tex.BindTex(SNOW_PART);
 	const TColor& particle_colour = Env.ParticleColor ();
 	glColor(particle_colour);
 
@@ -581,25 +581,25 @@ void CFlakes::MakeSnowFlake (size_t ar, size_t i) {
 
 	static const GLfloat tex_coords[4][8] = {
 		{
-			0.0, 0.875,
-			0.125, 0.875,
-			0.125, 1.0,
-			0.0, 1.0
+			0.0, 0.5,
+			0.5, 0.5,
+			0.5, 0.0,
+			0.0, 0.0
 		}, {
-			0.125, 0.875,
-			0.25, 0.875,
-			0.25, 1.0,
-			0.125, 1.0
+			0.5, 0.5,
+			1.0, 0.5,
+			1.0, 0.0,
+			0.5, 0.0
 		}, {
-			0.0, 0.75,
-			0.125, 0.75,
-			0.125, 0.875,
-			0.0, 0.875
+			0.0, 1.0,
+			0.5, 1.0,
+			0.5, 0.5,
+			0.0, 0.5
 		}, {
-			0.125, 0.75,
-			0.25, 0.75,
-			0.25, 0.875,
-			0.125, 0.875
+			0.5, 1.0,
+			1.0, 1.0,
+			1.0, 0.5,
+			0.5, 0.5
 		}
 	};
 

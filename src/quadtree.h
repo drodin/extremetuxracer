@@ -25,13 +25,11 @@ algorithm should be replaced with a more convenient quadtree algorithm.
 #include "bh.h"
 #include "view.h"
 
-class TTexture;
-
 
 enum vertex_loc_t {
-    East,
-    South,
-    Center
+	East,
+	South,
+	Center
 };
 
 struct HeightMapInfo {
@@ -73,7 +71,6 @@ struct quadsquare {
 	static double ScaleX, ScaleZ;
 	static int RowSize, NumRows;
 	static char *Terrain;
-	static TTexture* EnvmapTexture;
 
 	static GLuint *VertexArrayIndices;
 	static GLuint VertexArrayCounter;
@@ -85,7 +82,6 @@ struct quadsquare {
 	static void MakeNoBlendTri( int a, int b, int c, int terrain );
 
 	static void DrawTris();
-	static void DrawEnvmapTris();
 	static void InitArrayCounters();
 
 	quadsquare (quadcornerdata* pcd);

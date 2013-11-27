@@ -19,41 +19,54 @@ GNU General Public License for more details.
 
 #include "bh.h"
 #include "keyframe.h"
+#include "spx.h"
 #include <map>
 
 
 enum TFrameType {
-    START,
-    FINISH,
-    WONRACE,
-    LOSTRACE,
-    NUM_FRAME_TYPES
+	START,
+	FINISH,
+	WONRACE,
+	LOSTRACE,
+	NUM_FRAME_TYPES
 };
 
 
 class TTexture;
 
-struct TRace2 {
-	size_t course;
+struct TRace {
+	TCourse* course;
 	size_t light;
 	int snow;
 	int wind;
 	TVector3i herrings;
 	TVector3d time;
 	size_t music_theme;
+
+	TRace(TCourse* course_, size_t light_, int snow_, int wind_, const TVector3i& herrings_, const TVector3d& time_, size_t music_theme_)
+		: course(course_), light(light_), snow(snow_), wind(wind_), herrings(herrings_), time(time_), music_theme(music_theme_)
+	{}
 };
 
-struct TCup2 {
+struct TCup {
 	string cup;
 	string name;
 	string desc;
-	vector<TRace2*> races;
+	vector<TRace*> races;
 	bool Unlocked;
+
+	TCup(const string& cup_, const string& name_, const string& desc_)
+		: cup(cup_), name(name_), desc(desc_), Unlocked(false)
+	{}
 };
 
-struct TEvent2 {
+struct TEvent {
 	string name;
-	vector<TCup2*> cups;
+	vector<TCup*> cups;
+
+	TEvent(const string& name_)
+		: name(name_)
+	{}
 };
 
 class CEvents {
@@ -62,9 +75,9 @@ private:
 	map<string, size_t> CupIndex;
 	map<string, size_t> EventIndex;
 public:
-	vector<TRace2> RaceList;
-	vector<TCup2> CupList;
-	vector<TEvent2> EventList;
+	vector<TRace> RaceList;
+	vector<TCup> CupList;
+	vector<TEvent> EventList;
 	bool LoadEventList ();
 	size_t GetRaceIdx (const string& race) const;
 	size_t GetCupIdx (const string& cup) const;
@@ -88,33 +101,38 @@ extern CEvents Events;
 struct TAvatar {
 	string filename;
 	TTexture* texture;
+
+	TAvatar(const string& filename_, TTexture* texture_)
+		: filename(filename_), texture(texture_)
+	{}
 };
 
 struct TPlayer {
 	string name;
 	CControl *ctrl;
 	string funlocked;
-	TTexture* texture;
-	string avatar;
+	const TAvatar* avatar;
+
+	TPlayer(const string& name_ = emptyString, const TAvatar* avatar_ = NULL)
+		: name(name_), ctrl(NULL), avatar(avatar_)
+	{}
 };
 
 class CPlayers {
 private:
 	vector<TPlayer> plyr;
 	void SetDefaultPlayers ();
-	map<string, size_t> AvatarIndex;
 	vector<TAvatar> avatars;
+
+	const TAvatar* FindAvatar(const string& name);
 public:
 	~CPlayers();
 
-	const string& GetCurrUnlocked () const;
+	TPlayer* GetPlayer(size_t index) { return &plyr[index]; }
 	void AddPassedCup (const string& cup);
 	void AddPlayer (const string& name, const string& avatar);
 	bool LoadPlayers ();
 	void SavePlayers () const;
-	CControl *GetCtrl (size_t player);
-	const CControl *GetCtrl (size_t player) const;
-	const string& GetName (size_t player) const;
 	void ResetControls ();
 	void AllocControl (size_t player);
 	void LoadAvatars ();
@@ -122,15 +140,13 @@ public:
 	size_t numPlayers() const { return plyr.size(); }
 
 	TTexture* GetAvatarTexture (size_t avatar) const;
-	const string& GetDirectAvatarName (size_t avatar) const;
+	const string& GetDirectAvatarName(size_t avatar) const;
 };
 
 extern CPlayers Players;
 
 // -------------------------------- characters ------------------------
 #define MAX_CHARACTERS 16
-
-class CCharShape;
 
 struct TCharacter {
 	int type;
@@ -140,6 +156,8 @@ struct TCharacter {
 	CCharShape *shape;
 	CKeyframe frames[NUM_FRAME_TYPES];
 	bool finishframesok;
+
+	CKeyframe* GetKeyframe(TFrameType type);
 };
 
 class CCharacter {
@@ -148,12 +166,8 @@ public:
 
 	~CCharacter();
 
-	void Draw (size_t idx);
-	CCharShape *GetShape (size_t idx);
 	void LoadCharacterList ();
 	void FreeCharacterPreviews ();
-
-	CKeyframe *GetKeyframe (size_t idx, TFrameType type);
 };
 
 extern CCharacter Char;

@@ -45,16 +45,15 @@ void InitGame (int argc, char **argv) {
 		if (group_arg == "9") g_game.argument = 9;
 	}
 
-	g_game.player_id = 0;
+	g_game.player = NULL;
 	g_game.start_player = 0;
-	g_game.course_id = 0;
-	g_game.mirror_id = false;
-	g_game.char_id = 0;
+	g_game.course = NULL;
+	g_game.mirrorred = false;
+	g_game.character = NULL;
 	g_game.location_id = 0;
 	g_game.light_id = 0;
 	g_game.snow_id = 0;
 	g_game.cup = 0;
-	g_game.race_id = 0;
 	g_game.theme_id = 0;
 	g_game.force_treemap = 0;
 	g_game.treesize = 3;

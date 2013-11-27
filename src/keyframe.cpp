@@ -62,9 +62,8 @@ double CKeyframe::interp (double frac, double v1, double v2) {
 
 void CKeyframe::Init (const TVector3d& ref_position, double height_correction) {
 	if (!loaded) return;
-	CCharShape *shape = Char.GetShape (g_game.char_id);
-	shape->ResetNode ("head");
-	shape->ResetNode ("neck");
+	g_game.character->shape->ResetNode("head");
+	g_game.character->shape->ResetNode("neck");
 	refpos = ref_position;
 	heightcorr = height_correction;
 	active = true;
@@ -273,7 +272,7 @@ void CKeyframe::Update (double timestep) {
 
 	double frac;
 	TVector3d pos;
-	CCharShape *shape = Char.GetShape (g_game.char_id);
+	CCharShape *shape = g_game.character->shape;
 
 	if (fabs (frames[keyidx].val[0]) < 0.0001) frac = 1.0;
 	else frac = (frames[keyidx].val[0] - keytime) / frames[keyidx].val[0];
@@ -286,7 +285,7 @@ void CKeyframe::Update (double timestep) {
 	shape->ResetRoot ();
 	shape->ResetJoints ();
 
-	Players.GetCtrl (g_game.player_id)->cpos = pos;
+	g_game.player->ctrl->cpos = pos;
 	double disp_y = pos.y + TUX_Y_CORR + heightcorr;
 	shape->ResetNode (0);
 	shape->TranslateNode (0, TVector3d(pos.x, disp_y, pos.z));
@@ -356,36 +355,36 @@ void CKeyframe::SaveTest (const string& dir, const string& filename) {
 		line += " [pos] " + Float_StrN (frame->val[1], 2);
 		line += " " + Float_StrN (frame->val[2], 2);
 		line += " " + Float_StrN (frame->val[3], 2);
-		if (frame->val[4] != 0) line += " [yaw] " + Float_StrN (frame->val[4], 0);
-		if (frame->val[5] != 0) line += " [pitch] " + Float_StrN (frame->val[5], 0);
-		if (frame->val[6] != 0) line += " [roll] " + Float_StrN (frame->val[6], 0);
-		if (frame->val[7] != 0) line += " [neck] " + Float_StrN (frame->val[7], 0);
-		if (frame->val[8] != 0) line += " [head] " + Float_StrN (frame->val[8], 0);
+		if (frame->val[4] != 0) line += " [yaw] " + Int_StrN((int)frame->val[4]);
+		if (frame->val[5] != 0) line += " [pitch] " + Int_StrN((int)frame->val[5]);
+		if (frame->val[6] != 0) line += " [roll] " + Int_StrN((int)frame->val[6]);
+		if (frame->val[7] != 0) line += " [neck] " + Int_StrN((int)frame->val[7]);
+		if (frame->val[8] != 0) line += " [head] " + Int_StrN((int)frame->val[8]);
 
 		double ll = frame->val[9];
 		double rr = frame->val[10];
 		if (ll != 0 || rr != 0)
-			line += " [sh] " + Float_StrN (ll, 0) + " " + Float_StrN (rr, 0);
+			line += " [sh] " + Int_StrN((int) ll) + " " + Int_StrN((int)rr);
 
 		ll = frame->val[11];
 		rr = frame->val[12];
 		if (ll != 0 || rr != 0)
-			line += " [arm] " + Float_StrN (ll, 0) + " " + Float_StrN (rr, 0);
+			line += " [arm] " + Int_StrN((int)ll) + " " + Int_StrN((int)rr);
 
 		ll = frame->val[13];
 		rr = frame->val[14];
 		if (ll != 0 || rr != 0)
-			line += " [hip] " + Float_StrN (ll, 0) + " " + Float_StrN (rr, 0);
+			line += " [hip] " + Int_StrN((int)ll) + " " + Int_StrN((int)rr);
 
 		ll = frame->val[15];
 		rr = frame->val[16];
 		if (ll != 0 || rr != 0)
-			line += " [knee] " + Float_StrN (ll, 0) + " " + Float_StrN (rr, 0);
+			line += " [knee] " + Int_StrN((int)ll) + " " + Int_StrN((int)rr);
 
 		ll = frame->val[17];
 		rr = frame->val[18];
 		if (ll != 0 || rr != 0)
-			line += " [ankle] " + Float_StrN (ll, 0) + " " + Float_StrN (rr, 0);
+			line += " [ankle] " + Int_StrN((int)ll) + " " + Int_StrN((int)rr);
 
 		list.Add (line);
 	}

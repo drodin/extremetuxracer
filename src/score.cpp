@@ -34,7 +34,8 @@ GNU General Public License for more details.
 
 CScore Score;
 
-int CScore::AddScore (size_t list_idx, const TScore& score) {
+int CScore::AddScore(const TCourse* course, const TScore& score) {
+	size_t list_idx = Course.GetCourseIdx(course);
 	if (list_idx >= Scorelist.size()) return 999;
 	if (score.points < 1) return 999;
 
@@ -127,7 +128,7 @@ bool CScore::LoadHighScore () {
 	for (size_t i=0; i<list.Count(); i++) {
 		const string& line = list.Line(i);
 		string course = SPStrN (line, "course", "unknown");
-		size_t cidx = Course.GetCourseIdx (course);
+		TCourse* cidx = Course.GetCourse(course);
 
 		TScore score;
 		score.player = SPStrN (line, "plyr", "unknown");
@@ -140,14 +141,16 @@ bool CScore::LoadHighScore () {
 	return true;
 }
 
-int CScore::CalcRaceResult () {
+int CScore::CalcRaceResult() {
 	g_game.race_result = -1;
-	if (g_game.time <= g_game.time_req.x &&
-	        g_game.herring >= g_game.herring_req.x) g_game.race_result = 0;
-	if (g_game.time <= g_game.time_req.y &&
-	        g_game.herring >= g_game.herring_req.y) g_game.race_result = 1;
-	if (g_game.time <= g_game.time_req.z &&
-	        g_game.herring >= g_game.herring_req.z) g_game.race_result = 2;
+	if (g_game.game_type == CUPRACING) {
+		if (g_game.time <= g_game.race->time.x &&
+		        g_game.herring >= g_game.race->herrings.x) g_game.race_result = 0;
+		if (g_game.time <= g_game.race->time.y &&
+		        g_game.herring >= g_game.race->herrings.y) g_game.race_result = 1;
+		if (g_game.time <= g_game.race->time.z &&
+		        g_game.herring >= g_game.race->herrings.z) g_game.race_result = 2;
+	}
 
 	int herringpt = g_game.herring * 10;
 	double timept = Course.GetDimensions().y - (g_game.time * 10);
@@ -158,9 +161,9 @@ int CScore::CalcRaceResult () {
 	TempScore.points = g_game.score;
 	TempScore.herrings = g_game.herring;
 	TempScore.time = g_game.time;
-	TempScore.player = Players.GetName (g_game.player_id);
+	TempScore.player = g_game.player->name;
 
-	return AddScore (g_game.course_id, TempScore);
+	return AddScore (g_game.course, TempScore);
 }
 
 // --------------------------------------------------------------------

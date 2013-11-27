@@ -359,12 +359,12 @@ void backsb (double *matrix, int n, double *soln) {
 // ***************************************************************************
 // ***************************************************************************
 
-bool IntersectPolygon (const TPolygon& p, TVector3d *v) {
+bool IntersectPolygon(const TPolygon& p, vector<TVector3d>& v) {
 	TRay ray;
 	double d, s, nuDotProd;
 	double distsq;
 
-	TVector3d nml = MakeNormal (p, v);
+	TVector3d nml = MakeNormal (p, &v[0]);
 	ray.pt = TVector3d(0., 0., 0.);
 	ray.vec = nml;
 
@@ -376,11 +376,11 @@ bool IntersectPolygon (const TPolygon& p, TVector3d *v) {
 
 	if (fabs (d) > 1) return false;
 
-	for (int i=0; i < p.num_vertices; i++) {
+	for (size_t i=0; i < p.vertices.size(); i++) {
 		TVector3d *v0, *v1;
 
 		v0 = &v[p.vertices[i]];
-		v1 = &v[p.vertices[ (i+1) % p.num_vertices ]];
+		v1 = &v[p.vertices[(i + 1) % p.vertices.size()]];
 
 		TVector3d edge_vec = *v1 - *v0;
 		double edge_len = edge_vec.Norm();
@@ -402,9 +402,9 @@ bool IntersectPolygon (const TPolygon& p, TVector3d *v) {
 	s = - (d + DotProduct (nml, ray.pt)) / nuDotProd;
 	TVector3d pt = ray.pt + s * ray.vec;
 
-	for (int i=0; i < p.num_vertices; i++) {
+	for (size_t i = 0; i < p.vertices.size(); i++) {
 		TVector3d edge_nml = CrossProduct (nml,
-		                                   v[p.vertices[ (i+1) % p.num_vertices ]] - v[p.vertices[i]]);
+		                                   v[p.vertices[(i + 1) % p.vertices.size()]] - v[p.vertices[i]]);
 
 		double wec = DotProduct (pt - v[p.vertices[i]], edge_nml);
 		if (wec < 0) return false;
@@ -412,18 +412,18 @@ bool IntersectPolygon (const TPolygon& p, TVector3d *v) {
 	return true;
 }
 
-bool IntersectPolyhedron (const TPolyhedron& p) {
+bool IntersectPolyhedron(TPolyhedron& p) {
 	bool hit = false;
-	for (size_t i=0; i<p.num_polygons; i++) {
+	for (size_t i = 0; i < p.polygons.size(); i++) {
 		hit = IntersectPolygon (p.polygons[i], p.vertices);
 		if (hit == true) break;
 	}
 	return hit;
 }
 
-TVector3d MakeNormal (const TPolygon& p, TVector3d *v) {
+TVector3d MakeNormal (const TPolygon& p, const TVector3d *v) {
 	TVector3d v1 = v[p.vertices[1]] - v[p.vertices[0]];
-	TVector3d v2 = v[p.vertices[p.num_vertices-1]] - v[p.vertices[0]];
+	TVector3d v2 = v[p.vertices[p.vertices.size() - 1]] - v[p.vertices[0]];
 	TVector3d normal = CrossProduct (v1, v2);
 
 	normal.Norm();
@@ -431,19 +431,8 @@ TVector3d MakeNormal (const TPolygon& p, TVector3d *v) {
 }
 
 
-TPolyhedron CopyPolyhedron (const TPolyhedron& ph) {
-	TPolyhedron newph = ph;
-	newph.vertices = new TVector3d[ph.num_vertices];
-	copy_n(ph.vertices, ph.num_vertices, newph.vertices);
-	return newph;
-}
-
-void FreePolyhedron (const TPolyhedron& ph) {
-	delete[] ph.vertices;
-}
-
-void TransPolyhedron (const TMatrix<4, 4>& mat, const TPolyhedron& ph) {
-	for (size_t i=0; i<ph.num_vertices; i++)
+void TransPolyhedron (const TMatrix<4, 4>& mat, TPolyhedron& ph) {
+	for (size_t i = 0; i < ph.vertices.size(); i++)
 		ph.vertices[i] = TransformPoint (mat, ph.vertices[i]);
 }
 

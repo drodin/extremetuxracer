@@ -135,7 +135,8 @@ bool CEnvironment::LoadEnvironmentList () {
 	locs.resize(list.Count());
 	for (size_t i=0; i<list.Count(); i++) {
 		const string& line = list.Line(i);
-		locs[i] = SPStrN (line, "location");
+		locs[i].name = SPStrN(line, "location");
+		locs[i].high_res = SPBoolN(line, "high_res", false);
 	}
 	list.MakeIndex (EnvIndex, "location");
 	return true;
@@ -146,19 +147,28 @@ string CEnvironment::GetDir (size_t location, size_t light) const {
 	if (light >= 4) return "";
 	string res =
 	    param.env_dir2 + SEP +
-	    locs[location] + SEP + lightcond[light];
+	    locs[location].name + SEP + lightcond[light];
 	return res;
 }
 
-void CEnvironment::LoadSkybox (const string& EnvDir) {
-	Skybox = new TTexture[param.full_skybox?6:3];
-	Skybox[0].Load(EnvDir, "front.png");
-	Skybox[1].Load(EnvDir, "left.png");
-	Skybox[2].Load(EnvDir, "right.png");
+void CEnvironment::LoadSkyboxSide(size_t index, const string& EnvDir, const string& name, bool high_res) {
+	bool loaded = false;
+	if (param.perf_level > 3 && high_res)
+		loaded = Skybox[index].Load(EnvDir, name + "H.png");
+
+	if (!loaded)
+		Skybox[index].Load(EnvDir, name + ".png");
+}
+
+void CEnvironment::LoadSkybox (const string& EnvDir, bool high_res) {
+	Skybox = new TTexture[param.full_skybox ? 6 : 3];
+	LoadSkyboxSide(0, EnvDir, "front", high_res);
+	LoadSkyboxSide(1, EnvDir, "left", high_res);
+	LoadSkyboxSide(2, EnvDir, "right", high_res);
 	if (param.full_skybox) {
-		Skybox[3].Load(EnvDir, "top.png");
-		Skybox[4].Load(EnvDir, "bottom.png");
-		Skybox[5].Load(EnvDir, "back.png");
+		LoadSkyboxSide(3, EnvDir, "top", high_res);
+		LoadSkyboxSide(4, EnvDir, "bottom", high_res);
+		LoadSkyboxSide(5, EnvDir, "back", high_res);
 	}
 }
 
@@ -393,7 +403,7 @@ void CEnvironment::LoadEnvironment (size_t loc, size_t light) {
 	// texture id's are set to 0 and the sky will not be drawn.
 	// There is no error handling, you see the result on the screen.
 	ResetSkybox ();
-	LoadSkybox (EnvDir);
+	LoadSkybox(EnvDir, locs[loc].high_res);
 
 	// Load light conditions.
 	ResetFog ();

@@ -34,16 +34,14 @@ GNU General Public License for more details.
 
 CEventSelect EventSelect;
 
-static TEvent2 *EventList;
+static TEvent *EventList;
 static TUpDown* event;
 static TUpDown* cup;
 static TWidget* textbuttons[2];
-static TCup2 *CupList;
 
 void EnterEvent () {
 	g_game.game_type = CUPRACING;
 	g_game.cup = EventList[event->GetValue()].cups[cup->GetValue()];
-	g_game.race_id = 0;
 	State::manager.RequestEnterState(Event);
 }
 
@@ -92,7 +90,6 @@ static int framewidth, frameheight, frametop1, frametop2;
 void CEventSelect::Enter () {
 	Winsys.ShowCursor (!param.ice_cursor);
 	EventList = &Events.EventList[0];
-	CupList = &Events.CupList[0];
 
 	framewidth = 500 * Winsys.scale;
 	frameheight = 50 * Winsys.scale;
@@ -102,7 +99,7 @@ void CEventSelect::Enter () {
 
 	ResetGUI();
 	event = AddUpDown(area.right+8, frametop1, 0, (int)Events.EventList.size() - 1, 0);
-	cup = AddUpDown(area.right+8, frametop2, 0, (int)EventList[0].cups.size() - 1, 0);
+	cup = AddUpDown(area.right + 8, frametop2, 0, (int)Events.EventList[0].cups.size() - 1, 0);
 
 	int siz = FT.AutoSizeN (5);
 
@@ -111,7 +108,7 @@ void CEventSelect::Enter () {
 	textbuttons[1] = AddTextButton (Trans.Text(8), area.left+50, AutoYPosN (70), siz);
 	SetFocus(textbuttons[1]);
 
-	Events.MakeUnlockList (Players.GetCurrUnlocked());
+	Events.MakeUnlockList (g_game.player->funlocked);
 	Music.Play (param.menu_music, -1);
 }
 

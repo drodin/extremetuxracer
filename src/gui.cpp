@@ -482,40 +482,6 @@ void DrawFrameX (int x, int y, int w, int h, int line, const TColor& backcol, co
 	glPopMatrix();
 }
 
-void DrawLevel (int x, int y, int level, double fact) {
-	static const float lev[4] = {0.0, 0.75, 0.5, 0.25};
-
-	float bott = lev[level];
-	float top = bott + 0.25;
-
-	glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glEnable (GL_TEXTURE_2D);
-	Tex.BindTex (STARS);
-	glColor4f (1.0, 1.0, 1.0, 1.0);
-
-	const GLfloat tex[] = {
-		0,    bott,
-		0.75, bott,
-		0.75, top,
-		0,    top
-	};
-	const GLshort vtx[] = {
-		x,      Winsys.resolution.height - y - 32,
-		x + 95, Winsys.resolution.height - y - 32,
-		x + 95, Winsys.resolution.height - y,
-		x,      Winsys.resolution.height - y
-	};
-	glEnableClientState(GL_VERTEX_ARRAY);
-	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-
-	glVertexPointer(2, GL_SHORT, 0, vtx);
-	glTexCoordPointer(2, GL_FLOAT, 0, tex);
-	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
-
-	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-	glDisableClientState(GL_VERTEX_ARRAY);
-}
-
 void DrawBonusExt (int y, size_t numraces, size_t num) {
 	size_t maxtux = numraces * 3;
 	if (num > maxtux) return;

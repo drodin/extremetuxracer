@@ -44,7 +44,7 @@ GNU General Public License for more details.
 #define TUXBONUS 21
 #define MOUSECURSOR 22
 #define SNOW_PART 23
-#define ENV_MAP 24
+
 #define T_ENERGY_MASK 25
 #define T_MASK_OUTLINE 26
 #define NUMERIC_FONT 27
@@ -53,14 +53,13 @@ GNU General Public License for more details.
 #define RANDOM_BUTT 30
 #define T_YELLHERRING 31
 #define T_TIME 32
-#define STARS 33
-#define HERRING_ICON2 34
+
+
 #define SPEED_KNOB 35
-#define CUPICON 36
 #define CHECKBOX 37
 #define CHECKMARK_SMALL 38
-#define CHECKMARK 39
-#define T_WIDGETS 40
+
+
 #define T_SNOW1 41
 #define T_SNOW2 42
 #define T_SNOW3 43

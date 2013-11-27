@@ -183,7 +183,7 @@ void CharKeys (unsigned int key, bool special, bool release, int x, int y) {
 			xposition += 0.03;
 			break;
 
-			// set rotations for view
+		// set rotations for view
 		case SDLK_1:
 			SetRotation (0, 0, 0);
 			break;
@@ -197,7 +197,7 @@ void CharKeys (unsigned int key, bool special, bool release, int x, int y) {
 			SetRotation (0, -80, 0);
 			break;
 
-			// select node
+		// select node
 		case SDLK_PAGEUP:
 			ChangeNode (-1);
 			break;
@@ -211,7 +211,7 @@ void CharKeys (unsigned int key, bool special, bool release, int x, int y) {
 			ChangeNode (-charbase);
 			break;
 
-			// select action
+		// select action
 		case SDLK_DOWN:
 			if (curr_act < lastact) curr_act++;
 			if (action->type[curr_act] == 4) comp = 0;
@@ -229,7 +229,7 @@ void CharKeys (unsigned int key, bool special, bool release, int x, int y) {
 			ChangeValue (type, 1);
 			break;
 
-			// select value
+		// select value
 		case SDLK_SPACE:
 			if (type == 0 || type == 4) {
 				comp++;

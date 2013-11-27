@@ -42,11 +42,10 @@ void CLoading::Enter() {
 
 void CLoading::Loop(double time_step) {
 	TCourse *CourseList = &Course.CourseList[0];
+
 	int ww = Winsys.resolution.width;
 	int hh = Winsys.resolution.height;
-	string msg = Trans.Text(29);
-	msg += " " + CourseList[g_game.course_id].name;
-
+	string msg = Trans.Text(29) + " " + g_game.course->name;
 	check_gl_error ();
 	ScopedRenderMode rm(GUI);
 	ClearRenderContext ();
@@ -70,7 +69,7 @@ void CLoading::Loop(double time_step) {
 	FT.DrawString (CENTER, AutoYPosN (70), Trans.Text (30));
 	Winsys.SwapBuffers ();
 
-	Course.LoadCourse (g_game.course_id);
+	Course.LoadCourse (g_game.course);
 	g_game.location_id = Course.GetEnv ();
 	Env.LoadEnvironment (g_game.location_id, g_game.light_id);
 	State::manager.RequestEnterState (Intro);

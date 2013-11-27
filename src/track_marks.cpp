@@ -34,10 +34,10 @@ GNU General Public License for more details.
 
 
 enum track_types_t {
-    TRACK_HEAD,
-    TRACK_MARK,
-    TRACK_TAIL,
-    NUM_TRACK_TYPES
+	TRACK_HEAD,
+	TRACK_MARK,
+	TRACK_TAIL,
+	NUM_TRACK_TYPES
 };
 
 struct track_quad_t {

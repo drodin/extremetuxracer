@@ -63,12 +63,12 @@ static void UpdateInfo() {
 }
 
 void SetRaceConditions() {
-	g_game.mirror_id = mirror->GetValue() != 0;
+	g_game.mirrorred = mirror->GetValue() != 0;
 	g_game.light_id = light->GetValue();
 	g_game.snow_id = snow->GetValue();
 	g_game.wind_id = wind->GetValue();
 
-	g_game.course_id = course->GetValue();
+	g_game.course = &Course.CourseList[course->GetValue()];
 	g_game.theme_id = CourseList[course->GetValue()].music_theme;
 	g_game.game_type = PRACTICING;
 	State::manager.RequestEnterState (Loading);
@@ -162,14 +162,14 @@ void CRaceSelect::Enter() {
 
 	ResetGUI ();
 
-	course = AddUpDown(area.left + framewidth + 8, frametop, 0, (int)Course.CourseList.size() - 1, (int)g_game.course_id);
+	course = AddUpDown(area.left + framewidth + 8, frametop, 0, (int)Course.CourseList.size() - 1, g_game.course?(int)Course.GetCourseIdx(g_game.course):0);
 
+	random_btn = AddIconButton(iconleft + iconspace * 4, icontop, Tex.GetTexture(RANDOM_BUTT), iconsize, 0, 0);
 	light = AddIconButton (iconleft, icontop, Tex.GetTexture (LIGHT_BUTT), iconsize, 3, (int)g_game.light_id);
 	snow = AddIconButton (iconleft + iconspace, icontop, Tex.GetTexture (SNOW_BUTT), iconsize, 3, g_game.snow_id);
 	wind = AddIconButton (iconleft + iconspace*2, icontop, Tex.GetTexture (WIND_BUTT), iconsize, 3, g_game.wind_id);
-	mirror = AddIconButton (iconleft + iconspace*3, icontop, Tex.GetTexture (MIRROR_BUTT), iconsize, 1, (int)g_game.mirror_id);
-	random_btn = AddIconButton (iconleft + iconspace*4, icontop, Tex.GetTexture (RANDOM_BUTT), iconsize, 0, 0);
-	int siz = FT.AutoSizeN (5);
+	mirror = AddIconButton (iconleft + iconspace*3, icontop, Tex.GetTexture (MIRROR_BUTT), iconsize, 1, (int)g_game.mirrorred);
+	random_btn = AddIconButton (iconleft + iconspace*4, icontop, Tex.GetTexture (RANDOM_BUTT), iconsize, 0, 0);	int siz = FT.AutoSizeN (5);
 	int len1 = FT.GetTextWidth (Trans.Text(13));
 	textbuttons[0] = AddTextButton (Trans.Text(13), area.right-len1-50, AutoYPosN (80), siz);
 	textbuttons[1] = AddTextButton (Trans.Text(8), area.left + 50, AutoYPosN (80), siz);

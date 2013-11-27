@@ -33,6 +33,7 @@ GNU General Public License for more details.
 #include "racing.h"
 #include "winsys.h"
 #include "physics.h"
+#include "tux.h"
 
 CIntro Intro;
 static CKeyframe *startframe;
@@ -48,18 +49,16 @@ void abort_intro (CControl *ctrl) {
 
 // =================================================================
 void CIntro::Enter() {
-	CControl *ctrl = Players.GetCtrl (g_game.player_id);
+	CControl *ctrl = g_game.player->ctrl;
 	TVector2d start_pt = Course.GetStartPoint ();
 	ctrl->orientation_initialized = false;
 	ctrl->view_init = false;
 	ctrl->cpos.x = start_pt.x;
 	ctrl->cpos.z = start_pt.y;
 
-	startframe = Char.GetKeyframe (g_game.char_id, START);
+	startframe = g_game.character->GetKeyframe(START);
 	if (startframe->loaded) {
-//		startframe->Init (ctrl->cpos, -0.05);
-		CCharShape *sh = Char.GetShape (g_game.char_id);
-		startframe->Init (ctrl->cpos, -0.05, sh);
+		startframe->Init(ctrl->cpos, -0.05, g_game.character->shape);
 	}
 
 	// reset of result values
@@ -93,7 +92,7 @@ void CIntro::Enter() {
 }
 
 void CIntro::Loop (double time_step) {
-	CControl *ctrl = Players.GetCtrl (g_game.player_id);
+	CControl *ctrl = g_game.player->ctrl;
 	int width = Winsys.resolution.width;
 	int height = Winsys.resolution.height;
 	check_gl_error();
@@ -121,7 +120,7 @@ void CIntro::Loop (double time_step) {
 	UpdateSnow (time_step, ctrl);
 	DrawSnow (ctrl);
 
-	Char.Draw (g_game.char_id);
+	g_game.character->shape->Draw();
 	DrawHud (ctrl);
 
 	Reshape (width, height);
@@ -131,7 +130,7 @@ void CIntro::Loop (double time_step) {
 // -----------------------------------------------------------------------
 
 void CIntro::Keyb (unsigned int key, bool special, bool release, int x, int y) {
-	CControl *ctrl = Players.GetCtrl (g_game.player_id);
+	CControl *ctrl = g_game.player->ctrl;
 	if (release) return;
 	abort_intro (ctrl);
 }

@@ -1,2 +1,2 @@
-[location] etr [sunny] 1 [cloudy] 1 [evening] 1 [night] 1
-[location] tuxracer [sunny] 1 [cloudy] 1 [evening] 1 [night] 1
+[location] etr [high_res] true [sunny] 1 [cloudy] 1 [evening] 1 [night] 1
+[location] tuxracer [high_res] false [sunny] 1 [cloudy] 1 [evening] 1 [night] 1

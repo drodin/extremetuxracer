@@ -56,7 +56,6 @@ Then edit the below functions:
 CGameConfig GameConfig;
 static string res_names[NUM_RESOLUTIONS];
 
-static TLang *LangList;
 static TCheckbox* fullscreen;
 static TUpDown* language;
 static TUpDown* resolution;
@@ -156,8 +155,6 @@ void CGameConfig::Enter() {
 	Winsys.ShowCursor (!param.ice_cursor);
 	Winsys.KeyRepeat (true);
 
-	LangList = &Trans.languages[0];
-
 	for (int i=0; i<NUM_RESOLUTIONS; i++) res_names[i] = Winsys.GetResName (i);
 
 	int framewidth = 550 * Winsys.scale;
@@ -174,7 +171,7 @@ void CGameConfig::Enter() {
 	resolution = AddUpDown(rightpos, area.top+dd*1, 0, NUM_RESOLUTIONS-1, (int)param.res_type);
 	mus_vol = AddUpDown(rightpos, area.top+dd*2, 0, 120, param.music_volume);
 	sound_vol = AddUpDown(rightpos, area.top+dd*3, 0, 120, param.sound_volume);
-	detail_level = AddUpDown(rightpos, area.top+dd*4, 1, 3, param.perf_level);
+	detail_level = AddUpDown(rightpos, area.top+dd*4, 1, 4, param.perf_level);
 	language = AddUpDown(rightpos, area.top+dd*5, 0, (int)Trans.languages.size() - 1, (int)param.language);
 
 	int siz = FT.AutoSizeN (5);
@@ -234,7 +231,7 @@ void CGameConfig::Loop (double time_step) {
 	FT.DrawString (area.left+240, area.top + dd*2, Int_StrN (mus_vol->GetValue()));
 	FT.DrawString (area.left+240, area.top + dd*3, Int_StrN (sound_vol->GetValue()));
 	FT.DrawString (area.left+240, area.top + dd*4, Int_StrN (detail_level->GetValue()));
-	FT.DrawString (area.left+240, area.top + dd*5, LangList[language->GetValue()].language);
+	FT.DrawString (area.left+240, area.top + dd*5, Trans.languages[language->GetValue()].language);
 
 #if defined (_WIN32)
 	if (fullscreen->checked != param.fullscreen) {
