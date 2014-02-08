@@ -23,10 +23,10 @@ GNU General Public License for more details.
 #include <algorithm>
 
 
-template<int x, int y>
-const TMatrix<x, y>& TMatrix<x, y>::getIdentity() {
+template<int ix, int iy>
+const TMatrix<ix, iy>& TMatrix<ix, iy>::getIdentity() {
 	static bool b = false;
-	static TMatrix<x, y> mat;
+	static TMatrix<ix, iy> mat;
 	if (!b) {
 		mat.SetIdentity();
 		b = true;
@@ -36,10 +36,10 @@ const TMatrix<x, y>& TMatrix<x, y>::getIdentity() {
 template const TMatrix<3, 3>& TMatrix<3, 3>::getIdentity();
 template const TMatrix<4, 4>& TMatrix<4, 4>::getIdentity();
 
-template<int x, int y>
-void TMatrix<x, y>::SetIdentity() {
-	for (int i = 0; i < x; i++)
-		for (int j = 0; j < y; j++)
+template<int ix, int iy>
+void TMatrix<ix, iy>::SetIdentity() {
+	for (int i = 0; i < ix; i++)
+		for (int j = 0; j < iy; j++)
 			_data[i][j] = (i == j);
 }
 template void TMatrix<3, 3>::SetIdentity();
@@ -47,8 +47,8 @@ template void TMatrix<4, 4>::SetIdentity();
 
 
 
-template<int x, int y>
-void TMatrix<x, y>::SetRotationMatrix(double angle, char axis) {
+template<int ix, int iy>
+void TMatrix<ix, iy>::SetRotationMatrix(double angle, char axis) {
 	double sinv, cosv;
 	sinv = sin(ANGLES_TO_RADIANS(angle));
 	cosv = cos(ANGLES_TO_RADIANS(angle));
@@ -81,8 +81,8 @@ void TMatrix<x, y>::SetRotationMatrix(double angle, char axis) {
 template void TMatrix<3, 3>::SetRotationMatrix(double angle, char axis);
 template void TMatrix<4, 4>::SetRotationMatrix(double angle, char axis);
 
-template<int x, int y>
-void TMatrix<x, y>::SetTranslationMatrix(double x, double y, double z) {
+template<int ix, int iy>
+void TMatrix<ix, iy>::SetTranslationMatrix(double x, double y, double z) {
 	SetIdentity();
 	_data[3][0] = x;
 	_data[3][1] = y;
@@ -90,8 +90,8 @@ void TMatrix<x, y>::SetTranslationMatrix(double x, double y, double z) {
 }
 template void TMatrix<4, 4>::SetTranslationMatrix(double x, double y, double z);
 
-template<int x, int y>
-void TMatrix<x, y>::SetScalingMatrix(double x, double y, double z) {
+template<int ix, int iy>
+void TMatrix<ix, iy>::SetScalingMatrix(double x, double y, double z) {
 	SetIdentity();
 	_data[0][0] = x;
 	_data[1][1] = y;
@@ -100,8 +100,8 @@ void TMatrix<x, y>::SetScalingMatrix(double x, double y, double z) {
 template void TMatrix<3, 3>::SetScalingMatrix(double x, double y, double z);
 template void TMatrix<4, 4>::SetScalingMatrix(double x, double y, double z);
 
-template<int x, int y>
-TMatrix<x, y>::TMatrix(const TVector3d& w1, const TVector3d& w2, const TVector3d& w3) {
+template<int ix, int iy>
+TMatrix<ix, iy>::TMatrix(const TVector3d& w1, const TVector3d& w2, const TVector3d& w3) {
 	SetIdentity();
 	_data[0][0] = w1.x;
 	_data[0][1] = w1.y;
@@ -116,12 +116,12 @@ TMatrix<x, y>::TMatrix(const TVector3d& w1, const TVector3d& w2, const TVector3d
 template TMatrix<3, 3>::TMatrix(const TVector3d& w1, const TVector3d& w2, const TVector3d& w3);
 template TMatrix<4, 4>::TMatrix(const TVector3d& w1, const TVector3d& w2, const TVector3d& w3);
 
-template<int x, int y>
-TMatrix<x, y> TMatrix<x, y>::GetTransposed() const {
-	TMatrix<x, y> r;
+template<int ix, int iy>
+TMatrix<ix, iy> TMatrix<ix, iy>::GetTransposed() const {
+	TMatrix<ix, iy> r;
 
-	for (int i = 0; i < x; i++)
-		for (int j = 0; j < y; j++)
+	for (int i = 0; i < ix; i++)
+		for (int j = 0; j < iy; j++)
 			r._data[j][i] = _data[i][j];
 
 	return r;
@@ -154,3 +154,4 @@ TMatrix<4, 4> operator*<4, 4>(const TMatrix<4, 4>& l, const TMatrix<4, 4>& r) {
 
 	return ret;
 }
+
