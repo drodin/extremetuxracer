@@ -19,6 +19,10 @@ GNU General Public License for more details.
 #include <etr_config.h>
 #endif
 
+#ifdef HAVE_STRING_H
+#include <string.h>
+#endif
+
 #include "keyframe.h"
 #include "course.h"
 #include "spx.h"
