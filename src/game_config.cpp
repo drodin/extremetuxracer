@@ -39,6 +39,10 @@ Then edit the below functions:
 #include <etr_config.h>
 #endif
 
+#ifdef HAVE_SYS_STAT_H
+#include <sys/stat.h>
+#endif
+
 #include "game_config.h"
 #include "spx.h"
 #include "translation.h"
@@ -284,7 +288,7 @@ void InitConfig (const char *arg0) {
 	param.config_dir = "config";
 	param.data_dir = "data";
 	param.configfile = param.config_dir + SEP "options.txt";
-#else
+#else /* WIN32 */
 
 #if 0
 	char buff[256];
@@ -300,7 +304,7 @@ void InitConfig (const char *arg0) {
 	}
 
 	param.prog_dir = buff;
-#endif
+#endif /* 0 */
 
 	struct passwd *pwent = getpwuid (getuid ());
 	param.config_dir = pwent->pw_dir;
@@ -314,7 +318,7 @@ void InitConfig (const char *arg0) {
 	param.data_dir += "etr";
 	// param.data_dir = param.prog_dir + SEP "data";
 	param.configfile = param.config_dir + SEP "options";
-#endif
+#endif /* WIN32 */
 
 	param.screenshot_dir = param.data_dir + SEP "screenshots";
 	param.obj_dir = param.data_dir + SEP "objects";
