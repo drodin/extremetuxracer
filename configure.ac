@@ -132,5 +132,6 @@ AC_CONFIG_FILES([
         data/translations/Makefile
         doc/Makefile
         resources/Makefile
+        resources/gui/Makefile
 ])
 AC_OUTPUT

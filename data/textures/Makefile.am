@@ -3,10 +3,10 @@ pkgdatadir = $(datadir)/$(PACKAGE)/textures
 
 pkgdata_DATA = \
 	textures.lst	\
-	splash_small.png	\
 	snowstart.png	\
 	snowtrack.png	\
 	snowstop.png	\
+	splash_1.png	\
 	menu_title.png	\
 	menu_title_small.png	\
 	listbox_arrows.png	\
@@ -21,7 +21,6 @@ pkgdata_DATA = \
 	tuxbonus.png	\
 	mouse_cursor.png	\
 	snowparticles.png	\
-	envmap.png	\
 	energymask2.png	\
 	mask_outline2.png	\
 	ziff032.png	\
@@ -29,13 +28,9 @@ pkgdata_DATA = \
 	random_butt.png	\
 	herringicon3.png	\
 	timeicon.png	\
-	stars.png	\
 	speedknob2.png	\
-	cupicon.png	\
 	checkbox.png	\
 	checkmark_small.png	\
-	checkmark.png	\
-	widgets.png	\
 	snow1.png	\
 	snow2.png	\
 	snow3.png	\

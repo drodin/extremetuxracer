@@ -1,4 +1,6 @@
 
+SUBDIRS = gui
+
 desktopfiledir = $(prefix)/share/applications
 icondir = $(prefix)/share/pixmaps
 
