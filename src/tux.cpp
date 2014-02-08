@@ -584,12 +584,12 @@ void CCharShape::AdjustJoints (double turnFact, bool isBraking,
 	RotateNode ("right_hip", 3, -20 - turn_leg_angle + force_angle);
 
 	RotateNode ("left_knee", 3,
-	            -10 + turn_leg_angle - min (35, speed) + kick_paddling_angle + force_angle);
+	            -10 + turn_leg_angle - min (35.0, speed) + kick_paddling_angle + force_angle);
 	RotateNode ("right_knee", 3,
-	            -10 - turn_leg_angle - min (35, speed) - kick_paddling_angle + force_angle);
+	            -10 - turn_leg_angle - min (35.0, speed) - kick_paddling_angle + force_angle);
 
-	RotateNode ("left_ankle", 3, -20 + min (50, speed));
-	RotateNode ("right_ankle", 3, -20 + min (50, speed));
+	RotateNode ("left_ankle", 3, -20 + min (50.0, speed));
+	RotateNode ("right_ankle", 3, -20 + min (50.0, speed));
 	RotateNode ("tail", 3, turnFact * 20);
 	RotateNode ("neck", 3, -50);
 	RotateNode ("head", 3, -30);

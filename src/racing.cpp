@@ -230,7 +230,7 @@ int SlideVolume (CControl *ctrl, double speed, int typ) {
 	if (typ == 1) {	// only at paddling or braking
 		return (int)(min ((((pow(ctrl->turn_fact, 2) * 128)) +
 		                   (ctrl->is_braking ? 128:0) +
-		                   (ctrl->jumping ? 128:0) + 20) * (speed / 10), 128));
+		                   (ctrl->jumping ? 128:0) + 20) * (speed / 10), 128.0));
 	} else { 	// always
 		return (int)(128 * pow((speed/2),2));
 	}

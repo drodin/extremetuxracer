@@ -38,7 +38,7 @@ GNU General Public License for more details.
 #define WIND_FACTOR 1.5
 
 #define MIN_FRICT_SPEED 2.8
-#define MAX_FRICT_FORCE 800
+#define MAX_FRICT_FORCE 800.0
 #define MAX_TURN_ANGLE 45
 #define MAX_TURN_PERP 400
 #define MAX_TURN_PEN 0.15

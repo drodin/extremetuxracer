@@ -44,7 +44,7 @@ GNU General Public License for more details.
 #define PUSH_DECAY_TIME_CONSTANT 0.2
 #define PUSH_DIST_DECAY 100
 #define PUSH_FACTOR 0.5
-#define MAX_PUSH_FORCE 5
+#define MAX_PUSH_FORCE 5.0
 #define AIR_DRAG 0.4
 #define TUX_WIDTH 0.45
 
@@ -239,10 +239,10 @@ void push_ui_snow (const TVector2i& pos) {
 #define BRAKE_PARTICLES 2000
 #define MAX_ROLL_PARTICLES 3000
 #define PARTICLE_SPEED_FACTOR 40
-#define MAX_PARTICLE_ANGLE 80
+#define MAX_PARTICLE_ANGLE 80.0
 #define MAX_PARTICLE_ANGLE_SPEED 50
 #define PARTICLE_SPEED_MULTIPLIER 0.3
-#define MAX_PARTICLE_SPEED 2
+#define MAX_PARTICLE_SPEED 2.0
 
 
 struct Particle {
