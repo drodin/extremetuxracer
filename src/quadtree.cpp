@@ -3,6 +3,10 @@
 #include <etr_config.h>
 #endif
 
+#ifdef HAVE_STRING_H
+#include <string.h>
+#endif
+
 #include "quadtree.h"
 #include "textures.h"
 #include "course.h"
