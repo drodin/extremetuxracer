@@ -24,6 +24,7 @@ etr_SOURCES =		\
 	loading.cpp	\
 	main.cpp	\
 	mathlib.cpp	\
+	matrices.cpp	\
 	newplayer.cpp	\
 	ogl.cpp		\
 	ogl_test.cpp	\
@@ -46,6 +47,7 @@ etr_SOURCES =		\
 	track_marks.cpp	\
 	translation.cpp	\
 	tux.cpp		\
+	vectors.cpp	\
 	view.cpp	\
 	winsys.cpp
 
@@ -74,6 +76,7 @@ noinst_HEADERS =	\
 	keyframe.h	\
 	loading.h	\
 	mathlib.h	\
+	matrices.h	\
 	newplayer.h	\
 	ogl.h		\
 	ogl_test.h	\
@@ -96,6 +99,7 @@ noinst_HEADERS =	\
 	track_marks.h	\
 	translation.h	\
 	tux.h		\
+	vectors.h	\
 	version.h	\
 	view.h		\
 	winsys.h
