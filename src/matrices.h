@@ -19,9 +19,9 @@ GNU General Public License for more details.
 
 #include "vectors.h"
 
-template<int x, int y>
+template<int ix, int iy>
 class TMatrix {
-	double _data[x][y];
+	double _data[ix][iy];
 public:
 	TMatrix() {}
 	TMatrix(const TVector3d& w1, const TVector3d& w2, const TVector3d& w3);
@@ -37,7 +37,7 @@ public:
 
 	TMatrix GetTransposed() const;
 
-	static const TMatrix<x, y>& getIdentity();
+	static const TMatrix<ix, iy>& getIdentity();
 };
 
 template<int x, int y>
