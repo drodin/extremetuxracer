@@ -26,6 +26,8 @@ algorithm should be replaced with a more convenient quadtree algorithm.
 #include "view.h"
 
 
+struct CourseFields;
+
 enum vertex_loc_t {
 	East,
 	South,
@@ -33,7 +35,7 @@ enum vertex_loc_t {
 };
 
 struct HeightMapInfo {
-	double *Data;
+	CourseFields* Data;
 	int	XOrigin, ZOrigin;
 	int	XSize, ZSize;
 	int	RowWidth;
@@ -70,21 +72,21 @@ struct quadsquare {
 
 	static double ScaleX, ScaleZ;
 	static int RowSize, NumRows;
-	static char *Terrain;
+	static CourseFields* Fields;
 
 	static GLuint *VertexArrayIndices;
 	static GLuint VertexArrayCounter;
 	static GLuint VertexArrayMinIdx;
 	static GLuint VertexArrayMaxIdx;
 
-	static void MakeTri( int a, int b, int c, int terrain );
-	static void MakeSpecialTri( int a, int b, int c, int terrain );
-	static void MakeNoBlendTri( int a, int b, int c, int terrain );
+	static void MakeTri(int a, int b, int c, int terrain);
+	static void MakeSpecialTri(int a, int b, int c, int terrain);
+	static void MakeNoBlendTri(int a, int b, int c, int terrain);
 
 	static void DrawTris();
 	static void InitArrayCounters();
 
-	quadsquare (quadcornerdata* pcd);
+	quadsquare(quadcornerdata* pcd);
 	~quadsquare();
 
 	void	AddHeightMap(const quadcornerdata& cd, const HeightMapInfo& hm);
@@ -95,34 +97,34 @@ struct quadsquare {
 	void	Render(const quadcornerdata& cd, GLubyte *vnc_array);
 	float	GetHeight(const quadcornerdata& cd, float x, float z);
 	void	SetScale(double x, double z);
-	void	SetTerrain (char *terrain);
+	void	SetFields(CourseFields* fields);
 
 private:
 	quadsquare*	EnableDescendant(int count, int stack[],
 	                             const quadcornerdata& cd);
 	quadsquare*	GetNeighbor(int dir, const quadcornerdata &cd);
-	clip_result_t ClipSquare( const quadcornerdata &cd );
+	clip_result_t ClipSquare(const quadcornerdata &cd);
 
 	void	EnableEdgeVertex(int index, bool IncrementCount,
 	                         const quadcornerdata &cd);
 	void	EnableChild(int index, const quadcornerdata &cd);
 	void	NotifyChildDisable(const quadcornerdata& cd, int index);
 	void	ResetTree();
-	void	StaticCullAux (const quadcornerdata &cd, float ThresholdDetail,
-	                       int TargetLevel);
+	void	StaticCullAux(const quadcornerdata &cd, float ThresholdDetail,
+	                      int TargetLevel);
 	void	CreateChild(int index, const quadcornerdata &cd);
-	void	SetupCornerData (quadcornerdata *q, const quadcornerdata &pd,
-	                         int ChildIndex);
+	void	SetupCornerData(quadcornerdata *q, const quadcornerdata &pd,
+	                        int ChildIndex);
 	void	UpdateAux(const quadcornerdata &cd, const float ViewerLocation[3],
 	                  float CenterError, clip_result_t vis);
 	void	RenderAux(const quadcornerdata &cd, clip_result_t vis,
 	                  int terrain);
-	void	SetStatic (const quadcornerdata &cd);
+	void	SetStatic(const quadcornerdata &cd);
 	void	InitVert(int i, int x, int z);
 	bool	VertexTest(int x, float y, int z, float error, const float Viewer[3],
-	                   int level, vertex_loc_t vertex_loc);
-	bool	BoxTest(int x, int z, float size, float miny, float maxy,
-	                float error, const float Viewer[3]);
+	                   int level, vertex_loc_t vertex_loc) const;
+	static bool BoxTest(int x, int z, float size, float miny, float maxy,
+	                    float error, const float Viewer[3]);
 };
 
 // --------------------------------------------------------------------
@@ -130,11 +132,11 @@ private:
 // --------------------------------------------------------------------
 
 void ResetQuadtree();
-void InitQuadtree (double *elevation, int nx, int nz,
-                   double scalex, double scalez,
-                   const TVector3d& view_pos, double detail);
+void InitQuadtree(CourseFields* fields, int nx, int nz,
+                  double scalex, double scalez,
+                  const TVector3d& view_pos, double detail);
 
-void UpdateQuadtree (const TVector3d& view_pos, float detail);
+void UpdateQuadtree(const TVector3d& view_pos, float detail);
 void RenderQuadtree();
 
 

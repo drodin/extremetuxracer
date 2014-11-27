@@ -19,55 +19,55 @@ GNU General Public License for more details.
 #define WINSYS_H
 
 #include "bh.h"
-#include <SDL/SDL.h>
 
 #define NUM_RESOLUTIONS 10
 
 extern TVector2i cursor_pos;
 
 struct TScreenRes {
-	int width, height;
-	TScreenRes(int w = 0, int h = 0) : width(w), height(h) {}
+	unsigned int width, height;
+	TScreenRes(unsigned int w = 0, unsigned int h = 0) : width(w), height(h) {}
 };
 
 class CWinsys {
 private:
-	// joystick
-	SDL_Joystick *joystick;
-	size_t numJoysticks;
+	unsigned int numJoysticks;
 	bool joystick_active;
 
-	// sdl window
+	// sfml window
+	sf::RenderWindow window;
+	bool sfmlRenders;
 	TScreenRes resolutions[NUM_RESOLUTIONS];
 	TScreenRes auto_resolution;
-	SDL_Surface *screen;
-	double CalcScreenScale () const;
+	float CalcScreenScale() const;
 public:
 	TScreenRes resolution;
-	double scale;			// scale factor for screen, see 'use_quad_scale'
+	float scale;			// scale factor for screen, see 'use_quad_scale'
 
-	CWinsys ();
+	CWinsys();
 
 	// sdl window
-	const TScreenRes& GetResolution (size_t idx) const;
-	string GetResName (size_t idx) const;
-	void Init ();
-	void SetupVideoMode (const TScreenRes& resolution);
-	void SetupVideoMode (size_t idx);
-	void SetupVideoMode (int width, int height);
-	void KeyRepeat (bool repeat);
-	void SetFonttype ();
-	void PrintJoystickInfo () const;
-	void ShowCursor (bool visible) {SDL_ShowCursor (visible);}
-	void SwapBuffers () {SDL_GL_SwapBuffers ();}
-	void Quit ();
-	void Terminate ();
-	void InitJoystick ();
-	void CloseJoystick ();
+	const TScreenRes& GetResolution(size_t idx) const;
+	string GetResName(size_t idx) const;
+	void Init();
+	void SetupVideoMode(const TScreenRes& resolution);
+	void SetupVideoMode(size_t idx);
+	void SetupVideoMode(int width, int height);
+	void KeyRepeat(bool repeat);
+	void PrintJoystickInfo() const;
+	void ShowCursor(bool visible) { window.setMouseCursorVisible(visible); }
+	void SwapBuffers() { window.display(); }
+	void Quit();
+	void Terminate();
 	bool joystick_isActive() const { return joystick_active; }
-	double ClockTime () const {return SDL_GetTicks() * 1.e-3; }
-	unsigned char *GetSurfaceData () const;
+	void draw(const sf::Drawable& drawable, const sf::RenderStates& states = sf::RenderStates::Default) { window.draw(drawable, states); }
+	void clear() { window.clear(colBackgr); }
+	void beginSFML() { if (!sfmlRenders) window.pushGLStates(); sfmlRenders = true; }
+	void endSFML() { if (sfmlRenders) window.popGLStates(); sfmlRenders = false; }
+	bool PollEvent(sf::Event& event) { return window.pollEvent(event); }
+	const sf::Window& getWindow() const { return window; }
 };
+
 
 extern CWinsys Winsys;
 

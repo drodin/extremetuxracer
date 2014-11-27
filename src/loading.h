@@ -23,8 +23,7 @@ GNU General Public License for more details.
 
 class CLoading : public State {
 	void Enter();
-	void Loop(double time_step);
-	void Exit();
+	void Loop(float time_step);
 public:
 };
 

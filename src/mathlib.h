@@ -21,7 +21,6 @@ GNU General Public License for more details.
 
 #include "bh.h"
 #include "matrices.h"
-#include <vector>
 
 static const TVector3d GravVec(0.0, -1.0, 0.0);
 
@@ -32,7 +31,7 @@ static const TVector3d GravVec(0.0, -1.0, 0.0);
 struct TPlane {
 	TVector3d nml;
 	double d;
-	TPlane(double nx = 0.0, double ny = 0.0, double nz = 0.0, double d_ = 0.0)
+	explicit TPlane(double nx = 0.0, double ny = 0.0, double nz = 0.0, double d_ = 0.0)
 		: nml(nx, ny, nz), d(d_)
 	{}
 };
@@ -50,22 +49,22 @@ TVector3d	ProjectToPlane(const TVector3d& nml, const TVector3d& v);
 TVector3d	TransformVector(const TMatrix<4, 4>& mat, const TVector3d& v);
 TVector3d	TransformNormal(const TVector3d& n, const TMatrix<4, 4>& mat);	// not used ?
 TVector3d	TransformPoint(const TMatrix<4, 4>& mat, const TVector3d& p);
-bool		IntersectPlanes (const TPlane& s1, const TPlane& s2, const TPlane& s3, TVector3d *p);
-double		DistanceToPlane (const TPlane& plane, const TVector3d& pt);
+bool		IntersectPlanes(const TPlane& s1, const TPlane& s2, const TPlane& s3, TVector3d *p);
+double		DistanceToPlane(const TPlane& plane, const TVector3d& pt);
 
 TMatrix<4, 4> RotateAboutVectorMatrix(const TVector3d& u, double angle);
 
-TQuaternion MultiplyQuaternions (const TQuaternion& q, const TQuaternion& r);
-TQuaternion ConjugateQuaternion (const TQuaternion& q);
+TQuaternion MultiplyQuaternions(const TQuaternion& q, const TQuaternion& r);
+TQuaternion ConjugateQuaternion(const TQuaternion& q);
 TMatrix<4, 4> MakeMatrixFromQuaternion(const TQuaternion& q);
 TQuaternion MakeQuaternionFromMatrix(const TMatrix<4, 4>& mat);
-TQuaternion MakeRotationQuaternion (const TVector3d& s, const TVector3d& t);
-TQuaternion InterpolateQuaternions (const TQuaternion& q, TQuaternion r, double t);
-TVector3d	RotateVector (const TQuaternion& q, const TVector3d& v);
+TQuaternion MakeRotationQuaternion(const TVector3d& s, const TVector3d& t);
+TQuaternion InterpolateQuaternions(const TQuaternion& q, TQuaternion r, double t);
+TVector3d	RotateVector(const TQuaternion& q, const TVector3d& v);
 
-bool		IntersectPolygon (const TPolygon& p, vector<TVector3d>& v);
-bool		IntersectPolyhedron (TPolyhedron& p);
-TVector3d	MakeNormal (const TPolygon& p, const TVector3d *v);
+bool		IntersectPolygon(const TPolygon& p, vector<TVector3d>& v);
+bool		IntersectPolyhedron(TPolyhedron& p);
+TVector3d	MakeNormal(const TPolygon& p, const TVector3d *v);
 void		TransPolyhedron(const TMatrix<4, 4>& mat, TPolyhedron& ph);
 
 // --------------------------------------------------------------------
@@ -78,14 +77,14 @@ struct TOdeData {
 	double h;
 };
 
-typedef int			(*PNumEstimates) ();
-typedef void		(*PInitOdeData) (TOdeData *, double init_val, double h);
-typedef double		(*PNextTime) (TOdeData *, int step);
-typedef double		(*PNextValue) (TOdeData *, int step);
-typedef void		(*PUpdateEstimate) (TOdeData *, int step, double val);
-typedef double		(*PFinalEstimate) (TOdeData *);
-typedef double		(*PEstimateError) (TOdeData *);
-typedef double		(*PTimestepExponent) ();
+typedef int	(*PNumEstimates)();
+typedef void	(*PInitOdeData)(TOdeData *, double init_val, double h);
+typedef double(*PNextTime)(TOdeData *, int step);
+typedef double(*PNextValue)(TOdeData *, int step);
+typedef void	(*PUpdateEstimate)(TOdeData *, int step, double val);
+typedef double(*PFinalEstimate)(TOdeData *);
+typedef double(*PEstimateError)(TOdeData *);
+typedef double(*PTimestepExponent)();
 
 struct TOdeSolver {
 	PNumEstimates		NumEstimates;
@@ -103,13 +102,13 @@ struct TOdeSolver {
 //			special
 // --------------------------------------------------------------------
 
-int Gauss (double *matrix, int n, double *soln);
-double LinearInterp (const double x[], const double y[], double val, int n);
+int Gauss(double *matrix, int n, double *soln);
+double LinearInterp(const double x[], const double y[], double val, int n);
 
-double	XRandom (float min, float max);
-double	FRandom ();
-int		IRandom (int min, int max);
-int		ITrunc (int val, int base);
-int		IFrac (int val, int base);
+double	XRandom(double min, double max);
+double	FRandom();
+int		IRandom(int min, int max);
+int		ITrunc(int val, int base);
+int		IFrac(int val, int base);
 
 #endif

@@ -33,7 +33,7 @@
 *[idx] 27 [engl] points [trans] Punkte
 
 *[idx] 28 [engl] Cancel [trans] Abbrechen
-*[idx] 29 [engl] Loading [trans] Laden
+*[idx] 29 [engl] Loading [trans] Lade
 *[idx] 30 [engl] Please wait... [trans] Bitte warten...
 
 *[idx] 31 [engl] Fullscreen: [trans] Vollbild:
@@ -102,5 +102,18 @@
 
 *[idx] 83 [engl] Randomize settings [trans] Zufällige Einstellungen
 
-*[idx] 84 [engl] Fullscreen setting has changed, [trans] Damit die Vollbild-Einstellung geändert wird,
-*[idx] 85 [engl] You need to restart the game [trans] muss das Spiel neugestartet werden.
+*[idx] 84 [engl] Score [trans] Punkte
+*[idx] 85 [engl] Herring [trans] Herringe
+*[idx] 86 [engl] Time [trans] Zeit
+*[idx] 87 [engl] Path length [trans] Streckenlänge
+*[idx] 88 [engl] Average speed [trans] Durchschnittsgeschwindigkeit
+*[idx] 89 [engl] Position [trans] Platz
+*[idx] 90 [engl] in highscore list [trans] in der Punkteliste.
+
+*[idx] 91 [engl] Author [trans] Autor
+
+*[idx] 92 [engl] Loading courses failed. [trans] Abfahrten konnten nicht geladen werden.
+*[idx] 93 [engl] Loading characters failed. [trans] Charaktere konnten nicht geladen werden.
+*[idx] 94 [engl] Loading environments failed. [trans] Umgebungsdaten konnten nicht geladen werden.
+*[idx] 95 [engl] Loading terrains failed. [trans] Terrain konnten nicht geladen werden.
+*[idx] 96 [engl] Loading avatars failed. [trans] Avatare konnten nicht geladen werden.

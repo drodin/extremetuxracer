@@ -39,16 +39,18 @@ GNU General Public License for more details.
 CEvent Event;
 
 // ready: 0 - racing  1 - ready with success  2 - ready with failure
-static int ready = 0; 						// indicates if last race is done
-static TWidget* curr_focus = 0;
+static int ready = 0; // indicates if last race is done
 static TCup *ecup = 0;
 static size_t curr_race = 0;
 static size_t curr_bonus = 0;
 static TWidget* textbuttons[3];
+static TLabel* headline;
+static TLabel* info1;
+static TLabel* info2;
 
-void StartRace () {
+void StartRace() {
 	if (ready > 0) {
-		State::manager.RequestEnterState (EventSelect);
+		State::manager.RequestEnterState(EventSelect);
 		return;
 	}
 	g_game.mirrorred = false;
@@ -59,66 +61,52 @@ void StartRace () {
 	g_game.wind_id = ecup->races[curr_race]->wind;
 	g_game.race = ecup->races[curr_race];
 	g_game.game_type = CUPRACING;
-	State::manager.RequestEnterState (Loading);
+	State::manager.RequestEnterState(Loading);
 }
 
-void CEvent::Keyb (unsigned int key, bool special, bool release, int x, int y) {
+void CEvent::Keyb(sf::Keyboard::Key key, bool release, int x, int y) {
 	if (release) return;
 	switch (key) {
-		case SDLK_RETURN:
-			if (curr_focus == textbuttons[0] && ready < 1) StartRace ();
-			else State::manager.RequestEnterState (EventSelect);
+		case sf::Keyboard::Return:
+			if (textbuttons[0]->focussed() && ready < 1) StartRace();
+			else State::manager.RequestEnterState(EventSelect);
 			break;
-		case SDLK_ESCAPE:
-			State::manager.RequestEnterState (EventSelect);
+		case sf::Keyboard::Escape:
+			State::manager.RequestEnterState(EventSelect);
 			break;
-		case SDLK_TAB:
-			if (ready > 0) {
-				curr_focus = textbuttons[2];
-			} else {
-				if (curr_focus == textbuttons[0]) curr_focus = textbuttons[1];
-				else curr_focus = textbuttons[0];
-			}
-			break;
-		case SDLK_LEFT:
-			if (curr_focus == textbuttons[0]) curr_focus = textbuttons[1];
-			break;
-		case SDLK_RIGHT:
-			if (curr_focus == textbuttons[1]) curr_focus = textbuttons[0];
-			break;
-		case SDLK_u:
+		case sf::Keyboard::U:
 			param.ui_snow = !param.ui_snow;
 			break;
+		default:
+			KeyGUI(key, release);
 	}
 }
 
-void CEvent::Mouse (int button, int state, int x, int y) {
+void CEvent::Mouse(int button, int state, int x, int y) {
 	if (state != 1) return;
 
 	TWidget* clicked = ClickGUI(x, y);
 	if (clicked == textbuttons[0]) {
 		if (ready < 1)
-			StartRace ();
+			StartRace();
 	} else if (clicked == textbuttons[1] || clicked == textbuttons[2])
-		State::manager.RequestEnterState (EventSelect);
+		State::manager.RequestEnterState(EventSelect);
 }
 
-void CEvent::Motion (int x, int y) {
-	TWidget* foc = MouseMoveGUI(x, y);
-	if (foc != 0) curr_focus = foc;
+void CEvent::Motion(int x, int y) {
+	MouseMoveGUI(x, y);
 
-	if (param.ui_snow) push_ui_snow (cursor_pos);
+	if (param.ui_snow) push_ui_snow(cursor_pos);
 }
 
-void InitCupRacing () {
+void InitCupRacing() {
 	ecup = g_game.cup;
 	curr_race = 0;
 	curr_bonus = ecup->races.size();
 	ready = 0;
-	curr_focus = 0;
 }
 
-void UpdateCupRacing () {
+void UpdateCupRacing() {
 	size_t lastrace = ecup->races.size() - 1;
 	curr_bonus += g_game.race_result;
 	if (g_game.race_result >= 0) {
@@ -128,134 +116,124 @@ void UpdateCupRacing () {
 		if (curr_bonus == 0) ready = 2;
 	}
 	if (ready == 1) {
-		Players.AddPassedCup (ecup->cup);
-		Players.SavePlayers ();
+		Players.AddPassedCup(ecup->cup);
+		Players.SavePlayers();
 	}
+
+	headline->SetVisible(ready == 0);
+	info1->SetVisible(ready == 0);
+	info2->SetVisible(ready == 0);
 }
 
 // --------------------------------------------------------------------
 
 static TArea area;
 static int messtop, messtop2;
-static int bonustop, framewidth, frametop, framebottom;
+static int bonustop, framewidth, frametop;
 static int dist, texsize;
 
-void CEvent::Enter () {
-	Winsys.ShowCursor (!param.ice_cursor);
+void CEvent::Enter() {
+	Winsys.ShowCursor(!param.ice_cursor);
 
-	if (State::manager.PreviousState() == &GameOver) UpdateCupRacing ();
-	else InitCupRacing ();
+	if (State::manager.PreviousState() == &GameOver) UpdateCupRacing();
+	else InitCupRacing();
 
-	framewidth = 500;
-	frametop = AutoYPosN (45);
-	area = AutoAreaN (30, 80, framewidth);
-	messtop = AutoYPosN (50);
-	messtop2 = AutoYPosN (60);
-	bonustop = AutoYPosN (35);
-	texsize = 32 * Winsys.scale;
-	if (texsize < 32) texsize = 32;
+	framewidth = 500*Winsys.scale;
+	frametop = AutoYPosN(45);
+	area = AutoAreaN(30, 80, framewidth);
+	messtop = AutoYPosN(50);
+	messtop2 = AutoYPosN(60);
+	bonustop = AutoYPosN(35);
+	texsize = 32 * Winsys.scale / 0.8f;
 	dist = texsize + 2 * 4;
-	framebottom = frametop + (int)ecup->races.size() * dist + 10;
+	int framebottom = frametop + (int) ecup->races.size() * dist + 10;
 
-	ResetGUI ();
-	int siz = FT.AutoSizeN (5);
-	textbuttons[1] = AddTextButton (Trans.Text(8), area.left + 100, AutoYPosN (80), siz);
-	double len = FT.GetTextWidth (Trans.Text(13));
-	textbuttons[0] = AddTextButton (Trans.Text(13), area.right -len - 100, AutoYPosN (80), siz);
-	textbuttons[2] = AddTextButton (Trans.Text(15), CENTER, AutoYPosN (80), siz);
+	ResetGUI();
+	int siz = FT.AutoSizeN(5);
+	textbuttons[1] = AddTextButton(Trans.Text(8), area.left + 100, AutoYPosN(80), siz);
+	float len = FT.GetTextWidth(Trans.Text(13));
+	textbuttons[0] = AddTextButton(Trans.Text(13), area.right -len - 100, AutoYPosN(80), siz);
+	textbuttons[2] = AddTextButton(Trans.Text(15), CENTER, AutoYPosN(80), siz);
 
-	Music.Play (param.menu_music, -1);
-	if (ready < 1) curr_focus = textbuttons[0];
-	else curr_focus = textbuttons[2];
+	FT.AutoSizeN(6);
+	headline = AddLabel(ecup->name, CENTER, AutoYPosN(25), colWhite);
+
+	FT.AutoSizeN(3);
+	int ddd = FT.AutoDistanceN(1);
+	string info = Trans.Text(11);
+	info += "   " + Int_StrN(ecup->races[curr_race]->herrings.x);
+	info += "   " + Int_StrN(ecup->races[curr_race]->herrings.y);
+	info += "   " + Int_StrN(ecup->races[curr_race]->herrings.z);
+	info1 = AddLabel(info, CENTER, framebottom + 15, colDBlue);
+
+	info = Trans.Text(12);
+	info += "   " + Int_StrN((int)ecup->races[curr_race]->time.x);
+	info += "   " + Int_StrN((int)ecup->races[curr_race]->time.y);
+	info += "   " + Int_StrN((int)ecup->races[curr_race]->time.z);
+	info += "  " + Trans.Text(14);
+	info2 = AddLabel(info, CENTER, framebottom + 15 + ddd, colDBlue);
+
+	Music.Play(param.menu_music, true);
 }
 
-int resultlevel (size_t num, size_t numraces) {
+int resultlevel(size_t num, size_t numraces) {
 	if (num < 1) return 0;
 	int q = (int)((num - 0.01) / numraces);
 	return q + 1;
 }
 
-void CEvent::Loop (double timestep) {
-	int ww = Winsys.resolution.width;
-	int hh = Winsys.resolution.height;
-
-	check_gl_error();
+void CEvent::Loop(float timestep) {
 	ScopedRenderMode rm(GUI);
-	Music.Update ();
-	ClearRenderContext ();
-	SetupGuiDisplay ();
+	Winsys.clear();
 
 	if (param.ui_snow) {
-		update_ui_snow (timestep);
-		draw_ui_snow ();
+		update_ui_snow(timestep);
+		draw_ui_snow();
 	}
-	Tex.Draw (T_TITLE_SMALL, CENTER, AutoYPosN (5), Winsys.scale);
-	Tex.Draw (BOTTOM_LEFT, 0, hh-256, 1);
-	Tex.Draw (BOTTOM_RIGHT, ww-256, hh-256, 1);
-	Tex.Draw (TOP_LEFT, 0, 0, 1);
-	Tex.Draw (TOP_RIGHT, ww-256, 0, 1);
-
-//	DrawFrameX (area.left, area.top, area.right-area.left, area.bottom - area.top,
-//			0, colMBackgr, colBlack, 0.2);
+	DrawGUIBackground(Winsys.scale);
 
 	if (ready == 0) {			// cup not finished
-		FT.AutoSizeN (6);
-		FT.SetColor (colWhite);
-		FT.DrawString (CENTER, AutoYPosN (25), ecup->name);
+		DrawBonusExt(bonustop, (int)ecup->races.size(), curr_bonus);
 
-		DrawBonusExt (bonustop, (int)ecup->races.size(), curr_bonus);
+		DrawFrameX(area.left, frametop, framewidth,
+		           (int)ecup->races.size() * dist + 20, 3, colBackgr, colWhite, 1);
 
-		DrawFrameX (area.left, frametop, framewidth,
-		            (int)ecup->races.size() * dist + 20, 3, colBackgr, colWhite, 1);
-
+		TCheckbox checkbox(area.right - 50, frametop, texsize, "");
 		for (size_t i=0; i<ecup->races.size(); i++) {
-			FT.AutoSizeN (3);
+			FT.AutoSizeN(4);
 
 			int y = frametop + 10 + (int)i * dist;
 			if (i == curr_race)
-				FT.SetColor (colDYell);
+				FT.SetColor(colDYell);
 			else
-				FT.SetColor (colWhite);
-			FT.DrawString (area.left + 29, y, ecup->races[i]->course->name);
-			Tex.Draw (CHECKBOX, area.right -54, y, texsize, texsize);
-			if (curr_race > i) Tex.Draw (CHECKMARK_SMALL, area.right-50, y + 4, 0.8);
+				FT.SetColor(colWhite);
+			FT.DrawString(area.left + 29, y, ecup->races[i]->course->name);
+			checkbox.SetPosition(area.right - 50*Winsys.scale/0.8f, y + 4);
+			checkbox.SetChecked(curr_race > i);
+			checkbox.Draw();
 		}
-
-		FT.AutoSizeN (3);
-		int ddd = FT.AutoDistanceN (1);
-		FT.SetColor (colDBlue);
-		string info = Trans.Text(11);
-		info += "   " + Int_StrN (ecup->races[curr_race]->herrings.x);
-		info += "   " + Int_StrN (ecup->races[curr_race]->herrings.y);
-		info += "   " + Int_StrN (ecup->races[curr_race]->herrings.z);
-		FT.DrawString (CENTER, framebottom+15, info);
-
-		info = Trans.Text(12);
-		info += "   " + Float_StrN (ecup->races[curr_race]->time.x, 0);
-		info += "   " + Float_StrN (ecup->races[curr_race]->time.y, 0);
-		info += "   " + Float_StrN (ecup->races[curr_race]->time.z, 0);
-		info += "  " + Trans.Text(14);
-		FT.DrawString (CENTER, framebottom+15+ddd, info);
-
 	} else if (ready == 1) {		// cup successfully finished
-		FT.AutoSizeN (5);
-		FT.SetColor (colWhite);
-		FT.DrawString (CENTER, messtop, Trans.Text(16));
-		DrawBonusExt (bonustop, (int)ecup->races.size(), curr_bonus);
+		FT.AutoSizeN(5);
+		FT.SetColor(colWhite);
+		FT.DrawString(CENTER, messtop, Trans.Text(16));
+		DrawBonusExt(bonustop, (int)ecup->races.size(), curr_bonus);
 		int res = resultlevel(curr_bonus, ecup->races.size());
-		FT.DrawString (CENTER, messtop2, Trans.Text(17) + "  " + Int_StrN (res));
+		FT.DrawString(CENTER, messtop2, Trans.Text(17) + "  " + Int_StrN(res));
 	} else if (ready == 2) {		// cup finished but failed
-		FT.AutoSizeN (5);
-		FT.SetColor (colLRed);
-		FT.DrawString (CENTER, messtop, Trans.Text(18));
-		DrawBonusExt (bonustop, ecup->races.size(), curr_bonus);
-		FT.DrawString (CENTER, messtop2, Trans.Text(19));
+		FT.AutoSizeN(5);
+		FT.SetColor(colLRed);
+		FT.DrawString(CENTER, messtop, Trans.Text(18));
+		DrawBonusExt(bonustop, ecup->races.size(), curr_bonus);
+		FT.DrawString(CENTER, messtop2, Trans.Text(19));
 	}
 
 	textbuttons[0]->SetVisible(ready < 1);
 	textbuttons[1]->SetVisible(ready < 1);
 	textbuttons[2]->SetVisible(!(ready < 1));
+	textbuttons[0]->SetActive(ready < 1);
+	textbuttons[1]->SetActive(ready < 1);
+	textbuttons[2]->SetActive(!(ready < 1));
 
-	DrawGUI ();
+	DrawGUI();
 	Winsys.SwapBuffers();
 }

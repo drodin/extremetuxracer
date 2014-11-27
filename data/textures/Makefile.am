@@ -26,7 +26,6 @@ pkgdata_DATA = \
 	ziff032.png	\
 	mirror_butt.png	\
 	random_butt.png	\
-	herringicon3.png	\
 	timeicon.png	\
 	speedknob2.png	\
 	checkbox.png	\

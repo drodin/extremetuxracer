@@ -154,4 +154,3 @@ TMatrix<4, 4> operator*<4, 4>(const TMatrix<4, 4>& l, const TMatrix<4, 4>& r) {
 
 	return ret;
 }
-

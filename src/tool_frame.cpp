@@ -42,162 +42,162 @@ static bool alt = false;
 static bool lastframe = 0;
 static bool keyrun = false;
 
-void InitFrameTools () {
+void InitFrameTools() {
 	framebase = (int)((Winsys.resolution.height - 350) / 18);
-	if (TestFrame.numFrames() < 1) TestFrame.AddFrame ();
+	if (TestFrame.numFrames() < 1) TestFrame.AddFrame();
 	curr_joint = 0;
-	last_joint = TestFrame.GetNumJoints () -1;
+	last_joint = TestFrame.GetNumJoints() -1;
 }
 
-void SingleFrameKeys (unsigned int key, bool special, bool release, int x, int y) {
+void SingleFrameKeys(sf::Keyboard::Key key, bool release, int x, int y) {
 //PrintInt (key);
 	must_render = true;
 	int keyfact;
 	lastframe = TestFrame.numFrames() != 1;
-	TKeyframe *frame = TestFrame.GetFrame (curr_frame);
+	TKeyframe *frame = TestFrame.GetFrame(curr_frame);
 
 	// setting the camera change state
-	if (key == SDLK_F1) {GluCamera.turnright = !release; return;}
-	else if (key == SDLK_F2) {GluCamera.turnleft = !release; return;}
-	if (key == SDLK_F3) {GluCamera.nearer = !release; return;}
-	else if (key == SDLK_F4) {GluCamera.farther = !release; return;}
+	if (key == sf::Keyboard::F1) {GluCamera.turnright = !release; return;}
+	else if (key == sf::Keyboard::F2) { GluCamera.turnleft = !release; return; }
+	if (key == sf::Keyboard::F3) { GluCamera.nearer = !release; return; }
+	else if (key == sf::Keyboard::F4) { GluCamera.farther = !release; return; }
 
 	// additional keys if needed
-	if (key == SDLK_LSHIFT) shift = !release;
-	if (key == SDLK_LCTRL) control = !release;
-	if (key == SDLK_LALT) alt = !release;
+	if (key == sf::Keyboard::LShift || key == sf::Keyboard::RShift) shift = !release;
+	if (key == sf::Keyboard::LControl) control = !release;
+	if (key == sf::Keyboard::LAlt) alt = !release;
 	if (shift) keyfact = -1;
 	else keyfact = 1;
 
 	if (release) return;
 
 	switch (key) {
-		case SDLK_y:
-		case SDLK_j:
-			if (ToolsFinalStage ()) {
-				SaveToolCharacter ();
-				SaveToolFrame ();
+		case sf::Keyboard::Y:
+		case sf::Keyboard::J:
+			if (ToolsFinalStage()) {
+				SaveToolCharacter();
+				SaveToolFrame();
 				State::manager.RequestQuit();
 			}
 			break;
-		case SDLK_n:
-			if (ToolsFinalStage ()) State::manager.RequestQuit();
+		case sf::Keyboard::N:
+			if (ToolsFinalStage()) State::manager.RequestQuit();
 			break;
 
-		case SDLK_ESCAPE:
-		case SDLK_q:
-			QuitTool ();
+		case sf::Keyboard::Escape:
+		case sf::Keyboard::Q:
+			QuitTool();
 			break;
-		case SDLK_s:
-			SaveToolFrame ();
+		case sf::Keyboard::S:
+			SaveToolFrame();
 			break;
-		case SDLK_TAB:
-			SetToolMode (0);
+		case sf::Keyboard::Tab:
+			SetToolMode(0);
 			break;
 
-		case SDLK_a:
-			TestFrame.AddFrame ();
-			SetFrameChanged (true);
+		case sf::Keyboard::A:
+			TestFrame.AddFrame();
+			SetFrameChanged(true);
 			break;
-		case SDLK_INSERT:
-			TestFrame.InsertFrame (curr_frame);
-			SetFrameChanged (true);
+		case sf::Keyboard::Insert:
+			TestFrame.InsertFrame(curr_frame);
+			SetFrameChanged(true);
 			break;
-		case SDLK_DELETE:
-			curr_frame = TestFrame.DeleteFrame (curr_frame);
-			SetFrameChanged (true);
+		case sf::Keyboard::Delete:
+			curr_frame = TestFrame.DeleteFrame(curr_frame);
+			SetFrameChanged(true);
 			break;
-		case SDLK_PAGEDOWN:
+		case sf::Keyboard::PageDown:
 			if (curr_frame < TestFrame.numFrames()-1) curr_frame++;
 			break;
-		case SDLK_PAGEUP:
+		case sf::Keyboard::PageUp:
 			if (curr_frame > 0) curr_frame--;
 			break;
-		case SDLK_UP:
+		case sf::Keyboard::Up:
 			if (curr_joint > 0) curr_joint--;
 			break;
-		case SDLK_DOWN:
+		case sf::Keyboard::Down:
 			if (curr_joint < last_joint) curr_joint++;
 			break;
-		case SDLK_RIGHT:
+		case sf::Keyboard::Right:
 			if (curr_joint < 4) frame->val[curr_joint] += 0.05;
 			else frame->val[curr_joint] += 1;
-			SetFrameChanged (true);
+			SetFrameChanged(true);
 			break;
-		case SDLK_LEFT:
+		case sf::Keyboard::Left:
 			if (curr_joint < 4) frame->val[curr_joint] -= 0.05;
 			else frame->val[curr_joint] -= 1;
-			SetFrameChanged (true);
+			SetFrameChanged(true);
 			break;
-		case SDLK_0:
+		case sf::Keyboard::Num0:
 			frame->val[curr_joint] = 0.0;
-			SetFrameChanged (true);
+			SetFrameChanged(true);
 			break;
-		case SDLK_SPACE:
+		case sf::Keyboard::Space:
 			if (curr_joint < 4) frame->val[curr_joint] += 0.05 * keyfact;
 			else frame->val[curr_joint] += 1 * keyfact;
-			SetFrameChanged (true);
+			SetFrameChanged(true);
 			break;
 
-		case SDLK_RETURN:
-			TestFrame.InitTest (ref_position, &TestChar);
-			SetToolMode (2);
+		case sf::Keyboard::Return:
+			TestFrame.InitTest(ref_position, &TestChar);
+			SetToolMode(2);
 			must_render = true;
 			break;
 
-		case SDLK_m:
+		case sf::Keyboard::M :
 			TestChar.useMaterials = !TestChar.useMaterials;
 			break;
-		case SDLK_h:
+		case sf::Keyboard::H:
 			TestChar.useHighlighting = !TestChar.useHighlighting;
 			break;
-		case SDLK_c:
-			if (control) TestFrame.CopyToClipboard (curr_frame);
-			else TestFrame.ClearFrame (curr_frame);
-			SetFrameChanged (true);
+		case sf::Keyboard::C:
+			if (control) TestFrame.CopyToClipboard(curr_frame);
+			else TestFrame.ClearFrame(curr_frame);
+			SetFrameChanged(true);
 			break;
-		case SDLK_v:
-			if (control) TestFrame.PasteFromClipboard (curr_frame);
-			SetFrameChanged (true);
+		case sf::Keyboard::V:
+			if (control) TestFrame.PasteFromClipboard(curr_frame);
+			SetFrameChanged(true);
 			break;
-		case SDLK_p:
+		case sf::Keyboard::P:
 			if (curr_frame>0)
-				TestFrame.CopyFrame (curr_frame-1, curr_frame);
+				TestFrame.CopyFrame(curr_frame-1, curr_frame);
 			break;
-		case SDLK_F10:
-			ScreenshotN ();
+		case sf::Keyboard::F10:
+			ScreenshotN();
 			break;
 
-		case SDLK_1:
+		case sf::Keyboard::Num1:
 			GluCamera.angle = 0;
 			break;
-		case SDLK_2:
+		case sf::Keyboard::Num2:
 			GluCamera.angle = 45;
 			break;
-		case SDLK_3:
+		case sf::Keyboard::Num3:
 			GluCamera.angle = 90;
 			break;
-		case SDLK_4:
+		case sf::Keyboard::Num4:
 			GluCamera.angle = 135;
 			break;
-		case SDLK_5:
+		case sf::Keyboard::Num5:
 			GluCamera.angle = 180;
 			break;
-		case SDLK_6:
+		case sf::Keyboard::Num6:
 			GluCamera.angle = 225;
 			break;
-		case SDLK_7:
+		case sf::Keyboard::Num7:
 			GluCamera.angle = 270;
 			break;
-		case SDLK_8:
+		case sf::Keyboard::Num8:
 			GluCamera.angle = 315;
 			break;
 	}
 }
 
-void SingleFrameMouse (int button, int state, int x, int y) {
+void SingleFrameMouse(int button, int state, int x, int y) {
 	must_render = true;
-	if (ToolsFinalStage ()) return;
+	if (ToolsFinalStage()) return;
 
 	if (button == 4) {
 		GluCamera.distance += 0.1;
@@ -206,78 +206,77 @@ void SingleFrameMouse (int button, int state, int x, int y) {
 	}
 }
 
-void SingleFrameMotion (int x, int y) {
+void SingleFrameMotion(int x, int y) {
 }
 
-void PrintFrameParams (int ytop, TKeyframe *frame) {
+void PrintFrameParams(int ytop, TKeyframe *frame) {
 	int offs = 18;
 
 	for (int i=0; i<=last_joint; i++) {
-		if (i == curr_joint) FT.SetColor (colYellow);
-		else FT.SetColor (colLGrey);
+		if (i == curr_joint) FT.SetColor(colYellow);
+		else FT.SetColor(colLGrey);
 
-		int x = ITrunc (i, jointbase) * 140 + 20;
-		int y = IFrac (i, jointbase) * offs + ytop;
+		int x = ITrunc(i, jointbase) * 140 + 20;
+		int y = IFrac(i, jointbase) * offs + ytop;
 
-		FT.DrawString (x, y, TestFrame.GetJointName(i));
-		if (i < 4) FT.DrawString (x+80, y, Float_StrN (frame->val[i], 2));
-		else FT.DrawString (x+80, y, Float_StrN (frame->val[i], 0));
+		FT.DrawString(x, y, TestFrame.GetJointName(i));
+		if (i < 4) FT.DrawString(x+80, y, Float_StrN(frame->val[i], 2));
+		else FT.DrawString(x+80, y, Int_StrN((int)frame->val[i]));
 	}
 }
 
-void RenderSingleFrame (double timestep) {
+void RenderSingleFrame(float timestep) {
 	if (!must_render) return;
-	check_gl_error ();
 
 	// ------------------ 3d scenery ----------------------------------
 	ScopedRenderMode rm1(TUX);
-	ClearRenderContext (colDDBackgr);
+	ClearRenderContext(colDDBackgr);
 
-	const string& hlname = TestFrame.GetHighlightName (curr_joint);
-	TestChar.highlight_node = TestChar.GetNodeName (hlname);
+	const string& hlname = TestFrame.GetHighlightName(curr_joint);
+	TestChar.highlight_node = TestChar.GetNodeName(hlname);
 
-	glPushMatrix ();
-	SetToolLight ();
-	GluCamera.Update (timestep);
+	glPushMatrix();
+	SetToolLight();
+	GluCamera.Update(timestep);
 
-	TestFrame.CalcKeyframe (curr_frame, &TestChar, ref_position);
-	TestChar.Draw ();
-	glPopMatrix ();
+	TestFrame.CalcKeyframe(curr_frame, &TestChar, ref_position);
+	TestChar.Draw();
+	glPopMatrix();
 
 	// ----------------- 2d screen ------------------------------------
-	SetupGuiDisplay ();
+	Setup2dScene();
 	ScopedRenderMode rm2(TEXFONT);
 
-	if (FrameHasChanged ()) DrawChanged ();
+	if (FrameHasChanged()) DrawChanged();
 
 	FT.SetProps("bold", 20, colYellow);
-	FT.DrawString (-1, 10, "Keyframe mode");
+	FT.DrawString(-1, 10, "Keyframe mode");
 
 	FT.SetProps("normal", 16);
 	for (size_t i=0; i<TestFrame.numFrames(); i++) {
 		if (i != curr_frame) {
-			FT.SetColor (colLGrey);
-			FT.SetFont ("normal");
+			FT.SetColor(colLGrey);
+			FT.SetFont("normal");
 		} else {
-			FT.SetColor (colYellow);
-			FT.SetFont ("bold");
+			FT.SetColor(colYellow);
+			FT.SetFont("bold");
 		}
-		int xl = ITrunc ((int)i, framebase) * 100 + 20;
-		int yt = IFrac ((int)i, framebase) * 18 + 20;
-		FT.DrawString (xl, yt, Int_StrN ((int)i));
+		int xl = ITrunc((int)i, framebase) * 100 + 20;
+		int yt = IFrac((int)i, framebase) * 18 + 20;
+		FT.DrawString(xl, yt, Int_StrN((int)i));
 	}
 
-	FT.SetFont ("normal");
-	FT.SetColor (colLGrey);
-	PrintFrameParams (Winsys.resolution.height - 330, TestFrame.GetFrame (curr_frame));
+	FT.SetFont("normal");
+	FT.SetColor(colLGrey);
+	PrintFrameParams(Winsys.resolution.height - 330, TestFrame.GetFrame(curr_frame));
 
-	if (ToolsFinalStage ()) {
-		FT.SetSize (20);
-		FT.SetColor (colYellow);
-		FT.DrawString (-1, Winsys.resolution.height - 50, "Quit program. Save character list (y/n)");
+	if (ToolsFinalStage()) {
+		FT.SetSize(20);
+		FT.SetColor(colYellow);
+		FT.DrawString(-1, Winsys.resolution.height - 50, "Quit program. Save character list (y/n)");
 	}
 
-	Reshape (Winsys.resolution.width, Winsys.resolution.height);
+	Reshape(Winsys.resolution.width, Winsys.resolution.height);
 	Winsys.SwapBuffers();
 	must_render = false;
 }
@@ -287,41 +286,40 @@ void RenderSingleFrame (double timestep) {
 //				frame sequence
 // --------------------------------------------------------------------
 
-void SequenceKeys (unsigned int key, bool special, bool release, int x, int y) {
+void SequenceKeys(sf::Keyboard::Key key, bool release, int x, int y) {
 	if (release) return;
 	switch (key) {
-		case SDLK_RETURN:
+		case sf::Keyboard::Return:
 			keyrun = true;
 			break;
-		case SDLK_ESCAPE:
-		case SDLK_TAB:
-			SetToolMode (1);
+		case sf::Keyboard::Escape:
+		case sf::Keyboard::Tab:
+			SetToolMode(1);
 			break;
-		case SDLK_q:
-			QuitTool ();
+		case sf::Keyboard::Q:
+			QuitTool();
 			break;
 	}
 }
 
-void SequenceMouse (int button, int state, int x, int y) {}
-void SequenceMotion (int x, int y) {}
+void SequenceMouse(int button, int state, int x, int y) {}
+void SequenceMotion(int x, int y) {}
 
-void RenderSequence (double timestep) {
-	check_gl_error();
+void RenderSequence(float timestep) {
 	ScopedRenderMode rm(TUX);
-	ClearRenderContext (colDDBackgr);
+	ClearRenderContext(colDDBackgr);
 
-	GluCamera.Update (timestep);
-	if (TestFrame.active) TestFrame.UpdateTest (timestep, &TestChar);
+	GluCamera.Update(timestep);
+	if (TestFrame.active) TestFrame.UpdateTest(timestep, &TestChar);
 	else if (keyrun) {
-		TestFrame.InitTest (NullVec3, &TestChar);
+		TestFrame.InitTest(NullVec3, &TestChar);
 		keyrun = false;
 	}
 
-	glPushMatrix ();
-	TestChar.Draw ();
-	glPopMatrix ();
+	glPushMatrix();
+	TestChar.Draw();
+	glPopMatrix();
 
-	Reshape (Winsys.resolution.width, Winsys.resolution.height);
+	Reshape(Winsys.resolution.width, Winsys.resolution.height);
 	Winsys.SwapBuffers();
 }

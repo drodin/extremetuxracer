@@ -33,7 +33,7 @@ GNU General Public License for more details.
 
 TGameData g_game;
 
-void InitGame (int argc, char **argv) {
+void InitGame(int argc, char **argv) {
 	g_game.toolmode = NONE;
 	g_game.argument = 0;
 	if (argc == 4) {
@@ -45,17 +45,17 @@ void InitGame (int argc, char **argv) {
 		if (group_arg == "9") g_game.argument = 9;
 	}
 
-	g_game.player = NULL;
+	g_game.player = nullptr;
 	g_game.start_player = 0;
-	g_game.course = NULL;
+	g_game.course = nullptr;
 	g_game.mirrorred = false;
-	g_game.character = NULL;
+	g_game.character = nullptr;
 	g_game.location_id = 0;
 	g_game.light_id = 0;
 	g_game.snow_id = 0;
 	g_game.cup = 0;
 	g_game.theme_id = 0;
-	g_game.force_treemap = 0;
+	g_game.force_treemap = false;
 	g_game.treesize = 3;
 	g_game.treevar = 3;
 }
@@ -64,32 +64,30 @@ void InitGame (int argc, char **argv) {
 // 					main
 // ====================================================================
 
-#if defined ( OS_WIN32_MINGW )
-#undef main
-#endif
-
-int main( int argc, char **argv ) {
+int main(int argc, char **argv) {
 	// ****************************************************************
 	cout << "\n----------- Extreme Tux Racer " ETR_VERSION_STRING " ----------------";
-	cout << "\n----------- (C) 2010-2013 Extreme Tuxracer Team  --------\n\n";
+	cout << "\n----------- (C) 2010-2014 Extreme Tuxracer Team  --------\n\n";
 
-	srand (time (NULL));
-	InitConfig (argv[0]);
-	InitGame (argc, argv);
-	Winsys.Init ();
-	InitOpenglExtensions ();
+	srand(time(nullptr));
+	InitConfig();
+	InitGame(argc, argv);
+	Winsys.Init();
+	InitOpenglExtensions();
 	// for checking the joystick and the OpgenGL version (the info is
 	// written on the console):
 	//	Winsys.PrintJoystickInfo ();
 	//	PrintGLInfo ();
 
 	// theses resources must or should be loaded before splashscreen starts
-	Tex.LoadTextureList ();
-	FT.LoadFontlist ();
-	Winsys.SetFonttype ();
-	Audio.Open ();
-	Music.LoadMusicList ();
-	Music.SetVolume (param.music_volume);
+	if (!Tex.LoadTextureList()) {
+		Winsys.Quit();
+		return -1;
+	}
+	FT.LoadFontlist();
+	FT.SetFontFromSettings();
+	Music.LoadMusicList();
+	Music.SetVolume(param.music_volume);
 
 	switch (g_game.argument) {
 		case 0:

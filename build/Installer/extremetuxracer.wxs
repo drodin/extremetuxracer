@@ -29,16 +29,20 @@
           </Component>
           <!--Component Id='Translations' Guid='$(var.translationsGUID)'>
           </Component>-->
-          <Component Id='SDL' Guid='$(var.sdlGUID)'>
-            <File Id='libogg0.dll' Name='libogg-0.dll' DiskId='1' Source='$(var.BinDir)\libogg-0.dll' />
-            <File Id='libpng1515.dll' Name='libpng15-15.dll' DiskId='1' Source='$(var.BinDir)\libpng15-15.dll' />
-            <File Id='libvorbis0.dll' Name='libvorbis-0.dll' DiskId='1' Source='$(var.BinDir)\libvorbis-0.dll' />
-            <File Id='libvorbisfile3.dll' Name='libvorbisfile-3.dll' DiskId='1' Source='$(var.BinDir)\libvorbisfile-3.dll' />
-            <File Id='SDL.dll' Name='SDL.dll' DiskId='1' Source='$(var.BinDir)\SDL.dll' KeyPath='yes' />
-            <File Id='SDL_image.dll' Name='SDL_image.dll' DiskId='1' Source='$(var.BinDir)\SDL_image.dll' />
-            <File Id='SDL_mixer.dll' Name='SDL_mixer.dll' DiskId='1' Source='$(var.BinDir)\SDL_mixer.dll' />
-            <File Id='smpeg.dll' Name='smpeg.dll' DiskId='1' Source='$(var.BinDir)\smpeg.dll' />
-            <File Id='zlib1.dll' Name='zlib1.dll' DiskId='1' Source='$(var.BinDir)\zlib1.dll' />
+          <Component Id='SFML' Guid='$(var.sfmlGUID)'>
+            <File Id='libsndfile1.dll' Name='libsndfile-1.dll' DiskId='1' Source='$(var.BinDir)\libsndfile-1.dll' />
+            <File Id='openal32.dll' Name='openal32.dll' DiskId='1' Source='$(var.BinDir)\openal32.dll' />
+            <?if $(var.Platform) = x64 ?>
+              <File Id='sfml_system_2.dll' Name='sfml-system-64-2.dll' DiskId='1' Source='$(var.BinDir)\sfml-system-64-2.dll' KeyPath='yes' />
+              <File Id='sfml_window_2.dll' Name='sfml-window-64-2.dll' DiskId='1' Source='$(var.BinDir)\sfml-window-64-2.dll' />
+              <File Id='sfml_graphics_2.dll' Name='sfml-graphics-64-2.dll' DiskId='1' Source='$(var.BinDir)\sfml-graphics-64-2.dll' />
+              <File Id='sfml_audio_2.dll' Name='sfml-audio-64-2.dll' DiskId='1' Source='$(var.BinDir)\sfml-audio-64-2.dll' />
+            <?else?>
+              <File Id='sfml_system_2.dll' Name='sfml-system-2.dll' DiskId='1' Source='$(var.BinDir)\sfml-system-2.dll' KeyPath='yes' />
+              <File Id='sfml_window_2.dll' Name='sfml-window-2.dll' DiskId='1' Source='$(var.BinDir)\sfml-window-2.dll' />
+              <File Id='sfml_graphics_2.dll' Name='sfml-graphics-2.dll' DiskId='1' Source='$(var.BinDir)\sfml-graphics-2.dll' />
+              <File Id='sfml_audio_2.dll' Name='sfml-audio-2.dll' DiskId='1' Source='$(var.BinDir)\sfml-audio-2.dll' />
+            <?endif?>
           </Component>
         </Directory>
         <Merge Id="CRT" Language="0" SourceFile="$(var.CrtMergeModule)" DiskId="1" />
@@ -65,7 +69,7 @@
         <ComponentRef Id='ExtremeTuxRacer.exe' />
         <ComponentGroupRef Id='Data' />
         <ComponentRef Id='Config' />
-        <ComponentRef Id='SDL' />
+        <ComponentRef Id='SFML' />
       </Feature>
       <!--<Feature Id='Translations' Title='Translations' AllowAdvertise='no' Description='Translations for other languages than English' Level='1'>
           <ComponentRef Id='Translations' />
@@ -73,7 +77,7 @@
       <Feature Id='ProgramMenuEntry' Title='Program menu entry' AllowAdvertise='no' Description='Add entry to program menu' Level='1'>
         <ComponentRef Id='ProgramMenuDir' />
       </Feature>
-      <Feature Id="CRT" AllowAdvertise="no" Display="hidden" Level="1" Title="Microsoft Visual C++ 2012 Runtime Components">
+      <Feature Id="CRT" AllowAdvertise="no" Display="hidden" Level="1" Title="Microsoft Visual C++ 2013 Runtime Components">
         <MergeRef Id="CRT"/>
       </Feature>
     </Feature>
@@ -84,6 +88,7 @@
     <UIRef Id="WixUI_FeatureTree"/>
 
     <Icon Id='ExtremeTuxRacer.exe' SourceFile='$(var.BinDir)\ExtremeTuxRacer.exe' />
+    <Property Id="ARPPRODUCTICON" Value="ExtremeTuxRacer.exe" />
 
     <WixVariable Id="WixUILicenseRtf" Value="GPLv3.rtf" />
     <WixVariable Id="WixUIBannerBmp" Value="..\..\resources\banner.bmp" />

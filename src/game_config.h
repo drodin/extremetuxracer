@@ -19,9 +19,6 @@ GNU General Public License for more details.
 
 #include "bh.h"
 
-#define CONFIG_DIR ".etr"
-#define PLAYER_FILE "players"
-
 struct TParam {
 	// defined at runtime:
 	//	string	prog_dir;
@@ -59,8 +56,6 @@ struct TParam {
 	int		tux_sphere_divisions;
 	int		tux_shadow_sphere_divisions;
 	int		course_detail_level; // only for quadtree
-	int		audio_freq;
-	int		audio_buffer_size;
 
 	int		use_papercut_font;
 	bool	ice_cursor;
@@ -78,8 +73,8 @@ struct TParam {
 	TViewMode view_mode;
 };
 
-void InitConfig (const char *arg0);
-void SaveConfigFile ();
+void InitConfig();
+void SaveConfigFile();
 
 extern TParam param;
 

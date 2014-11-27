@@ -23,8 +23,9 @@ GNU General Public License for more details.
 
 class CNewPlayer : public State {
 	void Enter();
-	void Loop(double time_step);
-	void Keyb_spec(SDL_keysym sym, bool release);
+	void Loop(float time_step);
+	void Keyb(sf::Keyboard::Key key, bool release, int x, int y);
+	void TextEntered(char text);
 	void Mouse(int button, int state, int x, int y);
 	void Motion(int x, int y);
 public:

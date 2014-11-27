@@ -11,7 +11,6 @@ etr_SOURCES =		\
 	event.cpp	\
 	event_select.cpp \
 	font.cpp	\
-	ft_font.cpp	\
 	game_config.cpp	\
 	game_ctrl.cpp	\
 	game_over.cpp	\
@@ -64,7 +63,6 @@ noinst_HEADERS =	\
 	event.h		\
 	event_select.h	\
 	font.h		\
-	ft_font.h	\
 	game_config.h	\
 	game_ctrl.h	\
 	game_over.h	\

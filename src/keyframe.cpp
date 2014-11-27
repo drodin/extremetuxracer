@@ -19,16 +19,14 @@ GNU General Public License for more details.
 #include <etr_config.h>
 #endif
 
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
-
 #include "keyframe.h"
 #include "course.h"
 #include "spx.h"
 #include "tux.h"
 #include "game_ctrl.h"
 #include "physics.h"
+#include <algorithm>
+#include <iterator>
 
 static const int numJoints = 19;
 
@@ -52,7 +50,7 @@ static const string highlightnames[numJoints] = {
 
 CKeyframe TestFrame;
 
-CKeyframe::CKeyframe () {
+CKeyframe::CKeyframe() {
 	keytime = 0;
 	active = false;
 	loaded = false;
@@ -60,11 +58,11 @@ CKeyframe::CKeyframe () {
 	keyidx = 0;
 }
 
-double CKeyframe::interp (double frac, double v1, double v2) {
+double CKeyframe::interp(double frac, double v1, double v2) {
 	return frac * v1 + (1.0 - frac) * v2;
 }
 
-void CKeyframe::Init (const TVector3d& ref_position, double height_correction) {
+void CKeyframe::Init(const TVector3d& ref_position, double height_correction) {
 	if (!loaded) return;
 	g_game.character->shape->ResetNode("head");
 	g_game.character->shape->ResetNode("neck");
@@ -75,10 +73,10 @@ void CKeyframe::Init (const TVector3d& ref_position, double height_correction) {
 	keytime = 0;
 }
 
-void CKeyframe::Init (const TVector3d& ref_position, double height_correction, CCharShape *shape) {
+void CKeyframe::Init(const TVector3d& ref_position, double height_correction, CCharShape *shape) {
 	if (!loaded) return;
-	shape->ResetNode ("head");
-	shape->ResetNode ("neck");
+	shape->ResetNode("head");
+	shape->ResetNode("neck");
 	refpos = ref_position;
 	heightcorr = height_correction;
 	active = true;
@@ -87,10 +85,10 @@ void CKeyframe::Init (const TVector3d& ref_position, double height_correction, C
 
 }
 
-void CKeyframe::InitTest (const TVector3d& ref_position, CCharShape *shape) {
+void CKeyframe::InitTest(const TVector3d& ref_position, CCharShape *shape) {
 	if (!loaded) return;
-	shape->ResetNode ("head");
-	shape->ResetNode ("neck");
+	shape->ResetNode("head");
+	shape->ResetNode("neck");
 	refpos = ref_position;
 	heightcorr = 0.0;
 	active = true;
@@ -98,7 +96,7 @@ void CKeyframe::InitTest (const TVector3d& ref_position, CCharShape *shape) {
 	keytime = 0;
 }
 
-void CKeyframe::Reset () {
+void CKeyframe::Reset() {
 	loaded = false;
 	active = false;
 	loadedfile = "";
@@ -106,37 +104,37 @@ void CKeyframe::Reset () {
 	frames.clear();
 }
 
-bool CKeyframe::Load (const string& dir, const string& filename) {
+bool CKeyframe::Load(const string& dir, const string& filename) {
 	if (loaded && loadedfile == filename) return true;
-	CSPList list (1000);
+	CSPList list(1000);
 
-	if (list.Load (dir, filename)) {
-		frames.resize(list.Count());
-		for (size_t i=0; i<list.Count(); i++) {
-			const string& line = list.Line(i);
-			frames[i].val[0] = SPFloatN (line, "time", 0);
-			TVector3d posit = SPVector3d(line, "pos");
+	if (list.Load(dir, filename)) {
+		frames.resize(list.size());
+		size_t i = 0;
+		for (CSPList::const_iterator line = list.cbegin(); line != list.cend(); ++line, i++) {
+			frames[i].val[0] = SPFloatN(*line, "time", 0);
+			TVector3d posit = SPVector3d(*line, "pos");
 			frames[i].val[1] = posit.x;
 			frames[i].val[2] = posit.y;
 			frames[i].val[3] = posit.z;
-			frames[i].val[4] = SPFloatN (line, "yaw", 0);
-			frames[i].val[5] = SPFloatN (line, "pitch", 0);
-			frames[i].val[6] = SPFloatN (line, "roll", 0);
-			frames[i].val[7] = SPFloatN (line, "neck", 0);
-			frames[i].val[8] = SPFloatN (line, "head", 0);
-			TVector2d pp = SPVector2d(line, "sh");
+			frames[i].val[4] = SPFloatN(*line, "yaw", 0);
+			frames[i].val[5] = SPFloatN(*line, "pitch", 0);
+			frames[i].val[6] = SPFloatN(*line, "roll", 0);
+			frames[i].val[7] = SPFloatN(*line, "neck", 0);
+			frames[i].val[8] = SPFloatN(*line, "head", 0);
+			TVector2d pp = SPVector2d(*line, "sh");
 			frames[i].val[9] = pp.x;
 			frames[i].val[10] = pp.y;
-			pp = SPVector2d(line, "arm");
+			pp = SPVector2d(*line, "arm");
 			frames[i].val[11] = pp.x;
 			frames[i].val[12] = pp.y;
-			pp = SPVector2d(line, "hip");
+			pp = SPVector2d(*line, "hip");
 			frames[i].val[13] = pp.x;
 			frames[i].val[14] = pp.y;
-			pp = SPVector2d(line, "knee");
+			pp = SPVector2d(*line, "knee");
 			frames[i].val[15] = pp.x;
 			frames[i].val[16] = pp.y;
-			pp = SPVector2d(line, "ankle");
+			pp = SPVector2d(*line, "ankle");
 			frames[i].val[17] = pp.x;
 			frames[i].val[18] = pp.y;
 		}
@@ -144,7 +142,7 @@ bool CKeyframe::Load (const string& dir, const string& filename) {
 		loadedfile = filename;
 		return true;
 	} else {
-		Message ("keyframe not found:", filename);
+		Message("keyframe not found:", filename);
 		loaded = false;
 		return false;
 	}
@@ -153,55 +151,55 @@ bool CKeyframe::Load (const string& dir, const string& filename) {
 // there are more possibilities for rotating the parts of the body,
 // that will be implemented later
 
-void CKeyframe::InterpolateKeyframe (size_t idx, double frac, CCharShape *shape) {
+void CKeyframe::InterpolateKeyframe(size_t idx, double frac, CCharShape *shape) {
 	double vv;
-	vv = interp (frac, frames[idx].val[4], frames[idx+1].val[4]);
-	shape->RotateNode ("root", 2, vv);
+	vv = interp(frac, frames[idx].val[4], frames[idx+1].val[4]);
+	shape->RotateNode("root", 2, vv);
 
-	vv = interp (frac, frames[idx].val[5], frames[idx+1].val[5]);
-	shape->RotateNode ("root", 1, vv);
+	vv = interp(frac, frames[idx].val[5], frames[idx+1].val[5]);
+	shape->RotateNode("root", 1, vv);
 
-	vv = interp (frac, frames[idx].val[6], frames[idx+1].val[6]);
-	shape->RotateNode ("root", 3, vv);
+	vv = interp(frac, frames[idx].val[6], frames[idx+1].val[6]);
+	shape->RotateNode("root", 3, vv);
 
-	vv = interp (frac, frames[idx].val[7], frames[idx+1].val[7]);
-	shape->RotateNode ("neck", 3, vv);
+	vv = interp(frac, frames[idx].val[7], frames[idx+1].val[7]);
+	shape->RotateNode("neck", 3, vv);
 
-	vv = interp (frac, frames[idx].val[8], frames[idx+1].val[8]);
-	shape->RotateNode ("head", 2, vv);
+	vv = interp(frac, frames[idx].val[8], frames[idx+1].val[8]);
+	shape->RotateNode("head", 2, vv);
 
-	vv = interp (frac, frames[idx].val[9], frames[idx+1].val[9]);
-	shape->RotateNode ("left_shldr", 3, vv);
+	vv = interp(frac, frames[idx].val[9], frames[idx+1].val[9]);
+	shape->RotateNode("left_shldr", 3, vv);
 
-	vv = interp (frac, frames[idx].val[10], frames[idx+1].val[10]);
-	shape->RotateNode ("right_shldr", 3, vv);
+	vv = interp(frac, frames[idx].val[10], frames[idx+1].val[10]);
+	shape->RotateNode("right_shldr", 3, vv);
 
-	vv = interp (frac, frames[idx].val[11], frames[idx+1].val[11]);
-	shape->RotateNode ("left_shldr", 2, vv);
+	vv = interp(frac, frames[idx].val[11], frames[idx+1].val[11]);
+	shape->RotateNode("left_shldr", 2, vv);
 
-	vv = interp (frac, frames[idx].val[12], frames[idx+1].val[12]);
-	shape->RotateNode ("right_shldr", 2, vv);
+	vv = interp(frac, frames[idx].val[12], frames[idx+1].val[12]);
+	shape->RotateNode("right_shldr", 2, vv);
 
-	vv = interp (frac, frames[idx].val[13], frames[idx+1].val[13]);
-	shape->RotateNode ("left_hip", 3, vv);
+	vv = interp(frac, frames[idx].val[13], frames[idx+1].val[13]);
+	shape->RotateNode("left_hip", 3, vv);
 
-	vv = interp (frac, frames[idx].val[14], frames[idx+1].val[14]);
-	shape->RotateNode ("right_hip", 3, vv);
+	vv = interp(frac, frames[idx].val[14], frames[idx+1].val[14]);
+	shape->RotateNode("right_hip", 3, vv);
 
-	vv = interp (frac, frames[idx].val[15], frames[idx+1].val[15]);
-	shape->RotateNode ("left_knee", 3, vv);
+	vv = interp(frac, frames[idx].val[15], frames[idx+1].val[15]);
+	shape->RotateNode("left_knee", 3, vv);
 
-	vv = interp (frac, frames[idx].val[16], frames[idx+1].val[16]);
-	shape->RotateNode ("right_knee", 3, vv);
+	vv = interp(frac, frames[idx].val[16], frames[idx+1].val[16]);
+	shape->RotateNode("right_knee", 3, vv);
 
-	vv = interp (frac, frames[idx].val[17], frames[idx+1].val[17]);
-	shape->RotateNode ("left_ankle", 3, vv);
+	vv = interp(frac, frames[idx].val[17], frames[idx+1].val[17]);
+	shape->RotateNode("left_ankle", 3, vv);
 
-	vv = interp (frac, frames[idx].val[18], frames[idx+1].val[18]);
-	shape->RotateNode ("right_ankle", 3, vv);
+	vv = interp(frac, frames[idx].val[18], frames[idx+1].val[18]);
+	shape->RotateNode("right_ankle", 3, vv);
 }
 
-void CKeyframe::CalcKeyframe (size_t idx, CCharShape *shape, const TVector3d& refpos) {
+void CKeyframe::CalcKeyframe(size_t idx, CCharShape *shape, const TVector3d& refpos) {
 	double vv;
 	TVector3d pos;
 
@@ -209,57 +207,57 @@ void CKeyframe::CalcKeyframe (size_t idx, CCharShape *shape, const TVector3d& re
 	pos.z = frames[idx].val[3] + refpos.z;
 	pos.y = refpos.y;
 
-	shape->ResetRoot ();
-	shape->ResetJoints ();
-	shape->TranslateNode (0, pos);
+	shape->ResetRoot();
+	shape->ResetJoints();
+	shape->TranslateNode(0, pos);
 
 	vv = frames[idx].val[4];
-	shape->RotateNode ("root", 2, vv);
+	shape->RotateNode("root", 2, vv);
 
 	vv = frames[idx].val[5];
-	shape->RotateNode ("root", 1, vv);
+	shape->RotateNode("root", 1, vv);
 
 	vv = frames[idx].val[6];
-	shape->RotateNode ("root", 3, vv);
+	shape->RotateNode("root", 3, vv);
 
 	vv = frames[idx].val[7];
-	shape->RotateNode ("neck", 3, vv);
+	shape->RotateNode("neck", 3, vv);
 
 	vv = frames[idx].val[8];
-	shape->RotateNode ("head", 2, vv);
+	shape->RotateNode("head", 2, vv);
 
 	vv = frames[idx].val[9];
-	shape->RotateNode ("left_shldr", 3, vv);
+	shape->RotateNode("left_shldr", 3, vv);
 
 	vv = frames[idx].val[10];
-	shape->RotateNode ("right_shldr", 3, vv);
+	shape->RotateNode("right_shldr", 3, vv);
 
 	vv = frames[idx].val[11];
-	shape->RotateNode ("left_shldr", 2, vv);
+	shape->RotateNode("left_shldr", 2, vv);
 
 	vv = frames[idx].val[12];
-	shape->RotateNode ("right_shldr", 2, vv);
+	shape->RotateNode("right_shldr", 2, vv);
 
 	vv = frames[idx].val[13];
-	shape->RotateNode ("left_hip", 3, vv);
+	shape->RotateNode("left_hip", 3, vv);
 
 	vv = frames[idx].val[14];
-	shape->RotateNode ("right_hip", 3, vv);
+	shape->RotateNode("right_hip", 3, vv);
 
 	vv = frames[idx].val[15];
-	shape->RotateNode ("left_knee", 3, vv);
+	shape->RotateNode("left_knee", 3, vv);
 
 	vv = frames[idx].val[16];
-	shape->RotateNode ("right_knee", 3, vv);
+	shape->RotateNode("right_knee", 3, vv);
 
 	vv = frames[idx].val[17];
-	shape->RotateNode ("left_ankle", 3, vv);
+	shape->RotateNode("left_ankle", 3, vv);
 
 	vv = frames[idx].val[18];
-	shape->RotateNode ("right_ankle", 3, vv);
+	shape->RotateNode("right_ankle", 3, vv);
 }
 
-void CKeyframe::Update (double timestep) {
+void CKeyframe::Update(float timestep) {
 	if (!loaded) return;
 	if (!active) return;
 
@@ -278,25 +276,25 @@ void CKeyframe::Update (double timestep) {
 	TVector3d pos;
 	CCharShape *shape = g_game.character->shape;
 
-	if (fabs (frames[keyidx].val[0]) < 0.0001) frac = 1.0;
+	if (fabs(frames[keyidx].val[0]) < 0.0001) frac = 1.0;
 	else frac = (frames[keyidx].val[0] - keytime) / frames[keyidx].val[0];
 
-	pos.x = interp (frac, frames[keyidx].val[1], frames[keyidx+1].val[1]) + refpos.x;
-	pos.z = interp (frac, frames[keyidx].val[3], frames[keyidx+1].val[3]) + refpos.z;
-	pos.y = interp (frac, frames[keyidx].val[2], frames[keyidx+1].val[2]);
-	pos.y += Course.FindYCoord (pos.x, pos.z);
+	pos.x = interp(frac, frames[keyidx].val[1], frames[keyidx+1].val[1]) + refpos.x;
+	pos.z = interp(frac, frames[keyidx].val[3], frames[keyidx+1].val[3]) + refpos.z;
+	pos.y = interp(frac, frames[keyidx].val[2], frames[keyidx+1].val[2]);
+	pos.y += Course.FindYCoord(pos.x, pos.z);
 
-	shape->ResetRoot ();
-	shape->ResetJoints ();
+	shape->ResetRoot();
+	shape->ResetJoints();
 
 	g_game.player->ctrl->cpos = pos;
 	double disp_y = pos.y + TUX_Y_CORR + heightcorr;
-	shape->ResetNode (0);
-	shape->TranslateNode (0, TVector3d(pos.x, disp_y, pos.z));
-	InterpolateKeyframe (keyidx, frac, shape);
+	shape->ResetNode(0);
+	shape->TranslateNode(0, TVector3d(pos.x, disp_y, pos.z));
+	InterpolateKeyframe(keyidx, frac, shape);
 }
 
-void CKeyframe::UpdateTest (double timestep, CCharShape *shape) {
+void CKeyframe::UpdateTest(float timestep, CCharShape *shape) {
 	if (!active) return;
 
 	keytime += timestep;
@@ -313,52 +311,52 @@ void CKeyframe::UpdateTest (double timestep, CCharShape *shape) {
 	double frac;
 	TVector3d pos;
 
-	if (fabs (frames[keyidx].val[0]) < 0.0001) frac = 1.0;
+	if (fabs(frames[keyidx].val[0]) < 0.0001) frac = 1.0;
 	else frac = (frames[keyidx].val[0] - keytime) / frames[keyidx].val[0];
 
-	pos.x = interp (frac, frames[keyidx].val[1], frames[keyidx+1].val[1]) + refpos.x;
-	pos.z = interp (frac, frames[keyidx].val[3], frames[keyidx+1].val[3]) + refpos.z;
-	pos.y = interp (frac, frames[keyidx].val[2], frames[keyidx+1].val[2]);
+	pos.x = interp(frac, frames[keyidx].val[1], frames[keyidx+1].val[1]) + refpos.x;
+	pos.z = interp(frac, frames[keyidx].val[3], frames[keyidx+1].val[3]) + refpos.z;
+	pos.y = interp(frac, frames[keyidx].val[2], frames[keyidx+1].val[2]);
 
-	shape->ResetRoot ();
-	shape->ResetJoints ();
-	shape->TranslateNode (0, pos);
-	InterpolateKeyframe (keyidx, frac, shape);
+	shape->ResetRoot();
+	shape->ResetJoints();
+	shape->TranslateNode(0, pos);
+	InterpolateKeyframe(keyidx, frac, shape);
 }
 
-void CKeyframe::ResetFrame2 (TKeyframe *frame) {
-	for (int i=1; i<32; i++) frame->val[i] = 0.0;
+void CKeyframe::ResetFrame2(TKeyframe *frame) {
+	std::fill_n(frame->val + 1, MAX_FRAME_VALUES - 1, 0.0);
 	frame->val[0] = 0.5; // time
 }
 
-TKeyframe *CKeyframe::GetFrame (size_t idx) {
-	if (idx >= frames.size()) return NULL;
+TKeyframe *CKeyframe::GetFrame(size_t idx) {
+	if (idx >= frames.size()) return nullptr;
 	return &frames[idx];
 }
 
-const string& CKeyframe::GetJointName (size_t idx) {
+const string& CKeyframe::GetJointName(size_t idx) {
 	if (idx >= numJoints) return emptyString;
 	return jointnames[idx];
 }
 
-const string& CKeyframe::GetHighlightName (size_t idx) {
+const string& CKeyframe::GetHighlightName(size_t idx) {
 	if (idx >= numJoints) return emptyString;
 	return highlightnames[idx];
 }
 
-int CKeyframe::GetNumJoints () {
+int CKeyframe::GetNumJoints() {
 	return numJoints;
 }
 
-void CKeyframe::SaveTest (const string& dir, const string& filename) {
-	CSPList list (100);
+void CKeyframe::SaveTest(const string& dir, const string& filename) const {
+	CSPList list(100);
 
 	for (size_t i=0; i<frames.size(); i++) {
-		TKeyframe* frame = &frames[i];
-		string line = "*[time] " + Float_StrN (frame->val[0], 1);
-		line += " [pos] " + Float_StrN (frame->val[1], 2);
-		line += " " + Float_StrN (frame->val[2], 2);
-		line += " " + Float_StrN (frame->val[3], 2);
+		const TKeyframe* frame = &frames[i];
+		string line = "*[time] " + Float_StrN(frame->val[0], 1);
+		line += " [pos] " + Float_StrN(frame->val[1], 2);
+		line += " " + Float_StrN(frame->val[2], 2);
+		line += " " + Float_StrN(frame->val[3], 2);
 		if (frame->val[4] != 0) line += " [yaw] " + Int_StrN((int)frame->val[4]);
 		if (frame->val[5] != 0) line += " [pitch] " + Int_StrN((int)frame->val[5]);
 		if (frame->val[6] != 0) line += " [roll] " + Int_StrN((int)frame->val[6]);
@@ -368,81 +366,72 @@ void CKeyframe::SaveTest (const string& dir, const string& filename) {
 		double ll = frame->val[9];
 		double rr = frame->val[10];
 		if (ll != 0 || rr != 0)
-			line += " [sh] " + Int_StrN((int) ll) + " " + Int_StrN((int)rr);
+			line += " [sh] " + Int_StrN((int)ll) + ' ' + Int_StrN((int)rr);
 
 		ll = frame->val[11];
 		rr = frame->val[12];
 		if (ll != 0 || rr != 0)
-			line += " [arm] " + Int_StrN((int)ll) + " " + Int_StrN((int)rr);
+			line += " [arm] " + Int_StrN((int)ll) + ' ' + Int_StrN((int)rr);
 
 		ll = frame->val[13];
 		rr = frame->val[14];
 		if (ll != 0 || rr != 0)
-			line += " [hip] " + Int_StrN((int)ll) + " " + Int_StrN((int)rr);
+			line += " [hip] " + Int_StrN((int)ll) + ' ' + Int_StrN((int)rr);
 
 		ll = frame->val[15];
 		rr = frame->val[16];
 		if (ll != 0 || rr != 0)
-			line += " [knee] " + Int_StrN((int)ll) + " " + Int_StrN((int)rr);
+			line += " [knee] " + Int_StrN((int)ll) + ' ' + Int_StrN((int)rr);
 
 		ll = frame->val[17];
 		rr = frame->val[18];
 		if (ll != 0 || rr != 0)
-			line += " [ankle] " + Int_StrN((int)ll) + " " + Int_StrN((int)rr);
+			line += " [ankle] " + Int_StrN((int)ll) + ' ' + Int_StrN((int)rr);
 
-		list.Add (line);
+		list.Add(line);
 	}
-	list.Save (dir, filename);
+	list.Save(dir, filename);
 }
 
-void CKeyframe::CopyFrame (size_t prim_idx, size_t sec_idx) {
+void CKeyframe::CopyFrame(size_t prim_idx, size_t sec_idx) {
 	TKeyframe *ppp = &frames[prim_idx];
 	TKeyframe *sss = &frames[sec_idx];
-	memcpy(sss->val, ppp->val, MAX_FRAME_VALUES*sizeof(*sss->val));
+	std::copy_n(ppp->val, MAX_FRAME_VALUES, sss->val);
 }
 
-void CKeyframe::AddFrame () {
-	frames.push_back(TKeyframe());
-	ResetFrame2 (&frames.back());
+void CKeyframe::AddFrame() {
+	frames.emplace_back();
 }
 
-size_t CKeyframe::DeleteFrame (size_t idx) {
+size_t CKeyframe::DeleteFrame(size_t idx) {
 	if (frames.size() < 2) return idx;
-	size_t lastframe = frames.size()-1;
-	if (idx > lastframe) return 0;
+	if (idx > frames.size() - 1) return 0;
 
-	if (idx == lastframe) {
-		frames.pop_back();
-		return frames.size()-1;
-
-	} else {
-		for (size_t i=idx; i<lastframe-1; i++) CopyFrame (i+1, i);
-		frames.pop_back();
-		return idx;
-	}
+	std::vector<TKeyframe>::iterator i = frames.begin();
+	std::advance(i, idx);
+	frames.erase(i);
+	return max(idx, frames.size() - 2);
 }
 
-void CKeyframe::InsertFrame (size_t idx) {
-	size_t lastframe = frames.size()-1;
-	if (idx > lastframe) return;
+void CKeyframe::InsertFrame(size_t idx) {
+	if (idx > frames.size() - 1) return;
 
-	frames.push_back(TKeyframe());
-
-	for (size_t i=frames.size()-1; i>idx; i--) CopyFrame (i-1, i);
-	ResetFrame2 (&frames[idx]);
+	std::vector<TKeyframe>::iterator i = frames.begin();
+	std::advance(i, idx);
+	frames.emplace(i);
 }
 
-void CKeyframe::CopyToClipboard (size_t idx) {
+void CKeyframe::CopyToClipboard(size_t idx) {
 	if (idx >= frames.size()) return;
-	memcpy(clipboard.val, frames[idx].val, MAX_FRAME_VALUES*sizeof(*frames[idx].val));
+	std::copy_n(frames[idx].val, MAX_FRAME_VALUES, clipboard.val);
 }
 
-void CKeyframe::PasteFromClipboard (size_t idx) {
+void CKeyframe::PasteFromClipboard(size_t idx) {
 	if (idx >= frames.size()) return;
-	memcpy(frames[idx].val, clipboard.val, MAX_FRAME_VALUES*sizeof(*frames[idx].val));
+	std::copy_n(clipboard.val, MAX_FRAME_VALUES, frames[idx].val);
 }
 
-void CKeyframe::ClearFrame (size_t idx) {
+void CKeyframe::ClearFrame(size_t idx) {
 	if (idx >= frames.size()) return;
-	ResetFrame2 (&frames[idx]);
+	ResetFrame2(&frames[idx]);
 }

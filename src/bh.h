@@ -27,6 +27,9 @@ GNU General Public License for more details.
 #include <string>
 
 #include <GL/gl.h>
+#include <SFML/System.hpp>
+#include <SFML/Window.hpp>
+#include <SFML/Graphics.hpp>
 
 #ifndef HAVE_CONFIG_H
 #	ifdef _WIN32 // Windows platform
@@ -52,7 +55,7 @@ GNU General Public License for more details.
 #	define SEP "\\"
 #	undef DrawText
 #	undef GetObject
-#elif defined OS_WON32_MINGW
+#elif defined OS_WIN32_MINGW
 #	include <dirent.h>
 #	include <GL/glext.h>
 #	define SEP "/"

@@ -42,23 +42,26 @@ esac
 AC_FUNC_MALLOC
 AC_CHECK_FUNCS([floor getcwd memmove memset mkdir pow sqrt strchr strdup])
 
-AM_PATH_SDL([1.0.0])
-CFLAGS="$CFLAGS $SDL_CFLAGS"
-LIBS="$LIBS $SDL_LIBS"
-
-PKG_CHECK_MODULES([SDLIMAGE], [SDL_image],
+PKG_CHECK_MODULES([SFML_AUDIO], [sfml-audio],
 [
-  CFLAGS="${CFLAGS} $SDLIMAGE_CFLAGS"
-  LIBS="${LIBS} $SDLIMAGE_LIBS"
+  CFLAGS="${CFLAGS} $SFML_AUDIO_CFLAGS"
+  LIBS="${LIBS} $SFML_AUDIO_LIBS"
 ],
-[AC_MSG_ERROR([SDL_image not found])])
+[AC_MSG_ERROR([sfml-audio not found])])
 
-PKG_CHECK_MODULES([SDLMIXER], [SDL_mixer],
+PKG_CHECK_MODULES([SFML_WINDOW], [sfml-window],
 [
-  CFLAGS="${CFLAGS} $SDLMIXER_CFLAGS"
-  LIBS="${LIBS} $SDLMIXER_LIBS"
+  CFLAGS="${CFLAGS} $SFML_WINDOW_CFLAGS"
+  LIBS="${LIBS} $SFML_WINDOW_LIBS"
 ],
-[AC_MSG_ERROR([SDL_mixer not found])])
+[AC_MSG_ERROR([sfml-window not found])])
+
+PKG_CHECK_MODULES([SFML_GRAPHICS], [sfml-graphics],
+[
+  CFLAGS="${CFLAGS} $SFML_GRAPHICS_CFLAGS"
+  LIBS="${LIBS} $SFML_GRAPHICS_LIBS"
+],
+[AC_MSG_ERROR([sfml-graphics not found])])
 
 AC_CHECK_LIB([GL], [glBegin], [],
 [AC_MSG_ERROR([libGL not found])])
@@ -88,29 +91,30 @@ AC_CONFIG_FILES([
         data/char/trixi/Makefile
         data/char/tux/Makefile
         data/courses/Makefile
-        data/courses/bumpy_ride/Makefile
-        data/courses/bunny_hill/Makefile
-        data/courses/challenge_one/Makefile
-        data/courses/chinese_wall/Makefile
-        data/courses/chragis_gagiwaetter/Makefile
-        data/courses/course/Makefile
-        data/courses/downhill_fear/Makefile
-        data/courses/explore_mountains/Makefile
-        data/courses/frozen_lakes/Makefile
-        data/courses/frozen_river/Makefile
-        data/courses/hippo_run/Makefile
-        data/courses/holygrail/Makefile
-        data/courses/in_search_of_vodka/Makefile
-        data/courses/keep_country_tidy/Makefile
-        data/courses/milos_castle/Makefile
-        data/courses/path_of_daggers/Makefile
-        data/courses/penguins_cant_fly/Makefile
-        data/courses/quiet_river/Makefile
-        data/courses/secret_valleys/Makefile
-        data/courses/this_means_something/Makefile
-        data/courses/tux_at_home/Makefile
-        data/courses/twisty_slope/Makefile
-        data/courses/wild_mountains/Makefile
+        data/courses/default/Makefile
+        data/courses/default/bumpy_ride/Makefile
+        data/courses/default/bunny_hill/Makefile
+        data/courses/default/challenge_one/Makefile
+        data/courses/default/chinese_wall/Makefile
+        data/courses/default/chragis_gagiwaetter/Makefile
+        data/courses/default/course/Makefile
+        data/courses/default/downhill_fear/Makefile
+        data/courses/default/explore_mountains/Makefile
+        data/courses/default/frozen_lakes/Makefile
+        data/courses/default/frozen_river/Makefile
+        data/courses/default/hippo_run/Makefile
+        data/courses/default/holygrail/Makefile
+        data/courses/default/in_search_of_vodka/Makefile
+        data/courses/default/keep_country_tidy/Makefile
+        data/courses/default/milos_castle/Makefile
+        data/courses/default/path_of_daggers/Makefile
+        data/courses/default/penguins_cant_fly/Makefile
+        data/courses/default/quiet_river/Makefile
+        data/courses/default/secret_valleys/Makefile
+        data/courses/default/this_means_something/Makefile
+        data/courses/default/tux_at_home/Makefile
+        data/courses/default/twisty_slope/Makefile
+        data/courses/default/wild_mountains/Makefile
         data/env/Makefile
         data/env/etr/Makefile
         data/env/etr/cloudy/Makefile

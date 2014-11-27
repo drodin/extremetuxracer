@@ -14,45 +14,43 @@ but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 ---------------------------------------------------------------------*/
-/* --------------------------------------------------------------------
-An name convention:
-"lang" means the short identifier, e.g. "en_GB"
-"language" means the language name, e.g. "English"
----------------------------------------------------------------------*/
 
 #ifndef TRANSLATION_H
 #define TRANSLATION_H
 
 #include "bh.h"
-#include <map>
 #include <vector>
 
 #define MAX_LANGUAGES 32
-#define NUM_COMMON_TEXTS 86
+#define NUM_COMMON_TEXTS 97
 #define MAX_COMMON_TEXT_LINES NUM_COMMON_TEXTS*2
 
+/* --------------------------------------------------------------------
+Name convention:
+"lang" means the short identifier, e.g. "en_GB"
+"language" means the language name, e.g. "English"
+---------------------------------------------------------------------*/
 
 struct TLang {
 	string lang;
-	string language;
+	sf::String language;
 };
 
 class CTranslation {
 private:
-	string texts[NUM_COMMON_TEXTS];
-	map<string, size_t> LangIndex;
+	sf::String texts[NUM_COMMON_TEXTS];
 public:
 	vector<TLang> languages;
 
-	void LoadLanguages ();
-	size_t GetLangIdx (const string& lang) const;
-	const string& GetLanguage (size_t idx) const;
-	const string& GetLanguage (const string& lang) const;
-	void SetDefaultTranslations ();
-	const string& Text (size_t idx) const;
-	void LoadTranslations (size_t langidx);
+	void LoadLanguages();
+	const sf::String& GetLanguage(size_t idx) const;
+	void SetDefaultTranslations();
+	const sf::String& Text(size_t idx) const;
+	void LoadTranslations(size_t langidx);
+	void ChangeLanguage(size_t langidx);
 	static string GetSystemDefaultLang();
 	size_t GetSystemDefaultLangIdx() const;
+	size_t GetLangIdx(const string& lang) const;
 };
 
 extern CTranslation Trans;

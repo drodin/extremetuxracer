@@ -22,12 +22,12 @@ GNU General Public License for more details.
 
 struct TCharAction;
 
-void InitCharTools ();
-void CharKeys (unsigned int key, bool special, bool release, int x, int y);
-void CharMouse (int button, int state, int x, int y);
-void CharMotion (int x, int y);
-void RenderChar (double timestep);
-void StoreAction (TCharAction *act);
+void InitCharTools();
+void CharKeys(sf::Keyboard::Key key, bool release, int x, int y);
+void CharMouse(int button, int state, int x, int y);
+void CharMotion(int x, int y);
+void RenderChar(float timestep);
+void StoreAction(TCharAction *act);
 
 #endif
 

@@ -78,15 +78,15 @@ public:
 	vector<TRace> RaceList;
 	vector<TCup> CupList;
 	vector<TEvent> EventList;
-	bool LoadEventList ();
-	size_t GetRaceIdx (const string& race) const;
-	size_t GetCupIdx (const string& cup) const;
-	size_t GetEventIdx (const string& event) const;
-	const string& GetCup (size_t event, size_t cup) const;
-	const string& GetCupTrivialName (size_t event, size_t cup) const;
+	bool LoadEventList();
+	size_t GetRaceIdx(const string& race) const;
+	size_t GetCupIdx(const string& cup) const;
+	size_t GetEventIdx(const string& event) const;
+	const string& GetCup(size_t event, size_t cup) const;
+	const string& GetCupTrivialName(size_t event, size_t cup) const;
 
-	void MakeUnlockList (const string& unlockstr);
-	bool IsUnlocked (size_t event, size_t cup) const;
+	void MakeUnlockList(const string& unlockstr);
+	bool IsUnlocked(size_t event, size_t cup) const;
 };
 
 extern CEvents Events;
@@ -113,33 +113,33 @@ struct TPlayer {
 	string funlocked;
 	const TAvatar* avatar;
 
-	TPlayer(const string& name_ = emptyString, const TAvatar* avatar_ = NULL)
-		: name(name_), ctrl(NULL), avatar(avatar_)
+	TPlayer(const string& name_ = emptyString, const TAvatar* avatar_ = nullptr)
+		: name(name_), ctrl(nullptr), avatar(avatar_)
 	{}
 };
 
 class CPlayers {
 private:
 	vector<TPlayer> plyr;
-	void SetDefaultPlayers ();
+	void SetDefaultPlayers();
 	vector<TAvatar> avatars;
 
-	const TAvatar* FindAvatar(const string& name);
+	const TAvatar* FindAvatar(const string& name) const;
 public:
 	~CPlayers();
 
 	TPlayer* GetPlayer(size_t index) { return &plyr[index]; }
-	void AddPassedCup (const string& cup);
-	void AddPlayer (const string& name, const string& avatar);
-	bool LoadPlayers ();
-	void SavePlayers () const;
-	void ResetControls ();
-	void AllocControl (size_t player);
-	void LoadAvatars ();
+	void AddPassedCup(const string& cup);
+	void AddPlayer(const string& name, const string& avatar);
+	bool LoadPlayers();
+	void SavePlayers() const;
+	void ResetControls();
+	void AllocControl(size_t player);
+	bool LoadAvatars();
 	size_t numAvatars() const { return avatars.size(); }
 	size_t numPlayers() const { return plyr.size(); }
 
-	TTexture* GetAvatarTexture (size_t avatar) const;
+	TTexture* GetAvatarTexture(size_t avatar) const;
 	const string& GetDirectAvatarName(size_t avatar) const;
 };
 
@@ -166,8 +166,8 @@ public:
 
 	~CCharacter();
 
-	void LoadCharacterList ();
-	void FreeCharacterPreviews ();
+	bool LoadCharacterList();
+	void FreeCharacterPreviews();
 };
 
 extern CCharacter Char;

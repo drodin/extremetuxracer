@@ -81,29 +81,29 @@ private:
 	double ode_time_step;
 	double finish_speed;
 
-	bool     CheckTreeCollisions (const TVector3d& pos, TVector3d *tree_loc, double *tree_diam);
-	void     AdjustTreeCollision (const TVector3d& pos, TVector3d *vel);
-	void     CheckItemCollection (const TVector3d& pos);
+	bool     CheckTreeCollisions(const TVector3d& pos, TVector3d *tree_loc);
+	void     AdjustTreeCollision(const TVector3d& pos, TVector3d *vel);
+	void     CheckItemCollection(const TVector3d& pos);
 
-	TVector3d CalcRollNormal (double speed);
-	TVector3d CalcAirForce ();
-	TVector3d CalcSpringForce ();
-	TVector3d CalcNormalForce ();
-	TVector3d CalcJumpForce ();
-	TVector3d CalcFrictionForce (double speed, const TVector3d& nmlforce);
-	TVector3d CalcPaddleForce (double speed);
-	TVector3d CalcBrakeForce (double speed);
-	TVector3d CalcGravitationForce ();
-	TVector3d CalcNetForce (const TVector3d& pos, const TVector3d& vel);
-	TVector3d CalcFinishForce (const TVector3d& pos, const TVector3d& vel);
+	TVector3d CalcRollNormal(double speed);
+	TVector3d CalcAirForce();
+	TVector3d CalcSpringForce();
+	TVector3d CalcNormalForce();
+	TVector3d CalcJumpForce();
+	TVector3d CalcFrictionForce(double speed, const TVector3d& nmlforce);
+	TVector3d CalcPaddleForce(double speed);
+	TVector3d CalcBrakeForce(double speed);
+	TVector3d CalcGravitationForce();
+	TVector3d CalcNetForce(const TVector3d& pos, const TVector3d& vel);
+	TVector3d CalcFinishForce(const TVector3d& pos, const TVector3d& vel);
 
-	void     AdjustVelocity (const TPlane& surf_plane);
-	void     AdjustPosition (const TPlane& surf_plane, double dist_from_surface);
-	void     SetTuxPosition (double speed);
-	double   AdjustTimeStep (double h, const TVector3d& vel);
-	void     SolveOdeSystem (double timestep);
+	void     AdjustVelocity();
+	void     AdjustPosition(const TPlane& surf_plane, double dist_from_surface);
+	void     SetTuxPosition(double speed);
+	double   AdjustTimeStep(double h, const TVector3d& vel);
+	void     SolveOdeSystem(double timestep);
 public:
-	CControl ();
+	CControl();
 
 	// view:
 	TViewMode viewmode;
@@ -147,8 +147,8 @@ public:
 	double minSpeed;
 	double minFrictspeed;
 
-	void Init ();
-	void UpdatePlayerPos (double timestep);
+	void Init();
+	void UpdatePlayerPos(float timestep);
 };
 
 #endif

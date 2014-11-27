@@ -21,12 +21,12 @@ GNU General Public License for more details.
 #include "bh.h"
 #include "mathlib.h"
 
-void set_view_mode (CControl *ctrl, TViewMode mode);
-void update_view (CControl *ctrl, double dt);
+void set_view_mode(CControl *ctrl, TViewMode mode);
+void update_view(CControl *ctrl, double dt);
 
-void SetStationaryCamera (bool stat); // 0 follow, 1 stationary
-void IncCameraDistance (double timestep);
-void SetCameraDistance (double val);
+void SetStationaryCamera(bool stat);  // 0 follow, 1 stationary
+void IncCameraDistance(float timestep);
+void SetCameraDistance(double val);
 
 // ------------- viewfrustum ------------------------------------------
 
@@ -36,8 +36,8 @@ enum clip_result_t {
 	NotVisible
 };
 
-void SetupViewFrustum (const CControl *ctrl);
-clip_result_t clip_aabb_to_view_frustum (const TVector3d& min, const TVector3d& max);
+void SetupViewFrustum(const CControl *ctrl);
+clip_result_t clip_aabb_to_view_frustum(const TVector3d& min, const TVector3d& max);
 
 const TPlane& get_far_clip_plane();
 const TPlane& get_left_clip_plane();

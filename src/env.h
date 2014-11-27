@@ -32,7 +32,7 @@ struct TFog {
 	float end;
 	float height;
 	float color[4];
-	TColor part_color;
+	sf::Color part_color;
 };
 
 struct TLight {
@@ -64,25 +64,25 @@ private:
 	map<string, size_t> EnvIndex;
 	map<string, size_t> LightIndex;
 
-	void ResetSkybox ();
+	void ResetSkybox();
 	void LoadSkybox(const string& EnvDir, bool high_res);
 	void LoadSkyboxSide(size_t index, const string& EnvDir, const string& name, bool high_res);
-	void ResetLight ();
-	void LoadLight (const string& EnvDir);
-	void ResetFog ();
-	void Reset ();
-	string GetDir (size_t location, size_t light) const;
+	void ResetLight();
+	void LoadLight(const string& EnvDir);
+	void ResetFog();
+	void Reset();
+	string GetDir(size_t location, size_t light) const;
 public:
-	CEnvironment ();
-	bool LoadEnvironmentList ();
-	void LoadEnvironment (size_t loc, size_t light);
-	void DrawSkybox (const TVector3d& pos);
-	void SetupLight ();
-	void SetupFog ();
-	void DrawFog ();
-	const TColor& ParticleColor () const { return fog.part_color; }
-	size_t GetEnvIdx (const string& tag) const;
-	size_t GetLightIdx (const string& tag) const;
+	CEnvironment();
+	bool LoadEnvironmentList();
+	void LoadEnvironment(size_t loc, size_t light);
+	void DrawSkybox(const TVector3d& pos);
+	void SetupLight();
+	void SetupFog();
+	void DrawFog();
+	const sf::Color& ParticleColor() const { return fog.part_color; }
+	size_t GetEnvIdx(const string& tag) const;
+	size_t GetLightIdx(const string& tag) const;
 };
 
 extern CEnvironment Env;

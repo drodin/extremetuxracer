@@ -32,24 +32,24 @@ GNU General Public License for more details.
 #define TEX_SCALE 6
 static const bool clip_course = true;
 
-void setup_course_tex_gen () {
+void setup_course_tex_gen() {
 	static const GLfloat xplane[4] = {1.0 / TEX_SCALE, 0.0, 0.0, 0.0 };
 	static const GLfloat zplane[4] = {0.0, 0.0, 1.0 / TEX_SCALE, 0.0 };
-	glTexGenfv (GL_S, GL_OBJECT_PLANE, xplane);
-	glTexGenfv (GL_T, GL_OBJECT_PLANE, zplane);
+	glTexGenfv(GL_S, GL_OBJECT_PLANE, xplane);
+	glTexGenfv(GL_T, GL_OBJECT_PLANE, zplane);
 }
 
 // --------------------------------------------------------------------
 //							render course
 // --------------------------------------------------------------------
-void RenderCourse () {
+void RenderCourse() {
 	ScopedRenderMode rm(COURSE);
-	setup_course_tex_gen ();
-	glTexEnvf (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-	set_material (colWhite, colBlack, 1.0);
+	setup_course_tex_gen();
+	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+	set_material(colWhite, colBlack, 1.0);
 	const CControl *ctrl = g_game.player->ctrl;
-	UpdateQuadtree (ctrl->viewpos, param.course_detail_level);
-	RenderQuadtree ();
+	UpdateQuadtree(ctrl->viewpos, param.course_detail_level);
+	RenderQuadtree();
 }
 
 // --------------------------------------------------------------------
@@ -57,49 +57,45 @@ void RenderCourse () {
 // --------------------------------------------------------------------
 void DrawTrees() {
 	size_t			tree_type = -1;
-	TObjectType*	object_types = &Course.ObjTypes[0];
 	const CControl*	ctrl = g_game.player->ctrl;
 
 	ScopedRenderMode rm(TREES);
 	double fwd_clip_limit = param.forward_clip_distance;
 	double bwd_clip_limit = param.backward_clip_distance;
 
-	glTexEnvf (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-	set_material (colWhite, colBlack, 1.0);
+	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+	set_material(colWhite, colBlack, 1.0);
 
 
 //	-------------- trees ------------------------
-	TCollidable* treeLocs = &Course.CollArr[0];
-	size_t numTrees = Course.CollArr.size();
-
-	for (size_t i = 0; i< numTrees; i++) {
+	for (size_t i = 0; i< Course.CollArr.size(); i++) {
 		if (clip_course) {
-			if (ctrl->viewpos.z - treeLocs[i].pt.z > fwd_clip_limit) continue;
-			if (treeLocs[i].pt.z - ctrl->viewpos.z > bwd_clip_limit) continue;
+			if (ctrl->viewpos.z - Course.CollArr[i].pt.z > fwd_clip_limit) continue;
+			if (Course.CollArr[i].pt.z - ctrl->viewpos.z > bwd_clip_limit) continue;
 		}
 
-		if (treeLocs[i].tree_type != tree_type) {
-			tree_type = treeLocs[i].tree_type;
-			object_types[tree_type].texture->Bind();
+		if (Course.CollArr[i].tree_type != tree_type) {
+			tree_type = Course.CollArr[i].tree_type;
+			Course.ObjTypes[tree_type].texture->Bind();
 		}
 
 		glPushMatrix();
-		glTranslate(treeLocs[i].pt);
-		if (param.perf_level > 1) glRotatef (1, 0, 1, 0);
+		glTranslate(Course.CollArr[i].pt);
+		if (param.perf_level > 1) glRotatef(1, 0, 1, 0);
 
-		float treeRadius = treeLocs[i].diam / 2.0;
-		float treeHeight = treeLocs[i].height;
+		float treeRadius = Course.CollArr[i].diam / 2.0;
+		float treeHeight = Course.CollArr[i].height;
 		glNormal3i(0, 0, 1);
 
 		static const GLshort tex[] = {
-			0, 0,
-			1, 0,
-			1, 1,
 			0, 1,
-			0, 0,
-			1, 0,
 			1, 1,
-			0, 1
+			1, 0,
+			0, 0,
+			0, 1,
+			1, 1,
+			1, 0,
+			0, 0
 		};
 
 		const GLfloat vtx[] = {
@@ -127,32 +123,30 @@ void DrawTrees() {
 	}
 
 //  items -----------------------------
-	TItem* itemLocs = &Course.NocollArr[0];
-	size_t numItems = Course.NocollArr.size();
-	const TObjectType* item_type = NULL;
+	const TObjectType* item_type = nullptr;
 
-	for (size_t i = 0; i< numItems; i++) {
-		if (itemLocs[i].collectable == 0 || itemLocs[i].type.drawable == false) continue;
+	for (size_t i = 0; i< Course.NocollArr.size(); i++) {
+		if (Course.NocollArr[i].collectable == 0 || Course.NocollArr[i].type.drawable == false) continue;
 		if (clip_course) {
-			if (ctrl->viewpos.z - itemLocs[i].pt.z > fwd_clip_limit) continue;
-			if (itemLocs[i].pt.z - ctrl->viewpos.z > bwd_clip_limit) continue;
+			if (ctrl->viewpos.z - Course.NocollArr[i].pt.z > fwd_clip_limit) continue;
+			if (Course.NocollArr[i].pt.z - ctrl->viewpos.z > bwd_clip_limit) continue;
 		}
 
-		if (&itemLocs[i].type != item_type) {
-			item_type = &itemLocs[i].type;
+		if (&Course.NocollArr[i].type != item_type) {
+			item_type = &Course.NocollArr[i].type;
 			item_type->texture->Bind();
 		}
 
 		glPushMatrix();
-		glTranslate(itemLocs[i].pt);
-		double itemRadius = itemLocs[i].diam / 2;
-		double itemHeight = itemLocs[i].height;
+		glTranslate(Course.NocollArr[i].pt);
+		double itemRadius = Course.NocollArr[i].diam / 2;
+		double itemHeight = Course.NocollArr[i].height;
 
 		TVector3d normal;
 		if (item_type->use_normal) {
 			normal = item_type->normal;
 		} else {
-			normal = ctrl->viewpos - itemLocs[i].pt;
+			normal = ctrl->viewpos - Course.NocollArr[i].pt;
 			normal.Norm();
 		}
 		glNormal3(normal);
@@ -160,10 +154,10 @@ void DrawTrees() {
 		normal.Norm();
 
 		static const GLshort tex[] = {
-			0, 0,
-			1, 0,
+			0, 1,
 			1, 1,
-			0, 1
+			1, 0,
+			0, 0
 		};
 
 		const GLfloat vtx[] = {

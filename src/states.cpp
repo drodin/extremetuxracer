@@ -22,7 +22,6 @@ GNU General Public License for more details.
 #include "states.h"
 #include "ogl.h"
 #include "winsys.h"
-#include <ctime>
 
 State::Manager State::manager(Winsys);
 
@@ -34,94 +33,81 @@ State::Manager::~Manager() {
 void State::Manager::Run(State& entranceState) {
 	current = &entranceState;
 	current->Enter();
-	clock_t ticks = clock();
 	while (!quit) {
 		PollEvent();
 		if (next)
 			EnterNextState();
 		CallLoopFunction();
-		if (param.framerate != 0) {
-			clock_t nticks = clock();
-			int32_t sleeptime = CLOCKS_PER_SEC/param.framerate - (nticks-ticks);
-			if (sleeptime > 0)
-				SDL_Delay(sleeptime);
-			ticks = nticks;
-		}
 	}
 	current->Exit();
 	previous = current;
-	current = NULL;
+	current = nullptr;
 }
 
 void State::Manager::EnterNextState() {
 	current->Exit();
 	previous = current;
 	current = next;
-	next = NULL;
+	next = nullptr;
 	current->Enter();
 }
 
 void State::Manager::PollEvent() {
-	SDL_Event event;
-	unsigned int key;
-	int x, y;
+	sf::Event event;
+	sf::Keyboard::Key key;
 
-	while (SDL_PollEvent (&event)) {
+	while (Winsys.PollEvent(event)) {
 		if (!next) {
 			switch (event.type) {
-				case SDL_KEYDOWN:
-					SDL_GetMouseState(&x, &y);
-					key = event.key.keysym.sym;
-					current->Keyb(key, key >= 256, false, x, y);
-					current->Keyb_spec(event.key.keysym, false);
+				case sf::Event::KeyPressed:
+					key = event.key.code;
+					current->Keyb(key, false, sf::Mouse::getPosition().x, sf::Mouse::getPosition().y);
 					break;
 
-				case SDL_KEYUP:
-					SDL_GetMouseState(&x, &y);
-					key = event.key.keysym.sym;
-					current->Keyb(key, key >= 256, true, x, y);
-					current->Keyb_spec(event.key.keysym, true);
+				case sf::Event::KeyReleased:
+					key = event.key.code;
+					current->Keyb(key, true, sf::Mouse::getPosition().x, sf::Mouse::getPosition().y);
 					break;
 
-				case SDL_MOUSEBUTTONDOWN:
-				case SDL_MOUSEBUTTONUP:
-					current->Mouse(event.button.button, event.button.state, event.button.x, event.button.y);
+				case sf::Event::TextEntered:
+					current->TextEntered(static_cast<char>(event.text.unicode));
 					break;
 
-				case SDL_MOUSEMOTION: {
+				case sf::Event::MouseButtonPressed:
+				case sf::Event::MouseButtonReleased:
+					current->Mouse(event.mouseButton.button, event.type == sf::Event::MouseButtonPressed, event.mouseButton.x, event.mouseButton.y);
+					break;
+
+				case sf::Event::MouseMoved: {
 					TVector2i old = cursor_pos;
-					cursor_pos.x = event.motion.x;
-					cursor_pos.y = event.motion.y;
-					current->Motion(event.motion.x-old.x, event.motion.y-old.y);
+					cursor_pos.x = event.mouseMove.x;
+					cursor_pos.y = event.mouseMove.y;
+					current->Motion(event.mouseMove.x - old.x, event.mouseMove.y - old.y);
 					break;
 				}
 
-				case SDL_JOYAXISMOTION:
+				case sf::Event::JoystickMoved:
 					if (Winsys.joystick_isActive()) {
-						unsigned int axis = event.jaxis.axis;
-						if (axis < 2) {
-							float val = (float)event.jaxis.value / 32768.f;
-							current->Jaxis(axis, val);
-						}
+						float val = event.joystickMove.position / 32768.f;
+						current->Jaxis(event.joystickMove.axis == sf::Joystick::X ? 0 : 1, val);
 					}
 					break;
-				case SDL_JOYBUTTONDOWN:
-				case SDL_JOYBUTTONUP:
+				case sf::Event::JoystickButtonPressed:
+				case sf::Event::JoystickButtonReleased:
 					if (Winsys.joystick_isActive()) {
-						current->Jbutt(event.jbutton.button, event.jbutton.state);
+						current->Jbutt(event.joystickButton.button, event.type == sf::Event::JoystickButtonPressed);
 					}
 					break;
 
-				case SDL_VIDEORESIZE:
-					if (Winsys.resolution.width != event.resize.w || Winsys.resolution.height != event.resize.h) {
-						Winsys.resolution.width = event.resize.w;
-						Winsys.resolution.height = event.resize.h;
-						Winsys.SetupVideoMode (param.res_type);
-						Reshape(event.resize.w, event.resize.h);
+				case sf::Event::Resized:
+					if (Winsys.resolution.width != event.size.width || Winsys.resolution.height != event.size.height) {
+						Winsys.resolution.width = event.size.width;
+						Winsys.resolution.height = event.size.height;
+						Winsys.SetupVideoMode(param.res_type);
 					}
 					break;
 
-				case SDL_QUIT:
+				case sf::Event::Closed:
 					quit = true;
 					break;
 			}
@@ -130,10 +116,9 @@ void State::Manager::PollEvent() {
 }
 
 void State::Manager::CallLoopFunction() {
-	float cur_time = SDL_GetTicks() * 1.e-3;
-	g_game.time_step = cur_time - clock_time;
-	if (g_game.time_step < 0.0001) g_game.time_step = 0.0001;
-	clock_time = cur_time;
+	check_gl_error();
 
+	g_game.time_step = max(0.0001f, timer.getElapsedTime().asSeconds());
+	timer.restart();
 	current->Loop(g_game.time_step);
 }

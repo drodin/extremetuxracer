@@ -40,9 +40,6 @@ double TVector3<double>::Norm() {
 	return denom;
 }
 
-double DotProduct(const TVector3d& v1, const TVector3d& v2) {
-	return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;
-}
 TVector3d CrossProduct(const TVector3d& u, const TVector3d& v) {
 	return TVector3d(
 	           u.y * v.z - u.z * v.y,

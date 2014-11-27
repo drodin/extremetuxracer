@@ -45,7 +45,7 @@ struct track_quad_t {
 	TVector2d t1, t2, t3, t4;
 	TVector3d n1, n2, n3, n4;
 	track_types_t track_type;
-	double alpha;
+	uint8_t alpha;
 };
 
 struct track_marks_t {
@@ -102,18 +102,21 @@ void DrawTrackmarks() {
 
 	TTexture* textures[NUM_TRACK_TYPES];
 
-	TColor track_colour = colWhite;
+	sf::Color track_colour = colWhite;
+	set_material(track_colour, colBlack, 1.0);
 	ScopedRenderMode rm(TRACK_MARKS);
 
-	textures[TRACK_HEAD] = Tex.GetTexture (trackid1);
-	textures[TRACK_MARK] = Tex.GetTexture (trackid2);
-	textures[TRACK_TAIL] = Tex.GetTexture (trackid3);
+	textures[TRACK_HEAD] = Tex.GetTexture(trackid1);
+	textures[TRACK_MARK] = Tex.GetTexture(trackid2);
+	textures[TRACK_TAIL] = Tex.GetTexture(trackid3);
 
-	glTexEnvf (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 
 	for (list<track_quad_t>::const_iterator q = track_marks.quads.begin(); q != track_marks.quads.end(); ++q) {
-		track_colour.a = q->alpha;
-		set_material (track_colour, colBlack, 1.0);
+		if (q->alpha != track_colour.a) {
+			track_colour.a = q->alpha;
+			set_material_diffuse(track_colour);
+		}
 		textures[q->track_type]->Bind();
 
 		if ((q->track_type == TRACK_HEAD) || (q->track_type == TRACK_TAIL)) {
@@ -159,8 +162,10 @@ void DrawTrackmarks() {
 			++qnext;
 			while (qnext != track_marks.quads.end() && qnext->track_type != TRACK_TAIL) {
 				q = qnext;
-				track_colour.a = q->alpha;
-				set_material (track_colour, colBlack, 1.0);
+				if (q->alpha != track_colour.a) {
+					track_colour.a = q->alpha;
+					set_material_diffuse(track_colour);
+				}
 
 				glNormal3(q->n4);
 				glTexCoord2(q->t4);
@@ -201,15 +206,13 @@ void add_track_mark(const CControl *ctrl, int *id) {
 	if (param.perf_level < 3)
 		return;
 
-	TTerrType *TerrList = &Course.TerrList[0];
-
-	*id = Course.GetTerrainIdx (ctrl->cpos.x, ctrl->cpos.z, 0.5);
+	*id = Course.GetTerrainIdx(ctrl->cpos.x, ctrl->cpos.z, 0.5);
 	if (*id < 1) {
 		break_track_marks();
 		return;
 	}
 
-	if (!TerrList[*id].trackmarks) {
+	if (!Course.TerrList[*id].trackmarks) {
 		break_track_marks();
 		return;
 	}
@@ -220,7 +223,7 @@ void add_track_mark(const CControl *ctrl, int *id) {
 		return;
 	}
 
-	TVector3d width_vector = CrossProduct (ctrl->cdirection, TVector3d (0, 1, 0));
+	TVector3d width_vector = CrossProduct(ctrl->cdirection, TVector3d(0, 1, 0));
 	double magnitude = width_vector.Norm();
 	if (magnitude == 0) {
 		break_track_marks();
@@ -231,16 +234,16 @@ void add_track_mark(const CControl *ctrl, int *id) {
 	TVector3d right_vector = -TRACK_WIDTH/2.0 * width_vector;
 	TVector3d left_wing =  ctrl->cpos - left_vector;
 	TVector3d right_wing = ctrl->cpos - right_vector;
-	double left_y = Course.FindYCoord (left_wing.x, left_wing.z);
-	double right_y = Course.FindYCoord (right_wing.x, right_wing.z);
+	double left_y = Course.FindYCoord(left_wing.x, left_wing.z);
+	double right_y = Course.FindYCoord(right_wing.x, right_wing.z);
 
 	if (fabs(left_y-right_y) > MAX_TRACK_DEPTH) {
 		break_track_marks();
 		return;
 	}
 
-	TPlane surf_plane = Course.GetLocalCoursePlane (ctrl->cpos);
-	double dist_from_surface = DistanceToPlane (surf_plane, ctrl->cpos);
+	TPlane surf_plane = Course.GetLocalCoursePlane(ctrl->cpos);
+	double dist_from_surface = DistanceToPlane(surf_plane, ctrl->cpos);
 	// comp_depth = get_compression_depth(Snow);
 	double comp_depth = 0.1;
 	if (dist_from_surface >= (2 * comp_depth)) {
@@ -249,7 +252,7 @@ void add_track_mark(const CControl *ctrl, int *id) {
 	}
 
 	if (track_marks.quads.size() < MAX_TRACK_MARKS)
-		track_marks.quads.push_back(track_quad_t());
+		track_marks.quads.emplace_back();
 	list<track_quad_t>::iterator qprev = track_marks.current_mark;
 	if (track_marks.current_mark == track_marks.quads.end())
 		track_marks.current_mark = track_marks.quads.begin();
@@ -259,12 +262,12 @@ void add_track_mark(const CControl *ctrl, int *id) {
 
 	if (!continuing_track) {
 		q->track_type = TRACK_HEAD;
-		q->v1 = TVector3d (left_wing.x, left_y + TRACK_HEIGHT, left_wing.z);
-		q->v2 = TVector3d (right_wing.x, right_y + TRACK_HEIGHT, right_wing.z);
-		q->v3 = TVector3d (left_wing.x, left_y + TRACK_HEIGHT, left_wing.z);
-		q->v4 = TVector3d (right_wing.x, right_y + TRACK_HEIGHT, right_wing.z);
-		q->n1 = Course.FindCourseNormal (q->v1.x, q->v1.z);
-		q->n2 = Course.FindCourseNormal (q->v2.x, q->v2.z);
+		q->v1 = TVector3d(left_wing.x, left_y + TRACK_HEIGHT, left_wing.z);
+		q->v2 = TVector3d(right_wing.x, right_y + TRACK_HEIGHT, right_wing.z);
+		q->v3 = TVector3d(left_wing.x, left_y + TRACK_HEIGHT, left_wing.z);
+		q->v4 = TVector3d(right_wing.x, right_y + TRACK_HEIGHT, right_wing.z);
+		q->n1 = Course.FindCourseNormal(q->v1.x, q->v1.z);
+		q->n2 = Course.FindCourseNormal(q->v2.x, q->v2.z);
 		q->t1 = TVector2d(0.0, 0.0);
 		q->t2 = TVector2d(1.0, 0.0);
 	} else {
@@ -278,20 +281,20 @@ void add_track_mark(const CControl *ctrl, int *id) {
 			q->t2 = qprev->t4;
 			if (qprev->track_type == TRACK_TAIL) qprev->track_type = TRACK_MARK;
 		}
-		q->v3 = TVector3d (left_wing.x, left_y + TRACK_HEIGHT, left_wing.z);
-		q->v4 = TVector3d (right_wing.x, right_y + TRACK_HEIGHT, right_wing.z);
-		q->n3 = Course.FindCourseNormal (q->v3.x, q->v3.z);
-		q->n4 = Course.FindCourseNormal (q->v4.x, q->v4.z);
+		q->v3 = TVector3d(left_wing.x, left_y + TRACK_HEIGHT, left_wing.z);
+		q->v4 = TVector3d(right_wing.x, right_y + TRACK_HEIGHT, right_wing.z);
+		q->n3 = Course.FindCourseNormal(q->v3.x, q->v3.z);
+		q->n4 = Course.FindCourseNormal(q->v4.x, q->v4.z);
 		double tex_end = speed*g_game.time_step/TRACK_WIDTH;
 		if (q->track_type == TRACK_HEAD) {
-			q->t3= TVector2d (0.0, 1.0);
-			q->t4= TVector2d (1.0, 1.0);
+			q->t3= TVector2d(0.0, 1.0);
+			q->t4= TVector2d(1.0, 1.0);
 		} else {
-			q->t3 = TVector2d (0.0, q->t1.y + tex_end);
-			q->t4 = TVector2d (1.0, q->t2.y + tex_end);
+			q->t3 = TVector2d(0.0, q->t1.y + tex_end);
+			q->t4 = TVector2d(1.0, q->t2.y + tex_end);
 		}
 	}
-	q->alpha = min ((2*comp_depth-dist_from_surface)/(4*comp_depth), 1.0);
+	q->alpha = min(static_cast<int>((2*comp_depth-dist_from_surface)/(4*comp_depth)*255), 255);
 	continuing_track = true;
 }
 
@@ -302,10 +305,10 @@ void UpdateTrackmarks(const CControl *ctrl) {
 	int trackid;
 	TTerrType *TerrList = &Course.TerrList[0];
 
-	add_track_mark (ctrl, &trackid);
+	add_track_mark(ctrl, &trackid);
 	if (trackid >= 0 && TerrList[trackid].trackmarks) {
-		SetTrackIDs (TerrList[trackid].starttex,
-		             TerrList[trackid].tracktex,
-		             TerrList[trackid].stoptex);
+		SetTrackIDs(TerrList[trackid].starttex,
+		            TerrList[trackid].tracktex,
+		            TerrList[trackid].stoptex);
 	}
 }

@@ -52,120 +52,96 @@ static const GLfloat energy_foreground_color[] = { 0.54, 0.59, 1.00, 0.5 };
 static const GLfloat speedbar_background_color[] = { 0.2, 0.2, 0.2, 0.0 };
 static const GLfloat hud_white[] = { 1.0, 1.0, 1.0, 1.0 };
 
-static const TColor text_colour(0, 0, 0, 1);
-
 static void draw_time() {
-	int min, sec, hundr;
-	GetTimeComponents (g_game.time, &min, &sec, &hundr);
-	string timestr = Int_StrN (min, 2);
-	string secstr = Int_StrN (sec, 2);
-	string hundrstr = Int_StrN (hundr, 2);
+	Tex.Draw(T_TIME, 10, 10, 1);
 
-	timestr += ":";
+	int min, sec, hundr;
+	GetTimeComponents(g_game.time, &min, &sec, &hundr);
+	string timestr = Int_StrN(min, 2);
+	string secstr = Int_StrN(sec, 2);
+	string hundrstr = Int_StrN(hundr, 2);
+
+	timestr += ':';
 	timestr += secstr;
 
 	if (param.use_papercut_font < 2) {
-		Tex.DrawNumStr (timestr, 20, 10, 1, colWhite);
-		Tex.DrawNumStr (hundrstr, 136, 10, 0.7, colWhite);
+		Tex.DrawNumStr(timestr, 50, 12, 1, colWhite);
+		Tex.DrawNumStr(hundrstr, 170, 12, 0.7, colWhite);
 	} else {
-
-		/*
-			glEnable (GL_LINE_SMOOTH);
-			glEnable (GL_BLEND);
-			glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-			glHint (GL_LINE_SMOOTH_HINT, GL_DONT_CARE);
-			glLineWidth (1.5);
-		*/
-		glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_NEAREST);
-
-		Tex.Draw (T_TIME, 16, 20, 1);
-		FT.SetColor (colDYell);
-		FT.SetSize (32);
-		FT.DrawString (160, 6, hundrstr);
-		FT.SetSize (42);
-		FT.DrawString (70, 10, timestr);
+		Winsys.beginSFML();
+		FT.SetColor(colDYell);
+		FT.SetSize(30);
+		FT.DrawString(138, 3, hundrstr);
+		FT.SetSize(42);
+		FT.DrawString(53, 3, timestr);
+		Winsys.endSFML();
 	}
 }
 
-static void draw_herring_count (int herring_count) {
-	string hcountstr = Int_StrN (herring_count, 3);
+static void draw_herring_count(int herring_count) {
+	Tex.Draw(HERRING_ICON, Winsys.resolution.width - 59, 12, 1);
+
+	string hcountstr = Int_StrN(herring_count, 3);
 	if (param.use_papercut_font < 2) {
-		Tex.DrawNumStr (hcountstr, Winsys.resolution.width - 90, 10, 1, colWhite);
-		Tex.Draw (HERRING_ICON, Winsys.resolution.width-160, -20, 1);
+		Tex.DrawNumStr(hcountstr, Winsys.resolution.width - 130, 12, 1, colWhite);
 	} else {
-		FT.SetColor (colDYell);
-		FT.DrawString ( Winsys.resolution.width - 90, 10, hcountstr);
-		Tex.Draw (T_YELLHERRING, Winsys.resolution.width-160, 12, 1);
+		Winsys.beginSFML();
+		FT.SetColor(colDYell);
+		FT.DrawString(Winsys.resolution.width - 125, 3, hcountstr);
+		Winsys.endSFML();
 	}
 }
 
-TVector2d calc_new_fan_pt (double angle) {
-	TVector2d pt;
-	pt.x = ENERGY_GAUGE_CENTER_X + cos (ANGLES_TO_RADIANS (angle)) * SPEEDBAR_OUTER_RADIUS;
-	pt.y = ENERGY_GAUGE_CENTER_Y + sin (ANGLES_TO_RADIANS (angle)) * SPEEDBAR_OUTER_RADIUS;
-	return pt;
+TVector2d calc_new_fan_pt(double angle) {
+	return TVector2d(
+	           ENERGY_GAUGE_CENTER_X + cos(ANGLES_TO_RADIANS(angle)) * SPEEDBAR_OUTER_RADIUS,
+	           ENERGY_GAUGE_CENTER_Y + sin(ANGLES_TO_RADIANS(angle)) * SPEEDBAR_OUTER_RADIUS);
 }
 
-void start_tri_fan() {
-	glBegin (GL_TRIANGLE_FAN);
-	glVertex2f (ENERGY_GAUGE_CENTER_X,
-	            ENERGY_GAUGE_CENTER_Y);
-	TVector2d pt = calc_new_fan_pt (SPEEDBAR_BASE_ANGLE);
-	glVertex2f (pt.x, pt.y);
-}
-
-void draw_partial_tri_fan (double fraction) {
-	bool trifan = false;
-
+void draw_partial_tri_fan(double fraction) {
 	double angle = SPEEDBAR_BASE_ANGLE +
 	               (SPEEDBAR_MAX_ANGLE - SPEEDBAR_BASE_ANGLE) * fraction;
 
-	int divs = (int)((SPEEDBAR_BASE_ANGLE - angle) * CIRCLE_DIVISIONS / 360.0);
+	int divs = (int)((SPEEDBAR_BASE_ANGLE - angle) * CIRCLE_DIVISIONS / 360.0) + 1;
 	double cur_angle = SPEEDBAR_BASE_ANGLE;
 	double angle_incr = 360.0 / CIRCLE_DIVISIONS;
 
+	glBegin(GL_TRIANGLE_FAN);
+	glVertex2f(ENERGY_GAUGE_CENTER_X,
+	           ENERGY_GAUGE_CENTER_Y);
+
 	for (int i=0; i<divs; i++) {
-		if (!trifan) {
-			start_tri_fan();
-			trifan = true;
-		}
+		TVector2d pt = calc_new_fan_pt(cur_angle);
+		glVertex2f(pt.x, pt.y);
 		cur_angle -= angle_incr;
-		TVector2d pt = calc_new_fan_pt (cur_angle);
-		glVertex2f (pt.x, pt.y);
 	}
 
-	if (cur_angle > angle + EPS) {
+	if (cur_angle+angle_incr > angle + EPS) {
 		cur_angle = angle;
-		if (!trifan) {
-			start_tri_fan();
-			trifan = true;
-		}
-		TVector2d pt = calc_new_fan_pt (cur_angle);
-		glVertex2f (pt.x, pt.y);
+		TVector2d pt = calc_new_fan_pt(cur_angle);
+		glVertex2f(pt.x, pt.y);
 	}
 
-	if (trifan) {
-		glEnd();
-	}
+	glEnd();
 }
 
-void draw_gauge (double speed, double energy) {
+void draw_gauge(double speed, double energy) {
 	static const GLfloat xplane[4] = {1.0 / GAUGE_IMG_SIZE, 0.0, 0.0, 0.0 };
 	static const GLfloat yplane[4] = {0.0, 1.0 / GAUGE_IMG_SIZE, 0.0, 0.0 };
 
 	ScopedRenderMode rm(GAUGE_BARS);
 
-	if (Tex.GetTexture (GAUGE_ENERGY) == NULL) return;
-	if (Tex.GetTexture (GAUGE_SPEED) == NULL) return;
-	if (Tex.GetTexture (GAUGE_OUTLINE) == NULL) return;
+	if (Tex.GetTexture(GAUGE_ENERGY) == nullptr) return;
+	if (Tex.GetTexture(GAUGE_SPEED) == nullptr) return;
+	if (Tex.GetTexture(GAUGE_OUTLINE) == nullptr) return;
 
-	Tex.BindTex (GAUGE_ENERGY);
-	glTexGenfv (GL_S, GL_OBJECT_PLANE, xplane);
-	glTexGenfv (GL_T, GL_OBJECT_PLANE, yplane);
+	Tex.BindTex(GAUGE_ENERGY);
+	glTexGenfv(GL_S, GL_OBJECT_PLANE, xplane);
+	glTexGenfv(GL_T, GL_OBJECT_PLANE, yplane);
 
 	glPushMatrix();
-	glTranslatef (Winsys.resolution.width - GAUGE_WIDTH, 0, 0);
-	Tex.BindTex (GAUGE_ENERGY);
+	glTranslatef(Winsys.resolution.width - GAUGE_WIDTH, 0, 0);
+	Tex.BindTex(GAUGE_ENERGY);
 	double y = ENERGY_GAUGE_BOTTOM + energy * ENERGY_GAUGE_HEIGHT;
 
 	const GLfloat vtx1 [] = {
@@ -213,13 +189,13 @@ void draw_gauge (double speed, double energy) {
 		speedbar_frac +=  speed/SPEEDBAR_GREEN_MAX_SPEED * SPEEDBAR_GREEN_FRACTION;
 	}
 
-	glColor4fv (speedbar_background_color);
-	Tex.BindTex (GAUGE_SPEED);
-	draw_partial_tri_fan (1.0);
-	glColor4fv (hud_white);
-	draw_partial_tri_fan (min (1.0, speedbar_frac));
+	glColor4fv(speedbar_background_color);
+	Tex.BindTex(GAUGE_SPEED);
+	draw_partial_tri_fan(1.0);
+	glColor4fv(hud_white);
+	draw_partial_tri_fan(min(1.0, speedbar_frac));
 
-	glColor4fv (hud_white);
+	glColor4fv(hud_white);
 	Tex.BindTex(GAUGE_OUTLINE);
 	static const GLshort vtx3 [] = {
 		0, 0,
@@ -236,22 +212,27 @@ void draw_gauge (double speed, double energy) {
 	glPopMatrix();
 }
 
-void DrawSpeed (double speed) {
-	string speedstr = Int_StrN ((int)speed, 3);
+void DrawSpeed(double speed) {
+	string speedstr = Int_StrN((int)speed, 3);
 	if (param.use_papercut_font < 2) {
-		Tex.DrawNumStr (speedstr,
-		                Winsys.resolution.width - 85, Winsys.resolution.height-74, 1, colWhite);
+		Tex.DrawNumStr(speedstr,
+		               Winsys.resolution.width - 87, Winsys.resolution.height-73, 1, colWhite);
 	} else {
-		FT.SetColor (colDDYell);
-		FT.DrawString (Winsys.resolution.width-82, Winsys.resolution.height-80, speedstr);
+		Winsys.beginSFML();
+		FT.SetColor(colDDYell);
+		FT.DrawString(Winsys.resolution.width - 82, Winsys.resolution.height - 80, speedstr);
+		Winsys.endSFML();
 	}
 }
 
 void DrawWind(float dir, float speed, const CControl *ctrl) {
 	if (g_game.wind_id < 1) return;
 
-	Tex.Draw (SPEEDMETER, 0, Winsys.resolution.height-140, 1.0);
-	glDisable (GL_TEXTURE_2D);
+	static const int texHeight = Tex.GetSFTexture(SPEEDMETER).getSize().y;
+	static const int texWidth = Tex.GetSFTexture(SPEEDMETER).getSize().x;
+
+	Tex.Draw(SPEEDMETER, 5, Winsys.resolution.height-5-texHeight, 1.0);
+	glDisable(GL_TEXTURE_2D);
 
 
 	float alpha, red, blue;
@@ -264,9 +245,9 @@ void DrawWind(float dir, float speed, const CControl *ctrl) {
 	}
 	blue = 1.0 - red;
 
-	glPushMatrix ();
-	glColor4f (red, 0, blue, alpha);
-	glTranslatef (72, 66, 0);
+	glPushMatrix();
+	glColor4f(red, 0, blue, alpha);
+	glTranslatef(5 + texWidth / 2, 5 + texHeight / 2, 0);
 	glRotatef(dir, 0, 0, 1);
 	glEnableClientState(GL_VERTEX_ARRAY);
 	static const int len = 45;
@@ -282,8 +263,8 @@ void DrawWind(float dir, float speed, const CControl *ctrl) {
 	// direction indicator
 	float dir_angle = RADIANS_TO_ANGLES(atan2(ctrl->cvel.x, ctrl->cvel.z));
 
-	glColor4f (0, 0.5, 0, 1.0);
-	glRotatef (dir_angle - dir, 0, 0, 1);
+	glColor4f(0, 0.5, 0, 1.0);
+	glRotatef(dir_angle - dir, 0, 0, 1);
 	static const GLshort vtx2 [] = {
 		-2, 0,
 		2, 0,
@@ -293,17 +274,19 @@ void DrawWind(float dir, float speed, const CControl *ctrl) {
 	glVertexPointer(2, GL_SHORT, 0, vtx2);
 	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 	glDisableClientState(GL_VERTEX_ARRAY);
-	glPopMatrix ();
+	glPopMatrix();
 
-	glEnable (GL_TEXTURE_2D);
+	glEnable(GL_TEXTURE_2D);
 
-	Tex.Draw (SPEED_KNOB, 64, Winsys.resolution.height - 74, 1.0);
-	string windstr = Int_StrN ((int)speed, 3);
+	Tex.Draw(SPEED_KNOB, 5 + texWidth / 2 - 8, Winsys.resolution.height - 5 - texWidth / 2 - 8, 1.0);
+	string windstr = Int_StrN((int)speed, 3);
 	if (param.use_papercut_font < 2) {
-		Tex.DrawNumStr (windstr, 130, Winsys.resolution.height - 55, 1, colWhite);
+		Tex.DrawNumStr(windstr, 120, Winsys.resolution.height - 45, 1, colWhite);
 	} else {
-		FT.SetColor (colBlue);
-		FT.DrawString (130, Winsys.resolution.height - 55, windstr);
+		Winsys.beginSFML();
+		FT.SetColor(colDDYell);
+		FT.DrawString(120, Winsys.resolution.height - 50, windstr);
+		Winsys.endSFML();
 	}
 }
 
@@ -328,25 +311,27 @@ void DrawFps() {
 
 	string fpsstr = Int_StrN((int)averagefps);
 	if (param.use_papercut_font < 2) {
-		Tex.DrawNumStr (fpsstr, (Winsys.resolution.width - 60) / 2, 10, 1, colWhite);
+		Tex.DrawNumStr(fpsstr, (Winsys.resolution.width - 60) / 2, 10, 1, colWhite);
 	} else {
+		Winsys.beginSFML();
 		if (averagefps >= 35)
-			FT.SetColor (colWhite);
+			FT.SetColor(colWhite);
 		else
-			FT.SetColor (colRed);
-		FT.DrawString ((Winsys.resolution.width - 60) / 2, 10, fpsstr);
+			FT.SetColor(colRed);
+		FT.DrawString(-1, 3, fpsstr);
+		Winsys.endSFML();
 	}
 }
 
-void DrawPercentBar (float fact, float x, float y) {
-	Tex.BindTex (T_ENERGY_MASK);
-	glColor4f (1.0, 1.0, 1.0, 1.0);
+void DrawPercentBar(float fact, float x, float y) {
+	Tex.BindTex(T_ENERGY_MASK);
+	glColor4f(1.0, 1.0, 1.0, 1.0);
 
 	const GLfloat tex[] = {
-		0, 0,
-		1, 0,
-		1, fact,
-		0, fact
+		0, 1,
+		1, 1,
+		1, 1 - fact,
+		0, 1 - fact
 	};
 	const GLfloat vtx[] = {
 		x, y,
@@ -366,28 +351,28 @@ void DrawPercentBar (float fact, float x, float y) {
 	glDisableClientState(GL_VERTEX_ARRAY);
 }
 
-void DrawCoursePosition (const CControl *ctrl) {
+void DrawCoursePosition(const CControl *ctrl) {
 	double fact = ctrl->cpos.z / Course.GetPlayDimensions().y;
 	if (fact > 1.0) fact = 1.0;
-	glEnable (GL_TEXTURE_2D);
-	DrawPercentBar (-fact, Winsys.resolution.width - 48, 280-128);
-	Tex.Draw (T_MASK_OUTLINE, Winsys.resolution.width - 48, Winsys.resolution.height - 280, 1.0);
+	glEnable(GL_TEXTURE_2D);
+	DrawPercentBar(-fact, Winsys.resolution.width - 48, 280-128);
+	Tex.Draw(T_MASK_OUTLINE, Winsys.resolution.width - 48, Winsys.resolution.height - 280, 1.0);
 }
 
 // -------------------------------------------------------
-void DrawHud (const CControl *ctrl) {
+void DrawHud(const CControl *ctrl) {
 	if (!param.show_hud)
 		return;
 
 	double speed = ctrl->cvel.Length();
-	SetupGuiDisplay ();
+	Setup2dScene();
 
-	draw_gauge (speed * 3.6, ctrl->jump_amt);
+	draw_gauge(speed * 3.6, ctrl->jump_amt);
 	ScopedRenderMode rm(TEXFONT);
 	draw_time();
-	draw_herring_count (g_game.herring);
-	DrawSpeed (speed * 3.6);
-	DrawFps ();
-	DrawCoursePosition (ctrl);
-	DrawWind (Wind.Angle (), Wind.Speed (), ctrl);
+	draw_herring_count(g_game.herring);
+	DrawSpeed(speed * 3.6);
+	DrawFps();
+	DrawCoursePosition(ctrl);
+	DrawWind(Wind.Angle(), Wind.Speed(), ctrl);
 }

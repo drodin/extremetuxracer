@@ -29,13 +29,13 @@ private:
 	GLfloat vhead;  // heading - Rundumsicht
 	GLfloat vpitch; // pitch - Drehung nach oben/unten
 
-	void XMove (GLfloat step);
-	void YMove (GLfloat step);
-	void ZMove (GLfloat step);
-	void RotateHead (GLfloat step);
-	void RotatePitch (GLfloat step);
+	void XMove(GLfloat step);
+	void YMove(GLfloat step);
+	void ZMove(GLfloat step);
+	void RotateHead(GLfloat step);
+	void RotatePitch(GLfloat step);
 public:
-	CCamera ();
+	CCamera();
 
 	bool fore;
 	bool back;
@@ -47,7 +47,7 @@ public:
 	bool headright;
 	bool pitchup;
 	bool pitchdown;
-	void Update (float timestep);
+	void Update(float timestep);
 };
 
 // ---------------------------------------------------------------
@@ -57,10 +57,10 @@ public:
 class CGluCamera {
 private:
 public:
-	CGluCamera ();
+	CGluCamera();
 	double distance;
 	double angle;
-	void Update (double timestep);
+	void Update(float timestep);
 
 	bool turnright;
 	bool turnleft;
@@ -72,23 +72,23 @@ extern CGluCamera GluCamera;
 
 // --------------------------------------------------------------------
 
-void SetToolLight ();
-void QuitTool ();
-void SetToolMode (int newmode);
-bool ToolsFinalStage ();
-void SetCharChanged (bool val);
-void SetFrameChanged (bool val);
-bool CharHasChanged ();
-bool FrameHasChanged ();
-void SaveToolCharacter ();
-void SaveToolFrame ();
-void ReloadToolCharacter ();
-void DrawChanged ();
+void SetToolLight();
+void QuitTool();
+void SetToolMode(int newmode);
+bool ToolsFinalStage();
+void SetCharChanged(bool val);
+void SetFrameChanged(bool val);
+bool CharHasChanged();
+bool FrameHasChanged();
+void SaveToolCharacter();
+void SaveToolFrame();
+void ReloadToolCharacter();
+void DrawChanged();
 
 
 class CTools : public State {
-	void Loop(double time_step);
-	void Keyb(unsigned int key, bool special, bool release, int x, int y);
+	void Loop(float time_step);
+	void Keyb(sf::Keyboard::Key key, bool release, int x, int y);
 	void Mouse(int button, int state, int x, int y);
 	void Motion(int x, int y);
 public:

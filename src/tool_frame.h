@@ -20,20 +20,20 @@ GNU General Public License for more details.
 
 #include "bh.h"
 
-void InitFrameTools ();
-void SingleFrameKeys (unsigned int key, bool special, bool release, int x, int y);
-void SingleFrameMouse (int button, int state, int x, int y);
-void SingleFrameMotion (int x, int y);
-void RenderSingleFrame (double timestep);
+void InitFrameTools();
+void SingleFrameKeys(sf::Keyboard::Key key, bool release, int x, int y);
+void SingleFrameMouse(int button, int state, int x, int y);
+void SingleFrameMotion(int x, int y);
+void RenderSingleFrame(float timestep);
 
 // --------------------------------------------------------------------
 //				frame sequence
 // --------------------------------------------------------------------
 
-void SequenceKeys (unsigned int key, bool special, bool release, int x, int y);
-void SequenceMouse (int button, int state, int x, int y);
-void SequenceMotion (int x, int y);
-void RenderSequence (double timestep);
+void SequenceKeys(sf::Keyboard::Key key, bool release, int x, int y);
+void SequenceMouse(int button, int state, int x, int y);
+void SequenceMotion(int x, int y);
+void RenderSequence(float timestep);
 
 #endif
 

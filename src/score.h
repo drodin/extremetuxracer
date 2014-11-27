@@ -19,6 +19,7 @@ GNU General Public License for more details.
 
 #include "bh.h"
 #include "states.h"
+#include "spx.h"
 #include <vector>
 
 #define MAX_SCORES 8
@@ -27,7 +28,11 @@ struct TScore {
 	string player;
 	int points;
 	int herrings;
-	double time;
+	float time;
+
+	TScore(const string& player_ = emptyString, int points_ = 0, int herrings_ = 0, double time_ = 0)
+		: player(player_), points(points_), herrings(herrings_), time(time_)
+	{}
 };
 
 struct TScoreList {
@@ -41,17 +46,17 @@ private:
 	vector<TScoreList> Scorelist;
 
 	void Enter();
-	void Loop(double time_step);
-	void Keyb(unsigned int key, bool special, bool release, int x, int y);
+	void Loop(float time_step);
+	void Keyb(sf::Keyboard::Key key, bool release, int x, int y);
 	void Mouse(int button, int state, int x, int y);
 	void Motion(int x, int y);
 public:
-	int AddScore(const TCourse* course, const TScore& score);
-	const TScoreList *GetScorelist (size_t list_idx) const;
-	void PrintScorelist (size_t list_idx) const;
-	bool SaveHighScore () const;
-	bool LoadHighScore ();
-	int CalcRaceResult ();
+	int AddScore(const TCourse* course, TScore&& score);
+	const TScoreList *GetScorelist(size_t list_idx) const;
+	void PrintScorelist(size_t list_idx) const;
+	bool SaveHighScore() const;
+	bool LoadHighScore();
+	int CalcRaceResult();
 };
 
 extern CScore Score;

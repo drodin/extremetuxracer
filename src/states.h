@@ -19,7 +19,6 @@ GNU General Public License for more details.
 #define STATES_H
 
 #include "bh.h"
-#include <SDL/SDL.h>
 
 
 class CWinsys;
@@ -38,8 +37,8 @@ public:
 		State* current;
 		State* next;
 		bool quit;
-		float clock_time;
-		Manager(CWinsys& winsys) : Winsys(winsys), previous(NULL), current(NULL), next(NULL), quit(false), clock_time(0.f) {}
+		sf::Clock timer;
+		Manager(CWinsys& winsys) : Winsys(winsys), previous(nullptr), current(nullptr), next(nullptr), quit(false) {}
 		Manager(const Manager&);
 		Manager& operator=(const Manager&);
 		~Manager();
@@ -57,13 +56,13 @@ public:
 	static Manager manager;
 
 	virtual void Enter() {}
-	virtual void Loop(double time_step) {}
-	virtual void Keyb(unsigned int key, bool special, bool release, int x, int y) {}
+	virtual void Loop(float time_step) {}
+	virtual void Keyb(sf::Keyboard::Key key, bool release, int x, int y) {}
 	virtual void Mouse(int button, int state, int x, int y) {}
 	virtual void Motion(int x, int y) {}
 	virtual void Jaxis(int axis, float value) {}
 	virtual void Jbutt(int button, int state) {}
-	virtual void Keyb_spec(SDL_keysym sym, bool release) {}
+	virtual void TextEntered(char text) {}
 	virtual void Exit() {}
 };
 

@@ -132,9 +132,6 @@
     <ClInclude Include="..\src\font.h">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\ft_font.h">
-      <Filter>Header files</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\game_config.h">
       <Filter>Header files</Filter>
     </ClInclude>
@@ -276,9 +273,6 @@
       <Filter>Source files</Filter>
     </ClCompile>
     <ClCompile Include="..\src\font.cpp">
-      <Filter>Source files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\ft_font.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
     <ClCompile Include="..\src\game_config.cpp">

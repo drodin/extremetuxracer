@@ -24,7 +24,7 @@ GNU General Public License for more details.
 template<typename T>
 struct TVector2 {
 	T x, y;
-	TVector2(T _x = 0.0, T _y = 0.0)
+	explicit TVector2(T _x = 0.0, T _y = 0.0)
 		: x(_x), y(_y)
 	{}
 	double Length() const {
@@ -49,66 +49,63 @@ struct TVector2 {
 };
 
 template<typename T>
-struct TVector3 : public TVector2<T> {
-	T z;
-	TVector3(T _x = 0.0, T _y = 0.0, T _z = 0.0)
-		: TVector2<T>(_x, _y), z(_z)
+struct TVector3 {
+	T x, y, z;
+	explicit TVector3(T _x = 0.0, T _y = 0.0, T _z = 0.0)
+		: x(_x), y(_y), z(_z)
 	{}
 	double Length() const {
-          return sqrt(static_cast<double>(TVector2<T>::x*TVector2<T>::x +
-                                          TVector2<T>::y*TVector2<T>::y + z*z));
+		return sqrt(static_cast<double>(x*x + y*y + z*z));
 	}
 	double Norm();
 	TVector3<T>& operator*=(T f) {
-                TVector2<T>::x *= f;
-		TVector2<T>::y *= f;
+		x *= f;
+		y *= f;
 		z *= f;
 		return *this;
 	}
 	TVector3<T>& operator+=(const TVector3<T>& v) {
-                TVector2<T>::x += v.x;
-		TVector2<T>::y += v.y;
+		x += v.x;
+		y += v.y;
 		z += v.z;
 		return *this;
 	}
 	TVector3<T>& operator-=(const TVector3<T>& v) {
-                TVector2<T>::x -= v.x;
-		TVector2<T>::y -= v.y;
+		x -= v.x;
+		y -= v.y;
 		z -= v.z;
 		return *this;
 	}
 };
 
 template<typename T>
-struct TVector4 : public TVector3<T> {
-	T w;
-	TVector4(T _x = 0.0, T _y = 0.0, T _z = 0.0, T _w = 0.0)
-		: TVector3<T>(_x, _y, _z), w(_w)
+struct TVector4 {
+	T x, y, z, w;
+	explicit TVector4(T _x = 0.0, T _y = 0.0, T _z = 0.0, T _w = 0.0)
+		: x(_x), y(_y), z(_z), w(_w)
 	{}
 	double Length() const {
-		return sqrt(static_cast<double>(TVector2<T>::x*TVector2<T>::x + 
-                                                TVector2<T>::y*TVector2<T>::y +
-                                                TVector3<T>::z*TVector3<T>::z + w*w));
+		return sqrt(static_cast<double>(x*x + y*y + z*z + w*w));
 	}
 	double Norm();
 	TVector4<T>& operator*=(T f) {
-                TVector2<T>::x *= f;
-		TVector2<T>::y *= f;
-		TVector3<T>::z *= f;
+		x *= f;
+		y *= f;
+		z *= f;
 		w *= f;
 		return *this;
 	}
 	TVector4<T>& operator+=(const TVector4<T>& v) {
-		TVector2<T>::x += v.x;
-		TVector2<T>::y += v.y;
-		TVector3<T>::z += v.z;
+		x += v.x;
+		y += v.y;
+		z += v.z;
 		w += v.w;
 		return *this;
 	}
 	TVector4<T>& operator-=(const TVector4<T>& v) {
-		TVector2<T>::x -= v.x;
-		TVector2<T>::y -= v.y;
-		TVector3<T>::z -= v.z;
+		x -= v.x;
+		y -= v.y;
+		z -= v.z;
 		w -= v.w;
 		return *this;
 	}
@@ -161,7 +158,28 @@ TVector4<T> operator-(const TVector4<T>& l, const TVector4<T>& r) {
 	return TVector4<T>(l.x - r.x, l.y - r.y, l.z - r.z, l.w - r.w);
 }
 
-double    DotProduct(const TVector3d& v1, const TVector3d& v2);
+template<typename T>
+TVector2<T> operator-(const TVector2<T>&r) {
+	return TVector2<T>(-r.x, -r.y);
+}
+template<typename T>
+TVector3<T> operator-(const TVector3<T>& r) {
+	return TVector3<T>(-r.x, -r.y, -r.z);
+}
+template<typename T>
+TVector4<T> operator-(const TVector4<T>& r) {
+	return TVector4<T>(-r.x, -r.y, -r.z, -r.w);
+}
+
+template<typename T>
+double DotProduct(const TVector3<T>& v1, const TVector3<T>& v2) {
+	return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;
+}
+template<typename T>
+double DotProduct(const TVector4<T>& v1, const TVector4<T>& v2) {
+	return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z + v1.w * v2.w;
+}
+
 TVector3d CrossProduct(const TVector3d& u, const TVector3d& v);
 
 

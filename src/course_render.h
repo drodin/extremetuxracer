@@ -20,9 +20,9 @@ GNU General Public License for more details.
 
 #include "bh.h"
 
-void setup_course_tex_gen ();
+void setup_course_tex_gen();
 
-void RenderCourse ();
-void DrawTrees ();
+void RenderCourse();
+void DrawTrees();
 
 #endif

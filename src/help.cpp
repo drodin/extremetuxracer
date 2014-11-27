@@ -26,69 +26,56 @@ GNU General Public License for more details.
 #include "font.h"
 #include "gui.h"
 #include "translation.h"
-#include "game_type_select.h"
 #include "winsys.h"
 
 CHelp Help;
 
-static int ytop;
+#define TEXT_LINES 13
+TLabel* headline;
+TLabel* texts[TEXT_LINES];
+TLabel* footnote;
 
-void CHelp::Keyb(unsigned int key, bool special, bool release, int x, int y) {
-	State::manager.RequestEnterState (GameTypeSelect);
+void CHelp::Keyb(sf::Keyboard::Key key, bool release, int x, int y) {
+	State::manager.RequestEnterState(*State::manager.PreviousState());
 }
 
 void CHelp::Mouse(int button, int state, int x, int y) {
-	if (state == 1) State::manager.RequestEnterState (GameTypeSelect);
+	if (state == 1) State::manager.RequestEnterState(*State::manager.PreviousState());
 }
 
 void CHelp::Motion(int x, int y) {
-	if (param.ui_snow) push_ui_snow (cursor_pos);
+	if (param.ui_snow) push_ui_snow(cursor_pos);
 }
 
 void CHelp::Enter() {
-	Winsys.ShowCursor (false);
-	Music.Play (param.credits_music, -1);
+	ResetGUI();
+	Winsys.ShowCursor(false);
+	Music.Play(param.credits_music, true);
 
-	ytop = AutoYPosN (15);
+	int ytop = AutoYPosN(15);
+
+	const int xleft1 = 40;
+
+	FT.AutoSizeN(4);
+	headline = AddLabel(Trans.Text(57), xleft1, AutoYPosN(5), colWhite);
+
+	FT.AutoSizeN(3);
+	int offs = FT.AutoDistanceN(2);
+	for (int i = 0; i < TEXT_LINES; i++)
+		texts[i] = AddLabel(Trans.Text(44 + i), xleft1, ytop + offs*i, colWhite);
+
+	footnote = AddLabel(Trans.Text(65), CENTER, AutoYPosN(90), colWhite);
 }
 
-void CHelp::Loop(double timestep) {
-	Music.Update ();
-	check_gl_error();
-	ClearRenderContext ();
+void CHelp::Loop(float timestep) {
 	ScopedRenderMode rm(GUI);
-	SetupGuiDisplay ();
+	Winsys.clear();
 
 	if (param.ui_snow) {
-		update_ui_snow (timestep);
+		update_ui_snow(timestep);
 		draw_ui_snow();
 	}
 
-	FT.AutoSizeN (4);
-	FT.SetColor(colWhite);
-	const int xleft1 = 40;
-	FT.DrawString (xleft1, AutoYPosN (5), Trans.Text (57));
-
-	FT.AutoSizeN (3);
-	int offs = FT.AutoDistanceN (2);
-	FT.DrawString (xleft1, ytop, Trans.Text(44));
-	FT.DrawString (xleft1, ytop + offs, Trans.Text(45));
-	FT.DrawString (xleft1, ytop + offs * 2, Trans.Text(46));
-	FT.DrawString (xleft1, ytop + offs * 3, Trans.Text(47));
-	FT.DrawString (xleft1, ytop + offs * 4, Trans.Text(48));
-	FT.DrawString (xleft1, ytop + offs * 5, Trans.Text(49));
-	FT.DrawString (xleft1, ytop + offs * 6, Trans.Text(50));
-	FT.DrawString (xleft1, ytop + offs * 7, Trans.Text(51));
-	FT.DrawString (xleft1, ytop + offs * 8,Trans.Text(52));
-	FT.DrawString (xleft1, ytop + offs * 9, Trans.Text(53));
-	FT.DrawString (xleft1, ytop + offs * 10, Trans.Text(54));
-	FT.DrawString (xleft1, ytop + offs * 11, Trans.Text(55));
-	FT.DrawString (xleft1, ytop + offs * 12, Trans.Text(56));
-
-	FT.DrawString (CENTER, AutoYPosN (90), Trans.Text(65));
+	DrawGUI();
 	Winsys.SwapBuffers();
-}
-
-void CHelp::Exit() {
-	Music.Halt();
 }

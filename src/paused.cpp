@@ -42,60 +42,58 @@ static bool fog = true;
 static bool terr = true;
 static bool trees = true;
 
-void CPaused::Keyb (unsigned int key, bool special, bool release, int x, int y) {
+void CPaused::Keyb(sf::Keyboard::Key key, bool release, int x, int y) {
 	if (release) return;
 	switch (key) {
-		case SDLK_s:
-			ScreenshotN ();
+		case sf::Keyboard::S:
+			ScreenshotN();
 			break;
-		case SDLK_F5:
+		case sf::Keyboard::F5:
 			sky = !sky;
 			break;
-		case SDLK_F6:
+		case sf::Keyboard::F6:
 			fog = !fog;
 			break;
-		case SDLK_F7:
+		case sf::Keyboard::F7:
 			terr = !terr;
 			break;
-		case SDLK_F8:
+		case sf::Keyboard::F8:
 			trees = !trees;
 			break;
 		default:
-			State::manager.RequestEnterState (Racing);
+			State::manager.RequestEnterState(Racing);
 	}
 }
 
-void CPaused::Mouse (int button, int state, int x, int y) {
-	State::manager.RequestEnterState (Racing);
+void CPaused::Mouse(int button, int state, int x, int y) {
+	State::manager.RequestEnterState(Racing);
 }
 
 // ====================================================================
 
-void CPaused::Loop (double time_step) {
+void CPaused::Loop(float time_step) {
 	CControl *ctrl = g_game.player->ctrl;
 	int width = Winsys.resolution.width;
 	int height = Winsys.resolution.height;
-	check_gl_error();
 
-	Music.Update ();
-	ClearRenderContext ();
-	Env.SetupFog ();
-	update_view (ctrl, 0);
-	SetupViewFrustum (ctrl);
+	ClearRenderContext();
+	Env.SetupFog();
+	update_view(ctrl, 0);
+	SetupViewFrustum(ctrl);
 
-	if (sky) Env.DrawSkybox (ctrl->viewpos);
-	if (fog) Env.DrawFog ();
-	Env.SetupLight ();
+	if (sky) Env.DrawSkybox(ctrl->viewpos);
+	if (fog) Env.DrawFog();
+	Env.SetupLight();
 	if (terr) RenderCourse();
-	DrawTrackmarks ();
+	DrawTrackmarks();
 	if (trees) DrawTrees();
 
-	DrawSnow (ctrl);
+	DrawSnow(ctrl);
 
-	if (param.perf_level > 2) draw_particles (ctrl);
+	if (param.perf_level > 2) draw_particles(ctrl);
 	g_game.character->shape->Draw();
 
-	DrawHud (ctrl);
-	Reshape (width, height);
-	Winsys.SwapBuffers ();
+	DrawHud(ctrl);
+	Reshape(width, height);
+	Winsys.SwapBuffers();
 }

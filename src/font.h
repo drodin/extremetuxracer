@@ -29,72 +29,58 @@ GNU General Public License for more details.
 
 #define MAX_FONTS 36
 
-class FTFont;
-
 
 class CFont {
 private:
-	vector<FTFont*> fonts;
+	vector<sf::Font*> fonts;
 	map<string, size_t> fontindex;
 	Orientation forientation;
 
 	int    curr_font;
-	TColor curr_col;
+	sf::Color curr_col;
 	float  curr_size;
 	float  curr_fact;		// the length factor
 
-	static wstring UnicodeStr(const char* s);
-	template<typename T>
-	void DrawText(float x, float y, const T* text, size_t font, float size) const;
-	void GetTextSize(const char *text, float &x, float &y, size_t font, float size) const;
-	void GetTextSize(const wchar_t *text, float &x, float &y, size_t font, float size) const;
-
+	void DrawText(float x, float y, const sf::String& text, size_t font, float size) const;
+	void GetTextSize(const sf::String& text, float &x, float &y, size_t font, float size) const;
 public:
-	CFont ();
-	~CFont ();
+	CFont();
+	~CFont();
 
-	void Clear ();
+	void Clear();
 	int  LoadFont(const string& name, const string& dir, const string& filename);
-	int  LoadFont(const string& name, const char *path);
-	bool LoadFontlist ();
-	size_t GetFontIdx (const string &name) const;
+	int  LoadFont(const string& name, const string& path);
+	bool LoadFontlist();
+	size_t GetFontIdx(const string &name) const;
+	const sf::Font& getCurrentFont() const { return *fonts[curr_font]; }
+	float GetSize() const { return curr_size; }
 
 	// properties
-	void SetProps   (const string &fontname, float size, const TColor& col);
-	void SetProps   (const string &fontname, float size);
-	void SetColor   (const TColor& col) { curr_col = col; }
-	void SetSize    (float size) { curr_size = size; }
-	void SetFont    (const string& fontname);
+	void SetProps(const string &fontname, float size, const sf::Color& col);
+	void SetProps(const string &fontname, float size);
+	void SetColor(const sf::Color& col) { curr_col = col; }
+	void SetSize(float size) { curr_size = size; }
+	void SetFont(const string& fontname);
+	void SetFontFromSettings();
 
 	// auto
-	int AutoSizeN     (int rel_val);	// rel_val = relative size, return: autosize
-	int AutoDistanceN (int rel_val);	// rel_val = relative dist
+	int AutoSizeN(int rel_val);	// rel_val = relative size, return: autosize
+	int AutoDistanceN(int rel_val);	// rel_val = relative dist
 
 	// draw
-	void DrawText   (float x, float y, const char *text) const;		// normal char*
-	void DrawText   (float x, float y, const wchar_t *text) const;	// wide char*
-	void DrawString (float x, float y, const string &s) const;		// string class
-	void DrawString (float x, float y, const wstring &s) const;		// wstring class
-
-
-	void DrawText   (float x, float y, const char *text, const string &fontname, float size) const;
-	void DrawText   (float x, float y, const wchar_t *text, const string &fontname, float size) const;
-	void DrawString (float x, float y, const string &s, const string &fontname, float size) const;
-	void DrawString (float x, float y, const wstring &s, const string &fontname, float size) const;
+	void DrawString(float x, float y, const sf::String &s) const; // sf::String class
+	void DrawString(float x, float y, const sf::String &s, const string &fontname, float size) const;
 
 	// metrics
-	void  GetTextSize  (const char *text, float &x, float &y) const;
-	void  GetTextSize  (const char *text, float &x, float &y, const string &fontname, float size) const;
-	float GetTextWidth (const char *text) const;
-	float GetTextWidth (const string& text) const;
-	float GetTextWidth (const wchar_t *text) const;
-	float GetTextWidth (const char *text, const string &fontname, float size) const;
-	float GetTextWidth (const wchar_t *text, const string &fontname, float size) const;
+	void  GetTextSize(const sf::String& text, float &x, float &y) const;
+	void  GetTextSize(const sf::String& text, float &x, float &y, const string &fontname, float size) const;
+	float GetTextWidth(const sf::String& text) const;
+	float GetTextWidth(const sf::String& text, const string &fontname, float size) const;
 
-	float CenterX        (const char *text) const;
-	void  SetOrientation (Orientation orientation) { forientation = orientation; }
+	float CenterX(const char *text) const;
+	void  SetOrientation(Orientation orientation) { forientation = orientation; }
 
-	vector<string> MakeLineList (const char *source, float width);
+	vector<string> MakeLineList(const char *source, float width);
 };
 
 extern CFont FT;

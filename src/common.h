@@ -48,74 +48,75 @@ using namespace std;
 //				color utils
 // --------------------------------------------------------------------
 
-extern const TColor colWhite;
-extern const TColor colDYell;
-extern const TColor colDDYell;
-extern const TColor colYellow;
-extern const TColor colLYell;
-extern const TColor colOrange;
-extern const TColor colLRed;
-extern const TColor colRed;
-extern const TColor colDRed;
-extern const TColor colGrey;
-extern const TColor colLGrey;
-extern const TColor colDGrey;
-extern const TColor colBlack;
-extern const TColor colBlue;
-extern const TColor colLBlue;
-extern const TColor colDBlue;
-extern const TColor colBackgr;
-extern const TColor colDBackgr;
-extern const TColor colDDBackgr;
-extern const TColor colMBackgr;
-extern const TColor colLBackgr;
-extern const TColor colMess;
-extern const TColor colSky;
+#define colTransp sf::Color::Transparent
+#define colWhite  sf::Color::White
+#define colBlack  sf::Color::Black
+#define colRed    sf::Color::Red
+#define colYellow sf::Color::Yellow
+#define colBlue   sf::Color::Blue
+extern const sf::Color colTBackr;
+extern const sf::Color colDYell;
+extern const sf::Color colDDYell;
+extern const sf::Color colLYell;
+extern const sf::Color colOrange;
+extern const sf::Color colLRed;
+extern const sf::Color colDRed;
+extern const sf::Color colGrey;
+extern const sf::Color colLGrey;
+extern const sf::Color colDGrey;
+extern const sf::Color colLBlue;
+extern const sf::Color colDBlue;
+extern const sf::Color colBackgr;
+extern const sf::Color colDBackgr;
+extern const sf::Color colDDBackgr;
+extern const sf::Color colMBackgr;
+extern const sf::Color colLBackgr;
+extern const sf::Color colMess;
+extern const sf::Color colSky;
 
 // --------------------------------------------------------------------
 //				print utils
 // --------------------------------------------------------------------
 // some simple functions to print out values on the
 // terminal. Only used for development.
-void	PrintInt (const int val);
-void	PrintInt (const string& s, const int val);
-void	PrintStr (const char *val);
-void	PrintString (const string& s);
-void	PrintDouble (const double val);
-void	PrintVector (const TVector3d& v);
-void	PrintVector4 (const TVector4d& v);
-void	PrintColor (const TColor& c);
-void	PrintVector2 (const TVector2d& v);
+void	PrintInt(const int val);
+void	PrintInt(const string& s, const int val);
+void	PrintStr(const char *val);
+void	PrintString(const string& s);
+void	PrintDouble(const double val);
+void	PrintVector(const TVector3d& v);
+void	PrintVector4(const TVector4d& v);
+void	PrintColor(const sf::Color& c);
+void	PrintVector2(const TVector2d& v);
 
 template<int x, int y>
-void	PrintMatrix (const TMatrix<x, y>& mat);
-void	PrintQuaternion (const TQuaternion& q);
+void	PrintMatrix(const TMatrix<x, y>& mat);
+void	PrintQuaternion(const TQuaternion& q);
 
 // --------------------------------------------------------------------
 //				file utils
 // --------------------------------------------------------------------
 
-bool	FileExists (const char *filename);
-bool	FileExists (const string& filename);
-bool	FileExists (const string& dir, const string& filename);
-bool	DirExists (const char *dirname);
+bool	FileExists(const string& filename);
+bool	FileExists(const string& dir, const string& filename);
+bool	DirExists(const char *dirname);
 
 // --------------------------------------------------------------------
 //				message utils
 // --------------------------------------------------------------------
 
-void	Message (const char *msg, const char *desc);
-void	Message (const char *msg);
-void	Message (const string& a, const string& b);
-void	Message (const string& a);
-void	SaveMessages ();
+void	Message(const char *msg, const char *desc);
+void	Message(const char *msg);
+void	Message(const string& a, const string& b);
+void	Message(const string& a);
+void	SaveMessages();
 
 // --------------------------------------------------------------------
 //				date and time
 // --------------------------------------------------------------------
 
-void GetTimeComponents (double time, int *min, int *sec, int *hundr);
-string GetTimeString ();
+void GetTimeComponents(double time, int *min, int *sec, int *hundr);
+string GetTimeString();
 
 
 #endif

@@ -8,12 +8,13 @@ desktopfile_DATA =	\
         etr.desktop
 
 icon_DATA =		\
-	etr.png
+	etr.png		\
+	etr.svg
 
 EXTRA_DIST = 		\
 	banner.bmp	\
 	dialog.bmp	\
 	etracericon.ico	\
-	etracericon.svg	\
+	etr.svg	        \
 	etr.desktop	\
 	etr.png

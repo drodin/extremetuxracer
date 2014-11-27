@@ -27,17 +27,18 @@ struct TCredits {
 	string text;
 	int offs;
 	int font;
-	double size;
+	float size;
 	int col;
 };
 
 class CCredits : public State {
 	list<TCredits> CreditList;
 
-	void DrawCreditsText(double time_step);
+	void DrawCreditsText(float time_step);
 	void Enter();
-	void Loop(double time_step);
-	void Keyb(unsigned int key, bool special, bool release, int x, int y);
+	void Exit();
+	void Loop(float time_step);
+	void Keyb(sf::Keyboard::Key key, bool release, int x, int y);
 	void Mouse(int button, int state, int x, int y);
 	void Motion(int x, int y);
 public:
