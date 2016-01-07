@@ -20,11 +20,6 @@ GNU General Public License for more details.
 
 #include "vectors.h"
 
-enum Orientation {
-	OR_TOP = 0,			// top-orientated menu widgets
-	OR_BOTTOM = 1		// bottom-orientated
-};
-
 struct TColor3 {
 	uint8_t r, g, b;
 	TColor3(uint8_t r_ = 0, uint8_t g_ = 0, uint8_t b_ = 0)

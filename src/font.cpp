@@ -83,8 +83,6 @@ static size_t MakeLine(size_t first, const vector<string>& wordlist, vector<stri
 CFont FT;
 
 CFont::CFont() {
-	forientation = OR_TOP;
-
 	// setting default values
 	curr_col.r = 0.0;	// default color: black
 	curr_col.g = 0.0;
@@ -246,10 +244,6 @@ float CFont::GetTextWidth(const sf::String& text, const string &fontname, float 
 	float x, y;
 	GetTextSize(text, x, y, temp_font, size);
 	return x;
-}
-
-float CFont::CenterX(const char *text) const {
-	return (Winsys.resolution.width - GetTextWidth(text)) / 2.f;
 }
 
 vector<string> CFont::MakeLineList(const char *source, float width) {

@@ -97,7 +97,7 @@ static T decrementRingIterator(T q) {
 // --------------------------------------------------------------------
 
 void DrawTrackmarks() {
-	if (param.perf_level < 3)
+	if (param.perf_level < 3 || track_marks.quads.empty())
 		return;
 
 	TTexture* textures[NUM_TRACK_TYPES];
@@ -183,6 +183,9 @@ void DrawTrackmarks() {
 }
 
 void break_track_marks() {
+	if (!continuing_track)
+		return;
+
 	list<track_quad_t>::iterator q = track_marks.current_mark;
 	if (q != track_marks.quads.end()) {
 		q->track_type = TRACK_TAIL;
@@ -192,8 +195,8 @@ void break_track_marks() {
 		q->t4 = TVector2d(1.0, 1.0);
 		list<track_quad_t>::iterator qprev = decrementRingIterator(q);
 		if (qprev != track_marks.quads.end()) {
-			qprev->t3.y = max((int)(qprev->t3.y+0.5), (int)(qprev->t1.y+1));
-			qprev->t4.y = max((int)(qprev->t3.y+0.5), (int)(qprev->t1.y+1));
+			qprev->t3.y = max(qprev->t3.y+0.5, qprev->t1.y+1.0);
+			qprev->t4.y = max(qprev->t3.y+0.5, qprev->t1.y+1.0);
 		}
 	}
 	continuing_track = false;
@@ -244,7 +247,6 @@ void add_track_mark(const CControl *ctrl, int *id) {
 
 	TPlane surf_plane = Course.GetLocalCoursePlane(ctrl->cpos);
 	double dist_from_surface = DistanceToPlane(surf_plane, ctrl->cpos);
-	// comp_depth = get_compression_depth(Snow);
 	double comp_depth = 0.1;
 	if (dist_from_surface >= (2 * comp_depth)) {
 		break_track_marks();
@@ -268,31 +270,29 @@ void add_track_mark(const CControl *ctrl, int *id) {
 		q->v4 = TVector3d(right_wing.x, right_y + TRACK_HEIGHT, right_wing.z);
 		q->n1 = Course.FindCourseNormal(q->v1.x, q->v1.z);
 		q->n2 = Course.FindCourseNormal(q->v2.x, q->v2.z);
-		q->t1 = TVector2d(0.0, 0.0);
-		q->t2 = TVector2d(1.0, 0.0);
-	} else {
-		q->track_type = TRACK_TAIL;
-		if (qprev != track_marks.quads.end()) {
-			q->v1 = qprev->v3;
-			q->v2 = qprev->v4;
-			q->n1 = qprev->n3;
-			q->n2 = qprev->n4;
-			q->t1 = qprev->t3;
-			q->t2 = qprev->t4;
-			if (qprev->track_type == TRACK_TAIL) qprev->track_type = TRACK_MARK;
-		}
-		q->v3 = TVector3d(left_wing.x, left_y + TRACK_HEIGHT, left_wing.z);
-		q->v4 = TVector3d(right_wing.x, right_y + TRACK_HEIGHT, right_wing.z);
 		q->n3 = Course.FindCourseNormal(q->v3.x, q->v3.z);
 		q->n4 = Course.FindCourseNormal(q->v4.x, q->v4.z);
+		q->t1 = TVector2d(0.0, 0.0);
+		q->t2 = TVector2d(1.0, 0.0);
+		q->t3 = TVector2d(0.0, 1.0);
+		q->t4 = TVector2d(1.0, 1.0);
+	} else {
+		q->track_type = TRACK_TAIL;
+		q->v1 = qprev->v3;
+		q->v2 = qprev->v4;
+		q->v3 = TVector3d(left_wing.x, left_y + TRACK_HEIGHT, left_wing.z);
+		q->v4 = TVector3d(right_wing.x, right_y + TRACK_HEIGHT, right_wing.z);
+		q->n1 = qprev->n3;
+		q->n2 = qprev->n4;
+		q->n3 = Course.FindCourseNormal(q->v3.x, q->v3.z);
+		q->n4 = Course.FindCourseNormal(q->v4.x, q->v4.z);
+		q->t1 = qprev->t3;
+		q->t2 = qprev->t4;
 		double tex_end = speed*g_game.time_step/TRACK_WIDTH;
-		if (q->track_type == TRACK_HEAD) {
-			q->t3= TVector2d(0.0, 1.0);
-			q->t4= TVector2d(1.0, 1.0);
-		} else {
-			q->t3 = TVector2d(0.0, q->t1.y + tex_end);
-			q->t4 = TVector2d(1.0, q->t2.y + tex_end);
-		}
+		q->t3 = TVector2d(0.0, q->t1.y + tex_end);
+		q->t4 = TVector2d(1.0, q->t2.y + tex_end);
+		if (qprev->track_type == TRACK_TAIL)
+			qprev->track_type = TRACK_MARK;
 	}
 	q->alpha = min(static_cast<int>((2*comp_depth-dist_from_surface)/(4*comp_depth)*255), 255);
 	continuing_track = true;

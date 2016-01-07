@@ -88,8 +88,6 @@ void CEnvironment::SetupLight() {
 		lights[2].Enable(GL_LIGHT2);
 	if (lights[3].is_on)
 		lights[3].Enable(GL_LIGHT3);
-
-	glEnable(GL_LIGHTING);
 }
 
 void CEnvironment::SetupFog() {

@@ -82,7 +82,7 @@ void TTexture::Draw() {
 	glDisableClientState(GL_VERTEX_ARRAY);
 }
 
-void TTexture::Draw(int x, int y, float size, Orientation orientation) {
+void TTexture::Draw(int x, int y, float size) {
 	GLint w, h;
 	GLfloat width, height, top, bott, left, right;
 
@@ -95,15 +95,9 @@ void TTexture::Draw(int x, int y, float size, Orientation orientation) {
 
 	width  = w * size;
 	height = h * size;
+	top = Winsys.resolution.height - y;
+	bott = top - height;
 
-	if (orientation == OR_TOP) {
-		top = Winsys.resolution.height - y;
-		bott = top - height;
-
-	} else {
-		bott = y;
-		top = bott + height;
-	}
 	if (x >= 0) left = x;
 	else left = (Winsys.resolution.width - width) / 2;
 	right = left + width;
@@ -126,20 +120,15 @@ void TTexture::Draw(int x, int y, float size, Orientation orientation) {
 	glDisableClientState(GL_VERTEX_ARRAY);
 }
 
-void TTexture::Draw(int x, int y, float width, float height, Orientation orientation) {
+void TTexture::Draw(int x, int y, float width, float height) {
 	GLfloat top, bott, left, right;
 
 	glEnable(GL_TEXTURE_2D);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	Bind();
 
-	if (orientation == OR_TOP) {
-		top = Winsys.resolution.height - y;
-		bott = top - height;
-	} else {
-		bott = y;
-		top = bott + height;
-	}
+	top = Winsys.resolution.height - y;
+	bott = top - height;
 	if (x >= 0) left = x;
 	else left = (Winsys.resolution.width - width) / 2;
 	right = left + width;
@@ -182,7 +171,6 @@ void TTexture::DrawFrame(int x, int y, int w, int h, int frame, const sf::Color&
 CTexture Tex;
 
 CTexture::CTexture() {
-	forientation = OR_TOP;
 }
 
 CTexture::~CTexture() {
@@ -241,21 +229,17 @@ void CTexture::Draw(size_t idx) {
 
 void CTexture::Draw(size_t idx, int x, int y, float size) {
 	if (CommonTex.size() > idx)
-		CommonTex[idx]->Draw(x, y, size, forientation);
+		CommonTex[idx]->Draw(x, y, size);
 }
 
 void CTexture::Draw(size_t idx, int x, int y, int width, int height) {
 	if (CommonTex.size() > idx)
-		CommonTex[idx]->Draw(x, y, width, height, forientation);
+		CommonTex[idx]->Draw(x, y, width, height);
 }
 
 void CTexture::DrawFrame(size_t idx, int x, int y, double w, double h, int frame, const sf::Color& col) {
 	if (CommonTex.size() > idx)
 		CommonTex[idx]->DrawFrame(x, y, w, h, frame, col);
-}
-
-void CTexture::SetOrientation(Orientation orientation) {
-	forientation = orientation;
 }
 
 // -------------------------- numeric strings -------------------------

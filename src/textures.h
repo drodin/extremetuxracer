@@ -78,15 +78,14 @@ public:
 
 	void Bind();
 	void Draw();
-	void Draw(int x, int y, float size, Orientation orientation);
-	void Draw(int x, int y, float width, float height, Orientation orientation);
+	void Draw(int x, int y, float size);
+	void Draw(int x, int y, float width, float height);
 	void DrawFrame(int x, int y, int w, int h, int frame, const sf::Color& col);
 };
 
 class CTexture {
 private:
 	vector<TTexture*> CommonTex;
-	Orientation forientation;
 
 	void DrawNumChr(char c, int x, int y, int w, int h);
 public:
@@ -105,7 +104,6 @@ public:
 
 	void DrawFrame(size_t idx, int x, int y, double w, double h, int frame, const sf::Color& col);
 
-	void SetOrientation(Orientation orientation);
 	void DrawNumStr(const string& s, int x, int y, float size, const sf::Color& col);
 };
 

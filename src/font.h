@@ -34,7 +34,6 @@ class CFont {
 private:
 	vector<sf::Font*> fonts;
 	map<string, size_t> fontindex;
-	Orientation forientation;
 
 	int    curr_font;
 	sf::Color curr_col;
@@ -76,9 +75,6 @@ public:
 	void  GetTextSize(const sf::String& text, float &x, float &y, const string &fontname, float size) const;
 	float GetTextWidth(const sf::String& text) const;
 	float GetTextWidth(const sf::String& text, const string &fontname, float size) const;
-
-	float CenterX(const char *text) const;
-	void  SetOrientation(Orientation orientation) { forientation = orientation; }
 
 	vector<string> MakeLineList(const char *source, float width);
 };

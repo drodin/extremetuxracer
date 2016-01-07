@@ -406,14 +406,15 @@ bool TIconButton::Click(int x, int y) {
 void TIconButton::Key(sf::Keyboard::Key key, bool released) {
 	if (released) return;
 
-	if (key == sf::Keyboard::Down || key == sf::Keyboard::Left) { // Arrow down/left
+	if (key == sf::Keyboard::Down) { // Arrow down/left
 		SetValue(value - 1);
-	} else if (key == sf::Keyboard::Up || key == sf::Keyboard::Right) { // Arrow up/right
+	} else if (key == sf::Keyboard::Up) { // Arrow up/right
 		SetValue(value + 1);
 	}
 }
 
 TIconButton* AddIconButton(int x, int y, const sf::Texture& texture, double size, int maximum, int value) {
+	locked_UD = true;
 	return static_cast<TIconButton*>(AddWidget(new TIconButton(x, y, texture, size, maximum, value)));
 }
 
