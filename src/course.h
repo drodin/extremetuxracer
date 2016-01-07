@@ -69,7 +69,6 @@ struct TObjectType {
 	bool		reset_point;
 	bool		use_normal;
 	TVector3d	normal;
-	int			num_items;
 	int			poly;
 };
 

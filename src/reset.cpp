@@ -62,55 +62,37 @@ void CReset::Loop(float time_step) {
 	SetupViewFrustum(ctrl);
 	Env.DrawSkybox(ctrl->viewpos);
 	Env.DrawFog();
-	Env.SetupLight();	// and fog
+	Env.SetupLight();
 	RenderCourse();
 	DrawTrackmarks();
 	DrawTrees();
 
-	if ((elapsed_time > BLINK_IN_PLACE_TIME) && (!position_reset)) {
-		TObjectType* object_types = &Course.ObjTypes[0];
-		TItem* item_locs  = &Course.NocollArr[0];
-		size_t num_item_types = Course.ObjTypes.size();
-		size_t first_reset = 0;
-		size_t last_reset = 0;
-		for (size_t i = 0; i < num_item_types; i++) {
-			if (object_types[i].reset_point == true) {
-				last_reset = first_reset + object_types[i].num_items - 1;
-				break;
-			} else {
-				first_reset += object_types[i].num_items;
+	if (elapsed_time > BLINK_IN_PLACE_TIME && !position_reset) {
+		// Determine optimal location for reset
+		int best_loc = -1;
+		for (size_t i = 0; i < Course.NocollArr.size(); i++) {
+			if (Course.NocollArr[i].type.reset_point && Course.NocollArr[i].pt.z > ctrl->cpos.z) {
+				if (best_loc == -1 || Course.NocollArr[i].pt.z < Course.NocollArr[best_loc].pt.z) {
+					best_loc = (int)i;
+				}
 			}
-		} // for
+		}
 
-		if (last_reset == 0) {
+		if (best_loc == -1) { // Fallback in case there are no reset points
+			ctrl->cpos.x = Course.GetDimensions().x/2.0;
+			ctrl->cpos.z = min(ctrl->cpos.z + 10, -1.0);
+		} else if (Course.NocollArr[best_loc].pt.z <= ctrl->cpos.z) {
 			ctrl->cpos.x = Course.GetDimensions().x/2.0;
 			ctrl->cpos.z = min(ctrl->cpos.z + 10, -1.0);
 		} else {
-			int best_loc = -1;
-			for (size_t i = first_reset; i <= last_reset; i++) {
-				if (item_locs[i].pt.z > ctrl->cpos.z) {
-					if (best_loc == -1 || item_locs[i].pt.z < item_locs[best_loc].pt.z) {
-						best_loc = (int)i;
-					} // if
-				} // if
-			} // for
-
-			if (best_loc == -1) {
-				ctrl->cpos.x = Course.GetDimensions().x/2.0;
-				ctrl->cpos.z = min(ctrl->cpos.z + 10, -1.0);
-			} else if (item_locs[best_loc].pt.z <= ctrl->cpos.z) {
-				ctrl->cpos.x = Course.GetDimensions().x/2.0;
-				ctrl->cpos.z = min(ctrl->cpos.z + 10, -1.0);
-			} else {
-				ctrl->cpos.x = item_locs[best_loc].pt.x;
-				ctrl->cpos.z = item_locs[best_loc].pt.z;
-			} // if
+			ctrl->cpos.x = Course.NocollArr[best_loc].pt.x;
+			ctrl->cpos.z = Course.NocollArr[best_loc].pt.z;
 		}
 
 		ctrl->view_init = false;
 		ctrl->Init();
 		position_reset = true;
-	} // if elapsed time
+	}
 
 	if (tux_visible) g_game.character->shape->Draw();
 
