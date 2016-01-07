@@ -77,7 +77,7 @@
       <Feature Id='ProgramMenuEntry' Title='Program menu entry' AllowAdvertise='no' Description='Add entry to program menu' Level='1'>
         <ComponentRef Id='ProgramMenuDir' />
       </Feature>
-      <Feature Id="CRT" AllowAdvertise="no" Display="hidden" Level="1" Title="Microsoft Visual C++ 2013 Runtime Components">
+      <Feature Id="CRT" AllowAdvertise="no" Display="hidden" Level="1" Title="Microsoft Visual C++ 2015 Runtime Components">
         <MergeRef Id="CRT"/>
       </Feature>
     </Feature>
