@@ -134,8 +134,8 @@ public:
 	void Free();
 	TCourse& operator[](size_t idx) { return courses[idx]; }
 	const TCourse& operator[](size_t idx) const { return courses[idx]; }
-	TCourse& operator[](string name) { return courses[index.at(name)]; }
-	const TCourse& operator[](string name) const { return courses[index.at(name)]; }
+	TCourse& operator[](string name_) { return courses[index.at(name_)]; }
+	const TCourse& operator[](string name_) const { return courses[index.at(name_)]; }
 	size_t size() const { return courses.size(); }
 };
 

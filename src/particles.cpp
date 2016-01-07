@@ -374,11 +374,11 @@ void clear_particles() {
 	particles.clear();
 }
 
-double adjust_particle_count(double particles) {
-	if (particles < 1) {
-		if (((double) rand()) / RAND_MAX < particles) return 1.0;
+static double adjust_particle_count(double count) {
+	if (count < 1) {
+		if (((double) rand()) / RAND_MAX < count) return 1.0;
 		else return 0.0;
-	} else return particles;
+	} else return count;
 }
 
 void generate_particles(const CControl *ctrl, double dtime, const TVector3d& pos, double speed) {

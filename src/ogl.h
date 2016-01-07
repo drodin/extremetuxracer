@@ -59,7 +59,7 @@ void PushRenderMode(TRenderMode mode);
 void PopRenderMode();
 
 struct ScopedRenderMode {
-	ScopedRenderMode(TRenderMode mode) {
+	explicit ScopedRenderMode(TRenderMode mode) {
 		PushRenderMode(mode);
 	}
 	~ScopedRenderMode() {

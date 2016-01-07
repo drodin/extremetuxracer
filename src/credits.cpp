@@ -79,9 +79,9 @@ void CCredits::DrawCreditsText(float time_step) {
 			continue;
 
 		if (i->col == 0)
-			text.setColor(colWhite);
+			text.setFillColor(colWhite);
 		else
-			text.setColor(colDYell);
+			text.setFillColor(colDYell);
 		text.setCharacterSize(FT.AutoSizeN(i->size)+1);
 		text.setString(i->text);
 		text.setPosition((Winsys.resolution.width - text.getLocalBounds().width) / 2, offs);

@@ -64,7 +64,7 @@ struct TEvent {
 	string name;
 	vector<TCup*> cups;
 
-	TEvent(const string& name_)
+	explicit TEvent(const string& name_)
 		: name(name_)
 	{}
 };

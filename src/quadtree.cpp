@@ -988,7 +988,7 @@ void quadsquare::AddHeightMap(const quadcornerdata& cd, const HeightMapInfo& hm)
 
 	if (cd.Parent == nullptr) {
 		if (VertexArrayIndices != nullptr) {
-			delete VertexArrayIndices;
+			delete[] VertexArrayIndices;
 		}
 		VertexArrayIndices = new GLuint[6 * RowSize * NumRows];
 	}

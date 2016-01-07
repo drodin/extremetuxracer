@@ -83,15 +83,15 @@ TLabel::TLabel(const sf::String& string, int x, int y, const sf::Color& color)
 		text.setPosition((Winsys.resolution.width - text.getLocalBounds().width) / 2, y);
 	else
 		text.setPosition(x, y);
-	text.setColor(color);
+	text.setFillColor(color);
 }
 
 void TLabel::Focussed(bool masterFocus) {
 	focus = masterFocus && active;
 	if (focus)
-		text.setColor(colDYell);
+		text.setFillColor(colDYell);
 	else
-		text.setColor(colWhite);
+		text.setFillColor(colWhite);
 }
 
 void TLabel::Draw() const {
@@ -115,9 +115,9 @@ TFramedText::TFramedText(int x, int y, int width, int height, int line, const sf
 	, borderFocus(borderFocus_) {
 	text.setPosition(x + line + 20, y + line);
 	if (!borderFocus)
-		text.setColor(colWhite);
+		text.setFillColor(colWhite);
 	else
-		text.setColor(colDYell);
+		text.setFillColor(colDYell);
 	frame.setPosition(x + line, y + line);
 	frame.setOutlineThickness(line);
 	frame.setFillColor(backcol);
@@ -126,11 +126,11 @@ TFramedText::TFramedText(int x, int y, int width, int height, int line, const sf
 
 void TFramedText::Activated() {
 	if (!active)
-		text.setColor(colLGrey);
+		text.setFillColor(colLGrey);
 	else if (borderFocus || focus)
-		text.setColor(colDYell);
+		text.setFillColor(colDYell);
 	else
-		text.setColor(colWhite);
+		text.setFillColor(colWhite);
 }
 
 void TFramedText::Focussed(bool masterFocus) {
@@ -138,11 +138,11 @@ void TFramedText::Focussed(bool masterFocus) {
 	if (focus) {
 		frame.setOutlineColor(colDYell);
 		if (!borderFocus)
-			text.setColor(colDYell);
+			text.setFillColor(colDYell);
 	} else {
 		frame.setOutlineColor(colWhite);
 		if (!borderFocus)
-			text.setColor(colWhite);
+			text.setFillColor(colWhite);
 	}
 }
 
@@ -172,9 +172,9 @@ TTextButton::TTextButton(int x, int y, const sf::String& text_, float ftsize)
 
 void TTextButton::Focussed() {
 	if (focus)
-		text.setColor(colDYell);
+		text.setFillColor(colDYell);
 	else
-		text.setColor(colWhite);
+		text.setFillColor(colWhite);
 }
 
 void TTextButton::Draw() const {
@@ -241,10 +241,10 @@ void TTextField::SetCursorPos(size_t new_pos) {
 
 void TTextField::Focussed() {
 	if (focus) {
-		text.setColor(colDYell);
+		text.setFillColor(colDYell);
 		frame.setOutlineColor(colDYell);
 	} else {
-		text.setColor(colWhite);
+		text.setFillColor(colWhite);
 		frame.setOutlineColor(colWhite);
 	}
 }
@@ -312,9 +312,9 @@ void TCheckbox::SetPosition(int x, int y) {
 
 void TCheckbox::Focussed() {
 	if (focus)
-		text.setColor(colDYell);
+		text.setFillColor(colDYell);
 	else
-		text.setColor(colWhite);
+		text.setFillColor(colWhite);
 }
 
 void TCheckbox::Draw() const {

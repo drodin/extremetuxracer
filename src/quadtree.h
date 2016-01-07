@@ -86,7 +86,7 @@ struct quadsquare {
 	static void DrawTris();
 	static void InitArrayCounters();
 
-	quadsquare(quadcornerdata* pcd);
+	explicit quadsquare(quadcornerdata* pcd);
 	~quadsquare();
 
 	void	AddHeightMap(const quadcornerdata& cd, const HeightMapInfo& hm);

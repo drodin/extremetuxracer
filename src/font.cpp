@@ -204,7 +204,7 @@ void CFont::DrawText(float x, float y, const sf::String& text, size_t font, floa
 	if (x == CENTER)
 		x = (Winsys.resolution.width - temp.getLocalBounds().width) / 2;
 	temp.setPosition(x, y);
-	temp.setColor(curr_col);
+	temp.setFillColor(curr_col);
 	Winsys.draw(temp);
 }
 

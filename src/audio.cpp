@@ -31,7 +31,7 @@ CMusic Music;
 struct TSound {
 	sf::SoundBuffer data;
 	sf::Sound player;
-	TSound(int volume) {
+	explicit TSound(int volume) {
 		setVolume(volume);
 	}
 	void setVolume(int volume) {
