@@ -21,10 +21,10 @@ GNU General Public License for more details.
 #include "bh.h"
 #include "mathlib.h"
 
-#define MAX_PADDLING_SPEED (60.0 / 3.6)   /* original 60 */
-#define PADDLE_FACT 1.0 /* original 1.0 */
+#define MAX_PADDLING_SPEED (60.0 / 3.6)
+#define PADDLE_FACT 1.0
 
-#define EARTH_GRAV 9.81  /* ok, why not 10.0 ? */
+#define EARTH_GRAV 9.81
 #define JUMP_FORCE_DURATION 0.20
 #define TUX_MASS 20
 #define MIN_TUX_SPEED 1.4

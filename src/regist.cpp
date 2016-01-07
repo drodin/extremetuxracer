@@ -129,9 +129,10 @@ void CRegist::Loop(float timestep) {
 
 	DrawGUIBackground(Winsys.scale);
 
-	sPlayerFrame->SetString(Players.GetPlayer(player->GetValue())->name);
+	const TPlayer* tplayer = Players.GetPlayer(player->GetValue());
+	sPlayerFrame->SetString(tplayer->name);
 	sPlayerFrame->Focussed(player->focussed());
-	Players.GetAvatarTexture(player->GetValue())->DrawFrame(
+	tplayer->avatar->texture->DrawFrame(
 	    area.left + 60, AutoYPosN(40), texsize, texsize, 3, colWhite);
 
 	sCharFrame->SetString(Char.CharList[character->GetValue()].name);

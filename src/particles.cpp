@@ -360,6 +360,9 @@ void update_particles(float time_step) {
 	}
 }
 void draw_particles(const CControl *ctrl) {
+	if (particles.empty())
+		return;
+
 	ScopedRenderMode rm(PARTICLES);
 	Tex.BindTex(SNOW_PART);
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
@@ -492,7 +495,8 @@ TFlakeArea::TFlakeArea(
 }
 
 void TFlakeArea::Draw(const CControl *ctrl) const {
-	if (g_game.snow_id < 1) return;
+	if (g_game.snow_id < 1 || flakes.empty())
+		return;
 
 	const TPlane& lp = get_left_clip_plane();
 	const TPlane& rp = get_right_clip_plane();

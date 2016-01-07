@@ -364,7 +364,7 @@ void CRacing::Loop(float time_step) {
 	SetupViewFrustum(ctrl);
 	if (sky) Env.DrawSkybox(ctrl->viewpos);
 	if (fog) Env.DrawFog();
-	void SetupLight();
+	Env.SetupLight();
 	if (terr) RenderCourse();
 	DrawTrackmarks();
 	if (trees) DrawTrees();
