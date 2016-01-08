@@ -100,7 +100,7 @@ void CSplashScreen::Loop(float timestep) {
 			FT.AutoSizeN(6);
 			int top = AutoYPosN(60);
 			Failure = new sf::Text(reason, FT.getCurrentFont(), FT.GetSize());
-			Failure->setFillColor(colDRed);
+			Failure->setColor(colDRed);
 			Failure->setPosition((Winsys.resolution.width - Failure->getLocalBounds().width) / 2, top);
 		}
 	}

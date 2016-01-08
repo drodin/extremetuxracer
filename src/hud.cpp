@@ -252,8 +252,8 @@ void DrawWind(float dir, float speed, const CControl *ctrl) {
 	glEnableClientState(GL_VERTEX_ARRAY);
 	static const int len = 45;
 	static const GLshort vtx1 [] = {
-		-5, 0.0,
-		5, 0.0,
+		-5, 0,
+		5, 0,
 		5, -len,
 		- 5, -len
 	};
