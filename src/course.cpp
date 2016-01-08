@@ -104,7 +104,7 @@ void CCourse::CalcNormals() {
 	for (unsigned int y = 0; y < ny; y++) {
 		for (unsigned int x = 0; x < nx; x++) {
 			TVector3d nml(0.0, 0.0, 0.0);
-			TVector3d p0(XCD(x), ELEV(x,y), ZCD(y));
+			TVector3d p0 = NMLPOINT(x,y);
 
 			if ((x + y) % 2 == 0) {
 				if (x > 0 && y > 0) {

@@ -161,8 +161,7 @@ TVector3d MakeViewVector() {
 	                 course_angle -
 	                 CAMERA_ANGLE_ABOVE_SLOPE +
 	                 PLAYER_ANGLE_IN_CAMERA);
-	TVector3d res(0, sin(rad), cos(rad));
-	return camera_distance * res;
+	return TVector3d(0, camera_distance * sin(rad), camera_distance * cos(rad));
 }
 
 void update_view(CControl *ctrl, double dt) {
@@ -347,9 +346,7 @@ void SetupViewFrustum(const CControl *ctrl) {
 		frustum_planes[i].d = -DotProduct(
 		                          frustum_planes[i].nml,
 		                          pt);
-	}
 
-	for (int i=0; i<6; i++) {
 		p_vertex_code[i] = 0;
 
 		if (frustum_planes[i].nml.x > 0) p_vertex_code[i] |= 4;

@@ -124,7 +124,6 @@ void CIntro::Loop(float time_step) {
 
 	Reshape(width, height);
 	Winsys.SwapBuffers();
-
 }
 // -----------------------------------------------------------------------
 

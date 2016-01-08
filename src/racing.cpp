@@ -87,6 +87,7 @@ void CRacing::Keyb(sf::Keyboard::Key key, bool release, int x, int y) {
 		case sf::Keyboard::T:
 			trick_modifier = !release;
 			break;
+
 		// mode changing and other actions
 		case sf::Keyboard::Escape:
 			if (!release) {
@@ -125,7 +126,7 @@ void CRacing::Keyb(sf::Keyboard::Key key, bool release, int x, int y) {
 			}
 			break;
 
-		// toggle
+		// toggle display settings
 		case sf::Keyboard::H:
 			if (!release) param.show_hud = !param.show_hud;
 			break;
@@ -166,7 +167,7 @@ void CRacing::Jbutt(int button, int state) {
 	}
 }
 
-void CalcJumpEnergy(float time_step) {
+static void CalcJumpEnergy(float time_step) {
 	CControl *ctrl = g_game.player->ctrl;
 
 	if (ctrl->jump_charging) {
@@ -179,13 +180,11 @@ void CalcJumpEnergy(float time_step) {
 	}
 }
 
-int CalcSoundVol(float fact) {
-	float vv = (float) param.sound_volume * fact;
-	if (vv > 100) vv = 100;
-	return (int) vv;
+static int CalcSoundVol(float fact) {
+	return min(param.sound_volume * fact, 100.f);
 }
 
-void SetSoundVolumes() {
+static void SetSoundVolumes() {
 	Sound.SetVolume("pickup1",    CalcSoundVol(1.0));
 	Sound.SetVolume("pickup2",    CalcSoundVol(0.8));
 	Sound.SetVolume("pickup3",    CalcSoundVol(0.8));
@@ -211,6 +210,16 @@ void CRacing::Enter() {
 	ctrl->jumping = false;
 	ctrl->jump_charging = false;
 
+	key_paddling = false;
+	key_braking = false;
+	left_turn = false;
+	right_turn = false;
+	key_charging = false;
+	trick_modifier = false;
+	stick_paddling = false;
+	stick_braking = false;
+	stick_turn = false;
+
 	lastsound = -1;
 	newsound = -1;
 
@@ -228,7 +237,7 @@ void CRacing::Enter() {
 // -------------------- sound -----------------------------------------
 
 // this function is not used yet.
-int SlideVolume(CControl *ctrl, double speed, int typ) {
+/*static int SlideVolume(CControl *ctrl, double speed, int typ) {
 	if (typ == 1) {	// only at paddling or braking
 		return (int)(min((((pow(ctrl->turn_fact, 2) * 128)) +
 		                  (ctrl->is_braking ? 128:0) +
@@ -236,9 +245,9 @@ int SlideVolume(CControl *ctrl, double speed, int typ) {
 	} else { 	// always
 		return (int)(128 * pow((speed/2),2));
 	}
-}
+}*/
 
-void PlayTerrainSound(CControl *ctrl, bool airborne) {
+static void PlayTerrainSound(CControl *ctrl, bool airborne) {
 	if (airborne == false) {
 		int terridx = Course.GetTerrainIdx(ctrl->cpos.x, ctrl->cpos.z, 0.5);
 		if (terridx >= 0) {
@@ -252,7 +261,7 @@ void PlayTerrainSound(CControl *ctrl, bool airborne) {
 }
 
 // ----------------------- controls -----------------------------------
-void CalcSteeringControls(CControl *ctrl, float time_step) {
+static void CalcSteeringControls(CControl *ctrl, float time_step) {
 	if (stick_turn) {
 		ctrl->turn_fact = stick_turnfact;
 		ctrl->turn_animation += ctrl->turn_fact * 2 * time_step;
@@ -293,7 +302,7 @@ void CalcSteeringControls(CControl *ctrl, float time_step) {
 	}
 }
 
-void CalcFinishControls(CControl *ctrl, float timestep, bool airborne) {
+static void CalcFinishControls(CControl *ctrl, float timestep, bool airborne) {
 	double speed = ctrl->cvel.Length();
 	double dir_angle = RADIANS_TO_ANGLES(atan(ctrl->cvel.x / ctrl->cvel.z));
 
@@ -312,7 +321,7 @@ void CalcFinishControls(CControl *ctrl, float timestep, bool airborne) {
 
 // ----------------------- trick --------------------------------------
 
-void CalcTrickControls(CControl *ctrl, float time_step, bool airborne) {
+static void CalcTrickControls(CControl *ctrl, float time_step, bool airborne) {
 	if (airborne && trick_modifier) {
 		if (left_turn) ctrl->roll_left = true;
 		if (right_turn) ctrl->roll_right = true;
@@ -382,7 +391,7 @@ void CRacing::Loop(float time_step) {
 	Winsys.SwapBuffers();
 	if (g_game.finish == false) g_game.time += time_step;
 }
-// ---------------------------------- term ------------------
+
 void CRacing::Exit() {
 	Winsys.KeyRepeat(true);
 	Sound.HaltAll();
