@@ -19,7 +19,7 @@ GNU General Public License for more details.
 
 #include "bh.h"
 #include "states.h"
-#include <list>
+#include <forward_list>
 
 #define MAX_CREDITS 64
 
@@ -32,7 +32,7 @@ struct TCredits {
 };
 
 class CCredits : public State {
-	list<TCredits> CreditList;
+	forward_list<TCredits> CreditList;
 
 	void DrawCreditsText(float time_step);
 	void Enter();

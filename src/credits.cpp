@@ -50,10 +50,11 @@ void CCredits::LoadCreditList() {
 		return;
 	}
 
+	forward_list<TCredits>::iterator last = CreditList.before_begin();
 	for (CSPList::const_iterator line = list.cbegin(); line != list.cend(); ++line) {
-		int old_offs = CreditList.back().offs;
-		CreditList.emplace_back();
-		TCredits& credit = CreditList.back();
+		int old_offs = (last != CreditList.before_begin()) ? last->offs : 0;
+		last = CreditList.emplace_after(last);
+		TCredits& credit = *last;
 		credit.text = SPStrN(*line, "text");
 
 		float offset = SPFloatN(*line, "offs", 0) * OFFS_SCALE_FACTOR * Winsys.scale;
@@ -73,7 +74,7 @@ void CCredits::DrawCreditsText(float time_step) {
 	sf::Text text;
 	text.setFont(FT.getCurrentFont());
 	RT->clear(colTBackr);
-	for (list<TCredits>::const_iterator i = CreditList.begin(); i != CreditList.end(); ++i) {
+	for (forward_list<TCredits>::const_iterator i = CreditList.begin(); i != CreditList.end(); ++i) {
 		offs = h - TOP_Y - y_offset + i->offs;
 		if (offs > h || offs < -100.f) // Draw only visible lines
 			continue;
