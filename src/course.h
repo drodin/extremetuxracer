@@ -48,15 +48,15 @@ struct TTerrType {
 	size_t sound;
 	TColor3 col;
 
+	bool particles;
+	bool trackmarks;
+	bool shiny;
 	double friction;
 	double depth;
 	int vol_type;
 	int starttex;
 	int tracktex;
 	int stoptex;
-	bool particles;
-	bool trackmarks;
-	bool shiny;
 };
 
 struct TObjectType {
@@ -110,8 +110,8 @@ struct TCourse {
 	TVector2d start;
 	size_t env;
 	size_t music_theme;
-	bool use_keyframe;
 	double finish_brake;
+	bool use_keyframe;
 
 	void SetDescription(const std::string& description);
 	void SetTranslatedData(const std::string& line2);

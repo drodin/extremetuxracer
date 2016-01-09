@@ -57,22 +57,22 @@ struct TGameData {
 	TToolMode toolmode;
 	float time_step;
 	TGameType game_type;
-	bool force_treemap;
+	double finish_brake;
+	int argument;
 	int treesize;
 	int treevar;
-	int argument;
 	bool finish;
 	bool use_keyframe;
-	double finish_brake;
+	bool force_treemap;
 
 	// course and race params
+	bool mirrorred;
 	TPlayer* player;
 	TCharacter* character;
 	size_t start_player;
 	TCup* cup;
 	TRace* race; // Only valid if not in practice mode
 	TCourse* course;
-	bool mirrorred;
 	size_t location_id;
 	size_t light_id;
 	int snow_id;

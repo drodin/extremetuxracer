@@ -25,9 +25,9 @@ GNU General Public License for more details.
 
 struct TCredits {
 	string text;
+	float size;
 	int offs;
 	int font;
-	float size;
 	int col;
 };
 

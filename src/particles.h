@@ -55,6 +55,15 @@ struct TFlake {
 };
 
 struct TFlakeArea {
+	vector<TFlake> flakes;
+
+	float left;
+	float right;
+	float bottom;
+	float top;
+	float front;
+	float back;
+
 	float xrange;
 	float ytop;
 	float yrange;
@@ -64,15 +73,6 @@ struct TFlakeArea {
 	float maxSize;
 	float speed;
 	bool  rotate_flake;
-
-	float left;
-	float right;
-	float bottom;
-	float top;
-	float front;
-	float back;
-
-	vector<TFlake> flakes;
 
 	TFlakeArea(
 	    size_t num_flakes,

@@ -40,7 +40,6 @@ struct TParam {
 
 	// ------------------------------------
 	// main config params:
-	bool	fullscreen;
 	size_t	res_type;
 	uint32_t	framerate;
 	int		perf_level;
@@ -61,16 +60,17 @@ struct TParam {
 	bool	ice_cursor;
 	bool	full_skybox;
 	bool	use_quad_scale;			// scaling type for menus
+	bool	fullscreen;
 
 	string  menu_music;
 	string  credits_music;
 	string  config_music;
 
 	// these params are not saved in options file
+	TViewMode view_mode;
 	bool	ui_snow;
 	bool	display_fps;
 	bool	show_hud;
-	TViewMode view_mode;
 };
 
 void InitConfig();

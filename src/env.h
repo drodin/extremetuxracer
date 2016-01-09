@@ -26,21 +26,21 @@ class TTexture;
 
 
 struct TFog {
-	bool is_on;
 	GLint mode;
 	float start;
 	float end;
 	float height;
 	float color[4];
 	sf::Color part_color;
+	bool is_on;
 };
 
 struct TLight {
-	bool is_on;
 	float ambient[4];
 	float diffuse[4];
 	float specular[4];
 	float position[4];
+	bool is_on;
 
 	void Enable(GLenum num) const;
 };

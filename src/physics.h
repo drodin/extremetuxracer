@@ -106,13 +106,14 @@ public:
 	CControl();
 
 	// view:
-	TViewMode viewmode;
 	TVector3d viewpos;
 	TVector3d plyr_pos;
 	TVector3d viewdir;
 	TVector3d viewup;
 	TMatrix<4, 4> view_mat;
+	TViewMode viewmode;
 	bool view_init;
+
 	// main:
 	TVector3d cpos;
 	TVector3d cvel;
@@ -122,8 +123,8 @@ public:
 	TQuaternion corientation;
 	double way;
 
-	bool orientation_initialized;
 	TVector3d plane_nml;
+
 	// steering:
 	double turn_fact;
 	double turn_animation;
@@ -135,6 +136,8 @@ public:
 	bool   begin_jump;
 	bool   jumping;
 	bool   jump_charging;
+	bool   orientation_initialized;
+
 	// trick:
 	bool   front_flip;
 	bool   back_flip;
@@ -143,6 +146,7 @@ public:
 	bool   roll_right;
 	double roll_factor;
 	double flip_factor;
+
 	// pseudo constants:
 	double minSpeed;
 	double minFrictspeed;

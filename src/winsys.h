@@ -35,8 +35,8 @@ private:
 	bool joystick_active;
 
 	// sfml window
-	sf::RenderWindow window;
 	bool sfmlRenders;
+	sf::RenderWindow window;
 	TScreenRes resolutions[NUM_RESOLUTIONS];
 	TScreenRes auto_resolution;
 	float CalcScreenScale() const;

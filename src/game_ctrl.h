@@ -149,12 +149,12 @@ extern CPlayers Players;
 #define MAX_CHARACTERS 16
 
 struct TCharacter {
-	int type;
 	string name;
 	string dir;
 	TTexture* preview;
 	CCharShape *shape;
 	CKeyframe frames[NUM_FRAME_TYPES];
+	int type;
 	bool finishframesok;
 
 	CKeyframe* GetKeyframe(TFrameType type);

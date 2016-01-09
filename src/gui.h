@@ -158,10 +158,10 @@ TIconButton* AddIconButton(int x, int y, const sf::Texture& texture, double size
 
 class TArrow : public TWidget {
 	sf::Sprite sprite;
+	bool down;
 	void SetTexture();
 public:
 	TArrow(int x, int y, bool down_);
-	bool down;
 	void Activated();
 	void Focussed();
 	void Draw() const;

@@ -64,8 +64,8 @@ struct TCharNode {
 	TMatrix<4, 4> trans;
 	TMatrix<4, 4> invtrans;
 	double radius;
-	int divisions;
 	TCharMaterial *mat;
+	int divisions;
 	bool render_shadow;
 	bool visible;
 };
@@ -75,18 +75,17 @@ private:
 	TCharNode *Nodes[MAX_CHAR_NODES];
 	size_t Index[MAX_CHAR_NODES];
 	size_t numNodes;
-	bool useActions;
-	bool newActions;
 	vector<TCharMaterial> Materials;
 	map<string, size_t> MaterialIndex;
+	bool useActions;
+	bool newActions;
 
 	// nodes
 	size_t GetNodeIdx(size_t node_name) const;
 	TCharNode *GetNode(size_t node_name);
 	void CreateRootNode();
-	bool CreateCharNode
-	(int parent_name, size_t node_name, const string& joint,
-	 const string& name, const string& order, bool shadow);
+	bool CreateCharNode(int parent_name, size_t node_name, const string& joint,
+	                    const string& name, const string& order, bool shadow);
 	bool VisibleNode(size_t node_name, float level);
 	bool MaterialNode(size_t node_name, const string& mat_name);
 	bool TransformNode(size_t node_name, const TMatrix<4, 4>& mat, const TMatrix<4, 4>& invmat);
@@ -117,6 +116,8 @@ public:
 	~CCharShape();
 	bool useMaterials;
 	bool useHighlighting;
+	bool   highlighted;
+	size_t highlight_node;
 	map<string, size_t> NodeIndex;
 
 	// nodes
@@ -141,10 +142,6 @@ public:
 	                  double paddling_factor, double speed,
 	                  const TVector3d& net_force, double flap_factor);
 	bool Collision(const TVector3d& pos, const TPolyhedron& ph);
-
-	// testing and tools
-	bool   highlighted;
-	size_t highlight_node;
 
 	size_t GetNodeName(size_t idx) const;
 	size_t GetNodeName(const string& node_trivialname) const;

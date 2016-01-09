@@ -127,11 +127,11 @@ static string char_file;
 static string frame_file;
 
 static const TLight toollight = {
-	true,
 	{0.45f, 0.53f, 0.75f, 1.f},
 	{1.f,   0.9f,  1.f,   1.f},
 	{0.6f,  0.6f,  0.6f,  1.f},
-	{1.f,   2.f,   2.f,   0.f}
+	{1.f,   2.f,   2.f,   0.f},
+	true
 };
 static int tool_mode = 0;
 

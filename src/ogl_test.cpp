@@ -29,11 +29,11 @@ GNU General Public License for more details.
 COglTest OglTest;
 
 static const TLight light = {
-	true,
-	{0.45, 0.53, 0.75, 1.0},
-	{1.0, 0.9, 1.0, 1.0},
-	{0.6, 0.6, 0.6, 1.0},
-	{1, 2, 2, 0.0}
+	{0.45f, 0.53f, 0.75f, 1.f},
+	{1.f,   0.9f,  1.f,   1.f},
+	{0.6f,  0.6f,  0.6f,  1.f},
+	{1.f,   2.f,   2.f,   0.f},
+	true
 };
 
 

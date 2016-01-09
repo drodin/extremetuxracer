@@ -36,8 +36,8 @@ public:
 		State* previous;
 		State* current;
 		State* next;
-		bool quit;
 		sf::Clock timer;
+		bool quit;
 		explicit Manager(CWinsys& winsys) : Winsys(winsys), previous(nullptr), current(nullptr), next(nullptr), quit(false) {}
 		Manager(const Manager&);
 		Manager& operator=(const Manager&);
