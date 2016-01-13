@@ -89,6 +89,7 @@ const TScoreList *CScore::GetScorelist(size_t list_idx) const {
 bool CScore::SaveHighScore() const {
 	CSPList splist((int)Scorelist.size()*MAX_SCORES);
 
+	const CCourseList* courses = &Course.CourseLists["default"]; // TODO: Save Highscore of all groups
 	for (size_t li=0; li<Scorelist.size(); li++) {
 		const TScoreList* lst = &Scorelist[li];
 		if (lst != nullptr) {
@@ -96,8 +97,8 @@ bool CScore::SaveHighScore() const {
 			if (num > 0) {
 				for (int sc=0; sc<num; sc++) {
 					const TScore& score = lst->scores[sc];
-					string line = "*[group] " + Course.currentCourseList->name; // TODO: Save Highscore of all groups
-					line += " [course] " + (*Course.currentCourseList)[li].dir;
+					string line = "*[group] " + courses->name;
+					line += " [course] " + (*courses)[li].dir;
 					line += " [plyr] " + score.player;
 					line += " [pts] " + Int_StrN(score.points);
 					line += " [herr] " + Int_StrN(score.herrings);
@@ -128,13 +129,16 @@ bool CScore::LoadHighScore() {
 	for (CSPList::const_iterator line = list.cbegin(); line != list.cend(); ++line) {
 		string group = SPStrN(*line, "group", "default");
 		string course = SPStrN(*line, "course", "unknown");
-		TCourse* cidx = Course.GetCourse(group, course);
+		try {
+			TCourse* cidx = Course.GetCourse(group, course);
 
-		AddScore(cidx, TScore(
-		             SPStrN(*line, "plyr", "unknown"),
-		             SPIntN(*line, "pts", 0),
-		             SPIntN(*line, "herr", 0),
-		             SPFloatN(*line, "time", 0)));
+			AddScore(cidx, TScore(
+			             SPStrN(*line, "plyr", "unknown"),
+			             SPIntN(*line, "pts", 0),
+			             SPIntN(*line, "herr", 0),
+			             SPFloatN(*line, "time", 0)));
+		} catch (std::exception&)
+		{ }
 	}
 	return true;
 }

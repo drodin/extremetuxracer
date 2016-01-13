@@ -48,10 +48,12 @@ void TCourse::SetDescription(const std::string& description) {
 	}
 }
 void TCourse::SetTranslatedData(const std::string& line2) {
-	std::string trans_description = SPStrN(line2, "desc-" + Trans.languages[param.language].lang);
+	std::string description = SPStrN(line2, "desc-" + Trans.languages[param.language].lang);
 	std::string trans_name = SPStrN(line2, "name-" + Trans.languages[param.language].lang);
-	if (!trans_description.empty())
-		SetDescription(trans_description);
+	if (description.empty()) // No translated description - fallback to default
+		description = SPStrN(line2, "desc");
+	if (!description.empty())
+		SetDescription(description);
 	if (!trans_name.empty())
 		name = trans_name;
 }
@@ -666,7 +668,6 @@ bool CCourseList::Load(const std::string& dir) {
 	for (CSPList::const_iterator line1 = list.cbegin(); line1 != list.cend(); ++line1, i++) {
 		courses[i].name = SPStrN(*line1, "name");
 		courses[i].dir = SPStrN(*line1, "dir", "nodir");
-		courses[i].SetDescription(SPStrN(*line1, "desc"));
 
 		string coursepath = dir + SEP + courses[i].dir;
 		if (DirExists(coursepath.c_str())) {

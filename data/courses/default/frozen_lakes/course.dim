@@ -2,4 +2,5 @@
 [startx]50.00[starty]3.00[angle]25.00[scale]12.00
 [env]etr
 
-*[name-de_DE]Gefrorene Seen[desc-de_DE]Eine kalte, stille Welt voller Eis und Felsen. Achte auf deine Geschwindigkeit, wenn Du die Seen überquerst.
+*[desc] A cold, silent world of rocks and ice. Regard your speed when you cross the lakes.
+[name-de_DE]Gefrorene Seen[desc-de_DE]Eine kalte, stille Welt voller Eis und Felsen. Achte auf deine Geschwindigkeit, wenn Du die Seen überquerst.
