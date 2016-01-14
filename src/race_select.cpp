@@ -47,21 +47,21 @@ static TIconButton* mirror;
 static TIconButton* random_btn;
 static TWidget* textbuttons[2];
 static string info;
-static int prevGroup = -1;
+static int prevGroup = 0;
 
 static void UpdateInfo() {
-	info = "";
-	if (mirror->focus && mirror->GetValue() < 2) {
+	if (mirror->focus && mirror->GetValue() < 2)
 		info = Trans.Text(69 + mirror->GetValue());
-	} else if (light->focus && light->GetValue() < 4) {
+	else if (light->focus && light->GetValue() < 4)
 		info = Trans.Text(71 + light->GetValue());
-	} else if (snow->focus && snow->GetValue() < 4) {
+	else if (snow->focus && snow->GetValue() < 4)
 		info = Trans.Text(75 + snow->GetValue());
-	} else if (wind->focus && wind->GetValue() < 4) {
+	else if (wind->focus && wind->GetValue() < 4)
 		info = Trans.Text(79 + wind->GetValue());
-	} else if (random_btn->focus) {
+	else if (random_btn->focus)
 		info = Trans.Text(83);
-	}
+	else
+		info = "";
 }
 
 void SetRaceConditions() {
@@ -166,7 +166,7 @@ void CRaceSelect::Enter() {
 	light = AddIconButton(iconleft, icontop, Tex.GetSFTexture(LIGHT_BUTT), iconsize, 3, (int)g_game.light_id);
 	snow = AddIconButton(iconleft + iconspace, icontop, Tex.GetSFTexture(SNOW_BUTT), iconsize, 3, g_game.snow_id);
 	wind = AddIconButton(iconleft + iconspace * 2, icontop, Tex.GetSFTexture(WIND_BUTT), iconsize, 3, g_game.wind_id);
-	mirror = AddIconButton(iconleft + iconspace * 3, icontop, Tex.GetSFTexture(MIRROR_BUTT), iconsize, 1, (int) g_game.mirrorred);
+	mirror = AddIconButton(iconleft + iconspace * 3, icontop, Tex.GetSFTexture(MIRROR_BUTT), iconsize, 1, (int)g_game.mirrorred);
 	random_btn = AddIconButton(iconleft + iconspace * 4, icontop, Tex.GetSFTexture(RANDOM_BUTT), iconsize, 0, 0);
 	int siz = FT.AutoSizeN(5);
 	int len1 = FT.GetTextWidth(Trans.Text(13));
@@ -174,7 +174,7 @@ void CRaceSelect::Enter() {
 	textbuttons[1] = AddTextButton(Trans.Text(8), area.left + 50, AutoYPosN(85), siz);
 	FT.AutoSizeN(4);
 
-	courseGroup = AddUpDown(area.left + framewidth + 8, frametop, 0, (int)Course.CourseLists.size() - 1, 0);
+	courseGroup = AddUpDown(area.left + framewidth + 8, frametop, 0, (int)Course.CourseLists.size() - 1, prevGroup);
 	courseGroupName = AddFramedText(area.left, frametop, framewidth, frameheight, 3, colMBackgr, "", FT.GetSize(), true);
 	course = AddUpDown(area.left + framewidth + 8, frametop + frameheight + 20, 0, (int)Course.currentCourseList->size() - 1, g_game.course ? (int)Course.GetCourseIdx(g_game.course) : 0);
 	courseName = AddFramedText(area.left, frametop + frameheight + 20, framewidth, frameheight, 3, colMBackgr, "", FT.GetSize(), true);
@@ -194,6 +194,7 @@ void CRaceSelect::Loop(float timestep) {
 	if (courseGroup->GetValue() != prevGroup) {
 		prevGroup = courseGroup->GetValue();
 		Course.currentCourseList = Course.getGroup((size_t)courseGroup->GetValue());
+		g_game.course = nullptr;
 		course->SetValue(0);
 		course->SetMaximum((int)Course.currentCourseList->size()-1);
 	}

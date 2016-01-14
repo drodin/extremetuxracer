@@ -24,7 +24,7 @@ GNU General Public License for more details.
 template<typename T>
 struct TVector2 {
 	T x, y;
-	explicit TVector2(T _x = 0.0, T _y = 0.0)
+	explicit TVector2(T _x = (T)0, T _y = (T)0)
 		: x(_x), y(_y)
 	{}
 	double Length() const {
@@ -51,7 +51,7 @@ struct TVector2 {
 template<typename T>
 struct TVector3 {
 	T x, y, z;
-	explicit TVector3(T _x = 0.0, T _y = 0.0, T _z = 0.0)
+	explicit TVector3(T _x = (T)0, T _y = (T)0, T _z = (T)0)
 		: x(_x), y(_y), z(_z)
 	{}
 	double Length() const {
@@ -81,7 +81,7 @@ struct TVector3 {
 template<typename T>
 struct TVector4 {
 	T x, y, z, w;
-	explicit TVector4(T _x = 0.0, T _y = 0.0, T _z = 0.0, T _w = 0.0)
+	explicit TVector4(T _x = (T)0, T _y = (T)0, T _z = (T)0, T _w = (T)0)
 		: x(_x), y(_y), z(_z), w(_w)
 	{}
 	double Length() const {

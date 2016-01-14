@@ -39,9 +39,6 @@ void setup_course_tex_gen() {
 	glTexGenfv(GL_T, GL_OBJECT_PLANE, zplane);
 }
 
-// --------------------------------------------------------------------
-//							render course
-// --------------------------------------------------------------------
 void RenderCourse() {
 	ScopedRenderMode rm(COURSE);
 	setup_course_tex_gen();
@@ -52,9 +49,6 @@ void RenderCourse() {
 	RenderQuadtree();
 }
 
-// --------------------------------------------------------------------
-//				DrawTrees
-// --------------------------------------------------------------------
 void DrawTrees() {
 	size_t			tree_type = -1;
 	const CControl*	ctrl = g_game.player->ctrl;
@@ -66,8 +60,7 @@ void DrawTrees() {
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 	set_material(colWhite, colBlack, 1.0);
 
-
-//	-------------- trees ------------------------
+	// Trees
 	for (size_t i = 0; i< Course.CollArr.size(); i++) {
 		if (clip_course) {
 			if (ctrl->viewpos.z - Course.CollArr[i].pt.z > fwd_clip_limit) continue;
@@ -122,7 +115,7 @@ void DrawTrees() {
 		glPopMatrix();
 	}
 
-//  items -----------------------------
+	// Items
 	const TObjectType* item_type = nullptr;
 
 	for (size_t i = 0; i< Course.NocollArr.size(); i++) {

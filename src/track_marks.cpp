@@ -26,7 +26,7 @@ GNU General Public License for more details.
 #include "physics.h"
 #include <list>
 
-#define TRACK_WIDTH  0.7
+#define TRACK_WIDTH 0.7
 #define MAX_TRACK_MARKS 10000
 #define SPEED_TO_START_TRENCH 0.0
 #define TRACK_HEIGHT 0.08
@@ -76,7 +76,7 @@ template<typename T>
 static T incrementRingIterator(T q) {
 	T ret = q;
 	++ret;
-	if (ret == track_marks.quads.end() || track_marks.quads.size() == MAX_TRACK_MARKS)
+	if (ret == track_marks.quads.end())
 		ret = track_marks.quads.begin();
 	return ret;
 }
@@ -84,17 +84,11 @@ static T incrementRingIterator(T q) {
 template<typename T>
 static T decrementRingIterator(T q) {
 	T ret = q;
-	if (ret == track_marks.quads.begin() && track_marks.quads.size() == MAX_TRACK_MARKS)
-		ret = track_marks.quads.end();
-	else if (ret == track_marks.quads.begin())
+	if (ret == track_marks.quads.begin())
 		return track_marks.quads.end();
 	--ret;
 	return ret;
 }
-
-// --------------------------------------------------------------------
-//						draw_track_marks
-// --------------------------------------------------------------------
 
 void DrawTrackmarks() {
 	if (param.perf_level < 3 || track_marks.quads.empty())
@@ -202,9 +196,6 @@ void break_track_marks() {
 	continuing_track = false;
 }
 
-// --------------------------------------------------------------------
-//                      add_track_mark
-// --------------------------------------------------------------------
 void add_track_mark(const CControl *ctrl, int *id) {
 	if (param.perf_level < 3)
 		return;

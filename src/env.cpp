@@ -30,11 +30,11 @@ GNU General Public License for more details.
 //					defaults
 // --------------------------------------------------------------------
 
-static const float def_amb[]     = {0.45, 0.53, 0.75, 1.0};
-static const float def_diff[]    = {1.0, 0.9, 1.0, 1.0};
-static const float def_spec[]    = {0.6, 0.6, 0.6, 1.0};
-static const float def_pos[]     = {1, 2, 2, 0.0};
-static const float def_fogcol[]  = {0.9, 0.9, 1.0, 0.0};
+static const float def_amb[]    = {0.45f, 0.53f, 0.75f, 1.f};
+static const float def_diff[]   = {1.f,   0.9f,  1.f,   1.f};
+static const float def_spec[]   = {0.6f,  0.6f,  0.6f,  1.f};
+static const float def_pos[]    = {1.f,   2.f,   2.f,   0.f};
+static const float def_fogcol[] = {0.9f,  0.9f,  1.f,   0.f};
 static const sf::Color def_partcol(0.8*255, 0.8*255, 0.9*255, 0);
 
 void TLight::Enable(GLenum num) const {

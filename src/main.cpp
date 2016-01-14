@@ -30,6 +30,7 @@ GNU General Public License for more details.
 #include "winsys.h"
 #include <iostream>
 #include <ctime>
+#include <cstring>
 
 TGameData g_game;
 
@@ -37,12 +38,12 @@ void InitGame(int argc, char **argv) {
 	g_game.toolmode = NONE;
 	g_game.argument = 0;
 	if (argc == 4) {
-		string group_arg = argv[1];
-		if (group_arg == "--char") g_game.argument = 4;
+		if (std::strcmp("--char", argv[1]) == 0)
+			g_game.argument = 4;
 		Tools.SetParameter(argv[2], argv[3]);
 	} else if (argc == 2) {
-		string group_arg = argv[1];
-		if (group_arg == "9") g_game.argument = 9;
+		if (std::strcmp(argv[1], "9") == 0)
+			g_game.argument = 9;
 	}
 
 	g_game.player = nullptr;
@@ -60,24 +61,19 @@ void InitGame(int argc, char **argv) {
 	g_game.treevar = 3;
 }
 
-// ====================================================================
-// 					main
-// ====================================================================
-
 int main(int argc, char **argv) {
-	// ****************************************************************
 	cout << "\n----------- Extreme Tux Racer " ETR_VERSION_STRING " ----------------";
-	cout << "\n----------- (C) 2010-2014 Extreme Tuxracer Team  --------\n\n";
+	cout << "\n----------- (C) 2010-2016 Extreme Tuxracer Team  --------\n\n";
 
 	srand(time(nullptr));
 	InitConfig();
 	InitGame(argc, argv);
 	Winsys.Init();
 	InitOpenglExtensions();
-	// for checking the joystick and the OpgenGL version (the info is
-	// written on the console):
-	//	Winsys.PrintJoystickInfo ();
-	//	PrintGLInfo ();
+
+	// For checking the joystick and the OpgenGL version (the info is written on the console):
+	//Winsys.PrintJoystickInfo();
+	//PrintGLInfo ();
 
 	// theses resources must or should be loaded before splashscreen starts
 	if (!Tex.LoadTextureList()) {
