@@ -38,12 +38,3 @@ The character tool of ETR
 - There's not a real undo option, that would be too much effort. But you can undo the changes of the current node by typing "u". After selecting another node, the undo will work no longer.
 
 - To save the changes type "s". The tool generates a new character list and stores it back to "test.lst". That can be done anytime.
-
-
-
-
-
-
-
-
-
