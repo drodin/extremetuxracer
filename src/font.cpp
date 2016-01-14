@@ -54,7 +54,7 @@ static size_t MakeLine(size_t first, const vector<string>& wordlist, vector<stri
 	size_t last = first;
 	float lng = 0;
 
-	float spacelng = FT.GetTextWidth("a a") - FT.GetTextWidth("aa");;
+	float spacelng = FT.GetTextWidth("a a") - FT.GetTextWidth("aa");
 	while (last < wordlist.size()) {
 		float wordlng = FT.GetTextWidth(wordlist[last]);
 		lng += wordlng;

@@ -107,6 +107,7 @@ void CRaceSelect::Mouse(int button, int state, int x, int y) {
 void CRaceSelect::Keyb(sf::Keyboard::Key key, bool release, int x, int y) {
 	if (release) return;
 	KeyGUI(key, release);
+	UpdateInfo();
 	switch (key) {
 		case sf::Keyboard::Escape:
 			State::manager.RequestEnterState(GameTypeSelect);
@@ -178,6 +179,8 @@ void CRaceSelect::Enter() {
 	courseGroupName = AddFramedText(area.left, frametop, framewidth, frameheight, 3, colMBackgr, "", FT.GetSize(), true);
 	course = AddUpDown(area.left + framewidth + 8, frametop + frameheight + 20, 0, (int)Course.currentCourseList->size() - 1, g_game.course ? (int)Course.GetCourseIdx(g_game.course) : 0);
 	courseName = AddFramedText(area.left, frametop + frameheight + 20, framewidth, frameheight, 3, colMBackgr, "", FT.GetSize(), true);
+
+	SetFocus(course);
 }
 
 void CRaceSelect::Loop(float timestep) {
@@ -221,7 +224,7 @@ void CRaceSelect::Loop(float timestep) {
 
 	if (g_game.force_treemap) {
 		FT.AutoSizeN(4);
-		static const string forcetrees = "Load trees.png";
+		static const sf::String forcetrees = "Load trees.png";
 		string sizevar = "Size: ";
 		sizevar += Int_StrN(g_game.treesize);
 		sizevar += " Variation: ";

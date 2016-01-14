@@ -210,7 +210,7 @@ void DrawCursor();
 
 // --------------------------------------------------------------------
 
-int AutoYPosN(double percent);
-TArea AutoAreaN(double top_perc, double bott_perc, unsigned int w);
+int AutoYPosN(int percent);
+TArea AutoAreaN(int top_perc, int bott_perc, unsigned int w);
 
 #endif

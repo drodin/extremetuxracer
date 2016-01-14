@@ -141,7 +141,8 @@ static int columnAnchor;
 void CGameConfig::Enter() {
 	Winsys.ShowCursor(!param.ice_cursor);
 
-	for (int i=0; i<NUM_RESOLUTIONS; i++) res_names[i] = Winsys.GetResName(i);
+	for (int i=0; i<NUM_RESOLUTIONS; i++)
+		res_names[i] = Winsys.GetResName(i);
 
 	int framewidth = 550 * Winsys.scale;
 	area = AutoAreaN(30, 80, framewidth);

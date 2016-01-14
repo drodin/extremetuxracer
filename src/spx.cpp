@@ -188,7 +188,7 @@ void Str_ArrN(const string &s, float *arr, size_t count, float def) {
 //				SP functions for parsing lines
 // --------------------------------------------------------------------
 
-string SPItemN(const string &s, const string &tag) {
+static string SPItemN(const string &s, const string &tag) {
 	if (s.empty() || tag.empty()) return "";
 
 	string tg = '[' + tag + ']';

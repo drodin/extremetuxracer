@@ -1,6 +1,5 @@
 # -------------------------------------------------------------
-# Important!
-# Do not change the id
+# Important: Do not change the IDs!
 # -------------------------------------------------------------
 
 * [id] 0 [name] logo [file] splash_1.png
@@ -9,7 +8,7 @@
 * [id] 2 [name] snow_track [file] snowtrack.png [repeat] 1
 * [id] 3 [name] snow_stop [file] snowstop.png [repeat] 1
 * [id] 4 [name] menu_title [file] menu_title.png [repeat] 0
-* [id] 5 [name] menu_title_small [file] menu_title_small.png [repeat] 0
+
 
 * [id] 7 [name] herring_icon [file] herringicon.png [repeat] 0
 * [id] 8 [name] gauge_outline [file] gaugeoutline.png [repeat] 0

@@ -566,10 +566,7 @@ void DrawBonusExt(int y, size_t numraces, size_t num) {
 	size_t maxtux = numraces * 3;
 	if (num > maxtux) return;
 
-	//TColor col1 = {0.3, 0.5, 0.7, 1};
-	static const sf::Color col2(0.45*255, 0.65*255, 0.85*255);
-	//TColor col3 = {0.6, 0.8, 1.0, 1};
-	//TColor gold = {1, 1, 0, 1};
+	static const sf::Color col2(115, 166, 217);
 
 	int lleft[3];
 
@@ -586,9 +583,6 @@ void DrawBonusExt(int y, size_t numraces, size_t num) {
 
 	static sf::Sprite tuxbonus(Tex.GetSFTexture(TUXBONUS));
 	sf::Vector2u size = tuxbonus.getTexture()->getSize();
-	// with tux outlines:
-	// if (i<num) bott = 0.5; else bott = 0.0;
-	// top = bott + 0.5;
 	tuxbonus.setTextureRect(sf::IntRect(0, 0, size.x, 0.5*size.y));
 
 	for (size_t i=0; i<maxtux; i++) {
@@ -623,9 +617,10 @@ void DrawGUIFrame() {
 void DrawGUIBackground(float logoScale) {
 	DrawGUIFrame();
 
-	static sf::Sprite logo(Tex.GetSFTexture(T_TITLE_SMALL));
+	static sf::Sprite logo(Tex.GetSFTexture(T_TITLE));
+	logoScale *= 0.5f;
 	logo.setScale(logoScale, logoScale);
-	logo.setPosition((Winsys.resolution.width - logo.getTextureRect().width) /2, 5);
+	logo.setPosition((Winsys.resolution.width - logo.getTextureRect().width*logoScale)/2, 5);
 	Winsys.draw(logo);
 }
 
@@ -806,13 +801,13 @@ void ResetGUI() {
 	locked_LR = locked_UD = false;
 }
 
-// ------------------ new ---------------------------------------------
+// ---------------------------------------------------------------
 
-int AutoYPosN(double percent) {
-	return Winsys.resolution.height * percent / 100.0;
+int AutoYPosN(int percent) {
+	return Winsys.resolution.height * percent / 100;
 }
 
-TArea AutoAreaN(double top_perc, double bott_perc, unsigned int w) {
+TArea AutoAreaN(int top_perc, int bott_perc, unsigned int w) {
 	TArea res;
 	res.top = AutoYPosN(top_perc);
 	res.bottom = AutoYPosN(bott_perc);
