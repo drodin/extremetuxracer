@@ -97,7 +97,6 @@ AC_CONFIG_FILES([
         data/courses/default/challenge_one/Makefile
         data/courses/default/chinese_wall/Makefile
         data/courses/default/chragis_gagiwaetter/Makefile
-        data/courses/default/course/Makefile
         data/courses/default/downhill_fear/Makefile
         data/courses/default/explore_mountains/Makefile
         data/courses/default/frozen_lakes/Makefile
@@ -115,6 +114,29 @@ AC_CONFIG_FILES([
         data/courses/default/tux_at_home/Makefile
         data/courses/default/twisty_slope/Makefile
         data/courses/default/wild_mountains/Makefile
+        data/courses/extras/Makefile
+        data/courses/extras/bronze_set/Makefile
+        data/courses/extras/comepeces/Makefile
+        data/courses/extras/desperation/Makefile
+        data/courses/extras/el_reto/Makefile
+        data/courses/extras/follow_white_rabbit/Makefile
+        data/courses/extras/herrings_half_pipe/Makefile
+        data/courses/extras/i_like_spike_2/Makefile
+        data/courses/extras/inception/Makefile
+        data/courses/extras/laberinto/Makefile
+        data/courses/extras/penguins_day/Makefile
+        data/courses/extras/pygoscelis_adeliae/Makefile
+        data/courses/extras/rock_n_roll/Makefile
+        data/courses/extras/slide_or_fly/Makefile
+        data/courses/extras/snow_run_1/Makefile
+        data/courses/extras/snow_run_2/Makefile
+        data/courses/extras/the_long_ride/Makefile
+        data/courses/extras/touch_the_moon/Makefile
+        data/courses/extras/touristic_ride/Makefile
+        data/courses/extras/tuxway/Makefile
+        data/courses/extras/twists/Makefile
+        data/courses/extras/wild_ride/Makefile
+        data/courses/extras/wild_west_chute_out/Makefile
         data/env/Makefile
         data/env/etr/Makefile
         data/env/etr/cloudy/Makefile

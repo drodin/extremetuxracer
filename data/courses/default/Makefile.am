@@ -5,7 +5,6 @@ SUBDIRS = \
 	challenge_one	\
 	chinese_wall	\
 	chragis_gagiwaetter \
-	course \
 	downhill_fear \
 	explore_mountains \
 	frozen_lakes \

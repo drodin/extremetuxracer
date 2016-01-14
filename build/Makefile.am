@@ -4,4 +4,5 @@ EXTRA_DIST = 				\
 	ETR.sln				\
 	ExtremeTuxRacer.vcxproj		\
 	ExtremeTuxRacer.vcxproj.filters	\
-	Installer.sln
+	Installer.sln			\
+	ReadMe.txt

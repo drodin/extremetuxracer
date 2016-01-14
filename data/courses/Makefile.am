@@ -1,6 +1,7 @@
 
 SUBDIRS = \
-	default
+	default \
+	extras
 
 pkgdatadir = $(datadir)/$(PACKAGE)/courses
 
