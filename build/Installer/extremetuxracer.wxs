@@ -27,10 +27,7 @@
           <Component Id='ExtremeTuxRacer.exe' Guid='$(var.etrGUID)'>
             <File Id='ExtremeTuxRacer.exe' Name='ExtremeTuxRacer.exe' DiskId='1' Source='$(var.BinDir)\ExtremeTuxRacer.exe' KeyPath='yes' />
           </Component>
-          <!--Component Id='Translations' Guid='$(var.translationsGUID)'>
-          </Component>-->
           <Component Id='SFML' Guid='$(var.sfmlGUID)'>
-            <File Id='libsndfile1.dll' Name='libsndfile-1.dll' DiskId='1' Source='$(var.BinDir)\libsndfile-1.dll' />
             <File Id='openal32.dll' Name='openal32.dll' DiskId='1' Source='$(var.BinDir)\openal32.dll' />
             <?if $(var.Platform) = x64 ?>
               <File Id='sfml_system_2.dll' Name='sfml-system-64-2.dll' DiskId='1' Source='$(var.BinDir)\sfml-system-64-2.dll' KeyPath='yes' />

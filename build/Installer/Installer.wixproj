@@ -6,29 +6,22 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <OutputName>ExtremeTuxRacer</OutputName>
-    <IntermediateOutputPath>BuildTmp\Wix\$(Platform)\</IntermediateOutputPath>
+    <IntermediateOutputPath>BuildTmp\Wix\$(Platform)\$(Configuration)\</IntermediateOutputPath>
+    <LinkerAdditionalOptions>-b ..\..\data</LinkerAdditionalOptions>
     <OutputType>package</OutputType>
     <ProjectGuid>{3b772885-4980-4a76-8407-4dabf8f7757c}</ProjectGuid>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
-    <CompilerAdditionalOptions />
-    <LinkerAdditionalOptions>-b ..\..\data</LinkerAdditionalOptions>
-    <OutputPath>..\..\bin\debug\x64\</OutputPath>
-    <IntermediateOutputPath>obj\$(Platform)\$(Configuration)\</IntermediateOutputPath>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <OutputPath>..\..\bin\debug\x86\</OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
-    <CompilerAdditionalOptions />
-    <LinkerAdditionalOptions>-b ..\..\data</LinkerAdditionalOptions>
-    <OutputPath>bin\$(Platform)\$(Configuration)\</OutputPath>
-    <IntermediateOutputPath>obj\$(Platform)\$(Configuration)\</IntermediateOutputPath>
+    <OutputPath>..\..\bin\debug\x64\</OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
-    <LinkerAdditionalOptions>-b ..\..\data</LinkerAdditionalOptions>
     <OutputPath>..\..\bin\x86\</OutputPath>
     <SuppressPdbOutput>True</SuppressPdbOutput>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
-    <LinkerAdditionalOptions>-b ..\..\data</LinkerAdditionalOptions>
     <OutputPath>..\..\bin\x64\</OutputPath>
     <SuppressPdbOutput>True</SuppressPdbOutput>
   </PropertyGroup>
@@ -52,12 +45,4 @@
   <Target Name="Clean">
     <RemoveDir Directories="BuildTmp\Wix" />
   </Target>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <OutputPath>..\..\bin\debug\x86\</OutputPath>
-    <CompilerAdditionalOptions />
-    <LinkerAdditionalOptions>-b ..\..\data</LinkerAdditionalOptions>
-  </PropertyGroup>
-  <PropertyGroup>
-    <PreBuildEvent />
-  </PropertyGroup>
 </Project>

@@ -96,6 +96,8 @@
       <PrecompiledHeaderFile>bh.h</PrecompiledHeaderFile>
       <AdditionalOptions>/Zc:inline /Zc:throwingNew %(AdditionalOptions)</AdditionalOptions>
       <DisableSpecificWarnings>4100;4512</DisableSpecificWarnings>
+      <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
     </ClCompile>
     <Link>
       <AdditionalDependencies>sfml-system-d.lib;sfml-window-d.lib;sfml-graphics-d.lib;sfml-audio-d.lib;opengl32.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -116,6 +118,8 @@
       <PrecompiledHeaderFile>bh.h</PrecompiledHeaderFile>
       <AdditionalOptions>/Zc:inline /Zc:throwingNew %(AdditionalOptions)</AdditionalOptions>
       <DisableSpecificWarnings>4100;4512</DisableSpecificWarnings>
+      <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
     </ClCompile>
     <Link>
       <AdditionalDependencies>sfml-system-d-64.lib;sfml-window-d-64.lib;sfml-graphics-d-64.lib;sfml-audio-d-64.lib;opengl32.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -141,6 +145,8 @@
       <PrecompiledHeaderFile>bh.h</PrecompiledHeaderFile>
       <AdditionalOptions>/Zc:inline /Zc:throwingNew %(AdditionalOptions)</AdditionalOptions>
       <DisableSpecificWarnings>4100;4512</DisableSpecificWarnings>
+      <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
     </ClCompile>
     <Link>
       <AdditionalDependencies>sfml-system.lib;sfml-window.lib;sfml-graphics.lib;sfml-audio.lib;opengl32.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -170,6 +176,8 @@
       <PrecompiledHeaderFile>bh.h</PrecompiledHeaderFile>
       <AdditionalOptions>/Zc:inline /Zc:throwingNew %(AdditionalOptions)</AdditionalOptions>
       <DisableSpecificWarnings>4100;4512</DisableSpecificWarnings>
+      <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
     </ClCompile>
     <Link>
       <AdditionalDependencies>sfml-system-64.lib;sfml-window-64.lib;sfml-graphics-64.lib;sfml-audio-64.lib;opengl32.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>

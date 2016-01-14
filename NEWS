@@ -1,7 +1,31 @@
-NEWS for Extreme Tux Racer 0.6
-------------------------------
+===============================================================================
+                           NEWS for Extreme Tux Racer
+===============================================================================
 
-Entire project has been rebooted with new team.
-Extreme Tux Racer version 0.6 is to be considered
-as first version of the new beginning. There's
-no meaningful way to compare it to old versions.
+
+Version 0.7                                                                 TBA
+-------------------------------------------------------------------------------
+
+Besides several small improvements and bugfixes, the new Extreme Tux Racer
+version 0.7 features the following changes:
+
+- SFML 2 replaced SDL 1 as multimedia library:
+   -> significant code cleanup,
+   -> allows changing screen resolution and fullscreen/windowed mode at runtime,
+   -> performance improvements, especially in menus.
+- Rewritten GUI, providing similar look, but more features, such as keyboard
+  navigation.
+- New performance level '4' has been added, providing high resolution textures
+  for the skybox.
+- Courses are now be organized in groups
+- Courses from the extremetuxracer-extras package were added to the project
+- Course names and descriptions are now translatable
+- Code cleanup and modernization towards C++11 continued
+
+
+Version 0.6                                                13th of August, 2013
+-------------------------------------------------------------------------------
+
+Entire project has been rebooted with new team. Extreme Tux Racer version 0.6
+is to be considered as first version of the new beginning. There's no
+meaningful way to compare it to old versions.
