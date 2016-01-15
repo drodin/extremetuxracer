@@ -15,10 +15,6 @@ AC_PROG_CXX
 AC_PROG_CC
 
 # Checks for libraries.
-AC_CHECK_FT2
-
-CXXFLAGS="$CXXFLAGS $FT2_CFLAGS"
-LIBS="$LIBS $FT2_LIBS"
 
 # Checks for header files.
 AC_CHECK_HEADERS([float.h limits.h stdlib.h string.h sys/time.h unistd.h])
