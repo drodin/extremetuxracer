@@ -1,3 +1,4 @@
 
 - Compilation to work when clang++ is in use
 - Font with all characters required by supported translations
+- MinGW build support
