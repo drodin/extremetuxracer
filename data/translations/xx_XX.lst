@@ -1,6 +1,6 @@
 # Please, don't change the idx
 
-*[idx] 0 [engl] PRESS ANY KEY TO START [trans]
+*[idx] 0 [engl] Press any key to start [trans]
 *[idx] 1 [engl] Enter an event [trans]
 *[idx] 2 [engl] Practice [trans]
 *[idx] 3 [engl] Configuration [trans]
@@ -63,7 +63,6 @@
 *[idx] 55 [engl] CRSR Up - accelerate [trans]
 *[idx] 56 [engl] CRSR down - brake [trans]
 *[idx] 57 [engl] Keyboard Functions [trans]
-*[idx] 65 [engl] Press any key to return to the main menu [trans]
 
 *[idx] 58 [engl] Select your player name: [trans]
 *[idx] 59 [engl] Select a character: [trans]
@@ -74,10 +73,12 @@
 *[idx] 63 [engl] No entries for this race [trans]
 *[idx] 64 [engl] Back [trans]
 
+*[idx] 65 [engl] Press any key to return to the main menu [trans]
+
 *[idx] 66 [engl] Enter a name for the new player and select an avatar: [trans]
 
 *[idx] 67 [engl] Loading resources, [trans]
-*[idx] 68 [engl] please wait [trans]
+*[idx] 68 [engl] please wait ... [trans]
 
 *[idx] 69 [engl] Mirror track: Off [trans]
 *[idx] 70 [engl] Mirror track: On [trans]
@@ -108,3 +109,9 @@
 *[idx] 90 [engl] in highscore list [trans]
 
 *[idx] 91 [engl] Author [trans]
+
+*[idx] 92 [engl] Loading courses failed. [trans]
+*[idx] 93 [engl] Loading characters failed. [trans]
+*[idx] 94 [engl] Loading environments failed. [trans]
+*[idx] 95 [engl] Loading terrains failed. [trans]
+*[idx] 96 [engl] Loading avatars failed. [trans]
