@@ -8,7 +8,6 @@ pkgdata_DATA = \
 	snowstop.png	\
 	splash_1.png	\
 	menu_title.png	\
-	menu_title_small.png	\
 	listbox_arrows.png	\
 	speedmeter.png	\
 	light_butt.png	\
