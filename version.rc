@@ -22,7 +22,7 @@ BEGIN
             VALUE "FileVersion", ETR_VERSION_STRING
             VALUE "InternalName", "ExtremeTuxRacer"
             VALUE "LegalCopyright", "Copyright (C) 1999-2001 Jasmin F. Patry (Tuxracer)\n"
-"Copyright (C) 2010-2013 Extreme Tuxracer Team"
+"Copyright (C) 2010-2016 Extreme Tuxracer Team"
             VALUE "OriginalFilename", "ExtremeTuxRacer.exe"
             VALUE "ProductName", "ExtremeTuxRacer"
             VALUE "ProductVersion", ETR_VERSION_STRING
