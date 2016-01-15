@@ -18,6 +18,9 @@
 # Go to source directory
 cd "$(dirname $0)"
 
-autoreconf -f -s -i -m
-
-echo "configure script created, run it next."
+if autoreconf -f -s -i -m ; then
+    echo "Configure script created, run it next."
+else
+    echo "Autoreconf failed" >&2
+    exit 1
+fi
