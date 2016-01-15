@@ -103,7 +103,7 @@ void CRacing::Keyb(sf::Keyboard::Key key, bool release, int x, int y) {
 			if (!release) State::manager.RequestEnterState(Reset);
 			break;
 		case sf::Keyboard::S:
-			if (!release) ScreenshotN();
+			if (!release) Winsys.TakeScreenshot();
 			break;
 
 		// view changing

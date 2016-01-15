@@ -21,7 +21,6 @@ GNU General Public License for more details.
 
 #include "textures.h"
 #include "spx.h"
-#include "course.h"
 #include "winsys.h"
 #include "ogl.h"
 #include "gui.h"
@@ -297,40 +296,4 @@ void CTexture::DrawNumStr(const string& s, int x, int y, float size, const sf::C
 	}
 	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 	glDisableClientState(GL_VERTEX_ARRAY);
-}
-
-// --------------------------------------------------------------------
-
-//				screenshot
-// --------------------------------------------------------------------
-
-// 0 ppm, 1 tga, 2 bmp
-#define SCREENSHOT_PROC 2
-
-void ScreenshotN() {
-	sf::Texture tex;
-	tex.update(Winsys.getWindow());
-	sf::Image img = tex.copyToImage();
-
-	string path = param.screenshot_dir;
-	path += SEP;
-	path += g_game.course->dir;
-	path += '_';
-	path += GetTimeString();
-	int type = SCREENSHOT_PROC;
-
-	switch (type) {
-		case 0:
-			path += ".ppm";
-			img.saveToFile(path);
-			break;
-		case 1:
-			path += ".tga";
-			img.saveToFile(path);
-			break;
-		case 2:
-			path += ".bmp";
-			img.saveToFile(path);
-			break;
-	}
 }

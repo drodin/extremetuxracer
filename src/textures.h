@@ -102,7 +102,5 @@ public:
 
 extern CTexture Tex;
 
-void ScreenshotN();
-
 
 #endif

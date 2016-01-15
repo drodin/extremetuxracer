@@ -46,7 +46,7 @@ void CPaused::Keyb(sf::Keyboard::Key key, bool release, int x, int y) {
 	if (release) return;
 	switch (key) {
 		case sf::Keyboard::S:
-			ScreenshotN();
+			Winsys.TakeScreenshot();
 			break;
 		case sf::Keyboard::F5:
 			sky = !sky;

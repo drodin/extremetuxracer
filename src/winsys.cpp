@@ -20,6 +20,7 @@ GNU General Public License for more details.
 #endif
 
 #include "winsys.h"
+#include "course.h"
 #include "game_ctrl.h"
 #include "score.h"
 #include "ogl.h"
@@ -154,4 +155,20 @@ void CWinsys::PrintJoystickInfo() const {
 		if (sf::Joystick::hasAxis(i, sf::Joystick::Z)) cout << "Z ";
 		cout << '\n';
 	}
+}
+
+void CWinsys::TakeScreenshot() const {
+	sf::Texture tex;
+	tex.create(window.getSize().x, window.getSize().y);
+	tex.update(window);
+	sf::Image img = tex.copyToImage();
+
+	string path = param.screenshot_dir;
+	path += SEP;
+	path += g_game.course->dir;
+	path += '_';
+	path += GetTimeString();
+
+	path += SCREENSHOT_FORMAT;
+	img.saveToFile(path);
 }

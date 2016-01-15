@@ -148,13 +148,11 @@ void CharKeys(sf::Keyboard::Key key, bool release, int x, int y) {
 			QuitTool();
 			break;
 		case sf::Keyboard::F10:
-			ScreenshotN();
+		case sf::Keyboard::C:
+			Winsys.TakeScreenshot();
 			break;
 		case sf::Keyboard::S:
 			SaveToolCharacter();
-			break;
-		case sf::Keyboard::C:
-			ScreenshotN();
 			break;
 		case sf::Keyboard::M:
 			TestChar.useMaterials = !TestChar.useMaterials;

@@ -165,7 +165,7 @@ void SingleFrameKeys(sf::Keyboard::Key key, bool release, int x, int y) {
 				TestFrame.CopyFrame(curr_frame-1, curr_frame);
 			break;
 		case sf::Keyboard::F10:
-			ScreenshotN();
+			Winsys.TakeScreenshot();
 			break;
 
 		case sf::Keyboard::Num1:

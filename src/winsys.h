@@ -21,6 +21,7 @@ GNU General Public License for more details.
 #include "bh.h"
 
 #define NUM_RESOLUTIONS 10
+#define SCREENSHOT_FORMAT ".png"
 
 extern TVector2i cursor_pos;
 
@@ -66,6 +67,7 @@ public:
 	void endSFML() { if (sfmlRenders) window.popGLStates(); sfmlRenders = false; }
 	bool PollEvent(sf::Event& event) { return window.pollEvent(event); }
 	const sf::Window& getWindow() const { return window; }
+	void TakeScreenshot() const;
 };
 
 
