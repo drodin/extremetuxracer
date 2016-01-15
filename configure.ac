@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.61])
-AC_INIT([etr], [0.6.99], [https://sourceforge.net/apps/phpbb/extremetuxracer])
+AC_INIT([etr], [0.6.99.1-alpha], [https://sourceforge.net/apps/phpbb/extremetuxracer])
 AC_CONFIG_SRCDIR([src/gui.cpp])
 AC_CONFIG_HEADERS([etr_config.h])
 
