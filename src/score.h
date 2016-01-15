@@ -20,7 +20,7 @@ GNU General Public License for more details.
 #include "bh.h"
 #include "states.h"
 #include "spx.h"
-#include <vector>
+#include <map>
 
 #define MAX_SCORES 8
 
@@ -43,7 +43,7 @@ struct TScoreList {
 
 class CScore : public State {
 private:
-	vector<TScoreList> Scorelist;
+	std::map<std::string, std::map<std::string, TScoreList>> Scorelist;
 
 	void Enter();
 	void Loop(float time_step);
@@ -51,17 +51,15 @@ private:
 	void Mouse(int button, int state, int x, int y);
 	void Motion(int x, int y);
 public:
-	int AddScore(const TCourse* course, TScore&& score);
-	const TScoreList *GetScorelist(size_t list_idx) const;
-	void PrintScorelist(size_t list_idx) const;
+	int AddScore(const std::string& group, const std::string& course, TScore&& score);
+	const TScoreList* GetScorelist(const std::string& group, const std::string& course) const;
+	void PrintScorelist(const std::string& group, const std::string& course) const;
 	bool SaveHighScore() const;
 	bool LoadHighScore();
 	int CalcRaceResult();
 };
 
 extern CScore Score;
-
-// --------------------------------------------------------------------
 
 
 #endif

@@ -19,13 +19,12 @@ GNU General Public License for more details.
 #include <etr_config.h>
 #endif
 
-#include <climits> // INT_MAX
-
 #include "ogl.h"
 #include "spx.h"
 #include "winsys.h"
 #include <GL/glu.h>
 #include <stack>
+#include <climits> // INT_MAX
 
 static const struct {
 	const char* name;

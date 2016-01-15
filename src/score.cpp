@@ -32,12 +32,10 @@ GNU General Public License for more details.
 
 CScore Score;
 
-int CScore::AddScore(const TCourse* course, TScore&& score) {
-	size_t list_idx = Course.GetCourseIdx(course);
-	if (list_idx >= Scorelist.size()) return 999;
+int CScore::AddScore(const std::string& group, const std::string& course, TScore&& score) {
 	if (score.points < 1) return 999;
 
-	TScoreList *list = &Scorelist[list_idx];
+	TScoreList *list = &Scorelist[group][course];
 	int num = list->numScores;
 	int pos = 0;
 	int lastpos = num-1;
@@ -64,9 +62,8 @@ int CScore::AddScore(const TCourse* course, TScore&& score) {
 }
 
 // for testing:
-void CScore::PrintScorelist(size_t list_idx) const {
-	if (list_idx >= Scorelist.size()) return;
-	const TScoreList *list = &Scorelist[list_idx];
+void CScore::PrintScorelist(const std::string& group, const std::string& course) const {
+	const TScoreList *list = &Scorelist.at(group).at(course);
 
 	if (list->numScores < 1) {
 		PrintStr("no entries in this score list");
@@ -81,24 +78,27 @@ void CScore::PrintScorelist(size_t list_idx) const {
 	}
 }
 
-const TScoreList *CScore::GetScorelist(size_t list_idx) const {
-	if (list_idx >= Scorelist.size()) return nullptr;
-	return &Scorelist[list_idx];
+const TScoreList* CScore::GetScorelist(const std::string& group, const std::string& course) const {
+	try {
+		return &Scorelist.at(group).at(course);
+	} catch (...) {
+		return nullptr;
+	}
 }
 
 bool CScore::SaveHighScore() const {
-	CSPList splist((int)Scorelist.size()*MAX_SCORES);
+	CSPList splist(0xFFFFFFFF);
 
-	const CCourseList* courses = &Course.CourseLists["default"]; // TODO: Save Highscore of all groups
-	for (size_t li=0; li<Scorelist.size(); li++) {
-		const TScoreList* lst = &Scorelist[li];
-		if (lst != nullptr) {
-			int num = lst->numScores;
+	for (std::map<std::string, std::map<std::string, TScoreList>>::const_iterator i = Scorelist.cbegin(); i != Scorelist.cend(); ++i) {
+		for (std::map<std::string, TScoreList>::const_iterator j = i->second.cbegin(); j != i->second.cend(); ++j) {
+			const TScoreList *list = &j->second;
+
+			int num = list->numScores;
 			if (num > 0) {
-				for (int sc=0; sc<num; sc++) {
-					const TScore& score = lst->scores[sc];
-					string line = "*[group] " + courses->name;
-					line += " [course] " + (*courses)[li].dir;
+				for (int sc = 0; sc<num; sc++) {
+					const TScore& score = list->scores[sc];
+					string line = "*[group] " + i->first;
+					line += " [course] " + j->first;
 					line += " [plyr] " + score.player;
 					line += " [pts] " + Int_StrN(score.points);
 					line += " [herr] " + Int_StrN(score.herrings);
@@ -108,6 +108,7 @@ bool CScore::SaveHighScore() const {
 			}
 		}
 	}
+
 	if (!splist.Save(param.config_dir, "highscore")) {
 		Message("could not save highscore list");
 		return false;
@@ -118,9 +119,6 @@ bool CScore::SaveHighScore() const {
 bool CScore::LoadHighScore() {
 	CSPList list(520);
 
-	if (Course.currentCourseList)
-		Scorelist.resize(Course.currentCourseList->size());
-
 	if (!list.Load(param.config_dir, "highscore")) {
 		Message("could not load highscore list");
 		return false;
@@ -130,9 +128,7 @@ bool CScore::LoadHighScore() {
 		string group = SPStrN(*line, "group", "default");
 		string course = SPStrN(*line, "course", "unknown");
 		try {
-			TCourse* cidx = Course.GetCourse(group, course);
-
-			AddScore(cidx, TScore(
+			AddScore(group, course, TScore(
 			             SPStrN(*line, "plyr", "unknown"),
 			             SPIntN(*line, "pts", 0),
 			             SPIntN(*line, "herr", 0),
@@ -159,7 +155,7 @@ int CScore::CalcRaceResult() {
 	g_game.score = (int)(herringpt + timept);
 	if (g_game.score < 0) g_game.score = 0;
 
-	return AddScore(g_game.course, TScore(g_game.player->name, g_game.score, g_game.herring, g_game.time));
+	return AddScore(Course.currentCourseList->name, g_game.course->dir, TScore(g_game.player->name, g_game.score, g_game.herring, g_game.time));
 }
 
 // --------------------------------------------------------------------
@@ -167,9 +163,12 @@ int CScore::CalcRaceResult() {
 // --------------------------------------------------------------------
 
 static CCourseList *CourseList;
+static int prevGroup = 0;
 static TUpDown* course;
+static TUpDown* courseGroup;
 static TWidget* textbutton;
 static TFramedText* courseName;
+static TFramedText* courseGroupName;
 static TLabel* headline;
 
 void CScore::Keyb(sf::Keyboard::Key key, bool release, int x, int y) {
@@ -218,28 +217,30 @@ void CScore::Enter() {
 
 	int framewidth = 550 * Winsys.scale;
 	int frameheight = 50 * Winsys.scale;
-	int frametop = AutoYPosN(32);
+	int frametop = AutoYPosN(28);
 	area = AutoAreaN(30, 80, framewidth);
 	FT.AutoSizeN(3);
 	linedist = FT.AutoDistanceN(1);
-	listtop = AutoYPosN(44);
+	listtop = AutoYPosN(46);
 	dd1 = 50 * Winsys.scale;
 	dd2 = 115 * Winsys.scale;
 	dd3 = 250 * Winsys.scale;
 	dd4 = 375 * Winsys.scale;
 
-	CourseList = Course.currentCourseList;
+	CourseList = &Course.CourseLists["default"];
 
 	ResetGUI();
-	course = AddUpDown(area.right + 8, frametop, 0, (int)Course.currentCourseList->size()-1, 0);
+	courseGroup = AddUpDown(area.right + 8, frametop, 0, (int)Course.CourseLists.size() - 1, 0);
+	course = AddUpDown(area.right + 8, frametop + frameheight + 20, 0, (int)CourseList->size() - 1, 0);
 	int siz = FT.AutoSizeN(5);
-	textbutton = AddTextButton(Trans.Text(64), CENTER, AutoYPosN(80), siz);
+	textbutton = AddTextButton(Trans.Text(64), CENTER, AutoYPosN(85), siz);
 
 	FT.AutoSizeN(7);
-	headline = AddLabel(Trans.Text(62), CENTER, AutoYPosN(22), colWhite);
+	headline = AddLabel(Trans.Text(62), CENTER, AutoYPosN(18), colWhite);
 
 	FT.AutoSizeN(4);
-	courseName = AddFramedText(area.left, frametop-2, framewidth, frameheight, 3, colMBackgr, "", FT.GetSize(), true);
+	courseGroupName = AddFramedText(area.left, frametop - 2, framewidth, frameheight, 3, colMBackgr, "default", FT.GetSize(), true);
+	courseName = AddFramedText(area.left, frametop - 2 + frameheight + 20, framewidth, frameheight, 3, colMBackgr, "", FT.GetSize(), true);
 }
 
 const string ordinals[10] =
@@ -256,10 +257,20 @@ void CScore::Loop(float timestep) {
 
 	DrawGUIBackground(Winsys.scale);
 
+	if (courseGroup->GetValue() != prevGroup) {
+		prevGroup = courseGroup->GetValue();
+		CourseList = Course.getGroup((size_t)courseGroup->GetValue());
+		course->SetValue(0);
+		course->SetMaximum((int)CourseList->size() - 1);
+		courseGroupName->SetString(CourseList->name);
+	}
+
+	courseGroupName->Focussed(courseGroup->focussed());
+
 	courseName->Focussed(course->focussed());
 	courseName->SetString((*CourseList)[course->GetValue()].name);
 
-	const TScoreList *list = Score.GetScorelist(course->GetValue());
+	const TScoreList *list = Score.GetScorelist(CourseList->name, (*CourseList)[course->GetValue()].dir);
 
 	FT.SetColor(colWhite);
 	if (list != nullptr) {
@@ -278,7 +289,7 @@ void CScore::Loop(float timestep) {
 				              Float_StrN(list->scores[i].time, 1) + "  sec");
 			}
 		}
-	} else Message("score list out of range");
+	}
 
 	DrawGUI();
 

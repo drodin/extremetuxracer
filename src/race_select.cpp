@@ -176,7 +176,7 @@ void CRaceSelect::Enter() {
 	FT.AutoSizeN(4);
 
 	courseGroup = AddUpDown(area.left + framewidth + 8, frametop, 0, (int)Course.CourseLists.size() - 1, prevGroup);
-	courseGroupName = AddFramedText(area.left, frametop, framewidth, frameheight, 3, colMBackgr, "", FT.GetSize(), true);
+	courseGroupName = AddFramedText(area.left, frametop, framewidth, frameheight, 3, colMBackgr, Course.currentCourseList->name, FT.GetSize(), true);
 	course = AddUpDown(area.left + framewidth + 8, frametop + frameheight + 20, 0, (int)Course.currentCourseList->size() - 1, g_game.course ? (int)Course.GetCourseIdx(g_game.course) : 0);
 	courseName = AddFramedText(area.left, frametop + frameheight + 20, framewidth, frameheight, 3, colMBackgr, "", FT.GetSize(), true);
 
@@ -200,10 +200,10 @@ void CRaceSelect::Loop(float timestep) {
 		g_game.course = nullptr;
 		course->SetValue(0);
 		course->SetMaximum((int)Course.currentCourseList->size()-1);
+		courseGroupName->SetString(Course.currentCourseList->name);
 	}
 	// selected course
 	courseGroupName->Focussed(courseGroup->focussed());
-	courseGroupName->SetString(Course.currentCourseList->name);
 	courseName->Focussed(course->focussed());
 	courseName->SetString((*Course.currentCourseList)[course->GetValue()].name);
 
