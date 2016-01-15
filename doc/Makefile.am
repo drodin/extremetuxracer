@@ -3,7 +3,8 @@ docs =		\
 	code		\
 	courses_events	\
 	guide		\
-	score_algorithm
+	score_algorithm	\
+	TODO
 
 doc_DATA = $(docs)
 
