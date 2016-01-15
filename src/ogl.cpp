@@ -56,32 +56,15 @@ void check_gl_error() {
 PFNGLLOCKARRAYSEXTPROC glLockArraysEXT_p = nullptr;
 PFNGLUNLOCKARRAYSEXTPROC glUnlockArraysEXT_p = nullptr;
 
-
-typedef void (*(*get_gl_proc_fptr_t)(const GLubyte *))();
 void InitOpenglExtensions() {
-	get_gl_proc_fptr_t get_gl_proc;
-#ifdef OS_WIN32_MSC
-	get_gl_proc = (get_gl_proc_fptr_t)wglGetProcAddress;
-#else
-	get_gl_proc = 0; /// TODO: Add support for Linux (probably glXGetProcAddress)
-#endif
-	if (get_gl_proc) {
-		glLockArraysEXT_p = (PFNGLLOCKARRAYSEXTPROC)
-		                    (*get_gl_proc)((GLubyte*) "glLockArraysEXT");
-		glUnlockArraysEXT_p = (PFNGLUNLOCKARRAYSEXTPROC)
-		                      (*get_gl_proc)((GLubyte*) "glUnlockArraysEXT");
+	glLockArraysEXT_p = (PFNGLLOCKARRAYSEXTPROC)sf::Context::getFunction("glLockArraysEXT");
+	glUnlockArraysEXT_p = (PFNGLUNLOCKARRAYSEXTPROC)sf::Context::getFunction("glUnlockArraysEXT");
 
-		if (glLockArraysEXT_p != nullptr && glUnlockArraysEXT_p != nullptr) {
-
-		} else {
-			Message("GL_EXT_compiled_vertex_array extension NOT supported");
-			glLockArraysEXT_p = nullptr;
-			glUnlockArraysEXT_p = nullptr;
-		}
-	} else {
-		Message("No function available for obtaining GL proc addresses");
+	if (glLockArraysEXT_p == nullptr || glUnlockArraysEXT_p == nullptr) {
+		Message("GL_EXT_compiled_vertex_array extension NOT supported");
+		glLockArraysEXT_p = nullptr;
+		glUnlockArraysEXT_p = nullptr;
 	}
-
 }
 
 void PrintGLInfo() {
