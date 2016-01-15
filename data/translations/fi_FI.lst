@@ -80,8 +80,8 @@
 *[idx] 67 [engl] Loading resources, [trans] Ladataan materiaaleja,
 *[idx] 68 [engl] please wait ... [trans] odota hetki ...
 
-*[idx] 69 [engl] Mirror track: Off [trans] Peilaa rata: Pois päältä
-*[idx] 70 [engl] Mirror track: On [trans] Peilaa rata: Päälle
+*[idx] 69 [engl] Mirror track: Off [trans] Peilaa rata: Ei päällä
+*[idx] 70 [engl] Mirror track: On [trans] Peilaa rata: Päällä
 
 *[idx] 71 [engl] Light: Sunny [trans] Valoisuus: Aurinkoista
 *[idx] 72 [engl] Light: Cloudy [trans] Valoisuus: Pilvistä
