@@ -1,0 +1,117 @@
+# Please, don't change the idx
+
+*[idx] 0 [engl] Press any key to start [trans] Paina mitä hyvänsä näppäintä aloittaaksesi
+*[idx] 1 [engl] Enter an event [trans] Osallistu tapahtumaan
+*[idx] 2 [engl] Practice [trans] Harjoittele
+*[idx] 3 [engl] Configuration [trans] Asetukset
+*[idx] 4 [engl] Credits [trans] Kiitokset
+*[idx] 5 [engl] Quit [trans] Lopeta
+*[idx] 6 [engl] Select an event [trans] Valitse tapahtuma
+*[idx] 7 [engl] Select a cup [trans] Valitse cup
+*[idx] 8 [engl] Back [trans] Takaisin
+*[idx] 9 [engl] Continue [trans] Jatka
+*[idx] 10 [engl] You cannot enter this cup yet [trans] Et pääse tähän cupiin vielä
+
+*[idx] 11 [engl] Herring: [trans] Silakoita:
+*[idx] 12 [engl] Time: [trans] Aika:
+*[idx] 13 [engl] Race! [trans] Laskettele!
+*[idx] 14 [engl] seconds [trans] sekuntia
+*[idx] 15 [engl] Ok [trans] Hyväksy
+*[idx] 16 [engl] Congratulations! You won the cup! [trans] Onnittelut! Voitit cupin!
+*[idx] 17 [engl] You have reached level [trans] Olet saavuttanut tason 
+*[idx] 18 [engl] Sorry, you didn't advance [trans] Pahoittelut, et edennyt
+*[idx] 19 [engl] You don't have any lives left [trans] Ei elämiä jäljellä
+*[idx] 20 [engl] Select a race [trans] Valitse kisa
+
+*[idx] 21 [engl] Failed, -1 Tuxlive [trans] Epäonnistunut yritys, -1 elämä
+*[idx] 22 [engl] Success, +/- 0 Tuxlive [trans] Hyväksytty, +/- 0 elämä
+*[idx] 23 [engl] Success, +1 Tuxlive [trans] Hyväksytty, +1 elämä
+*[idx] 24 [engl] Success, +2 Tuxlive [trans] Hyväksytty, +2 elämää
+*[idx] 25 [engl] Race aborted [trans] Kisa keskeytetty
+*[idx] 26 [engl] Score: [trans] Tulos:
+*[idx] 27 [engl] points [trans] pisteet
+
+*[idx] 28 [engl] Cancel [trans] Peru
+*[idx] 29 [engl] Loading [trans] Ladataan
+*[idx] 30 [engl] Please wait... [trans] Odota...
+
+*[idx] 31 [engl] Fullscreen: [trans] Kokoruututila:
+*[idx] 32 [engl] Resolution: [trans] Tarkkuus:
+*[idx] 33 [engl] Music volume: [trans] Musiikin voimakkuus:
+*[idx] 34 [engl] Sound volume: [trans] Äänien voimakkuus:
+*[idx] 35 [engl] Language: [trans] Kieli:
+*[idx] 36 [engl] Level of detail: [trans] Yksityiskohtien taso:
+*[idx] 37 [engl] Contributed by: [trans] Oikeuksien antaja:
+*[idx] 38 [engl] Event: [trans] Tapahtuma:
+*[idx] 39 [engl] Cup: [trans] Cup:
+*[idx] 40 [engl] Race Over [trans] Kisa ohi
+
+*[idx] 41 [engl] For more configuration options, please edit the [trans] Muita asetuksia voit muuttaa
+*[idx] 42 [engl] file 'options.lst' and read the documentation. [trans] tiedostosta 'options.lst'
+*[idx] 43 [engl] Help [trans] Apua
+*[idx] 44 [engl] 1, 2, 3 - change view mode [trans] 1, 2, 3 - Vaihda kuvakulmaa
+*[idx] 45 [engl] F - hide/show fps display [trans] F - Näytä/kätke ruudun päivitysnopeuden näyttö
+*[idx] 46 [engl] H - hide/show hud display [trans] H - Näytä/kätke HUD
+*[idx] 47 [engl] S - screenshot [trans] S - Ruutukaappaus
+*[idx] 48 [engl] U - toggle ui snow [trans] U - Poista/palauta käyttöliittymän lumisade
+*[idx] 49 [engl] P - set pause mode [trans] P - Taukotila
+*[idx] 50 [engl] T - trick [trans] T - Temppu
+*[idx] 51 [engl] ESC - abort Race [trans] ESC - Keskeytä kisa
+*[idx] 52 [engl] SPACE - jump [trans] Välilyönti - Hyppää
+*[idx] 53 [engl] CRSR Left - turn left [trans] Vasen nuolinäppäin - Käänny vasemmalle
+*[idx] 54 [engl] CRSR Right - turn right [trans] Oikea nuolinäppäin - Käänny oikealle
+*[idx] 55 [engl] CRSR Up - accelerate [trans] Ylös nuolinäppäin - Kiihdytä
+*[idx] 56 [engl] CRSR down - brake [trans] Alas nuolinäppäin - Jarruta
+*[idx] 57 [engl] Keyboard Functions [trans] Näppäinkomennot
+
+*[idx] 58 [engl] Select your player name: [trans] Valitse pelaajanimesi:
+*[idx] 59 [engl] Select a character: [trans] Valitse hahmo:
+*[idx] 60 [engl] Enter [trans] Siirry eteenpäin
+*[idx] 61 [engl] Register a new player [trans] Tee uusi pelaaja
+
+*[idx] 62 [engl] Highscore list [trans] Huipputuloslista
+*[idx] 63 [engl] No entries for this race [trans] Ei tuloksia tästä kisasta
+*[idx] 64 [engl] Back [trans] Takaisin
+
+*[idx] 65 [engl] Press any key to return to the main menu [trans] Paina mitä hyvänsä näppäintä palataksesi päävalikkoon
+
+*[idx] 66 [engl] Enter a name for the new player and select an avatar: [trans] Anna pelaajan nimi ja valitse kuva
+
+*[idx] 67 [engl] Loading resources, [trans] Ladataan materiaaleja,
+*[idx] 68 [engl] please wait ... [trans] odota hetki ...
+
+*[idx] 69 [engl] Mirror track: Off [trans] Peilaa rata: Pois päältä
+*[idx] 70 [engl] Mirror track: On [trans] Peilaa rata: Päälle
+
+*[idx] 71 [engl] Light: Sunny [trans] Valoisuus: Aurinkoista
+*[idx] 72 [engl] Light: Cloudy [trans] Valoisuus: Pilvistä
+*[idx] 73 [engl] Light: Evening [trans] Valoisuus: Ilta
+*[idx] 74 [engl] Light: Night [trans] Valoisuus: Yö
+
+*[idx] 75 [engl] Snow: No [trans] Lumisade: Ei ollenkaan
+*[idx] 76 [engl] Snow: A little [trans] Lumisade: Vähän
+*[idx] 77 [engl] Snow: Some [trans] Lumisade: Jonkin verran
+*[idx] 78 [engl] Snow: A lot [trans] Lumisade: Paljon
+
+*[idx] 79 [engl] Wind: No [trans] Tuuli: Ei ollenkaan
+*[idx] 80 [engl] Wind: Breeze [trans] Tuuli: Vire
+*[idx] 81 [engl] Wind: Strong [trans] Tuuli: Vahva
+*[idx] 82 [engl] Wind: Blustery [trans] Tuuli: Puuskainen
+
+*[idx] 83 [engl] Randomize settings [trans] Aseta satunnaiset asetukset
+
+*[idx] 84 [engl] Score [trans] Tulos
+*[idx] 85 [engl] Herring [trans] Silakoita
+*[idx] 86 [engl] Time [trans] Aika
+*[idx] 87 [engl] Path length [trans] Reitin pituus
+*[idx] 88 [engl] Average speed [trans] Keskinopeus
+*[idx] 89 [engl] Position [trans] Sijoitus
+*[idx] 90 [engl] in highscore list [trans] huipputuloslistalla
+
+*[idx] 91 [engl] Author [trans] Tekijä
+
+*[idx] 92 [engl] Loading courses failed. [trans] Ratojen lataaminen epäonnistui.
+*[idx] 93 [engl] Loading characters failed. [trans] Hahmojen lataaminen epäonnistui.
+*[idx] 94 [engl] Loading environments failed. [trans] Ympäristöjen lataaminen epäonnistui.
+*[idx] 95 [engl] Loading terrains failed. [trans] Maastojen lataaminen epäonnistui.
+*[idx] 96 [engl] Loading avatars failed. [trans] Pelaajakuvien lataaminen epäonnistui.
