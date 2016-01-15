@@ -142,8 +142,8 @@ void CTranslation::SetDefaultTranslations() {
 	texts[95] = "Loading terrains failed.";
 	texts[96] = "Loading avatars failed.";
 
-        texts[97] = "herrings";
-        texts[98] = "sec";
+	texts[97] = "herrings";
+	texts[98] = "sec";
 }
 
 const sf::String& CTranslation::Text(size_t idx) const {
