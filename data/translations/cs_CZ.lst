@@ -1,0 +1,112 @@
+# Please, don't change the idx
+# Translation by "Pavel Borecki",
+# index 15 ("Ok") added in English by Marko Lindqvist to make button available
+
+*[idx] 0 [engl] PRESS ANY KEY TO START [trans] SPUSŤTE STISKEM LIBOVOLNÉ KLÁVESY
+*[idx] 1 [engl] Enter an event [trans] Zúčastnit se soutěže
+*[idx] 2 [engl] Practice [trans] Tréning
+*[idx] 3 [engl] Configuration [trans] Nastavení
+*[idx] 4 [engl] Credits [trans] Poděkování
+*[idx] 5 [engl] Quit [trans] Ukončit
+*[idx] 6 [engl] Select an event [trans] Vyberte soutěž
+*[idx] 7 [engl] Select a cup [trans] Vyberte pohár
+*[idx] 8 [engl] Back [trans] Zpět
+*[idx] 9 [engl] Continue [trans] Pokračovat
+*[idx] 10 [engl] You cannot enter this cup yet [trans] Do tohoto poháru je třeba se teprve probojovat
+
+*[idx] 11 [engl] Herring: [trans] Ryba:
+*[idx] 12 [engl] Time: [trans] Čas:
+*[idx] 13 [engl] Race! [trans] Jet!
+*[idx] 14 [engl] seconds [trans] sekund
+*[idx] 15 [engl] Ok [trans] Ok
+*[idx] 16 [engl] Congratulations! You won the cup! [trans] Gratulujeme! Vyhráli jste pohár!
+*[idx] 17 [engl] You have reached level [trans] Dosáhli jste úrovně
+*[idx] 18 [engl] Sorry, you didn't advance [trans] Je nám líto, ale nepokročili jste
+*[idx] 19 [engl] You don't have any lives left [trans] Nezbývají vám již žádné životy
+*[idx] 20 [engl] Select a race [trans] Vyberte závod
+
+*[idx] 21 [engl] Failed, -1 Tuxlive [trans] Neúspěch, -1 Tuxův život
+*[idx] 22 [engl] Success, +/- 0 Tuxlive [trans] Úspěch, +/- 0 Tuxových životů
+*[idx] 23 [engl] Success, +1 Tuxlive [trans] Úspěch, +1 Tuxův život
+*[idx] 24 [engl] Success, +2 Tuxlive [trans] Úspěch, +2 Tuxovy životy
+*[idx] 25 [engl] Race aborted [trans] Závod přerušen
+*[idx] 26 [engl] Score: [trans] Skóre:
+*[idx] 27 [engl] points [trans] bodů
+
+*[idx] 28 [engl] Cancel [trans] Zrušit
+*[idx] 29 [engl] Loading [trans] Načítání
+*[idx] 30 [engl] Please wait... [trans] Čekejte…
+
+*[idx] 31 [engl] Fullscreen: [trans] Na celou obrazovku:
+*[idx] 32 [engl] Resolution: [trans] Rozlišení:
+*[idx] 33 [engl] Music volume: [trans] Hlasitost hudby:
+*[idx] 34 [engl] Sound volume: [trans] Hlasitost zvukových efektů:
+*[idx] 35 [engl] Language: [trans] Jazyk:
+*[idx] 36 [engl] Level of detail: [trans] Úroveň podrobností:
+*[idx] 37 [engl] Contributed by: [trans] Autor:
+*[idx] 38 [engl] Event: [trans] Soutěž:
+*[idx] 39 [engl] Cup: [trans] Pohár:
+*[idx] 40 [engl] Race Over [trans] Závod skončil
+
+*[idx] 41 [engl] For more configuration options, please edit the [trans] Další možnosti nastavení naleznete při upravování
+*[idx] 42 [engl] file 'options.lst' and read the documentation. [trans] souboru options.lst a čtením dokumentace.
+*[idx] 43 [engl] Help [trans] Nápověda
+*[idx] 44 [engl] 1, 2, 3 - change view mode [trans] 1, 2, 3 – změna pohledu
+*[idx] 45 [engl] F - hide/show fps display [trans] F – zobrazit/skrýt počet vykreslovaných snímků za sekundu
+*[idx] 46 [engl] H - hide/show hud display [trans] H – zobrazit/skrýt průhledový displej
+*[idx] 47 [engl] S - screenshot [trans] S – pořízení snímku obrazovky
+*[idx] 48 [engl] U - toggle ui snow [trans] U – vyp/zap sníh v uživatelském rozhraní
+*[idx] 49 [engl] P - set pause mode [trans] P – pauza 
+*[idx] 50 [engl] T - trick [trans] trik T – trik
+*[idx] 51 [engl] ESC - abort Race [trans] ESC – přerušit závod
+*[idx] 52 [engl] SPACE - jump [trans] Mezerník – skok
+*[idx] 53 [engl] CRSR Left - turn left [trans] Šipka vlevo – zatočit vlevo
+*[idx] 54 [engl] CRSR Right - turn right [trans] Šipka vpravo – zatočit vpravo
+*[idx] 55 [engl] CRSR Up - accelerate [trans] Šipka nahoru – zrychlit
+*[idx] 56 [engl] CRSR down - brake [trans] Šipka dolů – brzdit
+*[idx] 57 [engl] Keyboard Functions [trans] Funkce klávesnice
+*[idx] 65 [engl] Press any key to return to the main menu [trans] Stiskem libovolné klávesy se vraťte do hlavní nabídky
+
+*[idx] 58 [engl] Select your player name: [trans] Vyberte jméno hráče:
+*[idx] 59 [engl] Select a character: [trans] Vyberte postavu:
+*[idx] 60 [engl] Enter [trans] Vstoupit
+*[idx] 61 [engl] Register a new player [trans] Zapsat nového závodníka
+
+*[idx] 62 [engl] Highscore list [trans] Nejlepší výsledky
+*[idx] 63 [engl] No entries for this race [trans] Pro tento závod nejsou k dispozici žádné položky
+*[idx] 64 [engl] Back [trans] Zpět
+
+*[idx] 66 [engl] Enter a name for the new player and select an avatar: [trans] Zadejte jméno nového hráče a vyberte postavu, která ho bude představovat
+
+*[idx] 67 [engl] Loading resources, [trans] Načítání dat,
+*[idx] 68 [engl] please wait [trans] čekejte
+
+*[idx] 69 [engl] Mirror track: Off [trans] Zrcadlová trať: ne
+*[idx] 70 [engl] Mirror track: On [trans] Zrcadlová trať: ano
+
+*[idx] 71 [engl] Light: Sunny [trans] Slunečno
+*[idx] 72 [engl] Light: Cloudy [trans] Zataženo
+*[idx] 73 [engl] Light: Evening [trans] Večer
+*[idx] 74 [engl] Light: Night [trans] Noc
+
+*[idx] 75 [engl] Snow: No [trans] Sníh: žádný
+*[idx] 76 [engl] Snow: A little [trans] Sníh: trochu
+*[idx] 77 [engl] Snow: Some [trans] Sníh: trochu více
+*[idx] 78 [engl] Snow: A lot [trans] Sníh: hodně
+
+*[idx] 79 [engl] Wind: No [trans] Vítr: žádný
+*[idx] 80 [engl] Wind: Breeze [trans] Vítr: vánek
+*[idx] 81 [engl] Wind: Strong [trans] Vítr: silný
+*[idx] 82 [engl] Wind: Blustery [trans] Vítr: vichřice
+
+*[idx] 83 [engl] Randomize settings [trans] Náhodné nastavení
+
+*[idx] 84 [engl] Score [trans] Počet bodů
+*[idx] 85 [engl] Herring [trans] Ryba
+*[idx] 86 [engl] Time [trans] Čas
+*[idx] 87 [engl] Path length [trans] Délka trasy
+*[idx] 88 [engl] Average speed [trans] Průměrná rychlost
+*[idx] 89 [engl] Position [trans] Pozice
+*[idx] 90 [engl] in highscore list [trans] na seznamu nejlepších výsledků
+
+*[idx] 91 [engl] Author [trans] Autor
