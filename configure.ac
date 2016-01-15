@@ -1,8 +1,9 @@
 #                                               -*- Autoconf -*-
 # Process this file with autoconf to produce a configure script.
 
-AC_PREREQ([2.61])
-AC_INIT([etr], [0.7.99], [https://sourceforge.net/apps/phpbb/extremetuxracer])
+AC_PREREQ([2.64])
+AC_INIT([Extreme Tux Racer], [0.7.99], [https://sourceforge.net/projects/extremetuxracer],
+        [etr], [http://sourceforge.net/projects/extremetuxracer])
 AC_CONFIG_SRCDIR([src/gui.cpp])
 AC_CONFIG_HEADERS([etr_config.h])
 
