@@ -284,9 +284,9 @@ void CScore::Loop(float timestep) {
 				FT.DrawString(area.left + dd1, y, Int_StrN(list->scores[i].points));
 				FT.DrawString(area.left + dd2, y, list->scores[i].player);
 				FT.DrawString(area.left + dd3, y,
-				              Int_StrN(list->scores[i].herrings) + "  herrings");
+				              Int_StrN(list->scores[i].herrings) + "  " + Trans.Text(97));
 				FT.DrawString(area.left + dd4, y,
-				              Float_StrN(list->scores[i].time, 1) + "  sec");
+				              Float_StrN(list->scores[i].time, 1) + "  " + Trans.Text(98));
 			}
 		}
 	}
