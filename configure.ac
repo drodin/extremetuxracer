@@ -7,7 +7,7 @@ AC_INIT([Extreme Tux Racer], [0.7.99], [https://sourceforge.net/projects/extreme
 AC_CONFIG_SRCDIR([src/gui.cpp])
 AC_CONFIG_HEADERS([etr_config.h])
 
-AM_INIT_AUTOMAKE([subdir-objects dist-xz dist-zip])
+AM_INIT_AUTOMAKE([subdir-objects dist-xz dist-zip no-dist-gzip])
 
 AC_CANONICAL_HOST
 
