@@ -5,4 +5,5 @@ EXTRA_DIST = 				\
 	ExtremeTuxRacer.vcxproj		\
 	ExtremeTuxRacer.vcxproj.filters	\
 	Installer.sln			\
+	prepare_build_installer.bat	\
 	Readme.txt
