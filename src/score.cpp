@@ -273,23 +273,20 @@ void CScore::Loop(float timestep) {
 	const TScoreList *list = Score.GetScorelist(CourseList->name, (*CourseList)[course->GetValue()].dir);
 
 	FT.SetColor(colWhite);
-	if (list != nullptr) {
-		FT.AutoSizeN(3);
-		if (list->numScores < 1) {
-			FT.DrawString(CENTER, area.top + 140, Trans.Text(63));
-		} else {
-			for (int i=0; i<min(MAX_SCORES, list->numScores); i++) {
-				int y = listtop + i*linedist;
-				FT.DrawString(area.left, y, ordinals[i]);
-				FT.DrawString(area.left + dd1, y, Int_StrN(list->scores[i].points));
-				FT.DrawString(area.left + dd2, y, list->scores[i].player);
-				FT.DrawString(area.left + dd3, y,
-				              Int_StrN(list->scores[i].herrings) + "  " + Trans.Text(97));
-				FT.DrawString(area.left + dd4, y,
-				              Float_StrN(list->scores[i].time, 1) + "  " + Trans.Text(98));
-			}
+	FT.AutoSizeN(3);
+	if (list != nullptr && list->numScores > 0) {
+		for (int i=0; i<min(MAX_SCORES, list->numScores); i++) {
+			int y = listtop + i*linedist;
+			FT.DrawString(area.left, y, ordinals[i]);
+			FT.DrawString(area.left + dd1, y, Int_StrN(list->scores[i].points));
+			FT.DrawString(area.left + dd2, y, list->scores[i].player);
+			FT.DrawString(area.left + dd3, y,
+			              Int_StrN(list->scores[i].herrings) + "  " + Trans.Text(97));
+			FT.DrawString(area.left + dd4, y,
+			              Float_StrN(list->scores[i].time, 1) + "  " + Trans.Text(98));
 		}
-	}
+	} else
+		FT.DrawString(CENTER, area.top + 140, Trans.Text(63));
 
 	DrawGUI();
 

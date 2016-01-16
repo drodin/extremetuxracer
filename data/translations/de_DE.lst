@@ -1,6 +1,6 @@
 # Please, don't change the idx
 
-*[idx] 0 [engl] PRESS ANY KEY TO START [trans] Beliebige Taste drücken um fortzufahren
+*[idx] 0 [engl] PRESS ANY KEY TO START [trans] Beliebige Taste drücken, um fortzufahren...
 *[idx] 1 [engl] Enter an event [trans] Veranstaltungen
 *[idx] 2 [engl] Practice [trans] Training
 *[idx] 3 [engl] Configuration [trans] Einstellungen
@@ -11,7 +11,7 @@
 *[idx] 8 [engl] Back [trans] Zurück
 *[idx] 9 [engl] Continue [trans] Weiter
 *[idx] 10 [engl] You cannot enter this cup yet
-	[trans] Du kannst an diesem Wettbewerb noch nicht teilnehmen
+	[trans] Du kannst an diesem Wettbewerb noch nicht teilnehmen.
 
 *[idx] 11 [engl] Herring: [trans] Heringe:
 *[idx] 12 [engl] Time: [trans] Zeit:
@@ -20,15 +20,15 @@
 *[idx] 15 [engl] Ok [trans] Ok
 *[idx] 16 [engl] Congratulations! You won the cup! [trans] Gratulation! Du hast den Wettbewerb gewonnen!
 *[idx] 17 [engl] You have reached level [trans] Du hat es geschafft. Level:
-*[idx] 18 [engl] Sorry, you didn't advance [trans] Du hast es leider nicht geschafft
-*[idx] 19 [engl] You don't have any lives left [trans] Du hast kein Leben mehr übrig
+*[idx] 18 [engl] Sorry, you didn't advance [trans] Du hast es leider nicht geschafft.
+*[idx] 19 [engl] You don't have any lives left [trans] Du hast kein Leben mehr übrig.
 *[idx] 20 [engl] Select a race [trans] Rennen auswählen
 
-*[idx] 21 [engl] Failed, -1 Tuxlive [trans] Nicht geschafft, -1 Leben
-*[idx] 22 [engl] Success, +/- 0 Tuxlive [trans] Geschafft, +/- 0 Leben
-*[idx] 23 [engl] Success, +1 Tuxlive [trans] Geschafft, + 1 Leben
-*[idx] 24 [engl] Success, +2 Tuxlive [trans] Geschafft, + 2 Leben
-*[idx] 25 [engl] Race aborted [trans] Rennen abgebrochen
+*[idx] 21 [engl] Failed, -1 Tuxlive [trans] Nicht geschafft, -1 Leben.
+*[idx] 22 [engl] Success, +/- 0 Tuxlive [trans] Geschafft, +/- 0 Leben.
+*[idx] 23 [engl] Success, +1 Tuxlive [trans] Geschafft, + 1 Leben.
+*[idx] 24 [engl] Success, +2 Tuxlive [trans] Geschafft, + 2 Leben.
+*[idx] 25 [engl] Race aborted [trans] Rennen abgebrochen.
 *[idx] 26 [engl] Score: [trans] Wertung:
 *[idx] 27 [engl] points [trans] Punkte
 
@@ -50,7 +50,7 @@
 *[idx] 41 [engl] For more configuration options, please edit the
 	[trans] Für weitere Einstellungen bearbeite bitte die
 *[idx] 42 [engl] file 'options.lst' and read the documentation.
-	[trans] Datei 'options.lst' und lies die Dokumentation
+	[trans] Datei 'options.lst' und lies die Dokumentation.
 *[idx] 43 [engl] Help [trans] Hilfe
 *[idx] 44 [engl] 1, 2, 3 - change view mode [trans] 1, 2, 3 - Wechsel der Ansicht
 *[idx] 45 [engl] F - hide/show fps display [trans] F - Fps-Anzeige
@@ -66,7 +66,7 @@
 *[idx] 55 [engl] CRSR Up - accelerate [trans] Pfeil oben - beschleunigen
 *[idx] 56 [engl] CRSR down - brake [trans] Pfeil unten - bremsen
 *[idx] 57 [engl] Keyboard functions [trans] Tastatur-Befehle
-*[idx] 65 [engl] Press any key to return to the main menu [trans] Beliebige Taste drücken, um ins Hauptmenü zurückzukehren
+*[idx] 65 [engl] Press any key to return to the main menu [trans] Beliebige Taste drücken, um ins Hauptmenü zurückzukehren.
 
 *[idx] 58 [engl] Select your player name: [trans] Wähle deinen Spieler-Namen:
 *[idx] 59 [engl] Select a character: [trans] Wähle einen Charakter:
@@ -74,7 +74,7 @@
 *[idx] 61 [engl] Register a new player [trans] Neuen Spieler registrieren
 
 *[idx] 62 [engl] Highscore list [trans] Punkteliste
-*[idx] 63 [engl] No entries for this race [trans] Keine Einträge für dieses Rennen
+*[idx] 63 [engl] No entries for this race [trans] Keine Einträge für dieses Rennen.
 *[idx] 64 [engl] Back [trans] Zurück
 
 *[idx] 66 [engl] Enter a name for the new player and select an avatar: [trans] Gib den Namen des Spielers ein und wähle ein Avatar:
@@ -117,3 +117,5 @@
 *[idx] 94 [engl] Loading environments failed. [trans] Umgebungsdaten konnten nicht geladen werden.
 *[idx] 95 [engl] Loading terrains failed. [trans] Terrain konnten nicht geladen werden.
 *[idx] 96 [engl] Loading avatars failed. [trans] Avatare konnten nicht geladen werden.
+*[idx] 97 [engl] herrings [trans] Heringe
+*[idx] 98 [engl] sec [trans] Sek

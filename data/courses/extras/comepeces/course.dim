@@ -3,6 +3,6 @@
 [env]etr
 [author]garions
 
-*[lang] default [name] Come peces [desc] This course has many ways
-*[lang] de_DE [name] Come peces [desc] Piste mit vielen Wegen
-*[lang] es_ES [name] Come peces [desc] Pista con muchos caminos
+*[name] Come peces [desc] This course has many ways.
+[name-de_DE] Come peces [desc-de_DE] Piste mit vielen Wegen.
+[name-es_ES] Come peces [desc-es_ES] Pista con muchos caminos.
