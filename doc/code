@@ -13,7 +13,7 @@ recent versions of GCC, Clang and MSVC.
 Extreme Tux Racer has - though aming to not have more dependencies than
 necessary - the following dependencies:
 - OpenGL
-- SFML (modules: system, graphics, audio and window), version 2.0 or later
+- SFML 2.3 or later (modules: system, graphics, audio and window)
 
 The code is prepared to be compiled on Windows and Unix environments. For
 Windows, there exists a solution for Microsoft Visual Studio (see /build); on
@@ -35,5 +35,5 @@ Final Remarks
 
 Before r548, this file contained a much longer text written by Reinhard
 Niehoff. Today, that text is outdated, but it nicely explains what changed
-since the days of TuxRacer. So, in case someone is interested in the history of
+since the days of TuxRacer. So, in case you are interested in the history of
 this project - have a look!
