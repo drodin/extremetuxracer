@@ -39,21 +39,21 @@ esac
 AC_FUNC_MALLOC
 AC_CHECK_FUNCS([floor getcwd memmove memset mkdir pow sqrt strchr strdup])
 
-PKG_CHECK_MODULES([SFML_AUDIO], [sfml-audio >= 2.2],
+PKG_CHECK_MODULES([SFML_AUDIO], [sfml-audio >= 2.3],
 [
   CFLAGS="${CFLAGS} $SFML_AUDIO_CFLAGS"
   LIBS="${LIBS} $SFML_AUDIO_LIBS"
 ],
 [AC_MSG_ERROR([sfml-audio not found])])
 
-PKG_CHECK_MODULES([SFML_WINDOW], [sfml-window >= 2.2],
+PKG_CHECK_MODULES([SFML_WINDOW], [sfml-window >= 2.3],
 [
   CFLAGS="${CFLAGS} $SFML_WINDOW_CFLAGS"
   LIBS="${LIBS} $SFML_WINDOW_LIBS"
 ],
 [AC_MSG_ERROR([sfml-window not found])])
 
-PKG_CHECK_MODULES([SFML_GRAPHICS], [sfml-graphics >= 2.2],
+PKG_CHECK_MODULES([SFML_GRAPHICS], [sfml-graphics >= 2.3],
 [
   CFLAGS="${CFLAGS} $SFML_GRAPHICS_CFLAGS"
   LIBS="${LIBS} $SFML_GRAPHICS_LIBS"
