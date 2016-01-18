@@ -411,9 +411,6 @@ bool CSPList::Load(const std::string &filepath) {
 
 					backflag = fwdflag;
 				}
-			} else {
-				Message("CSPList::Load - not enough lines");
-				return false;
 			}
 		}
 		return true;

@@ -64,7 +64,7 @@ void TTexture::Draw() {
 	glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_HEIGHT, &h);
 
 	glColor4f(1.0, 1.0, 1.0, 1.0);
-	const GLshort vtx[] = {
+	const GLint vtx[] = {
 		0, 0,
 		w, 0,
 		w, h,
@@ -73,7 +73,7 @@ void TTexture::Draw() {
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 
-	glVertexPointer(2, GL_SHORT, 0, vtx);
+	glVertexPointer(2, GL_INT, 0, vtx);
 	glTexCoordPointer(2, GL_SHORT, 0, fullsize_texture);
 	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 
@@ -267,10 +267,10 @@ void CTexture::DrawNumChr(char c, int x, int y, int w, int h) {
 		texleft, 0
 	};
 	const GLfloat vtx[] = {
-		x,           Winsys.resolution.height - y - h,
-		x + w * 0.9, Winsys.resolution.height - y - h,
-		x + w * 0.9, Winsys.resolution.height - y,
-		x,           Winsys.resolution.height - y
+		x,            Winsys.resolution.height - y - h,
+		x + w * 0.9f, Winsys.resolution.height - y - h,
+		x + w * 0.9f, Winsys.resolution.height - y,
+		x,            Winsys.resolution.height - y
 	};
 
 	glVertexPointer(2, GL_FLOAT, 0, vtx);
