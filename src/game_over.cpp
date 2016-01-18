@@ -88,7 +88,7 @@ void GameOverMessage(const CControl *ctrl) {
 		if (g_game.race_result >= 0 || g_game.game_type != CUPRACING) FT.SetColor(colDBlue);
 		else FT.SetColor(colDRed);
 
-		string line = Trans.Text(84) + ":  ";
+		std::string line = Trans.Text(84) + ":  ";
 		FT.DrawString(firstMarker, topframe + 15, line);
 		line = Int_StrN(g_game.score);
 		line += "  pts";

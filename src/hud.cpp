@@ -57,9 +57,9 @@ static void draw_time() {
 
 	int min, sec, hundr;
 	GetTimeComponents(g_game.time, &min, &sec, &hundr);
-	string timestr = Int_StrN(min, 2);
-	string secstr = Int_StrN(sec, 2);
-	string hundrstr = Int_StrN(hundr, 2);
+	std::string timestr = Int_StrN(min, 2);
+	std::string secstr = Int_StrN(sec, 2);
+	std::string hundrstr = Int_StrN(hundr, 2);
 
 	timestr += ':';
 	timestr += secstr;
@@ -81,7 +81,7 @@ static void draw_time() {
 static void draw_herring_count(int herring_count) {
 	Tex.Draw(HERRING_ICON, Winsys.resolution.width - 59, 12, 1);
 
-	string hcountstr = Int_StrN(herring_count, 3);
+	std::string hcountstr = Int_StrN(herring_count, 3);
 	if (param.use_papercut_font < 2) {
 		Tex.DrawNumStr(hcountstr, Winsys.resolution.width - 130, 12, 1, colWhite);
 	} else {
@@ -213,7 +213,7 @@ void draw_gauge(double speed, double energy) {
 }
 
 void DrawSpeed(double speed) {
-	string speedstr = Int_StrN((int)speed, 3);
+	std::string speedstr = Int_StrN((int)speed, 3);
 	if (param.use_papercut_font < 2) {
 		Tex.DrawNumStr(speedstr,
 		               Winsys.resolution.width - 87, Winsys.resolution.height-73, 1, colWhite);
@@ -279,7 +279,7 @@ void DrawWind(float dir, float speed, const CControl *ctrl) {
 	glEnable(GL_TEXTURE_2D);
 
 	Tex.Draw(SPEED_KNOB, 5 + texWidth / 2 - 8, Winsys.resolution.height - 5 - texWidth / 2 - 8, 1.0);
-	string windstr = Int_StrN((int)speed, 3);
+	std::string windstr = Int_StrN((int)speed, 3);
 	if (param.use_papercut_font < 2) {
 		Tex.DrawNumStr(windstr, 120, Winsys.resolution.height - 45, 1, colWhite);
 	} else {
@@ -309,7 +309,7 @@ void DrawFps() {
 	}
 	if (averagefps < 1) return;
 
-	string fpsstr = Int_StrN((int)averagefps);
+	std::string fpsstr = Int_StrN((int)averagefps);
 	if (param.use_papercut_font < 2) {
 		Tex.DrawNumStr(fpsstr, (Winsys.resolution.width - 60) / 2, 10, 1, colWhite);
 	} else {

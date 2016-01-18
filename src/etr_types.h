@@ -69,15 +69,15 @@ struct TGameData {
 	bool mirrorred;
 	TPlayer* player;
 	TCharacter* character;
-	size_t start_player;
+	std::size_t start_player;
 	TCup* cup;
 	TRace* race; // Only valid if not in practice mode
 	TCourse* course;
-	size_t location_id;
-	size_t light_id;
+	std::size_t location_id;
+	std::size_t light_id;
 	int snow_id;
 	int wind_id;
-	size_t theme_id;
+	std::size_t theme_id;
 
 	// race results (better in player.ctrl ?)
 	float time;				// reached time

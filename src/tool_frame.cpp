@@ -29,7 +29,7 @@ GNU General Public License for more details.
 #include "tux.h"
 #include "winsys.h"
 
-static size_t curr_frame = 0;
+static std::size_t curr_frame = 0;
 static int curr_joint = 0;
 static int last_joint = 0;
 static TVector3d ref_position(0, 0, 0);
@@ -232,7 +232,7 @@ void RenderSingleFrame(float timestep) {
 	ScopedRenderMode rm1(TUX);
 	ClearRenderContext(colDDBackgr);
 
-	const string& hlname = TestFrame.GetHighlightName(curr_joint);
+	const std::string& hlname = TestFrame.GetHighlightName(curr_joint);
 	TestChar.highlight_node = TestChar.GetNodeName(hlname);
 
 	glPushMatrix();
@@ -253,7 +253,7 @@ void RenderSingleFrame(float timestep) {
 	FT.DrawString(-1, 10, "Keyframe mode");
 
 	FT.SetProps("normal", 16);
-	for (size_t i=0; i<TestFrame.numFrames(); i++) {
+	for (std::size_t i=0; i<TestFrame.numFrames(); i++) {
 		if (i != curr_frame) {
 			FT.SetColor(colLGrey);
 			FT.SetFont("normal");

@@ -69,16 +69,11 @@ GNU General Public License for more details.
 #	define SEP "/"
 #endif
 
-// --------------------------------------------------------------------
-//			defines
-// --------------------------------------------------------------------
 
 #define USE_STENCIL_BUFFER
 
 #include "version.h"
 #define WINDOW_TITLE "Extreme Tux Racer " ETR_VERSION_STRING
-
-using namespace std;
 
 #include "etr_types.h"
 #include "common.h"

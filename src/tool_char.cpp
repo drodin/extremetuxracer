@@ -28,12 +28,12 @@ GNU General Public License for more details.
 #include "tux.h"
 #include "winsys.h"
 
-static size_t firstnode = 0;
-static size_t lastnode;
-static size_t curr_node = 0;
-static size_t firstact = 0;
-static size_t lastact;
-static size_t curr_act = 0;
+static std::size_t firstnode = 0;
+static std::size_t lastnode;
+static std::size_t curr_node = 0;
+static std::size_t firstact = 0;
+static std::size_t lastact;
+static std::size_t curr_act = 0;
 
 static float xposition = 0;
 static float yposition = 0;
@@ -68,14 +68,14 @@ void InitCharTools() {
 }
 
 void StoreAction(TCharAction *act) {
-	for (size_t i=0; i<=act->num; i++) {
+	for (std::size_t i=0; i<=act->num; i++) {
 		Undo.vec[i] = act->vec[i];
 		Undo.dval[i] = act->dval[i];
 	}
 }
 
 void RecallAction(TCharAction *act) {
-	for (size_t i=0; i<=act->num; i++) {
+	for (std::size_t i=0; i<=act->num; i++) {
 		act->vec[i] = Undo.vec[i];
 		act->dval[i] = Undo.dval[i];
 	}
@@ -286,7 +286,7 @@ void CharMotion(int x, int y) {
 	}
 }
 
-void DrawActionVec(size_t nr, const string& s, int y, const TVector3d& v) {
+void DrawActionVec(std::size_t nr, const std::string& s, int y, const TVector3d& v) {
 	FT.SetColor(colLGrey);
 	FT.DrawString(20, y, s);
 	if (nr == curr_act) {
@@ -313,7 +313,7 @@ void DrawActionVec(size_t nr, const string& s, int y, const TVector3d& v) {
 	}
 }
 
-void DrawActionFloat(size_t nr, const string& s, int y, float f) {
+void DrawActionFloat(std::size_t nr, const std::string& s, int y, float f) {
 	FT.SetColor(colLGrey);
 	FT.DrawString(20, y, s);
 	if (nr == curr_act) FT.SetColor(colYellow);
@@ -355,7 +355,7 @@ void RenderChar(float timestep) {
 	if (CharHasChanged()) DrawChanged();
 
 	FT.SetSize(16);
-	for (size_t i=0; i<=lastnode; i++) {
+	for (std::size_t i=0; i<=lastnode; i++) {
 		if (i != curr_node) {
 			FT.SetColor(colLGrey);
 			FT.SetFont("normal");
@@ -368,8 +368,8 @@ void RenderChar(float timestep) {
 		FT.DrawString(xl, yt, TestChar.GetNodeJoint(i));
 	}
 
-	size_t num = action->num;
-	for (size_t i=0; i<num; i++) {
+	std::size_t num = action->num;
+	for (std::size_t i=0; i<num; i++) {
 		is_visible = false;
 		int type = action->type[i];
 		int yt = Winsys.resolution.height - 120 + (int)i * 18;

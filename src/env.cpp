@@ -53,7 +53,7 @@ CEnvironment::CEnvironment() {
 	lightcond[1] = "cloudy";
 	lightcond[2] = "evening";
 	lightcond[3] = "night";
-	for (size_t i = 0; i < 4; i++)
+	for (std::size_t i = 0; i < 4; i++)
 		LightIndex[lightcond[i]] = i;
 	Skybox = nullptr;
 
@@ -131,7 +131,7 @@ bool CEnvironment::LoadEnvironmentList() {
 	}
 
 	locs.resize(list.size());
-	size_t i = 0;
+	std::size_t i = 0;
 	for (CSPList::const_iterator line = list.cbegin(); line != list.cend(); ++line, i++) {
 		locs[i].name = SPStrN(*line, "location");
 		locs[i].high_res = SPBoolN(*line, "high_res", false);
@@ -140,16 +140,16 @@ bool CEnvironment::LoadEnvironmentList() {
 	return true;
 }
 
-string CEnvironment::GetDir(size_t location, size_t light) const {
+std::string CEnvironment::GetDir(std::size_t location, std::size_t light) const {
 	if (location >= locs.size()) return "";
 	if (light >= 4) return "";
-	string res =
+	std::string res =
 	    param.env_dir2 + SEP +
 	    locs[location].name + SEP + lightcond[light];
 	return res;
 }
 
-void CEnvironment::LoadSkyboxSide(size_t index, const string& EnvDir, const string& name, bool high_res) {
+void CEnvironment::LoadSkyboxSide(std::size_t index, const std::string& EnvDir, const std::string& name, bool high_res) {
 	bool loaded = false;
 	if (param.perf_level > 3 && high_res)
 		loaded = Skybox[index].Load(EnvDir, name + "H.png");
@@ -158,7 +158,7 @@ void CEnvironment::LoadSkyboxSide(size_t index, const string& EnvDir, const stri
 		Skybox[index].Load(EnvDir, name + ".png");
 }
 
-void CEnvironment::LoadSkybox(const string& EnvDir, bool high_res) {
+void CEnvironment::LoadSkybox(const std::string& EnvDir, bool high_res) {
 	Skybox = new TTexture[param.full_skybox ? 6 : 3];
 	LoadSkyboxSide(0, EnvDir, "front", high_res);
 	LoadSkyboxSide(1, EnvDir, "left", high_res);
@@ -170,8 +170,8 @@ void CEnvironment::LoadSkybox(const string& EnvDir, bool high_res) {
 	}
 }
 
-void CEnvironment::LoadLight(const string& EnvDir) {
-	static const string idxstr = "[fog]-1[0]0[1]1[2]2[3]3[4]4[5]5[6]6";
+void CEnvironment::LoadLight(const std::string& EnvDir) {
+	static const std::string idxstr = "[fog]-1[0]0[1]1[2]2[3]3[4]4[5]5[6]6";
 
 	CSPList list;
 	if (!list.Load(EnvDir, "light.lst")) {
@@ -180,7 +180,7 @@ void CEnvironment::LoadLight(const string& EnvDir) {
 	}
 
 	for (CSPList::const_iterator line = list.cbegin(); line != list.cend(); ++line) {
-		string item = SPStrN(*line, "light", "none");
+		std::string item = SPStrN(*line, "light", "none");
 		int idx = SPIntN(idxstr, item, -1);
 		if (idx < 0) {
 			fog.is_on = SPBoolN(*line, "fog", true);
@@ -377,19 +377,19 @@ void CEnvironment::DrawFog() {
 }
 
 
-void CEnvironment::LoadEnvironment(size_t loc, size_t light) {
+void CEnvironment::LoadEnvironment(std::size_t loc, std::size_t light) {
 	if (loc >= locs.size()) loc = 0;
 	if (light >= 4) light = 0;
 	// remember: with (example) 3 locations and 4 lights there
 	// are 12 different environments
-	size_t env_id = loc * 100 + light;
+	std::size_t env_id = loc * 100 + light;
 
 	if (env_id == EnvID)
 		return; // Already loaded
 	EnvID = env_id;
 
 	// Set directory. The dir is used several times.
-	string EnvDir = GetDir(loc, light);
+	std::string EnvDir = GetDir(loc, light);
 
 	// Load skybox. If the sky can't be loaded for any reason, the
 	// texture id's are set to 0 and the sky will not be drawn.
@@ -403,10 +403,10 @@ void CEnvironment::LoadEnvironment(size_t loc, size_t light) {
 	LoadLight(EnvDir);
 }
 
-size_t CEnvironment::GetEnvIdx(const string& tag) const {
+std::size_t CEnvironment::GetEnvIdx(const std::string& tag) const {
 	return EnvIndex.at(tag);
 }
 
-size_t CEnvironment::GetLightIdx(const string& tag) const {
+std::size_t CEnvironment::GetLightIdx(const std::string& tag) const {
 	return LightIndex.at(tag);
 }

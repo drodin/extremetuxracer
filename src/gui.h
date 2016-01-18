@@ -106,12 +106,12 @@ class TTextField : public TWidget {
 	sf::Text text;
 	sf::RectangleShape frame;
 	sf::RectangleShape cursorShape;
-	size_t cursorPos;
-	size_t maxLng;
+	std::size_t cursorPos;
+	std::size_t maxLng;
 	float time;
 	bool cursor;
 
-	void SetCursorPos(size_t new_pos);
+	void SetCursorPos(std::size_t new_pos);
 public:
 	TTextField(int x, int y, int width, int height, const sf::String& text_);
 	void Draw() const;
@@ -203,7 +203,7 @@ void ResetGUI();
 
 void DrawFrameX(int x, int y, int w, int h, int line,
                 const sf::Color& backcol, const sf::Color& framecol, double transp);
-void DrawBonusExt(int y, size_t numraces, size_t num);
+void DrawBonusExt(int y, std::size_t numraces, std::size_t num);
 void DrawGUIBackground(float scale);
 void DrawGUIFrame();
 void DrawCursor();

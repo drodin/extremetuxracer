@@ -36,13 +36,13 @@ struct TPlane {
 	{}
 };
 
-struct TPolygon		{ vector<int> vertices; };
+struct TPolygon		{ std::vector<int> vertices; };
 struct TSphere		{ double radius; int divisions; };
 struct TRay			{ TVector3d pt; TVector3d vec; };
 
 struct TPolyhedron {
-	vector<TVector3d> vertices;
-	vector<TPolygon> polygons;
+	std::vector<TVector3d> vertices;
+	std::vector<TPolygon> polygons;
 };
 
 TVector3d	ProjectToPlane(const TVector3d& nml, const TVector3d& v);
@@ -62,7 +62,7 @@ TQuaternion MakeRotationQuaternion(const TVector3d& s, const TVector3d& t);
 TQuaternion InterpolateQuaternions(const TQuaternion& q, TQuaternion r, double t);
 TVector3d	RotateVector(const TQuaternion& q, const TVector3d& v);
 
-bool		IntersectPolygon(const TPolygon& p, vector<TVector3d>& v);
+bool		IntersectPolygon(const TPolygon& p, std::vector<TVector3d>& v);
 bool		IntersectPolyhedron(TPolyhedron& p);
 TVector3d	MakeNormal(const TPolygon& p, const TVector3d *v);
 void		TransPolyhedron(const TMatrix<4, 4>& mat, TPolyhedron& ph);

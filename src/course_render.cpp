@@ -50,7 +50,7 @@ void RenderCourse() {
 }
 
 void DrawTrees() {
-	size_t			tree_type = -1;
+	std::size_t			tree_type = -1;
 	const CControl*	ctrl = g_game.player->ctrl;
 
 	ScopedRenderMode rm(TREES);
@@ -61,7 +61,7 @@ void DrawTrees() {
 	set_material(colWhite, colBlack, 1.0);
 
 	// Trees
-	for (size_t i = 0; i< Course.CollArr.size(); i++) {
+	for (std::size_t i = 0; i< Course.CollArr.size(); i++) {
 		if (clip_course) {
 			if (ctrl->viewpos.z - Course.CollArr[i].pt.z > fwd_clip_limit) continue;
 			if (Course.CollArr[i].pt.z - ctrl->viewpos.z > bwd_clip_limit) continue;
@@ -118,7 +118,7 @@ void DrawTrees() {
 	// Items
 	const TObjectType* item_type = nullptr;
 
-	for (size_t i = 0; i< Course.NocollArr.size(); i++) {
+	for (std::size_t i = 0; i< Course.NocollArr.size(); i++) {
 		if (Course.NocollArr[i].collectable == 0 || Course.NocollArr[i].type.drawable == false) continue;
 		if (clip_course) {
 			if (ctrl->viewpos.z - Course.NocollArr[i].pt.z > fwd_clip_limit) continue;

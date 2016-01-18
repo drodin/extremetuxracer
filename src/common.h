@@ -21,8 +21,6 @@ GNU General Public License for more details.
 #include "bh.h"
 #include "matrices.h"
 
-using namespace std;
-
 
 #define clamp(minimum, x, maximum) (max(min(x, maximum), minimum))
 
@@ -80,9 +78,9 @@ extern const sf::Color colSky;
 // some simple functions to print out values on the
 // terminal. Only used for development.
 void	PrintInt(const int val);
-void	PrintInt(const string& s, const int val);
+void	PrintInt(const std::string& s, const int val);
 void	PrintStr(const char *val);
-void	PrintString(const string& s);
+void	PrintString(const std::string& s);
 void	PrintDouble(const double val);
 void	PrintVector(const TVector3d& v);
 void	PrintVector4(const TVector4d& v);
@@ -97,8 +95,8 @@ void	PrintQuaternion(const TQuaternion& q);
 //				file utils
 // --------------------------------------------------------------------
 
-bool	FileExists(const string& filename);
-bool	FileExists(const string& dir, const string& filename);
+bool	FileExists(const std::string& filename);
+bool	FileExists(const std::string& dir, const std::string& filename);
 bool	DirExists(const char *dirname);
 
 // --------------------------------------------------------------------
@@ -107,8 +105,8 @@ bool	DirExists(const char *dirname);
 
 void	Message(const char *msg, const char *desc);
 void	Message(const char *msg);
-void	Message(const string& a, const string& b);
-void	Message(const string& a);
+void	Message(const std::string& a, const std::string& b);
+void	Message(const std::string& a);
 void	SaveMessages();
 
 // --------------------------------------------------------------------
@@ -116,7 +114,7 @@ void	SaveMessages();
 // --------------------------------------------------------------------
 
 void GetTimeComponents(double time, int *min, int *sec, int *hundr);
-string GetTimeString();
+std::string GetTimeString();
 
 
 #endif

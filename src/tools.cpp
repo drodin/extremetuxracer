@@ -122,9 +122,9 @@ CTools Tools;
 static bool finalstage = false;
 static bool charchanged = false;
 static bool framechanged = false;
-static string char_dir;
-static string char_file;
-static string frame_file;
+static std::string char_dir;
+static std::string char_file;
+static std::string frame_file;
 
 static const TLight toollight = {
 	{0.45f, 0.53f, 0.75f, 1.f},
@@ -215,7 +215,7 @@ void SaveToolFrame() {
 	framechanged = false;
 }
 
-void CTools::SetParameter(const string& dir, const string& file) {
+void CTools::SetParameter(const std::string& dir, const std::string& file) {
 	char_dir = param.char_dir + SEP + dir;
 	char_file = "shape.lst";
 	frame_file = file;

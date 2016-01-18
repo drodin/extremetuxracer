@@ -70,15 +70,15 @@ void PrintGLInfo() {
 	Message("Gl vendor: ", (char*)glGetString(GL_VENDOR));
 	Message("Gl renderer: ", (char*)glGetString(GL_RENDERER));
 	Message("Gl version: ", (char*)glGetString(GL_VERSION));
-	string extensions = (char*)glGetString(GL_EXTENSIONS);
+	std::string extensions = (char*)glGetString(GL_EXTENSIONS);
 	Message("");
 	Message("Gl extensions:");
 	Message("");
 
-	size_t oldpos = 0;
-	size_t pos;
-	while ((pos = extensions.find(' ', oldpos)) != string::npos) {
-		string s = extensions.substr(oldpos, pos-oldpos);
+	std::size_t oldpos = 0;
+	std::size_t pos;
+	while ((pos = extensions.find(' ', oldpos)) != std::string::npos) {
+		std::string s = extensions.substr(oldpos, pos-oldpos);
 		Message(s);
 		oldpos = pos+1;
 	}
@@ -90,21 +90,21 @@ void PrintGLInfo() {
 			case GL_INT: {
 				GLint int_val;
 				glGetIntegerv(gl_values[i].value, &int_val);
-				string ss = Int_StrN(int_val);
+				std::string ss = Int_StrN(int_val);
 				Message(gl_values[i].name, ss);
 				break;
 			}
 			case GL_FLOAT: {
 				GLfloat float_val;
 				glGetFloatv(gl_values[i].value, &float_val);
-				string ss = Float_StrN(float_val, 2);
+				std::string ss = Float_StrN(float_val, 2);
 				Message(gl_values[i].name, ss);
 				break;
 			}
 			case GL_UNSIGNED_BYTE: {
 				GLboolean boolean_val;
 				glGetBooleanv(gl_values[i].value, &boolean_val);
-				string ss = Int_StrN(boolean_val);
+				std::string ss = Int_StrN(boolean_val);
 				Message(gl_values[i].name, ss);
 				break;
 			}
@@ -389,7 +389,7 @@ void set_gl_options(TRenderMode mode) {
 	}
 }
 
-static stack<TRenderMode> modestack;
+static std::stack<TRenderMode> modestack;
 void PushRenderMode(TRenderMode mode) {
 	if (currentMode != mode)
 		set_gl_options(mode);

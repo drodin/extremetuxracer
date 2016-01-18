@@ -118,7 +118,7 @@ bool CControl::CheckTreeCollisions(const TVector3d& pos, TVector3d *tree_loc) {
 	bool hit = false;
 	TMatrix<4, 4> mat;
 
-	for (size_t i = 0; i<Course.CollArr.size(); i++) {
+	for (std::size_t i = 0; i<Course.CollArr.size(); i++) {
 		double diam = Course.CollArr[i].diam;
 		double height = Course.CollArr[i].height;
 		loc = Course.CollArr[i].pt;
@@ -177,9 +177,9 @@ void CControl::AdjustTreeCollision(const TVector3d& pos, TVector3d *vel) {
 }
 
 void CControl::CheckItemCollection(const TVector3d& pos) {
-	size_t num_items = Course.NocollArr.size();
+	std::size_t num_items = Course.NocollArr.size();
 
-	for (size_t i=0; i<num_items; i++) {
+	for (std::size_t i=0; i<num_items; i++) {
 		if (Course.NocollArr[i].collectable != 1) continue;
 
 		double diam = Course.NocollArr[i].diam;
@@ -398,12 +398,12 @@ TVector3d CControl::CalcNetForce(const TVector3d& pos, const TVector3d& vel) {
 	double speed = ff.frictdir.Norm();
 	ff.frictdir *= -1.0;
 
-	static vector<double> surfweights;
+	static std::vector<double> surfweights;
 	if (surfweights.size() != Course.TerrList.size())
 		surfweights.resize(Course.TerrList.size());
 	Course.GetSurfaceType(ff.pos.x, ff.pos.z, &surfweights[0]);
 	ff.frict_coeff = ff.comp_depth = 0;
-	for (size_t i=0; i<Course.TerrList.size(); i++) {
+	for (std::size_t i=0; i<Course.TerrList.size(); i++) {
 		ff.frict_coeff += surfweights[i] * Course.TerrList[i].friction;
 		ff.comp_depth += surfweights[i] * Course.TerrList[i].depth;
 	}

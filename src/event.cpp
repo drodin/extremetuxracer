@@ -41,8 +41,8 @@ CEvent Event;
 // ready: 0 - racing  1 - ready with success  2 - ready with failure
 static int ready = 0; // indicates if last race is done
 static TCup *ecup = 0;
-static size_t curr_race = 0;
-static size_t curr_bonus = 0;
+static std::size_t curr_race = 0;
+static std::size_t curr_bonus = 0;
 static TWidget* textbuttons[3];
 static TLabel* headline;
 static TLabel* info1;
@@ -107,7 +107,7 @@ void InitCupRacing() {
 }
 
 void UpdateCupRacing() {
-	size_t lastrace = ecup->races.size() - 1;
+	std::size_t lastrace = ecup->races.size() - 1;
 	curr_bonus += g_game.race_result;
 	if (g_game.race_result >= 0) {
 		if (curr_race < lastrace) curr_race++;
@@ -157,7 +157,7 @@ void CEvent::Enter() {
 
 	FT.AutoSizeN(3);
 	int ddd = FT.AutoDistanceN(1);
-	string info = Trans.Text(11);
+	std::string info = Trans.Text(11);
 	info += "   " + Int_StrN(ecup->races[curr_race]->herrings.x);
 	info += "   " + Int_StrN(ecup->races[curr_race]->herrings.y);
 	info += "   " + Int_StrN(ecup->races[curr_race]->herrings.z);
@@ -177,7 +177,7 @@ void CEvent::Enter() {
 	Music.Play(param.menu_music, true);
 }
 
-int resultlevel(size_t num, size_t numraces) {
+int resultlevel(std::size_t num, std::size_t numraces) {
 	if (num < 1) return 0;
 	int q = (int)((num - 0.01) / numraces);
 	return q + 1;
@@ -200,7 +200,7 @@ void CEvent::Loop(float timestep) {
 		           (int)ecup->races.size() * dist + 20, 3, colBackgr, colWhite, 1);
 
 		TCheckbox checkbox(area.right - 50, frametop, texsize, "");
-		for (size_t i=0; i<ecup->races.size(); i++) {
+		for (std::size_t i=0; i<ecup->races.size(); i++) {
 			FT.AutoSizeN(4);
 
 			int y = frametop + 10 + (int)i * dist;

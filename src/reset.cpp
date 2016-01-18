@@ -70,7 +70,7 @@ void CReset::Loop(float time_step) {
 	if (elapsed_time > BLINK_IN_PLACE_TIME && !position_reset) {
 		// Determine optimal location for reset
 		int best_loc = -1;
-		for (size_t i = 0; i < Course.NocollArr.size(); i++) {
+		for (std::size_t i = 0; i < Course.NocollArr.size(); i++) {
 			if (Course.NocollArr[i].type.reset_point && Course.NocollArr[i].pt.z > ctrl->cpos.z) {
 				if (best_loc == -1 || Course.NocollArr[i].pt.z < Course.NocollArr[best_loc].pt.z) {
 					best_loc = (int)i;

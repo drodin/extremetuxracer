@@ -50,7 +50,7 @@ Then edit the below functions:
 #include "winsys.h"
 
 CGameConfig GameConfig;
-static string res_names[NUM_RESOLUTIONS];
+static std::string res_names[NUM_RESOLUTIONS];
 
 static TCheckbox* fullscreen;
 static TUpDown* language;

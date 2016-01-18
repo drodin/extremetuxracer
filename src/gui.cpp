@@ -29,7 +29,7 @@ GNU General Public License for more details.
 
 #define CURSOR_SIZE 10
 
-static vector<TWidget*> Widgets;
+static std::vector<TWidget*> Widgets;
 static int lock_focussed = -1;
 static int focussed = -1;
 static bool locked_LR = false;
@@ -224,14 +224,14 @@ void TTextField::TextEnter(char key) {
 	}
 }
 
-void TTextField::SetCursorPos(size_t new_pos) {
+void TTextField::SetCursorPos(std::size_t new_pos) {
 	cursorPos = new_pos;
 
 	int x = mouseRect.left + 20 - 2;
 	if (cursorPos != 0) {
 		// substring() is very new addition to SFML2 string class, so
 		// for compatibility with older version we use std::string to do it.
-		string temp = text.getString();
+		std::string temp = text.getString();
 		FT.AutoSizeN(5);
 		x += FT.GetTextWidth(temp.substr(0, cursorPos));
 	}
@@ -249,7 +249,7 @@ void TTextField::Focussed() {
 	}
 }
 
-static void eraseFromText(sf::Text& text, size_t pos) {
+static void eraseFromText(sf::Text& text, std::size_t pos) {
 	sf::String str = text.getString();
 	str.erase(pos, 1);
 	text.setString(str);
@@ -562,8 +562,8 @@ void DrawFrameX(int x, int y, int w, int h, int line, const sf::Color& backcol, 
 	Winsys.draw(shape);
 }
 
-void DrawBonusExt(int y, size_t numraces, size_t num) {
-	size_t maxtux = numraces * 3;
+void DrawBonusExt(int y, std::size_t numraces, std::size_t num) {
+	std::size_t maxtux = numraces * 3;
 	if (num > maxtux) return;
 
 	static const sf::Color col2(115, 166, 217);
@@ -585,9 +585,9 @@ void DrawBonusExt(int y, size_t numraces, size_t num) {
 	sf::Vector2u size = tuxbonus.getTexture()->getSize();
 	tuxbonus.setTextureRect(sf::IntRect(0, 0, size.x, 0.5*size.y));
 
-	for (size_t i=0; i<maxtux; i++) {
-		size_t majr = (i/numraces);
-		size_t minr = i - majr * numraces;
+	for (std::size_t i=0; i<maxtux; i++) {
+		std::size_t majr = (i/numraces);
+		std::size_t minr = i - majr * numraces;
 		if (majr > 2) majr = 2;
 		int x = lleft[majr] + (int)minr * 40 + 6;
 
@@ -639,7 +639,7 @@ void DrawCursor() {
 // ------------------ Main GUI functions ---------------------------------------------
 
 void DrawGUI() {
-	for (size_t i = 0; i < Widgets.size(); i++)
+	for (std::size_t i = 0; i < Widgets.size(); i++)
 		if (Widgets[i]->GetVisible())
 			Widgets[i]->Draw();
 	if (param.ice_cursor)
@@ -648,7 +648,7 @@ void DrawGUI() {
 
 TWidget* ClickGUI(int x, int y) {
 	TWidget* clicked = nullptr;
-	for (size_t i = 0; i < Widgets.size(); i++) {
+	for (std::size_t i = 0; i < Widgets.size(); i++) {
 		if (Widgets[i]->Click(x, y)) {
 			clicked = Widgets[i];
 			lock_focussed = focussed;
@@ -660,7 +660,7 @@ TWidget* ClickGUI(int x, int y) {
 TWidget* MouseMoveGUI(int x, int y) {
 	if (x != 0 || y != 0) {
 		focussed = -1;
-		for (size_t i = 0; i < Widgets.size(); i++) {
+		for (std::size_t i = 0; i < Widgets.size(); i++) {
 			Widgets[i]->MouseMove(cursor_pos.x, cursor_pos.y);
 			if (Widgets[i]->focussed())
 				focussed = (int)i;
@@ -724,7 +724,7 @@ void SetFocus(TWidget* widget) {
 	if (!widget)
 		focussed = -1;
 	else
-		for (size_t i = 0; i < Widgets.size(); i++) {
+		for (std::size_t i = 0; i < Widgets.size(); i++) {
 			if (Widgets[i] == widget) {
 				Widgets[i]->focus = true;
 				Widgets[i]->Focussed();
@@ -793,7 +793,7 @@ void DecreaseFocus() {
 }
 
 void ResetGUI() {
-	for (size_t i = 0; i < Widgets.size(); i++)
+	for (std::size_t i = 0; i < Widgets.size(); i++)
 		delete Widgets[i];
 	Widgets.clear();
 	focussed = 0;

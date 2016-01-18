@@ -65,9 +65,9 @@ class TTexture {
 	sf::Texture texture;
 	friend class CTexture;
 public:
-	bool Load(const string& filename, bool repeatable = false);
-	bool Load(const string& dir, const string& filename, bool repeatable = false);
-	bool Load(const string& dir, const char* filename, bool repeatable = false) { return Load(dir, string(filename), repeatable); }
+	bool Load(const std::string& filename, bool repeatable = false);
+	bool Load(const std::string& dir, const std::string& filename, bool repeatable = false);
+	bool Load(const std::string& dir, const char* filename, bool repeatable = false) { return Load(dir, std::string(filename), repeatable); }
 
 	void Bind();
 	void Draw();
@@ -78,7 +78,7 @@ public:
 
 class CTexture {
 private:
-	vector<TTexture*> CommonTex;
+	std::vector<TTexture*> CommonTex;
 
 	void DrawNumChr(char c, int x, int y, int w, int h);
 public:
@@ -87,17 +87,17 @@ public:
 	bool LoadTextureList();
 	void FreeTextureList();
 
-	TTexture* GetTexture(size_t idx) const;
-	const sf::Texture& GetSFTexture(size_t idx) const;
-	bool BindTex(size_t idx);
+	TTexture* GetTexture(std::size_t idx) const;
+	const sf::Texture& GetSFTexture(std::size_t idx) const;
+	bool BindTex(std::size_t idx);
 
-	void Draw(size_t idx);
-	void Draw(size_t idx, int x, int y, float size);
-	void Draw(size_t idx, int x, int y, int width, int height);
+	void Draw(std::size_t idx);
+	void Draw(std::size_t idx, int x, int y, float size);
+	void Draw(std::size_t idx, int x, int y, int width, int height);
 
-	void DrawFrame(size_t idx, int x, int y, double w, double h, int frame, const sf::Color& col);
+	void DrawFrame(std::size_t idx, int x, int y, double w, double h, int frame, const sf::Color& col);
 
-	void DrawNumStr(const string& s, int x, int y, float size, const sf::Color& col);
+	void DrawNumStr(const std::string& s, int x, int y, float size, const sf::Color& col);
 };
 
 extern CTexture Tex;

@@ -33,7 +33,7 @@ static const int numJoints = 19;
 // The jointnames are shown on the tools screen and define the
 // possible rotations. A joint can be rotated around 3 axis, so
 // a joint can contain up to 3 joinnames.
-static const string jointnames[numJoints] = {
+static const std::string jointnames[numJoints] = {
 	"time","pos.x","pos.y","pos.z","yaw","pitch","roll","neck","head",
 	"l_shldr","r_shldr","l_arm","r_arm",
 	"l_hip","r_hip","l_knee","r_knee","l_ankle","r_ankle"
@@ -42,7 +42,7 @@ static const string jointnames[numJoints] = {
 // The highlightnames must be official joint identifiers, defined in
 // the character description. They are used to find the port nodes
 // for highlighting
-static const string highlightnames[numJoints] = {
+static const std::string highlightnames[numJoints] = {
 	"","","","","","","","neck","head",
 	"left_shldr","right_shldr","left_shldr","right_shldr",
 	"left_hip","right_hip","left_knee","right_knee","left_ankle","right_ankle"
@@ -104,13 +104,13 @@ void CKeyframe::Reset() {
 	frames.clear();
 }
 
-bool CKeyframe::Load(const string& dir, const string& filename) {
+bool CKeyframe::Load(const std::string& dir, const std::string& filename) {
 	if (loaded && loadedfile == filename) return true;
 	CSPList list;
 
 	if (list.Load(dir, filename)) {
 		frames.resize(list.size());
-		size_t i = 0;
+		std::size_t i = 0;
 		for (CSPList::const_iterator line = list.cbegin(); line != list.cend(); ++line, i++) {
 			frames[i].val[0] = SPFloatN(*line, "time", 0);
 			TVector3d posit = SPVector3d(*line, "pos");
@@ -151,7 +151,7 @@ bool CKeyframe::Load(const string& dir, const string& filename) {
 // there are more possibilities for rotating the parts of the body,
 // that will be implemented later
 
-void CKeyframe::InterpolateKeyframe(size_t idx, double frac, CCharShape *shape) {
+void CKeyframe::InterpolateKeyframe(std::size_t idx, double frac, CCharShape *shape) {
 	double vv;
 	vv = interp(frac, frames[idx].val[4], frames[idx+1].val[4]);
 	shape->RotateNode("root", 2, vv);
@@ -199,7 +199,7 @@ void CKeyframe::InterpolateKeyframe(size_t idx, double frac, CCharShape *shape) 
 	shape->RotateNode("right_ankle", 3, vv);
 }
 
-void CKeyframe::CalcKeyframe(size_t idx, CCharShape *shape, const TVector3d& refpos_) {
+void CKeyframe::CalcKeyframe(std::size_t idx, CCharShape *shape, const TVector3d& refpos_) {
 	double vv;
 	TVector3d pos;
 
@@ -329,17 +329,17 @@ void CKeyframe::ResetFrame2(TKeyframe *frame) {
 	frame->val[0] = 0.5; // time
 }
 
-TKeyframe *CKeyframe::GetFrame(size_t idx) {
+TKeyframe *CKeyframe::GetFrame(std::size_t idx) {
 	if (idx >= frames.size()) return nullptr;
 	return &frames[idx];
 }
 
-const string& CKeyframe::GetJointName(size_t idx) {
+const std::string& CKeyframe::GetJointName(std::size_t idx) {
 	if (idx >= numJoints) return emptyString;
 	return jointnames[idx];
 }
 
-const string& CKeyframe::GetHighlightName(size_t idx) {
+const std::string& CKeyframe::GetHighlightName(std::size_t idx) {
 	if (idx >= numJoints) return emptyString;
 	return highlightnames[idx];
 }
@@ -348,12 +348,12 @@ int CKeyframe::GetNumJoints() {
 	return numJoints;
 }
 
-void CKeyframe::SaveTest(const string& dir, const string& filename) const {
+void CKeyframe::SaveTest(const std::string& dir, const std::string& filename) const {
 	CSPList list;
 
-	for (size_t i=0; i<frames.size(); i++) {
+	for (std::size_t i=0; i<frames.size(); i++) {
 		const TKeyframe* frame = &frames[i];
-		string line = "*[time] " + Float_StrN(frame->val[0], 1);
+		std::string line = "*[time] " + Float_StrN(frame->val[0], 1);
 		line += " [pos] " + Float_StrN(frame->val[1], 2);
 		line += " " + Float_StrN(frame->val[2], 2);
 		line += " " + Float_StrN(frame->val[3], 2);
@@ -393,7 +393,7 @@ void CKeyframe::SaveTest(const string& dir, const string& filename) const {
 	list.Save(dir, filename);
 }
 
-void CKeyframe::CopyFrame(size_t prim_idx, size_t sec_idx) {
+void CKeyframe::CopyFrame(std::size_t prim_idx, std::size_t sec_idx) {
 	TKeyframe *ppp = &frames[prim_idx];
 	TKeyframe *sss = &frames[sec_idx];
 	std::copy_n(ppp->val, MAX_FRAME_VALUES, sss->val);
@@ -403,7 +403,7 @@ void CKeyframe::AddFrame() {
 	frames.emplace_back();
 }
 
-size_t CKeyframe::DeleteFrame(size_t idx) {
+std::size_t CKeyframe::DeleteFrame(std::size_t idx) {
 	if (frames.size() < 2) return idx;
 	if (idx > frames.size() - 1) return 0;
 
@@ -413,7 +413,7 @@ size_t CKeyframe::DeleteFrame(size_t idx) {
 	return max(idx, frames.size() - 2);
 }
 
-void CKeyframe::InsertFrame(size_t idx) {
+void CKeyframe::InsertFrame(std::size_t idx) {
 	if (idx > frames.size() - 1) return;
 
 	std::vector<TKeyframe>::iterator i = frames.begin();
@@ -421,17 +421,17 @@ void CKeyframe::InsertFrame(size_t idx) {
 	frames.emplace(i);
 }
 
-void CKeyframe::CopyToClipboard(size_t idx) {
+void CKeyframe::CopyToClipboard(std::size_t idx) {
 	if (idx >= frames.size()) return;
 	std::copy_n(frames[idx].val, MAX_FRAME_VALUES, clipboard.val);
 }
 
-void CKeyframe::PasteFromClipboard(size_t idx) {
+void CKeyframe::PasteFromClipboard(std::size_t idx) {
 	if (idx >= frames.size()) return;
 	std::copy_n(clipboard.val, MAX_FRAME_VALUES, frames[idx].val);
 }
 
-void CKeyframe::ClearFrame(size_t idx) {
+void CKeyframe::ClearFrame(std::size_t idx) {
 	if (idx >= frames.size()) return;
 	ResetFrame2(&frames[idx]);
 }

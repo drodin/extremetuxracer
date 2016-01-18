@@ -355,7 +355,7 @@ void backsb(double *matrix, int n, double *soln) {
 // ***************************************************************************
 // ***************************************************************************
 
-bool IntersectPolygon(const TPolygon& p, vector<TVector3d>& v) {
+bool IntersectPolygon(const TPolygon& p, std::vector<TVector3d>& v) {
 	TRay ray;
 	double d, s, nuDotProd;
 	double distsq;
@@ -372,7 +372,7 @@ bool IntersectPolygon(const TPolygon& p, vector<TVector3d>& v) {
 
 	if (fabs(d) > 1) return false;
 
-	for (size_t i=0; i < p.vertices.size(); i++) {
+	for (std::size_t i=0; i < p.vertices.size(); i++) {
 		TVector3d *v0, *v1;
 
 		v0 = &v[p.vertices[i]];
@@ -398,7 +398,7 @@ bool IntersectPolygon(const TPolygon& p, vector<TVector3d>& v) {
 	s = - (d + DotProduct(nml, ray.pt)) / nuDotProd;
 	TVector3d pt = ray.pt + s * ray.vec;
 
-	for (size_t i = 0; i < p.vertices.size(); i++) {
+	for (std::size_t i = 0; i < p.vertices.size(); i++) {
 		TVector3d edge_nml = CrossProduct(nml,
 		                                  v[p.vertices[(i + 1) % p.vertices.size()]] - v[p.vertices[i]]);
 
@@ -410,7 +410,7 @@ bool IntersectPolygon(const TPolygon& p, vector<TVector3d>& v) {
 
 bool IntersectPolyhedron(TPolyhedron& p) {
 	bool hit = false;
-	for (size_t i = 0; i < p.polygons.size(); i++) {
+	for (std::size_t i = 0; i < p.polygons.size(); i++) {
 		hit = IntersectPolygon(p.polygons[i], p.vertices);
 		if (hit == true) break;
 	}
@@ -428,7 +428,7 @@ TVector3d MakeNormal(const TPolygon& p, const TVector3d *v) {
 
 
 void TransPolyhedron(const TMatrix<4, 4>& mat, TPolyhedron& ph) {
-	for (size_t i = 0; i < ph.vertices.size(); i++)
+	for (std::size_t i = 0; i < ph.vertices.size(); i++)
 		ph.vertices[i] = TransformPoint(mat, ph.vertices[i]);
 }
 

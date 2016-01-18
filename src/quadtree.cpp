@@ -206,7 +206,7 @@ float quadsquare::RecomputeError(const quadcornerdata& cd) {
 	float maxerror = 0;
 	float e;
 
-	size_t numTerr = Course.TerrList.size();
+	std::size_t numTerr = Course.TerrList.size();
 	if (cd.ChildIndex & 1) {
 		e = fabs(Vertex[0].Y - (cd.Verts[1].Y + cd.Verts[3].Y) * 0.5);
 	} else {
@@ -327,7 +327,7 @@ float quadsquare::RecomputeError(const quadcornerdata& cd) {
 		if (Error[i+2] > maxerror) maxerror = Error[i+2];
 	}
 
-	size_t *terrain_count = new size_t[numTerr];
+	std::size_t *terrain_count = new std::size_t[numTerr];
 	memset(terrain_count, 0, sizeof(*terrain_count)*numTerr);
 
 	for (int i=cd.xorg; i<=cd.xorg+whole; i++) {
@@ -343,9 +343,9 @@ float quadsquare::RecomputeError(const quadcornerdata& cd) {
 		}
 	}
 
-	size_t max_count = 0;
-	size_t total = 0;
-	for (size_t t=0; t<numTerr; t++) {
+	std::size_t max_count = 0;
+	std::size_t total = 0;
+	for (std::size_t t=0; t<numTerr; t++) {
 		if (terrain_count[t] > max_count) {
 			max_count = terrain_count[t];
 		}
@@ -746,8 +746,8 @@ void quadsquare::InitArrayCounters() {
 void quadsquare::Render(const quadcornerdata& cd, GLubyte *vnc_array) {
 	VNCArray = vnc_array;
 
-	size_t numTerrains = Course.TerrList.size();
-	for (size_t j=0; j<numTerrains; j++) {
+	std::size_t numTerrains = Course.TerrList.size();
+	for (std::size_t j=0; j<numTerrains; j++) {
 		if (Course.TerrList[j].texture != nullptr) {
 			InitArrayCounters();
 			RenderAux(cd, SomeClip, (int)j);
@@ -781,7 +781,7 @@ void quadsquare::Render(const quadcornerdata& cd, GLubyte *vnc_array) {
 				colorval(VertexArrayIndices[i], 2) = 255;
 			}
 
-			for (size_t j=0; j<numTerrains; j++) {
+			for (std::size_t j=0; j<numTerrains; j++) {
 				if (Course.TerrList[j].texture > 0) {
 					Course.TerrList[j].texture->Bind();
 

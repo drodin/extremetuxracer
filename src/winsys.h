@@ -48,11 +48,11 @@ public:
 	CWinsys();
 
 	// sdl window
-	const TScreenRes& GetResolution(size_t idx) const;
-	string GetResName(size_t idx) const;
+	const TScreenRes& GetResolution(std::size_t idx) const;
+	std::string GetResName(std::size_t idx) const;
 	void Init();
 	void SetupVideoMode(const TScreenRes& resolution);
-	void SetupVideoMode(size_t idx);
+	void SetupVideoMode(std::size_t idx);
 	void SetupVideoMode(int width, int height);
 	void KeyRepeat(bool repeat);
 	void PrintJoystickInfo() const;

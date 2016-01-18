@@ -22,7 +22,7 @@ GNU General Public License for more details.
 #include <forward_list>
 
 struct TCredits {
-	string text;
+	std::string text;
 	float size;
 	int offs;
 	int font;
@@ -30,7 +30,7 @@ struct TCredits {
 };
 
 class CCredits : public State {
-	forward_list<TCredits> CreditList;
+	std::forward_list<TCredits> CreditList;
 
 	void DrawCreditsText(float time_step);
 	void Enter();

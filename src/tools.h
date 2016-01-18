@@ -93,7 +93,7 @@ class CTools : public State {
 	void Motion(int x, int y);
 public:
 	void Enter();
-	static void SetParameter(const string& dir, const string& file);
+	static void SetParameter(const std::string& dir, const std::string& file);
 };
 
 extern CTools Tools;

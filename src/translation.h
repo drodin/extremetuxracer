@@ -31,7 +31,7 @@ Name convention:
 ---------------------------------------------------------------------*/
 
 struct TLang {
-	string lang;
+	std::string lang;
 	sf::String language;
 };
 
@@ -39,17 +39,17 @@ class CTranslation {
 private:
 	sf::String texts[NUM_COMMON_TEXTS];
 public:
-	vector<TLang> languages;
+	std::vector<TLang> languages;
 
 	void LoadLanguages();
-	const sf::String& GetLanguage(size_t idx) const;
+	const sf::String& GetLanguage(std::size_t idx) const;
 	void SetDefaultTranslations();
-	const sf::String& Text(size_t idx) const;
-	void LoadTranslations(size_t langidx);
-	void ChangeLanguage(size_t langidx);
-	static string GetSystemDefaultLang();
-	size_t GetSystemDefaultLangIdx() const;
-	size_t GetLangIdx(const string& lang) const;
+	const sf::String& Text(std::size_t idx) const;
+	void LoadTranslations(std::size_t langidx);
+	void ChangeLanguage(std::size_t langidx);
+	static std::string GetSystemDefaultLang();
+	std::size_t GetSystemDefaultLangIdx() const;
+	std::size_t GetLangIdx(const std::string& lang) const;
 };
 
 extern CTranslation Trans;

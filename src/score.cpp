@@ -69,7 +69,7 @@ void CScore::PrintScorelist(const std::string& group, const std::string& course)
 		PrintStr("no entries in this score list");
 	} else {
 		for (int i=0; i<list->numScores; i++) {
-			string line = "player: " + list->scores[i].player;
+			std::string line = "player: " + list->scores[i].player;
 			line += " points: " + Int_StrN(list->scores[i].points);
 			line += " herrings: " + Int_StrN(list->scores[i].herrings);
 			line += " time: " + Float_StrN(list->scores[i].time, 2);
@@ -97,7 +97,7 @@ bool CScore::SaveHighScore() const {
 			if (num > 0) {
 				for (int sc = 0; sc<num; sc++) {
 					const TScore& score = list->scores[sc];
-					string line = "*[group] " + i->first;
+					std::string line = "*[group] " + i->first;
 					line += " [course] " + j->first;
 					line += " [plyr] " + score.player;
 					line += " [pts] " + Int_StrN(score.points);
@@ -125,8 +125,8 @@ bool CScore::LoadHighScore() {
 	}
 
 	for (CSPList::const_iterator line = list.cbegin(); line != list.cend(); ++line) {
-		string group = SPStrN(*line, "group", "default");
-		string course = SPStrN(*line, "course", "unknown");
+		std::string group = SPStrN(*line, "group", "default");
+		std::string course = SPStrN(*line, "course", "unknown");
 		try {
 			AddScore(group, course, TScore(
 			             SPStrN(*line, "plyr", "unknown"),
@@ -243,7 +243,7 @@ void CScore::Enter() {
 	courseName = AddFramedText(area.left, frametop - 2 + frameheight + 20, framewidth, frameheight, 3, colMBackgr, "", FT.GetSize(), true);
 }
 
-const string ordinals[10] =
+const std::string ordinals[10] =
 {"1:st", "2:nd", "3:rd", "4:th", "5:th", "6:th", "7:th", "8:th", "9:th", "10:th"};
 
 void CScore::Loop(float timestep) {
@@ -259,7 +259,7 @@ void CScore::Loop(float timestep) {
 
 	if (courseGroup->GetValue() != prevGroup) {
 		prevGroup = courseGroup->GetValue();
-		CourseList = Course.getGroup((size_t)courseGroup->GetValue());
+		CourseList = Course.getGroup((std::size_t)courseGroup->GetValue());
 		course->SetValue(0);
 		course->SetMaximum((int)CourseList->size() - 1);
 		courseGroupName->SetString(CourseList->name);

@@ -40,10 +40,10 @@ GNU General Public License for more details.
 
 void TCourse::SetDescription(const std::string& description) {
 	FT.AutoSizeN(2);
-	vector<string> desclist = FT.MakeLineList(description.c_str(), 335.f * Winsys.scale - 16.f);
-	size_t cnt = min<size_t>(desclist.size(), MAX_DESCRIPTION_LINES);
+	std::vector<std::string> desclist = FT.MakeLineList(description.c_str(), 335.f * Winsys.scale - 16.f);
+	std::size_t cnt = std::min<std::size_t>(desclist.size(), MAX_DESCRIPTION_LINES);
 	num_lines = cnt;
-	for (size_t ll = 0; ll < cnt; ll++) {
+	for (std::size_t ll = 0; ll < cnt; ll++) {
 		desc[ll] = desclist[ll];
 	}
 }
@@ -87,16 +87,16 @@ double CCourse::GetMaxHeight(double distance) const {
 	return GetBaseHeight(distance) + curr_course->scale;
 }
 
-const TPolyhedron& CCourse::GetPoly(size_t type) const {
+const TPolyhedron& CCourse::GetPoly(std::size_t type) const {
 	return PolyArr[ObjTypes[type].poly];
 }
 
-TCourse* CCourse::GetCourse(const string& group, const string& dir) {
+TCourse* CCourse::GetCourse(const std::string& group, const std::string& dir) {
 	return &CourseLists.at(group)[dir];
 }
 
-size_t CCourse::GetCourseIdx(const TCourse* course) const {
-	size_t idx = (course - &(*currentCourseList)[0]);
+std::size_t CCourse::GetCourseIdx(const TCourse* course) const {
+	std::size_t idx = (course - &(*currentCourseList)[0]);
 	if (idx >= currentCourseList->size())
 		return -1;
 	return idx;
@@ -284,7 +284,7 @@ void CCourse::MakeStandardPolyhedrons() {
 	PolyArr[1].vertices[5] = TVector3d(0, 1, 0);
 
 	PolyArr[1].polygons.resize(8);
-	for (size_t i = 0; i < 8; i++) {
+	for (std::size_t i = 0; i < 8; i++) {
 		PolyArr[1].polygons[i].vertices.resize(3);
 	}
 	PolyArr[1].polygons[0].vertices[0] = 0;
@@ -321,14 +321,14 @@ void CCourse::MakeStandardPolyhedrons() {
 }
 
 void CCourse::FreeTerrainTextures() {
-	for (size_t i=0; i<TerrList.size(); i++) {
+	for (std::size_t i=0; i<TerrList.size(); i++) {
 		delete TerrList[i].texture;
 		TerrList[i].texture = nullptr;
 	}
 }
 
 void CCourse::FreeObjectTextures() {
-	for (size_t i=0; i<ObjTypes.size(); i++) {
+	for (std::size_t i=0; i<ObjTypes.size(); i++) {
 		delete ObjTypes[i].texture;
 		ObjTypes[i].texture = nullptr;
 	}
@@ -395,10 +395,10 @@ void CCourse::LoadItemList() {
 		double xx = (nx - x) / (double)((double)nx - 1.0) * curr_course->size.x;
 		double zz = -(int)(ny - z) / (double)((double)ny - 1.0) * curr_course->size.y;
 
-		string name = SPStrN(*line, "name");
-		size_t type = ObjectIndex[name];
+		std::string name = SPStrN(*line, "name");
+		std::size_t type = ObjectIndex[name];
 		if (ObjTypes[type].texture == nullptr && ObjTypes[type].drawable) {
-			string terrpath = param.obj_dir + SEP + ObjTypes[type].textureFile;
+			std::string terrpath = param.obj_dir + SEP + ObjTypes[type].textureFile;
 			ObjTypes[type].texture = new TTexture();
 			ObjTypes[type].texture->Load(terrpath, false);
 		}
@@ -475,7 +475,7 @@ bool CCourse::LoadAndConvertObjectMap() {
 				double xx = (nx - x) / (double)((double)nx - 1.0) * curr_course->size.x;
 				double zz = -(int)(ny - y) / (double)((double)ny - 1.0) * curr_course->size.y;
 				if (ObjTypes[type].texture == nullptr && ObjTypes[type].drawable) {
-					string terrpath = param.obj_dir + SEP + ObjTypes[type].textureFile;
+					std::string terrpath = param.obj_dir + SEP + ObjTypes[type].textureFile;
 					ObjTypes[type].texture = new TTexture();
 					ObjTypes[type].texture->Load(terrpath, false);
 				}
@@ -509,7 +509,7 @@ bool CCourse::LoadAndConvertObjectMap() {
 				else
 					NocollArr.emplace_back(xx, FindYCoord(xx, zz), zz, height, diam, ObjTypes[type]);
 
-				string line = "*[name]";
+				std::string line = "*[name]";
 				line += ObjTypes[type].name;
 				SPSetIntN(line, "x", x);
 				SPSetIntN(line, "z", y);
@@ -520,7 +520,7 @@ bool CCourse::LoadAndConvertObjectMap() {
 		}
 		pad += (nx * depth) % 4;
 	}
-	string itemfile = CourseDir + SEP "items.lst";
+	std::string itemfile = CourseDir + SEP "items.lst";
 	savelist.Save(itemfile);  // Convert trees.png to items.lst
 	return true;
 }
@@ -538,7 +538,7 @@ bool CCourse::LoadObjectTypes() {
 	}
 
 	ObjTypes.resize(list.size());
-	size_t i = 0;
+	std::size_t i = 0;
 	for (CSPList::const_iterator line = list.cbegin(); line != list.cend(); ++line, i++) {
 		ObjTypes[i].name = SPStrN(*line, "name");
 		ObjTypes[i].textureFile = ObjTypes[i].name;
@@ -572,7 +572,7 @@ bool CCourse::LoadObjectTypes() {
 // ====================================================================
 
 int CCourse::GetTerrain(const unsigned char* pixel) const {
-	for (size_t i=0; i<TerrList.size(); i++) {
+	for (std::size_t i=0; i<TerrList.size(); i++) {
 		if (abs(pixel[0]-TerrList[i].col.r) < 30
 		        && abs(pixel[1]-TerrList[i].col.g) < 30
 		        && abs(pixel[2]-TerrList[i].col.b) < 30) {
@@ -595,7 +595,7 @@ bool CCourse::LoadTerrainTypes() {
 	}
 
 	TerrList.resize(list.size());
-	size_t i = 0;
+	std::size_t i = 0;
 	for (CSPList::const_iterator line = list.cbegin(); line != list.cend(); ++line, i++) {
 		TerrList[i].textureFile = SPStrN(*line, "texture");
 		TerrList[i].sound = Sound.GetSoundIdx(SPStrN(*line, "sound"));
@@ -664,27 +664,27 @@ bool CCourseList::Load(const std::string& dir) {
 	CSPList paramlist;
 
 	courses.resize(list.size());
-	size_t i = 0;
+	std::size_t i = 0;
 	for (CSPList::const_iterator line1 = list.cbegin(); line1 != list.cend(); ++line1, i++) {
 		courses[i].name = SPStrN(*line1, "name");
 		courses[i].dir = SPStrN(*line1, "dir", "nodir");
 
-		string coursepath = dir + SEP + courses[i].dir;
+		std::string coursepath = dir + SEP + courses[i].dir;
 		if (DirExists(coursepath.c_str())) {
 			// preview
-			string previewfile = coursepath + SEP "preview.png";
+			std::string previewfile = coursepath + SEP "preview.png";
 			courses[i].preview = new TTexture();
 			if (!courses[i].preview->Load(previewfile, false)) {
 				Message("couldn't load previewfile");
 			}
 
 			// params
-			string paramfile = coursepath + SEP "course.dim";
+			std::string paramfile = coursepath + SEP "course.dim";
 			if (!paramlist.Load(paramfile)) {
 				Message("could not load course.dim");
 			}
 
-			const string& line2 = paramlist.front();
+			const std::string& line2 = paramlist.front();
 			courses[i].author = SPStrN(line2, "author", "unknown");
 			courses[i].size.x = SPFloatN(line2, "width", 100);
 			courses[i].size.y = SPFloatN(line2, "length", 1000);
@@ -708,7 +708,7 @@ bool CCourseList::Load(const std::string& dir) {
 }
 
 void CCourseList::Free() {
-	for (size_t i = 0; i < courses.size(); i++) {
+	for (std::size_t i = 0; i < courses.size(); i++) {
 		delete courses[i].preview;
 	}
 	courses.clear();
@@ -736,7 +736,7 @@ bool CCourse::LoadCourseList() {
 	return true;
 }
 
-CCourseList* CCourse::getGroup(size_t index) {
+CCourseList* CCourse::getGroup(std::size_t index) {
 	std::map<std::string, CCourseList>::iterator i = CourseLists.begin();
 	std::advance(i, index);
 	return &i->second;
@@ -785,7 +785,7 @@ bool CCourse::LoadCourse(TCourse* course) {
 		}
 
 		// ................................................................
-		string itemfile = CourseDir + SEP "items.lst";
+		std::string itemfile = CourseDir + SEP "items.lst";
 		bool itemsexists = FileExists(itemfile);
 		const CControl *ctrl = g_game.player->ctrl;
 
@@ -812,7 +812,7 @@ bool CCourse::LoadCourse(TCourse* course) {
 	return true;
 }
 
-size_t CCourse::GetEnv() const {
+std::size_t CCourse::GetEnv() const {
 	return curr_course->env;
 }
 
@@ -829,22 +829,22 @@ void CCourse::MirrorCourseData() {
 
 			int idx1 = (x+1) + nx*(y);
 			int idx2 = (nx-1-x) + nx*(y);
-			swap(Fields[idx1].terrain, Fields[idx2].terrain);
+			std::swap(Fields[idx1].terrain, Fields[idx2].terrain);
 
 			idx1 = (x) + nx*(y);
 			idx2 = (nx-1-x) + nx*(y);
-			swap(Fields[idx1].nml, Fields[idx2].nml);
+			std::swap(Fields[idx1].nml, Fields[idx2].nml);
 			Fields[idx1].nml.x *= -1;
 			Fields[idx2].nml.x *= -1;
 		}
 	}
 
-	for (size_t i=0; i<CollArr.size(); i++) {
+	for (std::size_t i=0; i<CollArr.size(); i++) {
 		CollArr[i].pt.x = curr_course->size.x - CollArr[i].pt.x;
 		CollArr[i].pt.y = FindYCoord(CollArr[i].pt.x, CollArr[i].pt.z);
 	}
 
-	for (size_t i=0; i<NocollArr.size(); i++) {
+	for (std::size_t i=0; i<NocollArr.size(); i++) {
 		NocollArr[i].pt.x = curr_course->size.x - NocollArr[i].pt.x;
 		NocollArr[i].pt.y = FindYCoord(NocollArr[i].pt.x, NocollArr[i].pt.z);
 	}
@@ -1002,7 +1002,7 @@ void CCourse::GetSurfaceType(double x, double z, double weights[]) const {
 	double u, v;
 	FindBarycentricCoords(x, z, &idx0, &idx1, &idx2, &u, &v);
 
-	for (size_t i=0; i<Course.TerrList.size(); i++) {
+	for (std::size_t i=0; i<Course.TerrList.size(); i++) {
 		weights[i] = 0;
 		if (Course.Fields[idx0.x + nx*idx0.y].terrain == i) weights[i] += u;
 		if (Course.Fields[idx1.x + nx*idx1.y].terrain == i) weights[i] += v;
@@ -1015,7 +1015,7 @@ int CCourse::GetTerrainIdx(double x, double z, double level) const {
 	double u, v;
 	FindBarycentricCoords(x, z, &idx0, &idx1, &idx2, &u, &v);
 
-	for (size_t i=0; i<Course.TerrList.size(); i++) {
+	for (std::size_t i=0; i<Course.TerrList.size(); i++) {
 		double wheight = 0.0;
 		if (Course.Fields[idx0.x + nx*idx0.y].terrain == i) wheight += u;
 		if (Course.Fields[idx1.x + nx*idx1.y].terrain == i) wheight += v;

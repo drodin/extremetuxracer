@@ -35,16 +35,16 @@ struct TKeyframe {
 
 class CKeyframe {
 private:
-	vector<TKeyframe> frames;
+	std::vector<TKeyframe> frames;
 	TVector3d refpos;
-	string loadedfile;
+	std::string loadedfile;
 	TKeyframe clipboard;
 	double keytime;
 	double heightcorr;
-	size_t keyidx;
+	std::size_t keyidx;
 
 	static double interp(double frac, double v1, double v2);
-	void InterpolateKeyframe(size_t idx, double frac, CCharShape *shape);
+	void InterpolateKeyframe(std::size_t idx, double frac, CCharShape *shape);
 
 	// test and editing
 	void ResetFrame2(TKeyframe *frame);
@@ -59,23 +59,23 @@ public:
 	void Reset();
 	void Update(float timestep);
 	void UpdateTest(float timestep, CCharShape *shape);
-	bool Load(const string& dir, const string& filename);
-	void CalcKeyframe(size_t idx, CCharShape *shape, const TVector3d& refpos);
+	bool Load(const std::string& dir, const std::string& filename);
+	void CalcKeyframe(std::size_t idx, CCharShape *shape, const TVector3d& refpos);
 
 	// test and editing
-	TKeyframe *GetFrame(size_t idx);
-	static const string& GetHighlightName(size_t idx);
-	static const string& GetJointName(size_t idx);
+	TKeyframe *GetFrame(std::size_t idx);
+	static const std::string& GetHighlightName(std::size_t idx);
+	static const std::string& GetJointName(std::size_t idx);
 	static int GetNumJoints();
-	void SaveTest(const string& dir, const string& filename) const;
-	void CopyFrame(size_t prim_idx, size_t sec_idx);
+	void SaveTest(const std::string& dir, const std::string& filename) const;
+	void CopyFrame(std::size_t prim_idx, std::size_t sec_idx);
 	void AddFrame();
-	size_t  DeleteFrame(size_t idx);
-	void InsertFrame(size_t idx);
-	void CopyToClipboard(size_t idx);
-	void PasteFromClipboard(size_t idx);
-	void ClearFrame(size_t idx);
-	size_t numFrames() const { return frames.size(); }
+	std::size_t  DeleteFrame(std::size_t idx);
+	void InsertFrame(std::size_t idx);
+	void CopyToClipboard(std::size_t idx);
+	void PasteFromClipboard(std::size_t idx);
+	void ClearFrame(std::size_t idx);
+	std::size_t numFrames() const { return frames.size(); }
 };
 
 extern CKeyframe TestFrame;

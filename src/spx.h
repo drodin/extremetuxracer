@@ -22,93 +22,93 @@ GNU General Public License for more details.
 #include <list>
 #include <map>
 
-extern const string emptyString;
-extern const string errorString;
+extern const std::string emptyString;
+extern const std::string errorString;
 
 // ----- elementary string functions ----------------------------------
-string   MakePathStr(const string& src, const string& add);
-void     SInsertN(string &s, size_t pos, const string& ins);
-void     SDeleteN(string &s, size_t pos, size_t count);
-size_t   SPosN(const string &s, const string& find);
-void     STrimLeftN(string &s);
-void     STrimRightN(string &s);
-void     STrimN(string &s);
+std::string MakePathStr(const std::string& src, const std::string& add);
+void        SInsertN(std::string &s, std::size_t pos, const std::string& ins);
+void        SDeleteN(std::string &s, std::size_t pos, std::size_t count);
+std::size_t SPosN(const std::string &s, const std::string& find);
+void        STrimLeftN(std::string &s);
+void        STrimRightN(std::string &s);
+void        STrimN(std::string &s);
 
 // ----- conversion functions -----------------------------------------
-string   Int_StrN(const int val);
-string   Int_StrN(const int val, const streamsize count);
-string   Float_StrN(const float val, const streamsize count);
-string   Bool_StrN(const bool val);
-string   Vector_StrN(const TVector3d& v, const streamsize count);
-int      Str_IntN(const string &s, const int def);
-bool     Str_BoolN(const string &s, const bool def);
-float    Str_FloatN(const string &s, const float def);
+std::string Int_StrN(const int val);
+std::string Int_StrN(const int val, const std::streamsize count);
+std::string Float_StrN(const float val, const std::streamsize count);
+std::string Bool_StrN(const bool val);
+std::string Vector_StrN(const TVector3d& v, const std::streamsize count);
+int         Str_IntN(const std::string &s, const int def);
+bool        Str_BoolN(const std::string &s, const bool def);
+float       Str_FloatN(const std::string &s, const float def);
 template<typename T>
-TVector2<T> Str_Vector2(const string &s, const TVector2<T>& def);
+TVector2<T> Str_Vector2(const std::string &s, const TVector2<T>& def);
 template<typename T>
-TVector3<T> Str_Vector3(const string &s, const TVector3<T>& def);
+TVector3<T> Str_Vector3(const std::string &s, const TVector3<T>& def);
 template<typename T>
-TVector4<T> Str_Vector4(const string &s, const TVector4<T>& def);
-sf::Color   Str_ColorN(const string &s, const sf::Color& def);
-TColor3  Str_Color3N(const string &s, const TColor3& def);
-void     Str_ArrN(const string &s, float *arr, size_t count, float def);
+TVector4<T> Str_Vector4(const std::string &s, const TVector4<T>& def);
+sf::Color   Str_ColorN(const std::string &s, const sf::Color& def);
+TColor3     Str_Color3N(const std::string &s, const TColor3& def);
+void        Str_ArrN(const std::string &s, float *arr, std::size_t count, float def);
 
 // ----- SP functions for parsing lines --------------------------------
-size_t   SPPosN(const string &s, const string &tag);
+std::size_t SPPosN(const std::string &s, const std::string &tag);
 
-string   SPStrN(const string &s, const string &tag, const string& def = emptyString);
-string   SPStrN(const string &s, const char* tag, const char* def);
-int      SPIntN(const string &s, const string &tag, const int def);
-bool     SPBoolN(const string &s, const string &tag, const bool def);
-float    SPFloatN(const string &s, const string &tag, const float def);
+std::string SPStrN(const std::string &s, const std::string &tag, const std::string& def = emptyString);
+std::string SPStrN(const std::string &s, const char* tag, const char* def);
+int         SPIntN(const std::string &s, const std::string &tag, const int def);
+bool        SPBoolN(const std::string &s, const std::string &tag, const bool def);
+float       SPFloatN(const std::string &s, const std::string &tag, const float def);
 template<typename T>
-TVector2<T> SPVector2(const string &s, const string &tag, const TVector2<T>& def);
-static inline TVector2d SPVector2d(const string &s, const string &tag) { return SPVector2(s, tag, NullVec2); }
-static inline TVector2i SPVector2i(const string &s, const string &tag) { return SPVector2(s, tag, NullVec2i); }
+TVector2<T> SPVector2(const std::string &s, const std::string &tag, const TVector2<T>& def);
+static inline TVector2d SPVector2d(const std::string &s, const std::string &tag) { return SPVector2(s, tag, NullVec2); }
+static inline TVector2i SPVector2i(const std::string &s, const std::string &tag) { return SPVector2(s, tag, NullVec2i); }
 template<typename T>
-TVector3<T> SPVector3(const string &s, const string &tag, const TVector3<T>& def);
-static inline TVector3d SPVector3d(const string &s, const string &tag) { return SPVector3(s, tag, NullVec3); }
-static inline TVector3i SPVector3i(const string &s, const string &tag) { return SPVector3(s, tag, NullVec3i); }
+TVector3<T> SPVector3(const std::string &s, const std::string &tag, const TVector3<T>& def);
+static inline TVector3d SPVector3d(const std::string &s, const std::string &tag) { return SPVector3(s, tag, NullVec3); }
+static inline TVector3i SPVector3i(const std::string &s, const std::string &tag) { return SPVector3(s, tag, NullVec3i); }
 template<typename T>
-TVector4<T> SPVector4(const string &s, const string &tag, const TVector4<T>& def);
-static inline TVector4d SPVector4d(const string &s, const string &tag) { return SPVector4(s, tag, NullVec4); }
-static inline TVector4i SPVector4i(const string &s, const string &tag) { return SPVector4(s, tag, NullVec4i); }
-sf::Color SPColorN(const string &s, const string &tag, const sf::Color& def);
-TColor3   SPColor3N(const string &s, const string &tag, const TColor3& def);
-void      SPArrN(const string &s, const string &tag, float *arr, size_t count, float def);
+TVector4<T> SPVector4(const std::string &s, const std::string &tag, const TVector4<T>& def);
+static inline TVector4d SPVector4d(const std::string &s, const std::string &tag) { return SPVector4(s, tag, NullVec4); }
+static inline TVector4i SPVector4i(const std::string &s, const std::string &tag) { return SPVector4(s, tag, NullVec4i); }
+sf::Color SPColorN(const std::string &s, const std::string &tag, const sf::Color& def);
+TColor3   SPColor3N(const std::string &s, const std::string &tag, const TColor3& def);
+void      SPArrN(const std::string &s, const std::string &tag, float *arr, std::size_t count, float def);
 
 // ----- making SP strings --------------------------------------------
-void     SPAddIntN(string &s, const string &tag, const int val);
-void     SPAddFloatN(string &s, const string &tag, const float val, size_t count);
-void     SPAddStrN(string &s, const string &tag, const string &val);
-void     SPAddVec2N(string &s, const string &tag, const TVector2d& val, size_t count);
-void     SPAddVec3N(string &s, const string &tag, const TVector3d& val, size_t count);
-void     SPAddBoolN(string &s, const string &tag, const bool val);
+void     SPAddIntN(std::string &s, const std::string &tag, const int val);
+void     SPAddFloatN(std::string &s, const std::string &tag, const float val, std::size_t count);
+void     SPAddStrN(std::string &s, const std::string &tag, const std::string &val);
+void     SPAddVec2N(std::string &s, const std::string &tag, const TVector2d& val, std::size_t count);
+void     SPAddVec3N(std::string &s, const std::string &tag, const TVector3d& val, std::size_t count);
+void     SPAddBoolN(std::string &s, const std::string &tag, const bool val);
 
 // ----- manipulating SP strings --------------------------------------
-void     SPSetIntN(string &s, const string &tag, const int val);
-void     SPSetFloatN(string &s, const string &tag, const float val, size_t count);
-void     SPSetStrN(string &s, const string &tag, const string &val);
+void     SPSetIntN(std::string &s, const std::string &tag, const int val);
+void     SPSetFloatN(std::string &s, const std::string &tag, const float val, std::size_t count);
+void     SPSetStrN(std::string &s, const std::string &tag, const std::string &val);
 
 // --------------------------------------------------------------------
 //		 string list
 // --------------------------------------------------------------------
 
-class CSPList : public std::list<string> {
+class CSPList : public std::list<std::string> {
 private:
 	bool fnewlineflag;
 public:
 	CSPList(bool newlineflag = false);
 
-	void Add(const string& line = emptyString);
-	void Add(string&& line);
+	void Add(const std::string& line = emptyString);
+	void Add(std::string&& line);
 	void Print() const;
-	bool Load(const string &filepath);
-	bool Load(const string& dir, const string& filename);
-	bool Save(const string &filepath) const;
-	bool Save(const string& dir, const string& filename) const;
+	bool Load(const std::string &filepath);
+	bool Load(const std::string& dir, const std::string& filename);
+	bool Save(const std::string &filepath) const;
+	bool Save(const std::string& dir, const std::string& filename) const;
 
-	void MakeIndex(map<string, size_t>& index, const string &tag);
+	void MakeIndex(std::map<std::string, std::size_t>& index, const std::string &tag);
 };
 
 #endif

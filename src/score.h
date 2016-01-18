@@ -25,12 +25,12 @@ GNU General Public License for more details.
 #define MAX_SCORES 8
 
 struct TScore {
-	string player;
+	std::string player;
 	int points;
 	int herrings;
 	float time;
 
-	TScore(const string& player_ = emptyString, int points_ = 0, int herrings_ = 0, double time_ = 0)
+	TScore(const std::string& player_ = emptyString, int points_ = 0, int herrings_ = 0, double time_ = 0)
 		: player(player_), points(points_), herrings(herrings_), time(time_)
 	{}
 };

@@ -67,9 +67,9 @@ void CSound::LoadSoundList() {
 	CSPList list;
 	if (list.Load(param.sounds_dir, "sounds.lst")) {
 		for (CSPList::const_iterator line = list.cbegin(); line != list.cend(); ++line) {
-			string name = SPStrN(*line, "name");
-			string soundfile = SPStrN(*line, "file");
-			string path = MakePathStr(param.sounds_dir, soundfile);
+			std::string name = SPStrN(*line, "name");
+			std::string soundfile = SPStrN(*line, "file");
+			std::string path = MakePathStr(param.sounds_dir, soundfile);
 			LoadChunk(name, path);
 		}
 	}
@@ -77,13 +77,13 @@ void CSound::LoadSoundList() {
 
 void CSound::FreeSounds() {
 	HaltAll();
-	for (size_t i = 0; i < sounds.size(); i++)
+	for (std::size_t i = 0; i < sounds.size(); i++)
 		delete sounds[i];
 	sounds.clear();
 	SoundIndex.clear();
 }
 
-size_t CSound::GetSoundIdx(const string& name) const {
+std::size_t CSound::GetSoundIdx(const std::string& name) const {
 	try {
 		return SoundIndex.at(name);
 	} catch (...) {
@@ -91,30 +91,30 @@ size_t CSound::GetSoundIdx(const string& name) const {
 	}
 }
 
-void CSound::SetVolume(size_t soundid, int volume) {
+void CSound::SetVolume(std::size_t soundid, int volume) {
 	if (soundid >= sounds.size()) return;
 
 	volume = clamp(0, volume, MIX_MAX_VOLUME);
 	sounds[soundid]->setVolume(volume);
 }
 
-void CSound::SetVolume(const string& name, int volume) {
+void CSound::SetVolume(const std::string& name, int volume) {
 	SetVolume(GetSoundIdx(name), volume);
 }
 
 // ------------------- play -------------------------------------------
 
-void CSound::Play(size_t soundid, bool loop) {
+void CSound::Play(std::size_t soundid, bool loop) {
 	if (soundid >= sounds.size()) return;
 
 	sounds[soundid]->Play(loop);
 }
 
-void CSound::Play(const string& name, bool loop) {
+void CSound::Play(const std::string& name, bool loop) {
 	Play(GetSoundIdx(name), loop);
 }
 
-void CSound::Play(size_t soundid, bool loop, int volume) {
+void CSound::Play(std::size_t soundid, bool loop, int volume) {
 	if (soundid >= sounds.size()) return;
 
 	volume = clamp(0, volume, MIX_MAX_VOLUME);
@@ -122,11 +122,11 @@ void CSound::Play(size_t soundid, bool loop, int volume) {
 	sounds[soundid]->Play(loop);
 }
 
-void CSound::Play(const string& name, bool loop, int volume) {
+void CSound::Play(const std::string& name, bool loop, int volume) {
 	Play(GetSoundIdx(name), loop, volume);
 }
 
-void CSound::Halt(size_t soundid) {
+void CSound::Halt(std::size_t soundid) {
 	if (soundid >= sounds.size()) return;
 
 	// loop_count must be -1 (endless loop) for halt
@@ -134,12 +134,12 @@ void CSound::Halt(size_t soundid) {
 		sounds[soundid]->player.stop();
 }
 
-void CSound::Halt(const string& name) {
+void CSound::Halt(const std::string& name) {
 	Halt(GetSoundIdx(name));
 }
 
 void CSound::HaltAll() {
-	for (size_t i = 0; i < sounds.size(); i++) {
+	for (std::size_t i = 0; i < sounds.size(); i++) {
 		sounds[i]->player.stop();
 	}
 }
@@ -156,7 +156,7 @@ CMusic::~CMusic() {
 	FreeMusics();
 }
 
-bool CMusic::LoadPiece(const string& name, const string& filename) {
+bool CMusic::LoadPiece(const std::string& name, const std::string& filename) {
 	sf::Music* m = new sf::Music();
 	if (!m->openFromFile(filename)) {
 		Message("could not load music", filename);
@@ -172,9 +172,9 @@ void CMusic::LoadMusicList() {
 	CSPList list;
 	if (list.Load(param.music_dir, "music.lst")) {
 		for (CSPList::const_iterator line = list.cbegin(); line != list.cend(); ++line) {
-			string name = SPStrN(*line, "name");
-			string musicfile = SPStrN(*line, "file");
-			string path = MakePathStr(param.music_dir, musicfile);
+			std::string name = SPStrN(*line, "name");
+			std::string musicfile = SPStrN(*line, "file");
+			std::string path = MakePathStr(param.music_dir, musicfile);
 			LoadPiece(name, path);
 		}
 	} else {
@@ -187,11 +187,11 @@ void CMusic::LoadMusicList() {
 	ThemesIndex.clear();
 	if (list.Load(param.music_dir, "racing_themes.lst")) {
 		themes.resize(list.size());
-		size_t i = 0;
+		std::size_t i = 0;
 		for (CSPList::const_iterator line = list.cbegin(); line != list.cend(); ++line, i++) {
-			string name = SPStrN(*line, "name");
+			std::string name = SPStrN(*line, "name");
 			ThemesIndex[name] = i;
-			string item = SPStrN(*line, "race", "race_1");
+			std::string item = SPStrN(*line, "race", "race_1");
 			themes[i].situation[0] = musics[MusicIndex[item]];
 			item = SPStrN(*line, "wonrace", "wonrace_1");
 			themes[i].situation[1] = musics[MusicIndex[item]];
@@ -203,7 +203,7 @@ void CMusic::LoadMusicList() {
 
 void CMusic::FreeMusics() {
 	Halt();
-	for (size_t i = 0; i < musics.size(); i++)
+	for (std::size_t i = 0; i < musics.size(); i++)
 		delete musics[i];
 	musics.clear();
 	MusicIndex.clear();
@@ -214,7 +214,7 @@ void CMusic::FreeMusics() {
 	curr_music = nullptr;
 }
 
-size_t CMusic::GetMusicIdx(const string& name) const {
+std::size_t CMusic::GetMusicIdx(const std::string& name) const {
 	try {
 		return MusicIndex.at(name);
 	} catch (...) {
@@ -222,7 +222,7 @@ size_t CMusic::GetMusicIdx(const string& name) const {
 	}
 }
 
-size_t CMusic::GetThemeIdx(const string& theme) const {
+std::size_t CMusic::GetThemeIdx(const std::string& theme) const {
 	try {
 		return ThemesIndex.at(theme);
 	} catch (...) {
@@ -253,27 +253,27 @@ bool CMusic::Play(sf::Music* music, bool loop, int volume) {
 	return true;
 }
 
-bool CMusic::Play(size_t musid, bool loop) {
+bool CMusic::Play(std::size_t musid, bool loop) {
 	if (musid >= musics.size()) return false;
 	sf::Music* music = musics[musid];
 	return Play(music, loop, curr_volume);
 }
 
-bool CMusic::Play(const string& name, bool loop) {
+bool CMusic::Play(const std::string& name, bool loop) {
 	return Play(GetMusicIdx(name), loop);
 }
 
-bool CMusic::Play(size_t musid, bool loop, int volume) {
+bool CMusic::Play(std::size_t musid, bool loop, int volume) {
 	if (musid >= musics.size()) return false;
 	sf::Music* music = musics[musid];
 	return Play(music, loop, volume);
 }
 
-bool CMusic::Play(const string& name, bool loop, int volume) {
+bool CMusic::Play(const std::string& name, bool loop, int volume) {
 	return Play(GetMusicIdx(name), loop, volume);
 }
 
-bool CMusic::PlayTheme(size_t theme, ESituation situation) {
+bool CMusic::PlayTheme(std::size_t theme, ESituation situation) {
 	if (theme >= themes.size()) return false;
 	if (situation >= SITUATION_COUNT) return false;
 	sf::Music* music = themes[theme].situation[situation];

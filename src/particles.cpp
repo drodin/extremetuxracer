@@ -61,7 +61,7 @@ struct TGuiParticle {
 	void Update(float time_step, float push_timestep, const TVector2d& push_vector);
 };
 
-static list<TGuiParticle> particles_2d;
+static std::list<TGuiParticle> particles_2d;
 static TVector2d push_position(0, 0);
 static TVector2d last_push_position;
 static bool push_position_initialized = false;
@@ -150,7 +150,7 @@ void update_ui_snow(float time_step) {
 	}
 	last_push_position = push_position;
 
-	for (list<TGuiParticle>::iterator p = particles_2d.begin(); p != particles_2d.end(); ++p) {
+	for (std::list<TGuiParticle>::iterator p = particles_2d.begin(); p != particles_2d.end(); ++p) {
 		p->Update(time_step, push_timestep, push_vector);
 	}
 
@@ -158,7 +158,7 @@ void update_ui_snow(float time_step) {
 		particles_2d.emplace_back(static_cast<float>(FRandom()), -0.05f);
 	}
 
-	for (list<TGuiParticle>::iterator p = particles_2d.begin(); p != particles_2d.end();) {
+	for (std::list<TGuiParticle>::iterator p = particles_2d.begin(); p != particles_2d.end();) {
 		if (p->sprite.getPosition().y / static_cast<float>(Winsys.resolution.height) > 1.05) {
 			if (particles_2d.size() > BASE_snowparticles * Winsys.resolution.width && FRandom() > 0.2) {
 				p = particles_2d.erase(p);
@@ -184,7 +184,7 @@ void update_ui_snow(float time_step) {
 	}
 }
 void draw_ui_snow() {
-	for (list<TGuiParticle>::const_iterator i = particles_2d.begin(); i != particles_2d.end(); ++i) {
+	for (std::list<TGuiParticle>::const_iterator i = particles_2d.begin(); i != particles_2d.end(); ++i) {
 		i->Draw();
 	}
 }
@@ -235,7 +235,7 @@ private:
 	void draw_billboard(const CControl *ctrl, double width, double height, bool use_world_y_axis, const GLfloat* tex) const;
 };
 
-static list<Particle> particles;
+static std::list<Particle> particles;
 
 void Particle::Draw(const CControl* ctrl) const {
 	static const GLfloat tex_coords[4][8] = {
@@ -338,7 +338,7 @@ void create_new_particles(const TVector3d& loc, const TVector3d& vel, int num) {
 	}
 }
 void update_particles(float time_step) {
-	for (list<Particle>::iterator p = particles.begin(); p != particles.end();) {
+	for (std::list<Particle>::iterator p = particles.begin(); p != particles.end();) {
 		p->age += time_step;
 		if (p->age < 0) {
 			++p;
@@ -368,7 +368,7 @@ void draw_particles(const CControl *ctrl) {
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 	glColor4f(1.f, 1.f, 1.f, 0.8f);
 
-	for (list<Particle>::const_iterator p = particles.begin(); p != particles.end(); ++p) {
+	for (std::list<Particle>::const_iterator p = particles.begin(); p != particles.end(); ++p) {
 		if (p->age >= 0)
 			p->Draw(ctrl);
 	}
@@ -471,7 +471,7 @@ void TFlake::Draw(const TPlane& lp, const TPlane& rp, bool rotate_flake, float d
 
 
 TFlakeArea::TFlakeArea(
-    size_t num_flakes,
+    std::size_t num_flakes,
     float _xrange,
     float _ytop,
     float _yrange,
@@ -510,7 +510,7 @@ void TFlakeArea::Draw(const CControl *ctrl) const {
 
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-	for (size_t i=0; i < flakes.size(); i++) {
+	for (std::size_t i=0; i < flakes.size(); i++) {
 		flakes[i].Draw(lp, rp, rotate_flake, dir_angle);
 	}
 	glDisableClientState(GL_VERTEX_ARRAY);
@@ -518,7 +518,7 @@ void TFlakeArea::Draw(const CControl *ctrl) const {
 }
 
 void TFlakeArea::Update(float timestep, float xcoeff, float ycoeff, float zcoeff) {
-	for (size_t i=0; i<flakes.size(); i++) {
+	for (std::size_t i=0; i<flakes.size(); i++) {
 		flakes[i].pt.x += xcoeff;
 		flakes[i].pt.y += flakes[i].vel.y * timestep + ycoeff;
 		flakes[i].pt.z += zcoeff;
@@ -543,7 +543,7 @@ void CFlakes::Reset() {
 	areas.clear();
 }
 
-void CFlakes::MakeSnowFlake(size_t ar, size_t i) {
+void CFlakes::MakeSnowFlake(std::size_t ar, std::size_t i) {
 	areas[ar].flakes[i].pt.x = XRandom(areas[ar].left, areas[ar].right);
 	areas[ar].flakes[i].pt.y = -XRandom(areas[ar].top, areas[ar].bottom);
 	areas[ar].flakes[i].pt.z = areas[ar].back - FRandom() * (areas[ar].back - areas[ar].front);
@@ -585,13 +585,13 @@ void CFlakes::MakeSnowFlake(size_t ar, size_t i) {
 void CFlakes::GenerateSnowFlakes(const CControl *ctrl) {
 	if (g_game.snow_id < 1) return;
 	snow_lastpos = ctrl->cpos;
-	for (size_t ar=0; ar<areas.size(); ar++) {
-		for (size_t i=0; i<areas[ar].flakes.size(); i++) MakeSnowFlake(ar, i);
+	for (std::size_t ar=0; ar<areas.size(); ar++) {
+		for (std::size_t i=0; i<areas[ar].flakes.size(); i++) MakeSnowFlake(ar, i);
 	}
 }
 
 void CFlakes::UpdateAreas(const CControl *ctrl) {
-	for (size_t ar=0; ar<areas.size(); ar++) {
+	for (std::size_t ar=0; ar<areas.size(); ar++) {
 		areas[ar].left = ctrl->cpos.x - areas[ar].xrange / 2;
 		areas[ar].right = areas[ar].left + areas[ar].xrange;
 		areas[ar].back = ctrl->cpos.z - areas[ar].zback;
@@ -665,14 +665,14 @@ void CFlakes::Update(float timestep, const CControl *ctrl) {
 	float ycoeff = (ydiff * YDRIFT) + (winddrift.z * timestep);
 	float zcoeff = (zdiff * ZDRIFT) + (winddrift.z * timestep);
 
-	for (size_t ar=0; ar<areas.size(); ar++) {
+	for (std::size_t ar=0; ar<areas.size(); ar++) {
 		areas[ar].Update(timestep, xcoeff, ycoeff, zcoeff);
 	}
 	snow_lastpos = ctrl->cpos;
 }
 
 void CFlakes::Draw(const CControl *ctrl) const {
-	for (size_t ar=0; ar<areas.size(); ar++)
+	for (std::size_t ar=0; ar<areas.size(); ar++)
 		areas[ar].Draw(ctrl);
 }
 
@@ -834,7 +834,7 @@ void CCurtain::Draw() {
 	glColor(particle_colour, 255);
 
 	// glEnable (GL_NORMALIZE);
-	for (size_t i=0; i<curtains.size(); i++) {
+	for (std::size_t i=0; i<curtains.size(); i++) {
 		curtains[i].Draw();
 	}
 }
@@ -844,7 +844,7 @@ void CCurtain::Update(float timestep, const CControl *ctrl) {
 	const TVector3d& drift = Wind.WindDrift();
 
 	UpdateChanges(timestep);
-	for (size_t i=0; i<curtains.size(); i++) {
+	for (std::size_t i=0; i<curtains.size(); i++) {
 		curtains[i].Update(timestep, drift, ctrl);
 	}
 	Draw();
@@ -855,7 +855,7 @@ void CCurtain::Reset() {
 }
 
 void CCurtain::SetStartParams(const CControl *ctrl) {
-	for (size_t i=0; i<curtains.size(); i++) {
+	for (std::size_t i=0; i<curtains.size(); i++) {
 		curtains[i].SetStartParams(ctrl);
 	}
 }

@@ -78,8 +78,8 @@ void CIntro::Enter() {
 	SetCameraDistance(4.0);
 	SetStationaryCamera(false);
 	update_view(ctrl, EPS);
-	size_t num_items = Course.NocollArr.size();
-	for (size_t i = 0; i < num_items; i++) {
+	std::size_t num_items = Course.NocollArr.size();
+	for (std::size_t i = 0; i < num_items; i++) {
 		if (Course.NocollArr[i].collectable != -1) {
 			Course.NocollArr[i].collectable = 1;
 		}

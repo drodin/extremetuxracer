@@ -39,13 +39,13 @@ static const GLshort fullsize_texture[] = {
 //				class TTexture
 // --------------------------------------------------------------------
 
-bool TTexture::Load(const string& filename, bool repeatable) {
+bool TTexture::Load(const std::string& filename, bool repeatable) {
 	texture.setSmooth(true);
 	texture.setRepeated(repeatable);
 	return texture.loadFromFile(filename);
 }
 
-bool TTexture::Load(const string& dir, const string& filename, bool repeatable) {
+bool TTexture::Load(const std::string& dir, const std::string& filename, bool repeatable) {
 	return Load(dir + SEP + filename, repeatable);
 }
 
@@ -182,8 +182,8 @@ bool CTexture::LoadTextureList() {
 	if (list.Load(param.tex_dir, "textures.lst")) {
 		for (CSPList::const_iterator line = list.cbegin(); line != list.cend(); ++line) {
 			int id = SPIntN(*line, "id", -1);
-			CommonTex.resize(max(CommonTex.size(), (size_t)id+1));
-			string texfile = SPStrN(*line, "file");
+			CommonTex.resize(max(CommonTex.size(), (std::size_t)id+1));
+			std::string texfile = SPStrN(*line, "file");
 			bool rep = SPBoolN(*line, "repeat", false);
 			if (id >= 0) {
 				CommonTex[id] = new TTexture();
@@ -198,22 +198,22 @@ bool CTexture::LoadTextureList() {
 }
 
 void CTexture::FreeTextureList() {
-	for (size_t i=0; i<CommonTex.size(); i++) {
+	for (std::size_t i=0; i<CommonTex.size(); i++) {
 		delete CommonTex[i];
 	}
 	CommonTex.clear();
 }
 
-TTexture* CTexture::GetTexture(size_t idx) const {
+TTexture* CTexture::GetTexture(std::size_t idx) const {
 	if (idx >= CommonTex.size()) return nullptr;
 	return CommonTex[idx];
 }
 
-const sf::Texture& CTexture::GetSFTexture(size_t idx) const {
+const sf::Texture& CTexture::GetSFTexture(std::size_t idx) const {
 	return CommonTex[idx]->texture;
 }
 
-bool CTexture::BindTex(size_t idx) {
+bool CTexture::BindTex(std::size_t idx) {
 	if (idx >= CommonTex.size()) return false;
 	CommonTex[idx]->Bind();
 	return true;
@@ -221,22 +221,22 @@ bool CTexture::BindTex(size_t idx) {
 
 // ---------------------------- Draw ----------------------------------
 
-void CTexture::Draw(size_t idx) {
+void CTexture::Draw(std::size_t idx) {
 	if (CommonTex.size() > idx)
 		CommonTex[idx]->Draw();
 }
 
-void CTexture::Draw(size_t idx, int x, int y, float size) {
+void CTexture::Draw(std::size_t idx, int x, int y, float size) {
 	if (CommonTex.size() > idx)
 		CommonTex[idx]->Draw(x, y, size);
 }
 
-void CTexture::Draw(size_t idx, int x, int y, int width, int height) {
+void CTexture::Draw(std::size_t idx, int x, int y, int width, int height) {
 	if (CommonTex.size() > idx)
 		CommonTex[idx]->Draw(x, y, width, height);
 }
 
-void CTexture::DrawFrame(size_t idx, int x, int y, double w, double h, int frame, const sf::Color& col) {
+void CTexture::DrawFrame(std::size_t idx, int x, int y, double w, double h, int frame, const sf::Color& col) {
 	if (CommonTex.size() > idx)
 		CommonTex[idx]->DrawFrame(x, y, w, h, frame, col);
 }
@@ -278,7 +278,7 @@ void CTexture::DrawNumChr(char c, int x, int y, int w, int h) {
 	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 }
 
-void CTexture::DrawNumStr(const string& s, int x, int y, float size, const sf::Color& col) {
+void CTexture::DrawNumStr(const std::string& s, int x, int y, float size, const sf::Color& col) {
 	if (!BindTex(NUMERIC_FONT)) {
 		Message("DrawNumStr: missing texture");
 		return;
@@ -291,7 +291,7 @@ void CTexture::DrawNumStr(const string& s, int x, int y, float size, const sf::C
 	glColor(col);
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-	for (size_t i=0; i < s.size(); i++) {
+	for (std::size_t i=0; i < s.size(); i++) {
 		DrawNumChr(s[i], x + (int)i*qw, y, qw, qh);
 	}
 	glDisableClientState(GL_TEXTURE_COORD_ARRAY);

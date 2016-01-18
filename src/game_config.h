@@ -21,31 +21,30 @@ GNU General Public License for more details.
 
 struct TParam {
 	// defined at runtime:
-	//	string	prog_dir;
-	string	config_dir;
-	string	data_dir;
-	string	common_course_dir;
-	string	obj_dir;
-	string	terr_dir;
-	string	char_dir;
-	string  env_dir2;
-	string	tex_dir;
-	string	sounds_dir;
-	string  music_dir;
-	string	screenshot_dir;
-	string	font_dir;
-	string  trans_dir;
-	string  player_dir;
-	string  configfile;
+	std::string config_dir;
+	std::string data_dir;
+	std::string common_course_dir;
+	std::string obj_dir;
+	std::string terr_dir;
+	std::string char_dir;
+	std::string env_dir2;
+	std::string tex_dir;
+	std::string sounds_dir;
+	std::string music_dir;
+	std::string screenshot_dir;
+	std::string font_dir;
+	std::string trans_dir;
+	std::string player_dir;
+	std::string configfile;
 
 	// ------------------------------------
 	// main config params:
-	size_t	res_type;
+	std::size_t	res_type;
 	uint32_t	framerate;
-	int		perf_level;
-	size_t	language;
-	int		sound_volume;
-	int		music_volume;
+	int			perf_level;
+	std::size_t	language;
+	int			sound_volume;
+	int			music_volume;
 
 	int		forward_clip_distance;
 	int		backward_clip_distance;
@@ -62,9 +61,9 @@ struct TParam {
 	bool	use_quad_scale;			// scaling type for menus
 	bool	fullscreen;
 
-	string  menu_music;
-	string  credits_music;
-	string  config_music;
+	std::string	menu_music;
+	std::string	credits_music;
+	std::string	config_music;
 
 	// these params are not saved in options file
 	TViewMode view_mode;

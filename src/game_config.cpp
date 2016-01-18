@@ -89,7 +89,7 @@ void SetConfigDefaults() {
 	param.fullscreen = true;
 	param.res_type = 0; // 0=auto / 1=800x600 / 2=1024x768 ...
 	param.perf_level = 3;	// detail level
-	param.language = string::npos; // If language is set to npos, ETR will try to load default system language
+	param.language = std::string::npos; // If language is set to npos, ETR will try to load default system language
 	param.sound_volume = 90;
 	param.music_volume = 20;
 
@@ -118,14 +118,14 @@ void SetConfigDefaults() {
 
 
 template<typename T>
-void AddItem(CSPList &list, const string& tag, T content) {
-	ostringstream os;
+void AddItem(CSPList &list, const std::string& tag, T content) {
+	std::ostringstream os;
 	os << "  [" << tag << "] " << content;
 	list.Add(os.str());
 }
 
-void AddComment(CSPList &list, const string& comment) {
-	string line = "# " + comment;
+void AddComment(CSPList &list, const std::string& comment) {
+	std::string line = "# " + comment;
 	list.Add(line);
 }
 

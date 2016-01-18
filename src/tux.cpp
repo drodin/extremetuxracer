@@ -80,13 +80,13 @@ CCharShape::~CCharShape() {
 //				nodes
 // --------------------------------------------------------------------
 
-size_t CCharShape::GetNodeIdx(size_t node_name) const {
+std::size_t CCharShape::GetNodeIdx(std::size_t node_name) const {
 	if (node_name >= MAX_CHAR_NODES) return -1;
 	return Index[node_name];
 }
 
-TCharNode *CCharShape::GetNode(size_t node_name) {
-	size_t idx = GetNodeIdx(node_name);
+TCharNode *CCharShape::GetNode(std::size_t node_name) {
+	std::size_t idx = GetNodeIdx(node_name);
 	if (idx >= numNodes) return nullptr;
 	return Nodes[idx];
 }
@@ -115,7 +115,7 @@ void CCharShape::CreateRootNode() {
 	numNodes = 1;
 }
 
-bool CCharShape::CreateCharNode(int parent_name, size_t node_name, const string& joint, const string& name, const string& order, bool shadow) {
+bool CCharShape::CreateCharNode(int parent_name, std::size_t node_name, const std::string& joint, const std::string& name, const std::string& order, bool shadow) {
 	TCharNode *parent = GetNode(parent_name);
 	if (parent == nullptr) {
 		Message("wrong parent node");
@@ -167,8 +167,8 @@ bool CCharShape::CreateCharNode(int parent_name, size_t node_name, const string&
 	return true;
 }
 
-void CCharShape::AddAction(size_t node_name, int type, const TVector3d& vec, double val) {
-	size_t idx = GetNodeIdx(node_name);
+void CCharShape::AddAction(std::size_t node_name, int type, const TVector3d& vec, double val) {
+	std::size_t idx = GetNodeIdx(node_name);
 	TCharAction *act = Nodes[idx]->action;
 	act->type[act->num] = type;
 	act->vec[act->num] = vec;
@@ -176,7 +176,7 @@ void CCharShape::AddAction(size_t node_name, int type, const TVector3d& vec, dou
 	act->num++;
 }
 
-bool CCharShape::TranslateNode(size_t node_name, const TVector3d& vec) {
+bool CCharShape::TranslateNode(std::size_t node_name, const TVector3d& vec) {
 	TCharNode *node = GetNode(node_name);
 	if (node == nullptr) return false;
 
@@ -191,7 +191,7 @@ bool CCharShape::TranslateNode(size_t node_name, const TVector3d& vec) {
 	return true;
 }
 
-bool CCharShape::RotateNode(size_t node_name, int axis, double angle) {
+bool CCharShape::RotateNode(std::size_t node_name, int axis, double angle) {
 	TCharNode *node = GetNode(node_name);
 	if (node == nullptr) return false;
 
@@ -220,13 +220,13 @@ bool CCharShape::RotateNode(size_t node_name, int axis, double angle) {
 	return true;
 }
 
-bool CCharShape::RotateNode(const string& node_trivialname, int axis, double angle) {
-	map<string, size_t>::const_iterator i = NodeIndex.find(node_trivialname);
+bool CCharShape::RotateNode(const std::string& node_trivialname, int axis, double angle) {
+	std::map<std::string, std::size_t>::const_iterator i = NodeIndex.find(node_trivialname);
 	if (i == NodeIndex.end()) return false;
 	return RotateNode(i->second, axis, angle);
 }
 
-void CCharShape::ScaleNode(size_t node_name, const TVector3d& vec) {
+void CCharShape::ScaleNode(std::size_t node_name, const TVector3d& vec) {
 	TCharNode *node = GetNode(node_name);
 	if (node == nullptr) return;
 
@@ -240,7 +240,7 @@ void CCharShape::ScaleNode(size_t node_name, const TVector3d& vec) {
 	if (newActions && useActions) AddAction(node_name, 4, vec, 0);
 }
 
-bool CCharShape::VisibleNode(size_t node_name, float level) {
+bool CCharShape::VisibleNode(std::size_t node_name, float level) {
 	TCharNode *node = GetNode(node_name);
 	if (node == nullptr) return false;
 
@@ -255,7 +255,7 @@ bool CCharShape::VisibleNode(size_t node_name, float level) {
 	return true;
 }
 
-bool CCharShape::MaterialNode(size_t node_name, const string& mat_name) {
+bool CCharShape::MaterialNode(std::size_t node_name, const std::string& mat_name) {
 	TCharNode *node = GetNode(node_name);
 	if (node == nullptr) return false;
 	TCharMaterial *mat = GetMaterial(mat_name);
@@ -265,7 +265,7 @@ bool CCharShape::MaterialNode(size_t node_name, const string& mat_name) {
 	return true;
 }
 
-bool CCharShape::ResetNode(size_t node_name) {
+bool CCharShape::ResetNode(std::size_t node_name) {
 	TCharNode *node = GetNode(node_name);
 	if (node == nullptr) return false;
 
@@ -274,13 +274,13 @@ bool CCharShape::ResetNode(size_t node_name) {
 	return true;
 }
 
-bool CCharShape::ResetNode(const string& node_trivialname) {
-	map<string, size_t>::const_iterator i = NodeIndex.find(node_trivialname);
+bool CCharShape::ResetNode(const std::string& node_trivialname) {
+	std::map<std::string, std::size_t>::const_iterator i = NodeIndex.find(node_trivialname);
 	if (i == NodeIndex.end()) return false;
 	return ResetNode(i->second);
 }
 
-bool CCharShape::TransformNode(size_t node_name, const TMatrix<4, 4>& mat, const TMatrix<4, 4>& invmat) {
+bool CCharShape::TransformNode(std::size_t node_name, const TMatrix<4, 4>& mat, const TMatrix<4, 4>& invmat) {
 	TCharNode *node = GetNode(node_name);
 	if (node == nullptr) return false;
 
@@ -329,15 +329,15 @@ void CCharShape::Reset() {
 //				materials
 // --------------------------------------------------------------------
 
-TCharMaterial* CCharShape::GetMaterial(const string& mat_name) {
-	map<string, size_t>::const_iterator i = MaterialIndex.find(mat_name);
+TCharMaterial* CCharShape::GetMaterial(const std::string& mat_name) {
+	std::map<std::string, std::size_t>::const_iterator i = MaterialIndex.find(mat_name);
 	if (i != MaterialIndex.end() && i->second < Materials.size()) {
 		return &Materials[i->second];
 	}
 	return nullptr;
 }
 
-void CCharShape::CreateMaterial(const string& line) {
+void CCharShape::CreateMaterial(const std::string& line) {
 	TVector3d diff = SPVector3d(line, "diff");
 	TVector3d spec = SPVector3d(line, "spec");
 	float exp = SPFloatN(line, "exp", 50);
@@ -419,7 +419,7 @@ void CCharShape::Draw() {
 
 // --------------------------------------------------------------------
 
-bool CCharShape::Load(const string& dir, const string& filename, bool with_actions) {
+bool CCharShape::Load(const std::string& dir, const std::string& filename, bool with_actions) {
 	CSPList list;
 
 	useActions = with_actions;
@@ -434,20 +434,20 @@ bool CCharShape::Load(const string& dir, const string& filename, bool with_actio
 	for (CSPList::const_iterator line = list.cbegin(); line != list.cend(); ++line) {
 		int node_name = SPIntN(*line, "node", -1);
 		int parent_name = SPIntN(*line, "par", -1);
-		string mat_name = SPStrN(*line, "mat");
-		string name = SPStrN(*line, "joint");
-		string fullname = SPStrN(*line, "name");
+		std::string mat_name = SPStrN(*line, "mat");
+		std::string name = SPStrN(*line, "joint");
+		std::string fullname = SPStrN(*line, "name");
 
 		if (SPIntN(*line, "material", 0) > 0) {
 			CreateMaterial(*line);
 		} else {
 			float visible = SPFloatN(*line, "vis", -1.f);
 			bool shadow = SPBoolN(*line, "shad", false);
-			string order = SPStrN(*line, "order");
+			std::string order = SPStrN(*line, "order");
 			CreateCharNode(parent_name, node_name, name, fullname, order, shadow);
 			TVector3d rot = SPVector3d(*line, "rot");
 			MaterialNode(node_name, mat_name);
-			for (size_t ii = 0; ii < order.size(); ii++) {
+			for (std::size_t ii = 0; ii < order.size(); ii++) {
 				int act = order[ii]-48;
 				switch (act) {
 					case 0: {
@@ -760,7 +760,7 @@ void CCharShape::DrawShadow() {
 //				testing and tools
 // --------------------------------------------------------------------
 
-string CCharShape::GetNodeJoint(size_t idx) const {
+std::string CCharShape::GetNodeJoint(std::size_t idx) const {
 	if (idx >= numNodes) return "";
 	TCharNode *node = Nodes[idx];
 	if (node == nullptr) return "";
@@ -768,17 +768,17 @@ string CCharShape::GetNodeJoint(size_t idx) const {
 	else return Int_StrN((int)node->node_name);
 }
 
-size_t CCharShape::GetNodeName(size_t idx) const {
+std::size_t CCharShape::GetNodeName(std::size_t idx) const {
 	if (idx >= numNodes) return -1;
 	return Nodes[idx]->node_name;
 }
 
-size_t CCharShape::GetNodeName(const string& node_trivialname) const {
+std::size_t CCharShape::GetNodeName(const std::string& node_trivialname) const {
 	return NodeIndex.at(node_trivialname);
 }
 
 
-void CCharShape::RefreshNode(size_t idx) {
+void CCharShape::RefreshNode(std::size_t idx) {
 	if (idx >= numNodes) return;
 	TMatrix<4, 4> TempMatrix;
 	char caxis;
@@ -792,7 +792,7 @@ void CCharShape::RefreshNode(size_t idx) {
 	node->trans.SetIdentity();
 	node->invtrans.SetIdentity();
 
-	for (size_t i=0; i<act->num; i++) {
+	for (std::size_t i=0; i<act->num; i++) {
 		int type = act->type[i];
 		const TVector3d& vec = act->vec[i];
 		double dval = act->dval[i];
@@ -843,33 +843,33 @@ void CCharShape::RefreshNode(size_t idx) {
 	}
 }
 
-const string& CCharShape::GetNodeFullname(size_t idx) const {
+const std::string& CCharShape::GetNodeFullname(std::size_t idx) const {
 	if (idx >= numNodes) return emptyString;
 	return Nodes[idx]->action->name;
 }
 
-size_t CCharShape::GetNumActs(size_t idx) const {
+std::size_t CCharShape::GetNumActs(std::size_t idx) const {
 	if (idx >= numNodes) return -1;
 	return Nodes[idx]->action->num;
 }
 
-TCharAction *CCharShape::GetAction(size_t idx) const {
+TCharAction *CCharShape::GetAction(std::size_t idx) const {
 	if (idx >= numNodes) return nullptr;
 	return Nodes[idx]->action;
 }
 
-void CCharShape::PrintAction(size_t idx) const {
+void CCharShape::PrintAction(std::size_t idx) const {
 	if (idx >= numNodes) return;
 	TCharAction *act = Nodes[idx]->action;
 	PrintInt((int)act->num);
-	for (size_t i=0; i<act->num; i++) {
+	for (std::size_t i=0; i<act->num; i++) {
 		PrintInt(act->type[i]);
 		PrintDouble(act->dval[i]);
 		PrintVector(act->vec[i]);
 	}
 }
 
-void CCharShape::PrintNode(size_t idx) const {
+void CCharShape::PrintNode(std::size_t idx) const {
 	TCharNode *node = Nodes[idx];
 	PrintInt("node: ", (int)node->node_name);
 	PrintInt("parent: ", (int)node->parent_name);
@@ -877,32 +877,32 @@ void CCharShape::PrintNode(size_t idx) const {
 	PrintInt("next: ", (int)node->next_name);
 }
 
-void CCharShape::SaveCharNodes(const string& dir, const string& filename) {
+void CCharShape::SaveCharNodes(const std::string& dir, const std::string& filename) {
 	CSPList list;
 
 	list.Add("# Generated by Tuxracer tools");
 	list.Add();
 	if (!Materials.empty()) {
 		list.Add("# Materials:");
-		for (size_t i=0; i<Materials.size(); i++)
+		for (std::size_t i=0; i<Materials.size(); i++)
 			if (!Materials[i].matline.empty())
 				list.Add(Materials[i].matline);
 		list.Add();
 	}
 
 	list.Add("# Nodes:");
-	for (size_t i=1; i<numNodes; i++) {
+	for (std::size_t i=1; i<numNodes; i++) {
 		TCharNode* node = Nodes[i];
 		TCharAction* act = node->action;
 		if (node->parent_name >= node->node_name) Message("wrong parent index");
-		string line = "*[node] " + Int_StrN((int)node->node_name);
+		std::string line = "*[node] " + Int_StrN((int)node->node_name);
 		line += " [par] " + Int_StrN((int)node->parent_name);
 
 		if (!act->order.empty()) {
 			bool rotflag = false;
 			TVector3d rotation;
 			line += " [order] " + act->order;
-			for (size_t ii=0; ii<act->order.size(); ii++) {
+			for (std::size_t ii=0; ii<act->order.size(); ii++) {
 				int aa = act->order[ii]-48;
 				switch (aa) {
 					case 0:
@@ -942,7 +942,7 @@ void CCharShape::SaveCharNodes(const string& dir, const string& filename) {
 		list.Add(line);
 		if (i<numNodes-3) {
 			if (node->visible && !Nodes[i+1]->visible) list.Add();
-			const string& joint = Nodes[i+2]->joint;
+			const std::string& joint = Nodes[i+2]->joint;
 			if (joint.empty()) list.Add("# " + joint);
 		}
 	}
