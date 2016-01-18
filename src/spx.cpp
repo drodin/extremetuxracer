@@ -359,21 +359,16 @@ void SPSetStrN(string &s, const string &tag, const string &val) {
 // --------------------------------------------------------------------
 
 
-CSPList::CSPList(size_t maxlines, bool newlineflag) {
-	fmax = maxlines;
+CSPList::CSPList(bool newlineflag) {
 	fnewlineflag = newlineflag;
 }
 
 void CSPList::Add(const string& line) {
-	if (size() < fmax) {
-		push_back(line);
-	}
+	push_back(line);
 }
 
 void CSPList::Add(string&& line) {
-	if (size() < fmax) {
-		push_back(line);
-	}
+	push_back(line);
 }
 
 void CSPList::Print() const {
@@ -401,26 +396,24 @@ bool CSPList::Load(const string &filepath) {
 			else if (line[0] == '#') valid = false;	// comment line
 
 			if (valid) {
-				if (size() < fmax) {
-					if (!fnewlineflag) {
-						if (line[0] == '*' || empty()) Add(line);
-						else back() += line;
-					} else {
-						bool fwdflag = false;
-						if (line.back() == '\\') {
-							SDeleteN(line, line.length()-1, 1);
-							fwdflag = true;
-						}
-
-						if (backflag == false) Add(line);
-						else back() += line;
-
-						backflag = fwdflag;
-					}
+				if (!fnewlineflag) {
+					if (line[0] == '*' || empty()) Add(line);
+					else back() += line;
 				} else {
-					Message("CSPList::Load - not enough lines");
-					return false;
+					bool fwdflag = false;
+					if (line.back() == '\\') {
+						SDeleteN(line, line.length()-1, 1);
+						fwdflag = true;
+					}
+
+					if (backflag == false) Add(line);
+					else back() += line;
+
+					backflag = fwdflag;
 				}
+			} else {
+				Message("CSPList::Load - not enough lines");
+				return false;
 			}
 		}
 		return true;

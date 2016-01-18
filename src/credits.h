@@ -21,8 +21,6 @@ GNU General Public License for more details.
 #include "states.h"
 #include <forward_list>
 
-#define MAX_CREDITS 64
-
 struct TCredits {
 	string text;
 	float size;

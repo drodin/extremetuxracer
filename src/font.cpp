@@ -127,7 +127,7 @@ int CFont::LoadFont(const string& name, const string& dir, const string& filenam
 }
 
 bool CFont::LoadFontlist() {
-	CSPList list(MAX_FONTS);
+	CSPList list;
 	if (!list.Load(param.font_dir, "fonts.lst")) {
 		fonts.push_back(new sf::Font()); // Insert an empty font, otherwise ETR will crash
 		return false;

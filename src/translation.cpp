@@ -178,7 +178,7 @@ static wstring UnicodeStr(const std::string& s) {
 }
 
 void CTranslation::LoadLanguages() {
-	CSPList list(MAX_LANGUAGES);
+	CSPList list;
 
 	if (!list.Load(param.trans_dir, "languages.lst")) {
 		Message("could not load language list");
@@ -208,7 +208,7 @@ void CTranslation::LoadTranslations(size_t langidx) {
 	SetDefaultTranslations();
 	if (langidx == 0 || langidx >= languages.size()) return;
 
-	CSPList list(MAX_COMMON_TEXT_LINES);
+	CSPList list;
 	string filename = languages[langidx].lang + ".lst";
 	if (!list.Load(param.trans_dir, filename)) {
 		Message("could not load translations list:", filename);

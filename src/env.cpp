@@ -124,7 +124,7 @@ void CEnvironment::Reset() {
 }
 
 bool CEnvironment::LoadEnvironmentList() {
-	CSPList list(32, true);
+	CSPList list(true);
 	if (!list.Load(param.env_dir2, "environment.lst")) {
 		Message("could not load environment.lst");
 		return false;
@@ -173,7 +173,7 @@ void CEnvironment::LoadSkybox(const string& EnvDir, bool high_res) {
 void CEnvironment::LoadLight(const string& EnvDir) {
 	static const string idxstr = "[fog]-1[0]0[1]1[2]2[3]3[4]4[5]5[6]6";
 
-	CSPList list(24);
+	CSPList list;
 	if (!list.Load(EnvDir, "light.lst")) {
 		Message("could not load light file");
 		return;

@@ -49,7 +49,7 @@ TParam param;
 
 
 void LoadConfigFile() {
-	CSPList list(4);
+	CSPList list;
 	if (!list.Load(param.configfile)) {
 		Message("Could not load 'options'");
 		return;
@@ -130,7 +130,7 @@ void AddComment(CSPList &list, const string& comment) {
 }
 
 void SaveConfigFile() {
-	CSPList liste(512);
+	CSPList liste;
 
 	liste.Add("# ------------------------------------------------------------------");
 	liste.Add("#   The first group of params can be adjusted ");

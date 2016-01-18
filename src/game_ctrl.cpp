@@ -34,7 +34,7 @@ GNU General Public License for more details.
 CEvents Events;
 
 bool CEvents::LoadEventList() {
-	CSPList list(256);
+	CSPList list;
 
 	if (!list.Load(param.common_course_dir, "events.lst")) {
 		Message("could not load events.lst");
@@ -169,7 +169,7 @@ bool CPlayers::LoadPlayers() {
 		return false;
 	}
 
-	CSPList list(MAX_PLAYERS);
+	CSPList list;
 	if (list.Load(param.config_dir, "players") == false) {
 		SetDefaultPlayers();
 		Message("could not load players list, set default players");
@@ -239,7 +239,7 @@ void CPlayers::AllocControl(size_t player) {
 // ----------------------- avatars ------------------------------------
 
 bool CPlayers::LoadAvatars() {
-	CSPList list(MAX_AVATARS);
+	CSPList list;
 
 	if (!list.Load(param.player_dir, "avatars.lst")) {
 		Message("could not load avators.lst");
@@ -289,7 +289,7 @@ CCharacter::~CCharacter() {
 }
 
 bool CCharacter::LoadCharacterList() {
-	CSPList list(MAX_CHARACTERS);
+	CSPList list;
 
 	if (!list.Load(param.char_dir, "characters.lst")) {
 		Message("could not load characters.lst");

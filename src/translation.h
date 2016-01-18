@@ -21,7 +21,6 @@ GNU General Public License for more details.
 #include "bh.h"
 #include <vector>
 
-#define MAX_LANGUAGES 32
 #define NUM_COMMON_TEXTS 99
 #define MAX_COMMON_TEXT_LINES NUM_COMMON_TEXTS*2
 

@@ -96,10 +96,9 @@ void     SPSetStrN(string &s, const string &tag, const string &val);
 
 class CSPList : public std::list<string> {
 private:
-	size_t fmax;
 	bool fnewlineflag;
 public:
-	CSPList(size_t maxlines, bool newlineflag = false);
+	CSPList(bool newlineflag = false);
 
 	void Add(const string& line = emptyString);
 	void Add(string&& line);

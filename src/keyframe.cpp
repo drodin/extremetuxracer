@@ -106,7 +106,7 @@ void CKeyframe::Reset() {
 
 bool CKeyframe::Load(const string& dir, const string& filename) {
 	if (loaded && loadedfile == filename) return true;
-	CSPList list(1000);
+	CSPList list;
 
 	if (list.Load(dir, filename)) {
 		frames.resize(list.size());
@@ -349,7 +349,7 @@ int CKeyframe::GetNumJoints() {
 }
 
 void CKeyframe::SaveTest(const string& dir, const string& filename) const {
-	CSPList list(100);
+	CSPList list;
 
 	for (size_t i=0; i<frames.size(); i++) {
 		const TKeyframe* frame = &frames[i];

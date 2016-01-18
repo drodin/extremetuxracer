@@ -64,7 +64,7 @@ bool CSound::LoadChunk(const std::string& name, const std::string& filename) {
 
 // Load all soundfiles listed in "/sounds/sounds.lst"
 void CSound::LoadSoundList() {
-	CSPList list(200);
+	CSPList list;
 	if (list.Load(param.sounds_dir, "sounds.lst")) {
 		for (CSPList::const_iterator line = list.cbegin(); line != list.cend(); ++line) {
 			string name = SPStrN(*line, "name");
@@ -169,7 +169,7 @@ bool CMusic::LoadPiece(const string& name, const string& filename) {
 
 void CMusic::LoadMusicList() {
 	// --- music ---
-	CSPList list(200);
+	CSPList list;
 	if (list.Load(param.music_dir, "music.lst")) {
 		for (CSPList::const_iterator line = list.cbegin(); line != list.cend(); ++line) {
 			string name = SPStrN(*line, "name");

@@ -24,8 +24,7 @@ GNU General Public License for more details.
 #include <map>
 
 #define FLOATVAL(i) (*(GLfloat*)(vnc_array+idx+(i)*sizeof(GLfloat)))
-#define BYTEVAL(i) (*(GLubyte*)(vnc_array+idx+8*sizeof(GLfloat) +\
-    i*sizeof(GLubyte)))
+#define BYTEVAL(i) (*(GLubyte*)(vnc_array+idx+8*sizeof(GLfloat) + i*sizeof(GLubyte)))
 #define STRIDE_GL_ARRAY (8 * sizeof(GLfloat) + 4 * sizeof(GLubyte))
 #define ELEV(x,y) (Fields[(x) + nx*(y)].elevation)
 #define NORM_INTERPOL 0.05
@@ -34,9 +33,6 @@ GNU General Public License for more details.
 #define NMLPOINT(x,y) TVector3d(XCD(x), ELEV(x,y), ZCD(y) )
 
 
-#define MAX_COURSES 64
-#define MAX_TERR_TYPES 64
-#define MAX_OBJECT_TYPES 128
 #define MAX_DESCRIPTION_LINES 8
 
 class TTexture;

@@ -95,9 +95,6 @@ extern CEvents Events;
 //				player
 // --------------------------------------------------------------------
 
-#define MAX_PLAYERS 16
-#define MAX_AVATARS 32
-
 struct TAvatar {
 	string filename;
 	TTexture* texture;
@@ -146,7 +143,6 @@ public:
 extern CPlayers Players;
 
 // -------------------------------- characters ------------------------
-#define MAX_CHARACTERS 16
 
 struct TCharacter {
 	string name;

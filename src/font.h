@@ -27,8 +27,6 @@ GNU General Public License for more details.
 //		CFont
 // --------------------------------------------------------------------
 
-#define MAX_FONTS 36
-
 
 class CFont {
 private:

@@ -378,7 +378,7 @@ void CCourse::LoadItemList() {
 		return;
 	}
 
-	CSPList list(16000);
+	CSPList list;
 
 	if (!list.Load(CourseDir, "items.lst")) {
 		Message("could not load items list");
@@ -462,7 +462,7 @@ bool CCourse::LoadAndConvertObjectMap() {
 	int depth = 4;
 	const unsigned char* data = (unsigned char*)treeImg.getPixelsPtr();
 	double height, diam;
-	CSPList savelist(10000);
+	CSPList savelist;
 
 	CollArr.clear();
 	NocollArr.clear();
@@ -530,7 +530,7 @@ bool CCourse::LoadAndConvertObjectMap() {
 // --------------------------------------------------------------------
 
 bool CCourse::LoadObjectTypes() {
-	CSPList list(MAX_OBJECT_TYPES+10);
+	CSPList list;
 
 	if (!list.Load(param.obj_dir, "object_types.lst")) {
 		Message("could not load object types");
@@ -587,7 +587,7 @@ int CCourse::GetTerrain(const unsigned char* pixel) const {
 // --------------------------------------------------------------------
 
 bool CCourse::LoadTerrainTypes() {
-	CSPList list(MAX_TERR_TYPES +10);
+	CSPList list;
 
 	if (!list.Load(param.terr_dir, "terrains.lst")) {
 		Message("could not load terrain types");
@@ -654,14 +654,14 @@ bool CCourse::LoadTerrainMap() {
 // --------------------------------------------------------------------
 
 bool CCourseList::Load(const std::string& dir) {
-	CSPList list(128);
+	CSPList list;
 
 	if (!list.Load(dir, "courses.lst")) {
 		Message("could not load courses.lst");
 		return false;
 	}
 
-	CSPList paramlist(48);
+	CSPList paramlist;
 
 	courses.resize(list.size());
 	size_t i = 0;
@@ -720,7 +720,7 @@ void CCourse::FreeCourseList() {
 }
 
 bool CCourse::LoadCourseList() {
-	CSPList list(128);
+	CSPList list;
 
 	if (!list.Load(param.common_course_dir, "groups.lst")) {
 		Message("could not load groups.lst");

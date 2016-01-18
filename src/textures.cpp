@@ -178,7 +178,7 @@ CTexture::~CTexture() {
 
 bool CTexture::LoadTextureList() {
 	FreeTextureList();
-	CSPList list(200);
+	CSPList list;
 	if (list.Load(param.tex_dir, "textures.lst")) {
 		for (CSPList::const_iterator line = list.cbegin(); line != list.cend(); ++line) {
 			int id = SPIntN(*line, "id", -1);

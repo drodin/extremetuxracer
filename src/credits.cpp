@@ -43,7 +43,7 @@ sf::VertexArray arr(sf::Quads, 12);
 sf::RenderStates states(sf::BlendAlpha);
 
 void CCredits::LoadCreditList() {
-	CSPList list(MAX_CREDITS);
+	CSPList list;
 
 	if (!list.Load(param.data_dir, "credits.lst")) {
 		Message("could not load credits list");

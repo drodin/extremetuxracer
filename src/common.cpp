@@ -121,7 +121,7 @@ void PrintQuaternion(const TQuaternion& q) {
 //				message utils
 // --------------------------------------------------------------------
 
-static CSPList msg_list(100);
+static CSPList msg_list;
 
 void SaveMessages() {
 	msg_list.Save(param.config_dir, "messages");
