@@ -24,6 +24,7 @@ GNU General Public License for more details.
 #include "ogl.h"
 #include "physics.h"
 #include "winsys.h"
+#include <algorithm>
 
 #define MIN_CAMERA_HEIGHT  1.5
 #define ABSOLUTE_MIN_CAMERA_HEIGHT  0.3
@@ -77,7 +78,7 @@ TVector3d interpolate_view_pos(const TVector3d& ctrl_pos1, const TVector3d& ctrl
 
 	TQuaternion q1 = MakeRotationQuaternion(y_vec, vec1);
 	TQuaternion q2 = MakeRotationQuaternion(y_vec, vec2);
-	double alpha = min(MAX_INTERPOLATION_VALUE, 1.f - exp(-dt / time_constant));
+	double alpha = std::min(MAX_INTERPOLATION_VALUE, 1.f - exp(-dt / time_constant));
 	q2 = InterpolateQuaternions(q1, q2, alpha);
 
 	vec2 = RotateVector(q2, y_vec);
@@ -110,7 +111,7 @@ void interpolate_view_frame(const TVector3d& up1, const TVector3d& dir1,
 	TMatrix<4, 4> cob_mat2(x2, y2, z2);
 	TQuaternion q2 = MakeQuaternionFromMatrix(cob_mat2);
 
-	double alpha = min(MAX_INTERPOLATION_VALUE, 1.0 - exp(-dt / time_constant));
+	double alpha = std::min(MAX_INTERPOLATION_VALUE, 1.f - exp(-dt / (float)time_constant));
 	q2 = InterpolateQuaternions(q1, q2, alpha);
 	cob_mat2 = MakeMatrixFromQuaternion(q2);
 

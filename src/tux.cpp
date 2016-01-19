@@ -529,7 +529,7 @@ void CCharShape::AdjustOrientation(CControl *ctrl, double dtime,
 
 	ctrl->corientation = InterpolateQuaternions(
 	                         ctrl->corientation, new_orient,
-	                         min(dtime / time_constant, 1.0));
+	                         std::min(dtime / time_constant, 1.0));
 
 	ctrl->plane_nml = RotateVector(ctrl->corientation, minus_z_vec);
 	ctrl->cdirection = RotateVector(ctrl->corientation, y_vec);
@@ -564,8 +564,8 @@ void CCharShape::AdjustJoints(double turnFact, bool isBraking,
 	ext_paddling_angle = MAX_EXT_PADDLING_ANGLE2 * sin(paddling_factor * M_PI);
 	kick_paddling_angle = MAX_KICK_PADDLING_ANGLE2 * sin(paddling_factor * M_PI * 2.0);
 
-	turning_angle[0] = max(-turnFact,0.0) * MAX_ARM_ANGLE2;
-	turning_angle[1] = max(turnFact,0.0) * MAX_ARM_ANGLE2;
+	turning_angle[0] = std::max(-turnFact,0.0) * MAX_ARM_ANGLE2;
+	turning_angle[1] = std::max(turnFact,0.0) * MAX_ARM_ANGLE2;
 	flap_angle = MAX_ARM_ANGLE2 * (0.5 + 0.5 * sin(M_PI * flap_factor * 6 - M_PI / 2));
 	force_angle = clamp(-20.0, -net_force.z / 300.0, 20.0);
 	turn_leg_angle = turnFact * 10;
@@ -573,9 +573,9 @@ void CCharShape::AdjustJoints(double turnFact, bool isBraking,
 	ResetJoints();
 
 	RotateNode("left_shldr", 3,
-	           min(braking_angle + paddling_angle + turning_angle[0], MAX_ARM_ANGLE2) + flap_angle);
+	           std::min(braking_angle + paddling_angle + turning_angle[0], MAX_ARM_ANGLE2) + flap_angle);
 	RotateNode("right_shldr", 3,
-	           min(braking_angle + paddling_angle + turning_angle[1], MAX_ARM_ANGLE2) + flap_angle);
+	           std::min(braking_angle + paddling_angle + turning_angle[1], MAX_ARM_ANGLE2) + flap_angle);
 
 	RotateNode("left_shldr", 2, -ext_paddling_angle);
 	RotateNode("right_shldr", 2, ext_paddling_angle);
@@ -583,11 +583,11 @@ void CCharShape::AdjustJoints(double turnFact, bool isBraking,
 	RotateNode("right_hip", 3, -20 - turn_leg_angle + force_angle);
 
 	RotateNode("left_knee", 3,
-	           -10 + turn_leg_angle - min(35.0, speed) + kick_paddling_angle + force_angle);
+	           -10 + turn_leg_angle - std::min(35.0, speed) + kick_paddling_angle + force_angle);
 	RotateNode("right_knee", 3,
-	           -10 - turn_leg_angle - min(35.0, speed) - kick_paddling_angle + force_angle);
-	RotateNode("left_ankle", 3, -20 + min(50.0, speed));
-	RotateNode("right_ankle", 3, -20 + min(50.0, speed));
+	           -10 - turn_leg_angle - std::min(35.0, speed) - kick_paddling_angle + force_angle);
+	RotateNode("left_ankle", 3, -20 + std::min(50.0, speed));
+	RotateNode("right_ankle", 3, -20 + std::min(50.0, speed));
 	RotateNode("tail", 3, turnFact * 20);
 	RotateNode("neck", 3, -50);
 	RotateNode("head", 3, -30);

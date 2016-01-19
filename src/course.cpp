@@ -964,8 +964,8 @@ TVector3d CCourse::FindCourseNormal(double x, double z) const {
 	TVector3d tri_nml = CrossProduct(p1 - p0, p2 - p0);
 	tri_nml.Norm();
 
-	double min_bary = min(u, min(v, 1. - u - v));
-	double interp_factor = min(min_bary / NORM_INTERPOL, 1.0);
+	double min_bary = std::min(u, std::min(v, 1. - u - v));
+	double interp_factor = std::min(min_bary / NORM_INTERPOL, 1.0);
 
 	TVector3d interp_nml = interp_factor * tri_nml + (1.-interp_factor) * smooth_nml;
 	interp_nml.Norm();

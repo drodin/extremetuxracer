@@ -51,6 +51,11 @@ const sf::Color colTBackr =		TColor(0.4, 0.6, 0.8, 0.0);
 const sf::Color colMess =		TColor(0.3, 0.3, 0.7, 1.0);
 const sf::Color colSky =		TColor(0.82, 0.86, 0.88, 1.0);
 
+const sf::Color colBronze   = sf::Color(205, 127, 50,  255);
+const sf::Color colSilver   = sf::Color(192, 192, 192, 255);
+const sf::Color colGold     = sf::Color(255, 215, 0,   255);
+const sf::Color colGreen    = sf::Color(0,   128, 0,   255);
+
 // --------------------------------------------------------------------
 //				print utils
 // --------------------------------------------------------------------

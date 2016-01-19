@@ -28,6 +28,8 @@ GNU General Public License for more details.
 #include "course.h"
 #include "physics.h"
 #include "winsys.h"
+#include "game_ctrl.h"
+#include <algorithm>
 
 
 #define GAUGE_IMG_SIZE 128
@@ -52,11 +54,11 @@ static const GLubyte energy_foreground_color[]   = { 138, 150, 255, 128 };
 static const GLubyte speedbar_background_color[] = { 51,  51,  51, 0 };
 static const GLubyte hud_white[]                 = { 255, 255, 255, 255 };
 
-static void draw_time() {
+static void draw_time(double time, sf::Color color) {
 	Tex.Draw(T_TIME, 10, 10, 1);
 
 	int min, sec, hundr;
-	GetTimeComponents(g_game.time, &min, &sec, &hundr);
+	GetTimeComponents(time, &min, &sec, &hundr);
 	std::string timestr = Int_StrN(min, 2);
 	std::string secstr = Int_StrN(sec, 2);
 	std::string hundrstr = Int_StrN(hundr, 2);
@@ -65,11 +67,11 @@ static void draw_time() {
 	timestr += secstr;
 
 	if (param.use_papercut_font < 2) {
-		Tex.DrawNumStr(timestr, 50, 12, 1, colWhite);
-		Tex.DrawNumStr(hundrstr, 170, 12, 0.7f, colWhite);
+		Tex.DrawNumStr(timestr, 50, 12, 1, color);
+		Tex.DrawNumStr(hundrstr, 170, 12, 0.7f, color);
 	} else {
 		Winsys.beginSFML();
-		FT.SetColor(colDYell);
+		FT.SetColor(color);
 		FT.SetSize(30);
 		FT.DrawString(138, 3, hundrstr);
 		FT.SetSize(42);
@@ -78,15 +80,15 @@ static void draw_time() {
 	}
 }
 
-static void draw_herring_count(int herring_count) {
+static void draw_herring_count(int herring_count, sf::Color color) {
 	Tex.Draw(HERRING_ICON, Winsys.resolution.width - 59, 12, 1);
 
 	std::string hcountstr = Int_StrN(herring_count, 3);
 	if (param.use_papercut_font < 2) {
-		Tex.DrawNumStr(hcountstr, Winsys.resolution.width - 130, 12, 1, colWhite);
+		Tex.DrawNumStr(hcountstr, Winsys.resolution.width - 130, 12, 1, color);
 	} else {
 		Winsys.beginSFML();
-		FT.SetColor(colDYell);
+		FT.SetColor(color);
 		FT.DrawString(Winsys.resolution.width - 125, 3, hcountstr);
 		Winsys.endSFML();
 	}
@@ -193,7 +195,7 @@ void draw_gauge(double speed, double energy) {
 	Tex.BindTex(GAUGE_SPEED);
 	draw_partial_tri_fan(1.0);
 	glColor4ubv(hud_white);
-	draw_partial_tri_fan(min(1.0, speedbar_frac));
+	draw_partial_tri_fan(std::min(1.0, speedbar_frac));
 
 	glColor4ubv(hud_white);
 	Tex.BindTex(GAUGE_OUTLINE);
@@ -369,8 +371,30 @@ void DrawHud(const CControl *ctrl) {
 
 	draw_gauge(speed * 3.6, ctrl->jump_amt);
 	ScopedRenderMode rm(TEXFONT);
-	draw_time();
-	draw_herring_count(g_game.herring);
+
+	if (g_game.game_type == CUPRACING) {
+		if (g_game.time < g_game.race->time.z)
+			draw_time(g_game.race->time.z - g_game.time, colGold);
+		else if (g_game.time < g_game.race->time.y)
+			draw_time(g_game.race->time.y - g_game.time, colSilver);
+		else if (g_game.time < g_game.race->time.x)
+			draw_time(g_game.race->time.x - g_game.time, colBronze);
+		else
+			draw_time(g_game.time, colDRed);
+
+		if (g_game.herring < g_game.race->herrings.x)
+			draw_herring_count(g_game.race->herrings.x - g_game.herring, colBronze);
+		else if (g_game.herring < g_game.race->herrings.y)
+			draw_herring_count(g_game.race->herrings.y - g_game.herring, colSilver);
+		else if (g_game.herring < g_game.race->herrings.z)
+			draw_herring_count(g_game.race->herrings.z - g_game.herring, colGold);
+		else
+			draw_herring_count(g_game.herring, colGreen);
+	} else {
+		draw_time(g_game.time, param.use_papercut_font < 2 ? colWhite : colDYell);
+		draw_herring_count(g_game.herring, param.use_papercut_font < 2 ? colWhite : colDYell);
+	}
+
 	DrawSpeed(speed * 3.6);
 	DrawFps();
 	DrawCoursePosition(ctrl);

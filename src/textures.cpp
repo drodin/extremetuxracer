@@ -182,7 +182,7 @@ bool CTexture::LoadTextureList() {
 	if (list.Load(param.tex_dir, "textures.lst")) {
 		for (CSPList::const_iterator line = list.cbegin(); line != list.cend(); ++line) {
 			int id = SPIntN(*line, "id", -1);
-			CommonTex.resize(max(CommonTex.size(), (std::size_t)id+1));
+			CommonTex.resize(std::max(CommonTex.size(), (std::size_t)id+1));
 			std::string texfile = SPStrN(*line, "file");
 			bool rep = SPBoolN(*line, "repeat", false);
 			if (id >= 0) {

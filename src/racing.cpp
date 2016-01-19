@@ -171,7 +171,7 @@ static void CalcJumpEnergy(float time_step) {
 	CControl *ctrl = g_game.player->ctrl;
 
 	if (ctrl->jump_charging) {
-		ctrl->jump_amt = min(MAX_JUMP_AMT, g_game.time - charge_start_time);
+		ctrl->jump_amt = std::min(MAX_JUMP_AMT, g_game.time - charge_start_time);
 	} else if (ctrl->jumping) {
 		ctrl->jump_amt *= (1.0 - (g_game.time - ctrl->jump_start_time) /
 		                   JUMP_FORCE_DURATION);
@@ -181,7 +181,7 @@ static void CalcJumpEnergy(float time_step) {
 }
 
 static int CalcSoundVol(float fact) {
-	return min(param.sound_volume * fact, 100.f);
+	return std::min(param.sound_volume * fact, 100.f);
 }
 
 static void SetSoundVolumes() {
@@ -239,7 +239,7 @@ void CRacing::Enter() {
 // this function is not used yet.
 /*static int SlideVolume(CControl *ctrl, double speed, int typ) {
 	if (typ == 1) {	// only at paddling or braking
-		return (int)(min((((pow(ctrl->turn_fact, 2) * 128)) +
+		return (int)(std::min((((pow(ctrl->turn_fact, 2) * 128)) +
 		                  (ctrl->is_braking ? 128:0) +
 		                  (ctrl->jumping ? 128:0) + 20) * (speed / 10), 128.0));
 	} else { 	// always

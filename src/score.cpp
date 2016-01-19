@@ -275,7 +275,7 @@ void CScore::Loop(float timestep) {
 	FT.SetColor(colWhite);
 	FT.AutoSizeN(3);
 	if (list != nullptr && list->numScores > 0) {
-		for (int i=0; i<min(MAX_SCORES, list->numScores); i++) {
+		for (int i=0; i<std::min(MAX_SCORES, list->numScores); i++) {
 			int y = listtop + i*linedist;
 			FT.DrawString(area.left, y, ordinals[i]);
 			FT.DrawString(area.left + dd1, y, Int_StrN(list->scores[i].points));

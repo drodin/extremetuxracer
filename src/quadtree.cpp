@@ -571,7 +571,7 @@ bool quadsquare::VertexTest(int x, float y, int z, float error,
 	float	dx = fabs(x - Viewer[0]) * fabs(ScaleX);
 	float	dy = fabs(y - Viewer[1]);
 	float	dz = fabs(z - Viewer[2]) * fabs(ScaleZ);
-	float	d = max(dx, max(dy, dz));
+	float	d = std::max(dx, std::max(dy, dz));
 
 	if (vertex_loc == South && ForceSouthVert && d < VERTEX_FORCE_THRESHOLD) {
 		return true;
@@ -591,7 +591,7 @@ bool quadsquare::BoxTest(int x, int z, float size, float miny, float maxy, float
 	float	dx = (fabs(x + half - Viewer[0]) - half) * fabs(ScaleX);
 	float	dy = fabs((miny + maxy) * 0.5f - Viewer[1]) - (maxy - miny) * 0.5f;
 	float	dz = (fabs(z + half - Viewer[2]) - half) * fabs(ScaleZ);
-	float	d = max(dx, max(dy , dz));
+	float	d = std::max(dx, std::max(dy , dz));
 
 	if (d < ERROR_MAGNIFICATION_THRESHOLD) {
 		error *= ERROR_MAGNIFICATION_AMOUNT;
@@ -1084,7 +1084,7 @@ static int get_root_level(int nx, int nz) {
 	int xlev = (int)(log(static_cast<double>(nx)) / log(2.0));
 	int zlev = (int)(log(static_cast<double>(nz)) / log(2.0));
 
-	return max(xlev, zlev);
+	return std::max(xlev, zlev);
 }
 
 

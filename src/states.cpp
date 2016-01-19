@@ -118,7 +118,7 @@ void State::Manager::PollEvent() {
 void State::Manager::CallLoopFunction() {
 	check_gl_error();
 
-	g_game.time_step = max(0.0001f, timer.getElapsedTime().asSeconds());
+	g_game.time_step = std::max(0.0001f, timer.getElapsedTime().asSeconds());
 	timer.restart();
 	current->Loop(g_game.time_step);
 }

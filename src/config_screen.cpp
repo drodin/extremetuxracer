@@ -169,7 +169,7 @@ void CGameConfig::Enter() {
 	columnAnchor = 0;
 	for (int i = 0; i < 5; i++) {
 		descriptions[i] = AddLabel(Trans.Text(32 + i), area.left, area.top + dd*(i + 1), colWhite);
-		columnAnchor = max(columnAnchor, (int)descriptions[i]->GetSize().x);
+		columnAnchor = std::max(columnAnchor, (int)descriptions[i]->GetSize().x);
 	}
 	columnAnchor += area.left + 20*Winsys.scale;
 

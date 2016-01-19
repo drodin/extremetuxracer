@@ -189,8 +189,8 @@ void break_track_marks() {
 		q->t4 = TVector2d(1.0, 1.0);
 		std::list<track_quad_t>::iterator qprev = decrementRingIterator(q);
 		if (qprev != track_marks.quads.end()) {
-			qprev->t3.y = max(qprev->t3.y+0.5, qprev->t1.y+1.0);
-			qprev->t4.y = max(qprev->t3.y+0.5, qprev->t1.y+1.0);
+			qprev->t3.y = std::max(qprev->t3.y+0.5, qprev->t1.y+1.0);
+			qprev->t4.y = std::max(qprev->t3.y+0.5, qprev->t1.y+1.0);
 		}
 	}
 	continuing_track = false;
@@ -285,7 +285,7 @@ void add_track_mark(const CControl *ctrl, int *id) {
 		if (qprev->track_type == TRACK_TAIL)
 			qprev->track_type = TRACK_MARK;
 	}
-	q->alpha = min(static_cast<int>((2*comp_depth-dist_from_surface)/(4*comp_depth)*255), 255);
+	q->alpha = std::min(static_cast<int>((2*comp_depth-dist_from_surface)/(4*comp_depth)*255), 255);
 	continuing_track = true;
 }
 

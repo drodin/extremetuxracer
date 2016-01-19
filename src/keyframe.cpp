@@ -410,7 +410,7 @@ std::size_t CKeyframe::DeleteFrame(std::size_t idx) {
 	std::vector<TKeyframe>::iterator i = frames.begin();
 	std::advance(i, idx);
 	frames.erase(i);
-	return max(idx, frames.size() - 2);
+	return std::max(idx, frames.size() - 2);
 }
 
 void CKeyframe::InsertFrame(std::size_t idx) {

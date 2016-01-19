@@ -22,7 +22,7 @@ GNU General Public License for more details.
 #include "matrices.h"
 
 
-#define clamp(minimum, x, maximum) (max(min(x, maximum), minimum))
+#define clamp(minimum, x, maximum) (std::max(std::min(x, maximum), minimum))
 
 #ifndef ROUND_TO_NEAREST
 #	define ROUND_TO_NEAREST(x) ((int) ((x)+0.5))
@@ -71,6 +71,11 @@ extern const sf::Color colMBackgr;
 extern const sf::Color colLBackgr;
 extern const sf::Color colMess;
 extern const sf::Color colSky;
+extern const sf::Color colBronze;
+extern const sf::Color colSilver;
+extern const sf::Color colGold;
+extern const sf::Color colGreen;
+
 
 // --------------------------------------------------------------------
 //				print utils
