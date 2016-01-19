@@ -28,7 +28,7 @@ struct TVector2 {
 		: x(_x), y(_y)
 	{}
 	double Length() const {
-		return std::sqrt(static_cast<double>(x*x + y*y));
+		return std::hypot(x, y);
 	}
 	double Norm();
 	TVector2<T>& operator*=(T f) {

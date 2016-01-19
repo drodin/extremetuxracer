@@ -24,10 +24,6 @@ GNU General Public License for more details.
 
 #define clamp(minimum, x, maximum) (std::max(std::min(x, maximum), minimum))
 
-#ifndef ROUND_TO_NEAREST
-#	define ROUND_TO_NEAREST(x) ((int) ((x)+0.5))
-#endif
-
 #ifndef M_PI
 #	define M_PI 3.1415926535
 #endif

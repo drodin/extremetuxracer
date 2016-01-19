@@ -275,7 +275,7 @@ TVector3d CControl::CalcAirForce() {
 	double windspeed = windvec.Length();
 	double re = 34600 * windspeed;
 	int tablesize = sizeof(airdrag) / sizeof(airdrag[0]);
-	double interpol = LinearInterp(airlog, airdrag, log10(re), tablesize);
+	double interpol = LinearInterp(airlog, airdrag, std::log10(re), tablesize);
 	double dragcoeff = std::pow(10.0, interpol);
 	double airfact = 0.104 * dragcoeff *  windspeed;
 	return airfact * windvec;
@@ -326,9 +326,9 @@ TVector3d CControl::CalcFrictionForce(double speed, const TVector3d& nmlforce) {
 
 		double steer_angle = turn_fact * MAX_TURN_ANGLE;
 
-		if (fabs(fric_f_mag * std::sin(steer_angle * M_PI / 180)) > MAX_TURN_PERP) {
+		if (std::fabs(fric_f_mag * std::sin(steer_angle * M_PI / 180)) > MAX_TURN_PERP) {
 			steer_angle = RADIANS_TO_ANGLES(std::asin(MAX_TURN_PERP / fric_f_mag)) *
-			              turn_fact / fabs(turn_fact);
+			              turn_fact / std::fabs(turn_fact);
 		}
 		TMatrix<4, 4> fric_rot_mat = RotateAboutVectorMatrix(ff.surfnml, steer_angle);
 		frictforce = TransformVector(fric_rot_mat, frictforce);

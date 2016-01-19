@@ -231,7 +231,7 @@ void add_track_mark(const CControl *ctrl, int *id) {
 	double left_y = Course.FindYCoord(left_wing.x, left_wing.z);
 	double right_y = Course.FindYCoord(right_wing.x, right_wing.z);
 
-	if (fabs(left_y-right_y) > MAX_TRACK_DEPTH) {
+	if (std::fabs(left_y-right_y) > MAX_TRACK_DEPTH) {
 		break_track_marks();
 		return;
 	}

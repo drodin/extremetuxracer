@@ -419,12 +419,12 @@ static int GetObject(const unsigned char* pixel) {
 	int b = pixel[2];
 
 	if (r<150 && b>200) return 0;
-	if (abs(r-194)<10 && abs(g-40)<10 && abs(b-40)<10) return 1;
-	if (abs(r-128)<10 && abs(g-128)<10 && b<10) return 2;
+	if (std::abs(r-194)<10 && std::abs(g-40)<10 && std::abs(b-40)<10) return 1;
+	if (std::abs(r-128)<10 && std::abs(g-128)<10 && b<10) return 2;
 	if (r>220 && g>220 && b<20) return 3;
-	if (r>220 && abs(g-128)<10 && b>220) return 4;
+	if (r>220 && std::abs(g-128)<10 && b>220) return 4;
 	if (r>220 && g>220 && b>220) return 5;
-	if (r>220 && abs(g-96)<10 && b<40) return 6;
+	if (r>220 && std::abs(g-96)<10 && b<40) return 6;
 	if (r<40 && g >220 && b<80) return 7;
 	return -1;
 }
@@ -573,9 +573,9 @@ bool CCourse::LoadObjectTypes() {
 
 int CCourse::GetTerrain(const unsigned char* pixel) const {
 	for (std::size_t i=0; i<TerrList.size(); i++) {
-		if (abs(pixel[0]-TerrList[i].col.r) < 30
-		        && abs(pixel[1]-TerrList[i].col.g) < 30
-		        && abs(pixel[2]-TerrList[i].col.b) < 30) {
+		if (std::abs(pixel[0]-TerrList[i].col.r) < 30
+		        && std::abs(pixel[1]-TerrList[i].col.g) < 30
+		        && std::abs(pixel[2]-TerrList[i].col.b) < 30) {
 			return (int)i;
 		}
 	}
@@ -881,10 +881,10 @@ void CCourse::GetIndicesForPoint(double x, double z, unsigned int* x0, unsigned 
 	if (yidx < 0) yidx = 0;
 	else if (yidx > ny-1) yidx = ny-1;
 
-	*x0 = (unsigned int)(xidx);              // floor(xidx)
-	*x1 = (unsigned int)(xidx + 0.9999);     // ceil(xidx)
-	*y0 = (unsigned int)(yidx);              // floor(yidx)
-	*y1 = (unsigned int)(yidx + 0.9999);     // ceil(yidx)
+	*x0 = (unsigned int)std::floor(xidx);
+	*x1 = (unsigned int)std::ceil(xidx);
+	*y0 = (unsigned int)std::floor(yidx);
+	*y1 = (unsigned int)std::ceil(yidx);
 
 	if (*x0 == *x1) {
 		if (*x1 < nx - 1)(*x1)++;

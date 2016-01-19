@@ -306,7 +306,7 @@ static void CalcFinishControls(CControl *ctrl, float timestep, bool airborne) {
 	double speed = ctrl->cvel.Length();
 	double dir_angle = RADIANS_TO_ANGLES(std::atan(ctrl->cvel.x / ctrl->cvel.z));
 
-	if (fabs(dir_angle) > 5 && speed > 5) {
+	if (std::fabs(dir_angle) > 5 && speed > 5) {
 		ctrl->turn_fact = dir_angle / 20;
 		if (ctrl->turn_fact < -1) ctrl->turn_fact = -1;
 		if (ctrl->turn_fact > 1) ctrl->turn_fact = 1;

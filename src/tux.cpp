@@ -248,7 +248,7 @@ bool CCharShape::VisibleNode(std::size_t node_name, float level) {
 
 	if (node->visible) {
 		node->divisions =
-		    clamp(MIN_SPHERE_DIV, ROUND_TO_NEAREST(param.tux_sphere_divisions * level / 10), MAX_SPHERE_DIV);
+		    clamp(MIN_SPHERE_DIV, (int)std::lround(param.tux_sphere_divisions * level / 10), MAX_SPHERE_DIV);
 		node->radius = 1.0;
 	}
 	if (newActions && useActions) AddAction(node_name, 5, NullVec3, level);

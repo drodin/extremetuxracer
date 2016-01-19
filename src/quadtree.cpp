@@ -86,8 +86,8 @@ quadsquare::quadsquare(quadcornerdata* pcd) {
 
 	for (int i = 0; i < 2; i++) Error[i] = 0;
 	for (int i = 0; i < 4; i++) {
-		Error[i+2] = fabs((Vertex[0].Y + pcd->Verts[i].Y)
-		                  - (Vertex[i+1].Y + Vertex[((i+1)&3) + 1].Y)) * 0.25f;
+		Error[i+2] = std::fabs((Vertex[0].Y + pcd->Verts[i].Y)
+		                       - (Vertex[i+1].Y + Vertex[((i+1)&3) + 1].Y)) * 0.25f;
 	}
 
 	MinY = MaxY = pcd->Verts[0].Y;
@@ -127,8 +127,8 @@ float quadsquare::GetHeight(const quadcornerdata &cd, float x, float z) {
 	float	lx = (x - cd.xorg) / float(half);
 	float	lz = (z - cd.zorg) / float(half);
 
-	int	ix = (int) floor(lx);
-	int	iz = (int) floor(lz);
+	int	ix = (int)std::floor(lx);
+	int	iz = (int)std::floor(lz);
 
 	if (ix < 0) ix = 0;
 	if (ix > 1) ix = 1;
@@ -208,9 +208,9 @@ float quadsquare::RecomputeError(const quadcornerdata& cd) {
 
 	std::size_t numTerr = Course.TerrList.size();
 	if (cd.ChildIndex & 1) {
-		e = fabs(Vertex[0].Y - (cd.Verts[1].Y + cd.Verts[3].Y) * 0.5f);
+		e = std::fabs(Vertex[0].Y - (cd.Verts[1].Y + cd.Verts[3].Y) * 0.5f);
 	} else {
-		e = fabs(Vertex[0].Y - (cd.Verts[0].Y + cd.Verts[2].Y) * 0.5f);
+		e = std::fabs(Vertex[0].Y - (cd.Verts[0].Y + cd.Verts[2].Y) * 0.5f);
 	}
 	if (e > maxerror) maxerror = e;
 
@@ -224,11 +224,11 @@ float quadsquare::RecomputeError(const quadcornerdata& cd) {
 	}
 
 
-	e = fabs(Vertex[1].Y - (cd.Verts[0].Y + cd.Verts[3].Y) * 0.5f);
+	e = std::fabs(Vertex[1].Y - (cd.Verts[0].Y + cd.Verts[3].Y) * 0.5f);
 	if (e > maxerror) maxerror = e;
 	Error[0] = e;
 
-	e = fabs(Vertex[4].Y - (cd.Verts[2].Y + cd.Verts[3].Y) * 0.5f);
+	e = std::fabs(Vertex[4].Y - (cd.Verts[2].Y + cd.Verts[3].Y) * 0.5f);
 	if (e > maxerror) maxerror = e;
 	Error[1] = e;
 
@@ -321,8 +321,8 @@ float quadsquare::RecomputeError(const quadcornerdata& cd) {
 			if (Child[i]->MinY < MinY) MinY = Child[i]->MinY;
 			if (Child[i]->MaxY > MaxY) MaxY = Child[i]->MaxY;
 		} else {
-			Error[i+2] = fabs((Vertex[0].Y + cd.Verts[i].Y)
-			                  - (Vertex[i+1].Y + Vertex[((i+1)&3) + 1].Y)) * 0.25f;
+			Error[i+2] = std::fabs((Vertex[0].Y + cd.Verts[i].Y)
+			                       - (Vertex[i+1].Y + Vertex[((i+1)&3) + 1].Y)) * 0.25f;
 		}
 		if (Error[i+2] > maxerror) maxerror = Error[i+2];
 	}
@@ -451,8 +451,8 @@ void quadsquare::StaticCullAux(const quadcornerdata& cd, float ThresholdDetail, 
 	if (StaticChildren == false && cd.Parent != nullptr) {
 		bool NecessaryEdges = false;
 		for (int i = 0; i < 4; i++) {
-			float diff = fabs(Vertex[i+1].Y - (cd.Verts[i].Y
-			                                   + cd.Verts[(i+3)&3].Y) * 0.5f);
+			float diff = std::fabs(Vertex[i+1].Y - (cd.Verts[i].Y
+			                                        + cd.Verts[(i+3)&3].Y) * 0.5f);
 			if (diff > 0.00001f) {
 				NecessaryEdges = true;
 			}
@@ -568,9 +568,9 @@ static float DetailThreshold = 100;
 
 bool quadsquare::VertexTest(int x, float y, int z, float error,
                             const float Viewer[3], int level, vertex_loc_t vertex_loc) const {
-	float	dx = fabs(x - Viewer[0]) * fabs(ScaleX);
-	float	dy = fabs(y - Viewer[1]);
-	float	dz = fabs(z - Viewer[2]) * fabs(ScaleZ);
+	float	dx = std::fabs(x - Viewer[0]) * std::fabs(ScaleX);
+	float	dy = std::fabs(y - Viewer[1]);
+	float	dz = std::fabs(z - Viewer[2]) * std::fabs(ScaleZ);
 	float	d = std::max(dx, std::max(dy, dz));
 
 	if (vertex_loc == South && ForceSouthVert && d < VERTEX_FORCE_THRESHOLD) {
@@ -588,9 +588,9 @@ bool quadsquare::VertexTest(int x, float y, int z, float error,
 
 bool quadsquare::BoxTest(int x, int z, float size, float miny, float maxy, float error, const float Viewer[3]) {
 	float	half = size * 0.5f;
-	float	dx = (fabs(x + half - Viewer[0]) - half) * fabs(ScaleX);
-	float	dy = fabs((miny + maxy) * 0.5f - Viewer[1]) - (maxy - miny) * 0.5f;
-	float	dz = (fabs(z + half - Viewer[2]) - half) * fabs(ScaleZ);
+	float	dx = (std::fabs(x + half - Viewer[0]) - half) * std::fabs(ScaleX);
+	float	dy = std::fabs((miny + maxy) * 0.5f - Viewer[1]) - (maxy - miny) * 0.5f;
+	float	dz = (std::fabs(z + half - Viewer[2]) - half) * std::fabs(ScaleZ);
 	float	d = std::max(dx, std::max(dy , dz));
 
 	if (d < ERROR_MAGNIFICATION_THRESHOLD) {
@@ -1081,10 +1081,7 @@ void ResetQuadtree() {
 }
 
 static int get_root_level(int nx, int nz) {
-	int xlev = (int)(std::log(static_cast<double>(nx)) / std::log(2.0));
-	int zlev = (int)(std::log(static_cast<double>(nz)) / std::log(2.0));
-
-	return std::max(xlev, zlev);
+	return (int)std::log2(static_cast<double>(std::max(nx, nz)));
 }
 
 

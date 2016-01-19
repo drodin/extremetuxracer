@@ -276,7 +276,7 @@ void CKeyframe::Update(float timestep) {
 	TVector3d pos;
 	CCharShape *shape = g_game.character->shape;
 
-	if (fabs(frames[keyidx].val[0]) < 0.0001) frac = 1.0;
+	if (std::fabs(frames[keyidx].val[0]) < 0.0001) frac = 1.0;
 	else frac = (frames[keyidx].val[0] - keytime) / frames[keyidx].val[0];
 
 	pos.x = interp(frac, frames[keyidx].val[1], frames[keyidx+1].val[1]) + refpos.x;
@@ -311,7 +311,7 @@ void CKeyframe::UpdateTest(float timestep, CCharShape *shape) {
 	double frac;
 	TVector3d pos;
 
-	if (fabs(frames[keyidx].val[0]) < 0.0001) frac = 1.0;
+	if (std::fabs(frames[keyidx].val[0]) < 0.0001) frac = 1.0;
 	else frac = (frames[keyidx].val[0] - keytime) / frames[keyidx].val[0];
 
 	pos.x = interp(frac, frames[keyidx].val[1], frames[keyidx+1].val[1]) + refpos.x;

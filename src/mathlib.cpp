@@ -105,7 +105,7 @@ TMatrix<4, 4> RotateAboutVectorMatrix(const TVector3d& u, double angle) {
 	double b = u.y;
 	double c = u.z;
 
-	double d = std::sqrt(b*b + c*c);
+	double d = std::hypot(b, c);
 
 	if (d < EPS) {
 		if (a < 0)
@@ -314,11 +314,11 @@ bool order(double *matrix, int n, int pivot) {
 	int rmax = pivot;
 
 	for (int row=pivot+1; row<n; row++) {
-		if (fabs(*(matrix+row*(n+1)+pivot)) > fabs(*(matrix+rmax*(n+1)+pivot)))
+		if (std::fabs(*(matrix+row*(n+1)+pivot)) > std::fabs(*(matrix+rmax*(n+1)+pivot)))
 			rmax = row;
 	}
 
-	if (fabs(*(matrix+rmax*(n+1)+pivot)) < EPS)
+	if (std::fabs(*(matrix+rmax*(n+1)+pivot)) < EPS)
 		error = true;
 	else if (rmax != pivot) {
 		for (int k=0; k<(n+1); k++) {
@@ -365,12 +365,12 @@ bool IntersectPolygon(const TPolygon& p, std::vector<TVector3d>& v) {
 	ray.vec = nml;
 
 	nuDotProd = DotProduct(nml, ray.vec);
-	if (fabs(nuDotProd) < EPS)
+	if (std::fabs(nuDotProd) < EPS)
 		return false;
 
 	d = - DotProduct(nml, v[p.vertices[0]]);
 
-	if (fabs(d) > 1) return false;
+	if (std::fabs(d) > 1) return false;
 
 	for (std::size_t i=0; i < p.vertices.size(); i++) {
 		TVector3d *v0, *v1;
@@ -483,7 +483,7 @@ double ode23_EstimateError(TOdeData *data) {
 
 	for (int i=0; i<4; i++)
 		err += ode23_error_mat[i] * data->k[i];
-	return fabs(err);
+	return std::fabs(err);
 }
 
 double ode23_TimestepExponent() {

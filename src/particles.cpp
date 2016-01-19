@@ -406,14 +406,14 @@ void generate_particles(const CControl *ctrl, double dtime, const TVector3d& pos
 		                        * std::min(speed / PARTICLE_SPEED_FACTOR, 1.0);
 
 		double left_particles = turn_particles *
-		                        fabs(std::min(ctrl->turn_fact, 0.)) +
+		                        std::fabs(std::min(ctrl->turn_fact, 0.)) +
 		                        brake_particles +
-		                        roll_particles * fabs(std::min(ctrl->turn_animation, 0.));
+		                        roll_particles * std::fabs(std::min(ctrl->turn_animation, 0.));
 
 		double right_particles = turn_particles *
-		                         fabs(std::max(ctrl->turn_fact, 0.)) +
+		                         std::fabs(std::max(ctrl->turn_fact, 0.)) +
 		                         brake_particles +
-		                         roll_particles * fabs(std::max(ctrl->turn_animation, 0.));
+		                         roll_particles * std::fabs(std::max(ctrl->turn_animation, 0.));
 
 		left_particles = adjust_particle_count(left_particles);
 		right_particles = adjust_particle_count(right_particles);
