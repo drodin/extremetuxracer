@@ -560,13 +560,13 @@ void CCharShape::AdjustJoints(double turnFact, bool isBraking,
 
 	if (isBraking) braking_angle = MAX_ARM_ANGLE2;
 
-	paddling_angle = MAX_PADDLING_ANGLE2 * sin(paddling_factor * M_PI);
-	ext_paddling_angle = MAX_EXT_PADDLING_ANGLE2 * sin(paddling_factor * M_PI);
-	kick_paddling_angle = MAX_KICK_PADDLING_ANGLE2 * sin(paddling_factor * M_PI * 2.0);
+	paddling_angle = MAX_PADDLING_ANGLE2 * std::sin(paddling_factor * M_PI);
+	ext_paddling_angle = MAX_EXT_PADDLING_ANGLE2 * std::sin(paddling_factor * M_PI);
+	kick_paddling_angle = MAX_KICK_PADDLING_ANGLE2 * std::sin(paddling_factor * M_PI * 2.0);
 
 	turning_angle[0] = std::max(-turnFact,0.0) * MAX_ARM_ANGLE2;
 	turning_angle[1] = std::max(turnFact,0.0) * MAX_ARM_ANGLE2;
-	flap_angle = MAX_ARM_ANGLE2 * (0.5 + 0.5 * sin(M_PI * flap_factor * 6 - M_PI / 2));
+	flap_angle = MAX_ARM_ANGLE2 * (0.5 + 0.5 * std::sin(M_PI * flap_factor * 6 - M_PI / 2));
 	force_angle = clamp(-20.0, -net_force.z / 300.0, 20.0);
 	turn_leg_angle = turnFact * 10;
 
@@ -663,18 +663,18 @@ void CCharShape::DrawShadowSphere(const TMatrix<4, 4>& mat) {
 		double sin_phi, cos_phi;
 		double sin_phi_d_phi, cos_phi_d_phi;
 
-		sin_phi = sin(phi);
-		cos_phi = cos(phi);
-		sin_phi_d_phi = sin(phi + d_phi);
-		cos_phi_d_phi = cos(phi + d_phi);
+		sin_phi = std::sin(phi);
+		cos_phi = std::cos(phi);
+		sin_phi_d_phi = std::sin(phi + d_phi);
+		cos_phi_d_phi = std::cos(phi + d_phi);
 
 		if (phi <= eps) {
 			glBegin(GL_TRIANGLE_FAN);
 			DrawShadowVertex(0., 0., 1., mat);
 
 			for (theta = 0.0; theta + eps < twopi; theta += d_theta) {
-				sin_theta = sin(theta);
-				cos_theta = cos(theta);
+				sin_theta = std::sin(theta);
+				cos_theta = std::cos(theta);
 
 				x = cos_theta * sin_phi_d_phi;
 				y = sin_theta * sin_phi_d_phi;
@@ -690,8 +690,8 @@ void CCharShape::DrawShadowSphere(const TMatrix<4, 4>& mat) {
 			glBegin(GL_TRIANGLE_FAN);
 			DrawShadowVertex(0., 0., -1., mat);
 			for (theta = twopi; theta - eps > 0; theta -= d_theta) {
-				sin_theta = sin(theta);
-				cos_theta = cos(theta);
+				sin_theta = std::sin(theta);
+				cos_theta = std::cos(theta);
 				x = cos_theta * sin_phi;
 				y = sin_theta * sin_phi;
 				z = cos_phi;
@@ -705,8 +705,8 @@ void CCharShape::DrawShadowSphere(const TMatrix<4, 4>& mat) {
 		} else {
 			glBegin(GL_TRIANGLE_STRIP);
 			for (theta = 0.0; theta + eps < twopi; theta += d_theta) {
-				sin_theta = sin(theta);
-				cos_theta = cos(theta);
+				sin_theta = std::sin(theta);
+				cos_theta = std::cos(theta);
 				x = cos_theta * sin_phi;
 				y = sin_theta * sin_phi;
 				z = cos_phi;

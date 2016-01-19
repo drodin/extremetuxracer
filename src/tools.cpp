@@ -53,8 +53,8 @@ CCamera::CCamera() {
 }
 
 void CCamera::XMove(GLfloat step) {
-	zview += (float)sin(-vhead * 3.14 / 180) * step;
-	xview += (float)cos(-vhead * 3.14 / 180) * step;
+	zview += (float)std::sin(-vhead * 3.14 / 180) * step;
+	xview += (float)std::cos(-vhead * 3.14 / 180) * step;
 }
 
 void CCamera::YMove(GLfloat step) {
@@ -62,8 +62,8 @@ void CCamera::YMove(GLfloat step) {
 }
 
 void CCamera::ZMove(GLfloat step) {
-	xview += (float)sin(vhead * 3.14 / 180) * step;
-	zview += (float)cos(vhead * 3.14 / 180) * step;
+	xview += (float)std::sin(vhead * 3.14 / 180) * step;
+	zview += (float)std::cos(vhead * 3.14 / 180) * step;
 }
 
 void CCamera::RotateHead(GLfloat step) {
@@ -107,8 +107,8 @@ void CGluCamera::Update(float timestep) {
 	if (turnleft) angle -= timestep * 2000;
 	if (nearer) distance -= timestep * 100;
 	if (farther) distance += timestep * 100;
-	double xx = distance * sin(angle * M_PI / 180);
-	double zz = distance * sin((90 - angle) * M_PI / 180);
+	double xx = distance * std::sin(angle * M_PI / 180);
+	double zz = distance * std::sin((90 - angle) * M_PI / 180);
 	glLoadIdentity();
 	gluLookAt(xx, 0, zz, 0, 0, 0, 0, 1, 0);
 }

@@ -239,11 +239,11 @@ void CRacing::Enter() {
 // this function is not used yet.
 /*static int SlideVolume(CControl *ctrl, double speed, int typ) {
 	if (typ == 1) {	// only at paddling or braking
-		return (int)(std::min((((pow(ctrl->turn_fact, 2) * 128)) +
+		return (int)(std::min((((std::pow(ctrl->turn_fact, 2) * 128)) +
 		                  (ctrl->is_braking ? 128:0) +
 		                  (ctrl->jumping ? 128:0) + 20) * (speed / 10), 128.0));
 	} else { 	// always
-		return (int)(128 * pow((speed/2),2));
+		return (int)(128 * std::pow((speed/2),2));
 	}
 }*/
 
@@ -304,7 +304,7 @@ static void CalcSteeringControls(CControl *ctrl, float time_step) {
 
 static void CalcFinishControls(CControl *ctrl, float timestep, bool airborne) {
 	double speed = ctrl->cvel.Length();
-	double dir_angle = RADIANS_TO_ANGLES(atan(ctrl->cvel.x / ctrl->cvel.z));
+	double dir_angle = RADIANS_TO_ANGLES(std::atan(ctrl->cvel.x / ctrl->cvel.z));
 
 	if (fabs(dir_angle) > 5 && speed > 5) {
 		ctrl->turn_fact = dir_angle / 20;

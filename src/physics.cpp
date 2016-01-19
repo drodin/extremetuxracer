@@ -276,7 +276,7 @@ TVector3d CControl::CalcAirForce() {
 	double re = 34600 * windspeed;
 	int tablesize = sizeof(airdrag) / sizeof(airdrag[0]);
 	double interpol = LinearInterp(airlog, airdrag, log10(re), tablesize);
-	double dragcoeff = pow(10.0, interpol);
+	double dragcoeff = std::pow(10.0, interpol);
 	double airfact = 0.104 * dragcoeff *  windspeed;
 	return airfact * windvec;
 }
@@ -326,8 +326,8 @@ TVector3d CControl::CalcFrictionForce(double speed, const TVector3d& nmlforce) {
 
 		double steer_angle = turn_fact * MAX_TURN_ANGLE;
 
-		if (fabs(fric_f_mag * sin(steer_angle * M_PI / 180)) > MAX_TURN_PERP) {
-			steer_angle = RADIANS_TO_ANGLES(asin(MAX_TURN_PERP / fric_f_mag)) *
+		if (fabs(fric_f_mag * std::sin(steer_angle * M_PI / 180)) > MAX_TURN_PERP) {
+			steer_angle = RADIANS_TO_ANGLES(std::asin(MAX_TURN_PERP / fric_f_mag)) *
 			              turn_fact / fabs(turn_fact);
 		}
 		TMatrix<4, 4> fric_rot_mat = RotateAboutVectorMatrix(ff.surfnml, steer_angle);
@@ -534,8 +534,8 @@ void CControl::SolveOdeSystem(double timestep) {
 					vel_err[i] *= vel_err[i];
 					tot_vel_err += vel_err[i];
 				}
-				tot_pos_err = sqrt(tot_pos_err);
-				tot_vel_err = sqrt(tot_vel_err);
+				tot_pos_err = std::sqrt(tot_pos_err);
+				tot_vel_err = std::sqrt(tot_vel_err);
 				if (tot_pos_err / MAX_POS_ERR > tot_vel_err / MAX_VEL_ERR) {
 					err = tot_pos_err;
 					tol = MAX_POS_ERR;
@@ -548,7 +548,7 @@ void CControl::SolveOdeSystem(double timestep) {
 					done = false;
 					if (!failed) {
 						failed = true;
-						h *=  std::max(0.5, 0.8 * pow(tol/err, solver.TimestepExponent()));
+						h *=  std::max(0.5, 0.8 * std::pow(tol/err, solver.TimestepExponent()));
 					} else h *= 0.5;
 
 					h = AdjustTimeStep(h, saved_vel);
@@ -566,7 +566,7 @@ void CControl::SolveOdeSystem(double timestep) {
 		new_f = CalcNetForce(new_pos, new_vel);
 
 		if (!failed && solver.EstimateError != nullptr) {
-			double temp = 1.25 * pow(err / tol, solver.TimestepExponent());
+			double temp = 1.25 * std::pow(err / tol, solver.TimestepExponent());
 			if (temp > 0.2) h = h / temp;
 			else h = 5.0 * h;
 		}

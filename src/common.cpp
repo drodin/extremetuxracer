@@ -205,9 +205,9 @@ void GetTimeComponents(double time, int *min, int *sec, int *hundr) {
 }
 
 std::string GetTimeString() {
-	time_t rawtime;
-	time(&rawtime);
-	struct tm* timeinfo = localtime(&rawtime);
+	std::time_t rawtime;
+	std::time(&rawtime);
+	struct std::tm* timeinfo = std::localtime(&rawtime);
 
 	std::string line = Int_StrN(timeinfo->tm_mon + 1);
 	line += '_' + Int_StrN(timeinfo->tm_mday);

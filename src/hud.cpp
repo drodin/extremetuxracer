@@ -96,8 +96,8 @@ static void draw_herring_count(int herring_count, sf::Color color) {
 
 TVector2d calc_new_fan_pt(double angle) {
 	return TVector2d(
-	           ENERGY_GAUGE_CENTER_X + cos(ANGLES_TO_RADIANS(angle)) * SPEEDBAR_OUTER_RADIUS,
-	           ENERGY_GAUGE_CENTER_Y + sin(ANGLES_TO_RADIANS(angle)) * SPEEDBAR_OUTER_RADIUS);
+	           ENERGY_GAUGE_CENTER_X + std::cos(ANGLES_TO_RADIANS(angle)) * SPEEDBAR_OUTER_RADIUS,
+	           ENERGY_GAUGE_CENTER_Y + std::sin(ANGLES_TO_RADIANS(angle)) * SPEEDBAR_OUTER_RADIUS);
 }
 
 void draw_partial_tri_fan(double fraction) {
@@ -263,7 +263,7 @@ void DrawWind(float dir, float speed, const CControl *ctrl) {
 	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 
 	// direction indicator
-	float dir_angle = RADIANS_TO_ANGLES(atan2(ctrl->cvel.x, ctrl->cvel.z));
+	float dir_angle = RADIANS_TO_ANGLES(std::atan2(ctrl->cvel.x, ctrl->cvel.z));
 
 	glColor4f(0, 0.5, 0, 1.0);
 	glRotatef(dir_angle - dir, 0, 0, 1);

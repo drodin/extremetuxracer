@@ -105,7 +105,7 @@ void CWinsys::SetupVideoMode(const TScreenRes& resolution_) {
 		window.setFramerateLimit(param.framerate);
 
 	scale = CalcScreenScale();
-	if (param.use_quad_scale) scale = sqrt(scale);
+	if (param.use_quad_scale) scale = std::sqrt(scale);
 }
 
 void CWinsys::SetupVideoMode(std::size_t idx) {

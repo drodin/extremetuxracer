@@ -50,8 +50,8 @@ template void TMatrix<4, 4>::SetIdentity();
 template<int ix, int iy>
 void TMatrix<ix, iy>::SetRotationMatrix(double angle, char axis) {
 	double sinv, cosv;
-	sinv = sin(ANGLES_TO_RADIANS(angle));
-	cosv = cos(ANGLES_TO_RADIANS(angle));
+	sinv = std::sin(ANGLES_TO_RADIANS(angle));
+	cosv = std::cos(ANGLES_TO_RADIANS(angle));
 
 	SetIdentity();
 

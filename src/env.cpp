@@ -317,7 +317,7 @@ void CEnvironment::DrawFog() {
 
 	// --------------- calculate the planes ---------------------------
 
-	double slope = tan(ANGLES_TO_RADIANS(Course.GetCourseAngle()));
+	double slope = std::tan(ANGLES_TO_RADIANS(Course.GetCourseAngle()));
 //	TPlane left_edge_plane = MakePlane (1.0, 0.0, 0.0, 0.0);
 //	TPlane right_edge_plane = MakePlane (-1.0, 0.0, 0.0, Course.width);
 

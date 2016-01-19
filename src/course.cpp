@@ -77,7 +77,7 @@ CCourse::~CCourse() {
 }
 
 double CCourse::GetBaseHeight(double distance) const {
-	double slope = tan(ANGLES_TO_RADIANS(curr_course->angle));
+	double slope = std::tan(ANGLES_TO_RADIANS(curr_course->angle));
 
 	return -slope * distance -
 	       base_height_value / 255.0 * curr_course->scale;
@@ -352,7 +352,7 @@ bool CCourse::LoadElevMap() {
 	ny = img.getSize().y;
 	Fields.resize(nx*ny);
 
-	double slope = tan(ANGLES_TO_RADIANS(curr_course->angle));
+	double slope = std::tan(ANGLES_TO_RADIANS(curr_course->angle));
 	int pad = 0;
 	int depth = 4;
 	const uint8_t* data = img.getPixelsPtr();

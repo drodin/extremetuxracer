@@ -137,7 +137,7 @@ void set_material(const sf::Color& diffuse_colour, const sf::Color& specular_col
 	};
 	glMaterialiv(GL_FRONT_AND_BACK, GL_SPECULAR, mat_specular);
 
-	glMateriali(GL_FRONT_AND_BACK, GL_SHININESS, specular_exp);
+	glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, specular_exp);
 }
 
 void ClearRenderContext() {
@@ -429,9 +429,9 @@ void glTexCoord2(const TVector2d& vec) {
 }
 
 void glLoadMatrix(const TMatrix<4, 4>& mat) {
-	glLoadMatrixd((const double*) mat.data());
+	glLoadMatrixd(mat.data());
 }
 
 void glMultMatrix(const TMatrix<4, 4>& mat) {
-	glMultMatrixd((const double*) mat.data());
+	glMultMatrixd(mat.data());
 }

@@ -105,7 +105,7 @@ TMatrix<4, 4> RotateAboutVectorMatrix(const TVector3d& u, double angle) {
 	double b = u.y;
 	double c = u.z;
 
-	double d = sqrt(b*b + c*c);
+	double d = std::sqrt(b*b + c*c);
 
 	if (d < EPS) {
 		if (a < 0)
@@ -194,7 +194,7 @@ TQuaternion MakeQuaternionFromMatrix(const TMatrix<4, 4>& m) {
 	tr = m[0][0] + m[1][1] + m[2][2];
 
 	if (tr > 0.0) {
-		s = sqrt(tr + 1.0);
+		s = std::sqrt(tr + 1.0);
 		res.w = 0.5 * s;
 		s = 0.5 / s;
 		res.x = (m[1][2] - m[2][1]) * s;
@@ -207,7 +207,7 @@ TQuaternion MakeQuaternionFromMatrix(const TMatrix<4, 4>& m) {
 		int j = nxt[i];
 		int k = nxt[j];
 
-		s = sqrt(m[i][i] - m[j][j] - m[k][k] + 1.0);
+		s = std::sqrt(m[i][i] - m[j][j] - m[k][k] + 1.0);
 
 		q[i] = s * 0.5;
 
@@ -235,8 +235,8 @@ TQuaternion MakeRotationQuaternion(const TVector3d& s, const TVector3d& t) {
 	} else {
 		double cos2phi = DotProduct(s, t);
 
-		double sinphi = sqrt((1 - cos2phi) / 2.0);
-		double cosphi = sqrt((1 + cos2phi) / 2.0);
+		double sinphi = std::sqrt((1 - cos2phi) / 2.0);
+		double cosphi = std::sqrt((1 + cos2phi) / 2.0);
 
 		return TQuaternion(
 		           sinphi * u.x,
@@ -259,10 +259,10 @@ TQuaternion InterpolateQuaternions(const TQuaternion& q, TQuaternion r, double t
 
 	double scale0, scale1;
 	if (1.0 - cosphi > EPS) {
-		double phi = acos(cosphi);
-		double sinphi = sin(phi);
-		scale0 = sin(phi * (1.0 - t)) / sinphi;
-		scale1 = sin(phi * t) / sinphi;
+		double phi = std::acos(cosphi);
+		double sinphi = std::sin(phi);
+		scale0 = std::sin(phi * (1.0 - t)) / sinphi;
+		scale1 = std::sin(phi * t) / sinphi;
 	} else {
 		scale0 = 1.0 - t;
 		scale1 = t;
@@ -516,15 +516,15 @@ double LinearInterp(const double x[], const double y[], double val, int n) {
 }
 
 double XRandom(double min, double max) {
-	return (double)rand() / RAND_MAX * (max - min) + min;
+	return (double)std::rand() / RAND_MAX * (max - min) + min;
 }
 
 double FRandom() {
-	return (double)rand() / RAND_MAX;
+	return (double)std::rand() / RAND_MAX;
 }
 
 int IRandom(int min, int max) {
-	return min + rand()%(max-min+1);
+	return min + std::rand()%(max-min+1);
 }
 
 int ITrunc(int val, int base) {

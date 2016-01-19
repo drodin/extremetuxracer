@@ -274,13 +274,13 @@ void InitConfig() {
 #if 0
 	char buff[256];
 
-	if (strcmp(arg0, "./etr") == 0) {		// start from work directory
+	if (std::strcmp(arg0, "./etr") == 0) {		// start from work directory
 		char *s = getcwd(buff, 256);
 		if (s==nullptr) {};
 	} else {								// start with full path
-		strcpy(buff, arg0);
-		if (strlen(buff) > 5) {
-			buff[strlen(buff)-3] = 0;
+		std::strcpy(buff, arg0);
+		if (std::strlen(buff) > 5) {
+			buff[std::strlen(buff)-3] = 0;
 		}
 	}
 

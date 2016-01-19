@@ -79,7 +79,7 @@ TGuiParticle::TGuiParticle(float x, float y) {
 	vel.x = 0;
 	vel.y = BASE_VELOCITY + p_dist * VELOCITY_RANGE;
 
-	int type = rand() % 4;
+	int type = std::rand() % 4;
 	switch (type) {
 		case 0:
 			sprite.setTextureRect(sf::IntRect(0, 0, texture.getSize().x / 2, texture.getSize().y / 2));
@@ -105,8 +105,8 @@ void TGuiParticle::Update(float time_step, float push_timestep, const TVector2d&
 
 	float x = sprite.getPosition().x / static_cast<float>(Winsys.resolution.width);
 	float y = sprite.getPosition().y / static_cast<float>(Winsys.resolution.height);
-	float dist_from_push = (pow((x - push_position.x), 2) +
-	                        pow((y - push_position.y), 2));
+	float dist_from_push = (std::pow((x - push_position.x), 2) +
+	                        std::pow((y - push_position.y), 2));
 	if (push_timestep > 0) {
 		f.x = PUSH_FACTOR * push_vector.x / push_timestep;
 		f.y = PUSH_FACTOR * push_vector.y / push_timestep;
@@ -326,7 +326,7 @@ void create_new_particles(const TVector3d& loc, const TVector3d& vel, int num) {
 		newp->pt.x = loc.x + 2.*(FRandom() - 0.5) * START_RADIUS;
 		newp->pt.y = loc.y;
 		newp->pt.z = loc.z + 2.*(FRandom() - 0.5) * START_RADIUS;
-		newp->type = rand() % 4;
+		newp->type = std::rand() % 4;
 		newp->base_size = (FRandom() + 0.5) * OLD_PART_SIZE;
 		newp->cur_size = NEW_PART_SIZE;
 		newp->age = FRandom() * MIN_AGE;
@@ -379,7 +379,7 @@ void clear_particles() {
 
 static double adjust_particle_count(double count) {
 	if (count < 1) {
-		if (((double) rand()) / RAND_MAX < count) return 1.0;
+		if (((double)std::rand()) / RAND_MAX < count) return 1.0;
 		else return 0.0;
 	} else return count;
 }
@@ -500,7 +500,7 @@ void TFlakeArea::Draw(const CControl *ctrl) const {
 
 	const TPlane& lp = get_left_clip_plane();
 	const TPlane& rp = get_right_clip_plane();
-	float dir_angle(atan(ctrl->viewdir.x / ctrl->viewdir.z) * 180 / M_PI);
+	float dir_angle(std::atan(ctrl->viewdir.x / ctrl->viewdir.z) * 180 / M_PI);
 
 	ScopedRenderMode rm(PARTICLES);
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
@@ -553,7 +553,7 @@ void CFlakes::MakeSnowFlake(std::size_t ar, std::size_t i) {
 	areas[ar].flakes[i].vel.z = 0;
 	areas[ar].flakes[i].vel.y = -areas[ar].flakes[i].size * areas[ar].speed;
 
-	int type = rand() % 4;
+	int type = std::rand() % 4;
 
 	static const GLfloat tex_coords[4][8] = {
 		{
@@ -738,7 +738,7 @@ TCurtain::TCurtain(int num_rows, float z_dist, float tex_size,
 			break;
 	}
 
-	angledist = atan(size / 2 / zdist) * 360 / M_PI;
+	angledist = std::atan(size / 2 / zdist) * 360 / M_PI;
 	numCols = (unsigned int)(-2 * startangle / angledist) + 1;
 	if (numCols > MAX_CURTAIN_COLS) numCols = MAX_CURTAIN_COLS;
 	lastangle = startangle + (numCols-1) * angledist;
@@ -820,9 +820,9 @@ void TCurtain::Update(float timestep, const TVector3d& drift, const CControl* ct
 
 static CCurtain Curtain;
 void TCurtain::CurtainVec(float angle, float zdist, float &x, float &z) {
-	x = zdist  * sin(angle * M_PI / 180);
-	if (angle > 90 || angle < -90) z = sqrt(zdist * zdist - x * x);
-	else z = -sqrt(zdist * zdist - x * x);
+	x = zdist  * std::sin(angle * M_PI / 180);
+	if (angle > 90 || angle < -90) z = std::sqrt(zdist * zdist - x * x);
+	else z = -std::sqrt(zdist * zdist - x * x);
 }
 
 void CCurtain::Draw() {
@@ -1070,8 +1070,8 @@ void CWind::Update(float timestep) {
 		if (WAngle > params.maxAngle) WAngle = params.maxAngle;
 		if (WAngle < params.minAngle) WAngle = params.minAngle;
 
-		float xx = sin(WAngle * M_PI / 180.f);
-		float zz = sqrt(1 - xx * xx);
+		float xx = std::sin(WAngle * M_PI / 180.f);
+		float zz = std::sqrt(1 - xx * xx);
 		if ((WAngle > 90 && WAngle < 270) || (WAngle > 450 && WAngle < 630)) {
 			zz = -zz;
 		}

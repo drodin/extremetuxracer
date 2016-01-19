@@ -328,7 +328,7 @@ float quadsquare::RecomputeError(const quadcornerdata& cd) {
 	}
 
 	std::size_t *terrain_count = new std::size_t[numTerr];
-	memset(terrain_count, 0, sizeof(*terrain_count)*numTerr);
+	std::memset(terrain_count, 0, sizeof(*terrain_count)*numTerr);
 
 	for (int i=cd.xorg; i<=cd.xorg+whole; i++) {
 		for (int j=cd.zorg; j<=cd.zorg+whole; j++) {
@@ -1081,8 +1081,8 @@ void ResetQuadtree() {
 }
 
 static int get_root_level(int nx, int nz) {
-	int xlev = (int)(log(static_cast<double>(nx)) / log(2.0));
-	int zlev = (int)(log(static_cast<double>(nz)) / log(2.0));
+	int xlev = (int)(std::log(static_cast<double>(nx)) / std::log(2.0));
+	int zlev = (int)(std::log(static_cast<double>(nz)) / std::log(2.0));
 
 	return std::max(xlev, zlev);
 }

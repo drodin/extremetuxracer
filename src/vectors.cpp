@@ -35,7 +35,7 @@ template<>
 double TVector3<double>::Norm() {
 	double square = x*x + y*y + z*z;
 	if (square == 0.0) return 0.0;
-	double denom = sqrt(square);
+	double denom = std::sqrt(square);
 	*this *= 1.0 / denom;
 	return denom;
 }
