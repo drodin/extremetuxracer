@@ -70,18 +70,18 @@ void GameOverMessage(const CControl *ctrl) {
 	int topframe = 80;
 
 	const sf::Color& backcol = colWhite;
-	static const sf::Color framecol(0.7*255, 0.7*255, 1*255);
+	static const sf::Color framecol(178, 178, 255);
 
 	if (param.use_papercut_font > 0) FT.SetSize(28);
 	else FT.SetSize(22);
 	if (g_game.raceaborted) {
-		DrawFrameX(leftframe, topframe, fwidth, 100, 4, backcol, framecol, 0.5);
+		DrawFrameX(leftframe, topframe, fwidth, 100, 4, backcol, framecol, 0.5f);
 		FT.SetColor(colDBlue);
 		FT.DrawString(CENTER, topframe+30, Trans.Text(25));
 	} else {
 		int firstMarker = leftframe + 60;
 		int secondMarker = leftframe + 310;
-		DrawFrameX(leftframe, topframe, fwidth, 210, 4, backcol, framecol, 0.5);
+		DrawFrameX(leftframe, topframe, fwidth, 210, 4, backcol, framecol, 0.5f);
 
 		if (param.use_papercut_font > 0) FT.SetSize(20);
 		else FT.SetSize(14);

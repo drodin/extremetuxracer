@@ -34,7 +34,7 @@ GNU General Public License for more details.
 #define BEHIND_ORIENT_TIME_CONSTANT 0.06
 #define FOLLOW_ORBIT_TIME_CONSTANT 0.06
 #define FOLLOW_ORIENT_TIME_CONSTANT 0.06
-#define MAX_INTERPOLATION_VALUE 0.3
+#define MAX_INTERPOLATION_VALUE 0.3f
 #define BASELINE_INTERPOLATION_SPEED 4.5
 #define NO_INTERPOLATION_SPEED 2.0
 #define CAMERA_DISTANCE_INCREMENT 2
@@ -65,7 +65,7 @@ void set_view_mode(CControl *ctrl, TViewMode mode) {ctrl->viewmode = mode;}
 TVector3d interpolate_view_pos(const TVector3d& ctrl_pos1, const TVector3d& ctrl_pos2,
                                double max_vec_angle,
                                const TVector3d& pos1, const TVector3d& pos2,
-                               double dist, double dt,
+                               double dist, float dt,
                                float time_constant) {
 	static TVector3d y_vec(0.0, 1.0, 0.0);
 
@@ -77,7 +77,7 @@ TVector3d interpolate_view_pos(const TVector3d& ctrl_pos1, const TVector3d& ctrl
 
 	TQuaternion q1 = MakeRotationQuaternion(y_vec, vec1);
 	TQuaternion q2 = MakeRotationQuaternion(y_vec, vec2);
-	double alpha = min(MAX_INTERPOLATION_VALUE, 1.0 - exp(-dt / time_constant));
+	double alpha = min(MAX_INTERPOLATION_VALUE, 1.f - exp(-dt / time_constant));
 	q2 = InterpolateQuaternions(q1, q2, alpha);
 
 	vec2 = RotateVector(q2, y_vec);
@@ -164,7 +164,7 @@ TVector3d MakeViewVector() {
 	return TVector3d(0, camera_distance * sin(rad), camera_distance * cos(rad));
 }
 
-void update_view(CControl *ctrl, double dt) {
+void update_view(CControl *ctrl, float dt) {
 	if (is_stationary) {
 		glLoadMatrix(stationary_matrix);
 		return;

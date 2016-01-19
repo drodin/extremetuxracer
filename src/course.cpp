@@ -251,9 +251,9 @@ void CCourse::FillGlArrays() {
 		for (unsigned int y = 0; y < ny; y++) {
 			int idx = STRIDE_GL_ARRAY * (y * nx + x);
 
-			FLOATVAL(0) = (GLfloat)x / (nx-1.0) * curr_course->size.x;
+			FLOATVAL(0) = (GLfloat)x / (nx-1.f) * curr_course->size.x;
 			FLOATVAL(1) = Fields[x + nx*y].elevation;
-			FLOATVAL(2) = -(GLfloat)y / (ny-1.0) * curr_course->size.y;
+			FLOATVAL(2) = -(GLfloat)y / (ny-1.f) * curr_course->size.y;
 
 			const TVector3d& nml = Fields[ x + y * nx ].nml;
 			FLOATVAL(4) = nml.x;
@@ -548,7 +548,7 @@ bool CCourse::LoadObjectTypes() {
 		if (ObjTypes[i].drawable) {
 			ObjTypes[i].textureFile = SPStrN(*line, "texture");
 		}
-		ObjTypes[i].collectable = SPBoolN(*line, "snap", -1) != 0;
+		ObjTypes[i].collectable = SPBoolN(*line, "snap", true) != 0;
 		if (ObjTypes[i].collectable == 0) {
 			ObjTypes[i].collectable = -1;
 		}

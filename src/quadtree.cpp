@@ -208,9 +208,9 @@ float quadsquare::RecomputeError(const quadcornerdata& cd) {
 
 	std::size_t numTerr = Course.TerrList.size();
 	if (cd.ChildIndex & 1) {
-		e = fabs(Vertex[0].Y - (cd.Verts[1].Y + cd.Verts[3].Y) * 0.5);
+		e = fabs(Vertex[0].Y - (cd.Verts[1].Y + cd.Verts[3].Y) * 0.5f);
 	} else {
-		e = fabs(Vertex[0].Y - (cd.Verts[0].Y + cd.Verts[2].Y) * 0.5);
+		e = fabs(Vertex[0].Y - (cd.Verts[0].Y + cd.Verts[2].Y) * 0.5f);
 	}
 	if (e > maxerror) maxerror = e;
 
@@ -224,11 +224,11 @@ float quadsquare::RecomputeError(const quadcornerdata& cd) {
 	}
 
 
-	e = fabs(Vertex[1].Y - (cd.Verts[0].Y + cd.Verts[3].Y) * 0.5);
+	e = fabs(Vertex[1].Y - (cd.Verts[0].Y + cd.Verts[3].Y) * 0.5f);
 	if (e > maxerror) maxerror = e;
 	Error[0] = e;
 
-	e = fabs(Vertex[4].Y - (cd.Verts[2].Y + cd.Verts[3].Y) * 0.5);
+	e = fabs(Vertex[4].Y - (cd.Verts[2].Y + cd.Verts[3].Y) * 0.5f);
 	if (e > maxerror) maxerror = e;
 	Error[1] = e;
 
@@ -322,7 +322,7 @@ float quadsquare::RecomputeError(const quadcornerdata& cd) {
 			if (Child[i]->MaxY > MaxY) MaxY = Child[i]->MaxY;
 		} else {
 			Error[i+2] = fabs((Vertex[0].Y + cd.Verts[i].Y)
-			                  - (Vertex[i+1].Y + Vertex[((i+1)&3) + 1].Y)) * 0.25;
+			                  - (Vertex[i+1].Y + Vertex[((i+1)&3) + 1].Y)) * 0.25f;
 		}
 		if (Error[i+2] > maxerror) maxerror = Error[i+2];
 	}
@@ -414,7 +414,7 @@ void quadsquare::StaticCullAux(const quadcornerdata& cd, float ThresholdDetail, 
 		}
 		return;
 	}
-	float	size = 2 << cd.Level;	// Edge length.
+	float size = 2 << cd.Level;	// Edge length.
 	if (Child[0] == nullptr && Child[3] == nullptr && Error[0] * ThresholdDetail < size) {
 		quadsquare*	s = GetNeighbor(0, cd);
 		if (s == nullptr || (s->Child[1] == nullptr && s->Child[2] == nullptr)) {
@@ -587,9 +587,9 @@ bool quadsquare::VertexTest(int x, float y, int z, float error,
 }
 
 bool quadsquare::BoxTest(int x, int z, float size, float miny, float maxy, float error, const float Viewer[3]) {
-	float	half = size * 0.5;
+	float	half = size * 0.5f;
 	float	dx = (fabs(x + half - Viewer[0]) - half) * fabs(ScaleX);
-	float	dy = fabs((miny + maxy) * 0.5 - Viewer[1]) - (maxy - miny) * 0.5;
+	float	dy = fabs((miny + maxy) * 0.5f - Viewer[1]) - (maxy - miny) * 0.5f;
 	float	dz = (fabs(z + half - Viewer[2]) - half) * fabs(ScaleZ);
 	float	d = max(dx, max(dy , dz));
 

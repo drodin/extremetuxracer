@@ -152,7 +152,7 @@ void CGameConfig::Enter() {
 	int rightpos = area.right -48;
 
 	ResetGUI();
-	int siz = FT.AutoSizeN(5);
+	unsigned int siz = FT.AutoSizeN(5);
 	fullscreen = AddCheckbox(area.left, area.top, framewidth-16, Trans.Text(31));
 	fullscreen->checked = param.fullscreen;
 

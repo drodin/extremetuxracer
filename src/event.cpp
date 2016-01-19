@@ -145,9 +145,9 @@ void CEvent::Enter() {
 	int framebottom = frametop + (int) ecup->races.size() * dist + 10;
 
 	ResetGUI();
-	int siz = FT.AutoSizeN(5);
+	unsigned int siz = FT.AutoSizeN(5);
 	textbuttons[1] = AddTextButton(Trans.Text(8), area.left + 100, AutoYPosN(80), siz);
-	float len = FT.GetTextWidth(Trans.Text(13));
+	int len = FT.GetTextWidth(Trans.Text(13));
 	textbuttons[0] = AddTextButton(Trans.Text(13), area.right -len - 100, AutoYPosN(80), siz);
 	textbuttons[2] = AddTextButton(Trans.Text(15), CENTER, AutoYPosN(80), siz);
 	SetFocus((ready == 2) ? textbuttons[2] : textbuttons[0]);

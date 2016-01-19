@@ -30,7 +30,7 @@ struct TScore {
 	int herrings;
 	float time;
 
-	TScore(const std::string& player_ = emptyString, int points_ = 0, int herrings_ = 0, double time_ = 0)
+	TScore(const std::string& player_ = emptyString, int points_ = 0, int herrings_ = 0, float time_ = 0)
 		: player(player_), points(points_), herrings(herrings_), time(time_)
 	{}
 };

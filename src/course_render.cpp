@@ -33,8 +33,8 @@ GNU General Public License for more details.
 static const bool clip_course = true;
 
 void setup_course_tex_gen() {
-	static const GLfloat xplane[4] = {1.0 / TEX_SCALE, 0.0, 0.0, 0.0 };
-	static const GLfloat zplane[4] = {0.0, 0.0, 1.0 / TEX_SCALE, 0.0 };
+	static const GLfloat xplane[4] = {1.f / TEX_SCALE, 0.f, 0.f, 0.f };
+	static const GLfloat zplane[4] = {0.f, 0.f, 1.f / TEX_SCALE, 0.f };
 	glTexGenfv(GL_S, GL_OBJECT_PLANE, xplane);
 	glTexGenfv(GL_T, GL_OBJECT_PLANE, zplane);
 }
@@ -50,7 +50,7 @@ void RenderCourse() {
 }
 
 void DrawTrees() {
-	std::size_t			tree_type = -1;
+	std::size_t tree_type = -1;
 	const CControl*	ctrl = g_game.player->ctrl;
 
 	ScopedRenderMode rm(TREES);
@@ -154,8 +154,8 @@ void DrawTrees() {
 		};
 
 		const GLfloat vtx[] = {
-			-itemRadius*normal.z, 0.0,        itemRadius*normal.x,
-			itemRadius*normal.z, 0.0,        -itemRadius*normal.x,
+			-itemRadius*normal.z, 0.f,        itemRadius*normal.x,
+			itemRadius*normal.z,  0.f,        -itemRadius*normal.x,
 			itemRadius*normal.z,  itemHeight, -itemRadius*normal.x,
 			-itemRadius*normal.z, itemHeight, itemRadius*normal.x
 		};

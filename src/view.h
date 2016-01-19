@@ -22,7 +22,7 @@ GNU General Public License for more details.
 #include "mathlib.h"
 
 void set_view_mode(CControl *ctrl, TViewMode mode);
-void update_view(CControl *ctrl, double dt);
+void update_view(CControl *ctrl, float dt);
 
 void SetStationaryCamera(bool stat);  // 0 follow, 1 stationary
 void IncCameraDistance(float timestep);

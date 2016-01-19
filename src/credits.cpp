@@ -57,8 +57,8 @@ void CCredits::LoadCreditList() {
 		TCredits& credit = *last;
 		credit.text = SPStrN(*line, "text");
 
-		float offset = SPFloatN(*line, "offs", 0) * OFFS_SCALE_FACTOR * Winsys.scale;
-		if (line != list.cbegin()) credit.offs = old_offs + (int)offset;
+		int offset = SPFloatN(*line, "offs", 0) * OFFS_SCALE_FACTOR * Winsys.scale;
+		if (line != list.cbegin()) credit.offs = old_offs + offset;
 		else credit.offs = offset;
 
 		credit.col = SPIntN(*line, "col", 0);
@@ -126,8 +126,8 @@ void CCredits::Enter() {
 	RT = new sf::RenderTexture();
 	RT->create(Winsys.resolution.width, Winsys.resolution.height - TOP_Y - BOTT_Y + 2 * FADE);
 
-	int w = Winsys.resolution.width;
-	int h = Winsys.resolution.height;
+	float w = Winsys.resolution.width;
+	float h = Winsys.resolution.height;
 	arr[0] = sf::Vertex(sf::Vector2f(0, TOP_Y - FADE), colTBackr, sf::Vector2f(0, 0));
 	arr[1] = sf::Vertex(sf::Vector2f(0, TOP_Y), colWhite, sf::Vector2f(0, FADE));
 	arr[2] = sf::Vertex(sf::Vector2f(w, TOP_Y), colWhite, sf::Vector2f(w, FADE));

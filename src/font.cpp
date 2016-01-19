@@ -84,13 +84,13 @@ CFont FT;
 
 CFont::CFont() {
 	// setting default values
-	curr_col.r = 0.0;	// default color: black
-	curr_col.g = 0.0;
-	curr_col.b = 0.0;
-	curr_col.a = 1.0;	// default: no transparency
-	curr_size   = 20;	// default size: 20 px
-	curr_fact   = 0;
-	curr_font   = 0;
+	curr_col.r = 0;	// default color: black
+	curr_col.g = 0;
+	curr_col.b = 0;
+	curr_col.a = 255;	// default: no transparency
+	curr_size  = 20;	// default size: 20 px
+	curr_fact  = 0;
+	curr_font  = 0;
 }
 
 CFont::~CFont() {
@@ -149,12 +149,12 @@ std::size_t CFont::GetFontIdx(const std::string &name) const {
 	return fontindex.at(name);
 }
 
-void CFont::SetProps(const std::string &fontname, float size, const sf::Color& col) {
+void CFont::SetProps(const std::string &fontname, unsigned int size, const sf::Color& col) {
 	SetProps(fontname, size);
 	curr_col  = col;
 }
 
-void CFont::SetProps(const std::string &fontname, float size) {
+void CFont::SetProps(const std::string &fontname, unsigned int size) {
 	curr_font = (int)GetFontIdx(fontname);
 	curr_size = size;
 }
@@ -179,23 +179,22 @@ void CFont::SetFontFromSettings() {
 
 // -------------------- auto ------------------------------------------
 
-int CFont::AutoSizeN(int rel_val) {
-	float size = (rel_val + 2) * 4;
-	size *= curr_fact;
-	size *= Winsys.scale;
+unsigned int CFont::AutoSizeN(int rel_val) {
+	unsigned int size = (rel_val + 2) * 4;
+	size *= curr_fact * Winsys.scale;
 	SetSize(size);
-	return (int)size;
+	return size;
 }
 
 int CFont::AutoDistanceN(int rel_val) {
-	float fact = (rel_val + 5) * 0.2;
+	float fact = (rel_val + 5) * 0.2f;
 	float dist = curr_size * fact;
 	return (int) dist;
 }
 
 // -------------------- draw (x, y, text) -----------------------------
 
-void CFont::DrawText(float x, float y, const sf::String& text, std::size_t font, float size) const {
+void CFont::DrawText(float x, float y, const sf::String& text, std::size_t font, unsigned int size) const {
 	if (font >= fonts.size()) return;
 
 	sf::Text temp(text, *fonts[font], size);
@@ -210,14 +209,14 @@ void CFont::DrawString(float x, float y, const sf::String &s) const {
 	DrawText(x, y, s, curr_font, curr_size);
 }
 
-void CFont::DrawString(float x, float y, const sf::String& s, const std::string &fontname, float size) const {
+void CFont::DrawString(float x, float y, const sf::String& s, const std::string &fontname, unsigned int size) const {
 	DrawText(x, y, s, GetFontIdx(fontname), size);
 }
 
 
 // --------------------- metrics --------------------------------------
 
-void CFont::GetTextSize(const sf::String& text, float &x, float &y, std::size_t font, float size) const {
+void CFont::GetTextSize(const sf::String& text, float &x, float &y, std::size_t font, unsigned int size) const {
 	if (font >= fonts.size()) { x = 0; y = 0; return; }
 
 	sf::Text temp(text, *fonts[font], size);
@@ -225,7 +224,7 @@ void CFont::GetTextSize(const sf::String& text, float &x, float &y, std::size_t 
 	y = temp.getGlobalBounds().height;
 }
 
-void CFont::GetTextSize(const sf::String& text, float &x, float &y, const std::string &fontname, float size) const {
+void CFont::GetTextSize(const sf::String& text, float &x, float &y, const std::string &fontname, unsigned int size) const {
 	GetTextSize(text, x, y, GetFontIdx(fontname), size);
 }
 
@@ -239,7 +238,7 @@ float CFont::GetTextWidth(const sf::String& text) const {
 	return x;
 }
 
-float CFont::GetTextWidth(const sf::String& text, const std::string &fontname, float size) const {
+float CFont::GetTextWidth(const sf::String& text, const std::string &fontname, unsigned int size) const {
 	std::size_t temp_font = GetFontIdx(fontname);
 	float x, y;
 	GetTextSize(text, x, y, temp_font, size);

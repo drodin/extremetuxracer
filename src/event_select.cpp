@@ -100,7 +100,7 @@ void CEventSelect::Enter() {
 	event = AddUpDown(area.right+8, frametop1, 0, (int)Events.EventList.size() - 1, 0);
 	cup = AddUpDown(area.right + 8, frametop2, 0, (int)Events.EventList[0].cups.size() - 1, 0);
 
-	int siz = FT.AutoSizeN(5);
+	unsigned int siz = FT.AutoSizeN(5);
 
 	float len = FT.GetTextWidth(Trans.Text(9));
 	textbuttons[0] = AddTextButton(Trans.Text(9), area.right-len-50, AutoYPosN(70), siz);

@@ -48,8 +48,8 @@ static const sf::Color shad_col(0, 0, 0, 76);
 static const sf::Color shad_col(0, 0, 0, 25);
 #endif
 
-static const TCharMaterial TuxDefMat = { sf::Color(0.5 * 255, 0.5 * 255, 0.5 * 255), colBlack, 0.0 };
-static const TCharMaterial Highlight = { sf::Color(0.8 * 255, 0.15 * 255, 0.15 * 255), colBlack, 0.0 };
+static const TCharMaterial TuxDefMat = { sf::Color(128, 128, 128), colBlack, 0.0 };
+static const TCharMaterial Highlight = { sf::Color(204, 38, 38), colBlack, 0.0 };
 CCharShape TestChar;
 
 CCharShape::CCharShape() {

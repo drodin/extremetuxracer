@@ -47,10 +47,10 @@ GNU General Public License for more details.
 #define SPEEDBAR_RED_FRACTION 0.25
 #define CIRCLE_DIVISIONS 10
 
-static const GLfloat energy_background_color[] = { 0.2, 0.2, 0.2, 0.0 };
-static const GLfloat energy_foreground_color[] = { 0.54, 0.59, 1.00, 0.5 };
-static const GLfloat speedbar_background_color[] = { 0.2, 0.2, 0.2, 0.0 };
-static const GLfloat hud_white[] = { 1.0, 1.0, 1.0, 1.0 };
+static const GLubyte energy_background_color[]   = { 51,  51,  51, 0 };
+static const GLubyte energy_foreground_color[]   = { 138, 150, 255, 128 };
+static const GLubyte speedbar_background_color[] = { 51,  51,  51, 0 };
+static const GLubyte hud_white[]                 = { 255, 255, 255, 255 };
 
 static void draw_time() {
 	Tex.Draw(T_TIME, 10, 10, 1);
@@ -66,7 +66,7 @@ static void draw_time() {
 
 	if (param.use_papercut_font < 2) {
 		Tex.DrawNumStr(timestr, 50, 12, 1, colWhite);
-		Tex.DrawNumStr(hundrstr, 170, 12, 0.7, colWhite);
+		Tex.DrawNumStr(hundrstr, 170, 12, 0.7f, colWhite);
 	} else {
 		Winsys.beginSFML();
 		FT.SetColor(colDYell);
@@ -126,8 +126,8 @@ void draw_partial_tri_fan(double fraction) {
 }
 
 void draw_gauge(double speed, double energy) {
-	static const GLfloat xplane[4] = {1.0 / GAUGE_IMG_SIZE, 0.0, 0.0, 0.0 };
-	static const GLfloat yplane[4] = {0.0, 1.0 / GAUGE_IMG_SIZE, 0.0, 0.0 };
+	static const GLfloat xplane[4] = {1.f / GAUGE_IMG_SIZE, 0.f, 0.f, 0.f };
+	static const GLfloat yplane[4] = {0.f, 1.f / GAUGE_IMG_SIZE, 0.f, 0.f };
 
 	ScopedRenderMode rm(GAUGE_BARS);
 
@@ -142,27 +142,27 @@ void draw_gauge(double speed, double energy) {
 	glPushMatrix();
 	glTranslatef(Winsys.resolution.width - GAUGE_WIDTH, 0, 0);
 	Tex.BindTex(GAUGE_ENERGY);
-	double y = ENERGY_GAUGE_BOTTOM + energy * ENERGY_GAUGE_HEIGHT;
+	float y = ENERGY_GAUGE_BOTTOM + energy * ENERGY_GAUGE_HEIGHT;
 
 	const GLfloat vtx1 [] = {
-		0.0, y,
+		0.f, y,
 		GAUGE_IMG_SIZE, y,
 		GAUGE_IMG_SIZE, GAUGE_IMG_SIZE,
-		0.0, GAUGE_IMG_SIZE
+		0.f, GAUGE_IMG_SIZE
 	};
 	const GLfloat vtx2 [] = {
-		0.0, 0.0,
-		GAUGE_IMG_SIZE, 0.0,
+		0.f, 0.f,
+		GAUGE_IMG_SIZE, 0.f,
 		GAUGE_IMG_SIZE, y,
-		0.0, y
+		0.f, y
 	};
 	glEnableClientState(GL_VERTEX_ARRAY);
 
-	glColor4fv(energy_background_color);
+	glColor4ubv(energy_background_color);
 	glVertexPointer(2, GL_FLOAT, 0, vtx1);
 	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 
-	glColor4fv(energy_foreground_color);
+	glColor4ubv(energy_foreground_color);
 	glVertexPointer(2, GL_FLOAT, 0, vtx2);
 	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 
@@ -189,13 +189,13 @@ void draw_gauge(double speed, double energy) {
 		speedbar_frac +=  speed/SPEEDBAR_GREEN_MAX_SPEED * SPEEDBAR_GREEN_FRACTION;
 	}
 
-	glColor4fv(speedbar_background_color);
+	glColor4ubv(speedbar_background_color);
 	Tex.BindTex(GAUGE_SPEED);
 	draw_partial_tri_fan(1.0);
-	glColor4fv(hud_white);
+	glColor4ubv(hud_white);
 	draw_partial_tri_fan(min(1.0, speedbar_frac));
 
-	glColor4fv(hud_white);
+	glColor4ubv(hud_white);
 	Tex.BindTex(GAUGE_OUTLINE);
 	static const GLshort vtx3 [] = {
 		0, 0,
@@ -240,10 +240,10 @@ void DrawWind(float dir, float speed, const CControl *ctrl) {
 		alpha = speed / 50;
 		red = 0;
 	} else {
-		alpha = 1.0;
+		alpha = 1.f;
 		red = (speed - 50) / 50;
 	}
-	blue = 1.0 - red;
+	blue = 1.f - red;
 
 	glPushMatrix();
 	glColor4f(red, 0, blue, alpha);

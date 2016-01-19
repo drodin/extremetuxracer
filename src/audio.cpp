@@ -231,10 +231,10 @@ std::size_t CMusic::GetThemeIdx(const std::string& theme) const {
 }
 
 void CMusic::SetVolume(int volume) {
-	int vol = clamp(0, volume, MIX_MAX_VOLUME);
+	volume = clamp(0, volume, MIX_MAX_VOLUME);
 	if (curr_music)
 		curr_music->setVolume(volume);
-	curr_volume = vol;
+	curr_volume = volume;
 }
 
 bool CMusic::Play(sf::Music* music, bool loop, int volume) {
@@ -277,7 +277,7 @@ bool CMusic::PlayTheme(std::size_t theme, ESituation situation) {
 	if (theme >= themes.size()) return false;
 	if (situation >= SITUATION_COUNT) return false;
 	sf::Music* music = themes[theme].situation[situation];
-	return Play(music, -1, curr_volume);
+	return Play(music, true, curr_volume);
 }
 
 void CMusic::Halt() {

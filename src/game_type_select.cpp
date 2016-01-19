@@ -104,7 +104,7 @@ void CGameTypeSelect::Enter() {
 
 	ResetGUI();
 	int top = AutoYPosN(40);
-	int siz = FT.AutoSizeN(6);
+	unsigned int siz = FT.AutoSizeN(6);
 	int dist = FT.AutoDistanceN(2);
 	textbuttons[0] = AddTextButton(Trans.Text(1), CENTER, top, siz);
 	textbuttons[1] = AddTextButton(Trans.Text(2), CENTER, top + dist, siz);

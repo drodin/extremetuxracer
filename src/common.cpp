@@ -30,7 +30,7 @@ GNU General Public License for more details.
 //				color utils
 // --------------------------------------------------------------------
 
-#define TColor(r, g, b, a) sf::Color(r*255, g*255, b*255, a*255)
+#define TColor(r, g, b, a) sf::Color(static_cast<sf::Uint8>(r*255), static_cast<sf::Uint8>(g*255), static_cast<sf::Uint8>(b*255), static_cast<sf::Uint8>(a*255))
 const sf::Color colDYell =		TColor(1.0, 0.8, 0.0, 1.0);
 const sf::Color colDDYell =		TColor(0.8, 0.6, 0.0, 1.0);
 const sf::Color colLYell =		TColor(1.0, 1.0, 0.4, 1.0);

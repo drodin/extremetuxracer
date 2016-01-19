@@ -84,22 +84,22 @@ class TFramedText : public TWidget {
 	sf::Text text;
 	bool borderFocus;
 public:
-	TFramedText(int x, int y, int width, int height, int line, const sf::Color& backcol, const sf::String& string, float ftsize, bool borderFocus_ = false);
+	TFramedText(int x, int y, int width, int height, int line, const sf::Color& backcol, const sf::String& string, unsigned int ftsize, bool borderFocus_ = false);
 	void Focussed(bool masterFocus);
 	void Activated();
 	void Draw() const;
 	void SetString(const sf::String& string) { text.setString(string); }
 };
-TFramedText* AddFramedText(int x, int y, int width, int height, int line, const sf::Color& backcol, const sf::String& text, float ftsize, bool borderFocus = false);
+TFramedText* AddFramedText(int x, int y, int width, int height, int line, const sf::Color& backcol, const sf::String& text, unsigned int ftsize, bool borderFocus = false);
 
 class TTextButton : public TWidget {
 	sf::Text text;
 public:
-	TTextButton(int x, int y, const sf::String& text_, float ftsize);
+	TTextButton(int x, int y, const sf::String& text_, int ftsize);
 	void Focussed();
 	void Draw() const;
 };
-TTextButton* AddTextButton(const sf::String& text, int x, int y, float ftsize);
+TTextButton* AddTextButton(const sf::String& text, int x, int y, int ftsize);
 TTextButton* AddTextButtonN(const sf::String& text, int x, int y, int rel_ftsize);
 
 class TTextField : public TWidget {
@@ -142,11 +142,11 @@ TCheckbox* AddCheckbox(int x, int y, int width, const sf::String& tag);
 class TIconButton : public TWidget {
 	sf::Sprite sprite;
 	sf::RectangleShape frame;
-	double size;
+	float size;
 	int maximum;
 	int value;
 public:
-	TIconButton(int x, int y, const sf::Texture& texture, double size_, int max_, int value_);
+	TIconButton(int x, int y, const sf::Texture& texture, float size_, int max_, int value_);
 	int GetValue() const { return value; }
 	void SetValue(int _value);
 	void Draw() const;
@@ -154,7 +154,7 @@ public:
 	bool Click(int x, int y);
 	void Key(sf::Keyboard::Key key, bool released);
 };
-TIconButton* AddIconButton(int x, int y, const sf::Texture& texture, double size, int maximum, int value);
+TIconButton* AddIconButton(int x, int y, const sf::Texture& texture, float size, int maximum, int value);
 
 class TArrow : public TWidget {
 	sf::Sprite sprite;
@@ -202,7 +202,7 @@ void ResetGUI();
 // --------------------------------------------------------------------
 
 void DrawFrameX(int x, int y, int w, int h, int line,
-                const sf::Color& backcol, const sf::Color& framecol, double transp);
+                const sf::Color& backcol, const sf::Color& framecol, float transp);
 void DrawBonusExt(int y, std::size_t numraces, std::size_t num);
 void DrawGUIBackground(float scale);
 void DrawGUIFrame();

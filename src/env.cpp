@@ -35,7 +35,7 @@ static const float def_diff[]   = {1.f,   0.9f,  1.f,   1.f};
 static const float def_spec[]   = {0.6f,  0.6f,  0.6f,  1.f};
 static const float def_pos[]    = {1.f,   2.f,   2.f,   0.f};
 static const float def_fogcol[] = {0.9f,  0.9f,  1.f,   0.f};
-static const sf::Color def_partcol(0.8*255, 0.8*255, 0.9*255, 0);
+static const sf::Color def_partcol(204, 204, 230, 0);
 
 void TLight::Enable(GLenum num) const {
 	glLightfv(num, GL_POSITION, position);
@@ -210,7 +210,7 @@ void CEnvironment::DrawSkybox(const TVector3d& pos) {
 	static const float bb = 0.995f;
 #endif
 
-	glColor4f(1.0, 1.0, 1.0, 1.0);
+	glColor4ub(255, 255, 255, 255);
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
 	glPushMatrix();
 	glTranslate(pos);
@@ -322,7 +322,7 @@ void CEnvironment::DrawFog() {
 //	TPlane right_edge_plane = MakePlane (-1.0, 0.0, 0.0, Course.width);
 
 	bottom_plane.nml = TVector3d(0.0, 1, -slope);
-	float height = Course.GetBaseHeight(0);
+	double height = Course.GetBaseHeight(0);
 	bottom_plane.d = -height * bottom_plane.nml.y;
 
 	top_plane.nml = bottom_plane.nml;
@@ -346,29 +346,29 @@ void CEnvironment::DrawFog() {
 	glEnable(GL_FOG);
 
 	// only the alpha channel is used
-	static const GLfloat bottom_dens[4]     = { 0, 0, 0, 1.0 };
-	static const GLfloat top_dens[4]        = { 0, 0, 0, 0.9 };
-	static const GLfloat leftright_dens[4]  = { 0, 0, 0, 0.3 };
-	static const GLfloat top_bottom_dens[4] = { 0, 0, 0, 0.0 };
+	static const GLubyte bottom_dens[4]     = { 0, 0, 0, 255 };
+	static const GLubyte top_dens[4]        = { 0, 0, 0, 230 };
+	static const GLubyte leftright_dens[4]  = { 0, 0, 0, 77 };
+	static const GLubyte top_bottom_dens[4] = { 0, 0, 0, 0 };
 
 	glBegin(GL_QUAD_STRIP);
-	glColor4fv(bottom_dens);
+	glColor4ubv(bottom_dens);
 	glVertex3(bottomleft);
 	glVertex3(bottomright);
 	glVertex3(left);
 	glVertex3(right);
 
-	glColor4fv(top_dens);
+	glColor4ubv(top_dens);
 	glVertex3(topleft);
 	glVertex3(topright);
 
-	glColor4fv(leftright_dens);
+	glColor4ubv(leftright_dens);
 	vpoint = topleft + leftvec;
 	glVertex3(vpoint);
 	vpoint = topright + rightvec;
 	glVertex3(vpoint);
 
-	glColor4fv(top_bottom_dens);
+	glColor4ubv(top_bottom_dens);
 	vpoint = topleft + 3.0 * leftvec;
 	glVertex3(vpoint);
 	vpoint = topright + 3.0 * rightvec;

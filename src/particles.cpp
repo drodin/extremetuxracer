@@ -70,7 +70,7 @@ TGuiParticle::TGuiParticle(float x, float y) {
 	const sf::Texture& texture = Tex.GetSFTexture(SNOW_PART);
 	sprite.setTexture(texture);
 	sprite.setPosition(x*static_cast<float>(Winsys.resolution.width), y*static_cast<float>(Winsys.resolution.height));
-	sprite.setColor(sf::Color(255, 255, 255, 0.3 * 255));
+	sprite.setColor(sf::Color(255, 255, 255, 76));
 	double p_dist = FRandom();
 
 	size = PARTICLE_MIN_SIZE + (1.0 - p_dist) * PARTICLE_SIZE_RANGE;
@@ -942,15 +942,15 @@ void CWind::SetParams(int grade) {
 		max_base_speed = 35;
 		min_speed_var = 20;
 		max_speed_var = 20;
-		params.minChange = 0.1;
-		params.maxChange = 0.3;
+		params.minChange = 0.1f;
+		params.maxChange = 0.3f;
 
 		min_base_angle = 70;
 		max_base_angle = 110;
 		min_angle_var = 0;
 		max_angle_var = 90;
-		params.minAngleChange = 0.1;
-		params.maxAngleChange = 1.0;
+		params.minAngleChange = 0.1f;
+		params.maxAngleChange = 1.0f;
 
 		params.topSpeed = 100;
 		params.topProbability = 0;
@@ -961,15 +961,15 @@ void CWind::SetParams(int grade) {
 		max_base_speed = 60;
 		min_speed_var = 40;
 		max_speed_var = 40;
-		params.minChange = 0.1;
-		params.maxChange = 0.5;
+		params.minChange = 0.1f;
+		params.maxChange = 0.5f;
 
 		min_base_angle = 70;
 		max_base_angle = 110;
 		min_angle_var = 0;
 		max_angle_var = 90;
-		params.minAngleChange = 0.1;
-		params.maxAngleChange = 1.0;
+		params.minAngleChange = 0.1f;
+		params.maxAngleChange = 1.0f;
 
 		params.topSpeed = 100;
 		params.topProbability = 0;
@@ -980,15 +980,15 @@ void CWind::SetParams(int grade) {
 		max_base_speed = 80;
 		min_speed_var = 30;
 		max_speed_var = 60;
-		params.minChange = 0.1;
-		params.maxChange = 1.0;
+		params.minChange = 0.1f;
+		params.maxChange = 1.0f;
 
 		min_base_angle = 0;
 		max_base_angle = 180;
 		min_angle_var = 180;
 		max_angle_var = 360;
-		params.minAngleChange = 0.1;
-		params.maxAngleChange = 1.0;
+		params.minAngleChange = 0.1f;
+		params.maxAngleChange = 1.0f;
 
 		params.topSpeed = 100;
 		params.topProbability = 10;

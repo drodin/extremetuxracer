@@ -108,7 +108,7 @@ TLabel* AddLabel(const sf::String& string, int x, int y, const sf::Color& color)
 }
 
 
-TFramedText::TFramedText(int x, int y, int width, int height, int line, const sf::Color& backcol, const sf::String& string, float ftsize, bool borderFocus_)
+TFramedText::TFramedText(int x, int y, int width, int height, int line, const sf::Color& backcol, const sf::String& string, unsigned int ftsize, bool borderFocus_)
 	: TWidget(x, y, width, height, false)
 	, frame(sf::Vector2f(width - line * 2, height - line * 2))
 	, text(string, FT.getCurrentFont(), ftsize)
@@ -151,19 +151,19 @@ void TFramedText::Draw() const {
 	Winsys.draw(text);
 }
 
-TFramedText* AddFramedText(int x, int y, int width, int height, int line, const sf::Color& backcol, const sf::String& text, float ftsize, bool borderFocus) {
+TFramedText* AddFramedText(int x, int y, int width, int height, int line, const sf::Color& backcol, const sf::String& text, unsigned int ftsize, bool borderFocus) {
 	return static_cast<TFramedText*>(AddWidget(new TFramedText(x, y, width, height, line, backcol, text, ftsize, borderFocus)));
 }
 
-TTextButton::TTextButton(int x, int y, const sf::String& text_, float ftsize)
+TTextButton::TTextButton(int x, int y, const sf::String& text_, int ftsize)
 	: TWidget(x, y, 0, 0)
 	, text(text_, FT.getCurrentFont(), ftsize) {
 	if (ftsize < 0) text.setCharacterSize(FT.AutoSizeN(4));
 
-	float len = text.getLocalBounds().width;
-	if (x == CENTER) position.x = (int)((Winsys.resolution.width - len) / 2);
+	int len = text.getLocalBounds().width;
+	if (x == CENTER) position.x = (Winsys.resolution.width - len) / 2;
 	text.setPosition(position.x, position.y);
-	int offs = (int)(ftsize / 5);
+	int offs = ftsize / 5;
 	mouseRect.left = position.x-20;
 	mouseRect.top = position.y+offs;
 	mouseRect.width = len+40;
@@ -181,12 +181,12 @@ void TTextButton::Draw() const {
 	Winsys.draw(text);
 }
 
-TTextButton* AddTextButton(const sf::String& text, int x, int y, float ftsize) {
+TTextButton* AddTextButton(const sf::String& text, int x, int y, int ftsize) {
 	return static_cast<TTextButton*>(AddWidget(new TTextButton(x, y, text, ftsize)));
 }
 
 TTextButton* AddTextButtonN(const sf::String& text, int x, int y, int rel_ftsize) {
-	double siz = FT.AutoSizeN(rel_ftsize);
+	unsigned int siz = FT.AutoSizeN(rel_ftsize);
 	return AddTextButton(text, x, y, siz);
 }
 
@@ -227,7 +227,7 @@ void TTextField::TextEnter(char key) {
 void TTextField::SetCursorPos(std::size_t new_pos) {
 	cursorPos = new_pos;
 
-	int x = mouseRect.left + 20 - 2;
+	float x = mouseRect.left + 20 - 2;
 	if (cursorPos != 0) {
 		// substring() is very new addition to SFML2 string class, so
 		// for compatibility with older version we use std::string to do it.
@@ -344,14 +344,14 @@ TCheckbox* AddCheckbox(int x, int y, int width, const sf::String& tag) {
 	return static_cast<TCheckbox*>(AddWidget(new TCheckbox(x, y, width, tag)));
 }
 
-TIconButton::TIconButton(int x, int y, const sf::Texture& texture, double size_, int max_, int value_)
+TIconButton::TIconButton(int x, int y, const sf::Texture& texture, float size_, int max_, int value_)
 	: TWidget(x, y, 32, 32)
 	, sprite(texture)
 	, frame(sf::Vector2f(size_, size_))
 	, size(size_)
 	, maximum(max_)
 	, value(value_) {
-	sprite.setScale(size / (texture.getSize().x / 2.0), size / (texture.getSize().y / 2.0));
+	sprite.setScale(size / (texture.getSize().x / 2.f), size / (texture.getSize().y / 2.f));
 	sprite.setPosition(x, y);
 	frame.setPosition(x, y);
 	frame.setOutlineColor(colWhite);
@@ -369,16 +369,16 @@ void TIconButton::SetValue(int _value) {
 	sf::Vector2u texSize = sprite.getTexture()->getSize();
 	switch (value) {
 		case 0:
-			sprite.setTextureRect(sf::IntRect(0, 0, texSize.x / 2.0, texSize.y / 2.0));
+			sprite.setTextureRect(sf::IntRect(0, 0, texSize.x / 2, texSize.y / 2));
 			break;
 		case 1:
-			sprite.setTextureRect(sf::IntRect(texSize.x / 2.0, 0, texSize.x / 2.0, texSize.y / 2.0));
+			sprite.setTextureRect(sf::IntRect(texSize.x / 2, 0, texSize.x / 2, texSize.y / 2));
 			break;
 		case 2:
-			sprite.setTextureRect(sf::IntRect(0, texSize.y / 2.0, texSize.x / 2.0, texSize.y / 2.0));
+			sprite.setTextureRect(sf::IntRect(0, texSize.y / 2, texSize.x / 2, texSize.y / 2));
 			break;
 		case 3:
-			sprite.setTextureRect(sf::IntRect(texSize.x / 2.0, texSize.y / 2.0, texSize.x / 2.0, texSize.y / 2.0));
+			sprite.setTextureRect(sf::IntRect(texSize.x / 2, texSize.y / 2, texSize.x / 2, texSize.y / 2));
 			break;
 	}
 }
@@ -413,7 +413,7 @@ void TIconButton::Key(sf::Keyboard::Key key, bool released) {
 	}
 }
 
-TIconButton* AddIconButton(int x, int y, const sf::Texture& texture, double size, int maximum, int value) {
+TIconButton* AddIconButton(int x, int y, const sf::Texture& texture, float size, int maximum, int value) {
 	locked_UD = true;
 	return static_cast<TIconButton*>(AddWidget(new TIconButton(x, y, texture, size, maximum, value)));
 }
@@ -437,8 +437,8 @@ void TArrow::Activated() {
 }
 
 void TArrow::SetTexture() {
-	static const float textl[6] = { 0.5, 0.0, 0.5, 0.5, 0.0, 0.5 };
-	static const float texbr[6] = { 0.50, 0.50, 0.00, 0.75, 0.75, 0.25 };
+	static const float textl[6] = { 0.5f, 0.f, 0.5f, 0.5f, 0.f, 0.5f };
+	static const float texbr[6] = { 0.5f, 0.5f, 0.f, 0.75f, 0.75f, 0.25f };
 
 	int type = 0;
 	if (active)
@@ -449,7 +449,7 @@ void TArrow::SetTexture() {
 		type += 3;
 
 	sf::Vector2u texSize = sprite.getTexture()->getSize();
-	sprite.setTextureRect(sf::IntRect(textl[type] * texSize.x, texbr[type] * texSize.y, 0.5 * texSize.x, 0.25 * texSize.y));
+	sprite.setTextureRect(sf::IntRect(textl[type] * texSize.x, texbr[type] * texSize.y, texSize.x / 2, texSize.y / 4));
 }
 
 void TArrow::Draw() const {
@@ -549,7 +549,7 @@ TUpDown* AddUpDown(int x, int y, int minimum, int maximum, int value, int distan
 
 // ------------------ Elementary drawing ---------------------------------------------
 
-void DrawFrameX(int x, int y, int w, int h, int line, const sf::Color& backcol, const sf::Color& framecol, double transp) {
+void DrawFrameX(int x, int y, int w, int h, int line, const sf::Color& backcol, const sf::Color& framecol, float transp) {
 	x += line;
 	y += line;
 	w -= line * 2;
@@ -583,7 +583,7 @@ void DrawBonusExt(int y, std::size_t numraces, std::size_t num) {
 
 	static sf::Sprite tuxbonus(Tex.GetSFTexture(TUXBONUS));
 	sf::Vector2u size = tuxbonus.getTexture()->getSize();
-	tuxbonus.setTextureRect(sf::IntRect(0, 0, size.x, 0.5*size.y));
+	tuxbonus.setTextureRect(sf::IntRect(0, 0, size.x, size.y/2));
 
 	for (std::size_t i=0; i<maxtux; i++) {
 		std::size_t majr = (i/numraces);

@@ -210,7 +210,7 @@ void CRaceSelect::Loop(float timestep) {
 	if ((*Course.currentCourseList)[course->GetValue()].preview)
 		(*Course.currentCourseList)[course->GetValue()].preview->DrawFrame(area.left + 3, prevtop, prevwidth, prevheight, 3, colWhite);
 
-	DrawFrameX(area.right-boxwidth, prevtop-3, boxwidth, prevheight+6, 3, colBackgr, colWhite, 1.0);
+	DrawFrameX(area.right-boxwidth, prevtop-3, boxwidth, prevheight+6, 3, colBackgr, colWhite, 1.f);
 	FT.AutoSizeN(2);
 	FT.SetColor(colWhite);
 	int dist = FT.AutoDistanceN(0);

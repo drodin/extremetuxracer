@@ -185,12 +185,12 @@ static int CalcSoundVol(float fact) {
 }
 
 static void SetSoundVolumes() {
-	Sound.SetVolume("pickup1",    CalcSoundVol(1.0));
-	Sound.SetVolume("pickup2",    CalcSoundVol(0.8));
-	Sound.SetVolume("pickup3",    CalcSoundVol(0.8));
-	Sound.SetVolume("snow_sound", CalcSoundVol(1.5));
-	Sound.SetVolume("ice_sound",  CalcSoundVol(0.6));
-	Sound.SetVolume("rock_sound", CalcSoundVol(1.1));
+	Sound.SetVolume("pickup1",    CalcSoundVol(1.0f));
+	Sound.SetVolume("pickup2",    CalcSoundVol(0.8f));
+	Sound.SetVolume("pickup3",    CalcSoundVol(0.8f));
+	Sound.SetVolume("snow_sound", CalcSoundVol(1.5f));
+	Sound.SetVolume("ice_sound",  CalcSoundVol(0.6f));
+	Sound.SetVolume("rock_sound", CalcSoundVol(1.1f));
 }
 
 // ---------------------------- init ----------------------------------
@@ -255,7 +255,7 @@ static void PlayTerrainSound(CControl *ctrl, bool airborne) {
 		} else newsound = -1;
 	} else newsound = -1;
 	if ((newsound != lastsound) && (lastsound >= 0)) Sound.Halt(lastsound);
-	if (newsound >= 0) Sound.Play(newsound, -1);
+	if (newsound >= 0) Sound.Play(newsound, true);
 
 	lastsound = newsound;
 }

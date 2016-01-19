@@ -155,7 +155,7 @@ void TTexture::DrawFrame(int x, int y, int w, int h, int frame, const sf::Color&
 	if (h < 1) h = texture.getSize().y;
 
 	if (frame > 0)
-		DrawFrameX(x - frame, y - frame, w + 2 * frame, h + 2 * frame, frame, colTransp, col, 1.0);
+		DrawFrameX(x - frame, y - frame, w + 2 * frame, h + 2 * frame, frame, colTransp, col, 1.f);
 
 	sf::Sprite temp(texture);
 	temp.setPosition(x, y);

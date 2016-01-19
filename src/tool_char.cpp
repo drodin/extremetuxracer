@@ -173,12 +173,12 @@ void CharKeys(sf::Keyboard::Key key, bool release, int x, int y) {
 			break;
 		case sf::Keyboard::Add:
 		case sf::Keyboard::Equal: // zoom in
-			zposition += 0.1;
-			xposition -= 0.03;
+			zposition += 0.1f;
+			xposition -= 0.03f;
 			break;
 		case sf::Keyboard::Dash: // zoom out
-			zposition -= 0.1;
-			xposition += 0.03;
+			zposition -= 0.1f;
+			xposition += 0.03f;
 			break;
 
 		// set rotations for view
@@ -262,11 +262,11 @@ void CharMouse(int button, int state, int x, int y) {
 		startposy = yposition;
 		moveactive = true;
 	} else if (button == 4) {
-		zposition -= 0.1;
-		xposition += 0.03;
+		zposition -= 0.1f;
+		xposition += 0.03f;
 	} else if (button == 5) {
-		zposition += 0.1;
-		xposition -= 0.03;
+		zposition += 0.1f;
+		xposition -= 0.03f;
 	}
 }
 
