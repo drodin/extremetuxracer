@@ -1,6 +1,8 @@
+# French translation maintained by SSTSylvain
+# In case of any problems or suggestions, please feel free to contact me at sstsylvain@videotron.ca
 # Please, don't change the idx
 
-*[idx] 0 [engl] PRESS ANY KEY TO START [trans] APPUYEZ SUR UNE TOUCHE POUR DÉMARRER
+*[idx] 0 [engl] Press any key to start [trans] Appuyer sur une touche pour démarrer
 *[idx] 1 [engl] Enter an event [trans] Compétition
 *[idx] 2 [engl] Practice [trans] Entraînement
 *[idx] 3 [engl] Configuration [trans] Configuration
@@ -10,45 +12,110 @@
 *[idx] 7 [engl] Select a cup [trans] Choisissez une coupe
 *[idx] 8 [engl] Back [trans] Retour
 *[idx] 9 [engl] Continue [trans] Continuer
-*[idx] 10 [engl] You cannot enter this cup yet
-	[trans] Vous ne pouvez pas encore participer à cette coupe
+*[idx] 10 [engl] You cannot enter this cup yet [trans] Vous ne pouvez pas encore participer à cette coupe
 
-*[idx] 11 [engl] Herring: [trans] Harengs:
-*[idx] 12 [engl] Time: [trans] Temps:
+*[idx] 11 [engl] Herring: [trans] Harengs :
+*[idx] 12 [engl] Time: [trans] Temps :
 *[idx] 13 [engl] Race! [trans] C'est parti !
-*[idx] 14 [engl] seconds [trans]
+*[idx] 14 [engl] seconds [trans] secondes
 *[idx] 15 [engl] Ok [trans] Valider
-*[idx] 16 [engl] Congratulations! You won the cup!
-	[trans] Vous avez remporté cette coupe !
-*[idx] 17 [engl] You have reached level [trans]
-*[idx] 18 [engl] Sorry, you didn't advance [trans] Vous n'avez pas avancé.
-*[idx] 19 [engl] You don't have any lives left [trans] Il ne vous reste plus aucune vie.
+*[idx] 16 [engl] Congratulations! You won the cup! [trans] Félicitation ! Vous avez remporté cette coupe !
+*[idx] 17 [engl] You have reached level [trans] Vous avez attein le niveau
+*[idx] 18 [engl] Sorry, you didn't advance [trans] Désolé, vous n'avez pas avancé
+*[idx] 19 [engl] You don't have any lives left [trans] Il ne vous reste plus aucune vie
 *[idx] 20 [engl] Select a race [trans] Choisissez une course
 
-*[idx] 21 [engl] Failed, -1 Tuxlive [trans]
-*[idx] 22 [engl] Success, +/- 0 Tuxlive [trans]
-*[idx] 23 [engl] Success, +1 Tuxlive [trans]
-*[idx] 24 [engl] Success, +2 Tuxlive [trans]
+*[idx] 21 [engl] Failed, -1 Tuxlive [trans] Raté, -1 Tuxvie
+*[idx] 22 [engl] Success, +/- 0 Tuxlive [trans] Réussi, +/- 0 Tuxvie
+*[idx] 23 [engl] Success, +1 Tuxlive [trans] Réussi, +1 Tuxvie
+*[idx] 24 [engl] Success, +2 Tuxlive [trans] Réussi, +2 Tuxvie
 *[idx] 25 [engl] Race aborted [trans] Course annulée
-*[idx] 26 [engl] Score: [trans] Score:
-*[idx] 27 [engl] points [trans] Points:
+*[idx] 26 [engl] Score: [trans] Score :
+*[idx] 27 [engl] points [trans] points
 
 *[idx] 28 [engl] Cancel [trans] Annuler
 *[idx] 29 [engl] Loading [trans] Chargement
-*[idx] 30 [engl] Please wait... [trans] veuillez patienter ...
+*[idx] 30 [engl] Please wait... [trans] Veuillez patienter ...
 
-*[idx] 31 [engl] Fullscreen: [trans] Plein écran
-*[idx] 32 [engl] Resolution: [trans] Résolution:
-*[idx] 33 [engl] Music volume: [trans]
-*[idx] 34 [engl] Sound volume: [trans]
-*[idx] 35 [engl] Language: [trans] Langue:
-*[idx] 36 [engl] Level of detail: [trans]
-*[idx] 37 [engl] Contributed by: [trans] Auteur:
-*[idx] 38 [engl] Event: [trans] Compétition:
-*[idx] 39 [engl] Cup: [trans] Coupe:
-*[idx] 40 [engl] Race Over [trans] Course terminée
+*[idx] 31 [engl] Fullscreen: [trans] Plein écran :
+*[idx] 32 [engl] Resolution: [trans] Résolution :
+*[idx] 33 [engl] Music volume: [trans] Volume musique :
+*[idx] 34 [engl] Sound volume: [trans] Volume son :
+*[idx] 35 [engl] Language: [trans] Langue :
+*[idx] 36 [engl] Level of detail: [trans] Niveau du détail :
+*[idx] 37 [engl] Contributed by: [trans] Auteur :
+*[idx] 38 [engl] Event: [trans] Compétition :
+*[idx] 39 [engl] Cup: [trans] Coupe
+*[idx] 40 [engl] Race Over [trans] Course Terminée
 
-*[idx] 41 [engl] For more configuration options, please edit the
-	[trans]
-*[idx] 42 [engl] file 'options.lst' and read the documentation.
-	[trans]
+*[idx] 41 [engl] For more configuration options, please edit the [trans] Pour plus d'options de configuration, s.v.p. modifier le
+*[idx] 42 [engl] file 'options.lst' and read the documentation. [trans] fichier 'options.lst' et lire la documentation.
+*[idx] 43 [engl] Help [trans] Aide
+*[idx] 44 [engl] 1, 2, 3 - change view mode [trans] 1, 2, 3 - changement mode visionnement
+*[idx] 45 [engl] F - hide/show fps display [trans] F - cache/affiche affichage ips
+*[idx] 46 [engl] H - hide/show hud display [trans] H - cache/affiche affichage hud
+*[idx] 47 [engl] S - screenshot [trans] S  - imprime écran
+*[idx] 48 [engl] U - toggle ui snow [trans] U - bascule neige iu
+*[idx] 49 [engl] P - set pause mode [trans] P - active mode pause
+*[idx] 50 [engl] T - trick [trans] T - astuce
+*[idx] 51 [engl] ESC - abort Race [trans] ECHAP - annule Course
+*[idx] 52 [engl] SPACE - jump [trans] ESPACE - sauter
+*[idx] 53 [engl] CRSR Left - turn left [trans] CURSEUR Gauche - tourne gauche
+*[idx] 54 [engl] CRSR Right - turn right [trans] CURSEUR Droite - tourne droite
+*[idx] 55 [engl] CRSR Up - accelerate [trans] CURSEUR Haut - accélère
+*[idx] 56 [engl] CRSR down - brake [trans] CURSEUR Bas - freiner
+*[idx] 57 [engl] Keyboard Functions [trans] Fonctions Clavier
+
+*[idx] 58 [engl] Select your player name: [trans] Sélectionner un nom d'utilisateur :
+*[idx] 59 [engl] Select a character: [trans] Sélectionner un personnage :
+*[idx] 60 [engl] Enter [trans] Entrée
+*[idx] 61 [engl] Register a new player [trans] Enregistrer un nouveau joueur
+
+*[idx] 62 [engl] Highscore list [trans] Liste des meilleur pointages
+*[idx] 63 [engl] No entries for this race [trans] Pas d'entrée pour cette course
+*[idx] 64 [engl] Back [trans] Retour
+
+*[idx] 65 [engl] Press any key to return to the main menu [trans] Appuyer sur une touche pour retourner au menu principale
+
+*[idx] 66 [engl] Enter a name for the new player and select an avatar: [trans] Entrer un nom d'utilisateur et sélectionner un avatar :
+
+*[idx] 67 [engl] Loading resources, [trans] Chargement des resources,
+*[idx] 68 [engl] please wait ... [trans] s.v.p. attendez ...
+
+*[idx] 69 [engl] Mirror track: Off [trans] Piste mirroir : Désactiver
+*[idx] 70 [engl] Mirror track: On [trans] Piste mirroir : Activer
+
+*[idx] 71 [engl] Light: Sunny [trans] Lumière : Ensoleillé
+*[idx] 72 [engl] Light: Cloudy [trans] Lumière : Nuageux
+*[idx] 73 [engl] Light: Evening [trans] Lumière : Matinée
+*[idx] 74 [engl] Light: Night [trans] Lumière : Nuit
+
+*[idx] 75 [engl] Snow: No [trans] Neige : Aucune
+*[idx] 76 [engl] Snow: A little [trans] Neige : Un peu
+*[idx] 77 [engl] Snow: Some [trans] Neige : Quelques
+*[idx] 78 [engl] Snow: A lot [trans] Neige : Beaucoup
+
+*[idx] 79 [engl] Wind: No [trans] Vent : Aucun
+*[idx] 80 [engl] Wind: Breeze [trans] Vent : Brise
+*[idx] 81 [engl] Wind: Strong [trans] Vent : Fort
+*[idx] 82 [engl] Wind: Blustery [trans] Vent : Tempête
+
+*[idx] 83 [engl] Randomize settings [trans] Paramètres au hasard
+
+*[idx] 84 [engl] Score [trans] Pointages
+*[idx] 85 [engl] Herring [trans] Harengs
+*[idx] 86 [engl] Time [trans] Temps
+*[idx] 87 [engl] Path length [trans] Grandeur chemin
+*[idx] 88 [engl] Average speed [trans] Vitesse moyenne
+*[idx] 89 [engl] Position [trans] Position
+*[idx] 90 [engl] in highscore list [trans] dans la liste des meilleur pointages
+
+*[idx] 91 [engl] Author [trans] Auteurs
+
+*[idx] 92 [engl] Loading courses failed. [trans] Chargement courses échoué.
+*[idx] 93 [engl] Loading characters failed. [trans] Chargement personnages échoué.
+*[idx] 94 [engl] Loading environments failed. [trans] Chargement environments échoué.
+*[idx] 95 [engl] Loading terrains failed. [trans] Chargement terrains échoué.
+*[idx] 96 [engl] Loading avatars failed. [trans] Chargement avatars échoué.
+*[idx] 97 [engl] herrings [trans] harengs
+*[idx] 98 [engl] sec [trans] sec
