@@ -229,11 +229,10 @@ void TTextField::SetCursorPos(std::size_t new_pos) {
 
 	float x = mouseRect.left + 20 - 2;
 	if (cursorPos != 0) {
-		// substring() is very new addition to SFML2 string class, so
-		// for compatibility with older version we use std::string to do it.
-		std::string temp = text.getString();
+		sf::String temp = text.getString();
+
 		FT.AutoSizeN(5);
-		x += FT.GetTextWidth(temp.substr(0, cursorPos));
+		x += FT.GetTextWidth(temp.substring(0, cursorPos));
 	}
 
 	cursorShape.setPosition(x, mouseRect.top + 9);
