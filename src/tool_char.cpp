@@ -132,9 +132,9 @@ void CharKeys(sf::Keyboard::Key key, bool release, int x, int y) {
 		return;
 	}
 
-	if (key == 304) shift = !release;
-	if (key == 306) control = !release;
-	if (key == 308) alt = !release;
+	if (key == sf::Keyboard::LShift || key == sf::Keyboard::RShift) shift = !release;
+	if (key == sf::Keyboard::LControl || key == sf::Keyboard::RControl) control = !release;
+	if (key == sf::Keyboard::LAlt || key == sf::Keyboard::RAlt) alt = !release;
 
 	if (release) return;
 
