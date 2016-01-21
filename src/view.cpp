@@ -319,7 +319,7 @@ static char p_vertex_code[6];
 
 
 void SetupViewFrustum(const CControl *ctrl) {
-	double aspect = (double) Winsys.resolution.width /Winsys.resolution.height;
+	double aspect = (double)Winsys.resolution.width/Winsys.resolution.height;
 
 	double near_dist = NEAR_CLIP_DIST;
 	double far_dist = param.forward_clip_distance;

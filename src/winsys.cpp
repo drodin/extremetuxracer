@@ -133,7 +133,7 @@ void CWinsys::Quit() {
 
 void CWinsys::Terminate() {
 	Quit();
-	exit(0);
+	std::exit(0);
 }
 
 void CWinsys::PrintJoystickInfo() const {

@@ -197,7 +197,7 @@ bool CPlayers::LoadPlayers() {
 
 void CPlayers::SavePlayers() const {
 	std::string playerfile = param.config_dir + SEP "players";
-	CSPList list(plyr.size());
+	CSPList list;
 	for (std::size_t i=0; i<plyr.size(); i++) {
 		std::string item = "*[name]" + plyr[i].name;
 		item +="[avatar]" + plyr[i].avatar->filename;
