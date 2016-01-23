@@ -20,7 +20,7 @@
 *[idx] 14 [engl] seconds [trans] secondes
 *[idx] 15 [engl] Ok [trans] Valider
 *[idx] 16 [engl] Congratulations! You won the cup! [trans] Félicitation ! Vous avez remporté cette coupe !
-*[idx] 17 [engl] You have reached level [trans] Vous avez attein le niveau
+*[idx] 17 [engl] You have reached level [trans] Vous avez atteint le niveau
 *[idx] 18 [engl] Sorry, you didn't advance [trans] Désolé, vous n'avez pas avancé
 *[idx] 19 [engl] You don't have any lives left [trans] Il ne vous reste plus aucune vie
 *[idx] 20 [engl] Select a race [trans] Choisissez une course
@@ -54,7 +54,7 @@
 *[idx] 44 [engl] 1, 2, 3 - change view mode [trans] 1, 2, 3 - changement mode visionnement
 *[idx] 45 [engl] F - hide/show fps display [trans] F - cache/affiche affichage ips
 *[idx] 46 [engl] H - hide/show hud display [trans] H - cache/affiche affichage hud
-*[idx] 47 [engl] S - screenshot [trans] S  - imprime écran
+*[idx] 47 [engl] S - screenshot [trans] S - imprime écran
 *[idx] 48 [engl] U - toggle ui snow [trans] U - bascule neige iu
 *[idx] 49 [engl] P - set pause mode [trans] P - active mode pause
 *[idx] 50 [engl] T - trick [trans] T - astuce
@@ -79,11 +79,11 @@
 
 *[idx] 66 [engl] Enter a name for the new player and select an avatar: [trans] Entrer un nom d'utilisateur et sélectionner un avatar :
 
-*[idx] 67 [engl] Loading resources, [trans] Chargement des resources,
+*[idx] 67 [engl] Loading resources, [trans] Chargement des ressources,
 *[idx] 68 [engl] please wait ... [trans] s.v.p. attendez ...
 
-*[idx] 69 [engl] Mirror track: Off [trans] Piste mirroir : Désactiver
-*[idx] 70 [engl] Mirror track: On [trans] Piste mirroir : Activer
+*[idx] 69 [engl] Mirror track: Off [trans] Piste miroir : Désactiver
+*[idx] 70 [engl] Mirror track: On [trans] Piste miroir : Activer
 
 *[idx] 71 [engl] Light: Sunny [trans] Lumière : Ensoleillé
 *[idx] 72 [engl] Light: Cloudy [trans] Lumière : Nuageux
@@ -114,7 +114,7 @@
 
 *[idx] 92 [engl] Loading courses failed. [trans] Chargement courses échoué.
 *[idx] 93 [engl] Loading characters failed. [trans] Chargement personnages échoué.
-*[idx] 94 [engl] Loading environments failed. [trans] Chargement environments échoué.
+*[idx] 94 [engl] Loading environments failed. [trans] Chargement environnement échoué.
 *[idx] 95 [engl] Loading terrains failed. [trans] Chargement terrains échoué.
 *[idx] 96 [engl] Loading avatars failed. [trans] Chargement avatars échoué.
 *[idx] 97 [engl] herrings [trans] harengs

@@ -245,7 +245,7 @@ void CTexture::DrawFrame(std::size_t idx, int x, int y, double w, double h, int 
 
 void CTexture::DrawNumChr(char c, int x, int y, int w, int h) {
 	int idx;
-	if (std::isdigit(c))
+	if (std::isdigit((unsigned char)c))
 		idx = c - '0';
 	else if (c == ':')
 		idx = 10;
