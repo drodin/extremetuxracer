@@ -4,6 +4,7 @@ pkgdatadir = $(datadir)/$(PACKAGE)/courses/extras/twists
 pkgdata_DATA = \
 	course.dim \
 	elev.png \
+	preview.png \
 	terrain.png \
 	trees.png
 
