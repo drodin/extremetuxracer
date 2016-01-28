@@ -20,13 +20,6 @@ GNU General Public License for more details.
 
 #include "vectors.h"
 
-struct TColor3 {
-	uint8_t r, g, b;
-	TColor3(uint8_t r_ = 0, uint8_t g_ = 0, uint8_t b_ = 0)
-		: r(r_), g(g_), b(b_)
-	{}
-};
-
 enum TToolMode {
 	NONE,
 	TUXSHAPE,

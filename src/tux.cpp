@@ -85,7 +85,7 @@ std::size_t CCharShape::GetNodeIdx(std::size_t node_name) const {
 	return Index[node_name];
 }
 
-TCharNode *CCharShape::GetNode(std::size_t node_name) {
+TCharNode *CCharShape::GetNode(std::size_t node_name) const {
 	std::size_t idx = GetNodeIdx(node_name);
 	if (idx >= numNodes) return nullptr;
 	return Nodes[idx];
@@ -363,7 +363,7 @@ void CCharShape::CreateMaterial(const std::string& line) {
 //				drawing
 // --------------------------------------------------------------------
 
-void CCharShape::DrawCharSphere(int num_divisions) {
+void CCharShape::DrawCharSphere(int num_divisions) const {
 	GLUquadricObj *qobj = gluNewQuadric();
 	gluQuadricDrawStyle(qobj, GLU_FILL);
 	gluQuadricOrientation(qobj, GLU_OUTSIDE);
@@ -638,7 +638,7 @@ bool CCharShape::Collision(const TVector3d& pos, const TPolyhedron& ph) {
 //				shadow
 // --------------------------------------------------------------------
 
-void CCharShape::DrawShadowVertex(double x, double y, double z, const TMatrix<4, 4>& mat) {
+void CCharShape::DrawShadowVertex(double x, double y, double z, const TMatrix<4, 4>& mat) const {
 	TVector3d pt(x, y, z);
 	pt = TransformPoint(mat, pt);
 	double old_y = pt.y;
@@ -649,7 +649,7 @@ void CCharShape::DrawShadowVertex(double x, double y, double z, const TMatrix<4,
 	glVertex3(pt);
 }
 
-void CCharShape::DrawShadowSphere(const TMatrix<4, 4>& mat) {
+void CCharShape::DrawShadowSphere(const TMatrix<4, 4>& mat) const {
 	double theta, phi, d_theta, d_phi, eps, twopi;
 	double x, y, z;
 	int div = param.tux_shadow_sphere_divisions;
@@ -730,7 +730,7 @@ void CCharShape::DrawShadowSphere(const TMatrix<4, 4>& mat) {
 	}
 }
 
-void CCharShape::TraverseDagForShadow(const TCharNode *node, const TMatrix<4, 4>& mat) {
+void CCharShape::TraverseDagForShadow(const TCharNode *node, const TMatrix<4, 4>& mat) const {
 	TMatrix<4, 4> new_matrix = mat * node->trans;
 	if (node->visible && node->render_shadow)
 		DrawShadowSphere(new_matrix);
@@ -742,13 +742,13 @@ void CCharShape::TraverseDagForShadow(const TCharNode *node, const TMatrix<4, 4>
 	}
 }
 
-void CCharShape::DrawShadow() {
+void CCharShape::DrawShadow() const {
 	if (g_game.light_id == 1 || g_game.light_id == 3) return;
 
 	ScopedRenderMode rm(TUX_SHADOW);
 	glColor(shad_col);
 
-	TCharNode *node = GetNode(0);
+	const TCharNode *node = GetNode(0);
 	if (node == nullptr) {
 		Message("couldn't find tux's root node");
 		return;

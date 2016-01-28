@@ -81,7 +81,7 @@ private:
 
 	// nodes
 	std::size_t GetNodeIdx(std::size_t node_name) const;
-	TCharNode *GetNode(std::size_t node_name);
+	TCharNode *GetNode(std::size_t node_name) const;
 	void CreateRootNode();
 	bool CreateCharNode(int parent_name, std::size_t node_name, const std::string& joint,
 	                    const std::string& name, const std::string& order, bool shadow);
@@ -94,7 +94,7 @@ private:
 	void CreateMaterial(const std::string& line);
 
 	// drawing
-	void DrawCharSphere(int num_divisions);
+	void DrawCharSphere(int num_divisions) const;
 	void DrawNodes(const TCharNode *node);
 	TVector3d AdjustRollvector(const CControl *ctrl, const TVector3d& vel, const TVector3d& zvec);
 
@@ -104,9 +104,9 @@ private:
 	bool CheckCollision(const TPolyhedron& ph);
 
 	// shadow
-	void DrawShadowVertex(double x, double y, double z, const TMatrix<4, 4>& mat);
-	void DrawShadowSphere(const TMatrix<4, 4>& mat);
-	void TraverseDagForShadow(const TCharNode *node, const TMatrix<4, 4>& mat);
+	void DrawShadowVertex(double x, double y, double z, const TMatrix<4, 4>& mat) const;
+	void DrawShadowSphere(const TMatrix<4, 4>& mat) const;
+	void TraverseDagForShadow(const TCharNode *node, const TMatrix<4, 4>& mat) const;
 
 	// testing and developing
 	void AddAction(std::size_t node_name, int type, const TVector3d& vec, double val);
@@ -132,7 +132,7 @@ public:
 	// global functions
 	void Reset();
 	void Draw();
-	void DrawShadow();
+	void DrawShadow() const;
 	bool Load(const std::string& dir, const std::string& filename, bool with_actions);
 
 	void AdjustOrientation(CControl *ctrl, double dtime,

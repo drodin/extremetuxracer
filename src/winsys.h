@@ -27,7 +27,7 @@ extern TVector2i cursor_pos;
 
 struct TScreenRes {
 	unsigned int width, height;
-	TScreenRes(unsigned int w = 0, unsigned int h = 0) : width(w), height(h) {}
+	constexpr TScreenRes(unsigned int w = 0, unsigned int h = 0) : width(w), height(h) {}
 };
 
 class CWinsys {

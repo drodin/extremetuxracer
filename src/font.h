@@ -62,7 +62,7 @@ public:
 
 	// auto
 	unsigned int AutoSizeN(int rel_val);	// rel_val = relative size, return: autosize
-	int AutoDistanceN(int rel_val);			// rel_val = relative dist
+	int AutoDistanceN(int rel_val) const;	// rel_val = relative dist
 
 	// draw
 	void DrawString(float x, float y, const sf::String &s) const; // sf::String class
@@ -74,7 +74,7 @@ public:
 	float GetTextWidth(const sf::String& text) const;
 	float GetTextWidth(const sf::String& text, const std::string &fontname, unsigned int size) const;
 
-	std::vector<std::string> MakeLineList(const char *source, float width);
+	static std::vector<std::string> MakeLineList(const char *source, float width);
 };
 
 extern CFont FT;

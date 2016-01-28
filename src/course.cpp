@@ -602,7 +602,7 @@ bool CCourse::LoadTerrainTypes() {
 		TerrList[i].starttex = SPIntN(*line, "starttex", -1);
 		TerrList[i].tracktex = SPIntN(*line, "tracktex", -1);
 		TerrList[i].stoptex = SPIntN(*line, "stoptex", -1);
-		TerrList[i].col = SPColor3N(*line, "col", TColor3(255, 255, 255));
+		TerrList[i].col = SPColor3N(*line, "col", sf::Color::White);
 		TerrList[i].friction = SPFloatN(*line, "friction", 0.5f);
 		TerrList[i].depth = SPFloatN(*line, "depth", 0.01f);
 		TerrList[i].particles = SPBoolN(*line, "part", false);

@@ -168,12 +168,12 @@ sf::Color Str_ColorN(const std::string &s, const sf::Color &def) {
 	else return sf::Color(r * 255, g * 255, b * 255, a * 255);
 }
 
-TColor3 Str_Color3N(const std::string &s, const TColor3 &def) {
+sf::Color Str_Color3N(const std::string &s, const sf::Color &def) {
 	int r, g, b;
 	std::istringstream is(s);
 	is >> r >> g >> b;
 	if (is.fail()) return def;
-	else return TColor3(r, g, b);
+	else return sf::Color(r, g, b);
 }
 
 void Str_ArrN(const std::string &s, float *arr, std::size_t count, float def) {
@@ -256,7 +256,7 @@ sf::Color SPColorN(const std::string &s, const std::string &tag, const sf::Color
 	return (Str_ColorN(SPItemN(s, tag), def));
 }
 
-TColor3 SPColor3N(const std::string &s, const std::string &tag, const TColor3& def) {
+sf::Color SPColor3N(const std::string &s, const std::string &tag, const sf::Color& def) {
 	return (Str_Color3N(SPItemN(s, tag), def));
 }
 

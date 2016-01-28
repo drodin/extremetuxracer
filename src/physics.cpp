@@ -100,7 +100,7 @@ void CControl::Init() {
 //					collision
 // --------------------------------------------------------------------
 
-bool CControl::CheckTreeCollisions(const TVector3d& pos, TVector3d *tree_loc) {
+bool CControl::CheckTreeCollisions(const TVector3d& pos, TVector3d *tree_loc) const {
 	// These variables are used to cache collision detection results
 	static bool last_collision = false;
 	static TVector3d last_collision_tree_loc(-999, -999, -999);
@@ -150,7 +150,7 @@ bool CControl::CheckTreeCollisions(const TVector3d& pos, TVector3d *tree_loc) {
 	return hit;
 }
 
-void CControl::AdjustTreeCollision(const TVector3d& pos, TVector3d *vel) {
+void CControl::AdjustTreeCollision(const TVector3d& pos, TVector3d *vel) const {
 	TVector3d treeLoc;
 
 	if (CheckTreeCollisions(pos, &treeLoc)) {

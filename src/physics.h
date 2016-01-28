@@ -81,9 +81,9 @@ private:
 	double ode_time_step;
 	double finish_speed;
 
-	bool     CheckTreeCollisions(const TVector3d& pos, TVector3d *tree_loc);
-	void     AdjustTreeCollision(const TVector3d& pos, TVector3d *vel);
-	void     CheckItemCollection(const TVector3d& pos);
+	bool CheckTreeCollisions(const TVector3d& pos, TVector3d *tree_loc) const;
+	void AdjustTreeCollision(const TVector3d& pos, TVector3d *vel) const;
+	static void CheckItemCollection(const TVector3d& pos);
 
 	TVector3d CalcRollNormal(double speed);
 	TVector3d CalcAirForce();

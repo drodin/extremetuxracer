@@ -60,7 +60,7 @@ public:
 	void Update(float timestep);
 	void UpdateTest(float timestep, CCharShape *shape);
 	bool Load(const std::string& dir, const std::string& filename);
-	void CalcKeyframe(std::size_t idx, CCharShape *shape, const TVector3d& refpos);
+	void CalcKeyframe(std::size_t idx, CCharShape *shape, const TVector3d& refpos) const;
 
 	// test and editing
 	TKeyframe *GetFrame(std::size_t idx);

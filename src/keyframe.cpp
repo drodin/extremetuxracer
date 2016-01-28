@@ -199,7 +199,7 @@ void CKeyframe::InterpolateKeyframe(std::size_t idx, double frac, CCharShape *sh
 	shape->RotateNode("right_ankle", 3, vv);
 }
 
-void CKeyframe::CalcKeyframe(std::size_t idx, CCharShape *shape, const TVector3d& refpos_) {
+void CKeyframe::CalcKeyframe(std::size_t idx, CCharShape *shape, const TVector3d& refpos_) const {
 	double vv;
 	TVector3d pos;
 

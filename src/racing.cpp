@@ -201,7 +201,6 @@ void CRacing::Enter() {
 		param.view_mode = ABOVE;
 	}
 	set_view_mode(ctrl, param.view_mode);
-	left_turn = right_turn = trick_modifier = false;
 
 	ctrl->turn_fact = 0.0;
 	ctrl->turn_animation = 0.0;

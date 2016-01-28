@@ -76,10 +76,10 @@ public:
 	CEnvironment();
 	bool LoadEnvironmentList();
 	void LoadEnvironment(std::size_t loc, std::size_t light);
-	void DrawSkybox(const TVector3d& pos);
+	void DrawSkybox(const TVector3d& pos) const;
 	void SetupLight();
 	void SetupFog();
-	void DrawFog();
+	void DrawFog() const;
 	const sf::Color& ParticleColor() const { return fog.part_color; }
 	std::size_t GetEnvIdx(const std::string& tag) const;
 	std::size_t GetLightIdx(const std::string& tag) const;

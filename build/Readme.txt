@@ -1,5 +1,5 @@
 Prerequisites:
-- Microsoft Visual Studio 2010 or later (Express/Community Edition is sufficient)
+- Microsoft Visual Studio 2013 or later (Express/Community Edition is sufficient)
 - SFML (include and lib path have to be set in Visual Studio)
 - gltext.h (can be downloaded here: http://www.opengl.org/registry/api/glext.h)
 

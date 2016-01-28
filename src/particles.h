@@ -35,7 +35,6 @@ void draw_ui_snow();
 //					snow particles during race
 // --------------------------------------------------------------------
 
-void create_new_particles(const TVector3d& loc, const TVector3d& vel, int num);
 void update_particles(float time_step);
 void clear_particles();
 void draw_particles(const CControl *ctrl);

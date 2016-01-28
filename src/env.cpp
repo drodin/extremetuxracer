@@ -199,7 +199,7 @@ void CEnvironment::LoadLight(const std::string& EnvDir) {
 	}
 }
 
-void CEnvironment::DrawSkybox(const TVector3d& pos) {
+void CEnvironment::DrawSkybox(const TVector3d& pos) const {
 	ScopedRenderMode rm(SKY);
 
 #if defined (OS_LINUX)
@@ -300,7 +300,7 @@ void CEnvironment::DrawSkybox(const TVector3d& pos) {
 	glPopMatrix();
 }
 
-void CEnvironment::DrawFog() {
+void CEnvironment::DrawFog() const {
 	if (!fog.is_on)
 		return;
 

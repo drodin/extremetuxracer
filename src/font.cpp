@@ -186,7 +186,7 @@ unsigned int CFont::AutoSizeN(int rel_val) {
 	return size;
 }
 
-int CFont::AutoDistanceN(int rel_val) {
+int CFont::AutoDistanceN(int rel_val) const {
 	float fact = (rel_val + 5) * 0.2f;
 	float dist = curr_size * fact;
 	return (int) dist;
