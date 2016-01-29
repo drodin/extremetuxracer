@@ -108,14 +108,11 @@ void TGuiParticle::Update(float time_step, float push_timestep, const TVector2d&
 	float dist_from_push = (std::pow((x - push_position.x), 2) +
 	                        std::pow((y - push_position.y), 2));
 	if (push_timestep > 0) {
-		f.x = PUSH_FACTOR * push_vector.x / push_timestep;
-		f.y = PUSH_FACTOR * push_vector.y / push_timestep;
+		f = PUSH_FACTOR / push_timestep * push_vector;
 		f.x = clamp(-MAX_PUSH_FORCE, f.x, MAX_PUSH_FORCE);
 		f.y = clamp(-MAX_PUSH_FORCE, f.y, MAX_PUSH_FORCE);
-		f.x *= 1.0/(PUSH_DIST_DECAY*dist_from_push + 1) *
-		       size/ PARTICLE_SIZE_RANGE;
-		f.y *= 1.0/(PUSH_DIST_DECAY*dist_from_push + 1) *
-		       size / PARTICLE_SIZE_RANGE;
+		f *= 1.0/(PUSH_DIST_DECAY*dist_from_push + 1) *
+		     size/PARTICLE_SIZE_RANGE;
 	}
 
 	vel.x += (f.x - vel.x * AIR_DRAG) *  time_step;
@@ -124,7 +121,7 @@ void TGuiParticle::Update(float time_step, float push_timestep, const TVector2d&
 	x += vel.x * time_step * (size / PARTICLE_SIZE_RANGE);
 	y += vel.y * time_step * (size / PARTICLE_SIZE_RANGE);
 
-	x = clamp(-0.05f, x, 1.f);
+	x = clamp(-0.05f, x, 1.05f);
 	sprite.setPosition(x*Winsys.resolution.width, y*Winsys.resolution.height);
 }
 
@@ -144,8 +141,7 @@ void update_ui_snow(float time_step) {
 	float push_timestep = 0;
 
 	if (push_position_initialized) {
-		push_vector.x = push_position.x - last_push_position.x;
-		push_vector.y = push_position.y - last_push_position.y;
+		push_vector = push_position - last_push_position;
 		push_timestep = time;
 	}
 	last_push_position = push_position;
@@ -176,8 +172,7 @@ void update_ui_snow(float time_step) {
 	}
 
 	if (time_step < PUSH_DECAY_TIME_CONSTANT) {
-		push_vector.x *= 1.0 - time_step/PUSH_DECAY_TIME_CONSTANT;
-		push_vector.y *= 1.0 - time_step/PUSH_DECAY_TIME_CONSTANT;
+		push_vector *= 1.0 - time_step/PUSH_DECAY_TIME_CONSTANT;
 	} else {
 		push_vector.x = 0.0;
 		push_vector.y = 0.0;
@@ -199,12 +194,12 @@ void push_ui_snow(const TVector2i& pos) {
 //						tux particles
 // ====================================================================
 
-#define MAX_PARTICLES 500000
+#define MAX_PARTICLES 10000
 #define START_RADIUS 0.04
 #define OLD_PART_SIZE 0.12	// orig 0.07
 #define NEW_PART_SIZE 0.035	// orig 0.02
-#define MIN_AGE     -0.2
-#define MAX_AGE      1.0
+#define MIN_AGE -0.2
+#define MAX_AGE 1.0
 #define VARIANCE_FACTOR 0.8
 #define PARTICLE_SHADOW_HEIGHT 0.05
 #define PARTICLE_SHADOW_ALPHA 0.1
@@ -291,8 +286,7 @@ void Particle::draw_billboard(const CControl *ctrl, double width, double height,
 		z_vec.z = ctrl->view_mat[2][2];
 	}
 
-	TVector3d pt1 = pt + -width/2.0 * x_vec;
-	pt1 += -height / 2.0 * y_vec;
+	TVector3d pt1 = pt - width/2.0 * x_vec - height/2.0 * y_vec;
 	TVector3d pt2 = pt1 + width * x_vec;
 	TVector3d pt3 = pt2 + height * y_vec;
 	TVector3d pt4 = pt3 + -width * x_vec;
@@ -314,13 +308,13 @@ void Particle::draw_billboard(const CControl *ctrl, double width, double height,
 	glDisableClientState(GL_VERTEX_ARRAY);
 }
 
-void create_new_particles(const TVector3d& loc, const TVector3d& vel, int num) {
+void create_new_particles(const TVector3d& loc, const TVector3d& vel, std::size_t num) {
 	double speed = vel.Length();
 
 	if (particles.size() + num > MAX_PARTICLES) {
 		Message("maximum number of particles exceeded");
 	}
-	for (int i=0; i<num; i++) {
+	for (std::size_t i=0; i<num; i++) {
 		particles.emplace_back();
 		Particle* newp = &particles.back();
 		newp->pt.x = loc.x + 2.*(FRandom() - 0.5) * START_RADIUS;
@@ -347,7 +341,8 @@ void update_particles(float time_step) {
 
 		p->pt += static_cast<double>(time_step) * p->vel;
 		double ycoord = Course.FindYCoord(p->pt.x, p->pt.z);
-		if (p->pt.y < ycoord - 3) {p->age = p->death + 1;}
+		if (p->pt.y < ycoord - 3)
+			p->age = p->death + 1;
 		if (p->age >= p->death) {
 			p = particles.erase(p);
 			continue;
@@ -433,10 +428,8 @@ void generate_particles(const CControl *ctrl, double dtime, const TVector3d& pos
 		right_part_vel *= std::min(MAX_PARTICLE_SPEED, speed * PARTICLE_SPEED_MULTIPLIER);
 
 
-		create_new_particles(left_part_pt, left_part_vel,
-		                     (int)left_particles);
-		create_new_particles(right_part_pt, right_part_vel,
-		                     (int)right_particles);
+		create_new_particles(left_part_pt, left_part_vel, (std::size_t)left_particles);
+		create_new_particles(right_part_pt, right_part_vel, (std::size_t)right_particles);
 	}
 }
 
@@ -490,6 +483,7 @@ TFlakeArea::TFlakeArea(
 	maxSize = _maxSize;
 	speed = _speed;
 	rotate_flake = rotate;
+	left = right = bottom = top = front = back = 0.f;
 
 	flakes.resize(num_flakes);
 }

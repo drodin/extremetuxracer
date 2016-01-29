@@ -47,12 +47,9 @@ void TLight::Enable(GLenum num) const {
 
 CEnvironment Env;
 
-CEnvironment::CEnvironment() {
+CEnvironment::CEnvironment()
+	: lightcond{"sunny", "cloudy", "evening", "night"} {
 	EnvID = -1;
-	lightcond[0] = "sunny";
-	lightcond[1] = "cloudy";
-	lightcond[2] = "evening";
-	lightcond[3] = "night";
 	for (std::size_t i = 0; i < 4; i++)
 		LightIndex[lightcond[i]] = i;
 	Skybox = nullptr;

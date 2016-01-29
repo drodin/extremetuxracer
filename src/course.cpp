@@ -62,12 +62,13 @@ void TCourse::SetTranslatedData(const std::string& line2) {
 CCourse Course;
 
 
-CCourse::CCourse() {
-	vnc_array = nullptr;
-	mirrored = false;
-
-	curr_course = nullptr;
-	currentCourseList = nullptr;
+CCourse::CCourse()
+	: curr_course(nullptr)
+	, nx(0), ny(0)
+	, base_height_value(0)
+	, mirrored(false)
+	, currentCourseList(nullptr)
+	, vnc_array(nullptr) {
 }
 
 CCourse::~CCourse() {
@@ -275,49 +276,25 @@ void CCourse::MakeStandardPolyhedrons() {
 	// polyhedron "none"
 
 	// poyhedron "tree"
-	PolyArr[1].vertices.resize(6);
-	PolyArr[1].vertices[0] = TVector3d(0, 0, 0);
-	PolyArr[1].vertices[1] = TVector3d(0, 0.15, 0.5);
-	PolyArr[1].vertices[2] = TVector3d(0.5, 0.15, 0);
-	PolyArr[1].vertices[3] = TVector3d(0, 0.15, -0.5);
-	PolyArr[1].vertices[4] = TVector3d(-0.5, 0.15, 0);
-	PolyArr[1].vertices[5] = TVector3d(0, 1, 0);
+	PolyArr[1].vertices = {
+		TVector3d(0, 0, 0),
+		TVector3d(0, 0.15, 0.5),
+		TVector3d(0.5, 0.15, 0),
+		TVector3d(0, 0.15, -0.5),
+		TVector3d(-0.5, 0.15, 0),
+		TVector3d(0, 1, 0)
+	};
 
-	PolyArr[1].polygons.resize(8);
-	for (std::size_t i = 0; i < 8; i++) {
-		PolyArr[1].polygons[i].vertices.resize(3);
-	}
-	PolyArr[1].polygons[0].vertices[0] = 0;
-	PolyArr[1].polygons[0].vertices[1] = 1;
-	PolyArr[1].polygons[0].vertices[2] = 4;
-
-	PolyArr[1].polygons[1].vertices[0] = 0;
-	PolyArr[1].polygons[1].vertices[1] = 2;
-	PolyArr[1].polygons[1].vertices[2] = 1;
-
-	PolyArr[1].polygons[2].vertices[0] = 0;
-	PolyArr[1].polygons[2].vertices[1] = 3;
-	PolyArr[1].polygons[2].vertices[2] = 2;
-
-	PolyArr[1].polygons[3].vertices[0] = 0;
-	PolyArr[1].polygons[3].vertices[1] = 4;
-	PolyArr[1].polygons[3].vertices[2] = 3;
-
-	PolyArr[1].polygons[4].vertices[0] = 1;
-	PolyArr[1].polygons[4].vertices[1] = 5;
-	PolyArr[1].polygons[4].vertices[2] = 4;
-
-	PolyArr[1].polygons[5].vertices[0] = 2;
-	PolyArr[1].polygons[5].vertices[1] = 5;
-	PolyArr[1].polygons[5].vertices[2] = 1;
-
-	PolyArr[1].polygons[6].vertices[0] = 3;
-	PolyArr[1].polygons[6].vertices[1] = 5;
-	PolyArr[1].polygons[6].vertices[2] = 2;
-
-	PolyArr[1].polygons[7].vertices[0] = 4;
-	PolyArr[1].polygons[7].vertices[1] = 5;
-	PolyArr[1].polygons[7].vertices[2] = 3;
+	PolyArr[1].polygons = {
+		{ { 0, 1, 4 } },
+		{ { 0, 2, 1 } },
+		{ { 0, 3, 2 } },
+		{ { 0, 4, 3 } },
+		{ { 1, 5, 4 } },
+		{ { 2, 5, 1 } },
+		{ { 3, 5, 2 } },
+		{ { 4, 5, 3 } },
+	};
 }
 
 void CCourse::FreeTerrainTextures() {

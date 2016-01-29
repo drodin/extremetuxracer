@@ -98,7 +98,7 @@ class CSPList : public std::list<std::string> {
 private:
 	bool fnewlineflag;
 public:
-	CSPList(bool newlineflag = false);
+	explicit CSPList(bool newlineflag = false);
 
 	void Add(const std::string& line = emptyString);
 	void Add(std::string&& line);

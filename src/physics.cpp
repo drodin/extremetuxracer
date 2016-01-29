@@ -56,6 +56,8 @@ CControl::CControl() :
 	paddle_time = 0;
 	view_init = false;
 	finish_speed = 0;
+
+	viewmode = ABOVE;
 }
 
 // --------------------------------------------------------------------

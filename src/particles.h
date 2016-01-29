@@ -46,8 +46,8 @@ void generate_particles(const CControl *ctrl, double dtime, const TVector3d& pos
 
 struct TFlake {
 	TVector3d pt;
-	float   size;
 	TVector3d vel;
+	float size;
 	const GLfloat* tex;
 
 	void Draw(const TPlane& lp, const TPlane& rp, bool rotate_flake, float dir_angle) const;

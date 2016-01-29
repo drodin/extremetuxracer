@@ -169,8 +169,8 @@ public:
 	std::vector<TItem>			NocollArr;
 	std::vector<TPolyhedron>	PolyArr;
 
-	std::vector<CourseFields> Fields;
-	GLubyte		*vnc_array;
+	std::vector<CourseFields>	Fields;
+	GLubyte *vnc_array;
 
 	CCourseList* getGroup(std::size_t index);
 

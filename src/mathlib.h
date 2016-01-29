@@ -37,7 +37,6 @@ struct TPlane {
 };
 
 struct TPolygon		{ std::vector<int> vertices; };
-struct TSphere		{ double radius; int divisions; };
 struct TRay			{ TVector3d pt; TVector3d vec; };
 
 struct TPolyhedron {

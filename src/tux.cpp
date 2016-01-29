@@ -408,7 +408,7 @@ void CCharShape::Draw() {
 	ScopedRenderMode rm(TUX);
 	glEnable(GL_NORMALIZE);
 
-	TCharNode *node = GetNode(0);
+	const TCharNode *node = GetNode(0);
 	if (node == nullptr) return;
 
 	DrawNodes(node);
@@ -622,7 +622,7 @@ bool CCharShape::CheckPolyhedronCollision(const TCharNode *node, const TMatrix<4
 }
 
 bool CCharShape::CheckCollision(const TPolyhedron& ph) {
-	TCharNode *node = GetNode(0);
+	const TCharNode *node = GetNode(0);
 	if (node == nullptr) return false;
 	const TMatrix<4, 4>& identity = TMatrix<4, 4>::getIdentity();
 	return CheckPolyhedronCollision(node, identity, identity, ph);
