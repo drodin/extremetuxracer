@@ -19,6 +19,8 @@ GNU General Public License for more details.
 #include <etr_config.h>
 #endif
 
+#include <sys/stat.h>
+
 #include "winsys.h"
 #include "course.h"
 #include "game_ctrl.h"
@@ -166,6 +168,15 @@ void CWinsys::TakeScreenshot() const {
 	sf::Image img = tex.copyToImage();
 
 	std::string path = param.screenshot_dir;
+
+#if !defined (OS_WIN32_MINGW) && !defined (OS_WIN32_MSC)
+        const char *cpath = path.c_str();
+
+        if (!DirExists(cpath)) {
+		mkdir(cpath, 0775);
+        }
+#endif /* WIN32 */
+
 	path += SEP;
 	path += g_game.course->dir;
 	path += '_';

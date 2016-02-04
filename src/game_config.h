@@ -23,6 +23,7 @@ struct TParam {
 	// defined at runtime:
 	std::string config_dir;
 	std::string data_dir;
+	std::string save_dir;
 	std::string common_course_dir;
 	std::string obj_dir;
 	std::string terr_dir;
