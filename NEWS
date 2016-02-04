@@ -2,6 +2,16 @@
                            NEWS for Extreme Tux Racer
 ===============================================================================
 
+Version 0.7.1                                             5th of February, 2016
+-------------------------------------------------------------------------------
+Bugfix release
+
+- Fixed use of user provided CPPFLAGS
+- "I Like Spike" course installed to correct location
+- Added preview images for all courses that were missing one
+- Added keywords to the desktop file
+- Do not try to save screenshots to read-only location but to user
+  home directory
 
 Version 0.7                                               23th of January, 2016
 -------------------------------------------------------------------------------
