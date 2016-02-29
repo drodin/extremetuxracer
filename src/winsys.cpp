@@ -170,11 +170,11 @@ void CWinsys::TakeScreenshot() const {
 	std::string path = param.screenshot_dir;
 
 #if !defined (OS_WIN32_MINGW) && !defined (OS_WIN32_MSC)
-        const char *cpath = path.c_str();
+	const char *cpath = path.c_str();
 
-        if (!DirExists(cpath)) {
+	if (!DirExists(cpath)) {
 		mkdir(cpath, 0775);
-        }
+	}
 #endif /* WIN32 */
 
 	path += SEP;

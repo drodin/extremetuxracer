@@ -268,7 +268,7 @@ void InitConfig() {
 	// the progdir is always the current dir
 	param.config_dir = "config";
 	param.data_dir = "data";
-        param.save_dir = "data";
+	param.save_dir = "data";
 	param.configfile = param.config_dir + SEP "options.txt";
 #else /* WIN32 */
 
@@ -289,7 +289,7 @@ void InitConfig() {
 #endif /* 0 */
 
 	struct passwd *pwent = getpwuid(getuid());
-        const char *home;
+	const char *home;
 
 	param.config_dir = pwent->pw_dir;
 	param.config_dir += SEP;
@@ -297,11 +297,11 @@ void InitConfig() {
 	// or: param.config_dir = param.prog_dir + SEP "config";
 	if (!DirExists(param.config_dir.c_str())) {
 		mkdir(param.config_dir.c_str(), 0775);
-        }
+	}
 	param.data_dir = ETR_DATA_DIR;
 	param.data_dir += SEP;
 	param.data_dir += "etr";
-        param.save_dir = param.config_dir;
+	param.save_dir = param.config_dir;
 	param.configfile = param.config_dir + SEP "options";
 #endif /* WIN32 */
 
