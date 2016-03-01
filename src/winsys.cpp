@@ -28,8 +28,6 @@ GNU General Public License for more details.
 #include "ogl.h"
 #include <iostream>
 
-#define USE_JOYSTICK true
-
 TVector2i cursor_pos(0, 0);
 
 CWinsys Winsys;
@@ -39,13 +37,12 @@ CWinsys::CWinsys()
 	, sfmlRenders(false)
 	, auto_resolution(800, 600)
 	, scale(1.f) {
-	for (unsigned int i = 0; i < 8; i++) {
+	for (unsigned int i = 0; i < sf::Joystick::Count; i++) {
 		if (sf::Joystick::isConnected(i))
 			numJoysticks++;
 		else
 			break;
 	}
-	joystick_active = false;
 
 	sf::VideoMode desktopMode = sf::VideoMode::getDesktopMode();
 	resolutions[0] = TScreenRes(desktopMode.width, desktopMode.height);

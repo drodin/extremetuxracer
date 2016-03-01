@@ -249,12 +249,17 @@ void CRacing::Enter() {
 static void PlayTerrainSound(CControl *ctrl, bool airborne) {
 	if (airborne == false) {
 		int terridx = Course.GetTerrainIdx(ctrl->cpos.x, ctrl->cpos.z, 0.5);
-		if (terridx >= 0) {
+		if (terridx >= 0)
 			newsound = (int)Course.TerrList[terridx].sound;
-		} else newsound = -1;
-	} else newsound = -1;
-	if ((newsound != lastsound) && (lastsound >= 0)) Sound.Halt(lastsound);
-	if (newsound >= 0) Sound.Play(newsound, true);
+		else
+			newsound = -1;
+	} else
+		newsound = -1;
+
+	if ((newsound != lastsound) && (lastsound >= 0))
+		Sound.Halt(lastsound);
+	if (newsound >= 0)
+		Sound.Play(newsound, true);
 
 	lastsound = newsound;
 }

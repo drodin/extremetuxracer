@@ -33,7 +33,6 @@ struct TScreenRes {
 class CWinsys {
 private:
 	unsigned int numJoysticks;
-	bool joystick_active;
 
 	// sfml window
 	bool sfmlRenders;
@@ -47,7 +46,6 @@ public:
 
 	CWinsys();
 
-	// sdl window
 	const TScreenRes& GetResolution(std::size_t idx) const;
 	std::string GetResName(std::size_t idx) const;
 	void Init();
@@ -60,7 +58,6 @@ public:
 	void SwapBuffers() { window.display(); }
 	void Quit();
 	void Terminate();
-	bool joystick_isActive() const { return joystick_active; }
 	void draw(const sf::Drawable& drawable, const sf::RenderStates& states = sf::RenderStates::Default) { window.draw(drawable, states); }
 	void clear() { window.clear(colBackgr); }
 	void beginSFML() { if (!sfmlRenders) window.pushGLStates(); sfmlRenders = true; }

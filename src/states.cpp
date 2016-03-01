@@ -86,17 +86,14 @@ void State::Manager::PollEvent() {
 					break;
 				}
 
-				case sf::Event::JoystickMoved:
-					if (Winsys.joystick_isActive()) {
-						float val = event.joystickMove.position / 32768.f;
-						current->Jaxis(event.joystickMove.axis == sf::Joystick::X ? 0 : 1, val);
-					}
+				case sf::Event::JoystickMoved: {
+					float val = event.joystickMove.position / 100.f;
+					current->Jaxis(event.joystickMove.axis == sf::Joystick::X ? 0 : 1, val);
 					break;
+				}
 				case sf::Event::JoystickButtonPressed:
 				case sf::Event::JoystickButtonReleased:
-					if (Winsys.joystick_isActive()) {
-						current->Jbutt(event.joystickButton.button, event.type == sf::Event::JoystickButtonPressed);
-					}
+					current->Jbutt(event.joystickButton.button, event.type == sf::Event::JoystickButtonPressed);
 					break;
 
 				case sf::Event::Resized:
