@@ -26,7 +26,7 @@ class CRacing : public State {
 	void Loop(float time_step);
 	void Keyb(sf::Keyboard::Key key, bool release, int x, int y);
 	void Jaxis(int axis, float value);
-	void Jbutt(int button, int state);
+	void Jbutt(int button, bool pressed);
 	void Exit();
 public:
 };

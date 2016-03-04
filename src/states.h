@@ -61,7 +61,7 @@ public:
 	virtual void Mouse(int button, int state, int x, int y) {}
 	virtual void Motion(int x, int y) {}
 	virtual void Jaxis(int axis, float value) {}
-	virtual void Jbutt(int button, int state) {}
+	virtual void Jbutt(int button, bool pressed) {}
 	virtual void TextEntered(char text) {}
 	virtual void Exit() {}
 };
