@@ -36,7 +36,7 @@ GNU General Public License for more details.
 
 CSplashScreen SplashScreen;
 sf::Text* Failure = nullptr;
-std::string reason;
+sf::String reason;
 
 
 void CSplashScreen::Enter() {
@@ -94,7 +94,7 @@ void CSplashScreen::Loop(float timestep) {
 		} else
 			reason += Trans.Text(94) + "\n";
 
-		if (reason.empty())
+		if (reason.isEmpty())
 			State::manager.RequestEnterState(Regist);
 		else { // Failure
 			FT.AutoSizeN(6);

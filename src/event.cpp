@@ -157,7 +157,7 @@ void CEvent::Enter() {
 
 	FT.AutoSizeN(3);
 	int ddd = FT.AutoDistanceN(1);
-	std::string info = Trans.Text(11);
+	sf::String info = Trans.Text(11);
 	info += "   " + Int_StrN(ecup->races[curr_race]->herrings.x);
 	info += "   " + Int_StrN(ecup->races[curr_race]->herrings.y);
 	info += "   " + Int_StrN(ecup->races[curr_race]->herrings.z);

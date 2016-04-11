@@ -46,7 +46,7 @@ static TIconButton* wind;
 static TIconButton* mirror;
 static TIconButton* random_btn;
 static TWidget* textbuttons[2];
-static std::string info;
+static sf::String info;
 static int prevGroup = 0;
 
 static void UpdateInfo() {
