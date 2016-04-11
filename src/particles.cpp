@@ -291,10 +291,18 @@ void Particle::draw_billboard(const CControl *ctrl, double width, double height,
 	TVector3d pt3 = pt2 + height * y_vec;
 	TVector3d pt4 = pt3 + -width * x_vec;
 	const GLfloat vtx[] = {
-		pt1.x, pt1.y, pt1.z,
-		pt2.x, pt2.y, pt2.z,
-		pt3.x, pt3.y, pt3.z,
-		pt4.x, pt4.y, pt4.z,
+          static_cast<GLfloat>(pt1.x),
+          static_cast<GLfloat>(pt1.y),
+          static_cast<GLfloat>(pt1.z),
+          static_cast<GLfloat>(pt2.x),
+          static_cast<GLfloat>(pt2.y),
+          static_cast<GLfloat>(pt2.z),
+          static_cast<GLfloat>(pt3.x),
+          static_cast<GLfloat>(pt3.y),
+          static_cast<GLfloat>(pt3.z),
+          static_cast<GLfloat>(pt4.x),
+          static_cast<GLfloat>(pt4.y),
+          static_cast<GLfloat>(pt4.z),
 	};
 
 	glEnableClientState(GL_VERTEX_ARRAY);

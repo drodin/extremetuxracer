@@ -266,10 +266,14 @@ void CTexture::DrawNumChr(char c, int x, int y, int w, int h) {
 		texleft, 0
 	};
 	const GLfloat vtx[] = {
-		x,            Winsys.resolution.height - y - h,
-		x + w * 0.9f, Winsys.resolution.height - y - h,
-		x + w * 0.9f, Winsys.resolution.height - y,
-		x,            Winsys.resolution.height - y
+          static_cast<GLfloat>(x),
+          static_cast<GLfloat>(Winsys.resolution.height - y - h),
+          static_cast<GLfloat>(x + w * 0.9f),
+          static_cast<GLfloat>(Winsys.resolution.height - y - h),
+          static_cast<GLfloat>(x + w * 0.9f),
+          static_cast<GLfloat>(Winsys.resolution.height - y),
+          static_cast<GLfloat>(x),
+          static_cast<GLfloat>(Winsys.resolution.height - y)
 	};
 
 	glVertexPointer(2, GL_FLOAT, 0, vtx);
