@@ -2,9 +2,11 @@
                            NEWS for Extreme Tux Racer
 ===============================================================================
 
-Version 0.7.2
+Version 0.7.2                                               14th of April, 2016
 -------------------------------------------------------------------------------
-- Removed unused font outline.ttf from the distribution
+
+- Fixed Joystick handling
+- Removed unused fonts
 
 
 Version 0.7.1                                             5th of February, 2016
