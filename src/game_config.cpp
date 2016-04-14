@@ -252,7 +252,7 @@ void SaveConfigFile() {
 	liste.Add();
 
 	AddComment(liste, "Use sqare root of scale factors for menu screens [0...1]");
-	AddComment(liste, "Exprimental: these factors reduce the effect of screen scaling.");
+	AddComment(liste, "Experimental: these factors reduce the effect of screen scaling.");
 	AddComment(liste, "The widgets are closer to their default sizes.");
 	AddItem(liste, "use_quad_scale", param.use_quad_scale);
 	liste.Add();
