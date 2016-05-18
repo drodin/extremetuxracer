@@ -21,8 +21,7 @@ GNU General Public License for more details.
 #include "bh.h"
 #include <vector>
 
-#define NUM_COMMON_TEXTS 99
-#define MAX_COMMON_TEXT_LINES NUM_COMMON_TEXTS*2
+#define NUM_COMMON_TEXTS 111
 
 /* --------------------------------------------------------------------
 Name convention:

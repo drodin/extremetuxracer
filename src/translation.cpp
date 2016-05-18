@@ -144,6 +144,20 @@ void CTranslation::SetDefaultTranslations() {
 
 	texts[97] = "herrings";
 	texts[98] = "sec";
+
+	texts[99] = "1st";
+	texts[100] = "2nd";
+	texts[101] = "3rd";
+	texts[102] = "4th";
+	texts[103] = "5th";
+	texts[104] = "6th";
+	texts[105] = "7th";
+	texts[106] = "8th";
+	texts[107] = "9th";
+	texts[108] = "10th";
+
+	texts[109] = "Unknown";
+	texts[110] = "auto";
 }
 
 const sf::String& CTranslation::Text(std::size_t idx) const {

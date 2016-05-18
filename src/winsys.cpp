@@ -26,6 +26,7 @@ GNU General Public License for more details.
 #include "game_ctrl.h"
 #include "score.h"
 #include "ogl.h"
+#include "translation.h"
 #include <iostream>
 
 TVector2i cursor_pos(0, 0);
@@ -64,7 +65,7 @@ const TScreenRes& CWinsys::GetResolution(std::size_t idx) const {
 
 std::string CWinsys::GetResName(std::size_t idx) const {
 	if (idx >= NUM_RESOLUTIONS) return "800 x 600";
-	if (idx == 0) return ("auto");
+	if (idx == 0) return (Trans.Text(110));
 	std::string line = Int_StrN(resolutions[idx].width);
 	line += " x " + Int_StrN(resolutions[idx].height);
 	return line;

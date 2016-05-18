@@ -62,7 +62,7 @@ bool CEvents::LoadEventList() {
 		if (type == 1) {
 			CupList.emplace_back(SPStrN(*line, "cup", errorString),
 			                     SPStrN(*line, "name", "unknown"),
-			                     SPStrN(*line, "desc", "unknown"));
+			                     SPStrN(*line, "desc", emptyString));
 			int num = SPIntN(*line, "num", 0);
 			CupList.back().races.resize(num);
 			for (int ii=0; ii<num; ii++) {

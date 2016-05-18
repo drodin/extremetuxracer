@@ -662,7 +662,7 @@ bool CCourseList::Load(const std::string& dir) {
 			}
 
 			const std::string& line2 = paramlist.front();
-			courses[i].author = SPStrN(line2, "author", "unknown");
+			courses[i].author = SPStrN(line2, "author", Trans.Text(109));
 			courses[i].size.x = SPFloatN(line2, "width", 100);
 			courses[i].size.y = SPFloatN(line2, "length", 1000);
 			courses[i].play_size.x = SPFloatN(line2, "play_width", 90);

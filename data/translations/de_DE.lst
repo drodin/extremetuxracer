@@ -119,3 +119,17 @@
 *[idx] 96 [engl] Loading avatars failed. [trans] Avatare konnten nicht geladen werden.
 *[idx] 97 [engl] herrings [trans] Heringe
 *[idx] 98 [engl] sec [trans] Sek
+
+*[idx] 99 [engl] 1st [trans] 1.
+*[idx] 100 [engl] 2nd [trans] 2.
+*[idx] 101 [engl] 3rd [trans] 3.
+*[idx] 102 [engl] 4th [trans] 4.
+*[idx] 103 [engl] 5th [trans] 5.
+*[idx] 104 [engl] 6th [trans] 6.
+*[idx] 105 [engl] 7th [trans] 7.
+*[idx] 106 [engl] 8th [trans] 8.
+*[idx] 107 [engl] 9th [trans] 9.
+*[idx] 108 [engl] 10th [trans] 10.
+
+*[idx] 109 [engl] Unknown [trans] Unbekannt
+*[idx] 110 [engl] auto [trans] automatisch
