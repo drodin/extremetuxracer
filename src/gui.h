@@ -171,11 +171,14 @@ TArrow* AddArrow(int x, int y, bool down);
 class TUpDown : public TWidget {
 	TArrow up;
 	TArrow down;
+	TArrow& higher;
+	TArrow& lower;
 	int value;
 	int minimum;
 	int maximum;
+	bool swapArrows;
 public:
-	TUpDown(int x, int y, int min_, int max_, int value_, int distance);
+	TUpDown(int x, int y, int min_, int max_, int value_, int distance, bool swapArrows_);
 	int GetValue() const { return value; }
 	void SetValue(int value_);
 	void SetMinimum(int min_);
@@ -185,7 +188,7 @@ public:
 	void Key(sf::Keyboard::Key key, bool released);
 	void MouseMove(int x, int y);
 };
-TUpDown* AddUpDown(int x, int y, int minimum, int maximum, int value, int distance = 2);
+TUpDown* AddUpDown(int x, int y, int minimum, int maximum, int value, int distance = 2, bool swapArrows = false);
 
 // --------------------------------------------------------------------
 

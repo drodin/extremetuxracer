@@ -460,15 +460,18 @@ TArrow* AddArrow(int x, int y, bool down) {
 }
 
 
-TUpDown::TUpDown(int x, int y, int min_, int max_, int value_, int distance)
+TUpDown::TUpDown(int x, int y, int min_, int max_, int value_, int distance, bool swapArrows_)
 	: TWidget(x, y, 32 * Winsys.scale / 0.8f, (32 + distance)*Winsys.scale / 0.8f)
 	, up(x, y + (16 + distance)*Winsys.scale / 0.8f, true)
 	, down(x, y, false)
+	, higher(swapArrows_ ? up : down)
+	, lower(swapArrows_ ? down : up)
 	, value(value_)
 	, minimum(min_)
-	, maximum(max_) {
-	up.SetActive(value < maximum);
-	down.SetActive(value > minimum);
+	, maximum(max_)
+	, swapArrows(swapArrows_) {
+	lower.SetActive(value < maximum);
+	higher.SetActive(value > minimum);
 }
 
 void TUpDown::Draw() const {
@@ -477,15 +480,15 @@ void TUpDown::Draw() const {
 }
 
 bool TUpDown::Click(int x, int y) {
-	if (active && visible && up.Click(x, y)) {
+	if (active && visible && lower.Click(x, y)) {
 		value++;
-		down.SetActive(true);
+		higher.SetActive(true);
 		if (value == maximum)
-			up.SetActive(false);
+			lower.SetActive(false);
 		return true;
 	}
-	if (active && visible && down.Click(x, y)) {
-		up.SetActive(true);
+	if (active && visible && higher.Click(x, y)) {
+		lower.SetActive(true);
 		value--;
 		if (value == minimum)
 			down.SetActive(false);
@@ -497,19 +500,19 @@ bool TUpDown::Click(int x, int y) {
 void TUpDown::Key(sf::Keyboard::Key key, bool released) {
 	if (released) return;
 
-	if (key == sf::Keyboard::Up) { // Arrow up
+	if ((!swapArrows && key == sf::Keyboard::Up) || (swapArrows && key == sf::Keyboard::Down)) { // Arrow up
 		if (value > minimum) {
 			value--;
-			up.SetActive(true);
+			lower.SetActive(true);
 			if (value == minimum)
-				down.SetActive(false);
+				higher.SetActive(false);
 		}
-	} else if (key == sf::Keyboard::Down) { // Arrow down
+	} else if ((!swapArrows && key == sf::Keyboard::Down) || (swapArrows && key == sf::Keyboard::Up)) { // Arrow down
 		if (value < maximum) {
 			value++;
-			down.SetActive(true);
+			higher.SetActive(true);
 			if (value == maximum)
-				up.SetActive(false);
+				lower.SetActive(false);
 		}
 	}
 }
@@ -525,25 +528,25 @@ void TUpDown::MouseMove(int x, int y) {
 
 void TUpDown::SetValue(int value_) {
 	value = clamp(minimum, value_, maximum);
-	up.SetActive(value < maximum);
-	down.SetActive(value > minimum);
+	lower.SetActive(value < maximum);
+	higher.SetActive(value > minimum);
 }
 void TUpDown::SetMinimum(int min_) {
 	minimum = min_;
 	value = clamp(minimum, value, maximum);
-	up.SetActive(value < maximum);
-	down.SetActive(value > minimum);
+	lower.SetActive(value < maximum);
+	higher.SetActive(value > minimum);
 }
 void TUpDown::SetMaximum(int max_) {
 	maximum = max_;
 	value = clamp(minimum, value, maximum);
-	up.SetActive(value < maximum);
-	down.SetActive(value > minimum);
+	lower.SetActive(value < maximum);
+	higher.SetActive(value > minimum);
 }
 
-TUpDown* AddUpDown(int x, int y, int minimum, int maximum, int value, int distance) {
+TUpDown* AddUpDown(int x, int y, int minimum, int maximum, int value, int distance, bool swapArrows) {
 	locked_UD = true;
-	return static_cast<TUpDown*>(AddWidget(new TUpDown(x, y, minimum, maximum, value, distance)));
+	return static_cast<TUpDown*>(AddWidget(new TUpDown(x, y, minimum, maximum, value, distance, swapArrows)));
 }
 
 // ------------------ Elementary drawing ---------------------------------------------

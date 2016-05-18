@@ -157,10 +157,10 @@ void CGameConfig::Enter() {
 	fullscreen->checked = param.fullscreen;
 
 	resolution = AddUpDown(rightpos, area.top+dd*1, 0, NUM_RESOLUTIONS-1, (int)param.res_type);
-	mus_vol = AddUpDown(rightpos, area.top+dd*2, 0, 100, param.music_volume);
-	sound_vol = AddUpDown(rightpos, area.top+dd*3, 0, 100, param.sound_volume);
+	mus_vol = AddUpDown(rightpos, area.top+dd*2, 0, 100, param.music_volume, 2, true);
+	sound_vol = AddUpDown(rightpos, area.top+dd*3, 0, 100, param.sound_volume, 2, true);
 	language = AddUpDown(rightpos, area.top+dd*4, 0, (int)Trans.languages.size() - 1, (int)param.language);
-	detail_level = AddUpDown(rightpos, area.top+dd*5, 1, 4, param.perf_level);
+	detail_level = AddUpDown(rightpos, area.top+dd*5, 1, 4, param.perf_level, 2, true);
 
 	textbuttons[0] = AddTextButton(Trans.Text(28), area.left+50, AutoYPosN(80), siz);
 	float len = FT.GetTextWidth(Trans.Text(8));
