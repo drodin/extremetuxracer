@@ -190,6 +190,8 @@ void CScore::Keyb(sf::Keyboard::Key key, bool release, int x, int y) {
 		case sf::Keyboard::Return:
 			State::manager.RequestEnterState(*State::manager.PreviousState());
 			break;
+		default:
+      			break;
 	}
 }
 

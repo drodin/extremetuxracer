@@ -192,6 +192,8 @@ void SingleFrameKeys(sf::Keyboard::Key key, bool release, int x, int y) {
 		case sf::Keyboard::Num8:
 			GluCamera.angle = 315;
 			break;
+		default:
+			break;
 	}
 }
 
@@ -298,6 +300,8 @@ void SequenceKeys(sf::Keyboard::Key key, bool release, int x, int y) {
 			break;
 		case sf::Keyboard::Q:
 			QuitTool();
+			break;
+		default:
 			break;
 	}
 }

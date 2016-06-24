@@ -273,6 +273,8 @@ void TTextField::Key(sf::Keyboard::Key key, bool released) {
 		case sf::Keyboard::End:
 			SetCursorPos(text.getString().getSize());
 			break;
+		default:
+			break;
 	}
 }
 

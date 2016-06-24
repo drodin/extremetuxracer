@@ -61,6 +61,8 @@ void CRegist::Keyb(sf::Keyboard::Key key, bool release, int x, int y) {
 				State::manager.RequestEnterState(NewPlayer);
 			} else QuitRegistration();
 			break;
+		default:
+			break;
 	}
 }
 

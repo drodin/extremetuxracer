@@ -132,6 +132,8 @@ void CRaceSelect::Keyb(sf::Keyboard::Key key, bool release, int x, int y) {
 			else
 				SetRaceConditions();
 			break;
+		default:
+			break;
 	}
 }
 

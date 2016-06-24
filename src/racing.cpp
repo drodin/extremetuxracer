@@ -145,6 +145,8 @@ void CRacing::Keyb(sf::Keyboard::Key key, bool release, int x, int y) {
 		case sf::Keyboard::F8:
 			if (!release) trees = !trees;
 			break;
+		default:
+			break;
 	}
 }
 
