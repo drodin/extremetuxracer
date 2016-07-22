@@ -2,8 +2,20 @@
                            NEWS for Extreme Tux Racer
 ===============================================================================
 
+Version 0.7.3                                                22th of July, 2016
+-------------------------------------------------------------------------------
+Bugfix release
+
+- Corrected dimensions of Wild West Chute Out track
+- Renamed 'options' file as 'options.txt' on systems where the former name
+  was used
+- Configure check for SFML-System
+- Minor corrections to in-game texts
+
+
 Version 0.7.2                                               14th of April, 2016
 -------------------------------------------------------------------------------
+Bugfix release
 
 - Fixed Joystick handling
 - Removed unused fonts
