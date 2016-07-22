@@ -49,8 +49,8 @@
 
 *[idx] 41 [engl] For more configuration options, please edit the
 	[trans] Für weitere Einstellungen bearbeite bitte die
-*[idx] 42 [engl] file 'options.lst' and read the documentation.
-	[trans] Datei 'options.lst' und lies die Dokumentation.
+*[idx] 42 [engl] file 'options.txt' and read the documentation.
+	[trans] Datei 'options.txt' und lies die Dokumentation.
 *[idx] 43 [engl] Help [trans] Hilfe
 *[idx] 44 [engl] 1, 2, 3 - change view mode [trans] 1, 2, 3 - Wechsel der Ansicht
 *[idx] 45 [engl] F - hide/show fps display [trans] F - Fps-Anzeige
