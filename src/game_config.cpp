@@ -26,11 +26,11 @@ Then edit the below functions:
 	The first value is always 'line', the second defines the tag within the
 	brackets [ ], and the last value is the default.
 
-- SetConfigDefaults. These values are used as long as no options file exists.
+- SetConfigDefaults. These values are used as long as no options.txt or options file exists.
 	It's a good idea to use the same values as the defaults in LoadConfigFile.
 
 - SaveConfigFile. See the other entries; it should be self-explanatory.
-	If an options file exists, you will have to change any value at runtime
+	If an options.txt or options file exists, you will have to change any value at runtime
 	on the configuration screen to overwrite the file. Then you will see the
 	new entry.
 */
@@ -51,7 +51,7 @@ TParam param;
 void LoadConfigFile() {
 	CSPList list;
 	if (!list.Load(param.configfile)) {
-		Message("Could not load 'options'");
+		Message("Could not load 'options.txt'");
 		return;
 	}
 
@@ -258,18 +258,23 @@ void SaveConfigFile() {
 	liste.Add();
 
 	// ---------------------------------------
-	liste.Save(param.configfile);
+	liste.Save(param.config_dir + SEP "options.txt");
 }
 
 // --------------------------------------------------------------------
 
 void InitConfig() {
+	int config_exist = 0;
+
 #if defined (OS_WIN32_MINGW) || defined (OS_WIN32_MSC)
 	// the progdir is always the current dir
 	param.config_dir = "config";
 	param.data_dir = "data";
 	param.save_dir = "data";
 	param.configfile = param.config_dir + SEP "options.txt";
+	if (FileExists(param.configfile)) {
+		config_exist = 1;
+	}
 #else /* WIN32 */
 
 #if 0
@@ -302,7 +307,16 @@ void InitConfig() {
 	param.data_dir += SEP;
 	param.data_dir += "etr";
 	param.save_dir = param.config_dir;
-	param.configfile = param.config_dir + SEP "options";
+	param.configfile = param.config_dir + SEP "options.txt";
+	if (FileExists(param.configfile)) {
+		config_exist = 1;
+	} else {
+		// Old name as fallback
+		param.configfile = param.config_dir + SEP "options";
+		if (FileExists(param.configfile)) {
+			config_exist = 2;
+		}
+	}
 #endif /* WIN32 */
 
 	param.screenshot_dir = param.save_dir + SEP "screenshots";
@@ -323,7 +337,7 @@ void InitConfig() {
 	param.display_fps = false;
 	param.show_hud = true;
 
-	if (FileExists(param.configfile)) {
+	if (config_exist > 0) {
 		Trans.LoadLanguages();
 		LoadConfigFile();
 	} else {
