@@ -107,6 +107,9 @@ void State::Manager::PollEvent() {
 				case sf::Event::Closed:
 					quit = true;
 					break;
+
+				default:
+					break;
 			}
 		}
 	}
