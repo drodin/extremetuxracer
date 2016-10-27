@@ -2,6 +2,14 @@
                            NEWS for Extreme Tux Racer
 ===============================================================================
 
+Version 0.7.4                                             ??th of October, 2016
+-------------------------------------------------------------------------------
+Bugfix release
+
+- Fixed infinite loop when window resize event has been received to size
+  different from what's in settings
+
+
 Version 0.7.3                                                22th of July, 2016
 -------------------------------------------------------------------------------
 Bugfix release

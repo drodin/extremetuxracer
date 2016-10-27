@@ -100,7 +100,7 @@ void State::Manager::PollEvent() {
 					if (Winsys.resolution.width != event.size.width || Winsys.resolution.height != event.size.height) {
 						Winsys.resolution.width = event.size.width;
 						Winsys.resolution.height = event.size.height;
-						Winsys.SetupVideoMode(param.res_type);
+						Winsys.SetupVideoMode(event.size.width, event.size.height);
 					}
 					break;
 
