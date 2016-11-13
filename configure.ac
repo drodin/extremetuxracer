@@ -82,8 +82,8 @@ LIBS="$LIBS -lGLU"
 
 CPPFLAGS="${CPPFLAGS} -DETR_DATA_DIR=\\\"$datadir\\\""
 
-# Request c++11 compatibility
-CXXFLAGS="${CXXFLAGS} -std=c++11"
+# Request c++14 compatibility
+CXXFLAGS="${CXXFLAGS} -std=c++14"
 
 AC_CONFIG_FILES([
         Makefile
