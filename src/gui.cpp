@@ -83,15 +83,19 @@ TLabel::TLabel(const sf::String& string, int x, int y, const sf::Color& color)
 		text.setPosition((Winsys.resolution.width - text.getLocalBounds().width) / 2, y);
 	else
 		text.setPosition(x, y);
-	text.setColor(color);
+	text.setFillColor(color);
+        text.setOutlineColor(color);
 }
 
 void TLabel::Focussed(bool masterFocus) {
 	focus = masterFocus && active;
-	if (focus)
-		text.setColor(colDYell);
-	else
-		text.setColor(colWhite);
+	if (focus) {
+		text.setFillColor(colDYell);
+                text.setOutlineColor(colDYell);
+        } else {
+		text.setFillColor(colWhite);
+                text.setOutlineColor(colWhite);
+        }
 }
 
 void TLabel::Draw() const {
@@ -114,10 +118,13 @@ TFramedText::TFramedText(int x, int y, int width, int height, int line, const sf
 	, text(string, FT.getCurrentFont(), ftsize)
 	, borderFocus(borderFocus_) {
 	text.setPosition(x + line + 20, y + line);
-	if (!borderFocus)
-		text.setColor(colWhite);
-	else
-		text.setColor(colDYell);
+	if (!borderFocus) {
+		text.setFillColor(colWhite);
+                text.setOutlineColor(colWhite);
+	} else {
+		text.setFillColor(colDYell);
+                text.setOutlineColor(colDYell);
+        }
 	frame.setPosition(x + line, y + line);
 	frame.setOutlineThickness(line);
 	frame.setFillColor(backcol);
@@ -125,24 +132,32 @@ TFramedText::TFramedText(int x, int y, int width, int height, int line, const sf
 }
 
 void TFramedText::Activated() {
-	if (!active)
-		text.setColor(colLGrey);
-	else if (borderFocus || focus)
-		text.setColor(colDYell);
-	else
-		text.setColor(colWhite);
+	if (!active) {
+		text.setFillColor(colLGrey);
+                text.setOutlineColor(colLGrey);
+	} else if (borderFocus || focus) {
+		text.setFillColor(colDYell);
+                text.setOutlineColor(colDYell);
+	} else {
+		text.setFillColor(colWhite);
+                text.setOutlineColor(colWhite);
+        }
 }
 
 void TFramedText::Focussed(bool masterFocus) {
 	focus = masterFocus && active;
 	if (focus) {
 		frame.setOutlineColor(colDYell);
-		if (!borderFocus)
-			text.setColor(colDYell);
+		if (!borderFocus) {
+			text.setFillColor(colDYell);
+                        text.setOutlineColor(colDYell);
+                }
 	} else {
 		frame.setOutlineColor(colWhite);
-		if (!borderFocus)
-			text.setColor(colWhite);
+		if (!borderFocus) {
+			text.setFillColor(colWhite);
+                        text.setOutlineColor(colWhite);
+                }
 	}
 }
 
@@ -171,10 +186,13 @@ TTextButton::TTextButton(int x, int y, const sf::String& text_, int ftsize)
 }
 
 void TTextButton::Focussed() {
-	if (focus)
-		text.setColor(colDYell);
-	else
-		text.setColor(colWhite);
+	if (focus) {
+		text.setFillColor(colDYell);
+                text.setOutlineColor(colDYell);
+	} else {
+		text.setFillColor(colWhite);
+                text.setOutlineColor(colWhite);
+        }
 }
 
 void TTextButton::Draw() const {
@@ -240,10 +258,12 @@ void TTextField::SetCursorPos(std::size_t new_pos) {
 
 void TTextField::Focussed() {
 	if (focus) {
-		text.setColor(colDYell);
+		text.setFillColor(colDYell);
+                text.setOutlineColor(colDYell);
 		frame.setOutlineColor(colDYell);
 	} else {
-		text.setColor(colWhite);
+		text.setFillColor(colWhite);
+                text.setOutlineColor(colWhite);
 		frame.setOutlineColor(colWhite);
 	}
 }
@@ -312,10 +332,13 @@ void TCheckbox::SetPosition(int x, int y) {
 }
 
 void TCheckbox::Focussed() {
-	if (focus)
-		text.setColor(colDYell);
-	else
-		text.setColor(colWhite);
+	if (focus) {
+		text.setFillColor(colDYell);
+                text.setOutlineColor(colDYell);
+	} else {
+		text.setFillColor(colWhite);
+                text.setOutlineColor(colWhite);
+        }
 }
 
 void TCheckbox::Draw() const {
