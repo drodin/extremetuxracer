@@ -210,7 +210,7 @@ void SaveConfigFile() {
 	liste.Add();
 
 	AddComment(liste, "Tux sphere divisions");
-	AddComment(liste, "Controls how detailled the character is drawn");
+	AddComment(liste, "Controls how detailed the character is drawn");
 	AddItem(liste, "tux_sphere_divisions", param.tux_sphere_divisions);
 	liste.Add();
 
