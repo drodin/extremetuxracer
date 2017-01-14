@@ -9,6 +9,7 @@ Besides several small improvements and bugfixes, the new Extreme Tux Racer
 version 0.8 features the following changes:
 
 - Minimum SFML version is now 2.4
+- Autotools based build method can use opengl32 & glu32 instead of libGL & libGLU
 
 
 Version 0.7.4                                             27th of October, 2016

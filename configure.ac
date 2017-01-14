@@ -70,15 +70,29 @@ PKG_CHECK_MODULES([SFML_GRAPHICS], [sfml-graphics >= 2.4],
 ],
 [AC_MSG_ERROR([sfml-graphics not found])])
 
-AC_CHECK_LIB([GL], [glBegin], [],
-[AC_MSG_ERROR([libGL not found])])
+AC_CHECK_LIB([GL], [glBegin],
+[
+  AC_CHECK_LIB([GLU], [gluBeginCurve],
+  [
+    LIBS="$LIBS -lGL -lGLU"
+    glfound=true
+  ])
+])
 
-LIBS="$LIBS -lGL"
+if test x$glfound != xtrue ; then
+  AC_CHECK_LIB([opengl32], [glBegin],
+  [
+    AC_CHECK_LIB([glu32], [gluBeginCurve],
+    [
+      LIBS="$LIBS -lopengl32 -lglu32"
+      glfound=true
+    ])
+  ])
+fi
 
-AC_CHECK_LIB([GLU], [gluBeginCurve], [],
-[AC_MSG_ERROR([libGLU not found])])
-
-LIBS="$LIBS -lGLU"
+if test x$glfound != xtrue ; then
+  AC_MSG_ERROR([No OpenGL libraries found])
+fi
 
 CPPFLAGS="${CPPFLAGS} -DETR_DATA_DIR=\\\"$datadir\\\""
 
