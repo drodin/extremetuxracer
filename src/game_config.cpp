@@ -294,7 +294,6 @@ void InitConfig() {
 #endif /* 0 */
 
 	struct passwd *pwent = getpwuid(getuid());
-	const char *home;
 
 	param.config_dir = pwent->pw_dir;
 	param.config_dir += SEP;

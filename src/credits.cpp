@@ -81,11 +81,11 @@ void CCredits::DrawCreditsText(float time_step) {
 
 		if (i->col == 0) {
 			text.setFillColor(colWhite);
-                        text.setOutlineColor(colWhite);
+			text.setOutlineColor(colWhite);
 		} else {
 			text.setFillColor(colDYell);
-                        text.setOutlineColor(colDYell);
-                }
+			text.setOutlineColor(colDYell);
+		}
 		text.setCharacterSize(FT.AutoSizeN(i->size)+1);
 		text.setString(i->text);
 		text.setPosition((Winsys.resolution.width - text.getLocalBounds().width) / 2, offs);

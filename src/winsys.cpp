@@ -105,6 +105,11 @@ void CWinsys::SetupVideoMode(const TScreenRes& resolution_) {
 	window.create(sf::VideoMode(resolution.width, resolution.height, bpp), WINDOW_TITLE, style, ctx);
 	if (param.framerate)
 		window.setFramerateLimit(param.framerate);
+#ifdef _WIN32
+	HICON icon = LoadIcon(GetModuleHandle(NULL), (LPCWSTR)IDI_APPLICATION);
+	SendMessageW(window.getSystemHandle(), WM_SETICON, ICON_BIG, (LPARAM)icon);
+	SendMessageW(window.getSystemHandle(), WM_SETICON, ICON_SMALL, (LPARAM)icon);
+#endif
 
 	scale = CalcScreenScale();
 	if (param.use_quad_scale) scale = std::sqrt(scale);

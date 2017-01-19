@@ -202,7 +202,7 @@ void CFont::DrawText(float x, float y, const sf::String& text, std::size_t font,
 		x = (Winsys.resolution.width - temp.getLocalBounds().width) / 2;
 	temp.setPosition(x, y);
 	temp.setFillColor(curr_col);
-        temp.setOutlineColor(curr_col);
+	temp.setOutlineColor(curr_col);
 	Winsys.draw(temp);
 }
 
