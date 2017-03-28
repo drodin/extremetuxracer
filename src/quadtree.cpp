@@ -1050,8 +1050,8 @@ void quadsquare::SetScale(double x, double z) {
 }
 
 CourseFields* quadsquare::Fields;
-void quadsquare::SetFields(CourseFields* t) {
-	Fields = t;
+void quadsquare::SetFields(CourseFields* fields) {
+	Fields = fields;
 }
 
 float HeightMapInfo::Sample(int x, int z) const {

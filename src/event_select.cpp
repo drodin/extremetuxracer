@@ -120,12 +120,12 @@ void CEventSelect::Enter() {
 	Music.Play(param.menu_music, true);
 }
 
-void CEventSelect::Loop(float timestep) {
+void CEventSelect::Loop(float time_step) {
 	ScopedRenderMode rm(GUI);
 	Winsys.clear();
 
 	if (param.ui_snow) {
-		update_ui_snow(timestep);
+		update_ui_snow(time_step);
 		draw_ui_snow();
 	}
 

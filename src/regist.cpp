@@ -120,12 +120,12 @@ void CRegist::Enter() {
 	sCharFrame = AddFramedText(area.left + framewidth + arrowwidth, area.top, framewidth, frameheight, 3, colMBackgr, "", FT.GetSize());
 }
 
-void CRegist::Loop(float timestep) {
+void CRegist::Loop(float time_step) {
 	ScopedRenderMode rm(GUI);
 	Winsys.clear();
 
 	if (param.ui_snow) {
-		update_ui_snow(timestep);
+		update_ui_snow(time_step);
 		draw_ui_snow();
 	}
 

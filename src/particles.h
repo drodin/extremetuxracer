@@ -75,14 +75,14 @@ struct TFlakeArea {
 
 	TFlakeArea(
 	    std::size_t num_flakes,
-	    float xrange,
-	    float ytop,
-	    float yrange,
-	    float zback,
-	    float zrange,
-	    float minSize,
-	    float maxSize,
-	    float speed,
+	    float xrange_,
+	    float ytop_,
+	    float yrange_,
+	    float zback_,
+	    float zrange_,
+	    float minSize_,
+	    float maxSize_,
+	    float speed_,
 	    bool  rotate);
 	void Draw(const CControl* ctrl) const;
 	void Update(float timestep, float xcoeff, float ycoeff, float zcoeff);
@@ -143,7 +143,7 @@ struct TCurtain {
 	    float base_speed,
 	    float start_angle,
 	    float min_height,
-	    int curt_texture);
+	    int dense);
 	void SetStartParams(const CControl* ctrl);
 	void Draw() const;
 	void Update(float timestep, const TVector3d& drift, const CControl* ctrl);

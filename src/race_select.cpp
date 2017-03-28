@@ -185,12 +185,12 @@ void CRaceSelect::Enter() {
 	SetFocus(course);
 }
 
-void CRaceSelect::Loop(float timestep) {
+void CRaceSelect::Loop(float time_step) {
 	ScopedRenderMode rm(GUI);
 	Winsys.clear();
 
 	if (param.ui_snow) {
-		update_ui_snow(timestep);
+		update_ui_snow(time_step);
 		draw_ui_snow();
 	}
 

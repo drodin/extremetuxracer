@@ -153,7 +153,7 @@ struct TCharacter {
 	int type;
 	bool finishframesok;
 
-	CKeyframe* GetKeyframe(TFrameType type);
+	CKeyframe* GetKeyframe(TFrameType frametype);
 };
 
 class CCharacter {

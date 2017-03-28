@@ -107,7 +107,7 @@ bool	DirExists(const char *dirname);
 void	Message(const char *msg, const char *desc);
 void	Message(const char *msg);
 void	Message(const std::string& a, const std::string& b);
-void	Message(const std::string& a);
+void	Message(const std::string& msg);
 void	SaveMessages();
 
 // --------------------------------------------------------------------

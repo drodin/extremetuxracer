@@ -183,12 +183,12 @@ int resultlevel(std::size_t num, std::size_t numraces) {
 	return q + 1;
 }
 
-void CEvent::Loop(float timestep) {
+void CEvent::Loop(float time_step) {
 	ScopedRenderMode rm(GUI);
 	Winsys.clear();
 
 	if (param.ui_snow) {
-		update_ui_snow(timestep);
+		update_ui_snow(time_step);
 		draw_ui_snow();
 	}
 	DrawGUIBackground(Winsys.scale);

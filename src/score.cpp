@@ -245,12 +245,12 @@ void CScore::Enter() {
 	courseName = AddFramedText(area.left, frametop - 2 + frameheight + 20, framewidth, frameheight, 3, colMBackgr, "", FT.GetSize(), true);
 }
 
-void CScore::Loop(float timestep) {
+void CScore::Loop(float time_step) {
 	ScopedRenderMode rm(GUI);
 	Winsys.clear();
 
 	if (param.ui_snow) {
-		update_ui_snow(timestep);
+		update_ui_snow(time_step);
 		draw_ui_snow();
 	}
 

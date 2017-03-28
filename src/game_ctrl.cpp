@@ -271,9 +271,9 @@ const std::string& CPlayers::GetDirectAvatarName(std::size_t avatar) const {
 //				Character Administration
 // ********************************************************************
 
-CKeyframe* TCharacter::GetKeyframe(TFrameType type_) {
-	if (type_ < 0 || type_ >= NUM_FRAME_TYPES) return nullptr;
-	return &frames[type_];
+CKeyframe* TCharacter::GetKeyframe(TFrameType frametype) {
+	if (frametype < 0 || frametype >= NUM_FRAME_TYPES) return nullptr;
+	return &frames[frametype];
 }
 
 

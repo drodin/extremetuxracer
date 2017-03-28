@@ -68,12 +68,12 @@ void CHelp::Enter() {
 	footnote = AddLabel(Trans.Text(65), CENTER, AutoYPosN(90), colWhite);
 }
 
-void CHelp::Loop(float timestep) {
+void CHelp::Loop(float time_step) {
 	ScopedRenderMode rm(GUI);
 	Winsys.clear();
 
 	if (param.ui_snow) {
-		update_ui_snow(timestep);
+		update_ui_snow(time_step);
 		draw_ui_snow();
 	}
 

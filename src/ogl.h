@@ -48,7 +48,7 @@ void check_gl_error();
 void InitOpenglExtensions();
 void PrintGLInfo();
 
-void set_material_diffuse(const sf::Color& specular_colour);
+void set_material_diffuse(const sf::Color& diffuse_colour);
 void set_material(const sf::Color& diffuse_colour,
                   const sf::Color& specular_colour,
                   float specular_exp);

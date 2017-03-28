@@ -213,7 +213,7 @@ TTextField::TTextField(int x, int y, int width, int height, const sf::String& te
 	: TWidget(x, y, width, height)
 	, text(text_, FT.getCurrentFont(), FT.AutoSizeN(5))
 	, frame(sf::Vector2f(width-6.f, height-6.f))
-	, cursorShape(sf::Vector2f(2.f, 26.f * Winsys.scale))
+	, cursorShape(sf::Vector2f(2.f, 30.f * Winsys.scale))
 	, maxLng(32)
 	, time(0.0)
 	, cursor(false) {
@@ -233,10 +233,10 @@ void TTextField::Draw() const {
 		Winsys.draw(cursorShape);
 }
 
-void TTextField::TextEnter(char key) {
-	if (key != '\b') {
+void TTextField::TextEnter(char c) {
+	if (c != '\b') {
 		sf::String string = text.getString();
-		string.insert(cursorPos, key);
+		string.insert(cursorPos, c);
 		text.setString(string);
 		SetCursorPos(cursorPos+1);
 	}
@@ -244,16 +244,7 @@ void TTextField::TextEnter(char key) {
 
 void TTextField::SetCursorPos(std::size_t new_pos) {
 	cursorPos = new_pos;
-
-	float x = mouseRect.left + 20 - 2;
-	if (cursorPos != 0) {
-		sf::String temp = text.getString();
-
-		FT.AutoSizeN(5);
-		x += FT.GetTextWidth(temp.substring(0, cursorPos));
-	}
-
-	cursorShape.setPosition(x, mouseRect.top + 9);
+	cursorShape.setPosition(text.findCharacterPos(cursorPos).x, mouseRect.top + 9);
 }
 
 void TTextField::Focussed() {
@@ -266,6 +257,23 @@ void TTextField::Focussed() {
 		text.setOutlineColor(colWhite);
 		frame.setOutlineColor(colWhite);
 	}
+}
+
+bool TTextField::Click(int x, int y) {
+	if (TWidget::Click(x, y)) {
+		cursorPos = 0;
+		float first = text.findCharacterPos(cursorPos).x;
+		for (;;) {
+			float second = text.findCharacterPos(cursorPos + 1).x;
+			if ((first + second) / 2.f >= x || cursorPos >= text.getString().getSize())
+				break;
+			cursorPos++;
+			first = second;
+		}
+		cursorShape.setPosition(text.findCharacterPos(cursorPos).x, mouseRect.top + 9);
+		return true;
+	}
+	return false;
 }
 
 static void eraseFromText(sf::Text& text, std::size_t pos) {
@@ -641,13 +649,13 @@ void DrawGUIFrame() {
 	Winsys.draw(top_right);
 }
 
-void DrawGUIBackground(float logoScale) {
+void DrawGUIBackground(float scale) {
 	DrawGUIFrame();
 
 	static sf::Sprite logo(Tex.GetSFTexture(T_TITLE));
-	logoScale *= 0.5f;
-	logo.setScale(logoScale, logoScale);
-	logo.setPosition((Winsys.resolution.width - logo.getTextureRect().width*logoScale)/2, 5);
+	scale *= 0.5f;
+	logo.setScale(scale, scale);
+	logo.setPosition((Winsys.resolution.width - logo.getTextureRect().width*scale)/2, 5);
 	Winsys.draw(logo);
 }
 

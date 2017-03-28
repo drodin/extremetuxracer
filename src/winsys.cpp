@@ -76,7 +76,7 @@ float CWinsys::CalcScreenScale() const {
 	else return (resolution.height / 768.f);
 }
 
-void CWinsys::SetupVideoMode(const TScreenRes& resolution_) {
+void CWinsys::SetupVideoMode(const TScreenRes& res) {
 	int bpp = 32;
 	switch (param.bpp_mode) {
 		case 16:
@@ -93,7 +93,7 @@ void CWinsys::SetupVideoMode(const TScreenRes& resolution_) {
 	if (param.fullscreen)
 		style |= sf::Style::Fullscreen;
 
-	resolution = resolution_;
+	resolution = res;
 
 	ResetRenderMode();
 

@@ -485,14 +485,14 @@ bool CCharShape::Load(const std::string& dir, const std::string& filename, bool 
 	return true;
 }
 
-TVector3d CCharShape::AdjustRollvector(const CControl *ctrl, const TVector3d& vel_, const TVector3d& zvec) {
+TVector3d CCharShape::AdjustRollvector(const CControl *ctrl, const TVector3d& vel, const TVector3d& zvec) {
 	TMatrix<4, 4> rot_mat;
-	TVector3d vel = ProjectToPlane(zvec, vel_);
-	vel.Norm();
+	TVector3d v = ProjectToPlane(zvec, vel);
+	v.Norm();
 	if (ctrl->is_braking) {
-		rot_mat = RotateAboutVectorMatrix(vel, ctrl->turn_fact * BRAKING_ROLL_ANGLE);
+		rot_mat = RotateAboutVectorMatrix(v, ctrl->turn_fact * BRAKING_ROLL_ANGLE);
 	} else {
-		rot_mat = RotateAboutVectorMatrix(vel, ctrl->turn_fact * MAX_ROLL_ANGLE);
+		rot_mat = RotateAboutVectorMatrix(v, ctrl->turn_fact * MAX_ROLL_ANGLE);
 	}
 	return TransformVector(rot_mat, zvec);
 }

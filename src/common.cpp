@@ -86,9 +86,9 @@ void PrintVector4(const TVector4d& v) {
 	std::cout << v.x << "  " << v.y << "  " << v.z << "  " << v.w << '\n';
 }
 
-void PrintColor(const sf::Color& v) {
+void PrintColor(const sf::Color& c) {
 	std::cout.precision(3);
-	std::cout << v.r << "  " << v.g << "  " << v.b << '\n';
+	std::cout << c.r << "  " << c.g << "  " << c.b << '\n';
 }
 
 void PrintVector2(const TVector2d& v) {

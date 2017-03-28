@@ -473,27 +473,26 @@ void TFlake::Draw(const TPlane& lp, const TPlane& rp, bool rotate_flake, float d
 
 TFlakeArea::TFlakeArea(
     std::size_t num_flakes,
-    float _xrange,
-    float _ytop,
-    float _yrange,
-    float _zback,
-    float _zrange,
-    float _minSize,
-    float _maxSize,
-    float _speed,
-    bool  rotate) {
-	xrange = _xrange;
-	ytop = _ytop;
-	yrange = _yrange;
-	zback = _zback;
-	zrange = _zrange;
-	minSize = _minSize;
-	maxSize = _maxSize;
-	speed = _speed;
+    float xrange_,
+    float ytop_,
+    float yrange_,
+    float zback_,
+    float zrange_,
+    float minSize_,
+    float maxSize_,
+    float speed_,
+    bool  rotate)
+	: flakes(num_flakes) {
+	xrange = xrange_;
+	ytop = ytop_;
+	yrange = yrange_;
+	zback = zback_;
+	zrange = zrange_;
+	minSize = minSize_;
+	maxSize = maxSize_;
+	speed = speed_;
 	rotate_flake = rotate;
 	left = right = bottom = top = front = back = 0.f;
-
-	flakes.resize(num_flakes);
 }
 
 void TFlakeArea::Draw(const CControl *ctrl) const {

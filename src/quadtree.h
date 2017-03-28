@@ -100,7 +100,7 @@ struct quadsquare {
 	void	SetFields(CourseFields* fields);
 
 private:
-	quadsquare*	EnableDescendant(int count, int stack[],
+	quadsquare*	EnableDescendant(int count, int path[],
 	                             const quadcornerdata& cd);
 	quadsquare*	GetNeighbor(int dir, const quadcornerdata &cd);
 	clip_result_t ClipSquare(const quadcornerdata &cd);
@@ -113,7 +113,7 @@ private:
 	void	StaticCullAux(const quadcornerdata &cd, float ThresholdDetail,
 	                      int TargetLevel);
 	void	CreateChild(int index, const quadcornerdata &cd);
-	void	SetupCornerData(quadcornerdata *q, const quadcornerdata &pd,
+	void	SetupCornerData(quadcornerdata *q, const quadcornerdata &cd,
 	                        int ChildIndex);
 	void	UpdateAux(const quadcornerdata &cd, const float ViewerLocation[3],
 	                  float CenterError, clip_result_t vis);

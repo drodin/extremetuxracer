@@ -115,7 +115,8 @@ class TTextField : public TWidget {
 public:
 	TTextField(int x, int y, int width, int height, const sf::String& text_);
 	void Draw() const;
-	void TextEnter(char text);
+	void TextEnter(char c);
+	bool Click(int x, int y);
 	void Key(sf::Keyboard::Key key, bool released);
 	void Focussed();
 	void UpdateCursor(float timestep);
@@ -129,7 +130,7 @@ class TCheckbox : public TWidget {
 public:
 	bool checked;
 
-	TCheckbox(int x, int y, int width_, const sf::String& tag_);
+	TCheckbox(int x, int y, int width, const sf::String& tag_);
 	void Draw() const;
 	void SetPosition(int x, int y);
 	void SetChecked(bool c) { checked = c; }

@@ -279,16 +279,16 @@ void CTools::Motion(int x, int y) {
 	}
 }
 
-void CTools::Loop(float timestep) {
+void CTools::Loop(float time_step) {
 	switch (tool_mode) {
 		case 0:
-			RenderChar(timestep);
+			RenderChar(time_step);
 			break;
 		case 1:
-			RenderSingleFrame(timestep);
+			RenderSingleFrame(time_step);
 			break;
 		case 2:
-			RenderSequence(timestep);
+			RenderSequence(time_step);
 			break;
 	}
 }

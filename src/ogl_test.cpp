@@ -50,7 +50,7 @@ void COglTest::Keyb(sf::Keyboard::Key key, bool release, int x, int y) {
 	}
 }
 
-void COglTest::Loop(float timestep) {
+void COglTest::Loop(float time_step) {
 	// ------------- 3d scenery ---------------------------------------
 	ScopedRenderMode rm(TUX);
 	ClearRenderContext(colDDBackgr);
