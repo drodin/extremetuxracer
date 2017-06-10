@@ -63,7 +63,7 @@ void InitGame(int argc, char **argv) {
 
 int main(int argc, char **argv) {
 	std::cout << "\n----------- Extreme Tux Racer " ETR_VERSION_STRING " ----------------";
-	std::cout << "\n----------- (C) 2010-2016 Extreme Tuxracer Team  --------\n\n";
+	std::cout << "\n----------- (C) 2010-2017 Extreme Tuxracer Team  --------\n\n";
 
 	std::srand(std::time(nullptr));
 	InitConfig();
