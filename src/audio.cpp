@@ -171,6 +171,7 @@ void CMusic::LoadMusicList() {
 	// --- music ---
 	CSPList list;
 	if (list.Load(param.music_dir, "music.lst")) {
+		musics.reserve(list.size());
 		for (CSPList::const_iterator line = list.cbegin(); line != list.cend(); ++line) {
 			std::string name = SPStrN(*line, "name");
 			std::string musicfile = SPStrN(*line, "file");

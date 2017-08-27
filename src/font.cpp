@@ -133,6 +133,7 @@ bool CFont::LoadFontlist() {
 		return false;
 	}
 
+	fonts.reserve(list.size());
 	for (CSPList::const_iterator line = list.cbegin(); line != list.cend(); ++line) {
 		std::string fontfile = SPStrN(*line, "file");
 		std::string name = SPStrN(*line, "name");

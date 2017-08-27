@@ -607,6 +607,7 @@ void CFlakes::UpdateAreas(const CControl *ctrl) {
 
 void CFlakes::Init(int grade, const CControl *ctrl) {
 	Reset();
+	areas.reserve(3);
 	switch (grade) {
 		case 1:
 //			areas.emplace_back(400, 5, 4, 4,     -2, 4, 0.01, 0.02,    5, true);
@@ -864,6 +865,7 @@ void CCurtain::SetStartParams(const CControl *ctrl) {
 void CCurtain::Init(const CControl *ctrl) {
 	Reset();
 	InitChanges();
+	curtains.reserve(3);
 	switch (g_game.snow_id) {
 		case 1:
 //			curtains.emplace_back(3, 60, 10,       3, -100, -10, 1);

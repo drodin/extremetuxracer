@@ -246,6 +246,7 @@ bool CPlayers::LoadAvatars() {
 		return false;
 	}
 
+	avatars.reserve(list.size());
 	for (CSPList::const_iterator line = list.cbegin(); line != list.cend(); ++line) {
 		std::string filename = SPStrN(*line, "file", "unknown");
 		TTexture* texture = new TTexture();
