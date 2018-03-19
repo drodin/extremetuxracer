@@ -782,7 +782,7 @@ void quadsquare::Render(const quadcornerdata& cd, GLubyte *vnc_array) {
 			}
 
 			for (std::size_t j=0; j<numTerrains; j++) {
-				if (Course.TerrList[j].texture > 0) {
+				if (Course.TerrList[j].texture != nullptr) {
 					Course.TerrList[j].texture->Bind();
 
 					for (GLuint i=0; i<VertexArrayCounter; i++) {
