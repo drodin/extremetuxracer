@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<application>
+<component>
     <id type="desktop">etr.desktop</id>
-    <licence>CC0</licence>
+    <metadata_license>CC0</metadata_license>
     <name>Extreme Tux Racer</name>
     <summary>High speed arctic racing game based on Tux Racer</summary>
     <description>
@@ -16,10 +16,16 @@
         </p>
     </description>
     <screenshots>
-        <screenshot type="default" width="800" height="600">https://a.fsdn.com/con/app/proj/extremetuxracer/screenshots/ETR4.png</screenshot>
-        <screenshot width="800" height="600">https://a.fsdn.com/con/app/proj/extremetuxracer/screenshots/ETR3.png</screenshot>
-        <screenshot width="800" height="600">https://a.fsdn.com/con/app/proj/extremetuxracer/screenshots/ETR2.png</screenshot>
+        <screenshot type="default" width="800" height="600">
+            <image>https://a.fsdn.com/con/app/proj/extremetuxracer/screenshots/ETR4.png</image>
+        </screenshot>
+        <screenshot width="800" height="600">
+            <image>https://a.fsdn.com/con/app/proj/extremetuxracer/screenshots/ETR3.png</image>
+        </screenshot>
+        <screenshot width="800" height="600">
+            <image>https://a.fsdn.com/con/app/proj/extremetuxracer/screenshots/ETR2.png</image>
+        </screenshot>
     </screenshots>
     <url type="homepage">http://extremetuxracer.sourceforge.net/</url>
-    <updatecontact>https://sourceforge.net/p/extremetuxracer/discussion/</updatecontact>
-</application>
+    <update_contact>https://sourceforge.net/p/extremetuxracer/discussion/</update_contact>
+</component>
