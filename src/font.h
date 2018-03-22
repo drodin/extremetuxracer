@@ -21,7 +21,7 @@ GNU General Public License for more details.
 
 #include "bh.h"
 #include <vector>
-#include <map>
+#include <unordered_map>
 
 // --------------------------------------------------------------------
 //		CFont
@@ -31,7 +31,7 @@ GNU General Public License for more details.
 class CFont {
 private:
 	std::vector<sf::Font*> fonts;
-	std::map<std::string, std::size_t> fontindex;
+	std::unordered_map<std::string, std::size_t> fontindex;
 
 	int curr_font;
 	sf::Color curr_col;

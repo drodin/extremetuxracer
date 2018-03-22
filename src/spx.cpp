@@ -438,7 +438,7 @@ bool CSPList::Save(const std::string& dir, const std::string& filename) const {
 	return Save(dir + SEP + filename);
 }
 
-void CSPList::MakeIndex(std::map<std::string, std::size_t>& index, const std::string &tag) {
+void CSPList::MakeIndex(std::unordered_map<std::string, std::size_t>& index, const std::string &tag) {
 	index.clear();
 	std::size_t idx = 0;
 

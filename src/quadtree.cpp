@@ -591,7 +591,7 @@ bool quadsquare::BoxTest(int x, int z, float size, float miny, float maxy, float
 	float	dx = (std::fabs(x + half - Viewer[0]) - half) * std::fabs(ScaleX);
 	float	dy = std::fabs((miny + maxy) * 0.5f - Viewer[1]) - (maxy - miny) * 0.5f;
 	float	dz = (std::fabs(z + half - Viewer[2]) - half) * std::fabs(ScaleZ);
-	float	d = std::max(dx, std::max(dy , dz));
+	float	d = std::max(dx, std::max(dy, dz));
 
 	if (d < ERROR_MAGNIFICATION_THRESHOLD) {
 		error *= ERROR_MAGNIFICATION_AMOUNT;

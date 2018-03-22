@@ -89,8 +89,8 @@ const TScoreList* CScore::GetScorelist(const std::string& group, const std::stri
 bool CScore::SaveHighScore() const {
 	CSPList splist;
 
-	for (std::map<std::string, std::map<std::string, TScoreList>>::const_iterator i = Scorelist.cbegin(); i != Scorelist.cend(); ++i) {
-		for (std::map<std::string, TScoreList>::const_iterator j = i->second.cbegin(); j != i->second.cend(); ++j) {
+	for (std::unordered_map<std::string, std::unordered_map<std::string, TScoreList>>::const_iterator i = Scorelist.cbegin(); i != Scorelist.cend(); ++i) {
+		for (std::unordered_map<std::string, TScoreList>::const_iterator j = i->second.cbegin(); j != i->second.cend(); ++j) {
 			const TScoreList *list = &j->second;
 
 			int num = list->numScores;

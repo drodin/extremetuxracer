@@ -72,7 +72,7 @@ CCourse::CCourse()
 }
 
 CCourse::~CCourse() {
-	for (std::map<std::string, CCourseList>::iterator i = CourseLists.begin(); i != CourseLists.end(); ++i)
+	for (std::unordered_map<std::string, CCourseList>::iterator i = CourseLists.begin(); i != CourseLists.end(); ++i)
 		i->second.Free();
 	ResetCourse();
 }
@@ -385,6 +385,9 @@ void CCourse::LoadItemList() {
 		else
 			NocollArr.emplace_back(xx, FindYCoord(xx, zz), zz, height, diam, ObjTypes[type]);
 	}
+	std::sort(CollArr.begin(), CollArr.end(), [](const TCollidable& l, const TCollidable& r) -> bool {
+		return l.tree_type < r.tree_type;
+	});
 }
 
 // --------------------	LoadObjectMap ---------------------------------
@@ -692,7 +695,7 @@ void CCourseList::Free() {
 }
 
 void CCourse::FreeCourseList() {
-	for (std::map<std::string, CCourseList>::iterator i = CourseLists.begin(); i != CourseLists.end(); ++i)
+	for (std::unordered_map<std::string, CCourseList>::iterator i = CourseLists.begin(); i != CourseLists.end(); ++i)
 		i->second.Free();
 }
 
@@ -714,7 +717,7 @@ bool CCourse::LoadCourseList() {
 }
 
 CCourseList* CCourse::getGroup(std::size_t index) {
-	std::map<std::string, CCourseList>::iterator i = CourseLists.begin();
+	std::unordered_map<std::string, CCourseList>::iterator i = CourseLists.begin();
 	std::advance(i, index);
 	return &i->second;
 }

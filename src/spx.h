@@ -20,7 +20,7 @@ GNU General Public License for more details.
 #include "bh.h"
 #include <string>
 #include <list>
-#include <map>
+#include <unordered_map>
 
 extern const std::string emptyString;
 extern const std::string errorString;
@@ -108,7 +108,7 @@ public:
 	bool Save(const std::string &filepath) const;
 	bool Save(const std::string& dir, const std::string& filename) const;
 
-	void MakeIndex(std::map<std::string, std::size_t>& index, const std::string &tag);
+	void MakeIndex(std::unordered_map<std::string, std::size_t>& index, const std::string &tag);
 };
 
 #endif

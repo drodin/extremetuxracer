@@ -20,7 +20,7 @@ GNU General Public License for more details.
 
 #include "bh.h"
 #include <vector>
-#include <map>
+#include <unordered_map>
 
 class TTexture;
 
@@ -61,8 +61,8 @@ private:
 	TFog fog;
 	TFog default_fog;
 
-	std::map<std::string, std::size_t> EnvIndex;
-	std::map<std::string, std::size_t> LightIndex;
+	std::unordered_map<std::string, std::size_t> EnvIndex;
+	std::unordered_map<std::string, std::size_t> LightIndex;
 
 	void ResetSkybox();
 	void LoadSkybox(const std::string& EnvDir, bool high_res);

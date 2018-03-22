@@ -19,7 +19,7 @@ GNU General Public License for more details.
 
 #include "bh.h"
 #include <vector>
-#include <map>
+#include <unordered_map>
 
 // --------------------------------------------------------------------
 //				class CSound
@@ -31,7 +31,7 @@ struct TSound;
 class CSound {
 private:
 	std::vector<TSound*> sounds;
-	std::map<std::string, std::size_t> SoundIndex;
+	std::unordered_map<std::string, std::size_t> SoundIndex;
 public:
 	~CSound();
 	bool LoadChunk(const std::string& name, const std::string& filename);
@@ -71,11 +71,11 @@ class Music;
 class CMusic {
 private:
 	std::vector<sf::Music*> musics;
-	std::map<std::string, std::size_t> MusicIndex;
+	std::unordered_map<std::string, std::size_t> MusicIndex;
 
 	struct Situation { sf::Music* situation[SITUATION_COUNT]; };
 	std::vector<Situation> themes;
-	std::map<std::string, std::size_t> ThemesIndex;
+	std::unordered_map<std::string, std::size_t> ThemesIndex;
 
 	sf::Music* curr_music;	// current music piece
 	int curr_volume;

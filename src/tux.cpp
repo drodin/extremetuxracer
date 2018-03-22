@@ -221,7 +221,7 @@ bool CCharShape::RotateNode(std::size_t node_name, int axis, double angle) {
 }
 
 bool CCharShape::RotateNode(const std::string& node_trivialname, int axis, double angle) {
-	std::map<std::string, std::size_t>::const_iterator i = NodeIndex.find(node_trivialname);
+	std::unordered_map<std::string, std::size_t>::const_iterator i = NodeIndex.find(node_trivialname);
 	if (i == NodeIndex.end()) return false;
 	return RotateNode(i->second, axis, angle);
 }
@@ -275,7 +275,7 @@ bool CCharShape::ResetNode(std::size_t node_name) {
 }
 
 bool CCharShape::ResetNode(const std::string& node_trivialname) {
-	std::map<std::string, std::size_t>::const_iterator i = NodeIndex.find(node_trivialname);
+	std::unordered_map<std::string, std::size_t>::const_iterator i = NodeIndex.find(node_trivialname);
 	if (i == NodeIndex.end()) return false;
 	return ResetNode(i->second);
 }
@@ -330,7 +330,7 @@ void CCharShape::Reset() {
 // --------------------------------------------------------------------
 
 TCharMaterial* CCharShape::GetMaterial(const std::string& mat_name) {
-	std::map<std::string, std::size_t>::const_iterator i = MaterialIndex.find(mat_name);
+	std::unordered_map<std::string, std::size_t>::const_iterator i = MaterialIndex.find(mat_name);
 	if (i != MaterialIndex.end() && i->second < Materials.size()) {
 		return &Materials[i->second];
 	}

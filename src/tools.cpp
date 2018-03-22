@@ -87,8 +87,8 @@ void CCamera::Update(float timestep) {
 	if (pitchdown)	RotatePitch(2 * timestep);
 
 	glLoadIdentity();
-	glRotatef(-vpitch, 1.0, 0.0 , 0.0);
-	glRotatef(-vhead, 0.0, 1.0 , 0.0);
+	glRotatef(-vpitch, 1.0, 0.0, 0.0);
+	glRotatef(-vhead, 0.0, 1.0, 0.0);
 	glTranslatef(-xview, -yview, -zview);
 }
 

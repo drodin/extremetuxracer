@@ -20,7 +20,7 @@ GNU General Public License for more details.
 #include "bh.h"
 #include "keyframe.h"
 #include "spx.h"
-#include <map>
+#include <unordered_map>
 
 
 enum TFrameType {
@@ -71,9 +71,9 @@ struct TEvent {
 
 class CEvents {
 private:
-	std::map<std::string, std::size_t> RaceIndex;
-	std::map<std::string, std::size_t> CupIndex;
-	std::map<std::string, std::size_t> EventIndex;
+	std::unordered_map<std::string, std::size_t> RaceIndex;
+	std::unordered_map<std::string, std::size_t> CupIndex;
+	std::unordered_map<std::string, std::size_t> EventIndex;
 public:
 	std::vector<TRace> RaceList;
 	std::vector<TCup> CupList;

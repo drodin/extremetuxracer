@@ -20,7 +20,7 @@ GNU General Public License for more details.
 
 #include "bh.h"
 #include "mathlib.h"
-#include <map>
+#include <unordered_map>
 #include <vector>
 
 #define MAX_ACTIONS 8
@@ -75,7 +75,7 @@ private:
 	std::size_t Index[MAX_CHAR_NODES];
 	std::size_t numNodes;
 	std::vector<TCharMaterial> Materials;
-	std::map<std::string, std::size_t> MaterialIndex;
+	std::unordered_map<std::string, std::size_t> MaterialIndex;
 	bool useActions;
 	bool newActions;
 
@@ -117,7 +117,7 @@ public:
 	bool useHighlighting;
 	bool   highlighted;
 	std::size_t highlight_node;
-	std::map<std::string, std::size_t> NodeIndex;
+	std::unordered_map<std::string, std::size_t> NodeIndex;
 
 	// nodes
 	bool ResetNode(std::size_t node_name);
