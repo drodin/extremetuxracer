@@ -45,7 +45,7 @@ int CScore::AddScore(const std::string& group, const std::string& course, TScore
 		list->scores[0] = score;
 		list->numScores++;
 	} else if (num == MAX_SCORES) {
-		while (val <= list->scores[pos].points && pos < num) pos++;
+		while (pos < num && val <= list->scores[pos].points) pos++;
 		if (pos == lastpos) {
 			list->scores[pos] = score;
 		} else if (pos < lastpos) {
@@ -53,7 +53,7 @@ int CScore::AddScore(const std::string& group, const std::string& course, TScore
 			list->scores[pos] = score;
 		}
 	} else {
-		while (val <= list->scores[pos].points && pos < num) pos++;
+		while (pos < num && val <= list->scores[pos].points) pos++;
 		for (int i=num; i>pos; i--) list->scores[i] = list->scores[i-1];
 		list->scores[pos] = score;
 		list->numScores++;
