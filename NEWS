@@ -10,7 +10,6 @@ version 0.8 features the following changes:
 
 - Extreme Tux Racer now compiles with clang++
 - Minimum SFML version is now 2.4
-- Extreme Tux Racer comes with AppStream metadata
 - Autotools based build method can use opengl32 & glu32 instead of libGL & libGLU
 - New translations
   - Swedish
@@ -19,7 +18,9 @@ version 0.8 features the following changes:
 Version 0.7.5                                                 ??th of ???, 2018
 -------------------------------------------------------------------------------
 Bugfix release
+
 - Fixed a crash when score is not good enough to enter high score list
+- Extreme Tux Racer comes with AppStream metadata
 
 
 Version 0.7.4                                             27th of October, 2016
