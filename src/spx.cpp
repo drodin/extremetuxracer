@@ -33,7 +33,9 @@ const std::string errorString = "error";
 // --------------------------------------------------------------------
 
 std::string MakePathStr(const std::string& src, const std::string& add) {
-	std::string res = src;
+	std::string res;
+	res.reserve(src.size() + add.size() + 1);
+	res += src;
 	res += SEP;
 	res += add;
 	return res;
@@ -195,12 +197,8 @@ static std::string SPItemN(const std::string &s, const std::string &tag) {
 	std::size_t i = SPosN(s, tg);
 	if (i == std::string::npos) return "";
 	std::size_t ii = i + tg.size();
-	std::string item;
-	while (ii < s.size() && s[ii] != '[' && s[ii] != '#') {
-		item += s[ii];
-		ii++;
-	}
-	return item;
+	std::size_t iii = s.find_first_of("[#", ii);
+	return s.substr(ii, iii - ii);
 }
 
 std::string SPStrN(const std::string &s, const std::string &tag, const std::string& def) {
@@ -286,6 +284,9 @@ void SPAddFloatN(std::string &s, const std::string &tag, const float val, std::s
 }
 
 void SPAddStrN(std::string &s, const std::string &tag, const std::string &val) {
+	size_t addsize = tag.size() + 2 + val.size();
+	if (s.capacity() < s.size() + addsize)
+		s.reserve(s.size() + addsize);
 	s += '[';
 	s += tag;
 	s += ']';
@@ -315,6 +316,9 @@ void SPAddVec3N(std::string &s, const std::string &tag, const TVector3d &val, st
 }
 
 void SPAddBoolN(std::string &s, const std::string &tag, const bool val) {
+	size_t addsize = 2 + tag.size() + (val ? 4 : 5);
+	if (s.capacity() < s.size() + addsize)
+		s.reserve(s.size() + addsize);
 	s += '[';
 	s += tag;
 	s += ']';
@@ -368,7 +372,7 @@ void CSPList::Add(const std::string& line) {
 }
 
 void CSPList::Add(std::string&& line) {
-	push_back(line);
+	emplace_back(std::move(line));
 }
 
 void CSPList::Print() const {
@@ -377,7 +381,7 @@ void CSPList::Print() const {
 }
 
 bool CSPList::Load(const std::string &filepath) {
-	std::ifstream tempfile(filepath.c_str());
+	std::ifstream tempfile(filepath);
 
 	if (!tempfile) {
 		Message("CSPList::Load - unable to open " + filepath);
@@ -418,11 +422,11 @@ bool CSPList::Load(const std::string &filepath) {
 }
 
 bool CSPList::Load(const std::string& dir, const std::string& filename) {
-	return Load(dir + SEP + filename);
+	return Load(MakePathStr(dir, filename));
 }
 
 bool CSPList::Save(const std::string &filepath) const {
-	std::ofstream tempfile(filepath.c_str());
+	std::ofstream tempfile(filepath);
 	if (!tempfile) {
 		Message("CSPList::Save - unable to open " + filepath);
 		return false;
@@ -435,7 +439,7 @@ bool CSPList::Save(const std::string &filepath) const {
 }
 
 bool CSPList::Save(const std::string& dir, const std::string& filename) const {
-	return Save(dir + SEP + filename);
+	return Save(MakePathStr(dir, filename));
 }
 
 void CSPList::MakeIndex(std::unordered_map<std::string, std::size_t>& index, const std::string &tag) {

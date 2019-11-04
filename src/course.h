@@ -93,10 +93,10 @@ struct TItem : public TObject {
 };
 
 struct TCourse {
-	std::string name;
+	sf::String name;
 	std::string dir;
 	std::string author;
-	std::string desc[MAX_DESCRIPTION_LINES];
+	sf::String desc[MAX_DESCRIPTION_LINES];
 	std::size_t num_lines;
 	TTexture* preview;
 	TVector2d size;

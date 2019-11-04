@@ -173,7 +173,7 @@ bool FileExists(const std::string& filename) {
 }
 
 bool FileExists(const std::string& dir, const std::string& filename) {
-	return FileExists(dir + SEP + filename);
+	return FileExists(MakePathStr(dir, filename));
 }
 
 #ifndef OS_WIN32_MSC

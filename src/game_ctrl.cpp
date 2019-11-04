@@ -305,7 +305,7 @@ bool CCharacter::LoadCharacterList() {
 		std::string typestr = SPStrN(*line, "type", "unknown");
 		CharList[i].type = SPIntN(char_type_index, typestr, -1);
 
-		std::string charpath = param.char_dir + SEP + CharList[i].dir;
+		std::string charpath = MakePathStr(param.char_dir, CharList[i].dir);
 		if (DirExists(charpath.c_str())) {
 			std::string previewfile = charpath + SEP "preview.png";
 

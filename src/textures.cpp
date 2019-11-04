@@ -46,7 +46,7 @@ bool TTexture::Load(const std::string& filename, bool repeatable) {
 }
 
 bool TTexture::Load(const std::string& dir, const std::string& filename, bool repeatable) {
-	return Load(dir + SEP + filename, repeatable);
+	return Load(MakePathStr(dir, filename), repeatable);
 }
 
 void TTexture::Bind() {

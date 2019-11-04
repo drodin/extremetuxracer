@@ -259,7 +259,7 @@ void set_gl_options(TRenderMode mode) {
 			glEnable(GL_DEPTH_TEST);
 			glDisable(GL_CULL_FACE);
 			glEnable(GL_LIGHTING);
-			glDisable(GL_NORMALIZE);
+			glEnable(GL_NORMALIZE);
 			glEnable(GL_ALPHA_TEST);
 			glEnable(GL_BLEND);
 			glDisable(GL_STENCIL_TEST);

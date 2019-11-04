@@ -375,9 +375,8 @@ void CCourse::LoadItemList() {
 		std::string name = SPStrN(*line, "name");
 		std::size_t type = ObjectIndex[name];
 		if (ObjTypes[type].texture == nullptr && ObjTypes[type].drawable) {
-			std::string terrpath = param.obj_dir + SEP + ObjTypes[type].textureFile;
 			ObjTypes[type].texture = new TTexture();
-			ObjTypes[type].texture->Load(terrpath, false);
+			ObjTypes[type].texture->Load(MakePathStr(param.obj_dir, ObjTypes[type].textureFile), false);
 		}
 
 		if (ObjTypes[type].collidable)
@@ -455,9 +454,8 @@ bool CCourse::LoadAndConvertObjectMap() {
 				double xx = (nx - x) / (double)((double)nx - 1.0) * curr_course->size.x;
 				double zz = -(int)(ny - y) / (double)((double)ny - 1.0) * curr_course->size.y;
 				if (ObjTypes[type].texture == nullptr && ObjTypes[type].drawable) {
-					std::string terrpath = param.obj_dir + SEP + ObjTypes[type].textureFile;
 					ObjTypes[type].texture = new TTexture();
-					ObjTypes[type].texture->Load(terrpath, false);
+					ObjTypes[type].texture->Load(MakePathStr(param.obj_dir, ObjTypes[type].textureFile), false);
 				}
 
 				// set random height and diam - see constants above
@@ -649,7 +647,7 @@ bool CCourseList::Load(const std::string& dir) {
 		courses[i].name = SPStrN(*line1, "name");
 		courses[i].dir = SPStrN(*line1, "dir", "nodir");
 
-		std::string coursepath = dir + SEP + courses[i].dir;
+		std::string coursepath = MakePathStr(dir, courses[i].dir);
 		if (DirExists(coursepath.c_str())) {
 			// preview
 			std::string previewfile = coursepath + SEP "preview.png";

@@ -120,10 +120,7 @@ int CFont::LoadFont(const std::string& name, const std::string& path) {
 }
 
 int CFont::LoadFont(const std::string& name, const std::string& dir, const std::string& filename) {
-	std::string path = dir;
-	path += SEP;
-	path += filename;
-	return LoadFont(name, path);
+	return LoadFont(name, MakePathStr(dir, filename));
 }
 
 bool CFont::LoadFontlist() {
