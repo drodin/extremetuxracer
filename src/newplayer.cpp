@@ -95,11 +95,11 @@ void CNewPlayer::Enter() {
 	int prevoffs = 80;
 	prevleft = area.left + prevoffs;
 	prevtop = AutoYPosN(52);
-	prevwidth = 75 * Winsys.scale;
+	prevwidth = 128 * Winsys.scale;
 
 	ResetGUI();
 
-	avatar = AddUpDown(area.left + prevwidth + prevoffs + 8, prevtop, 0, (int)Players.numAvatars() - 1, 0, prevwidth - 34);
+	avatar = AddUpDown(area.left + prevwidth + prevoffs + 8, prevtop, 0, (int)Players.numAvatars() - 1, 0);
 	int siz = FT.AutoSizeN(5);
 	textbuttons[0] = AddTextButton(Trans.Text(8), area.left+50, AutoYPosN(70), siz);
 	float len = FT.GetTextWidth(Trans.Text(15));
