@@ -185,7 +185,7 @@ bool CPlayers::LoadPlayers() {
 		plyr[i].avatar = FindAvatar(SPStrN(*line, "avatar"));
 		plyr[i].ctrl = nullptr;
 		int active = SPIntN(*line, "active", 0);
-		if (active > 0) g_game.start_player = plyr.size()-1;
+		if (active > 0) g_game.start_player = i;
 	}
 	if (plyr.empty()) {
 		SetDefaultPlayers();
