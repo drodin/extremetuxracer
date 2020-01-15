@@ -177,6 +177,7 @@ void CRaceSelect::Enter() {
 	textbuttons[1] = AddTextButton(Trans.Text(8), area.left + 50, AutoYPosN(85), siz);
 	FT.AutoSizeN(4);
 
+	prevGroup = distance(Course.CourseLists.begin(), Course.CourseLists.find(Course.currentCourseList->name));
 	courseGroup = AddUpDown(area.left + framewidth + 8, frametop, 0, (int)Course.CourseLists.size() - 1, prevGroup);
 	courseGroupName = AddFramedText(area.left, frametop, framewidth, frameheight, 3, colMBackgr, Course.currentCourseList->name, FT.GetSize(), true);
 	course = AddUpDown(area.left + framewidth + 8, frametop + frameheight + 20, 0, (int)Course.currentCourseList->size() - 1, g_game.course ? (int)Course.GetCourseIdx(g_game.course) : 0);

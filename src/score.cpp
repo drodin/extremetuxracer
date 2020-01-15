@@ -230,9 +230,10 @@ void CScore::Enter() {
 	dd4 = 375 * Winsys.scale;
 
 	CourseList = &Course.CourseLists["default"];
+	prevGroup = distance(Course.CourseLists.begin(), Course.CourseLists.find(CourseList->name));
 
 	ResetGUI();
-	courseGroup = AddUpDown(area.right + 8, frametop, 0, (int)Course.CourseLists.size() - 1, 0);
+	courseGroup = AddUpDown(area.right + 8, frametop, 0, (int)Course.CourseLists.size() - 1, prevGroup);
 	course = AddUpDown(area.right + 8, frametop + frameheight + 20, 0, (int)CourseList->size() - 1, 0);
 	int siz = FT.AutoSizeN(5);
 	textbutton = AddTextButton(Trans.Text(64), CENTER, AutoYPosN(85), siz);
@@ -241,7 +242,7 @@ void CScore::Enter() {
 	headline = AddLabel(Trans.Text(62), CENTER, AutoYPosN(18), colWhite);
 
 	FT.AutoSizeN(4);
-	courseGroupName = AddFramedText(area.left, frametop - 2, framewidth, frameheight, 3, colMBackgr, "default", FT.GetSize(), true);
+	courseGroupName = AddFramedText(area.left, frametop - 2, framewidth, frameheight, 3, colMBackgr, CourseList->name, FT.GetSize(), true);
 	courseName = AddFramedText(area.left, frametop - 2 + frameheight + 20, framewidth, frameheight, 3, colMBackgr, "", FT.GetSize(), true);
 }
 
