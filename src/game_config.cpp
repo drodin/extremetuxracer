@@ -56,7 +56,7 @@ void LoadConfigFile() {
 	}
 
 	for (CSPList::const_iterator line = list.cbegin(); line != list.cend(); ++line) {
-		param.fullscreen = SPBoolN(*line, "fullscreen", false);
+		param.fullscreen = SPBoolN(*line, "fullscreen", true);
 		param.res_type = SPIntN(*line, "res_type", 0);
 		param.perf_level = SPIntN(*line, "detail_level", 3);
 		param.language = Trans.GetLangIdx(SPStrN(*line, "language", "EN_en"));
