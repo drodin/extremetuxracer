@@ -451,11 +451,21 @@ TIconButton* AddIconButton(int x, int y, const sf::Texture& texture, float size,
 }
 
 TArrow::TArrow(int x, int y, bool down_)
+#ifndef MOBILE
 	: TWidget(x, y, 32 * Winsys.scale / 0.8f, 16 * Winsys.scale / 0.8f)
+#else
+	: TWidget(x, y, 16 * Winsys.scale / 0.6f, 32 * Winsys.scale / 0.6f)
+#endif
 	, sprite(Tex.GetSFTexture(LB_ARROWS))
 	, down(down_) {
+#ifndef MOBILE
 	sprite.setPosition(x, y);
 	sprite.setScale(Winsys.scale / 0.8f, Winsys.scale / 0.8f);
+#else
+	sprite.setPosition(x, y + 30 * Winsys.scale / 0.6f);
+	sprite.setRotation(-90.f);
+	sprite.setScale(Winsys.scale / 0.6f, Winsys.scale / 0.6f);
+#endif
 
 	SetTexture();
 }
@@ -494,9 +504,15 @@ TArrow* AddArrow(int x, int y, bool down) {
 
 
 TUpDown::TUpDown(int x, int y, int min_, int max_, int value_, int distance, bool swapArrows_)
+#ifndef MOBILE
 	: TWidget(x, y, 32 * Winsys.scale / 0.8f, (32 + distance)*Winsys.scale / 0.8f)
 	, up(x, y + (16 + distance)*Winsys.scale / 0.8f, true)
 	, down(x, y, false)
+#else
+	: TWidget(x - 16 * Winsys.scale / 0.6f, y, 32 * Winsys.scale / 0.6f, 32 * Winsys.scale / 0.6f + ((distance <= 2)?16:distance))
+	, up(x + ((distance <= 2)?16:distance), y, true)
+	, down(x - 16 * Winsys.scale / 0.6f, y, false)
+#endif
 	, higher(swapArrows_ ? up : down)
 	, lower(swapArrows_ ? down : up)
 	, value(value_)
@@ -579,6 +595,9 @@ void TUpDown::SetMaximum(int max_) {
 
 TUpDown* AddUpDown(int x, int y, int minimum, int maximum, int value, int distance, bool swapArrows) {
 	locked_UD = true;
+#ifdef MOBILE
+	swapArrows = false;
+#endif
 	return static_cast<TUpDown*>(AddWidget(new TUpDown(x, y, minimum, maximum, value, distance, swapArrows)));
 }
 

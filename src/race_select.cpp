@@ -182,9 +182,17 @@ void CRaceSelect::Enter() {
 	FT.AutoSizeN(4);
 
 	prevGroup = distance(Course.CourseLists.begin(), Course.CourseLists.find(Course.currentCourseList->name));
+#ifndef MOBILE
 	courseGroup = AddUpDown(area.left + framewidth + 8, frametop, 0, (int)Course.CourseLists.size() - 1, prevGroup);
+#else
+	courseGroup = AddUpDown(area.left, frametop, 0, (int)Course.CourseLists.size() - 1, prevGroup, framewidth);
+#endif
 	courseGroupName = AddFramedText(area.left, frametop, framewidth, frameheight, 3, colMBackgr, Course.currentCourseList->name, FT.GetSize(), true);
+#ifndef MOBILE
 	course = AddUpDown(area.left + framewidth + 8, frametop + frameheight + 20, 0, (int)Course.currentCourseList->size() - 1, g_game.course ? (int)Course.GetCourseIdx(g_game.course) : 0);
+#else
+	course = AddUpDown(area.left, frametop + frameheight + 20, 0, (int)Course.currentCourseList->size() - 1, g_game.course ? (int)Course.GetCourseIdx(g_game.course) : 0, framewidth);
+#endif
 	courseName = AddFramedText(area.left, frametop + frameheight + 20, framewidth, frameheight, 3, colMBackgr, "", FT.GetSize(), true);
 
 	SetFocus(course);

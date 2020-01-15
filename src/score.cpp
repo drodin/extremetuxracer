@@ -237,8 +237,13 @@ void CScore::Enter() {
 	prevGroup = distance(Course.CourseLists.begin(), Course.CourseLists.find(CourseList->name));
 
 	ResetGUI();
+#ifndef MOBILE
 	courseGroup = AddUpDown(area.right + 8, frametop, 0, (int)Course.CourseLists.size() - 1, prevGroup);
 	course = AddUpDown(area.right + 8, frametop + frameheight + 20, 0, (int)CourseList->size() - 1, 0);
+#else
+	courseGroup = AddUpDown(area.left, frametop, 0, (int)Course.CourseLists.size() - 1, prevGroup, framewidth);
+	course = AddUpDown(area.left, frametop + frameheight + 20, 0, (int)CourseList->size() - 1, 0, framewidth);
+#endif
 	int siz = FT.AutoSizeN(5);
 	textbutton = AddTextButton(Trans.Text(64), CENTER, AutoYPosN(85), siz);
 

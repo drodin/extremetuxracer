@@ -106,7 +106,11 @@ void CNewPlayer::Enter() {
 
 	ResetGUI();
 
+#ifndef MOBILE
 	avatar = AddUpDown(area.left + prevwidth + prevoffs + 8, prevtop, 0, (int)Players.numAvatars() - 1, 0);
+#else
+	avatar = AddUpDown(area.left + prevoffs, prevtop + prevwidth / 2 / Winsys.scale, 0, (int)Players.numAvatars() - 1, 0, prevwidth);
+#endif
 	int siz = FT.AutoSizeN(5);
 #ifndef MOBILE
 	textbuttons[0] = AddTextButton(Trans.Text(8), area.left+50, AutoYPosN(70), siz);

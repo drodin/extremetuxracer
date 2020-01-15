@@ -102,8 +102,13 @@ void CEventSelect::Enter() {
 #endif
 
 	ResetGUI();
+#ifndef MOBILE
 	event = AddUpDown(area.right+8, frametop1, 0, (int)Events.EventList.size() - 1, 0);
 	cup = AddUpDown(area.right + 8, frametop2, 0, (int)Events.EventList[0].cups.size() - 1, 0);
+#else
+	event = AddUpDown(area.left, frametop1, 0, (int)Events.EventList.size() - 1, 0, framewidth);
+	cup = AddUpDown(area.left, frametop2, 0, (int)Events.EventList[0].cups.size() - 1, 0, framewidth);
+#endif
 
 	unsigned int siz = FT.AutoSizeN(5);
 

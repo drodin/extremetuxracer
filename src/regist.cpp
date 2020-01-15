@@ -104,8 +104,13 @@ void CRegist::Enter() {
 	texsize = 128 * Winsys.scale;
 
 	ResetGUI();
+#ifndef MOBILE
 	player = AddUpDown(area.left + framewidth + 8, area.top, 0, (int)Players.numPlayers() - 1, (int)g_game.start_player);
 	character = AddUpDown(area.left + framewidth * 2 + arrowwidth + 8, area.top, 0, (int)Char.CharList.size() - 1, 0);
+#else
+	player = AddUpDown(area.left, area.top, 0, (int)Players.numPlayers() - 1, (int)g_game.start_player, framewidth);
+	character = AddUpDown(area.left + framewidth + arrowwidth, area.top, 0, (int)Char.CharList.size() - 1, 0, framewidth);
+#endif
 	int siz = FT.AutoSizeN(5);
 #ifndef MOBILE
 	textbuttons[0] = AddTextButton(Trans.Text(60), CENTER, AutoYPosN(62), siz);
