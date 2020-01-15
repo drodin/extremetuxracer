@@ -286,7 +286,7 @@ void CScore::Loop(float time_step) {
 			              Float_StrN(list->scores[i].time, 1) + "  " + Trans.Text(98));
 		}
 	} else
-		FT.DrawString(CENTER, area.top + 140, Trans.Text(63));
+		FT.DrawString(CENTER, listtop, Trans.Text(63));
 
 	DrawGUI();
 
