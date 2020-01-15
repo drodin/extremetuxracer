@@ -44,18 +44,6 @@ CWinsys::CWinsys()
 		else
 			break;
 	}
-
-	sf::VideoMode desktopMode = sf::VideoMode::getDesktopMode();
-	resolutions[0] = TScreenRes(desktopMode.width, desktopMode.height);
-	resolutions[1] = TScreenRes(800, 600);
-	resolutions[2] = TScreenRes(1024, 768);
-	resolutions[3] = TScreenRes(1152, 864);
-	resolutions[4] = TScreenRes(1280, 960);
-	resolutions[5] = TScreenRes(1280, 1024);
-	resolutions[6] = TScreenRes(1360, 768);
-	resolutions[7] = TScreenRes(1400, 1050);
-	resolutions[8] = TScreenRes(1440, 900);
-	resolutions[9] = TScreenRes(1680, 1050);
 }
 
 const TScreenRes& CWinsys::GetResolution(std::size_t idx) const {
@@ -98,17 +86,17 @@ void CWinsys::SetupVideoMode(const TScreenRes& res) {
 	ResetRenderMode();
 
 #ifdef USE_STENCIL_BUFFER
-	sf::ContextSettings ctx(bpp, 8, 0, 1, 2);
+	sf::ContextSettings ctx(24, 8, 0, 1, 2);
 #else
-	sf::ContextSettings ctx(bpp, 0, 0, 1, 2);
+	sf::ContextSettings ctx(24, 0, 0, 1, 2);
 #endif
-	window.create(sf::VideoMode(resolution.width, resolution.height, bpp), WINDOW_TITLE, style, ctx);
+	window->create(sf::VideoMode(resolution.width, resolution.height, bpp), WINDOW_TITLE, style, ctx);
 	if (param.framerate)
-		window.setFramerateLimit(param.framerate);
+		window->setFramerateLimit(param.framerate);
 #ifdef _WIN32
 	HICON icon = LoadIcon(GetModuleHandle(NULL), (LPCWSTR)IDI_APPLICATION);
-	SendMessageW(window.getSystemHandle(), WM_SETICON, ICON_BIG, (LPARAM)icon);
-	SendMessageW(window.getSystemHandle(), WM_SETICON, ICON_SMALL, (LPARAM)icon);
+	SendMessageW(window->getSystemHandle(), WM_SETICON, ICON_BIG, (LPARAM)icon);
+	SendMessageW(window->getSystemHandle(), WM_SETICON, ICON_SMALL, (LPARAM)icon);
 #endif
 
 	scale = CalcScreenScale();
@@ -124,18 +112,31 @@ void CWinsys::SetupVideoMode(int width, int height) {
 }
 
 void CWinsys::Init() {
+	window = new sf::RenderWindow();
+	sf::VideoMode desktopMode = sf::VideoMode::getDesktopMode();
+	resolutions[0] = TScreenRes(desktopMode.width, desktopMode.height);
+	resolutions[1] = TScreenRes(800, 600);
+	resolutions[2] = TScreenRes(1024, 768);
+	resolutions[3] = TScreenRes(1152, 864);
+	resolutions[4] = TScreenRes(1280, 960);
+	resolutions[5] = TScreenRes(1280, 1024);
+	resolutions[6] = TScreenRes(1360, 768);
+	resolutions[7] = TScreenRes(1400, 1050);
+	resolutions[8] = TScreenRes(1440, 900);
+	resolutions[9] = TScreenRes(1680, 1050);
 	SetupVideoMode(GetResolution(param.res_type));
 }
 
 void CWinsys::KeyRepeat(bool repeat) {
-	window.setKeyRepeatEnabled(repeat);
+	window->setKeyRepeatEnabled(repeat);
 }
 
 void CWinsys::Quit() {
 	Score.SaveHighScore();
 	SaveMessages();
 	if (g_game.argument < 1) Players.SavePlayers();
-	window.close();
+	window->close();
+	delete window;
 }
 
 void CWinsys::Terminate() {
@@ -166,8 +167,8 @@ void CWinsys::PrintJoystickInfo() const {
 
 void CWinsys::TakeScreenshot() const {
 	sf::Texture tex;
-	tex.create(window.getSize().x, window.getSize().y);
-	tex.update(window);
+	tex.create(window->getSize().x, window->getSize().y);
+	tex.update(*window);
 	sf::Image img = tex.copyToImage();
 
 	std::string path = param.screenshot_dir;

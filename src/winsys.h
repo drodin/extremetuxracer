@@ -36,7 +36,7 @@ private:
 
 	// sfml window
 	bool sfmlRenders;
-	sf::RenderWindow window;
+	sf::RenderWindow* window;
 	TScreenRes resolutions[NUM_RESOLUTIONS];
 	TScreenRes auto_resolution;
 	float CalcScreenScale() const;
@@ -54,16 +54,16 @@ public:
 	void SetupVideoMode(int width, int height);
 	void KeyRepeat(bool repeat);
 	void PrintJoystickInfo() const;
-	void ShowCursor(bool visible) { window.setMouseCursorVisible(visible); }
-	void SwapBuffers() { window.display(); }
+	void ShowCursor(bool visible) { window->setMouseCursorVisible(visible); }
+	void SwapBuffers() { window->display(); }
 	void Quit();
 	void Terminate();
-	void draw(const sf::Drawable& drawable, const sf::RenderStates& states = sf::RenderStates::Default) { window.draw(drawable, states); }
-	void clear() { window.clear(colBackgr); }
-	void beginSFML() { if (!sfmlRenders) window.pushGLStates(); sfmlRenders = true; }
-	void endSFML() { if (sfmlRenders) window.popGLStates(); sfmlRenders = false; }
-	bool PollEvent(sf::Event& event) { return window.pollEvent(event); }
-	const sf::Window& getWindow() const { return window; }
+	void draw(const sf::Drawable& drawable, const sf::RenderStates& states = sf::RenderStates::Default) { window->draw(drawable, states); }
+	void clear() { window->clear(colBackgr); }
+	void beginSFML() { if (!sfmlRenders) window->pushGLStates(); sfmlRenders = true; }
+	void endSFML() { if (sfmlRenders) window->popGLStates(); sfmlRenders = false; }
+	bool PollEvent(sf::Event& event) { return window->pollEvent(event); }
+	const sf::Window& getWindow() const { return *window; }
 	void TakeScreenshot() const;
 };
 
