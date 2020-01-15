@@ -377,7 +377,7 @@ TCheckbox* AddCheckbox(int x, int y, int width, const sf::String& tag) {
 }
 
 TIconButton::TIconButton(int x, int y, const sf::Texture& texture, float size_, int max_, int value_)
-	: TWidget(x, y, 32, 32)
+	: TWidget(x, y, static_cast<int>(size_), static_cast<int>(size_))
 	, sprite(texture)
 	, frame(sf::Vector2f(size_, size_))
 	, size(size_)
