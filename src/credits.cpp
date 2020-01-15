@@ -40,7 +40,7 @@ static float y_offset = 0;
 static bool moving = true;
 sf::RenderTexture* RT = 0;
 sf::VertexArray arr(sf::Quads, 12);
-sf::RenderStates states(sf::BlendAlpha);
+sf::RenderStates* states;
 
 void CCredits::LoadCreditList() {
 	CSPList list;
@@ -93,7 +93,7 @@ void CCredits::DrawCreditsText(float time_step) {
 	}
 	RT->display();
 
-	Winsys.draw(arr, states);
+	Winsys.draw(arr, *states);
 
 	if (offs < TOP_Y) y_offset = 0;
 }
@@ -146,10 +146,13 @@ void CCredits::Enter() {
 	arr[10] = sf::Vertex(sf::Vector2f(w, h - BOTT_Y + FADE), colTBackr, sf::Vector2f(w, RT->getSize().y));
 	arr[11] = sf::Vertex(sf::Vector2f(w, h - BOTT_Y), colWhite, sf::Vector2f(w, RT->getSize().y - FADE));
 
-	states.texture = &RT->getTexture();
+	states = new sf::RenderStates(sf::BlendAlpha);
+	states->texture = &RT->getTexture();
 }
 
 void CCredits::Exit() {
+	delete states;
+	states = nullptr;
 	delete RT;
 	RT = nullptr;
 	CreditList.clear();
