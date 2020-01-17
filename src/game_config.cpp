@@ -275,6 +275,14 @@ void InitConfig() {
 	if (FileExists(param.configfile)) {
 		config_exist = 1;
 	}
+#elif defined(ANDROID)
+	param.config_dir = "/data/data/" APPLICATION_ID "/files";
+	param.data_dir = "etr";
+	param.save_dir = param.config_dir;
+	param.configfile = param.config_dir + SEP "options.txt";
+	if (FileExists(param.configfile)) {
+		config_exist = 1;
+	}
 #else /* WIN32 */
 
 #if 0
