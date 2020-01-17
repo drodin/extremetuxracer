@@ -29,7 +29,11 @@ GNU General Public License for more details.
 #include "tool_char.h"
 #include "env.h"
 #include "winsys.h"
+#if !defined(__APPLE__)
 #include <GL/glu.h>
+#else
+#include <OpenGL/glu.h>
+#endif
 
 CGluCamera GluCamera;
 

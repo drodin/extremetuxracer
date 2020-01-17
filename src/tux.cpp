@@ -30,7 +30,11 @@ still shaped with spheres.
 #include "textures.h"
 #include "course.h"
 #include "physics.h"
+#if !defined(__APPLE__)
 #include <GL/glu.h>
+#else
+#include <OpenGL/glu.h>
+#endif
 #include <algorithm>
 
 #define MAX_ARM_ANGLE2 30.0

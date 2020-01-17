@@ -26,7 +26,11 @@ GNU General Public License for more details.
 #include <cstddef>
 #include <string>
 
+#if !defined(__APPLE__)
 #include <GL/gl.h>
+#else
+#include <OpenGL/gl.h>
+#endif
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
@@ -68,7 +72,13 @@ GNU General Public License for more details.
 #	include <pwd.h>
 #	include <dirent.h>
 #	include <sys/time.h>
+#if !defined(__APPLE__)
 #	include <GL/glx.h>
+#endif
+#if defined(__APPLE__)
+	typedef void (* PFNGLLOCKARRAYSEXTPROC) (GLint first, GLsizei count);
+	typedef void (* PFNGLUNLOCKARRAYSEXTPROC) (void);
+#endif
 #	define SEP "/"
 #endif
 

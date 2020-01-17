@@ -22,7 +22,11 @@ GNU General Public License for more details.
 #include "ogl.h"
 #include "spx.h"
 #include "winsys.h"
+#if !defined(__APPLE__)
 #include <GL/glu.h>
+#else
+#include <OpenGL/glu.h>
+#endif
 #include <stack>
 #include <climits> // INT_MAX
 
