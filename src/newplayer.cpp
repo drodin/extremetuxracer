@@ -55,8 +55,13 @@ void CNewPlayer::Keyb(sf::Keyboard::Key key, bool release, int x, int y) {
 			State::manager.RequestEnterState(Regist);
 			break;
 		case sf::Keyboard::Return:
+#ifndef ANDROID
 			if (textbuttons[0]->focussed()) State::manager.RequestEnterState(Regist);
 			else QuitAndAddPlayer();
+#else
+			if (textfield->focussed())
+				DecreaseFocus();
+#endif
 			break;
 		default:
 			break;
@@ -122,6 +127,9 @@ void CNewPlayer::Loop(float time_step) {
 	}
 
 	textfield->UpdateCursor(time_step);
+#ifdef ANDROID
+	sf::Keyboard::setVirtualKeyboardVisible(textfield->focussed());
+#endif
 
 	DrawGUIBackground(Winsys.scale);
 
