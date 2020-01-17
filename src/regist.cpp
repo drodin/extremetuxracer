@@ -107,8 +107,13 @@ void CRegist::Enter() {
 	player = AddUpDown(area.left + framewidth + 8, area.top, 0, (int)Players.numPlayers() - 1, (int)g_game.start_player);
 	character = AddUpDown(area.left + framewidth * 2 + arrowwidth + 8, area.top, 0, (int)Char.CharList.size() - 1, 0);
 	int siz = FT.AutoSizeN(5);
+#ifndef MOBILE
 	textbuttons[0] = AddTextButton(Trans.Text(60), CENTER, AutoYPosN(62), siz);
 	textbuttons[1] = AddTextButton(Trans.Text(61), CENTER, AutoYPosN(70), siz);
+#else
+	textbuttons[0] = AddTextButton(Trans.Text(60), CENTER, AutoYPosN(75), siz);
+	textbuttons[1] = AddTextButton(Trans.Text(61), CENTER, AutoYPosN(83), siz);
+#endif
 
 	FT.AutoSizeN(3);
 	int top = AutoYPosN(24);
@@ -135,14 +140,22 @@ void CRegist::Loop(float time_step) {
 	sPlayerFrame->SetString(tplayer->name);
 	sPlayerFrame->Focussed(player->focussed());
 	tplayer->avatar->texture->DrawFrame(
+#ifndef MOBILE
 	    area.left + 60, AutoYPosN(40), texsize, texsize, 3, colWhite);
+#else
+	    area.left + 60, AutoYPosN(45), texsize, texsize, 3, colWhite);
+#endif
 
 	sCharFrame->SetString(Char.CharList[character->GetValue()].name);
 	sCharFrame->Focussed(character->focussed());
 	if (Char.CharList[character->GetValue()].preview != nullptr)
 		Char.CharList[character->GetValue()].preview->DrawFrame(
 		    area.right - texsize - 60 - arrowwidth,
+#ifndef MOBILE
 		    AutoYPosN(40), texsize, texsize, 3, colWhite);
+#else
+			AutoYPosN(45), texsize, texsize, 3, colWhite);
+#endif
 
 	DrawGUI();
 

@@ -93,8 +93,13 @@ void CEventSelect::Enter() {
 	int framewidth = 500 * Winsys.scale;
 	int frameheight = 50 * Winsys.scale;
 	TArea area = AutoAreaN(30, 80, framewidth);
+#ifndef MOBILE
 	int frametop1 = AutoYPosN(35);
 	int frametop2 = AutoYPosN(50);
+#else
+	int frametop1 = AutoYPosN(38);
+	int frametop2 = AutoYPosN(58);
+#endif
 
 	ResetGUI();
 	event = AddUpDown(area.right+8, frametop1, 0, (int)Events.EventList.size() - 1, 0);
@@ -103,14 +108,24 @@ void CEventSelect::Enter() {
 	unsigned int siz = FT.AutoSizeN(5);
 
 	float len = FT.GetTextWidth(Trans.Text(9));
+#ifndef MOBILE
 	textbuttons[0] = AddTextButton(Trans.Text(9), area.right-len-50, AutoYPosN(70), siz);
 	textbuttons[1] = AddTextButton(Trans.Text(8), area.left+50, AutoYPosN(70), siz);
+#else
+	textbuttons[0] = AddTextButton(Trans.Text(9), area.right-len-50, AutoYPosN(80), siz);
+	textbuttons[1] = AddTextButton(Trans.Text(8), area.left+50, AutoYPosN(80), siz);
+#endif
 	SetFocus(textbuttons[0]);
 
 	FT.AutoSizeN(3);
 	selectEvent = AddLabel(Trans.Text(6), area.left, AutoYPosN(30), colWhite);
+#ifndef MOBILE
 	selectCup = AddLabel(Trans.Text(7), area.left, AutoYPosN(45), colWhite);
 	cupLocked = AddLabel(Trans.Text(10), CENTER, AutoYPosN(58), colLGrey);
+#else
+	selectCup = AddLabel(Trans.Text(7), area.left, AutoYPosN(50), colWhite);
+	cupLocked = AddLabel(Trans.Text(10), CENTER, AutoYPosN(68), colLGrey);
+#endif
 
 	FT.AutoSizeN(4);
 	selectedEvent = AddFramedText(area.left, frametop1, framewidth, frameheight, 3, colMBackgr, "", FT.GetSize(), true);

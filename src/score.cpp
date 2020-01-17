@@ -223,7 +223,11 @@ void CScore::Enter() {
 	area = AutoAreaN(30, 80, framewidth);
 	FT.AutoSizeN(3);
 	linedist = FT.AutoDistanceN(1);
+#ifndef MOBILE
 	listtop = AutoYPosN(46);
+#else
+	listtop = AutoYPosN(52);
+#endif
 	dd1 = 50 * Winsys.scale;
 	dd2 = 115 * Winsys.scale;
 	dd3 = 250 * Winsys.scale;
@@ -238,8 +242,10 @@ void CScore::Enter() {
 	int siz = FT.AutoSizeN(5);
 	textbutton = AddTextButton(Trans.Text(64), CENTER, AutoYPosN(85), siz);
 
+#ifndef MOBILE
 	FT.AutoSizeN(7);
 	headline = AddLabel(Trans.Text(62), CENTER, AutoYPosN(18), colWhite);
+#endif
 
 	FT.AutoSizeN(4);
 	courseGroupName = AddFramedText(area.left, frametop - 2, framewidth, frameheight, 3, colMBackgr, CourseList->name, FT.GetSize(), true);

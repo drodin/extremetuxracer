@@ -150,7 +150,11 @@ void CRaceSelect::Enter() {
 
 	framewidth = 550 * Winsys.scale;
 	frameheight = 50 * Winsys.scale;
+#ifndef MOBILE
 	frametop = AutoYPosN(30);
+#else
+	frametop = AutoYPosN(10);
+#endif
 
 	area = AutoAreaN(30, 80, framewidth);
 	prevheight = 144 * Winsys.scale;
@@ -195,7 +199,11 @@ void CRaceSelect::Loop(float time_step) {
 		draw_ui_snow();
 	}
 
+#ifndef MOBILE
 	DrawGUIBackground(Winsys.scale);
+#else
+	DrawGUIFrame();
+#endif
 
 	if (courseGroup->GetValue() != prevGroup) {
 		prevGroup = courseGroup->GetValue();

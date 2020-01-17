@@ -146,9 +146,17 @@ void CEvent::Enter() {
 
 	ResetGUI();
 	unsigned int siz = FT.AutoSizeN(5);
+#ifndef MOBILE
 	textbuttons[1] = AddTextButton(Trans.Text(8), area.left + 100, AutoYPosN(80), siz);
+#else
+	textbuttons[1] = AddTextButton(Trans.Text(8), area.left + 50, AutoYPosN(80), siz);
+#endif
 	int len = FT.GetTextWidth(Trans.Text(13));
+#ifndef MOBILE
 	textbuttons[0] = AddTextButton(Trans.Text(13), area.right -len - 100, AutoYPosN(80), siz);
+#else
+	textbuttons[0] = AddTextButton(Trans.Text(13), area.right -len - 50, AutoYPosN(80), siz);
+#endif
 	textbuttons[2] = AddTextButton(Trans.Text(15), CENTER, AutoYPosN(80), siz);
 	SetFocus((ready == 2) ? textbuttons[2] : textbuttons[0]);
 

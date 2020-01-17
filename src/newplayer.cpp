@@ -108,9 +108,17 @@ void CNewPlayer::Enter() {
 
 	avatar = AddUpDown(area.left + prevwidth + prevoffs + 8, prevtop, 0, (int)Players.numAvatars() - 1, 0);
 	int siz = FT.AutoSizeN(5);
+#ifndef MOBILE
 	textbuttons[0] = AddTextButton(Trans.Text(8), area.left+50, AutoYPosN(70), siz);
+#else
+	textbuttons[0] = AddTextButton(Trans.Text(8), area.left+50, AutoYPosN(80), siz);
+#endif
 	float len = FT.GetTextWidth(Trans.Text(15));
+#ifndef MOBILE
 	textbuttons[1] = AddTextButton(Trans.Text(15), area.right-len-50, AutoYPosN(70), siz);
+#else
+	textbuttons[1] = AddTextButton(Trans.Text(15), area.right-len-50, AutoYPosN(80), siz);
+#endif
 
 	textfield = AddTextField(emptyString, area.left, frametop, framewidth, frameheight);
 }

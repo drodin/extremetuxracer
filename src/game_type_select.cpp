@@ -103,7 +103,11 @@ void CGameTypeSelect::Enter() {
 	Winsys.ShowCursor(!param.ice_cursor);
 
 	ResetGUI();
+#ifndef MOBILE
 	int top = AutoYPosN(40);
+#else
+	int top = AutoYPosN(25);
+#endif
 	unsigned int siz = FT.AutoSizeN(6);
 	int dist = FT.AutoDistanceN(2);
 	textbuttons[0] = AddTextButton(Trans.Text(1), CENTER, top, siz);
@@ -113,9 +117,13 @@ void CGameTypeSelect::Enter() {
 	textbuttons[4] = AddTextButton(Trans.Text(43), CENTER, top + dist * 4, siz);
 	textbuttons[5] = AddTextButton(Trans.Text(4), CENTER, top + dist * 5, siz);
 	textbuttons[6] = AddTextButton(Trans.Text(5), CENTER, top + dist * 6, siz);
+#ifdef MOBILE
+	textbuttons[6]->SetVisible(false);
+#else
 	logo.setTexture(Tex.GetSFTexture(T_TITLE));
 	logo.setScale(Winsys.scale, Winsys.scale);
 	logo.setPosition((Winsys.resolution.width - logo.getTextureRect().width) / 2, (5));
+#endif
 
 	Music.Play(param.menu_music, true);
 }
@@ -129,8 +137,12 @@ void CGameTypeSelect::Loop(float time_step) {
 		draw_ui_snow();
 	}
 
+#ifndef MOBILE
 	Winsys.draw(logo);
 	DrawGUIFrame();
+#else
+	DrawGUIBackground(Winsys.scale);
+#endif
 	DrawGUI();
 
 	Winsys.SwapBuffers();

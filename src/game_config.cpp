@@ -75,7 +75,11 @@ void LoadConfigFile() {
 		param.course_detail_level = SPIntN(*line, "course_detail_level", 75);
 
 		param.use_papercut_font = SPIntN(*line, "use_papercut_font", 1);
+#ifndef MOBILE
 		param.ice_cursor = SPIntN(*line, "ice_cursor", 1) != 0;
+#else
+		param.ice_cursor = SPIntN(*line, "ice_cursor", 0) != 0;
+#endif
 		param.full_skybox = SPBoolN(*line, "full_skybox", false);
 		param.use_quad_scale = SPBoolN(*line, "use_quad_scale", false);
 
@@ -107,7 +111,11 @@ void SetConfigDefaults() {
 	param.course_detail_level = 75;
 
 	param.use_papercut_font = 1;
+#ifndef MOBILE
 	param.ice_cursor = true;
+#else
+	param.ice_cursor = false;
+#endif
 	param.full_skybox = false;
 	param.use_quad_scale = false;
 

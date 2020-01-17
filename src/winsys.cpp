@@ -66,8 +66,13 @@ std::string CWinsys::GetResName(std::size_t idx) const {
 }
 
 float CWinsys::CalcScreenScale() const {
+#ifndef MOBILE
 	if (resolution.height < 768) return 0.78f;
 	else return (resolution.height / 768.f);
+#else
+	if (resolution.height < 720) return 1.0f;
+	else return (resolution.height / 720.f) * 1.5f;
+#endif
 }
 
 void CWinsys::SetupVideoMode(const TScreenRes& res) {

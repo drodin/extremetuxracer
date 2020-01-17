@@ -30,10 +30,25 @@ GNU General Public License for more details.
 
 CHelp Help;
 
+#ifndef MOBILE
 #define TEXT_LINES 13
 TLabel* headline;
 TLabel* texts[TEXT_LINES];
 TLabel* footnote;
+#else
+#define TEXT_LINES 8
+sf::String texts[TEXT_LINES] = {
+	"Privacy policy:",
+	"We don't collect any personal data from our apps.",
+	"",
+	"License:",
+	"This application is released under the",
+	"GNU General Public License (GPL) version 2.",
+	"The full source code is available at:",
+	"https://github.com/drodin/extremetuxracer",
+};
+TLabel* labels[TEXT_LINES];
+#endif
 
 void CHelp::Keyb(sf::Keyboard::Key key, bool release, int x, int y) {
 	if (release) return;
@@ -58,6 +73,7 @@ void CHelp::Enter() {
 	const int xleft1 = 40;
 
 	FT.AutoSizeN(4);
+#ifndef MOBILE
 	headline = AddLabel(Trans.Text(57), xleft1, AutoYPosN(5), colWhite);
 
 	FT.AutoSizeN(3);
@@ -66,6 +82,11 @@ void CHelp::Enter() {
 		texts[i] = AddLabel(Trans.Text(44 + i), xleft1, ytop + offs*i, colWhite);
 
 	footnote = AddLabel(Trans.Text(65), CENTER, AutoYPosN(90), colWhite);
+#else
+	int offs = FT.AutoDistanceN(2);
+	for (int i = 0; i < TEXT_LINES; i++)
+		labels[i] = AddLabel(texts[i], xleft1, ytop + offs*i, colWhite);
+#endif
 }
 
 void CHelp::Loop(float time_step) {

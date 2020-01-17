@@ -145,9 +145,17 @@ void CGameConfig::Enter() {
 		res_names[i] = Winsys.GetResName(i);
 
 	int framewidth = 550 * Winsys.scale;
+#ifndef MOBILE
 	area = AutoAreaN(30, 80, framewidth);
+#else
+	area = AutoAreaN(4, 80, framewidth);
+#endif
 	FT.AutoSizeN(4);
+#ifndef MOBILE
 	dd = FT.AutoDistanceN(3);
+#else
+	dd = FT.AutoDistanceN(5);
+#endif
 	if (dd < 36) dd = 36;
 	int rightpos = area.right -48;
 
@@ -174,6 +182,12 @@ void CGameConfig::Enter() {
 	columnAnchor += area.left + 20*Winsys.scale;
 
 	Music.Play(param.config_music, true);
+
+#ifdef MOBILE
+	fullscreen->SetVisible(false);
+	resolution->SetVisible(false);
+	descriptions[0]->SetVisible(false);
+#endif
 }
 
 void CGameConfig::Loop(float time_step) {
@@ -196,16 +210,20 @@ void CGameConfig::Loop(float time_step) {
 	descriptions[4]->Focussed(detail_level->focussed());
 
 	FT.SetColor(colWhite);
+#ifndef MOBILE
 	FT.DrawString(columnAnchor, area.top + dd + 3, res_names[resolution->GetValue()]);
+#endif
 	FT.DrawString(columnAnchor, area.top + dd * 2 + 3, Int_StrN(mus_vol->GetValue()));
 	FT.DrawString(columnAnchor, area.top + dd * 3 + 3, Int_StrN(sound_vol->GetValue()));
 	FT.DrawString(columnAnchor, area.top + dd * 4 + 3, Trans.languages[language->GetValue()].language);
 	FT.DrawString(columnAnchor, area.top + dd * 5 + 3, Int_StrN(detail_level->GetValue()));
 
+#ifndef MOBILE
 	FT.SetColor(colLGrey);
 	FT.AutoSizeN(3);
 	FT.DrawString(CENTER, AutoYPosN(68), Trans.Text(41));
 	FT.DrawString(CENTER, AutoYPosN(72), Trans.Text(42));
+#endif
 
 	DrawGUI();
 
