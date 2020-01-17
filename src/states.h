@@ -48,7 +48,12 @@ public:
 		void EnterNextState();
 	public:
 		void RequestEnterState(State& state) { next = &state; }
+#ifndef ANDROID
 		void RequestQuit() { quit = true; }
+#else
+		bool active = true;
+		void RequestQuit() {}
+#endif
 		void Run(State& entranceState);
 		State* PreviousState() { return previous; }
 		State* CurrentState() { return current; }

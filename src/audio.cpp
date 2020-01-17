@@ -287,3 +287,15 @@ void CMusic::Halt() {
 		curr_music = nullptr;
 	}
 }
+
+void CMusic::Pause() {
+	if (curr_music) {
+		curr_music->pause();
+	}
+}
+
+void CMusic::Resume() {
+	if (curr_music) {
+		curr_music->play();
+	}
+}

@@ -97,6 +97,8 @@ public:
 	bool Play(const std::string& name, bool loop, int volume);
 	bool PlayTheme(std::size_t theme, ESituation situation);
 	void Halt();
+	void Pause();
+	void Resume();
 	void FreeMusics();
 };
 

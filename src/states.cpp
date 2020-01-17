@@ -22,6 +22,11 @@ GNU General Public License for more details.
 #include "states.h"
 #include "ogl.h"
 #include "winsys.h"
+#ifdef ANDROID
+#include "game_ctrl.h"
+#include "score.h"
+#include "audio.h"
+#endif
 
 State::Manager State::manager(Winsys);
 
@@ -86,6 +91,49 @@ void State::Manager::PollEvent() {
 					break;
 				}
 
+#ifdef ANDROID
+				case sf::Event::TouchBegan:
+				case sf::Event::TouchEnded: {
+					TVector2i old = cursor_pos;
+					cursor_pos.x = event.touch.x;
+					cursor_pos.y = event.touch.y;
+					current->Motion(event.touch.x - old.x, event.touch.y - old.y);
+					current->Mouse(event.touch.finger, event.type == sf::Event::TouchBegan, event.touch.x, event.touch.y);
+					current->Jbutt(3, event.type == sf::Event::TouchBegan);
+					break;
+				}
+
+				case sf::Event::SensorChanged: {
+					if (event.sensor.z > 0)
+						current->Jaxis(1, -event.sensor.z + 9.81/2.0);
+					current->Jaxis(0, event.sensor.y / (9.81/2.0));
+					break;
+				}
+
+				case sf::Event::GainedFocus:
+					if (!active) {
+						active = true;
+						Winsys.getWindow().setActive(active);
+						Music.Resume();
+					}
+					if(sf::Sensor::isAvailable(sf::Sensor::Accelerometer)) {
+						sf::Sensor::setEnabled(sf::Sensor::Accelerometer, true);
+					}
+					break;
+				case sf::Event::MouseLeft:
+					active = false;
+					Winsys.getWindow().setActive(active);
+					if(sf::Sensor::isAvailable(sf::Sensor::Accelerometer)) {
+						sf::Sensor::setEnabled(sf::Sensor::Accelerometer, false);
+					}
+					Music.Pause();
+					current->Keyb(sf::Keyboard::P, false, cursor_pos.x, cursor_pos.y);
+					Score.SaveHighScore();
+					SaveMessages();
+					if (g_game.argument < 1) Players.SavePlayers();
+					break;
+#endif
+
 				case sf::Event::JoystickMoved: {
 					float val = event.joystickMove.position / 100.f;
 					current->Jaxis(event.joystickMove.axis == sf::Joystick::X ? 0 : 1, val);
@@ -120,5 +168,11 @@ void State::Manager::CallLoopFunction() {
 
 	g_game.time_step = std::max(0.0001f, timer.getElapsedTime().asSeconds());
 	timer.restart();
+#ifdef ANDROID
+	if (!active) {
+		//sf::sleep(sf::seconds(1));
+		return;
+	}
+#endif
 	current->Loop(g_game.time_step);
 }
