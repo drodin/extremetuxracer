@@ -165,6 +165,11 @@ void Message(const std::string& msg) {
 // --------------------------------------------------------------------
 
 bool FileExists(const std::string& filename) {
+#ifdef ANDROID
+	sf::FileInputStream fileInputStream;
+	if (fileInputStream.open(filename))
+		return true;
+#endif
 	struct stat stat_info;
 	if (stat(filename.c_str(), &stat_info) != 0) {
 		if (errno != ENOENT) Message("couldn't stat", filename);
@@ -178,6 +183,9 @@ bool FileExists(const std::string& dir, const std::string& filename) {
 
 #ifndef OS_WIN32_MSC
 bool DirExists(const char *dirname) {
+#ifdef ANDROID
+	return true;
+#endif
 	DIR *xdir;
 	if ((xdir = opendir(dirname)) == 0)
 		return ((errno != ENOENT) && (errno != ENOTDIR));

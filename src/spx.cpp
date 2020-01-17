@@ -358,6 +358,21 @@ void SPSetStrN(std::string &s, const std::string &tag, const std::string &val) {
 	} else SPAddStrN(s, tag, val);
 }
 
+#ifdef ANDROID
+struct membuf: std::streambuf {
+	membuf(char const* base, size_t size) {
+		char* p(const_cast<char*>(base));
+		this->setg(p, p, p + size);
+	}
+};
+struct imemstream: virtual membuf, std::istream {
+	imemstream(char const* base, size_t size)
+			: membuf(base, size)
+			, std::istream(static_cast<std::streambuf*>(this)) {
+	}
+};
+#endif
+
 // --------------------------------------------------------------------
 //					class CSPList
 // --------------------------------------------------------------------
@@ -381,12 +396,36 @@ void CSPList::Print() const {
 }
 
 bool CSPList::Load(const std::string &filepath) {
+#ifndef ANDROID
 	std::ifstream tempfile(filepath);
 
 	if (!tempfile) {
 		Message("CSPList::Load - unable to open " + filepath);
 		return false;
 	} else {
+#else
+	char* data;
+	size_t size = 0;
+
+	sf::FileInputStream* file = new sf::FileInputStream;
+	if (file->open(filepath)) {
+		size = file->getSize();
+		data = new char[size];
+		file->read(data, size);
+	} else {
+		std::ifstream file2(filepath);
+		if (!file2)
+			return false;
+		file2.seekg(0, std::ios::end);
+		size = file2.tellg();
+		data = new char[size];
+		file2.seekg(0);
+		file2.read(&data[0], size);
+	}
+
+	imemstream tempfile(data, size);
+	{
+#endif
 		bool backflag = false;
 		std::string line;
 
@@ -417,6 +456,9 @@ bool CSPList::Load(const std::string &filepath) {
 				}
 			}
 		}
+#ifdef ANDROID
+		delete[] data;
+#endif
 		return true;
 	}
 }
