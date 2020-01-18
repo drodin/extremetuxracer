@@ -72,7 +72,7 @@ GNU General Public License for more details.
 #	include <pwd.h>
 #	include <dirent.h>
 #	include <sys/time.h>
-#if !defined(__APPLE__)
+#if !defined(__APPLE__) && !defined(ANDROID)
 #	include <GL/glx.h>
 #endif
 #if defined(__APPLE__)
