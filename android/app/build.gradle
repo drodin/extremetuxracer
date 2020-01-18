@@ -1,0 +1,56 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 29
+
+    defaultConfig {
+        resValue "string", "app_name", "Extreme Tux Racer"
+
+        applicationId = 'com.drodin.extremetuxracer'
+        versionCode = 1
+        versionName = "0.7.5-1"
+
+        minSdkVersion 16
+        targetSdkVersion 29
+
+        ndk {
+            //abiFilters 'x86'
+            //abiFilters 'armeabi-v7a'
+        }
+
+        def hunterBuildSharedLibs = false
+        manifestPlaceholders.androidAppLibName = "${hunterBuildSharedLibs?'sfml-activity-d':'extremetuxracer'}"
+
+        externalNativeBuild {
+            cmake {
+                arguments '-DANDROID_STL=c++_static',
+                          '-DANDROID_STUDIO=1',
+                          '-DCMAKE_VERBOSE_MAKEFILE=1',
+                          '-DHUNTER_KEEP_PACKAGE_SOURCES=1',
+                          "-DHUNTER_BUILD_SHARED_LIBS=${hunterBuildSharedLibs?'ON':'OFF'}",
+                          "-DAPPLICATION_ID=${applicationId}",
+                          "-DVERSION_NAME=${versionName}"
+            }
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'),
+                    'proguard-rules.pro'
+        }
+        debug {
+        }
+    }
+    externalNativeBuild {
+        cmake {
+            path '../../CMakeLists.txt'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+}
