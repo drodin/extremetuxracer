@@ -35,6 +35,18 @@ static const GLshort fullsize_texture[] = {
 };
 
 
+#ifdef USE_GLES
+unsigned int getValidSize(unsigned int size)
+{
+	unsigned int powerOfTwo = 1;
+	while (powerOfTwo < size)
+		powerOfTwo *= 2;
+
+	return powerOfTwo;
+}
+#endif
+
+
 // --------------------------------------------------------------------
 //				class TTexture
 // --------------------------------------------------------------------
@@ -60,8 +72,13 @@ void TTexture::Draw() {
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	Bind();
 
+#ifndef USE_GLES
 	glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_WIDTH, &w);
 	glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_HEIGHT, &h);
+#else
+	w = getValidSize(texture.getSize().x);
+	h = getValidSize(texture.getSize().y);
+#endif
 
 	glColor4f(1.0, 1.0, 1.0, 1.0);
 	const GLint vtx[] = {
@@ -89,8 +106,13 @@ void TTexture::Draw(int x, int y, float size) {
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	Bind();
 
+#ifndef USE_GLES
 	glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_WIDTH, &w);
 	glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_HEIGHT, &h);
+#else
+	w = getValidSize(texture.getSize().x);
+	h = getValidSize(texture.getSize().y);
+#endif
 
 	width  = w * size;
 	height = h * size;
