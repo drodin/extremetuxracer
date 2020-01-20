@@ -33,13 +33,15 @@ find_package(SFML COMPONENTS graphics audio CONFIG REQUIRED)
 
 if(NOT ANDROID)
     find_package(OpenGL MODULE REQUIRED)
-else()
-    hunter_add_package(glu)
-    find_package(glu CONFIG REQUIRED)
-    set(OPENGL_LIBRARIES glu::GLU)
 endif()
 
 file(GLOB SOURCES src/*.cpp)
+
+if(ANDROID)
+    file(GLOB GL_SOURCES GLES/GL/*.cpp)
+    list(APPEND SOURCES ${GL_SOURCES})
+    set(OPENGL_INCLUDE_DIR GLES)
+endif()
 
 if(NOT ANDROID)
     add_executable(extremetuxracer ${SOURCES})
@@ -49,7 +51,7 @@ else()
     target_compile_definitions(extremetuxracer PRIVATE APPLICATION_ID=\"${APPLICATION_ID}\")
     target_compile_definitions(extremetuxracer PRIVATE VERSION_NAME=\"${VERSION_NAME}\")
     target_compile_definitions(extremetuxracer PRIVATE MOBILE=1)
-    target_compile_definitions(extremetuxracer PRIVATE USE_GL4ES=1)
+    target_compile_definitions(extremetuxracer PRIVATE USE_GLES=1)
 
     set_target_properties(extremetuxracer PROPERTIES DEBUG_POSTFIX "")
 
