@@ -320,7 +320,7 @@ void DrawFps() {
 			FT.SetColor(colWhite);
 		else
 			FT.SetColor(colRed);
-		FT.DrawString(-1, 3, fpsstr);
+		FT.DrawString((Winsys.resolution.width - 60) / 2, 10, fpsstr);
 		Winsys.endSFML();
 	}
 }
