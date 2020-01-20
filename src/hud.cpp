@@ -94,10 +94,9 @@ static void draw_herring_count(int herring_count, sf::Color color) {
 	}
 }
 
-TVector2d calc_new_fan_pt(double angle) {
-	return TVector2d(
-	           ENERGY_GAUGE_CENTER_X + std::cos(ANGLES_TO_RADIANS(angle)) * SPEEDBAR_OUTER_RADIUS,
-	           ENERGY_GAUGE_CENTER_Y + std::sin(ANGLES_TO_RADIANS(angle)) * SPEEDBAR_OUTER_RADIUS);
+void calc_new_fan_pt(double angle, std::vector<GLfloat>& vtx) {
+	vtx.push_back(ENERGY_GAUGE_CENTER_X + std::cos(ANGLES_TO_RADIANS(angle)) * SPEEDBAR_OUTER_RADIUS);
+	vtx.push_back(ENERGY_GAUGE_CENTER_Y + std::sin(ANGLES_TO_RADIANS(angle)) * SPEEDBAR_OUTER_RADIUS);
 }
 
 void draw_partial_tri_fan(double fraction) {
@@ -108,23 +107,24 @@ void draw_partial_tri_fan(double fraction) {
 	double cur_angle = SPEEDBAR_BASE_ANGLE;
 	double angle_incr = 360.0 / CIRCLE_DIVISIONS;
 
-	glBegin(GL_TRIANGLE_FAN);
-	glVertex2f(ENERGY_GAUGE_CENTER_X,
-	           ENERGY_GAUGE_CENTER_Y);
+	std::vector<GLfloat> vtx;
+	vtx.push_back(ENERGY_GAUGE_CENTER_X);
+	vtx.push_back(ENERGY_GAUGE_CENTER_Y);
 
 	for (int i=0; i<divs; i++) {
-		TVector2d pt = calc_new_fan_pt(cur_angle);
-		glVertex2f(pt.x, pt.y);
+		calc_new_fan_pt(cur_angle, vtx);
 		cur_angle -= angle_incr;
 	}
 
 	if (cur_angle+angle_incr > angle + EPS) {
 		cur_angle = angle;
-		TVector2d pt = calc_new_fan_pt(cur_angle);
-		glVertex2f(pt.x, pt.y);
+		calc_new_fan_pt(cur_angle, vtx);
 	}
 
-	glEnd();
+	glEnableClientState(GL_VERTEX_ARRAY);
+	glVertexPointer(2, GL_FLOAT, 0, vtx.data());
+	glDrawArrays(GL_TRIANGLE_FAN, 0, vtx.size() / 2);
+	glDisableClientState(GL_VERTEX_ARRAY);
 }
 
 void draw_gauge(double speed, double energy) {
