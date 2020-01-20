@@ -54,8 +54,10 @@ static const GLubyte energy_foreground_color[]   = { 138, 150, 255, 128 };
 static const GLubyte speedbar_background_color[] = { 51,  51,  51, 0 };
 static const GLubyte hud_white[]                 = { 255, 255, 255, 255 };
 
+static GLfloat scale = 1.f;
+
 static void draw_time(double time, sf::Color color) {
-	Tex.Draw(T_TIME, 10, 10, 1);
+	Tex.Draw(T_TIME, 10 * scale, 10 * scale, scale);
 
 	int min, sec, hundr;
 	GetTimeComponents(time, &min, &sec, &hundr);
@@ -67,36 +69,36 @@ static void draw_time(double time, sf::Color color) {
 	timestr += secstr;
 
 	if (param.use_papercut_font < 2) {
-		Tex.DrawNumStr(timestr, 50, 12, 1, color);
-		Tex.DrawNumStr(hundrstr, 170, 12, 0.7f, color);
+		Tex.DrawNumStr(timestr, 50 * scale, 12 * scale, scale, color);
+		Tex.DrawNumStr(hundrstr, 170 * scale, 12 * scale, 0.7f * scale, color);
 	} else {
 		Winsys.beginSFML();
 		FT.SetColor(color);
-		FT.SetSize(30);
-		FT.DrawString(138, 3, hundrstr);
-		FT.SetSize(42);
-		FT.DrawString(53, 3, timestr);
+		FT.SetSize(30 * scale);
+		FT.DrawString(138 * scale, 3 * scale, hundrstr);
+		FT.SetSize(42 * scale);
+		FT.DrawString(53 * scale, 3 * scale, timestr);
 		Winsys.endSFML();
 	}
 }
 
 static void draw_herring_count(int herring_count, sf::Color color) {
-	Tex.Draw(HERRING_ICON, Winsys.resolution.width - 59, 12, 1);
+	Tex.Draw(HERRING_ICON, Winsys.resolution.width - 59 * scale, 12 * scale, scale);
 
 	std::string hcountstr = Int_StrN(herring_count, 3);
 	if (param.use_papercut_font < 2) {
-		Tex.DrawNumStr(hcountstr, Winsys.resolution.width - 130, 12, 1, color);
+		Tex.DrawNumStr(hcountstr, Winsys.resolution.width - 130 * scale, 12 * scale, scale, color);
 	} else {
 		Winsys.beginSFML();
 		FT.SetColor(color);
-		FT.DrawString(Winsys.resolution.width - 125, 3, hcountstr);
+		FT.DrawString(Winsys.resolution.width - 125 * scale, 3 * scale, hcountstr);
 		Winsys.endSFML();
 	}
 }
 
 void calc_new_fan_pt(double angle, std::vector<GLfloat>& vtx) {
-	vtx.push_back(ENERGY_GAUGE_CENTER_X + std::cos(ANGLES_TO_RADIANS(angle)) * SPEEDBAR_OUTER_RADIUS);
-	vtx.push_back(ENERGY_GAUGE_CENTER_Y + std::sin(ANGLES_TO_RADIANS(angle)) * SPEEDBAR_OUTER_RADIUS);
+	vtx.push_back(ENERGY_GAUGE_CENTER_X * scale + std::cos(ANGLES_TO_RADIANS(angle)) * SPEEDBAR_OUTER_RADIUS * scale);
+	vtx.push_back(ENERGY_GAUGE_CENTER_Y * scale + std::sin(ANGLES_TO_RADIANS(angle)) * SPEEDBAR_OUTER_RADIUS * scale);
 }
 
 void draw_partial_tri_fan(double fraction) {
@@ -108,8 +110,8 @@ void draw_partial_tri_fan(double fraction) {
 	double angle_incr = 360.0 / CIRCLE_DIVISIONS;
 
 	std::vector<GLfloat> vtx;
-	vtx.push_back(ENERGY_GAUGE_CENTER_X);
-	vtx.push_back(ENERGY_GAUGE_CENTER_Y);
+	vtx.push_back(ENERGY_GAUGE_CENTER_X * scale);
+	vtx.push_back(ENERGY_GAUGE_CENTER_Y * scale);
 
 	for (int i=0; i<divs; i++) {
 		calc_new_fan_pt(cur_angle, vtx);
@@ -128,8 +130,8 @@ void draw_partial_tri_fan(double fraction) {
 }
 
 void draw_gauge(double speed, double energy) {
-	static const GLfloat xplane[4] = {1.f / GAUGE_IMG_SIZE, 0.f, 0.f, 0.f };
-	static const GLfloat yplane[4] = {0.f, 1.f / GAUGE_IMG_SIZE, 0.f, 0.f };
+	static const GLfloat xplane[4] = {1.f / (GAUGE_IMG_SIZE * scale), 0.f, 0.f, 0.f };
+	static const GLfloat yplane[4] = {0.f, 1.f / (GAUGE_IMG_SIZE * scale), 0.f, 0.f };
 
 	ScopedRenderMode rm(GAUGE_BARS);
 
@@ -142,20 +144,20 @@ void draw_gauge(double speed, double energy) {
 	glTexGenfv(GL_T, GL_OBJECT_PLANE, yplane);
 
 	glPushMatrix();
-	glTranslatef(Winsys.resolution.width - GAUGE_WIDTH, 0, 0);
+	glTranslatef(Winsys.resolution.width - GAUGE_WIDTH * scale, 0, 0);
 	Tex.BindTex(GAUGE_ENERGY);
-	float y = ENERGY_GAUGE_BOTTOM + energy * ENERGY_GAUGE_HEIGHT;
+	float y = ENERGY_GAUGE_BOTTOM * scale + energy * ENERGY_GAUGE_HEIGHT * scale;
 
 	const GLfloat vtx1 [] = {
 		0.f, y,
-		GAUGE_IMG_SIZE, y,
-		GAUGE_IMG_SIZE, GAUGE_IMG_SIZE,
-		0.f, GAUGE_IMG_SIZE
+		GAUGE_IMG_SIZE * scale, y,
+		GAUGE_IMG_SIZE * scale, GAUGE_IMG_SIZE * scale,
+		0.f, GAUGE_IMG_SIZE * scale
 	};
 	const GLfloat vtx2 [] = {
 		0.f, 0.f,
-		GAUGE_IMG_SIZE, 0.f,
-		GAUGE_IMG_SIZE, y,
+		GAUGE_IMG_SIZE * scale, 0.f,
+		GAUGE_IMG_SIZE * scale, y,
 		0.f, y
 	};
 	glEnableClientState(GL_VERTEX_ARRAY);
@@ -199,15 +201,15 @@ void draw_gauge(double speed, double energy) {
 
 	glColor4ubv(hud_white);
 	Tex.BindTex(GAUGE_OUTLINE);
-	static const GLshort vtx3 [] = {
-		0, 0,
-		GAUGE_IMG_SIZE, 0,
-		GAUGE_IMG_SIZE, GAUGE_IMG_SIZE,
-		0, GAUGE_IMG_SIZE
+	static const GLfloat vtx3 [] = {
+		0.f, 0.f,
+		GAUGE_IMG_SIZE * scale, 0.f,
+		GAUGE_IMG_SIZE * scale, GAUGE_IMG_SIZE * scale,
+		0.f, GAUGE_IMG_SIZE * scale
 	};
 	glEnableClientState(GL_VERTEX_ARRAY);
 
-	glVertexPointer(2, GL_SHORT, 0, vtx3);
+	glVertexPointer(2, GL_FLOAT, 0, vtx3);
 	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 
 	glDisableClientState(GL_VERTEX_ARRAY);
@@ -218,11 +220,11 @@ void DrawSpeed(double speed) {
 	std::string speedstr = Int_StrN((int)speed, 3);
 	if (param.use_papercut_font < 2) {
 		Tex.DrawNumStr(speedstr,
-		               Winsys.resolution.width - 87, Winsys.resolution.height-73, 1, colWhite);
+		               Winsys.resolution.width - 87 * scale, Winsys.resolution.height-73 * scale, scale, colWhite);
 	} else {
 		Winsys.beginSFML();
 		FT.SetColor(colDDYell);
-		FT.DrawString(Winsys.resolution.width - 82, Winsys.resolution.height - 80, speedstr);
+		FT.DrawString(Winsys.resolution.width - 82 * scale, Winsys.resolution.height - 80 * scale, speedstr);
 		Winsys.endSFML();
 	}
 }
@@ -230,10 +232,10 @@ void DrawSpeed(double speed) {
 void DrawWind(float dir, float speed, const CControl *ctrl) {
 	if (g_game.wind_id < 1) return;
 
-	static const int texHeight = Tex.GetSFTexture(SPEEDMETER).getSize().y;
-	static const int texWidth = Tex.GetSFTexture(SPEEDMETER).getSize().x;
+	static const GLfloat texHeight = Tex.GetSFTexture(SPEEDMETER).getSize().y * scale;
+	static const GLfloat texWidth = Tex.GetSFTexture(SPEEDMETER).getSize().x * scale;
 
-	Tex.Draw(SPEEDMETER, 5, Winsys.resolution.height-5-texHeight, 1.0);
+	Tex.Draw(SPEEDMETER, 5 * scale, Winsys.resolution.height-5 * scale-texHeight, scale);
 	glDisable(GL_TEXTURE_2D);
 
 
@@ -249,17 +251,17 @@ void DrawWind(float dir, float speed, const CControl *ctrl) {
 
 	glPushMatrix();
 	glColor4f(red, 0, blue, alpha);
-	glTranslatef(5 + texWidth / 2, 5 + texHeight / 2, 0);
+	glTranslatef(5 * scale + texWidth / 2, 5 * scale + texHeight / 2, 0);
 	glRotatef(dir, 0, 0, 1);
 	glEnableClientState(GL_VERTEX_ARRAY);
-	static const int len = 45;
-	static const GLshort vtx1 [] = {
-		-5, 0,
-		5, 0,
-		5, -len,
-		- 5, -len
+	static const GLfloat len = 45 * scale;
+	static const GLfloat vtx1 [] = {
+		-5 * scale, 0,
+		5 * scale, 0,
+		5 * scale, -len,
+		- 5 * scale, -len
 	};
-	glVertexPointer(2, GL_SHORT, 0, vtx1);
+	glVertexPointer(2, GL_FLOAT, 0, vtx1);
 	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 
 	// direction indicator
@@ -267,27 +269,27 @@ void DrawWind(float dir, float speed, const CControl *ctrl) {
 
 	glColor4f(0, 0.5, 0, 1.0);
 	glRotatef(dir_angle - dir, 0, 0, 1);
-	static const GLshort vtx2 [] = {
-		-2, 0,
-		2, 0,
-		2, -50,
-		-2, -50
+	static const GLfloat vtx2 [] = {
+		-2 * scale, 0,
+		2 * scale, 0,
+		2 * scale, -50 * scale,
+		-2 * scale, -50 * scale
 	};
-	glVertexPointer(2, GL_SHORT, 0, vtx2);
+	glVertexPointer(2, GL_FLOAT, 0, vtx2);
 	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 	glDisableClientState(GL_VERTEX_ARRAY);
 	glPopMatrix();
 
 	glEnable(GL_TEXTURE_2D);
 
-	Tex.Draw(SPEED_KNOB, 5 + texWidth / 2 - 8, Winsys.resolution.height - 5 - texWidth / 2 - 8, 1.0);
+	Tex.Draw(SPEED_KNOB, 5 * scale + texWidth / 2 - 8 * scale, Winsys.resolution.height - 5 * scale - texWidth / 2 - 8 * scale, scale);
 	std::string windstr = Int_StrN((int)speed, 3);
 	if (param.use_papercut_font < 2) {
-		Tex.DrawNumStr(windstr, 120, Winsys.resolution.height - 45, 1, colWhite);
+		Tex.DrawNumStr(windstr, 120 * scale, Winsys.resolution.height - 45 * scale, scale, colWhite);
 	} else {
 		Winsys.beginSFML();
 		FT.SetColor(colDDYell);
-		FT.DrawString(120, Winsys.resolution.height - 50, windstr);
+		FT.DrawString(120 * scale, Winsys.resolution.height - 50 * scale, windstr);
 		Winsys.endSFML();
 	}
 }
@@ -313,14 +315,14 @@ void DrawFps() {
 
 	std::string fpsstr = Int_StrN((int)averagefps);
 	if (param.use_papercut_font < 2) {
-		Tex.DrawNumStr(fpsstr, (Winsys.resolution.width - 60) / 2, 10, 1, colWhite);
+		Tex.DrawNumStr(fpsstr, (Winsys.resolution.width - 60 * scale) / 2, 10 * scale, scale, colWhite);
 	} else {
 		Winsys.beginSFML();
 		if (averagefps >= 35)
 			FT.SetColor(colWhite);
 		else
 			FT.SetColor(colRed);
-		FT.DrawString((Winsys.resolution.width - 60) / 2, 10, fpsstr);
+		FT.DrawString((Winsys.resolution.width - 60 * scale) / 2, 10 * scale, fpsstr);
 		Winsys.endSFML();
 	}
 }
@@ -337,9 +339,9 @@ void DrawPercentBar(float fact, float x, float y) {
 	};
 	const GLfloat vtx[] = {
 		x, y,
-		x + 32, y,
-		x + 32, y + fact * 128,
-		x, y + fact * 128
+		x + 32 * scale, y,
+		x + 32 * scale, y + fact * 128 * scale,
+		x, y + fact * 128 * scale
 	};
 
 	glEnableClientState(GL_VERTEX_ARRAY);
@@ -357,14 +359,18 @@ void DrawCoursePosition(const CControl *ctrl) {
 	double fact = ctrl->cpos.z / Course.GetPlayDimensions().y;
 	if (fact > 1.0) fact = 1.0;
 	glEnable(GL_TEXTURE_2D);
-	DrawPercentBar(-fact, Winsys.resolution.width - 48, 280-128);
-	Tex.Draw(T_MASK_OUTLINE, Winsys.resolution.width - 48, Winsys.resolution.height - 280, 1.0);
+	DrawPercentBar(-fact, Winsys.resolution.width - 48 * scale, (280-128) * scale);
+	Tex.Draw(T_MASK_OUTLINE, Winsys.resolution.width - 48 * scale, Winsys.resolution.height - 280 * scale, scale);
 }
 
 // -------------------------------------------------------
 void DrawHud(const CControl *ctrl) {
 	if (!param.show_hud)
 		return;
+
+#ifdef MOBILE
+	scale = Winsys.scale;
+#endif
 
 	double speed = ctrl->cvel.Length();
 	Setup2dScene();
