@@ -510,7 +510,7 @@ TUpDown::TUpDown(int x, int y, int min_, int max_, int value_, int distance, boo
 	, down(x, y, false)
 #else
 	: TWidget(x - 16 * Winsys.scale / 0.6f, y, 32 * Winsys.scale / 0.6f, 32 * Winsys.scale / 0.6f + ((distance <= 2)?16:distance))
-	, up(x + ((distance <= 2)?16:distance), y, true)
+	, up(x + ((distance <= 2)?64:distance), y, true)
 	, down(x - 16 * Winsys.scale / 0.6f, y, false)
 #endif
 	, higher(swapArrows_ ? up : down)
