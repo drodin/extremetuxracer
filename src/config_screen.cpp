@@ -57,6 +57,9 @@ static TUpDown* language;
 static TUpDown* resolution;
 static TUpDown* mus_vol;
 static TUpDown* sound_vol;
+#ifdef MOBILE
+static TUpDown* accel_sens;
+#endif
 static TUpDown* detail_level;
 static TWidget* textbuttons[2];
 static TLabel* descriptions[5];
@@ -64,6 +67,9 @@ static TLabel* descriptions[5];
 void SetConfig() {
 	if (mus_vol->GetValue() != param.music_volume ||
 	        sound_vol->GetValue() != param.sound_volume ||
+#ifdef MOBILE
+			accel_sens->GetValue() != param.accelerometer_sensitivity ||
+#endif
 	        language->GetValue() != param.language ||
 	        resolution->GetValue() != param.res_type ||
 	        detail_level->GetValue() != param.perf_level ||
@@ -82,6 +88,9 @@ void SetConfig() {
 		param.music_volume = mus_vol->GetValue();
 		Music.SetVolume(param.music_volume);
 		param.sound_volume = sound_vol->GetValue();
+#ifdef MOBILE
+		param.accelerometer_sensitivity = accel_sens->GetValue();
+#endif
 		param.perf_level = detail_level->GetValue();
 		FT.SetFontFromSettings();
 		if (param.language != language->GetValue()) {
@@ -165,6 +174,9 @@ void CGameConfig::Enter() {
 	fullscreen->checked = param.fullscreen;
 
 	resolution = AddUpDown(rightpos, area.top+dd*1, 0, NUM_RESOLUTIONS-1, (int)param.res_type);
+#ifdef MOBILE
+	accel_sens = AddUpDown(rightpos, area.top+dd*1, 0, 100, param.accelerometer_sensitivity, 2, true);
+#endif
 	mus_vol = AddUpDown(rightpos, area.top+dd*2, 0, 100, param.music_volume, 2, true);
 	sound_vol = AddUpDown(rightpos, area.top+dd*3, 0, 100, param.sound_volume, 2, true);
 	language = AddUpDown(rightpos, area.top+dd*4, 0, (int)Trans.languages.size() - 1, (int)param.language);
@@ -175,7 +187,12 @@ void CGameConfig::Enter() {
 	textbuttons[1] = AddTextButton(Trans.Text(15), area.right-len-50, AutoYPosN(80), siz);
 
 	columnAnchor = 0;
+#ifndef MOBILE
 	for (int i = 0; i < 5; i++) {
+#else
+	descriptions[0] = AddLabel("Turn sensitivity:", area.left, area.top + dd*1, colWhite);
+	for (int i = 1; i < 5; i++) {
+#endif
 		descriptions[i] = AddLabel(Trans.Text(32 + i), area.left, area.top + dd*(i + 1), colWhite);
 		columnAnchor = std::max(columnAnchor, (int)descriptions[i]->GetSize().x);
 	}
@@ -186,7 +203,6 @@ void CGameConfig::Enter() {
 #ifdef MOBILE
 	fullscreen->SetVisible(false);
 	resolution->SetVisible(false);
-	descriptions[0]->SetVisible(false);
 #endif
 }
 
@@ -199,11 +215,19 @@ void CGameConfig::Loop(float time_step) {
 		draw_ui_snow();
 	}
 
+#ifndef MOBILE
 	DrawGUIBackground(Winsys.scale);
+#else
+	DrawGUIFrame();
+#endif
 
 	FT.AutoSizeN(4);
 
+#ifndef MOBILE
 	descriptions[0]->Focussed(resolution->focussed());
+#else
+	descriptions[0]->Focussed(accel_sens->focussed());
+#endif
 	descriptions[1]->Focussed(mus_vol->focussed());
 	descriptions[2]->Focussed(sound_vol->focussed());
 	descriptions[3]->Focussed(language->focussed());
@@ -212,6 +236,8 @@ void CGameConfig::Loop(float time_step) {
 	FT.SetColor(colWhite);
 #ifndef MOBILE
 	FT.DrawString(columnAnchor, area.top + dd + 3, res_names[resolution->GetValue()]);
+#else
+	FT.DrawString(columnAnchor, area.top + dd * 1 + 3, Int_StrN(accel_sens->GetValue()));
 #endif
 	FT.DrawString(columnAnchor, area.top + dd * 2 + 3, Int_StrN(mus_vol->GetValue()));
 	FT.DrawString(columnAnchor, area.top + dd * 3 + 3, Int_StrN(sound_vol->GetValue()));

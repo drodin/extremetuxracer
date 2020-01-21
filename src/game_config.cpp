@@ -62,6 +62,9 @@ void LoadConfigFile() {
 		param.language = Trans.GetLangIdx(SPStrN(*line, "language", "EN_en"));
 		param.sound_volume = SPIntN(*line, "sound_volume", 90);
 		param.music_volume = SPIntN(*line, "music_volume", 20);
+#ifdef MOBILE
+		param.accelerometer_sensitivity = SPIntN(*line, "accelerometer_sensitivity", 60);
+#endif
 
 		param.framerate = SPIntN(*line, "framerate", 60);
 
@@ -96,6 +99,9 @@ void SetConfigDefaults() {
 	param.language = std::string::npos; // If language is set to npos, ETR will try to load default system language
 	param.sound_volume = 90;
 	param.music_volume = 20;
+#ifdef MOBILE
+	param.accelerometer_sensitivity = 60;
+#endif
 
 	// ---------------------------------------
 
@@ -175,6 +181,11 @@ void SaveConfigFile() {
 	AddComment(liste, "Volume of the background music [0...100]");
 	AddItem(liste, "music_volume", param.music_volume);
 	liste.Add();
+
+#ifdef MOBILE
+	AddItem(liste, "accelerometer_sensitivity", param.accelerometer_sensitivity);
+	liste.Add();
+#endif
 
 	liste.Add("# ------------------------------------------------------------------");
 	liste.Add("#   The second group of params must be adjusted in this file.");

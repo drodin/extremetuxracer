@@ -46,6 +46,9 @@ struct TParam {
 	std::size_t	language;
 	int			sound_volume;
 	int			music_volume;
+#ifdef MOBILE
+	int			accelerometer_sensitivity;
+#endif
 
 	int		forward_clip_distance;
 	int		backward_clip_distance;

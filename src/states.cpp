@@ -105,8 +105,8 @@ void State::Manager::PollEvent() {
 
 				case sf::Event::SensorChanged: {
 					if (event.sensor.z > 0)
-						current->Jaxis(1, -event.sensor.z + 9.81/2.0);
-					current->Jaxis(0, event.sensor.y / (9.81/2.0));
+						current->Jaxis(1, -event.sensor.z + 9.81f / 2.f);
+					current->Jaxis(0, event.sensor.y / (9.81f / 4.f) * (param.accelerometer_sensitivity / 100.f));
 					break;
 				}
 
