@@ -52,10 +52,17 @@ void CCredits::LoadCreditList() {
 
 	std::forward_list<TCredits>::iterator last = CreditList.before_begin();
 	for (CSPList::const_iterator line = list.cbegin(); line != list.cend(); ++line) {
+		std::string version = "";
 		int old_offs = (last != CreditList.before_begin()) ? last->offs : 0;
 		last = CreditList.emplace_after(last);
 		TCredits& credit = *last;
 		credit.text = SPStrN(*line, "text");
+
+		if (version.empty()) {
+			version = SPStrN(*line, "version");
+			if (!version.empty())
+				credit.text += " " ETR_VERSION_STRING;
+		}
 
 		int offset = SPFloatN(*line, "offs", 0) * OFFS_SCALE_FACTOR * Winsys.scale;
 		if (line != list.cbegin()) credit.offs = old_offs + offset;
