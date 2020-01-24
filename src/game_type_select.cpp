@@ -47,9 +47,9 @@ void EnterPractice() {
 
 void QuitGameType() {
 	if (textbuttons[0]->focussed())
-		State::manager.RequestEnterState(EventSelect);
-	if (textbuttons[1]->focussed())
 		EnterPractice();
+	if (textbuttons[1]->focussed())
+		State::manager.RequestEnterState(EventSelect);
 	if (textbuttons[2]->focussed())
 		State::manager.RequestEnterState(GameConfig);
 	if (textbuttons[3]->focussed())
@@ -110,8 +110,8 @@ void CGameTypeSelect::Enter() {
 #endif
 	unsigned int siz = FT.AutoSizeN(6);
 	int dist = FT.AutoDistanceN(2);
-	textbuttons[0] = AddTextButton(Trans.Text(1), CENTER, top, siz);
-	textbuttons[1] = AddTextButton(Trans.Text(2), CENTER, top + dist, siz);
+	textbuttons[0] = AddTextButton("Freeride", CENTER, top, siz);
+	textbuttons[1] = AddTextButton(Trans.Text(1), CENTER, top + dist, siz);
 	textbuttons[2] = AddTextButton(Trans.Text(3), CENTER, top + dist * 2, siz);
 	textbuttons[3] = AddTextButton(Trans.Text(62), CENTER, top + dist * 3, siz);
 	textbuttons[4] = AddTextButton(Trans.Text(43), CENTER, top + dist * 4, siz);
