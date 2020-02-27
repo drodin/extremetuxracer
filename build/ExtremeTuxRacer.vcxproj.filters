@@ -317,4 +317,9 @@
       <Filter>Resource files</Filter>
     </ResourceCompile>
   </ItemGroup>
+  <ItemGroup>
+    <Manifest Include="..\resources\app.manifest">
+      <Filter>Resource files</Filter>
+    </Manifest>
+  </ItemGroup>
 </Project>

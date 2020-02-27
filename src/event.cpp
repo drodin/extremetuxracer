@@ -150,7 +150,7 @@ void CEvent::Enter() {
 	int len = FT.GetTextWidth(Trans.Text(13));
 	textbuttons[0] = AddTextButton(Trans.Text(13), area.right -len - 100, AutoYPosN(80), siz);
 	textbuttons[2] = AddTextButton(Trans.Text(15), CENTER, AutoYPosN(80), siz);
-	SetFocus((ready == 2) ? textbuttons[2] : textbuttons[0]);
+	SetFocus((ready >= 1) ? textbuttons[2] : textbuttons[0]);
 
 	FT.AutoSizeN(6);
 	headline = AddLabel(ecup->name, CENTER, AutoYPosN(25), colWhite);
@@ -219,7 +219,7 @@ void CEvent::Loop(float time_step) {
 		FT.DrawString(CENTER, messtop, Trans.Text(16));
 		DrawBonusExt(bonustop, (int)ecup->races.size(), curr_bonus);
 		int res = resultlevel(curr_bonus, ecup->races.size());
-		FT.DrawString(CENTER, messtop2, Trans.Text(17) + "  " + Int_StrN(res));
+		FT.DrawString(CENTER, messtop2, Trans.Text(17) + " " + Int_StrN(res));
 	} else if (ready == 2) {		// cup finished but failed
 		FT.AutoSizeN(5);
 		FT.SetColor(colLRed);
