@@ -21,7 +21,7 @@ GNU General Public License for more details.
 #include "bh.h"
 #include "states.h"
 
-class CSplashScreen : public State {
+class CSplashScreen final : public State {
 	void Enter();
 	void Loop(float time_step);
 public:

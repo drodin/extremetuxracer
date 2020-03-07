@@ -21,7 +21,7 @@ GNU General Public License for more details.
 #include "bh.h"
 #include "states.h"
 
-class CReset : public State {
+class CReset final : public State {
 	void Enter();
 	void Loop(float time_step);
 public:

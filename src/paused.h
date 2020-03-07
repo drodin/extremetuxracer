@@ -21,7 +21,7 @@ GNU General Public License for more details.
 #include "bh.h"
 #include "states.h"
 
-class CPaused : public State {
+class CPaused final : public State {
 	void Loop(float time_step);
 	void Keyb(sf::Keyboard::Key key, bool release, int x, int y);
 	void Mouse(int button, int state, int x, int y);

@@ -50,12 +50,12 @@ void CCredits::LoadCreditList() {
 		return;
 	}
 
-	std::forward_list<TCredits>::iterator last = CreditList.before_begin();
+	int old_offs = 0;
+	CreditList.reserve(list.size());
 	for (CSPList::const_iterator line = list.cbegin(); line != list.cend(); ++line) {
-		int old_offs = (last != CreditList.before_begin()) ? last->offs : 0;
-		last = CreditList.emplace_after(last);
-		TCredits& credit = *last;
-		credit.text = SPStrN(*line, "text");
+		TCredits& credit = CreditList.emplace_back();
+		std::string temp = SPStrN(*line, "text");
+		credit.text = sf::String::fromUtf8(temp.cbegin(), temp.cend());
 
 		int offset = SPFloatN(*line, "offs", 0) * OFFS_SCALE_FACTOR * Winsys.scale;
 		if (line != list.cbegin()) credit.offs = old_offs + offset;
@@ -63,6 +63,8 @@ void CCredits::LoadCreditList() {
 
 		credit.col = SPIntN(*line, "col", 0);
 		credit.size = SPFloatN(*line, "size", 1.f);
+
+		old_offs = credit.offs;
 	}
 }
 
@@ -74,7 +76,7 @@ void CCredits::DrawCreditsText(float time_step) {
 	sf::Text text;
 	text.setFont(FT.getCurrentFont());
 	RT->clear(colTBackr);
-	for (std::forward_list<TCredits>::const_iterator i = CreditList.begin(); i != CreditList.end(); ++i) {
+	for (std::vector<TCredits>::const_iterator i = CreditList.begin(); i != CreditList.end(); ++i) {
 		offs = h - TOP_Y - y_offset + i->offs;
 		if (offs > h || offs < -100.f) // Draw only visible lines
 			continue;

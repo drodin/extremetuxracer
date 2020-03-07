@@ -444,6 +444,7 @@ bool CSPList::Save(const std::string& dir, const std::string& filename) const {
 
 void CSPList::MakeIndex(std::unordered_map<std::string, std::size_t>& index, const std::string &tag) {
 	index.clear();
+	index.reserve(size());
 	std::size_t idx = 0;
 
 	for (const_iterator line = cbegin(); line != cend(); ++line) {

@@ -66,6 +66,8 @@ bool CSound::LoadChunk(const std::string& name, const std::string& filename) {
 void CSound::LoadSoundList() {
 	CSPList list;
 	if (list.Load(param.sounds_dir, "sounds.lst")) {
+		sounds.reserve(list.size());
+		SoundIndex.reserve(list.size());
 		for (CSPList::const_iterator line = list.cbegin(); line != list.cend(); ++line) {
 			std::string name = SPStrN(*line, "name");
 			std::string soundfile = SPStrN(*line, "file");
@@ -172,6 +174,7 @@ void CMusic::LoadMusicList() {
 	CSPList list;
 	if (list.Load(param.music_dir, "music.lst")) {
 		musics.reserve(list.size());
+		MusicIndex.reserve(list.size());
 		for (CSPList::const_iterator line = list.cbegin(); line != list.cend(); ++line) {
 			std::string name = SPStrN(*line, "name");
 			std::string musicfile = SPStrN(*line, "file");
@@ -188,6 +191,7 @@ void CMusic::LoadMusicList() {
 	ThemesIndex.clear();
 	if (list.Load(param.music_dir, "racing_themes.lst")) {
 		themes.resize(list.size());
+		ThemesIndex.reserve(list.size());
 		std::size_t i = 0;
 		for (CSPList::const_iterator line = list.cbegin(); line != list.cend(); ++line, i++) {
 			std::string name = SPStrN(*line, "name");

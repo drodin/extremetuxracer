@@ -21,7 +21,7 @@ GNU General Public License for more details.
 #ifndef LOADING_H
 #define LOADING_H
 
-class CLoading : public State {
+class CLoading final : public State {
 	void Enter();
 	void Loop(float time_step);
 public:

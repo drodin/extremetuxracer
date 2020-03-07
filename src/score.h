@@ -41,7 +41,7 @@ struct TScoreList {
 	TScoreList() : numScores(0) {}
 };
 
-class CScore : public State {
+class CScore final : public State {
 private:
 	std::unordered_map<std::string, std::unordered_map<std::string, TScoreList>> Scorelist;
 

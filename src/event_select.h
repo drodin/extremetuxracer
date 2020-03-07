@@ -21,7 +21,7 @@ GNU General Public License for more details.
 #include "bh.h"
 #include "states.h"
 
-class CEventSelect : public State {
+class CEventSelect final : public State {
 	void Enter();
 	void Loop(float time_step);
 	void Keyb(sf::Keyboard::Key key, bool release, int x, int y);

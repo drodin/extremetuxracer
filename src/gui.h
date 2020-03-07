@@ -69,7 +69,7 @@ public:
 	bool GetInteractive() const { return interactive; }
 };
 
-class TLabel : public TWidget {
+class TLabel final : public TWidget {
 	sf::Text text;
 public:
 	TLabel(const sf::String& string, int x, int y, const sf::Color& color);
@@ -79,7 +79,7 @@ public:
 };
 TLabel* AddLabel(const sf::String& string, int x, int y, const sf::Color& color);
 
-class TFramedText : public TWidget {
+class TFramedText final : public TWidget {
 	sf::RectangleShape frame;
 	sf::Text text;
 	bool borderFocus;
@@ -92,7 +92,7 @@ public:
 };
 TFramedText* AddFramedText(int x, int y, int width, int height, int line, const sf::Color& backcol, const sf::String& text, unsigned int ftsize, bool borderFocus = false);
 
-class TTextButton : public TWidget {
+class TTextButton final : public TWidget {
 	sf::Text text;
 public:
 	TTextButton(int x, int y, const sf::String& text_, int ftsize);
@@ -102,7 +102,7 @@ public:
 TTextButton* AddTextButton(const sf::String& text, int x, int y, int ftsize);
 TTextButton* AddTextButtonN(const sf::String& text, int x, int y, int rel_ftsize);
 
-class TTextField : public TWidget {
+class TTextField final : public TWidget {
 	sf::Text text;
 	sf::RectangleShape frame;
 	sf::RectangleShape cursorShape;
@@ -124,7 +124,7 @@ public:
 };
 TTextField* AddTextField(const sf::String& text, int x, int y, int width, int height);
 
-class TCheckbox : public TWidget {
+class TCheckbox final : public TWidget {
 	sf::Text text;
 	sf::Sprite back, checkmark;
 public:
@@ -140,7 +140,7 @@ public:
 };
 TCheckbox* AddCheckbox(int x, int y, int width, const sf::String& tag);
 
-class TIconButton : public TWidget {
+class TIconButton final : public TWidget {
 	sf::Sprite sprite;
 	sf::RectangleShape frame;
 	float size;
@@ -157,7 +157,7 @@ public:
 };
 TIconButton* AddIconButton(int x, int y, const sf::Texture& texture, float size, int maximum, int value);
 
-class TArrow : public TWidget {
+class TArrow final : public TWidget {
 	sf::Sprite sprite;
 	bool down;
 	void SetTexture();
@@ -169,7 +169,7 @@ public:
 };
 TArrow* AddArrow(int x, int y, bool down);
 
-class TUpDown : public TWidget {
+class TUpDown final : public TWidget {
 	TArrow up;
 	TArrow down;
 	TArrow& higher;

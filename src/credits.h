@@ -19,18 +19,18 @@ GNU General Public License for more details.
 
 #include "bh.h"
 #include "states.h"
-#include <forward_list>
+#include <vector>
 
 struct TCredits {
-	std::string text;
+	sf::String text;
 	float size;
 	int offs;
 	int font;
 	int col;
 };
 
-class CCredits : public State {
-	std::forward_list<TCredits> CreditList;
+class CCredits final : public State {
+	std::vector<TCredits> CreditList;
 
 	void DrawCreditsText(float time_step);
 	void Enter();
