@@ -96,8 +96,8 @@ fi
 
 CPPFLAGS="${CPPFLAGS} -DETR_DATA_DIR=\\\"$datadir\\\""
 
-# Request c++14 compatibility
-CXXFLAGS="${CXXFLAGS} -std=c++14"
+# Request c++17 compatibility
+CXXFLAGS="${CXXFLAGS} -std=c++17"
 
 AC_CONFIG_FILES([
         Makefile
