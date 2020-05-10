@@ -2,13 +2,14 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 29
+    ndkVersion '18.1.5063045'
 
     defaultConfig {
         resValue "string", "app_name", "Extreme Tux Racer"
 
         applicationId = 'com.drodin.extremetuxracer'
-        versionCode = 1
-        versionName = "0.7.5-1"
+        versionCode = 4
+        versionName = "0.7.5-4"
 
         minSdkVersion 16
         targetSdkVersion 29
