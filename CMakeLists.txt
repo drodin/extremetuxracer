@@ -17,12 +17,10 @@ option(HUNTER_KEEP_PACKAGE_SOURCES "Keep third party sources" OFF)
 option(HUNTER_STATUS_DEBUG "Print debug info" OFF)
 option(HUNTER_BUILD_SHARED_LIBS "Build shared libs" OFF)
 
-set(HUNTER_ROOT /Users/user/workspace/mobile/hunter)
-
 include("cmake/HunterGate.cmake")
 HunterGate(
-    URL "https://github.com/cpp-pm/hunter/archive/v0.23.244.tar.gz"
-    SHA1 "2c0f491fd0b80f7b09e3d21adb97237161ef9835"
+    URL "https://github.com/cpp-pm/hunter/archive/v0.23.249.tar.gz"
+    SHA1 "d45d77d8bba9da13e9290a180e0477e90accd89b"
 )
 
 project(extremetuxracer)
