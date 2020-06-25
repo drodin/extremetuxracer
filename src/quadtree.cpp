@@ -725,6 +725,7 @@ void quadsquare::InitVert(int i, int x, int z) {
 GLubyte *VNCArray;
 
 void quadsquare::DrawTris() {
+#ifndef USE_GL4ES
 	int tmp_min_idx = VertexArrayMinIdx;
 
 	if (glLockArraysEXT_p) {
@@ -735,6 +736,20 @@ void quadsquare::DrawTris() {
 	glDrawElements(GL_TRIANGLES, VertexArrayCounter,
 	               GL_UNSIGNED_INT, VertexArrayIndices);
 	if (glUnlockArraysEXT_p) glUnlockArraysEXT_p();
+#else
+	// TODO gl4es handling uint indices
+    GLbyte *ovnc_array = new GLbyte[VertexArrayCounter * STRIDE_GL_ARRAY];
+
+	for (int i = 0; i < VertexArrayCounter; i++)
+	    memcpy(ovnc_array + i * STRIDE_GL_ARRAY, VNCArray + VertexArrayIndices[i] * STRIDE_GL_ARRAY, STRIDE_GL_ARRAY);
+
+	glVertexPointer(3, GL_FLOAT, STRIDE_GL_ARRAY, ovnc_array);
+	glNormalPointer(GL_FLOAT, STRIDE_GL_ARRAY, ovnc_array + 4 * sizeof(GLfloat));
+	glColorPointer(4, GL_UNSIGNED_BYTE, STRIDE_GL_ARRAY, ovnc_array + 8 * sizeof(GLfloat));
+    glDrawArrays(GL_TRIANGLES, 0, VertexArrayCounter);
+
+    delete[] ovnc_array;
+#endif
 }
 
 void quadsquare::InitArrayCounters() {
