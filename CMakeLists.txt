@@ -29,45 +29,72 @@ hunter_add_package(SFML)
 
 find_package(SFML COMPONENTS graphics audio CONFIG REQUIRED)
 
-if(NOT ANDROID)
-    find_package(OpenGL MODULE REQUIRED)
-else()
+if(ANDROID)
     hunter_add_package(glu)
     find_package(glu CONFIG REQUIRED)
     set(OPENGL_LIBRARIES glu::GLU)
+else()
+    find_package(OpenGL MODULE REQUIRED)
 endif()
 
 file(GLOB SOURCES src/*.cpp)
 
-if(NOT ANDROID)
-    add_executable(extremetuxracer ${SOURCES})
-else()
-    add_library(extremetuxracer SHARED ${SOURCES})
+if(ANDROID)
+    add_library(${PROJECT_NAME} SHARED ${SOURCES})
 
-    target_compile_definitions(extremetuxracer PRIVATE APPLICATION_ID=\"${APPLICATION_ID}\")
-    target_compile_definitions(extremetuxracer PRIVATE VERSION_NAME=\"${VERSION_NAME}\")
-    target_compile_definitions(extremetuxracer PRIVATE MOBILE=1)
-    target_compile_definitions(extremetuxracer PRIVATE USE_GL4ES=1)
+    target_compile_definitions(${PROJECT_NAME} PRIVATE APPLICATION_ID=\"${APPLICATION_ID}\")
+    target_compile_definitions(${PROJECT_NAME} PRIVATE VERSION_NAME=\"${VERSION_NAME}\")
+    target_compile_definitions(${PROJECT_NAME} PRIVATE MOBILE=1)
+    target_compile_definitions(${PROJECT_NAME} PRIVATE USE_GL4ES=1)
 
-    set_target_properties(extremetuxracer PROPERTIES DEBUG_POSTFIX "")
+    set_target_properties(${PROJECT_NAME} PROPERTIES DEBUG_POSTFIX "")
 
-    target_link_libraries(extremetuxracer -Wl,--whole-archive sfml-main -Wl,--no-whole-archive)
-    target_link_libraries(extremetuxracer android)
+    target_link_libraries(${PROJECT_NAME} -Wl,--whole-archive sfml-main -Wl,--no-whole-archive)
+    target_link_libraries(${PROJECT_NAME} android)
 
     # Add wrapper to preload shared libs
     if(HUNTER_BUILD_SHARED_LIBS)
         find_package(SFML COMPONENTS activity CONFIG REQUIRED)
-        target_link_libraries(extremetuxracer sfml-activity)
+        target_link_libraries(${PROJECT_NAME} sfml-activity)
     endif()
+elseif(APPLE)
+    add_executable(${PROJECT_NAME} MACOSX_BUNDLE ${SOURCES} data resources/extremetuxracer.icns resources/extremetuxracer.entitlements)
+    set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME "Extreme Tux Racer")
+
+    set(MACOSX_BUNDLE_APP_CATEGORY "public.app-category.racing-games")
+
+    set(VERSION_NAME "0.7.501")
+    target_compile_definitions(${PROJECT_NAME} PRIVATE VERSION_NAME=\"${VERSION_NAME}\")
+
+    set_target_properties(${PROJECT_NAME} PROPERTIES
+        RESOURCE data
+        MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_LIST_DIR}/cmake/template/MacOSXBundleInfo.plist.in"
+        #MACOSX_BUNDLE_BUNDLE_NAME "ExtremeTuxRacer"
+        MACOSX_BUNDLE_GUI_IDENTIFIER "com.drodin.extremetuxracer"
+        MACOSX_BUNDLE_SHORT_VERSION_STRING "${VERSION_NAME}"
+        MACOSX_BUNDLE_BUNDLE_VERSION "1"
+        MACOSX_BUNDLE_ICON_FILE "extremetuxracer"
+        MACOSX_BUNDLE_COPYRIGHT "Copyright © 2020 Dmitry Rodin. All rights reserved."
+        XCODE_ATTRIBUTE_INSTALL_PATH "$(LOCAL_APPS_DIR)"
+        XCODE_ATTRIBUTE_SKIP_INSTALL "No"
+        XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY "Mac Developer"
+        XCODE_ATTRIBUTE_DEVELOPMENT_TEAM "$ENV{CMAKE_XCODE_ATTRIBUTE_DEVELOPMENT_TEAM}"
+        XCODE_ATTRIBUTE_CODE_SIGN_ENTITLEMENTS "resources/extremetuxracer.entitlements"
+        XCODE_ATTRIBUTE_ENABLE_HARDENED_RUNTIME YES
+    )
+
+    set_source_files_properties(resources/extremetuxracer.icns PROPERTIES MACOSX_PACKAGE_LOCATION "Resources")
+else()
+    add_executable(${PROJECT_NAME} ${SOURCES})
 endif()
 
-set_property(TARGET extremetuxracer PROPERTY CXX_STANDARD 14)
+set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 14)
 
-target_compile_definitions(extremetuxracer PRIVATE ETR_DATA_DIR=\".\")
+target_compile_definitions(${PROJECT_NAME} PRIVATE ETR_DATA_DIR=\".\")
 
-target_include_directories(extremetuxracer PRIVATE ${OPENGL_INCLUDE_DIR})
+target_include_directories(${PROJECT_NAME} PRIVATE ${OPENGL_INCLUDE_DIR})
 
-target_link_libraries(extremetuxracer
+target_link_libraries(${PROJECT_NAME}
     ${OPENGL_LIBRARIES}
     sfml-graphics
     sfml-audio

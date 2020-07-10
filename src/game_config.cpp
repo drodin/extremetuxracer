@@ -45,6 +45,10 @@ Then edit the below functions:
 #include <sstream>
 #include <sys/stat.h>
 
+#ifdef __APPLE__
+#include <CoreServices/CoreServices.h>
+#endif
+
 TParam param;
 
 
@@ -299,6 +303,32 @@ void InitConfig() {
 	param.data_dir = "etr";
 	param.save_dir = param.config_dir;
 	param.configfile = param.config_dir + SEP "options.txt";
+	if (FileExists(param.configfile)) {
+		config_exist = 1;
+	}
+#elif defined(__APPLE__)
+	FSRef ref;
+	OSType folderType = kApplicationSupportFolderType;
+	char config_dir[PATH_MAX];
+	FSFindFolder(kUserDomain, folderType, kCreateFolder, &ref);
+	FSRefMakePath(&ref, (UInt8*)&config_dir, PATH_MAX);
+
+	param.config_dir = config_dir;
+	param.config_dir += "/extremetuxracer";
+	if (!DirExists(param.config_dir.c_str())) {
+		mkdir(param.config_dir.c_str(), 0775);
+	}
+
+	CFURLRef appUrlRef = CFBundleCopyBundleURL(CFBundleGetMainBundle());
+	CFStringRef macPath = CFURLCopyFileSystemPath(appUrlRef, kCFURLPOSIXPathStyle);
+	const char *data_dir = CFStringGetCStringPtr(macPath, CFStringGetSystemEncoding());
+	CFRelease(appUrlRef);
+	CFRelease(macPath);
+
+	param.data_dir = data_dir;
+	param.data_dir += "/Contents/Resources/data";
+	param.save_dir = param.config_dir;
+	param.configfile = param.config_dir + "/options.txt";
 	if (FileExists(param.configfile)) {
 		config_exist = 1;
 	}

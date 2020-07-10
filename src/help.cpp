@@ -30,14 +30,13 @@ GNU General Public License for more details.
 
 CHelp Help;
 
-#ifndef MOBILE
 #define TEXT_LINES 13
 TLabel* headline;
 TLabel* texts[TEXT_LINES];
 TLabel* footnote;
-#else
-#define TEXT_LINES 8
-sf::String texts[TEXT_LINES] = {
+#if defined(MOBILE) || defined(__APPLE__)
+#define LICENSE_LINES 13
+sf::String license[LICENSE_LINES] = {
 	"Privacy policy:",
 	"We don't collect any personal data from our apps.",
 	"",
@@ -47,7 +46,7 @@ sf::String texts[TEXT_LINES] = {
 	"The full source code is available at:",
 	"https://github.com/drodin/extremetuxracer",
 };
-TLabel* labels[TEXT_LINES];
+TLabel* labels[LICENSE_LINES];
 #endif
 
 void CHelp::Keyb(sf::Keyboard::Key key, bool release, int x, int y) {
@@ -70,7 +69,7 @@ void CHelp::Enter() {
 
 	int ytop = AutoYPosN(15);
 
-	const int xleft1 = 40;
+	int xleft1 = 40;
 
 	FT.AutoSizeN(4);
 #ifndef MOBILE
@@ -82,10 +81,14 @@ void CHelp::Enter() {
 		texts[i] = AddLabel(Trans.Text(44 + i), xleft1, ytop + offs*i, colWhite);
 
 	footnote = AddLabel(Trans.Text(65), CENTER, AutoYPosN(90), colWhite);
-#else
-	int offs = FT.AutoDistanceN(2);
-	for (int i = 0; i < TEXT_LINES; i++)
-		labels[i] = AddLabel(texts[i], xleft1, ytop + offs*i, colWhite);
+#endif
+#if defined(MOBILE) || defined(__APPLE__)
+#ifdef __APPLE__
+	xleft1 = Winsys.resolution.width / 2;
+#endif
+	int loffs = FT.AutoDistanceN(2);
+	for (int i = 0; i < LICENSE_LINES; i++)
+		labels[i] = AddLabel(license[i], xleft1, ytop + loffs*i, colWhite);
 #endif
 }
 
