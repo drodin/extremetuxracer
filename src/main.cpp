@@ -28,6 +28,8 @@ GNU General Public License for more details.
 #include "tools.h"
 #include "ogl_test.h"
 #include "winsys.h"
+#include "game_ctrl.h"
+#include "course.h"
 #include <iostream>
 #include <ctime>
 #include <cstring>
@@ -99,6 +101,15 @@ int main(int argc, char **argv) {
 	}
 
 	Winsys.Quit();
+
+	Tex.FreeTextureList();
+	Char.FreeCharacterPreviews();
+	Players.FreeAvatars();
+	FT.Clear();
+	Course.ResetCourse();
+	Course.FreeCourseList();
+	Music.FreeMusics();
+	Sound.FreeSounds();
 
 	return 0;
 }

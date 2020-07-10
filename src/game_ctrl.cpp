@@ -149,8 +149,7 @@ CPlayers Players;
 
 CPlayers::~CPlayers() {
 	ResetControls();
-	for (std::size_t i = 0; i < avatars.size(); i++)
-		delete avatars[i].texture;
+	FreeAvatars();
 }
 
 void CPlayers::AddPlayer(const std::string& name, const std::string& avatar) {
@@ -256,6 +255,12 @@ bool CPlayers::LoadAvatars() {
 			delete texture;
 	}
 	return true;
+}
+
+void CPlayers::FreeAvatars() {
+	for (std::size_t i = 0; i < avatars.size(); i++)
+		delete avatars[i].texture;
+	avatars.clear();
 }
 
 TTexture* CPlayers::GetAvatarTexture(std::size_t avatar) const {

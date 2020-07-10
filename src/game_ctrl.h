@@ -133,6 +133,7 @@ public:
 	void ResetControls();
 	void AllocControl(std::size_t player);
 	bool LoadAvatars();
+	void FreeAvatars();
 	std::size_t numAvatars() const { return avatars.size(); }
 	std::size_t numPlayers() const { return plyr.size(); }
 
