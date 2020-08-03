@@ -90,6 +90,9 @@ void CIntro::Enter() {
 
 	Music.PlayTheme(g_game.theme_id, MUS_RACING);
 	param.show_hud = true;
+
+	ScopedRenderMode rm(RM_UNINITIALIZED);
+	Reshape(Winsys.resolution.width, Winsys.resolution.height);
 }
 
 void CIntro::Loop(float time_step) {
