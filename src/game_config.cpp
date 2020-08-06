@@ -45,7 +45,7 @@ Then edit the below functions:
 #include <sstream>
 #include <sys/stat.h>
 
-#ifdef __APPLE__
+#ifdef MACOS
 #include <CoreServices/CoreServices.h>
 #endif
 
@@ -306,7 +306,17 @@ void InitConfig() {
 	if (FileExists(param.configfile)) {
 		config_exist = 1;
 	}
-#elif defined(__APPLE__)
+#elif defined(IOS)
+	char *home = getenv("HOME");
+	param.config_dir = home;
+	param.config_dir += SEP "Documents";
+	param.data_dir = "data";
+	param.save_dir = param.config_dir;
+	param.configfile = param.config_dir + SEP "options.txt";
+	if (FileExists(param.configfile)) {
+		config_exist = 1;
+	}
+#elif defined(MACOS)
 	FSRef ref;
 	OSType folderType = kApplicationSupportFolderType;
 	char config_dir[PATH_MAX];

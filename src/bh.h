@@ -26,7 +26,16 @@ GNU General Public License for more details.
 #include <cstddef>
 #include <string>
 
-#if !defined(__APPLE__)
+#if defined(__APPLE__)
+	#include "TargetConditionals.h"
+	#if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
+		#define IOS
+	#elif TARGET_OS_MAC
+		#define MACOS
+	#endif
+#endif
+
+#if !defined(MACOS)
 #include <GL/gl.h>
 #else
 #include <OpenGL/gl.h>
@@ -43,9 +52,7 @@ GNU General Public License for more details.
 #			define OS_WIN32_MINGW
 #		endif
 #	else // Assume Unix platform (Linux, Mac OS X, BSD, ...)
-#		ifdef __APPLE__
-#			define OS_MAC
-#		elif defined(__linux__)
+#		if defined(__linux__)
 #			define OS_LINUX
 #		endif
 #	endif

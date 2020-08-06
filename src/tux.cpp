@@ -30,7 +30,7 @@ still shaped with spheres.
 #include "textures.h"
 #include "course.h"
 #include "physics.h"
-#if !defined(__APPLE__)
+#if !defined(MACOS)
 #include <GL/glu.h>
 #else
 #include <OpenGL/glu.h>

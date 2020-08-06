@@ -34,15 +34,26 @@ CHelp Help;
 TLabel* headline;
 TLabel* texts[TEXT_LINES];
 TLabel* footnote;
-#if defined(MOBILE) || defined(__APPLE__)
-#define LICENSE_LINES 13
+
+#if defined(MOBILE)
+#define LICENSE_LINES 11
+#elif defined(MACOS)
+#define LICENSE_LINES 7
+#endif
+
+#if defined(MOBILE) || defined(MACOS)
 sf::String license[LICENSE_LINES] = {
+#ifdef MOBILE
+	"Controls:",
+	"Swipe from left to abort race / go to previous menu.",
+	"Touch screen to prepare for jump and release to jump.",
+	"",
+#endif
 	"Privacy policy:",
 	"We don't collect any personal data from our apps.",
 	"",
 	"License:",
-	"This application is released under the",
-	"GNU General Public License (GPL) version 2.",
+	"This application is released under the GPLv2 license",
 	"The full source code is available at:",
 	"https://github.com/drodin/extremetuxracer",
 };
@@ -67,7 +78,11 @@ void CHelp::Enter() {
 	Winsys.ShowCursor(false);
 	Music.Play(param.credits_music, true);
 
+#ifndef MOBILE
 	int ytop = AutoYPosN(15);
+#else
+	int ytop = AutoYPosN(3);
+#endif
 
 	int xleft1 = 40;
 
@@ -82,10 +97,12 @@ void CHelp::Enter() {
 
 	footnote = AddLabel(Trans.Text(65), CENTER, AutoYPosN(90), colWhite);
 #endif
-#if defined(MOBILE) || defined(__APPLE__)
-#ifdef __APPLE__
+#if defined(MACOS)
 	xleft1 = Winsys.resolution.width / 2;
+#elif defined(IOS)
+	xleft1 = Winsys.resolution.width / 20;
 #endif
+#if defined(MOBILE) || defined(MACOS)
 	int loffs = FT.AutoDistanceN(2);
 	for (int i = 0; i < LICENSE_LINES; i++)
 		labels[i] = AddLabel(license[i], xleft1, ytop + loffs*i, colWhite);

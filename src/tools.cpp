@@ -29,7 +29,7 @@ GNU General Public License for more details.
 #include "tool_char.h"
 #include "env.h"
 #include "winsys.h"
-#if !defined(__APPLE__)
+#if !defined(MACOS)
 #include <GL/glu.h>
 #else
 #include <OpenGL/glu.h>

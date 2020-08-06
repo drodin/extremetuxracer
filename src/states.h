@@ -48,7 +48,7 @@ public:
 		void EnterNextState();
 	public:
 		void RequestEnterState(State& state) { next = &state; }
-#ifndef ANDROID
+#ifndef MOBILE
 		void RequestQuit() { quit = true; }
 #else
 		void RequestQuit() {}

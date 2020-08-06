@@ -22,7 +22,7 @@ GNU General Public License for more details.
 #include "ogl.h"
 #include "spx.h"
 #include "winsys.h"
-#if !defined(__APPLE__)
+#if !defined(MACOS)
 #include <GL/glu.h>
 #else
 #include <OpenGL/glu.h>
@@ -51,8 +51,13 @@ static const struct {
 void check_gl_error() {
 	GLenum error = glGetError();
 	if (error != GL_NO_ERROR) {
+// TODO: Undefined symbols for architecture arm64: "_mgluErrorString" ???
+#if defined(IOS) && defined(USE_GL4ES)
+		Message("OpenGL Error: ", error ? Int_StrN(error) : "");
+#else
 		const char* errstr = (const char*)gluErrorString(error);
 		Message("OpenGL Error: ", errstr ? errstr : "");
+#endif
 	}
 }
 

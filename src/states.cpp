@@ -22,7 +22,7 @@ GNU General Public License for more details.
 #include "states.h"
 #include "ogl.h"
 #include "winsys.h"
-#ifdef ANDROID
+#ifdef MOBILE
 #include "game_ctrl.h"
 #include "score.h"
 #include "audio.h"
@@ -91,12 +91,17 @@ void State::Manager::PollEvent() {
 					break;
 				}
 
-#ifdef ANDROID
+#ifdef MOBILE
 				case sf::Event::TouchBegan:
 				case sf::Event::TouchEnded: {
 					TVector2i old = cursor_pos;
 					cursor_pos.x = event.touch.x;
 					cursor_pos.y = event.touch.y;
+					//if ((old.y > 0) && (old.y > Winsys.resolution.height * 0.9) && (cursor_pos.y < Winsys.resolution.height * 0.7)) {
+					if ((old.x > 0) && (old.x < Winsys.resolution.width * 0.1) && (cursor_pos.x > Winsys.resolution.width * 0.3)) {
+						current->Keyb(sf::Keyboard::Escape, false, cursor_pos.x, cursor_pos.y);
+						break;
+					}
 					current->Motion(event.touch.x - old.x, event.touch.y - old.y);
 					current->Mouse(event.touch.finger, event.type == sf::Event::TouchBegan, event.touch.x, event.touch.y);
 					current->Jbutt(3, event.type == sf::Event::TouchBegan);
@@ -104,9 +109,15 @@ void State::Manager::PollEvent() {
 				}
 
 				case sf::Event::SensorChanged: {
+#ifdef ANDROID
 					if (event.sensor.z > 0)
 						current->Jaxis(1, -event.sensor.z + 9.81f / 2.f);
 					current->Jaxis(0, event.sensor.y / (9.81f / 4.f) * (param.accelerometer_sensitivity / 100.f));
+#else
+					if (event.sensor.z < 0)
+						current->Jaxis(1, event.sensor.z + 9.81f / 1.4f);
+					current->Jaxis(0, -event.sensor.y / (9.81f / 4.f) * (param.accelerometer_sensitivity / 100.f));
+#endif
 					break;
 				}
 
@@ -117,10 +128,11 @@ void State::Manager::PollEvent() {
 						Music.Resume();
 					}
 					break;
-				case sf::Event::MouseLeft:
+				case sf::Event::LostFocus:
+				//case sf::Event::MouseLeft:
+					Music.Pause();
 					g_game.active = false;
 					Winsys.getWindow().setActive(false);
-					Music.Pause();
 					current->Keyb(sf::Keyboard::P, false, cursor_pos.x, cursor_pos.y);
 					Score.SaveHighScore();
 					SaveMessages();
@@ -162,9 +174,9 @@ void State::Manager::CallLoopFunction() {
 
 	g_game.time_step = std::max(0.0001f, timer.getElapsedTime().asSeconds());
 	timer.restart();
-#ifdef ANDROID
+#ifdef MOBILE
 	if (!g_game.active) {
-		//sf::sleep(sf::seconds(1));
+		sf::sleep(sf::seconds(0.1f));
 		return;
 	}
 #endif

@@ -69,6 +69,15 @@ void CNewPlayer::Keyb(sf::Keyboard::Key key, bool release, int x, int y) {
 }
 
 void CNewPlayer::TextEntered(char text) {
+#ifdef IOS
+	if (text == '\n') {
+		DecreaseFocus();
+		return;
+	} else if (text == '\b') {
+		KeyGUI(sf::Keyboard::BackSpace, true);
+		return;
+	}
+#endif
 	TextEnterGUI(text);
 }
 
@@ -142,7 +151,7 @@ void CNewPlayer::Loop(float time_step) {
 	}
 
 	textfield->UpdateCursor(time_step);
-#ifdef ANDROID
+#ifdef MOBILE
 	sf::Keyboard::setVirtualKeyboardVisible(textfield->focussed());
 #endif
 

@@ -29,12 +29,6 @@ GNU General Public License for more details.
 #include "translation.h"
 #include <iostream>
 
-#ifdef USE_GL4ES
-extern "C" {
-	void initialize_gl4es();
-}
-#endif
-
 TVector2i cursor_pos(0, 0);
 
 CWinsys Winsys;
@@ -112,6 +106,8 @@ void CWinsys::SetupVideoMode(const TScreenRes& res) {
 
 	scale = CalcScreenScale();
 	if (param.use_quad_scale) scale = std::sqrt(scale);
+
+	window->setActive();
 }
 
 void CWinsys::SetupVideoMode(std::size_t idx) {
@@ -123,8 +119,8 @@ void CWinsys::SetupVideoMode(int width, int height) {
 }
 
 void CWinsys::Init() {
-#ifdef USE_GL4ES
-	initialize_gl4es();
+#if defined(USE_GL4ES) && defined(IOS)
+	setenv("LIBGL_TEXCOPY", "1", 1);
 #endif
 	window = new sf::RenderWindow();
 	sf::VideoMode desktopMode = sf::VideoMode::getDesktopMode();

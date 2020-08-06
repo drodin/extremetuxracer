@@ -34,6 +34,10 @@ GNU General Public License for more details.
 #include <ctime>
 #include <cstring>
 
+#if defined(IOS)
+#include "SFML/Main.hpp"
+#endif
+
 TGameData g_game;
 
 void InitGame(int argc, char **argv) {

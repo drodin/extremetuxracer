@@ -13,14 +13,15 @@ endif()
 
 option(CMAKE_VERBOSE_MAKEFILE "Verbose makefile" OFF)
 
-option(HUNTER_KEEP_PACKAGE_SOURCES "Keep third party sources" OFF)
+option(HUNTER_KEEP_PACKAGE_SOURCES "Keep third party sources" ON)
 option(HUNTER_STATUS_DEBUG "Print debug info" OFF)
 option(HUNTER_BUILD_SHARED_LIBS "Build shared libs" OFF)
 
 include("cmake/HunterGate.cmake")
 HunterGate(
-    URL "https://github.com/cpp-pm/hunter/archive/v0.23.249.tar.gz"
-    SHA1 "d45d77d8bba9da13e9290a180e0477e90accd89b"
+    URL "https://github.com/drodin/hunter/archive/c870ff6.tar.gz"
+    SHA1 "49b146b8607845083fc81ed238f8a4611f6a37d8"
+    LOCAL
 )
 
 project(extremetuxracer)
@@ -29,7 +30,7 @@ hunter_add_package(SFML)
 
 find_package(SFML COMPONENTS graphics audio CONFIG REQUIRED)
 
-if(ANDROID)
+if(ANDROID OR IOS)
     hunter_add_package(glu)
     find_package(glu CONFIG REQUIRED)
     set(OPENGL_LIBRARIES glu::GLU)
@@ -37,15 +38,13 @@ else()
     find_package(OpenGL MODULE REQUIRED)
 endif()
 
-file(GLOB SOURCES src/*.cpp)
+file(GLOB SOURCES src/*.cpp src/*.h)
 
 if(ANDROID)
     add_library(${PROJECT_NAME} SHARED ${SOURCES})
 
     target_compile_definitions(${PROJECT_NAME} PRIVATE APPLICATION_ID=\"${APPLICATION_ID}\")
     target_compile_definitions(${PROJECT_NAME} PRIVATE VERSION_NAME=\"${VERSION_NAME}\")
-    target_compile_definitions(${PROJECT_NAME} PRIVATE MOBILE=1)
-    target_compile_definitions(${PROJECT_NAME} PRIVATE USE_GL4ES=1)
 
     set_target_properties(${PROJECT_NAME} PROPERTIES DEBUG_POSTFIX "")
 
@@ -58,34 +57,54 @@ if(ANDROID)
         target_link_libraries(${PROJECT_NAME} sfml-activity)
     endif()
 elseif(APPLE)
-    add_executable(${PROJECT_NAME} MACOSX_BUNDLE ${SOURCES} data resources/extremetuxracer.icns resources/extremetuxracer.entitlements)
-    set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME "Extreme Tux Racer")
-
-    set(MACOSX_BUNDLE_APP_CATEGORY "public.app-category.racing-games")
-
-    set(VERSION_NAME "0.7.501")
-    target_compile_definitions(${PROJECT_NAME} PRIVATE VERSION_NAME=\"${VERSION_NAME}\")
+if(IOS)
+    add_executable(${PROJECT_NAME} MACOSX_BUNDLE ${SOURCES} data apple/ios/Assets.xcassets apple/ios/LaunchScreen.storyboard)
 
     set_target_properties(${PROJECT_NAME} PROPERTIES
-        RESOURCE data
+        MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_LIST_DIR}/cmake/template/iOSBundleInfo.plist.in"
+        MACOSX_BUNDLE_BUNDLE_NAME "Tux Racer"
+        XCODE_ATTRIBUTE_ASSETCATALOG_COMPILER_APPICON_NAME "AppIcon"
+        XCODE_ATTRIBUTE_TARGETED_DEVICE_FAMILY "1,2"
+    )
+
+    set_source_files_properties(apple/ios/Assets.xcassets PROPERTIES MACOSX_PACKAGE_LOCATION "Resources")
+    set_source_files_properties(apple/ios/LaunchScreen.storyboard PROPERTIES MACOSX_PACKAGE_LOCATION "Resources")
+
+    target_link_libraries(${PROJECT_NAME} sfml-main)
+else()
+    add_executable(${PROJECT_NAME} MACOSX_BUNDLE ${SOURCES} data apple/macos/extremetuxracer.icns apple/macos/extremetuxracer.entitlements)
+
+    set(MACOSX_BUNDLE_APP_CATEGORY "public.app-category.racing-games")
+    set_target_properties(${PROJECT_NAME} PROPERTIES
+        OUTPUT_NAME "Extreme Tux Racer"
         MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_LIST_DIR}/cmake/template/MacOSXBundleInfo.plist.in"
-        #MACOSX_BUNDLE_BUNDLE_NAME "ExtremeTuxRacer"
-        MACOSX_BUNDLE_GUI_IDENTIFIER "com.drodin.extremetuxracer"
-        MACOSX_BUNDLE_SHORT_VERSION_STRING "${VERSION_NAME}"
-        MACOSX_BUNDLE_BUNDLE_VERSION "1"
         MACOSX_BUNDLE_ICON_FILE "extremetuxracer"
         MACOSX_BUNDLE_COPYRIGHT "Copyright © 2020 Dmitry Rodin. All rights reserved."
-        XCODE_ATTRIBUTE_INSTALL_PATH "$(LOCAL_APPS_DIR)"
-        XCODE_ATTRIBUTE_SKIP_INSTALL "No"
         XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY "Mac Developer"
-        XCODE_ATTRIBUTE_DEVELOPMENT_TEAM "$ENV{CMAKE_XCODE_ATTRIBUTE_DEVELOPMENT_TEAM}"
-        XCODE_ATTRIBUTE_CODE_SIGN_ENTITLEMENTS "resources/extremetuxracer.entitlements"
+        XCODE_ATTRIBUTE_CODE_SIGN_ENTITLEMENTS "apple/macos/extremetuxracer.entitlements"
         XCODE_ATTRIBUTE_ENABLE_HARDENED_RUNTIME YES
     )
 
-    set_source_files_properties(resources/extremetuxracer.icns PROPERTIES MACOSX_PACKAGE_LOCATION "Resources")
+    set_source_files_properties(apple/macos/extremetuxracer.icns PROPERTIES MACOSX_PACKAGE_LOCATION "Resources")
+endif()
+    set(VERSION_NAME "0.7.501")
+    target_compile_definitions(${PROJECT_NAME} PRIVATE VERSION_NAME=\"${VERSION_NAME}\")
+    set_target_properties(${PROJECT_NAME} PROPERTIES
+        RESOURCE data
+        MACOSX_BUNDLE_GUI_IDENTIFIER "com.drodin.extremetuxracer"
+        MACOSX_BUNDLE_SHORT_VERSION_STRING "${VERSION_NAME}"
+        MACOSX_BUNDLE_BUNDLE_VERSION "1"
+        XCODE_ATTRIBUTE_INSTALL_PATH "$(LOCAL_APPS_DIR)"
+        XCODE_ATTRIBUTE_SKIP_INSTALL "No"
+        XCODE_ATTRIBUTE_DEVELOPMENT_TEAM "$ENV{CMAKE_XCODE_ATTRIBUTE_DEVELOPMENT_TEAM}"
+    )
 else()
     add_executable(${PROJECT_NAME} ${SOURCES})
+endif()
+
+if(ANDROID OR IOS)
+    target_compile_definitions(${PROJECT_NAME} PRIVATE MOBILE=1)
+    target_compile_definitions(${PROJECT_NAME} PRIVATE USE_GL4ES=1)
 endif()
 
 set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 14)
