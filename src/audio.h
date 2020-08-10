@@ -77,8 +77,11 @@ private:
 	std::vector<Situation> themes;
 	std::unordered_map<std::string, std::size_t> ThemesIndex;
 
+	sf::Clock timer;
+
 	sf::Music* curr_music;	// current music piece
 	int curr_volume;
+	sf::Time curr_offset;
 
 	bool Play(sf::Music* music, bool loop, int volume);
 public:

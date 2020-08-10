@@ -151,6 +151,7 @@ void CSound::HaltAll() {
 CMusic::CMusic() {
 	curr_music = 0;
 	curr_volume = 10;
+	curr_offset = sf::Time::Zero;
 }
 CMusic::~CMusic() {
 	FreeMusics();
@@ -249,6 +250,7 @@ bool CMusic::Play(sf::Music* music, bool loop, int volume) {
 		if (curr_music)
 			curr_music->stop();
 		curr_music = music;
+		timer.restart();
 		music->play();
 	}
 	return true;
@@ -290,12 +292,18 @@ void CMusic::Halt() {
 
 void CMusic::Pause() {
 	if (curr_music) {
-		curr_music->pause();
+		curr_offset += timer.getElapsedTime();
+		curr_music->stop();
 	}
 }
 
 void CMusic::Resume() {
 	if (curr_music) {
+		sf::Time duration = curr_music->getDuration();
+		while (curr_offset > duration)
+			curr_offset -= duration;
+		curr_music->setPlayingOffset(curr_offset);
+		timer.restart();
 		curr_music->play();
 	}
 }
