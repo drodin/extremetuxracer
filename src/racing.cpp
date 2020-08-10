@@ -242,6 +242,11 @@ void CRacing::Enter() {
 	g_game.finish = false;
 
 	Winsys.KeyRepeat(false);
+
+#ifdef MOBILE
+	if (sf::Sensor::isAvailable(sf::Sensor::Accelerometer))
+		sf::Sensor::setEnabled(sf::Sensor::Accelerometer, true);
+#endif
 }
 
 // -------------------- sound -----------------------------------------
@@ -408,6 +413,11 @@ void CRacing::Loop(float time_step) {
 }
 
 void CRacing::Exit() {
+#ifdef MOBILE
+	if (sf::Sensor::isAvailable(sf::Sensor::Accelerometer))
+		sf::Sensor::setEnabled(sf::Sensor::Accelerometer, true);
+#endif
+
 	Winsys.KeyRepeat(true);
 	Sound.HaltAll();
 	break_track_marks();

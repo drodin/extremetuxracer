@@ -116,16 +116,10 @@ void State::Manager::PollEvent() {
 						Winsys.getWindow().setActive(true);
 						Music.Resume();
 					}
-					if(sf::Sensor::isAvailable(sf::Sensor::Accelerometer)) {
-						sf::Sensor::setEnabled(sf::Sensor::Accelerometer, true);
-					}
 					break;
 				case sf::Event::MouseLeft:
 					g_game.active = false;
 					Winsys.getWindow().setActive(false);
-					if(sf::Sensor::isAvailable(sf::Sensor::Accelerometer)) {
-						sf::Sensor::setEnabled(sf::Sensor::Accelerometer, false);
-					}
 					Music.Pause();
 					current->Keyb(sf::Keyboard::P, false, cursor_pos.x, cursor_pos.y);
 					Score.SaveHighScore();
