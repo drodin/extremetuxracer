@@ -103,13 +103,16 @@ void CNewPlayer::Enter() {
 	prevleft = area.left + prevoffs;
 	prevtop = AutoYPosN(52);
 	prevwidth = 128 * Winsys.scale;
+#ifdef MOBILE
+	prevleft = (Winsys.resolution.width - prevwidth) / 2;
+#endif
 
 	ResetGUI();
 
 #ifndef MOBILE
 	avatar = AddUpDown(area.left + prevwidth + prevoffs + 8, prevtop, 0, (int)Players.numAvatars() - 1, 0);
 #else
-	avatar = AddUpDown(area.left + prevoffs, prevtop + prevwidth / 2 / Winsys.scale, 0, (int)Players.numAvatars() - 1, 0, prevwidth);
+	avatar = AddUpDown(prevleft - 15 * Winsys.scale, prevtop + prevwidth / 2 - 30 * Winsys.scale, 0, (int)Players.numAvatars() - 1, 0, prevwidth + 30 * Winsys.scale);
 #endif
 	int siz = FT.AutoSizeN(5);
 #ifndef MOBILE
@@ -147,7 +150,11 @@ void CNewPlayer::Loop(float time_step) {
 
 	FT.SetColor(colWhite);
 	FT.AutoSizeN(4);
+#ifndef MOBILE
 	FT.DrawString(CENTER, AutoYPosN(30), Trans.Text(66));
+#else
+	FT.DrawString(CENTER, AutoYPosN(28), Trans.Text(66));
+#endif
 
 	if (avatar->focussed()) col = colDYell;
 	else col = colWhite;

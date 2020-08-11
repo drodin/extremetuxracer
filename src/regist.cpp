@@ -99,7 +99,12 @@ void CRegist::Enter() {
 	framewidth = (int)(Winsys.scale * 280);
 	frameheight = (int)(Winsys.scale * 50);
 	arrowwidth = 70*Winsys.scale;
+#ifndef MOBILE
 	int sumwidth = framewidth * 2 + arrowwidth * 2;
+#else
+	framewidth -= arrowwidth;
+	int sumwidth = framewidth * 2 + arrowwidth;
+#endif
 	area = AutoAreaN(30, 80, sumwidth);
 	texsize = 128 * Winsys.scale;
 
@@ -117,7 +122,7 @@ void CRegist::Enter() {
 	textbuttons[1] = AddTextButton(Trans.Text(61), CENTER, AutoYPosN(70), siz);
 #else
 	textbuttons[0] = AddTextButton(Trans.Text(60), CENTER, AutoYPosN(75), siz);
-	textbuttons[1] = AddTextButton(Trans.Text(61), CENTER, AutoYPosN(83), siz);
+	textbuttons[1] = AddTextButton(Trans.Text(61), CENTER, AutoYPosN(85), siz);
 #endif
 
 	FT.AutoSizeN(3);
@@ -148,17 +153,18 @@ void CRegist::Loop(float time_step) {
 #ifndef MOBILE
 	    area.left + 60, AutoYPosN(40), texsize, texsize, 3, colWhite);
 #else
-	    area.left + 60, AutoYPosN(45), texsize, texsize, 3, colWhite);
+		area.left + (framewidth - texsize) / 2, AutoYPosN(45), texsize, texsize, 3, colWhite);
 #endif
 
 	sCharFrame->SetString(Char.CharList[character->GetValue()].name);
 	sCharFrame->Focussed(character->focussed());
 	if (Char.CharList[character->GetValue()].preview != nullptr)
 		Char.CharList[character->GetValue()].preview->DrawFrame(
-		    area.right - texsize - 60 - arrowwidth,
 #ifndef MOBILE
+		    area.right - texsize - 60 - arrowwidth,
 		    AutoYPosN(40), texsize, texsize, 3, colWhite);
 #else
+			area.right - framewidth / 2 - texsize / 2,
 			AutoYPosN(45), texsize, texsize, 3, colWhite);
 #endif
 
