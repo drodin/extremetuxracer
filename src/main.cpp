@@ -37,6 +37,7 @@ GNU General Public License for more details.
 TGameData g_game;
 
 void InitGame(int argc, char **argv) {
+	g_game.active = true;
 	g_game.toolmode = NONE;
 	g_game.argument = 0;
 	if (argc == 4) {

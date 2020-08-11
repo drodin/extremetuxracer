@@ -47,6 +47,7 @@ struct TRace;
 struct TCharacter;
 
 struct TGameData {
+	bool active;
 	TToolMode toolmode;
 	float time_step;
 	TGameType game_type;

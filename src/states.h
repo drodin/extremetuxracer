@@ -51,7 +51,6 @@ public:
 #ifndef ANDROID
 		void RequestQuit() { quit = true; }
 #else
-		bool active = true;
 		void RequestQuit() {}
 #endif
 		void Run(State& entranceState);

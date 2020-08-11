@@ -198,6 +198,8 @@ bool CTexture::LoadTextureList() {
 }
 
 void CTexture::FreeTextureList() {
+	if (!g_game.active)
+		return;
 	for (std::size_t i=0; i<CommonTex.size(); i++) {
 		delete CommonTex[i];
 	}

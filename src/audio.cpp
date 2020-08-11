@@ -76,6 +76,8 @@ void CSound::LoadSoundList() {
 }
 
 void CSound::FreeSounds() {
+	if (!g_game.active)
+		return;
 	HaltAll();
 	for (std::size_t i = 0; i < sounds.size(); i++)
 		delete sounds[i];
@@ -204,6 +206,8 @@ void CMusic::LoadMusicList() {
 }
 
 void CMusic::FreeMusics() {
+	if (!g_game.active)
+		return;
 	Halt();
 	for (std::size_t i = 0; i < musics.size(); i++)
 		delete musics[i];

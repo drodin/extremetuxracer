@@ -258,6 +258,8 @@ bool CPlayers::LoadAvatars() {
 }
 
 void CPlayers::FreeAvatars() {
+	if (!g_game.active)
+		return;
 	for (std::size_t i = 0; i < avatars.size(); i++)
 		delete avatars[i].texture;
 	avatars.clear();
@@ -288,8 +290,8 @@ CCharacter Char;
 static const std::string char_type_index = "[spheres]0[3d]1";
 
 CCharacter::~CCharacter() {
+	FreeCharacterPreviews();
 	for (std::size_t i = 0; i < CharList.size(); i++) {
-		delete CharList[i].preview;
 		delete CharList[i].shape;
 	}
 }
@@ -342,6 +344,8 @@ bool CCharacter::LoadCharacterList() {
 }
 
 void CCharacter::FreeCharacterPreviews() {
+	if (!g_game.active)
+		return;
 	for (std::size_t i=0; i<CharList.size(); i++) {
 		delete CharList[i].preview;
 		CharList[i].preview = 0;

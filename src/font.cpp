@@ -98,6 +98,8 @@ CFont::~CFont() {
 }
 
 void CFont::Clear() {
+	if (!g_game.active)
+		return;
 	for (std::size_t i = 0; i < fonts.size(); i++)
 		delete fonts[i];
 	fonts.clear();

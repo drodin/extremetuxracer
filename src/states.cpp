@@ -111,9 +111,9 @@ void State::Manager::PollEvent() {
 				}
 
 				case sf::Event::GainedFocus:
-					if (!active) {
-						active = true;
-						Winsys.getWindow().setActive(active);
+					if (!g_game.active) {
+						g_game.active = true;
+						Winsys.getWindow().setActive(true);
 						Music.Resume();
 					}
 					if(sf::Sensor::isAvailable(sf::Sensor::Accelerometer)) {
@@ -121,8 +121,8 @@ void State::Manager::PollEvent() {
 					}
 					break;
 				case sf::Event::MouseLeft:
-					active = false;
-					Winsys.getWindow().setActive(active);
+					g_game.active = false;
+					Winsys.getWindow().setActive(false);
 					if(sf::Sensor::isAvailable(sf::Sensor::Accelerometer)) {
 						sf::Sensor::setEnabled(sf::Sensor::Accelerometer, false);
 					}
@@ -169,7 +169,7 @@ void State::Manager::CallLoopFunction() {
 	g_game.time_step = std::max(0.0001f, timer.getElapsedTime().asSeconds());
 	timer.restart();
 #ifdef ANDROID
-	if (!active) {
+	if (!g_game.active) {
 		//sf::sleep(sf::seconds(1));
 		return;
 	}

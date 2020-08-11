@@ -298,6 +298,8 @@ void CCourse::MakeStandardPolyhedrons() {
 }
 
 void CCourse::FreeTerrainTextures() {
+	if (!g_game.active)
+		return;
 	for (std::size_t i=0; i<TerrList.size(); i++) {
 		delete TerrList[i].texture;
 		TerrList[i].texture = nullptr;
@@ -305,6 +307,8 @@ void CCourse::FreeTerrainTextures() {
 }
 
 void CCourse::FreeObjectTextures() {
+	if (!g_game.active)
+		return;
 	for (std::size_t i=0; i<ObjTypes.size(); i++) {
 		delete ObjTypes[i].texture;
 		ObjTypes[i].texture = nullptr;
@@ -686,6 +690,8 @@ bool CCourseList::Load(const std::string& dir) {
 }
 
 void CCourseList::Free() {
+	if (!g_game.active)
+		return;
 	for (std::size_t i = 0; i < courses.size(); i++) {
 		delete courses[i].preview;
 	}
