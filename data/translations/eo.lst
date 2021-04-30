@@ -1,0 +1,134 @@
+# Please, don't change the idx
+# Translation by Viliam Bur
+# ĈĉĜĝĤĥĴĵŜŝŬŭ
+
+*[idx] 0 [engl] Press any key to start [trans] Premu iun ajn klavon por komenci
+*[idx] 1 [engl] Enter an event [trans] Enigu eventon
+*[idx] 2 [engl] Practice [trans] Ekzercado
+*[idx] 3 [engl] Configuration [trans] Agordoj
+*[idx] 4 [engl] Credits [trans] Dankoj
+*[idx] 5 [engl] Quit [trans] Forlasu
+*[idx] 6 [engl] Select an event [trans] Elektu la eventon
+*[idx] 7 [engl] Select a cup [trans] Elektu la pokalon
+*[idx] 8 [engl] Back [trans] Reen
+*[idx] 9 [engl] Continue [trans] Daŭrigu
+*[idx] 10 [engl] You cannot enter this cup yet [trans] Vi ankoraŭ ne povas enigi tiun ĉi pokalon
+
+*[idx] 11 [engl] Herring: [trans] Haringoj:
+*[idx] 12 [engl] Time: [trans] Tempo:
+*[idx] 13 [engl] Race! [trans] Ek!
+*[idx] 14 [engl] seconds [trans] sekundoj
+*[idx] 15 [engl] Ok [trans] Bone
+*[idx] 16 [engl] Congratulations! You won the cup! [trans] Gratulojn! Vi venkis la pokalon!
+*[idx] 17 [engl] You have reached level [trans] Vi atingis nivelon
+*[idx] 18 [engl] Sorry, you didn't advance [trans] Bedaŭrinde, vi ne progresis
+*[idx] 19 [engl] You don't have any lives left [trans] Vi ne havas iun ajn vivon pli
+*[idx] 20 [engl] Select a race [trans] Elektu la konkurson
+
+*[idx] 21 [engl] Failed, -1 Tuxlive [trans] Malsukceso, -1 vivo
+*[idx] 22 [engl] Success, +/- 0 Tuxlive [trans] Sukceso, +/- 0 vivo
+*[idx] 23 [engl] Success, +1 Tuxlive [trans] Sukceso, +1 vivo
+*[idx] 24 [engl] Success, +2 Tuxlive [trans] Sukceso, +2 vivoj
+*[idx] 25 [engl] Race aborted [trans] Konkurso abortigita
+*[idx] 26 [engl] Score: [trans] Poentaro:
+*[idx] 27 [engl] points [trans] poentoj
+
+*[idx] 28 [engl] Cancel [trans] Abolu
+*[idx] 29 [engl] Loading [trans] Ŝargante
+*[idx] 30 [engl] Please wait... [trans] Bonvolu atendi...
+
+*[idx] 31 [engl] Fullscreen: [trans] Plen-ekrane:
+*[idx] 32 [engl] Resolution: [trans] Distingivo:
+*[idx] 33 [engl] Music volume: [trans] Laŭteco de muziko:
+*[idx] 34 [engl] Sound volume: [trans] Laŭteco de sonoj:
+*[idx] 35 [engl] Language: [trans] Lingvo:
+*[idx] 36 [engl] Level of detail: [trans] Detal-nivelo:
+*[idx] 37 [engl] Contributed by: [trans] Kunaŭtoroj:
+*[idx] 38 [engl] Event: [trans] Evento:
+*[idx] 39 [engl] Cup: [trans] Pokalo:
+*[idx] 40 [engl] Race Over [trans] Fino de konkurso
+
+*[idx] 41 [engl] For more configuration options, please edit the [trans] Pli da agordoj oni povas redakti en dosiero
+*[idx] 42 [engl] file 'options.txt' and read the documentation. [trans] 'options.txt', bonvolu legi la dokumentaron.
+*[idx] 43 [engl] Help [trans] Helpu
+*[idx] 44 [engl] 1, 2, 3 - change view mode [trans] 1, 2, 3 - ŝanĝu la ekran-modon
+*[idx] 45 [engl] F - hide/show fps display [trans] F - mal/montru kadroj per sekundo
+*[idx] 46 [engl] H - hide/show hud display [trans] H - mal/montru datenojn je ekrano
+*[idx] 47 [engl] S - screenshot [trans] S - ekrankopio
+*[idx] 48 [engl] U - toggle ui snow [trans] U - ĉu neĝo en uzul-interfaco
+*[idx] 49 [engl] P - set pause mode [trans] P - paŭzo
+*[idx] 50 [engl] T - trick [trans] T - artifiko
+*[idx] 51 [engl] ESC - abort Race [trans] Esc - abortigu la konkurson
+*[idx] 52 [engl] SPACE - jump [trans] Spaco - saltu
+*[idx] 53 [engl] CRSR Left - turn left [trans] Sago maldekstren - turnu maldekstren
+*[idx] 54 [engl] CRSR Right - turn right [trans] Sago dekstren - turnu dekstren
+*[idx] 55 [engl] CRSR Up - accelerate [trans] Sago suprem - plirapidiĝu
+*[idx] 56 [engl] CRSR down - brake [trans] Sago malsupren - bremsiĝu
+*[idx] 57 [engl] Keyboard Functions [trans] Funkcioj de klavaro
+
+*[idx] 58 [engl] Select your player name: [trans] Elektu nomon de via ludanto:
+*[idx] 59 [engl] Select a character: [trans] Elektu rolulon:
+*[idx] 60 [engl] Enter [trans] Enigu
+*[idx] 61 [engl] Register a new player [trans] Registru novan ludanton
+
+*[idx] 62 [engl] Highscore list [trans] Plejbona poentaro
+*[idx] 63 [engl] No entries for this race [trans] Neniu ero por tiu ĉi konkurso
+*[idx] 64 [engl] Back [trans] Reen
+
+*[idx] 65 [engl] Press any key to return to the main menu [trans] Premu iun ajn klavon por reveni al la ĉef-menuo
+
+*[idx] 66 [engl] Enter a name for the new player and select an avatar: [trans] Enigu nomon por la nova ludanto kaj elektu la rolulon:
+
+*[idx] 67 [engl] Loading resources, [trans] Ŝargante resursojn,
+*[idx] 68 [engl] please wait ... [trans] bonvolu atendi...
+
+*[idx] 69 [engl] Mirror track: Off [trans] Spegula trako: Ne
+*[idx] 70 [engl] Mirror track: On [trans] Spegula trako: Jes
+
+*[idx] 71 [engl] Light: Sunny [trans] Lumo: Suna
+*[idx] 72 [engl] Light: Cloudy [trans] Lumo: Nuba
+*[idx] 73 [engl] Light: Evening [trans] Lumo: Vespero
+*[idx] 74 [engl] Light: Night [trans] Lumo: Nokto
+
+*[idx] 75 [engl] Snow: No [trans] Neĝo: Ne
+*[idx] 76 [engl] Snow: A little [trans] Neĝo: Iomete
+*[idx] 77 [engl] Snow: Some [trans] Neĝo: Iom
+*[idx] 78 [engl] Snow: A lot [trans] Neĝo: Multe
+
+*[idx] 79 [engl] Wind: No [trans] Vento: Ne
+*[idx] 80 [engl] Wind: Breeze [trans] Vento: Brizo
+*[idx] 81 [engl] Wind: Strong [trans] Vento: Forta
+*[idx] 82 [engl] Wind: Blustery [trans] Vento: Sovaĝa
+
+*[idx] 83 [engl] Randomize settings [trans] Hazardigu la agordojn
+
+*[idx] 84 [engl] Score [trans] Poentaro
+*[idx] 85 [engl] Herring [trans] Haringoj
+*[idx] 86 [engl] Time [trans] Tempo
+*[idx] 87 [engl] Path length [trans] Longeco de vojo
+*[idx] 88 [engl] Average speed [trans] Meza rapideco
+*[idx] 89 [engl] Position [trans] Pozicio
+*[idx] 90 [engl] in highscore list [trans] en la plejbon-listo
+
+*[idx] 91 [engl] Author [trans] Aŭtoro
+
+*[idx] 92 [engl] Loading courses failed. [trans] Ŝargo de kursoj malsukcesis.
+*[idx] 93 [engl] Loading characters failed. [trans] Ŝargo de karakteroj malsukcesis.
+*[idx] 94 [engl] Loading environments failed. [trans] Ŝargo de medioj malsukcesis.
+*[idx] 95 [engl] Loading terrains failed. [trans] Ŝargo de terenoj malsukcesis.
+*[idx] 96 [engl] Loading avatars failed. [trans] Ŝargo de roluloj malsukcesis.
+*[idx] 97 [engl] herrings [trans] haringoj
+*[idx] 98 [engl] sec [trans] sek
+
+*[idx] 99 [engl] 1st [trans] 1a
+*[idx] 100 [engl] 2nd [trans] 2a
+*[idx] 101 [engl] 3rd [trans] 3a
+*[idx] 102 [engl] 4th [trans] 4a
+*[idx] 103 [engl] 5th [trans] 5a
+*[idx] 104 [engl] 6th [trans] 6a
+*[idx] 105 [engl] 7th [trans] 7a
+*[idx] 106 [engl] 8th [trans] 8a
+*[idx] 107 [engl] 9th [trans] 9a
+*[idx] 108 [engl] 10th [trans] 10a
+
+*[idx] 109 [engl] Unknown [trans] Nekonata
