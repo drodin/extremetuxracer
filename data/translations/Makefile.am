@@ -11,6 +11,7 @@ pkgdata_DATA = \
 	pl_PL.lst	\
 	se_SE.lst	\
 	eo.lst		\
+	du_NL.lst	\
 	xx_XX.lst
 
 EXTRA_DIST = $(pkgdata_DATA)
