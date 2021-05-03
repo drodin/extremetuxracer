@@ -2,7 +2,7 @@
 EXTREME TUXRACER
 
 Copyright (C) 1999-2001 Jasmin F. Patry (Tuxracer)
-Copyright (C) 2010 Extreme Tuxracer Team
+Copyright (C) 2010 Extreme Tux Racer Team
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -63,7 +63,7 @@ void InitGame(int argc, char **argv) {
 
 int main(int argc, char **argv) {
 	std::cout << "\n----------- Extreme Tux Racer " ETR_VERSION_STRING " ----------------";
-	std::cout << "\n----------- (C) 2010-2021 Extreme Tuxracer Team  --------\n\n";
+	std::cout << "\n----------- (C) 2010-2021 Extreme Tux Racer Team  --------\n\n";
 
 	std::srand(std::time(nullptr));
 	InitConfig();

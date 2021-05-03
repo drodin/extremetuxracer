@@ -2,7 +2,7 @@
 EXTREME TUXRACER
 
 Copyright (C) 2004-2005 Volker Stroebel (Planetpenguin Racer)
-Copyright (C) 2010 Extreme Tuxracer Team
+Copyright (C) 2010 Extreme Tux Racer Team
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
