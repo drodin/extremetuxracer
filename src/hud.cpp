@@ -255,10 +255,10 @@ void DrawWind(float dir, float speed, const CControl *ctrl) {
 	static const int len = 45;
 	static const GLshort vtx1 [] = {
 		-5, 0,
-		5, 0,
-		5, -len,
-		- 5, -len
-	};
+		    5, 0,
+		    5, -len,
+		    - 5, -len
+	    };
 	glVertexPointer(2, GL_SHORT, 0, vtx1);
 	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 
@@ -269,10 +269,10 @@ void DrawWind(float dir, float speed, const CControl *ctrl) {
 	glRotatef(dir_angle - dir, 0, 0, 1);
 	static const GLshort vtx2 [] = {
 		-2, 0,
-		2, 0,
-		2, -50,
-		-2, -50
-	};
+		    2, 0,
+		    2, -50,
+		    -2, -50
+	    };
 	glVertexPointer(2, GL_SHORT, 0, vtx2);
 	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 	glDisableClientState(GL_VERTEX_ARRAY);

@@ -784,10 +784,10 @@ void TCurtain::Draw() const {
 			};
 			const GLfloat vtx[] = {
 				-halfsize, -halfsize, 0,
-				halfsize, -halfsize, 0,
-				halfsize, halfsize, 0,
-				-halfsize, halfsize, 0
-			};
+				    halfsize, -halfsize, 0,
+				    halfsize, halfsize, 0,
+				    -halfsize, halfsize, 0
+			    };
 			glVertexPointer(3, GL_FLOAT, 0, vtx);
 			glTexCoordPointer(2, GL_SHORT, 0, tex);
 			glDrawArrays(GL_TRIANGLE_FAN, 0, 4);

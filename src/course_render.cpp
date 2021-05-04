@@ -93,14 +93,14 @@ void DrawTrees() {
 
 		const GLfloat vtx[] = {
 			-treeRadius, 0.0,        0.0,
-			treeRadius,  0.0,        0.0,
-			treeRadius,  treeHeight, 0.0,
-			-treeRadius, treeHeight, 0.0,
-			0.0,         0.0,        -treeRadius,
-			0.0,         0.0,        treeRadius,
-			0.0,         treeHeight, treeRadius,
-			0.0,         treeHeight, -treeRadius
-		};
+			    treeRadius,  0.0,        0.0,
+			    treeRadius,  treeHeight, 0.0,
+			    -treeRadius, treeHeight, 0.0,
+			    0.0,         0.0,        -treeRadius,
+			    0.0,         0.0,        treeRadius,
+			    0.0,         treeHeight, treeRadius,
+			    0.0,         treeHeight, -treeRadius
+		    };
 
 		glEnableClientState(GL_VERTEX_ARRAY);
 		glEnableClientState(GL_TEXTURE_COORD_ARRAY);

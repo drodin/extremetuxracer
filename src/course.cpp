@@ -140,7 +140,7 @@ void CCourse::CalcNormals() {
 					nml += n;
 
 					p1 = NMLPOINT(x-1,y+1);
-					p2 = NMLPOINT(x  ,y+1);
+					p2 = NMLPOINT(x,y+1);
 					v1 = p1 - p0;
 					v2 = p2 - p0;
 					n = CrossProduct(v2, v1);
@@ -159,7 +159,7 @@ void CCourse::CalcNormals() {
 					nml += n;
 
 					p1 = NMLPOINT(x+1,y-1);
-					p2 = NMLPOINT(x  ,y-1);
+					p2 = NMLPOINT(x,y-1);
 					v1 = p1 - p0;
 					v2 = p2 - p0;
 					n = CrossProduct(v2, v1);
@@ -178,7 +178,7 @@ void CCourse::CalcNormals() {
 					nml += n;
 
 					p1 = NMLPOINT(x+1,y+1);
-					p2 = NMLPOINT(x  ,y+1);
+					p2 = NMLPOINT(x,y+1);
 					v1 = p1 - p0;
 					v2 = p2 - p0;
 					n = CrossProduct(v1, v2);
@@ -199,7 +199,7 @@ void CCourse::CalcNormals() {
 				}
 				if (x > 0 && y < ny-1) {
 					TVector3d p1 = NMLPOINT(x-1,y);
-					TVector3d p2 = NMLPOINT(x  ,y+1);
+					TVector3d p2 = NMLPOINT(x,y+1);
 					TVector3d v1 = p1 - p0;
 					TVector3d v2 = p2 - p0;
 					TVector3d n = CrossProduct(v2, v1);
@@ -209,7 +209,7 @@ void CCourse::CalcNormals() {
 				}
 				if (x < nx-1 && y > 0) {
 					TVector3d p1 = NMLPOINT(x+1,y);
-					TVector3d p2 = NMLPOINT(x  ,y-1);
+					TVector3d p2 = NMLPOINT(x,y-1);
 					TVector3d v1 = p1 - p0;
 					TVector3d v2 = p2 - p0;
 					TVector3d n = CrossProduct(v2, v1);
@@ -219,7 +219,7 @@ void CCourse::CalcNormals() {
 				}
 				if (x < nx-1 && y < ny-1) {
 					TVector3d p1 = NMLPOINT(x+1,y);
-					TVector3d p2 = NMLPOINT(x  ,y+1);
+					TVector3d p2 = NMLPOINT(x,y+1);
 					TVector3d v1 = p1 - p0;
 					TVector3d v2 = p2 - p0;
 					TVector3d n = CrossProduct(v1, v2);
