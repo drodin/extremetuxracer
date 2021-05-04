@@ -10,7 +10,7 @@ Extreme Tux Racer is written entirely in C++, and thus requires a C++ compiler
 to be compiled. This compiler has to support the subset of C++17 supported by
 recent versions of GCC, Clang and MSVC.
 
-Extreme Tux Racer has - though aming to not have more dependencies than
+Extreme Tux Racer has - though aiming to not have more dependencies than
 necessary - the following dependencies:
 - OpenGL
 - SFML 2.4 or later (modules: system, graphics, audio and window)
