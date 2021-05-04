@@ -7,7 +7,7 @@ Dependencies and Requirements
 -------------------------------------------------------------------------------
 
 Extreme Tux Racer is written entirely in C++, and thus requires a C++ compiler
-to be compiled. This compiler has to support the subset of C++11 supported by
+to be compiled. This compiler has to support the subset of C++17 supported by
 recent versions of GCC, Clang and MSVC.
 
 Extreme Tux Racer has - though aming to not have more dependencies than
