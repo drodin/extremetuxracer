@@ -70,19 +70,26 @@ PKG_CHECK_MODULES([SFML_GRAPHICS], [sfml-graphics >= 2.4],
 ],
 [AC_MSG_ERROR([sfml-graphics not found])])
 
-AC_CHECK_LIB([GL], [glBegin],
+AC_CHECK_LIB([GLU], [gluBeginCurve],
 [
-  AC_CHECK_LIB([GLU], [gluBeginCurve],
+  AC_CHECK_LIB([OpenGL], [glBegin],
   [
-    LIBS="$LIBS -lGL -lGLU"
+    LIBS="$LIBS -lOpenGL -lGLU"
     glfound=true
+  ],
+  [
+    AC_CHECK_LIB([GL], [glBegin],
+    [
+      LIBS="$LIBS -lGL -lGLU"
+      glfound=true
+    ])
   ])
 ])
 
 if test x$glfound != xtrue ; then
-  AC_CHECK_LIB([opengl32], [glBegin],
+  AC_CHECK_LIB([glu32], [gluBeginCurve],
   [
-    AC_CHECK_LIB([glu32], [gluBeginCurve],
+    AC_CHECK_LIB([opengl32], [glBegin],
     [
       LIBS="$LIBS -lopengl32 -lglu32"
       glfound=true

@@ -11,6 +11,7 @@ version 0.9 features the following changes:
 
 Version 0.8.1                                                 ??th of ???, 202?
 -------------------------------------------------------------------------------
+- Autotools build now prefers linking against libOpenGL over libGL
 - New translations
   - Esperanto
   - Dutch
