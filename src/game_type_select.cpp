@@ -122,7 +122,7 @@ void CGameTypeSelect::Enter() {
 #else
 	logo.setTexture(Tex.GetSFTexture(T_TITLE));
 	logo.setScale(Winsys.scale, Winsys.scale);
-	logo.setPosition((Winsys.resolution.width - logo.getTextureRect().width) / 2, (5));
+	logo.setPosition((Winsys.resolution.width - (logo.getTextureRect().width*Winsys.scale)) / 2, (5));
 #endif
 
 	Music.Play(param.menu_music, true);

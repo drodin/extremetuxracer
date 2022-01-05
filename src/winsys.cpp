@@ -65,6 +65,7 @@ float CWinsys::CalcScreenScale() const {
 	else return (resolution.height / 768.f);
 #else
 	if (resolution.height < 720) return 1.0f;
+  else if (resolution.height >= 1488) return (resolution.height / 720.f); //iPads
 	else return (resolution.height / 720.f) * 1.5f;
 #endif
 }

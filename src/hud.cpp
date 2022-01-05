@@ -368,9 +368,7 @@ void DrawHud(const CControl *ctrl) {
 	if (!param.show_hud)
 		return;
 
-#ifdef MOBILE
 	scale = Winsys.scale;
-#endif
 
 	double speed = ctrl->cvel.Length();
 	Setup2dScene();
