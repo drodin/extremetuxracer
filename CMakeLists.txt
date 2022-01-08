@@ -63,7 +63,6 @@ if(IOS)
     set_target_properties(${PROJECT_NAME} PROPERTIES
         MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_LIST_DIR}/cmake/template/iOSBundleInfo.plist.in"
         MACOSX_BUNDLE_BUNDLE_NAME "Tux Racer"
-        XCODE_ATTRIBUTE_ASSETCATALOG_COMPILER_APPICON_NAME "AppIcon"
         XCODE_ATTRIBUTE_TARGETED_DEVICE_FAMILY "1,2"
     )
 
@@ -72,25 +71,27 @@ if(IOS)
 
     target_link_libraries(${PROJECT_NAME} sfml-main)
 else()
-    add_executable(${PROJECT_NAME} MACOSX_BUNDLE ${SOURCES} data apple/macos/extremetuxracer.icns apple/macos/extremetuxracer.entitlements)
+    add_executable(${PROJECT_NAME} MACOSX_BUNDLE ${SOURCES} data apple/macos/Assets.xcassets apple/macos/extremetuxracer.entitlements)
 
     set(MACOSX_BUNDLE_APP_CATEGORY "public.app-category.racing-games")
     set_target_properties(${PROJECT_NAME} PROPERTIES
         OUTPUT_NAME "Extreme Tux Racer"
         MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_LIST_DIR}/cmake/template/MacOSXBundleInfo.plist.in"
-        MACOSX_BUNDLE_ICON_FILE "extremetuxracer"
-        MACOSX_BUNDLE_COPYRIGHT "Copyright © 2020 Dmitry Rodin. All rights reserved."
+        MACOSX_BUNDLE_COPYRIGHT "Copyright © 2022 Dmitry Rodin. All rights reserved."
         XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY "Mac Developer"
         XCODE_ATTRIBUTE_CODE_SIGN_ENTITLEMENTS "apple/macos/extremetuxracer.entitlements"
         XCODE_ATTRIBUTE_ENABLE_HARDENED_RUNTIME YES
     )
 
-    set_source_files_properties(apple/macos/extremetuxracer.icns PROPERTIES MACOSX_PACKAGE_LOCATION "Resources")
+    set_source_files_properties(apple/macos/Assets.xcassets PROPERTIES MACOSX_PACKAGE_LOCATION "Resources")
 endif()
+    add_definitions(-DGL_SILENCE_DEPRECATION=1)
+
     set(VERSION_NAME "0.7.501")
     target_compile_definitions(${PROJECT_NAME} PRIVATE VERSION_NAME=\"${VERSION_NAME}\")
     set_target_properties(${PROJECT_NAME} PROPERTIES
         RESOURCE data
+        XCODE_ATTRIBUTE_ASSETCATALOG_COMPILER_APPICON_NAME "AppIcon"
         XCODE_ATTRIBUTE_PRODUCT_BUNDLE_IDENTIFIER "com.drodin.${PROJECT_NAME}"
         MACOSX_BUNDLE_SHORT_VERSION_STRING "${VERSION_NAME}"
         MACOSX_BUNDLE_BUNDLE_VERSION "1"
