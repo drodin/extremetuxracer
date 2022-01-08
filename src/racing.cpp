@@ -415,7 +415,7 @@ void CRacing::Loop(float time_step) {
 void CRacing::Exit() {
 #ifdef MOBILE
 	if (sf::Sensor::isAvailable(sf::Sensor::Accelerometer))
-		sf::Sensor::setEnabled(sf::Sensor::Accelerometer, true);
+		sf::Sensor::setEnabled(sf::Sensor::Accelerometer, false);
 #endif
 
 	Winsys.KeyRepeat(true);
