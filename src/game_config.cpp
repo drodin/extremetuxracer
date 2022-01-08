@@ -67,6 +67,7 @@ void LoadConfigFile() {
 		param.sound_volume = SPIntN(*line, "sound_volume", 90);
 		param.music_volume = SPIntN(*line, "music_volume", 20);
 #ifdef MOBILE
+		param.touch_paddle_brake = SPBoolN(*line, "touch_paddle_brake", false);
 		param.accelerometer_sensitivity = SPIntN(*line, "accelerometer_sensitivity", 60);
 #endif
 
@@ -104,6 +105,7 @@ void SetConfigDefaults() {
 	param.sound_volume = 90;
 	param.music_volume = 20;
 #ifdef MOBILE
+	param.touch_paddle_brake = false;
 	param.accelerometer_sensitivity = 60;
 #endif
 
@@ -187,6 +189,7 @@ void SaveConfigFile() {
 	liste.Add();
 
 #ifdef MOBILE
+	AddItem(liste, "touch_paddle_brake", param.touch_paddle_brake);
 	AddItem(liste, "accelerometer_sensitivity", param.accelerometer_sensitivity);
 	liste.Add();
 #endif

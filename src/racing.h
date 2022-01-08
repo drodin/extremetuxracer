@@ -24,6 +24,9 @@ GNU General Public License for more details.
 class CRacing : public State {
 	void Enter();
 	void Loop(float time_step);
+#ifdef MOBILE
+	void Mouse(int button, int state, int x, int y);
+#endif
 	void Keyb(sf::Keyboard::Key key, bool release, int x, int y);
 	void Jaxis(int axis, float value);
 	void Jbutt(int button, bool pressed);

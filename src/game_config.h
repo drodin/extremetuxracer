@@ -47,6 +47,7 @@ struct TParam {
 	int			sound_volume;
 	int			music_volume;
 #ifdef MOBILE
+	bool		touch_paddle_brake;
 	int			accelerometer_sensitivity;
 #endif
 

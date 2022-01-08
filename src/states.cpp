@@ -97,24 +97,18 @@ void State::Manager::PollEvent() {
 					TVector2i old = cursor_pos;
 					cursor_pos.x = event.touch.x;
 					cursor_pos.y = event.touch.y;
-					//if ((old.y > 0) && (old.y > Winsys.resolution.height * 0.9) && (cursor_pos.y < Winsys.resolution.height * 0.7)) {
-					if ((old.x > 0) && (old.x < Winsys.resolution.width * 0.1) && (cursor_pos.x > Winsys.resolution.width * 0.3)) {
-						current->Keyb(sf::Keyboard::Escape, false, cursor_pos.x, cursor_pos.y);
-						break;
-					}
 					current->Motion(event.touch.x - old.x, event.touch.y - old.y);
 					current->Mouse(event.touch.finger, event.type == sf::Event::TouchBegan, event.touch.x, event.touch.y);
-					current->Jbutt(3, event.type == sf::Event::TouchBegan);
 					break;
 				}
 
 				case sf::Event::SensorChanged: {
 #ifdef ANDROID
-					if (event.sensor.z > 0)
+					if (!param.touch_paddle_brake && event.sensor.z > 0)
 						current->Jaxis(1, (-event.sensor.z + 9.81f / 2.f) * 0.3f);
 					current->Jaxis(0, event.sensor.y / (9.81f / 4.f) * (param.accelerometer_sensitivity / 100.f));
 #else
-					if (event.sensor.z < 0)
+					if (!param.touch_paddle_brake && event.sensor.z < 0)
 						current->Jaxis(1, (event.sensor.z + 9.81f / 1.4f) * 0.3f);
 					current->Jaxis(0, -event.sensor.y / (9.81f / 4.f) * (param.accelerometer_sensitivity / 100.f));
 #endif

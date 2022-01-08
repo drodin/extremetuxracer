@@ -58,6 +58,7 @@ static TUpDown* resolution;
 static TUpDown* mus_vol;
 static TUpDown* sound_vol;
 #ifdef MOBILE
+static TCheckbox* touch_paddle_brake;
 static TUpDown* accel_sens;
 #endif
 static TUpDown* detail_level;
@@ -68,6 +69,7 @@ void SetConfig() {
 	if (mus_vol->GetValue() != param.music_volume ||
 	        sound_vol->GetValue() != param.sound_volume ||
 #ifdef MOBILE
+			touch_paddle_brake->checked != param.touch_paddle_brake ||
 			accel_sens->GetValue() != param.accelerometer_sensitivity ||
 #endif
 	        language->GetValue() != param.language ||
@@ -89,6 +91,7 @@ void SetConfig() {
 		Music.SetVolume(param.music_volume);
 		param.sound_volume = sound_vol->GetValue();
 #ifdef MOBILE
+		param.touch_paddle_brake = touch_paddle_brake->checked;
 		param.accelerometer_sensitivity = accel_sens->GetValue();
 #endif
 		param.perf_level = detail_level->GetValue();
@@ -175,6 +178,8 @@ void CGameConfig::Enter() {
 
 	resolution = AddUpDown(rightpos, area.top+dd*1, 0, NUM_RESOLUTIONS-1, (int)param.res_type);
 #ifdef MOBILE
+	touch_paddle_brake = AddCheckbox(area.left, area.top, framewidth-16, "Touch Left/Right to Paddle/Brake:");
+	touch_paddle_brake->checked = param.touch_paddle_brake;
 	accel_sens = AddUpDown(rightpos, area.top+dd*1, 0, 100, param.accelerometer_sensitivity, 2, true);
 #endif
 	mus_vol = AddUpDown(rightpos, area.top+dd*2, 0, 100, param.music_volume, 2, true);

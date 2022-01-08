@@ -45,8 +45,8 @@ TLabel* footnote;
 sf::String license[LICENSE_LINES] = {
 #ifdef MOBILE
 	"Controls:",
-	"Swipe from left to abort race / go to previous menu.",
-	"Touch screen to prepare for jump and release to jump.",
+	"Touch screen center to prepare for jump, release to jump.",
+	"Enable touch paddle/brake controls in Configuration.",
 	"",
 #endif
 	"Privacy policy:",

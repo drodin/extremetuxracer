@@ -66,6 +66,43 @@ static bool trees = true;
 static int newsound = -1;
 static int lastsound = -1;
 
+#ifdef MOBILE
+static int key_paddling_finger = -1;
+static int key_braking_finger = -1;
+static int key_charging_finger = -1;
+
+void CRacing::Mouse(int button, int state, int x, int y) {
+	if (!param.touch_paddle_brake) {
+		key_charging = state;
+		return;
+	}
+
+	if (state == 0) {
+		if (button == key_paddling_finger) {
+			key_paddling = false;
+			key_paddling_finger = -1;
+		} else if (button == key_braking_finger) {
+			key_braking = false;
+			key_braking_finger = -1;
+		} else if (button == key_charging_finger) {
+			key_charging = false;
+			key_charging_finger = -1;
+		}
+	} else {
+		if (x <= Winsys.resolution.width / 3 && key_paddling_finger == -1) {
+			key_paddling = true;
+			key_paddling_finger = button;
+		} else if (x >= Winsys.resolution.width / 3 * 2 && key_braking_finger == -1) {
+			key_braking = true;
+			key_braking_finger = button;
+		} else if (key_charging_finger == -1) {
+			key_charging = state;
+			key_charging_finger = button;
+		}
+	}
+}
+#endif
+
 void CRacing::Keyb(sf::Keyboard::Key key, bool release, int x, int y) {
 	switch (key) {
 		// steering flipflops
@@ -229,6 +266,12 @@ void CRacing::Enter() {
 	stick_paddling = false;
 	stick_braking = false;
 	stick_turn = false;
+
+#ifdef MOBILE
+	key_paddling_finger = -1;
+	key_braking_finger = -1;
+	key_charging_finger = -1;
+#endif
 
 	lastsound = -1;
 	newsound = -1;
