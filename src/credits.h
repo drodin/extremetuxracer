@@ -19,7 +19,7 @@ GNU General Public License for more details.
 
 #include "bh.h"
 #include "states.h"
-#include <vector>
+#include <forward_list>
 
 struct TCredits {
 	sf::String text;
@@ -30,7 +30,7 @@ struct TCredits {
 };
 
 class CCredits final : public State {
-	std::vector<TCredits> CreditList;
+	std::forward_list<TCredits> CreditList;
 
 	void DrawCreditsText(float time_step);
 	void Enter();
