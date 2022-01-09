@@ -2,7 +2,7 @@
 EXTREME TUXRACER
 
 Copyright (C) 1999-2001 Jasmin F. Patry (Tuxracer)
-Copyright (C) 2010 Extreme Tuxracer Team
+Copyright (C) 2010 Extreme Tux Racer Team
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -225,10 +225,10 @@ void CEnvironment::DrawSkybox(const TVector3d& pos) const {
 	// front
 	static const GLshort front[] = {
 		-1, -1, -1,
-		1, -1, -1,
-		1,  1, -1,
-		-1,  1, -1
-	};
+		    1, -1, -1,
+		    1,  1, -1,
+		    -1,  1, -1
+	    };
 
 	Skybox[0].Bind();
 	glVertexPointer(3, GL_SHORT, 0, front);
@@ -237,10 +237,10 @@ void CEnvironment::DrawSkybox(const TVector3d& pos) const {
 	// left
 	static const GLshort left[] = {
 		-1, -1,  1,
-		-1, -1, -1,
-		-1,  1, -1,
-		-1,  1,  1
-	};
+		    -1, -1, -1,
+		    -1,  1, -1,
+		    -1,  1,  1
+	    };
 	Skybox[1].Bind();
 	glVertexPointer(3, GL_SHORT, 0, left);
 	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
@@ -262,10 +262,10 @@ void CEnvironment::DrawSkybox(const TVector3d& pos) const {
 		// top
 		static const GLshort top[] = {
 			-1, 1, -1,
-			1, 1, -1,
-			1, 1,  1,
-			-1, 1,  1
-		};
+			    1, 1, -1,
+			    1, 1,  1,
+			    -1, 1,  1
+		    };
 		Skybox[3].Bind();
 		glVertexPointer(3, GL_SHORT, 0, top);
 		glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
@@ -273,10 +273,10 @@ void CEnvironment::DrawSkybox(const TVector3d& pos) const {
 		// bottom
 		static const GLshort bottom[] = {
 			-1, -1,  1,
-			1, -1,  1,
-			1, -1, -1,
-			-1, -1, -1
-		};
+			    1, -1,  1,
+			    1, -1, -1,
+			    -1, -1, -1
+		    };
 		Skybox[4].Bind();
 		glVertexPointer(3, GL_SHORT, 0, bottom);
 		glDrawArrays(GL_TRIANGLE_FAN, 0, 4);

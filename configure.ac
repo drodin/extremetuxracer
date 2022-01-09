@@ -2,8 +2,8 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.64])
-AC_INIT([Extreme Tux Racer], [0.7.99], [https://sourceforge.net/projects/extremetuxracer],
-        [etr], [http://sourceforge.net/projects/extremetuxracer])
+AC_INIT([Extreme Tux Racer], [0.8.99], [https://sourceforge.net/projects/extremetuxracer],
+        [etr], [https://sourceforge.net/projects/extremetuxracer])
 AC_CONFIG_SRCDIR([src/gui.cpp])
 AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_HEADERS([etr_config.h])
@@ -70,19 +70,26 @@ PKG_CHECK_MODULES([SFML_GRAPHICS], [sfml-graphics >= 2.4],
 ],
 [AC_MSG_ERROR([sfml-graphics not found])])
 
-AC_CHECK_LIB([GL], [glBegin],
+AC_CHECK_LIB([GLU], [gluBeginCurve],
 [
-  AC_CHECK_LIB([GLU], [gluBeginCurve],
+  AC_CHECK_LIB([OpenGL], [glBegin],
   [
-    LIBS="$LIBS -lGL -lGLU"
+    LIBS="$LIBS -lOpenGL -lGLU"
     glfound=true
+  ],
+  [
+    AC_CHECK_LIB([GL], [glBegin],
+    [
+      LIBS="$LIBS -lGL -lGLU"
+      glfound=true
+    ])
   ])
 ])
 
 if test x$glfound != xtrue ; then
-  AC_CHECK_LIB([opengl32], [glBegin],
+  AC_CHECK_LIB([glu32], [gluBeginCurve],
   [
-    AC_CHECK_LIB([glu32], [gluBeginCurve],
+    AC_CHECK_LIB([opengl32], [glBegin],
     [
       LIBS="$LIBS -lopengl32 -lglu32"
       glfound=true
@@ -96,8 +103,8 @@ fi
 
 CPPFLAGS="${CPPFLAGS} -DETR_DATA_DIR=\\\"$datadir\\\""
 
-# Request c++14 compatibility
-CXXFLAGS="${CXXFLAGS} -std=c++14"
+# Request c++17 compatibility
+CXXFLAGS="${CXXFLAGS} -std=c++17"
 
 AC_CONFIG_FILES([
         Makefile

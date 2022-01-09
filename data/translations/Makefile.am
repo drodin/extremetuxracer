@@ -10,6 +10,9 @@ pkgdata_DATA = \
 	fr_FR.lst	\
 	pl_PL.lst	\
 	se_SE.lst	\
+	eo.lst		\
+	du_NL.lst	\
+	ro_RO.lst	\
 	xx_XX.lst
 
 EXTRA_DIST = $(pkgdata_DATA)

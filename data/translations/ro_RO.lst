@@ -1,0 +1,119 @@
+# Please, don't change the idx
+
+*[idx] 0 [engl] PRESS ANY KEY TO START [trans] Apasa orice tasta pentru a incepe!
+*[idx] 1 [engl] Enter an event [trans] Participa la evenimente
+*[idx] 2 [engl] Practice [trans] Antrenament
+*[idx] 3 [engl] Configuration [trans] Setari
+*[idx] 4 [engl] Credits [trans] Atribuiri
+*[idx] 5 [engl] Quit [trans] Iesire
+*[idx] 6 [engl] Select an event [trans] Selecteaza un eveniment
+*[idx] 7 [engl] Select a cup [trans] Selecteaza o cupa
+*[idx] 8 [engl] Back [trans] Inapoi
+*[idx] 9 [engl] Continue [trans] Continua
+*[idx] 10 [engl] You cannot enter this cup yet
+	[trans] Nu poti selecta aceasta cupa deocamdata
+
+*[idx] 11 [engl] Herring: [trans] Hering:
+*[idx] 12 [engl] Time: [trans] Timp:
+*[idx] 13 [engl] Race! [trans] Start
+*[idx] 14 [engl] seconds [trans] secunde
+*[idx] 15 [engl] Ok [trans] OK
+*[idx] 16 [engl] Congratulations! You won the cup! [trans] Felicitari! Ai castigat!
+*[idx] 17 [engl] You have reached level [trans] Ai ajuns la nivelul
+*[idx] 18 [engl] Sorry, you didn't advance [trans] Nu ai avansat.
+*[idx] 19 [engl] You don't have any lives left [trans] Nu mai ai vieti ramase.
+*[idx] 20 [engl] Select a race [trans] Selecteaza o cursa
+
+*[idx] 21 [engl] Failed, -1 Tuxlive [trans] Esec, -1 viata.
+*[idx] 22 [engl] Success, +/- 0 Tuxlive [trans] Succes, +/- 0 viata.
+*[idx] 23 [engl] Success, +1 Tuxlive [trans] Succes, + 1 viata.
+*[idx] 24 [engl] Success, +2 Tuxlive [trans] Succes, + 2 vieti.
+*[idx] 25 [engl] Race aborted [trans] Cursa anulata
+*[idx] 26 [engl] Score: [trans] Scor:
+*[idx] 27 [engl] points [trans] punctaj
+
+*[idx] 28 [engl] Cancel [trans] Anulare
+*[idx] 29 [engl] Loading [trans] Incarcare...
+*[idx] 30 [engl] Please wait... [trans] Te rog asteapta...
+
+*[idx] 31 [engl] Fullscreen: [trans] Pe tot ecranul:
+*[idx] 32 [engl] Resolution: [trans] Rezolutie:
+*[idx] 33 [engl] Music volume: [trans] Volum muzica:
+*[idx] 34 [engl] Sound volume: [trans] Volum sunet:
+*[idx] 35 [engl] Language: [trans] Limba:
+*[idx] 36 [engl] Level of detail: [trans] Nivelul detaliilor:
+*[idx] 37 [engl] Contributed by: [trans] Autor:
+*[idx] 38 [engl] Event: [trans] Eveniment:
+*[idx] 39 [engl] Cup: [trans] Cupa:
+*[idx] 40 [engl] Race Over [trans] Sfarsitul cursei
+
+*[idx] 41 [engl] For more configuration options, please edit the
+	[trans] Pentru mai multe optiuni, editati manual
+*[idx] 42 [engl] file 'options.txt' and read the documentation.
+	[trans] fisierul 'options.txt' si cititi documentatia.
+*[idx] 43 [engl] Help [trans] Ajutor
+*[idx] 44 [engl] 1, 2, 3 - change view mode [trans] 1, 2, 3 - schimba unghiul camerei
+*[idx] 45 [engl] F - hide/show fps display [trans] F - Ascunde/Arata Cadrele pe secunda
+*[idx] 46 [engl] H - hide/show hud display [trans] H - Ascunde/Arata interfata
+*[idx] 47 [engl] S - screenshot [trans] S - Captura de ecran
+*[idx] 48 [engl] U - toggle ui snow [trans] U - manipuleaza fulgii de nea de pe ecran
+*[idx] 49 [engl] P - set pause mode [trans] P - pauza
+*[idx] 50 [engl] T - trick [trans] T - truc
+*[idx] 51 [engl] ESC - abort Race [trans] ESC - anuleaza cursa
+*[idx] 52 [engl] SPACE - jump [trans] SPATIU - saritura
+*[idx] 53 [engl] CRSR Left - turn left [trans] Tasta stanga - vireaza la stanga
+*[idx] 54 [engl] CRSR Right - turn right [trans] Tasta dreapta - vireaza la dreapta
+*[idx] 55 [engl] CRSR Up - accelerate [trans] Tasta sus - accelereaza
+*[idx] 56 [engl] CRSR down - brake [trans] Tasta jos - franeaza
+*[idx] 57 [engl] Keyboard functions [trans] Functii taste
+*[idx] 65 [engl] Press any key to return to the main menu [trans] Apasa orice tasta pentru a te intoarce la meniu.
+*[idx] 58 [engl] Select your player name: [trans] Selecteaza numele jucatorului:
+*[idx] 59 [engl] Select a character: [trans] Selecteaza un personaj:
+*[idx] 60 [engl] Enter [trans] Inainte
+*[idx] 61 [engl] Register a new player [trans] Inregistrare jucator
+*[idx] 62 [engl] Highscore list [trans] Cele mai mari scoruri
+*[idx] 63 [engl] No entries for this race [trans] Niciun scor pentru aceasta cursa
+*[idx] 64 [engl] Back [trans] Inapoi
+
+*[idx] 66 [engl] Enter a name for the new player and select an avatar: [trans] Introdu un nume pentru noul jucator si selecteaza un avatar:
+
+*[idx] 67 [engl] Loading resources, [trans] Incarcare resurse,
+*[idx] 68 [engl] please wait [trans] te rog asteapta...
+
+*[idx] 69 [engl] Mirror track: Off [trans] Normal
+*[idx] 70 [engl] Mirror track: On [trans] In oglinda
+
+*[idx] 71 [engl] Light: Sunny [trans] Insorit
+*[idx] 72 [engl] Light: Cloudy [trans] Innorat
+*[idx] 73 [engl] Light: Evening [trans] Seara
+*[idx] 74 [engl] Light: Night [trans] Noapte
+
+*[idx] 75 [engl] Snow: No [trans] Ninsoare: Nu
+*[idx] 76 [engl] Snow: A little [trans] Ninsoare: putina
+*[idx] 77 [engl] Snow: Some [trans] Ninsoare: destula
+*[idx] 78 [engl] Snow: A lot [trans] Ninsoare: multa
+
+*[idx] 79 [engl] Wind: No [trans] Fara vant
+*[idx] 80 [engl] Wind: Breeze [trans] Briza
+*[idx] 81 [engl] Wind: Strong [trans] Vant puternic
+*[idx] 82 [engl] Wind: Blustery [trans] Furtuna
+
+*[idx] 83 [engl] Randomize settings [trans] Setari aleatorii
+
+*[idx] 84 [engl] Score [trans] Scor
+*[idx] 85 [engl] Herring [trans] Hering
+*[idx] 86 [engl] Time [trans] Timp
+*[idx] 87 [engl] Path length [trans] Lungime traseu
+*[idx] 88 [engl] Average speed [trans] Viteza medie
+*[idx] 89 [engl] Position [trans] Locul
+*[idx] 90 [engl] in highscore list [trans] in lista de scoruri.
+
+*[idx] 91 [engl] Author [trans] Autor
+
+*[idx] 92 [engl] Loading courses failed. [trans] Incarcarea curselor a esuat.
+*[idx] 93 [engl] Loading characters failed. [trans] Incarcarea personajelor a esuat.
+*[idx] 94 [engl] Loading environments failed. [trans] Incarcarea mediilor a esuat.
+*[idx] 95 [engl] Loading terrains failed. [trans] Incarcarea terenului a esuat.
+*[idx] 96 [engl] Loading avatars failed. [trans] Incarcarea avatarilor a esuat.
+*[idx] 97 [engl] herrings [trans] heringi
+*[idx] 98 [engl] sec [trans] sec

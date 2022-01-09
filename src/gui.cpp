@@ -2,7 +2,7 @@
 EXTREME TUXRACER
 
 Copyright (C) 1999-2001 Jasmin F. Patry (Tuxracer)
-Copyright (C) 2010 Extreme Tuxracer Team
+Copyright (C) 2010 Extreme Tux Racer Team
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -658,9 +658,9 @@ void DrawGUIFrame() {
 	static sf::Sprite top_left(Tex.GetSFTexture(TOP_LEFT));
 	static sf::Sprite top_right(Tex.GetSFTexture(TOP_RIGHT));
 
-	bottom_left.setPosition(0, Winsys.resolution.height - 256);
-	bottom_right.setPosition(Winsys.resolution.width - 256, Winsys.resolution.height - 256);
-	top_right.setPosition(Winsys.resolution.width - 256, 0);
+	bottom_left.setPosition(0, Winsys.resolution.height - bottom_left.getTexture()->getSize().y);
+	bottom_right.setPosition(Winsys.resolution.width - bottom_right.getTexture()->getSize().x, Winsys.resolution.height - bottom_right.getTexture()->getSize().y);
+	top_right.setPosition(Winsys.resolution.width - top_right.getTexture()->getSize().x, 0);
 
 	Winsys.draw(bottom_left);
 	Winsys.draw(bottom_right);

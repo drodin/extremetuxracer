@@ -2,7 +2,7 @@
 EXTREME TUXRACER
 
 Copyright (C) 1999-2001 Jasmin F. Patry (Tuxracer)
-Copyright (C) 2010 Extreme Tuxracer Team
+Copyright (C) 2010 Extreme Tux Racer Team
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -21,7 +21,7 @@ GNU General Public License for more details.
 #include "bh.h"
 #include "states.h"
 
-class CIntro : public State {
+class CIntro final : public State {
 	void Enter();
 	void Loop(float time_step);
 	void Keyb(sf::Keyboard::Key key, bool release, int x, int y);

@@ -1,7 +1,7 @@
 /* --------------------------------------------------------------------
 EXTREME TUXRACER
 
-Copyright (C) 2010 Extreme Tuxracer Team
+Copyright (C) 2010 Extreme Tux Racer Team
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -486,6 +486,7 @@ bool CSPList::Save(const std::string& dir, const std::string& filename) const {
 
 void CSPList::MakeIndex(std::unordered_map<std::string, std::size_t>& index, const std::string &tag) {
 	index.clear();
+	index.reserve(size());
 	std::size_t idx = 0;
 
 	for (const_iterator line = cbegin(); line != cend(); ++line) {

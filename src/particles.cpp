@@ -2,7 +2,7 @@
 EXTREME TUXRACER
 
 Copyright (C) 1999-2001 Jasmin F. Patry (Tuxracer)
-Copyright (C) 2010 Extreme Tuxracer Team
+Copyright (C) 2010 Extreme Tux Racer Team
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -784,10 +784,10 @@ void TCurtain::Draw() const {
 			};
 			const GLfloat vtx[] = {
 				-halfsize, -halfsize, 0,
-				halfsize, -halfsize, 0,
-				halfsize, halfsize, 0,
-				-halfsize, halfsize, 0
-			};
+				    halfsize, -halfsize, 0,
+				    halfsize, halfsize, 0,
+				    -halfsize, halfsize, 0
+			    };
 			glVertexPointer(3, GL_FLOAT, 0, vtx);
 			glTexCoordPointer(2, GL_SHORT, 0, tex);
 			glDrawArrays(GL_TRIANGLE_FAN, 0, 4);

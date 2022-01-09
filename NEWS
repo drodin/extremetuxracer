@@ -2,7 +2,26 @@
                            NEWS for Extreme Tux Racer
 ===============================================================================
 
-Version 0.8                                                   ??th of ???, 20??
+Version 0.9                                                   ??th of ???, 202?
+-------------------------------------------------------------------------------
+
+Besides several small improvements and bugfixes, the new Extreme Tux Racer
+version 0.9 features the following changes:
+
+
+Version 0.8.1                                                 25th of Jun, 2021
+-------------------------------------------------------------------------------
+- Autotools build now prefers linking against libOpenGL over libGL
+- New translations
+  - Esperanto
+  - Dutch
+  - Romanian
+- Updated translations
+  - French
+  - Swedish
+
+
+Version 0.8                                                    7th of Mar, 2020
 -------------------------------------------------------------------------------
 
 Besides several small improvements and bugfixes, the new Extreme Tux Racer
@@ -13,13 +32,6 @@ version 0.8 features the following changes:
 - Autotools based build method can use opengl32 & glu32 instead of libGL & libGLU
 - New translations
   - Swedish
-
-
-Version 0.7.6                                                 ??th of ???, 20??
--------------------------------------------------------------------------------
-Bugfix release
-
-- Corrected license data in appdata file
 
 
 Version 0.7.5                                               27th of April, 2018

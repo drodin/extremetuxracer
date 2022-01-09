@@ -1,7 +1,7 @@
 /* --------------------------------------------------------------------
 EXTREME TUXRACER
 
-Copyright (C) 2010 Extreme Tuxracer Team
+Copyright (C) 2010 Extreme Tux Racer Team
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -49,13 +49,13 @@ void CCredits::LoadCreditList() {
 		return;
 	}
 
-	std::forward_list<TCredits>::iterator last = CreditList.before_begin();
+	int old_offs = 0;
+	CreditList.reserve(list.size());
 	for (CSPList::const_iterator line = list.cbegin(); line != list.cend(); ++line) {
 		std::string version = "";
-		int old_offs = (last != CreditList.before_begin()) ? last->offs : 0;
-		last = CreditList.emplace_after(last);
-		TCredits& credit = *last;
-		credit.text = SPStrN(*line, "text");
+		TCredits& credit = CreditList.emplace_back();
+		std::string temp = SPStrN(*line, "text");
+		credit.text = sf::String::fromUtf8(temp.cbegin(), temp.cend());
 
 		if (version.empty()) {
 			version = SPStrN(*line, "version");
@@ -69,6 +69,8 @@ void CCredits::LoadCreditList() {
 
 		credit.col = SPIntN(*line, "col", 0);
 		credit.size = SPFloatN(*line, "size", 1.f);
+
+		old_offs = credit.offs;
 	}
 }
 
@@ -79,7 +81,7 @@ void CCredits::DrawCreditsText(float time_step) {
 
 	sf::Text text;
 	text.setFont(FT.getCurrentFont());
-	for (std::forward_list<TCredits>::const_iterator i = CreditList.begin(); i != CreditList.end(); ++i) {
+	for (std::vector<TCredits>::const_iterator i = CreditList.begin(); i != CreditList.end(); ++i) {
 		offs = h - TOP_Y - y_offset + i->offs;
 		if (offs > h || offs < TOP_Y - 100.f) // Draw only visible lines
 			continue;

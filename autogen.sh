@@ -3,7 +3,7 @@
 # EXTREME TUXRACER
 #
 # Copyright (C) 1999-2001 Jasmin F. Patry (Tuxracer)
-# Copyright (C) 2010,2013 Extreme Tuxracer Team
+# Copyright (C) 2010,2013 Extreme Tux Racer Team
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -19,7 +19,7 @@
 cd "$(dirname $0)"
 
 if autoreconf -f -s -i -m -I m4 ; then
-    echo "Configure script created, run it next."
+    echo "$(dirname $0)/configure script created, run it next."
 else
     echo "Autoreconf failed" >&2
     exit 1

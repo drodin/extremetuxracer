@@ -3,7 +3,7 @@ EXTREME TUXRACER
 
 Copyright (C) 1999-2001 Jasmin F. Patry (Tuxracer)
 Copyright (C) 2004-2005 Volker Stroebel (Planetpenguin Racer)
-Copyright (C) 2010 Extreme Tuxracer Team
+Copyright (C) 2010 Extreme Tux Racer Team
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -133,6 +133,7 @@ bool CFont::LoadFontlist() {
 	}
 
 	fonts.reserve(list.size());
+	fontindex.reserve(list.size());
 	for (CSPList::const_iterator line = list.cbegin(); line != list.cend(); ++line) {
 		std::string fontfile = SPStrN(*line, "file");
 		std::string name = SPStrN(*line, "name");

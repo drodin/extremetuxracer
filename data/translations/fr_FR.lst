@@ -119,3 +119,16 @@
 *[idx] 96 [engl] Loading avatars failed. [trans] Chargement avatars échoué.
 *[idx] 97 [engl] herrings [trans] harengs
 *[idx] 98 [engl] sec [trans] sec
+
+*[idx] 99 [engl] 1st [trans] 1ier
+*[idx] 100 [engl] 2nd [trans] 2iem
+*[idx] 101 [engl] 3rd [trans] 3iem
+*[idx] 102 [engl] 4th [trans] 4iem
+*[idx] 103 [engl] 5th [trans] 5iem
+*[idx] 104 [engl] 6th [trans] 6iem
+*[idx] 105 [engl] 7th [trans] 7iem
+*[idx] 106 [engl] 8th [trans] 8iem
+*[idx] 107 [engl] 9th [trans] 9iem
+*[idx] 108 [engl] 10th [trans] 10iem
+
+*[idx] 109 [engl] Unknown [trans] Inconnu
