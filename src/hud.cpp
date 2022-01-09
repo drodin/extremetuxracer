@@ -83,15 +83,22 @@ static void draw_time(double time, sf::Color color) {
 }
 
 static void draw_herring_count(int herring_count, sf::Color color) {
-	Tex.Draw(HERRING_ICON, Winsys.resolution.width - 59 * scale, 12 * scale, scale);
+	static GLfloat padding = 0.f;
+
+#ifdef MOBILE
+	padding = 40.f * scale;
+	Tex.Draw(CLOSE, Winsys.resolution.width - padding, 12 * scale, scale);
+#endif
+
+	Tex.Draw(HERRING_ICON, Winsys.resolution.width - padding - 59 * scale, 12 * scale, scale);
 
 	std::string hcountstr = Int_StrN(herring_count, 3);
 	if (param.use_papercut_font < 2) {
-		Tex.DrawNumStr(hcountstr, Winsys.resolution.width - 130 * scale, 12 * scale, scale, color);
+		Tex.DrawNumStr(hcountstr, Winsys.resolution.width - padding - 130 * scale, 12 * scale, scale, color);
 	} else {
 		Winsys.beginSFML();
 		FT.SetColor(color);
-		FT.DrawString(Winsys.resolution.width - 125 * scale, 3 * scale, hcountstr);
+		FT.DrawString(Winsys.resolution.width - padding - 125 * scale, 3 * scale, hcountstr);
 		Winsys.endSFML();
 	}
 }

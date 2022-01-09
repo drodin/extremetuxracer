@@ -72,6 +72,15 @@ static int key_braking_finger = -1;
 static int key_charging_finger = -1;
 
 void CRacing::Mouse(int button, int state, int x, int y) {
+	if (x >= Winsys.resolution.width - 40.f * Winsys.scale && y <= 40.f * Winsys.scale) {
+		if (!state) {
+			g_game.raceaborted = true;
+			g_game.race_result = -1;
+			State::manager.RequestEnterState(GameOver);
+		}
+		return;
+	}
+
 	if (!param.touch_paddle_brake) {
 		key_charging = state;
 		return;

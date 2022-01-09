@@ -55,6 +55,7 @@ GNU General Public License for more details.
 #define T_SNOW1 41
 #define T_SNOW2 42
 #define T_SNOW3 43
+#define CLOSE 45
 
 
 // --------------------------------------------------------------------
