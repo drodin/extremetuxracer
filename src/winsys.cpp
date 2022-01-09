@@ -29,6 +29,17 @@ GNU General Public License for more details.
 #include "translation.h"
 #include <iostream>
 
+#if !defined(NDEBUG) && defined(USE_GL4ES) && defined(IOS)
+//TODO: This is really only needed on macOS Monterey, running as designed for iPad
+#include <dlfcn.h>
+void *dlsym_rtld_default(const char* fn_name) {
+	return dlsym(RTLD_DEFAULT, fn_name);
+}
+extern "C" {
+	void set_getprocaddress(void *(*new_proc_address)(const char *));
+}
+#endif
+
 TVector2i cursor_pos(0, 0);
 
 CWinsys Winsys;
@@ -121,6 +132,9 @@ void CWinsys::SetupVideoMode(int width, int height) {
 
 void CWinsys::Init() {
 #if defined(USE_GL4ES) && defined(IOS)
+#if	!defined(NDEBUG)
+	set_getprocaddress(dlsym_rtld_default);
+#endif
 	setenv("LIBGL_TEXCOPY", "1", 1);
 #endif
 	window = new sf::RenderWindow();
