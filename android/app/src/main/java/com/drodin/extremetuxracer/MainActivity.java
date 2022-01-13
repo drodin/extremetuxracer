@@ -7,8 +7,6 @@ import android.os.Bundle;
 import android.view.Display;
 import android.view.View;
 
-import androidx.annotation.NonNull;
-
 public class MainActivity extends NativeActivity {
     protected int width, height;
 

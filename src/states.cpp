@@ -26,6 +26,7 @@ GNU General Public License for more details.
 #include "game_ctrl.h"
 #include "score.h"
 #include "audio.h"
+#include "racing.h"
 #endif
 
 State::Manager State::manager(Winsys);
@@ -127,7 +128,8 @@ void State::Manager::PollEvent() {
 					Music.Pause();
 					g_game.active = false;
 					Winsys.getWindow().setActive(false);
-					current->Keyb(sf::Keyboard::P, false, cursor_pos.x, cursor_pos.y);
+					if (current == &Racing)
+						current->Keyb(sf::Keyboard::P, false, cursor_pos.x, cursor_pos.y);
 					Score.SaveHighScore();
 					SaveMessages();
 					if (g_game.argument < 1) Players.SavePlayers();
