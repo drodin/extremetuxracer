@@ -29,6 +29,11 @@ GNU General Public License for more details.
 #include "translation.h"
 #include <iostream>
 
+#ifdef ANDROID
+#include <android/native_activity.h>
+#include <SFML/System/NativeActivity.hpp>
+#endif
+
 #if !defined(NDEBUG) && defined(USE_GL4ES) && defined(IOS)
 //TODO: This is really only needed on macOS Monterey, running as designed for iPad
 #include <dlfcn.h>
@@ -98,6 +103,10 @@ void CWinsys::SetupVideoMode(const TScreenRes& res) {
 	if (param.fullscreen)
 		style |= sf::Style::Fullscreen;
 
+#ifdef ANDROID
+	style = sf::Style::Default;
+#endif
+
 	resolution = res;
 
 	ResetRenderMode();
@@ -138,8 +147,12 @@ void CWinsys::Init() {
 	setenv("LIBGL_TEXCOPY", "1", 1);
 #endif
 	window = new sf::RenderWindow();
+#ifndef ANDROID
 	sf::VideoMode desktopMode = sf::VideoMode::getDesktopMode();
 	resolutions[0] = TScreenRes(desktopMode.width, desktopMode.height);
+#else
+	resolutions[0] = getNativeResolution();
+#endif
 	resolutions[1] = TScreenRes(800, 600);
 	resolutions[2] = TScreenRes(1024, 768);
 	resolutions[3] = TScreenRes(1152, 864);
@@ -214,3 +227,22 @@ void CWinsys::TakeScreenshot() const {
 	path += SCREENSHOT_FORMAT;
 	img.saveToFile(path);
 }
+
+#ifdef ANDROID
+TScreenRes& CWinsys::getNativeResolution() {
+	ANativeActivity *activity = sf::getNativeActivity();
+
+	JNIEnv* env{};
+	activity->vm->AttachCurrentThread(&env, NULL);
+	jclass activityClass = env->GetObjectClass(activity->clazz);
+
+	jfieldID width = env->GetFieldID(activityClass, "width", "I");
+	jfieldID height = env->GetFieldID(activityClass, "height", "I");
+
+	TScreenRes *native = new TScreenRes(env->GetIntField(activity->clazz, width), env->GetIntField(activity->clazz, height));
+
+	activity->vm->DetachCurrentThread();
+
+	return *native;
+}
+#endif

@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 31
     ndkVersion '18.1.5063045'
 
     defaultConfig {
@@ -14,7 +14,7 @@ android {
         versionName = "0.8.106"
 
         minSdkVersion 16
-        targetSdkVersion 30
+        targetSdkVersion 31
 
         ndk {
             //abiFilters 'armeabi-v7a'

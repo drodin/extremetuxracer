@@ -144,6 +144,7 @@ void State::Manager::PollEvent() {
 					current->Jbutt(event.joystickButton.button, event.type == sf::Event::JoystickButtonPressed);
 					break;
 
+#ifndef MOBILE
 				case sf::Event::Resized:
 					if (Winsys.resolution.width != event.size.width || Winsys.resolution.height != event.size.height) {
 						Winsys.resolution.width = event.size.width;
@@ -151,6 +152,7 @@ void State::Manager::PollEvent() {
 						Winsys.SetupVideoMode(event.size.width, event.size.height);
 					}
 					break;
+#endif
 
 				case sf::Event::Closed:
 					quit = true;

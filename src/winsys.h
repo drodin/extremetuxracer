@@ -65,6 +65,9 @@ public:
 	bool PollEvent(sf::Event& event) { return window->pollEvent(event); }
 	const sf::Window& getWindow() const { return *window; }
 	void TakeScreenshot() const;
+#ifdef ANDROID
+	TScreenRes& getNativeResolution();
+#endif
 };
 
 
