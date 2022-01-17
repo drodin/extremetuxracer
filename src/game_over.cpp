@@ -59,6 +59,7 @@ void CGameOver::Keyb(sf::Keyboard::Key key, bool release, int x, int y) {
 }
 
 void CGameOver::Mouse(int button, int state, int x, int y) {
+	if (state) return;
 	QuitGameOver();
 }
 
