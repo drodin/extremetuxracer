@@ -335,8 +335,6 @@ void InitConfig() {
 	CFURLRef appUrlRef = CFBundleCopyBundleURL(CFBundleGetMainBundle());
 	CFStringRef macPath = CFURLCopyFileSystemPath(appUrlRef, kCFURLPOSIXPathStyle);
 	const char *data_dir = CFStringGetCStringPtr(macPath, CFStringGetSystemEncoding());
-	CFRelease(appUrlRef);
-	CFRelease(macPath);
 
 	param.data_dir = data_dir;
 	param.data_dir += "/Contents/Resources/data";
@@ -345,6 +343,9 @@ void InitConfig() {
 	if (FileExists(param.configfile)) {
 		config_exist = 1;
 	}
+
+	CFRelease(appUrlRef);
+	CFRelease(macPath);
 #else /* WIN32 */
 
 #if 0
