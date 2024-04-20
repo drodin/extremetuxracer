@@ -19,8 +19,8 @@ option(HUNTER_BUILD_SHARED_LIBS "Build shared libs" OFF)
 
 include("cmake/HunterGate.cmake")
 HunterGate(
-    URL "https://github.com/drodin/hunter/archive/c870ff6.tar.gz"
-    SHA1 "49b146b8607845083fc81ed238f8a4611f6a37d8"
+    URL "https://github.com/drodin/hunter/archive/7d981a6.tar.gz"
+    SHA1 "f16cd24f04e65a3166d90060a797ed5759be22d7"
     LOCAL
 )
 
@@ -87,17 +87,19 @@ else()
 endif()
     add_definitions(-DGL_SILENCE_DEPRECATION=1)
 
-    set(VERSION_NAME "0.8.106")
+    set(VERSION_NAME "0.8.107")
     target_compile_definitions(${PROJECT_NAME} PRIVATE VERSION_NAME=\"${VERSION_NAME}\")
+    target_compile_options(${PROJECT_NAME} PRIVATE -g)
     set_target_properties(${PROJECT_NAME} PROPERTIES
         RESOURCE data
         XCODE_ATTRIBUTE_ASSETCATALOG_COMPILER_APPICON_NAME "AppIcon"
         XCODE_ATTRIBUTE_PRODUCT_BUNDLE_IDENTIFIER "com.drodin.${PROJECT_NAME}"
         MACOSX_BUNDLE_SHORT_VERSION_STRING "${VERSION_NAME}"
-        MACOSX_BUNDLE_BUNDLE_VERSION "6"
+        MACOSX_BUNDLE_BUNDLE_VERSION "7"
         XCODE_ATTRIBUTE_INSTALL_PATH "$(LOCAL_APPS_DIR)"
         XCODE_ATTRIBUTE_SKIP_INSTALL "No"
         XCODE_ATTRIBUTE_DEVELOPMENT_TEAM "$ENV{CMAKE_XCODE_ATTRIBUTE_DEVELOPMENT_TEAM}"
+        XCODE_ATTRIBUTE_DEBUG_INFORMATION_FORMAT "dwarf-with-dsym"
     )
 else()
     add_executable(${PROJECT_NAME} ${SOURCES})
